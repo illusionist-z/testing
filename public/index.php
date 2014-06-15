@@ -47,7 +47,7 @@ try {
      * Assign the DI
      */
     $application->setDI($di);
-
+    
     /**
      * Include modules
      */

@@ -4,9 +4,7 @@ namespace Crm\Auth;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
-use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\ModuleDefinitionInterface;
-use Phalcon\Config\Adapter\Ini;
 
 class Module implements ModuleDefinitionInterface
 {
@@ -50,17 +48,6 @@ class Module implements ModuleDefinitionInterface
             return $view;
         };
 
-        /**
-         * Database connection is created based in the parameters defined in the configuration file
-         */
-//        $di['db'] = function () use ($config) {
-//            return new DbAdapter(array(
-//                "host" => $config->database->host,
-//                "username" => $config->database->username,
-//                "password" => $config->database->password,
-//                "dbname" => $config->database->name
-//            ));
-//        };
         
         $di['dispatcher'] = function() {
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
