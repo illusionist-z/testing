@@ -7,7 +7,7 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-
+        echo 'front';exit();
     }
 
 }

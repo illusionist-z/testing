@@ -1,18 +1,15 @@
 <?php
 
-namespace Crm\Auth\Controllers;
+namespace Crm\Test\Controllers;
 
 class IndexController extends ControllerBase
 {
-
     
     public function indexAction()
     {
+        
         $this->view->lang = $this->request->getBestLanguage();
-        $this->view->user = $this->db->fetchOne('SELECT * FROM `user`');
     }
-    
-    
 
 }
 

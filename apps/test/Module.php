@@ -1,10 +1,9 @@
 <?php
 
-namespace Crm\Frontend;
+namespace Crm\Test;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
-use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Phalcon\Config\Adapter\Ini;
 
@@ -18,10 +17,11 @@ class Module implements ModuleDefinitionInterface
     {
 
         $loader = new Loader();
+        
 
         $loader->registerNamespaces(array(
-            'Crm\Frontend\Controllers' => __DIR__ . '/controllers/',
-            'Crm\Frontend\Models' => __DIR__ . '/models/',
+            'Crm\Test\Controllers' => __DIR__ . '/controllers/',
+            'Crm\Test\Models' => __DIR__ . '/models/',
         ));
 
         $loader->register();
@@ -36,11 +36,6 @@ class Module implements ModuleDefinitionInterface
     {
 
         /**
-         * Read configuration
-         */
-        $config = new Ini(__DIR__ . "/config/config.ini");
-
-        /**
          * Setting up the view component
          */
         $di['view'] = function () {
@@ -51,10 +46,9 @@ class Module implements ModuleDefinitionInterface
         };
 
         
-        
         $di['dispatcher'] = function() {
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
-            $dispatcher->setDefaultNamespace('Crm\Frontend\Controllers');
+            $dispatcher->setDefaultNamespace('Crm\Test\Controllers');
             return $dispatcher;
         };
 

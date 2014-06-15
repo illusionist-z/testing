@@ -18,32 +18,37 @@ $di = new FactoryDefault();
  * Registering a router
  */
 $di['router'] = function () {
-
     $router = new Router();
-
-    $router->setDefaultModule("frontend");
- //   $router->setDefaultNamespace("Crm\Frontend\Controllers");
+    $def_mod = "frontend";
+    $router->setDefaultModule($def_mod);
+    
+    $aryModules = \Lib\Core\Module::get();
     
     // auth moduleの追加
-    $router->add('/auth', [
-    'module' => 'auth',
-        'action' => 'index',
-        'params' => 'index'
-    ]);
+    foreach ($aryModules as $module){
+        if($def_mod === $module){
+            continue;
+        }
+        
+        $router->add('/'.$module, [
+        'module' => $module,
+            'action' => 'index',
+            'params' => 'index'
+        ]);
 
-    $router->add('/auth/:controller', [
-        'module'     => 'auth',
-        'controller' => 1,
-        'action'     => 'index'
-    ]);
+        $router->add('/'.$module.'/:controller', [
+            'module'     => $module,
+            'controller' => 1,
+            'action'     => 'index'
+        ]);
 
-    $router->add('/auth/:controller/:action/:params', [
-        'module'     => 'auth',
-        'controller' => 1,
-        'action'     => 2,
-        'params'     => 3
-    ]);
-
+        $router->add('/'.$module.'/:controller/:action/:params', [
+            'module'     => $module,
+            'controller' => 1,
+            'action'     => 2,
+            'params'     => 3
+        ]);
+    }
     return $router;
 };
 

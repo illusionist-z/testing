@@ -38,7 +38,7 @@ class Module implements ModuleDefinitionInterface
         /**
          * Read configuration
          */
-        $config = new Ini(__DIR__ . "/config/config.ini");
+//        $config = new Ini(__DIR__ . "/config/config.ini");
 
         /**
          * Setting up the view component
@@ -53,14 +53,14 @@ class Module implements ModuleDefinitionInterface
         /**
          * Database connection is created based in the parameters defined in the configuration file
          */
-        $di['db'] = function () use ($config) {
-            return new DbAdapter(array(
-                "host" => $config->database->host,
-                "username" => $config->database->username,
-                "password" => $config->database->password,
-                "dbname" => $config->database->name
-            ));
-        };
+//        $di['db'] = function () use ($config) {
+//            return new DbAdapter(array(
+//                "host" => $config->database->host,
+//                "username" => $config->database->username,
+//                "password" => $config->database->password,
+//                "dbname" => $config->database->name
+//            ));
+//        };
         
         $di['dispatcher'] = function() {
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
