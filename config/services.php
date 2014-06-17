@@ -57,7 +57,7 @@ $di['router'] = function () {
  */
 $di['url'] = function () {
     $url = new UrlResolver();
-    $url->setBaseUri('/crm/');
+    $url->setBaseUri('/');
 
     return $url;
 };

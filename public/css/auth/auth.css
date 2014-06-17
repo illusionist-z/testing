@@ -5,4 +5,32 @@
     margin:0;
     padding:0;
 }
+body{
+    background: #758F9F;
+}
 
+#login_block{
+    bottom: 0px;
+    min-width: 950px;
+    min-height: 500px;
+    position: relative;
+}
+
+#form_login{
+    margin:150px auto 0;
+    width:300px;
+    background: #FFF;
+    display: block;
+    border-radius: 30px;
+    padding:30px;
+    border: 1px solid #164;
+}
+
+#bottom_block{
+    position: fixed;
+    bottom: 6px;
+    color: #FFF;
+    font-size: 11px;
+    text-align: center;
+    width:100%;
+}

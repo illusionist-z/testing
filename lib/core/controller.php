@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
 class Controller extends \Phalcon\Mvc\Controller{
+    
     protected function _getTranslation()
     {
 

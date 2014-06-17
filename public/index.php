@@ -5,6 +5,9 @@ use Phalcon\Config\Adapter\Ini;
 
 error_reporting(E_ALL);
 
+//$debug = new \Phalcon\Debug();
+//$debug->listen();
+
 try {
     
     //Register an autoloader
@@ -25,10 +28,17 @@ try {
      */
     require __DIR__ . '/../config/services.php';
     
+    
     /**
      * Set up database
      */
     $config = new Ini(__DIR__ . '/../config/config.ini');
+    
+    $di->set("logger", function() use ($config){
+        $file_name = $config->logger->system . 'system_'.date("Ymd").'.log';
+        return new \Lib\Core\Logger($file_name);// \Phalcon\Logger\Adapter\File($file_name);
+    });
+    
     $di->set("db", function() use ($config){
     return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
                 "host" => $config->database->host,
@@ -38,6 +48,7 @@ try {
         ));
     });
 
+    
     /**
      * Handle the request
      */
@@ -48,6 +59,8 @@ try {
      */
     $application->setDI($di);
     
+    // register di
+    \Phalcon\DI::setDefault( $di );
     /**
      * Include modules
      */
