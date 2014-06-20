@@ -22,6 +22,19 @@ class Logger extends \Phalcon\Logger\Adapter\File{
         $message = '['.$class.'::'.$function.'()]'."[$serverAddress]{$title}[$file][LINE:$line]".$errorMsg;
         $this->error($message,$context);
     }
+    
+    public function WriteException($e){
+        $serverAddress = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR']: 'CLI';
+        $message = '[Error Code:'.$e->getCode().']'.'['.$serverAddress.']'.PHP_EOL;
+        $message.= $e->getMessage();
+        
+        $tmp = $e->getTrace();
+        foreach($tmp as $step => $v){
+            $message .= PHP_EOL.'#STEP '.$step.PHP_EOL;
+            $message .= print_r($v,TRUE);
+        }
+        $this->error($message,null);
+    }
 
     /**
      * @param $errorMsg
