@@ -1,6 +1,4 @@
-<?php
-
-namespace Crm\Auth;
+<?php namespace Crm\Auth;
 
 use Phalcon\Loader;
 use Phalcon\Mvc\View;
@@ -32,12 +30,6 @@ class Module implements ModuleDefinitionInterface
      */
     public function registerServices($di)
     {
-
-        /**
-         * Read configuration
-         */
-//        $config = new Ini(__DIR__ . "/config/config.ini");
-
         /**
          * Setting up the view component
          */
@@ -47,8 +39,7 @@ class Module implements ModuleDefinitionInterface
 
             return $view;
         };
-
-        
+    
         $di['dispatcher'] = function() {
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setDefaultNamespace('Crm\Auth\Controllers');
