@@ -1,9 +1,7 @@
 <?php
-
 /**
  * Services are globally registered in this file
  */
-
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\DI\FactoryDefault;
@@ -17,7 +15,7 @@ $di = new FactoryDefault();
 /**
  * Registering a router
  */
-$di['router'] = function () {
+$di->set('router', function () {
     $router = new Router();
     $def_mod = "frontend";
     $router->setDefaultModule($def_mod);
@@ -50,24 +48,47 @@ $di['router'] = function () {
         ]);
     }
     return $router;
-};
+});
 
 /**
  * The URL component is used to generate all kind of urls in the application
  */
-$di['url'] = function () {
+$di->set('url',function () {
     $url = new UrlResolver();
     $url->setBaseUri('/');
-
     return $url;
-};
+});
 
 /**
  * Start the session the first time some component request the session service
  */
-$di['session'] = function () {
+$di->set('session', function () {
     $session = new SessionAdapter();
     $session->start();
-
     return $session;
-};
+});
+
+//Set up the flash service
+$di->set('flash', function() {
+    return new \Phalcon\Flash\Direct();
+});
+
+$di->set('test', function(){
+    return new \Lib\Core\Test(); 
+});
+
+//Set up logger
+$di->set("logger", function() use ($config){
+    $file_name = $config->logger->system . 'system_'.date("Ymd").'.log';
+    return new \Lib\Core\Logger($file_name);// \Phalcon\Logger\Adapter\File($file_name);
+});
+
+//Set database
+$di->set("db", function() use ($config){
+return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+            "host" => $config->database->host,
+            "username" => $config->database->username,
+            "password" => $config->database->password,
+            "dbname" => $config->database->dbname
+    ));
+});
