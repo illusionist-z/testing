@@ -11,7 +11,7 @@ Class BaseModel extends \Phalcon\Mvc\Model{
     public $logger;
     
     public function initialize() {
-        $di = \Phalcon\DI\FactoryDefault::getDefault();
-        $this->logger = $di->getShared('logger');
+//        $di = \Phalcon\DI\FactoryDefault::getDefault();
+//        $this->logger = $di->getShared('logger');
     }
 }

@@ -4,23 +4,18 @@ use Phalcon\Loader;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
-class Module implements ModuleDefinitionInterface
+class Module extends \Lib\Core\Module implements ModuleDefinitionInterface
 {
 
+    public function __construct() {
+        parent::__construct(__DIR__);
+    }
     /**
      * Registers the module auto-loader
      */
     public function registerAutoloaders()
     {
-
-        $loader = new Loader();
-
-        $loader->registerNamespaces(array(
-            'Crm\Auth\Controllers' => __DIR__ . '/controllers/',
-            'Crm\Auth\Models' => __DIR__ . '/models/',
-        ));
-
-        $loader->register();
+        parent::registerAutoloaders();
     }
 
     /**
@@ -31,20 +26,9 @@ class Module implements ModuleDefinitionInterface
     public function registerServices($di)
     {
         /**
-         * Setting up the view component
+         * Read configuration
          */
-        $di['view'] = function () {
-            $view = new View();
-            $view->setViewsDir(__DIR__ . '/views/');
-
-            return $view;
-        };
-    
-        $di['dispatcher'] = function() {
-            $dispatcher = new \Phalcon\Mvc\Dispatcher();
-            $dispatcher->setDefaultNamespace('Crm\Auth\Controllers');
-            return $dispatcher;
-        };
+        parent::registerServices($di);
 
     }
 

@@ -57,9 +57,15 @@ Class Module implements ModuleDefinitionInterface{
             return $view;
         };
         
-        $di['dispatcher'] = function() {
+        $di['dispatcher'] = function() use ($di){
+            //Set Plugin
+            $eventsManager = $di->getShared('eventsManager');
+            //Set Permission plugin
+            $eventsManager->attach('dispatch', new Plugin\Permission($di));
+            
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setDefaultNamespace('Crm\\'.$this->_moduleName.'\Controllers');
+            $dispatcher->setEventsManager($eventsManager);
             return $dispatcher;
         };
 
