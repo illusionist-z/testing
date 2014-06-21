@@ -26,7 +26,7 @@ class LoginController extends ControllerBase
         }
         
         // When user's login succeed , move to dashboad
-        
+        $this->response->redirect('home');
         
             
     }

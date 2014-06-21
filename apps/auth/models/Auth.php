@@ -27,6 +27,7 @@ class Auth extends Component{
             return false;
         }
         
+        $this->_setUserInfo($user);
         return TRUE;
         
 //        // Check if the user was flagged
@@ -87,5 +88,23 @@ class Auth extends Component{
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
         }
+    }
+    
+    /**
+     * 
+     * @param type $userObject
+     */
+    private function _setUserInfo($userObject){
+        $user= [
+            'id' => $userObject->id,
+            'name' => $userObject->name,
+            'kana' => $userObject->kana,
+            'dept_code' => $userObject->dept_code,
+            'dept_name' => $userObject->dept_name,
+            'lang' => $userObject->lang,
+            'email01' => $userObject->email01,
+            'rank_code' => $userObject->rank_code,
+        ];
+        $this->session->set('user',$user);
     }
 }

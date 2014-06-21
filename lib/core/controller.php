@@ -7,19 +7,15 @@
 class Controller extends \Phalcon\Mvc\Controller{
     
     public function initialize() {
-        
-
+        $this->view->lang = $this->request->getBestLanguage();
     }
     
     protected function _getTranslation()
     {
 
-        //Ask browser what is the best language
-        $language = $this->request->getBestLanguage();
-
         //Check if we have a translation file for that lang
-        if (file_exists("app/auth/messages/".$language.".php")) {
-           require "app/auth/messages/".$language.".php";
+        if (file_exists("app/auth/messages/".$this->view->lang.".php")) {
+           require "app/auth/messages/".$this->view->lang.".php";
         } else {
            // fallback to some default
            require "app/auth/messages/ja.php";
@@ -32,7 +28,11 @@ class Controller extends \Phalcon\Mvc\Controller{
 
     }
     
-    public function test(){
-        return 'extends test!!';
+    /**
+     * 
+     */
+    public function setCommonJsAndCss(){
+        $this->assets->addCss('css/bootstrap/bootstrap.min.css')
+                     ->addCss('css/bootstrap/common.css');
     }
 }

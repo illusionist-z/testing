@@ -6,7 +6,7 @@
     padding:0;
 }
 body{
-    background: #758F9F;
+    background: #EEE;
 }
 
 #login_block{
@@ -23,13 +23,14 @@ body{
     display: block;
     border-radius: 30px;
     padding:30px;
-    border: 1px solid #164;
+    border: 1px solid #AAA;
+    box-shadow: 1px 1px 5px #aaa;
 }
 
 #bottom_block{
     position: fixed;
     bottom: 6px;
-    color: #FFF;
+    color: #111;
     font-size: 11px;
     text-align: center;
     width:100%;

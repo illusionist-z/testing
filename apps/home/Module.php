@@ -1,13 +1,15 @@
-<?php namespace Crm\Auth;
+<?php namespace Crm\Home;
 
-use Phalcon\Mvc\ModuleDefinitionInterface;
 
-class Module extends \Lib\Core\Module implements ModuleDefinitionInterface
+class Module extends \Lib\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface
 {
-
+    /**
+     * constructor
+     */
     public function __construct() {
         parent::__construct(__DIR__);
     }
+    
     /**
      * Registers the module auto-loader
      */
@@ -23,11 +25,7 @@ class Module extends \Lib\Core\Module implements ModuleDefinitionInterface
      */
     public function registerServices($di)
     {
-        /**
-         * Read configuration
-         */
         parent::registerServices($di);
-
     }
 
 }

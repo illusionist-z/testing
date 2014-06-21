@@ -15,7 +15,6 @@ class IndexController extends ControllerBase
     
     public function indexAction($mode = NULL){
         $this->view->errorMsg = '';
-        $this->view->test = $this->test();
     }
     
     /**
