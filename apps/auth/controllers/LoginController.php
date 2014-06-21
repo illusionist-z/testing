@@ -16,17 +16,18 @@ class LoginController extends ControllerBase
         $user = array();
         if($modelAuth->check($loginParams,$user)){
             $modelPermission = new Models\Permission();
-            $modelPermission->set($user);
+            $permissions = [];
+            
+            //Set user's permission to session 
+            $modelPermission->get($user,$permissions);
+            $this->session->set('auth',$permissions);
+        }else{
+            $this->response->redirect('auth/index/failer');
         }
-//            $this->logger->WriteException($e);
-//          $user = $dbUser->findFirstByLogin($login);
-//        $this->view->test = 'NG';
-//        if ($user) {
-//            if ($this->security->checkHash($password, $user->password)) {
-//                //ログイン処理を追加
-//                $this->view->test = 'OK';
-//            }
-//        }
+        
+        // When user's login succeed , move to dashboad
+        
+        
             
     }
     

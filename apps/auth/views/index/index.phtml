@@ -1,23 +1,26 @@
 <div id="login_block">
-    <form method="post" action="./auth/login" id="form_login">
-        <img src="./img/auth/logo.png">
+    <?=$errorMsg?>
+    <form method="post" action="<?=$this->url->getBaseUri();?>auth/login" id="form_login">
+        <img src="<?=$this->url->getBaseUri();?>img/auth/logo.png">
         <table border="0" cellpadding="0" cellspacing="0" class="loginTable">                
-            <tr><th>Login Name</th></tr>                
-            <tr><td><?=$this->tag->textField(['account', 'maxlength'=> 64]) ?></td></tr>
-            <tr><th>Password</th></tr>
-            <tr><td><?=$this->tag->passwordField(['password', 'maxlength'=> 64]) ?></td></tr>
             <tr>
-                <td>
-                    <input id="btnLogin" type="submit" value="LOGIN" />
-                </td>
+                <th>Account</th>              
+                <td><?=$this->tag->textField(['account', 'maxlength'=> 64]) ?></td>
             </tr>
             <tr>
+                <th>Password</th>
+                <td><?=$this->tag->passwordField(['password', 'maxlength'=> 64]) ?></td>
+            </tr>
+                    
+<!--            <tr>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="forgot_pass"></td>
-            </tr>
+            </tr>-->
         </table>
+        <button id="btnLogin" type="submit">LOGIN</button>
+        
     </form>
 </div>
 

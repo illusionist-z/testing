@@ -13,8 +13,7 @@ class Permission{
      * @param type $id
      * @param type $dept_code
      */
-    public function set($user){
-
+    public function get($user, &$permissions = array()){
         $id = $user->id;
         $dept_code = $user->dept_code;
 
@@ -22,13 +21,15 @@ class Permission{
         $permissinGroups = $this->getGroup($id, $dept_code);
         
         // Get Permissons for user
-        $permissions = $this->getPermissions($permissinGroups);
-        
-        if(in_array('module_tab2',$permissions['member'])){
-            echo 'is permission';
+        if(!$this->getPermissions($permissinGroups,$permissions)){
+            return FALSE;
         }
-        var_dump($permissions);
-        exit;
+        
+        
+//        if(in_array('module_tab2',$permissions['member'])){
+//            echo 'is permission';
+//        }
+        return TRUE;
     }
     
     /**
@@ -39,7 +40,7 @@ class Permission{
      */
     public function getGroup($id, $dept_code){
         try{
-            $permissions = Db\UsersRelPermissionGroup::findByUserId($id);
+            $permissions = Db\UsersRelPermissionGroup::findByUserIds($id);
 
             $permissionGroups = [];
             while ($permissions->valid()) {
@@ -55,12 +56,18 @@ class Permission{
     
     }
     
-    
-    public function getPermissions($permissionGroups){
+    /**
+     * 
+     * @param type $permissionGroups
+     * @param type $permissions
+     * @return boolean
+     */
+    public function getPermissions($permissionGroups , & $permissions){
         
         try{
             $permissions = [];
             $bindString = [];
+            $inFields =[];
             $i = 0;
             foreach ($permissionGroups as $groupCode){
                 $bindString = "permission_group_code".$i;
@@ -68,11 +75,16 @@ class Permission{
                 $aryBind[$bindString] = $groupCode;
                 $i ++;
             }
+            // 権限グループがない場合
+            if(count($inFields) == 0){
+                return FALSE;
+            }
             
             $results = Db\PermissionRelGroup::find([
                     'permission_group_code IN ('. implode(',', $inFields ).') ',
                     'bind' => $aryBind
                 ]);
+            // The permissions set up for each module. 
             while ($results->valid()) {
                 $row = $results->current();
                 $permissions[$row->permission_module][] = $row->permission_code;
@@ -83,6 +95,6 @@ class Permission{
             $di = \Phalcon\DI\FactoryDefault::getDefault();
             $di->getShared('logger')->_error($e->getMessage());
         }
-        return $permissions;
+        return true;
     }
 }
