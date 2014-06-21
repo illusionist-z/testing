@@ -4,7 +4,6 @@ use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
 use Crm\Auth\Models\Db\Users;
 use Crm\Auth\Models\Db\AuthFailedLogins;
-use Crm\Auth\Models;
 
 class Auth extends Component{
     /**
