@@ -6,6 +6,11 @@
  */
 class Controller extends \Phalcon\Mvc\Controller{
     
+    public function initialize() {
+        
+
+    }
+    
     protected function _getTranslation()
     {
 

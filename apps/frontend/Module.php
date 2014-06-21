@@ -1,30 +1,19 @@
-<?php
+<?php namespace Crm\Frontend;
 
-namespace Crm\Frontend;
-
-use Phalcon\Loader;
-use Phalcon\Mvc\View;
-use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 use Phalcon\Mvc\ModuleDefinitionInterface;
-use Phalcon\Config\Adapter\Ini;
 
-class Module implements ModuleDefinitionInterface
+class Module extends \Lib\Core\Module implements ModuleDefinitionInterface
 {
 
+    public function __construct() {
+        parent::__construct(__DIR__);
+    }
     /**
      * Registers the module auto-loader
      */
     public function registerAutoloaders()
     {
-
-        $loader = new Loader();
-
-        $loader->registerNamespaces(array(
-            'Crm\Frontend\Controllers' => __DIR__ . '/controllers/',
-            'Crm\Frontend\Models' => __DIR__ . '/models/',
-        ));
-
-        $loader->register();
+        parent::registerAutoloaders();
     }
 
     /**
@@ -34,29 +23,10 @@ class Module implements ModuleDefinitionInterface
      */
     public function registerServices($di)
     {
-
         /**
          * Read configuration
          */
-        $config = new Ini(__DIR__ . "/config/config.ini");
-
-        /**
-         * Setting up the view component
-         */
-        $di['view'] = function () {
-            $view = new View();
-            $view->setViewsDir(__DIR__ . '/views/');
-
-            return $view;
-        };
-
-        
-        
-        $di['dispatcher'] = function() {
-            $dispatcher = new \Phalcon\Mvc\Dispatcher();
-            $dispatcher->setDefaultNamespace('Crm\Frontend\Controllers');
-            return $dispatcher;
-        };
+        parent::registerServices($di);
 
     }
 

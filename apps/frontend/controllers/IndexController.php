@@ -1,13 +1,11 @@
-<?php
-
-namespace Crm\Frontend\Controllers;
+<?php namespace Crm\Frontend\Controllers;
 
 class IndexController extends ControllerBase
 {
 
     public function indexAction()
     {
-        echo 'front';exit();
+        echo 'front';
     }
 
 }
