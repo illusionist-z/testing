@@ -9,23 +9,43 @@
         <div id="filter_list_box" class="list-box">
             <h2>フィルタ</h2>
             <ul class="group-list-ul">
-                <li>全て</li>
-                <li>削除されたユーザ</li>
+                <li id="filter_btn_all">全て</li>
+                <li id="filter_btn_deleted">削除されたユーザ</li>
             </ul>
         </div>
         <div id="dept_list_box" class="list-box">
             <h2>部署</h2>
-            <ul class="group-list-ul">
+            <ul id="select_dept_list" class="group-list-ul">
                 <?php foreach($depts as $k => $v){ ?>
-                <li id="dept_code<?=$k?>"><?=$v?></li>
+                <li id="dept_code_<?=$k?>"><?=$v?></li>
                 <?php } ?>
             </ul>
-        </div>        
+        </div>
+        <div id="team_list_box" class="list-box">
+            <h2>My チーム</h2>
+            <ul id="select_team_list" class="group-list-ul">
+                <?php foreach($depts as $k => $v){ ?>
+                <li id="team_code_<?=$k?>"><?=$v?></li>
+                <?php } ?>
+            </ul>
+        </div>
     </div>
-    <div id="users_list" class="list-box">
+    <div id="users_list">
+        <div id="user_list_search_box">
+            
+        </div>
+        <div id="users_list_main">
+            <table id="user_list_table">
+                <tbody id="user_list_tbody"></tbody>
+            </table>
+        </div>
         
     </div>
     <div id="users_info">
     </div>
 </div>
-<form id="search_user"></form>
+<form id="search_user">
+    <?=$this->tag->hiddenField(['name','value'=>'','id'=>'search_name']);?>
+    <?=$this->tag->hiddenField(['delete_flag','value'=>0,'id'=>'search_delete_flag']);?>
+    <?=$this->tag->hiddenField(['dept_code','value'=>'','id'=>'search_dept_code']);?>
+</form>

@@ -19,12 +19,13 @@ class IndexController extends ControllerBase
         $this->assets->addCss('css/user/user.css');
         $this->assets->addJs('js/user/user.js');
         
-        $user = $this->session->get('user');
+        //set duser info
+        $this->view->user = $this->session->get('user');
         
+        //set dept list
         $this->view->depts = Models\Dept::getAll();
-        $this->view->user = $user;
         
     }
-
+    
 }
 

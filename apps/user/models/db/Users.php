@@ -5,10 +5,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+use \Lib\Core\TextCommon;
 class Users extends \Lib\Core\BaseModel{
     
-    public function initialize() {
+    public function initialize() {        
         parent::initialize();
     }
     
+    public static function getInstance()
+    {
+        return new self();
+    }
+
+    //put your code here
+    public  function get($conditions , & $users = array())
+    {
+        
+        try{
+            $bindParams = [];
+ 
+            $select = $this->query()
+                    ->columns(['id','name','dept_code','cellular_phone','extension_number','email01']);
+            
+            //create find condition
+            if( 
+                isset($conditions['delete_flag'])
+                &&  $conditions['delete_flag'] == 1
+              )
+            {
+                $update_dt = date("Y-m-d H:i:s" ,strtotime("-5days"));
+                $select->where("delete_flag = 1 AND update_dt > '$update_dt' ");
+            }  else {
+                $select->where('delete_flag = 0 ');
+            }
+            
+            // dept_code
+            if(
+                isset($conditions['dept_code']) &&
+                TextCommon::trimMultiByte($conditions['dept_code']) !== ''
+            ){
+                $select->andWhere('dept_code LIKE :dept_code:',['dept_code'=>$conditions['dept_code']]);
+            }
+            
+            $result = $select->orderBy("name")
+                             ->execute();
+            
+            $users = $result->toArray();
+        
+        }  catch (\Phalcon\Mvc\Model\Exception $e){
+            var_dump($e);
+            return FALSE;
+        }
+        return TRUE;
+    }
 }

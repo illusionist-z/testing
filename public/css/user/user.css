@@ -35,7 +35,7 @@ and open the template in the editor.
 }
 
 #group_list{
-    background: #F5F5F5;
+    background: #EFEFEF;
     border-right:1px solid #999;
     width:230px;
     float:left;
@@ -68,6 +68,17 @@ and open the template in the editor.
 
 #users_list{
     float: left;
-    width: 400px;
+    width: 300px;
     border-right:1px solid #999;
+    background: #FEFEFE;
+}
+
+#user_list_search_box{
+    border-bottom: 1px solid #999;
+    height: 32px;
+}
+
+#user_list_table td,
+#user_list_table th{
+    padding: 3px;
 }
