@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014/06/22, 0:03:52
+    Author     : Kohei Iwasa
+*/
+
+#home_header{
+    height: 42px;
+    border-bottom: 1px solid #8FBBDD;
+    background: #DCEEFB;
+    position: relative;
+}
+
+#logo{
+    position: absolute;
+    left:12px;
+    top:14px;
+}
+
+#btn_maintenace{
+    position: absolute;
+    top:8px;
+    right:12px;
+}
+
+#btn_user{
+    position: absolute;
+    top:8px;
+    right:50px;
+    font-size: 21px;
+}
+
+#group_list{
+    background: #F5F5F5;
+    border-right:1px solid #999;
+    width:230px;
+    float:left;
+    min-height: 200px;
+    position: relative;
+}
+
+.list-box{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    cursor: default;
+}
+
+.list-box > h2{
+    color:#8E979D;
+    font-size:11px;
+    text-indent: 14px;
+    margin: 0;
+    height: 30px;
+    line-height: 40px;
+    font-weight: lighter;
+}
+
+.group-list-ul{}
+.group-list-ul > li{
+    list-style-type: none;
+    font-size:12px;
+}
+
+#users_list{
+    float: left;
+    width: 400px;
+    border-right:1px solid #999;
+}

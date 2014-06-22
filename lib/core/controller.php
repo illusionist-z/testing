@@ -34,5 +34,9 @@ class Controller extends \Phalcon\Mvc\Controller{
     public function setCommonJsAndCss(){
         $this->assets->addCss('css/bootstrap/bootstrap.min.css')
                      ->addCss('css/bootstrap/common.css');
+        
+        $this->assets->addJs('js/jquery/jquery-1.11.1.min.js')
+                     ->addJs('js/jquery/jquery-ui-1.10.4.custom.min.js')
+                     ->addJs('js/bootstrap/common.js');
     }
 }
