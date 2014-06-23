@@ -11,11 +11,15 @@ $(document).ready(function(){
      */
     var resizeContents = function(){
         var docH  = $(document).height(),
-            headH = $('#home_header').outerHeight();
+            headH = $('#home_header').outerHeight(),
+            userSearchH = $('#user_list_search_box').outerHeight(),
+            userListHd_h = $('#user_list_hd').outerHeight();
         var targetH = docH - headH;
 
         $('#group_list').height(targetH);
-        $('#users_list').height(targetH);
+                
+        //set the height to user_list_bd
+        $('#user_list_bd').height(docH-userSearchH-userListHd_h);
         
     };
     
@@ -37,15 +41,34 @@ $(document).ready(function(){
                             return;
                         }
                         
-                        var td;
+                        var td,i,i2,user,field;
                         $('#user_list_tbody').empty();
                         
+                        // get list header classes
+                        var ths = $('#ulh-thead').children();
+                        
                         // set user list
-                        for( var i in data.users){
-                            td = '<td>' + data.users[i]['name'] +'</td>'
-                               + '<td>' + data.users[i]['email01'] +'</td>'
+                        for( i in data.users){
+                            user = data.users[i];
+                            td = '';
+                            for (i2 in ths){
+                                // set date by templete's order
+                                if(!$.isNumeric(i2)) break;
+                                field = ths[i2].className.split('-')[1];
+                                td += '<td class="'+ths[i2].className+'"><div>' + user[field] +'<div></td>'
+                            }
                             $('#user_list_tbody').append('<tr>' + td +'</tr>');
+                            
                         }
+                        
+                        // create empty tr tag
+                        td = '';
+                        for (i2 in ths){
+                            // set date by templete's order
+                            if(!$.isNumeric(i2)) break;
+                            td += '<td class="'+ths[i2].className+'"><div>&nbsp;<div></td>'
+                        }
+                        $('#user_list_tbody').append('<tr class="ult-empty-tag">' + td +'</tr>');
 
                     },
                     error: function() {
@@ -60,6 +83,9 @@ $(document).ready(function(){
             }
         };
     
+    /**
+     * add listners
+     */
     $('#filter_btn_all').click(function(){
         Users.resetCondition();
         $('#search_dept_code').val('');

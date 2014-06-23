@@ -1,11 +1,9 @@
-<div id="home_header">
-    <div id="logo" class="sprite-image crm-logo"></div>
-    
-    <div id="btn_user" class="header-login-name"><?=$user['name']?></div>
-    <div id="btn_maintenace" class="sprite-image icon-24 icon-24-settings"></div>
-</div>
 <div id="main_contents">
+    
     <div id="group_list">
+        <div id="logo_area">
+            <div id="logo" class="sprite-image crm-logo"></div>
+        </div>
         <div id="filter_list_box" class="list-box">
             <h2>フィルタ</h2>
             <ul class="group-list-ul">
@@ -32,12 +30,29 @@
     </div>
     <div id="users_list">
         <div id="user_list_search_box">
-            
+            <input type="search">
         </div>
         <div id="users_list_main">
-            <table id="user_list_table">
-                <tbody id="user_list_tbody"></tbody>
-            </table>
+            <div id="user_list_hd">
+                <table>
+                    <thead>
+                        <tr id="ulh-thead">
+                            <th class="ult-name">名前</th>
+                            <th class="ult-dept_name">部署</th>
+                            <th class="ult-extension_number">内線</th>
+                            <th class="ult-telphone">電話</th>
+                            <th class="ult-cellular_phone">携帯電話</th>
+                            <th class="ult-email01">email1</th>
+                            <th class="ult-email02">email2</th>
+                        </tr>
+                    </thead> 
+                </table>
+            </div>
+            <div id="user_list_bd">
+                <table id="user_list_table">
+                    <tbody id="user_list_tbody"></tbody>
+                </table>
+            </div>
         </div>
         
     </div>

@@ -7,11 +7,13 @@ and open the template in the editor.
     Created on : 2014/06/22, 0:03:52
     Author     : Kohei Iwasa
 */
+form{
+    margin:0;
+}
 
-#home_header{
+#logo_area{
     height: 42px;
-    border-bottom: 1px solid #8FBBDD;
-    background: #DCEEFB;
+    border-bottom: 1px solid #BDC3C7;
     position: relative;
 }
 
@@ -66,19 +68,68 @@ and open the template in the editor.
     font-size:12px;
 }
 
+/*
+    user list block
+*/
+
 #users_list{
-    float: left;
-    width: 300px;
     border-right:1px solid #999;
     background: #FEFEFE;
 }
 
 #user_list_search_box{
-    border-bottom: 1px solid #999;
-    height: 32px;
+    border-bottom: 1px solid #BDC3C7;
+    height: 42px;
+    background: #F0F0F0;
 }
 
-#user_list_table td,
-#user_list_table th{
-    padding: 3px;
+#user_list_hd{
+    height: 22px;
+    background: #ECF0F1;
+    border-bottom: 1px solid #BDC3C7;
+    overflow: hidden;
 }
+#user_list_hd > table{
+    border-collapse: collapse;
+    
+}
+#user_list_hd > table > thead > tr > th{
+    border-right: 1px solid #BDC3C7;
+    color:#34495E;
+    font-size: 12px;
+    text-align: left;
+    text-indent: 6px;
+}
+
+#user_list_bd{
+    overflow-y: auto;
+}
+
+#user_list_table{
+    border-collapse: collapse;
+}
+
+#user_list_table td{
+    border-right: 1px solid #BDC3C7;
+}
+
+#user_list_table td > div{
+    width: inherit;
+    overflow: hidden;
+    text-indent: 6px;
+    line-height: 24px;
+    font-size: 13px;
+}
+
+/*
+    set up user's list widths
+*/
+.ult-name{width: 200px;}
+.ult-dept_name{width: 150px;}
+.ult-extension_number{width: 80px}
+.ult-telphone{width: 120px;}
+.ult-cellular_phone{width: 120px;}
+.ult-email01{width:180px}
+.ult-email02{width:180px}
+
+.ult-empty-tag{height:2000px;}

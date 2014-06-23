@@ -12,11 +12,11 @@ and open the template in the editor.
     header parts
 */
 .header-login-name{
-    color:#6084E6;
+    color:#FFF;
     cursor: pointer;
 }
 .header-login-name:hover{
-    color:#4068E0;
+    color:#EEE;
 }
 
 /*

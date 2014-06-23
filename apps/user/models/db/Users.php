@@ -20,12 +20,10 @@ class Users extends \Lib\Core\BaseModel{
     //put your code here
     public  function get($conditions , & $users = array())
     {
-        
+        $columns = ['id','name','dept_code','dept_name','telphone','cellular_phone','extension_number','email01','email02'];
         try{
-            $bindParams = [];
- 
             $select = $this->query()
-                    ->columns(['id','name','dept_code','cellular_phone','extension_number','email01']);
+                    ->columns($columns);
             
             //create find condition
             if( 
