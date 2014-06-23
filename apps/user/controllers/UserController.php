@@ -33,5 +33,15 @@ class userController extends ControllerBase
         
     }
     
+    public function getOneAction($id){
+        $json['status'] = 'OK';
+        
+        $json['user'] = Users::findFirstById($id);
+        
+        $this->view->disable();
+        $this->response->setContentType('application/json', 'UTF-8');
+        echo json_encode($json);
+    }
+    
 }
 

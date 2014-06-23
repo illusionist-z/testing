@@ -133,3 +133,12 @@ form{
 .ult-email02{width:180px}
 
 .ult-empty-tag{height:2000px;}
+
+
+/*
+    set up an user's infomation layout
+*/
+#user_control_box{
+    height: 42px;
+    border-bottom: 1px solid #BDC3C7;
+}

@@ -57,9 +57,15 @@ $(document).ready(function(){
                                 field = ths[i2].className.split('-')[1];
                                 td += '<td class="'+ths[i2].className+'"><div>' + user[field] +'<div></td>'
                             }
-                            $('#user_list_tbody').append('<tr>' + td +'</tr>');
+                            $('#user_list_tbody').append('<tr id="'+user['id']+'">' + td +'</tr>');
                             
                         }
+                        // set listner for show detail of an user
+                        $('#user_list_tbody tr').dblclick(function(){
+                            var id = $(this).attr('id');
+                            UserDetail.get(id);
+                            $('#users_info').show();
+                        });
                         
                         // create empty tr tag
                         td = '';
@@ -82,6 +88,67 @@ $(document).ready(function(){
                 $('#delete_flag').val(0);
             }
         };
+        
+        
+    /**
+     * an user controller
+     * @type type
+     */
+    var UserDetail = {
+        get : function(id)
+        {
+            $form = $('#search_user');
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url : '/user/user/getOne/'+id,
+                async: false,
+                success: function(data) {
+                    if(data.status !== 'OK') return;
+                    var user = data.user,
+                        id;//input id
+
+                    //set field data in the register form
+                    for(var i in user){
+                        id = '#reg_'+ i;
+                        $(id).val(user[i]);
+                    }
+
+                    //disable user list
+                    $('#users_list').hide();
+
+                    //add listner
+                    $('#backto_list').click(function(){
+                        UserDetail.backToList();
+                    });
+                    
+                    $('#btn_edit_user').click(function(){
+                        UserDetail.edit();
+                    });
+
+                },
+                error: function() {
+
+                }
+            });
+        },
+        
+        backToList : function(){
+            $('#users_list').show();
+            $('#users_info').hide();
+        },
+        
+        edit : function(){
+            
+            // #TODO: レコードロックを行う。
+            $('#regist_user input[type=text]').removeAttr('readonly');
+        },
+        
+        regist : function(mode){
+            
+        }
+        
+    };
     
     /**
      * add listners

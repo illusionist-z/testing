@@ -45,7 +45,7 @@ class Users extends \Lib\Core\BaseModel{
                 $select->andWhere('dept_code LIKE :dept_code:',['dept_code'=>$conditions['dept_code']]);
             }
             
-            $result = $select->orderBy("name")
+            $result = $select->orderBy("order_string ASC")
                              ->execute();
             
             $users = $result->toArray();
