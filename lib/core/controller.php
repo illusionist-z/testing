@@ -6,19 +6,49 @@
  */
 abstract class Controller extends \Phalcon\Mvc\Controller{
     
+    public $moduleName;
+    
+    /**
+     * use language
+     * 
+     * @var type 
+     */
+    public $lang;
+    
     public function initialize() {
-        $this->view->lang = $this->request->getBestLanguage();
+        
+        
     }
     
-    protected function _getTranslation()
+    public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher){
+        // set module
+        if(isset($this->session->get('user')['lang'])){
+            $this->lang = $this->session->get('user')['lang'];
+        }else{
+            $this->lang = $this->request->getBestLanguage();
+        }
+        $this->moduleName = $dispatcher->getModuleName();
+    }
+    
+    /**
+     * 
+     * @param type $prefix
+     * @return \Phalcon\Translate\Adapter\NativeArray
+     */
+    protected function _getTranslation($prefix = '')
     {
-
-        //Check if we have a translation file for that lang
-        if (file_exists("app/auth/messages/".$this->view->lang.".php")) {
-           require "app/auth/messages/".$this->view->lang.".php";
+        // Check if we have a translation file for that lang
+        $langDir = __DIR__ . "/../../apps/{$this->moduleName}/messages";
+        if('' !== $prefix){
+            $prefix .= '-';
+        }
+        
+        // 
+        if (file_exists($langDir . '/' . $prefix. $this->lang.'.php')) {
+           require $langDir . '/' . $prefix . $this->lang.'.php';
         } else {
            // fallback to some default
-           require "app/auth/messages/ja.php";
+           require $langDir . '/' . $prefix ."ja.php";
         }
 
         //Return a translation object
@@ -40,25 +70,16 @@ abstract class Controller extends \Phalcon\Mvc\Controller{
                      ->addJs('js/bootstrap/common.js');
     }
     
-    protected $_isJsonResponse = false;
-
-    // Call this func to set json response enabled
-    public function setJsonResponse() {
-      $this->view->disable();
-
-      $this->_isJsonResponse = true;
-      $this->response->setContentType('application/json', 'UTF-8');
-    }
-
     // After route executed event
     public function afterExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
-        if ($this->_isJsonResponse) {
-            $data = $dispatcher->getReturnedValue();
-            if (is_array($data)) {
-                $data = json_encode($data);
-            }
-            
-            $this->response->setContent($data);
-        }
+        
+//        if ($this->_isJsonResponse) {
+//            $data = $dispatcher->getReturnedValue();
+//            if (is_array($data)) {
+//                $data = json_encode($data);
+//            }
+//            
+//            $this->response->setContent($data);
+//        }
     }
 }

@@ -33,13 +33,28 @@ class userController extends ControllerBase
         
     }
     
-    public function getOneAction($id){
-        $json['status'] = 'OK';
-        
-        $json['user'] = Users::findFirstById($id);
-        
+    /**
+     * get one user data by id
+     * @param type $id
+     * @return json Description
+     */
+    public function getOneAction($id = NULL){
         $this->view->disable();
         $this->response->setContentType('application/json', 'UTF-8');
+        
+        $json['status'] = 'NG';
+        $json['msg'] = 'bad request';
+        // error not id
+        if($id === NULL){
+            echo json_encode($json);
+            return;
+        }
+        //find user
+        $json['user'] = Users::findFirstById($id);
+        if(NULL !== $json['user']){
+            $json['status'] = 'OK';
+        }
+        
         echo json_encode($json);
     }
     

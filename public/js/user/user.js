@@ -5,6 +5,14 @@
  */
 
 $(document).ready(function(){
+    
+    //set slide menu
+    
+    $('#slidemenu-left').mmenu();
+    $('#logo').click(function(){
+        $('#slidemenu-left').trigger('open');
+    });
+    $('#slidemenu-left').trigger('open');
     /**
      * When window resize , resize to menu list ,too.
      * @returns {undefined}
@@ -57,12 +65,12 @@ $(document).ready(function(){
                                 field = ths[i2].className.split('-')[1];
                                 td += '<td class="'+ths[i2].className+'"><div>' + user[field] +'<div></td>'
                             }
-                            $('#user_list_tbody').append('<tr id="'+user['id']+'">' + td +'</tr>');
+                            $('#user_list_tbody').append('<tr id="useid_'+user['id']+'">' + td +'</tr>');
                             
                         }
                         // set listner for show detail of an user
                         $('#user_list_tbody tr').dblclick(function(){
-                            var id = $(this).attr('id');
+                            var id = $(this).attr('id').split('_')[1];
                             UserDetail.get(id);
                             $('#users_info').show();
                         });

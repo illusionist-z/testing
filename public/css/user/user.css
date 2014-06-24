@@ -59,13 +59,17 @@ form{
     margin: 0;
     height: 30px;
     line-height: 40px;
-    font-weight: lighter;
+    font-weight: 400;
 }
 
-.group-list-ul{}
+.group-list-ul{
+    margin: 0;
+}
 .group-list-ul > li{
     list-style-type: none;
     font-size:12px;
+    line-height: 22px;
+    padding-left:20px;
 }
 
 /*
@@ -107,6 +111,10 @@ form{
 
 #user_list_table{
     border-collapse: collapse;
+    cursor: default;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #user_list_table td{
@@ -114,23 +122,34 @@ form{
 }
 
 #user_list_table td > div{
-    width: inherit;
     overflow: hidden;
     text-indent: 6px;
     line-height: 24px;
+    height: 24px;
     font-size: 13px;
 }
 
 /*
     set up user's list widths
 */
-.ult-name{width: 200px;}
-.ult-dept_name{width: 150px;}
-.ult-extension_number{width: 80px}
-.ult-telphone{width: 120px;}
-.ult-cellular_phone{width: 120px;}
-.ult-email01{width:180px}
-.ult-email02{width:180px}
+.ult-name,
+.ult-name > div{width: 200px;}
+
+.ult-dept_name,
+.ult-dept_name > div{width: 150px;}
+
+.ult-extension_number,
+.ult-extension_number > div{width: 80px}
+.ult-telphone,
+.ult-telphone > div{width: 120px;}
+.ult-cellular_phone,
+.ult-cellular_phone > div{width: 120px;}
+
+.ult-email01,
+.ult-email01 > div{width:180px}
+
+.ult-email02,
+.ult-email02 > div{width:180px}
 
 .ult-empty-tag{height:2000px;}
 
