@@ -14,7 +14,12 @@ try {
     $loader = new \Phalcon\Loader();
     //Register some namespaces
     $loader->registerNamespaces(array(
+      // set namespace for libraries
       'Lib\Core' => '../lib/core/',
+      
+      // set namespace for the core module
+      'Crm\Core\Controllers' => '../apps/core/controllers/',
+      'Crm\Core\Models' => '../apps/core/models/',
     ));
 
     //register autoloader
@@ -52,6 +57,10 @@ try {
     echo $application->handle()->getContent();
 
 } catch (Phalcon\Exception $e) {
+    $logString = $e->getMessage()." [{$e->getFile()}({$e->getLine()})]".PHP_EOL
+               . "**** Trace ****".PHP_EOL . $e->getTraceAsString();
+    $di->getShared('logger')->error($logString);
+    
     echo $e->getMessage();
 } catch (PDOException $e) {
     echo $e->getMessage();

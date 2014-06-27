@@ -18,7 +18,7 @@ class Users extends \Lib\Core\BaseModel{
                     "bind" => ['login_name'=> $login_name ]
                 ));
         }  catch (\Exception $e){
-            $this->logger->queryError($e);
+            throw $e;
         }
         
         return $row;

@@ -40,7 +40,7 @@ class Permission{
      */
     public function getGroup($id, $dept_code){
         try{
-            $permissions = Db\UsersRelPermissionGroup::findByUserIds($id);
+            $permissions = Db\UsersRelPermissionGroup::findByUserId($id);
 
             $permissionGroups = [];
             while ($permissions->valid()) {
@@ -49,8 +49,7 @@ class Permission{
                 $permissions->next();
             }
         }  catch (\Exception $e){
-            $di = \Phalcon\DI\FactoryDefault::getDefault();
-            $di->getShared('logger')->_error($e->getMessage());
+            throw $e;
         }
         return $permissionGroups;
     
@@ -92,8 +91,7 @@ class Permission{
             }
 
         }catch (\Exception $e){
-            $di = \Phalcon\DI\FactoryDefault::getDefault();
-            $di->getShared('logger')->_error($e->getMessage());
+            throw $e;
         }
         return true;
     }

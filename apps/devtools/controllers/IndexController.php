@@ -15,7 +15,11 @@ class IndexController extends ControllerBase
 
     
     public function indexAction(){
-        $this->useSlideMenu();
+        $this->assets->addJs('lib/mmenu/js/jquery.mmenu.min.js');
+        $this->assets->addCss('lib/mmenu/css/jquery.mmenu.css');
+        
+        $this->assets->addCss('css/user/user.css');
+        $this->assets->addJs('js/user/user.js');
          
         //set duser info
         $this->view->user = $this->session->get('user');

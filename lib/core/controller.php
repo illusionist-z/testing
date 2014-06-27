@@ -70,6 +70,28 @@ abstract class Controller extends \Phalcon\Mvc\Controller{
                      ->addJs('js/bootstrap/common.js');
     }
     
+    /**
+     * using slide menu
+     */
+    public function useSlideMenu(){
+        $this->assets->addJs('lib/mmenu/js/jquery.mmenu.min.js');
+        $this->assets->addCss('lib/mmenu/css/jquery.mmenu.css');
+        
+        $this->assets->addCss('css/user/user.css');
+        $this->assets->addJs('js/user/user.js');
+        
+        // Get application list
+        $this->view->coreAppsTran = $this->_getCoreTranslation();
+        $dbCoreApps = \Crm\Core\Models\Db\CoreApps::getInstance();
+        $this->view->menulist = $dbCoreApps->getActiveApps($this->session->get('auth'));
+//        $this->view->menulist = \Crm\Core\Models\Db\CoreApps::find()->toArray();
+//        $this->view->slideMenu = $this->view
+//                ->setViewsDir(realpath(__DIR__.'/../../apps/core/views'))
+//                ->partial("index/cmn-slide-menu.phtml");
+        
+    }
+    
+    
     // After route executed event
     public function afterExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
         
@@ -81,5 +103,23 @@ abstract class Controller extends \Phalcon\Mvc\Controller{
 //            
 //            $this->response->setContent($data);
 //        }
+    }
+    
+    private function _getCoreTranslation(){
+        // Check if we have a translation file for that lang
+        $langDir = __DIR__ . "/../../apps/core/messages";
+        
+        $prefix = 'apps-';
+        if (file_exists($langDir . '/' . $prefix. $this->lang.'.php')) {
+           require $langDir . '/' . $prefix . $this->lang.'.php';
+        } else {
+           // fallback to some default
+           require $langDir . '/' . $prefix ."ja.php";
+        }
+
+        //Return a translation object
+        return new \Phalcon\Translate\Adapter\NativeArray(array(
+           "content" => $messages
+        ));
     }
 }
