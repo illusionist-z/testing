@@ -18,7 +18,7 @@ class Users extends \Lib\Core\BaseModel{
     }
 
     //put your code here
-    public  function get($conditions , & $users = array())
+    public function get($conditions , & $users = array())
     {
         $columns = ['id','name','dept_code','dept_name','telphone','cellular_phone','extension_number','email01','email02'];
         try{
@@ -37,7 +37,7 @@ class Users extends \Lib\Core\BaseModel{
                 $select->where('delete_flag = 0 ');
             }
             
-            // dept_code
+            // is set dept_code
             if(
                 isset($conditions['dept_code']) &&
                 TextCommon::trimMultiByte($conditions['dept_code']) !== ''
@@ -49,10 +49,10 @@ class Users extends \Lib\Core\BaseModel{
                              ->execute();
             
             $users = $result->toArray();
+            
         
         }  catch (\Phalcon\Mvc\Model\Exception $e){
-            var_dump($e);
-            return FALSE;
+            throw $e;
         }
         return TRUE;
     }

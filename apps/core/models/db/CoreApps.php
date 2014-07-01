@@ -16,22 +16,24 @@ class CoreApps extends \Lib\Core\BaseModel{
         return new self();
     }
     
-    static public function getActiveApps($auth){
+    public function getActiveApps($auth){
         
-        $modules = [];
-        
+        $modules = [];      
         foreach ($auth as $module => $permmitions){
-            echo $module.PHP_EOL.print_r($permmitions,true);
             if(in_array('show_menu', $permmitions)){
                 $modules[] = $module;
             }
         }
 
         try{
-            $this->findFirst();
+            $conditions = "code IN('".implode("','", $modules)."')";
+            $select = $this->query()->where($conditions);
+//echo $select->getConditions();
+            $activeModuels = $select->execute()->toArray();
         }catch(Phalcon\Exception $e){
             throw $e;
         }
+        return $activeModuels;
     }
     
 }

@@ -26,7 +26,7 @@ class Auth extends Component{
             $this->failedLogin($user->account);
             return false;
         }
-        
+
         $this->_setUserInfo($user);
         return TRUE;
         

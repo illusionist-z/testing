@@ -8,13 +8,11 @@
 $(document).ready(function(){
     
     //set slide menu
-    if(document.getElementById("id") !== null){
-        $('#slidemenu-left').mmenu();
-        $('#logo').click(function(){
-            $('#slidemenu-left').trigger('open');
-        });
+    $('#slidemenu-left').mmenu();
+    $('#logo').click(function(){
         $('#slidemenu-left').trigger('open');
-    }
+    });
+
     // ここに実際の処理を記述します。
     var logout = function(){
         window.location.href = '/auth/logout';

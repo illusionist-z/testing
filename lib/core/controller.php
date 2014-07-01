@@ -4,6 +4,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+use \Crm\Core\Models\Db;
+
 abstract class Controller extends \Phalcon\Mvc\Controller{
     
     public $moduleName;
@@ -76,18 +78,19 @@ abstract class Controller extends \Phalcon\Mvc\Controller{
     public function useSlideMenu(){
         $this->assets->addJs('lib/mmenu/js/jquery.mmenu.min.js');
         $this->assets->addCss('lib/mmenu/css/jquery.mmenu.css');
+        $this->assets->addJs('js/bootstrap/slide-menu.js');
         
-        $this->assets->addCss('css/user/user.css');
-        $this->assets->addJs('js/user/user.js');
         
         // Get application list
         $this->view->coreAppsTran = $this->_getCoreTranslation();
-        $dbCoreApps = \Crm\Core\Models\Db\CoreApps::getInstance();
+        $dbCoreApps = new Db\CoreApps();
         $this->view->menulist = $dbCoreApps->getActiveApps($this->session->get('auth'));
+
 //        $this->view->menulist = \Crm\Core\Models\Db\CoreApps::find()->toArray();
-//        $this->view->slideMenu = $this->view
+//        $this->view->slideMenus = $this->view
 //                ->setViewsDir(realpath(__DIR__.'/../../apps/core/views'))
-//                ->partial("index/cmn-slide-menu.phtml");
+//                ->pick("index/cmn-slide-menu");
+//        $this->view->setPartialsDir($partialsDir)->pick($renderView);
         
     }
     

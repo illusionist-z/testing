@@ -5,14 +5,6 @@
  */
 
 $(document).ready(function(){
-    
-    //set slide menu
-    
-    $('#slidemenu-left').mmenu();
-    $('#logo').click(function(){
-        $('#slidemenu-left').trigger('open');
-    });
-    $('#slidemenu-left').trigger('open');
     /**
      * When window resize , resize to menu list ,too.
      * @returns {undefined}

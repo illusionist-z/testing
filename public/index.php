@@ -58,7 +58,7 @@ try {
 
 } catch (Phalcon\Exception $e) {
     $logString = $e->getMessage()." [{$e->getFile()}({$e->getLine()})]".PHP_EOL
-               . "**** Trace ****".PHP_EOL . $e->getTraceAsString();
+               . "Started Trace".PHP_EOL . $e->getTraceAsString();
     $di->getShared('logger')->error($logString);
     
     echo $e->getMessage();
