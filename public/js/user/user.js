@@ -27,7 +27,16 @@ $(document).ready(function(){
         resizeContents();
     });
     
+    /**
+     * Users object
+     * @author Kohei Iwasa
+     * @type 
+     */
     var Users = {
+            /**
+             * Get Users infomation
+             * @returns {json} user's data
+             */
             get : function(){
                 $form = $('#search_user');
                 $.ajax({
@@ -83,6 +92,10 @@ $(document).ready(function(){
                 });
             },
             
+            /**
+             * Reset condition for user's search
+             * @returns {undefined}
+             */
             resetCondition : function(){
                 $('#search_delete_flag').val(0);
                 $('#delete_flag').val(0);
@@ -111,7 +124,16 @@ $(document).ready(function(){
                     //set field data in the register form
                     for(var i in user){
                         id = '#reg_'+ i;
-                        $(id).val(user[i]);
+                        if($(id).size() === 0) continue;
+                        // swich it for the tag name
+                        switch($(id)[0].tagName){
+                            case 'INPUT':
+                                $(id).val(user[i]);
+                                break;
+                            case 'DIV':
+                                $(id).text(user[i]);
+                                break;
+                        }
                     }
 
                     //disable user list
@@ -124,6 +146,10 @@ $(document).ready(function(){
                     
                     $('#btn_edit_user').click(function(){
                         UserDetail.edit();
+                    });
+                    
+                    $('#btn_regist_user').click(function(){
+                        UserDetail.regist();
                     });
 
                 },
@@ -144,14 +170,14 @@ $(document).ready(function(){
             $('#regist_user input[type=text]').removeAttr('readonly');
         },
         
-        regist : function(mode){
-            
+        regist : function(){
+            $('#regist_user input[type=text]').attr('readonly','true');
         }
         
     };
     
     /**
-     * add listners
+     * set listner on button of filter 'all'
      */
     $('#filter_btn_all').click(function(){
         Users.resetCondition();
@@ -159,6 +185,9 @@ $(document).ready(function(){
         Users.get();
     });
     
+    /**
+     * set listner on button of filter 'delete'
+     */
     $('#filter_btn_deleted').click(function(){
         Users.resetCondition();
         $('#search_delete_flag').val(1);

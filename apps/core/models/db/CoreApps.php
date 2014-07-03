@@ -28,7 +28,6 @@ class CoreApps extends \Lib\Core\BaseModel{
         try{
             $conditions = "code IN('".implode("','", $modules)."')";
             $select = $this->query()->where($conditions);
-//echo $select->getConditions();
             $activeModuels = $select->execute()->toArray();
         }catch(Phalcon\Exception $e){
             throw $e;

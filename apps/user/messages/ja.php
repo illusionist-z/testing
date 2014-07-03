@@ -11,5 +11,7 @@ $messages = array(
 "filter_h2" => "フィルタ",
 "filter_li_all"     => "全てのユーザ",
 "filter_li_deleted_user" => "削除されたユーザ",
-"department_h2" => "部署"
+"department_h2" => "部署",
+'user_name' => '名前',
+'user_kana' => 'カナ',
 );

@@ -6,20 +6,28 @@
 
 
 $(document).ready(function(){
-    
     //set slide menu
-    $('#slidemenu-left').mmenu();
-    $('#logo').click(function(){
-        $('#slidemenu-left').trigger('open');
-    });
-
-    // ここに実際の処理を記述します。
-    var logout = function(){
-        window.location.href = '/auth/logout';
-    };
+    var Mmenu = {
+        load : function(){
+            $('#slidemenu-left').mmenu();
+            $('#logo').click(function(){
+                $('#slidemenu-left').trigger('open');
+            });
+            
+            // add listner for menu buttons
+            $('#apps_menu_list > li').click(function(){
+                $('#slidemenu-left').trigger('close');
+                var moduleName = $(this).attr('id').split('_')[1];
+                window.location.href = '/'+moduleName;
+            });
+        }
+    };    
     
-    // ユーザーのクリックした時の動作。
-    $('#btn_user').click(function(){
-        logout();
+    //load mmenu
+    Mmenu.load();
+
+    // logout
+    $('#btn_logout').click(function(){
+        window.location.href = '/auth/logout';
     });
 });

@@ -63,21 +63,22 @@ $this->partial('../../core/views/index/cmn-slide-menu')?>
         <div id="user_control_box">
             <button id="backto_list" type="button">戻る</button>
             <button id="btn_edit_user" type="button">編集</button>
+            <button id="btn_regist_user" type="button">登録</button>
         </div>
         <form id="regist_user">
             <table>
                 <tbody>
                 <tr>
-                <th>名前</th>
+                <th><?=$tran->_('user_name')?></th>
                 <td><?=$this->tag->textField(['name','value'=>'','id'=>'reg_name','readonly'=>'readonly']);?></td>
                 </tr>
                 <tr>
-                <th>カナ</th>
+                <th><?=$tran->_('user_kana')?></th>
                 <td><?=$this->tag->textField(['kana','value'=>'','id'=>'reg_kana','readonly'=>'readonly']);?></td>
                 </tr>
                 <tr>
                 <th>部署</th>
-                <td><?=$this->tag->textField(['kana','value'=>'','id'=>'reg_kana','readonly'=>'readonly']);?></td>
+                <td><div id="reg_dept_name"></div></td>
                 </tr>
                 </tbody>
             </table>

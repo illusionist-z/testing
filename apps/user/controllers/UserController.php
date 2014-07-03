@@ -21,13 +21,11 @@ class userController extends ControllerBase
         
         $condition = $this->request->getPost();
 
-        if(Users::getInstance()->get($condition,$this->users)){
-            
-        }
+        $users = Users::getInstance()->get($condition,$this->users);
 
         $this->view->disable();
         $json['status'] = 'OK';
-        $json['users'] = $this->users;
+        $json['users'] = $users;
         $this->response->setContentType('application/json', 'UTF-8');
         echo json_encode($json);
         

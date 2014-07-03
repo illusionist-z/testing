@@ -1,15 +1,15 @@
-<div id="slidemenu-left">
+<div id="slidemenu-left" class="mm-menu mm-horizontal mm-ismenu mm-offcanvas">
     <div class="slidemenu-left-content">
-        <div>
-            // サーチホームや
-        </div>
         <nav>
             <h2>アプリケーション</h2>
-            <ul>
+            <ul id="apps_menu_list">
                 <?php foreach($menulist as $apps){ ?>
-                <li><?=$coreAppsTran->_($apps['code'])?></li>
+                <li id="apml_<?=$apps['code']?>"><?=$coreAppsTran->_($apps['code'])?></li>
                 <?php } ?>
             </ul>
         </nav>
+        <div>
+            <div id="btn_logout">ログアウト</div>
+        </div>
     </div>
 </div>

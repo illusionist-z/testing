@@ -18,9 +18,9 @@ class Users extends \Lib\Core\BaseModel{
     }
 
     //put your code here
-    public function get($conditions , & $users = array())
+    public function get($conditions , $columns = ['*'])
     {
-        $columns = ['id','name','dept_code','dept_name','telphone','cellular_phone','extension_number','email01','email02'];
+//        $columns = ['id','name','dept_code','dept_name','telphone','cellular_phone','extension_number','email01','email02'];
         try{
             $select = $this->query()
                     ->columns($columns);
@@ -54,6 +54,6 @@ class Users extends \Lib\Core\BaseModel{
         }  catch (\Phalcon\Mvc\Model\Exception $e){
             throw $e;
         }
-        return TRUE;
+        return $users;
     }
 }
