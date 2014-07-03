@@ -76,6 +76,7 @@ form{
     user list block
 */
 
+
 #users_list{
     border-right:1px solid #999;
     background: #FEFEFE;
@@ -85,6 +86,12 @@ form{
     border-bottom: 1px solid #BDC3C7;
     height: 42px;
     background: #F0F0F0;
+}
+
+#filter_name_box{
+    position: absolute;
+    top:6px;
+    left:237px;
 }
 
 #user_list_hd{
