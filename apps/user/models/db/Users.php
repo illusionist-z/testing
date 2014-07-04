@@ -45,6 +45,15 @@ class Users extends \Lib\Core\BaseModel{
                 $select->andWhere('dept_code LIKE :dept_code:',['dept_code'=>$conditions['dept_code']]);
             }
             
+            // is set names
+            if(
+                isset($conditions['name']) &&
+                TextCommon::trimMultiByte($conditions['name']) !== ''
+            ){
+                $select->andWhere('name LIKE :name: OR kana LIKE :kana:',
+                                   ['name'=> $conditions['name'].'%','kana'=> $conditions['name'].'%']);
+            }
+            
             $result = $select->orderBy("order_string ASC")
                              ->execute();
             

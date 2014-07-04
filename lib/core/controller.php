@@ -17,10 +17,22 @@ abstract class Controller extends \Phalcon\Mvc\Controller{
      */
     public $lang;
     
+    
+    public $_isJsonResponse = FALSE;
+    
     public function initialize() {
         
         
     }
+    
+    // Call this func to set json response enabled
+    public function setJsonResponse($content) {
+        $this->view->disable();
+        $this->response->setContentType('application/json', 'UTF-8');
+        $this->response->setJsonContent($content);
+        return $this->response;
+    }
+    
     
     public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher){
         // set module
@@ -97,15 +109,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller{
     
     // After route executed event
     public function afterExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
-        
-//        if ($this->_isJsonResponse) {
-//            $data = $dispatcher->getReturnedValue();
-//            if (is_array($data)) {
-//                $data = json_encode($data);
-//            }
-//            
-//            $this->response->setContent($data);
-//        }
+       
     }
     
     private function _getCoreTranslation(){

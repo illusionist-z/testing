@@ -33,7 +33,7 @@ $this->partial('../../core/views/index/cmn-slide-menu')?>
     </div>
     <div id="users_list">
         <div id="user_list_search_box">
-            <input type="search">
+            <input type="search" id="filter_name_box">
         </div>
         <div id="users_list_main">
             <div id="user_list_hd">
@@ -66,6 +66,7 @@ $this->partial('../../core/views/index/cmn-slide-menu')?>
             <button id="btn_regist_user" type="button">登録</button>
         </div>
         <form id="regist_user">
+            <input type="hidden" id="reg_id" name="id" value=""/>
             <table>
                 <tbody>
                 <tr>
@@ -88,6 +89,7 @@ $this->partial('../../core/views/index/cmn-slide-menu')?>
 </div>
 <form id="search_user">
     <?=$this->tag->hiddenField(['name','value'=>'','id'=>'search_name']);?>
+    <?=$this->tag->hiddenField(['kana','value'=>'','id'=>'search_kana']);?>
     <?=$this->tag->hiddenField(['delete_flag','value'=>0,'id'=>'search_delete_flag']);?>
     <?=$this->tag->hiddenField(['dept_code','value'=>'','id'=>'search_dept_code']);?>
 </form>

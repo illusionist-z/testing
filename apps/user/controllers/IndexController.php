@@ -31,8 +31,7 @@ class IndexController extends ControllerBase
            
         //set dept list
         $this->view->depts = Models\Dept::getAll();
-        
+ 
     }
     
 }
-

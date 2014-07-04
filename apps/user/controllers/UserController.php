@@ -3,6 +3,7 @@
 namespace Crm\User\Controllers;
 
 use Crm\User\Models\Db\Users;
+use Crm\Core;
 
 class userController extends ControllerBase
 {
@@ -21,13 +22,12 @@ class userController extends ControllerBase
         
         $condition = $this->request->getPost();
 
-        $users = Users::getInstance()->get($condition,$this->users);
+        $users = Users::getInstance()->get($condition);
 
-        $this->view->disable();
         $json['status'] = 'OK';
         $json['users'] = $users;
-        $this->response->setContentType('application/json', 'UTF-8');
-        echo json_encode($json);
+
+        return $this->setJsonResponse($json);
         
     }
     
@@ -54,6 +54,26 @@ class userController extends ControllerBase
         }
         
         echo json_encode($json);
+    }
+    
+    /**
+     * Lorck user record by user id
+     */
+    public function lockAction($uuid){
+        
+        $lock = new Core\Models\Biz\LockRecord();
+        $user = $lock->start($uuid);
+        return $this->setJsonResponse(['uuid'=>$uuid,'user'=>$user]);
+    }
+    
+    /**
+     * 
+     */
+    public function updateAction(){
+        $condition = $this->request->getPost();
+        
+        $update = new \Crm\User\Models\Biz\Users();
+        $update->update($id, $parms);
     }
     
 }

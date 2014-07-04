@@ -165,12 +165,37 @@ $(document).ready(function(){
         },
         
         edit : function(){
-            
+            var id = $('#reg_id').val();
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url : '/user/user/lock/'+id,
+                async: false,
+                success: function(data) {
+                    if(data.status !== 'OK') return;
+                },
+                error: function() {
+
+                }
+            });
             // #TODO: レコードロックを行う。
             $('#regist_user input[type=text]').removeAttr('readonly');
         },
         
         regist : function(){
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url : '/user/user/update/'+id,
+                async: false,
+                success: function(data) {
+                    if(data.status !== 'OK') return;
+                },
+                error: function() {
+                    
+                }
+            });
+            
             $('#regist_user input[type=text]').attr('readonly','true');
         }
         
@@ -202,6 +227,14 @@ $(document).ready(function(){
         Users.resetCondition();
         var dept_code = $(this).attr('id').substring(10);
         $('#search_dept_code').val(dept_code);
+        Users.get();
+    });
+    
+    $('#filter_name_box').change(function(){
+        Users.resetCondition();
+        var wordSearch = $('#filter_name_box').val();
+        $('#search_name').val(wordSearch);
+        $('#search_kana').val(wordSearch);
         Users.get();
     });
     
