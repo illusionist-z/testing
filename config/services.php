@@ -53,9 +53,9 @@ $di->set('router', function () {
 /**
  * The URL component is used to generate all kind of urls in the application
  */
-$di->set('url',function () {
+$di->set('url',function () use ($config) {
     $url = new UrlResolver();
-    $url->setBaseUri('/');
+    $url->setBaseUri($config->application->baseUri);
     return $url;
 });
 
