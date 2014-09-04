@@ -5,6 +5,8 @@
  */
 
 $(document).ready(function(){
+    var userUri = baseUri + 'user/';
+    
     /**
      * When window resize , resize to menu list ,too.
      * @returns {undefined}
@@ -42,7 +44,7 @@ $(document).ready(function(){
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url : '/user/user/get',
+                    url : userUri + 'user/get',
                     data: $form.serialize(),
                     async: false,
                     success: function(data) {
@@ -114,7 +116,7 @@ $(document).ready(function(){
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
-                url : '/user/user/getOne/'+id,
+                url : baseUri + 'user/user/getOne/'+id,
                 async: false,
                 success: function(data) {
                     if(data.status !== 'OK') return;
@@ -164,12 +166,20 @@ $(document).ready(function(){
             $('#users_info').hide();
         },
         
+        /**
+         * Get the form for a new user
+         * @returns {undefined}
+         */
+        getNewForm : function(){
+            
+        },
+        
         edit : function(){
             var id = $('#reg_id').val();
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
-                url : '/user/user/lock/'+id,
+                url : userUri + 'user/lock/'+id,
                 async: false,
                 success: function(data) {
                     if(data.status !== 'OK') return;
@@ -186,7 +196,7 @@ $(document).ready(function(){
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
-                url : '/user/user/update/'+id,
+                url : userUri + 'user/update/'+id,
                 async: false,
                 success: function(data) {
                     if(data.status !== 'OK') return;
