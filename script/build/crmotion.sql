@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.19, for osx10.9 (x86_64)
 --
--- Host: localhost    Database: phalcon
+-- Host: localhost    Database: crm_phalcon
 -- ------------------------------------------------------
 -- Server version	5.6.19
 
@@ -94,7 +94,7 @@ CREATE TABLE `core_lock_record` (
 
 LOCK TABLES `core_lock_record` WRITE;
 /*!40000 ALTER TABLE `core_lock_record` DISABLE KEYS */;
-INSERT INTO `core_lock_record` VALUES ('27a62102-f566-11e3-a3c9-42f40021a5dz','Administrator','Administrator','2014-09-03 23:21:39'),('Administrator','Administrator','Administrator','2014-09-03 00:18:42');
+INSERT INTO `core_lock_record` VALUES ('27a62102-f566-11e3-a3c9-42f40021a5dz','Administrator','Administrator','2014-09-03 23:21:39'),('65b46fac-fba7-11e3-a3c9-42f40021a5db','Administrator','Administrator','2014-09-05 14:19:25'),('Administrator','Administrator','Administrator','2014-09-05 12:10:51'),('e6592806-fa02-11e3-a3c9-42f40021a5db','Administrator','Administrator','2014-09-05 14:19:30');
 /*!40000 ALTER TABLE `core_lock_record` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,6 +223,50 @@ INSERT INTO `permission_rel_group` VALUES ('1','show_menu','ADMIN','user',1),('2
 UNLOCK TABLES;
 
 --
+-- Table structure for table `pjman_request`
+--
+
+DROP TABLE IF EXISTS `pjman_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pjman_request` (
+  `uuid` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `company_code` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `project_code` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `request_date` date NOT NULL,
+  `propounder` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '提起者',
+  `request` text COLLATE utf8_unicode_ci COMMENT '要望内容',
+  `note` varchar(2048) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '備考',
+  `request_type` varchar(64) COLLATE utf8_unicode_ci NOT NULL COMMENT '要望の種類',
+  `priority` tinyint(1) unsigned NOT NULL COMMENT '優先度',
+  `plan_man_hour` decimal(4,3) DEFAULT NULL COMMENT '人費(予定)',
+  `category` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'カテゴリ',
+  `status` char(3) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ステータス',
+  `plan_date` date DEFAULT NULL COMMENT '対応予定日',
+  `fixed_date` date DEFAULT NULL COMMENT '対応完了日',
+  `todo_uuid` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `ct_cd` varchar(36) COLLATE utf8_unicode_ci NOT NULL COMMENT '作成者コード',
+  `ct_dt` datetime NOT NULL COMMENT '作成日時',
+  `up_cd` varchar(36) COLLATE utf8_unicode_ci NOT NULL COMMENT '作成者コード',
+  `up_dt` datetime NOT NULL COMMENT '更新日時',
+  `del_flag` tinyint(1) NOT NULL DEFAULT '0' COMMENT '削除フラグ',
+  PRIMARY KEY (`uuid`),
+  KEY `company_code` (`company_code`,`project_code`),
+  KEY `status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pjman_request`
+--
+
+LOCK TABLES `pjman_request` WRITE;
+/*!40000 ALTER TABLE `pjman_request` DISABLE KEYS */;
+INSERT INTO `pjman_request` VALUES ('1b3690a4-34d7-11e4-95fd-2b4aefd045e9','PanaEs','4','2014-06-19',NULL,'ステータスを一度に変更したい',NULL,'',4,NULL,'業務処理','',NULL,NULL,'','','2014-09-05 00:00:00','','2014-09-05 00:00:00',0);
+/*!40000 ALTER TABLE `pjman_request` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -305,4 +349,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-03 22:38:17
+-- Dump completed on 2014-09-05 18:46:36

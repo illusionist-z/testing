@@ -1,0 +1,95 @@
+<?php
+// If you need the slide menu, this function must use it. 
+$this->partial('../../core/views/index/cmn-slide-menu')?>
+
+<div id="main_contents">  
+    <div id="group_list">
+        <div id="logo_area">
+            <div id="logo" class="sprite-image crm-logo"></div>
+        </div>
+        <div id="filter_list_box" class="list-box">
+            <h2><?=$tran->_('filter_h2')?></h2>
+            <ul class="group-list-ul">
+                <li id="filter_btn_all"><?=$tran->_('filter_li_all')?></li>
+                <li id="filter_btn_deleted"><?=$tran->_('filter_li_deleted_user')?></li>
+            </ul>
+        </div>
+        <div id="dept_list_box" class="list-box">
+            <h2><?=$tran->_('department_h2')?></h2>
+            <ul id="select_dept_list" class="group-list-ul">
+                <?php foreach($depts as $k => $v){ ?>
+                <li id="dept_code_<?=$k?>"><?=$v?></li>
+                <?php } ?>
+            </ul>
+        </div>
+        <div id="team_list_box" class="list-box">
+            <h2>My チーム</h2>
+            <ul id="select_team_list" class="group-list-ul">
+                <?php foreach($depts as $k => $v){ ?>
+                <li id="team_code_<?=$k?>"><?=$v?></li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+    <div id="users_list">
+        <div id="user_list_search_box">
+            <input type="search" id="filter_name_box">
+        </div>
+        <div id="users_list_main">
+            <div id="user_list_hd">
+                <table>
+                    <thead>
+                        <tr id="ulh-thead">
+                            <th class="ult-name">名前</th>
+                            <th class="ult-dept_name">部署</th>
+                            <th class="ult-extension_number">内線</th>
+                            <th class="ult-telphone">電話</th>
+                            <th class="ult-cellular_phone">携帯電話</th>
+                            <th class="ult-email01">email1</th>
+                            <th class="ult-email02">email2</th>
+                        </tr>
+                    </thead> 
+                </table>
+            </div>
+            <div id="user_list_bd">
+                <table id="user_list_table">
+                    <tbody id="user_list_tbody"></tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+    <div id="users_info" style="display:none;">
+        <div id="user_control_box">
+            <button id="backto_list" type="button">戻る</button>
+            <button id="btn_edit_user" type="button">編集</button>
+            <button id="btn_regist_user" type="button">登録</button>
+        </div>
+        <form id="regist_user">
+            <input type="hidden" id="reg_id" name="id" value=""/>
+            <table>
+                <tbody>
+                <tr>
+                <th><?=$tran->_('user_name')?></th>
+                <td><?=$this->tag->textField(['name','value'=>'','id'=>'reg_name','readonly'=>'readonly']);?></td>
+                </tr>
+                <tr>
+                <th><?=$tran->_('user_kana')?></th>
+                <td><?=$this->tag->textField(['kana','value'=>'','id'=>'reg_kana','readonly'=>'readonly']);?></td>
+                </tr>
+                <tr>
+                <th>部署</th>
+                <td><div id="reg_dept_name"></div></td>
+                </tr>
+                </tbody>
+            </table>
+            
+        </form>
+    </div>
+</div>
+<form id="search_user">
+    <?=$this->tag->hiddenField(['name','value'=>'','id'=>'search_name']);?>
+    <?=$this->tag->hiddenField(['kana','value'=>'','id'=>'search_kana']);?>
+    <?=$this->tag->hiddenField(['delete_flag','value'=>0,'id'=>'search_delete_flag']);?>
+    <?=$this->tag->hiddenField(['dept_code','value'=>'','id'=>'search_dept_code']);?>
+</form>
