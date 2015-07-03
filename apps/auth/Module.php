@@ -1,4 +1,4 @@
-<?php namespace Crm\Auth;
+<?php namespace Workmanagements\Auth;
 
 use Phalcon\Mvc\ModuleDefinitionInterface;
 

@@ -1,9 +1,9 @@
-<?php namespace Crm\Auth\Models;
+<?php namespace Workmanagements\Auth\Models;
 
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
-use Crm\Auth\Models\Db\Users;
-use Crm\Auth\Models\Db\AuthFailedLogins;
+use Workmanagements\Auth\Models\Db\Users;
+use Workmanagements\Auth\Models\Db\AuthFailedLogins;
 
 class Auth extends Component{
     /**

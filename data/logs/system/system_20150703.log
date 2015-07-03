@@ -45,3 +45,28 @@ Started Trace
 #0 [internal function]: Phalcon\Di->get('workmanagements...')
 #1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
 #2 {main}
+[Fri, 03 Jul 15 11:41:11 +0200][ERROR] Service 'workmanagements\auth\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 03 Jul 15 11:43:01 +0200][ERROR] Service 'workmanagements\auth\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 03 Jul 15 11:43:04 +0200][ERROR] Service 'workmanagements\auth\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 03 Jul 15 11:50:18 +0200][ERROR] Service 'workmanagements\home\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 03 Jul 15 11:50:43 +0200][ERROR] Service 'workmanagements\home\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}

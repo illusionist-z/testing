@@ -1,4 +1,4 @@
-<?php namespace Crm\Home\Controllers;
+<?php namespace Workmanagements\Home\Controllers;
 
 // use library
 use Lib;

@@ -1,4 +1,4 @@
-<?php namespace Crm\Home;
+<?php namespace Workmanagements\Home;
 
 
 class Module extends \Lib\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface
