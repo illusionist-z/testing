@@ -15,18 +15,18 @@ try {
     //Register some namespaces
     $loader->registerNamespaces(array(
       // set namespace for libraries
-      'Lib\Core' => '../lib/core/',
+      'Lib\Core' => 'lib/core/',
       
       // set namespace for the core module
-      'Crm\Core\Controllers' => '../apps/core/controllers/',
-      'Crm\Core\Models' => '../apps/core/models/',
+      'workmanagements\Core\Controllers' => 'apps/core/controllers/',
+      'workmanagements\Core\Models' => 'apps/core/models/',
     ));
 
     //register autoloader
     $loader->register();
 
     //get config
-    $config = new Ini(__DIR__ . '/../config/config.ini');
+    $config = new Ini(__DIR__ . '/config/config.ini');
     
     //Create a DI
     $di = new \Phalcon\DI\FactoryDefault();
@@ -34,7 +34,7 @@ try {
     /**
      * Include services
      */
-    require __DIR__ . '/../config/services.php';
+    require __DIR__ . '/config/services.php';
       
     /**
      * Handle the request
@@ -52,7 +52,7 @@ try {
     /**
      * Include modules
      */
-    require __DIR__ . '/../config/modules.php';
+    require __DIR__ . '/config/modules.php';
     
     echo $application->handle()->getContent();
 

@@ -1,0 +1,37 @@
+[Fri, 05 Sep 14 11:45:24 +0900][ERROR] Service 'Crm\todo\Module' was not found in the dependency injection container [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\DI->get('Crm\\todo\\Module')
+#1 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 05 Sep 14 11:53:34 +0900][ERROR] Service 'Crm\todo\Module' was not found in the dependency injection container [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\DI->get('Crm\\todo\\Module')
+#1 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 05 Sep 14 11:53:35 +0900][ERROR] Service 'Crm\todo\Module' was not found in the dependency injection container [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\DI->get('Crm\\todo\\Module')
+#1 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 05 Sep 14 11:54:06 +0900][ERROR] Service 'Crm\todo\Module' was not found in the dependency injection container [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\DI->get('Crm\\todo\\Module')
+#1 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 05 Sep 14 11:54:07 +0900][ERROR] Service 'Crm\todo\Module' was not found in the dependency injection container [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\DI->get('Crm\\todo\\Module')
+#1 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 05 Sep 14 12:01:19 +0900][ERROR] Crm\Frontend\Controllers\PjmanController handler class cannot be loaded [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Crm\\Frontend\\Co...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Fri, 05 Sep 14 12:08:46 +0900][ERROR] Crm\Frontend\Controllers\PjmanController handler class cannot be loaded [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Crm\\Frontend\\Co...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}

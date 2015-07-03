@@ -1,0 +1,30 @@
+[Mon, 08 Sep 14 11:56:13 +0900][ERROR] Column 'delete_flag' doesn't belong to any of the selected models (1), when preparing: SELECT * FROM [Crm\Pjman\Models\Db\PjmanRequest] WHERE delete_flag = 0  ORDER BY order_string ASC [/Users/copei/NetBeansProjects/crmotion/apps/pjman/models/Db/PjmanRequest.php(35)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#4 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#5 [internal function]: Phalcon\Mvc\Model\Query->execute(NULL, NULL)
+#6 [internal function]: Phalcon\Mvc\Model::find(Array)
+#7 /Users/copei/NetBeansProjects/crmotion/apps/pjman/models/Db/PjmanRequest.php(35): Phalcon\Mvc\Model\Criteria->execute()
+#8 /Users/copei/NetBeansProjects/crmotion/apps/pjman/controllers/IndexController.php(31): Crm\Pjman\Models\Db\PjmanRequest->get(NULL)
+#9 [internal function]: Crm\Pjman\Controllers\IndexController->indexAction('ndex')
+#10 [internal function]: Phalcon\Dispatcher->dispatch()
+#11 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#12 {main}
+[Mon, 08 Sep 14 11:57:02 +0900][ERROR] Column 'order_string' doesn't belong to any of the selected models (1), when preparing: SELECT * FROM [Crm\Pjman\Models\Db\PjmanRequest] WHERE del_flag = 0  ORDER BY order_string ASC [/Users/copei/NetBeansProjects/crmotion/apps/pjman/models/Db/PjmanRequest.php(35)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getOrderClause(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#4 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#5 [internal function]: Phalcon\Mvc\Model\Query->execute(NULL, NULL)
+#6 [internal function]: Phalcon\Mvc\Model::find(Array)
+#7 /Users/copei/NetBeansProjects/crmotion/apps/pjman/models/Db/PjmanRequest.php(35): Phalcon\Mvc\Model\Criteria->execute()
+#8 /Users/copei/NetBeansProjects/crmotion/apps/pjman/controllers/IndexController.php(31): Crm\Pjman\Models\Db\PjmanRequest->get(NULL)
+#9 [internal function]: Crm\Pjman\Controllers\IndexController->indexAction('ndex')
+#10 [internal function]: Phalcon\Dispatcher->dispatch()
+#11 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#12 {main}
