@@ -1,0 +1,6 @@
+[Fri, 17 Oct 14 10:55:28 +0900][ERROR] Crm\Frontend\Controllers\MemberController handler class cannot be loaded [/Users/copei/NetBeansProjects/crmotion/public/index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Crm\\Frontend\\Co...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 /Users/copei/NetBeansProjects/crmotion/public/index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}

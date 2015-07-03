@@ -1,0 +1,47 @@
+[Fri, 03 Jul 15 04:09:38 +0200][ERROR] Table 'users' doesn't exist in database when dumping meta-data for Crm\Auth\Models\Db\Users [C:\xampp\htdocs\crmotion\apps\auth\models\Auth.php(18)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\MetaData\Strategy\Introspection->getMetaData(Object(Crm\Auth\Models\Db\Users), Object(Phalcon\Di\FactoryDefault))
+#1 [internal function]: Phalcon\Mvc\Model\MetaData->_initialize(Object(Crm\Auth\Models\Db\Users), 'crm\auth\models...', 'users', '')
+#2 [internal function]: Phalcon\Mvc\Model\MetaData->readMetaDataIndex(Object(Crm\Auth\Models\Db\Users), 4)
+#3 [internal function]: Phalcon\Mvc\Model\MetaData->getDataTypes(Object(Crm\Auth\Models\Db\Users))
+#4 C:\xampp\htdocs\crmotion\apps\auth\models\Auth.php(18): Phalcon\Mvc\Model::__callStatic('findFirstByAcco...', Array)
+#5 C:\xampp\htdocs\crmotion\apps\auth\models\Auth.php(18): Crm\Auth\Models\Db\Users::findFirstByAccount('admin')
+#6 C:\xampp\htdocs\crmotion\apps\auth\controllers\LoginController.php(17): Crm\Auth\Models\Auth->check(Array, Array)
+#7 [internal function]: Crm\Auth\Controllers\LoginController->indexAction()
+#8 [internal function]: Phalcon\Dispatcher->dispatch()
+#9 C:\xampp\htdocs\crmotion\public\index.php(57): Phalcon\Mvc\Application->handle()
+#10 {main}
+[Fri, 03 Jul 15 04:18:07 +0200][ERROR] Table 'users_rel_permission_group' doesn't exist in database when dumping meta-data for Crm\Auth\Models\Db\UsersRelPermissionGroup [C:\xampp\htdocs\crmotion\apps\auth\models\Permission.php(43)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\MetaData\Strategy\Introspection->getMetaData(Object(Crm\Auth\Models\Db\UsersRelPermissionGroup), Object(Phalcon\Di\FactoryDefault))
+#1 [internal function]: Phalcon\Mvc\Model\MetaData->_initialize(Object(Crm\Auth\Models\Db\UsersRelPermissionGroup), 'crm\auth\models...', 'users_rel_permi...', '')
+#2 [internal function]: Phalcon\Mvc\Model\MetaData->readMetaDataIndex(Object(Crm\Auth\Models\Db\UsersRelPermissionGroup), 4)
+#3 [internal function]: Phalcon\Mvc\Model\MetaData->getDataTypes(Object(Crm\Auth\Models\Db\UsersRelPermissionGroup))
+#4 C:\xampp\htdocs\crmotion\apps\auth\models\Permission.php(43): Phalcon\Mvc\Model::__callStatic('findByUserId', Array)
+#5 C:\xampp\htdocs\crmotion\apps\auth\models\Permission.php(43): Crm\Auth\Models\Db\UsersRelPermissionGroup::findByUserId('Administrator')
+#6 C:\xampp\htdocs\crmotion\apps\auth\models\Permission.php(21): Crm\Auth\Models\Permission->getGroup('Administrator', 'NON_DEPT')
+#7 C:\xampp\htdocs\crmotion\apps\auth\controllers\LoginController.php(22): Crm\Auth\Models\Permission->get(Object(Crm\Auth\Models\Db\Users), Array)
+#8 [internal function]: Crm\Auth\Controllers\LoginController->indexAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\crmotion\public\index.php(57): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Fri, 03 Jul 15 11:22:40 +0200][ERROR] Service 'workmanagements\frontend\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 03 Jul 15 11:23:43 +0200][ERROR] Service 'workmanagements\frontend\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 03 Jul 15 11:23:45 +0200][ERROR] Service 'workmanagements\frontend\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}
+[Fri, 03 Jul 15 11:24:30 +0200][ERROR] Service 'workmanagements\frontend\Module' wasn't found in the dependency injection container [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Di->get('workmanagements...')
+#1 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#2 {main}

@@ -1,0 +1,48 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014/06/21, 23:51:54
+    Author     : copei
+*/
+
+/*
+    header parts
+*/
+.header-login-name{
+    color:#FFF;
+    cursor: pointer;
+}
+.header-login-name:hover{
+    color:#EEE;
+}
+
+/*
+    sprite images
+*/
+.sprite-image{
+    background-image: url(../../img/bootstrap/crm-sprite-images.png?v2);
+}
+
+.crm-logo{
+    background-position: 0 0;
+    width:98px;
+    height:18px;
+}
+
+.icon-24{
+    width:24px;
+    height:24px;
+}
+
+.icon-24-settings{
+    background-position: 0 -20px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.icon-24-settings:hover{
+    opacity: 1.0;
+}
