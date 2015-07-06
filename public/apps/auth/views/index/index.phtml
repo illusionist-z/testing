@@ -1,0 +1,30 @@
+<div id="login_block">
+    <?=$errorMsg?>
+    <form method="post" action="<?=$this->url->getBaseUri();?>auth/login" id="form_login">
+        <img src="<?=$this->url->getBaseUri();?>common/img/auth/logo.png">
+        <table border="0" cellpadding="0" cellspacing="0" class="loginTable">                
+            <tr>
+                <th>Account</th>              
+                <td><?=$this->tag->textField(['account', 'maxlength'=> 64]) ?></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><?=$this->tag->passwordField(['password', 'maxlength'=> 64]) ?></td>
+            </tr>
+                    
+<!--            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="forgot_pass"></td>
+            </tr>-->
+        </table>
+        <button id="btnLogin" type="submit">LOGIN</button>
+        
+    </form>
+</div>
+
+<div id="bottom_block">
+    Copyright (C) 2003-2014 G-NEXT, Inc. All rights reserved.
+</div>
+
