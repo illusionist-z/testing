@@ -1,0 +1,33 @@
+<?php
+use Phalcon\Forms\Form;
+use Phalcon\Forms\Element\Text;
+$form = new Form();
+?>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+
+<body class="loginpage">
+<div class="loginbox">
+<div class="loginbox-body">
+        <p class="login-box-msg">Sign in to start your session</p>
+        <form action="session/login" method="post">
+        <table>
+          <tr>
+      <td>UserName:</td>
+            <td><input type="username" class="log" placeholder="email" name="email">
+            
+            </td>
+          </tr>
+    <tr>
+      <td>Password:</td>
+            <td><input type="password" class="log" placeholder="Password" name="password"></td>
+          </tr>
+            <tr >
+      <td colspan="2" style="text-align:center;"><input type="submit" value="Sign In"></td>
+            </tr><!-- /.col -->
+        </table><br>
+      </form>
+         <a href="#">I forgot my password</a><br>
+      </div>
+</div>
+</div>
+</body>
