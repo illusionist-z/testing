@@ -1,4 +1,4 @@
-<?php namespace Workmanagements\Auth\Models;
+<?php namespace workManagiment\Auth\Models;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

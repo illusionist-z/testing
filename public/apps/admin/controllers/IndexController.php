@@ -1,6 +1,6 @@
 <?php
 
-namespace Workmanagements\Admin\Controllers;
+namespace workManagiment\Admin\Controllers;
 
 class IndexController extends ControllerBase
 {

@@ -1,4 +1,4 @@
-<?php namespace Workmanagements\Frontend\Controllers;
+<?php namespace workManagiment\Frontend\Controllers;
 
 use Lib;
 

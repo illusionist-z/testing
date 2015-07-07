@@ -1,4 +1,4 @@
-<?php namespace Workmanagements\Auth\Models\Db;
+<?php namespace workManagiment\Auth\Models\Db;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -11,16 +11,17 @@ class Users extends \Lib\Core\BaseModel{
         parent::initialize();
     }
     
-    static public function findFirstByLogin($login_name){
-        try{
-            $row = $this->findFirst(array(
-                    "login_name LIKE :login_name:",
-                    "bind" => ['login_name'=> $login_name ]
-                ));
-        }  catch (\Exception $e){
-            throw $e;
-        }
-        
-        return $row;
-    }
+//    static public function findFirstByLogin($login_name){
+//        
+//        try{
+//            $row = $this->findFirst(array(
+//                    "login_name LIKE :login_name:",
+//                    "bind" => ['login_name'=> $login_name ]
+//                ));
+//        }  catch (\Exception $e){
+//            throw $e;
+//        }
+//        
+//        return $row;
+//    }
 }

@@ -1,4 +1,4 @@
-<?php namespace Workmanagements\Auth;
+<?php namespace workManagiment\Auth;
 
 use Phalcon\Mvc\ModuleDefinitionInterface;
 

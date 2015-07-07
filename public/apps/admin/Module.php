@@ -1,4 +1,4 @@
-<?php namespace Workmanagements\Admin;
+<?php namespace workManagiment\Admin;
 
 
 class Module extends \Lib\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface

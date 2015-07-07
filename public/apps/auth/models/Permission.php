@@ -1,6 +1,6 @@
-<?php namespace Workmanagements\Auth\Models;
+<?php namespace workManagiment\Auth\Models;
 
-use Workmanagements\Auth\Models\Db;
+use workManagiment\Auth\Models\Db;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,9 +14,10 @@ class Permission{
      * @param type $dept_code
      */
     public function get($user, &$permissions = array()){
-        $id = $user->id;
-        $dept_code = $user->dept_code;
-
+//        print_r($user);exit;
+        $id = $user->member_id;
+        $dept_code = $user->member_dept_code;
+        
         // Get Permission groups
         $permissinGroups = $this->getGroup($id, $dept_code);
         
@@ -25,7 +26,7 @@ class Permission{
             return FALSE;
         }
         
-        
+       
 //        if(in_array('module_tab2',$permissions['member'])){
 //            echo 'is permission';
 //        }
@@ -56,10 +57,11 @@ class Permission{
     }
     
     /**
-     * 
+     * Get permission
      * @param type $permissionGroups
      * @param type $permissions
      * @return boolean
+     * @author zinmon
      */
     public function getPermissions($permissionGroups , & $permissions){
         

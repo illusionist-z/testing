@@ -18,8 +18,8 @@ try {
       'Lib\Core' => 'lib/core/',
       
       // set namespace for the core module
-      'workmanagements\Core\Controllers' => 'apps/core/controllers/',
-      'workmanagements\Core\Models' => 'apps/core/models/',
+      'workManagiment\Core\Controllers' => 'apps/core/controllers/',
+      'workManagiment\Core\Models' => 'apps/core/models/',
     ));
 
     //register autoloader

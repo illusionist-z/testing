@@ -8,7 +8,7 @@ namespace Lib\Core;
  * and open the template in the editor.
  */
 
-use Workmanagements\Core\Models\Db;
+use workManagiment\Core\Models\Db;
 
 abstract class Controller extends \Phalcon\Mvc\Controller {
 

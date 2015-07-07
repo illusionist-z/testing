@@ -2788,3 +2788,39 @@ Started Trace
 #1 [internal function]: Phalcon\Dispatcher->dispatch()
 #2 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
 #3 {main}
+[Mon, 06 Jul 15 11:07:56 +0200][ERROR] Workmanagements\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Workmanagements...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 06 Jul 15 11:07:56 +0200][ERROR] Workmanagements\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Workmanagements...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 06 Jul 15 11:07:56 +0200][ERROR] Workmanagements\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Workmanagements...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 06 Jul 15 11:07:58 +0200][ERROR] Workmanagements\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Workmanagements...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 06 Jul 15 11:07:58 +0200][ERROR] Workmanagements\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Workmanagements...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 06 Jul 15 11:07:58 +0200][ERROR] Workmanagements\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workmanagements\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Workmanagements...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workmanagements\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}

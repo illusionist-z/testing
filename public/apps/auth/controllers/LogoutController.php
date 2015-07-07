@@ -1,8 +1,8 @@
 <?php
 
-namespace Workmanagements\Auth\Controllers;
+namespace workManagiment\Auth\Controllers;
 
-use Workmanagements\Auth\Models;
+use workManagiment\Auth\Models;
 
 class LogoutController extends ControllerBase
 {

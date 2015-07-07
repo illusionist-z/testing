@@ -1,9 +1,9 @@
-<?php namespace Workmanagements\Auth\Models;
+<?php namespace workManagiment\Auth\Models;
 
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
-use Workmanagements\Auth\Models\Db\Users;
-use Workmanagements\Auth\Models\Db\AuthFailedLogins;
+use workManagiment\Auth\Models\Db\CoreMember;
+use workManagiment\Auth\Models\Db\AuthFailedLogins;
 
 class Auth extends Component{
     /**
@@ -14,21 +14,28 @@ class Auth extends Component{
      */
     public function check($loginParams,& $user = null)
     {
+        //echo $loginParams['member_login_name'];
         // Check if the user exist
-        $user = Users::findFirstByAccount($loginParams['account']);
-        if ($user == false) {
-            $this->failedLogin(0);
-            return false;
-        }
-
-        // Check the password
-        if (!$this->security->checkHash($loginParams['password'], $user->password)) {
-            $this->failedLogin($user->account);
-            return false;
-        }
-
-        $this->_setUserInfo($user);
-        return TRUE;
+     $name=$loginParams['member_login_name'];
+     $password=$loginParams['password'];
+     $this->db=$this->getDI()->getShared("db");
+        $user = $this->db->query("SELECT * FROM core_member where member_login_name='".$name."' and member_password='".sha1($password)."'");
+         $user=$user->fetchArray();
+        
+        return $user;
+//        if ($user == false) {
+//            $this->failedLogin(0);
+//            return false;
+//        }
+//
+//        // Check the password
+//        if (!$this->security->checkHash($loginParams['password'], $user->password)) {
+//            $this->failedLogin($user->member_login_name);
+//            return false;
+//        }
+//
+//        $this->_setUserInfo($user);
+//        return TRUE;
         
 //        // Check if the user was flagged
 //        $this->checkUserFlags($user);

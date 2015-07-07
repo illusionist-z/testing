@@ -1,4 +1,4 @@
-<?php namespace Workmanagements\Frontend;
+<?php namespace workManagiment\Frontend;
 
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
