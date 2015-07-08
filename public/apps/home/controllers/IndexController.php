@@ -1,6 +1,6 @@
 <?php
 
-namespace Workmanagements\Home\Controllers;
+namespace workManagiment\Home\Controllers;
 
 class IndexController extends ControllerBase
 {
@@ -22,5 +22,9 @@ class IndexController extends ControllerBase
         
     }
 
+    
+     public function testAction(){
+        echo "AAA";exit;
+    }
 }
 

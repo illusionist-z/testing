@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Home;
+<?php namespace workManagiment\Attendance;
 
 
 class Module extends \Lib\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface
