@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Admin\Controllers;
+namespace workManagiment\Attendancelist\Controllers;
 
 class IndexController extends ControllerBase
 {
@@ -20,6 +20,11 @@ class IndexController extends ControllerBase
         
         $this->view->user = $user;
         
+    }
+    
+    public function todaylistAction() {
+        echo "Today list";
+        exit;
     }
 
 }
