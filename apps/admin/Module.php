@@ -1,7 +1,7 @@
 <?php namespace workManagiment\Admin;
 
 
-class Module extends \Lib\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface
+class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface
 {
     /**
      * constructor

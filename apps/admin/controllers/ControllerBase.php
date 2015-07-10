@@ -1,9 +1,9 @@
 <?php namespace workManagiment\Admin\Controllers;
 
 // use library
-use Lib;
+use Library;
 
-class ControllerBase extends Lib\Core\Controller
+class ControllerBase extends Library\Core\Controller
 {
     
 }
