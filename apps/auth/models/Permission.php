@@ -91,9 +91,6 @@ class Permission {
             // The permissions set up for each module. 
             while ($results->valid()) {
                 $row = $results->current();
-//                $this->db = $this->getDI()->getShared("db");
-//                $presult = $this->db->query("SELECT * FROM core_permission where permission_code=='".$row->permission_code."'");
-//                print_r($presult);exit;
                 $permissions = Db\CorePermission::findByPermissionCode($row->permission_code);
                 while ($permissions->valid()){
                     $row = $permissions->current();
