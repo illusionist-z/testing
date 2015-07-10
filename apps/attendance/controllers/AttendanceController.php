@@ -23,7 +23,7 @@ class AttendanceController extends ControllerBase
     }
     
     public function todaylistAction(){
-       echo "Today list";exit;
+       echo "Today list1";exit;
         
     }
 

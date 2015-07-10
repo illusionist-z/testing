@@ -24,8 +24,8 @@ class IndexController extends ControllerBase {
         $this->view->uname = $username;
     }
 
-    public function todaylistAction() {
-        echo "Today list";
+    public function testAction() {
+        echo "test";
         exit;
     }
 
