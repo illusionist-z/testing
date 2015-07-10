@@ -5,9 +5,9 @@
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-        
+
         <!-- Ionicons -->
-        
+
         <script src="common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
@@ -33,7 +33,7 @@
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            
+
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
@@ -67,7 +67,7 @@
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
-                            
+
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
@@ -124,16 +124,11 @@
                         <?php
                         foreach ($this->session->auth as $key_name => $key_value) {
                             if ($key_value[0] == "Dashboard") {
-                                echo '<li><a href="home"><i class="fa fa-user"></i> <span>' . $key_value[0] . '</span></a></li>';
-                            }
-                            elseif($key_value[0] == "Calendar"){
-                                echo '<li><a href="calendar"><i class="fa fa-user"></i> <span>' . $key_value[0] . '</span></a></li>';
-                            }
-                            else {
-                                echo ' <li class="treeview">
-                            <a href="#">
-                               <img src="common/img/list.png" >
-                                <span>' . $key_value[0] . '</span></a>';
+                                echo '<li><a href="home"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                            } elseif ($key_value[0] == "Calendar") {
+                                echo '<li><a href="calendar"><img src="common/img/list.png" > <span>' . $key_value[0] . '</span></a></li>';
+                            } else {
+                                echo ' <li class="treeview"><a href="#"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             }
                             $mod_link = explode(" ", $key_value[0]);
                             if (isset($mod_link[1])) {
@@ -151,7 +146,7 @@
                                         //set to link action value
                                         $link_val = strtolower($v_result[0] . $v_result[1]);
                                     }
-                                    echo ' <li><a href="'.$module_link.'/index/'.$link_val.'"> <img src="common/img/li.png" ></i>' . $value . '</a></li>';
+                                    echo ' <li><a href="' . $module_link . '/index/' . $link_val . '"> <img src="common/img/li.png" ></i>' . $value . '</a></li>';
                                 }
 
                                 echo '</ul>';
@@ -168,9 +163,9 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper" style="height:auto;">
                 <section class="content">
-<?php echo $this->getContent() ?>
+                    <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
-<?php $this->assets->outputJs(); ?>
+                    <?php $this->assets->outputJs(); ?>
                 </section>
             </div><!-- /.content-wrapper -->
 
