@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Admin\Controllers;
+<?php namespace workManagiment\Attendancelist\Controllers;
 
 // use library
 use Library;

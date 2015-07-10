@@ -265,9 +265,7 @@
                         </div>
                     </div>
 
-                    <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
-                    
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
                         <?php
@@ -277,12 +275,24 @@
                             <a href="#">
                                 <i class="fa fa-user"></i>
                                 <span>' . $key_value[0] . '</span></a>';
+                            $mod_link=  explode(" ", $key_value[0]);
+                            if(isset($mod_link[1])){
+                            $module_link=strtolower($mod_link[0].$mod_link[1]);
+                            
+                            }
+                            else{
+                                $module_link=$mod_link[0];
+                            }
                             foreach ($key_value as $name => $value) {
                                 //print "Key = " . $name . " Value = " . $value . "<BR>";
                                 echo '<ul class="treeview-menu">';
                                 if ($name > 0) {
-
-                                    echo ' <li><a href="userlist"><i class="fa fa-circle-o"></i>' . $value . '</a></li>';
+                                    if($v_result=explode(" ", $value))
+                                    {
+                                        //set to link action value
+                                        $link_val= strtolower($v_result[0].$v_result[1]);
+                                    }
+                                    echo ' <li><a href="'.$module_link.'/index/'.$link_val.'"><i class="fa fa-circle-o"></i>' . $value . '</a></li>';
                                 }
 
                                 echo '</ul>';

@@ -8,19 +8,8 @@ use Phalcon\Tag as Tag; ?>
 <div id="btn_maintenace" class="sprite-image icon-24 icon-24-settings"></div>-->
 </div>
 <div id="main_contents">
-    <?php echo $this->tag->linkTo("singup", "Sign Up Here!"); ?>
+    <?php echo $this->tag->linkTo("attendance/index/todaylist", "Sign Up Here!"); ?>
     <?php
-    //print_r($this->session->auth);
-//    $len=sizeof($this->session->auth);
-//    foreach ($this->session->auth as $result){
-//        echo $result[0]."<br>";
-//        if(isset($result[1])){
-//            echo $result[1].'<br>';
-//        }
-//        if(isset($result[2])){
-//            echo $result[2].'<br>';
-//        }
-//    }
 
     foreach ($this->session->auth as $key_name => $key_value) {
 
