@@ -281,9 +281,10 @@
                             }
                             $mod_link = explode(" ", $key_value[0]);
                             if (isset($mod_link[1])) {
-                                //set module link
+                                //set module link for key value that has space
                                 $module_link = strtolower($mod_link[0] . $mod_link[1]);
                             } else {
+                                //set module link for key value that has no space
                                 $module_link = strtolower($mod_link[0]);
                             }
                             foreach ($key_value as $name => $value) {
