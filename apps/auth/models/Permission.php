@@ -44,8 +44,9 @@ class Permission {
     public function getGroup($id, $dept_code) {
         try {
             $permissions = Db\CorePermissionRelMember::findByRelMemberId($id);
-
+       //var_dump($permissions);exit;
             $permissionGroups = [];
+            
             while ($permissions->valid()) {
                 $robot = $permissions->current();
                 $permissionGroups[] = $robot->rel_permission_group_code;
