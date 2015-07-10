@@ -7,8 +7,9 @@ use workManagiment\Auth\Models;
 class LoginController extends ControllerBase {
 
     public function indexAction() {
-
+        
         $loginParams = $this->request->get();
+       
         $this->view->test = $loginParams;
 //        print_r($loginParams);exit;
         $modelAuth = new Models\Auth();
