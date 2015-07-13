@@ -1,0 +1,41 @@
+[Mon, 13 Jul 15 05:28:17 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:28:28 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:59:49 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 06:35:45 +0200][ERROR] A models-manager is required to execute the query [phalcon/mvc/model/query.zep(1648)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#1 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#2 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(47): Phalcon\Mvc\Model\Query->execute(Array)
+#3 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(27): workManagiment\Auth\Models\Permission->getGroup('admin', 'admin')
+#4 C:\xampp\htdocs\workManagiment\apps\auth\controllers\LoginController.php(25): workManagiment\Auth\Models\Permission->get(Array, Array)
+#5 [internal function]: workManagiment\Auth\Controllers\LoginController->indexAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Mon, 13 Jul 15 07:26:41 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 08:04:23 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
