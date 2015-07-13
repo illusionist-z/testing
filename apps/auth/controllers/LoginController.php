@@ -27,6 +27,7 @@ class LoginController extends ControllerBase {
             $this->session->set('auth', $Permission);
             
         } else {
+            //echo "error";exit;
             $this->response->redirect('auth/index/failer');
         }
 

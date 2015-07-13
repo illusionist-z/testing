@@ -1,28 +1,29 @@
-<?php namespace workManagiment\Auth\Models;
+<?php
+
+namespace workManagiment\Auth\Models;
 
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
 use workManagiment\Auth\Models\Db\CoreMember;
 use workManagiment\Auth\Models\Db\AuthFailedLogins;
 
-class Auth extends Component{
+class Auth extends Component {
+
     /**
      * Checks the user credentials
      *
      * @param array $loginParams
      * @return boolan
      */
-    public function check($loginParams,& $user = null)
-    {
-        //echo $loginParams['member_login_name'];
+    public function check($loginParams, & $user = null) {
+      
         // Check if the user exist
-     $name=$loginParams['member_login_name'];
-     $password=$loginParams['password'];
-//     echo $name;echo $password;exit;
-     $this->db=$this->getDI()->getShared("db");
-        $user = $this->db->query("SELECT * FROM core_member where member_login_name='".$name."' and member_password='".sha1($password)."'");
-         $user=$user->fetchArray();
-        
+        $name = $loginParams['member_login_name'];
+        $password = $loginParams['password'];
+        $this->db = $this->getDI()->getShared("db");
+        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+        $user = $user->fetchArray();
+
         return $user;
 //        if ($user == false) {
 //            $this->failedLogin(0);
@@ -37,7 +38,6 @@ class Auth extends Component{
 //
 //        $this->_setUserInfo($user);
 //        return TRUE;
-        
 //        // Check if the user was flagged
 //        $this->checkUserFlags($user);
 //
@@ -55,28 +55,27 @@ class Auth extends Component{
 //            'profile' => $user->profile->name
 //        ));
     }
-    
+
     /**
      * Implements login throttling
      * Reduces the efectiveness of brute force attacks
      *
      * @param int $userId
      */
-    public function failedLogin($userId)
-    {
-        try{
+    public function failedLogin($userId) {
+        try {
             $failedLogin = new AuthFailedLogins();
             $failedLogin->user_uuid = $userId;
             $failedLogin->ip_address = $this->request->getClientAddress();
             $failedLogin->attempted = time();
             $failedLogin->save();
-            
+
             $attempts = AuthFailedLogins::count(array(
-                'ip_address = ?0 AND attempted >= ?1',
-                'bind' => array(
-                    $this->request->getClientAddress(),
-                    time() - 3600 * 6
-                )
+                        'ip_address = ?0 AND attempted >= ?1',
+                        'bind' => array(
+                            $this->request->getClientAddress(),
+                            time() - 3600 * 6
+                        )
             ));
 
             switch ($attempts) {
@@ -92,18 +91,18 @@ class Auth extends Component{
                     sleep(4);
                     break;
             }
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
         }
     }
-    
+
     /**
      * 
      * @param type $userObject
      */
-    private function _setUserInfo($userObject){
-        $user= [
+    private function _setUserInfo($userObject) {
+        $user = [
             'id' => $userObject->id,
             'name' => $userObject->name,
             'kana' => $userObject->kana,
@@ -113,6 +112,7 @@ class Auth extends Component{
             'email01' => $userObject->email01,
             'rank_code' => $userObject->rank_code,
         ];
-        $this->session->set('user',$user);
+        $this->session->set('user', $user);
     }
+
 }

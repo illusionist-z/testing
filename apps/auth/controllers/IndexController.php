@@ -23,7 +23,9 @@ class IndexController extends ControllerBase
      * @param type $mode
      */
     public function failerAction($mode =1){
+        echo "AA";exit;
         $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
+        exit;
         $this->view->pick('index/index');
     }
     
