@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Attendance System</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+
+        <!-- Ionicons -->
+
+        <script src="common/js/jquery.min.js"></script>
+        <?php $this->assets->outputCss() ?>
+    </head>
+    <body class="skin-blue sidebar-mini" onload=display_ct()>
+        <div class="wrapper">
+
+            <header class="main-header">
+
+                <!-- Logo -->
+                <a href="index2.html" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>A</b>LT</span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg">G_NEXT</span>
+                </a>
+
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                    <a><img src="common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+
+                            <!-- Notifications: style can be found in dropdown.less -->
+                            <li class="dropdown notifications-menu" >
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
+                                    <img src="common/img/noti.png">
+                                    <span class="label label-warning">3</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 3 notifications</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="#">
+                                                    <img src="common/img/notid.png"> 5 new members joined today
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="common/img/notid.png">5 new members joined
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">View all</a></li>
+                                </ul>
+                            </li>
+                            <!-- Tasks: style can be found in dropdown.less -->
+
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
+                                    <img src="common/img/profile.png" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs">Admin</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- User image -->
+                                    <li class="user-header">
+                                        <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                                        <p>
+                                            Alexander Pierce - Web Developer
+                                            <small>Member since Nov. 2012</small>
+                                        </p>
+                                    </li>
+
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Setting</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout">Sign out</a>
+
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </nav>
+            </header>
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Admin</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="header">MAIN NAVIGATION</li>
+                        <?php
+                        foreach ($this->session->auth as $key_name => $key_value) {
+                            if ($key_value[0] == "Dashboard") {
+                                echo '<li><a href="home"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                            } elseif ($key_value[0] == "Calendar") {
+                                echo '<li><a href="calendar"><img src="common/img/list.png" > <span>' . $key_value[0] . '</span></a></li>';
+                            } else {
+                                echo ' <li class="treeview"><a href="#"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
+                            }
+                            $mod_link = explode(" ", $key_value[0]);
+                            if (isset($mod_link[1])) {
+                                //set module link for key value that has space
+                                $module_link = strtolower($mod_link[0] . $mod_link[1]);
+                            } else {
+                                //set module link for key value that has no space
+                                $module_link = strtolower($mod_link[0]);
+                            }
+                            foreach ($key_value as $name => $value) {
+                                //print "Key = " . $name . " Value = " . $value . "<BR>";
+                                echo '<ul class="treeview-menu">';
+                                if ($name > 0) {
+                                    if ($v_result = explode(" ", $value)) {
+                                        //set to link action value
+                                        $link_val = strtolower($v_result[0] . $v_result[1]);
+                                    }
+                                    echo ' <li><a href="' . $module_link . '/index/' . $link_val . '"> <img src="common/img/li.png" ></i>' . $value . '</a></li>';
+                                }
+
+                                echo '</ul>';
+                            }
+                            echo '</li>';
+                        }
+                        ?>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" style="height:auto;">
+                <section class="content">
+                    <?php echo $this->getContent() ?>
+                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
+                    <?php $this->assets->outputJs(); ?>
+                </section>
+            </div><!-- /.content-wrapper -->
+  <footer class="main-footer">
+                <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+            </footer>
+
+
+
+        </div><!-- ./wrapper -->
+
+          
+
+    </body>
+</html>

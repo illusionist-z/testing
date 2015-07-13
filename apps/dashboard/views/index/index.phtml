@@ -1,0 +1,48 @@
+ <!--
+  @author Su Zin Kyaw
+  @since  2015/11 /06-->
+<?php use Phalcon\Tag as Tag; 
+?>
+<script type="text/javascript">
+         function checkValue() {
+  var linkemail=document.forms["theForm"]["linkemail"].checked
+  if (linkemail) {
+    document.getElementById('xtraInfo').style.display='';
+  } else {
+    document.getElementById('xtraInfo').style.display='none';
+  } 
+} 
+
+</script>
+<div id="geo" class="geolocation_data"></div>
+<div class="col-md-12">
+    <div class="top_row"><a href="attendances" ><?php echo Tag::image(array('img/att.jpg', 'width' => 27)) ?><font style="color:red;">Attendance :</font>12</a></div>
+    <div class="top_row"><a href="Leavelist" ><?php echo Tag::image(array('img/leave.jpg', 'width' => 30)) ?><font style="color:red;">Leave Days :</font> 0</a></div>
+</div>
+<div class="col-md-12">
+  <div class="box" >
+    <div id="lft">
+        <div class="col-md-7 col-md-offset-3">
+          <h1 style="font-size: 184%">Current Time : <span id='ct' style="color:red;" ></h1>
+        </div><br><br>
+        <div class="col-md-8 col-md-offset-3">
+            <form id="theForm" name="theForm" method="post" action="">
+             <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)" /> If You late,Check Here and write your reason.
+              <div id="xtraInfo" style="display:none;">
+                <textarea class="textarea" id="note" placeholder="Write your reason here" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+             </div>
+            </form>
+        </div><br><br>
+        <div class="col-md-6 col-md-offset-4">
+          <a href="dashboard/index/checkin"  class="btn btn-primary btn-sm btn-flat" id="checkin" style="width: 150px;">Check In </a>
+        </div><br><br>
+        <div class="col-md-6 col-md-offset-4">
+            <a href="dashboard/index/checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;">Check Out </a>
+        </div><br><br>
+    </div>
+  </div>  
+</div>
+
+
+
+        
