@@ -31,7 +31,7 @@ class Permission {
             return FALSE;
         }
         $result=$this->getPermissions($permissinGroups, $permissions);
-        //print_r($result);exit;
+        //var_dump($result);exit;
         return $result;
     }
 
@@ -56,6 +56,7 @@ class Permission {
         } catch (\Exception $e) {
             throw $e;
         }
+//        print_r($permissionGroups);exit;
         return $permissionGroups;
     }
 

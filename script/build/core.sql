@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `core_member` (
 
 INSERT INTO `core_member` (`member_id`, `member_login_name`, `member_password`, `member_first_name`, `member_family_name`, `full_name`, `member_first_name_kana`, `member_family_name_kana`, `member_sort_name`, `member_dept_code`, `member_dept_name`, `member_tel`, `member_mobile_tel`, `member_fax`, `member_ext`, `member_memo`, `member_mail`, `member_mail_2`, `job_title`, `lang`, `rank_code`, `member_is_change`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `delete_flag`) VALUES
 ('9af6af14-6e01-11e4-b676-82c4524d8ace', 'test02', '889ab7d027b385e292587ff9cb6d92d5a14aefa7', 'User02', 'Test', 'Test User02', 'ユーザ２', 'テスト', 'テスト ユーザ２', '100000001', '部署テスト', '', '', '', '', 'memo', 'test02@example.com', '', 'Manager', 'ja', 0, NULL, 'admin', '2014-11-17 11:29:50', 'admin', '2014-11-17 13:53:24', 0),
-('admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '', 'Administrator', 'Administrator ', '', 'Administrator', 'Administrator ', 'admin', 'wheel', '', '', '', '', '管理者', 'sample@test.com', '', '', 'en', 1, NULL, '1', '2014-09-22 11:41:47', 'admin', '2015-05-18 10:45:27', 0),
+('admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', '', 'Administrator', 'Administrator ', '', 'Administrator', 'Administrator ', 'admin', 'wheel', '', '', '', '', '管理者', 'sample@test.com', '', '', 'en', 1, NULL, '1', '2014-09-22 11:41:47', 'admin', '2015-05-18 10:45:27', 0);
 
 
 -- --------------------------------------------------------

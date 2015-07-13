@@ -15,7 +15,9 @@ class LoginController extends ControllerBase {
         $modelAuth = new Models\Auth();
         $result = $modelAuth->check($loginParams, $user);
         //print_r($result);exit;
+       // echo $user['member_id'];exit;
         $user = array();
+        $this->session->set('user', $result);
         if ($result) {
 
             $modelPermission = new Models\Permission();
@@ -23,7 +25,7 @@ class LoginController extends ControllerBase {
 //            print_r($user);exit;
             //Set user's permission to session 
             $Permission = $modelPermission->get($result, $permissions);
-            
+            //print_r($Permission);exit;
             $this->session->set('auth', $Permission);
             
         } else {
