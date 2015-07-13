@@ -42,7 +42,7 @@ class Permission {
     public function getGroup($id, $dept_code) {
         try {
             $permissions = Db\CorePermissionRelMember::findByRelMemberId($id);
-            var_dump($permissions);exit;
+            //var_dump($permissions);exit;
             $permissionGroups = [];
 
             while ($permissions->valid()) {
