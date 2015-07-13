@@ -10,6 +10,8 @@ class LogoutController extends ControllerBase
     public function indexAction()
     {
         $this->session->destroy();
+       
+        $this->response->redirect('index/index');
     }
     
     
