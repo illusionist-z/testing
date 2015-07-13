@@ -17,7 +17,7 @@ class LoginController extends ControllerBase {
         //print_r($result);exit;
         $user = array();
         if ($result) {
-
+            //echo "AA";exit;
             $modelPermission = new Models\Permission();
             $permissions = [];
 //            print_r($user);exit;
@@ -25,14 +25,14 @@ class LoginController extends ControllerBase {
             $Permission = $modelPermission->get($result, $permissions);
             
             $this->session->set('auth', $Permission);
-            
+            $this->response->redirect('home');
         } else {
             //echo "error";exit;
             $this->response->redirect('auth/index/failer');
         }
 
         // When user's login succeed , move to dashboad
-        $this->response->redirect('home');
+        
     }
 
 }

@@ -23,8 +23,7 @@ class IndexController extends ControllerBase
     }
     
     public function todaylistAction() {
-        echo "Today list";
-        exit;
+     
     }
 
 }
