@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\leavedays\Controllers;
+namespace workManagiment\Leavedays\Controllers;
 
 class IndexController extends ControllerBase
 {

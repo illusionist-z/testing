@@ -23,8 +23,16 @@ class IndexController extends ControllerBase
     }
     
     public function todaylistAction() {
-        echo "Today list";
-        exit;
+        $name = $this->request->get('namelist');
+        $attlist = new \workManagiment\Attendancelist\Models\Attendances();
+
+        //get user attendance list for today
+        $result_attlist = $attlist->gettodaylist($name);
+        //get user name
+        $username = $attlist->getusername();
+
+        $this->view->attlist = $result_attlist;
+        $this->view->uname = $username;
     }
 
 }
