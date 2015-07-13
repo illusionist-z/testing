@@ -16,6 +16,9 @@ class IndexController extends ControllerBase
     
     public function indexAction(){
         //$this->assets->addCss('common/css/home/home.css');
+//        $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
+//        print_r($tzlist);exit;
+        
         
       
         
@@ -23,11 +26,15 @@ class IndexController extends ControllerBase
    
     public function checkinAction(){
        $id= $this->session->user['member_id'];
+       $checkin=new \workManagiment\Dashboard\Models\Attendances();
+       $checkin->setcheckintime($id);
       
     }
     
     public function checkoutAction(){
-        echo "checkout";exit;
+        $id= $this->session->user['member_id'];
+       $checkout=new \workManagiment\Dashboard\Models\Attendances();
+       $checkout->setcheckouttime($id);
     }
 }
 
