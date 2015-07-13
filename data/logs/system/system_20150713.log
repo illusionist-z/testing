@@ -3911,3 +3911,188 @@ Started Trace
 #1 [internal function]: Phalcon\Dispatcher->dispatch()
 #2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
 #3 {main}
+[Mon, 13 Jul 15 09:32:52 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 09:33:02 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 09:35:25 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 09:35:29 +0200][ERROR] Model 'Attendances' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(42)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('Attendances', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(42): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\IndexController.php(30): workManagiment\Attendancelist\Models\Attendances->gettodaylist('test02')
+#5 [internal function]: workManagiment\Attendancelist\Controllers\IndexController->todaylistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Mon, 13 Jul 15 09:57:16 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 09:57:16 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 09:57:16 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 09:57:16 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 09:57:35 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 10:09:23 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 10:09:23 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 10:09:23 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 10:09:23 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 10:54:46 +0200][ERROR] Action 'leavelist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'leaveli...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 11:22:49 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 11:48:27 +0200][ERROR] workManagiment\Frontend\Controllers\CheckoutController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 11:53:09 +0200][ERROR] Column 'ADMIN' doesn't belong to any of the selected models (1), when preparing: SELECT [workManagiment\Auth\Models\Db\CorePermissionGroup].* FROM [workManagiment\Auth\Models\Db\CorePermissionGroup] WHERE permission_group_code IN (ADMIN)  [C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 [internal function]: Phalcon\Mvc\Model\Query->execute(NULL, NULL)
+#7 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93): Phalcon\Mvc\Model::find(Array)
+#8 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(30): workManagiment\Auth\Models\Permission->getPermissions(Array, Array)
+#9 C:\xampp\htdocs\workManagiment\apps\auth\controllers\LoginController.php(27): workManagiment\Auth\Models\Permission->get(Array, Array)
+#10 [internal function]: workManagiment\Auth\Controllers\LoginController->indexAction()
+#11 [internal function]: Phalcon\Dispatcher->dispatch()
+#12 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#13 {main}
+[Mon, 13 Jul 15 11:55:16 +0200][ERROR] Column 'ADMIN' doesn't belong to any of the selected models (1), when preparing: SELECT [workManagiment\Auth\Models\Db\CorePermissionGroup].* FROM [workManagiment\Auth\Models\Db\CorePermissionGroup] WHERE permission_group_code IN (ADMIN)  [C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 [internal function]: Phalcon\Mvc\Model\Query->execute(NULL, NULL)
+#7 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93): Phalcon\Mvc\Model::find(Array)
+#8 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(30): workManagiment\Auth\Models\Permission->getPermissions(Array, Array)
+#9 C:\xampp\htdocs\workManagiment\apps\auth\controllers\LoginController.php(27): workManagiment\Auth\Models\Permission->get(Array, Array)
+#10 [internal function]: workManagiment\Auth\Controllers\LoginController->indexAction()
+#11 [internal function]: Phalcon\Dispatcher->dispatch()
+#12 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#13 {main}
+[Mon, 13 Jul 15 11:58:22 +0200][ERROR] Column 'ADMIN' doesn't belong to any of the selected models (1), when preparing: SELECT [workManagiment\Auth\Models\Db\CorePermissionGroup].* FROM [workManagiment\Auth\Models\Db\CorePermissionGroup] WHERE permission_group_code IN (ADMIN)  [C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 [internal function]: Phalcon\Mvc\Model\Query->execute(NULL, NULL)
+#7 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93): Phalcon\Mvc\Model::find(Array)
+#8 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(30): workManagiment\Auth\Models\Permission->getPermissions(Array, Array)
+#9 C:\xampp\htdocs\workManagiment\apps\auth\controllers\LoginController.php(27): workManagiment\Auth\Models\Permission->get(Array, Array)
+#10 [internal function]: workManagiment\Auth\Controllers\LoginController->indexAction()
+#11 [internal function]: Phalcon\Dispatcher->dispatch()
+#12 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#13 {main}
+[Mon, 13 Jul 15 12:00:33 +0200][ERROR] Column 'ADMIN' doesn't belong to any of the selected models (1), when preparing: SELECT [workManagiment\Auth\Models\Db\CorePermissionGroup].* FROM [workManagiment\Auth\Models\Db\CorePermissionGroup] WHERE permission_group_code =ADMIN [C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#4 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#5 [internal function]: Phalcon\Mvc\Model\Query->execute(NULL, NULL)
+#6 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93): Phalcon\Mvc\Model::find(Array)
+#7 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(30): workManagiment\Auth\Models\Permission->getPermissions(Array, Array)
+#8 C:\xampp\htdocs\workManagiment\apps\auth\controllers\LoginController.php(27): workManagiment\Auth\Models\Permission->get(Array, Array)
+#9 [internal function]: workManagiment\Auth\Controllers\LoginController->indexAction()
+#10 [internal function]: Phalcon\Dispatcher->dispatch()
+#11 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#12 {main}
+[Mon, 13 Jul 15 12:17:58 +0200][ERROR] Column 'ADMIN' doesn't belong to any of the selected models (1), when preparing: SELECT [workManagiment\Auth\Models\Db\CorePermissionGroup].* FROM [workManagiment\Auth\Models\Db\CorePermissionGroup] WHERE permission_group_code =ADMIN [C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#4 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#5 [internal function]: Phalcon\Mvc\Model\Query->execute(NULL, NULL)
+#6 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(93): Phalcon\Mvc\Model::find(Array)
+#7 C:\xampp\htdocs\workManagiment\apps\auth\models\Permission.php(30): workManagiment\Auth\Models\Permission->getPermissions(Array, Array)
+#8 C:\xampp\htdocs\workManagiment\apps\auth\controllers\LoginController.php(27): workManagiment\Auth\Models\Permission->get(Array, Array)
+#9 [internal function]: workManagiment\Auth\Controllers\LoginController->indexAction()
+#10 [internal function]: Phalcon\Dispatcher->dispatch()
+#11 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#12 {main}
+[Mon, 13 Jul 15 12:23:21 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}

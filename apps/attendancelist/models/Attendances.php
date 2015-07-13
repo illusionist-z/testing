@@ -3,7 +3,10 @@
 namespace workManagiment\Attendancelist\Models;
 
 use Phalcon\Mvc\Model;
-
+use Phalcon\Mvc\Model\Validator\Email as EmailValidator;
+use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+use Phalcon\Mvc\Model\Query;
 //use workManagiment\Auth\Models\Db\CoreMember as corememberresult;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,10 +30,17 @@ class Attendances extends Model {
         // for search result
         if (isset($name)) {
             
-            $sql = "SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "' and member_login_name='" . $name . "'";
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
-            
+//            $sql = "SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "' and member_login_name='" . $name . "'";
+//            $result = $this->db->query($sql);
+//            $row = $result->fetchall();
+            $results = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
+                    ->from('Attendances')
+                    //->leftJoin('Attendances', 'corememberresult.member_id = Attendances.member_id ')
+                    //->where('MONTH(Attendances.att_date) =' . $month)
+                    ->getQuery()
+                    ->execute();
+            print_r($results);exit;
         } else {
             //show att today list
             $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "'");
