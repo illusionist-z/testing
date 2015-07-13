@@ -1,4 +1,4 @@
-<?php namespace workManagiment\leavedays\Controllers;
+<?php namespace workManagiment\Leavedays\Controllers;
 
 // use library
 use Library;

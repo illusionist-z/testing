@@ -93,6 +93,7 @@ class Permission {
             // The permissions set up for each module. 
             while ($results->valid()) {
                 $row = $results->current();
+                               
                 $permissions = Db\CorePermission::findByPermissionCode($row->permission_code);
                 while ($permissions->valid()){
                     $row = $permissions->current();
