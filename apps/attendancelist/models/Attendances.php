@@ -49,10 +49,5 @@ class Attendances extends Model {
         $getname = $user_name->fetchall();
         return $getname;
     }
-   
-    public function setcheckintime($id){
-     echo "setcheckintime";echo $id;
 
-        
-    }
 }
