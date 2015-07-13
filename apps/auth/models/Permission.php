@@ -17,7 +17,7 @@ class Permission {
      * @author zinmon
      */
     public function get($user, &$permissions = array()) {
-
+        
         $id = $user['member_id'];
         $dept_code = $user['member_dept_code'];
 
@@ -42,7 +42,7 @@ class Permission {
     public function getGroup($id, $dept_code) {
         try {
             $permissions = Db\CorePermissionRelMember::findByRelMemberId($id);
-            var_dump($permissions);exit;
+            //var_dump($permissions);exit;
             $permissionGroups = [];
 
             while ($permissions->valid()) {
