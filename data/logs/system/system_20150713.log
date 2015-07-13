@@ -16,3 +16,106 @@ Started Trace
 #1 [internal function]: Phalcon\Dispatcher->dispatch()
 #2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
 #3 {main}
+[Mon, 13 Jul 15 05:03:29 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:13:15 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:13:27 +0200][ERROR] workManagiment\Frontend\Controllers\PluginsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:13:27 +0200][ERROR] workManagiment\Frontend\Controllers\BootstrapController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:13:27 +0200][ERROR] workManagiment\Frontend\Controllers\PluginsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:13:38 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:17:38 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:20:11 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:20:17 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:20:22 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:30:25 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:31:42 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Mon, 13 Jul 15 05:31:56 +0200][ERROR] Syntax error, unexpected EOF [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(36)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(36): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\IndexController.php(30): workManagiment\Attendancelist\Models\Attendances->gettodaylist('test02')
+#3 [internal function]: workManagiment\Attendancelist\Controllers\IndexController->todaylistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Mon, 13 Jul 15 05:32:22 +0200][ERROR] Model 'core_member' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(36)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('core_member', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(36): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\IndexController.php(30): workManagiment\Attendancelist\Models\Attendances->gettodaylist('test02')
+#5 [internal function]: workManagiment\Attendancelist\Controllers\IndexController->todaylistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Mon, 13 Jul 15 05:32:43 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(36)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(36): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\IndexController.php(30): workManagiment\Attendancelist\Models\Attendances->gettodaylist('test02')
+#5 [internal function]: workManagiment\Attendancelist\Controllers\IndexController->todaylistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#8 {main}

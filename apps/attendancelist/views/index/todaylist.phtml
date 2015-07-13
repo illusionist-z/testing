@@ -47,8 +47,9 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
             <table class="listtbl">
                 <thead>
                     <tr>
+                       
                         <th width="150px">Date</th>
-                        <th width="150px">ID</th>
+                        
                         <th width="150px">User Name</th>
                         <th width="150px">Check In</th>
                         <th width="150px">Late</th>
@@ -64,11 +65,12 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
                     foreach ($attlist as $result) {
                         ?>
                         <tr>
+                           
                             <td><?php
                                 $date = date('Y-m-d');
                                 echo $date;
                                 ?></td>
-                            <td><?php echo $result['id']; ?></td>
+                            
                             <td><?php echo $result['member_login_name']; ?></td>
                             <td>
                                 <?php
