@@ -37,11 +37,11 @@ class IndexController extends ControllerBase {
         
     }
    
-    public function checkinAction(){
+    public function checkoutAction(){
         
        $id= $this->session->user['member_id'];
        $checkin=new \workManagiment\Dashboard\Models\Attendances();
-       $checkin->setcheckintime($id);
+       $checkin->setcheckouttime($id);
       
     }
 
