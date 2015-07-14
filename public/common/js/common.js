@@ -17,13 +17,12 @@ $(document).ready(function(){
     }
     // ここに実際の処理を記述します。
     var logout = function(){
-        alert("aaa");
         window.location.href = baseUri + 'auth/logout';
     };
     
     // ユーザーのクリックした時の動作。
     $('#btn_logout').click(function(){
-        alert("success");
+        alert("ログアウトしました。");
         logout();
     });
 });
