@@ -30,7 +30,7 @@ class Attendances extends Model {
         if ($att != NULL) {
             $intime = $att->checkin_time;
                         echo "<script>alert('Already Checked in');</script>";
-                         echo "<script type='text/javascript'>window.location.href='attendances';</script>";
+                         //echo "<script type='text/javascript'>window.location.href='attendances';</script>";
         } else {
 
 

@@ -1,7 +1,5 @@
 <?php
-
 namespace workManagiment\Auth\Models;
-
 use workManagiment\Auth\Models\Db;
 use Phalcon\Mvc\Model;
 /*
@@ -48,11 +46,13 @@ class Permission {
             $permissionGroups = [];
             
             while ($permissions->valid()) {
-                $robot = $permissions->current();
+                //$robot = $permissions->current();
+                foreach ($permissions as $robot) {
                 $permissionGroups[] = $robot->rel_permission_group_code;
-                $permissions->next();
+                    //$permissionGroups[] = $robot->rel_permission_group_code;
+                    //$permissions->next();
             }
-           
+            }
         } catch (\Exception $e) {
             throw $e;
         }
@@ -69,50 +69,47 @@ class Permission {
     public function getPermissions($permissionGroups, & $permissions) {
 
         try {
-           
             $permissions = [];
             $bindString = [];
             $inFields = [];
             $i = 0;
             foreach ($permissionGroups as $groupCode) {
-                //echo $groupCode;exit;
-//                $bindString = "permission_group_code" . $i;
-//                $inFields[] = ":$bindString:";
-//                $aryBind[$bindString] = $groupCode;
-//                $i ++;
-            
-            //print_r($aryBind);exit;
+                $bindString = "permission_group_code" . $i;
+                $inFields[] = ":$bindString:";
+                $aryBind[$bindString] = $groupCode;
+                $i ++;
+            }
             // 権限グループがない場合
-            if (count($groupCode) == 0) {
+            if (count($inFields) == 0) {
                 return FALSE;
             }
             
             $results = Db\CorePermissionGroup::find([
-                        'permission_group_code ="' .$groupCode.'"'
-                        
+                        'permission_group_code IN (' . implode(',', $inFields) . ') ',
+                        'bind' => $aryBind
             ]);
           
-            }
-
             // The permissions set up for each module. 
             while ($results->valid()) {
-                $row = $results->current();
+                //$row = $results->current();
+                foreach ($results as $row) {
                 $permissions = Db\CorePermission::findByPermissionCode($row->permission_code);
-                while ($permissions->valid()){
-                    $row = $permissions->current();
-                    $per_result[$row->permission_code][] = $row->permission_name;
-                    $permissions->next();
+                    while ($permissions->valid()) {
+                        //$row = $permissions->current();
+//                    $per_result[$row->permission_code][] = $row->permission_name;
+//                    $permissions->next();
+                        foreach ($permissions as $res) {
+                            $per_result[$res->permission_code][] = $res->permission_name;
                 }
-                
-                $results->next();
+            }
+                    //$results->next()
+                }
             }
             //print_r($per_result);exit;
-            
         } catch (\Exception $e) {
             throw $e;
         }
         return $per_result;
     }
     
-
 }

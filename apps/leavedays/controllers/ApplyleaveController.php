@@ -8,10 +8,8 @@ class ApplyleaveController extends ControllerBase
     public function initialize() {
         parent::initialize();
         $this->assets->addJs('common/js/btn.js');
-        $this->setCommonJsAndCss();
-        
+        $this->setCommonJsAndCss();        
     }
-
     
     public function indexAction(){ 
         require '../apps/Leavedays/config/config.php';
