@@ -12,10 +12,11 @@ use Phalcon\Tag as Tag; ?>
     <?php
 
     foreach ($this->session->auth as $key_name => $key_value) {
-      if ($key_name=='user_dashboard'){
+     
           $this->response->redirect('dashboard');
-      }
-       
+      
+     
+     
 //        foreach ($key_value as $name => $value) {
 ////            print "Key = " . $name . " Value = " . $value . "<BR>";exit;
 //            if ($name == 0) {

@@ -1,0 +1,64 @@
+<!--
+  @author Su Zin Kyaw
+  @since  2015/22 /06-->
+<?php 
+    
+      $leavetypelength = count($Leavetype);?> 
+
+<section class="content-header">
+          <h1>
+          Apply Leave
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+             <li><a href="#"><i class="fa fa-dashboard"></i> Leave Days</a></li>
+            <li class="active"> Apply Leave</li>
+          </ol>
+</section>
+        <!-- Main content -->
+<div class="demo-content" style="padding-top:2%;">
+    <form action="" method="post">
+<table class="listtbl">
+<thead>
+    <tr>
+        <th colspan="2">Apply Leave</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Start Date</td>
+          <td><input type="date" class="  form-control"  name="sdate"  placeholder="Start Date"></td>
+      </tr>
+       <tr>
+          <td>End Date</td>
+          <td><input type="date" class=" form-control" name="edate"  placeholder="End Date"></td>
+      </tr>
+      <tr>
+          <td>Leave Categories</td>
+          <td><select class="select" data-toggle="select" name="leavetype">
+              <?php
+		for ($i = 1; $i <=$leavetypelength; $i++) {
+ 		?>
+			<option value="<?php echo $Leavetype[$i];  ?>"><?php echo $Leavetype[$i]; ?></option>
+		<?php
+		}
+                ?> </select>
+          </td>
+      </tr>
+      <tr>
+          <td>Description</td>
+          <td><input type="text" class=" form-control" name="desc" placeholder="Description">
+          </td>
+      </tr>
+      <tr>
+          <td>
+          <td >
+          <input type="submit" value="Apply" class="button" name="submit">
+          </td>
+      </tr>
+</tbody>
+</table>
+</form>
+
+</div>
+   

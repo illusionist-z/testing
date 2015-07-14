@@ -63,5 +63,24 @@ class Attendances extends Model {
         $getname = $user_name->fetchall();
         return $getname;
     }
+//    get Attendance List By User ID 
+//    @author Su Zin Kyaw
+    public function getattlist($id,$month){
+       $this->db = $this->getDI()->getShared("db");
+        $currentmth = date('m');
+        
+       if (isset($month)) {
+        $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE MONTH(attendances.att_date)='" . $month . "' AND attendances.member_id ='".$id."'");
+        
+        $row = $result->fetchall();
+           
+    }
+    else{
+             $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE MONTH(attendances.att_date)='" . $currentmth . "'  AND attendances.member_id ='".$id."'");
+            $row = $result->fetchall();
+                //return $row;
+    }
+     return $row;
+    }
 
 }

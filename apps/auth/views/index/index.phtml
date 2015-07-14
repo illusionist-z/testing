@@ -13,7 +13,7 @@
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
         <?=$errorMsg?>
-    <form method="post" action="<?=$this->url->getBaseUri();?>auth/login" id="form_login">
+        <form method="post" action="<?=$this->url->getBaseUri();?>auth/login" id="form_login">
           <div class="form-group has-feedback">
               
             <input type="text" name="member_login_name" class="form-control" placeholder="UserName"/>
@@ -39,12 +39,13 @@
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
 
-    <!-- jQuery 2.1.4 -->
+<!--     jQuery 2.1.4 
     <script src="../../plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.2 JS -->
+     Bootstrap 3.3.2 JS 
     <script src="../../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <!-- iCheck -->
+     iCheck 
     <script src="../../plugins/iCheck/icheck.min.js" type="text/javascript"></script>
+    
     <script>
       $(function () {
         $('input').iCheck({
@@ -53,6 +54,6 @@
           increaseArea: '20%' // optional
         });
       });
-    </script>
+    </script>-->
   </body>
 </html>
