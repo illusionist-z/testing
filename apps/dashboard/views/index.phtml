@@ -138,7 +138,7 @@
                                 //set module link for key value that has no space
                                 $module_link = strtolower($mod_link[0]);
                             }
-                            foreach ($key_value as $name => $value) {
+                            foreach ($key_value as $name => $value) {                                                                
                                 //print "Key = " . $name . " Value = " . $value . "<BR>";
                                 echo '<ul class="treeview-menu">';
                                 if ($name > 0) {
@@ -146,7 +146,7 @@
                                         //set to link action value
                                         $link_val = strtolower($v_result[0] . $v_result[1]);
                                     }
-                                    echo '<li><a href="' . $module_link . '/' . $link_val . '/index"><i><img src="common/img/li.png" ></i>' . $value . '</a></li>';
+                                    echo '<li><a href="'. $module_link .'/'. $link_val.'"><i><img src="common/img/li.png" ></i>' . $value . '</a></li>';
                                 }
 
                                 echo '</ul>';
