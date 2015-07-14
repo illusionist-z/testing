@@ -12,9 +12,9 @@ class ApplyleaveController extends ControllerBase
     }
     
     public function indexAction(){ 
-        require '../apps/Leavedays/config/config.php';
-        $config=new Config($config);
-        var_dump($config);exit;
+        require '../apps/leavedays/config/config.php';
+        $config=new Config(config);
+        var_dump($config->laevetype);exit;
         
         
 //        $this->view->setVar("Leavetype", $leavetype);
