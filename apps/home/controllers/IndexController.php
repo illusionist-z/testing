@@ -24,7 +24,7 @@ class IndexController extends ControllerBase
 
     
      public function testAction(){
-        echo "AAA";exit;
+        
     }
 }
 

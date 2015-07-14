@@ -16,9 +16,6 @@ class IndexController extends ControllerBase
     
     public function indexAction(){
         //$this->assets->addCss('common/css/home/home.css');
-//        $tzlist = DateTimeZone::listIdentifiers(DateTimeZone::ALL);
-//        print_r($tzlist);exit;
-        
         
       
         

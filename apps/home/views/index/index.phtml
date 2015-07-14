@@ -25,6 +25,16 @@ use Phalcon\Tag as Tag; ?>
 //                print "Key = " . $name . " Value = " . $value . "<BR>";
 //            }
 //        }
+       
+        foreach ($key_value as $name => $value) {
+            //print "Key = " . $name . " Value = " . $value . "<BR>";
+            if ($name == 0) {
+                echo $value . '<br>';
+            }
+            if ($name > 0) {
+                print "Key = " . $name . " Value = " . $value . "<BR>";
+            }
+        }
     }
     ?>
     <!--   <a href="{{ url("singup/1002") }}">Edit</a>-->
