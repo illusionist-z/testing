@@ -1,0 +1,29 @@
+[Tue, 14 Jul 15 07:05:02 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Tue, 14 Jul 15 07:05:07 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Tue, 14 Jul 15 07:06:03 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Tue, 14 Jul 15 07:12:25 +0200][ERROR] Model 'Attendances' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(42)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('Attendances', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(42): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\IndexController.php(30): workManagiment\Attendancelist\Models\Attendances->gettodaylist('test02')
+#5 [internal function]: workManagiment\Attendancelist\Controllers\IndexController->todaylistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
