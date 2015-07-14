@@ -6,21 +6,18 @@
 var Content = {
     View: function (url) {
         if (url == 'checkin') {
-            var note = document.getElementById('note').value;
-            function GEOprocess(position) {
-               //GET geo location of user
+            var note = document.getElementById('note').value;            
+               
                 $.ajax({
-                    url: "dashboard/index/"+url + "?note=" + note + "&lat=" + position.coords.latitude + "&lng=" + position.coords.longitude,
+                    url: "dashboard/index/"+url + "?note=" + note,
                     type: 'GET',
                     dataType: 'html',
                     success: function (d) {                        
                         $('body').html(d);
                     }
                 });
-            }
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(GEOprocess);
-            }
+            
+          
         }
 //        else if(url =='todaylist'){
 //            $.ajax({
