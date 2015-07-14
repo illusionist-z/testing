@@ -30,13 +30,14 @@ class Attendances extends Model {
         if ($att != NULL) {
             $intime = $att->checkin_time;
                         echo "<script>alert('Already Checked in');</script>";
-                         echo "<script type='text/javascript'>window.location.href='attendances';</script>";
+                         echo "<script type='text/javascript'>window.location.href='../../attendancelist/user/attendancelist';</script>";
         } else {
 
 
            $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "')");
 
             echo '<script type="text/javascript">alert("Successfully Checked In ")</script>';
+            echo "<script type='text/javascript'>window.location.href='../../attendancelist/user/attendancelist';</script>";
             
         }
     }
@@ -63,12 +64,12 @@ class Attendances extends Model {
                      if($outtime!=0)
                      {
                         echo '<script type="text/javascript">alert("Already Checkout ")</script>';
-                          echo "<script>window.location.href='attendances';</script>";
+                          echo "<script>window.location.href='../../attendancelist/user/attendancelist';</script>";
                      }
                      else{
                       $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE att_date='".$today."'");
                       echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
-                        echo "<script>window.location.href='attendances';</script>";
+                        echo "<script>window.location.href='../../attendancelist/user/attendancelist';</script>";
                      }
                 }
                  else{
@@ -81,7 +82,7 @@ class Attendances extends Model {
                 //insert checkout time for last data
                 $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE checkin_time='".$checkin."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
-                  echo "<script>window.location.href='attendances';</script>";
+                  echo "<script>window.location.href='../../attendancelist/user/attendancelist';</script>";
             }
     }
         

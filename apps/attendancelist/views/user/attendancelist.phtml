@@ -1,0 +1,167 @@
+<?php
+
+use Phalcon\Tag as Tag;
+$office_start_time = '08:00:00';
+$office_end_time = '17:00:00';
+//print_r($user);exit;
+?>
+<?php
+echo Tag::javascriptInclude('js/jquery.min_one.js');
+
+?>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Attendance list
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">attendance list</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="buttons">
+        <form id="frm_search" action="<?=$this->url->getBaseUri();?>attendancelist/user/attendancelist">
+             <select class="select" data-toggle="select" name="month" id="month">
+            <option value="">Month</option>
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">Augusts</option>
+            <option value="09">September</option>
+            <option value="10">Octobers</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+            <input type="submit" class="button" value="Search" id="search">
+            <!--       <a href="#" class="button" id="search">Search</a>-->
+            <a href="#" class="button export">Export</a>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+                     <table class="listtbl">
+                <thead>
+                    <tr>
+                       
+                        <th width="150px">Date</th>
+                        
+                        <th width="150px">User Name</th>
+                        <th width="150px">Check In</th>
+                        <th width="150px">Late</th>
+                        <th width="150px">Check Out</th>
+                        <th width="150px">Working Time</th>
+                        <th width="150px">OverTime</th>
+                        <th width="150px">Location</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($attlist as $result) {
+                        ?>
+                        <tr>
+                           
+                            <td><?php
+                                $date = date('Y-m-d');
+                                echo $date;
+                                ?></td>
+                            
+                            <td><?php echo $result['member_login_name']; ?></td>
+                            <td>
+                                <?php
+                                $checkintime = $result['checkin_time'];
+//                                $ckin_time = explode(' ', $result['checkin_time']);
+//                                echo $ckin_time[1];
+                                echo $checkintime;
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                //calculate late time
+                                $dt = new DateTime($checkintime);
+                                $time = $dt->format('H:i:s');
+                                if ($time > $office_start_time) {
+                                    $start = strtotime($office_start_time);
+                                    $end = strtotime($time);
+                                    $late = $end - $start;
+
+                                    echo "<font color='red'>" . gmdate("H:i:s ", $late) . "</font>";
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+//                                $ckout_time = explode(' ', $result['checkout_time']);
+//                                echo $ckout_time[1];
+                                echo $result['checkout_time'];
+                                ?></td>
+                            <td>
+                                <?php
+                                //calculate working time
+                                $start_time = strtotime($result['checkin_time']);
+                                $end_time = strtotime($result['checkout_time']);
+                                if ($end_time == 0) {
+                                    echo "-";
+                                } else {
+                                    $workingHour = $end_time - $start_time;
+                                    $hours = floor($workingHour / 3600);
+                                    $minutes = floor(($workingHour / 60) % 60);
+                                    $seconds = $workingHour % 60;
+                                    echo "$hours:$minutes:$seconds"; echo " Hours";
+                                   
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                //calculate overtime
+                                $workingHour = $end_time - $start_time;
+                                if ($workingHour > 28800) {
+                                    $workingHour = $workingHour - 28800;
+                                    echo gmdate("H:i:s", $workingHour); echo " Hours";
+                                   
+                                } else {
+                                    echo "-";
+                                }
+                                ?> 
+                                
+                            </td>
+                            <td>Ygn</td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                </tbody>
+            </table>      
+        </div><!--end table content--->
+    </div><!-- /.row -->
+
+    <!--</section> /.content 
+    
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#search").click(function(){
+            alert("The paragraph was clicked."+document.getElementById("namelist").value);
+            $.ajax({
+        type:"get",
+        url: "<?php echo $this->url->get("attendance/searchlist") ?>",
+        data:{cname:document.getElementById("namelist").value},
+                })
+        
+        .done(function(data) {
+            alert("AA");
+        })
+        });
+    });
+    </script>-->

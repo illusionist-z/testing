@@ -29,10 +29,15 @@ class IndexController extends ControllerBase
         //get user attendance list for today
         $result_attlist = $attlist->gettodaylist($name);
         //get user name
-        $username = $attlist->getusername();
+        $userlist= new \workManagiment\Attendancelist\Models\CoreMember();
+        $username = $userlist->getusername();
 
         $this->view->attlist = $result_attlist;
         $this->view->uname = $username;
+    }
+    
+    public function userAction(){
+        
     }
 
 }

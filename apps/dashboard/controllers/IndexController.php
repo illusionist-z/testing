@@ -10,6 +10,7 @@ class IndexController extends ControllerBase
         
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
+        //$this->assets->addJs('common/js/btn.js');
         
     }
 
@@ -22,6 +23,7 @@ class IndexController extends ControllerBase
     }
    
     public function checkinAction(){
+        
        $id= $this->session->user['member_id'];
        $checkin=new \workManagiment\Dashboard\Models\Attendances();
        $checkin->setcheckintime($id);

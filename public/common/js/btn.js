@@ -22,52 +22,32 @@ var Content = {
                 navigator.geolocation.getCurrentPosition(GEOprocess);
             }
         }
-        else if(url =='todaylist'){
-            $.ajax({
-                type:"GET",
-                url:url,
-                success:function(d){
-                      if (history.pushState) {
-                        window.history.replaceState(null, null,url);
-                    }
-                    $('body').html(d);
-                }
-            });
-        }
-        else if (url != undefined) {
-            $.ajax({
-                type: "GET",
-                url: url,
-                success: function (d) {                                        
-                    if (history.pushState) {
-                        window.history.pushState(null, null, url);
-                    }
-                    $('body').html(d);
-                }
-            });
-        }
-        else{
-        return false;}
+//        else if(url =='todaylist'){
+//            $.ajax({
+//                type:"GET",
+//                url:url,
+//                success:function(d){
+//                      if (history.pushState) {
+//                        window.history.replaceState(null, null,url);
+//                    }
+//                    $('body').html(d);
+//                }
+//            });
+//        }
+//        else if (url != undefined) {
+//            $.ajax({
+//                type: "GET",
+//                url: url,
+//                success: function (d) {                                        
+//                    if (history.pushState) {
+//                        window.history.pushState(null, null, url);
+//                    }
+//                    $('body').html(d);
+//                }
+//            });
+//        }
+//        else{
+//        return false;}
     }   
 
 };
-$(document).ready(function () {
-    $(".sidebar-menu > li > a").click(function (event) {
-        event.preventDefault();
-        Content.View($(this).attr('id'));
-    });
-    $(".treeview-menu > li > a").click(function (event) {
-        event.preventDefault();
-        Content.View($(this).attr('id'));
-    });
-    $(".col-md-6 > a").click(function (event) {
-        event.preventDefault();
-        Content.View($(this).attr('id'));
-    })
-    $('.export').click(function (event) {   
-        var $filename=$(this).attr('id');
-        Export.Export.apply(this, [$("table.listtbl"), $filename+'.csv']);
-    });
-
-
-});
