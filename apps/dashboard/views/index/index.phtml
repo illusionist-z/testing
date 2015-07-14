@@ -3,6 +3,10 @@
   @author Su Zin Kyaw
   @since  2015/11 /06-->
 <?php use Phalcon\Tag as Tag; 
+foreach ($this->session->auth as $key_name => $key_value) {
+      if ($key_name=='user_dashboard'){
+          
+      
 ?>
 
 <script type="text/javascript">
@@ -54,3 +58,10 @@
     </div><!-- /.row -->
 
 </section><!-- /.content -->
+      <?php }
+       if ($key_name=='admin_dashboard'){
+?>
+
+<?php
+       }
+}?>

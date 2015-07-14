@@ -3,7 +3,7 @@
 namespace workManagiment\Dashboard\Models;
 
 use Phalcon\Mvc\Model;
-
+date_default_timezone_set("UTC");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,7 +18,7 @@ class Attendances extends Model {
      * @author suzin
      */
    
-    public function setcheckintime($id){
+    public function setcheckintime($id,$note,$lat,$lon){
         
         $this->db=$this->getDI()->getShared("db");      
 	$mydate=date("Y-m-d H:i:s");
