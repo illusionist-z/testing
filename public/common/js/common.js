@@ -3,10 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
+ * @GEOprocess()
+ * @get @lat @lng
+ */
+function geo() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(GEOprocess);
+    }
+}
+function GEOprocess(position) {
+    //GET geo location of user
+    var url = "location_session";
+    $.ajax({
+        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude ,
+        type: 'GET',
+        dataType: 'json',
+        success: function (d) {
+            
+        },
+        error: function (d) {            
+            
+        }
+    });
+}
 
-
-$(document).ready(function(){
-    
+$(document).ready(function(){    
+    geo();
     //set slide menu
     if(document.getElementById("id") !== null){
         $('#slidemenu-left').mmenu();

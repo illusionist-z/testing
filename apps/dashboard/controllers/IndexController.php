@@ -20,6 +20,7 @@ class IndexController extends ControllerBase {
     public function location_sessionAction() {
         $lat = $this->request->get('lat');
         $lng = $this->request->get('lng');
+                //var_dump($lng);exit;
         $this->session->set('location', array(
             'lat' => $lat,
             'lng' => $lng

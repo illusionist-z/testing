@@ -5,9 +5,12 @@ namespace workManagiment\Auth\Controllers;
 use workManagiment\Auth\Models;
 
 class LoginController extends ControllerBase {
-
-    public function indexAction() {
-        
+     public function initialize() {
+        parent::initialize();
+        $this->setCommonJsAndCss();    
+    }
+    
+    public function indexAction() {      
         $loginParams = $this->request->get();
        
         $this->view->test = $loginParams;
