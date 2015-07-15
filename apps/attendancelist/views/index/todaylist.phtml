@@ -1,5 +1,14 @@
 <?php
 
+    //calculate the user time offset
+    if ($offset<0){
+    $sign='-';
+    $value=$offset*(-1);
+  ;
+  }
+    else{
+    $value=$offset*(-1);
+} 
 use Phalcon\Tag as Tag;
 $office_start_time = '08:00:00';
 $office_end_time = '17:00:00';
@@ -75,30 +84,51 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
                             <td><?php echo $result['member_login_name']; ?></td>
                             <td>
                                 <?php
-                                $checkintime = $result['checkin_time'];
-                                $ckin_time = explode(' ', $result['checkin_time']);
-                                echo $ckin_time[1];
-                                ?>
+                               $checkintime=$result['checkin_time'];
+        if ($sign=='-'){
+            $time = new DateTime($checkintime);
+        $time->add(new DateInterval('PT' . $value . 'M'));
+        echo $time->format('H:i:s A ');
+        }
+        else{
+         $datetime_from = date(" H:i",strtotime($value." minutes",strtotime($checkintime)));
+            echo $datetime_from;
+        }
+     ?>
+                                
                             </td>
                             <td>
                                 <?php
                                 //calculate late time
-                                $dt = new DateTime($checkintime);
-                                $time = $dt->format('H:i:s');
-                                if ($time > $office_start_time) {
-                                    $start = strtotime($office_start_time);
-                                    $end = strtotime($time);
-                                    $late = $end - $start;
-
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . "</font>";
-                                }
-                                ?>
+                               $checkintime=$result['checkin_time'];
+        $dt = new DateTime($checkintime);
+        $time = $dt->format('H:i:s');
+        $office_start_time='01:30:00 ';
+        if($time>$office_start_time){
+            $start=strtotime($office_start_time);
+            $end=strtotime($time);
+            $late=$end-$start;
+        
+            echo "<font color='red'>". gmdate("H:i:s",$late)." Hours</font>";
+            
+        }
+        ?>
                             </td>
                             <td>
-                                <?php
-                                $ckout_time = explode(' ', $result['checkout_time']);
-                                echo $ckout_time[1];
-                                ?></td>
+                               <?php $checkouttime= $result['checkout_time'];
+        if($checkouttime==0){
+        echo "-";}
+        else{
+            if($sign='-'){
+        $time = new DateTime($checkouttime);
+        $time->add(new DateInterval('PT' . $value . 'M'));
+        echo  $time->format('H:i:s A');}
+        else {
+            $datetime_from = date(" H:i",strtotime($value." minutes",strtotime($checkouttime)));
+            echo $datetime_from;
+        }
+        }
+?></td>
                             <td>
                                 <?php
                                 //calculate working time
@@ -111,7 +141,7 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
                                     $hours = floor($workingHour / 3600);
                                     $minutes = floor(($workingHour / 60) % 60);
                                     $seconds = $workingHour % 60;
-                                    echo "$hours:$minutes:$seconds";
+                                    echo "$hours:$minutes:$seconds";echo" Hours";
                                    
                                 }
                                 ?>
@@ -130,7 +160,19 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
                                 ?> 
                                 
                             </td>
-                            <td>Ygn</td>
+                            <td><?php $lat= $result['lat'];
+                $lng=$result['lng'];
+                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
+                $json = @file_get_contents($url);
+                $data=json_decode($json);
+                $status = $data->status;
+                if($status=="OK"){
+                echo  $data->results[5]->formatted_address;
+//                    print_r($data);
+                }
+                else{
+                echo "-";}
+        ?></td>
                         </tr>
                         <?php
                     }

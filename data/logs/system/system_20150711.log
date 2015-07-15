@@ -1,0 +1,1768 @@
+[Sat, 11 Jul 15 15:03:30 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 15:03:30 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 15:03:35 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 15:18:54 +0200][ERROR] workManagiment\Frontend\Controllers\SingupController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 15:31:35 +0200][ERROR] workManagiment\Frontend\Controllers\PluginsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 15:31:35 +0200][ERROR] workManagiment\Frontend\Controllers\BootstrapController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 15:31:36 +0200][ERROR] Cache file ../data/cache/coremodules.cache could not be written [C:\xampp\htdocs\workManagiment\library\core\Module.php(101)]
+Started Trace
+#0 C:\xampp\htdocs\workManagiment\library\core\Module.php(101): Phalcon\Cache\Backend\File->save('modules.cache', Array)
+#1 C:\xampp\htdocs\workManagiment\config\modules.php(5): Library\Core\Module::get()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(55): require('C:\xampp\htdocs...')
+#3 {main}
+[Sat, 11 Jul 15 15:33:45 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:09:31 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:09:31 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:09:31 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:09:31 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:09:31 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:09:31 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:10:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:10:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:10:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:10:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:10:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:10:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:10:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:11:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:11:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:11:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:11:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:11:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:11:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:11:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:12:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:12:30 +0200][ERROR] workManagiment\Attendancelist\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:12:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:12:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:12:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:12:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:12:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:03 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:03 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:03 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:03 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:03 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:03 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:10 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:10 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:10 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:10 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:10 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:10 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:10 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:37 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:37 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:13:37 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:17:48 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:18:56 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:18:56 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] workManagiment\Attendancelist\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:02 +0200][ERROR] Action 'dist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dist' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:04 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:48 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:19:48 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:12 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:12 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:16 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:16 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:16 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:16 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:16 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:17 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:20:17 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:09 +0200][ERROR] Cache file ../data/cache/coremodules.cache could not be written [C:\xampp\htdocs\workManagiment\library\core\Module.php(101)]
+Started Trace
+#0 C:\xampp\htdocs\workManagiment\library\core\Module.php(101): Phalcon\Cache\Backend\File->save('modules.cache', Array)
+#1 C:\xampp\htdocs\workManagiment\config\services.php(23): Library\Core\Module::get()
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('router', NULL)
+#5 [internal function]: Phalcon\Di->getShared('router')
+#6 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#7 {main}
+[Sat, 11 Jul 15 16:21:11 +0200][ERROR] Action 'home' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'home' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:13 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:13 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:13 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:13 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:13 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:13 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:17 +0200][ERROR] Action 'attendancelist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'attenda...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:40 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:40 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:40 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:40 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:40 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:40 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:21:42 +0200][ERROR] Action 'home' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'home' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:14 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:27 +0200][ERROR] Action 'home' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'home' w...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:33 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:44 +0200][ERROR] workManagiment\Attendancelist\Controllers\HomeController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:53 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:53 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:53 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:53 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:53 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:53 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:53 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:56 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:58 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:22:58 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:23:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:23:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:23:01 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:23:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:23:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:23:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:23:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:28:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:28:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:28:33 +0200][ERROR] Action 'public' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'public'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:28:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:28:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:28:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:28:33 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:01 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:06 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:06 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:06 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:06 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:31:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:32:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:32:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:32:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:32:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:00 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:14 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:17 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:17 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:17 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:17 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:25 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:25 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:25 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:25 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:25 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:29 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:29 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:29 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:29 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:31 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:31 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:31 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:31 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:32 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:32 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:32 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:33:32 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:34:34 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:34:34 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:34:39 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:34:39 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:34:41 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:42:34 +0200][ERROR] workManagiment\Frontend\Controllers\SingupController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:42:37 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:20 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:20 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:22 +0200][ERROR] workManagiment\Frontend\Controllers\SingupController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:30 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:46 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:43:46 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:44:11 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:44:11 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:46:30 +0200][ERROR] workManagiment\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:46:30 +0200][ERROR] workManagiment\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:46:30 +0200][ERROR] workManagiment\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:46:30 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:46:56 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:53:16 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:53:22 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:53:41 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 16:55:06 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:23:05 +0200][ERROR] workManagiment\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:23:05 +0200][ERROR] workManagiment\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:23:05 +0200][ERROR] workManagiment\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:23:05 +0200][ERROR] workManagiment\Frontend\Controllers\DistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:23:48 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:23:48 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:24:06 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:24:06 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:26:53 +0200][ERROR] Action 'adduser' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'adduser...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:03 +0200][ERROR] workManagiment\Manageuser\Controllers\TodaylistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:27:28 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:29:14 +0200][ERROR] Action 'attendancelist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'attenda...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:30:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:30:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:30:09 +0200][ERROR] workManagiment\Frontend\Controllers\AttendancelistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:31:29 +0200][ERROR] workManagiment\Attendancelist\Controllers\TodaylistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:31:45 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:31:45 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:34:54 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:35:12 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:35:19 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:42:38 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:43:42 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:43:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:44:49 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:44:49 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:46:38 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:46:38 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:47:49 +0200][ERROR] Action 'searchlist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'searchl...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:47:54 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:55:36 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:55:40 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:55:40 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:55:58 +0200][ERROR] Action 'searchlist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'searchl...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:56:02 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:57:06 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:57:06 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:57:07 +0200][ERROR] workManagiment\Frontend\Controllers\SearchlistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 17:57:20 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 18:20:16 +0200][ERROR] workManagiment\Frontend\Controllers\SearchlistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 18:20:19 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 18:22:23 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 18:22:23 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 18:22:26 +0200][ERROR] workManagiment\Frontend\Controllers\SearchlistController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Sat, 11 Jul 15 18:22:35 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(57)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(57): Phalcon\Mvc\Application->handle()
+#3 {main}

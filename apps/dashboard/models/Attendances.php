@@ -3,7 +3,7 @@
 namespace workManagiment\Dashboard\Models;
 
 use Phalcon\Mvc\Model;
-
+date_default_timezone_set("UTC");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,20 +23,21 @@ class Attendances extends Model {
         $this->db=$this->getDI()->getShared("db");      
 	$mydate=date("Y-m-d H:i:s");
         $today=date("Y:m:d");       
-        $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'" );
+        $att =Attendances::findFirst("att_date = '$today'");
         /**
           Condition : Already Checked in or not
          * */
         if ($att != NULL) {
             $intime = $att->checkin_time;
                         echo "<script>alert('Already Checked in');</script>";
-                         //echo "<script type='text/javascript'>window.location.href='attendances';</script>";
+                         echo "<script type='text/javascript'>window.location.href='../../attendancelist/user/attendancelist';</script>";
         } else {
 
 
-           $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,notes,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" .$note."','". $lat . "','" . $lon . "')");
+           $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "')");
 
             echo '<script type="text/javascript">alert("Successfully Checked In ")</script>';
+            echo "<script type='text/javascript'>window.location.href='../../attendancelist/user/attendancelist';</script>";
             
         }
     }
@@ -55,7 +56,7 @@ class Attendances extends Model {
          * if checkout time exists,check today check in or not
          * */
        if ($checkout!=0){    
-                 $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'" );
+                 $att =Attendances::findFirst("att_date = '$today'");
                  //Check today check in or not
                 if ( $att!=NULL){ 
                      $outtime=$att->checkout_time;
@@ -63,12 +64,12 @@ class Attendances extends Model {
                      if($outtime!=0)
                      {
                         echo '<script type="text/javascript">alert("Already Checkout ")</script>';
-                          echo "<script>window.location.href='attendances';</script>";
+                          echo "<script>window.location.href='../../attendancelist/user/attendancelist';</script>";
                      }
                      else{
                       $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE att_date='".$today."'");
                       echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
-                        echo "<script>window.location.href='attendances';</script>";
+                        echo "<script>window.location.href='../../attendancelist/user/attendancelist';</script>";
                      }
                 }
                  else{
@@ -81,7 +82,7 @@ class Attendances extends Model {
                 //insert checkout time for last data
                 $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE checkin_time='".$checkin."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
-                  echo "<script>window.location.href='attendances';</script>";
+                  echo "<script>window.location.href='../../attendancelist/user/attendancelist';</script>";
             }
     }
         

@@ -19,53 +19,62 @@ var Content = {
             
           
         }
-        else if(url =='todaylist'){
-            $.ajax({
-                type:"GET",
-                url:url,
-                success:function(d){
-                      if (history.pushState) {
-                        window.history.replaceState(null, null,url);
-                    }
-                    $('body').html(d);
-                }
-            });
-        }
-        else if (url != undefined) {
-            var ul="leavedays/applyleave/index";
-            $.ajax({
-                type: "GET",
-                url: "leavedays/applyleave/index",
-                success: function (d) {                                        
-                    if (history.pushState) {
-                        window.history.pushState(null, null, ul);
-                    }
-                    $('body').html(d);
-                }
-            });
-        }
-        else{
-        return false;}
+//        else if(url =='todaylist'){
+//            $.ajax({
+//                type:"GET",
+//                url:url,
+//                success:function(d){
+//                      if (history.pushState) {
+//                        window.history.replaceState(null, null,url);
+//                    }
+//                    $('body').html(d);
+//                }
+//            });
+//        }
+//        else if (url != undefined) {
+//            $.ajax({
+//                type: "GET",
+//                url: url,
+//                success: function (d) {                                        
+//                    if (history.pushState) {
+//                        window.history.pushState(null, null, url);
+//                    }
+//                    $('body').html(d);
+//                }
+//            });
+//        }
+//        else{
+//        return false;}
     }   
 
 };
-$(document).ready(function () {
-    $(".sidebar-menu > li > a").click(function (event) {
-        event.preventDefault();
-        Content.View($(this).attr('id'));
+/*
+ * @GEOprocess()
+ * @get lat lng
+ */
+function geo() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(GEOprocess);
+    }
+}
+function GEOprocess(position) {
+    //GET geo location of user
+    var url = "location_session";
+    var n = new Date();
+    var offset = n.getTimezoneOffset(); 
+    $.ajax({
+        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude +"&offset=" + offset,
+        type: 'GET',
+        dataType: 'json',
+        success: function (d) {
+            
+        },
+        error: function (d) {
+            //alert('dfskf');
+            
+        }
     });
-    $(".treeview-menu > li > a").click(function (event) {
-        event.preventDefault();
-        Content.View($(this).attr('id'));
-    });
-    $(".col-md-6 > a").click(function (event) {
-        event.preventDefault();
-        Content.View($(this).attr('id'));
-    })
-    $('.export').click(function (event) {   
-        var $filename=$(this).attr('id');
-        Export.Export.apply(this, [$("table.listtbl"), $filename+'.csv']);
-    });
-
-
+}
+$(function(){
+   geo(); 
 });
