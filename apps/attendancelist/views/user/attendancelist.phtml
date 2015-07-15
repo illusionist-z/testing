@@ -9,7 +9,7 @@
     if ($offset<0){
     $sign='-';
     $value=$offset*(-1);
-  ;
+  
   }
     else{
     $value=$offset*(-1);
@@ -66,7 +66,7 @@
   </thead>
   <tbody>
   <?php
-	foreach ($attlist  as $result) {
+	foreach ($attlist->items   as $result) {
   ?>
     <tr>
 	<td><?php echo $result['att_date']; ?></td>
@@ -166,7 +166,28 @@
     ?>
 </tbody>
 </table>
+    
 </div>
 </section>
+<?php
+if ( isset($_POST['month'])) {
+    
+    $m = $_POST['month'];
+   
+} 
+if ( isset($_GET['month']) ){
+    
+    $m = $_GET['month'];
+    
+}
+
+?>
+<a href="attendancelist">First</a>
+<a href="attendancelist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a>
+<a href="attendancelist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a>
+<a href="attendancelist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a>
+
+<?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?>
+   
 
    
