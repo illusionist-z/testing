@@ -96,3 +96,513 @@ Started Trace
 #1 [internal function]: Phalcon\Dispatcher->dispatch()
 #2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
 #3 {main}
+[Wed, 15 Jul 15 03:55:49 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 03:56:08 +0200][ERROR] Action 'calendar' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'calenda...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 03:56:12 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 03:56:32 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 03:56:38 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:01:12 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:01:27 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:01:27 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:07 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:07 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:07 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:07 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:07 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:07 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:16 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:02:21 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:06:28 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:06:29 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:06:30 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:26 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:26 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:26 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:26 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:27 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:31 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:32 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:08:33 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:10:51 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:10:52 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:10:53 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:11:25 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:11:27 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:11:27 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:11:58 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:11:59 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:12:00 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:37 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:37 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:38 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:42 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:43 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:43 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:43 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:43 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:43 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:46 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:47 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:13:47 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:17:58 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:18:00 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:18:01 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:29 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:31 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:34 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:52 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:52 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:53 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:57 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:57 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:57 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:57 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:57 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:21:57 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:22:02 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:22:04 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:22:05 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:22:24 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:22:25 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:22:28 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:13 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:15 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:17 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:54 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:54 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:55 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:28:58 +0200][ERROR] Action 'common' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'common'...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:29:07 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:29:08 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 04:29:08 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}

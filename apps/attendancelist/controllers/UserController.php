@@ -24,7 +24,7 @@ class UserController extends ControllerBase
     
     public function attendancelistAction(){
         $offset= $this->session->location['offset'];
-        
+        //echo $offset;exit;
         $id= $this->session->user['member_id'];
           
       $attlist = new \workManagiment\Attendancelist\Models\Attendances();
