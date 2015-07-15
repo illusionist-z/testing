@@ -15,8 +15,10 @@ function geo() {
 function GEOprocess(position) {
     //GET geo location of user
     var url = "location_session";
+      var n = new Date();
+      var offset = n.getTimezoneOffset(); 
     $.ajax({
-        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude ,
+        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset=" + offset ,
         type: 'GET',
         dataType: 'json',
         success: function (d) {
@@ -27,9 +29,13 @@ function GEOprocess(position) {
         }
     });
 }
-
-$(document).ready(function(){    
-    geo();
+ 
+        
+$(document).ready(function(){        
+    
+     $('.dashboard').ready(function(){
+        geo();
+         });   
     //set slide menu
     if(document.getElementById("id") !== null){
         $('#slidemenu-left').mmenu();

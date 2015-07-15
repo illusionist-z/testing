@@ -124,14 +124,21 @@
                         <?php
                         foreach ($this->session->auth as $key_name => $key_value) {
                             if ($key_value[0] == "Dashboard") {
-                                echo '<li><a href="../../home"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                echo '<li><a href="../../dashboard"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                             } elseif ($key_value[0] == "Calendar") {
                                 echo '<li><a href="calendar"><img src="../../common/img/list.png" > <span>' . $key_value[0] . '</span></a></li>';
                             } else {
-                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
+                                echo '<li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             }
-
-                            foreach ($key_value as $name => $value) {
+                            $mod_link = explode(" ", $key_value[0]);
+                            if (isset($mod_link[1])) {                                                                
+                                //set module link for key value that has space
+                                $module_link = strtolower($mod_link[0] . $mod_link[1]);
+                            } else {
+                                //set module link for key value that has no space
+                                $module_link = strtolower($mod_link[0]);
+                            }
+                            foreach ($key_value as $name => $value) {                                                                
                                 //print "Key = " . $name . " Value = " . $value . "<BR>";
                                 echo '<ul class="treeview-menu">';
                                 if ($name > 0) {
@@ -140,7 +147,6 @@
                                         $link_val = strtolower($v_result[0] . $v_result[1]);
                                         $mod=  explode(" ", $key_value[0]);
                                     }
-                                    echo ' <li><a href="' .$baseUri.strtolower($mod[0].$mod[1]).'/index/'.$link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';
                                 }
 
                                 echo '</ul>';
@@ -162,15 +168,15 @@
                     <?php $this->assets->outputJs(); ?>
                 </section>
             </div><!-- /.content-wrapper -->
-
-            <footer class="main-footer">
+  <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
 
 
+
         </div><!-- ./wrapper -->
 
-
+          
 
     </body>
 </html>

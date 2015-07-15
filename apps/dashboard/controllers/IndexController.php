@@ -6,10 +6,9 @@ class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
-        $this->assets->addJs('common/js/btn.js');
+        //$this->assets->addJs('common/js/btn.js');
         //$this->assets->addJs('apps/home/js/geo.js');
     }
 

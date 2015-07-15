@@ -25,10 +25,12 @@ class UserController extends ControllerBase
     public function attendancelistAction(){
         $offset= $this->session->location['offset'];
         
+         $month = $this->request->get('month');
         $id= $this->session->user['member_id'];
-          
+        
       $attlist = new \workManagiment\Attendancelist\Models\Attendances();
         $result_attlist = $attlist->getattlist($id,$month);
+        
          $this->view->attlist = $result_attlist;
          $this->view->offset=$offset;
        

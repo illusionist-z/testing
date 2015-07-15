@@ -91,11 +91,12 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                      ->addCss('common/css/AdminLTE.min.css')
                      ->addCss('common/css/skins.min.css');
         
-        $this->assets->addJs('common/js/common.js')
+        $this->assets->addJs('common/js/jquery.min.js')
+                     ->addJs('common/js/common.js')
                      ->addJs('common/js/jQuery-2.1.4.min.js')
                      ->addJs('common/js/bootstrap.min.js')
-                     ->addJs('common/js/app.min.js');
-                     
+                     ->addJs('common/js/app.min.js')
+                     ->addJs('common/js/jquery-ui.js');
       
     }
 

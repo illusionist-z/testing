@@ -72,7 +72,7 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($attlist as $result) {
+                    foreach ($attlist->items  as $result) {
                         ?>
                         <tr>
                            
@@ -183,23 +183,9 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
         </div><!--end table content--->
     </div><!-- /.row -->
 
-    <!--</section> /.content 
-    
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        $("#search").click(function(){
-            alert("The paragraph was clicked."+document.getElementById("namelist").value);
-            $.ajax({
-        type:"get",
-        url: "<?php echo $this->url->get("attendance/searchlist") ?>",
-        data:{cname:document.getElementById("namelist").value},
-                })
-        
-        .done(function(data) {
-            alert("AA");
-        })
-        });
-    });
-    </script>-->
+  <a href="todaylist">First</a>
+<a href="todaylist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a>
+<a href="todaylist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a>
+<a href="todaylist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a>
+
+<?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?>

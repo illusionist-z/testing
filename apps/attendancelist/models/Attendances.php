@@ -3,10 +3,10 @@
 namespace workManagiment\Attendancelist\Models;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Validator\Email as EmailValidator;
-use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-use Phalcon\Mvc\Model\Query;
+//use workManagiment\Attendancelist\Models\CoreMember as CoreMember;
+//use workManagiment\Attendancelist\Models\Attendances as Attendances;
+
 //use workManagiment\Auth\Models\Db\CoreMember as corememberresult;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,23 +25,36 @@ class Attendances extends Model {
     public function gettodaylist($name) {
         $this->db = $this->getDI()->getShared("db");
         $today = date("Y:m:d");
-        //$core_member=new CoreMember();
-        //$aa=new \workManagiment\Auth\Models\Db\CoreMember();
         // for search result
         if (isset($name)) {
-            
-            $sql = "SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "' and member_login_name='" . $name . "'";
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
-            
+             $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->from('workManagiment\Attendancelist\Models\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->where('workManagiment\Attendancelist\Models\CoreMember.member_login_name) =' . $name .' AND workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'" )
+                    ->getQuery()
+                    ->execute();
         } else {
             //show att today list
-            $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "'");
-            $row = $result->fetchall();
-            //print_r($row);exit;
+            $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->from('workManagiment\Attendancelist\Models\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->where(' workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'" )
+                    ->getQuery()
+                    ->execute();
         }
-        //print_r($row);exit;
-        return $row;
+         $currentPage = (int) $_GET["page"];
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 1,
+            "page" => $currentPage
+                )
+        );
+        $list = $paginator->getPaginate();
+        //print_r($list);exit;
+        return $list;
     }
     
     /**
@@ -56,24 +69,47 @@ class Attendances extends Model {
         $getname = $user_name->fetchall();
         return $getname;
     }
-//    get Attendance List By User ID 
-//    @author Su Zin Kyaw
+    /**
+    *get Attendance List By User ID 
+    *@author Su Zin Kyaw
+    */
+ 
     public function getattlist($id,$month){
        $this->db = $this->getDI()->getShared("db");
         $currentmth = date('m');
-        
+     
        if (isset($month)) {
-        $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE MONTH(attendances.att_date)='" . $month . "' AND attendances.member_id ='".$id."'");
+              $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->from('workManagiment\Attendancelist\Models\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month .' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'" )
+                    ->getQuery()
+                    ->execute();
+       
         
-        $row = $result->fetchall();
-           
     }
     else{
-             $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE MONTH(attendances.att_date)='" . $currentmth . "'  AND attendances.member_id ='".$id."'");
-            $row = $result->fetchall();
-                //return $row;
+            $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->from('workManagiment\Attendancelist\Models\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $currentmth .' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'" )
+                    ->getQuery()
+                    ->execute();
+            
     }
-     return $row;
+     $currentPage = (int) $_GET["page"];
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 1,
+            "page" => $currentPage
+                )
+        );
+        $list = $paginator->getPaginate();
+        //print_r($list);exit;
+        return $list;
     }
     
     //select monthly list
