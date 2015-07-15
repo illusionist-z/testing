@@ -38,12 +38,7 @@ class IndexController extends ControllerBase {
     }
 
     
-    public function indexAction(){
-        //$this->assets->addCss('common/css/home/home.css');        
-        $user = $this->session->get('user');        
-        $this->response->redirect('applyleave');        
-    }
-    
+      
     public function leavelistAction(){
        require '../apps/attendancelist/config/config.php';
         $month = $config->month;
