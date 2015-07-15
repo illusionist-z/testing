@@ -6,12 +6,10 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 
-        <!-- Ionicons -->
-
-        <script src="common/js/jquery.min.js"></script>
+        <!-- Ionicons -->        
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini" onload="display_ct()">
+    <body class="skin-blue sidebar-mini dashboard" onload="display_ct()">
         <div class="wrapper">
 
             <header class="main-header">
@@ -146,7 +144,7 @@
                                         //set to link action value
                                         $link_val = strtolower($v_result[0] . $v_result[1]);
                                     }
-                                    echo '<li><a href="'. $module_link .'/'. $link_val.'"><i><img src="common/img/li.png" ></i>' . $value . '</a></li>';
+                                    echo '<li><a href="'. $module_link .'/index/'. $link_val.'"><i><img src="common/img/li.png" ></i>' . $value . '</a></li>';
                                 }
 
                                 echo '</ul>';

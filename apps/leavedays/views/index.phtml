@@ -5,9 +5,9 @@
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-        <!-- Ionicons -->
 
-      
+        <!-- Ionicons -->        
+        <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
@@ -25,7 +25,7 @@
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
-                    <a><img src="common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <a><img src="../../common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
                     <!-- Navbar Right Menu -->
@@ -35,7 +35,7 @@
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="common/img/noti.png">
+                                    <img src="../../common/img/noti.png">
                                     <span class="label label-warning">3</span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -45,17 +45,17 @@
                                         <ul class="menu">
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png"> 5 new members joined today
+                                                    <img src="../../common/img/notid.png"> 5 new members joined today
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
+                                                    <img src="../../common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png">5 new members joined
+                                                    <img src="../../common/img/notid.png">5 new members joined
                                                 </a>
                                             </li>
 
@@ -69,13 +69,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="common/img/profile.png" class="user-image" alt="User Image"/>
+                                    <img src="../../common/img/profile.png" class="user-image" alt="User Image"/>
                                     <span class="hidden-xs">Admin</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                                        <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
                                             Alexander Pierce - Web Developer
                                             <small>Member since Nov. 2012</small>
@@ -107,7 +107,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                            <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p>Admin</p>
@@ -122,21 +122,21 @@
                         <?php
                         foreach ($this->session->auth as $key_name => $key_value) {
                             if ($key_value[0] == "Dashboard") {
-                                echo '<li><a href="home"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                echo '<li><a href="../../dashboard"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                             } elseif ($key_value[0] == "Calendar") {
-                                echo '<li><a href="calendar"><img src="common/img/list.png" > <span>' . $key_value[0] . '</span></a></li>';
+                                echo '<li><a href="calendar"><img src="../../common/img/list.png" > <span>' . $key_value[0] . '</span></a></li>';
                             } else {
-                                echo ' <li class="treeview"><a href="#"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
+                                echo '<li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             }
                             $mod_link = explode(" ", $key_value[0]);
-                            if (isset($mod_link[1])) {
+                            if (isset($mod_link[1])) {                                                                
                                 //set module link for key value that has space
                                 $module_link = strtolower($mod_link[0] . $mod_link[1]);
                             } else {
                                 //set module link for key value that has no space
                                 $module_link = strtolower($mod_link[0]);
                             }
-                            foreach ($key_value as $name => $value) {
+                            foreach ($key_value as $name => $value) {                                                                
                                 //print "Key = " . $name . " Value = " . $value . "<BR>";
                                 echo '<ul class="treeview-menu">';
                                 if ($name > 0) {
@@ -144,7 +144,7 @@
                                         //set to link action value
                                         $link_val = strtolower($v_result[0] . $v_result[1]);
                                     }
-                                    echo ' <li><a href="' . $module_link . '/index/' . $link_val . '"> <img src="common/img/li.png" ></i>' . $value . '</a></li>';
+                                    echo '<li><a href="'. $module_link .'/'. $link_val.'"><i><img src="../../common/img/li.png" ></i>' . $value . '</a></li>';
                                 }
 
                                 echo '</ul>';
@@ -162,19 +162,19 @@
             <div class="content-wrapper" style="height:auto;">
                 <section class="content">
                     <?php echo $this->getContent() ?>
-                   
-                    
+                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
+                    <?php $this->assets->outputJs(); ?>
                 </section>
             </div><!-- /.content-wrapper -->
-
-            <footer class="main-footer">
+  <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
 
 
+
         </div><!-- ./wrapper -->
 
-
+          
 
     </body>
 </html>

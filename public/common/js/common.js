@@ -27,9 +27,13 @@ function GEOprocess(position) {
         }
     });
 }
-
-$(document).ready(function(){    
-    geo();
+ 
+        
+$(document).ready(function(){        
+    
+     $('.dashboard').ready(function(){
+        geo();
+         });   
     //set slide menu
     if(document.getElementById("id") !== null){
         $('#slidemenu-left').mmenu();
