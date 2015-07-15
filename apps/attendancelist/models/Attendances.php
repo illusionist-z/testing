@@ -27,21 +27,34 @@ class Attendances extends Model {
         $today = date("Y:m:d");
         // for search result
         if (isset($name)) {
-            $results = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
-                    ->from('Attendances')
-                    
+             $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->from('workManagiment\Attendancelist\Models\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->where('workManagiment\Attendancelist\Models\CoreMember.member_login_name) =' . $name .' AND workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'" )
                     ->getQuery()
                     ->execute();
-            print_r($results);exit;
         } else {
             //show att today list
-            $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "'");
-            $row = $result->fetchall();
-            //print_r($row);exit;
+            $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->from('workManagiment\Attendancelist\Models\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->where(' workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'" )
+                    ->getQuery()
+                    ->execute();
         }
-        //print_r($row);exit;
-        return $row;
+         $currentPage = (int) $_GET["page"];
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 1,
+            "page" => $currentPage
+                )
+        );
+        $list = $paginator->getPaginate();
+        //print_r($list);exit;
+        return $list;
     }
     
     /**

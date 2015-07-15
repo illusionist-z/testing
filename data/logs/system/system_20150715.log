@@ -1767,3 +1767,63 @@ Started Trace
 #1 [internal function]: Phalcon\Dispatcher->dispatch()
 #2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
 #3 {main}
+[Wed, 15 Jul 15 10:44:34 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:44:35 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:45:38 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:45:52 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:45:55 +0200][ERROR] Action 'attendancelist' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'attenda...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:46:00 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:46:26 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:46:26 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:46:29 +0200][ERROR] workManagiment\Frontend\Controllers\JsController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:46:30 +0200][ERROR] Action 'dashboard' was not found on handler 'index' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
