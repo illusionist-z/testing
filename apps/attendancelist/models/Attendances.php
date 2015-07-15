@@ -1,13 +1,12 @@
 <?php
-
 namespace workManagiment\Attendancelist\Models;
-
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Validator\Email as EmailValidator;
 use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+use workManagiment\Attendancelist\Models\CoreMember as CoreMember;
 use Phalcon\Mvc\Model\Query;
-//use workManagiment\Auth\Models\Db\CoreMember as corememberresult;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -84,5 +83,72 @@ class Attendances extends Model {
     }
      return $row;
     }
+    
+    public function getattlistbyMonth($id,$month,$year){
+
+       $this->db = $this->getDI()->getShared("db");
+        //search monthly list data
+        
+        if (!isset($year) and ! isset($month)) {
+            
+            $month = date('m');
+            $results = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
+                    ->from('CoreMember')
+                    ->leftJoin('Attendances', 'CoreMember.member_id = Attendances.member_id ')
+                    ->where('MONTH(Attendances.att_date) =' . $month .' AND Attendances.member_id =' . "'$id'" )
+                    ->getQuery()
+                    ->execute();
+            
+        } else {
+          if($year==0 AND $month ==0){
+              echo '<script type="text/javascript">alert("Select Option to search! ")</script>';
+                  echo "<script>window.location.href='attendances';</script>";
+          }
+
+           $results = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
+                    ->from('CoreMember')
+                    ->leftJoin('Attendances', 'CoreMember.member_id = Attendances.member_id ')
+                    ->where($this->setCondition2($year, $month) .' AND Attendances.member_id =' . "'$id'")
+                    ->getQuery()
+                    ->execute();
+        }
+            $currentPage = (int) $_GET["page"];
+        // Create a Model paginator, show 10 rows by page starting from $currentPage
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $results,
+            "limit" => 5,
+            "page" => $currentPage
+                )
+        );
+        $list = $paginator->getPaginate();
+        return $list;
+    }
+    
+ 
+     public function setCondition2($year, $month) {
+        $conditions = array();
+
+        if ($year != "") {
+            //echo $year;exit;
+            $conditions[] = "YEAR(Attendances.att_date) like " . $year;
+        }
+        if ($month != "") {
+            $conditions[] = "MONTH(Attendances.att_date) like " . $month;
+        }
+       
+
+        //$sql = $select;
+        if (count($conditions) > 0) {
+            $result = implode(' AND ', $conditions);
+        } else {
+            $result = $conditions;
+        }
+       
+        return $result;
+ }
+    
 
 }

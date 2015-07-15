@@ -1983,3 +1983,1624 @@ Started Trace
 #1 [internal function]: Phalcon\Dispatcher->dispatch()
 #2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
 #3 {main}
+[Wed, 15 Jul 15 06:39:11 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:39:11 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:39:12 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:39:19 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:39:19 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:40:55 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:40:55 +0200][ERROR] workManagiment\Frontend\Controllers\ImgController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:40:57 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:41:50 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:42:02 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:42:41 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:43:04 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:43:13 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:43:31 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:43:36 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:43:46 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:43:56 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:44:17 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:44:17 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:44:18 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 06:54:50 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 06:56:43 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 06:57:19 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 06:58:58 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 06:59:00 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:00:34 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:01:00 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:01:02 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:01:02 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:03:13 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:10:06 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:10:43 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:11:14 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:11:25 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:12:13 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:13:17 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:13:19 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:13:20 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:13:22 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:18:45 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:18:47 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:18:55 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:19:43 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:22:56 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:22:57 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:23:20 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:23:27 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:23:53 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:24:27 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:29:17 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:29:19 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:30:43 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:30:57 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:30:59 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:31:01 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:31:26 +0200][ERROR] Model 'Attendances' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('Attendances', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:31:40 +0200][ERROR] Model 'Attendances' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('Attendances', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:32:20 +0200][ERROR] Model 'core_member' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('core_member', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:32:34 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:57:02 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:57:06 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:57:19 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 07:58:18 +0200][ERROR] The method 'getattlistbyMonth' doesn't exist on model 'workManagiment\Attendancelist\Models\Attendances' [C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32)]
+Started Trace
+#0 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): Phalcon\Mvc\Model->__call('getattlistbyMon...', Array)
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#2 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#3 [internal function]: Phalcon\Dispatcher->dispatch()
+#4 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#5 {main}
+[Wed, 15 Jul 15 07:58:28 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:00:31 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:54:46 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:54:48 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:54:48 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:54:48 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:54:48 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:55:08 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:55:18 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:55:26 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 08:58:49 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:22 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:24 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:24 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:24 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:25 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:25 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:25 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:25 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:25 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:26 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:26 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:26 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:26 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:27 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:27 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:27 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:27 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:28 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:29 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:29 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:29 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:29 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:29 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:30 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:30 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:30 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:30 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:31 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:31 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:01:31 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:02:28 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:02:38 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:04 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:05 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:05 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:05 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:06 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:06 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:07 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:03:33 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:04:53 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:05:11 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:05:14 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:05:44 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(103): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:12:27 +0200][ERROR] workManagiment\Frontend\Controllers\CommonController handler class cannot be loaded [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('workManagiment\\...', 2)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 09:26:38 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:27:37 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:27:52 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(105): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:39:24 +0200][ERROR] Scanning error before '*] LEFT JOIN [At...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [*] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (246) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:42:38 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:43:55 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:45:44 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:45:46 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:47:07 +0200][ERROR] Scanning error before '\workManagiment\...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendances\Models\CoreMember()] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (292) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:47:22 +0200][ERROR] Scanning error before '..\workManagimen...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [..\workManagiment\Attendances\Models\CoreMember()] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (294) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:48:30 +0200][ERROR] Model 'Attendances' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('Attendances', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getJoin(Object(Phalcon\Mvc\Model\Manager), Array)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#4 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#5 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#7 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#8 [internal function]: Phalcon\Dispatcher->dispatch()
+#9 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#10 {main}
+[Wed, 15 Jul 15 09:48:55 +0200][ERROR] Unknown model or alias 'CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 09:49:22 +0200][ERROR] Scanning error before '\workManagiment\...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember()] LEFT JOIN [\workManagiment\Attendancelist\Models\Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (333) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:49:35 +0200][ERROR] Model '\orkManagiment\Attendancelist\Models\CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('\\orkManagiment\\...', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:49:42 +0200][ERROR] Unknown model or alias 'CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [workManagiment\Attendancelist\Models\Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 09:49:47 +0200][ERROR] Unknown model or alias 'CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [workManagiment\Attendancelist\Models\Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 09:50:06 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:55:04 +0200][ERROR] Scanning error before '../apps/attendan...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [../apps/attendancelist/models/CoreMember] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (285) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:55:17 +0200][ERROR] Scanning error before '../apps/attendan...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [../apps/attendancelist/models/CoreMember()] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (287) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:55:41 +0200][ERROR] Scanning error before 'workmanagiment/a...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [workmanagiment/attendancelist/models/CoreMember] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (292) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:55:58 +0200][ERROR] Scanning error before 'workManagiment/a...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [workManagiment/attendancelist/models/CoreMember] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (292) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:56:05 +0200][ERROR] Scanning error before 'workManagiment\a...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [workManagiment\attendancelist\models/CoreMember] LEFT JOIN [Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (292) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:56:11 +0200][ERROR] Model 'workManagiment\attendancelist\models\CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('workManagiment\\...', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:56:56 +0200][ERROR] Namespace alias '\workManagiment\Attendancelist\Models\CoreMember' is not registered [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->getNamespaceAlias('\\workManagiment...')
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 09:57:01 +0200][ERROR] Model 'Attendances' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('Attendances', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getJoin(Object(Phalcon\Mvc\Model\Manager), Array)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#4 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#5 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#7 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#8 [internal function]: Phalcon\Dispatcher->dispatch()
+#9 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#10 {main}
+[Wed, 15 Jul 15 09:57:17 +0200][ERROR] Unknown model or alias 'CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\CoreMember] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 09:57:49 +0200][ERROR] Scanning error before '\workManagiment\...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember as CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\CoreMember] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (344) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:58:16 +0200][ERROR] Unknown model or alias 'CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 09:58:39 +0200][ERROR] Scanning error before '\workManagiment\...' when parsing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember as CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\Attendances as Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' (360) [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#1 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#2 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#3 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#4 [internal function]: Phalcon\Dispatcher->dispatch()
+#5 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#6 {main}
+[Wed, 15 Jul 15 09:59:33 +0200][ERROR] Unknown model or alias 'workManagiment\Attendancelist\Models\CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\Attendances] ON \workManagiment\Attendancelist\Models\CoreMember.member_id = \workManagiment\Attendancelist\Models\Attendances.member_id  WHERE MONTH(\workManagiment\Attendancelist\Models\Attendances.att_date) =07 AND \workManagiment\Attendancelist\Models\Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 09:59:56 +0200][ERROR] Unknown model or alias 'CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 10:01:00 +0200][ERROR] Unknown model or alias 'CoreMember' (1), when preparing: SELECT att_date,member_login_name,checkin_time,checkout_time FROM [\workManagiment\Attendancelist\Models\CoreMember] LEFT JOIN [\workManagiment\Attendancelist\Models\Attendances] ON CoreMember.member_id = Attendances.member_id  WHERE MONTH(Attendances.att_date) =07 AND Attendances.member_id ='9af6af14-6e01-11e4-b676-82c4524d8ace' [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Query->_getQualified(Array)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array, true)
+#2 [internal function]: Phalcon\Mvc\Model\Query->_getExpression(Array)
+#3 [internal function]: Phalcon\Mvc\Model\Query->_getJoins(Array)
+#4 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#5 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#6 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#7 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#8 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#9 [internal function]: Phalcon\Dispatcher->dispatch()
+#10 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#11 {main}
+[Wed, 15 Jul 15 10:01:14 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 10:01:25 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 10:02:13 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 10:02:50 +0200][ERROR] Model 'CoreMember' could not be loaded [C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Model\Manager->load('CoreMember', true)
+#1 [internal function]: Phalcon\Mvc\Model\Query->_prepareSelect()
+#2 [internal function]: Phalcon\Mvc\Model\Query->parse()
+#3 C:\xampp\htdocs\workManagiment\apps\attendancelist\models\Attendances.php(102): Phalcon\Mvc\Model\Query->execute()
+#4 C:\xampp\htdocs\workManagiment\apps\attendancelist\controllers\UserController.php(32): workManagiment\Attendancelist\Models\Attendances->getattlistbyMonth('9af6af14-6e01-1...', NULL, NULL)
+#5 [internal function]: workManagiment\Attendancelist\Controllers\UserController->attendancelistAction()
+#6 [internal function]: Phalcon\Dispatcher->dispatch()
+#7 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#8 {main}
+[Wed, 15 Jul 15 10:15:20 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:16:54 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
+[Wed, 15 Jul 15 10:21:20 +0200][ERROR] Action 'dashboard' was not found on handler 'user' [C:\xampp\htdocs\workManagiment\public\index.php(67)]
+Started Trace
+#0 [internal function]: Phalcon\Mvc\Dispatcher->_throwDispatchException('Action 'dashboa...', 5)
+#1 [internal function]: Phalcon\Dispatcher->dispatch()
+#2 C:\xampp\htdocs\workManagiment\public\index.php(67): Phalcon\Mvc\Application->handle()
+#3 {main}
