@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Attendancelist\Models;
+<?php namespace workManagiment\Leavedays\Models;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -19,7 +19,5 @@ class CoreMember extends \Library\Core\BaseModel{
         return $getname;
     }
     
-    public function test(){
-        echo "test";exit;
-    }
+   
 }

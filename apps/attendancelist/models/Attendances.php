@@ -30,17 +30,10 @@ class Attendances extends Model {
         // for search result
         if (isset($name)) {
             
-//            $sql = "SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "' and member_login_name='" . $name . "'";
-//            $result = $this->db->query($sql);
-//            $row = $result->fetchall();
-            $results = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
-                    ->from('Attendances')
-                    //->leftJoin('Attendances', 'corememberresult.member_id = Attendances.member_id ')
-                    //->where('MONTH(Attendances.att_date) =' . $month)
-                    ->getQuery()
-                    ->execute();
-            print_r($results);exit;
+            $sql = "SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "' and member_login_name='" . $name . "'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            
         } else {
             //show att today list
             $result = $this->db->query("SELECT * FROM attendances JOIN core_member ON attendances.member_id=core_member.member_id WHERE attendances.att_date='" . $today . "'");
@@ -81,6 +74,72 @@ class Attendances extends Model {
                 //return $row;
     }
      return $row;
+    }
+    
+    //select monthly list
+    public function showmonthlylist($year, $month, $username) {
+       
+        $this->db = $this->getDI()->getShared("db");
+        //search monthly list data
+      
+        if ($year=="" and $month=="" and $username=="") {
+            $month = date('m');
+            $result = $this->db->query("SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id WHERE MONTH(attendances.att_date)='" . $month . "'");
+            $list = $result->fetchall();
+//            $results = $this->modelsManager->createBuilder()
+//                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
+//                    ->from('CoreMember')
+//                    ->leftJoin('Attendances', 'CoreMember.member_id = Attendances.member_id ')
+//                    ->where('MONTH(Attendances.att_date) =' . $month)
+//                    ->getQuery()
+//                    ->execute();
+            //print_r($list);exit;
+        } else { 
+            //show monthly list
+            //$sql="SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id where YEAR(attendances.att_date) like " . $year . " or MONTH(attendances.att_date) like " . $month . " or member_login_name='" . $username . "'";
+            $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
+            
+             $conditions=$this->setCondition($year, $month, $username);
+             $sql = $select;
+              if (count($conditions) > 0) {
+              $sql .= " WHERE " . implode(' AND ', $conditions);
+              }
+              $result = $this->db->query($sql);
+              $list = $result->fetchall();
+              
+        }
+        
+        //print_r($list);exit;
+        return $list;
+    }
+
+    public function setCondition($year, $month, $username) {
+        $conditions = array();
+
+        if ($year != "") {
+            //echo $year;exit;
+            $conditions[] = "YEAR(Attendances.att_date) like " . $year;
+        }
+        if ($month != "") {
+
+            $conditions[] = "MONTH(Attendances.att_date) like " . $month;
+        }
+        if ($username != "") {
+            $conditions[] = "member_login_name='" . $username . "'";
+        }
+
+        //$sql = $select;
+//        if (count($conditions) > 0) {
+//            $result = implode(' AND ', $conditions);
+//            //echo $result;exit;
+//        } else {
+//            $result = $conditions;
+//        }
+        //print_r($result);exit;
+        return $conditions;
+    }
+    public function userAction(){
+        
     }
 
 }
