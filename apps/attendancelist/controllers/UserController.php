@@ -7,7 +7,7 @@ class UserController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-        
+        $this->assets->addJs('common/js/export.js');
         $this->setCommonJsAndCss();
         
     }

@@ -18,7 +18,7 @@ function GEOprocess(position) {
     var n = new Date();
     var offset = n.getTimezoneOffset();
     $.ajax({
-        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset"+offset ,
+        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset="+offset ,
         type: 'GET',
         dataType: 'json',
         success: function (d) {
@@ -30,12 +30,12 @@ function GEOprocess(position) {
     });
 }
  
-        
+$('.geolocation').ready(function(){
+        geo();
+         });           
 $(document).ready(function(){        
     
-     $('.dashboard').ready(function(){
-        geo();
-         });   
+     
     //set slide menu
     if(document.getElementById("id") !== null){
         $('#slidemenu-left').mmenu();
