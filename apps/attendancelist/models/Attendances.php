@@ -112,7 +112,14 @@ class Attendances extends Model {
         return $list;
     }
     
-    //select monthly list
+    /**
+     * 
+     * @param type $year
+     * @param type $month
+     * @param type $username
+     * @return type
+     * @author zinmon
+     */
     public function showmonthlylist($year, $month, $username) {
        
         $this->db = $this->getDI()->getShared("db");
@@ -122,14 +129,7 @@ class Attendances extends Model {
             $month = date('m');
             $result = $this->db->query("SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id WHERE MONTH(attendances.att_date)='" . $month . "'");
             $list = $result->fetchall();
-//            $results = $this->modelsManager->createBuilder()
-//                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
-//                    ->from('CoreMember')
-//                    ->leftJoin('Attendances', 'CoreMember.member_id = Attendances.member_id ')
-//                    ->where('MONTH(Attendances.att_date) =' . $month)
-//                    ->getQuery()
-//                    ->execute();
-            //print_r($list);exit;
+
         } else { 
             //show monthly list
             //$sql="SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id where YEAR(attendances.att_date) like " . $year . " or MONTH(attendances.att_date) like " . $month . " or member_login_name='" . $username . "'";
