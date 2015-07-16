@@ -123,6 +123,7 @@
                         <li class="header">MAIN NAVIGATION</li>
                         <?php
                         foreach ($this->session->auth as $key_name => $key_value) {
+                            
                             if ($key_value[0] == "Dashboard") {
                                 echo '<li><a href="../../home"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                             } elseif ($key_value[0] == "Calendar") {
@@ -130,7 +131,7 @@
                             } else {
                                 echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             }
-
+                            
                             foreach ($key_value as $name => $value) {
                                 //print "Key = " . $name . " Value = " . $value . "<BR>";
                                 echo '<ul class="treeview-menu">';

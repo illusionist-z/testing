@@ -2,6 +2,7 @@
 
 namespace workManagiment\Attendancelist\Controllers;
 
+use workManagiment\Core\Models\Db;
 class IndexController extends ControllerBase
 {
     
@@ -30,9 +31,10 @@ class IndexController extends ControllerBase
         //get user attendance list for today
         $result_attlist = $attlist->gettodaylist($name);
         //get user name
-        $userlist= new \workManagiment\Attendancelist\Models\CoreMember();
-        $username = $userlist->getusername();
-
+        //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
+        $userlist=new Db\CoreMember();
+        $username = $userlist::getinstance()->getusername();
+        
         $this->view->attlist = $result_attlist;
         $this->view->offset=$offset;
         $this->view->uname = $username;
@@ -40,8 +42,8 @@ class IndexController extends ControllerBase
     
     //show monthly list
     public function monthlylistAction() {
-        $users = new \workManagiment\Attendancelist\Models\CoreMember();
-        $user_name = $users->getusername();
+        $userlist=new Db\CoreMember();
+        $username = $userlist::getinstance()->getusername();
 
         require '../apps/attendancelist/config/config.php';
         $month = $config->month;

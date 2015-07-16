@@ -3,7 +3,7 @@
 use Phalcon\Config;
 
 namespace workManagiment\Leavedays\Controllers;
-
+use workManagiment\Core\Models\Db;
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -44,8 +44,8 @@ class IndexController extends ControllerBase {
         $month = $config->month;
         $leave = $config->leave;
         
-        $users =new \workManagiment\Leavedays\Models\CoreMember();
-        $user_name = $users->getusername();
+        $userlist=new Db\CoreMember();
+        $username = $userlist::getinstance()->getusername();
         
         //variable for search result
         $leave_type=$this->request->get('ltype');

@@ -28,17 +28,17 @@ class Attendances extends Model {
         if (isset($name)) {
             $row = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
-                    ->from('workManagiment\Attendancelist\Models\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->where('workManagiment\Attendancelist\Models\CoreMember.member_login_name) =' . $name . ' AND workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'")
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name) =' . $name . ' AND workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'")
                     ->getQuery()
                     ->execute();
         } else {
             //show att today list
             $row = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
-                    ->from('workManagiment\Attendancelist\Models\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where(' workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'")
                     ->getQuery()
                     ->execute();
@@ -80,16 +80,16 @@ class Attendances extends Model {
         if (isset($month)) {
             $row = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
-                    ->from('workManagiment\Attendancelist\Models\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
         } else {
             $row = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
-                    ->from('workManagiment\Attendancelist\Models\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $currentmth . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
@@ -126,8 +126,8 @@ class Attendances extends Model {
 //            $list = $result->fetchall();
             $results = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time')
-                    ->from('workManagiment\Attendancelist\Models\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month)
                     ->getQuery()
                     ->execute();
@@ -146,8 +146,8 @@ class Attendances extends Model {
 
             $results = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time')
-                    ->from('workManagiment\Attendancelist\Models\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Attendancelist\Models\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     //if (count($conditions) > 0) 
                     //{
                     ->where($this->setCondition($year, $month, $username))
@@ -190,7 +190,7 @@ class Attendances extends Model {
             $conditions[] = "MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) like " . $month;
         }
         if ($username != "") {
-            $conditions[] = "workManagiment\Attendancelist\Models\CoreMember.member_login_name='" . $username . "'";
+            $conditions[] = "workManagiment\Core\Models\Db\CoreMember.member_login_name='" . $username . "'";
         }
 
         //$sql = $select;
