@@ -2,7 +2,7 @@
 
 
 $length = count($Month);
-//print_r(count($leave_result));
+
 ?>
 
 <!-- Content Header (Page header) -->
@@ -80,7 +80,7 @@ $length = count($Month);
                 <tbody>
                     <?php
                     //print_r($Result);
-                    foreach ($Result as $item) {
+                    foreach ($Result->items as $item) {
                         ?>
                         <tr>
                             <td><?php  $dt=  explode(" ",date($item['date']));
@@ -137,3 +137,26 @@ $length = count($Month);
         </div><!--end table content--->
     </div><!-- /.row -->
 
+<?php
+if ( isset($_POST['month'])) {
+    
+    $m = $_POST['month'];
+   
+} 
+
+else{
+    $m=date('m');
+}
+if ( isset($_GET['month']) ){
+    
+    $m = $_GET['month'];
+    
+}
+
+?>
+<a href="leavelist">First</a>
+<a href="leavelist?page=<?= $Result->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a>
+<a href="leavelist?page=<?= $Result->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a>
+<a href="leavelist?page=<?= $Result->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a>
+
+<?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?>
