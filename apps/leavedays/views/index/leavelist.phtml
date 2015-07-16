@@ -1,0 +1,153 @@
+<?php
+
+use Phalcon\Tag as Tag;
+$length = count($Month);
+//print_r(count($leave_result));
+?>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Attendance list
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">attendance list</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="buttons">
+        <form id="frm_search" action="showleavelist">
+            <select class="select" data-toggle="select" name="ltype" id="ltype">
+                <option value="">Leave Type</option>
+                <?php
+                for($i=1;$i<=count($leave_result);$i++){
+                ?>
+                <option value="<?php echo $leave_result[$i]; ?>"
+                <?php echo(isset($Ltype)&&($Ltype==$leave_result[$i])?' selected="selected"':'');?>        
+                ><?php echo $leave_result[$i]; ?></option>
+                <?php
+                }
+                ?>
+
+            </select>
+            <select class="select" data-toggle="select" name="month" id="month">
+                <option value="">Month</option>
+                <?php
+                for ($i = 1; $i <= $length; $i++) {
+                    ?>
+                    <option value="<?php
+                    if ($i < 10) {
+                        echo '0' . $i;
+                    }
+                    else {
+                        echo $i;
+                    }
+                    ?>"
+                    <?php echo(isset($Mth)&&($Mth==$i)?' selected="selected"':'');?>
+                    ><?php echo $Month[$i]; ?></option>
+                            <?php
+                        }
+                        ?>
+
+            </select>
+            <select class="select" data-toggle="select" name="namelist" id="namelist">
+                <option value="">User Name</option>
+                <?php
+                foreach ($Getname as $result) {
+                    ?>
+                <option value="<?php echo $result['member_login_name']; ?>"
+                <?php echo(isset($Uname)&&($Uname==$result['member_login_name'])?' selected="selected"':'');?>        
+                ><?php echo $result['member_login_name']; ?></option>
+
+                    <?php
+                }
+                ?>
+
+
+            </select>
+            <input type="submit" class="button" value="Search" id="search">
+            <!--       <a href="#" class="button" id="search">Search</a>-->
+            <a href="#" class="button export">Export</a>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+            <table class="listtbl">
+                <thead>
+                    <tr>
+                        <th width="150px">Date</th>
+                        <th width="150px">Name</th>
+                        <th width="150px">Start Date</th>
+                        <th width="150px">End Date</th>
+                        <th width="150px">Leave days</th>
+                        <th width="150px">Leave type</th>
+                        <th width="150px">Leave description</th>
+                        <th width="150px">Leave status</th>
+                        <th width="150px">Leave day left</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+                    //print_r($Result);
+                    foreach ($Result as $item) {
+                        ?>
+                        <tr>
+                            <td><?php  $dt=  explode(" ",date($item['date']));
+                                echo $dt[0];
+                                ?>
+                            </td>
+
+                            <td><?php echo $item['member_login_name']; ?></td>
+                            <td>
+                                <?php $start_date= explode(" ", $item['start_date']); 
+                                      echo $start_date[0];
+                                ?>
+                            </td>
+                            <td>
+                                <?php $end_date= explode(" ", $item['end_date']); 
+                                      echo $end_date[0];
+                                
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                echo $item['leave_days'];
+                                ?></td>
+                            <td>
+                                <?php
+                                echo $item['leave_category'];
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                echo $item['leave_description'];
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                echo $item['leave_days'];
+                                ?> 
+
+                            </td>
+                            <td>
+                                <?php
+                                //calculate overtime
+                                echo $item['leave_status'];
+                                ?> 
+
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+                </tbody>
+            </table>      
+        </div><!--end table content--->
+    </div><!-- /.row -->
+

@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Attendancelist\Models;
+<?php namespace workManagiment\Core\Models\Db;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -11,11 +11,21 @@ class CoreMember extends \Library\Core\BaseModel{
         parent::initialize();
     }
     
+    public static function getInstance()
+    {
+        return new self();
+    }
+    
+    
       public function getusername() {
         $this->db = $this->getDI()->getShared("db");
         $user_name = $this->db->query("SELECT * FROM core_member");
         //print_r($user_name);exit;
         $getname = $user_name->fetchall();
         return $getname;
+    }
+    
+    public function test(){
+        echo "test";exit;
     }
 }

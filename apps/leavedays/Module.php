@@ -1,5 +1,5 @@
-<?php namespace workManagiment\Leavedays;
-
+<?php 
+namespace workManagiment\Leavedays;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface
 {
