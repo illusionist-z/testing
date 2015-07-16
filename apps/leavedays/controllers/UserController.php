@@ -50,9 +50,12 @@ class UserController extends ControllerBase {
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');
-    
+   
         
         $leaves = new \workManagiment\Leavedays\Models\Leaves();
+        $leavelist = $leaves->getuserleavelist($leave_type,$mth,$id);
+        //var_dump($leavelist);exit;
+        $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);
       
         $this->view->setVar("leave_result", $leave);
@@ -63,6 +66,4 @@ class UserController extends ControllerBase {
     }
   
 }
-        $leavelist = $leaves->getuserleavelist($leave_type,$mth,$id);
-        //var_dump($leavelist);exit;
-        $this->view->setVar("Result", $leavelist);
+        
