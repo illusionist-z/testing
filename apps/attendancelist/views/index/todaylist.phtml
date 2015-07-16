@@ -4,14 +4,13 @@
     if ($offset<0){
     $sign='-';
     $value=$offset*(-1);
-  ;
+  
   }
     else{
     $value=$offset*(-1);
 } 
 use Phalcon\Tag as Tag;
-$office_start_time = '08:00:00';
-$office_end_time = '17:00:00';
+
 //print_r($user);exit;
 ?>
 <?php
@@ -32,7 +31,7 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <form id="frm_search" action="<?=$this->url->getBaseUri();?>attendancelist/index/todaylist">
+        <form id="frm_search" >
             <select class="select" data-toggle="select" name="namelist" id="namelist">
                 <option>Name</option>
                 <?php
@@ -46,7 +45,7 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
 
 
             </select>
-            <input type="submit" class="button" value="Search" id="search">
+            <input type="submit" class="button" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export">Export</a>
         </form>
@@ -85,29 +84,29 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
                             <td>
                                 <?php
                                $checkintime=$result['checkin_time'];
-        if ($sign=='-'){
-            $time = new DateTime($checkintime);
-        $time->add(new DateInterval('PT' . $value . 'M'));
-        echo $time->format('H:i:s A ');
-        }
-        else{
-         $datetime_from = date(" H:i",strtotime($value." minutes",strtotime($checkintime)));
-            echo $datetime_from;
-        }
+                               if ($sign=='-'){
+                               $time = new DateTime($checkintime);
+                           $time->add(new DateInterval('PT' . $value . 'M'));
+                           echo $time->format('H:i:s A ');
+                           }
+                           else{
+                            $datetime_from = date(" H:i",strtotime($value." minutes",strtotime($checkintime)));
+                               echo $datetime_from;
+                           }
      ?>
                                 
                             </td>
                             <td>
                                 <?php
                                 //calculate late time
-                               $checkintime=$result['checkin_time'];
-        $dt = new DateTime($checkintime);
-        $time = $dt->format('H:i:s');
-        $office_start_time='01:30:00 ';
-        if($time>$office_start_time){
-            $start=strtotime($office_start_time);
-            $end=strtotime($time);
-            $late=$end-$start;
+                            $checkintime=$result['checkin_time'];
+                         $dt = new DateTime($checkintime);
+                         $time = $dt->format('H:i:s');
+                         $office_start_time='01:30:00 ';
+                         if($time>$office_start_time){
+                             $start=strtotime($office_start_time);
+                             $end=strtotime($time);
+                             $late=$end-$start;
         
             echo "<font color='red'>". gmdate("H:i:s",$late)." Hours</font>";
             

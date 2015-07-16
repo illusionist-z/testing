@@ -47,8 +47,7 @@ class IndexController extends ControllerBase {
         $month = $config->month;
         $leave = $config->leave;
         
-        $userlist=new Db\CoreMember();
-        $user_name = $userlist::getinstance()->getusername();
+       
         
         //variable for search result
         $leave_type=$this->request->get('ltype');
@@ -65,7 +64,7 @@ class IndexController extends ControllerBase {
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);
-        $this->view->setVar("Uname", $username);
+       
     }
   
 }
