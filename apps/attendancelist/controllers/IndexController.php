@@ -46,7 +46,7 @@ class IndexController extends ControllerBase
         $offset= $this->session->location['offset'];
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
-        
+
         require '../apps/attendancelist/config/config.php';
         $month = $config->month;
 

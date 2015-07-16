@@ -4,7 +4,7 @@ use Phalcon\Config;
 
 namespace workManagiment\Leavedays\Controllers;
 use workManagiment\Core\Models\Db;
-class IndexController extends ControllerBase {
+class UserController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
@@ -43,6 +43,7 @@ class IndexController extends ControllerBase {
     
       
     public function leavelistAction(){
+        echo "aa";
        require '../apps/attendancelist/config/config.php';
         $month = $config->month;
         $leave = $config->leave;
@@ -55,7 +56,7 @@ class IndexController extends ControllerBase {
         $username = $this->request->get('username');
         
         $leaves = new \workManagiment\Leavedays\Models\Leaves();
-        $leaves = $leaves->getleavelist($leave_type,$mth,$username);
+        $leaves = $leaves->getuserleavelist($leave_type,$mth);
                
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);

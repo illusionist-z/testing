@@ -53,22 +53,8 @@ $length = count($Month);
                         ?>
 
             </select>
-            <select class="select" data-toggle="select" name="namelist" id="namelist">
-                <option value="">User Name</option>
-                <?php
-                foreach ($Getname as $result) {
-                    ?>
-                <option value="<?php echo $result['member_login_name']; ?>"
-                <?php echo(isset($Uname)&&($Uname==$result['member_login_name'])?' selected="selected"':'');?>        
-                ><?php echo $result['member_login_name']; ?></option>
-
-                    <?php
-                }
-                ?>
-
-
-            </select>
-            <input type="submit" class="button" value="Search" id="search">
+           
+            <input type="submit" class="button" value="Search" id="usersearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export">Export</a>
         </form>
