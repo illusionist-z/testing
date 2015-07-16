@@ -30,7 +30,7 @@ class Attendances extends Model {
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name) =' . $name . ' AND workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'")
+                    ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name ="'.$name.'" AND workManagiment\Attendancelist\Models\Attendances.att_date ="' .$today.'"')
                     ->getQuery()
                     ->execute();
         } else {

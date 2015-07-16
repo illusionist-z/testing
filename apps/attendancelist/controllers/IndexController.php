@@ -42,6 +42,8 @@ class IndexController extends ControllerBase
     
     //show monthly list
     public function monthlylistAction() {
+       
+        $offset= $this->session->location['offset'];
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
 
@@ -63,6 +65,7 @@ class IndexController extends ControllerBase
         $this->view->setVar("Year", $year);
         $this->view->setVar("Mth", $mth);
         $this->view->setVar("Name", $username);
+        $this->view->offset=$offset;
     }
     
     

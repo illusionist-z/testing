@@ -4,7 +4,9 @@ namespace workManagiment\Attendancelist\Controllers;
 
 class UserController extends ControllerBase
 {
+
     
+
     public function initialize() {
         parent::initialize();
         $this->assets->addJs('common/js/export.js');
@@ -24,8 +26,8 @@ class UserController extends ControllerBase
     
     public function attendancelistAction(){
         $offset= $this->session->location['offset'];
-         $year = $this->request->get('year');                  
-         $month = $this->request->get('month');                  
+      
+         $month = $this->request->get('month');
         $id= $this->session->user['member_id'];
         
       $attlist = new \workManagiment\Attendancelist\Models\Attendances();

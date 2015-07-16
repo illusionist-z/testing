@@ -33,9 +33,12 @@ class IndexController extends ControllerBase {
             $applyleave->applyleave($id,$sdate, $edate, $type, $desc);            
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
-        }     
+        }   
+        
+     
         
     }
+  
 
     
       
