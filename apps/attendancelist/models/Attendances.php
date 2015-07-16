@@ -1,5 +1,7 @@
 <?php
+
 namespace workManagiment\Attendancelist\Models;
+
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 //use workManagiment\Attendancelist\Models\CoreMember as CoreMember;
@@ -108,5 +110,6 @@ class Attendances extends Model {
         $list = $paginator->getPaginate();
         //print_r($list);exit;
         return $list;
-    }      
+    }
+
 }

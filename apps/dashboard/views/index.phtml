@@ -125,7 +125,10 @@
                                 echo '<li><a href="home"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                             } elseif ($key_value[0] == "Calendar") {
                                 echo '<li><a href="calendar"><img src="common/img/list.png" > <span>' . $key_value[0] . '</span></a></li>';
-                            } else {
+                            } elseif ($key_value[0] == "Attendance List") {
+                                echo '<li><a href="attendancelist/user/attendancelist"><img src="common/img/list.png" > <span>' . $key_value[0] . '</span></a></li>';
+                            }
+                            else {
                                 echo '<li class="treeview"><a href="#"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             }
                             $mod_link = explode(" ", $key_value[0]);
