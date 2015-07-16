@@ -99,14 +99,14 @@ class Attendances extends Model {
                     ->execute();
             
     }
-     $currentPage = (int) $_GET["page"];
+     $currentPage = (int) $_GET["page"];    
         $paginator = new PaginatorModel(
                 array(
             "data" => $row,
             "limit" => 1,
             "page" => $currentPage
                 )
-        );
+        );                
         $list = $paginator->getPaginate();
         //print_r($list);exit;
         return $list;
