@@ -40,23 +40,21 @@ class UserController extends ControllerBase {
     
       
     public function leavelistAction(){
-       require '../apps/leavedays/config/config.php';
+     
+       require '../apps/attendancelist/config/config.php';
         $month = $config->month;
-        $leave = $config->leave;        
-        $userlist=new Db\CoreMember();
-        $username = $userlist::getinstance()->getusername();
+        $leave = $config->leave;
+        
+        $id= $this->session->user['member_id'];
         
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');
-        $username = $this->request->get('username');
+    
         
         $leaves = new \workManagiment\Leavedays\Models\Leaves();
-        $leaves = $leaves->getleavelist($leave_type,$mth,$username);
-               
-        $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
-        $this->view->setVar("Getname", $user_name);
+      
         $this->view->setVar("leave_result", $leave);
         
         $this->view->setVar("Ltype", $leave_type);
@@ -65,3 +63,6 @@ class UserController extends ControllerBase {
     }
   
 }
+        $leavelist = $leaves->getuserleavelist($leave_type,$mth,$id);
+        //var_dump($leavelist);exit;
+        $this->view->setVar("Result", $leavelist);
