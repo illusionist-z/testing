@@ -43,7 +43,7 @@ class IndexController extends ControllerBase
     //show monthly list
     public function monthlylistAction() {
         $userlist=new Db\CoreMember();
-        $username = $userlist::getinstance()->getusername();
+        $user_name = $userlist::getinstance()->getusername();
 
         require '../apps/attendancelist/config/config.php';
         $month = $config->month;
