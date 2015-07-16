@@ -8,7 +8,7 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-        
+        $this->assets->addJs('common/js/export.js');
         $this->setCommonJsAndCss();
         
     }
@@ -27,9 +27,9 @@ class IndexController extends ControllerBase
         $offset= $this->session->location['offset'];
         $name = $this->request->get('namelist');
         $attlist = new \workManagiment\Attendancelist\Models\Attendances();
-
+        
         //get user attendance list for today
-        $result_attlist = $attlist->gettodaylist($name);
+        $result_attlist = $attlist->gettodaylist($name);                
         //get user name
         //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
         $userlist=new Db\CoreMember();

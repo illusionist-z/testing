@@ -47,7 +47,7 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
             </select>
             <input type="submit" class="button" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export">Export</a>
+            <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'todaylist.csv']);">Export</a>
         </form>
     </div>
 

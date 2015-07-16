@@ -37,7 +37,7 @@ class IndexController extends ControllerBase {
     }
 
     public function checkinAction() {      
-        
+        $this->view->disable();
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
         $lat = $this->session->location['lat'];
