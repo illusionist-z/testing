@@ -29,16 +29,13 @@ class UserController extends ControllerBase {
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');
             $id   = $this->session->user['member_id'];
-            $applyleave = new \workManagiment\Leavedays\Models\Leave();
+            $applyleave = new \workManagiment\Leavedays\Models\Leaves();
             $applyleave->applyleave($id,$sdate, $edate, $type, $desc);            
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
-        }   
-        
-     
+        }     
         
     }
-  
 
     
       
@@ -56,16 +53,16 @@ class UserController extends ControllerBase {
     
         
         $leaves = new \workManagiment\Leavedays\Models\Leaves();
-        $leavelist = $leaves->getuserleavelist($leave_type,$mth,$id);
-        //var_dump($leavelist);exit;
-        $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);
       
         $this->view->setVar("leave_result", $leave);
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);
-       
+        $this->view->setVar("Uname", $username);
     }
   
 }
+        $leavelist = $leaves->getuserleavelist($leave_type,$mth,$id);
+        //var_dump($leavelist);exit;
+        $this->view->setVar("Result", $leavelist);

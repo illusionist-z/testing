@@ -15,10 +15,10 @@ function geo() {
 function GEOprocess(position) {
     //GET geo location of user
     var url = "location_session";
-      var n = new Date();
-      var offset = n.getTimezoneOffset(); 
+    var n = new Date();
+    var offset = n.getTimezoneOffset();
     $.ajax({
-        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset=" + offset ,
+        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset="+offset ,
         type: 'GET',
         dataType: 'json',
         success: function (d) {
@@ -30,12 +30,12 @@ function GEOprocess(position) {
     });
 }
  
-        
+$('.geolocation').ready(function(){
+        geo();
+         });           
 $(document).ready(function(){        
     
-     $('.dashboard').ready(function(){
-        geo();
-         });   
+     
     //set slide menu
     if(document.getElementById("id") !== null){
         $('#slidemenu-left').mmenu();
@@ -68,7 +68,7 @@ $(document).ready(function(){
          window.location.href = baseUri + 'attendancelist/index/todaylist?namelist='+namelist;
     };
     // ユーザーのクリックした時の動作。
-    $('#btn_logout').click(function(){
+    $('#btn_logout').click(function(){        
         alert("ログアウトしました。");
         logout();
     });

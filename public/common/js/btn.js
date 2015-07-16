@@ -48,33 +48,3 @@ var Content = {
     }   
 
 };
-/*
- * @GEOprocess()
- * @get lat lng
- */
-//function geo() {
-//    if (navigator.geolocation) {
-//        navigator.geolocation.getCurrentPosition(GEOprocess);
-//    }
-//}
-//function GEOprocess(position) {
-//    //GET geo location of user
-//    var url = "location_session";
-//    var n = new Date();
-//    var offset = n.getTimezoneOffset(); 
-//    $.ajax({
-//        url: "dashboard/index/" + url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude +"&offset=" + offset,
-//        type: 'GET',
-//        dataType: 'json',
-//        success: function (d) {
-//            
-//        },
-//        error: function (d) {
-//            //alert('dfskf');
-//            
-//        }
-//    });
-//}
-//$(function(){
-//   geo(); 
-//});

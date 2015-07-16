@@ -47,7 +47,7 @@
         </select>
             <input type="submit" class="button" value="Search" id="search">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export">Export</a>
+            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'),'attendance_list.csv']);">Export</a>
         </form>
         </div><!--Button-->
 <div class="demo-content" style="padding-top:2%;">
@@ -170,10 +170,8 @@
 </div>
 </section>
 <?php
-if ( isset($_POST['month'])) {
-    
-    $m = $_POST['month'];
-   
+if ( isset($_POST['month'])) {    
+    $m = $_POST['month'];   
 } 
 
 else{
@@ -186,10 +184,11 @@ if ( isset($_GET['month']) ){
 }
 
 ?>
-<a href="attendancelist">First</a>
-<a href="attendancelist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a>
-<a href="attendancelist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a>
-<a href="attendancelist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a>
+<ul class="pagination pagination-sm">
+    <li><a href="attendancelist" >First</a></li>
+    <li><a href="attendancelist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
+    <li><a href="attendancelist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>" >Next</a></li>
+    <li><a href="attendancelist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>" >Last</a></li>
 
 <?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?>
  

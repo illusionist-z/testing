@@ -101,7 +101,7 @@ class Attendances extends Model {
             "limit" => 1,
             "page" => $currentPage
                 )
-        );
+        );                
         $list = $paginator->getPaginate();
         //print_r($list);exit;
         return $list;
