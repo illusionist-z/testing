@@ -9,6 +9,7 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();
         $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('attendancelist/js/index.js');
         $this->setCommonJsAndCss();
         
     }

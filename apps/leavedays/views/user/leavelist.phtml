@@ -19,7 +19,7 @@ $length = count($Month);
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <form id="frm_search" action="showleavelist">
+        <form id="frm_search" action="leavelist">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
                 <option value="">Leave Type</option>
                 <?php
@@ -138,25 +138,20 @@ $length = count($Month);
     </div><!-- /.row -->
 
 <?php
-if ( isset($_POST['month'])) {
-    
-    $m = $_POST['month'];
-   
-} 
 
-else{
-    $m=date('m');
-}
-if ( isset($_GET['month']) ){
-    
-    $m = $_GET['month'];
-    
-}
 
+if (isset($_GET['ltype'])or isset($_GET['month'])){
+    $lt = $_GET['ltype'];
+    $M = $_GET['month'];
+  
+}
+//echo $y.' '.$m.' '.$n.'name';
 ?>
+
+
 <a href="leavelist">First</a>
-<a href="leavelist?page=<?= $Result->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a>
-<a href="leavelist?page=<?= $Result->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a>
-<a href="leavelist?page=<?= $Result->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a>
+<a href="leavelist?page=<?= $Result->before; ?>&ltype=<?php echo ((isset($lt)) ? $lt : ''); ?>&month=<?php echo ((isset($M)) ? $M : ''); ?>">Previous</a>
+<a href="leavelist?page=<?= $Result->next; ?>&ltype=<?php echo ((isset($lt)) ? $lt : ''); ?>&month=<?php echo ((isset($M)) ? $M : ''); ?>">Next</a>
+<a href="leavelist?page=<?= $Result->last; ?>&ltype=<?php echo ((isset($lt)) ? $lt : ''); ?>&month=<?php echo ((isset($M)) ? $M : ''); ?>">Last</a>
 
 <?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?>
