@@ -33,8 +33,16 @@ class IndexController extends ControllerBase {
             $applyleave->applyleave($id,$sdate, $edate, $type, $desc);            
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
-        }     
+        }   
+        
+     
         
     }
+     public function leavelistAction(){
+        require '../apps/Leavedays/Config/config.php';
+        $config = $config;
+        $leavetype = $config->leavetype;
+         $this->view->leavetype = $leavetype;
+    }  
 
 }

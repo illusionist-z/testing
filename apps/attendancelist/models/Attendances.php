@@ -100,6 +100,7 @@ class Attendances extends Model {
             
     }
      $currentPage = (int) $_GET["page"];
+     
         $paginator = new PaginatorModel(
                 array(
             "data" => $row,
