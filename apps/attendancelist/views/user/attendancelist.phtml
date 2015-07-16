@@ -29,7 +29,7 @@
 <section class="content">
         <!-- Main content -->
         <div class="buttons">
-            <form id="frm_search" action="<?=$this->url->getBaseUri();?>attendancelist/user/attendancelist">
+            <form id="frm_search" onsubmit="return false;" >
              <select class="select" data-toggle="select" name="month" id="month">
             <option value="">Month</option>
             <option value="01">January</option>
@@ -175,6 +175,10 @@ if ( isset($_POST['month'])) {
     $m = $_POST['month'];
    
 } 
+
+else{
+    $m=date('m');
+}
 if ( isset($_GET['month']) ){
     
     $m = $_GET['month'];
@@ -188,6 +192,6 @@ if ( isset($_GET['month']) ){
 <a href="attendancelist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a>
 
 <?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?>
-   
+ 
 
    

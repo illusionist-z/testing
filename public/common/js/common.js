@@ -47,11 +47,20 @@ $(document).ready(function(){
     // ここに実際の処理を記述します。
     var logout = function(){
         window.location.href = baseUri + 'auth/logout';
+        
     };
     
+    var search=function(){
+       var month = document.getElementById('month').value;   
+         window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
+    };
     // ユーザーのクリックした時の動作。
     $('#btn_logout').click(function(){
         alert("ログアウトしました。");
         logout();
+    });
+    
+    $('#search').click(function(){
+        search();
     });
 });
