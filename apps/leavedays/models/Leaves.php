@@ -18,19 +18,14 @@ class Leaves extends \Library\Core\BaseModel{
      * @param type $username
      * @return type
      */
-    public function getleavelist($leave_type, $mth, $username) {
+    public function getleavelist() {
         //select leave list
         $this->db = $this->getDI()->getShared("db");
-        if (!isset($leave_type) and ! isset($mth) and ! isset($username)) {
+       
             $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
-          
-        } else {
-            //search leave list
-           
-        }
-       
+        
         return $row;
     }
     
