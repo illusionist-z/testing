@@ -56,7 +56,7 @@ $length = count($Month);
            
             <input type="submit" class="button" value="Search" id="usersearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export">Export</a>
+            <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);">Export</a>
         </form>
     </div>
 
@@ -85,50 +85,34 @@ $length = count($Month);
                         <tr>
                             <td><?php  $dt=  explode(" ",date($item['date']));
                                 echo $dt[0];
-                                ?>
-                            </td>
+                                ?></td>
 
                             <td><?php echo $item['member_login_name']; ?></td>
-                            <td>
-                                <?php $start_date= explode(" ", $item['start_date']); 
+                            <td><?php $start_date= explode(" ", $item['start_date']); 
                                       echo $start_date[0];
-                                ?>
-                            </td>
-                            <td>
-                                <?php $end_date= explode(" ", $item['end_date']); 
+                                ?></td>
+                            <td><?php $end_date= explode(" ", $item['end_date']); 
                                       echo $end_date[0];
                                 
-                                ?>
-                            </td>
-                            <td>
-                                <?php
+                                ?></td>
+                            <td><?php
                                 echo $item['leave_days'];
                                 ?></td>
-                            <td>
-                                <?php
+                            <td><?php
                                 echo $item['leave_category'];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
+                                ?></td>
+                            <td><?php
                                 echo $item['leave_description'];
-                                ?>
-                            </td>
-                            <td>
-                                <?php
+                                ?></td>
+                            <td><?php
                                 echo $item['leave_days'];
-                                ?> 
-
-                            </td>
-                            <td>
-                                <?php
+                                ?></td>
+                            <td><?php
                                 //calculate overtime
                                 echo $item['leave_status'];
-                                ?> 
-
-                            </td>
+                                ?></td>
                         </tr>
-                        <?php
+                            <?php
                     }
                     ?>
 

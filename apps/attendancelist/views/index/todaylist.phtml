@@ -177,10 +177,11 @@ foreach ($attlist->items as $result) {
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
+    <ul class="pagination pagination-large">
+        <li><a href="todaylist">First</a></li>
+        <li><a href="todaylist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
+        <li><a href="todaylist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
+        <li><a href="todaylist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>
 
-    <a href="todaylist">First</a>
-    <a href="todaylist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a>
-    <a href="todaylist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a>
-    <a href="todaylist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a>
-
-<?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?>
+        <li><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></li>
+    </ul>
