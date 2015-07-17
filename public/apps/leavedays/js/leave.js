@@ -11,8 +11,9 @@
 $(document).ready(function(){
     var userUri = baseUri + 'leavedays/';
     
-    $('#target').submit(function(){
-        alert("aaa");
+    $('#frm_search').submit(function(){
+    var month = document.getElementById('month').value;
+    alert(month);
     $.ajax({
     type: "POST",
     url: "bin/process.php",
