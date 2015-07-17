@@ -30,12 +30,10 @@ function GEOprocess(position) {
     });
 }
  
-$('.geolocation').ready(function(){
-        geo();
-         });           
-$(document).ready(function(){        
-    
-     
+//$('.geolocation').ready(function(){
+//        geo();
+//         });           
+$(document).ready(function(){                
     //set slide menu
     if(document.getElementById("id") !== null){
         $('#slidemenu-left').mmenu();
