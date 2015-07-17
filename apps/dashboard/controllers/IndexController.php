@@ -8,8 +8,8 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
-        //$this->assets->addJs('common/js/btn.js');
-        //$this->assets->addJs('apps/home/js/geo.js');
+        $this->assets->addJs('common/js/btn.js');
+        
     }
 
     public function indexAction() {
@@ -18,11 +18,12 @@ class IndexController extends ControllerBase {
    
 
     public function location_sessionAction() {
+     
         $lat = $this->request->get('lat');
         $lng = $this->request->get('lng');
         $offset = $this->request->get('offset');
         $tz=$this->getTimezoneGeo($lat,$lng);
-        
+      
         $this->session->set('location', array(
             'lat' => $lat,
             'lng' => $lng,
