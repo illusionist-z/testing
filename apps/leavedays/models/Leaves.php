@@ -33,7 +33,22 @@ class Leaves extends \Library\Core\BaseModel {
         
         return $row;
     }
-
+    
+    public function search($ltype,$month,$namelist) {
+        $this->db = $this->getDI()->getShared("db");
+        $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id where MONTH(leaves.start_date)='".$month."'";
+        $result = $this->db->query($sql);
+        $row = $result->fetchall();
+//        $row = $this->modelsManager->createBuilder()
+//                    ->columns('start_date,member_login_name,end_date')
+//                    ->from('workManagiment\Core\Models\Db\CoreMember')
+//                    ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
+//                    ->where('MONTH(workManagiment\Leavedays\Models\Leaves.start_date) ="' . $month .'"')
+//                    ->getQuery()
+//                    ->execute();
+            //print_r($row);exit;
+           return $row;
+    }
     /**
      * Get today attendance list
      * @return type

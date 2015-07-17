@@ -8,19 +8,34 @@
  * @get @lat @lng
  */
 
-$(document).ready(function(){
+$(document).ready(function () {
     var userUri = baseUri + 'leavedays/';
-    
-    $('#frm_search').submit(function(){
-    var month = document.getElementById('month').value;
-    alert(month);
-    $.ajax({
-    type: "POST",
-    url: "bin/process.php",
-    data: dataString,
-    success: function() {
-      alert("AAA");
-    }
-  });
-                    });
+
+    $('#frm_search').submit(function () {
+        search();
     });
+});
+
+
+function search()
+{
+    var leave_type = document.getElementById('ltype').value;
+    var month = document.getElementById('month').value;
+    var namelist = document.getElementById('namelist').value;
+    //window.location.href = baseUri + 'leavedays/search?ltype='+leave_type+'&month='+month+'&namelist='+namelist;
+//  var $form = $('#frm_search');
+    $.ajax({
+        url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
+        type: 'GET',
+        success: function (d) {
+            alert("success");
+           var myJsonString = JSON.stringify(d);
+//            
+             $("#content").html(d);
+            
+        },
+        error: function (d) {
+            alert('error');
+        }
+    });
+}

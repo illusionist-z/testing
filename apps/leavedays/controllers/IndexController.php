@@ -9,6 +9,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('apps/leavedays/js/leave.js');
         $this->setCommonJsAndCss();
     }
 
@@ -43,7 +44,7 @@ class IndexController extends ControllerBase {
      * Show Leave data list
      */
     public function leavelistAction(){
-       $this->assets->addJs('apps/leavedays/js/leave.js');
+       
        require '../apps/leavedays/config/config.php';
         $month = $config->month;
         $leave = $config->leave;
