@@ -85,8 +85,9 @@ class Leaves extends \Library\Core\BaseModel {
                     ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
                     ->where('MONTH( workManagiment\Leavedays\Models\Leaves.start_date) ="' . $mth . '" AND  workManagiment\Leavedays\Models\Leaves.member_id ="' . $id . '"')
                     ->getQuery()
-                    ->execute();
+                    ->execute(); 
         } else {
+           
             $row = $this->modelsManager->createBuilder()
                     ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
@@ -94,6 +95,7 @@ class Leaves extends \Library\Core\BaseModel {
                     ->where('MONTH( workManagiment\Leavedays\Models\Leaves.start_date) ="' . $mth . '" AND  workManagiment\Leavedays\Models\Leaves.leave_category ="' . $leave_type . '" AND  workManagiment\Leavedays\Models\Leaves.member_id ="' . $id . '"')
                     ->getQuery()
                     ->execute();
+           
         }
         $currentPage = (int) $_GET["page"];
         $paginator = new PaginatorModel(
@@ -104,7 +106,7 @@ class Leaves extends \Library\Core\BaseModel {
                 )
         );
         $list = $paginator->getPaginate();
-        //print_r($list);exit;
+       
         return $list;
     }
 

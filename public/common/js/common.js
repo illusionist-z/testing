@@ -47,39 +47,11 @@ $(document).ready(function(){
         window.location.href = baseUri + 'auth/logout';
         
     };
-    
-    var search=function(){
-       var month = document.getElementById('month').value;   
-         window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
-    };
-    
-     var sub=function(){
-       var month = document.getElementById('month').value;  
-       var username = document.getElementById('username').value; 
-       var year = document.getElementById('year').value; 
-         window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'?username='+username+'?year=' +year;
-    };
-    
-     var namesearch=function(){
-       var namelist = document.getElementById('namelist').value;  
-      
-         window.location.href = baseUri + 'attendancelist/index/todaylist?namelist='+namelist;
-    };
+//   
     // ユーザーのクリックした時の動作。
     $('#btn_logout').click(function(){        
         alert("ログアウトしました。");
         logout();
     });
-    
-    $('#search').click(function(){
-        search();
-    });
-    
-      $('#sub').click(function(){
-        sub();
-    });
-    
-     $('#namesearch').click(function(){
-        namesearch();
-    });
+
 });
