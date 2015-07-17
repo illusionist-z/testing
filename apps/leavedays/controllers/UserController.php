@@ -8,7 +8,7 @@ class UserController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-        //$this->assets->addJs('common/js/btn.js');
+        $this->assets->addJs('apps/leavedays/js/index.js');
         $this->setCommonJsAndCss();
     }
 
@@ -37,7 +37,9 @@ class UserController extends ControllerBase {
         
     }
 
-    
+    public function searchAction(){
+        echo "searchAction";exit;
+    }
       
     public function leavelistAction(){
      
@@ -50,6 +52,7 @@ class UserController extends ControllerBase {
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');
+        
    
         
         $leaves = new \workManagiment\Leavedays\Models\Leaves();

@@ -132,18 +132,7 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
         } else {
-            //show monthly list
-            //$sql="SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id where YEAR(attendances.att_date) like " . $year . " or MONTH(attendances.att_date) like " . $month . " or member_login_name='" . $username . "'";
-//            $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
-//            
-//             $conditions=$this->setCondition($year, $month, $username);
-//             $sql = $select;
-//              if (count($conditions) > 0) {
-//              $sql .= " WHERE " . implode(' AND ', $conditions);
-//              }
-//              $result = $this->db->query($sql);
-//              $list = $result->fetchall();
-
+     
             $results = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
@@ -204,8 +193,5 @@ class Attendances extends Model {
         return $result;
     }
 
-    public function userAction() {
-        
-    }
 
 }
