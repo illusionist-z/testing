@@ -11,7 +11,13 @@ function display_c() {
 }
 function display_ct() {
     var x = new Date();
-    var x1 = +x.getHours( ) + ":" + x.getMinutes() + ":" + x.getSeconds();
+    var sec=x.getSeconds();
+    if(sec<10){
+                var x1 = +x.getHours( ) + ":" + x.getMinutes() + ":0" + x.getSeconds();
+              }
+    else{
+                var x1 = +x.getHours( ) + ":" + x.getMinutes() + ":" + x.getSeconds();
+        }
     document.getElementById('ct').innerHTML = x1;
     tt = display_c();
 }
