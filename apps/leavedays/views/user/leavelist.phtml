@@ -1,5 +1,9 @@
 <?php
-
+//$timezone_identifiers = DateTimeZone::listIdentifiers();
+//$length = count($timezone_identifiers);echo $length;
+//for ($i=0; $i < $length; $i++) {
+//    echo "$timezone_identifiers[$i]<br>";
+//}exit;
 
 $length = count($Month);
 
@@ -19,7 +23,7 @@ $length = count($Month);
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <form id="frm_search" action="leavelist">
+        <form id="frm_search">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
                 <option value="">Leave Type</option>
                 <?php
