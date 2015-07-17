@@ -104,7 +104,7 @@ class Leaves extends \Library\Core\BaseModel {
                     ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
-                    ->where('MONTH( workManagiment\Leavedays\Models\Leaves.start_date) ="' . $mth . '" AND  workManagiment\Leavedays\Models\Leaves.leave_category ="' . $leave_type . '" AND  workManagiment\Leavedays\Models\Leaves.member_id ="' . $id . '"')
+                    ->where($this->setCondition2( $mth,$leave_type) .' AND workManagiment\Leavedays\Models\Leaves.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
            
@@ -120,6 +120,29 @@ class Leaves extends \Library\Core\BaseModel {
         $list = $paginator->getPaginate();
        
         return $list;
+    }
+    
+    public function setCondition2( $month, $leavetype) {
+        $conditions = array();
+
+       
+        if ($month != "") {
+
+            $conditions[] = "MONTH(workManagiment\Leavedays\Models\Leaves.start_date) like " . $month;
+        }
+        if ($leavetype != "") {
+            $conditions[] ="workManagiment\Leavedays\Models\Leaves.leave_category='" . $leavetype . "'";
+        }
+
+        //$sql = $select;
+        if (count($conditions) > 0) {
+            $result = implode(' AND ', $conditions);
+            //echo $result;exit;
+        } else {
+            $result = $conditions;
+        }
+        //print_r($result);exit;
+        return $result;
     }
 
 }

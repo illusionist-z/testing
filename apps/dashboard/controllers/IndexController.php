@@ -8,8 +8,8 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
-        //$this->assets->addJs('common/js/btn.js');
-        //$this->assets->addJs('apps/home/js/geo.js');
+        $this->assets->addJs('common/js/btn.js');
+        
     }
 
     public function indexAction() {
@@ -51,14 +51,15 @@ class IndexController extends ControllerBase {
         $lat = $this->request->get('lat');
         $lng = $this->request->get('lng');
         $offset = $this->request->get('offset');
-        $tz = $this->getTimezoneGeo($lat, $lng);
-
+        $tz=$this->getTimezoneGeo($lat,$lng);
+        
         $this->session->set('location', array(
             'lat' => $lat,
             'lng' => $lng,
             'timezone' => $tz,
             'offset' => $offset
         ));
+    
     }
     
     /**
@@ -73,6 +74,9 @@ class IndexController extends ControllerBase {
 
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $checkin->setcheckintime($id, $note, $lat, $lon);
+        
+        
+        
     }
 
     /**
@@ -92,10 +96,11 @@ class IndexController extends ControllerBase {
      * @return type
      */
     public function getTimezoneGeo($latForGeo, $lngForGeo) {
-        $json = file_get_contents("http://api.geonames.org/timezoneJSON?lat=" . $latForGeo . "&lng=" . $lngForGeo . "&username=gnext");
-        $data = json_decode($json);
-        $tzone = $data->timezoneId;
-        return $tzone;
-    }
-
+    $json = file_get_contents("http://api.geonames.org/timezoneJSON?lat=".$latForGeo."&lng=".$lngForGeo."&username=gnext");
+    $data = json_decode($json);
+    $tzone=$data->timezoneId;
+     
+    return $tzone;
+}
+    
 }

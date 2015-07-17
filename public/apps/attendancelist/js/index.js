@@ -28,7 +28,8 @@ $(document).ready(function(){
 });
 
     var search=function(){
-       var month = document.getElementById('month').value;   
+       var month = document.getElementById('month').value;
+      
          window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
     };
     

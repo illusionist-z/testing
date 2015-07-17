@@ -7,13 +7,12 @@
 
 
         <!-- Ionicons -->
-
-        <script src="common/js/jquery.min.js"></script>
+        
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
-
+        <?php    if($type == 'userlist'){     ?>
             <header class="main-header">
 
                 <!-- Logo -->
@@ -27,7 +26,7 @@
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
-                    <a><img src="common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <a><img src="../../common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
                     <!-- Navbar Right Menu -->
@@ -37,7 +36,7 @@
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="common/img/noti.png">
+                                    <img src="../../common/img/noti.png">
                                     <span class="label label-warning">3</span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -47,17 +46,17 @@
                                         <ul class="menu">
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png"> 5 new members joined today
+                                                    <img src="../../common/img/notid.png"> 5 new members joined today
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
+                                                    <img src="../../common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png">5 new members joined
+                                                    <img src="../../common/img/notid.png">5 new members joined
                                                 </a>
                                             </li>
 
@@ -71,13 +70,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="common/img/profile.png" class="user-image" alt="User Image"/>
+                                    <img src="../../common/img/profile.png" class="user-image" alt="User Image"/>
                                     <span class="hidden-xs">Admin</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                                        <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
                                             Alexander Pierce - Web Developer
                                             <small>Member since Nov. 2012</small>
@@ -109,7 +108,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                            <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p>Admin</p>
@@ -181,7 +180,19 @@
             <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
-
+        <?php }  
+        else {
+        ?>
+            <div class="content-wrapper" style="height:auto;">
+                <section class="content">
+                    <?php echo $this->getContent() ?>
+                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
+                    <?php $this->assets->outputJs(); ?>
+                </section>
+            </div><!-- /.content-wrapper -->
+        <?php
+            }
+        ?>
 
         </div><!-- ./wrapper -->
 

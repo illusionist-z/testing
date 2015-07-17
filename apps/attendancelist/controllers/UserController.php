@@ -26,6 +26,7 @@ class UserController extends ControllerBase
     }
     
     public function attendancelistAction(){
+       
         $offset= $this->session->location['offset'];
       
          $month = $this->request->get('month');

@@ -25,7 +25,12 @@ class CoreMember extends \Library\Core\BaseModel{
         return $getname;
     }
     
-    public function test(){
-        echo "test";exit;
+
+    public function updatetimezone($tz,$id){
+     
+          $this->db = $this->getDI()->getShared("db");
+        
+        $this->db->query("UPDATE core_member SET timezone ='".$tz."'  WHERE member_id ='".$id."' ");
+        
     }
 }
