@@ -22,7 +22,7 @@ class IndexController extends ControllerBase
         
     }
     
-    public function todaylistAction() {
+    public function userlistAction() {
      
     }
 

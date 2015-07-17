@@ -8,8 +8,8 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
-        //$this->assets->addJs('common/js/btn.js');
-        //$this->assets->addJs('apps/home/js/geo.js');
+        $this->assets->addJs('common/js/btn.js');
+        
     }
 
     public function indexAction() {
