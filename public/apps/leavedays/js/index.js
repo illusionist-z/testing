@@ -15,18 +15,7 @@ $(document).ready(function(){
     //set slide menu
  
     // ここに実際の処理を記述します。
-   
-    
-    var search=function(){
-       var month = document.getElementById('month').value; 
-        var ltype = document.getElementById('ltype').value;  
-    
-         window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'?ltype='+ltype;
-    };
-    
-    
-
-    
+  
     $('#usersearch').click(function(){
        
         search();
@@ -34,3 +23,11 @@ $(document).ready(function(){
     
      
 });
+
+ var search=function(){
+     
+       var month = document.getElementById('month').value; 
+        var ltype = document.getElementById('ltype').value;  
+    
+         window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'?ltype='+ltype;
+    };

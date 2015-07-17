@@ -43,7 +43,7 @@ class UserController extends ControllerBase {
     }
       
     public function leavelistAction(){
-     
+   
        require '../apps/attendancelist/config/config.php';
         $month = $config->month;
         $leave = $config->leave;
@@ -53,7 +53,7 @@ class UserController extends ControllerBase {
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');
-        
+     
 
         
         $leaves = new \workManagiment\Leavedays\Models\Leaves();
