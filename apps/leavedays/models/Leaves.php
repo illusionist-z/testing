@@ -33,7 +33,13 @@ class Leaves extends \Library\Core\BaseModel {
         
         return $row;
     }
-    
+    /**
+     * Search for leave list
+     * @param type $ltype
+     * @param type $month
+     * @param type $namelist
+     * @return type
+     */
     public function search($ltype,$month,$namelist) {
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id where MONTH(leaves.start_date)='".$month."'";

@@ -23,8 +23,8 @@ class SearchController extends ControllerBase {
       $this->view->disable();
         //return $this->setJsonResponse($json);
         //$this->response->redirect("leavedays/index/leavelist?result=".$result);
-        var_dump(json_decode($result, true));
-       //echo json_encode($result);
+        //var_dump(json_decode($result, true));
+       echo json_encode($result);
     }
   
 }
