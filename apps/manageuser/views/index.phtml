@@ -11,8 +11,9 @@
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
-        <div class="wrapper">
+      
         <?php    if($type == 'userlist'){     ?>
+              <div class="wrapper">
             <header class="main-header">
 
                 <!-- Logo -->
@@ -180,21 +181,22 @@
             <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
+              </div><!-- ./wrapper -->
         <?php }  
         else {
         ?>
-            <div class="content-wrapper" style="height:auto;">
+            
                 <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
                     <?php $this->assets->outputJs(); ?>
                 </section>
-            </div><!-- /.content-wrapper -->
+            
         <?php
             }
         ?>
 
-        </div><!-- ./wrapper -->
+      
 
 
 
