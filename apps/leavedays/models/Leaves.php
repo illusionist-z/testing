@@ -114,7 +114,7 @@ class Leaves extends \Library\Core\BaseModel {
     /**
      * Get today attendance list
      * @return type
-     * @author suzin
+     * @author david
      */
     public function applyleave($id, $sdate, $edate, $type, $desc) {
 

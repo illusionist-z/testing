@@ -66,9 +66,31 @@ cursor:pointer;
     float: right;
     padding-bottom: 8px;
     clear: both;
+    
 }
 a.button {
     color: #6e6e6e;
+    font: bold 11px Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    padding: 7px 19px;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-transition: border-color .218s;
+    -moz-transition: border .218s;
+    -o-transition: border-color .218s;
+    transition: border-color .218s;
+    background: #f3f3f3;
+    background: -webkit-gradient(linear,0% 40%,0% 70%,from(#F5F5F5),to(#F1F1F1));
+    background: -moz-linear-gradient(linear,0% 40%,0% 70%,from(#F5F5F5),to(#F1F1F1));
+    border: solid 1px #dcdcdc;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    margin-right: 1px;
+}
+.buttonn{
+      color: #6e6e6e;
     font: bold 11px Helvetica, Arial, sans-serif;
     text-decoration: none;
     padding: 7px 19px;

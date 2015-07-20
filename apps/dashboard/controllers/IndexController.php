@@ -34,25 +34,27 @@ class IndexController extends ControllerBase {
      * show admin dashboard
      */
     public function adminAction() {
-       
+    
     }
     
     /**
      * show user dashboard
      */
     public function userAction() {
-        
+          
     }
 
     /**
      * set location,latitude and longitude to session
      */
     public function location_sessionAction() {
+     
         $lat = $this->request->get('lat');
         $lng = $this->request->get('lng');
+        
         $offset = $this->request->get('offset');
         $tz=$this->getTimezoneGeo($lat,$lng);
-        
+      
         $this->session->set('location', array(
             'lat' => $lat,
             'lng' => $lng,
@@ -72,6 +74,7 @@ class IndexController extends ControllerBase {
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
 
+      
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $checkin->setcheckintime($id, $note, $lat, $lon);
         

@@ -22,7 +22,7 @@ class LoginController extends ControllerBase {
         $user = array();
         $this->session->set('user', $result);
         if ($result) {
-            //echo "AA";exit;
+          
             $modelPermission = new Models\Permission();
             $permissions = [];
 //            print_r($user);exit;

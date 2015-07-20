@@ -7,7 +7,8 @@
 
 
         <!-- Ionicons -->
-        
+
+        <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
@@ -111,7 +112,7 @@
                             <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Admin</p>
+                            <p><?php echo $this->session->user['member_login_name']; ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
