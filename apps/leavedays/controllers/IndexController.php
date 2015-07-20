@@ -58,7 +58,7 @@ class IndexController extends ControllerBase {
         
         $leaves = new \workManagiment\Leavedays\Models\Leaves();
         $leaves = $leaves->getleavelist();
-               
+        //print_r($leaves);exit;
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $user_name);

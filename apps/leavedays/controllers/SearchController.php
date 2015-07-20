@@ -13,18 +13,18 @@ class SearchController extends ControllerBase {
     }
 
     public function indexAction() {
-        $ltype=$this->request->get('ltype');
-        $month=$this->request->get('month');
-        $namelist=$this->request->get('namelist');
+        $ltype = $this->request->get('ltype');
+        $month = $this->request->get('month');
+        $namelist = $this->request->get('namelist');
         $search_leave = new \workManagiment\Leavedays\Models\Leaves();
-        $result=$search_leave->search($ltype,$month,$namelist);
-      // print_r(json_decode($result));exit;
-       $json['result'] = $result;
-      $this->view->disable();
+        $result = $search_leave->search($ltype, $month, $namelist);
+        // print_r(json_decode($result));exit;
+        $json['result'] = $result;
+        $this->view->disable();
         //return $this->setJsonResponse($json);
         //$this->response->redirect("leavedays/index/leavelist?result=".$result);
         //var_dump(json_decode($result, true));
-       echo json_encode($result);
+        echo json_encode($result);
     }
-  
+
 }
