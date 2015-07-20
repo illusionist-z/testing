@@ -13,7 +13,7 @@
     </head>
     <body class="skin-blue sidebar-mini">
         <div class="wrapper">
-
+        <?php    if($type == 'userlist'){     ?>
             <header class="main-header">
 
                 <!-- Logo -->
@@ -72,7 +72,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/profile.png" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
+                                    <span class="hidden-xs">Admin</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -181,7 +181,19 @@
             <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
-
+        <?php }  
+        else {
+        ?>
+            <div class="content-wrapper" style="height:auto;">
+                <section class="content">
+                    <?php echo $this->getContent() ?>
+                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
+                    <?php $this->assets->outputJs(); ?>
+                </section>
+            </div><!-- /.content-wrapper -->
+        <?php
+            }
+        ?>
 
         </div><!-- ./wrapper -->
 
