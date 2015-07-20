@@ -20,7 +20,7 @@ $length = count($Month);
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <form id="frm_search" action="showleavelist">
+        <form id="frm_search" onsubmit="return false;">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
                 <option value="">Leave Type</option>
                 <?php
@@ -134,4 +134,4 @@ $length = count($Month);
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-
+    <div id="content"></div>

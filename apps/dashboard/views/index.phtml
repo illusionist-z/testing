@@ -6,10 +6,12 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 
-        <!-- Ionicons -->        
+        <!-- Ionicons -->
+
+        <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini geolocation" onload="display_ct()">
+    <body class="skin-blue sidebar-mini"  onload="display_ct()" >
         <div class="wrapper">
 
             <header class="main-header">
@@ -17,7 +19,7 @@
                 <!-- Logo -->
                 <a href="index2.html" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>A</b>LT</span>
+                    <span class="logo-mini"><b>G_</b>NEXT</span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg">G_NEXT</span>
                 </a>
@@ -25,7 +27,7 @@
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
-                    <a><img src="common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <a><img src="../../common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
                     <!-- Navbar Right Menu -->
@@ -35,7 +37,7 @@
                             <!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="common/img/noti.png">
+                                    <img src="../../common/img/noti.png">
                                     <span class="label label-warning">3</span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -45,17 +47,17 @@
                                         <ul class="menu">
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png"> 5 new members joined today
+                                                    <img src="../../common/img/notid.png"> 5 new members joined today
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
+                                                    <img src="../../common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="common/img/notid.png">5 new members joined
+                                                    <img src="../../common/img/notid.png">5 new members joined
                                                 </a>
                                             </li>
 
@@ -69,15 +71,15 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="common/img/profile.png" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs"><?php echo $this->session->user['member_login_name'];?></span>
+                                    <img src="../../common/img/profile.png" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                                        <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
-                                            <?php echo $this->session->user['member_login_name'];?>
+                                            <?php echo $this->session->user['member_login_name']; ?>
                                             <small>Member since Nov. 2012</small>
                                         </p>
                                     </li>
@@ -107,10 +109,10 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="common/img/profile.png" class="img-circle" alt="User Image" />
+                            <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p><?php echo $this->session->user['member_login_name'];?></p>
+                            <p><?php echo $this->session->user['member_login_name']; ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
@@ -124,18 +126,18 @@
                             //the outer main menu
                             if (count($key_value) > 1) {
 
-                                echo ' <li class="treeview"><a href="#"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
+                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             } else {
                                 $top = explode(" ", $key_value[0]);
                                 if (strpos($key_name, 'user') !== false) {
 
                                     if (isset($top[1])) {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                    echo '<li id="att"><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 
@@ -150,9 +152,9 @@
                                         $mod = explode(" ", $key_value[0]);
                                     }
                                     if (strpos($key_name, 'user') !== false) {
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="common/img/li.png" >' . $value . '</a></li>';
+                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';
                                     } else {
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="common/img/li.png" >' . $value . '</a></li>';
+                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';
                                     }
                                 }
 
@@ -175,15 +177,15 @@
                     <?php $this->assets->outputJs(); ?>
                 </section>
             </div><!-- /.content-wrapper -->
-  <footer class="main-footer">
+
+            <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
 
 
-
         </div><!-- ./wrapper -->
 
-          
+
 
     </body>
 </html>

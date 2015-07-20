@@ -23,20 +23,38 @@ class Leaves extends \Library\Core\BaseModel {
      * @param type $username
      * @return type
      */
-    public function getleavelist($leave_type, $mth, $username) {
+    public function getleavelist() {
         //select leave list
         $this->db = $this->getDI()->getShared("db");
-        if (!isset($leave_type) and ! isset($mth) and ! isset($username)) {
+       
             $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
-        } else {
-            //search leave list
-        }
-
+        
         return $row;
     }
-
+    /**
+     * Search for leave list
+     * @param type $ltype
+     * @param type $month
+     * @param type $namelist
+     * @return type
+     */
+    public function search($ltype,$month,$namelist) {
+        $this->db = $this->getDI()->getShared("db");
+        $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id where MONTH(leaves.start_date)='".$month."'";
+        $result = $this->db->query($sql);
+        $row = $result->fetchall();
+//        $row = $this->modelsManager->createBuilder()
+//                    ->columns('start_date,member_login_name,end_date')
+//                    ->from('workManagiment\Core\Models\Db\CoreMember')
+//                    ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
+//                    ->where('MONTH(workManagiment\Leavedays\Models\Leaves.start_date) ="' . $month .'"')
+//                    ->getQuery()
+//                    ->execute();
+            //print_r($row);exit;
+           return $row;
+    }
     /**
      * Get today attendance list
      * @return type
