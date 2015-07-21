@@ -77,9 +77,9 @@ class UserController extends ControllerBase {
             $email=$this->request->getPost('email');
             $phno= $this->request->getPost('phno');
             $address= $this->request->getPost('address');
-          
+            $filename=$_FILES["fileToUpload"]["name"];
             $newuser=new \workManagiment\Core\Models\Db\CoreMember;
-            $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address);            
+            $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename );            
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
         } 

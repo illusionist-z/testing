@@ -37,11 +37,11 @@ class UserController extends ControllerBase {
         }     
         
     }
-
-    public function searchAction(){
-        echo "searchAction";exit;
-    }
-      
+     /**
+     * 
+     * display user leave list
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
     public function leavelistAction(){
    
        require '../apps/attendancelist/config/config.php';
@@ -56,8 +56,8 @@ class UserController extends ControllerBase {
      
 
         
-        $leaves = new \workManagiment\Leavedays\Models\Leaves();
-        $leavelist = $leaves->getuserleavelist($leave_type,$mth,$id);        
+        $Leaves = new \workManagiment\Leavedays\Models\Leaves();
+        $leavelist = $Leaves->getuserleavelist($leave_type,$mth,$id);        
         $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);      
         $this->view->setVar("leave_result", $leave);

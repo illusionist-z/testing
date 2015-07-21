@@ -11,7 +11,10 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/btn.js');
         
     }
-
+ /**
+     * 
+     *Check User or Admin 
+     */
     public function indexAction() {
         foreach ($this->session->auth as $key_name => $key_value) {
             

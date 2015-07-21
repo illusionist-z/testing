@@ -43,16 +43,18 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
         }
+        
+        //for paging 
         $currentPage = (int) $_GET["page"];
         $paginator = new PaginatorModel(
                 array(
             "data" => $row,
-            "limit" => 1,
+            "limit" => 1,//outputing 1 data per page
             "page" => $currentPage
                 )
         );
         $list = $paginator->getPaginate();
-        //print_r($list);exit;
+        
         return $list;
     }
 
@@ -76,7 +78,7 @@ class Attendances extends Model {
     public function getattlist($id, $month) {
         $this->db = $this->getDI()->getShared("db");
         $currentmth = date('m');
-
+        //for search method
         if (isset($month)) {
             $row = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
@@ -85,7 +87,9 @@ class Attendances extends Model {
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
-        } else {
+        }
+        //showing data with current month 
+        else {
             $row = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
@@ -94,6 +98,7 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
         }
+        //paging
         $currentPage = (int) $_GET["page"];
         $paginator = new PaginatorModel(
                 array(
@@ -103,7 +108,6 @@ class Attendances extends Model {
                 )
         );                
         $list = $paginator->getPaginate();
-        //print_r($list);exit;
         return $list;
     }
 
@@ -122,8 +126,6 @@ class Attendances extends Model {
 
         if ($year == "" and $month == "" and $username == "") {
             $month = date('m');
-//            $result = $this->db->query("SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id WHERE MONTH(attendances.att_date)='" . $month . "'");
-//            $list = $result->fetchall();
             $results = $this->modelsManager->createBuilder()
                     ->columns('att_date,member_login_name,checkin_time,checkout_time')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
@@ -137,15 +139,11 @@ class Attendances extends Model {
                     ->columns('att_date,member_login_name,checkin_time,checkout_time')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    //if (count($conditions) > 0) 
-                    //{
                     ->where($this->setCondition($year, $month, $username))
-
-                    // }
                     ->getQuery()
                     ->execute();
         }
-
+        //for paging
         $currentPage = (int) $_GET["page"];
         $paginator = new PaginatorModel(
                 array(
@@ -155,7 +153,6 @@ class Attendances extends Model {
                 )
         );
         $list = $paginator->getPaginate();
-        //print_r($list);exit;
         return $list;
     }
 
@@ -185,11 +182,10 @@ class Attendances extends Model {
         //$sql = $select;
         if (count($conditions) > 0) {
             $result = implode(' AND ', $conditions);
-            //echo $result;exit;
         } else {
             $result = $conditions;
         }
-        //print_r($result);exit;
+       
         return $result;
     }
 

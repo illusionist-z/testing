@@ -27,14 +27,14 @@ class IndexController extends ControllerBase
     public function todaylistAction() {
         $offset= $this->session->location['offset'];
         $name = $this->request->get('namelist');
-        $attlist = new \workManagiment\Attendancelist\Models\Attendances();
+        $Att_list = new \workManagiment\Attendancelist\Models\Attendances();
         
         //get user attendance list for today
-        $result_attlist = $attlist->gettodaylist($name);                
+        $result_attlist = $Att_list->gettodaylist($name);                
         //get user name
         //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
-        $userlist=new Db\CoreMember();
-        $username = $userlist::getinstance()->getusername();
+        $User_list=new Db\CoreMember();
+        $username = $User_list::getinstance()->getusername();
         
         $this->view->attlist = $result_attlist;
         $this->view->offset=$offset;
@@ -45,8 +45,8 @@ class IndexController extends ControllerBase
     public function monthlylistAction() {
        
         $offset= $this->session->location['offset'];
-        $userlist=new Db\CoreMember();
-        $user_name = $userlist::getinstance()->getusername();
+        $User_list=new Db\CoreMember();
+        $user_name = $User_list::getinstance()->getusername();
 
         require '../apps/attendancelist/config/config.php';
         $month = $config->month;
@@ -56,8 +56,8 @@ class IndexController extends ControllerBase
         $mth = $this->request->get('month');
         $username = $this->request->get('username');
         
-        $attendances = new \workManagiment\Attendancelist\Models\Attendances();
-        $result = $attendances->showmonthlylist($year, $mth, $username);
+        $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
+        $result = $Attendances->showmonthlylist($year, $mth, $username);
         
         $this->view->setVar("Month", $month);
         $this->view->setVar("showlist", $result);

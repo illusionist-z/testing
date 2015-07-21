@@ -24,16 +24,17 @@ class UserController extends ControllerBase
         $this->view->user = $user;
         
     }
-    
+    /**
+     * getting user attendance list by user id
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
     public function attendancelistAction(){
        
         $offset= $this->session->location['offset'];
-      
-         $month = $this->request->get('month');
+        $month = $this->request->get('month');
         $id= $this->session->user['member_id'];
-        
-      $attlist = new \workManagiment\Attendancelist\Models\Attendances();
-        $result_attlist = $attlist->getattlist($id,$month);      
+        $Att_list = new \workManagiment\Attendancelist\Models\Attendances();
+        $result_attlist = $Att_list->getattlist($id,$month);      
          $this->view->attlist = $result_attlist;
          $this->view->offset=$offset;
        

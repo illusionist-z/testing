@@ -91,6 +91,15 @@ class Leaves extends \Library\Core\BaseModel {
         }
         return $err;
     }
+    
+    /**
+     * getting user leave list by user id,month and leave type
+     * @param type $leave_type
+     * @param type $mth
+     * @param type $id
+     * @return type
+     * @author Su Zin Kyaw
+     */
 
     public function getuserleavelist($leave_type, $mth, $id) {
         //select leave list
@@ -98,6 +107,7 @@ class Leaves extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
         if ($leave_type == null and $mth == null) {
             $mth = date('m');
+            //showing current month leave list
             $row = $this->modelsManager->createBuilder()
                     ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
@@ -106,7 +116,7 @@ class Leaves extends \Library\Core\BaseModel {
                     ->getQuery()
                     ->execute(); 
         } else {
-           
+           //for searching by leave type and month
             $row = $this->modelsManager->createBuilder()
                     ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
@@ -116,6 +126,7 @@ class Leaves extends \Library\Core\BaseModel {
                     ->execute();
            
         }
+        //for pagination
         $currentPage = (int) $_GET["page"];
         $paginator = new PaginatorModel(
                 array(
@@ -129,6 +140,12 @@ class Leaves extends \Library\Core\BaseModel {
         return $list;
     }
     
+    /**
+     * set conditon for more than one condition
+     * @param type $month
+     * @param type $leavetype
+     * @return string
+     */
     public function setCondition2( $month, $leavetype) {
         $conditions = array();
 
@@ -141,14 +158,13 @@ class Leaves extends \Library\Core\BaseModel {
             $conditions[] ="workManagiment\Leavedays\Models\Leaves.leave_category='" . $leavetype . "'";
         }
 
-        //$sql = $select;
+        
         if (count($conditions) > 0) {
             $result = implode(' AND ', $conditions);
-            //echo $result;exit;
+          
         } else {
             $result = $conditions;
         }
-        //print_r($result);exit;
         return $result;
     }
 
