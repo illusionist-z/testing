@@ -76,19 +76,20 @@ class Leaves extends \Library\Core\BaseModel {
                     if (strtotime($sdate) < strtotime($edate)) {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
                         $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description) VALUES('" . $id . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "')");
-                        echo '<script type="text/javascript">alert("Your Leave Applied Successfully! ")</script>';
+                        $err="Your Leave Applied Successfully!";
                     } else {
-                        echo '<script>alert("End date must be greater than Start date");</script>';
+                        $err="End date must be greater than Start date";
                     }
                 } else {
-                    echo '<script type="text/javascript">alert("Apply Leave Before a week ")</script>';
+                        $err="Apply Leave Before a week ";
                     //echo "<script>window.location.href='applyleave';</script>";exit;
                 }
             }
         } else {
-            echo '<script type="text/javascript">alert("Please,Insert All Data! ")</script>';
+                        $err="Please,Insert All Data! ";
             // echo "<script>window.location.href='applyleave';</script>";exit;
         }
+        return $err;
     }
 
     public function getuserleavelist($leave_type, $mth, $id) {

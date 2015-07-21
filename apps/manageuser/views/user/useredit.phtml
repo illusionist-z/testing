@@ -1,39 +1,39 @@
-	<table>	
+<form id="edit_user">	<table>	
             <?php 
             foreach($edituser as $res){                    
             ?>
 	<tr>
 		<td>User ID :</td>
-		<td><input type="text" value="<?= $res->member_id ?>"></td>
+                <td><input type="text" value="<?= $res->member_id ?>" name="id" id="edit_user_id" disabled></td>
 		<td></td>
 		<td>User Name :</td>
-		<td><input type="text" value="<?= $res->member_login_name ?>"></td>
+                <td><input type="text" value="<?= $res->member_login_name ?>" name="name"></td>
 	</tr>
 	<tr>
 		<td>Department :</td>
-		<td><input type="text" value="<?= $res->member_dept_name ?>"></td>
+                <td><input type="text" value="<?= $res->member_dept_name ?>" name="dept"></td>
 		<td></td>
 		<td>Position	:</td>
-		<td><input type="text" value="<?= $res->job_title ?>"></td>
+                <td><input type="text" value="<?= $res->job_title ?>" name="position"></td>
 	</tr>
 	<tr>
 		<td>Email :</td>
-		<td><input type="text" value="<?= $res->member_mail ?>"></td>
+                <td><input type="text" value="<?= $res->member_mail ?>" name="email"></td>
 		<td></td>
 		<td>Phone no</td>
-		<td><input type="text" value="<?= $res->member_tel ?>"></td>
+                <td><input type="tel" value="<?= $res->member_tel ?>" name="pno" ></td>
 	</tr>
 	<tr>
 		<td>Address :</td>
-		<td colspan="4"><textarea rows="5" cols="50">no(3),*****str,*****tsp, ygn</textarea></td>
+                <td colspan="4"><textarea rows="5" cols="50" name="address">no(3),*****str,*****tsp, ygn</textarea></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td colspan="3"><a href="#" class="button" id="displaypopup">Edit</a><a href="#" class="button" id="displaypopup">Delete</a><a href="#" class="button" id="displaypopup">Cancel</a></td>
-		
+		<td colspan="3"><a href="#" class="button" id="edit_user_edit">Edit</a><a href="#" class="button" id="edit_user_delete">Delete</a><a href="#" class="button" id="edit_user_close">Cancel</a></td>		
 	</tr>
         <?php
             }
             ?>
 	</table>
-	
+</form>	
+

@@ -32,5 +32,21 @@ class User extends Model {
         $user = Db\CoreMember::findByMemberLoginName($name);
         return $user;
     }
-    
+    /**
+     * @since  20/7/15
+     * @author David
+     * @desc  edit by cond
+     * @param type $cond {array}
+     */
+    public function editbycond($cond){
+        $this->db = $this->getDI()->getShared("db");        
+        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."' Where member_id='".$cond['id']."'";
+        $this->db->query($query);
+    }
+
+    public function userdelete($id){
+        $this->db = $this->getDI()->getShared("db");
+        $query = "Delete from core_member where member_id ='".$id."'";
+        $this->db->query($query);
+    }
 }

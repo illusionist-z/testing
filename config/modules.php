@@ -12,3 +12,4 @@ foreach ($aryModules as $module) {
     ];
 }
 $application->registerModules($regModules);
+
