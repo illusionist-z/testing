@@ -144,6 +144,7 @@ class Attendances extends Model {
                     // }
                     ->getQuery()
                     ->execute();
+            //var_dump($results);die;
         }
 
         $currentPage = (int) $_GET["page"];

@@ -19,7 +19,8 @@ class IndexController extends ControllerBase {
         //$this->response->redirect('applyleave');        
     }
 
-    public function applyleaveAction() {        
+    public function applyleaveAction() {    
+         
         require '../apps/Leavedays/Config/config.php';
         $config = $config;
         $leavetype = $config->leavetype;
@@ -44,7 +45,7 @@ class IndexController extends ControllerBase {
      * Show Leave data list
      */
     public function leavelistAction(){
-       
+      
        require '../apps/leavedays/config/config.php';
         $month = $config->month;
         $leave = $config->leave;

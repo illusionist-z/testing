@@ -120,8 +120,9 @@ class Leaves extends \Library\Core\BaseModel {
 
         $this->db = $this->getDI()->getShared("db");
         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
-
+            
             if (isset($sdate) AND isset($edate) AND isset($desc)) {
+              
                 $today = date("Y-m-d");
                 $checkday = date("Y-m-d", strtotime("+7 days"));
                 $sdate = date("Y-m-d", strtotime($sdate));
@@ -133,6 +134,7 @@ class Leaves extends \Library\Core\BaseModel {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
                         $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description) VALUES('" . $id . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "')");
                         echo '<script type="text/javascript">alert("Your Leave Applied Successfully! ")</script>';
+                        
                     } else {
                         echo '<script>alert("End date must be greater than Start date");</script>';
                     }
