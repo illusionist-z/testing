@@ -1,9 +1,9 @@
 <?php
 
-use Phalcon\Config;
+
 namespace workManagiment\Setting\Controllers;
 use workManagiment\Core\Models\Db;
-class IndexController extends ControllerBase {
+class UserController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
@@ -16,10 +16,8 @@ class IndexController extends ControllerBase {
         
         //$this->response->redirect('applyleave');        
     }
-    public function settingmoduleAction() {
-        $userlist=new Db\CoreMember();
-        $username = $userlist::getinstance()->getusername();
-        $this->view->setVar("member",$username);
+    public function usersettingAction() {
+     
     }
     
    

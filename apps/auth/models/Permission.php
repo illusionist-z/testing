@@ -49,8 +49,7 @@ class Permission {
                 //$robot = $permissions->current();
                 foreach ($permissions as $robot) {
                 $permissionGroups[] = $robot->rel_permission_group_code;
-                    //$permissionGroups[] = $robot->rel_permission_group_code;
-                    //$permissions->next();
+               
             }
             }
         } catch (\Exception $e) {

@@ -16,9 +16,11 @@ function GEOprocess(position) {
     //GET geo location of user
     var url = "location_session";
     var n = new Date();
+    
+   
     var offset = n.getTimezoneOffset();
     $.ajax({
-        url: url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset="+offset ,
+        url:  url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset="+offset ,
         type: 'GET',
         dataType: 'json',
         success: function (d) {
@@ -30,18 +32,11 @@ function GEOprocess(position) {
     });
 }
  
-//$('.geolocation').ready(function(){
-//        geo();
-//         });           
-$(document).ready(function(){                
-    //set slide menu
-    if(document.getElementById("id") !== null){
-        $('#slidemenu-left').mmenu();
-        $('#logo').click(function(){
-            $('#slidemenu-left').trigger('open');
-        });
-        $('#slidemenu-left').trigger('open');
-    }
+$('.geolocation').ready(function(){
+        geo();
+         });           
+$(document).ready(function(){        
+    
     // ここに実際の処理を記述します。
     var logout = function(){
         window.location.href = baseUri + 'auth/logout';
@@ -53,5 +48,14 @@ $(document).ready(function(){
         alert("ログアウトしました。");
         logout();
     });
+    
+      var logout = function(){
+        window.location.href = baseUri + 'auth/logout';
+        
+    };
+//   
+   
+    
+    
 
 });

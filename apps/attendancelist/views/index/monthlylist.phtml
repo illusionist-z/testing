@@ -31,7 +31,7 @@ $length = count($Month);
 <section class="content">
     <div class="buttons">
 <!--        <form action="monthlysearch" method="post">-->
-<form action="" method="post">
+<form onsubmit="return false;" method="post">
             <select class="select" data-toggle="select" name="year" id="year">
                 <option value="">Year</option>
                 <?php
@@ -81,7 +81,7 @@ $length = count($Month);
                 ?>
             </select>
             <!-- <a href="../search/search" class="button" id='btn_search'>Search</a> -->
-            <input type="submit" value="Search" class="button" id="sub">
+            <input type="submit" value="Search" class="buttonn" id="sub">
             <input type="hidden" value='' id='hidden-type' name='ExportType'/>
             <a href="" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'monthly_list.csv']);">Export</a>
         

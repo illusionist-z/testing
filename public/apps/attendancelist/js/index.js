@@ -10,13 +10,23 @@
 
        
 $(document).ready(function(){        
-    
-     
-    //set slide menu
- 
-    // ここに実際の処理を記述します。
    
+    // ユーザーのクリックした時の動作。
+
     
+    $('#search').click(function(){
+        search();
+    });
+    
+      $('#sub').click(function(){
+        sub();
+    });
+    
+     $('#namesearch').click(function(){
+        namesearch();
+    });
+});
+
     var search=function(){
        var month = document.getElementById('month').value;
       
@@ -35,19 +45,3 @@ $(document).ready(function(){
       
          window.location.href = baseUri + 'attendancelist/index/todaylist?namelist='+namelist;
     };
-    // ユーザーのクリックした時の動作。
-
-    
-    $('#search').click(function(){
-        search();
-    });
-    
-      $('#sub').click(function(){
-          alert("sub");
-        sub();
-    });
-    
-     $('#namesearch').click(function(){
-        namesearch();
-    });
-});

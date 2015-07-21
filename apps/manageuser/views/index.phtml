@@ -7,7 +7,8 @@
 
 
         <!-- Ionicons -->
-        
+
+        <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
@@ -19,7 +20,7 @@
                 <!-- Logo -->
                 <a href="index2.html" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>A</b>LT</span>
+                    <span class="logo-mini"><b>G_</b>NEXT</span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg">G_NEXT</span>
                 </a>
@@ -112,7 +113,7 @@
                             <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Admin</p>
+                            <p><?php echo $this->session->user['member_login_name']; ?></p>
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
