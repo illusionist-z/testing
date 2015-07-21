@@ -2,3 +2,6 @@
 /bk/nbproject/private/
 /data/*/*
 /config/config.ini
+.DS_Store   # Template file on Mac OS.
+*.log       # log files
+*.swp       # swap files
