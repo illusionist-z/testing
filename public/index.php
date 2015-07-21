@@ -63,7 +63,10 @@ try {
      * Include modules
      */
     require __DIR__ . '/../config/modules.php';
-    
+    /**
+     * Module config 
+     */
+    require __DIR__ . '/../config/module_config.php';
     echo $application->handle()->getContent();
 
 } catch (Phalcon\Exception $e) {

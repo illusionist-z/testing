@@ -25,7 +25,12 @@ class CoreMember extends \Library\Core\BaseModel{
         return $getname;
     }
     
-
+    /**
+     * 
+     * @param type $tz
+     * @param type $id
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
     public function updatetimezone($tz,$id){
      
           $this->db = $this->getDI()->getShared("db");
@@ -33,8 +38,20 @@ class CoreMember extends \Library\Core\BaseModel{
         $this->db->query("UPDATE core_member SET timezone ='".$tz."'  WHERE member_id ='".$id."' ");
         
     }
+     /**
+      * Adding new user to core member
+      * @param type $username
+      * @param type $password
+      * @param type $dept
+      * @param type $position
+      * @param type $email
+      * @param type $phno
+      * @param type $address
+      * @param type $filename
+      * @author Su Zin Kyaw
+      */
     
-    public function addnewuser($username,$password, $dept, $position,$email, $phno,$address){
+    public function addnewuser($username,$password, $dept, $position,$email, $phno,$address,$filename ){
     $this->db = $this->getDI()->getShared("db");
     $pass=MD5($password);
     if($username==NULL OR $password==NULL OR $dept==NULL OR $position==NULL OR $email==NULL OR $phno==NULL OR $address==NULL ){
@@ -44,10 +61,16 @@ class CoreMember extends \Library\Core\BaseModel{
         
     }
     else {
-         $this->db->query("INSERT INTO core_member (member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address)"
-    . " VALUES('" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "')");
+            //uploading file
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
+         $this->db->query("INSERT INTO core_member (member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address,member_profile)"
+    . " VALUES('" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
     echo '<script type="text/javascript">alert("New User is Added Successfully! ")</script>';
      echo "<script type='text/javascript'>window.location.href='../../manageuser/user/adduser';</script>";
         }
+        
+        
     }
 }

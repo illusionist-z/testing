@@ -53,16 +53,16 @@ function disablePopup_box(){
 function centerPopup(){
 	
 	//request data for centering
-	var windowWidth = document.documentElement.clientWidth;
-	var windowHeight = document.documentElement.clientHeight;
-	var popupHeight = $("#myPopup").height();
-	var popupWidth = $("#myPopup").width();
+	var windowWidth = $(window).width();
+	var windowHeight = $(window).height();
+//	var popupHeight = $("table > tbody").height();
+//	var popupWidth = $("table > tbody").width();
 	
 
 	$("#myPopup").css({
 		"position": "absolute",
-		"top": windowHeight/2-popupHeight/2,
-		"left": windowWidth/2-popupWidth/2
+		"top": windowHeight/3,
+		"left": windowWidth/4
 	});
 	
 	$("#backgroundPopup").css({
@@ -93,8 +93,7 @@ function centerPopup_box(){
 
 $(document).ready(function(){
 	
-	$("#displaypopup").click(function(){
-
+	$(".displaypopup").click(function(){            
 		//centering with css
 		centerPopup();
 		//load popup

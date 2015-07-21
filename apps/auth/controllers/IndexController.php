@@ -7,8 +7,7 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();        
-        //$this->assets->addCss('/common/css/auth/auth.css');
-         $this->setCommonJsAndCss();
+               $this->setCommonJsAndCss();
         
     }
 
