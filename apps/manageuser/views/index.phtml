@@ -1,3 +1,4 @@
+<?php use Phalcon\Tag as Tag; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,16 +7,15 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 
-        <!-- Ionicons -->
-
-        <script src="../../common/js/jquery.min.js"></script>
+        <!-- Ionicons -->        
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
-        <div class="wrapper">
+      
         <?php    if($type == 'userlist'){     ?>
+              <div class="wrapper">
             <header class="main-header">
-
+                
                 <!-- Logo -->
                 <a href="index2.html" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -174,28 +174,31 @@
                 <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
-                    <?php $this->assets->outputJs(); ?>
+                    <?php $this->assets->outputJs(); 
+                          echo Tag::javascriptInclude("apps/manageuser/js/useredit.js");
+                    ?>
                 </section>
             </div><!-- /.content-wrapper -->
 
             <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
+              </div><!-- ./wrapper -->
         <?php }  
-        else {
+        else {            
         ?>
-            <div class="content-wrapper" style="height:auto;">
+               
                 <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
                     <?php $this->assets->outputJs(); ?>
                 </section>
-            </div><!-- /.content-wrapper -->
+            
         <?php
             }
         ?>
 
-        </div><!-- ./wrapper -->
+      
 
 
 

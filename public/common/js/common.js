@@ -31,10 +31,7 @@ function GEOprocess(position) {
         }
     });
 }
- 
-$('.geolocation').ready(function(){
-        geo();
-         });           
+         
 $(document).ready(function(){        
     
     // ここに実際の処理を記述します。

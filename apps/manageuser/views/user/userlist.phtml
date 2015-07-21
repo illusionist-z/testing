@@ -1,139 +1,83 @@
-       <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            User list
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">user list</li>
-          </ol>
-        </section>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        User list
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">user list</li>
+    </ol>
+</section>
 
-        <!-- Main content -->
-        <section class="content">
-          <div class="buttons">
-			<!--<a href="#" class="button add-big">Add User</a>-->
-			
-		<select class="select" data-toggle="select">
-			<option>001</option>
-			<option>002</option>
-			<option>003</option>
-			<option>004</option>
-		</select>
-		
-		<select class="select" data-toggle="select">
-			<option>Name</option>
-			<option>Su Zin Kyaw</option>
-			<option>Su Yamin</option>
-		</select>
-		<a href="#" class="button">Search</a>
-	
-		  </div>
-		  
-          <div class="row">
-		  <div class="col-md-12"><!--start table content--->
-                <table class="listtbl">
-  <thead>
-    <tr>
-			<th width="80px">ID</th>
-			<th>Name</th>
-			<th>Department</th>
-			<th>Position</th>
-			<th width="250px">Email</th>
-			<th>Phone no</th>
-			<th>Address</th>
-			<th width="50px"></th>
-	</tr>
-	
-  </thead>
-  <tbody>
-				<tr>
-			  		<td>001</td>
-			  		<td>Mabel</td>
-			  		<td>Web development</td>
-			  		<td>Developer</td>
-			  		<td>mabel@gmail.com</td>
-			  		<td>09242563155</td>
-					<td>Ygn</td>
-					<td id='tbl-no'><a href="#" class="button" id="displaypopup">Edit</a></td>
-			  	</tr>
-				<tr>
-			  		<td>002</td>
-			  		<td>Pabel</td>
-			  		<td>Web development</td>
-			  		<td>Developer</td>
-			  		<td>pabel@gmail.com</td>
-			  		<td>09464566757</td>
-					<td>Ygn</td>
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-				<tr>
-			  		<td>003</td>
-			  		<td>Rose</td>
-			  		<td>Web development</td>
-			  		<td>Developer</td>
-			  		<td>rose@gmail.com</td>
-			  		<td>09678544467</td>
-					<td>Ygn</td>
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-				<tr>
-			  		<td>004</td>
-			  		<td>Su Zin Kyaw</td>
-			  		<td>Web development</td>
-			  		<td>Developer</td>
-			  		<td>suzin.gnext@gmail.com</td>
-			  		<td>09214141155</td>
-					<td>Ygn</td>
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-			  	<tr>
-			  		<td>005</td>
-			  		<td>Su Yamin</td>
-			  		<td>Web development</td>
-			  		<td>Developer</td>
-			  		<td>suyamin.gnext@gmail.com</td>
-			  		<td>094534532</td>
-					<td>Ygn</td>
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-			  	<tr>
-			  		<td>006</td>
-			  		<td>Aung Nain Tun</td>
-			  		<td>Web development</td>
-			  		<td>Developer</td>
-			  		<td>aungnaing.gnext@gmail.com</td>
-			  		<td>093632674</td>
-					<td>Ygn</td>
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-			  	<tr>
-			  		<td>007</td>
-			  		<td>David</td>
-			  		<td>Web development</td>
-			  		<td id=''>Developer</td>
-			  		<td id=''>david.gnext@gmail.com</td>
-			  		<td id=''>09683499</td>
-					<td id=''>Ygn</td>
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-  </tbody>
-</table>      
-          </div><!--end table content--->
-          </div><!-- /.row -->
-		  
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
+<!-- Main content -->
+<section class="content">
+    <div class="buttons">
+        <!--<a href="#" class="button add-big">Add User</a>-->				
+        <select class="select" data-toggle="select">
+            <option>Name</option>
+               <?php
+                foreach ($username as $name){
+                ?>
+                <option value="<?php echo $name['member_login_name']; ?>" >          
+                <?php echo $name['member_login_name']; ?></option>
+                <?php
+                }
+                ?>
 
-      
-      <div id="myPopup" style="display:none;" title="Dialog Title"><a id="popupClose">x</a><h1>Edit user form</h1><iframe frameborder="0" scrolling="no" width="650" height="300" src="useredit"></iframe></div>	
-	
-      
+        </select>
+        <a href="#" class="button">Search</a>
 
-    </div><!-- ./wrapper -->
-	
-	
-  
-    
-  </body>
-</html>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+            <table class="listtbl">
+                <thead>
+                    <tr>
+                        <th width="80px">ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th width="250px">Email</th>
+                        <th>Phone no</th>
+                        <th>Address</th>
+                        <th width="50px"></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php 
+                    $i=0;
+                    foreach ($username as $result) {
+                    ?>                       
+                    <tr>
+                        <td><?= $i ?></td>
+                        <td><?= $result['member_login_name'] ?></td>
+                        <td><?= $result['member_dept_name'] ?></td>
+                        <td><?= $result['job_title'] ?></td>
+                        <td><?= $result['member_mail'] ?></td>
+                        <td><?= $result['member_tel'] ?></td>
+                        <td><?= $result['lang'] ?></td>
+                        <td><a href="#" onclick="return false;" class="button displaypopup" id="<?=$result['member_login_name']?>">Edit</a></td>
+                    </tr>
+                   <?php
+                    $i++;
+                    }
+                    ?>
+                </tbody>
+            </table>      
+        </div><!--end table content--->
+    </div><!-- /.row -->
+
+</section><!-- /.content -->
+</div><!-- /.content-wrapper -->
+
+<div id="edituser" style="display:none" class="navbar">
+    <form></form>
+</div>	
+
+
+
+
+
+
