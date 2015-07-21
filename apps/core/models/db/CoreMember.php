@@ -61,9 +61,11 @@ class CoreMember extends \Library\Core\BaseModel{
         
     }
     else {
-        
-         $this->db->query("INSERT INTO core_member (member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address)"
-    . " VALUES('" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "''" . $filename . "')");
+            $target_dir = "uploads/";
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
+         $this->db->query("INSERT INTO core_member (member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address,member_profile)"
+    . " VALUES('" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
     echo '<script type="text/javascript">alert("New User is Added Successfully! ")</script>';
      echo "<script type='text/javascript'>window.location.href='../../manageuser/user/adduser';</script>";
         }
