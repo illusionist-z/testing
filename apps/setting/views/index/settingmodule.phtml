@@ -2,12 +2,12 @@
     <div class="col-sm-3">        
         <ul class="nav nav-pills nav-stacked">
         <?php 
-        $count = 0;        
+              
         echo "<li class='active'><a href='' onclick='return false;'>Select Permission under</a></li>";
         foreach ($member as $name){            
-            if($count==4 || $count==7)
-            echo "<li><a href=''>".$name['member_login_name']."</a></li>";
-            $count++;
+            if($name['member_login_name']=='test02'||$name['member_login_name']=='admin')
+             echo "<li><a href=''>".$name['member_login_name']."</a></li>";
+        
         }
         
         ?>                  

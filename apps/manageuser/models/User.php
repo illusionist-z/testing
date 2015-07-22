@@ -1,7 +1,6 @@
 <?php
 
 namespace workManagiment\Manageuser\Models;
-
 use Phalcon\Mvc\Model;
 use workManagiment\Core\Models\Db;
 /*
@@ -38,10 +37,16 @@ class User extends Model {
      * @desc  edit by cond
      * @param type $cond {array}
      */
-    public function editbycond($cond){
-        $this->db = $this->getDI()->getShared("db");        
-        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."' Where member_id='".$cond['id']."'";
-        $this->db->query($query);
+    public function editbycond($cond){        
+        $res=filter_var($cond['email'],FILTER_VALIDATE_EMAIL)?true:false;
+        if($res){$dd=true;}
+//        $this->db = $this->getDI()->getShared("db");        
+//        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."' Where member_id='".$cond['id']."'";
+//        $this->db->query($query);
+         else{
+             $dd=false;             
+         }
+         return $dd;
     }
 
     public function userdelete($id){

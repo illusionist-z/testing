@@ -1,6 +1,7 @@
 <?php
 
 namespace workManagiment\Manageuser\Controllers;
+use Phalcon\Validation\Validator\Email as EmailValidator;
 use workManagiment\Manageuser\Models\User as User;
 /**
  * @author David
@@ -55,14 +56,14 @@ class UserController extends ControllerBase {
      * @desc   update user
      * @since  20/7/15
      */
-    public function userdata_editAction() {
+    public function userdata_editAction() {        
         $cond = array();
         $cond['id']  =  $this->request->get('data');
         $cond['name']=$this->request->get('name');
         $cond['dept']=$this->request->get('dept');
         $cond['position']=$this->request->get('position');
         $cond['email']=$this->request->get('email');
-        $cond['pno']=$this->request->get('pno');        
+        $cond['pno']=$this->request->get('pno');         
         $this->user->editbycond($cond);        
         $this->view->disable();        
     }

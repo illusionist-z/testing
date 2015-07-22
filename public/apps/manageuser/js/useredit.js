@@ -56,9 +56,13 @@ var User = {
         $.ajax({
             type:"GET",
             url :"userdata_edit?data="+id,
-            data:$form.serialize()            
-        }).done(function(){
-            $('body').load('userlist');
+            data:$form.serialize(),
+            dataType:'json',
+            success:function(d){
+                alert(d);
+            }
+        }).done(function(d){
+            //$('body').load('userlist');
         });
     },
     Delete: function (d){
