@@ -16,12 +16,90 @@ function tz_list() {
 }
 ?>
 
-<div style="margin-top: 20px;">
-  <select style="font-family: 'Courier New', Courier, monospace; width: 450px;" name="timezone">
+        <section class="content-header">
+          <h1>
+            Profile
+          </h1>
+          
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+         
+         <div class="row">
+	 <div class="col-md-12"><!--start add user form--->
+	<div id="form_div">
+	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add user form</font></div>
+        
+        <form action="adduser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
+        <div ><img src="../../common/img/profile.png">
+        </div>
+	<table width="650px" height="300px"> 
+            <tr>
+                <td >Change Profile Picture </td>
+                <td ><input type="file"   name="fileToUpload"   id="fileToUpload" > 
+            </tr>
+	<tr>
+            
+            <td >User Name :</td>
+           
+		<td>
+		<input type="text" name="username" value="">
+		</td>
+        </tr>
+        <tr>
+		
+		<td>Password :</td>
+                <td><input type="password" name="password" value=""></td>
+	</tr>
+	<tr>
+		<td>Department:</td>
+		<td><input type="text" name="dept" value=""></td>
+        </tr>
+        <tr>
+          
+		<td>Position	:</td>
+		<td><input type="text" name="position" value=""></td>
+	</tr>
+	<tr>
+		<td>Email :</td>
+		<td><input type="email" name="email" value="">
+               </td>
+	</tr>
+        <tr>
+		<td>Phone no</td>
+		<td><input type="text" name= "phno" value=""></td>
+	</tr>
+       
+	<tr>
+		<td>Address :</td>
+		<td colspan="4"><textarea rows="5" name="address" cols="50"></textarea></td>
+	</tr>
+        <tr>
+            <td>TimeZone : </td>
+            <td><select style= "font-family: 'Courier New', Courier, monospace; width: 450px; margin-top: 9px; margin-bottom: 9px;" name="timezone">
     <option value="0">Please, select timezone</option>
     <?php foreach(tz_list() as $t) { ?>
       <option value="<?php print $t['diff_from_GMT'] ?>">
         <?php print $t['diff_from_GMT'] . ' - ' . $t['zone'] ?>
       </option>
     <?php } ?>
-  </select>
+                </select></td>
+        </tr>
+	<tr>
+		<td></td>
+		
+                <td><input type="submit" class="buttonn" value="Add  New User"></td>
+		<td></td>
+	</tr>
+	</table>
+	
+</form>
+			</div>
+          </div><!--end add user form--->
+          </div><!-- /.row -->
+		  
+        </section><!-- /.content -->
+    
+
+  

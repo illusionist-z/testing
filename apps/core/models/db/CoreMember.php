@@ -50,10 +50,9 @@ class CoreMember extends \Library\Core\BaseModel{
       * @param type $filename
       * @author Su Zin Kyaw
       */
-    
-    public function addnewuser($username,$password, $dept, $position,$email, $phno,$address,$filename ){
+public function addnewuser($username,$password, $dept, $position,$email, $phno,$address,$filename ){
     $this->db = $this->getDI()->getShared("db");
-    $pass=MD5($password);
+    $pass=sha1($password);
     if($username==NULL OR $password==NULL OR $dept==NULL OR $position==NULL OR $email==NULL OR $phno==NULL OR $address==NULL ){
       
     echo '<script type="text/javascript">alert("Please,Insert All Data! ")</script>';
@@ -65,12 +64,21 @@ class CoreMember extends \Library\Core\BaseModel{
             $target_dir = "uploads/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
-         $this->db->query("INSERT INTO core_member (member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address,member_profile)"
-    . " VALUES('" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
+         $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address,member_profile)"
+    . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
     echo '<script type="text/javascript">alert("New User is Added Successfully! ")</script>';
      echo "<script type='text/javascript'>window.location.href='../../manageuser/user/adduser';</script>";
         }
         
         
     }
+    
+  public function UserDetail($id){
+     
+       $this->db = $this->getDI()->getShared("db");
+        $user = $this->db->query("SELECT * FROM core_member WHERE member_id='".$id."'");
+        
+        $user = $user->fetchall();
+        return $user;
+  }
 }
