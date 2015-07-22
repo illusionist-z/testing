@@ -76,11 +76,19 @@ class IndexController extends ControllerBase {
         $note = $this->request->get('note');
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
-
-      
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $checkin->setcheckintime($id, $note, $lat, $lon);
+        $name=$this->session->user['member_login_name'];
+        if ( $name=='admin'){
+            $this->response->redirect('attendancelist/user/attendancelist');
+        }
+        else
+        {
+            $this->response->redirect('attendancelist/index/todaylist');
+        }
         
+        
+
         
         
     }
@@ -93,6 +101,16 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $checkin->setcheckouttime($id);
+         //$this->response->redirect('attendancelist/user/attendancelist');
+        $name=$this->session->user['member_login_name'];
+        if ( $name=='admin'){
+            $this->response->redirect('attendancelist/user/attendancelist');
+        }
+        else
+        {
+            $this->response->redirect('attendancelist/index/todaylist');
+        }
+
     }
     
     /**

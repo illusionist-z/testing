@@ -12,9 +12,8 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
-        //$this->assets->addCss('common/css/home/home.css');        
-        
-        //$this->response->redirect('applyleave');        
+          
+           
     }
     public function settingmoduleAction() {
         $userlist=new Db\CoreMember();

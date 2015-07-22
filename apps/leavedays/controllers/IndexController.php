@@ -17,9 +17,7 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
-        //$this->assets->addCss('common/css/home/home.css');        
-        $user = $this->session->get('user');
-        //$this->response->redirect('applyleave');        
+        
     }
     /**
      * @author David

@@ -12,7 +12,8 @@ function display_c() {
 function display_ct() {
     var x = new Date();
     var sec=x.getSeconds();
-    if(sec<10){
+ 
+    if(sec<10 ){
                 var x1 = +x.getHours( ) + ":" + x.getMinutes() + ":0" + x.getSeconds();
               }
     else{

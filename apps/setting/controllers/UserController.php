@@ -12,12 +12,13 @@ class UserController extends ControllerBase {
     }
 
     public function indexAction() {
-        //$this->assets->addCss('common/css/home/home.css');        
-        
-        //$this->response->redirect('applyleave');        
+         
     }
     public function usersettingAction() {
-     
+     $user= new Db\CoreMember;
+     $id=$this->session->user['member_id'];
+     $user= $user->UserDetail($id);
+     $this->view->userdetail=$user;
     }
     
    

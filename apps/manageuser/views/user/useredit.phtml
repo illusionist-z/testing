@@ -18,19 +18,19 @@
 	</tr>
 	<tr>
 		<td>Email :</td>
-                <td><input type="text" value="<?= $res->member_mail ?>" name="email"></td>
+                <td><input type="text" value="<?= $res->member_mail ?>" name="email" id="edit_user_email"></td>
 		<td></td>
 		<td>Phone no</td>
-                <td><input type="tel" value="<?= $res->member_tel ?>" name="pno" ></td>
+                <td><input type="tel" value="<?= $res->member_tel ?>" name="pno" id="edit_user_phone"></td>
 	</tr>
 	<tr>
 		<td>Address :</td>
-                <td colspan="4"><textarea rows="5" cols="50" name="address">no(3),*****str,*****tsp, ygn</textarea></td>
+                <td colspan="4"><textarea rows="5" cols="50" name="address"><?= $res->member_address ?></textarea></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td colspan="3"><a href="#" class="button" id="edit_user_edit">Edit</a><a href="#" class="button" id="edit_user_delete">Delete</a><a href="#" class="button" id="edit_user_close">Cancel</a></td>		
-	</tr>
+		<td colspan="3"><a href="#" class="button" id="edit_user_edit">Edit</a><a href="#" class="button" id="edit_user_delete">Delete</a><a href="#" class="button" id="edit_user_close">Cancel</a></td>		                
+	</tr>        
         <?php
             }
             ?>

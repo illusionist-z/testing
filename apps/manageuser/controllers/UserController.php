@@ -1,6 +1,7 @@
 <?php
 
 namespace workManagiment\Manageuser\Controllers;
+use Phalcon\Validation\Validator\Email as EmailValidator;
 use workManagiment\Manageuser\Models\User as User;
 /**
  * @author David
@@ -15,7 +16,8 @@ class UserController extends ControllerBase {
         $this->setCommonJsAndCss();        
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/style.css');        
+        $this->assets->addCss('common/css/style.css');  
+        $this->assets->addJs('apps/manageuser/js/search.js');
     }
     /**
      * @author David
@@ -24,7 +26,16 @@ class UserController extends ControllerBase {
      */
     public function userlistAction() {               
         $list = $this->user->userlist();
+        $username = $this->request->get('username');
+        if(NULL != $username){
+            $search=$this->user->searchresult($username);
+        }
+        else{
+            $search=$list = $this->user->userlist();
+
+        }
         $this->view->setVar('username', $list);
+        $this->view->setVar('Result', $search);
         $this->view->setVar('type', 'userlist');
     }
     /**
@@ -55,15 +66,16 @@ class UserController extends ControllerBase {
      * @desc   update user
      * @since  20/7/15
      */
-    public function userdata_editAction() {
+    public function userdata_editAction() {        
         $cond = array();
         $cond['id']  =  $this->request->get('data');
         $cond['name']=$this->request->get('name');
         $cond['dept']=$this->request->get('dept');
         $cond['position']=$this->request->get('position');
         $cond['email']=$this->request->get('email');
-        $cond['pno']=$this->request->get('pno');        
-        $this->user->editbycond($cond);        
+        $cond['pno']=$this->request->get('pno');         
+        $res=$this->user->editbycond($cond);        
+        echo json_encode($res);             // send validating data
         $this->view->disable();        
     }
     public function adduserAction(){
@@ -80,7 +92,7 @@ class UserController extends ControllerBase {
             $filename=$_FILES["fileToUpload"]["name"];
             $newuser=new \workManagiment\Core\Models\Db\CoreMember;
             $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename );            
-            echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
+           
             $this->view->disable();
         } 
     }
