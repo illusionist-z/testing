@@ -58,11 +58,18 @@ var User = {
             url :"userdata_edit?data="+id,
             data:$form.serialize(),
             dataType:'json',
-            success:function(d){
-                alert(d);
+            success:function(d){ 
+                // check valid mail & phone
+                if(true==d.valid){            
+                  $('body').load('userlist');
+                    }
+                else{
+                  if(false==d.mail)
+                  $('#edit_user_email').val("Incorrect Email format").css("color","red");
+                  if(false==d.pno)
+                  $('#edit_user_phone').val("Enter phone number").css("color","red");                 
+                }
             }
-        }).done(function(d){
-            //$('body').load('userlist');
         });
     },
     Delete: function (d){
@@ -105,4 +112,5 @@ $(document).ready(function () {
         var id = $(this).attr('id');
         User.Edit(id);
     });    
+    
 });        

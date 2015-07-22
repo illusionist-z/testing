@@ -64,7 +64,8 @@ class UserController extends ControllerBase {
         $cond['position']=$this->request->get('position');
         $cond['email']=$this->request->get('email');
         $cond['pno']=$this->request->get('pno');         
-        $this->user->editbycond($cond);        
+        $res=$this->user->editbycond($cond);        
+        echo json_encode($res);             // send validating data
         $this->view->disable();        
     }
     public function adduserAction(){

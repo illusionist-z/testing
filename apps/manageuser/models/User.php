@@ -35,18 +35,24 @@ class User extends Model {
      * @since  20/7/15
      * @author David
      * @desc  edit by cond
+     * @return true or false
      * @param type $cond {array}
      */
-    public function editbycond($cond){        
-        $res=filter_var($cond['email'],FILTER_VALIDATE_EMAIL)?true:false;
-        if($res){$dd=true;}
-//        $this->db = $this->getDI()->getShared("db");        
-//        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."' Where member_id='".$cond['id']."'";
-//        $this->db->query($query);
-         else{
-             $dd=false;             
-         }
-         return $dd;
+    public function editbycond($cond){    
+        $res = array();
+        $res['mail']= filter_var($cond['email'],FILTER_VALIDATE_EMAIL)?true:false;    //check valid mail
+        $res['pno'] = filter_var($cond['pno'],FILTER_VALIDATE_REGEXP,                 //check valid phone no
+                      array('options'=>array('regexp'=>'/^[0-9]+$/')))?true:false;                
+        if($res['mail'] && $res['pno']){                   
+        $this->db = $this->getDI()->getShared("db");        
+        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."' Where member_id='".$cond['id']."'";
+        $this->db->query($query);
+        $res['valid']= true;
+        }
+        else{
+        $res['valid']=false;             
+        }
+        return $res;
     }
 
     public function userdelete($id){
