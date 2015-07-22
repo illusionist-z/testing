@@ -37,7 +37,7 @@ $(document).ready(function(){
        var month = document.getElementById('month').value;  
        var username = document.getElementById('username').value; 
        var year = document.getElementById('year').value; 
-         window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'?username='+username+'?year=' +year;
+         window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
     };
     
      var namesearch=function(){

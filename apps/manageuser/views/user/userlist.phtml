@@ -1,4 +1,5 @@
 <!-- Content Header (Page header) -->
+
 <section class="content-header">
     <h1>
         User list
@@ -12,8 +13,9 @@
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <!--<a href="#" class="button add-big">Add User</a>-->				
-        <select class="select" data-toggle="select">
+        <!--<a href="#" class="button add-big">Add User</a>-->	
+        <form>
+        <select class="select" data-toggle="select" name="username" id="username">
             <option>Name</option>
                <?php
                 foreach ($username as $name){
@@ -25,7 +27,8 @@
                 ?>
 
         </select>
-        <a href="#" class="button">Search</a>
+            <input type="submit" class="buttonn" value="Search" id="userlistsearch">
+        </form>
 
     </div>
 
@@ -48,7 +51,7 @@
                 <tbody>
                     <?php 
                     $i=0;
-                    foreach ($username as $result) {
+                    foreach ($Result as $result) {
                     ?>                       
                     <tr>
                         <td><?= $i ?></td>
@@ -56,8 +59,8 @@
                         <td><?= $result['member_dept_name'] ?></td>
                         <td><?= $result['job_title'] ?></td>
                         <td><?= $result['member_mail'] ?></td>
-                        <td><?= $result['member_tel'] ?></td>
-                        <td><?= $result['lang'] ?></td>
+                        <td><?= $result['member_mobile_tel'] ?></td>
+                        <td><?= $result['member_address'] ?></td>
                         <td><a href="#" onclick="return false;" class="button displaypopup" id="<?=$result['member_login_name']?>">Edit</a></td>
                     </tr>
                    <?php

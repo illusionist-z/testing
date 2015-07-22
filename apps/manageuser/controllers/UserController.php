@@ -16,7 +16,8 @@ class UserController extends ControllerBase {
         $this->setCommonJsAndCss();        
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/style.css');        
+        $this->assets->addCss('common/css/style.css');  
+        $this->assets->addJs('apps/manageuser/js/search.js');
     }
     /**
      * @author David
@@ -25,7 +26,16 @@ class UserController extends ControllerBase {
      */
     public function userlistAction() {               
         $list = $this->user->userlist();
+        $username = $this->request->get('username');
+        if(NULL != $username){
+            $search=$this->user->searchresult($username);
+        }
+        else{
+            $search=$list = $this->user->userlist();
+
+        }
         $this->view->setVar('username', $list);
+        $this->view->setVar('Result', $search);
         $this->view->setVar('type', 'userlist');
     }
     /**
@@ -82,7 +92,7 @@ class UserController extends ControllerBase {
             $filename=$_FILES["fileToUpload"]["name"];
             $newuser=new \workManagiment\Core\Models\Db\CoreMember;
             $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename );            
-            echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
+           
             $this->view->disable();
         } 
     }

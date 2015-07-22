@@ -79,16 +79,28 @@
                                     <li class="user-header">
                                         <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
-                                            <?php echo $this->session->user['member_login_name']; ?>
+                                            <?php echo $this->session->user['member_login_name'];
+                                            ?>
                                             <small>Member since Nov. 2012</small>
                                         </p>
                                     </li>
-
-                                    <!-- Menu Footer-->
+                                       <!-- Menu Footer-->
                                     <li class="user-footer">
+                                      <?php $name=$this->session->user['member_login_name'];
+        if ( $name=='admin'){?>
                                         <div class="pull-left">
                                             <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
                                         </div>
+            
+        <?php }
+        else
+        {?> 
+            <div class="pull-left">
+                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat">Setting</a>
+                                        </div>
+        <?php }
+        ?>
+                                        
                                         <div class="pull-right">
                                             <a href="#" class="btn btn-default btn-flat" id="btn_logout">Sign out</a>
 
