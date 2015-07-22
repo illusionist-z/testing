@@ -11,7 +11,7 @@ class IndexController extends ControllerBase
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/attendancelist/js/index.js');
         $this->setCommonJsAndCss();
-        
+        $this->config = \Module_Config::getModuleConfig('leavedays');
     }
 
     
@@ -48,24 +48,15 @@ class IndexController extends ControllerBase
         $User_list=new Db\CoreMember();
         $user_name = $User_list::getinstance()->getusername();
 
-        require '../apps/attendancelist/config/config.php';
-        $month = $config->month;
+        $month = $this->config->month;
 
-        $year = $this->request->get('year');
-        
-        $mth = $this->request->get('month');
-        $username = $this->request->get('username');
-        
         $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
-        $result = $Attendances->showmonthlylist($year, $mth, $username);
+        $result = $Attendances->showattlist();
         
         $this->view->setVar("Month", $month);
         $this->view->setVar("showlist", $result);
         $this->view->setVar("Getname", $user_name);
         
-        $this->view->setVar("Year", $year);
-        $this->view->setVar("Mth", $mth);
-        $this->view->setVar("Name", $username);
         $this->view->offset=$offset;
     }
     

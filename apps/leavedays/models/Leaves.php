@@ -83,33 +83,11 @@ class Leaves extends \Library\Core\BaseModel {
         //echo $sql;exit;
         $result = $this->db->query($sql);
         $list = $result->fetchall();
-//        
-//        $row = $this->modelsManager->createBuilder()
-//                    ->columns('date,member_login_name,start_date,end_date,leave_days,leave_category,leave_description,leave_status')
-//                    ->from('workManagiment\Leavedays\Models\Leaves')
-//                    ->leftJoin('workManagiment\Core\Models\Db\CoreMember', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
-//                    ->where($this->condition($ltype,$month,$namelist))
-//                    ->getQuery()
-//                    ->execute();
-        //print_r($row);exit;
+
         return $list;
     }
     
-//    public function condition($ltype, $month, $namelist){
-//        $conditions = array();
-//
-//        if ($ltype != "") {
-//            $conditions[] = "leaves.leave_category='" . $year . "'";
-//        }
-//        if ($month != "") {
-//            $conditions[] = "MONTH(leaves.start_date) like " . $month;
-//        }
-//        if ($namelist != "") {
-//            $conditions[] = "core_member.member_login_name='" . $namelist . "'";
-//        }
-//
-//        return $condition;
-//    }
+
 
     /**
      * Get today attendance list

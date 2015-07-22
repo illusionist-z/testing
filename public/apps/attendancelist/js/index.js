@@ -19,7 +19,7 @@ $(document).ready(function(){
     });
     
       $('#sub').click(function(){
-        sub();
+          sub();
     });
     
      $('#namesearch').click(function(){
@@ -37,7 +37,36 @@ $(document).ready(function(){
        var month = document.getElementById('month').value;  
        var username = document.getElementById('username').value; 
        var year = document.getElementById('year').value; 
-         window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'?username='+username+'?year=' +year;
+        // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
+         $.ajax({
+        url: baseUri + 'attendancelist/search/attsearch?month='+month+'&username='+username+'&year=' +year,
+        type: 'GET',
+        success: function (d) {
+            //alert(d);
+            
+            var json_obj = $.parseJSON(d);//parse JSON
+            $("tbody").empty();
+            for (var i in json_obj)
+            {
+                alert(json_obj[i].date);
+                var output = "<tr>"
+                        + "<td>" + json_obj[i].att_date + "</td>"
+                        + "<td>" + json_obj[i].member_login_name + "</td>"
+                        + "<td>" + json_obj[i].checkin_time + "</td>"
+                        + "<td>" + json_obj[i].checkin_time + "</td>"
+                        + "<td>" + json_obj[i].checkin_time + "</td>"
+                        + "<td>" + json_obj[i].checkin_time + "</td>"
+                        + "<td>" + json_obj[i].checkin_time + "</td>"
+                        + "<td>" + json_obj[i].checkin_time + "</td>"
+                        + "</tr>"
+                $("tbody").append(output);
+            }
+
+        },
+        error: function (d) {
+            alert('error');
+        }
+    });
     };
     
      var namesearch=function(){
