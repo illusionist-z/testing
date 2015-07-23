@@ -4,6 +4,7 @@ namespace workManagiment\Salary\Controllers;
 
 use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
+use workManagiment\Salary\Models\SalaryMaster;
 class IndexController extends ControllerBase
 {
     
@@ -11,7 +12,7 @@ class IndexController extends ControllerBase
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->setCommonJsAndCss();
-        
+        $this->assets->addCss('common/css/style.css');
     }
 
     
@@ -22,7 +23,7 @@ class IndexController extends ControllerBase
      * Show salary list
      */
     public function salarylistAction() {
-        $this->assets->addCss('common/css/style.css');
+        
         $Salarydetail=new SalaryDetail();
         $getsalarylist=$Salarydetail->salarylist();
         
@@ -33,6 +34,29 @@ class IndexController extends ControllerBase
         $this->view->setVar("months", $month);
         $this->view->setVar("usernames", $user_name);
         $this->view->setVar("getsalarylists", $getsalarylist);
+    }
+    
+    /**
+     * Add salary form
+     */
+    public function addsalaryAction(){
+        $userlist=new Db\CoreMember();
+        $user_name = $userlist::getinstance()->getusername();
+        $this->view->setVar("usernames", $user_name);
+    }
+    
+    /**
+     * Save salary for salary add form
+     */
+    public function savesalaryAction() {
+        $data['member_id']=$this->request->get('uname');
+        $data['basic_salary']=$this->request->get('bsalary');
+        $data['travelfee']=$this->request->get('travelfee');
+        $data['overtime']=$this->request->get('overtime');
+        $Salarymaster=new SalaryMaster();
+        $result=$Salarymaster->savesalary($data);
+        $this->view->Msg = 'Success';
+        $this->view->pick('index/addsalary');
     }
 
 }
