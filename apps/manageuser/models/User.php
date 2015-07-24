@@ -2,6 +2,7 @@
 
 namespace workManagiment\Manageuser\Models;
 use Phalcon\Mvc\Model;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use workManagiment\Core\Models\Db;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,13 +18,40 @@ class User extends Model {
      * @author david
      * 
      */
-    public function userlist() {
-        $user = new Db\CoreMember();
-        $userlist = $user::getinstance()->getusername();
-        return $userlist;
+    public function userlist($username) {     
+          $this->db = $this->getDI()->getShared("db");   
+          if($username == null){
+          $row = $this->modelsManager->createBuilder()                    
+                    ->from('workManagiment\Core\Models\Db\CoreMember')                                        
+                    ->getQuery()
+                    ->execute();
+          }else{
+          $row = $this->modelsManager->createBuilder()
+                      ->from('workManagiment\Core\Models\Db\CoreMember')
+                     ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name="'.$username.'"')
+                     ->getQuery()
+                     ->execute();
+          }
+        //for pagination        
+        $currentPage = (int) $_GET["page"];        
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 3,
+            "page" => $currentPage
+                )
+        );
+        $list = $paginator->getPaginate();
+
+        return $list;
     }
+//        $user = new Db\CoreMember();
+//        $userlist = $user::getinstance()->getusername();
+//        return $userlist;
+//    }
     
     public function alluserlist(){
+        
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member");
         
@@ -31,10 +59,9 @@ class User extends Model {
         return $user;
     }
     
-   public function searchresult($name){
+   public function searchresult($name){       
        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("SELECT * FROM core_member WHERE member_login_name='".$name."'");
-        
+        $user = $this->db->query("SELECT * FROM core_member WHERE member_login_name='".$name."'");        
         $user = $user->fetchall();
         return $user;
        

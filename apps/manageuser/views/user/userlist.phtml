@@ -50,17 +50,17 @@
                 <tbody>
                     <?php 
                     $i=0;
-                    foreach ($Result as $result) {
+                    foreach ($Result->items as $result) {                                                
                     ?>                       
                     <tr>
                         <td><?= $i ?></td>
-                        <td><?= $result['member_login_name'] ?></td>
-                        <td><?= $result['member_dept_name'] ?></td>
-                        <td><?= $result['job_title'] ?></td>
-                        <td><?= $result['member_mail'] ?></td>
-                        <td><?= $result['member_mobile_tel'] ?></td>
-                        <td><?= $result['lang'] ?></td>
-                        <td><a href="#" onclick="return false;" class="button displaypopup" id="<?=$result['member_login_name']?>">Edit</a></td>
+                        <td><?= $result->member_login_name ?></td>
+                        <td><?= $result->member_dept_name ?></td>
+                        <td><?= $result->job_title ?></td>
+                        <td><?= $result->member_mail ?></td>
+                        <td><?= $result->member_mobile_tel ?></td>
+                        <td><?= $result->lang ?></td>
+                        <td><a href="#" onclick="return false;" class="button displaypopup" id="<?=$result->member_login_name ?>">Edit</a></td>
                     </tr>
                    <?php
                     $i++;
@@ -70,7 +70,13 @@
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-
+    <ul class="pagination">    
+        <li><a href="userlist">First</a></li>
+        <li><a href="userlist?page=<?= $Result->before; ?>">Previous</a></li>
+        <li><a href="userlist?page=<?= $Result->next; ?>">Next</a></li>
+        <li><a href="userlist?page=<?= $Result->last; ?>">Last</a></li>    
+<?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?>
+    </ul>
 </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 
