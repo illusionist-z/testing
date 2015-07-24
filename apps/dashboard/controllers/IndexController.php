@@ -38,6 +38,8 @@ class IndexController extends ControllerBase {
      * show admin dashboard
      */
     public function adminAction() {
+//    $Noti= new \workManagiment\Leavedays\Models\Leaves();
+//    $noti=$Noti->getNoti();
     
     }
     
@@ -79,14 +81,7 @@ class IndexController extends ControllerBase {
         $lon = $this->session->location['lng'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $checkin->setcheckintime($id, $note, $lat, $lon);
-        $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){
-            $this->response->redirect('attendancelist/index/todaylist');
-        }
-        else
-        {
-            $this->response->redirect('attendancelist/user/attendancelist');
-        }
+       
         
         
 
@@ -103,15 +98,19 @@ class IndexController extends ControllerBase {
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $checkin->setcheckouttime($id);
          //$this->response->redirect('attendancelist/user/attendancelist');
+       
+
+    }
+    public function directAction(){
         $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){
-            $this->response->redirect('attendancelist/user/attendancelist');
+       if ( $name=='admin'){
+            $this->response->redirect('attendancelist/index/todaylist');
         }
         else
         {
-            $this->response->redirect('attendancelist/index/todaylist');
+            $this->response->redirect('attendancelist/user/attendancelist');
         }
-
+        
     }
     
     /**
@@ -121,6 +120,7 @@ class IndexController extends ControllerBase {
      * @return type
      */
     public function getTimezoneGeo($latForGeo, $lngForGeo) {
+        
     $json = file_get_contents("http://api.geonames.org/timezoneJSON?lat=".$latForGeo."&lng=".$lngForGeo."&username=gnext");
     $data = json_decode($json);
     $tzone=$data->timezoneId;
