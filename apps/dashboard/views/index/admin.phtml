@@ -1,14 +1,3 @@
-<script type="text/javascript">
-         function checkValue() {
-  var linkemail=document.forms["theForm"]["linkemail"].checked
-  if (linkemail) {
-    document.getElementById('xtraInfo').style.display='';
-  } else {
-    document.getElementById('xtraInfo').style.display='none';
-  } 
-} 
-
-</script>
 <div class="" style="height:auto;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -40,21 +29,21 @@
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-aqua" onclick="window.location.href='../../manageuser/user/userlist'" id="pointer_style1">
-                  <img src="../../common/img/acc.png">
+                  <img src="../../common/img/User-128.png">
                  Manage User
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-green" onclick="window.location.href='../../attendancelist/index/todaylist'" id="pointer_style2">
-                <img src="../../common/img/attlist.png">
+                <img src="../../common/img/View-List-128.png">
                  Attendance List
               </div>
             </div><!-- ./col -->
             <div class="col-lg-3 col-xs-6">
               <!-- small box -->
               <div class="small-box bg-yellow" onclick="window.location.href='../../leavedays/index/leavelist'" id="pointer_style3">
-                <img src="../../common/img/leave.jpg">
+                <img src="../../common/img/Calendar-Date-02-128.png">
                  Leave Days
               </div>
             </div><!-- ./col -->
@@ -124,6 +113,38 @@
                                             <div class="box-tools pull-right">
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>-->
 
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="chart-responsive">
+                       <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
+						<li>
+						People who attend no leave
+							<ul>
+							<li>Mabel</li>
+							<li>Rose</li>
+							</ul>
+						</li>
+						</ul>
+						<ul class="nav nav-pills nav-stacked">
+						<li>
+						People who take the leave most
+							<ul>
+							<li>Pabel</li>
+							
+							</ul>
+						</li>
+						</ul>
+                      </div><!-- ./chart-responsive -->
+                    </div><!-- /.col -->
+                   
+                  </div><!-- /.row -->
+                </div><!-- /.box-body -->
+                
+              </div><!-- /.box -->
+
                 <!-- USERS LIST -->
                   <div class="box box-danger">
                     <div class="box-header with-border">
@@ -137,7 +158,7 @@
                       <ul class="users-list clearfix">
                           <?php foreach($name as $v){ ?>
                         <li>
-                          <img src="../../common/img/notid.png" alt="User Image"/>
+                          <img src="../../common/img/user1-128x128.jpg" alt="User Image"/>
                           <a class="users-list-name" href="#"><?= $v['member_login_name'] ?></a>
                           <span class="users-list-date"><?= $v['created_dt'] ?></span>
                         </li>
