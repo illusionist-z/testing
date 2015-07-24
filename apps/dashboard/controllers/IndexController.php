@@ -36,10 +36,18 @@ class IndexController extends ControllerBase {
 
     /**
      * show admin dashboard
+     * @author david
+     * get last created member name
+     * @type array {$gname}
      */
-    public function adminAction() {
+    public function adminAction() {    
     $cm = new Db\CoreMember();
     $gname = $cm::getinstance()->getlastname();
+    //get most leave name
+    $checkleave = new \workManagiment\Dashboard\Models\Attendances();
+    $leave_name  =$checkleave->checkleave();
+    $this->view->setVar("nlname",$leave_name['noleave_name']);
+    $this->view->setVar("lname",$leave_name['leave_name']);
     $this->view->setVar("name",$gname);
     }
     

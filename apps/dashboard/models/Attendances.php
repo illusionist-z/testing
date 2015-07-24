@@ -92,6 +92,26 @@ class Attendances extends Model {
             
          
     }
+    /**
+     * @author david
+     * @return array {leave name}
+     * @return array {no leave name}
+     */
+    public function checkleave(){
+        $res = array();
+        $this->db = $this->getDI()->getShared("db");        
+        //select where user most leave taken
+        $query    ="select member_login_name from core_member where member_login_name in
+                   (select member_id from leaves group by member_id having COUNT(member_id)>1)";        
+        $data      =$this->db->query($query);
+        //select where no leave member
+        $query1    ="select member_login_name from core_member where member_login_name not in
+                   (select member_id from leaves) limit 4";        
+        $data1      =$this->db->query($query1);        
+        $res['leave_name']= $data->fetchall();
+        $res['noleave_name']=$data1->fetchall();
+        return $res;
+    }
         
    
 }
