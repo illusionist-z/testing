@@ -94,7 +94,7 @@ class Leaves extends \Library\Core\BaseModel {
      * @return type
      * @author david
      */
-    public function applyleave($id, $sdate, $edate, $type, $desc) {
+    public function applyleave($uname, $sdate, $edate, $type, $desc) {
 
         $this->db = $this->getDI()->getShared("db");
         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
@@ -110,19 +110,17 @@ class Leaves extends \Library\Core\BaseModel {
                     //check $edate greater than $sdate
                     if (strtotime($sdate) < strtotime($edate)) {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
-                        $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description) VALUES('" . $id . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "')");
+                        $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "')");
                         $err="Your Leave Applied Successfully!";
                     } else {
                         $err="End date must be greater than Start date";
                     }
                 } else {
-                        $err="Apply Leave Before a week ";
-                    //echo "<script>window.location.href='applyleave';</script>";exit;
+                        $err="Apply Leave Before a week ";                 
                 }
             }
         } else {
-                        $err="Please,Insert All Data! ";
-            // echo "<script>window.location.href='applyleave';</script>";exit;
+                        $err="Please,Insert All Data! ";            
         }
         return $err;
     }
@@ -201,5 +199,9 @@ class Leaves extends \Library\Core\BaseModel {
         }
         return $result;
     }
+    
+//    public function getadminNoti(){
+//        $noti=
+//    }
 
 }

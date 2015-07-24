@@ -3,6 +3,7 @@
 namespace workManagiment\Manageuser\Controllers;
 use Phalcon\Validation\Validator\Email as EmailValidator;
 use workManagiment\Manageuser\Models\User as User;
+use workManagiment\Core\Models\Db;
 /**
  * @author David
  * @type   User Editing
@@ -24,18 +25,13 @@ class UserController extends ControllerBase {
      * @desc   Array ,show all user data 
      * @since  18/7/15
      */
-    public function userlistAction() {               
-        $list = $this->user->userlist();
+    public function userlistAction() {                       
+        $uname = new Db\CoreMember();
+        $gname = $uname::getinstance()->getusername();
         $username = $this->request->get('username');
-        if(NULL != $username){
-            $search=$this->user->searchresult($username);
-        }
-        else{
-            $search=$list = $this->user->userlist();
-
-        }
-        $this->view->setVar('username', $list);
-        $this->view->setVar('Result', $search);
+        $list = $this->user->userlist($username);               
+        $this->view->setVar('username', $gname);
+        $this->view->setVar('Result', $list);
         $this->view->setVar('type', 'userlist');
     }
     /**
