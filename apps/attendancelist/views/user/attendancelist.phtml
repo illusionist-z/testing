@@ -74,13 +74,13 @@
 <!--        check in time-->
 	<td><?php $checkintime=$result['checkin_time'];
         if ($sign=='-'){
-            $time = new DateTime($checkintime);
-        $time->add(new DateInterval('PT' . $value . 'M'));
-        echo $time->format('Y-m-d H:i:s A');
+            $cintime = new DateTime($checkintime);
+        $cintime->add(new DateInterval('PT' . $value . 'M'));
+        echo $cintime->format('Y-m-d H:i:s A');
         }
         else{
-         $datetime_from = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkintime)));
-            echo $datetime_from;
+         $cintime = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkintime)));
+            echo $cintime;
         }
      ?>
         </td>
@@ -95,18 +95,16 @@
         $time->add(new DateInterval('PT' . $value . 'M'));
         echo  $time->format('Y-m-d H:i:s A');}
         else {
-            $datetime_from = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkouttime)));
-            echo $datetime_from;
+            $time = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkouttime)));
+            echo $time;
         }
         }
 ?></td>
         
 <!--        Late-->
         <td><?php 
-        
-        $dt = new DateTime($result['checkin_time']);
-        $time = $dt->format('H:i:s');
-        $office_start_time='01:30:00 ';
+        $office_start_time='08:00:00 ';
+      $time=$cintime->format('H:i:s ');
         if($time>$office_start_time){
             $start=strtotime($office_start_time);
             $end=strtotime($time);

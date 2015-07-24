@@ -88,6 +88,7 @@ class Attendances extends Model {
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
@@ -98,6 +99,7 @@ class Attendances extends Model {
                     ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $currentmth . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
@@ -132,6 +134,7 @@ class Attendances extends Model {
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month)
+                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
                     ->getQuery()
                     ->execute();
         

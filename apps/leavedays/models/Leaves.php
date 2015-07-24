@@ -199,5 +199,9 @@ class Leaves extends \Library\Core\BaseModel {
         }
         return $result;
     }
+    
+//    public function getadminNoti(){
+//        $noti=
+//    }
 
 }

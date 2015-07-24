@@ -23,23 +23,24 @@ class Attendances extends Model {
         $this->db=$this->getDI()->getShared("db");      
 	$mydate=date("Y-m-d H:i:s");
         $today=date("Y:m:d");       
-        $att =Attendances::findFirst("att_date = '$today'");
+        $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'");
         /**
           Condition : Already Checked in or not
          * */
         if ($att != NULL) {
-            $intime = $att->checkin_time;
+            
                         echo "<script>alert('Already Checked in');</script>";
-                         
+                        echo "<script>window.location.href='direct';</script>"; 
         } else {
 
 
            $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "')");
 
             echo '<script type="text/javascript">alert("Successfully Checked In ")</script>';
-            
+            echo "<script>window.location.href='direct';</script>"; 
             
         }
+         
     }
     
     public function setcheckouttime($id){
@@ -56,34 +57,40 @@ class Attendances extends Model {
          * if checkout time exists,check today check in or not
          * */
        if ($checkout!=0){    
-                 $att =Attendances::findFirst("att_date = '$today'");
+                 $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'");
                  //Check today check in or not
                 if ( $att!=NULL){ 
+                  
                      $outtime=$att->checkout_time;
                      //check already checkout or not
                      if($outtime!=0)
                      {
                         echo '<script type="text/javascript">alert("Already Checkout ")</script>';
+                        echo "<script>window.location.href='index';</script>"; exit;
                          
                      }
                      else{
                       $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE att_date='".$today."'");
                       echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
+                      echo "<script>window.location.href='direct';</script>"; 
                         
                      }
                 }
                  else{
+                    
                     //check in first
                      echo '<script type="text/javascript">alert("Please Check in first ")</script>';
-                       echo "<script>window.location.href='index';</script>";
+                       echo "<script>window.location.href='index';</script>";exit;
                 }
             }
             else{
                 //insert checkout time for last data
                 $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE checkin_time='".$checkin."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
-        
+                echo "<script>window.location.href='direct';</script>"; 
             }
+            
+         
     }
         
    
