@@ -19,7 +19,7 @@ class Attendances extends Model {
      */
    
     public function setcheckintime($id,$note,$lat,$lon){
-        
+       
         $this->db=$this->getDI()->getShared("db");      
 	$mydate=date("Y-m-d H:i:s");
         $today=date("Y:m:d");       
@@ -32,7 +32,7 @@ class Attendances extends Model {
                         echo "<script>alert('Already Checked in');</script>";
                         echo "<script>window.location.href='direct';</script>"; 
         } else {
-
+            
 
            $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "')");
 
