@@ -1,7 +1,7 @@
 <?php
 
 namespace workManagiment\Dashboard\Controllers;
-
+use workManagiment\Core\Models\Db;
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -37,7 +37,9 @@ class IndexController extends ControllerBase {
      * show admin dashboard
      */
     public function adminAction() {
-    
+    $cm = new Db\CoreMember();
+    $gname = $cm::getinstance()->getlastname();
+    $this->view->setVar("name",$gname);
     }
     
     /**

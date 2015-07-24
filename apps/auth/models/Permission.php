@@ -97,7 +97,7 @@ class Permission {
                         //$row = $permissions->current();
 //                    $per_result[$row->permission_code][] = $row->permission_name;
 //                    $permissions->next();
-                        foreach ($permissions as $res) {
+                        foreach ($permissions as $res) { 
                             $per_result[$res->permission_code][] = $res->permission_name;
                 }
             }

@@ -26,14 +26,17 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {               
         $leavetype = $this->config->leavetype;
+        $userlist=new Db\CoreMember();
+        $name = $userlist::getinstance()->getusername();           
+        $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $leavetype);
         if ($this->request->isPost()) {
+            $uname = $this->request->getPost('uname');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
-            $desc = $this->request->getPost('description');
-            $id   = $this->session->user['member_id'];            
-            $error=$this->_leave->applyleave($id,$sdate, $edate, $type, $desc);            
+            $desc = $this->request->getPost('description');                     
+            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc);            
             echo "<script>alert('".$error."');</script>";
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
