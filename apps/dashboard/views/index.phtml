@@ -13,7 +13,7 @@
     </head>
     <body class="skin-blue sidebar-mini"  onload="display_ct()" >
         <div class="wrapper">
-
+            <?php error_reporting(0); ?>
             <header class="main-header">
 
                 <!-- Logo -->
@@ -89,7 +89,7 @@
                                       <?php $name=$this->session->user['member_login_name'];
         if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index" class="btn btn-default btn-flat">Setting</a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
                                         </div>
             
         <?php }

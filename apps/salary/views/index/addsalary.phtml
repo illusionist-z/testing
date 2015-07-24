@@ -1,0 +1,74 @@
+<section class="content-header">
+    <h1>
+        Add salary for each member
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">pay list</li>
+    </ol>
+</section>
+<?php
+if(isset($Msg))
+{
+    echo "<script>alert('aa');</script>";
+}
+?>
+<!-- Main content -->
+<section class="content">
+       <div class="row">
+        <div class="col-md-12"><!--start table content--->
+            <div id="form_div">
+                <div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add salary</font></div>
+                <div class="left_div_style_box">
+                    <form action="savesalary" method="post">
+                    <div class="div_bottom">
+                        <span class="span_style">UserName :</span>
+                        <span>
+                            <select style="width:24%;" name="uname" id="uname">
+                                <option value="">Name</option>
+                                <?php
+                                foreach ($usernames as $username) {
+                                    ?>
+                                    <option value="<?php echo $username['member_id']; ?>"
+                                    <?php //echo(isset($Uname) && ($Uname == $result['member_login_name']) ? ' selected="selected"' : ''); ?>        
+                                            ><?php echo $username['member_login_name']; ?></option>
+
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </span>
+                    </div>
+
+                    <div class="div_bottom">
+                        <span class="span_style">Basic Salary :</span>
+                        <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:24%;" name="bsalary"></span>
+                    </div>
+
+                    <div class="div_bottom">
+                        <span class="span_style">Travel fees :</span>
+                        <span><input type="text" id="travelfee" value="" placeholder="Travel fee" style="width:24%;" name="travelfee"></span>
+                    </div>
+
+                    <div class="div_bottom">
+                        <span class="span_style">Overtime (per hr) :</span>
+                        <span><input type="text" id="overtime" value="" placeholder="Travel fee" style="width:24%;" name="overtime"></span>
+                    </div>
+
+
+                    <div class="div_bottom">
+                        <span class="span_style"></span>
+                        <span>
+<!--                            <a href="#" class="button">Apply</a>-->
+                            <input type="submit" value="Apply" class="button">
+                            <a href="#" class="button">Cancel</a>
+                        </span>
+                    </div>
+                </form>
+                </div>
+
+            </div>  
+        </div><!--end table content--->
+    </div><!-- /.row -->
+
+</section><!-- /.content -->

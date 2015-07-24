@@ -180,8 +180,9 @@ foreach ($attlist->items as $result) {
     <ul class="pagination pagination-large">
         <li><a href="todaylist">First</a></li>
         <li><a href="todaylist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
+        <li><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></li>
         <li><a href="todaylist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
         <li><a href="todaylist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>
 
-        <li><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></li>
+        
     </ul>

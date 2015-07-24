@@ -8,8 +8,8 @@ use Phalcon\Config\Adapter\Ini as Ini;
  */
 Class Module_Config 
 { 
-    protected static $_cachedConfig= array();      
-    
+    protected static $_cachedConfig= array();          
+    protected static $config = array();
     public static function getModuleConfig($_module,$_aryCondition = array()) {      
         
         $moduleDirPath = __DIR__.'/../apps/';
@@ -25,9 +25,9 @@ Class Module_Config
          * if config exist, return var 
          */
         if (file_exists($phpFileConfig)) {            
-            $_aryCondition=  require($phpFileConfig);
-            return $config;
+            require($phpFileConfig);
+            self::$config = $config;
+            return self::$config;
         }        
 }
 }
-?>

@@ -26,13 +26,30 @@ class Leaves extends \Library\Core\BaseModel {
     public function getleavelist() {
         //select leave list
         $this->db = $this->getDI()->getShared("db");
-       
-            $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id";
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
-        
+
+        $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id";
+        $result = $this->db->query($sql);
+        $row = $result->fetchall();
         return $row;
+        
+//        $row = $this->modelsManager->createBuilder()
+//                    ->columns('date,member_login_name,start_date,end_date,leave_days,leave_category,leave_description,leave_status')
+//                    ->from('workManagiment\Leavedays\Models\Leaves')
+//                    ->leftJoin('workManagiment\Core\Models\Db\CoreMember', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
+//                    ->getQuery()
+//                    ->execute();
+//        $currentPage = (int) $_GET["page"];
+//        $paginator = new PaginatorModel(
+//                array(
+//            "data" => $row,
+//            "limit" => 1,
+//            "page" => $currentPage
+//                )
+//        );
+//        $list = $paginator->getPaginate();
+//        return $list;
     }
+
     /**
      * Search for leave list
      * @param type $ltype
@@ -40,21 +57,38 @@ class Leaves extends \Library\Core\BaseModel {
      * @param type $namelist
      * @return type
      */
-    public function search($ltype,$month,$namelist) {
+    public function search($ltype, $month, $namelist) {
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id where MONTH(leaves.start_date)='".$month."'";
+//        $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id where MONTH(leaves.start_date)='".$month."'";
+//        $result = $this->db->query($sql);
+//        $row = $result->fetchall();
+
+        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
+        $conditions = array();
+
+        if ($ltype != "") {
+            $conditions[] = "leaves.leave_category='" . $year . "'";
+        }
+        if ($month != "") {
+            $conditions[] = "MONTH(leaves.start_date) like " . $month;
+        }
+        if ($namelist != "") {
+            $conditions[] = "core_member.member_login_name='" . $namelist . "'";
+        }
+
+        $sql = $select;
+        if (count($conditions) > 0) {
+            $sql .= " WHERE " . implode(' AND ', $conditions);
+        }
+        //echo $sql;exit;
         $result = $this->db->query($sql);
-        $row = $result->fetchall();
-//        $row = $this->modelsManager->createBuilder()
-//                    ->columns('start_date,member_login_name,end_date')
-//                    ->from('workManagiment\Core\Models\Db\CoreMember')
-//                    ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
-//                    ->where('MONTH(workManagiment\Leavedays\Models\Leaves.start_date) ="' . $month .'"')
-//                    ->getQuery()
-//                    ->execute();
-            //print_r($row);exit;
-           return $row;
+        $list = $result->fetchall();
+
+        return $list;
     }
+    
+
+
     /**
      * Get today attendance list
      * @return type
@@ -64,8 +98,9 @@ class Leaves extends \Library\Core\BaseModel {
 
         $this->db = $this->getDI()->getShared("db");
         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
-
+            
             if (isset($sdate) AND isset($edate) AND isset($desc)) {
+              
                 $today = date("Y-m-d");
                 $checkday = date("Y-m-d", strtotime("+7 days"));
                 $sdate = date("Y-m-d", strtotime($sdate));
@@ -114,17 +149,16 @@ class Leaves extends \Library\Core\BaseModel {
                     ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
                     ->where('MONTH( workManagiment\Leavedays\Models\Leaves.start_date) ="' . $mth . '" AND  workManagiment\Leavedays\Models\Leaves.member_id ="' . $id . '"')
                     ->getQuery()
-                    ->execute(); 
+                    ->execute();
         } else {
            //for searching by leave type and month
             $row = $this->modelsManager->createBuilder()
                     ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
-                    ->where($this->setCondition2( $mth,$leave_type) .' AND workManagiment\Leavedays\Models\Leaves.member_id =' . "'$id'")
+                    ->where($this->setCondition2($mth, $leave_type) . ' AND workManagiment\Leavedays\Models\Leaves.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
-           
         }
         //for pagination
         $currentPage = (int) $_GET["page"];
@@ -136,7 +170,7 @@ class Leaves extends \Library\Core\BaseModel {
                 )
         );
         $list = $paginator->getPaginate();
-       
+
         return $list;
     }
     
@@ -149,13 +183,13 @@ class Leaves extends \Library\Core\BaseModel {
     public function setCondition2( $month, $leavetype) {
         $conditions = array();
 
-       
+
         if ($month != "") {
 
             $conditions[] = "MONTH(workManagiment\Leavedays\Models\Leaves.start_date) like " . $month;
         }
         if ($leavetype != "") {
-            $conditions[] ="workManagiment\Leavedays\Models\Leaves.leave_category='" . $leavetype . "'";
+            $conditions[] = "workManagiment\Leavedays\Models\Leaves.leave_category='" . $leavetype . "'";
         }
 
         

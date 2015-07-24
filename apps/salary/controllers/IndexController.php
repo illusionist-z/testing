@@ -2,29 +2,61 @@
 
 namespace workManagiment\Salary\Controllers;
 
+use workManagiment\Core\Models\Db;
+use workManagiment\Salary\Models\SalaryDetail;
+use workManagiment\Salary\Models\SalaryMaster;
 class IndexController extends ControllerBase
 {
     
     public function initialize() {
         parent::initialize();
-        
+        $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->setCommonJsAndCss();
-        
+        $this->assets->addCss('common/css/style.css');
     }
 
     
     public function indexAction(){
-        //$this->assets->addCss('common/css/home/home.css');
+       
+    }
+    /**
+     * Show salary list
+     */
+    public function salarylistAction() {
         
-        $user = $this->session->get('user');
+        $Salarydetail=new SalaryDetail();
+        $getsalarylist=$Salarydetail->salarylist();
         
-        $this->view->user = $user;
+        $month = $this->config->month;
+        $userlist=new Db\CoreMember();
+        $user_name = $userlist::getinstance()->getusername();
         
+        $this->view->setVar("months", $month);
+        $this->view->setVar("usernames", $user_name);
+        $this->view->setVar("getsalarylists", $getsalarylist);
     }
     
-    public function todaylistAction() {
-        echo "Today list";
-        exit;
+    /**
+     * Add salary form
+     */
+    public function addsalaryAction(){
+        $userlist=new Db\CoreMember();
+        $user_name = $userlist::getinstance()->getusername();
+        $this->view->setVar("usernames", $user_name);
+    }
+    
+    /**
+     * Save salary for salary add form
+     */
+    public function savesalaryAction() {
+        $data['member_id']=$this->request->get('uname');
+        $data['basic_salary']=$this->request->get('bsalary');
+        $data['travelfee']=$this->request->get('travelfee');
+        $data['overtime']=$this->request->get('overtime');
+        $Salarymaster=new SalaryMaster();
+        $result=$Salarymaster->savesalary($data);
+        $this->view->Msg = 'Success';
+        $this->view->pick('index/addsalary');
     }
 
 }
