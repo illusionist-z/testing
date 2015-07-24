@@ -5,8 +5,8 @@ namespace workManagiment\Attendancelist\Models;
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
-//use workManagiment\Attendancelist\Models\CoreMember as CoreMember;
-//use workManagiment\Attendancelist\Models\Attendances as Attendances;
+use workManagiment\Core\Models\Db\CoreMember as CoreMember;
+use workManagiment\Attendancelist\Models\Attendances as Attendances;
 //use workManagiment\Auth\Models\Db\CoreMember as corememberresult;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,7 +15,11 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
  */
 
 class Attendances extends Model {
-
+    public function initialize() {
+        parent::initialize();
+        $this->db = $this->getDI()->getShared("db");
+    }
+    
     /**
      * Get today attendance list
      * @return type
@@ -119,36 +123,24 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function showmonthlylist($year, $month, $username) {
-
-        $this->db = $this->getDI()->getShared("db");
+    public function showattlist() {
         //search monthly list data
-
-        if ($year == "" and $month == "" and $username == "") {
+             
             $month = date('m');
             $results = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month)
                     ->getQuery()
                     ->execute();
-        } else {
-     
-            $results = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->where($this->setCondition($year, $month, $username))
-                    ->getQuery()
-                    ->execute();
-        }
+        
         //for paging
         $currentPage = (int) $_GET["page"];
         $paginator = new PaginatorModel(
                 array(
             "data" => $results,
-            "limit" => 1,
+            "limit" => 10,
             "page" => $currentPage
                 )
         );
@@ -156,6 +148,18 @@ class Attendances extends Model {
         return $list;
     }
 
+    public function search_attlist($year,$month,$username) {
+        try {
+        $sql = "SELECT * FROM core_member JOIN attendances ON attendances.member_id=core_member.member_id where MONTH(attendances.att_date)='".$month."'";
+        $result = $this->db->query($sql);
+        $row = $result->fetchall();
+        } catch (Exception $ex) {
+           echo $ex; 
+        }
+        
+        return $row;
+    }
+    
     /**
      * Set Condition
      * @param type $year
@@ -165,17 +169,19 @@ class Attendances extends Model {
      * @author zinmon
      */
     public function setCondition($year, $month, $username) {
+       
         $conditions = array();
 
-        if ($year != "") {
-            //echo $year;exit;
+        if ("" != $year) {
+            //echo 'Y'.$year;exit;
             $conditions[] = "YEAR(workManagiment\Attendancelist\Models\Attendances.att_date) like " . $year;
         }
-        if ($month != "") {
-
+        if ("" != $month) {
+           
             $conditions[] = "MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) like " . $month;
         }
-        if ($username != "") {
+        if ("" != $username) {
+            //echo 'Uname'.$username;exit;
             $conditions[] = "workManagiment\Core\Models\Db\CoreMember.member_login_name='" . $username . "'";
         }
 

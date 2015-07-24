@@ -28,32 +28,34 @@ function search()
         url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
         type: 'GET',
         success: function (d) {
-            alert("success");
-          // var myJsonString = JSON.stringify(d);
+            alert('success');
+            // var myJsonString = JSON.stringify(d);
 //            
-             //$("#content").html(d);
+            //$("#content").html(d);
             //console.log(d);
-            
-	    var json_obj = $.parseJSON(d);//parse JSON
-            
-            
-            for (var i in json_obj) 
+            //var string = JSON.stringify(d)
+
+            var json_obj = $.parseJSON(d);//parse JSON
+            //alert(json_obj);
+            $("tbody").empty();
+            for (var i in json_obj)
             {
-                var output="<tr>"
-                + "<td>" + json_obj[i].date + "</td>"
-                +"<td>" + json_obj[i].member_login_name + "</td>"
-                +"<td>" + json_obj[i].start_date + "</td>"
-                +"<td>" + json_obj[i].end_date + "</td>"
-                +"<td>" + json_obj[i].leave_days + "</td>"
-               +"<td>" + json_obj[i].leave_category + "</td>"
-                +"<td>" + json_obj[i].leave_description + "</td>"
-               +"<td>" + json_obj[i].leave_status + "</td>"
-                +"<td>" + json_obj[i].leave_status + "</td>"
-                +"</tr>";
+                alert(json_obj[i].date);
+                var output = "<tr>"
+                        + "<td>" + json_obj[i].date + "</td>"
+                        + "<td>" + json_obj[i].member_login_name + "</td>"
+                        + "<td>" + json_obj[i].start_date + "</td>"
+                        + "<td>" + json_obj[i].end_date + "</td>"
+                        + "<td>" + json_obj[i].leave_days + "</td>"
+                        + "<td>" + json_obj[i].leave_category + "</td>"
+                        + "<td>" + json_obj[i].leave_description + "</td>"
+                        + "<td>" + json_obj[i].leave_status + "</td>"
+                        + "<td>" + json_obj[i].leave_status + "</td>"
+                        + "</tr>"
                 $("tbody").append(output);
             }
-            
-            
+
+
         },
         error: function (d) {
             alert('error');

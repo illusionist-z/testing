@@ -31,6 +31,7 @@ class IndexController extends ControllerBase {
             }
         }
         
+        
     }
 
     /**
@@ -82,11 +83,11 @@ class IndexController extends ControllerBase {
         $checkin->setcheckintime($id, $note, $lat, $lon);
         $name=$this->session->user['member_login_name'];
         if ( $name=='admin'){
-            $this->response->redirect('attendancelist/user/attendancelist');
+            $this->response->redirect('attendancelist/index/todaylist');
         }
         else
         {
-            $this->response->redirect('attendancelist/index/todaylist');
+            $this->response->redirect('attendancelist/user/attendancelist');
         }
         
         

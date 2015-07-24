@@ -94,7 +94,7 @@ $length = count($Month);
                 </thead>
                 <tbody>
                     <?php
-                    //print_r($Result);
+                   //print_r($Result);
                     foreach ($Result as $item) {
                         ?>
                         <tr>
@@ -118,13 +118,21 @@ $length = count($Month);
                             <td><?php
                                 echo $item['leave_description'];
                                 ?></td>
+                             
                             <td><?php
-                                echo $item['leave_days'];
+                                
+                        switch($item['leave_status']){
+                            case "0" : echo "Pending" ; break;
+                            case "1" : echo "Confirmed";break;
+                            case "2" : echo "Rejected";break;
+                               
+                        };
                                 ?></td>
                             <td><?php
-                                //calculate overtime
-                                echo $item['leave_status'];
+                                
+                                
                                 ?></td>
+                        </tr>
                         </tr>
                         <?php
                     }
@@ -134,4 +142,12 @@ $length = count($Month);
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-    <div id="content"></div>
+<!--    <ul class="pagination pagination-large">
+        <li><a href="leavelist">First</a></li>
+        <li><a href="leavelist?page=<?= $Result->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
+        <li><?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?></li>
+        <li><a href="leavelist?page=<?= $Result->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
+        <li><a href="leavelist?page=<?= $Result->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>
+
+        
+    </ul>-->
