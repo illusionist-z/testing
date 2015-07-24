@@ -88,11 +88,10 @@ class Attendances extends Model {
                 $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE checkin_time='".$checkin."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
                 echo "<script>window.location.href='direct';</script>"; 
-            }
-            
+            }            
          
-    }
-    /**
+    }  
+      /**
      * @author david
      * @return array {leave name}
      * @return array {no leave name}
@@ -112,6 +111,5 @@ class Attendances extends Model {
         $res['noleave_name']=$data1->fetchall();
         return $res;
     }
-        
    
 }

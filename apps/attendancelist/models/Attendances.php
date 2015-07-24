@@ -16,7 +16,7 @@ use workManagiment\Attendancelist\Models\Attendances as Attendances;
 
 class Attendances extends Model {
     public function initialize() {
-        parent::initialize();
+        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
     
@@ -25,8 +25,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function gettodaylist($name) {
-        $this->db = $this->getDI()->getShared("db");
+    public function gettodaylist($name) {        
         $today = date("Y:m:d");
         // for search result
         if (isset($name)) {
@@ -67,8 +66,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function getusername() {
-        $this->db = $this->getDI()->getShared("db");
+    public function getusername() {        
         $user_name = $this->db->query("SELECT * FROM core_member");
         //print_r($user_name);exit;
         $getname = $user_name->fetchall();
@@ -79,8 +77,7 @@ class Attendances extends Model {
      * get Attendance List By User ID 
      * @author Su Zin Kyaw
      */
-    public function getattlist($id, $month) {
-        $this->db = $this->getDI()->getShared("db");
+    public function getattlist($id, $month) {        
         $currentmth = date('m');
         //for search method
         if (isset($month)) {
