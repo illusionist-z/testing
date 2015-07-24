@@ -118,13 +118,21 @@ $length = count($Month);
                             <td><?php
                                 echo $item['leave_description'];
                                 ?></td>
+                             
                             <td><?php
-                                echo $item['leave_days'];
+                                
+                        switch($item['leave_status']){
+                            case "0" : echo "Pending" ; break;
+                            case "1" : echo "Confirmed";break;
+                            case "2" : echo "Rejected";break;
+                               
+                        };
                                 ?></td>
                             <td><?php
-                                //calculate overtime
-                                echo $item['leave_status'];
+                                
+                                
                                 ?></td>
+                        </tr>
                         </tr>
                         <?php
                     }

@@ -68,6 +68,7 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
     . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
     echo '<script type="text/javascript">alert("New User is Added Successfully! ")</script>';
      echo "<script type='text/javascript'>window.location.href='../../manageuser/user/adduser';</script>";
+     
         }
         
         
