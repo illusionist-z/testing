@@ -19,20 +19,21 @@ class Attendances extends Model {
      */
    
     public function setcheckintime($id,$note,$lat,$lon){
-        
+       
         $this->db=$this->getDI()->getShared("db");      
 	$mydate=date("Y-m-d H:i:s");
         $today=date("Y:m:d");       
-        $att =Attendances::findFirst("att_date = '$today'");
+        $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'");
         /**
           Condition : Already Checked in or not
          * */
         if ($att != NULL) {
+              
             $intime = $att->checkin_time;
                         echo "<script>alert('Already Checked in');</script>";
                          
         } else {
-
+            
 
            $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "')");
 
@@ -56,7 +57,7 @@ class Attendances extends Model {
          * if checkout time exists,check today check in or not
          * */
        if ($checkout!=0){    
-                 $att =Attendances::findFirst("att_date = '$today'");
+                 $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'");
                  //Check today check in or not
                 if ( $att!=NULL){ 
                      $outtime=$att->checkout_time;
