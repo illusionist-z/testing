@@ -117,24 +117,30 @@ class SalaryMaster extends Model {
     }
     
     public function calculate_deducerate($rows,$income_tax) {
-        
+       //echo count($rows);echo "<br>";
            foreach($rows as $element) {
+               //echo $element['taxs_from']."<br>";
     if ($element === reset($rows))
-    { //echo 'FIRST ELEMENT!  '.$element['taxs_from'].'<br>';
+    { 
+        //echo 'FIRST ELEMENT!  '.$element['taxs_from'].'<br>';
         $aa=$element['taxs_from']-1;
         $first_num= ($income_tax-$aa)*($element['taxs_rate']/100);
-        echo "first result ".$first_num.'<br>';
-    }   
-    if ($element === end($rows))
-    { //echo 'LAST ELEMENT! '.$element['taxs_to'];
-        $taxs_to=$element['taxs_to'];
-        $taxs_rate=$element['taxs_rate'];
-        $result=($taxs_to)*($taxs_rate/100);
-        echo "the second result is ".$result;
-         $resultrate=$first_num+$result;
-         //echo 'The Latest Result is '.$resultrate.'<br>';
+        if(count($rows)==1){
+            $resultrate=$first_num;
+            echo 'The Latest Result is '.$resultrate.'<br>';
+        }
+    } 
+    if(count($rows)>1){
+        if ($element === end($rows))
+        { //echo 'LAST ELEMENT! '.$element['taxs_to'];
+            $taxs_to=$element['taxs_to'];
+            $taxs_rate=$element['taxs_rate'];
+            $result=($taxs_to)*($taxs_rate/100);
+            //echo "the second result is ".$result.' RATE '.$element['taxs_rate'];
+             $resultrate=$first_num+$result;
+             echo 'The Latest Result is '.$resultrate.'<br>';
+        }
     }
-   
     
     
 }
