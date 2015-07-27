@@ -1,0 +1,62 @@
+<section class="content-header">
+    <h1>
+        Monthly salary list
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">pay list</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="buttons">
+        <a href="#" class="button add-big" id="displaypopup">Add salary</a>
+        <a href="#" class="button export">Export</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+            <table class="listtbl">
+                <thead>
+                    <tr>
+                        <th width="150px">Month/Year</th>
+                        <th>Salary</th>
+                        <th>Tax</th>
+                        <th>Total</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($geteachmonthsalarys as $geteachmonthsalary) {
+                        ?>
+                        <tr>
+                            <td><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></td>
+                            <td><?php echo $geteachmonthsalary['salary_total']; ?></td>
+                            <td><?php echo $geteachmonthsalary['Tax_total']; ?></td>
+                            <td><?php echo $geteachmonthsalary['Total']; ?></td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+
+
+                </tbody>
+            </table>      
+        </div><!--end table content--->
+    </div><!-- /.row -->
+
+</section><!-- /.content -->
+<div id="myPopup" style="display:none;" title="Dialog Title"><a id="popupClose">x</a><h1>Add confirm</h1>
+    <div>Do you want to new pay list for this month  
+        <?php
+        $today = date("Y-m-d"); // 2012-01-30
+        $next_month = date("m/Y", strtotime("$today +1 month"));
+        echo $next_month . "?";
+        ?>
+    </div>
+    <div style="height:30px;"></div>
+    <a href="salarylist" class="button">Yes</a><a href="#" class="button">No</a>
+</div>	
