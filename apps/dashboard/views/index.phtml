@@ -8,7 +8,7 @@
 
         <!-- Ionicons -->
 
-        <script src="../../common/js/jquery.min.js"></script>
+        
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini"  onload="display_ct()" >
@@ -149,7 +149,7 @@
                                         echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 
