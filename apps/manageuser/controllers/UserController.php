@@ -69,7 +69,8 @@ class UserController extends ControllerBase {
         $cond['dept']=$this->request->get('dept');
         $cond['position']=$this->request->get('position');
         $cond['email']=$this->request->get('email');
-        $cond['pno']=$this->request->get('pno');         
+        $cond['pno']=$this->request->get('pno');
+        $cond['address']=$this->request->get('address');
         $res=$this->user->editbycond($cond);        
         echo json_encode($res);             // send validating data
         $this->view->disable();        

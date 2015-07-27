@@ -60,8 +60,8 @@ var User = {
             dataType:'json',
             success:function(d){ 
                 // check valid mail & phone
-                if(true==d.valid){            
-                  $('body').load('userlist');
+                if(true==d.valid){                              
+                  $('body').load(window.location.href);
                     }
                 else{
                   if(false==d.mail)
