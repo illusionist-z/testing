@@ -1,0 +1,13 @@
+/*!
+ * created at 27/7/15 * 
+ * popup display event time in calendar
+ */
+.popup{   
+    position:absolute;
+        top: 90%;
+        left: 0.99%;
+        width:10em;
+        height:10em;        
+        border:  2px solid black;
+        z-index:100;     
+}
