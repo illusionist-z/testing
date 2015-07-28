@@ -108,6 +108,7 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
   public function getdetail($id){
       $Detail=$this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0 AND leaves.member_id='".$id."'");
       $detail=$Detail->fetchall();
+      
       return $detail;
 }
 }

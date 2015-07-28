@@ -199,9 +199,21 @@ class Leaves extends \Library\Core\BaseModel {
         }
         return $result;
     }
-    
-//    public function getadminNoti(){
-//        $noti=
-//    }
+   
+    public function acceptleave($id,$sdate){
+            $this->db = $this->getDI()->getShared("db");
+        $status=1;
+        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
+       
+      
+       
 
+    }
+   
+    public function rejectleave($id,$sdate){
+        $this->db = $this->getDI()->getShared("db");
+
+        $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'";
+       $this->db->query($sql);
+    }
 }

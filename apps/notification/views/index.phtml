@@ -47,7 +47,7 @@
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#" onclick="return false;" class="notidetail" id="$noti['member_id']">
+                                                <a href="#" onclick="return false;" class="notidetail" id="<?php echo $noti['member_id']?>">
                                                     <img src="../../common/img/notid.png"> 
                                                     <?php echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date'])); ?>
                                                 </a>
@@ -167,7 +167,6 @@
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
                     <?php $this->assets->outputJs(); 
-                          echo Tag::javascriptInclude("apps/manageuser/js/useredit.js");
                     ?>
                 </section>
             </div><!-- /.content-wrapper -->

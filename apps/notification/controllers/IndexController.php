@@ -32,6 +32,7 @@ class IndexController extends ControllerBase
         $this->view->setVar('type', 'viewall');
          $this->view->setVar('all', $all);
     }
-   
+    
+    
 }
 

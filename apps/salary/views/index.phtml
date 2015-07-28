@@ -36,35 +36,30 @@
                         <ul class="nav navbar-nav">
 
                             <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu" >
+                             <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
-                                    <span class="label label-warning">3</span>
+                                    <span class="label label-warning"><?php echo count($this->session->noti);?></span>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 3 notifications</li>
+                                  <ul class="dropdown-menu">
+                                    <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
+                                       <?php foreach ($this->session->noti as $noti) {?>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png"> 5 new members joined today
+                                                <a href="#" onclick="return false;" class="notidetail" id="<?php echo  $noti['member_id']?>">
+                                                    <img src="../../common/img/notid.png"> 
+                                                    <?php if($this->session->user['member_login_name']=="admin"){
+                                                    echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
+                                                    else {?> Admin Accepted leave days for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
+                                                                                         
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png">5 new members joined
-                                                </a>
-                                            </li>
-
+                                           
                                         </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
+                                </li><?php } ?>
+                                    <li class="footer"><a href="../../notification/index/viewall">View all</a></li>
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
