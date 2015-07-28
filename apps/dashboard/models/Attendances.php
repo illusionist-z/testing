@@ -111,5 +111,21 @@ class Attendances extends Model {
         $res['noleave_name']=$data1->fetchall();
         return $res;
     }
-   
+    public function todayattleave(){
+        $result = array();
+        $today = date('Y-m-d');
+        $this->db = $this->getDI()->getShared("db");
+        //today attendance list
+        $query  = "select count(*) as att from attendances where att_date='$today'";
+        $query =  $this->db->query($query);
+        $data = $query->fetchall();
+        $result['att'] = $data[0]['att'];
+        //today leave list
+        $query1 = "select count(*) as allmember from core_member";
+        $query1 =  $this->db->query($query1);
+        $data1 = $query1->fetchall();
+        $allmember = $data1[0]['allmember'];
+        $result['absent'] = $allmember-$result['att'];
+        return $result;
+    }
 }

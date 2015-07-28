@@ -30,16 +30,17 @@ var Noti = {
         $ovl.dialog("open");
         // user edit button
         $('#accept').click(function(){
-          Decide();
+          Accept();
         });
         $('#notidetail_cancel').click(function(e){
             e.preventDefault();
-            $ovl.dialog("close");
+            $ovl.dialog("close");location.reload();  
             this.isOvl=false;
+             
         });
         // user delete button
         $('#reject').click(function(){
-           Decide();
+           Reject();
         });
     },
     /**
@@ -61,10 +62,18 @@ $(document).ready(function () {
     });    
     
 });        
- var Decide=function(){
-     alert("Decide");
-       var username = document.getElementById('username').value; 
-       
-       
-         window.location.href = baseUri + 'manageuser/user/userlist?username='+username;
+ var Accept=function(){
+   
+       var id = document.getElementById('id').innerHTML; 
+       var sdate=document.getElementById('sdate').innerHTML;
+ 
+      
+       window.location.href = baseUri + 'leavedays/index/acceptLeave?id='+id+'&sdate'+sdate;
+         
+    };
+ var Reject=function(){
+   
+       var id = document.getElementById('id').innerHTML; 
+       var sdate=document.getElementById('sdate').innerHTML;
+         window.location.href = baseUri + 'leavedays/index/rejectLeave?id='+id +'&sdate'+sdate;
     };

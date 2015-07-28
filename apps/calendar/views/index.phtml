@@ -26,7 +26,7 @@
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
-                    <a><img src="../common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <a><img src="common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
                     <!-- Navbar Right Menu -->
@@ -34,35 +34,36 @@
                         <ul class="nav navbar-nav">
 
                             <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu" >
+                           <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="../common/img/noti.png">
+                                    <img src="common/img/noti.png">
                                     <span class="label label-warning">3</span>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 3 notifications</li>
+                                  <ul class="dropdown-menu">
+                                    <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
+                                       <?php foreach ($this->session->noti as $noti) {?>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
                                                 <a href="#">
-                                                    <img src="../common/img/notid.png"> 5 new members joined today
+                                                    <img src="common/img/notid.png"> 5 new members joined today
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="../common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
+                                                    <img src="common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
                                                 </a>
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <img src="../common/img/notid.png">5 new members joined
+                                                    <img src="common/img/notid.png">5 new members joined
                                                 </a>
                                             </li>
 
                                         </ul>
-                                    </li>
-                                    <li class="footer"><a href="#">View all</a></li>
+                                </li><?php } ?>
+                                    <li class="footer"><a href="../../notification/index/viewall">View all</a></li>
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -70,13 +71,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="../common/img/profile.png" class="user-image" alt="User Image"/>
+                                    <img src="common/img/profile.png" class="user-image" alt="User Image"/>
                                     <span class="hidden-xs">Admin</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="../common/img/profile.png" class="img-circle" alt="User Image" />
+                                        <img src="common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
                                             Alexander Pierce - Web Developer
                                             <small>Member since Nov. 2012</small>
@@ -108,7 +109,7 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img src="../common/img/profile.png" class="img-circle" alt="User Image" />
+                            <img src="common/img/profile.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <p>Admin</p>
@@ -125,18 +126,18 @@
                             //the outer main menu
                             if (count($key_value) > 1) {
 
-                                echo ' <li class="treeview"><a href="#"><img src="../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
+                                echo ' <li class="treeview"><a href="#"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             } else {
                                 $top = explode(" ", $key_value[0]);
                                 if (strpos($key_name, 'user') !== false) {
 
                                     if (isset($top[1])) {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 
@@ -151,9 +152,9 @@
                                         $mod = explode(" ", $key_value[0]);
                                     }
                                     if (strpos($key_name, 'user') !== false) {
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../common/img/li.png" >' . $value . '</a></li>';
+                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="common/img/li.png" >' . $value . '</a></li>';
                                     } else {
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../common/img/li.png" >' . $value . '</a></li>';
+                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="common/img/li.png" >' . $value . '</a></li>';
                                     }
                                 }
 
