@@ -32,8 +32,11 @@ var Dialog = {
        
         $('#submit_edit_event').click(function () {
              $('.err').text('');
-        $('.err-sdate').text('');
-            Dialog.edit(event.id);
+             $('.err-sdate').text('');
+             Dialog.edit(event.id);
+        });
+         $('#close_create_event').click(function () {
+            $ovl.dialog("close");
         });
         $('#del_event').click(function () {
             Dialog.delete(event.id);
