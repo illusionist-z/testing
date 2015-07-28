@@ -12,9 +12,9 @@ class IndexController extends ControllerBase
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->assets->addCss('common/css/style.css');
-        $this->assets->addJs('common/js/popup.js');
+        $this->assets->addCss('common/css/dialog.css');
         $this->assets->addJs('common/js/jquery.min.js');
-        $this->assets->addJs('apps/salary/js/salary.js');
+        $this->assets->addJs('common/js/popup.js');             //popup message
         $this->setCommonJsAndCss();
         
     }

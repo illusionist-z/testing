@@ -1,10 +1,10 @@
 
-#myPopup,#myPopup_box  {
+#myPopup,#myPopup_box{
 display: none;
 position: fixed;
 background: #fbfbfb;
 border: 2px solid #cecece;
-z-index: 2;
+z-index: 90;
 padding: 14px;
 font-size: 14px;
 border-radius: 5px;

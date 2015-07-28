@@ -11,7 +11,7 @@ var popupStatus = 0;
 function loadPopup(){
 	if(popupStatus==0){
 		$("#backgroundPopup").css({
-			"opacity": "0.7"
+			"opacity": "0.5"
 		});
 		$("#backgroundPopup").fadeIn("slow");
 		$("#myPopup").fadeIn("slow");
@@ -55,14 +55,14 @@ function centerPopup(){
 	//request data for centering
 	var windowWidth = $(window).width();
 	var windowHeight = $(window).height();
-//	var popupHeight = $("table > tbody").height();
-//	var popupWidth = $("table > tbody").width();
+	var popupHeight = $("table > tbody").height();
+	var popupWidth = $("table > tbody").width();
 	
 
 	$("#myPopup").css({
 		"position": "absolute",
 		"top": windowHeight/3,
-		"left": windowWidth/4
+		"left": windowWidth/2.5
 	});
 	
 	$("#backgroundPopup").css({
@@ -93,7 +93,7 @@ function centerPopup_box(){
 
 $(document).ready(function(){
 	
-	$(".displaypopup").click(function(){            
+	$("#displaypopup").click(function(){            
 		//centering with css
 		centerPopup();
 		//load popup
@@ -124,7 +124,7 @@ $(document).ready(function(){
 		disablePopup();
 	});
 	//Press Escape event!
-	$(document).keypress(function(e){
+	$(document).keydown(function(e){
 		if(e.keyCode==27 && popupStatus==1){
 			disablePopup();
 		}
