@@ -1,0 +1,39 @@
+
+<form width="650px" height="300px" >
+	<table width="650px" height="300px">
+            <?php foreach($detail as $Result){?>
+	<tr>
+		<td>User Name :</td>
+		<td><?php echo $Result['member_login_name'];?></td>
+		<td></td>
+		<td>ID:</td>
+		<td><?php echo $Result['member_id'];?></td>
+	</tr>
+	<tr>
+		<td>Start Date :</td>
+		<td><?php echo date("d-m-Y", strtotime( $Result['start_date']));?></td>
+		<td></td>
+		<td>End Date	:</td>
+		<td><?php echo date("d-m-Y", strtotime( $Result['end_date']));?></td>
+	</tr>
+	<tr>
+		<td>Leave type :</td>
+		<td><?php echo $Result['leave_category']?></td>
+		<td></td>
+		<td>Days :</td>
+		<td><?php echo $Result['leave_days']?></td>
+	</tr>
+	<tr>
+		<td>Leave Description:</td>
+		<td colspan="4"><?php echo $Result['leave_description']?></td>
+	</tr>
+	
+	<tr> 
+		
+		<td colspan="5"> <a href="" id="accept" class="button">Yes</a>
+		 <a href="" id="reject" class="button">No</a>
+		  <a href="#" class="button" id="notidetail_cancel">Cancel</a></td>
+		
+	</table>
+            <?php }?>
+</form>
