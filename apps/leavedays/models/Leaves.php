@@ -204,7 +204,7 @@ class Leaves extends \Library\Core\BaseModel {
             $this->db = $this->getDI()->getShared("db");
         $status=1;
         $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-       
+      
       
        
 

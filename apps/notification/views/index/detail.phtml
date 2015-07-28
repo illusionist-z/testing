@@ -1,10 +1,10 @@
 
 <form width="650px" height="300px" action="../../leavedays/index/decide" method="post">
 	<table width="650px" height="300px">
-            <?php foreach($detail as $Result){?>
-	<tr>
-                <input type="hidden" name="member_id" value="<?php echo $Result['member_login_name'];?>">
+            <?php foreach($detail as $Result){?><input type="hidden" name="member_id" value="<?php echo $Result['member_login_name'];?>">
                 <input type="hidden" name="start_date" value="<?php echo $Result['start_date'];?>">
+	<tr>
+                
 		<td>User Name :</td>
 		<td><?php echo $Result['member_login_name'];?></td>
 		<td></td>
@@ -35,7 +35,7 @@
             <td colspan="5"> <?php if($this->session->user['member_login_name']=="admin"){?><input type="submit" value="Yes" name="submit" class="buttonn">
 		 <input type="submit" name="submit" value="No"  class="buttonn">
             <a href="#" class="button" id="notidetail_cancel">Cancel</a></td><?php } else{?>
-            <input type="submit" name="submit" value="OK"  class="buttonn"><?php }?>
+            <a href="#" class="button" id="notidetail_cancel">OK</a><?php }?>
             
 		
 	</table>

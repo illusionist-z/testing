@@ -73,6 +73,6 @@ class IndexController extends ControllerBase {
         else{
             $this->_leave->rejectleave($id,$sdate); 
         }
-        
+        $this->response->redirect('notification/index/viewall');
     }
 }

@@ -50,7 +50,7 @@
                                                     <img src="../../common/img/notid.png"> 
                                                     <?php if($this->session->user['member_login_name']=="admin"){
                                                     echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
-                                                    else {?> Admin Accepted leave days for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
+                                                    else {?> Admin checked leave days for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
                                                                                          
                                                 </a>
                                             </li>
