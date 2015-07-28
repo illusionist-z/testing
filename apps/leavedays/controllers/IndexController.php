@@ -58,5 +58,21 @@ class IndexController extends ControllerBase {
         $this->view->setVar("leave_result", $leave);        
 
     }
-  
+    
+   
+    
+    public function decideAction(){
+         $type=$this->request->getPost('submit');
+        $sdate=$this->request->getPost('start_date');
+        $id=$this->request->getPost('member_id');
+        
+        if($type=='Yes'){
+           
+             $this->_leave->acceptleave($id,$sdate); 
+        }
+        else{
+            $this->_leave->rejectleave($id,$sdate); 
+        }
+        
+    }
 }
