@@ -48,7 +48,7 @@ class IndexController extends ControllerBase {
      */
     public function leavelistAction(){              
         $month = $this->config->month;
-        $leave = $this->config->leave;        
+        $leave = $this->config->leavetype;        
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();                   
         $leaves = $this->_leave->getleavelist();               

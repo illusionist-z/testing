@@ -30,8 +30,8 @@
 
         <div class="row">
             <div class="col-md-12">
-		  <div class="top_row"><a href="todaylist.html"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;">100 </font>staffs attended</a></div>
-		  <div class="top_row"><a href="leavelist.html"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;">2</font>staffs absent<a></div>
+		  <div class="top_row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font>staffs attended</a></div>
+		  <div class="top_row"><a href="<?= $baseUri ?>leavedays/index/leavelist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> staffs absent<a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -60,7 +60,7 @@
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
-              <div class="small-box bg-red" onclick="window.location.href='../../salary/index/index'" id="pointer_style3">
+              <div class="small-box bg-red" onclick="window.location.href='../../salary/index/salarylist'" id="pointer_style3">
                 <img src="../../common/img/Dollar-128.png">
                                             Salary
                                         </div>
@@ -168,7 +168,7 @@
                                         <div class="box-header with-border">
                                             <h3 class="box-title">Latest Members</h3>
                                             <div class="box-tools pull-right">
-                                                <span class="label label-danger">4 New Members</span>
+                                                <span class="label label-danger"><?= $newnumber ?> New Members</span>
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                             </div>
                                         </div><!-- /.box-header -->

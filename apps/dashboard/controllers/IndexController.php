@@ -48,14 +48,20 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {    
+    //get last create member
     $cm = new Db\CoreMember();
     $gname = $cm::getinstance()->getlastname();
+    $newmember = count($gname);
     //get most leave name
     $checkleave = new \workManagiment\Dashboard\Models\Attendances();
-    $leave_name  =$checkleave->checkleave();
+    $leave_name =$checkleave->checkleave();
+    $status     =$checkleave->todayattleave();
+    $this->view->setVar("attname",$status['att']);
+    $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);
     $this->view->setVar("lname",$leave_name['leave_name']);
     $this->view->setVar("name",$gname);
+    $this->view->setVar("newnumber",$newmember);
     }
     
     /**
