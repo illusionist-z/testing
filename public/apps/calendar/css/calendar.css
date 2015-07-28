@@ -1,5 +1,5 @@
 /*!
- * created at 27/7/15 * 
+ * created at 27/7/15
  * popup display event time in calendar
  */
 .popup{   
@@ -8,6 +8,12 @@
         left: 0.99%;
         width:10em;
         height:10em;        
-        border:  2px solid black;
-        z-index:100;     
+        border:  2px solid black;        
+        background: #fbfbfb;
+        z-index: 2;
+        padding: 14px;
+        font-size: 14px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
 }

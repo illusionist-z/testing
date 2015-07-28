@@ -25,6 +25,7 @@ var User = {
             autoOpen: false,
             height: 370,
             async:false,
+            
             width: 800,
             modal: true,
             title:"User Edit"
@@ -32,17 +33,18 @@ var User = {
         $ovl.html(data);
         $ovl.dialog("open");
         // user edit button
-        $('#edit_user_edit').click(function(e){
+        $('#edit_edit').click(function(e){
             e.preventDefault();
            User.DataChange($('#edit_user_id').val()); 
         });
-        $('#edit_user_close').click(function(e){
+        $('#edit_close').click(function(e){
             e.preventDefault();
             $ovl.dialog("close");
             this.isOvl=false;
+            $('body').load(window.location.href);
         });
         // user delete button
-        $('#edit_user_delete').click(function(e){
+        $('#edit_delete').click(function(e){
             e.preventDefault();
             User.Delete($('#edit_user_id').val());
         });
@@ -61,7 +63,7 @@ var User = {
             success:function(d){ 
                 // check valid mail & phone
                 if(true==d.valid){            
-                  $('body').load('userlist');
+                  $('body').load(window.location.href);
                     }
                 else{
                   if(false==d.mail)
