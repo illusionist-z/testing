@@ -5,22 +5,22 @@
  */
 
 
-function display_c() {
-    var refresh = 1000; // Refresh rate in milli seconds
-    mytime = setTimeout('display_ct()', refresh)
+function checktime(i) {
+    if(i<10){
+        i = "0"+i;  // add zero in front of numbers < 10        
+    }
+    return i;
 }
 function display_ct() {
     var x = new Date();
-    var sec=x.getSeconds();
- 
-    if(sec<10 ){
-                var x1 = +x.getHours( ) + ":" + x.getMinutes() + ":0" + x.getSeconds();
-              }
-    else{
-                var x1 = +x.getHours( ) + ":" + x.getMinutes() + ":" + x.getSeconds();
-        }
-    document.getElementById('ct').innerHTML = x1;
-    tt = display_c();
+    var h = x.getHours();
+    var m = x.getMinutes();
+    var s = x.getSeconds();
+    h = checktime(h);
+    m = checktime(m);
+    s = checktime(s);        
+    document.getElementById('ct').innerHTML = h+":"+m+":"+s;    
+     var t = setTimeout(function(){display_ct()},500);
 }
 
 //function gettimezone(){
