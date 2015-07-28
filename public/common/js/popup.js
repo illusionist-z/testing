@@ -54,17 +54,14 @@ function centerPopup(){
 	
 	//request data for centering
 	var windowWidth = $(window).width();
-	var windowHeight = $(window).height();
-	var popupHeight = $("table > tbody").height();
-	var popupWidth = $("table > tbody").width();
-	
-
+	var windowHeight = $(window).height();		
+        
 	$("#myPopup").css({
 		"position": "absolute",
-		"top": windowHeight/3,
-		"left": windowWidth/2.5
+		"top"     : windowHeight/4,
+                "left"    : windowWidth/2.5
 	});
-	
+	$("body").css("overflow","hidden");
 	$("#backgroundPopup").css({
 		"height": windowHeight
 	});
@@ -98,6 +95,7 @@ $(document).ready(function(){
 		centerPopup();
 		//load popup
 		loadPopup();
+               
 	});
 	
 	$(".notification").click(function(){
