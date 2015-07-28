@@ -56,17 +56,19 @@ class SalaryMaster extends Model {
             $deduce_amount = array();
             foreach ($param as $value) {
                 $salary_yr = $value['basic_salary'] * 12;
+                //calculate basic deduction by 20%
                 $basic_deduction = $salary_yr * (20 / 100);
+                //calculate ssc fee for employee by 2%
                 $emp_ssc = $salary_yr * (2 / 100);
-                //echo $salary_yr.'<br>'.$emp_ssc;exit;
+                //get reduce amount for each employee
                 $deduce_amount = $this->getreduce($value['member_id']);
-                //echo $salary_yr.'<br>';
-                //print_r($deduce_amount[0]['Totalamount']);
+                //calculate the total deduce
                 $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
+                //calculate income tax for whole year
                 $income_tax = $salary_yr - $total_deduce;
-                echo $income_tax.'<br>';
+                echo $income_tax . '<br>';
                 //echo "Member id " . $value['member_id'] . "The latest salary is " . $latest_result . '<br>';
-                // echo "greater";
+                // calculate to get pay rate by income tax
                 $this->deducerate($income_tax);
             }
             exit;
@@ -101,13 +103,13 @@ class SalaryMaster extends Model {
     public function deducerate($income_tax) {
         //echo $income_tax; //exit;
         try {
-            $sql = "select * from taxs where taxs_from<".$income_tax." and taxs_rate !=0 ORDER BY `taxs_to` DESC limit 2";
+            $sql = "select * from taxs where taxs_from<" . $income_tax . " and taxs_rate !=0 ORDER BY `taxs_to` DESC limit 2";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
-            //echo $sql;//exit;
+            //echo $sql; //exit;
             $result = $this->db->query($sql);
             $rows = $result->fetchall();
             //print_r($rows);
-            $this->calculate_deducerate($rows,$income_tax);
+            $this->calculate_deducerate($rows, $income_tax);
 
             //exit;
         } catch (Exception $exc) {
@@ -115,35 +117,37 @@ class SalaryMaster extends Model {
         }
         return $rows;
     }
-    
-    public function calculate_deducerate($rows,$income_tax) {
-       //echo count($rows);echo "<br>";
-           foreach($rows as $element) {
-               //echo $element['taxs_from']."<br>";
-    if ($element === reset($rows))
-    { 
-        //echo 'FIRST ELEMENT!  '.$element['taxs_from'].'<br>';
-        $aa=$element['taxs_from']-1;
-        $first_num= ($income_tax-$aa)*($element['taxs_rate']/100);
-        if(count($rows)==1){
-            $resultrate=$first_num;
-            echo 'The Latest Result is '.$resultrate.'<br>';
+
+    /**
+     * Calculate to get tax for whole year by %
+     * @param type $rows
+     * @param type $income_tax
+     */
+    public function calculate_deducerate($rows, $income_tax) {
+        //echo count($rows);echo "<br>";
+        foreach ($rows as $element) {
+            //echo $element['taxs_from']."<br>";
+            if ($element === reset($rows)) {
+                //echo 'FIRST ELEMENT!  '.$element['taxs_from'].'<br>';
+                $aa = $element['taxs_from'] - 1;
+                $first_num = ($income_tax - $aa) * ($element['taxs_rate'] / 100);
+                
+                if (count($rows) == 1) {
+                    $resultrate = $first_num;
+                    echo 'The Latest Result is ' . $resultrate . '<br>';
+                }
+            }
+            if (count($rows) > 1) {
+                if ($element === end($rows)) { //echo 'LAST ELEMENT! '.$element['taxs_to'];
+                    $taxs_to = $element['taxs_to'];
+                    $taxs_rate = $element['taxs_rate'];
+                    $result = ($taxs_to - $element['taxs_from']) * ($taxs_rate / 100);
+                    echo "the second result is " . $result . ' RATE ' . $element['taxs_rate'];
+                    $resultrate = $first_num + $result;
+                    echo 'The Latest Result is ' . $resultrate . '<br>';
+                }
+            }
         }
-    } 
-    if(count($rows)>1){
-        if ($element === end($rows))
-        { //echo 'LAST ELEMENT! '.$element['taxs_to'];
-            $taxs_to=$element['taxs_to'];
-            $taxs_rate=$element['taxs_rate'];
-            $result=($taxs_to)*($taxs_rate/100);
-            //echo "the second result is ".$result.' RATE '.$element['taxs_rate'];
-             $resultrate=$first_num+$result;
-             echo 'The Latest Result is '.$resultrate.'<br>';
-        }
-    }
-    
-    
-}
     }
 
 }
