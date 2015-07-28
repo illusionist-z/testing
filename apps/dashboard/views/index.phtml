@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+
 <html>
     <head>
+        <style>.ui-dialog-titlebar-close {
+  visibility: hidden;
+}</style>
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -8,7 +12,7 @@
 
         <!-- Ionicons -->
 
-        
+        <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini"  onload="display_ct()" >
@@ -38,31 +42,26 @@
                             <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
-                                    <span class="label label-warning">3</span>
+                                    <span class="label label-warning"><?php echo count($this->session->noti);?></span>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 3 notifications</li>
+                                  <ul class="dropdown-menu">
+                                    <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
+                                       <?php foreach ($this->session->noti as $noti) {?>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png"> 5 new members joined today
+                                                <a href="#" onclick="return false;" class="notidetail" id="<?php echo  $noti['member_id']?>">
+                                                    <img src="../../common/img/notid.png"> 
+                                                    <?php if($this->session->user['member_login_name']=="admin"){
+                                                    echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
+                                                    else {?> Admin Accepted leave days for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
+                                                                                         
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png">5 new members joined
-                                                </a>
-                                            </li>
-
+                                           
                                         </ul>
-                                    </li>
+                                </li><?php } ?>
                                     <li class="footer"><a href="#">View all</a></li>
                                 </ul>
                             </li>
@@ -149,7 +148,7 @@
                                         echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 
@@ -197,7 +196,9 @@
 
         </div><!-- ./wrapper -->
 
-
+<div id="notidetail" style=" display:none;border: 1px solid;background-color: white;" class="navbar">
+    
+</div>
 
     </body>
 </html>

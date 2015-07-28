@@ -11,8 +11,12 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
-        $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/style.css');
+        $this->assets->addJs('common/js/popup.js');
+        $this->assets->addJs('common/js/jquery.min.js');
+        $this->assets->addJs('apps/salary/js/salary.js');
+        $this->setCommonJsAndCss();
+        
     }
 
     
@@ -59,5 +63,12 @@ class IndexController extends ControllerBase
         $this->view->pick('index/addsalary');
     }
 
+    
+    public function monthlysalaryAction() {
+        $Salarydetail=new SalaryDetail();
+        $geteachmonthsalary=$Salarydetail->geteachmonthsalary();
+        //print_r($geteachmonthsalary);exit;
+        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
+    }
 }
 

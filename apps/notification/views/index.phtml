@@ -1,3 +1,4 @@
+<?php use Phalcon\Tag as Tag; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,17 +7,15 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 
-        <!-- Ionicons -->
-
-        
+        <!-- Ionicons -->        
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini
-          <?php error_reporting(0); ?>
-        <div class="wrapper">
-
+    <body class="skin-blue sidebar-mini">
+      
+        <?php    if($type == 'viewall'){     ?>
+              <div class="wrapper">
             <header class="main-header">
-
+                
                 <!-- Logo -->
                 <a href="index2.html" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -36,34 +35,26 @@
                         <ul class="nav navbar-nav">
 
                             <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu" >
+                           <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
-                                    <span class="label label-warning">3</span>
+                                    <span class="label label-warning"><?php echo count($this->session->noti);?></span>
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li class="header">You have 3 notifications</li>
+                                  <ul class="dropdown-menu">
+                                    <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
+                                       <?php foreach ($this->session->noti as $noti) {?>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png"> 5 new members joined today
+                                                <a href="#" onclick="return false;" class="notidetail" id="$noti['member_id']">
+                                                    <img src="../../common/img/notid.png"> 
+                                                    <?php echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date'])); ?>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png"> Very long description here that may not fit into the page and may cause design problems
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <img src="../../common/img/notid.png">5 new members joined
-                                                </a>
-                                            </li>
-
+                                           
                                         </ul>
-                                    </li>
+                                </li><?php } ?>
                                     <li class="footer"><a href="#">View all</a></li>
                                 </ul>
                             </li>
@@ -73,14 +64,14 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/profile.png" class="user-image" alt="User Image"/>
-                                    <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
+                                    <span class="hidden-xs">Admin</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
                                         <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
-                                            <?php echo $this->session->user['member_login_name']; ?>
+                                            Alexander Pierce - Web Developer
                                             <small>Member since Nov. 2012</small>
                                         </p>
                                     </li>
@@ -138,7 +129,7 @@
                                         echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 
@@ -175,16 +166,31 @@
                 <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
-                    <?php $this->assets->outputJs(); ?>
+                    <?php $this->assets->outputJs(); 
+                          echo Tag::javascriptInclude("apps/manageuser/js/useredit.js");
+                    ?>
                 </section>
             </div><!-- /.content-wrapper -->
 
             <footer class="main-footer">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
+              </div><!-- ./wrapper -->
+        <?php }  
+        else {            
+        ?>
+               
+                <section class="content">
+                    <?php echo $this->getContent() ?>
+                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
+                    <?php $this->assets->outputJs(); ?>
+                </section>
+            
+        <?php
+            }
+        ?>
 
-
-        </div><!-- ./wrapper -->
+      
 
 
 
