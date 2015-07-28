@@ -15,6 +15,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/popup.js');             //popup message
+        $this->assets->addJs('apps/salary/js/salary.js');
         $this->setCommonJsAndCss();
         
     }
