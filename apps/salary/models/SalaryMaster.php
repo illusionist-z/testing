@@ -101,7 +101,7 @@ class SalaryMaster extends Model {
     public function deducerate($income_tax) {
         //echo $income_tax; //exit;
         try {
-             $sql = "select * from taxs where taxs_rate!=0";
+            $sql = "select * from taxs where taxs_from<".$income_tax." and taxs_rate !=0 ORDER BY `taxs_to` DESC limit 2";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
             //echo $sql;//exit;
             $result = $this->db->query($sql);
@@ -117,24 +117,36 @@ class SalaryMaster extends Model {
     }
     
     public function calculate_deducerate($rows,$income_tax) {
-        //print_r($rows);
-            $flag="true";
-            $result='';
-           foreach($rows as $row) {
-               
-                        
-                   //if( $flag=="true") {
-                   if($income_tax>$row['taxs_from']){
-                       $test=$row['taxs_from']-1;
-                       $tax_rate=($income_tax-$test)*($row['taxs_rate']/100);
-                       //echo $income_tax-$test.' Tax difference is '.$row['taxs_diff'].' Rate is '.$tax_rate.'<br>';
-                       $result.=$tax_rate;
-                   }
-                   
-                   }
-                   echo 'The Result is '.$result.'<br>';
-                    //$flag="false";
-                //}
+        $bb='';
+                 foreach($rows as $element) {
+               $aa=$element['taxs_from']-1;
+    if ($element === reset($rows))
+    { 
+        
+        $first_num= ($income_tax-$aa)*($element['taxs_rate']/100);
+        $bb+=$first_num;
+        //echo 'FIRST ELEMENT!  '.$first_num.'<br>';
+    } 
+    
+        if ($element === end($rows))
+        { 
+        if(count($rows)>1){
+           
+            $result=$element['taxs_to']*($element['taxs_rate']/100);
+            
+            $bb+=$result;
+            
+            //echo "the second result is ".$result.' RATE '.$element['taxs_rate'];
+            //echo 'LAST ELEMENT! '.$result.'<br>';
+            ;
+        }
+        echo "The Latest Result is ".$bb.'<br>';
+        $dd=$bb/12;
+        echo "tax rate for each month is ".$dd."<br>";
+    }
+    
+    
+}
     }
 
 }
