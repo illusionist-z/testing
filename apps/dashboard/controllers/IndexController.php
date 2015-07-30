@@ -58,7 +58,7 @@ class IndexController extends ControllerBase {
     $status     =$checkleave->todayattleave();
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
-    $this->view->setVar("nlname",$leave_name['noleave_name']);
+    $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
     $this->view->setVar("lname",$leave_name['leave_name']);
     $this->view->setVar("name",$gname);
     $this->view->setVar("newnumber",$newmember);

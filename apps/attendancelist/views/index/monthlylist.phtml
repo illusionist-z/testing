@@ -217,4 +217,11 @@ foreach ($showlist->items as $item) {
     </div><!-- /.row -->
 
 </section>
+  <ul class="pagination pagination-large">
+        <li><a href="monthlylist">First</a></li>
+        <li><a href="monthlylist?page=<?= $showlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
+        <li><?php echo "You are in page ", $showlist->current, " of ", $showlist->total_pages; ?></li>
+        <li><a href="monthlylist?page=<?= $showlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
+        <li><a href="monthlylist?page=<?= $showlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>      
+  </ul>
 <div id="content"></div>
