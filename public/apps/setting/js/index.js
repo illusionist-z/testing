@@ -1,13 +1,9 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * @param {type} param
+ * edit user profile
+ * @author Su Zin Kyaw
  */
-/*
- * @GEOprocess()
- * @get @lat @lng
- */
-
 
 $(document).ready(function () {
 
@@ -22,17 +18,12 @@ $(document).ready(function () {
         document.getElementById('position').disabled=false;
         document.getElementById('email').disabled=false;
         document.getElementById('phno').disabled=false;
+        document.getElementById('timezone').disabled=false;
         document.getElementById('save').disabled=false;
         document.getElementById('add').readOnly=false;
     });
 
-    $('#sub').click(function () {
-        sub();
-    });
-
-    $('#namesearch').click(function () {
-        namesearch();
-    });
+   
 });
 
 

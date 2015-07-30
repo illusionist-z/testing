@@ -31,9 +31,12 @@ class UserController extends ControllerBase
     public function attendancelistAction(){
         
         if(isset($this->session->tzoffset)){
-           $offset= $this->session->tzoffset;
+           $offset= $this->session->tzoffset['offset'];
+           $timezone=$this->session->tzoffset['timezone'];
         }else{
-        $offset= $this->session->location['offset'];}
+        $offset= $this->session->location['offset'];
+        $timezone=$this->session->location['timezone'];
+        }
        
         $month = $this->request->get('month');
         $id= $this->session->user['member_id'];
@@ -41,6 +44,7 @@ class UserController extends ControllerBase
         $result_attlist = $Att_list->getattlist($id,$month);      
          $this->view->attlist = $result_attlist;
          $this->view->offset=$offset;
+         $this->view->timezone=$timezone;
        
     }
     

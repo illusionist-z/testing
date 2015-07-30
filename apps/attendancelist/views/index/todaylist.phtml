@@ -152,20 +152,24 @@ foreach ($attlist->items as $result) {
                                 ?> 
 
                             </td>
-                            <td><?php
-                                $lat = $result['lat'];
-                                $lng = $result['lng'];
-                                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . trim($lat) . ',' . trim($lng) . '&sensor=false';
-                                $json = @file_get_contents($url);
-                                $data = json_decode($json);
-                                $status = $data->status;
-                                if ($status == "OK") {
-                                    echo $data->results[5]->formatted_address;
-//                    print_r($data);
-                                } else {
-                                    echo "-";
-                                }
-                                ?></td>
+                            <td><?php $lat= $result['lat'];
+                $lng=$result['lng'];
+               if(0==$lng && 0==$lat){
+                echo "-";
+                }
+                else{
+                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
+                $json = @file_get_contents($url);
+                $data=json_decode($json);
+                if( $data){
+                echo $data->results[5]->formatted_address;
+                }
+                else
+                {
+                   echo "-";
+                }
+                }
+        ?></td>
                         </tr>
                                 <?php
                             }
