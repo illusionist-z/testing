@@ -144,10 +144,8 @@ foreach ($attlist->items as $result) {
                             <td>
                                 <?php
                                 //calculate overtime
-                                $workingHour = $end_time - $start_time;
-                                if ($workingHour > 28800) {
-                                    $workingHour = $workingHour - 28800;
-                                    echo gmdate("H:i:s", $workingHour);
+                                if ($result['overtime']!=0) {
+                                   echo $result['overtime'];
                                 } else {
                                     echo "-";
                                 }

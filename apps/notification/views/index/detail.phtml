@@ -1,7 +1,7 @@
 
 <form width="650px" height="300px" action="../../leavedays/index/decide" method="post">
 	<table width="650px" height="300px">
-            <?php foreach($detail as $Result){?><input type="hidden" name="member_id" value="<?php echo $Result['member_login_name'];?>">
+            <?php foreach($detail as $Result){?><input type="hidden" name="member_id" value="<?php echo $Result['member_id'];?>">
                 <input type="hidden" name="start_date" value="<?php echo $Result['start_date'];?>">
 	<tr>
                 
@@ -19,8 +19,14 @@
 		<td><?php echo date("d-m-Y", strtotime( $Result['end_date']));?></td>
 	</tr>
 	<tr>
-		<td>Leave type :</td>
-		<td><?php echo $Result['leave_category']?></td>
+		<td>Leave Status :</td>
+		<td><?php 
+                 switch($Result['leave_status']){
+                            case "0" : echo "Pending" ; break;
+                            case "1" : echo "Confirmed";break;
+                            case "2" : echo "Rejected";break;
+                               
+                        }?></td>
 		<td></td>
 		<td>Days :</td>
 		<td><?php echo $Result['leave_days']?></td>

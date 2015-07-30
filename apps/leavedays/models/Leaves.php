@@ -199,17 +199,28 @@ class Leaves extends \Library\Core\BaseModel {
         }
         return $result;
     }
-   
+   /**
+    * 
+    * @param type $id
+    * @param type $sdate
+    * change leave status to '1'
+    * when admin accept leavedays request from user
+    * @author Su Zin kyaw
+    */
     public function acceptleave($id,$sdate){
             $this->db = $this->getDI()->getShared("db");
-        $status=1;
+        $status=1;echo $id;
         $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-      
-      
-       
-
+    
     }
    
+    /**
+     * 
+     * @param type $id
+     * @param type $sdate
+     * change leave status to '2'
+     * when admin reject leavedays request from user
+     */
     public function rejectleave($id,$sdate){
         $this->db = $this->getDI()->getShared("db");
 

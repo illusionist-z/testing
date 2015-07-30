@@ -70,7 +70,14 @@ class Attendances extends Model {
                          
                      }
                      else{
-                      $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE att_date='".$today."'");
+                        $workingHour=strtotime($att->checkin_time)-strtotime($mydate);
+                        
+                        if($workingHour>28800){
+                          $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
+                        } else{
+                            $ovt=0;
+                        }
+                      $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."' WHERE att_date='".$today."' AND member_id='".$id."'");
                       echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
                       echo "<script>window.location.href='direct';</script>"; 
                         
@@ -84,8 +91,14 @@ class Attendances extends Model {
                 }
             }
             else{
+                 $workingHour=strtotime($mydate)-strtotime($checkin);
+                 
+                 if($workingHour>28800){
+                 $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
+               
+                        } 
                 //insert checkout time for last data
-                $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE checkin_time='".$checkin."'");
+                $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."'  WHERE checkin_time='".$checkin."'  AND member_id='".$id."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
                 echo "<script>window.location.href='direct';</script>"; 
             }            
@@ -111,5 +124,21 @@ class Attendances extends Model {
         $res['noleave_name']=$data1->fetchall();
         return $res;
     }
-   
+    public function todayattleave(){
+        $result = array();
+        $today = date('Y-m-d');
+        $this->db = $this->getDI()->getShared("db");
+        //today attendance list
+        $query  = "select count(*) as att from attendances where att_date='$today'";
+        $query =  $this->db->query($query);
+        $data = $query->fetchall();
+        $result['att'] = $data[0]['att'];
+        //today leave list
+        $query1 = "select count(*) as allmember from core_member";
+        $query1 =  $this->db->query($query1);
+        $data1 = $query1->fetchall();
+        $allmember = $data1[0]['allmember'];
+        $result['absent'] = $allmember-$result['att'];
+        return $result;
+    }
 }

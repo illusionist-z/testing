@@ -73,7 +73,7 @@ var Dialog = {
     },
     edit: function (id) {
         $.ajax({
-            url: "index/edit?id=" + id,
+            url: "edit?id=" + id,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -91,7 +91,7 @@ var Dialog = {
     //drag & resize event 
     drag: function (start, end, id, title) {
         $.ajax({
-            url: "index/edit",
+            url: "edit",
             data: {sdate: start, edate: end, id: id, title: title},
             async: false,
             dataType: 'json'
@@ -100,7 +100,7 @@ var Dialog = {
     //create new event
     create: function () {
         $.ajax({
-            url: "index/create",
+            url: "create",
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",
@@ -118,7 +118,7 @@ var Dialog = {
     },
     delete: function (id) {
         $.ajax({
-            url: "index/delete",
+            url: "delete",
             data: {data: id},
             async: false,
             dataType: 'json'
@@ -132,7 +132,7 @@ $(document).ready(function () {
 
     //get event from database
     $.ajax({
-        url: 'index/showdata',
+        url: 'calendar/index/showdata',
         type: 'POST',
         datyType: 'json',
         async: false,

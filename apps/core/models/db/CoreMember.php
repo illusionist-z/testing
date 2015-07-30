@@ -31,8 +31,8 @@ class CoreMember extends \Library\Core\BaseModel{
      */
      public function getlastname() {
         $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("SELECT * FROM core_member WHERE  created_dt >= NOW() - INTERVAL 8 MONTH");        
-        $laname = $user_name->fetchall();
+        $user_name = $this->db->query("SELECT * FROM core_member WHERE  created_dt >= (NOW() - INTERVAL 8 MONTH) limit 4" );        
+        $laname = $user_name->fetchall();        
         return $laname;
     }
     /**
@@ -92,23 +92,73 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
         $user = $user->fetchall();
         return $user;
   }
+  /**
+   * 
+   * @return type
+   * getting pending leavedays detail
+   * for admin notification
+   * @author Su Zin Kyaw
+   */
   
    public function GetAdminNoti(){
       $AdminNoti=$this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0");
       $noti=$AdminNoti->fetchall();
       return $noti;
   }
-  
+  /**
+   * 
+   * @param type $id
+   * @return type
+   * getting accepted and rejected leavedays detail
+   * for user notification
+   * @author Su Zin Kyaw
+   */
   public function GetUserNoti($id){
-       $UserNoti=$this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0 AND leaves.member_id='".$id."'");
+       $UserNoti=$this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status!=0 AND leaves.member_id='".$id."'");
       $noti=$UserNoti->fetchall();
       return $noti;
   }
-  
+  /**
+   * 
+   * @param type $id
+   * @return type
+   * getting notification detail
+   * @author Su Zin Kyaw
+   */
   public function getdetail($id){
       $Detail=$this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0 AND leaves.member_id='".$id."'");
       $detail=$Detail->fetchall();
       
       return $detail;
 }
+/**
+ * 
+ * @param type $d
+ * updating core member'profile
+ * while user change something in profile
+ * @author Su Zin Kyaw
+ */
+    public function updatedata($d,$id){
+       $this->db = $this->getDI()->getShared("db");
+       
+       if($d['password']==$d['temp_pass']){
+           $this->db->query("UPDATE core_member set core_member.member_login_name='".$d['username']."' , "
+                   . "core_member.member_dept_name='".$d['dept']."' , core_member.job_title='".$d['position']."'"
+                   . ", core_member.member_mail='".$d['email']."' , core_member.member_address='".$d['add']."'"
+                   . ", core_member.member_mobile_tel='".$d['phno']."' ,core_member.member_profile='".$d['file']."' WHERE core_member.member_id='".$id."' ");
+
+
+       }
+       else{
+            $this->db->query("UPDATE core_member set core_member.member_login_name='".$d['username']."' ,  "
+                   . "core_member.member_dept_name='".$d['dept']."' , core_member.job_title='".$d['position']."' "
+                   . "AND core_member.member_mail='".$d['email']."' , core_member.member_mobile_tel='".$d['phno']."' "
+                   . "AND core_member.member_address='".$d['add']."' , core_member.member_password='".sha1($d['password'])."' WHERE core_member.member_id='".$id."");
+       }
+       
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
+
+    }
 }
