@@ -22,6 +22,7 @@ $(document).ready(function () {
         document.getElementById('position').disabled=false;
         document.getElementById('email').disabled=false;
         document.getElementById('phno').disabled=false;
+        document.getElementById('save').disabled=false;
         document.getElementById('add').readOnly=false;
     });
 

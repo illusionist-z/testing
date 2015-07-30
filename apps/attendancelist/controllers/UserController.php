@@ -29,8 +29,12 @@ class UserController extends ControllerBase
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function attendancelistAction(){
+        
+        if(isset($this->session->tzoffset)){
+           $offset= $this->session->tzoffset;
+        }else{
+        $offset= $this->session->location['offset'];}
        
-        $offset= $this->session->location['offset'];
         $month = $this->request->get('month');
         $id= $this->session->user['member_id'];
         $Att_list = new \workManagiment\Attendancelist\Models\Attendances();

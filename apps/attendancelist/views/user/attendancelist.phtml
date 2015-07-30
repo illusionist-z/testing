@@ -5,14 +5,16 @@
 
 <?php
     //calculate the user time offset
-
+   
     if ($offset<0){
     $sign='-';
     $value=$offset*(-1);
+    
   
   }
     else{
     $value=$offset*(-1);
+    $sign='+';
 } 
 
 
@@ -79,7 +81,7 @@
         echo $cintime->format('Y-m-d H:i:s A');
         }
         else{
-         $cintime = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkintime)));
+         $cintime = date("Y-m-d H:i:s A",strtotime($value." minutes",strtotime($checkintime)));
             echo $cintime;
         }
      ?>
@@ -95,16 +97,18 @@
         $time->add(new DateInterval('PT' . $value . 'M'));
         echo  $time->format('Y-m-d H:i:s A');}
         else {
-            $time = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkouttime)));
+            $time = date("Y-m-d H:i:s A",strtotime($value." minutes",strtotime($checkouttime)));
             echo $time;
         }
         }
 ?></td>
         
 <!--        Late-->
-        <td><?php 
+        <td><?php  
+      $time = date("H:i:s",strtotime($value." minutes",strtotime($checkintime)));
+//           
         $office_start_time='08:00:00 ';
-      $time=$cintime->format('H:i:s ');
+      
         if($time>$office_start_time){
             $start=strtotime($office_start_time);
             $end=strtotime($time);

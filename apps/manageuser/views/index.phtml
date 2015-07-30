@@ -88,10 +88,22 @@
                                     </li>
 
                                     <!-- Menu Footer-->
-                                    <li class="user-footer">
+                                      <li class="user-footer">
+                                      <?php $name=$this->session->user['member_login_name'];
+        if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Setting</a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
                                         </div>
+            
+        <?php }
+        else
+        {?> 
+            <div class="pull-left">
+                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat">Setting</a>
+                                        </div>
+        <?php }
+        ?>
+                                        
                                         <div class="pull-right">
                                             <a href="#" class="btn btn-default btn-flat" id="btn_logout">Sign out</a>
 
