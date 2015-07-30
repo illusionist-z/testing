@@ -20,8 +20,9 @@ class IndexController extends ControllerBase
     
     public function detailAction() {
     $id= $this->request->get('data');
+    $data= (explode(",",$id));
     $NotiDetail=new \workManagiment\Core\Models\Db\CoreMember();
-    $noti=$NotiDetail->getdetail($id);
+    $noti=$NotiDetail->getdetail($data);
     $this->view->setVar('type', 'detail');
     $this->view->setVar('detail', $noti);
     }

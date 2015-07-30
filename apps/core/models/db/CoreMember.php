@@ -125,12 +125,13 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
    * getting notification detail
    * @author Su Zin Kyaw
    */
-  public function getdetail($id){
-      $Detail=$this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0 AND leaves.member_id='".$id."'");
+  public function getdetail($data){
+      $Detail=$this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.start_date='".$data['1']."' AND leaves.member_id='".$data['0']."'");
       $detail=$Detail->fetchall();
       
       return $detail;
 }
+ 
 /**
  * 
  * @param type $d

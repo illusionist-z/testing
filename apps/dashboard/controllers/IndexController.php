@@ -24,7 +24,9 @@ class IndexController extends ControllerBase {
                  $id = $this->session->user['member_id'];
                 $user=new Db\CoreMember;
                 $noti=$user->GetUserNoti($id);
+                
                 $this->session->set('noti', $noti);
+                
                 $this->response->redirect('dashboard/index/user');
               
             } 

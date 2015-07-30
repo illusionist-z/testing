@@ -35,7 +35,7 @@
                         <ul class="nav navbar-nav">
 
                             <!-- Notifications: style can be found in dropdown.less -->
-                           <li class="dropdown notifications-menu" >
+                            <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
                                     <span class="label label-warning"><?php echo count($this->session->noti);?></span>
@@ -47,15 +47,24 @@
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#" onclick="return false;" class="notidetail" id="<?php echo $noti['member_id']?>">
+                                               <a href="#" onclick="return false;" class="notidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
                                                     <img src="../../common/img/notid.png"> 
-                                                    <?php echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date'])); ?>
+                                                    <?php if($this->session->user['member_login_name']=="admin"){
+                                                    echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
+                                                    else {?>admin<?php 
+                            switch($noti['leave_status']){
+                            
+                            case "1" : echo " Confirmed";break;
+                            case "2" : echo " Rejected";break;
+                               
+                        }?> <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
+                                                                                         
                                                 </a>
                                             </li>
                                            
                                         </ul>
                                 </li><?php } ?>
-                                    <li class="footer"><a href="#">View all</a></li>
+                                    <li class="footer"><a href="../../notification/index/viewall">View all</a></li>
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
