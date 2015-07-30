@@ -21,6 +21,7 @@ class Auth extends Component {
         $name = $loginParams['member_login_name'];
         $password = $loginParams['password'];
         $this->db = $this->getDI()->getShared("db");
+      
         $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user = $user->fetchArray();
        

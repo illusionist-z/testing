@@ -31,16 +31,18 @@ function tz_list() {
 	 <div class="col-md-12"><!--start add user form--->
 	<div id="form_div">
 	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add user form</font></div>
-        
-        <form action="adduser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-        <div ><img src="../../common/img/profile.png">
-        </div>
-              <?php
+            <?php
 	foreach ($userdetail  as $result) {
   ?>
+        <form action="changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
+        <div ><img src="../../common/img/profile.png">
+        </div>
+            <input type="hidden" id="temp_password" name="temp_password" value="<?php echo  $result['member_password'];?>" disabled>
+            <input type="hidden" id="file" name="temp_file" value="<?php echo  $result['member_profile'];?>" disabled>
+
 	<table width="650px" height="300px"> 
             <tr>
-                <td >Change Profile Picture </td>
+                <td name="pp">Change Profile Picture </td>
                 <td ><input type="file"   name="fileToUpload"   id="fileToUpload" > 
             </tr>
 	<tr>
@@ -48,44 +50,44 @@ function tz_list() {
             <td >User Name :</td>
            
 		<td>
-		<input type="text" name="username" value="<?php echo  $result['member_login_name'];?>" disabled>
+		<input type="text" id="username" name="username" value="<?php echo  $result['member_login_name'];?>" disabled style="width:350px;">
 		</td>
         </tr>
         <tr>
 		
 		<td>Password :</td>
-                <td><input type="password" name="password" value="<?php echo  sha1($result['member_password']);?>" disabled></td>
+                <td><input type="password" id="password" name="password" value="<?php echo  $result['member_password'];?>" disabled style="width:350px;"></td>
 	</tr>
 	<tr>
 		<td>Department:</td>
-		<td><input type="text" name="dept" value="<?php echo  $result['member_dept_name'];?>" disabled></td>
+		<td><input type="text" name="dept" id="dept" value="<?php echo  $result['member_dept_name'];?>" disabled style="width:350px;"></td>
         </tr>
         <tr>
           
 		<td>Position	:</td>
-		<td><input type="text" name="position" value="<?php echo  $result['job_title'];?>" disabled></td>
+		<td><input type="text" name="position" id="position" value="<?php echo  $result['job_title'];?>" disabled style="width:350px;"></td>
 	</tr>
 	<tr>
 		<td>Email :</td>
-		<td><input type="email" name="email" value="<?php echo  $result['member_mail'];?>" disabled>
+		<td><input type="email" name="email" id="email" value="<?php echo  $result['member_mail'];?>" disabled style="width:350px;">
                </td>
 	</tr>
         <tr>
 		<td>Phone no</td>
-		<td><input type="text" name= "phno" value="<?php echo  $result['member_mobile_tel'];?>" disabled></td>
+		<td><input type="text" id="phno" name= "phno" value="<?php echo  $result['member_mobile_tel'];?>" disabled style="width:350px;"></td>
 	</tr>
        
 	<tr>
 		<td>Address :</td>
-		<td colspan="4"><textarea rows="5" name="address" cols="50" readonly><?php echo  $result['member_address'];?></textarea ></td>
+		<td colspan="4"><textarea style="width:350px;" rows="5" id="add" name="add" cols="50" readonly><?php echo  $result['member_address'];?></textarea ></td>
 	</tr><?php }
         ?>
         <tr>
-            <td>TimeZone : </td>
-            <td><select style= "font-family: 'Courier New', Courier, monospace; width: 450px; margin-top: 9px; margin-bottom: 9px;" name="timezone">
+            <td>Time Zone : </td>
+            <td><select style= "width:350px;  margin-top: 9px; margin-bottom: 9px;" name="timezone" id="timezone" disabled>
     <option value="0">Please, select timezone</option>
     <?php foreach(tz_list() as $t) { ?>
-      <option value="<?php print $t['diff_from_GMT'] ?>">
+      <option value="<?php print $t['diff_from_GMT'];echo " ";echo $t['zone'] ?>">
         <?php print $t['diff_from_GMT'] . ' - ' . $t['zone'] ?>
       </option>
     <?php } ?>
@@ -94,7 +96,7 @@ function tz_list() {
 	<tr>
 		<td></td>
 		
-                <td><input type="submit" class="buttonn" value="Save"></td>
+                <td><input type="submit" id="save" class="buttonn" value="Save" disabled><input type="button" id="edit" class="buttonn" value="Edit"></td>
 		<td></td>
 	</tr>
 	</table>

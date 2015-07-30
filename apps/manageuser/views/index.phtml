@@ -1,7 +1,9 @@
 <?php use Phalcon\Tag as Tag; ?>
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>  <style>.ui-dialog-titlebar-close {
+  visibility: hidden;
+}</style>
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -35,7 +37,7 @@
                         <ul class="nav navbar-nav">
 
                             <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu" >
+                              <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
                                     <span class="label label-warning"><?php echo count($this->session->noti);?></span>
@@ -47,11 +49,17 @@
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#" onclick="return false;" class="notidetail" id="<?php echo  $noti['member_id']?>">
+                                               <a href="#" onclick="return false;" class="notidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
                                                     <img src="../../common/img/notid.png"> 
                                                     <?php if($this->session->user['member_login_name']=="admin"){
                                                     echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
-                                                    else {?> Admin Accepted leave days for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
+                                                    else {?>admin<?php 
+                            switch($noti['leave_status']){
+                            
+                            case "1" : echo " Confirmed";break;
+                            case "2" : echo " Rejected";break;
+                               
+                        }?> <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
                                                                                          
                                                 </a>
                                             </li>
@@ -80,10 +88,22 @@
                                     </li>
 
                                     <!-- Menu Footer-->
-                                    <li class="user-footer">
+                                      <li class="user-footer">
+                                      <?php $name=$this->session->user['member_login_name'];
+        if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Setting</a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
                                         </div>
+            
+        <?php }
+        else
+        {?> 
+            <div class="pull-left">
+                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat">Setting</a>
+                                        </div>
+        <?php }
+        ?>
+                                        
                                         <div class="pull-right">
                                             <a href="#" class="btn btn-default btn-flat" id="btn_logout">Sign out</a>
 
@@ -194,7 +214,9 @@
         ?>
       
 
-
+<div id="notidetail" style=" display:none;" class="navbar">
+    
+</div>
 
     </body>
 </html>

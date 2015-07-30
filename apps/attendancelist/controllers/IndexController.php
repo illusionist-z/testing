@@ -25,6 +25,7 @@ class IndexController extends ControllerBase
     }
     
     public function todaylistAction() {
+        
         $offset= $this->session->location['offset'];
         $name = $this->request->get('namelist');
         $Att_list = new \workManagiment\Attendancelist\Models\Attendances();

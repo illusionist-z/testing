@@ -75,6 +75,10 @@ class UserController extends ControllerBase {
         echo json_encode($res);             // send validating data
         $this->view->disable();        
     }
+    /**
+     * ADD NEW USER 
+     * @author Su Zin Kyaw
+     */
     public function adduserAction(){
         
         $this->view->setVar('type','userlist');
@@ -86,7 +90,9 @@ class UserController extends ControllerBase {
             $email=$this->request->getPost('email');
             $phno= $this->request->getPost('phno');
             $address= $this->request->getPost('address');
+            
             $filename=$_FILES["fileToUpload"]["name"];
+            
             $newuser=new \workManagiment\Core\Models\Db\CoreMember;
             $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename );            
            

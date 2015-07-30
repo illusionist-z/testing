@@ -70,7 +70,14 @@ class Attendances extends Model {
                          
                      }
                      else{
-                      $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE att_date='".$today."'");
+                        $workingHour=strtotime($att->checkin_time)-strtotime($mydate);
+                        
+                        if($workingHour>28800){
+                          $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
+                        } else{
+                            $ovt=0;
+                        }
+                      $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."' WHERE att_date='".$today."' AND member_id='".$id."'");
                       echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
                       echo "<script>window.location.href='direct';</script>"; 
                         
@@ -84,8 +91,14 @@ class Attendances extends Model {
                 }
             }
             else{
+                 $workingHour=strtotime($mydate)-strtotime($checkin);
+                 
+                 if($workingHour>28800){
+                 $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
+               
+                        } 
                 //insert checkout time for last data
-                $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE checkin_time='".$checkin."'");
+                $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."'  WHERE checkin_time='".$checkin."'  AND member_id='".$id."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
                 echo "<script>window.location.href='direct';</script>"; 
             }            
