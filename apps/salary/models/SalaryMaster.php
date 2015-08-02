@@ -170,8 +170,8 @@ class SalaryMaster extends Model {
         } else {
             for ($i = 0; $i < count($taxsrate_data); $i++) {
                 $taxs_rate = explode(" ", $taxsrate_data[$i]);
-                $aa = $taxs_rate[0] - 1000000;
-                $Result = ($income_tax - $aa) * ($taxs_rate[1] / 100);
+                $todeduce = $taxs_rate[0] - 1000000;
+                $Result = ($income_tax - $todeduce) * ($taxs_rate[1] / 100);
                 //echo "R".$Result.'<br>';
             }
         }
