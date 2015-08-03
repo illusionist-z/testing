@@ -147,12 +147,27 @@ class Attendances extends Model {
         $list = $paginator->getPaginate();
         return $list;
     }
-
+    
+    /**
+     * Search attendance list
+     * @param type $year
+     * @param type $month
+     * @param type $username
+     * @return type
+     * @author zinmon
+     */
     public function search_attlist($year,$month,$username) {
         try {
-        $sql = "SELECT * FROM core_member JOIN attendances ON attendances.member_id=core_member.member_id where MONTH(attendances.att_date)='".$month."'";
-        $result = $this->db->query($sql);
-        $row = $result->fetchall();
+         $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
+         $conditions=$this->setCondition($year, $month, $username);
+
+              $sql = $select;
+              if (count($conditions) > 0) {
+              $sql .= " WHERE " . implode(' AND ', $conditions);
+              }
+              //echo $sql;exit;
+              $result = $this->db->query($sql);
+              $row = $result->fetchall();
         } catch (Exception $ex) {
            echo $ex; 
         }
@@ -172,27 +187,16 @@ class Attendances extends Model {
        
         $conditions = array();
 
-        if ("" != $year) {
-            //echo 'Y'.$year;exit;
-            $conditions[] = "YEAR(workManagiment\Attendancelist\Models\Attendances.att_date) like " . $year;
-        }
-        if ("" != $month) {
-           
-            $conditions[] = "MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) like " . $month;
-        }
-        if ("" != $username) {
-            //echo 'Uname'.$username;exit;
-            $conditions[] = "workManagiment\Core\Models\Db\CoreMember.member_login_name='" . $username . "'";
-        }
-
-        //$sql = $select;
-        if (count($conditions) > 0) {
-            $result = implode(' AND ', $conditions);
-        } else {
-            $result = $conditions;
-        }
-       
-        return $result;
+              if ($year != "") {
+              $conditions[] = "YEAR(attendances.att_date) like " . $year;
+              }
+              if ($month != "") {
+              $conditions[] = "MONTH(attendances.att_date) like " . $month;
+              }
+              if ($username != "") {
+              $conditions[] = "member_login_name='" . $username . "'";
+              }
+        return $conditions;
     }
 
 

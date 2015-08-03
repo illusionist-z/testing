@@ -26,9 +26,7 @@ $length = count($Month);
                 <?php
                 for($i=1;$i<=count($leave_result);$i++){
                 ?>
-                <option value="<?php echo $leave_result[$i]; ?>"
-                <?php echo(isset($Ltype)&&($Ltype==$leave_result[$i])?' selected="selected"':'');?>        
-                ><?php echo $leave_result[$i]; ?></option>
+                <option value="<?php echo $leave_result[$i]; ?>"><?php echo $leave_result[$i]; ?></option>
                 <?php
                 }
                 ?>
@@ -46,9 +44,7 @@ $length = count($Month);
                     else {
                         echo $i;
                     }
-                    ?>"
-                    <?php echo(isset($Mth)&&($Mth==$i)?' selected="selected"':'');?>
-                    ><?php echo $Month[$i]; ?></option>
+                    ?>"><?php echo $Month[$i]; ?></option>
                             <?php
                         }
                         ?>
@@ -59,9 +55,7 @@ $length = count($Month);
                 <?php
                 foreach ($Getname as $result) {
                     ?>
-                <option value="<?php echo $result['member_login_name']; ?>"
-                <?php echo(isset($Uname)&&($Uname==$result['member_login_name'])?' selected="selected"':'');?>        
-                ><?php echo $result['member_login_name']; ?></option>
+                <option value="<?php echo $result['member_login_name']; ?>"><?php echo $result['member_login_name']; ?></option>
 
                     <?php
                 }
@@ -98,7 +92,7 @@ $length = count($Month);
                     foreach ($Result as $item) {
                         ?>
                         <tr>
-                            <td><?php  $dt=  explode(" ",date($item['date']));
+                            <td><?php  $dt=  explode(" ",$item['date']);
                                 echo $dt[0];
                                 ?></td>                            
                             <td><?php echo $item['member_login_name']; ?></td>
@@ -139,15 +133,8 @@ $length = count($Month);
                     ?>
 
                 </tbody>
-            </table>      
+            </table> 
+          
         </div><!--end table content--->
     </div><!-- /.row -->
-<!--    <ul class="pagination pagination-large">
-        <li><a href="leavelist">First</a></li>
-        <li><a href="leavelist?page=<?= $Result->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
-        <li><?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?></li>
-        <li><a href="leavelist?page=<?= $Result->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
-        <li><a href="leavelist?page=<?= $Result->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>
 
-        
-    </ul>-->
