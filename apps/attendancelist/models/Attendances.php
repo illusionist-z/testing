@@ -30,7 +30,7 @@ class Attendances extends Model {
         // for search result
         if (isset($name)) {
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name ="'.$name.'" AND workManagiment\Attendancelist\Models\Attendances.att_date ="' .$today.'"')
@@ -39,7 +39,7 @@ class Attendances extends Model {
         } else {
             //show att today list
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where(' workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'")
@@ -82,7 +82,7 @@ class Attendances extends Model {
         //for search method
         if (isset($month)) {
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
@@ -93,7 +93,7 @@ class Attendances extends Model {
         //showing data with current month 
         else {
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
@@ -127,7 +127,7 @@ class Attendances extends Model {
              
             $month = date('m');
             $results = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month)
@@ -140,7 +140,7 @@ class Attendances extends Model {
         $paginator = new PaginatorModel(
                 array(
             "data" => $results,
-            "limit" => 10,
+            "limit" => 3,
             "page" => $currentPage
                 )
         );
@@ -198,6 +198,19 @@ class Attendances extends Model {
               }
         return $conditions;
     }
-
-
+    /**
+     * @desc   insert absent member to absent 
+     * @author David
+     * @param  $v[0] = member_id
+     */
+    public function absent(){
+        
+        $query = "Select member_login_name from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
+        $res   = $this->db->query($query);
+        $absent = $res->fetchall();        
+        foreach ($absent as $v){
+            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
+            $this->db->query($insert);
+        }        
+    }
 }

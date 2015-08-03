@@ -20,7 +20,7 @@ function display_ct() {
     m = checktime(m);
     s = checktime(s);        
     document.getElementById('ct').innerHTML = h+":"+m+":"+s;    
-     var t = setTimeout(function(){display_ct()},500);
+     var t = setTimeout(function(){display_ct()},500);     
 }
 
 //function gettimezone(){

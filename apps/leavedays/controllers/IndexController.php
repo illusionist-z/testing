@@ -27,6 +27,7 @@ class IndexController extends ControllerBase {
     public function applyleaveAction() {               
         $leavetype = $this->config->leavetype;
         $userlist=new Db\CoreMember();
+        
         $name = $userlist::getinstance()->getusername();           
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $leavetype);
@@ -36,7 +37,9 @@ class IndexController extends ControllerBase {
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
-            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc);            
+            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc);   
+            $noti=$userlist->GetAdminNoti();
+            $this->session->set('noti', $noti);
             echo "<script>alert('".$error."');</script>";
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
@@ -73,6 +76,6 @@ class IndexController extends ControllerBase {
         else{
             $this->_leave->rejectleave($id,$sdate); 
         }
-        
+        $this->response->redirect('notification/index/viewall');
     }
 }

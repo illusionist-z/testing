@@ -70,7 +70,14 @@ class Attendances extends Model {
                          
                      }
                      else{
-                      $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE att_date='".$today."'");
+                        $workingHour=strtotime($att->checkin_time)-strtotime($mydate);
+                        
+                        if($workingHour>28800){
+                          $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
+                        } else{
+                            $ovt=0;
+                        }
+                      $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."' WHERE att_date='".$today."' AND member_id='".$id."'");
                       echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
                       echo "<script>window.location.href='direct';</script>"; 
                         
@@ -84,8 +91,14 @@ class Attendances extends Model {
                 }
             }
             else{
+                 $workingHour=strtotime($mydate)-strtotime($checkin);
+                 
+                 if($workingHour>28800){
+                 $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
+               
+                        } 
                 //insert checkout time for last data
-                $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."' WHERE checkin_time='".$checkin."'");
+                $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."'  WHERE checkin_time='".$checkin."'  AND member_id='".$id."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
                 echo "<script>window.location.href='direct';</script>"; 
             }            
@@ -101,16 +114,20 @@ class Attendances extends Model {
         $this->db = $this->getDI()->getShared("db");        
         //select where user most leave taken
         $query    ="select member_login_name from core_member where member_login_name in
-                   (select member_id from leaves group by member_id having COUNT(member_id)>1)";        
+                   (select member_id from absent group by member_id having COUNT(member_id)>1) ";        
         $data      =$this->db->query($query);
-        //select where no leave member
+        //select where no leave member in current month
         $query1    ="select member_login_name from core_member where member_login_name not in
-                   (select member_id from leaves) limit 4";        
+                   (select member_id from absent where date >(NOW()-INTERVAL 1 MONTH)) limit 4";        
         $data1      =$this->db->query($query1);        
         $res['leave_name']= $data->fetchall();
         $res['noleave_name']=$data1->fetchall();
         return $res;
     }
+    /**
+     * @desc today attandance & leave list
+     * @author David
+     */
     public function todayattleave(){
         $result = array();
         $today = date('Y-m-d');

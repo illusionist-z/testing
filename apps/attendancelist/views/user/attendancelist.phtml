@@ -4,15 +4,18 @@
 <!--Show Drop Down list for month-->
 
 <?php
-    //calculate the user time offset
 
+    //calculate the user time offset
+   
     if ($offset<0){
     $sign='-';
     $value=$offset*(-1);
+    
   
   }
     else{
     $value=$offset*(-1);
+    $sign='+';
 } 
 
 
@@ -29,6 +32,7 @@
 <section class="content">
         <!-- Main content -->
         <div class="buttons">
+            <p style="font-size: 17px">Current Timezone : <font color='red'><?php echo $timezone;?></font></p>
             <form id="frm_search" onsubmit="return false;">
              <select class="select" data-toggle="select" name="month" id="month">
             <option value="">Month</option>
@@ -79,7 +83,7 @@
         echo $cintime->format('Y-m-d H:i:s A');
         }
         else{
-         $cintime = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkintime)));
+         $cintime = date("Y-m-d H:i:s A",strtotime($value." minutes",strtotime($checkintime)));
             echo $cintime;
         }
      ?>
@@ -95,16 +99,18 @@
         $time->add(new DateInterval('PT' . $value . 'M'));
         echo  $time->format('Y-m-d H:i:s A');}
         else {
-            $time = date("Y-m-d H:i",strtotime($value." minutes",strtotime($checkouttime)));
+            $time = date("Y-m-d H:i:s A",strtotime($value." minutes",strtotime($checkouttime)));
             echo $time;
         }
         }
 ?></td>
         
 <!--        Late-->
-        <td><?php 
+        <td><?php  
+      $time = date("H:i:s",strtotime($value." minutes",strtotime($checkintime)));
+//           
         $office_start_time='08:00:00 ';
-      $time=$cintime->format('H:i:s ');
+      
         if($time>$office_start_time){
             $start=strtotime($office_start_time);
             $end=strtotime($time);
@@ -135,10 +141,10 @@
         
 <!--        Overtime-->
 	<td><?php
-      	$workingHour=$end_time-$start_time;
-        if($workingHour>28800){
-            $workingHour=$workingHour-28800;
-            echo gmdate("H:i:s",$workingHour);echo "Hours";
+      	
+        if($result['overtime']!=0){
+            
+            echo $result['overtime'];echo " Hours";
         }
         else{
             echo "-";
@@ -146,16 +152,21 @@
 	 ?> </td>
         <td><?php $lat= $result['lat'];
                 $lng=$result['lng'];
+               if(0==$lng && 0==$lat){
+                echo "-";
+                }
+                else{
                 $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
                 $json = @file_get_contents($url);
                 $data=json_decode($json);
-                $status = $data->status;
-                if($status=="OK"){
-                echo  $data->results[5]->formatted_address;
-//                    print_r($data);
+                if( $data){
+                echo $data->results[5]->formatted_address;
                 }
-                else{
-                echo "-";}
+                else
+                {
+                   echo "-";
+                }
+                }
         ?></td>
     </tr>
     <?php

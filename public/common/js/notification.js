@@ -29,19 +29,20 @@ var Noti = {
         $ovl.html(data);
         $ovl.dialog("open");
         // user edit button
-        $('#accept').click(function(){
-          Accept();
-        });
+//        $('#accept').click(function(){
+//          Accept();
+//        });
         $('#notidetail_cancel').click(function(e){
             e.preventDefault();
-            $ovl.dialog("close");location.reload();  
+            $ovl.dialog("close");
+            $('body').load(window.location.href);
             this.isOvl=false;
              
         });
-        // user delete button
-        $('#reject').click(function(){
-           Reject();
-        });
+//        // user delete button
+//        $('#reject').click(function(){
+//           Reject();
+//        });
     },
     /**
      * @param {type} user id
@@ -62,18 +63,18 @@ $(document).ready(function () {
     });    
     
 });        
- var Accept=function(){
-   
-       var id = document.getElementById('id').innerHTML; 
-       var sdate=document.getElementById('sdate').innerHTML;
- 
-      
-       window.location.href = baseUri + 'leavedays/index/acceptLeave?id='+id+'&sdate'+sdate;
-         
-    };
- var Reject=function(){
-   
-       var id = document.getElementById('id').innerHTML; 
-       var sdate=document.getElementById('sdate').innerHTML;
-         window.location.href = baseUri + 'leavedays/index/rejectLeave?id='+id +'&sdate'+sdate;
-    };
+// var Accept=function(){
+//   
+//       var id = document.getElementById('id').innerHTML; 
+//       var sdate=document.getElementById('sdate').innerHTML;
+// 
+//      
+//       window.location.href = baseUri + 'leavedays/index/acceptLeave?id='+id+'&sdate'+sdate;
+//         
+//    };
+// var Reject=function(){
+//   
+//       var id = document.getElementById('id').innerHTML; 
+//       var sdate=document.getElementById('sdate').innerHTML;
+//         window.location.href = baseUri + 'leavedays/index/rejectLeave?id='+id +'&sdate'+sdate;
+//    };

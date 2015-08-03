@@ -173,32 +173,33 @@ $length = count($Month);
                             <td>
                                 <?php
                                 //calculate overtime
-                                $workingHour = $end_time - $start_time;
-                                if ($workingHour > 28800) {
-                                    $workingHour = $workingHour - 28800;
-                                    echo gmdate("H:i:s", $workingHour);
+                                
+                                if ($item['overtime']!=0) {
+                                   echo $item['overtime'];
                                 } else {
                                     echo "-";
                                 }
                                 ?>
                             </td>
                             <td>
-                                <?php
-                                $lat = $item['lat'];
-                                $lng = $item['lng'];
-                                if (isset($lat) && isset($lng)) {
-                                    $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' . trim($lat) . ',' . trim($lng) . '&sensor=false';
-                                    $json = @file_get_contents($url);
-                                    $data = json_decode($json);
-                                    $status = $data->status;
-                                    if ($status == "OK") {
-                                        echo $data->results[5]->formatted_address;
-//                    print_r($data);
-                                    } else {
-                                        echo "-";
-                                    }
-                                }
-                                ?>
+                               <?php $lat= $item['lat'];
+                $lng=$item['lng'];
+               if(0==$lng && 0==$lat){
+                echo "-";
+                }
+                else{
+                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
+                $json = @file_get_contents($url);
+                $data=json_decode($json);
+                if( $data){
+                echo $data->results[5]->formatted_address;
+                }
+                else
+                {
+                   echo "-";
+                }
+                }
+        ?>
                             </td>
                         </tr>
                         <?php
@@ -213,4 +214,11 @@ $length = count($Month);
     </div><!-- /.row -->
 
 </section>
+  <ul class="pagination pagination-large">
+        <li><a href="monthlylist">First</a></li>
+        <li><a href="monthlylist?page=<?= $showlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
+        <li><?php echo "You are in page ", $showlist->current, " of ", $showlist->total_pages; ?></li>
+        <li><a href="monthlylist?page=<?= $showlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
+        <li><a href="monthlylist?page=<?= $showlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>      
+  </ul>
 <div id="content"></div>
