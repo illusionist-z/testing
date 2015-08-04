@@ -140,7 +140,7 @@ class Attendances extends Model {
         $paginator = new PaginatorModel(
                 array(
             "data" => $results,
-            "limit" => 10,
+            "limit" => 3,
             "page" => $currentPage
                 )
         );
@@ -194,6 +194,19 @@ class Attendances extends Model {
        
         return $result;
     }
-
-
+    /**
+     * @desc   insert absent member to absent 
+     * @author David
+     * @param  $v[0] = member_id
+     */
+    public function absent(){
+        
+        $query = "Select member_login_name from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
+        $res   = $this->db->query($query);
+        $absent = $res->fetchall();        
+        foreach ($absent as $v){
+            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
+            $this->db->query($insert);
+        }        
+    }
 }
