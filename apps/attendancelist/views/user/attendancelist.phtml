@@ -32,7 +32,7 @@
 <section class="content">
         <!-- Main content -->
         <div class="buttons">
-            <p style="font-size: 17px">Current Timezone : <font color='red'><?php echo $timezone;?></font></p>
+            <?php if($timezone!=NULL){?><p  onmouseover="aa" style="font-size: 17px">Current Timezone : <font color='red'><?php echo $timezone;?></font></p><?php }?>
             <form id="frm_search" onsubmit="return false;">
              <select class="select" data-toggle="select" name="month" id="month">
             <option value="">Month</option>

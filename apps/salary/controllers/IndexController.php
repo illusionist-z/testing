@@ -31,7 +31,7 @@ class IndexController extends ControllerBase
         
         $Salarydetail=new SalaryDetail();
         $getsalarylist=$Salarydetail->salarylist();
-        
+        //print_r($getsalarylist);exit;
         $month = $this->config->month;
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
@@ -70,6 +70,10 @@ class IndexController extends ControllerBase
         $geteachmonthsalary=$Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
+    }
+    
+    public function salarysettingAction(){
+        
     }
 }
 
