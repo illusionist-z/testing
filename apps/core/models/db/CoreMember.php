@@ -60,9 +60,10 @@ class CoreMember extends \Library\Core\BaseModel{
       * @param type $filename
       * @author Su Zin Kyaw
       */
-public function addnewuser($username,$password, $dept, $position,$email, $phno,$address,$filename ){
+public function addnewuser($username,$password, $dept, $position,$email, $phno,$address,$filename,$role ){
     $this->db = $this->getDI()->getShared("db");
-    $pass=sha1($password);
+    $arr=(explode(",",$role));
+       $pass=sha1($password);
     if($username==NULL OR $password==NULL OR $dept==NULL OR $position==NULL OR $email==NULL OR $phno==NULL OR $address==NULL ){
       
     echo '<script type="text/javascript">alert("Please,Insert All Data! ")</script>';
@@ -71,11 +72,18 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
     }
     else {
             //uploading file
-            $target_dir = "uploads/";
-            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
          $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address,member_profile)"
-    . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
+         . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
+       $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $username . "'" );   
+       $us=$user_name->fetchall();
+       foreach ($us as $value) {
+            $this->db->query("INSERT INTO core_permission_rel_member (rel_member_id,permission_member_group_member_name,rel_permission_group_code)"
+         . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "')");
+      
+       }
     echo '<script type="text/javascript">alert("New User is Added Successfully! ")</script>';
      echo "<script type='text/javascript'>window.location.href='../../manageuser/user/adduser';</script>";
      
@@ -154,9 +162,9 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
             $this->db->query("UPDATE core_member set core_member.member_login_name='".$d['username']."' ,  "
                    . "core_member.member_dept_name='".$d['dept']."' , core_member.job_title='".$d['position']."' "
                    . "AND core_member.member_mail='".$d['email']."' , core_member.member_mobile_tel='".$d['phno']."' "
-                   . "AND core_member.member_address='".$d['add']."' , core_member.member_password='".sha1($d['password'])."' WHERE core_member.member_id='".$id."");
+                   . "AND core_member.member_address='".$d['add']."' , core_member.member_password='".sha1($d['password'])."' WHERE core_member.member_id='".$id."'");
        }
-       
+        
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
