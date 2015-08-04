@@ -64,12 +64,23 @@ class IndexController extends ControllerBase
         $this->view->pick('index/addsalary');
     }
 
-    
+    /**
+     * show total salary  of each month
+     */
     public function monthlysalaryAction() {
         $Salarydetail=new SalaryDetail();
         $geteachmonthsalary=$Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
+    }
+    
+    public function payslipAction() {
+        $member_id=$this->request->get('member_id');
+        $Salarydetail=new SalaryDetail();
+        $getsalarydetail=$Salarydetail->getpayslip($member_id);
+        //print_r($getsalarydetail);exit;
+        $this->view->getsalarydetails = $getsalarydetail;
+        //$this->view->setVar("getsalarydetails", $getsalarydetail);
     }
 }
 

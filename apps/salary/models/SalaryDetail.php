@@ -101,5 +101,22 @@ select member_id from salary_detail) GROUP BY id";
             echo $e;
         }
     }
+    
+    /**
+     * Get salary detail for each member to print
+     * @param type $member_id
+     */
+    public function getpayslip($member_id) {
+        try {
+            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='".$member_id."'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            //print_r($row);
+            //exit;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
 
 }

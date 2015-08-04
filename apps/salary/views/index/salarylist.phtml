@@ -124,7 +124,7 @@
                         ?>
                         <tr>
                             <td><?php echo $i; ?></td>
-                            <td><a href="salarydetail.html" class="namelink"><?php echo $getsalarylist['member_login_name'] ?></a></td>
+                            <td><?php echo $getsalarylist['member_login_name'] ?></td>
                             <td><?php echo $getsalarylist['member_dept_name'] ?></td>
                             <td><?php echo $getsalarylist['basic_salary'] ?></td>
                             <td><?php echo $getsalarylist['overtime'] ?></td>
@@ -134,7 +134,7 @@
                             <td><?php echo $getsalarylist['ssc_comp'] ?></td>
                             <td><?php echo $getsalarylist['ssc_emp'] ?></td>
                             <td><?php echo $getsalarylist['total'] ?></td>
-                            <td><a href="#" class="button" id="displaypopup">Edit</a></td>
+                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?>" class="button" id="displaypopup">Print</a></td>
                         </tr>
                         <?php
                         $i++;
