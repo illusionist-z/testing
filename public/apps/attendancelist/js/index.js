@@ -7,12 +7,10 @@
  * @GEOprocess()
  * @get @lat @lng
  */
-
-
+var pager = new Paging.Pager();   //for pagination
 $(document).ready(function () {
 
-    // ユーザーのクリックした時の動作。
-
+    // ユーザーのクリックした時の動作。    
 
     $('#search').click(function () {
         search();
@@ -24,7 +22,7 @@ $(document).ready(function () {
 
     $('#namesearch').click(function () {
         namesearch();
-    });
+    });    
 });
 
 var search = function () {
@@ -41,16 +39,13 @@ var sub = function () {
     $.ajax({
         url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
         type: 'GET',
-        success: function (d) {
-            //alert(d);
-
-            var json_obj = $.parseJSON(d);//parse JSON
-            $("tbody").empty();
+        success: function (d) {                       
+            var json_obj = $.parseJSON(d);//parse JSON            
             //a = "10:22:57";
             //b = "10:30:00";
             //p = "2015-06-17 ";
             for (var i in json_obj)
-            {
+            {   
                 a = "08:00:00";
                 //b=json_obj[i].checkin_time;
                 checkin = json_obj[i].checkin_time.split(" ");
@@ -76,10 +71,12 @@ var sub = function () {
                         + "<td>" + json_obj[i].checkin_time + "</td>"
                         + "<td>" + json_obj[i].checkin_time + "</td>"
                         + "</tr>"
-                $("tbody").append(output);
+                $("tbody").append(output);                
             }
-
-
+            //paginatior function
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);       
         },
         error: function (d) {
             alert('error');
