@@ -35,15 +35,15 @@ function tz_list() {
 	foreach ($userdetail  as $result) {
   ?>
         <form action="changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-        <div ><img src="../../common/img/profile.png">
+        <div ><img src="../../uploads/<?php echo  $result['member_profile'];?>" style="width:200px; height:200px;">
         </div>
             <input type="hidden" id="temp_password" name="temp_password" value="<?php echo  $result['member_password'];?>" disabled>
-            <input type="hidden" id="file" name="temp_file" value="<?php echo  $result['member_profile'];?>" disabled>
+            <input type="hidden" id="temp_file" name="temp_file" value="<?php echo  $result['member_profile'];?>" disabled>
 
 	<table width="650px" height="300px"> 
             <tr>
                 <td name="pp">Change Profile Picture </td>
-                <td ><input type="file"   name="fileToUpload"   id="fileToUpload" > 
+                <td ><input type="file"   name="fileToUpload"   id="fileToUpload" style="padding-bottom: 39px"> 
             </tr>
 	<tr>
             

@@ -29,6 +29,7 @@ class UserController extends ControllerBase {
      */
     public function changeprofileAction(){
         if ($this->request->isPost()) {
+            
         $updatedata=array();
         $updatedata['username']=$this->request->getPost('username');
         $updatedata['password']=$this->request->getPost('password');
@@ -38,9 +39,11 @@ class UserController extends ControllerBase {
         $updatedata['add']=$this->request->getPost('add');
         $updatedata['email']=$this->request->getPost('email');
         $updatedata['temp_pass']=$this->request->getPost('temp_password');
+      
         $timezone=$this->request->getPost('timezone');
+        if($timezone!=0){
         $arr=(explode(" ",$timezone));
-        
+       
         $sessiontz=$arr['1'];
         sscanf($sessiontz, "%d:%d:%d", $hours, $minutes, $seconds);
         $time_seconds = isset($seconds) ? $hours * 3600 + $minutes * 60 + $seconds : $hours * 60 + $minutes;
@@ -48,14 +51,16 @@ class UserController extends ControllerBase {
         $this->session->set('tzoffset', array(
             'offset'=>$s,
             'timezone'=>$arr['2']
-        ));
+        ));}
         $id=$this->session->user['member_id'];
-        if($_FILES["fileToUpload"]["name"]==0){
+        if($_FILES["fileToUpload"]["name"]==NULL){
+            
           $updatedata['file']=$this->request->getPost('temp_file');
          
         }
         else{
             $updatedata['file']=$_FILES["fileToUpload"]["name"];
+            
         }
         $User=new Db\CoreMember;
         $User->updatedata($updatedata,$id);

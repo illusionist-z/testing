@@ -14,6 +14,7 @@ $(document).ready(function () {
         document.getElementById('username').disabled=false;
         document.getElementById('password').disabled=false;
         document.getElementById('temp_password').disabled=false;
+        document.getElementById('temp_file').disabled=false;
         document.getElementById('dept').disabled=false;
         document.getElementById('position').disabled=false;
         document.getElementById('email').disabled=false;
