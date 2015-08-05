@@ -43,10 +43,16 @@ if(isset($Msg))
                     <div class="div_bottom">
                         <span class="span_style">Position :</span>
                         <span>
-                            <select style="width:34%;" name="uname" id="uname">
+                            <select style="width:34%;" name="position" id="position">
                                 <option value="">select position</option>
+                                <?php
+                                for($i=1;$i<count($position);$i++){
+                                ?>
+                                <option value="<?php echo $position[$i];?>"><?php echo $position[$i];?></option>
+                                <?php
+                                }
+                                ?>
                                 
-                                <option value="">developer</option>
                                        
                             </select>
                         </span>
@@ -70,11 +76,11 @@ if(isset($Msg))
                     <div class="div_bottom">
                         <span class="span_style">Deduce for SSC :</span>
                         <span>
-                            with_F<input type="checkbox" value="stay_father">
-                            with_M<input type="checkbox" value="stay_mother">
-                            spouse<input type="checkbox" value="spouse">
-                            children<input type="checkbox" value="children">
-                            life_insurance<input type="checkbox" value="life_insurance">
+                            with_F<input type="checkbox" name="check_list[]" value="stay_father">
+                            with_M<input type="checkbox" name="check_list[]" value="stay_mother">
+                            spouse<input type="checkbox" name="check_list[]" value="spouse">
+                            children<input type="checkbox" name="check_list[]" value="children">
+                            life_insurance<input type="checkbox" name="check_list[]" value="life_insurance">
                         </span>
                         
                     </div>

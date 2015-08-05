@@ -6,6 +6,12 @@ $config = new Phalcon\Config(array(
         'overrate' => 30000000
         
     ),
-    
+    'position' => array(
+        '1' => 'Manager',
+        '2' => 'Leader',
+        '3' => 'Senior developer',
+        '4' => 'Junior developer',
+        '5' => 'Office staff'
+    ),
     
 ));

@@ -11,6 +11,7 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->config = \Module_Config::getModuleConfig('salary');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addJs('common/js/jquery.min.js');
@@ -65,19 +66,26 @@ class IndexController extends ControllerBase
     public function addsalaryAction(){
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
+        $position=$this->config->position;
         $this->view->setVar("usernames", $user_name);
+        $this->view->position=$position;
     }
     
     /**
      * Save salary for salary add form
      */
     public function savesalaryAction() {
+        $dedution=$this->request->get('check_list');
         $data['member_id']=$this->request->get('uname');
+        $data['position']=$this->request->get('position');
         $data['basic_salary']=$this->request->get('bsalary');
         $data['travelfee']=$this->request->get('travelfee');
         $data['overtime']=$this->request->get('overtime');
+        //print_r($data);exit;
         $Salarymaster=new SalaryMaster();
+        $Salarymaster->savesalary_dedution($dedution,$this->request->get('uname'));
         $result=$Salarymaster->savesalary($data);
+        
         $this->view->Msg = 'Success';
         $this->view->pick('index/addsalary');
     }
@@ -92,6 +100,9 @@ class IndexController extends ControllerBase
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
     }
     
+    /**
+     * get detail data for payslip
+     */
     public function payslipAction() {
         $member_id=$this->request->get('member_id');
         $Salarydetail=new SalaryDetail();
@@ -99,6 +110,15 @@ class IndexController extends ControllerBase
         //print_r($getsalarydetail);exit;
         $this->view->getsalarydetails = $getsalarydetail;
         //$this->view->setVar("getsalarydetails", $getsalarydetail);
+    }
+    
+    /**
+     * Edit salary detail
+     */
+    public function editsalaryAction() {
+        $member_id=$this->request->get('member_id');
+        $Salarydetail=new SalaryDetail();
+        $editsalary=$Salarydetail->editsalary($member_id);
     }
 }
 
