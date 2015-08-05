@@ -14,15 +14,15 @@ $(document).ready(function () {
 
     $('#search').click(function () {
         search();
-    });
-
+    });       
+    
     $('#sub').click(function () {
         sub();
     });
 
     $('#namesearch').click(function () {
         namesearch();
-    });    
+    });           
 });
 
 var search = function () {
@@ -76,12 +76,13 @@ var sub = function () {
             //paginatior function
             pager.perpage =3;            
             pager.para = $('tbody > tr');
-            pager.showPage(1);       
+            pager.showPage(1);   
+            //pager.showNavi(1);
         },
         error: function (d) {
             alert('error');
-        }
-    });
+        }       
+    });                 
 };
 
 var namesearch = function () {

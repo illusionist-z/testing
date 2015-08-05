@@ -27,19 +27,30 @@ var Paging = {
 	 
 	        $(this.pagingcontainer).html(html);	 
 	        renderControls( this.currentpage, this.numPages());
-	    }
+	    };
 	 //for pagination index 
 	    var renderControls = function( currentPage, numPages) {
-	        var pagingControls = '<ul class="pagination">';
-	        for (var i = 1; i <= numPages; i++) {
-	            if (i != currentPage) {
-	                pagingControls += '<li><a href="#" onclick="pager.showPage(' + i + '); return false;">' + i + '</a></li>';
-	            } else {
-	                pagingControls += '<li><a>' + i + '</a></li>';
-	            }
-	        }	 
-        pagingControls += '</ul>';            
+                $('.pagination').empty();
+                var nextpage = currentPage+1,
+                    prevpage = currentPage-1;
+                //var pageselect = '<select onchange="pager.showPage(parseInt(this.options[this.selectedIndex].value));return false;">';
+                // paging index 
+	        var pagingControls = '<ul class="pagination" style="margin-left:15px;">';
+                pagingControls += '<li><a href="#" onclick="pager.showPage(' + 1 + ');return false;">First</a></li>';	                 
+                // check total page number
+                if(nextpage <= numPages){                    
+                    //pervious and next index
+                    if(prevpage > 0){
+                                pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';                    
+                                    }
+	                        pagingControls += '<li><a href="#" onclick="pager.showPage(' + nextpage + ');return false;">Next</a></li>';	        
+                                        }                
+                else {                
+                pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';                            
+                    }                
+                pagingControls += '<li><a href="#" onclick="pager.showPage(' + numPages + ');return false;">Last</a></li>';
+                pagingControls += '<li><span class="btn" style="margin-left:20px"> Page :'+ currentPage +' in '+ numPages+'</span></li></ul>';            
             $('#content').html(pagingControls);
-	    }           
+        };    
   }
 };
