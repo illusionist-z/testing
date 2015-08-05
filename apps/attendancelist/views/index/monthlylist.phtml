@@ -31,24 +31,22 @@ $length = count($Month);
         <form onsubmit="return false;" method="post">
             <select class="select" data-toggle="select" name="year" id="year">
                 <option value="">Year</option>
-<?php
-$thisyr = date("Y");
-for ($i = 2012; $i <= $thisyr; $i++) {
-    ?>
-                    <option value="<?php echo $i; ?>"
-                    <?php echo(isset($Year) && ($Year == $i) ? ' selected="selected"' : ''); ?>     
-                            ><?php echo $i; ?></option>
-                    <?php
-                }
-                ?>
+                <?php
+                $thisyr = date("Y");
+                for ($i = 2012; $i <= $thisyr; $i++) {
+                    ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php
+                        }
+                        ?>
 
             </select>
 
             <select class="select" data-toggle="select" name="month" id="month">
                 <option value="">Month</option>
-<?php
-for ($i = 1; $i <= $length; $i++) {
-    ?>
+                <?php
+                for ($i = 1; $i <= $length; $i++) {
+                    ?>
                     <option value="<?php
                     if ($i < 10) {
                         echo '0' . $i;
@@ -56,25 +54,23 @@ for ($i = 1; $i <= $length; $i++) {
                         echo $i;
                     }
                     ?>"
-                    <?php echo(isset($Mth) && ($Mth == $i) ? ' selected="selected"' : ''); ?>
-                            ><?php echo $Month[$i]; ?></option>
-                    <?php
+                    ><?php echo $Month[$i]; ?></option>
+                            <?php
                         }
                         ?>
 
             </select>
             <select class="select" data-toggle="select" name="username" id="username">
                 <option value="">Name</option>
-<?php
+                <?php
 //print_r($Getname);
-foreach ($Getname as $getname) {
-    ?>
-                    <option value="<?php echo $getname['member_login_name']; ?>"
-                    <?php echo(isset($Name) && ($Name == $getname['member_login_name']) ? ' selected="selected"' : ''); ?>
-                            ><?php echo $getname['member_login_name']; ?></option>
-                    <?php
-                }
-                ?>
+                foreach ($Getname as $getname) {
+                    ?>
+                    <option value="<?php echo $getname['member_login_name']; ?>">
+                        <?php echo $getname['member_login_name']; ?></option>
+                            <?php
+                        }
+                        ?>
             </select>
             <!-- <a href="../search/search" class="button" id='btn_search'>Search</a> -->
             <input type="submit" value="Search" class="buttonn" id="sub">
@@ -85,7 +81,7 @@ foreach ($Getname as $getname) {
     </div>
 
     <div class="row">
-<?php //$this->partial('attendance/showlist');  ?>
+        <?php //$this->partial('attendance/showlist');  ?>
         <div class="col-md-12"><!--start table content--->
             <table class="listtbl">
                 <thead>
@@ -103,26 +99,26 @@ foreach ($Getname as $getname) {
 
                 </thead>
                 <tbody>
-<?php
+                    <?php
 //print_r($showlist);
 //***************Show monthly attendance list******************************
-foreach ($showlist->items as $item) {
-    ?>
+                    foreach ($showlist->items as $item) {
+                        ?>
                         <tr>
                             <td><?php echo $item->att_date; ?></td>
 
                             <td><?php echo $item->member_login_name; ?></td>
                             <td><?php
-                    $checkintime = $item['checkin_time'];
-                    if ($sign == '-') {
-                        $time = new DateTime($checkintime);
-                        $time->add(new DateInterval('PT' . $value . 'M'));
-                        echo $time->format('H:i:s A ');
-                    } else {
-                        $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
-                        echo $datetime_from;
-                    }
-    ?>
+                                $checkintime = $item['checkin_time'];
+                                if ($sign == '-') {
+                                    $time = new DateTime($checkintime);
+                                    $time->add(new DateInterval('PT' . $value . 'M'));
+                                    echo $time->format('H:i:s A ');
+                                } else {
+                                    $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
+                                    echo $datetime_from;
+                                }
+                                ?>
                             </td>
                             <td>
                                 <?php
@@ -206,9 +202,9 @@ foreach ($showlist->items as $item) {
         ?>
                             </td>
                         </tr>
-                                <?php
-                            }
-                            ?>
+                        <?php
+                    }
+                    ?>
 
 
                 </tbody>

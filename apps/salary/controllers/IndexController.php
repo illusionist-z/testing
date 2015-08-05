@@ -25,13 +25,31 @@ class IndexController extends ControllerBase
        
     }
     /**
-     * Show salary list
+     * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
         
         $Salarydetail=new SalaryDetail();
-        $getsalarylist=$Salarydetail->salarylist();
-        
+        $getsalarydetail=$Salarydetail->getsalarydetail();
+        $this->view->salarydetail = $getsalarydetail;
+        //print_r($getsalarylist);exit;
+//        $month = $this->config->month;
+//        $userlist=new Db\CoreMember();
+//        $user_name = $userlist::getinstance()->getusername();
+//        
+//        $this->view->setVar("months", $month);
+//        $this->view->setVar("usernames", $user_name);
+//        $this->view->setVar("getsalarylists", $getsalarylist);
+    }
+    
+    /**
+     * Show salary list for monthly detail
+     */
+    public function show_salarylistAction() {
+        $month=$this->request->get('month');
+        $Salarydetail=new SalaryDetail();
+        $getsalarylist=$Salarydetail->salarylist($month);
+        //print_r($getsalarylist);exit;
         $month = $this->config->month;
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
@@ -64,12 +82,23 @@ class IndexController extends ControllerBase
         $this->view->pick('index/addsalary');
     }
 
-    
+    /**
+     * show total salary  of each month
+     */
     public function monthlysalaryAction() {
         $Salarydetail=new SalaryDetail();
         $geteachmonthsalary=$Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
+    }
+    
+    public function payslipAction() {
+        $member_id=$this->request->get('member_id');
+        $Salarydetail=new SalaryDetail();
+        $getsalarydetail=$Salarydetail->getpayslip($member_id);
+        //print_r($getsalarydetail);exit;
+        $this->view->getsalarydetails = $getsalarydetail;
+        //$this->view->setVar("getsalarydetails", $getsalarydetail);
     }
 }
 

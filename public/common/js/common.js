@@ -9,18 +9,22 @@
  */
 function geo() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(GEOprocess);
+        var url = "location_session";
+        var n = new Date();
+        var offset = n.getTimezoneOffset();
+        $.ajax({
+        url:  url +"?offset="+offset ,
+        type: 'GET',
+        dataType: 'json'
+    });
     }
 }
 function GEOprocess(position) {
     //GET geo location of user
     var url = "location_session";
-    var n = new Date();
     
-   
-    var offset = n.getTimezoneOffset();
     $.ajax({
-        url:  url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude+"&offset="+offset ,
+        url:  url + "?lat=" + position.coords.latitude + "&lng=" +position.coords.longitude,
         type: 'GET',
         dataType: 'json',
         success: function (d) {
@@ -63,10 +67,31 @@ $(document).ready(function(){
         logout();
     });
     
+    $('#btnLogin').click(function(){        
+         var url = "location_session";
+    var n = new Date();
+    
+   
+    var offset = n.getTimezoneOffset();
+    
+    $.ajax({
+        url:  url +"?offset="+offset ,
+        type: 'GET',
+        dataType: 'json',
+        success: function (d) {
+            
+        },
+        error: function (d) {            
+            
+        }
+    });
+    });
+    
       var logout = function(){
         window.location.href = baseUri + 'auth/logout';
         
     };
+  
 //   
    $('.datepicker').datepicker();        
 });

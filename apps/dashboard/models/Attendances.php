@@ -97,6 +97,9 @@ class Attendances extends Model {
                  $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
                
                         } 
+                  else{
+                      $ovt=0;
+                  }
                 //insert checkout time for last data
                 $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."'  WHERE checkin_time='".$checkin."'  AND member_id='".$id."'");
                 echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';

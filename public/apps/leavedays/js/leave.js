@@ -28,7 +28,7 @@ function search()
         url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
         type: 'GET',
         success: function (d) {
-            alert('success');
+            //alert('success');
             // var myJsonString = JSON.stringify(d);
 //            
             //$("#content").html(d);
@@ -40,7 +40,7 @@ function search()
             $("tbody").empty();
             for (var i in json_obj)
             {
-                alert(json_obj[i].date);
+                //alert(json_obj[i].date);
                 var output = "<tr>"
                         + "<td>" + json_obj[i].date + "</td>"
                         + "<td>" + json_obj[i].member_login_name + "</td>"

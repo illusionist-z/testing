@@ -16,16 +16,9 @@ class IndexController extends ControllerBase
         $this->config = \Module_Config::getModuleConfig('leavedays');
     }
 
-    
-    public function indexAction(){
-        //$this->assets->addCss('common/css/home/home.css');
-        
-        $user = $this->session->get('user');
-        
-        $this->view->user = $user;
-        
-    }
-    
+   /**
+    * show today attendance list
+    */    
     public function todaylistAction() {
         
         $offset= $this->session->location['offset'];
@@ -43,7 +36,9 @@ class IndexController extends ControllerBase
         $this->view->uname = $username;
     }
     
-    //show monthly list
+    /**
+     * Show monthly attendance list
+     */
     public function monthlylistAction() {
        
         $offset= $this->session->location['offset'];

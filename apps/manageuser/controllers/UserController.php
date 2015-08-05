@@ -90,11 +90,12 @@ class UserController extends ControllerBase {
             $email=$this->request->getPost('email');
             $phno= $this->request->getPost('phno');
             $address= $this->request->getPost('address');
-            
+            $role=$this->request->getPost('user_role');
+           
             $filename=$_FILES["fileToUpload"]["name"];
             
             $newuser=new \workManagiment\Core\Models\Db\CoreMember;
-            $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename );            
+            $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename,$role );            
            
             $this->view->disable();
         } 
