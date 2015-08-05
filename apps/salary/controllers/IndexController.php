@@ -25,12 +25,30 @@ class IndexController extends ControllerBase
        
     }
     /**
-     * Show salary list
+     * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
         
         $Salarydetail=new SalaryDetail();
-        $getsalarylist=$Salarydetail->salarylist();
+        $getsalarydetail=$Salarydetail->getsalarydetail();
+        $this->view->salarydetail = $getsalarydetail;
+        //print_r($getsalarylist);exit;
+//        $month = $this->config->month;
+//        $userlist=new Db\CoreMember();
+//        $user_name = $userlist::getinstance()->getusername();
+//        
+//        $this->view->setVar("months", $month);
+//        $this->view->setVar("usernames", $user_name);
+//        $this->view->setVar("getsalarylists", $getsalarylist);
+    }
+    
+    /**
+     * Show salary list for monthly detail
+     */
+    public function show_salarylistAction() {
+        $month=$this->request->get('month');
+        $Salarydetail=new SalaryDetail();
+        $getsalarylist=$Salarydetail->salarylist($month);
         //print_r($getsalarylist);exit;
         $month = $this->config->month;
         $userlist=new Db\CoreMember();

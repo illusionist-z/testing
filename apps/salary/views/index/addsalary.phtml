@@ -24,7 +24,7 @@ if(isset($Msg))
                     <div class="div_bottom">
                         <span class="span_style">UserName :</span>
                         <span>
-                            <select style="width:24%;" name="uname" id="uname">
+                            <select style="width:34%;" name="uname" id="uname">
                                 <option value="">Name</option>
                                 <?php
                                 foreach ($usernames as $username) {
@@ -39,15 +39,26 @@ if(isset($Msg))
                             </select>
                         </span>
                     </div>
-
+                        
+                    <div class="div_bottom">
+                        <span class="span_style">Position :</span>
+                        <span>
+                            <select style="width:34%;" name="uname" id="uname">
+                                <option value="">select position</option>
+                                
+                                <option value="">developer</option>
+                                       
+                            </select>
+                        </span>
+                    </div>
                     <div class="div_bottom">
                         <span class="span_style">Basic Salary :</span>
-                        <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:24%;" name="bsalary"></span>
+                        <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:34%; height: 20%;" name="bsalary"></span>
                     </div>
 
                     <div class="div_bottom">
                         <span class="span_style">Travel fees :</span>
-                        <span><input type="text" id="travelfee" value="" placeholder="Travel fee" style="width:24%;" name="travelfee"></span>
+                        <span><input type="text" id="travelfee" value="" placeholder="Travel fee" style="width:34%; height: 20%;" name="travelfee"></span>
                     </div>
 
                     <div class="div_bottom">
@@ -55,8 +66,18 @@ if(isset($Msg))
                         <span><input type="text" id="overtime" value="" style="width:5%;" name="overtime"></span>
                         <span>%</span>
                     </div>
-
-
+                        
+                    <div class="div_bottom">
+                        <span class="span_style">Deduce for SSC :</span>
+                        <span>
+                            with_F<input type="checkbox" value="stay_father">
+                            with_M<input type="checkbox" value="stay_mother">
+                            spouse<input type="checkbox" value="spouse">
+                            children<input type="checkbox" value="children">
+                            life_insurance<input type="checkbox" value="life_insurance">
+                        </span>
+                        
+                    </div>
                     <div class="div_bottom">
                         <span class="span_style"></span>
                         <span>
