@@ -44,6 +44,7 @@ var sub = function () {
             //a = "10:22:57";
             //b = "10:30:00";
             //p = "2015-06-17 ";
+             $("tbody").empty();
             for (var i in json_obj)
             {   
                 a = "08:00:00";
@@ -61,6 +62,7 @@ var sub = function () {
                 if (checkout[1] > office_endtime) {
                     overtime = new Date(new Date(p + checkout[1]) - new Date(p + office_endtime)).toUTCString().split(" ")[4];
                 }
+              
                 var output = "<tr>"
                         + "<td>" + json_obj[i].att_date + "</td>"
                         + "<td>" + json_obj[i].member_login_name + "</td>"

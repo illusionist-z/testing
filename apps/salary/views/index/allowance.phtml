@@ -1,0 +1,100 @@
+<section class="content-header">
+    <h1>
+        Allowance
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">allowance</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+
+            <form id='TextBoxesGroup' action='saveallowance'>
+                <div id="TextBoxDiv1">
+
+                    <label>Allowance Name 1: </label><input type='textbox' id='textbox1' >
+                    <label>Allowance Amount 1: </label><input type='textbox' id='txt1' >
+                    <input type='button' value='+' id='addButton'>
+                    <input type='button' value='-' id='removeButton'>
+                    <input type='button' value='Add' id='getButtonValue'>
+
+                </div>
+            </form>
+
+
+            <table class="listtbl">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Allowance Name</th>
+                        <th>Allowance Amount</th>
+                        <th width="30px"></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>      
+        </div><!--end table content--->
+    </div><!-- /.row -->
+
+</section><!-- /.content -->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var counter = 2;
+        var counter1=2;
+        $("#addButton").click(function () {
+
+            if (counter > 10) {
+                alert("Only 10 textboxes allow");
+                return false;
+            }
+           
+            var newTextBoxDiv = $(document.createElement('div'))
+                    .attr("id", 'TextBoxDiv' + counter);
+
+            newTextBoxDiv.after().html('<label>Allowance Name' + counter + ' : </label>' +
+                    '<input type="text" name="textbox' + counter +
+                    '" id="textbox' + counter + '" value="" ><label>Allowance Amount' + counter1 + ' : </label>' +
+                    '<input type="text" name="txt' + counter1 +
+                    '" id="txt' + counter1 + '" value="" >');
+
+            newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+            counter++;
+        });
+
+        $("#removeButton").click(function () {
+            if (counter == 2) {
+                alert("No more textbox to remove");
+                return false;
+            }
+
+            counter--;
+
+            $("#TextBoxDiv" + counter).remove();
+
+        });
+
+        $("#getButtonValue").click(function () {
+
+            var msg = '';
+            for (i = 1; i < counter; i++) {
+                msg += "\n Textbox #" + i + " : " + $('#textbox' + i).val();
+            }
+          
+            alert(msg);
+        });
+
+    });
+</script>

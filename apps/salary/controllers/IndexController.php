@@ -17,6 +17,7 @@ class IndexController extends ControllerBase
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
+        //$this->assets->addJs('apps/salary/js/jquery-1.3.2.min.js'); increase and descrease textbox
         $this->setCommonJsAndCss();
         
     }
@@ -119,6 +120,14 @@ class IndexController extends ControllerBase
         $member_id=$this->request->get('member_id');
         $Salarydetail=new SalaryDetail();
         $editsalary=$Salarydetail->editsalary($member_id);
+    }
+    
+    public function allowanceAction() {
+    
+    }
+    
+    public function saveallowanceAction() {
+        print_r($this->request->get('textbox'));exit;
     }
 }
 
