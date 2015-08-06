@@ -39,7 +39,7 @@
                              <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
-                                    <span class="label label-warning"><?php echo count($this->session->noti);?></span>
+                                    <span class="label label-warning"><?php if(count($this->session->noti)==0){ }else{echo count($this->session->noti);}?></span>
                                 </a>
                                   <ul class="dropdown-menu">
                                     <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
