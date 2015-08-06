@@ -14,7 +14,7 @@ $length = count($Month);
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" id="showmonthlylist">
     <h1>
         Monthly Attendance list
     </h1>
@@ -99,113 +99,7 @@ $length = count($Month);
 
                 </thead>
                 <tbody>
-                    <?php
-//print_r($showlist);
-//***************Show monthly attendance list******************************
-                    foreach ($showlist->items as $item) {
-                        ?>
-                        <tr>
-                            <td><?php echo $item->att_date; ?></td>
-
-                            <td><?php echo $item->member_login_name; ?></td>
-                            <td><?php
-                                $checkintime = $item['checkin_time'];
-                                if ($sign == '-') {
-                                    $time = new DateTime($checkintime);
-                                    $time->add(new DateInterval('PT' . $value . 'M'));
-                                    echo $time->format('H:i:s A ');
-                                } else {
-                                    $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
-                                    echo $datetime_from;
-                                }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                //calculate late time
-                                $checkintime = $item['checkin_time'];
-                                $dt = new DateTime($checkintime);
-                                $time = $dt->format('H:i:s');
-                                $office_start_time = '01:30:00 ';
-                                if ($time > $office_start_time) {
-                                    $start = strtotime($office_start_time);
-                                    $end = strtotime($time);
-                                    $late = $end - $start;
-
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " Hours</font>";
-                                }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                $checkouttime = $item['checkout_time'];
-                                if ($checkouttime == 0) {
-                                    echo "-";
-                                } else {
-                                    if ($sign = '-') {
-                                        $time = new DateTime($checkouttime);
-                                        $time->add(new DateInterval('PT' . $value . 'M'));
-                                        echo $time->format('H:i:s A');
-                                    } else {
-                                        $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkouttime)));
-                                        echo $datetime_from;
-                                    }
-                                }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                //calculate working time
-                                $start_time = strtotime($item['checkin_time']);
-                                $end_time = strtotime($item['checkout_time']);
-                                if ($end_time == 0) {
-                                    echo "-";
-                                } else {
-                                    $workingHour = $end_time - $start_time;
-                                    $hours = floor($workingHour / 3600);
-                                    $minutes = floor(($workingHour / 60) % 60);
-                                    $seconds = $workingHour % 60;
-                                    echo "$hours:$minutes:$seconds";
-                                    echo" Hours";
-                                }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                //calculate overtime
-                                
-                                if ($item['overtime']!=0) {
-                                   echo $item['overtime'];
-                                } else {
-                                    echo "-";
-                                }
-                                ?>
-                            </td>
-                            <td>
-                               <?php $lat= $item['lat'];
-                $lng=$item['lng'];
-               if(0==$lng && 0==$lat){
-                echo "-";
-                }
-                else{
-                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
-                $json = @file_get_contents($url);
-                $data=json_decode($json);
-                if( $data){
-                echo $data->results[5]->formatted_address;
-                }
-                else
-                {
-                   echo "-";
-                }
-                }
-        ?>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-
+                
 
                 </tbody>
             </table>      
@@ -213,11 +107,5 @@ $length = count($Month);
         <div id="test"></div>
     </div><!-- /.row -->    
 </section>
-  <ul class="pagination pagination-large">
-        <li><a href="monthlylist">First</a></li>
-        <li><a href="monthlylist?page=<?= $showlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
-        <li><?php echo "You are in page ", $showlist->current, " of ", $showlist->total_pages; ?></li>
-        <li><a href="monthlylist?page=<?= $showlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
-        <li><a href="monthlylist?page=<?= $showlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>      
-  </ul>
+ 
 <div id="content"></div>

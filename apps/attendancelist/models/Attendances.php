@@ -26,39 +26,17 @@ class Attendances extends Model {
      * @author zinmon
      */
     public function gettodaylist($name) {        
-        $today = date("Y:m:d");
+        $today = date("Y:m:d");                
         // for search result
         if (isset($name)) {
-            $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name ="'.$name.'" AND workManagiment\Attendancelist\Models\Attendances.att_date ="' .$today.'"')
-                    ->getQuery()
-                    ->execute();
+           $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where core_member.member_login_name='".$name."' and attendances.att_date ='".$today."'";
         } else {
             //show att today list
-            $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->where(' workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'")
-                    ->getQuery()
-                    ->execute();
+           $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where attendances.att_date ='".$today."'";
         }
-        
-        //for paging 
-        $currentPage = (int) $_GET["page"];
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 1,//outputing 1 data per page
-            "page" => $currentPage
-                )
-        );
-        $list = $paginator->getPaginate();
-        
-        return $list;
+        $result = $this->db->query($query);
+        $rows = $result->fetchall();
+        return $rows;
     }
 
     /**
@@ -126,26 +104,11 @@ class Attendances extends Model {
         //search monthly list data
              
             $month = date('m');
-            $results = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month)
-                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
-                    ->getQuery()
-                    ->execute();
-        
-        //for paging
-        $currentPage = (int) $_GET["page"];
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $results,
-            "limit" => 3,
-            "page" => $currentPage
-                )
-        );
-        $list = $paginator->getPaginate();
-        return $list;
+            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' order by attendances.att_date DESC";
+            $result = $this->db->query($query);
+            $row  = $result->fetchall();
+            return $row;
+      
     }
     
     /**
