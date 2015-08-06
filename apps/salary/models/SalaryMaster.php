@@ -18,7 +18,7 @@ class SalaryMaster extends Model {
     public function savesalary($data) {
         try {
 
-            $sql = "INSERT INTO salary_master (id,member_id,basic_salary,travel_fee,over_time) VALUES(uuid(),'" . $data['member_id'] . "','" . $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "')";
+            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "')";
             //echo $sql;exit;
             $result = $this->db->query($sql);
         } catch (Exception $e) {
@@ -27,7 +27,26 @@ class SalaryMaster extends Model {
 
         return $result;
     }
+    /**
+     * Save salary dedution amount to core_member_tax_deduce
+     * @param type $dedution
+     * @return typ
+     */
+    public function savesalary_dedution($dedution,$member_id) {
+        try {
+            //print_r($dedution);exit;
+            for($i=0;$i<count($dedution);$i++)
+            {
+            $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,created_dt) VALUES('" . $dedution[$i] . "','" . $member_id . "',NOW())";
+            $result = $this->db->query($sql);   
+            }
+          
+        } catch (Exception $e) {
+            echo $e;
+        }
 
+        return $result;
+    }
     /**
      * Get basic salary for all staffs
      * @return type

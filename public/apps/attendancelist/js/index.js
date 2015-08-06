@@ -44,6 +44,7 @@ var sub = function () {
             //a = "10:22:57";
             //b = "10:30:00";
             //p = "2015-06-17 ";
+             $("tbody").empty();
             for (var i in json_obj)
             {   
                 a = "08:00:00";
