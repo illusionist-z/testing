@@ -185,7 +185,7 @@ class SalaryMaster extends Model {
      */
     public function calculate_overtime() {
         try {
-            $sql = "select ATT .member_id,round((ATT.overtime/60)*(SA.basic_salary*SA.over_time/100))as overtime_rate,SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA on ATT.member_id=SA.member_id where ATT .member_id
+            $sql = "select ATT .member_id,round(ATT.overtime*(SA.basic_salary*SA.over_time/100))as overtime_rate,SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA on ATT.member_id=SA.member_id where ATT .member_id
 in (select member_id from salary_master) group by ATT .member_id";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
             //echo $sql;exit;

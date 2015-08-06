@@ -18,7 +18,7 @@ class Attendances extends Model {
      * @author suzin
      */
    
-    public function setcheckintime($id,$note,$lat,$lon){
+    public function setcheckintime($id,$note,$lat,$lon,$add){
        
         $this->db=$this->getDI()->getShared("db");      
 	$mydate=date("Y-m-d H:i:s");
@@ -33,8 +33,8 @@ class Attendances extends Model {
                         echo "<script>window.location.href='direct';</script>"; 
         } else {
             
-
-           $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "')");
+ 
+           $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng,location) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "','" . $add . "')");
 
             echo '<script type="text/javascript">alert("Successfully Checked In ")</script>';
             echo "<script>window.location.href='direct';</script>"; 
@@ -44,6 +44,7 @@ class Attendances extends Model {
     }
     
     public function setcheckouttime($id){
+        
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $this->db = $this->getDI()->getShared("db");
@@ -117,11 +118,11 @@ class Attendances extends Model {
         $this->db = $this->getDI()->getShared("db");        
         //select where user most leave taken
         $query    ="select member_login_name from core_member where member_login_name in
-                   (select member_id from absent group by member_id having COUNT(member_id)>1) ";        
+                   (select member_id from absent group by member_id order by count(*) DESC) limit 3";        
         $data      =$this->db->query($query);
-        //select where no leave member in current month
+        //select where no leave name in current month
         $query1    ="select member_login_name from core_member where member_login_name not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 1 MONTH)) limit 4";        
+                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) limit 4";        
         $data1      =$this->db->query($query1);        
         $res['leave_name']= $data->fetchall();
         $res['noleave_name']=$data1->fetchall();

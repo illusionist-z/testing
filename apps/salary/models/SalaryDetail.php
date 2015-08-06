@@ -32,10 +32,10 @@ class SalaryDetail extends Model {
      * @return type
      * @author zinmon
      */
-    public function salarylist() {
+    public function salarylist($month) {
         try {
             $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`ssc_comp`)+SUM(`absent_dedution`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
-select member_id from salary_detail) GROUP BY id";
+select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY id";
 
             $result = $this->db->query($sql);
             $row = $result->fetchall();
@@ -100,6 +100,37 @@ select member_id from salary_detail) GROUP BY id";
         } catch (Exception $e) {
             echo $e;
         }
+    }
+    
+    /**
+     * Get salary detail for each member to print
+     * @param type $member_id
+     */
+    public function getpayslip($member_id) {
+        try {
+            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='".$member_id."'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            //print_r($row);
+            //exit;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
+    
+    /**
+     * Get salary detail for each month
+     */
+    public function getsalarydetail() {
+        try{
+            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+        }  catch (Exception $e){
+            echo $e;
+        }
+        return $row;
     }
 
 }

@@ -1,10 +1,12 @@
 <?php
 //calculate the user time offset
+
 if ($offset < 0) {
     $sign = '-';
     $value = $offset * (-1);
 } else {
     $value = $offset * (-1);
+    $sign='+';
 }
 
 
@@ -182,23 +184,7 @@ $length = count($Month);
                                 ?>
                             </td>
                             <td>
-                               <?php $lat= $item['lat'];
-                $lng=$item['lng'];
-               if(0==$lng && 0==$lat){
-                echo "-";
-                }
-                else{
-                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
-                $json = @file_get_contents($url);
-                $data=json_decode($json);
-                if( $data){
-                echo $data->results[5]->formatted_address;
-                }
-                else
-                {
-                   echo "-";
-                }
-                }
+                               <?php echo $item['location'];
         ?>
                             </td>
                         </tr>
@@ -211,8 +197,7 @@ $length = count($Month);
             </table>      
         </div><!--end table content--->
         <div id="test"></div>
-    </div><!-- /.row -->
-
+    </div><!-- /.row -->    
 </section>
   <ul class="pagination pagination-large">
         <li><a href="monthlylist">First</a></li>

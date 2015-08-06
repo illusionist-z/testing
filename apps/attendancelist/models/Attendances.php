@@ -30,7 +30,7 @@ class Attendances extends Model {
         // for search result
         if (isset($name)) {
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name ="'.$name.'" AND workManagiment\Attendancelist\Models\Attendances.att_date ="' .$today.'"')
@@ -39,7 +39,7 @@ class Attendances extends Model {
         } else {
             //show att today list
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where(' workManagiment\Attendancelist\Models\Attendances.att_date =' . "'$today'")
@@ -82,7 +82,7 @@ class Attendances extends Model {
         //for search method
         if (isset($month)) {
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
@@ -93,7 +93,7 @@ class Attendances extends Model {
         //showing data with current month 
         else {
             $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
@@ -127,7 +127,7 @@ class Attendances extends Model {
              
             $month = date('m');
             $results = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime')
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
                     ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month)

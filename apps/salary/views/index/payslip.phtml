@@ -1,0 +1,98 @@
+<!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Salary Detail
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">salary detail</li>
+          </ol>
+        </section>
+        
+        
+        <!-- Main content -->
+        <section class="content">  
+          <div class="row">
+		  <div class="col-md-12"><!--start add user form--->
+		  
+			<div style="line-height:30px; width:65%;">
+			<div style="float:right; margin-bottom:10px;">
+			<a href="#" class="button">Print</a>
+			</div>
+	<div style="clear:right;"></div>
+        <?php //print_r($getsalarydetails);
+        foreach($getsalarydetails as $getsalarydetail){
+        ?>
+				<div style="border:1px solid #dcdedf;">
+				<center style="font-size:16px;">Pay slip for: May-2015</center>
+				
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:200px; padding-left:10px;">Name :</div>
+				<div><?php echo $getsalarydetail['member_login_name'];?></div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:200px; padding-left:10px;">Department :</div>
+				<div><?php echo $getsalarydetail['member_dept_name'];?></div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:200px; padding-left:10px;">Position :</div>
+				<div>Web developer</div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Basic salary :</div>
+				<div><?php echo $getsalarydetail['basic_salary'];?></div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Full attendance bonus :</div>
+				<div><?php echo $getsalarydetail['basic_salary'];?></div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">OT : 10000*2hr</div>
+				<div><?php echo $getsalarydetail['overtime'];?></div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Responsibility Allowance :</div>
+				<div>50000</div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Service Year Allowance :</div>
+				<div>10000</div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Customer Site Allowance :</div>
+				<div>0</div>
+				</div>
+				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2;">
+				<div style="float:left; width:260px; padding-left:10px;">Total amount :</div>
+				<div>490000</div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Absent Deduction :</div>
+				<div>0</div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">SSC :</div>
+				<div>5000</div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Income Tax :</div>
+				<div>15000</div>
+				</div>
+				<div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Total Deduction :</div>
+				<div>20000</div>
+				</div>
+				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2; font-weight:bold;">
+				<div style="float:left; width:260px; padding-left:10px;">Net Payments:</div>
+				<div>470,000</div>
+				</div>
+				</div>
+        <?php
+        }
+        ?>
+			</div>	
+		  </div>
+          </div><!--end add user form--->
+          </div><!-- /.row -->
+		  
+        </section><!-- /.content -->
