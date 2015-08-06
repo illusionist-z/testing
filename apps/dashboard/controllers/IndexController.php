@@ -17,11 +17,11 @@ class IndexController extends ControllerBase {
      */
     public function indexAction() {
         foreach ($this->session->auth as $key_name => $key_value) {
-            
+             
             if ($key_name == 'user_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
-                 $id = $this->session->user['member_id'];
+                $id = $this->session->user['member_id'];
                 $user=new Db\CoreMember;
                 $noti=$user->GetUserNoti($id);
                 

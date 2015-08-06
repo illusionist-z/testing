@@ -117,11 +117,11 @@ class Attendances extends Model {
         $this->db = $this->getDI()->getShared("db");        
         //select where user most leave taken
         $query    ="select member_login_name from core_member where member_login_name in
-                   (select member_id from absent group by member_id having COUNT(member_id)>1) ";        
+                   (select member_id from absent group by member_id order by count(*) DESC) limit 3";        
         $data      =$this->db->query($query);
-        //select where no leave member in current month
+        //select where no leave name in current month
         $query1    ="select member_login_name from core_member where member_login_name not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 1 MONTH)) limit 4";        
+                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) limit 4";        
         $data1      =$this->db->query($query1);        
         $res['leave_name']= $data->fetchall();
         $res['noleave_name']=$data1->fetchall();
