@@ -87,11 +87,13 @@ if(isset($Msg))
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
                         <div style="float: left; width: 8%;">Allowance :</div>
                         <div style="margin-left: 12%;">
-                             <input type="checkbox" name="check_list[]" value="">Allowance A<br>
-                            <input type="checkbox" name="check_list[]" value="">Allowance B<br>
-                            <input type="checkbox" name="check_list[]" value="">Allowance C<br>
-                            <input type="checkbox" name="check_list[]" value="">Allowance D<br>
-                            <input type="checkbox" name="check_list[]" value="">Allowance E<br>
+                            <?php
+                            //print_r($getall_allowance);
+                            foreach ($getall_allowance as $getall_allowances) {
+                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_allowances['id'].'">'. $getall_allowances['allowance_name']."<br>";
+                            }
+                            ?>
+                            
                         </div>
                     </div>
                         <div class="div_bottom" style="clear: both;">

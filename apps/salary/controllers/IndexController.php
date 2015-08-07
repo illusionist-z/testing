@@ -5,6 +5,7 @@ namespace workManagiment\Salary\Controllers;
 use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
+use workManagiment\Salary\Models\Allowances;
 class IndexController extends ControllerBase
 {
     
@@ -67,9 +68,15 @@ class IndexController extends ControllerBase
     public function addsalaryAction(){
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
+        $Allowance=new Allowances();
+        $getall_allowance=$Allowance->getall_allowances();
+        //print_r($getall_allowance);exit;
+        
         $position=$this->config->position;
+        
         $this->view->setVar("usernames", $user_name);
         $this->view->position=$position;
+        $this->view->getall_allowance=$getall_allowance;
     }
     
     /**
@@ -77,6 +84,7 @@ class IndexController extends ControllerBase
      */
     public function savesalaryAction() {
         $dedution=$this->request->get('check_list');
+        $allowance=$this->request->get('check_allow');
         $data['member_id']=$this->request->get('uname');
         $data['position']=$this->request->get('position');
         $data['basic_salary']=$this->request->get('bsalary');
@@ -85,7 +93,7 @@ class IndexController extends ControllerBase
         //print_r($data);exit;
         $Salarymaster=new SalaryMaster();
         $Salarymaster->savesalary_dedution($dedution,$this->request->get('uname'));
-        $result=$Salarymaster->savesalary($data);
+        $result=$Salarymaster->savesalary($allowance,$data);
         
         $this->view->Msg = 'Success';
         $this->view->pick('index/addsalary');

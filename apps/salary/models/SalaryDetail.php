@@ -26,17 +26,40 @@ class SalaryDetail extends Model {
         //print_r($row);exit;
         return $row;
     }
-    
+
     /**
      * Get company start date
      * @return type
      */
     public function getComp_startdate() {
         try {
-            $sql = "select created_dt from core_member";
-            //echo $sql.'<br>';
+            $now = new \DateTime('now');
+            $month = $now->format('m');
+            $year = $now->format('Y');
+            date_default_timezone_set('UTC');
+            $last_year=$year.'-'.$month;
+            
+            $last_year = date("Y", strtotime("-1 year", strtotime($last_year)));
+            $last_year= $last_year.'-04-01';
+            // Start date
+            $date = $last_year;
+            // End date
+            $end_date = $year.'-05-31';
+
+            while (strtotime($date) <= strtotime($end_date)) {
+                //echo "$date<br>";
+                $date = date("Y-m-d", strtotime("+1 day", strtotime($date)));
+                 $sql = "select pay_date from salary_detail where DATE(pay_date)='" . $date . "'";
+            //echo $sql . '<br>';
             $result = $this->db->query($sql);
             $row = $result->fetchall();
+            }
+            print_r($row);exit;
+            //exit;
+//            $sql = "select pay_date from salary_detail where YEAR(pay_date)='" . $year . "' and MONTH(pay_date)='" . $month . "'";
+//            echo $sql . '<br>';
+//            $result = $this->db->query($sql);
+//            $row = $result->fetchall();
             //exit;
         } catch (Exception $ex) {
             echo $ex;
@@ -53,7 +76,7 @@ class SalaryDetail extends Model {
     public function salarylist($month) {
         try {
             $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
-select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY id";
+select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "'GROUP BY id";
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetchall();
@@ -120,14 +143,14 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
             echo $e;
         }
     }
-    
+
     /**
      * Get salary detail for each member to print
      * @param type $member_id
      */
     public function getpayslip($member_id) {
         try {
-            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='".$member_id."'";
+            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='" . $member_id . "'";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
             //print_r($row);
@@ -137,65 +160,66 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
         }
         return $row;
     }
-    
+
     /**
      * Get salary detail for each month
      */
     public function getsalarydetail() {
-        try{
+        try {
             $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
-        }  catch (Exception $e){
+        } catch (Exception $e) {
             echo $e;
         }
         return $row;
     }
-    
+
     /**
      * 
      * @param type $member_id
      */
     public function editsalary($member_id) {
-        try{
+        try {
             $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
             $result = $this->db->query($sql);
-            $row = $result->fetchall();  
-        }catch(Exception $e){
+            $row = $result->fetchall();
+        } catch (Exception $e) {
             echo $e;
         }
     }
 
     public function seacrhsalary($cond) {
         try {
-         $select = "SELECT * FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
-         $conditions=$this->setCondition($cond);
+            $select = "SELECT * FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
+            $conditions = $this->setCondition($cond);
 
-              $sql = $select;
-              if (count($conditions) > 0) {
-              $sql .= " WHERE " . implode(' AND ', $conditions);
-              }
-              //echo $sql;exit;
-              $result = $this->db->query($sql);
-              $row = $result->fetchall();
+            $sql = $select;
+            if (count($conditions) > 0) {
+                $sql .= " WHERE " . implode(' AND ', $conditions);
+            }
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
         } catch (Exception $ex) {
-           echo $ex; 
+            echo $ex;
         }
-        
+
         return $row;
     }
-    
+
     public function setCondition($cond) {
-       
+
         $conditions = array();
 
-              if ($cond['username'] != "") {
-              $conditions[] = "member_login_name='" . $cond['username'] . "'";
-              }
-              if ($cond['dept'] != "") {
-              $conditions[] = "member_dept_name='" . $cond['dept']. "'";
-              }
-              
+        if ($cond['username'] != "") {
+            $conditions[] = "member_login_name='" . $cond['username'] . "'";
+        }
+        if ($cond['dept'] != "") {
+            $conditions[] = "member_dept_name='" . $cond['dept'] . "'";
+        }
+
         return $conditions;
     }
+
 }

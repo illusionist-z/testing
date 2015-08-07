@@ -11,6 +11,18 @@ class Allowances extends Model {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    
+    public function getall_allowances() {
+        try {
+            $sql = "select * from allowances";
+            //echo $sql.'<br>';
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+
+        return $row;
+    }
 
 }

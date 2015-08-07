@@ -15,10 +15,16 @@ class SalaryMaster extends Model {
      * save salary to salary master
      * @return type
      */
-    public function savesalary($data) {
+    public function savesalary($allowance,$data) {
         try {
-
-            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "')";
+            //print_r($allowance);
+            $allow="";
+            for($i=0;$i<count($allowance);$i++)
+            {
+                $allow.=$allowance[$i].',';
+            }
+            
+            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time,allowance_id) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "','".$allow."')";
             //echo $sql;exit;
             $result = $this->db->query($sql);
         } catch (Exception $e) {
