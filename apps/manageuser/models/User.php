@@ -103,7 +103,8 @@ class User extends Model {
 
     public function userdelete($id){
         $this->db = $this->getDI()->getShared("db");  
-        $query = "Delete from core_member where member_id ='".$id."'";   
+        $query = "Delete from core_member where member_id ='".$id."'";  
         $this->db->query($query);
+         $this->db->query("Delete from core_permission_rel_member where rel_member_id ='".$id."'");
     }
 }

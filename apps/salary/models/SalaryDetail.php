@@ -34,11 +34,12 @@ class SalaryDetail extends Model {
      */
     public function salarylist($month) {
         try {
-            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`ssc_comp`)+SUM(`absent_dedution`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
+            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
 select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY id";
-
+            //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetchall();
+            //exit;
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -131,6 +132,20 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
             echo $e;
         }
         return $row;
+    }
+    
+    /**
+     * 
+     * @param type $member_id
+     */
+    public function editsalary($member_id) {
+        try{
+            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();  
+        }catch(Exception $e){
+            echo $e;
+        }
     }
 
 }

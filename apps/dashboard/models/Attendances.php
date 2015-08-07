@@ -18,7 +18,7 @@ class Attendances extends Model {
      * @author suzin
      */
    
-    public function setcheckintime($id,$note,$lat,$lon){
+    public function setcheckintime($id,$note,$lat,$lon,$add){
        
         $this->db=$this->getDI()->getShared("db");      
 	$mydate=date("Y-m-d H:i:s");
@@ -33,8 +33,8 @@ class Attendances extends Model {
                         echo "<script>window.location.href='direct';</script>"; 
         } else {
             
-
-           $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "')");
+ 
+           $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng,location) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "','" . $add . "')");
 
             echo '<script type="text/javascript">alert("Successfully Checked In ")</script>';
             echo "<script>window.location.href='direct';</script>"; 
@@ -44,6 +44,7 @@ class Attendances extends Model {
     }
     
     public function setcheckouttime($id){
+        
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $this->db = $this->getDI()->getShared("db");

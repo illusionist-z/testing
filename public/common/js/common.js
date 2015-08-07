@@ -8,7 +8,7 @@
  * @get @lat @lng
  */
 function geo() {
-    if (navigator.geolocation) {
+    if (navigator.geolocation) { 
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
@@ -17,14 +17,18 @@ function geo() {
             type: 'GET',
             dataType: 'json'
         });
+       
+         navigator.geolocation.getCurrentPosition(GEOprocess);
     }
 }
 function GEOprocess(position) {
     //GET geo location of user
+   
     var url = "location_session";
-
+    var n = new Date();
+    var offset = n.getTimezoneOffset();
     $.ajax({
-        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude,
+        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude+ "&offset=" + offset,
         type: 'GET',
         dataType: 'json',
         success: function (d) {

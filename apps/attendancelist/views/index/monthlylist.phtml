@@ -1,10 +1,12 @@
 <?php
 //calculate the user time offset
+
 if ($offset < 0) {
     $sign = '-';
     $value = $offset * (-1);
 } else {
     $value = $offset * (-1);
+    $sign='+';
 }
 
 
