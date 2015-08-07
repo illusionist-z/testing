@@ -26,6 +26,24 @@ class SalaryDetail extends Model {
         //print_r($row);exit;
         return $row;
     }
+    
+    /**
+     * Get company start date
+     * @return type
+     */
+    public function getComp_startdate() {
+        try {
+            $sql = "select created_dt from core_member";
+            //echo $sql.'<br>';
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            //exit;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+
+        return $row;
+    }
 
     /**
      * Get salarylist
@@ -148,4 +166,36 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
         }
     }
 
+    public function seacrhsalary($cond) {
+        try {
+         $select = "SELECT * FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
+         $conditions=$this->setCondition($cond);
+
+              $sql = $select;
+              if (count($conditions) > 0) {
+              $sql .= " WHERE " . implode(' AND ', $conditions);
+              }
+              //echo $sql;exit;
+              $result = $this->db->query($sql);
+              $row = $result->fetchall();
+        } catch (Exception $ex) {
+           echo $ex; 
+        }
+        
+        return $row;
+    }
+    
+    public function setCondition($cond) {
+       
+        $conditions = array();
+
+              if ($cond['username'] != "") {
+              $conditions[] = "member_login_name='" . $cond['username'] . "'";
+              }
+              if ($cond['dept'] != "") {
+              $conditions[] = "member_dept_name='" . $cond['dept']. "'";
+              }
+              
+        return $conditions;
+    }
 }

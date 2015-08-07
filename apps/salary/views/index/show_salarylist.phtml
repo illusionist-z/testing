@@ -14,15 +14,16 @@
         <div class="col-md-12"><!--start add user form--->
 
             <div class="search_box">
+            <form name="search_frm" id="search_frm">
                 <div id="Menu" >
                     <div id="M_1">User Name: 
                         <span>
-                            <select class="select" data-toggle="select">
+                            <select class="select" data-toggle="select" name="cond[username]">
                                 <option>Name</option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
-                                    <option value="<?php echo $username['member_id']; ?>"><?php echo $username['member_login_name']; ?></option>
+                                    <option value="<?php echo $username['member_login_name']; ?>"><?php echo $username['member_login_name']; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -33,7 +34,8 @@
                     <div id="M_4">
                         Dept: 
                         <span>
-                            <select class="select" data-toggle="select">
+                            <select class="select" data-toggle="select" name="cond[dept]">
+                                <option value="">Position</option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -46,7 +48,7 @@
                     <div id="M_3">
                         Position: 
                         <span>
-                            <select class="select" data-toggle="select">
+                            <select class="select" data-toggle="select" name="cond[position]">
                                 <option>Project Leader</option>
                                 <option>mobile developer</option>
                                 <option>designer</option>
@@ -56,7 +58,7 @@
                     <div id="M_2">
                         Monthly: 
                         <span>
-                            <select class="select" data-toggle="select">
+                            <select class="select" data-toggle="select" name="cond[month]">
                                 <option selected="selected">Month</option>
                                 <?php
                                 for ($i = 1; $i <= count($months); $i++) {
@@ -79,7 +81,7 @@
                 <div class="search_btn_box"><!--search btn-->
                     <div style="float:left;">
                         salary:
-                        <select class="select" data-toggle="select">
+                        <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
                             <option>400000~700000</option>
                             <option>700000~1000000</option>
@@ -87,10 +89,11 @@
                         </select>
                     </div>
                     <div>
-                        <a href="#" class="button" id="save" style="margin-left:71px; margin-right:28px;">Search</a>
+                        <a href="#" class="button" id="search_salary" style="margin-left:71px; margin-right:28px;">Search</a>
                         <a href="#" class="button export">Export</a>
                     </div>
                 </div><!--search btn-->
+            </form>
             </div>
         </div>
     </div><!-- for search form-->
