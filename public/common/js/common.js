@@ -110,9 +110,10 @@ $(document).ready(function () {
                 $('.content-wrapper').css("margin-left","0");
                 $('.main-footer').css("margin-left","0");
                 toggle_switch.html('Show');
-            } else {
+            } else {                                
                 $('.content-wrapper').css("margin-left","230px");                
-                $('.main-footer').css("margin-left","230px");                
+                $('.main-footer').css("margin-left","230px");      
+                $('body').append("<style type='text/css'>@media (max-width:767px){.main-sidebar{transform:translate3d(0,0,0);}}</style>");
                 //change the button label to be 'Hide'
                 toggle_switch.html('Hide');
             }

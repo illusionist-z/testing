@@ -140,12 +140,13 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
      */
     public function editsalary($member_id) {
         try{
-            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
+            $sql = "select * from salary_master where id ='".$member_id."'";
             $result = $this->db->query($sql);
-            $row = $result->fetchall();  
+            $row = $result->fetchall();     
         }catch(Exception $e){
             echo $e;
         }
+        return $row;
     }
 
 }
