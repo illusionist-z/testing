@@ -13,7 +13,7 @@
         <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini" onload="display_ct()" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -28,7 +28,7 @@
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
-                                    <span class="label label-warning"><?php echo count($this->session->noti);?></span>
+                                    <span class="label label-warning"><?php if(count($this->session->noti)==0){ }else{echo count($this->session->noti);}?></span>
                                 </a>
                                   <ul class="dropdown-menu">
                                     <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
@@ -108,20 +108,11 @@
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar" id="sidepage" style="display:none;">
                 <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar"  >
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
-                        </div>
-                        <div class="pull-left info">
-                            <p><?php echo $this->session->user['member_login_name']; ?></p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
+                <section class="sidebar" >
+                    <!-- Sidebar user panel -->                   
 
                     <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <aside>
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
                         <?php
@@ -173,7 +164,7 @@
 
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="height:auto;margin-left: 0;">
+            <div class="content-wrapper" style="height:auto;margin-left:0;">
                 <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>

@@ -8,7 +8,7 @@
  * @get @lat @lng
  */
 function geo() {
-    if (navigator.geolocation) {
+    if (navigator.geolocation) { 
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
@@ -17,14 +17,18 @@ function geo() {
             type: 'GET',
             dataType: 'json'
         });
+       
+         navigator.geolocation.getCurrentPosition(GEOprocess);
     }
 }
 function GEOprocess(position) {
     //GET geo location of user
+   
     var url = "location_session";
-
+    var n = new Date();
+    var offset = n.getTimezoneOffset();
     $.ajax({
-        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude,
+        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude+ "&offset=" + offset,
         type: 'GET',
         dataType: 'json',
         success: function (d) {
@@ -103,8 +107,12 @@ $(document).ready(function () {
         $(collapse_content_selector).toggle(function () {
             if ($(this).css('display') == 'none') {
                 //change the button label to be 'Show'
+                $('.content-wrapper').css("margin-left","0");
+                $('.main-footer').css("margin-left","0");
                 toggle_switch.html('Show');
             } else {
+                $('.content-wrapper').css("margin-left","230px");                
+                $('.main-footer').css("margin-left","230px");                
                 //change the button label to be 'Hide'
                 toggle_switch.html('Hide');
             }
@@ -115,6 +123,8 @@ $(document).ready(function () {
     $('body').click(function (e) {       
         if (0 == $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
+            $('.content-wrapper').css("margin-left","0");
+            $('.main-footer').css("margin-left","0");
         }
     });
 //   

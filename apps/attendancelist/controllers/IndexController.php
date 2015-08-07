@@ -21,21 +21,23 @@ class IndexController extends ControllerBase
     */    
     public function todaylistAction() {
         
-        $offset= $this->session->location['offset'];
-        $name = $this->request->get('namelist');
-        $Att_list = new \workManagiment\Attendancelist\Models\Attendances();
-        
-        //get user attendance list for today
-        $result_attlist = $Att_list->gettodaylist($name);                
+        $offset= $this->session->location['offset'];               
         //get user name
         //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
         $User_list=new Db\CoreMember();
         $username = $User_list::getinstance()->getusername();        
-        $this->view->attlist = $result_attlist;
+        //$this->view->attlist = $result_attlist;
         $this->view->offset=$offset;
         $this->view->uname = $username;
     }
-    
+    public function showtodaylistAction(){
+         $name = $this->request->get('namelist');
+        $Att_list = new \workManagiment\Attendancelist\Models\Attendances();        
+        //get user attendance list for today
+        $result_attlist = $Att_list->gettodaylist($name);      
+        $this->view->disable();
+        echo json_encode($result_attlist);
+    }
     /**
      * Show monthly attendance list
      */
@@ -44,18 +46,20 @@ class IndexController extends ControllerBase
         $offset= $this->session->location['offset'];
         $User_list=new Db\CoreMember();
         $user_name = $User_list::getinstance()->getusername();
-
-        $month = $this->config->month;
-
-        $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
-        $result = $Attendances->showattlist();        
-        $this->view->setVar("Month", $month);
-        $this->view->setVar("showlist", $result);
-        $this->view->setVar("Getname", $user_name);
-        
+        $month = $this->config->month;                
+        $this->view->setVar("Month", $month);        
+        $this->view->setVar("Getname", $user_name);                
         $this->view->offset=$offset;
     }
-    
+    /**
+     * show monthly attendance list by json
+     */
+    public function showmonthlylistAction(){
+        $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
+        $result = $Attendances->showattlist();
+        $this->view->disable();
+        echo json_encode($result);        
+    }
     
 
 }

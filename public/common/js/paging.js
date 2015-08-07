@@ -35,8 +35,12 @@ var Paging = {
                     prevpage = currentPage-1;
                 //var pageselect = '<select onchange="pager.showPage(parseInt(this.options[this.selectedIndex].value));return false;">';
                 // paging index 
+                if(0 == numPages){
+                    $('tbody').html("<tr><td colspan='8'><center>No data to display</center></td></tr>");
+                }
+                else{
 	        var pagingControls = '<ul class="pagination" style="margin-left:15px;">';
-                pagingControls += '<li><a href="#" onclick="pager.showPage(' + 1 + ');return false;">First</a></li>';	                 
+                pagingControls += '<li><a href="#" onclick="pager.showPage(' + 1 + ');return false;">First</a></li>';             
                 // check total page number
                 if(nextpage <= numPages){                    
                     //pervious and next index
@@ -45,12 +49,18 @@ var Paging = {
                                     }
 	                        pagingControls += '<li><a href="#" onclick="pager.showPage(' + nextpage + ');return false;">Next</a></li>';	        
                                         }                
-                else {                
-                pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';                            
+                else {
+                    if(1 ==numPages){
+                        
+                    }
+                    else{
+                    pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';
+                       }                            
                     }                
                 pagingControls += '<li><a href="#" onclick="pager.showPage(' + numPages + ');return false;">Last</a></li>';
                 pagingControls += '<li><span class="btn" style="margin-left:20px"> Page :'+ currentPage +' in '+ numPages+'</span></li></ul>';            
-            $('#content').html(pagingControls);
+             $('#content').html(pagingControls);
+                 }
         };    
   }
 };

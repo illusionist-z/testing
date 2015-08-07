@@ -18,7 +18,7 @@ use Phalcon\Tag as Tag;
 echo Tag::javascriptInclude('js/jquery.min_one.js');
 ?>
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" id="showtodaylist">
     <h1>
         Attendance list
     </h1>
@@ -31,9 +31,9 @@ echo Tag::javascriptInclude('js/jquery.min_one.js');
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <form id="frm_search" >
+        <form onsubmit="return false;" method="post">
             <select class="select" data-toggle="select" name="namelist" id="namelist">
-                <option>Name</option>
+                <option value="">Name</option>
 <?php
 foreach ($uname as $result) {
     ?>
@@ -70,124 +70,10 @@ foreach ($uname as $result) {
 
                 </thead>
                 <tbody>
-<?php
-foreach ($attlist->items as $result) {
-    ?>
-                        <tr>
-
-                            <td><?php
-                    $date = date('Y-m-d');
-                    echo $date;
-                    ?></td>
-
-                            <td><?php echo $result['member_login_name']; ?></td>
-                            <td>
-                            <?php
-                            $checkintime = $result['checkin_time'];
-                            if ($sign == '-') {
-                                $time = new DateTime($checkintime);
-                                $time->add(new DateInterval('PT' . $value . 'M'));
-                                echo $time->format('H:i:s A ');
-                            } else {
-                                $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
-                                echo $datetime_from;
-                            }
-                            ?>
-
-                            </td>
-                            <td>
-                                <?php
-                                //calculate late time
-                                $checkintime = $result['checkin_time'];
-                                $dt = new DateTime($checkintime);
-                                $time = $dt->format('H:i:s');
-                                $office_start_time = '01:30:00 ';
-                                if ($time > $office_start_time) {
-                                    $start = strtotime($office_start_time);
-                                    $end = strtotime($time);
-                                    $late = $end - $start;
-
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " Hours</font>";
-                                }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                $checkouttime = $result['checkout_time'];
-                                if ($checkouttime == 0) {
-                                    echo "-";
-                                } else {
-                                    if ($sign = '-') {
-                                        $time = new DateTime($checkouttime);
-                                        $time->add(new DateInterval('PT' . $value . 'M'));
-                                        echo $time->format('H:i:s A');
-                                    } else {
-                                        $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkouttime)));
-                                        echo $datetime_from;
-                                    }
-                                }
-                                ?></td>
-                            <td>
-                                <?php
-                                //calculate working time
-                                $start_time = strtotime($result['checkin_time']);
-                                $end_time = strtotime($result['checkout_time']);
-                                if ($end_time == 0) {
-                                    echo "-";
-                                } else {
-                                    $workingHour = $end_time - $start_time;
-                                    $hours = floor($workingHour / 3600);
-                                    $minutes = floor(($workingHour / 60) % 60);
-                                    $seconds = $workingHour % 60;
-                                    echo "$hours:$minutes:$seconds";
-                                    echo" Hours";
-                                }
-                                ?>
-                            </td>
-                            <td>
-                                <?php
-                                //calculate overtime
-                                if ($result['overtime']!=0) {
-                                   echo $result['overtime'];
-                                } else {
-                                    echo "-";
-                                }
-                                ?> 
-
-                            </td>
-                            <td><?php $lat= $result['lat'];
-                $lng=$result['lng'];
-               if(0==$lng && 0==$lat){
-                echo "-";
-                }
-                else{
-                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lng).'&sensor=false';
-                $json = @file_get_contents($url);
-                $data=json_decode($json);
-                if( $data){
-                echo $data->results[5]->formatted_address;
-                }
-                else
-                {
-                   echo "-";
-                }
-                }
-        ?></td>
-                        </tr>
-                                <?php
-                            }
-                            ?>
 
                 </tbody>
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-    <ul class="pagination pagination-large">
-        <li><a href="todaylist">First</a></li>
-        <li><a href="todaylist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
-        <li><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></li>
-        <li><a href="todaylist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Next</a></li>
-        <li><a href="todaylist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Last</a></li>
-
-        
-    </ul>
+</section>
+    <div id="content"></div>

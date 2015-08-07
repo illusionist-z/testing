@@ -102,8 +102,25 @@ class IndexController extends ControllerBase {
         $note = $this->request->get('note');
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
+       
+          if(0==$lon && 0==$lat){
+               $add="-";
+                }
+                else{
+                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
+                $json = @file_get_contents($url);
+                $data=json_decode($json);
+                if( $data){
+                $add= $data->results[5]->formatted_address;
+                }
+                else
+                {
+                   $add="-";
+                }
+                }
+                
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
-        $checkin->setcheckintime($id, $note, $lat, $lon);
+        $checkin->setcheckintime($id, $note, $lat, $lon,$add);
        
         
         
