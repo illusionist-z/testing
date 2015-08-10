@@ -127,7 +127,17 @@ class IndexController extends ControllerBase
     }
     
     public function saveallowanceAction() {
-        print_r($this->request->get('txt1'));exit;
+        
+    for ($x = 1; $x <= 10; $x++) {
+    $all_name['"'.$x.'"']= $this->request->get('textbox'.$x);    
+    $all_value['"'.$x.'"']= $this->request->get('txt'.$x);
+   // echo $all_name['"'.$x.'"'];echo $all_value['$x'];
+    if(!isset($all_name['"'.$x.'"'])){
+        $count=$x;break;
+        }
+    }
+    $all=new \workManagiment\Salary\Models\Allowances();
+    $all->addallowance($all_value,$all_name,$count);
     }
 }
 
