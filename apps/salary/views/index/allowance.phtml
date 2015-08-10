@@ -64,9 +64,9 @@
 
             newTextBoxDiv.after().html('<label>Allowance Name' + counter + ' : </label>' +
                     '<input type="text" name="textbox' + counter +
-                    '" id="textbox' + counter + '" value="" ><label>Allowance Amount' + counter1 + ' : </label>' +
-                    '<input type="text" name="txt' + counter1 +
-                    '" id="txt' + counter1 + '" value="" >');
+                    '" id="textbox' + counter + '" value="" ><label>Allowance Amount' + counter + ' : </label>' +
+                    '<input type="text" name="txt' + counter +
+                    '" id="txt' + counter + '" value="" >');
 
             newTextBoxDiv.appendTo("#TextBoxesGroup");
 
@@ -91,6 +91,7 @@
             var msg = '';
             for (i = 1; i < counter; i++) {
                 msg += "\n Textbox #" + i + " : " + $('#textbox' + i).val();
+                msg += "\n Textbox #" + i + " : " + $('#txt' + i).val();
             }
           
             alert(msg);

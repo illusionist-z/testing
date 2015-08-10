@@ -12,6 +12,7 @@ function geo() {
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
+       
         $.ajax({
             url: url + "?offset=" + offset,
             type: 'GET',
@@ -26,7 +27,7 @@ function GEOprocess(position) {
    
     var url = "location_session";
     var n = new Date();
-    var offset = n.getTimezoneOffset();
+    var offset = n.getTimezoneOffset();alert(offset);
     $.ajax({
         url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude+ "&offset=" + offset,
         type: 'GET',

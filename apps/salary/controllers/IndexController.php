@@ -127,7 +127,7 @@ class IndexController extends ControllerBase
     }
     
     public function saveallowanceAction() {
-        print_r($this->request->get('textbox'));exit;
+        print_r($this->request->get('txt1'));exit;
     }
 }
 
