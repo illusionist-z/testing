@@ -18,7 +18,7 @@ class IndexController extends ControllerBase
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
-        //$this->assets->addJs('apps/salary/js/jquery-1.3.2.min.js'); increase and descrease textbox
+        $this->assets->addJs('common/js/export.js'); 
         $this->setCommonJsAndCss();
         
     }
@@ -113,11 +113,22 @@ class IndexController extends ControllerBase
     public function editsalaryAction() {
         $member_id=$this->request->get('id');                
         $Salarydetail=new SalaryDetail();
-        $editsalary=$Salarydetail->editsalary($member_id);                
+        $editsalary=$Salarydetail->editsalary($member_id);
         $this->view->disable();
         echo json_encode($editsalary);
     }
-    
+    public function btneditAction() {
+        $data['id'] = $this->request->getPost('id');
+        $data['uname'] = $this->request->getPost('uname');
+        $data['basesalary'] = $this->request->getPost('basesalary');
+        $data['travelfee'] = $this->request->getPost('travelfee');
+        $data['overtime'] = $this->request->getPost('overtime');
+        $data['ssc_emp'] = $this->request->getPost('ssc_emp');
+        $data['ssc_comp'] = $this->request->getPost('ssc_comp');
+        $Salarydetail = new SalaryDetail();
+        $Salarydetail->btnedit($data);
+        $this->view->disable();
+    }
     public function allowanceAction() {
     
     }
