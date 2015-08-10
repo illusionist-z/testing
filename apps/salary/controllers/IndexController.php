@@ -13,11 +13,12 @@ class IndexController extends ControllerBase
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->assets->addCss('common/css/style.css');
-        $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/dialog.css');        
+        $this->assets->addCss('common/css/jquery-ui.css');         
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
-        //$this->assets->addJs('apps/salary/js/jquery-1.3.2.min.js'); increase and descrease textbox
+        $this->assets->addJs('common/js/export.js'); 
         $this->setCommonJsAndCss();
         
     }
@@ -33,15 +34,9 @@ class IndexController extends ControllerBase
         
         $Salarydetail=new SalaryDetail();
         $getsalarydetail=$Salarydetail->getsalarydetail();
+        //var_dump($getsalarydetail);exit;
         $this->view->salarydetail = $getsalarydetail;
-        //print_r($getsalarylist);exit;
-//        $month = $this->config->month;
-//        $userlist=new Db\CoreMember();
-//        $user_name = $userlist::getinstance()->getusername();
-//        
-//        $this->view->setVar("months", $month);
-//        $this->view->setVar("usernames", $user_name);
-//        $this->view->setVar("getsalarylists", $getsalarylist);
+ 
     }
     
     /**
@@ -54,8 +49,7 @@ class IndexController extends ControllerBase
         //print_r($getsalarylist);exit;
         $month = $this->config->month;
         $userlist=new Db\CoreMember();
-        $user_name = $userlist::getinstance()->getusername();
-        
+        $user_name = $userlist::getinstance()->getusername();        
         $this->view->setVar("months", $month);
         $this->view->setVar("usernames", $user_name);
         $this->view->setVar("getsalarylists", $getsalarylist);
@@ -117,11 +111,24 @@ class IndexController extends ControllerBase
      * Edit salary detail
      */
     public function editsalaryAction() {
-        $member_id=$this->request->get('member_id');
+        $member_id=$this->request->get('id');                
         $Salarydetail=new SalaryDetail();
         $editsalary=$Salarydetail->editsalary($member_id);
+        $this->view->disable();
+        echo json_encode($editsalary);
     }
-    
+    public function btneditAction() {
+        $data['id'] = $this->request->getPost('id');
+        $data['uname'] = $this->request->getPost('uname');
+        $data['basesalary'] = $this->request->getPost('basesalary');
+        $data['travelfee'] = $this->request->getPost('travelfee');
+        $data['overtime'] = $this->request->getPost('overtime');
+        $data['ssc_emp'] = $this->request->getPost('ssc_emp');
+        $data['ssc_comp'] = $this->request->getPost('ssc_comp');
+        $Salarydetail = new SalaryDetail();
+        $Salarydetail->btnedit($data);
+        $this->view->disable();
+    }
     public function allowanceAction() {
     
     }

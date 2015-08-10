@@ -140,12 +140,22 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
      */
     public function editsalary($member_id) {
         try{
-            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
+            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id where salary_master.id ='".$member_id."'";
             $result = $this->db->query($sql);
-            $row = $result->fetchall();  
+            $row = $result->fetchall();     
         }catch(Exception $e){
             echo $e;
         }
+        return $row;
+    }
+    public function btnedit($data){
+     try{
+         $sql = "Update salary_master SET basic_salary ='".$data['basesalary']."',travel_fee ='".$data['travelfee']."',over_time ='".$data['overtime']."',ssc_emp ='".$data['ssc_emp']."',ssc_comp ='".$data['ssc_comp']."' Where id='".$data['id']."'";
+         $this->db->query($sql);
+     } catch (Exception $ex) {
+         echo $ex;
+     }
+     
     }
 
 }
