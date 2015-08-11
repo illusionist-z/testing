@@ -24,5 +24,21 @@ class Allowances extends Model {
 
         return $row;
     }
+    
+    
+    public function saveallowance($allowance,$member_id) {
+        try {
+            
+            for($i=0;$i<count($allowance);$i++)
+            {
+            $sql = "INSERT INTO salary_master_allowance (allowance_id,member_id) VALUES('" . $allowance[$i] . "','" . $member_id . "')";
+            $result = $this->db->query($sql);   
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+
+        return $result;
+    }
 
 }

@@ -90,7 +90,7 @@ if(isset($Msg))
                             <?php
                             //print_r($getall_allowance);
                             foreach ($getall_allowance as $getall_allowances) {
-                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_allowances['id'].'">'. $getall_allowances['allowance_name']."<br>";
+                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_allowances['allowance_id'].'">'. $getall_allowances['allowance_name']."<br>";
                             }
                             ?>
                             

@@ -32,16 +32,18 @@ class CalculateController extends ControllerBase
      //calculate overtime by attendances and salary master
      $overtime=$Salarymaster->calculate_overtime();
      
-    //insert overtime and salary information to salary detail
-    //$Salarydetail->insert_salarydetail($overtime);
-     
     $getcomp_startdate=$Salarydetail->getComp_startdate();
-    print_r($getcomp_startdate);exit;
+   
     //calculate the basic salary
     $tax=$Salarymaster->calculate_tax_salary($getbasic_salary);
-    //print_r($tax);exit;
+    
     //insert taxs of all staff to salary detail
     $Salarydetail->insert_taxs($tax);
+    
+    //insert overtime and salary information to salary detail
+    $Salarydetail->insert_salarydetail($overtime);
+    
+    
     
     //calculate ssc fee of employee and employer
     $ssc=$Salarymaster->sscforCompandEmp();

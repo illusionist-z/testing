@@ -122,6 +122,8 @@
                 </thead>
                 <tbody>
                     <?php
+                    $month=$this->request->get('month');
+                    $year=$this->request->get('year');
                     $i = 1;
                     foreach ($getsalarylists as $getsalarylist) {
                         ?>
@@ -137,7 +139,7 @@
                             <td><?php echo $getsalarylist['ssc_comp'] ?></td>
                             <td><?php echo $getsalarylist['ssc_emp'] ?></td>
                             <td><?php echo $getsalarylist['total'] ?></td>
-                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?>" class="button" id="displaypopup">Print</a></td>
+                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button" id="displaypopup">Print</a></td>
                         </tr>
                         <?php
                         $i++;
