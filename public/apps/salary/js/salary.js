@@ -73,6 +73,6 @@ $(document).ready(function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     });    
-        window.location.href = baseUri + 'salary/search?'+$form;
-    })
+        //window.location.href = baseUri + 'salary/search?'+$form;
+   
 });
