@@ -5,6 +5,7 @@
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">salary list</li>
+        <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a>        
     </ol>
 </section>
 
@@ -41,8 +42,7 @@
                             <td><?php echo $salarydetails['over_time'].'%' ?></td>
                             <td><?php echo $salarydetails['ssc_emp'].'%' ?></td>
                             <td><?php echo $salarydetails['ssc_comp'].'%' ?></td>
-                           
-                            <td><a href="editsalary?member_id=<?php echo $salarydetails['member_id']?>" class="button" id="displaypopup">Edit</a></td>
+                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails['id'] ?>" value="Edit"></td>                            
                         </tr>
                         <?php
                         $i++;
@@ -56,3 +56,6 @@
     </div><!-- /.row -->
 
 </section><!-- /.content -->
+<div id="edit_salary_dia" class="navbar"></div>
+
+
