@@ -56,26 +56,13 @@
     </div><!-- /.row -->
 
 </section><!-- /.content -->
-<?php
-if ( isset($_POST['month'])) {    
-    $m = $_POST['month'];   
-} 
+<div id="edit_all_dia" class="navbar"></div>
 
-else{
-    $m=date('m');
-}
-if ( isset($_GET['month']) ){
-    
-    $m = $_GET['month'];
-    
-}
-
-?>
 <ul class="pagination pagination-sm">
     <li><a href="allowance" >First</a></li>
-    <li><a href="allowance?page=<?= $list->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
-    <li><a href="allowance?page=<?= $list->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>" >Next</a></li>
-    <li><a href="allowance?page=<?= $list->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>" >Last</a></li>
+    <li><a href="allowance?page=<?= $list->before; ?>">Previous</a></li>
+    <li><a href="allowance?page=<?= $list->next; ?>" >Next</a></li>
+    <li><a href="allowance?page=<?= $list->last; ?>" >Last</a></li>
 
         <?php echo "You are in page ", $list->current, " of ", $list->total_pages; ?></ul>
 <script type="text/javascript">

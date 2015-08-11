@@ -89,6 +89,7 @@ $length = count($Month);
                 <tbody>
                     <?php
                    //print_r($Result);
+                    $days=0;
                     foreach ($Result as $item) {
                         ?>
                         <tr>
@@ -105,6 +106,8 @@ $length = count($Month);
                                 ?></td>
                             <td><?php
                                 echo $item['leave_days'];
+                                ;
+                                //echo $days;
                                 ?></td>
                             <td><?php
                                 echo $item['leave_category'];
@@ -122,10 +125,11 @@ $length = count($Month);
                                
                         };
                                 ?></td>
-                            <td><?php
+                            <td><font color="red"><?php
                                 
-                                
-                                ?></td>
+                                echo 16-($item['total_leavedays']);
+                        
+                                ?></font></td>
                         </tr>
                         </tr>
                         <?php

@@ -97,11 +97,16 @@ class Leaves extends \Library\Core\BaseModel {
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
 
         $this->db = $this->getDI()->getShared("db");
+         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "'  ORDER BY date DESC LIMIT 1 ");
+         $list = $ldata->fetchall();
+         if($list==NULL){
+         $lastdata=0;}
+             else{$lastdata=($list['0']['total_leavedays']);}
         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
             
             if (isset($sdate) AND isset($edate) AND isset($desc)) {
               
-                $today = date("Y-m-d");
+                $today = date("Y-m-d H:i:s");
                 $checkday = date("Y-m-d", strtotime("+7 days"));
                 $sdate = date("Y-m-d", strtotime($sdate));
                 $edate = date("Y-m-d", strtotime($edate));
@@ -110,7 +115,7 @@ class Leaves extends \Library\Core\BaseModel {
                     //check $edate greater than $sdate
                     if (strtotime($sdate) < strtotime($edate)) {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
-                        $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "')");
+                        $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "')");
                         $err="Your Leave Applied Successfully!";
                     } else {
                         $err="End date must be greater than Start date";
@@ -142,21 +147,24 @@ class Leaves extends \Library\Core\BaseModel {
             $mth = date('m');
             //showing current month leave list
             $row = $this->modelsManager->createBuilder()
-                    ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description')
+                    ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
                     ->where('MONTH( workManagiment\Leavedays\Models\Leaves.start_date) ="' . $mth . '" AND  workManagiment\Leavedays\Models\Leaves.member_id ="' . $id . '"')
                     ->getQuery()
                     ->execute();
+           
         } else {
-           //for searching by leave type and month
+            //for searching by leave type and month
+           
             $row = $this->modelsManager->createBuilder()
-                    ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description')
+                    ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays')
                     ->from('workManagiment\Core\Models\Db\CoreMember')
                     ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
                     ->where($this->setCondition2($mth, $leave_type) . ' AND workManagiment\Leavedays\Models\Leaves.member_id =' . "'$id'")
                     ->getQuery()
                     ->execute();
+           
         }
         //for pagination
         $currentPage = (int) $_GET["page"];
@@ -168,7 +176,7 @@ class Leaves extends \Library\Core\BaseModel {
                 )
         );
         $list = $paginator->getPaginate();
-
+        
         return $list;
     }
     
@@ -207,11 +215,12 @@ class Leaves extends \Library\Core\BaseModel {
     * when admin accept leavedays request from user
     * @author Su Zin kyaw
     */
-    public function acceptleave($id,$sdate){
+    public function acceptleave($id,$sdate,$days){
             $this->db = $this->getDI()->getShared("db");
-        $status=1;echo $id;
+        $status=1;
         $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-    
+       $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."' ");
+
     }
    
     /**
