@@ -46,8 +46,9 @@ class IndexController extends ControllerBase
      */
     public function show_salarylistAction() {
         $month=$this->request->get('month');
+        $year=$this->request->get('year');
         $Salarydetail=new SalaryDetail();
-        $getsalarylist=$Salarydetail->salarylist($month);
+        $getsalarylist=$Salarydetail->salarylist($month,$year);
         //print_r($getsalarylist);exit;
         $month = $this->config->month;
         $userlist=new Db\CoreMember();
@@ -63,9 +64,15 @@ class IndexController extends ControllerBase
     public function addsalaryAction(){
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
+        $Allowance=new Allowances();
+        $getall_allowance=$Allowance->getall_allowances();
+        //print_r($getall_allowance);exit;
+        
         $position=$this->config->position;
+        
         $this->view->setVar("usernames", $user_name);
         $this->view->position=$position;
+        $this->view->getall_allowance=$getall_allowance;
     }
     
     /**
@@ -73,6 +80,7 @@ class IndexController extends ControllerBase
      */
     public function savesalaryAction() {
         $dedution=$this->request->get('check_list');
+        $allowance=$this->request->get('check_allow');
         $data['member_id']=$this->request->get('uname');
         $data['position']=$this->request->get('position');
         $data['basic_salary']=$this->request->get('bsalary');
@@ -83,8 +91,10 @@ class IndexController extends ControllerBase
         $Salarymaster->savesalary_dedution($dedution,$this->request->get('uname'));
         $result=$Salarymaster->savesalary($data);
         
-        $this->view->Msg = 'Success';
-        $this->view->pick('index/addsalary');
+        $Allowance=new Allowances();
+        $saveallowance=$Allowance->saveallowance($allowance,$this->request->get('uname'));
+       
+        $this->response->redirect('salary/index/salarylist');
     }
 
     /**
@@ -102,8 +112,14 @@ class IndexController extends ControllerBase
      */
     public function payslipAction() {
         $member_id=$this->request->get('member_id');
+        $month=$this->request->get('month');
+        $Mth='';
+        if($month<10){
+           $Mth ='0'.$month;
+        }
+        $year=$this->request->get('year');
         $Salarydetail=new SalaryDetail();
-        $getsalarydetail=$Salarydetail->getpayslip($member_id);
+        $getsalarydetail=$Salarydetail->getpayslip($member_id,$Mth,$year);
         //print_r($getsalarydetail);exit;
         $this->view->getsalarydetails = $getsalarydetail;
         //$this->view->setVar("getsalarydetails", $getsalarydetail);

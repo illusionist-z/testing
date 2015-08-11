@@ -64,7 +64,8 @@ var Salary = {
 };
 $(document).ready(function () {
 
-   $('#calculate').click(function(){        
+   $('#search_salary').click(function(){     
+       var $form = $('#search_frm').serialize();
         alert("aaaa");
         window.location.href = baseUri + 'salary/calculate';
     });

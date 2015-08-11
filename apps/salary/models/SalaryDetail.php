@@ -28,14 +28,36 @@ class SalaryDetail extends Model {
     }
 
     /**
+     * Get company start date
+     * @return type
+     */
+    public function getComp_startdate() {
+        try {
+            $now = new \DateTime('now');
+            $month = $now->format('m');
+            $year = $now->format('Y');
+            
+            $sql = "select pay_date,member_id from salary_detail";
+            
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            //exit;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+
+        return $row;
+    }
+
+    /**
      * Get salarylist
      * @return type
      * @author zinmon
      */
-    public function salarylist($month) {
+    public function salarylist($month,$year) {
         try {
             $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
-select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY id";
+select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='".$year."' GROUP BY id";
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetchall();
@@ -53,13 +75,16 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
      */
     public function insert_salarydetail($row) {
         try {
+            $current_date=date("Y-m-d");
             //print_r($row);exit;
             foreach ($row as $rows) {
 
-                $sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
-
+                //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
+                $sql = "UPDATE salary_detail SET basic_salary ='" . $rows['basic_salary'] . "',travel_fee='".$rows['travel_fee']."',overtime='".$rows['overtime_rate']."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";
                 $result = $this->db->query($sql);
+                
             }
+           
         } catch (Exception $e) {
             echo $e;
         }
@@ -73,8 +98,8 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
         try {
             //print_r($row);exit;
             foreach ($row as $rows) {
-                //echo "Member_id ".$rows['member_id']." "." Income tax ".$rows['income_tax'].'<br>';
-                $sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' ";
+                $sql = "INSERT INTO salary_detail (id,member_id,income_tax,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['income_tax'] . "',NOW())";
+                //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);
             }
@@ -102,14 +127,15 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
             echo $e;
         }
     }
-    
+
     /**
      * Get salary detail for each member to print
      * @param type $member_id
      */
-    public function getpayslip($member_id) {
+    public function getpayslip($member_id,$month,$year) {
         try {
-            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='".$member_id."'";
+            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='" . $member_id . "' and MONTH(pay_date)='".$month."' and YEAR(pay_date)='".$year."'";
+            //echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetchall();
             //print_r($row);
@@ -119,21 +145,21 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
         }
         return $row;
     }
-    
+
     /**
      * Get salary detail for each month
      */
     public function getsalarydetail() {
-        try{
+        try {
             $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
-        }  catch (Exception $e){
+        } catch (Exception $e) {
             echo $e;
         }
         return $row;
     }
-    
+
     /**
      * 
      * @param type $member_id
@@ -156,6 +182,39 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='".$month."'GROUP BY
          echo $ex;
      }
      
+    }
+
+    public function seacrhsalary($cond) {
+        try {
+            $select = "SELECT * FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
+            $conditions = $this->setCondition($cond);
+
+            $sql = $select;
+            if (count($conditions) > 0) {
+                $sql .= " WHERE " . implode(' AND ', $conditions);
+            }
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+
+        return $row;
+    }
+
+    public function setCondition($cond) {
+
+        $conditions = array();
+
+        if ($cond['username'] != "") {
+            $conditions[] = "member_login_name='" . $cond['username'] . "'";
+        }
+        if ($cond['dept'] != "") {
+            $conditions[] = "member_dept_name='" . $cond['dept'] . "'";
+        }
+
+        return $conditions;
     }
 
 }
