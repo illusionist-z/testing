@@ -144,6 +144,7 @@ class SalaryMaster extends Model {
                         $total_allowances+=$result[$i]['allowance_amount'];
                         
                     }
+                    //$salary_yr+=$total_allowances;
                   //echo $total_allowances;
                 }
                 
