@@ -145,6 +145,7 @@ class IndexController extends ControllerBase
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
+        
         $Salarydetail = new SalaryDetail();
         $Salarydetail->btnedit($data);
         $this->view->disable();
@@ -176,12 +177,42 @@ class IndexController extends ControllerBase
     $all->addallowance($all_value,$all_name,$count);//sending data to model with array format
     }
     
+    /**
+     * edit dialog box
+     * @author Su Zin Kyaw
+     */
     public function editallowanceAction(){
          $all_id=$this->request->get('id'); 
         $all=new Allowances();
-        $data=$all->editall($member_id);
+        $data=$all->editall($all_id);
         $this->view->disable();
         echo json_encode($data);
+    }
+    
+    /**
+     * edit allowance data
+     * @author Su Zin Kyaw
+     */
+    public function edit_dataAction() {
+        
+        $data['id'] = $this->request->getPost('id');
+        $data['name'] = $this->request->getPost('name');
+        $data['allowance_amount'] =$this->request->getPost('allowance_amount');
+        $all=new Allowances();
+        $all->edit_allowance($data);
+        $this->view->disable();
+    }
+    
+    /**
+     * delete allowance data
+     * @author Su Zin Kyaw
+     */
+    public function delete_dataAction(){
+        $id= $this->request->getPost('id');
+        
+        $all=new Allowances();
+        $all->delete_allowance($id);
+        $this->view->disable();
     }
 }
 

@@ -11,6 +11,7 @@ var Salary = {
            type: "GET",
            success:function(res){
                var result = $.parseJSON(res);
+               
                var data ='<form id="edit_salary"><table>';               
                    data += '<tr><td>User Name :</td><td><input type="text" value='+result[0]['member_login_name']+ ' name="uname" disabled></td>'
                         +'<td>Basic Salary :</td><td><input type="text" value='+result[0]['basic_salary']+ ' name="basesalary"></td></tr>'

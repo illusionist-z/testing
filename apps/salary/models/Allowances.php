@@ -10,6 +10,8 @@ class Allowances extends Model {
         parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
+    
+    
     /**
      * 
      * @param type $all_value
@@ -18,6 +20,7 @@ class Allowances extends Model {
      * Adding Allowances to allowance table
      */
     public function addallowance($all_value,$all_name,$count){
+   
     $created_date=date("Y-m-d H:i:s");
     $this->db=$this->getDI()->getShared("db");  
      for ($x = 1; $x <$count; $x++) {
@@ -26,9 +29,11 @@ class Allowances extends Model {
     }
       echo '<script type="text/javascript">alert("Allowances are Added Successfully! ")</script>';
      echo "<script type='text/javascript'>window.location.href='../../salary/index/allowance';</script>";
+     
     }
+    
     /**
-     * get alw list with paging
+     * get allowance list with paging
      * @author Su Zin Kyaw
      * @return type
      */
@@ -49,12 +54,42 @@ class Allowances extends Model {
                 )
         );                
         $list = $paginator->getPaginate();
-      
         return $list;
-        
-
     }
-       public function getall_allowances() {
+    
+    
+    /**
+     * 
+     * @param type $data
+     * update edited data to allowances table
+     * @author Su Zin Kyaw
+     */
+    public function edit_allowance($data){
+        try{
+         $sql = "Update allowances SET allowance_name ='".$data['name']."',allowance_amount ='".$data['allowance_amount']."' Where allowances.allowance_id='".$data['id']."'";
+         $this->db->query($sql);
+     } catch (Exception $ex) {
+         echo $ex;
+     }
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * delete allowance data
+     * @author Su Zin Kyaw
+     */
+    public function delete_allowance($id){
+        try{
+        $sql = "Delete From allowances  Where allowances.allowance_id='".$id."'";
+        $this->db->query($sql);
+        } catch (Exception $ex) {
+        echo $ex;
+        }
+    }
+    
+    
+    public function getall_allowances() {
         try {
             $sql = "select * from allowances";
             //echo $sql.'<br>';
@@ -83,5 +118,17 @@ class Allowances extends Model {
 
         return $result;
     }
+    
+    public function editall($allid){
+         try{
+            $sql = "select * from allowances where allowances.allowance_id ='".$allid."'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();     
+        }catch(Exception $e){
+            echo $e;
+        }
+        return $row;
+    }
+    
 
 }
