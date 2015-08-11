@@ -53,7 +53,8 @@ class Allowances extends Model {
         return $list;
         
 
-    public function getall_allowances() {
+    }
+       public function getall_allowances() {
         try {
             $sql = "select * from allowances";
             //echo $sql.'<br>';
