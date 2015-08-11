@@ -36,9 +36,9 @@ class Calendar extends Model {
      * @desc create new event by click on calendar
      * @author David
      */
-    public function create_event($sdate,$edate,$title){                        
+    public function create_event($sdate,$edate,$title,$uname){                        
          $this->db = $this->getDI()->getShared("db");
-         $insert ="INSERT INTO calendar (title,startdate,enddate,allDay) Values ('".$title."','".$sdate."','".$edate."','true')";
+         $insert ="INSERT INTO calendar (member_id,title,startdate,enddate,allDay) Values ('".$uname."','".$title."','".$sdate."','".$edate."','true')";
          $query=  $this->db->query($insert);
          return $query;
     }
@@ -51,6 +51,13 @@ class Calendar extends Model {
          $update ="UPDATE calendar SET title ='".$title."',startdate='".$sdate."',enddate='".$edate."' WHERE id='".$id."'";
          $query=  $this->db->query($update);
          return $query;
+    }
+    public function getid_name($id){
+        $this->db = $this->getDI()->getShared("db");
+        $getname = "Select member_id from calendar where id='".$id."'";
+        $query = $this->db->query($getname);
+        $result=$query->fetchall();
+        return $result;
     }
     /**    
      * @since 27/7/15

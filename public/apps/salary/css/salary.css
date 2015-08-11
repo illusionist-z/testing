@@ -1,0 +1,5 @@
+//for print selected
+@media print{
+  body *{ visibility: hidden; }
+  #printable *{ visibility: visible; }  
+}
