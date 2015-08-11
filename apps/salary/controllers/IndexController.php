@@ -5,6 +5,7 @@ namespace workManagiment\Salary\Controllers;
 use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
+use workManagiment\Salary\Models\Allowances;
 class IndexController extends ControllerBase
 {
     
@@ -161,7 +162,10 @@ class IndexController extends ControllerBase
     
     public function editallowanceAction(){
          $all_id=$this->request->get('id'); 
-         echo $all_id;
+        $all=new Allowances();
+        $data=$all->editall($member_id);
+        $this->view->disable();
+        echo json_encode($data);
     }
 }
 
