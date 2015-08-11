@@ -1,5 +1,8 @@
 //for print selected
+body * {
+    display: none;
+}
 @media print{
   body *{ visibility: hidden; }
-  #printable *{ visibility: visible; }  
+  #printable *{ visibility: visible;}  
 }
