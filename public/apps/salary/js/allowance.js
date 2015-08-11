@@ -3,11 +3,13 @@
  * @author David
  * @desc   Salary Edit Dial Box
  */
-var Salary = {
+var Allowance = {
     isOvl:false,
     Edit : function (d){
+        
         $.ajax({
-           url:"editsalary?id="+d,
+            
+           url:"editallowance?id="+d,
            type: "GET",
            success:function(res){
                var result = $.parseJSON(res);
@@ -64,8 +66,7 @@ var Salary = {
 };
 $(document).ready(function () {
 
-   $('#search_salary').click(function(){     
-       var $form = $('#search_frm').serialize();
+   $('#calculate').click(function(){        
         alert("aaaa");
         window.location.href = baseUri + 'salary/calculate';
     });
@@ -73,5 +74,8 @@ $(document).ready(function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     }); 
-   
+     $(".allpopup").click(function () {
+       var id = $(this).attr('id');
+       Allowance.Edit(id);
+    });
 });

@@ -20,6 +20,7 @@ class IndexController extends ControllerBase
         $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js'); 
+        $this->assets->addJs('apps/salary/js/allowance.js'); 
         $this->setCommonJsAndCss();
         
     }
@@ -134,6 +135,8 @@ class IndexController extends ControllerBase
         $this->view->disable();
         echo json_encode($editsalary);
     }
+    
+    
     public function btneditAction() {
         $data['id'] = $this->request->getPost('id');
         $data['uname'] = $this->request->getPost('uname');
@@ -146,12 +149,39 @@ class IndexController extends ControllerBase
         $Salarydetail->btnedit($data);
         $this->view->disable();
     }
+    /**
+     * show allowance list
+     * @author Su Zin kyaw
+     */
     public function allowanceAction() {
-    
+    $All_List=new \workManagiment\Salary\Models\Allowances();
+    $list=$All_List->showalwlist();
+    $this->view->setVar("list", $list);//paginated data
     }
     
+    /**
+     * Adding new allowances to allowance table
+     * @author Su Zin Kyaw
+     */
     public function saveallowanceAction() {
-        print_r($this->request->get('textbox'));exit;
+    for ($x = 1; $x <= 10; $x++) { // getting all value from text boxes
+    $all_name['"'.$x.'"']= $this->request->get('textbox'.$x);    
+    $all_value['"'.$x.'"']= $this->request->get('txt'.$x);
+   // echo $all_name['"'.$x.'"'];echo $all_value['$x'];
+    if(!isset($all_name['"'.$x.'"'])){
+        $count=$x;break; //getting the number of textboxes
+        }
+    }
+    $all=new \workManagiment\Salary\Models\Allowances();
+    $all->addallowance($all_value,$all_name,$count);//sending data to model with array format
+    }
+    
+    public function editallowanceAction(){
+         $all_id=$this->request->get('id'); 
+        $all=new Allowances();
+        $data=$all->editall($member_id);
+        $this->view->disable();
+        echo json_encode($data);
     }
 }
 

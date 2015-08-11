@@ -12,6 +12,7 @@ function geo() {
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
+       
         $.ajax({
             url: url + "?offset=" + offset,
             type: 'GET',
