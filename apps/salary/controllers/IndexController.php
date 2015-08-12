@@ -122,8 +122,11 @@ class IndexController extends ControllerBase
         $Salarydetail=new SalaryDetail();
         $getsalarydetail=$Salarydetail->getpayslip($member_id,$Mth,$year);
         //print_r($getsalarydetail);exit;
+        
+        $getallowance=$Salarydetail->getallowanceBymember_id($member_id);
+        //print_r($getallowance);exit;
         $this->view->getsalarydetails = $getsalarydetail;
-        //$this->view->setVar("getsalarydetails", $getsalarydetail);
+        $this->view->getallowance = $getallowance;
     }
     
     /**
