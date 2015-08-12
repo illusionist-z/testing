@@ -98,7 +98,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
         try {
             //print_r($row);exit;
             foreach ($row as $rows) {
-                $sql = "INSERT INTO salary_detail (id,member_id,income_tax,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['income_tax'] . "',NOW())";
+                $sql = "INSERT INTO salary_detail (id,member_id,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['income_tax'] . "',NOW(),NOW())";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);

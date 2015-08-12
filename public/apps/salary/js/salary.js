@@ -68,7 +68,7 @@ $(document).ready(function () {
    $('#search_salary').click(function(){     
        var $form = $('#search_frm').serialize();
         alert("aaaa");
-        window.location.href = baseUri + 'salary/calculate';
+        window.location.href = baseUri + 'salary/search';
     });
    $(".displaypopup").click(function () {
         var id = $(this).attr('id');
