@@ -11,6 +11,7 @@ var Salary = {
            type: "GET",
            success:function(res){
                var result = $.parseJSON(res);
+               
                var data ='<form id="edit_salary"><table>';               
                    data += '<tr><td>User Name :</td><td><input type="text" value='+result[0]['member_login_name']+ ' name="uname" disabled></td><td style="width:55px;height:40px;"></td>'
                         +'<td>Basic Salary :</td><td><input type="text" value='+result[0]['basic_salary']+ ' name="basesalary"></td></tr>'
@@ -64,7 +65,8 @@ var Salary = {
 };
 $(document).ready(function () {
 
-   $('#calculate').click(function(){        
+   $('#search_salary').click(function(){     
+       var $form = $('#search_frm').serialize();
         alert("aaaa");
         window.location.href = baseUri + 'salary/calculate';
     });

@@ -37,7 +37,7 @@ class UserController extends ControllerBase
         $offset= $this->session->location['offset'];
         $timezone=$this->session->location['timezone'];
         }
-       
+      
         $month = $this->request->get('month');
         $id= $this->session->user['member_id'];
         $Att_list = new \workManagiment\Attendancelist\Models\Attendances();

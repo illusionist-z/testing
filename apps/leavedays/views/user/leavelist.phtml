@@ -101,6 +101,7 @@ $length = count($Month);
                                 ?></td>
                             <td><?php
                                 echo $item['leave_days'];
+                                
                                 ?></td>
                             <td><?php
                                 echo $item['leave_category'];
@@ -118,10 +119,11 @@ $length = count($Month);
                                
                         };
                                 ?></td>
-                            <td><?php
+                            <td><font color="red"><?php
                                 
-                                
-                                ?></td>
+                                echo 16-($item['total_leavedays']);
+                        
+                                ?></font></td>
                         </tr>
                             <?php
                     }

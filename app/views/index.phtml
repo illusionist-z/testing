@@ -1,0 +1,39 @@
+<?php
+
+use Phalcon\Tag as Tag ?>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <?php
+        //echo Tag::getTitle();
+        echo Tag::stylesheetLink('bootstrap/css/bootstrap.min.css');
+        echo Tag::stylesheetLink('css/skins.min.css');
+        echo Tag::stylesheetLink('css/AdminLTE.min.css');
+        echo Tag::stylesheetLink('css/dialog.css');
+        echo Tag::stylesheetLink('css/fullcalendar.css');
+        echo Tag::stylesheetLink('css/style.css');
+        echo Tag::stylesheetLink('css/font-awesome.min.css');
+        ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Gnext attendance system">
+        <meta name="author" content="Copyright © Gnext">
+        <title>Gnext attendance system</title>
+    </head>
+    <body>
+        <?php
+        echo $this->getContent();
+        echo Tag::javascriptInclude('js/jquery.min.js');
+        echo Tag::javascriptInclude('bootstrap/js/bootstrap.min.js');
+        echo Tag::javascriptInclude('js/app.min.js');
+        echo Tag::javascriptInclude('js/popup.js');
+        echo Tag::javascriptInclude('js/moment.min.js');
+        echo Tag::javascriptInclude('js/fullcalendar.min.js');
+        echo Tag::javascriptInclude('js/gcal.js');
+        echo Tag::javascriptInclude('js/cld.js');
+        echo Tag::javascriptInclude('js/time.js');
+        //echo Tag::javascriptInclude('js/jquery.min_one.js');
+        ?>
+    </body>
+</html>

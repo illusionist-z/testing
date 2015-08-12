@@ -1,0 +1,57 @@
+ <?php use Phalcon\Tag as Tag; 
+ header('Content-Type: text/html;charset=utf-8');
+ ?>
+<?php  echo Tag::stylesheetLink('css/admin_style.css'); 
+echo Tag::javascriptInclude('js/jquery.min_one.js');
+?>
+
+<div class="top_bar">
+    setting for Admin
+</div>
+
+<!-- main content-->
+<div>
+    <div class="left_content">
+        <ul id="unOrderedList">
+                <?php
+                //print_r($Result);
+                 foreach ($Result as $results){
+                     echo "<li value=".$results['permission_group_code'].">".$results['permission_group_name']."</li>";
+                 }
+                ?>
+            
+        </ul>
+    </div>
+    <div class="right_content" id="right_content">right content</div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#unOrderedList li").click(function(){
+        //alert("<?php echo $this->url->get("../administrator/showmodule") ?>");
+        var value = $(this).attr('value');
+        $.ajax({
+    type:"get",
+    url: "<?php echo $this->url->get("administrator/showmodule") ?>",
+    data:{cname:value},
+})
+.done(function(data) {
+    alert("Done!"+data);
+   for (i in data) {
+            rec = data[i];
+          
+            _id = rec.permission_code;
+
+            html = '<div class="">'
+                    + '<div id="customername">CODE: ' + data.length+ '</div>'
+                    + '<div class="txt">' + rec.permission_name + '</div>'
+                    + '</div>';
+
+            $('#right_content').html(html);
+           
+        }
+    //$('#right_content').html(data);
+});
+    });
+});
+</script>

@@ -33,7 +33,7 @@
                     foreach ($geteachmonthsalarys as $geteachmonthsalary) {
                         ?>
                         <tr>
-                            <td><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
+                            <td><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
                             <td><?php echo $geteachmonthsalary['salary_total']; ?></td>
                             <td><?php echo $geteachmonthsalary['Tax_total']; ?></td>
                             <td><?php echo $geteachmonthsalary['Total']; ?></td>
@@ -48,7 +48,7 @@
         </div><!--end table content--->
     </div><!-- /.row -->
     
-    <div id="myPopup" style="display:none;" title="Dialog Title"><a id="popupClose">x</a><h1>Add confirm</h1>
+    <div id="myPopup" style="display:none;" title=""><a id="popupClose">x</a><h1>Add confirm</h1>
     <div>Do you want to new pay list for this month  
         <?php
         $today = date("Y-m-d"); // 2012-01-30

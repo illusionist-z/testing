@@ -68,14 +68,15 @@ class IndexController extends ControllerBase {
          $type=$this->request->getPost('submit');
         $sdate=$this->request->getPost('start_date');
         $id=$this->request->getPost('member_id');
+        $days=$this->request->getPost('days');
         
         if($type=='Yes'){
            
-             $this->_leave->acceptleave($id,$sdate); 
+             $this->_leave->acceptleave($id,$sdate,$days); 
         }
         else{
             $this->_leave->rejectleave($id,$sdate); 
         }
-        $this->response->redirect('notification/index/viewall');
+        $this->response->redirect('dashboard/index');
     }
 }

@@ -21,7 +21,7 @@ class IndexController extends ControllerBase
     */    
     public function todaylistAction() {
         
-        $offset= $this->session->location['offset'];               
+         $offset= $this->session->location['offset'];          
         //get user name
         //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
         $User_list=new Db\CoreMember();

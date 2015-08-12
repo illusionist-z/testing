@@ -1,0 +1,35 @@
+
+#myPopup,#myPopup_box  {
+display: none;
+position: fixed;
+background: #fbfbfb;
+border: 2px solid #cecece;
+z-index: 2;
+padding: 14px;
+font-size: 14px;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+#myPopup h1, #myPopup_box  h1{
+text-align: left;
+color: #6fa5fd;
+font-size: 22px;
+line-height: 28px;
+font-weight: bold;
+border-bottom: 1px dotted #D3D3D3;
+padding-bottom: 2px;
+margin-bottom: 0px;
+margin-top: 0px;
+}
+
+#popupClose,#myPopup_box_close{
+font-size: 16px;
+line-height: 14px;
+right: 6px;
+top: 4px;
+position: absolute;
+color: #6fa5fd;
+font-weight: bold;
+display: block;
+}

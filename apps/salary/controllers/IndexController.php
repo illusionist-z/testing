@@ -5,6 +5,7 @@ namespace workManagiment\Salary\Controllers;
 use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
+use workManagiment\Salary\Models\Allowances;
 class IndexController extends ControllerBase
 {
     
@@ -20,6 +21,7 @@ class IndexController extends ControllerBase
         $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js'); 
+        $this->assets->addJs('apps/salary/js/allowance.js'); 
         $this->setCommonJsAndCss();
         
     }
@@ -45,8 +47,9 @@ class IndexController extends ControllerBase
      */
     public function show_salarylistAction() {
         $month=$this->request->get('month');
+        $year=$this->request->get('year');
         $Salarydetail=new SalaryDetail();
-        $getsalarylist=$Salarydetail->salarylist($month);
+        $getsalarylist=$Salarydetail->salarylist($month,$year);
         //print_r($getsalarylist);exit;
         $month = $this->config->month;
         $userlist=new Db\CoreMember();
@@ -62,9 +65,15 @@ class IndexController extends ControllerBase
     public function addsalaryAction(){
         $userlist=new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
+        $Allowance=new Allowances();
+        $getall_allowance=$Allowance->getall_allowances();
+        //print_r($getall_allowance);exit;
+        
         $position=$this->config->position;
+        
         $this->view->setVar("usernames", $user_name);
         $this->view->position=$position;
+        $this->view->getall_allowance=$getall_allowance;
     }
     
     /**
@@ -72,6 +81,7 @@ class IndexController extends ControllerBase
      */
     public function savesalaryAction() {
         $dedution=$this->request->get('check_list');
+        $allowance=$this->request->get('check_allow');
         $data['member_id']=$this->request->get('uname');
         $data['position']=$this->request->get('position');
         $data['basic_salary']=$this->request->get('bsalary');
@@ -82,8 +92,10 @@ class IndexController extends ControllerBase
         $Salarymaster->savesalary_dedution($dedution,$this->request->get('uname'));
         $result=$Salarymaster->savesalary($data);
         
-        $this->view->Msg = 'Success';
-        $this->view->pick('index/addsalary');
+        $Allowance=new Allowances();
+        $saveallowance=$Allowance->saveallowance($allowance,$this->request->get('uname'));
+       
+        $this->response->redirect('salary/index/salarylist');
     }
 
     /**
@@ -101,8 +113,14 @@ class IndexController extends ControllerBase
      */
     public function payslipAction() {
         $member_id=$this->request->get('member_id');
+        $month=$this->request->get('month');
+        $Mth='';
+        if($month<10){
+           $Mth ='0'.$month;
+        }
+        $year=$this->request->get('year');
         $Salarydetail=new SalaryDetail();
-        $getsalarydetail=$Salarydetail->getpayslip($member_id);
+        $getsalarydetail=$Salarydetail->getpayslip($member_id,$Mth,$year);
         //print_r($getsalarydetail);exit;
         $this->view->getsalarydetails = $getsalarydetail;
         //$this->view->setVar("getsalarydetails", $getsalarydetail);
@@ -118,6 +136,8 @@ class IndexController extends ControllerBase
         $this->view->disable();
         echo json_encode($editsalary);
     }
+    
+    
     public function btneditAction() {
         $data['id'] = $this->request->getPost('id');
         $data['uname'] = $this->request->getPost('uname');
@@ -130,12 +150,69 @@ class IndexController extends ControllerBase
         $Salarydetail->btnedit($data);
         $this->view->disable();
     }
+    /**
+     * show allowance list
+     * @author Su Zin kyaw
+     */
     public function allowanceAction() {
-    
+    $All_List=new \workManagiment\Salary\Models\Allowances();
+    $list=$All_List->showalwlist();
+    $this->view->setVar("list", $list);//paginated data
     }
     
+    /**
+     * Adding new allowances to allowance table
+     * @author Su Zin Kyaw
+     */
     public function saveallowanceAction() {
-        print_r($this->request->get('textbox'));exit;
+    for ($x = 1; $x <= 10; $x++) { // getting all value from text boxes
+    $all_name['"'.$x.'"']= $this->request->get('textbox'.$x);    
+    $all_value['"'.$x.'"']= $this->request->get('txt'.$x);
+   // echo $all_name['"'.$x.'"'];echo $all_value['$x'];
+    if(!isset($all_name['"'.$x.'"'])){
+        $count=$x;break; //getting the number of textboxes
+        }
+    }
+    $all=new \workManagiment\Salary\Models\Allowances();
+    $all->addallowance($all_value,$all_name,$count);//sending data to model with array format
+    }
+    
+    /**
+     * edit dialog box
+     * @author Su Zin Kyaw
+     */
+    public function editallowanceAction(){
+         $all_id=$this->request->get('id'); 
+        $all=new Allowances();
+        $data=$all->editall($all_id);
+        $this->view->disable();
+        echo json_encode($data);
+    }
+    
+    /**
+     * edit allowance data
+     * @author Su Zin Kyaw
+     */
+    public function edit_dataAction() {
+        
+        $data['id'] = $this->request->getPost('id');
+        $data['name'] = $this->request->getPost('name');
+        $data['allowance_amount'] =$this->request->getPost('allowance_amount');
+        $all=new Allowances();
+        $all->edit_allowance($data);
+        $this->view->disable();
+    }
+    
+    /**
+     * delete allowance data
+     * @author Su Zin Kyaw
+     */
+    public function delete_dataAction(){
+        $id= $this->request->getPost('id');
+        
+        $all=new Allowances();
+        $all->delete_allowance($id);
+        $this->view->disable();
     }
 }
 
