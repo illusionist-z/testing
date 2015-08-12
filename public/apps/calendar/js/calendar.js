@@ -9,10 +9,25 @@ var Dialog = {
     open: function (event) {
         if (!this.isOvl) {
             this.init();
-        }
+        }        
+        /**
+         * get current name
+         * @type @arr member_id
+         */
+        var selectname;
+        $.ajax({
+            url:'index/getid?id='+event.id,
+            type:'GET',
+            async: false,
+            dataType:'json',
+            success:function(d){                
+                selectname = d[0].member_id; 
+            }
+        });
         $ovl = $('#dialog');
         $('#title_edit_event').val(event.title);
         $('#sdate_edit_event').val(event.start.format());
+        $('select#show_name').val(selectname);    
         /* event.end date is empty ,put start date */
         if (event.end == null) {
             $('#edate_edit_event').val(event.start.format());

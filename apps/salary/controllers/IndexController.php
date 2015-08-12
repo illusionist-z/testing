@@ -16,6 +16,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');        
         $this->assets->addCss('common/css/jquery-ui.css');         
+        $this->assets->addCss('apps/salary/css/salary.css');
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
@@ -130,7 +131,7 @@ class IndexController extends ControllerBase
      */
     public function editsalaryAction() {
         $member_id=$this->request->get('id');                
-        $Salarydetail=new SalaryDetail();
+        $Salarydetail=new SalaryMaster();
         $editsalary=$Salarydetail->editsalary($member_id);
         $this->view->disable();
         echo json_encode($editsalary);
@@ -145,8 +146,7 @@ class IndexController extends ControllerBase
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
-        
-        $Salarydetail = new SalaryDetail();
+        $Salarydetail = new SalaryMaster();
         $Salarydetail->btnedit($data);
         $this->view->disable();
     }

@@ -7,7 +7,7 @@ use Phalcon\Mvc\Model;
 class SalaryMaster extends Model {
 
     public function initialize() {
-        parent::initialize();
+        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
 
@@ -18,7 +18,7 @@ class SalaryMaster extends Model {
     public function savesalary($data) {
         try {
 
-            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time) VALUES(uuid(),'" . $data['member_id'] . "','" . $data['position'] . "','" . $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "')";
+            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time,created_dt) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "',NOW())";
             //echo $sql;exit;
             $result = $this->db->query($sql);
         } catch (Exception $e) {
@@ -415,6 +415,29 @@ in (select member_id from salary_master) group by ATT .member_id";
             echo $e;
         }
         return $rows;
+    }
+      /**
+     * 
+     * @param type $member_id
+     */
+    public function editsalary($member_id) {
+        try{
+            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id where salary_master.id ='".$member_id."'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();     
+        }catch(Exception $e){
+            echo $e;
+        }
+        return $row;
+    }
+    public function btnedit($data){
+     try{
+         $sql = "Update salary_master SET basic_salary ='".$data['basesalary']."',travel_fee ='".$data['travelfee']."',over_time ='".$data['overtime']."',ssc_emp ='".$data['ssc_emp']."',ssc_comp ='".$data['ssc_comp']."',updated_dt=NOW() Where id='".$data['id']."'";
+         $this->db->query($sql);
+     } catch (Exception $ex) {
+         echo $ex;
+     }
+     
     }
 
 }
