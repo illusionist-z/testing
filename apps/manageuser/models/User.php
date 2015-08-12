@@ -89,9 +89,11 @@ class User extends Model {
         $res['mail']= filter_var($cond['email'],FILTER_VALIDATE_EMAIL)?true:false;    //check valid mail
         $res['pno'] = filter_var($cond['pno'],FILTER_VALIDATE_REGEXP,                 //check valid phone no
                       array('options'=>array('regexp'=>'/^[0-9]+$/')))?true:false;                
-        if($res['mail'] && $res['pno']){                   
+        $res['uname']=filter_var($cond['name'],FILTER_VALIDATE_REGEXP,
+                      array('options'=>array('regexp'=>'/([^\s])/')))?true:false;
+        if($res['mail'] && $res['pno'] && $res['uname']){                   
         $this->db = $this->getDI()->getShared("db");        
-        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_mobile_tel='".$cond['pno']."',member_mail='".$cond['email']."',position='".$cond['position']."',member_address='".$cond['address']."' Where member_id='".$cond['id']."'";
+        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_mobile_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."',member_address='".$cond['address']."' Where member_id='".$cond['id']."'";
         $this->db->query($query);
         $res['valid']= true;
         }

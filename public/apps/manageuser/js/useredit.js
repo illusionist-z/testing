@@ -68,6 +68,8 @@ var User = {
                 else{
                   if(false==d.mail)
                   $('#edit_user_email').val("Incorrect Email format").css("color","red");
+                  if(false==d.uname)
+                  $('#edit_user_name').val("Fill the blank").css("color","red");
                   if(false==d.pno)
                   $('#edit_user_phone').val("Enter phone number").css("color","red");                 
                 }
