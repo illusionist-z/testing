@@ -56,7 +56,7 @@ class SalaryDetail extends Model {
      */
     public function salarylist($month,$year) {
         try {
-            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
+            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
 select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='".$year."' GROUP BY id";
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
@@ -145,7 +145,27 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
         }
         return $row;
     }
-
+    
+    /**
+     * get allowance by member id
+     * @param type $member_id
+     * @return type
+     */
+    public function getallowanceBymember_id($member_id) {
+        try {
+            $sql = "select * from allowances where allowance_id in (
+select allowance_id from salary_master_allowance where member_id='".$member_id."')";
+            //echo $sql;
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            //print_r($row);
+            //exit;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
+    
     /**
      * Get salary detail for each month
      */
