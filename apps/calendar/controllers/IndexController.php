@@ -1,7 +1,7 @@
 <?php
 
 namespace workManagiment\Calendar\Controllers;
-
+use workManagiment\Core\Models\Db;
 class IndexController extends ControllerBase
 {
     public $calendar;
@@ -20,7 +20,9 @@ class IndexController extends ControllerBase
 
     
    public function indexAction() {
-        
+        $getmember=new Db\CoreMember();
+        $username = $getmember::getinstance()->getusername();
+        $this->view->uname = $username;
     }
     /**
      * @desc calendar event show
@@ -28,7 +30,7 @@ class IndexController extends ControllerBase
      * @since 27/7/15
      */
 
-    public function showdataAction() {
+    public function showdataAction() {        
         $this->view->disable();        
         $events = $this->calendar->fetch();
         echo json_encode($events);
@@ -40,6 +42,7 @@ class IndexController extends ControllerBase
      */
     public function createAction() {
         $this->view->disable();
+        $uname = $this->request->get('uname');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $title = $this->request->get('title');                
@@ -54,7 +57,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($sdate, $edate, $title);
+            $event=$this->calendar->create_event($sdate, $edate, $title,$uname);
             $res['res']=  $event;            
         }
         echo json_encode($res);
@@ -96,7 +99,12 @@ class IndexController extends ControllerBase
         $id = $this->request->get('data');        
         $this->calendar->delete_event($id);
     }
-
+    public function getidAction(){
+        $this->view->disable();
+        $id = $this->request->get('id');
+        $res=$this->calendar->getid_name($id);       
+        echo json_encode($res);
+    }
 
 }
 

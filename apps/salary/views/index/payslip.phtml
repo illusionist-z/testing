@@ -17,13 +17,15 @@
 		  
 			<div style="line-height:30px; width:65%;">
 			<div style="float:right; margin-bottom:10px;">
-			<a href="#" class="button">Print</a>
+			<a href="#" class="button print">Print</a>
 			</div>
 	<div style="clear:right;"></div>
         <?php print_r($getsalarydetails);
+        $sum='';
+        $deduce='';
         foreach($getsalarydetails as $getsalarydetail){
         ?>
-				<div style="border:1px solid #dcdedf;">
+				<div style="border:1px solid #dcdedf;" id="printable">
 				<center style="font-size:16px;">Pay slip for: May-2015</center>
 				
 				<div style="border-bottom:1px dotted gray;">
@@ -40,31 +42,40 @@
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Basic salary :</div>
-				<div><?php echo $getsalarydetail['basic_salary'];?></div>
+				<div><?php 
+                                $sum+=$getsalarydetail['basic_salary'];
+                                echo $getsalarydetail['basic_salary'];
+                                ?></div>
 				</div>
-				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;">Full attendance bonus :</div>
-				<div><?php echo $getsalarydetail['basic_salary'];?></div>
-				</div>
+				
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">OT : 10000*2hr</div>
-				<div><?php echo $getsalarydetail['overtime'];?></div>
+				<div><?php 
+                                $sum+=$getsalarydetail['overtime'];
+                                echo $getsalarydetail['overtime'];
+                                ?></div>
 				</div>
-				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;">Responsibility Allowance :</div>
-				<div>50000</div>
+                                <?php
+                                if(!empty($getallowance)){
+                                foreach($getallowance as $getallowances){
+                                    $sum=$sum+$getallowances['allowance_amount'];
+                                ?>
+                                <div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;"><?php echo $getallowances['allowance_name'].' :';?></div>
+				<div><?php echo $getallowances['allowance_amount'];?></div>
 				</div>
-				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;">Service Year Allowance :</div>
-				<div>10000</div>
-				</div>
-				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;">Customer Site Allowance :</div>
-				<div>0</div>
-				</div>
+                                <?php
+                                }
+                                }
+                                ?>
+                                
 				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2;">
 				<div style="float:left; width:260px; padding-left:10px;">Total amount :</div>
-				<div>490000</div>
+                                <div>
+                                    <?php
+                                    echo $sum;
+                                    ?>
+                                </div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Absent Deduction :</div>
@@ -72,19 +83,30 @@
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">SSC :</div>
-				<div>5000</div>
+				<div><?php 
+                                $deduce+=$getsalarydetail['ssc_emp'];
+                                echo $getsalarydetail['ssc_emp'];
+                                ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Income Tax :</div>
-				<div>15000</div>
+				<div><?php 
+                                $deduce+=$getsalarydetail['income_tax'];
+                                echo $getsalarydetail['income_tax'];
+                                ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Total Deduction :</div>
-				<div>20000</div>
+				<div><?php echo $deduce;?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2; font-weight:bold;">
 				<div style="float:left; width:260px; padding-left:10px;">Net Payments:</div>
-				<div>470,000</div>
+                                <div>
+                                    <?php
+                                    $netpay=$sum-$deduce;
+                                    echo $netpay;
+                                    ?>
+                                </div>
 				</div>
 				</div>
         <?php
