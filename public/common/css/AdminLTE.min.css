@@ -148,3 +148,9 @@ a.export {
 #lft {
 
 }
+
+.addbtn{
+    background: url("../img/5Fm069k.png")  5px -26px no-repeat #F8F8F8 ;
+    font-size: 12px;
+    padding: 6px 10px 6px 26px;
+}
