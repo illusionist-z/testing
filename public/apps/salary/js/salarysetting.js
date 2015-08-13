@@ -71,6 +71,12 @@ var tabLinks = new Array();
       return url.substring( hashPos + 1 );
     }
 
+/**
+ * 
+ * @type type
+ * for tax dialogbox & edit data
+ * @author Su Zin Kyaw
+ */
 
 var Tax = {
     isOvl:false,
@@ -84,7 +90,7 @@ var Tax = {
        
                
                var result = $.parseJSON(res);
-               
+               //edit dialog box
                var data ='<form id="edit_tax_table"><table>';               
                    data += '<tr><td>ID :</td><td><input type="text" value="'+result[0]['id']+ '" name="id"></td></tr>'
                         +'<tr><td>Taxs From:</td><td><input type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td>'
@@ -126,6 +132,7 @@ var Tax = {
            location.reload();
         });       
     },
+    //edit data
     BtnEdit : function(d){
         var form=$('#edit_tax_table');
         
@@ -147,6 +154,12 @@ var Tax = {
     
     
 };
+/**
+ * 
+ * @type type
+ * add/edit/delete dialog box for deduction
+ * @author Su Zin Kyaw
+ */
 var Deduction = {
     isOvl:false,
     Edit : function (d){
@@ -167,7 +180,7 @@ var Deduction = {
                         +'<td>Deduction Amount:</td><td><input type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_deduct">Save</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
+               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_deduct">Save</a><a href="#" class="button" id="delete_deduct">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
                data +='</table></form>';
                Deduction.Dia(data);
            }
@@ -192,7 +205,11 @@ var Deduction = {
         $('#edit_deduct').click(function(){
             Deduction.BtnEdit($ovl);
         });  
-          
+
+        $('#delete_deduct').click(function(){
+            
+            Deduction.Delete($ovl);
+        }); 
         $('#edit_close').click(function(){
            $ovl.dialog("close");
            location.reload();
@@ -216,7 +233,23 @@ var Deduction = {
            location.reload();
         });
     },
-    
+    Delete : function(d){
+        var form=$('#edit_deduct_table');
+       
+        $.ajax({
+            type:'POST',
+            data: form.serialize(),
+            url : "delete_deduct",
+            success:function(){
+                
+                d.dialog("close");
+                
+
+            }
+        }).done(function(){
+           location.reload();
+        });
+    },
        Diaadd : function (d){
         if(!this.isOvl){
             this.isOvl=true;
