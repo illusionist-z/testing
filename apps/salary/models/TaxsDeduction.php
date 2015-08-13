@@ -57,12 +57,23 @@ class TaxsDeduction extends Model {
               
         $this->db->query("INSERT INTO taxs_deduction (deduce_id,deduce_name,amount) VALUES (uuid(),'" . $data['deduce_name'] . "','" . $data['amount'] . "')");
          
-          
+        
         } catch (Exception $exc) {
             echo $exc;
         }
     }
     
+    
+    public function delete_deduction($deduce_id){
+         try {
+              
+        $this->db->query("DELETE FROM  taxs_deduction WHERE deduce_id='".$deduce_id."'");
+         
+          
+        } catch (Exception $exc) {
+            echo $exc;
+        }
+    }
     
    
 

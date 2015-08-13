@@ -79,4 +79,8 @@ class IndexController extends ControllerBase {
         }
         $this->response->redirect('dashboard/index');
     }
+    
+    public function leavesettingAction(){
+        
+    }
 }

@@ -225,7 +225,10 @@ class IndexController extends ControllerBase
         $all->delete_allowance($id);
         $this->view->disable();
     }
-    
+    /**
+     * dispaly salary setting
+     * @author Su Zin Kyaw
+     */
     public function salarysettingAction(){
         $Tax= new Taxs();
         $list=$Tax->gettaxlist();
@@ -235,7 +238,10 @@ class IndexController extends ControllerBase
         $this->view->setVar("deduction", $dlist);
 
     }
-    
+    /**
+     * show tax dialog box
+     * @author Su Zin Kyaw
+     */
     public function taxdiaAction(){
          $id=$this->request->get('id'); 
        
@@ -245,6 +251,10 @@ class IndexController extends ControllerBase
         echo json_encode($data);
     }
     
+    /**
+     * edit tax data
+     * @author Su Zin Kyaw
+     */
     public function edit_taxAction(){
            $data['id'] = $this->request->getPost('id');
         $data['taxs_from'] =$this->request->getPost('taxs_from');
@@ -257,6 +267,10 @@ class IndexController extends ControllerBase
         $this->view->disable();
     }
     
+    /**
+     * show dedction dialog box
+     * @author Su Zin Kyaw
+     */
     public function dectdiaAction(){
         $id=$this->request->get('id'); 
        
@@ -266,6 +280,10 @@ class IndexController extends ControllerBase
         echo json_encode($data);
     }
     
+    /**
+     * Edit Deduction data
+     * @author Su Zin Kyaw
+     */
     public function edit_deductAction(){
          $data['id'] =$this->request->getPost('id');
         $data['deduce_name'] =$this->request->getPost('deduce_name');
@@ -276,6 +294,10 @@ class IndexController extends ControllerBase
         $this->view->disable();
     }
     
+    /**
+     * Add New Dedection 
+     * @author Su Zin Kyaw
+     */
     public function add_dectAction(){
        
         $data['deduce_name'] =$this->request->getPost('deduce_name');
@@ -285,6 +307,16 @@ class IndexController extends ControllerBase
         $Deduction->add_deduction($data);
         $this->view->disable();
     }
-            
+    
+    /**
+     * Delete Deduction 
+     * @author Su Zin Kyaw
+     */
+    public function delete_deductAction(){
+        $deduce_id =$this->request->getPost('id');
+        $Deduction=new TaxsDeduction();
+        $Deduction->delete_deduction($deduce_id);
+        $this->view->disable();
+    }
 }
 
