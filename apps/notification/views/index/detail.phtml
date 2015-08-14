@@ -3,6 +3,7 @@
 	<table width="650px" height="300px">
             <?php foreach($detail as $Result){?><input type="hidden" name="member_id" value="<?php echo $Result['member_id'];?>">
                 <input type="hidden" name="start_date" value="<?php echo $Result['start_date'];?>">
+                <input type="hidden" name="end_date" value="<?php echo $Result['end_date'];?>">
                 <input type="hidden" name="days" value="<?php echo $Result['leave_days'];?>">
 	<tr>
                 
