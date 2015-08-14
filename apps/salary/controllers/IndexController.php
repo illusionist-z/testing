@@ -15,7 +15,7 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->getconfig = \Module_Config::getModuleConfig('leavedays');
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');        
@@ -52,14 +52,17 @@ class IndexController extends ControllerBase
      */
     public function show_salarylistAction() {
         $month=$this->request->get('month');
+        //echo $month;exit;
         $year=$this->request->get('year');
         $Salarydetail=new SalaryDetail();
         $getsalarylist=$Salarydetail->salarylist($month,$year);
         //print_r($getsalarylist);exit;
-        $month = $this->config->month;
+        $config_month = $this->getconfig->month;
+        
         $userlist=new Db\CoreMember();
-        $user_name = $userlist::getinstance()->getusername();        
-        $this->view->setVar("months", $month);
+        $user_name = $userlist::getinstance()->getusername();
+        
+        $this->view->setVar("months", $config_month);
         $this->view->setVar("usernames", $user_name);
         $this->view->setVar("getsalarylists", $getsalarylist);
     }
@@ -109,7 +112,7 @@ class IndexController extends ControllerBase
     public function monthlysalaryAction() {
         $Salarydetail=new SalaryDetail();
         $geteachmonthsalary=$Salarydetail->geteachmonthsalary();
-        //print_r($geteachmonthsalary);exit;
+       //print_r($geteachmonthsalary);exit;
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
     }
     
@@ -155,7 +158,8 @@ class IndexController extends ControllerBase
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $Salarydetail = new SalaryMaster();
-        $Salarydetail->btnedit($data);
+        $pont=$Salarydetail->btnedit($data);
+        echo json_encode($pont);
         $this->view->disable();
     }
     /**
