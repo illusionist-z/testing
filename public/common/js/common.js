@@ -56,6 +56,27 @@ function getAbsentMember() {
         });
     }
 }
+/*
+ * @author David
+ * for error text clean
+ */
+function repair (val){
+    var nn;
+      $(val).focus(function(e){
+         e.preventDefault();
+         $(this).css("border","1px solid #ccc");  // for error border
+         //for focus error text
+         if(nn){
+         $(this).val(nn);
+         }
+         else{
+         $(this).val("");}
+         $(this).css("color","black");                     
+         });
+     $(val).focusout(function(){
+        nn=$(this).val(); 
+     });
+}
 
 $(document).ready(function () {
     //absent member
