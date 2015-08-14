@@ -114,7 +114,7 @@ class SalaryMaster extends Model {
                         $newsalary_rate = $SM['basic_salary'] * $date_diff;
                         $countsalarydetail = $this->getCountSalarydetail($budget_startyear, $budget_endyear, $value['member_id']);
                         $old_payamount = $countsalarydetail['pay_amount'];
-
+                        $date_diff+=$countsalarydetail['COUNT'];
                         $salary_yr = $newsalary_rate + $old_payamount;
                     }
                     
@@ -125,6 +125,7 @@ class SalaryMaster extends Model {
                 }
 
                 //$salary_yr = $value['basic_salary'] * 12;
+                //echo "B Salary ".$salary_yr.' ***';
                 //get 20% for the whole year
                 $basic_deduction = $salary_yr * (20 / 100);
 
@@ -235,7 +236,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         try {
 
             $sql = "select * from " . $tbl . " where member_id='" . $member_id . "'and DATE(created_dt)>='" . $budget_startyear . "' and DATE(created_dt)<='" . $budget_endyear . "' order by created_dt desc limit 1";
-            echo $sql.'<br>';
+            //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
             //print_r($row);//exit;
@@ -366,7 +367,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $Result = ($income_tax - $todeduce) * ($taxs_rate[1] / 100);
             }
         }
-
+        echo 'Year difference '.$salary_year.' ////';
+        
         $latest_result = round($Result / 12);
         return $latest_result;
     }

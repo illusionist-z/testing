@@ -1,161 +1,114 @@
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>
-            Salary Setting
-          </h1>
-          <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">salary Setting</li>
-          </ol>
-        </section>
 
-        <!-- Main content -->
-        <section class="content">
-         <div class="row"><!-- for search form-->
-		  <div class="col-md-12"><!--start add user form--->
-		  
-			<div class="search_box" style="height: 120px;">
-				<div id="Menu" >
-					 <div id="M_1">Staying With Father: 
-					 <input type="text" value="1000000" disabled="true" style="padding: 0">
-                                        
-					 Staying With Mother: 
-					 <input type="text" value="1000000" disabled="true" style="padding: 0">
-                                         
-					 </div>
-					 <div id="M_4">
-					 Staying With Mother:
-					 <span>
-                                             <input type="text" value="1000000" disabled="true" style="padding: 0">
-                                        Life Insurance: 
-					 <input type="text" value="0" disabled="true" style="padding: 0">
+	<style type="text/css">
+      body { }
+      ul#tabs { list-style-type: none; margin: 10px 0 0 0; padding: 0 0 0.3em 0; }
+      ul#tabs li { display: inline; }
+      ul#tabs li a { color: #42454a; background-color: #f9f9fa; border: 1px solid #c9c3ba; border-bottom: none; padding: 0.3em; text-decoration: none; }
+      ul#tabs li a:hover { background-color: #f1f0ee; }
+      ul#tabs li a.selected { color: #000; background-color: #f9f9fa; font-weight: bold; padding: 0.7em 0.3em 0.38em 0.3em; }
+      div.tabContent { border: 1px solid #c9c3ba; padding: 0.5em; background-color: #f9f9fa; }
+      div.tabContent.hide { display: none; }
+    </style>
+<section class="content-header">
+    <h1>
+        Salary Setting
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Salary Setting</li>
+    </ol>
+</section><br>
+    <ul id="tabs">
+      <li><a class="selected" href="#about">Tax Setting</a></li>
+      <li><a class="" href="#advantages">Deduction Setting</a></li>
 
-					 </div>
-					 <div id="M_3">
-					 Employee SSC: 
-					 <span>
-					 <input type="text" value="72000" disabled="true" style="padding: 0">
-                                         Basic Deduction:
-					 <span>
-					 <input type="text" value="720000" disabled="true" style="padding: 0">
-					 </div>
-					 <div id="M_2">
-					 
-                                             <input type="submit" class="buttonn" id="save" value="edit" style="margin-top:18px;"><br>
-					<input type="submit" class="buttonn" id="save" value="save" style="margin-top:18px;">
-					 </div>
-				</div>
-				<!--search btn-->
-			</div>
-			</div>
-			</div><!-- for search form-->
-			<div style="height:20px;"></div>
-			
-          <div class="row">
-		  <div class="col-md-12"><!--start table content--->
-		  
-                <table class="listtbl">
+    </ul>
+<form action="" method="post">
+    <div class="tabContent" id="about">
+        <!-- start Tax setting--->
+       
+      <table class="listtbl">
   <thead>
     <tr>
 			<th width="120px">ID</th>
-			<th>Name</th>
-			<th>Department</th>
-			<th>Position</th>
-			<th>Basic Salary</th>
-			<th>Travel fees</th>
-			<th>OverTime</th>
+			<th>Taxs From </th>
+			<th>Taxs To</th>
+			<th>Taxs Rate</th>
+			<th>SSC emp</th>
+			<th>SSC comp</th>
+			
 			
 			<th width="50px"></th>
 	</tr>
 	
   </thead>
-  <tbody>
+  <tbody><?php
+               
+                foreach ($result  as $list) {
+                    ?>
 				<tr>
-			  		<td>001</td>
-			  		<td><a href="" class="namelink">Mabel</a></td>
-			  		<td>Web development</td>
-			  		<td id='tbl-no'>Developer</td>
-			  		<td id='tbl-no'>400000</td>
-			  		<td id='tbl-no'>1000</td>
-					<td id='tbl-no'>8%</td>
+			  		<td><?php echo $list['id'];?></td>
+			  		<td><?php echo $list['taxs_from'];?></td>
+			  		<td><?php echo $list['taxs_to'];?></td>
+			  		<td id='tbl-no'><?php echo $list['taxs_rate'];?></td>
+			  		<td id='tbl-no'><?php echo $list['ssc_emp'];?></td>
+			  		<td id='tbl-no'><?php echo $list['ssc_comp'];?></td>
 					
-					<td id='tbl-no'><a href="#" class="button" id="displaypopup">Edit</a></td>
-			  	</tr>
-				<tr>
-			  		<td>002</td>
-			  		<td><a href="salarydetail.html" class="namelink">Pabel</a></td>
-			  		<td>Web development</td>
-			  		<td id='tbl-no'>Developer</td>
-			  		<td id='tbl-no'>400000</td>
-			  		<td id='tbl-no'>500</td>
-					<td id='tbl-no'>10%</td>
 					
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
+					<td id='tbl-no'><input type="button" class="btn btn-default taxpopup" onclick="return false;" id="<?= $list['id'] ?>" value="Edit"></td>
 			  	</tr>
-				<tr>
-			  		<td>003</td>
-			  		<td><a href="salarydetail.html" class="namelink">Rose</a></td>
-			  		<td>Web development</td>
-			  		<td id='tbl-no'>Developer</td>
-			  		<td id='tbl-no'>400000</td>
-			  		<td id='tbl-no'>800</td>
-					<td id='tbl-no'>10%</td>
-					
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-				<tr>
-			  		<td>004</td>
-			  		<td><a href="salarydetail.html" class="namelink">Su Zin Kyaw</a></td>
-			  		<td>Web development</td>
-			  		<td id='tbl-no'>Developer</td>
-			  		<td id='tbl-no'>400000</td>
-			  		<td id='tbl-no'>1000</td>
-					<td id='tbl-no'>10%</td>
-					
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-			  	<tr>
-			  		<td>005</td>
-			  		<td><a href="salarydetail.html" class="namelink">Su Yamin</a></td>
-			  		<td>Web development</td>
-			  		<td id='tbl-no'>Developer</td>
-			  		<td id='tbl-no'>400000</td>
-			  		<td id='tbl-no'>1000</td>
-					<td id='tbl-no'>10%</td>
-					
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-			  	<tr>
-			  		<td>006</td>
-			  		<td><a href="salarydetail.html" class="namelink">Aung Nain Tun</a></td>
-			  		<td>Web development</td>
-			  		<td id='tbl-no'>Developer</td>
-			  		<td id='tbl-no'>400000</td>
-			  		<td id='tbl-no'>600</td>
-					<td id='tbl-no'>15%</td>
-					
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-			  	<tr>
-			  		<td>007</td>
-			  		<td><a href="salarydetail.html" class="namelink">David</a></td>
-			  		<td>Web development</td>
-			  		<td id='tbl-no'>Developer</td>
-			  		<td id='tbl-no'>400000</td>
-			  		<td id='tbl-no'>1000</td>
-					<td id='tbl-no'>20%</td>
-					
-					<td id='tbl-no'><a href="#" class="button">Edit</a></td>
-			  	</tr>
-				
+                 <?php
+                }
+                ?>
   </tbody>
-</table>      
-          </div><!--end table content--->
-          </div><!-- /.row -->
-		  
-        </section><!-- /.content -->
-      <!-- /.content-wrapper -->
+      </table>
+        
+        <div id="edit_tax_dia" class="navbar"></div>
+    </div>
 
-      
-	<div id="myPopup" style="display:none; left:450px;" title="Dialog Title"><a id="popupClose">x</a><h1>Show salary detail</h1><iframe frameborder="0" scrolling="no" width="650" height="350"  src="salarysetting"></iframe></div>	
-	<div id="myPopup_box" style="display:none;" title="Dialog Title"><a id="myPopup_box_close">x</a><h1>Notifications</h1><iframe frameborder="0" scrolling="no" width="650" height="300" src="notification.html"></iframe></div>	
+    <div class="tabContent hide" id="advantages"><!-- start Deduction setting-->
+        <div class="buttons">
+            <input type="button" class="addbtn add" onclick="return false;" value="Add New Deduction">
+			
+			
+	 </div>
+      <table class="listtbl">
+  <thead>
+    <tr>
+			<th width="120px">ID</th>
+			<th>Deduction Name </th>
+			<th>Deduction Amount</th>
+			
+			
+			<th width="50px"></th>
+	</tr>
+	
+  </thead>
+  <tbody><?php
+               $n=0;
+                foreach ($deduction as $list) {$n++;
+                    ?>
+				<tr>
+			  		<td><?php echo $n;?></td>
+			  		<td><?php echo $list['deduce_name'];?></td>
+			  		<td><?php echo $list['amount'];?></td>
+			  		
+					
+					
+					<td id='tbl-no'><input type="button" class="btn btn-default dedtpopup" onclick="return false;" id="<?= $list['deduce_id'] ?>" value="Edit"></td>
+			  	</tr>
+                 <?php
+                }
+                ?>
+  </tbody>
+      </table>
+        
+    </div><!-- end allowance setting--><div id="edit_dect_dia" class="navbar"></div><div id="add_new_dt" class="navbar"></div>
+	<div style="height:10px;"></div>
+   
+</form>
+   
+
+  
+
+</body>

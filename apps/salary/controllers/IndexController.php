@@ -6,12 +6,16 @@ use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
 use workManagiment\Salary\Models\Allowances;
+use workManagiment\Salary\Models\Taxs;
+use workManagiment\Salary\Models\TaxsDeduction;
+
+
 class IndexController extends ControllerBase
 {
     
     public function initialize() {
         parent::initialize();
-        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->getconfig = \Module_Config::getModuleConfig('leavedays');
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');        
@@ -22,6 +26,7 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js'); 
         $this->assets->addJs('apps/salary/js/allowance.js'); 
+        $this->assets->addJs('apps/salary/js/salarysetting.js'); 
         $this->setCommonJsAndCss();
         
     }
@@ -47,14 +52,17 @@ class IndexController extends ControllerBase
      */
     public function show_salarylistAction() {
         $month=$this->request->get('month');
+        //echo $month;exit;
         $year=$this->request->get('year');
         $Salarydetail=new SalaryDetail();
         $getsalarylist=$Salarydetail->salarylist($month,$year);
         //print_r($getsalarylist);exit;
-        $month = $this->config->month;
+        $config_month = $this->getconfig->month;
+        
         $userlist=new Db\CoreMember();
-        $user_name = $userlist::getinstance()->getusername();        
-        $this->view->setVar("months", $month);
+        $user_name = $userlist::getinstance()->getusername();
+        
+        $this->view->setVar("months", $config_month);
         $this->view->setVar("usernames", $user_name);
         $this->view->setVar("getsalarylists", $getsalarylist);
     }
@@ -104,7 +112,7 @@ class IndexController extends ControllerBase
     public function monthlysalaryAction() {
         $Salarydetail=new SalaryDetail();
         $geteachmonthsalary=$Salarydetail->geteachmonthsalary();
-        //print_r($geteachmonthsalary);exit;
+       //print_r($geteachmonthsalary);exit;
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
     }
     
@@ -216,6 +224,99 @@ class IndexController extends ControllerBase
         
         $all=new Allowances();
         $all->delete_allowance($id);
+        $this->view->disable();
+    }
+    /**
+     * dispaly salary setting
+     * @author Su Zin Kyaw
+     */
+    public function salarysettingAction(){
+        $Tax= new Taxs();
+        $list=$Tax->gettaxlist();
+        $this->view->setVar("result", $list);//paginated data
+        $Deduction=new TaxsDeduction();
+        $dlist=$Deduction->getdedlist();
+        $this->view->setVar("deduction", $dlist);
+
+    }
+    /**
+     * show tax dialog box
+     * @author Su Zin Kyaw
+     */
+    public function taxdiaAction(){
+         $id=$this->request->get('id'); 
+       
+        $tax=new Taxs();
+        $data=$tax->gettaxdata($id);
+        $this->view->disable();
+        echo json_encode($data);
+    }
+    
+    /**
+     * edit tax data
+     * @author Su Zin Kyaw
+     */
+    public function edit_taxAction(){
+           $data['id'] = $this->request->getPost('id');
+        $data['taxs_from'] =$this->request->getPost('taxs_from');
+        $data['taxs_to'] = $this->request->getPost('taxs_to');
+        $data['ssc_emp'] = $this->request->getPost('ssc_emp');
+        $data['ssc_comp'] =$this->request->getPost('ssc_comp');
+        $data['taxs_rate'] =$this->request->getPost('taxs_rate');
+        $Tax=new Taxs();
+        $Tax->edit_tax($data);
+        $this->view->disable();
+    }
+    
+    /**
+     * show dedction dialog box
+     * @author Su Zin Kyaw
+     */
+    public function dectdiaAction(){
+        $id=$this->request->get('id'); 
+       
+        $Deduction=new TaxsDeduction();
+        $data=$Deduction->getdectdata($id);
+        $this->view->disable();
+        echo json_encode($data);
+    }
+    
+    /**
+     * Edit Deduction data
+     * @author Su Zin Kyaw
+     */
+    public function edit_deductAction(){
+         $data['id'] =$this->request->getPost('id');
+        $data['deduce_name'] =$this->request->getPost('deduce_name');
+        $data['amount'] = $this->request->getPost('amount');
+        $Deduction=new TaxsDeduction();
+
+        $Deduction->edit_deduction($data);
+        $this->view->disable();
+    }
+    
+    /**
+     * Add New Dedection 
+     * @author Su Zin Kyaw
+     */
+    public function add_dectAction(){
+       
+        $data['deduce_name'] =$this->request->getPost('deduce_name');
+        $data['amount'] =$this->request->getPost('amount');
+        $Deduction=new TaxsDeduction();
+
+        $Deduction->add_deduction($data);
+        $this->view->disable();
+    }
+    
+    /**
+     * Delete Deduction 
+     * @author Su Zin Kyaw
+     */
+    public function delete_deductAction(){
+        $deduce_id =$this->request->getPost('id');
+        $Deduction=new TaxsDeduction();
+        $Deduction->delete_deduction($deduce_id);
         $this->view->disable();
     }
 }
