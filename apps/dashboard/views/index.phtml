@@ -128,7 +128,7 @@
                                     if (isset($top[1])) {
                                         echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
                                     echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
@@ -164,7 +164,7 @@
 
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="height:auto;margin-left:0;">
+            <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
                 <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>

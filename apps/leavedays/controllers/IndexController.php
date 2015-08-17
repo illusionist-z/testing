@@ -2,6 +2,7 @@
 namespace workManagiment\Leavedays\Controllers;
 use workManagiment\Core\Models\Db;
 use workManagiment\Leavedays\Models\Leaves as Leave;
+
 class IndexController extends ControllerBase {
     public $_leave;
     public $config;    
@@ -26,9 +27,9 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {               
         $leavetype = $this->config->leavetype;
-        $userlist=new Db\CoreMember();
+        $UserList=new Db\CoreMember();
         
-        $name = $userlist::getinstance()->getusername();           
+        $name = $UserList::getinstance()->getusername();           
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $leavetype);
         if ($this->request->isPost()) {
@@ -52,8 +53,8 @@ class IndexController extends ControllerBase {
     public function leavelistAction(){              
         $month = $this->config->month;
         $leave = $this->config->leavetype;        
-        $userlist=new Db\CoreMember();
-        $user_name = $userlist::getinstance()->getusername();                   
+        $UserList=new Db\CoreMember();
+        $user_name = $UserList::getinstance()->getusername();                   
         $leaves = $this->_leave->getleavelist();               
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
@@ -71,8 +72,7 @@ class IndexController extends ControllerBase {
         $days=$this->request->getPost('days');
         
         if($type=='Yes'){
-           
-             $this->_leave->acceptleave($id,$sdate,$days); 
+            $this->_leave->acceptleave($id,$sdate,$days); 
         }
         else{
             $this->_leave->rejectleave($id,$sdate); 

@@ -24,19 +24,19 @@ class IndexController extends ControllerBase
          $offset= $this->session->location['offset'];          
         //get user name
         //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
-        $User_list=new Db\CoreMember();
-        $username = $User_list::getinstance()->getusername();        
+        $UserList=new Db\CoreMember();
+        $Username = $UserList::getinstance()->getusername();        
         //$this->view->attlist = $result_attlist;
         $this->view->offset=$offset;
-        $this->view->uname = $username;
+        $this->view->uname = $Username;
     }
     public function showtodaylistAction(){
-         $name = $this->request->get('namelist');
-        $Att_list = new \workManagiment\Attendancelist\Models\Attendances();        
+        $name = $this->request->get('namelist');
+        $AttList = new \workManagiment\Attendancelist\Models\Attendances();        
         //get user attendance list for today
-        $result_attlist = $Att_list->gettodaylist($name);      
+        $ResultAttlist = $AttList->gettodaylist($name);      
         $this->view->disable();
-        echo json_encode($result_attlist);
+        echo json_encode($ResultAttlist);
     }
     /**
      * Show monthly attendance list
@@ -44,11 +44,11 @@ class IndexController extends ControllerBase
     public function monthlylistAction() {
        
         $offset= $this->session->location['offset'];
-        $User_list=new Db\CoreMember();
-        $user_name = $User_list::getinstance()->getusername();
+        $UserList=new Db\CoreMember();
+        $UserName = $UserList::getinstance()->getusername();
         $month = $this->config->month;                
         $this->view->setVar("Month", $month);        
-        $this->view->setVar("Getname", $user_name);                
+        $this->view->setVar("Getname", $UserName);                
         $this->view->offset=$offset;
     }
     /**
@@ -59,8 +59,6 @@ class IndexController extends ControllerBase
         $result = $Attendances->showattlist();
         $this->view->disable();
         echo json_encode($result);        
-    }
-    
-
+    }    
 }
 

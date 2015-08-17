@@ -16,18 +16,18 @@ class LoginController extends ControllerBase {
 
         $this->view->test = $loginParams;
 
-        $modelAuth = new Models\Auth();
-        $result = $modelAuth->check($loginParams, $user);
+        $ModelAuth = new Models\Auth();
+        $result = $ModelAuth->check($loginParams, $user);
 
         $user = array();
         $this->session->set('user', $result);
         if ($result) {
 
-            $modelPermission = new Models\Permission();
+            $ModelPermission = new Models\Permission();
             $permissions = [];
 
             //Set user's permission to session 
-            $Permission = $modelPermission->get($result, $permissions);
+            $Permission = $ModelPermission->get($result, $permissions);
             //print_r($Permission);exit;
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');

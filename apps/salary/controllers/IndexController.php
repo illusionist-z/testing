@@ -147,7 +147,11 @@ class IndexController extends ControllerBase
         $this->view->disable();
         echo json_encode($editsalary);
     }
-    
+    /**
+     * @author David
+     * Edit salary Dialog Box
+     * @return true|false
+     */
     
     public function btneditAction() {
         $data['id'] = $this->request->getPost('id');

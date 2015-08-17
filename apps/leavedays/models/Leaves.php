@@ -216,10 +216,10 @@ class Leaves extends \Library\Core\BaseModel {
     * @author Su Zin kyaw
     */
     public function acceptleave($id,$sdate,$days){
-            $this->db = $this->getDI()->getShared("db");
+        $this->db = $this->getDI()->getShared("db");
         $status=1;
         $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-       $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."' ");
+        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."' ");
 
     }
    

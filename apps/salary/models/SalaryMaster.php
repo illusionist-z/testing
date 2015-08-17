@@ -438,23 +438,27 @@ in (select member_id from salary_master) group by ATT .member_id";
      * Salary Edit action
      */
     public function btnedit($data){
-     $res =array();
-     //valid input number ? true : false     
-     $res['baseerr'] = filter_var($data['basesalary'],FILTER_VALIDATE_REGEXP,                
-                      array('options'=>array('regexp'=>'/^([\d])/')))?true:false; 
-     $res['travelerr'] = filter_var($data['travelfee'],FILTER_VALIDATE_REGEXP,                
-                      array('options'=>array('regexp'=>'/^([\d])/')))?true:false;      
-     $res['overtimerr'] = preg_match('/^(?=.*\d)[0-9]*$/',$data['overtime'])?true:false;
-     $res['sscemp'] = preg_match('/^(?=.*\d)[0-9]*$/',$data['ssc_emp'])?true:false;
-     $res['ssccomp'] = preg_match('/^(=?.*\d)[0-9]*$/',$data['ssc_comp'])?true:false;
+     $res =array();         
+     $res['baseerr']    = filter_var($data['basesalary'],FILTER_VALIDATE_REGEXP,                
+                          array('options'=>array('regexp'=>'/^([\d])/')))?true:false; 
+     
+     $res['travelerr']  = filter_var($data['travelfee'],FILTER_VALIDATE_REGEXP,                
+                          array('options'=>array('regexp'=>'/^([\d])/')))?true:false;      
+     
+     $res['overtimerr'] = preg_match('/^(?=.*\d)[0-9]*$/',$data['overtime'])?true:false;      //validate empty field and not number
+                                                                                              //if not valid return false
+     $res['sscemp']     = preg_match('/^(?=.*\d)[0-9]*$/',$data['ssc_emp'])?true:false;       
+     
+     $res['ssccomp']    = preg_match('/^(?=.*\d)[0-9]*$/',$data['ssc_comp'])?true:false;
+     
      if($res['baseerr'] && $res['travelerr'] && $res['overtimerr'] && $res['sscemp'] && $res['ssccomp']){
-     try{
+         try{
          $sql = "Update salary_master SET basic_salary ='".$data['basesalary']."',travel_fee ='".$data['travelfee']."',over_time ='".$data['overtime']."',ssc_emp ='".$data['ssc_emp']."',ssc_comp ='".$data['ssc_comp']."',updated_dt=NOW() Where id='".$data['id']."'";
          $this->db->query($sql);
          $res['valid'] = true;
-     } catch (Exception $ex) {
+         } catch (Exception $ex) {
          echo $ex;
-     }
+         }
      }
      else{
          $res['valid'] = false;
