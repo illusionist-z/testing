@@ -150,6 +150,7 @@
                             <td><?php echo number_format($getsalarylist['income_tax']) ?></td>
                             <td><?php echo number_format($getsalarylist['ssc_comp']) ?></td>
                             <td><?php echo number_format($getsalarylist['ssc_emp']) ?></td>
+                            <td>allowance</td>
                             <td><?php 
                             $totalresult+=$getsalarylist['total'];
                             echo number_format($getsalarylist['total']); 
@@ -163,7 +164,7 @@
                     ?>
 
                     <tr style="background-color:#428bca; color:#ffffff;">
-                        <td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>
+                        <td colspan="10" style="text-align:center;"><b>Total salary for all user</b></td>
                         <td><b><?php echo number_format($totalresult);?></b></td>
                         <td></td>
                     </tr>
