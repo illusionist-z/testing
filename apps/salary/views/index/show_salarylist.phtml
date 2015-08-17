@@ -67,31 +67,7 @@
                             </select>
                     </div>
                     <div id="M_2">
-                        Monthly: 
-                        <span>
-                            <select class="select" data-toggle="select" name="cond[month]">
-                                <option value="">Month</option>
-                                <?php
-                                for ($i = 1; $i <= count($months); $i++) {
-                                    ?>
-                                    <option value="<?php
-                                    if ($i < 10) {
-                                        echo '0' . $i;
-                                    } else {
-                                        echo $i;
-                                    }
-                                    ?>"
-                                            <?php //echo(isset($Mth)&&($Mth==$i)?' selected="selected"':'');?>
-                                            ><?php echo $months[$i]; ?></option>
-                                            <?php
-                                        }
-                                        ?>
-                            </select>
-                    </div>
-                </div>
-                <div class="search_btn_box"><!--search btn-->
-                    <div style="float:left;">
-                        salary:
+                         salary:
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option value="200000~400000">200000~400000</option>
                             <option value="400000~700000">400000~700000</option>
@@ -99,6 +75,8 @@
 
                         </select>
                     </div>
+                </div>
+                <div class="search_btn_box"><!--search btn-->
                     <div>
                         <a href="#" class="button" id="search_salary" style="margin-left:71px; margin-right:28px;">Search</a>
                         <a href="#" class="button export">Export</a>

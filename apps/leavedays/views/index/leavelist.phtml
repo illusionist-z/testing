@@ -126,8 +126,14 @@ $length = count($Month);
                         };
                                 ?></td>
                             <td><font color="red"><?php
+                    if($item['total_leavedays']>16){
+                            
+                            echo ($item['total_leavedays'])-16;
+                            echo " Days are in absent";
+                    }
+                    else{
                                 
-                                echo 16-($item['total_leavedays']);
+                    echo 16-($item['total_leavedays']);}
                         
                                 ?></font></td>
                         </tr>
