@@ -31,23 +31,7 @@ class Leaves extends \Library\Core\BaseModel {
         $result = $this->db->query($sql);
         $row = $result->fetchall();
         return $row;
-        
-//        $row = $this->modelsManager->createBuilder()
-//                    ->columns('date,member_login_name,start_date,end_date,leave_days,leave_category,leave_description,leave_status')
-//                    ->from('workManagiment\Leavedays\Models\Leaves')
-//                    ->leftJoin('workManagiment\Core\Models\Db\CoreMember', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
-//                    ->getQuery()
-//                    ->execute();
-//        $currentPage = (int) $_GET["page"];
-//        $paginator = new PaginatorModel(
-//                array(
-//            "data" => $row,
-//            "limit" => 1,
-//            "page" => $currentPage
-//                )
-//        );
-//        $list = $paginator->getPaginate();
-//        return $list;
+  
     }
 
     /**
@@ -59,9 +43,7 @@ class Leaves extends \Library\Core\BaseModel {
      */
     public function search($ltype, $month, $namelist) {
         $this->db = $this->getDI()->getShared("db");
-//        $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id where MONTH(leaves.start_date)='".$month."'";
-//        $result = $this->db->query($sql);
-//        $row = $result->fetchall();
+
 
         $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
         $conditions = array();
@@ -97,12 +79,16 @@ class Leaves extends \Library\Core\BaseModel {
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
 
         $this->db = $this->getDI()->getShared("db");
-         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "'  ORDER BY date DESC LIMIT 1 ");
+        $date=$this->getcontractdata($uname);
+        
+        
+         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
          $list = $ldata->fetchall();
+        
          if($list==NULL){
          $lastdata=0;}
              else{$lastdata=($list['0']['total_leavedays']);}
-        if ($sdate != NULL && $edate != NULL && $desc != NULL) {
+         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
             
             if (isset($sdate) AND isset($edate) AND isset($desc)) {
               
@@ -129,6 +115,44 @@ class Leaves extends \Library\Core\BaseModel {
         }
         return $err;
     }
+    
+
+public  function GetDays($StartDate, $EndDate){  
+    $date_ffrom = $StartDate;   
+    $date_from = strtotime($date_ffrom); // Convert date to a UNIX timestamp  
+  
+// Specify the end date. This date can be any English textual format  
+    $date_tto = $EndDate;  
+    $date_to = strtotime($date_tto); // Convert date to a UNIX timestamp  
+  
+// Loop from the start date to end date and output all dates inbetween  
+    for ($i=$date_from; $i<=$date_to; $i+=86400) {  
+    $date[]= date("Y-m-d", $i).'<br />'; 
+    }  
+     return $date;
+    }   
+    /**
+     * 
+     * @param type $id
+     * @return type
+     * get start date and end date 
+     * @author Su Zin Kyaw
+     */
+    public function getcontractdata($id){
+        $credt = $this->db->query("SELECT created_dt,updated_dt FROM salary_master  WHERE salary_master.member_id= '" . $id . "'");
+        $created_date = $credt->fetchall();
+        if( $created_date['0']['updated_dt']=='0000-00-00 00:00:00'){
+             $date['startDate']=$created_date['0']['created_dt'];
+             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['created_dt'])));
+        }
+        else{
+             $date['startDate']=$created_date['0']['updated_dt'];
+            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
+        }
+        
+        return $date;
+    }
+    
     
     /**
      * getting user leave list by user id,month and leave type
@@ -215,12 +239,32 @@ class Leaves extends \Library\Core\BaseModel {
     * when admin accept leavedays request from user
     * @author Su Zin kyaw
     */
-    public function acceptleave($id,$sdate,$days){
-        $this->db = $this->getDI()->getShared("db");
-        $status=1;
-        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."' ");
+    public function acceptleave($id,$sdate,$edate,$days){
+            $this->db = $this->getDI()->getShared("db");
+       
+        $date=$this->getcontractdata($id);
+         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+         $list = $ldata->fetchall();
+         if($list['0']['total_leavedays']>=16){
+             
+            $datePeriod =$this->GetDays($sdate, $edate);
+            $length=count($datePeriod);
+            $df=1;
+            for($i=0;$i<($length-1);$i++){
+                echo $datePeriod[$i] ;echo $i;
+            $this->db->query("INSERT INTO absent (member_id,date,delete_flag) VALUES('" . $id . "','" . $datePeriod[$i] . "','" . $df . "')");
+            }
+            
 
+         }
+       
+            $status=1;
+             
+            $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
+            $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."' ");
+
+         
+        
     }
    
     /**

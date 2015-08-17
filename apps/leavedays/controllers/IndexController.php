@@ -68,11 +68,13 @@ class IndexController extends ControllerBase {
     public function decideAction(){
          $type=$this->request->getPost('submit');
         $sdate=$this->request->getPost('start_date');
+        $edate=$this->request->getPost('end_date');
         $id=$this->request->getPost('member_id');
         $days=$this->request->getPost('days');
-        
+       
         if($type=='Yes'){
-            $this->_leave->acceptleave($id,$sdate,$days); 
+            
+             $this->_leave->acceptleave($id,$sdate,$edate,$days); 
         }
         else{
             $this->_leave->rejectleave($id,$sdate); 
