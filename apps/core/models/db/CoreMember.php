@@ -64,6 +64,7 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
     $this->db = $this->getDI()->getShared("db");
     $arr=(explode(",",$role));
        $pass=sha1($password);
+       $today=date("Y-m-d H:i:s");
     if($username==NULL OR $password==NULL OR $dept==NULL OR $position==NULL OR $email==NULL OR $phno==NULL OR $address==NULL ){
       
     echo '<script type="text/javascript">alert("Please,Insert All Data! ")</script>';
@@ -75,8 +76,8 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file) ;
-         $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile)"
-         . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "')");
+         $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,created_dt)"
+         . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "','" . $today . "')");
        $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $username . "'" );   
        $us=$user_name->fetchall();
        foreach ($us as $value) {

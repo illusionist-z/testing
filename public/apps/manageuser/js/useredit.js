@@ -60,16 +60,24 @@ var User = {
             url :"userdata_edit?data="+id,
             data:$form.serialize(),
             dataType:'json',
-            success:function(d){ 
+            success:function(d){
                 // check valid mail & phone
                 if(true==d.valid){            
                   $('body').load(window.location.href);
                     }
                 else{
-                  if(false==d.mail)
+                  if(false==d.mail){
                   $('#edit_user_email').val("Incorrect Email format").css("color","red");
-                  if(false==d.pno)
+                  repair('#edit_user_email');}
+                  if(false==d.uname){
+                  $('#edit_user_name').val("Fill the blank").css("color","red");
+                  repair('#edit_user_name');}
+                  if(false==d.dept){
+                  $('#edit_user_dept').val("Fill Department name").css("color","red");
+                  repair('#edit_user_dept');}
+                  if(false==d.pno){
                   $('#edit_user_phone').val("Enter phone number").css("color","red");                 
+                  repair('#edit_user_phone');}
                 }
             }
         });
@@ -113,6 +121,6 @@ $(document).ready(function () {
     $(".displaypopup").click(function () {
         var id = $(this).attr('id');
         User.Edit(id);
-    });    
-    
+    });        
 });        
+

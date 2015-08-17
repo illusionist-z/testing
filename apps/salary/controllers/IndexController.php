@@ -158,7 +158,8 @@ class IndexController extends ControllerBase
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $Salarydetail = new SalaryMaster();
-        $Salarydetail->btnedit($data);
+        $pont=$Salarydetail->btnedit($data);
+        echo json_encode($pont);
         $this->view->disable();
     }
     /**
