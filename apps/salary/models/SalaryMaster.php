@@ -98,7 +98,7 @@ class SalaryMaster extends Model {
                     $salary_yr = $value['basic_salary'] * $date_diff;
                 }
 
-                echo $value['member_id'] . '<br>';
+                
                 $SM = $this->checkBasicsalaryBymember_id('salary_master', $value['member_id'], $budget_startyear, $budget_endyear);
 
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value['member_id'], $budget_startyear, $budget_endyear);
@@ -116,17 +116,21 @@ class SalaryMaster extends Model {
                         $old_payamount = $countsalarydetail['pay_amount'];
                         $date_diff+=$countsalarydetail['COUNT'];
                         $salary_yr = $newsalary_rate + $old_payamount;
+                        
                     }
                     
                     //Restart from start date
                      if ($SM['basic_salary'] == $SD['basic_salary'] && $budget_startyear==date("Y-m-d")) {
+                         
                          $salary_yr=$SM['basic_salary']*12;
+                         
                      }
                 }
 
                 //$salary_yr = $value['basic_salary'] * 12;
                 //echo "B Salary ".$salary_yr.' ***';
                 //get 20% for the whole year
+         
                 $basic_deduction = $salary_yr * (20 / 100);
 
                 //Check there is allowance or not
