@@ -3,7 +3,7 @@
 namespace workManagiment\Salary\Models;
 
 use Phalcon\Mvc\Model;
-use workManagiment\Salary\Models\SalaryMaster as sa;
+//use workManagiment\Salary\Models\SalaryMaster as sa;
 use Phalcon\Mvc\Model\Query;
 
 class SalaryMaster extends Model {
@@ -24,7 +24,6 @@ class SalaryMaster extends Model {
 //            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time,created_dt) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "',NOW())";
 //            $result = $this->db->query($sql);
             $SalaryMaster = new SalaryMaster();
-           
             $SalaryMaster->save($data);
 //            if ($SalaryMaster->save($data) == false) {
 //                echo "Umh, We can't store robots right now ";
@@ -45,11 +44,10 @@ class SalaryMaster extends Model {
      * Save salary dedution amount to core_member_tax_deduce
      * @param type $dedution
      * @return type
-     * @author zinmon
      */
     public function savesalarydedution($dedution, $member_id,$creator_id) {
         try {
-           
+            
             for ($i = 0; $i < count($dedution); $i++) {
                 
                 $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag) 
