@@ -121,14 +121,14 @@
                             
                             <td><?php echo $getsalarylist['member_login_name'] ?></td>
                             <td><?php echo $getsalarylist['member_dept_name'] ?></td>
-                            <td><?php echo number_format($getsalarylist['basic_salary']) ?></td>
+                            <td class="right_data_value"><?php echo number_format($getsalarylist['basic_salary']) ?></td>
                             <td><?php echo number_format($getsalarylist['overtime']) ?></td>
                             <td><?php echo number_format($getsalarylist['travel_fee']) ?></td>
                             <td><?php echo number_format($getsalarylist['absent_dedution']) ?></td>
                             <td><?php echo number_format($getsalarylist['income_tax']) ?></td>
                             <td><?php echo number_format($getsalarylist['ssc_comp']) ?></td>
                             <td><?php echo number_format($getsalarylist['ssc_emp']) ?></td>
-                            <td>allowance</td>
+                            <td><?php echo 'allowance'; ?></td>
                             <td><?php 
                             $totalresult+=$getsalarylist['total'];
                             echo number_format($getsalarylist['total']); 

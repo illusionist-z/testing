@@ -103,10 +103,15 @@ class Allowances extends Model {
         return $row;
     }
     
-    
+    /**
+     * 
+     * @param type $allowance
+     * @param type $member_id
+     * @return type
+     * @author zin mon
+     */
     public function saveallowance($allowance,$member_id) {
         try {
-            
             for($i=0;$i<count($allowance);$i++)
             {
             $sql = "INSERT INTO salary_master_allowance (allowance_id,member_id) VALUES('" . $allowance[$i] . "','" . $member_id . "')";

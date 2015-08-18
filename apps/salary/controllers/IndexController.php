@@ -88,17 +88,29 @@ class IndexController extends ControllerBase
      * Save salary for salary add form
      */
     public function savesalaryAction() {
-        $dedution=$this->request->get('check_list');
-        $allowance=$this->request->get('check_allow');
-        $data['member_id']=$this->request->get('uname');
-        $data['position']=$this->request->get('position');
-        $data['basic_salary']=$this->request->get('bsalary');
-        $data['travelfee']=$this->request->get('travelfee');
-        $data['overtime']=$this->request->get('overtime');
-        //print_r($data);exit;
+        
+        $dedution=$this->request->get('check_list','string');
+        $allowance=$this->request->get('check_allow','int');
+        
+        $data['id']=uniqid();
+        $data['member_id']=$this->request->get('uname','alphanum');
+        $data['position']=$this->request->get('position','string');
+        $data['basic_salary']=$this->request->get('bsalary','int');
+        $data['travel_fee']=$this->request->get('travelfee','int');
+        $data['over_time']=$this->request->get('overtime','int');
+        $data['ssc_emp']=3;
+        $data['ssc_comp']=2;
+        $data['allowance_id']=0;
+        $data['creator_id']=$this->session->user['member_id'];
+        $data['created_dt']=date("Y-m-d H:i:s");
+        $data['updater_id']=3;
+        $data['updated_dt']='00:00:00';
+        $data['deleted_flag']=0;
+        
+        
         $Salarymaster=new SalaryMaster();
-        $Salarymaster->savesalary_dedution($dedution,$this->request->get('uname'));
-        $result=$Salarymaster->savesalary($data);
+        $Salarymaster->savesalarydedution($dedution,$data['member_id'],$data['creator_id']);
+        //$result=$Salarymaster->savesalary($data);
         
         $Allowance=new Allowances();
         $saveallowance=$Allowance->saveallowance($allowance,$this->request->get('uname'));
@@ -147,7 +159,11 @@ class IndexController extends ControllerBase
         $this->view->disable();
         echo json_encode($editsalary);
     }
-    
+    /**
+     * @author David
+     * Edit salary Dialog Box
+     * @return true|false
+     */
     
     public function btneditAction() {
         $data['id'] = $this->request->getPost('id');

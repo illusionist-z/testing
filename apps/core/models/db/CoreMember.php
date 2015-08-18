@@ -72,6 +72,7 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
         
     }
     else {
+        
             //uploading file
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
