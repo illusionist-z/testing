@@ -2,6 +2,8 @@
 
 namespace workManagiment\Dashboard\Controllers;
 use workManagiment\Core\Models\Db;
+use Phalcon\Flash\Direct as FlashDirect;
+
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -82,12 +84,12 @@ class IndexController extends ControllerBase {
         $lng = $this->request->get('lng');
         
         $offset = $this->request->get('offset');
-        $tz=$this->getTimezoneGeo($lat,$lng);
+        
       
         $this->session->set('location', array(
             'lat' => $lat,
             'lng' => $lng,
-            'timezone' => $tz,
+            
             'offset' => $offset
         ));
     
@@ -97,7 +99,7 @@ class IndexController extends ControllerBase {
      * Check in 
      */
     public function checkinAction() {
-        $this->view->disable();
+        
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
         $lat = $this->session->location['lat'];
@@ -120,7 +122,8 @@ class IndexController extends ControllerBase {
                 }
                 
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
-        $checkin->setcheckintime($id, $note, $lat, $lon,$add);
+        $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add);
+        $this->response->redirect('dashboard/index/direct');
        
         
         
@@ -136,8 +139,9 @@ class IndexController extends ControllerBase {
 
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
-        $checkin->setcheckouttime($id);
-         //$this->response->redirect('attendancelist/user/attendancelist');
+        $status=$checkin->setcheckouttime($id);
+        
+          $this->response->redirect('dashboard/index/direct');
        
 
     }

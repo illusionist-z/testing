@@ -118,7 +118,7 @@ $(document).ready(function () {
 });
 var salarysearch = function () {
     var $form = $('#search_frm').serialize();
-    alert("aaaa");
+   
     //window.location.href = baseUri + 'salary/search?'+$form;
     $.ajax({
         url: baseUri + 'salary/search?' + $form,

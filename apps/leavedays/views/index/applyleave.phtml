@@ -47,9 +47,9 @@
                     <td>Leave Categories</td>
                     <td><select class="select" data-toggle="select" name="leavetype">
                     <?php
-                    for ($i = 1; $i <= $leavetypelength; $i++) {
+                    foreach ($Leavetype as $data) {
                     ?>
-                         <option value="<?php echo $Leavetype[$i]; ?>"><?php echo $Leavetype[$i]; ?></option>
+                         <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name']; ?></option>
                     <?php
                     }
                     ?> </select>

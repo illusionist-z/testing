@@ -3,6 +3,7 @@
 namespace workManagiment\Leavedays\Models;
 
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+use workManagiment\Leavedays\Models\LeavesSetting;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -86,7 +87,7 @@ class Leaves extends \Library\Core\BaseModel {
          $list = $ldata->fetchall();
         
          if($list==NULL){
-         $lastdata=0;}
+         $lastdata="0";}
              else{$lastdata=($list['0']['total_leavedays']);}
          if ($sdate != NULL && $edate != NULL && $desc != NULL) {
             
@@ -100,6 +101,7 @@ class Leaves extends \Library\Core\BaseModel {
                 if ($sdate >= $checkday && $edate >= $checkday) {
                     //check $edate greater than $sdate
                     if (strtotime($sdate) < strtotime($edate)) {
+                      
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
                         $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "')");
                         $err="Your Leave Applied Successfully!";
@@ -116,7 +118,13 @@ class Leaves extends \Library\Core\BaseModel {
         return $err;
     }
     
-
+/**
+ * get list of dates between two dates
+ * @author Su Zin Kyaw
+ * @param type $StartDate
+ * @param type $EndDate
+ * @return string
+ */
 public  function GetDays($StartDate, $EndDate){  
     $date_ffrom = $StartDate;   
     $date_from = strtotime($date_ffrom); // Convert date to a UNIX timestamp  
@@ -240,31 +248,29 @@ public  function GetDays($StartDate, $EndDate){
     * @author Su Zin kyaw
     */
     public function acceptleave($id,$sdate,$edate,$days){
-            $this->db = $this->getDI()->getShared("db");
-       
+        $this->db = $this->getDI()->getShared("db");
         $date=$this->getcontractdata($id);
-         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
-         $list = $ldata->fetchall();
-         if($list['0']['total_leavedays']>=16){
-             
-            $datePeriod =$this->GetDays($sdate, $edate);
-            $length=count($datePeriod);
-            $df=1;
-            for($i=0;$i<($length-1);$i++){
-                echo $datePeriod[$i] ;echo $i;
-            $this->db->query("INSERT INTO absent (member_id,date,delete_flag) VALUES('" . $id . "','" . $datePeriod[$i] . "','" . $df . "')");
-            }
-            
-
-         }
+        $datePeriod =$this->GetDays($sdate, $edate);
+        $length=count($datePeriod);
+        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+        $list = $ldata->fetchall();
        
-            $status=1;
-             
-            $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-            $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."' ");
+        $max=$this->getleavesetting();
+       
+        if($list['0']['total_leavedays']>=$max['0']['max_leavedays']){
+             $stt=2;
+        }
+        else{
+             $stt=1;
+        }
+        for($i=0;$i<($length-1);$i++){
+            echo $datePeriod[$i] ;echo $i;
+            $this->db->query("INSERT INTO absent (member_id,date,status) VALUES('" . $id . "','" . $datePeriod[$i] . "','" . $stt . "')");
+        }
+        $status=1;
+        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
+        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
 
-         
-        
     }
    
     /**
@@ -276,8 +282,22 @@ public  function GetDays($StartDate, $EndDate){
      */
     public function rejectleave($id,$sdate){
         $this->db = $this->getDI()->getShared("db");
-
         $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'";
        $this->db->query($sql);
     }
+    
+    
+     public function getleavesetting(){
+          $row = $this->modelsManager->createBuilder()
+                    ->columns('max_leavedays,fine_amount')
+                    ->from('workManagiment\Leavedays\Models\LeavesSetting')
+                    ->getQuery()
+                    ->execute();
+        
+     return $row;}
+    
+    
+    
+    
+  
 }

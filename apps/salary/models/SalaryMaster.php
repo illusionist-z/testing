@@ -98,7 +98,7 @@ class SalaryMaster extends Model {
                     $salary_yr = $value['basic_salary'] * $date_diff;
                 }
 
-                
+                echo $value['member_id'] . '<br>';
                 $SM = $this->checkBasicsalaryBymember_id('salary_master', $value['member_id'], $budget_startyear, $budget_endyear);
 
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value['member_id'], $budget_startyear, $budget_endyear);
@@ -114,23 +114,18 @@ class SalaryMaster extends Model {
                         $newsalary_rate = $SM['basic_salary'] * $date_diff;
                         $countsalarydetail = $this->getCountSalarydetail($budget_startyear, $budget_endyear, $value['member_id']);
                         $old_payamount = $countsalarydetail['pay_amount'];
-                        $date_diff+=$countsalarydetail['COUNT'];
+
                         $salary_yr = $newsalary_rate + $old_payamount;
-                        
                     }
                     
                     //Restart from start date
                      if ($SM['basic_salary'] == $SD['basic_salary'] && $budget_startyear==date("Y-m-d")) {
-                         
                          $salary_yr=$SM['basic_salary']*12;
-                         
                      }
                 }
 
                 //$salary_yr = $value['basic_salary'] * 12;
-                //echo "B Salary ".$salary_yr.' ***';
                 //get 20% for the whole year
-         
                 $basic_deduction = $salary_yr * (20 / 100);
 
                 //Check there is allowance or not
@@ -240,7 +235,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         try {
 
             $sql = "select * from " . $tbl . " where member_id='" . $member_id . "'and DATE(created_dt)>='" . $budget_startyear . "' and DATE(created_dt)<='" . $budget_endyear . "' order by created_dt desc limit 1";
-            //echo $sql.'<br>';
+            echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
             //print_r($row);//exit;
@@ -371,8 +366,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $Result = ($income_tax - $todeduce) * ($taxs_rate[1] / 100);
             }
         }
-        echo 'Year difference '.$salary_year.' ////';
-        
+
         $latest_result = round($Result / 12);
         return $latest_result;
     }
@@ -436,34 +430,14 @@ in (select member_id from salary_master) group by ATT .member_id";
         }
         return $row;
     }
-    /**
-     * @author David
-     * @return $res[]?true :false
-     * Salary Edit action
-     */
     public function btnedit($data){
-     $res =array();
-     //valid input number ? true : false     
-     $res['baseerr'] = filter_var($data['basesalary'],FILTER_VALIDATE_REGEXP,                
-                      array('options'=>array('regexp'=>'/^([\d])/')))?true:false; 
-     $res['travelerr'] = filter_var($data['travelfee'],FILTER_VALIDATE_REGEXP,                
-                      array('options'=>array('regexp'=>'/^([\d])/')))?true:false;      
-     $res['overtimerr'] = preg_match('/^(?=.*\d)[0-9]*$/',$data['overtime'])?true:false;
-     $res['sscemp'] = preg_match('/^(?=.*\d)[0-9]*$/',$data['ssc_emp'])?true:false;
-     $res['ssccomp'] = preg_match('/^(=?.*\d)[0-9]*$/',$data['ssc_comp'])?true:false;
-     if($res['baseerr'] && $res['travelerr'] && $res['overtimerr'] && $res['sscemp'] && $res['ssccomp']){
      try{
          $sql = "Update salary_master SET basic_salary ='".$data['basesalary']."',travel_fee ='".$data['travelfee']."',over_time ='".$data['overtime']."',ssc_emp ='".$data['ssc_emp']."',ssc_comp ='".$data['ssc_comp']."',updated_dt=NOW() Where id='".$data['id']."'";
          $this->db->query($sql);
-         $res['valid'] = true;
      } catch (Exception $ex) {
          echo $ex;
      }
-     }
-     else{
-         $res['valid'] = false;
-     }
-     return $res;
+     
     }
 
 }
