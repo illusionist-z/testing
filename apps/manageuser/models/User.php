@@ -19,36 +19,15 @@ class User extends Model {
      * 
      */
     public function userlist($username) {     
-          $this->db = $this->getDI()->getShared("db");   
-          if($username == null){
-          $row = $this->modelsManager->createBuilder()                    
-                    ->from('workManagiment\Core\Models\Db\CoreMember')                                        
-                    ->getQuery()
-                    ->execute();
-          }else{
-          $row = $this->modelsManager->createBuilder()
-                      ->from('workManagiment\Core\Models\Db\CoreMember')
-                     ->where('workManagiment\Core\Models\Db\CoreMember.member_login_name="'.$username.'"')
-                     ->getQuery()
-                     ->execute();
-          }
-        //for pagination        
-        $currentPage = (int) $_GET["page"];        
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 3,
-            "page" => $currentPage
-                )
-        );
-        $list = $paginator->getPaginate();
-
-        return $list;
+        if($username == null){
+           $user = Db\CoreMember::getusername();
+        }
+        else{            
+        $name = Db\CoreMember::findByMemberLoginName($username); 
+        $user[0] = $name[0];        
+        }
+        return $user;
     }
-//        $user = new Db\CoreMember();
-//        $userlist = $user::getinstance()->getusername();
-//        return $userlist;
-//    }
     
     public function alluserlist(){
         
@@ -89,11 +68,13 @@ class User extends Model {
         $res['mail']= filter_var($cond['email'],FILTER_VALIDATE_EMAIL)?true:false;    //check valid mail
         $res['pno'] = filter_var($cond['pno'],FILTER_VALIDATE_REGEXP,                 //check valid phone no
                       array('options'=>array('regexp'=>'/^[0-9]*$/')))?true:false;                
-        $res['uname']=filter_var($cond['name'],FILTER_VALIDATE_REGEXP,
+        $res['uname']= filter_var($cond['name'],FILTER_VALIDATE_REGEXP,
                       array('options'=>array('regexp'=>'/([^\s])/')))?true:false;
-        $res['dept']=filter_var($cond['dept'],FILTER_VALIDATE_REGEXP,
+        $res['dept']= filter_var($cond['dept'],FILTER_VALIDATE_REGEXP,
                       array('options'=>array('regexp'=>'/([^\s])/')))?true:false;
-        if($res['mail'] && $res['pno'] && $res['uname'] && $res['dept']){                   
+        $res['pos'] = filter_var($cond['position'],FILTER_VALIDATE_REGEXP,
+                      array('options'=>array('regexp'=>'/([^\s])/')))?true:false;
+        if($res['mail'] && $res['pno'] && $res['uname'] && $res['dept'] && $res['pos']){                   
         $this->db = $this->getDI()->getShared("db");        
         $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_mobile_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."',member_address='".$cond['address']."' Where member_id='".$cond['id']."'";
         $this->db->query($query);

@@ -35,8 +35,9 @@ var Paging = {
                     prevpage = currentPage-1;
                 //var pageselect = '<select onchange="pager.showPage(parseInt(this.options[this.selectedIndex].value));return false;">';
                 // paging index 
+                var row=$('thead th').length;
                 if(0 == numPages){
-                    $('tbody').html("<tr><td colspan='8'><center>No data to display</center></td></tr>");
+                    $('tbody').html("<tr><td colspan='"+row+"'><center>No data to display</center></td></tr>");
                 }
                 else{
 	        var pagingControls = '<ul class="pagination" style="margin-left:15px;">';

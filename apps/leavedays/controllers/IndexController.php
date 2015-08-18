@@ -14,6 +14,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/leave.js');
     }
 
@@ -39,7 +40,7 @@ class IndexController extends ControllerBase {
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc);   
-            $noti=$userlist->GetAdminNoti();
+            $noti=$UserList->GetAdminNoti();
             $this->session->set('noti', $noti);
             echo "<script>alert('".$error."');</script>";
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
@@ -54,16 +55,13 @@ class IndexController extends ControllerBase {
         $month = $this->config->month;
         $leave = $this->config->leavetype;        
         $UserList=new Db\CoreMember();
-        $user_name = $UserList::getinstance()->getusername();                   
-        $leaves = $this->_leave->getleavelist();               
+        $user_name = $UserList::getinstance()->getusername();                           
+        $leaves = $this->_leave->getleavelist();
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $user_name);
-        $this->view->setVar("leave_result", $leave);        
-
+        $this->view->setVar("leave_result", $leave);      
     }
-    
-   
     
     public function decideAction(){
          $type=$this->request->getPost('submit');

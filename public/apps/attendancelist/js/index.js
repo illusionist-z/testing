@@ -19,6 +19,7 @@ var monthlylist = function (link){
         success: function (d) {   
             var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
+            $('tfoot').empty();
            for (var i in json_obj)
             {   
                
@@ -109,17 +110,17 @@ var monthlylist = function (link){
                         + "<td>" + localcin+ "</td>"
                         + "<td>" + late + "</td>"
                         + "<td>" + localcout + "</td>"
-                        + "<td>" + workinghour + " Hours </td>"
-                        + "<td>" +overtime+ " Hours </td>"
+                        + "<td>" + workinghour + " </td>"
+                        + "<td>" +overtime+ " </td>"
                         + "<td>" + ll+ "</td>"
-                        + "</tr>"
-                $("tbody").append(output);                
+                        + "</tr>";
+                $("tbody").append(output);   
+                $("tfoot").append(output);  //for csv output
             }
             //paginatior function
             pager.perpage =3;            
             pager.para = $('tbody > tr');
-            pager.showPage(1);   
-            //pager.showNavi(1);
+            pager.showPage(1);               
         },
         error: function (d) {
             alert('error');
@@ -133,9 +134,9 @@ var monthlylist = function (link){
 var todaylist = function (link,n){
     
         var url;
-        if(1 == n){
+        if(1 === n){
         var name = document.getElementById('namelist').value;
-        url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+        url = baseUri + 'attendancelist/index/'+link+'/namelist/'+name;
             }
         else{
         url = baseUri + 'attendancelist/index/'+link;
@@ -146,6 +147,7 @@ var todaylist = function (link,n){
         success: function (d) {   
             var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
+            $('tfoot').empty();
             for (var i in json_obj)
             {   
                
@@ -236,17 +238,17 @@ var todaylist = function (link,n){
                         + "<td>" + localcin+ "</td>"
                         + "<td>" + late + "</td>"
                         + "<td>" + localcout + "</td>"
-                        + "<td>" + workinghour + " Hours </td>"
-                        + "<td>" +overtime+ " Hours </td>"
+                        + "<td>" + workinghour + " </td>"
+                        + "<td>" +overtime+ "  </td>"
                         + "<td>" + ll+ "</td>"
-                        + "</tr>"
-                $("tbody").append(output);                
+                        + "</tr>";
+                $("tbody").append(output);    
+                $("foot").append(output);
             }
             //paginatior function
             pager.perpage =3;            
             pager.para = $('tbody > tr');
-            pager.showPage(1);   
-            //pager.showNavi(1);
+            pager.showPage(1);               
         },
         error: function (d) {
             alert('error');
@@ -287,11 +289,12 @@ var sub = function () {
     var year = document.getElementById('year').value;
     // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
     $.ajax({
-        url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
+        url: baseUri + 'attendancelist/search/attsearch/month/' + month ,
         type: 'GET',
         success: function (d) {                       
             var json_obj = $.parseJSON(d);//parse JSON            
            $('tbody').empty();
+           $('tfoot').empty();
             for (var i in json_obj)
             {   
                 a = "08:00:00";
@@ -381,17 +384,17 @@ var sub = function () {
                         + "<td>" + localcin+ "</td>"
                         + "<td>" + late + "</td>"
                         + "<td>" + localcout + "</td>"
-                        + "<td>" + workinghour + " Hours </td>"
-                        + "<td>" +overtime+ " Hours </td>"
+                        + "<td>" + workinghour + " </td>"
+                        + "<td>" +overtime+ "  </td>"
                         + "<td>" + ll+ "</td>"
                         + "</tr>"
-                $("tbody").append(output);                
+                $("tbody").append(output);  
+                $("tfoot").append(output);
             }
             //paginatior function
             pager.perpage =3;            
             pager.para = $('tbody > tr');
-            pager.showPage(1);   
-            //pager.showNavi(1);
+            pager.showPage(1);               
         },
         error: function (d) {
             alert('error');

@@ -11,7 +11,7 @@ var User = {
             type: 'GET',
             url: 'useredit?data=' + id,
             dataType: 'html',
-            success: function (res) {
+            success: function (res) {                
                 User.Dialog(res);     
             }
         });
@@ -24,8 +24,7 @@ var User = {
         $ovl.dialog({
             autoOpen: false,
             height: 370,
-            async:false,
-            
+            async:false,            
             width: 800,
             modal: true,
             title:"User Edit"
@@ -57,27 +56,39 @@ var User = {
         $form = $('#edit_user');
         $.ajax({
             type:"GET",
-            url :"userdata_edit?data="+id,
+            url :"userdata_edit?data="+id,            
             data:$form.serialize(),
             dataType:'json',
             success:function(d){
                 // check valid mail & phone
-                if(true==d.valid){            
-                  $('body').load(window.location.href);
+                if(true===d.valid){            
+                  $('body').load("userlist");
                     }
                 else{
-                  if(false==d.mail){
+                  if(false===d.mail){
                   $('#edit_user_email').val("Incorrect Email format").css("color","red");
-                  repair('#edit_user_email');}
-                  if(false==d.uname){
+                  repair('#edit_user_email');
+                  }
+              
+                  if(false===d.uname){
                   $('#edit_user_name').val("Fill the blank").css("color","red");
-                  repair('#edit_user_name');}
-                  if(false==d.dept){
+                  repair('#edit_user_name');
+                  }
+              
+                  if(false===d.pos){
+                  $('#edit_user_pos').val("Fill Position").css("color","red");
+                  repair('#edit_user_pos');
+                  }
+                  
+                  if(false===d.dept){
                   $('#edit_user_dept').val("Fill Department name").css("color","red");
-                  repair('#edit_user_dept');}
-                  if(false==d.pno){
+                  repair('#edit_user_dept');
+                  }
+                  
+                  if(false===d.pno){
                   $('#edit_user_phone').val("Enter phone number").css("color","red");                 
-                  repair('#edit_user_phone');}
+                  repair('#edit_user_phone');
+                  }
                 }
             }
         });
@@ -118,9 +129,13 @@ var User = {
     }
 };
 $(document).ready(function () {
-    $(".displaypopup").click(function () {
-        var id = $(this).attr('id');
+  
+    $("tbody").on('click','.displaypopup',function () {
+        var id = $(this).attr('id');        
         User.Edit(id);
     });        
+     if($('section').is('#showuserlist')){
+        userlist($('.content-header').attr('id'),0);        
+    }
 });        
 

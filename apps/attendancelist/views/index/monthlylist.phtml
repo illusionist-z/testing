@@ -77,7 +77,7 @@ $length = count($Month);
             <!-- <a href="../search/search" class="button" id='btn_search'>Search</a> -->
             <input type="submit" value="Search" class="buttonn" id="sub">
             <input type="hidden" value='' id='hidden-type' name='ExportType'/>
-            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);">Export</a>
+            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl '), 'monthly_list.csv']);">Export</a>
 
         </form>
     </div>
@@ -89,7 +89,6 @@ $length = count($Month);
                 <thead>
                     <tr>
                         <th width="150px">Date</th>
-
                         <th width="150px">User Name</th>
                         <th width="150px">Check In</th>
                         <th width="150px">Late</th>
@@ -100,10 +99,9 @@ $length = count($Month);
                     </tr>
 
                 </thead>
-                <tbody>
-                
-
+                <tbody>                
                 </tbody>
+                <tfoot style="display: none;"></tfoot>
             </table>      
         </div><!--end table content--->
         <div id="test"></div>

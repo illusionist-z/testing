@@ -153,10 +153,10 @@ var salarysearch = function () {
                         +'</tr>'
             $("tbody").append(html);
             //paginatior function
-//            pager.perpage =3;            
-//            pager.para = $('tbody > tr');
-//            pager.showPage(1);   
-            //pager.showNavi(1);
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);   
+            pager.showNavi(1);
         },
         error: function (d) {
             alert('error');

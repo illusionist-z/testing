@@ -41,8 +41,7 @@ class IndexController extends ControllerBase
     public function salarylistAction() {
         
         $Salarydetail=new SalaryDetail();
-        $getsalarydetail=$Salarydetail->getsalarydetail();
-        //var_dump($getsalarydetail);exit;
+        $getsalarydetail=$Salarydetail->getsalarydetail();        
         $this->view->salarydetail = $getsalarydetail;
  
     }

@@ -43,16 +43,15 @@ class Leaves extends \Library\Core\BaseModel {
      */
     public function search($ltype, $month, $namelist) {
         $this->db = $this->getDI()->getShared("db");
-
-
-        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
+        
+        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status,total_leavedays FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
         $conditions = array();
 
         if ($ltype != "") {
-            $conditions[] = "leaves.leave_category='" . $year . "'";
+            $conditions[] = "leaves.leave_category='" . $ltype . "'";
         }
         if ($month != "") {
-            $conditions[] = "MONTH(leaves.start_date) like " . $month;
+            $conditions[] = "MONTH(leaves.start_date) = '" . $month. "'";
         }
         if ($namelist != "") {
             $conditions[] = "core_member.member_login_name='" . $namelist . "'";
@@ -62,10 +61,9 @@ class Leaves extends \Library\Core\BaseModel {
         if (count($conditions) > 0) {
             $sql .= " WHERE " . implode(' AND ', $conditions);
         }
-        //echo $sql;exit;
+        
         $result = $this->db->query($sql);
-        $list = $result->fetchall();
-
+        $list = $result->fetchall();     
         return $list;
     }
     
@@ -99,7 +97,7 @@ class Leaves extends \Library\Core\BaseModel {
                 //check before a week
                 if ($sdate >= $checkday && $edate >= $checkday) {
                     //check $edate greater than $sdate
-                    if (strtotime($sdate) < strtotime($edate)) {
+                    if (strtotime($sdate) <= strtotime($edate)) {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
                         $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "')");
                         $err="Your Leave Applied Successfully!";

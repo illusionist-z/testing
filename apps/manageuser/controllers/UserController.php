@@ -14,11 +14,11 @@ class UserController extends ControllerBase {
     public function initialize() {
         parent::initialize();    
         $this->user = new User();
-        $this->setCommonJsAndCss();        
-        $this->assets->addCss('common/css/dialog.css');
+        $this->setCommonJsAndCss(); 
+        $this->assets->addJs('common/js/paging.js');                      
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');  
-        $this->assets->addJs('apps/manageuser/js/search.js');
+        $this->assets->addJs('apps/manageuser/js/search.js');        
     }
     /**
      * @author David
@@ -27,12 +27,15 @@ class UserController extends ControllerBase {
      */
     public function userlistAction() {                       
         $UserName = new Db\CoreMember();
-        $getname = $UserName::getinstance()->getusername();
-        $username = $this->request->get('username');
-        $list = $this->user->userlist($username);               
-        $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list);
+        $getname = $UserName::getinstance()->getusername();                    
+        $this->view->setVar('username', $getname);        
         $this->view->setVar('type', 'userlist');
+    }
+    public function showuserlistAction() {
+        $username = $this->request->get('username');
+        $list = $this->user->userlist($username);
+        $this->view->disable();
+        echo json_encode($list);
     }
     /**
      * @get data for user id

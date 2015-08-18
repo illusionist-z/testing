@@ -7,10 +7,13 @@
  * @GEOprocess()
  * @get @lat @lng
  */
+var pager = new Paging.Pager();
 
 $(document).ready(function () {
-    var userUri = baseUri + 'leavedays/';
-
+    var userUri = baseUri + 'leavedays/';       
+       pager.perpage =3;            
+       pager.para = $('tbody > tr');
+       pager.showPage(1); 
     $('#frm_search').submit(function () {
         search();
     });
@@ -22,24 +25,32 @@ function search()
     var leave_type = document.getElementById('ltype').value;
     var month = document.getElementById('month').value;
     var namelist = document.getElementById('namelist').value;
-    //window.location.href = baseUri + 'leavedays/search?ltype='+leave_type+'&month='+month+'&namelist='+namelist;
-//  var $form = $('#frm_search');
+    /**
+     * @version 18/8/15 David 
+     * @desc    Get LeaveList by name
+     */
+
     $.ajax({
         url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
         type: 'GET',
-        success: function (d) {
-            //alert('success');
-            // var myJsonString = JSON.stringify(d);
-//            
-            //$("#content").html(d);
-            //console.log(d);
-            //var string = JSON.stringify(d)
-
+        success: function (d) {         
             var json_obj = $.parseJSON(d);//parse JSON
             //alert(json_obj);
             $("tbody").empty();
             for (var i in json_obj)
             {
+                switch(json_obj[i].leave_status){
+                    case "0": this.status="Pending";break;
+                    case "1": this.status="Confirmed";break;
+                    case "2": this.status="Rejected";break;
+                }
+                if(json_obj[i].total_leavedays > 16){                    
+                    this.total_leave = json_obj[i].total_leavedays - 16;
+                    this.total_leave += "Days are in absent";
+                }
+                else{                    
+                    this.total_leave = 16 - json_obj[i].total_leavedays;                    
+                }
                 //alert(json_obj[i].date);
                 var output = "<tr>"
                         + "<td>" + json_obj[i].date + "</td>"
@@ -49,13 +60,14 @@ function search()
                         + "<td>" + json_obj[i].leave_days + "</td>"
                         + "<td>" + json_obj[i].leave_category + "</td>"
                         + "<td>" + json_obj[i].leave_description + "</td>"
-                        + "<td>" + json_obj[i].leave_status + "</td>"
-                        + "<td>" + json_obj[i].leave_status + "</td>"
-                        + "</tr>"
+                        + "<td>" + this.status + "</td>"
+                        + "<td><font color='red'>" + this.total_leave + "</font></td>"
+                        + "</tr>";
                 $("tbody").append(output);
-            }
-
-
+            }           
+       pager.perpage =3;            
+       pager.para = $('tbody > tr');
+       pager.showPage(1); 
         },
         error: function (d) {
             alert('error');
