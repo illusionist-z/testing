@@ -97,7 +97,7 @@ class UserController extends ControllerBase {
             $NewUser=new \workManagiment\Core\Models\Db\CoreMember;
             $NewUser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename,$role );            
            
-            $this->view->disable();
+            
         } 
     }
 }

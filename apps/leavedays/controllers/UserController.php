@@ -4,6 +4,8 @@ use Phalcon\Config;
 
 namespace workManagiment\Leavedays\Controllers;
 use workManagiment\Leavedays\Models\Leaves as Leave;
+use workManagiment\Leavedays\Models\LeaveCategories as LeaveCategories;
+
 use workManagiment\Core\Models\Db;
 class UserController extends ControllerBase {
     public $config;    
@@ -26,8 +28,9 @@ class UserController extends ControllerBase {
     }
 
     public function applyleaveAction() {        
-        $leavetype = $this->config->leavetype;        
-        $this->view->setVar("Leavetype", $leavetype);
+        $leavetype = new LeaveCategories();
+        $ltype=$leavetype->getleavetype();     
+        $this->view->setVar("Leavetype", $ltype);
           if ($this->request->isPost()) {
             $uname = $this->request->getPost('uname');
             $sdate = $this->request->getPost('sdate');
