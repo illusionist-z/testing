@@ -36,8 +36,8 @@ class UserController extends ControllerBase {
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc); 
             $id = $this->session->user['member_id'];
-            $user=new Db\CoreMember;
-            $noti=$user->GetUserNoti($id);
+            $User=new Db\CoreMember;
+            $noti=$User->GetUserNoti($id);
             $this->session->set('noti', $noti);
             echo "<script>alert('".$error."');</script>";
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";

@@ -3,6 +3,7 @@
 use Phalcon\Config;
 namespace workManagiment\Setting\Controllers;
 use workManagiment\Core\Models\Db;
+
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -16,8 +17,8 @@ class IndexController extends ControllerBase {
            
     }
     public function settingmoduleAction() {
-        $userlist=new Db\CoreMember();
-        $username = $userlist::getinstance()->getusername();
+        $UserList=new Db\CoreMember();
+        $username = $UserList::getinstance()->getusername();
         $this->view->setVar("member",$username);
     }
     

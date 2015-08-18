@@ -166,8 +166,7 @@ class Attendances extends Model {
      * @author David
      * @param  $v[0] = member_id
      */
-    public function absent(){
-        
+    public function absent(){        
         $query = "Select member_id from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
         $res   = $this->db->query($query);
         $absent = $res->fetchall();        

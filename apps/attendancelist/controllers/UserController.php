@@ -14,15 +14,10 @@ class UserController extends ControllerBase
         $this->setCommonJsAndCss();
         
     }
-
     
-    public function indexAction(){
-        //$this->assets->addCss('common/css/home/home.css');
-        
-        $user = $this->session->get('user');
-        
-        $this->view->user = $user;
-        
+    public function indexAction(){                
+        $user = $this->session->get('user');        
+        $this->view->user = $user;        
     }
     /**
      * getting user attendance list by user id
@@ -40,15 +35,11 @@ class UserController extends ControllerBase
       
         $month = $this->request->get('month');
         $id= $this->session->user['member_id'];
-        $Att_list = new \workManagiment\Attendancelist\Models\Attendances();
-        $result_attlist = $Att_list->getattlist($id,$month);                      
-         $this->view->attlist = $result_attlist;
+        $AttList = new \workManagiment\Attendancelist\Models\Attendances();
+        $ResultAttlist = $AttList->getattlist($id,$month);                      
+         $this->view->attlist = $ResultAttlist;
          $this->view->offset=$offset;
-         $this->view->timezone=$timezone;
-       
-    }
-    
-   
-
+         $this->view->timezone=$timezone;       
+    }      
 }
 

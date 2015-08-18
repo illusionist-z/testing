@@ -146,7 +146,7 @@ $(document).ready(function () {
     $('body').click(function (e) {       
         if (0 == $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
-            $('.content-wrapper').css("margin-left","0");
+            $('.collapse-wrapper').css("margin-left","0");
             $('.main-footer').css("margin-left","0");
         }
     });

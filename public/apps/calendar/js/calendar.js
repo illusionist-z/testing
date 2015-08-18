@@ -1,4 +1,7 @@
-//dialog box ,event edit box   
+/** 
+ * @author David
+ * @desc dialog box ,event edit box   
+ */
 
 var Dialog = {
     isClick: false,
@@ -6,6 +9,7 @@ var Dialog = {
     init: function () {
         this.isOvl = true;
     },
+    //dialog box data sync
     open: function (event) {
         if (!this.isOvl) {
             this.init();
