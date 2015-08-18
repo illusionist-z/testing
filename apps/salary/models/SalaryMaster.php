@@ -2,9 +2,11 @@
 
 namespace workManagiment\Salary\Models;
 
+
 use Phalcon\Mvc\Model;
 //use workManagiment\Salary\Models\SalaryMaster as sa;
 use Phalcon\Mvc\Model\Query;
+use workManagiment\Salary\Models\CoreMemberTaxDeduce;
 
 class SalaryMaster extends Model {
 
@@ -50,11 +52,12 @@ class SalaryMaster extends Model {
             
             for ($i = 0; $i < count($dedution); $i++) {
                 
-                $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag) 
+                $sql = "INSERT INTO workManagiment\Salary\Models\CoreMemberTaxDeduce (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag) 
                         VALUES('" . $dedution[$i] . "','" . $member_id . "', '".$creator_id."',NOW(),0,'00:00:00',0)";
-                $result = $this->db->query($sql);
+                $result = $this->modelsManager->executeQuery($sql);
                 
             }
+            
         } catch (Exception $e) {
             echo $e;
         }
