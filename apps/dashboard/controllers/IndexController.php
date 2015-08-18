@@ -24,8 +24,8 @@ class IndexController extends ControllerBase {
                 //Go to user dashboard
                 $this->view->disable();
                 $id = $this->session->user['member_id'];
-                $user=new Db\CoreMember;
-                $noti=$user->GetUserNoti($id);
+                $User=new Db\CoreMember;
+                $noti=$User->GetUserNoti($id);
                 
                 $this->session->set('noti', $noti);
                 
@@ -35,8 +35,8 @@ class IndexController extends ControllerBase {
             if ($key_name == 'admin_dashboard') {
                 //Go to admin dashboard
                 $this->view->disable();
-                $admin=new Db\CoreMember;
-                $noti=$admin->GetAdminNoti();
+                $Admin=new Db\CoreMember;
+                $noti=$Admin->GetAdminNoti();
                 $this->session->set('noti', $noti);
                 $this->response->redirect('dashboard/index/admin');
             }
@@ -53,13 +53,13 @@ class IndexController extends ControllerBase {
      */
     public function adminAction() {    
     //get last create member
-    $cm = new Db\CoreMember();
-    $gname = $cm::getinstance()->getlastname();
-    $newmember = count($gname);
+    $CMember = new Db\CoreMember();
+    $GetName = $CMember::getinstance()->getlastname();
+    $newmember = count($GetName);
     //get most leave name
-    $checkleave = new \workManagiment\Dashboard\Models\Attendances();
-    $leave_name =$checkleave->checkleave();
-    $status     =$checkleave->todayattleave();
+    $CheckLeave = new \workManagiment\Dashboard\Models\Attendances();
+    $leave_name =$CheckLeave->checkleave();
+    $status     =$CheckLeave->todayattleave();
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
@@ -145,6 +145,7 @@ class IndexController extends ControllerBase {
        
 
     }
+    
     public function directAction(){
         $name=$this->session->user['member_login_name'];
        if ( $name=='admin'){

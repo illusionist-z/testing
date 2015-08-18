@@ -20,7 +20,8 @@ class SalaryDetail extends Model {
 
         $sql = "SELECT MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`ssc_comp`)) AS Total,SUM(`basic_salary`) AS salary_total,SUM(`ssc_comp`) AS Tax_total
                 FROM salary_detail
-                GROUP BY MONTH(pay_date)";
+                GROUP BY YEAR(pay_date),MONTH(pay_date)
+		order by pay_date DESC";
         $result = $this->db->query($sql);
         $row = $result->fetchall();
         //print_r($row);exit;

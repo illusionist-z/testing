@@ -1,5 +1,4 @@
 /**
- * 
  * @author David
  * @desc   Salary Edit Dial Box
  */
@@ -62,36 +61,38 @@ var Salary = {
             dataType:'json',
             url : "btnedit",
             success:function(d){                
-                if(d.valid == true)
+                //if true success funcion then reload page
+                if(true === d.valid)                      
                 {
                     val.dialog("close");
                     $('body').load("salarylist");
                 }
+                //if fail , show error data
                 else{
                     $('#empmsg > span').empty();$("#overmsg > span").empty();$('#compmsg > span').empty();
-                    if(d.baseerr == false){
+                    if(false === d.baseerr){
                     $("#baseerr").val("Base Salary Required").css({border:"1px solid red",
                                                                    color:"red"});
                     repair('#baseerr');
                       }
-                     if(d.travelerr == false){
+                     if(false === d.travelerr ){
                     $("#travelerr").val("Base Salary Required").css({border:"1px solid red",
                                                                      color:"red"});
                     repair('#travelerr');
                       }
-                    if(d.overtimerr == false){
+                    if(false === d.overtimerr){
                     $("#overerr").css({border:"1px solid red",
                                       color:"red"});
                     $("#overmsg").append("<span style='color:red;font-size:9px;'>*Overtime Percent Number Required</span>");
                     repair('#overerr');
                     }  
-                    if(d.sscemp == false){
+                    if(false === d.sscemp ){
                     $("#emperr").css({border:"1px solid red",
                                       color:"red"});
                     $("#empmsg").append("<span style='color:red;font-size:9px;'>*SSC Emp Percent Number Required</span>");
                     repair('#emperr');
                     }  
-                    if(d.ssccomp == false){
+                    if(false === d.ssccomp){
                     $("#comperr").css({border:"1px solid red",
                                       color:"red"});
                     $("#compmsg").append("<span style='color:red;font-size:9px;'>*SSC Comp Percent Number Required</span>");                                  

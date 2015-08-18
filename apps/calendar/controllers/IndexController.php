@@ -20,9 +20,9 @@ class IndexController extends ControllerBase
 
     
    public function indexAction() {
-        $getmember=new Db\CoreMember();
-        $username = $getmember::getinstance()->getusername();
-        $this->view->uname = $username;
+        $GetMember=new Db\CoreMember();
+        $Username = $GetMember::getinstance()->getusername();
+        $this->view->uname = $Username;
     }
     /**
      * @desc calendar event show
@@ -102,8 +102,8 @@ class IndexController extends ControllerBase
     public function getidAction(){
         $this->view->disable();
         $id = $this->request->get('id');
-        $res=$this->calendar->getid_name($id);       
-        echo json_encode($res);
+        $result=$this->calendar->getid_name($id);       
+        echo json_encode($result);
     }
 
 }

@@ -26,11 +26,11 @@ class UserController extends ControllerBase {
      * @since  18/7/15
      */
     public function userlistAction() {                       
-        $uname = new Db\CoreMember();
-        $gname = $uname::getinstance()->getusername();
+        $UserName = new Db\CoreMember();
+        $getname = $UserName::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);               
-        $this->view->setVar('username', $gname);
+        $this->view->setVar('username', $getname);
         $this->view->setVar('Result', $list);
         $this->view->setVar('type', 'userlist');
     }
@@ -71,8 +71,8 @@ class UserController extends ControllerBase {
         $cond['email']=$this->request->get('email');
         $cond['pno']=$this->request->get('pno');
         $cond['address']=$this->request->get('address');
-        $res=$this->user->editbycond($cond);        
-        echo json_encode($res);             // send validating data
+        $result=$this->user->editbycond($cond);        
+        echo json_encode($result);             // send validating data
         $this->view->disable();        
     }
     /**
@@ -94,8 +94,8 @@ class UserController extends ControllerBase {
            
             $filename=$_FILES["fileToUpload"]["name"];
             
-            $newuser=new \workManagiment\Core\Models\Db\CoreMember;
-            $newuser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename,$role );            
+            $NewUser=new \workManagiment\Core\Models\Db\CoreMember;
+            $NewUser->addnewuser($username,$password, $dept, $position, $email,$phno,$address,$filename,$role );            
            
             
         } 

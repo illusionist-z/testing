@@ -17,8 +17,8 @@ class AbsentController extends ControllerBase
 
     
     public function indexAction(){
-       $att = new Attendance();
-       $att->absent();      
+       $Attendance = new Attendance();
+       $Attendance->absent();      
        $this->view->disable(); 
     }
 }    
