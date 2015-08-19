@@ -2,6 +2,7 @@
  * @author David
  * @desc   Salary Edit Dial Box
  */
+var pager = new Paging.Pager();
 var Salary = {
     isOvl: false,
     Edit: function (d) {
@@ -104,7 +105,11 @@ var Salary = {
     }
 };
 $(document).ready(function () {
-
+     $("tfoot").html($('tbody').html());  //for csv
+       //paging function
+       pager.perpage =3;            
+       pager.para = $('tbody > tr');
+       pager.showPage(1); 
     $('#search_salary').click(function () {
         salarysearch();
 

@@ -19,7 +19,9 @@ class SearchController extends ControllerBase
         $Salarydetail=new SalaryDetail();
         $cond = $this->request->get('cond', array());
         $search_result=$Salarydetail->seacrhsalary($cond);
-        print_r($search_result);exit;
+        //print_r($search_result);exit;
+        $this->view->disable();
+        echo json_encode($search_result);
     }
 }
 

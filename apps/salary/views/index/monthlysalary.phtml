@@ -34,9 +34,9 @@
                         ?>
                         <tr>
                             <td><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
-                            <td><?php echo $geteachmonthsalary['salary_total']; ?></td>
-                            <td><?php echo $geteachmonthsalary['Tax_total']; ?></td>
-                            <td><?php echo $geteachmonthsalary['Total']; ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['salary_total']); ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['Tax_total']); ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['Total']); ?></td>
                         </tr>
                         <?php
                     }

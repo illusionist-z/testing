@@ -11,9 +11,11 @@ var pager = new Paging.Pager();
 
 $(document).ready(function () {
     var userUri = baseUri + 'leavedays/';       
+    $("tfoot").html($('tbody').html()); //for csv
+       //paging function
        pager.perpage =3;            
        pager.para = $('tbody > tr');
-       pager.showPage(1); 
+       pager.showPage(1);        
     $('#frm_search').submit(function () {
         search();
     });
@@ -37,6 +39,7 @@ function search()
             var json_obj = $.parseJSON(d);//parse JSON
             //alert(json_obj);
             $("tbody").empty();
+            $("tfoot").empty();
             for (var i in json_obj)
             {
                 switch(json_obj[i].leave_status){
@@ -64,6 +67,7 @@ function search()
                         + "<td><font color='red'>" + this.total_leave + "</font></td>"
                         + "</tr>";
                 $("tbody").append(output);
+                $("tfoot").append(output); // for csv
             }           
        pager.perpage =3;            
        pager.para = $('tbody > tr');

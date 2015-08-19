@@ -1,0 +1,577 @@
+[12-Aug-2015 13:56:10 Asia/Rangoon] PHP Fatal error:  Class 'Phalcon\Loader' not found in /Users/zinmon/Sites/workManagiment/public/index.php on line 14
+[13-Aug-2015 08:49:53 Asia/Rangoon] PHP Warning:  Module 'phalcon' already loaded in Unknown on line 0
+[13-Aug-2015 09:22:44 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150813.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 09:22:44 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150813.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 09:23:16 Asia/Rangoon] PHP Notice:  Undefined index: member_login_name in /Users/zinmon/Sites/workManagiment/apps/auth/models/Auth.php on line 21
+[13-Aug-2015 09:23:16 Asia/Rangoon] PHP Notice:  Undefined index: password in /Users/zinmon/Sites/workManagiment/apps/auth/models/Auth.php on line 22
+[13-Aug-2015 09:28:30 Asia/Rangoon] PHP Notice:  Undefined index: member_login_name in /Users/zinmon/Sites/workManagiment/apps/auth/models/Auth.php on line 21
+[13-Aug-2015 09:28:30 Asia/Rangoon] PHP Notice:  Undefined index: password in /Users/zinmon/Sites/workManagiment/apps/auth/models/Auth.php on line 22
+[13-Aug-2015 09:28:47 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150813.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 09:28:47 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150813.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 09:28:47 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[13-Aug-2015 09:30:40 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[13-Aug-2015 09:30:40 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[13-Aug-2015 09:31:09 Asia/Rangoon] PHP Notice:  Undefined property: Phalcon\Config::$month in /Users/zinmon/Sites/workManagiment/apps/salary/controllers/IndexController.php on line 54
+[13-Aug-2015 14:58:36 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150813.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 14:58:36 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150813.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 15:11:13 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150813.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 15:11:13 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150813.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 15:11:28 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[13-Aug-2015 15:11:28 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[13-Aug-2015 15:11:35 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150813.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 15:11:35 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150813.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[13-Aug-2015 15:11:42 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[13-Aug-2015 15:11:42 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[13-Aug-2015 15:29:46 Asia/Rangoon] PHP Notice:  Undefined property: Phalcon\Config::$month in /Users/zinmon/Sites/workManagiment/apps/salary/controllers/IndexController.php on line 54
+[14-Aug-2015 08:01:32 Asia/Rangoon] PHP Warning:  Module 'phalcon' already loaded in Unknown on line 0
+[14-Aug-2015 08:27:15 Asia/Rangoon] PHP Warning:  Module 'phalcon' already loaded in Unknown on line 0
+[14-Aug-2015 09:38:16 Asia/Rangoon] PHP Warning:  Module 'phalcon' already loaded in Unknown on line 0
+[14-Aug-2015 14:04:05 Asia/Rangoon] PHP Notice:  Undefined index: member_login_name in /Users/zinmon/Sites/workManagiment/apps/auth/models/Auth.php on line 21
+[14-Aug-2015 14:04:05 Asia/Rangoon] PHP Notice:  Undefined index: password in /Users/zinmon/Sites/workManagiment/apps/auth/models/Auth.php on line 22
+[14-Aug-2015 14:04:31 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 14:04:31 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 14:05:11 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[14-Aug-2015 14:05:17 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[14-Aug-2015 14:05:17 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[14-Aug-2015 16:41:17 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:41:17 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:03 Asia/Rangoon] PHP Notice:  Undefined index: page in /Users/zinmon/Sites/workManagiment/apps/manageuser/models/User.php on line 36
+[14-Aug-2015 16:42:03 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:03 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:03 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:15 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/useredit.phtml on line 17
+[14-Aug-2015 16:42:15 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:15 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:15 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:15 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:16 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:42:20 Asia/Rangoon] PHP Notice:  Undefined index: page in /Users/zinmon/Sites/workManagiment/apps/manageuser/models/User.php on line 36
+[14-Aug-2015 16:42:20 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:20 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:20 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:24 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/useredit.phtml on line 17
+[14-Aug-2015 16:42:27 Asia/Rangoon] PHP Notice:  Undefined index: page in /Users/zinmon/Sites/workManagiment/apps/manageuser/models/User.php on line 36
+[14-Aug-2015 16:42:27 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:27 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:27 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:29 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/useredit.phtml on line 17
+[14-Aug-2015 16:42:32 Asia/Rangoon] PHP Notice:  Undefined index: page in /Users/zinmon/Sites/workManagiment/apps/manageuser/models/User.php on line 36
+[14-Aug-2015 16:42:32 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:32 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:32 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Core\Models\Db\CoreMember::job_title in /Users/zinmon/Sites/workManagiment/apps/manageuser/views/user/userlist.phtml on line 59
+[14-Aug-2015 16:42:36 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[14-Aug-2015 16:42:36 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[14-Aug-2015 16:42:51 Asia/Rangoon] PHP Notice:  Undefined index: total_leavedays in /Users/zinmon/Sites/workManagiment/apps/leavedays/views/index/leavelist.phtml on line 130
+[14-Aug-2015 16:42:51 Asia/Rangoon] PHP Notice:  Undefined index: total_leavedays in /Users/zinmon/Sites/workManagiment/apps/leavedays/views/index/leavelist.phtml on line 130
+[14-Aug-2015 16:42:51 Asia/Rangoon] PHP Notice:  Undefined index: total_leavedays in /Users/zinmon/Sites/workManagiment/apps/leavedays/views/index/leavelist.phtml on line 130
+[14-Aug-2015 16:42:51 Asia/Rangoon] PHP Notice:  Undefined index: total_leavedays in /Users/zinmon/Sites/workManagiment/apps/leavedays/views/index/leavelist.phtml on line 130
+[14-Aug-2015 16:43:01 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[14-Aug-2015 16:43:01 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[14-Aug-2015 16:43:08 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:43:08 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:43:56 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[14-Aug-2015 16:43:56 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[14-Aug-2015 16:43:56 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150814.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[14-Aug-2015 16:43:56 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150814.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 08:27:15 Asia/Rangoon] PHP Warning:  Module 'phalcon' already loaded in Unknown on line 0
+[17-Aug-2015 09:40:18 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 09:40:18 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 09:40:18 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[17-Aug-2015 09:40:23 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[17-Aug-2015 09:40:23 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[17-Aug-2015 13:35:27 Asia/Rangoon] PHP Notice:  Undefined index: page in /Users/zinmon/Sites/workManagiment/apps/salary/models/Allowances.php on line 48
+[17-Aug-2015 13:35:39 Asia/Rangoon] PHP Notice:  Undefined index: page in /Users/zinmon/Sites/workManagiment/apps/salary/models/Allowances.php on line 48
+[17-Aug-2015 13:37:54 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[17-Aug-2015 13:37:54 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[17-Aug-2015 14:00:28 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:28 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:34 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:34 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:34 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:34 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:34 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:34 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:34 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:35 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:35 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:35 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:40 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:40 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:00:49 Asia/Rangoon] PHP Notice:  Undefined offset: 0 in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 144
+[17-Aug-2015 14:00:49 Asia/Rangoon] PHP Notice:  Undefined offset: 0 in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 149
+[17-Aug-2015 14:00:49 Asia/Rangoon] PHP Notice:  Undefined offset: 0 in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 150
+[17-Aug-2015 14:03:23 Asia/Rangoon] PHP Notice:  Undefined offset: 0 in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 144
+[17-Aug-2015 14:03:23 Asia/Rangoon] PHP Notice:  Undefined offset: 0 in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 149
+[17-Aug-2015 14:03:23 Asia/Rangoon] PHP Notice:  Undefined offset: 0 in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 150
+[17-Aug-2015 14:23:54 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Leavedays\Models\Leaves::session in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 104
+[17-Aug-2015 14:23:54 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/leavedays/models/Leaves.php on line 104
+[17-Aug-2015 14:25:33 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:25:33 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:25:34 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[17-Aug-2015 14:25:42 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[17-Aug-2015 14:25:42 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[17-Aug-2015 14:25:47 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:25:47 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:25:59 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:25:59 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:12 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:12 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:15 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:15 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:19 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:19 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:24 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:24 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:32 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:32 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:43 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:43 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:51 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:51 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:55 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:26:55 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:26:59 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:26:59 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:27:08 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:27:08 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:27:12 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:27:12 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:27:23 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:27:23 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:27:30 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:27:30 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:27:52 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 14:27:52 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 14:52:06 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:52:06 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:52:42 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:52:42 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:52:44 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 14:52:44 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 15:13:47 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[17-Aug-2015 15:13:47 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[17-Aug-2015 15:13:49 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 15:13:49 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 15:14:18 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150817.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 15:14:18 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150817.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[17-Aug-2015 15:20:17 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 15:20:17 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 15:20:24 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[17-Aug-2015 15:20:24 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[17-Aug-2015 15:20:37 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[17-Aug-2015 15:20:37 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[18-Aug-2015 08:00:24 Asia/Rangoon] PHP Warning:  Module 'phalcon' already loaded in Unknown on line 0
+[18-Aug-2015 08:27:59 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150818.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[18-Aug-2015 08:27:59 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150818.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[18-Aug-2015 08:27:59 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[18-Aug-2015 08:28:37 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[18-Aug-2015 08:28:37 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[18-Aug-2015 09:41:57 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 60
+[18-Aug-2015 09:43:35 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 60
+[18-Aug-2015 09:45:39 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 60
+[18-Aug-2015 09:46:09 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 60
+[18-Aug-2015 09:46:16 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 60
+[18-Aug-2015 09:46:53 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 09:47:16 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 09:47:42 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 09:48:46 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 09:50:44 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 09:52:45 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 09:52:45 Asia/Rangoon] PHP Fatal error:  Class 'workManagiment\Salary\Models\Sanitize' not found in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 27
+[18-Aug-2015 10:19:34 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 53
+[18-Aug-2015 10:19:34 Asia/Rangoon] PHP Deprecated:  mysql_real_escape_string(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 28
+[18-Aug-2015 10:19:34 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 34
+[18-Aug-2015 10:21:25 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 53
+[18-Aug-2015 10:21:25 Asia/Rangoon] PHP Deprecated:  mysql_real_escape_string(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 28
+[18-Aug-2015 10:21:25 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 34
+[18-Aug-2015 10:22:05 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 54
+[18-Aug-2015 10:22:05 Asia/Rangoon] PHP Deprecated:  mysql_real_escape_string(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 28
+[18-Aug-2015 10:22:49 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 55
+[18-Aug-2015 10:22:49 Asia/Rangoon] PHP Deprecated:  mysql_real_escape_string(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 28
+[18-Aug-2015 10:23:39 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 56
+[18-Aug-2015 10:23:39 Asia/Rangoon] PHP Deprecated:  mysql_real_escape_string(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 28
+[18-Aug-2015 10:43:02 Asia/Rangoon] PHP Deprecated:  mysql_real_escape_string(): The mysql extension is deprecated and will be removed in the future: use mysqli or PDO instead in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 28
+[18-Aug-2015 10:53:09 Asia/Rangoon] PHP Fatal error:  Class 'workManagiment\Salary\Models\PDO' not found in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 29
+[18-Aug-2015 10:53:51 Asia/Rangoon] PHP Strict Standards:  Only variables should be passed by reference in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 30
+[18-Aug-2015 10:53:51 Asia/Rangoon] PHP Strict Standards:  Only variables should be passed by reference in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 31
+[18-Aug-2015 11:04:40 Asia/Rangoon] PHP Warning:  fopen(../data/logs/system/system_20150818.log): failed to open stream: No such file or directory in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[18-Aug-2015 11:04:40 Asia/Rangoon] PHP Fatal error:  Uncaught exception 'Phalcon\Logger\Exception' with message 'Can't open log file at '../data/logs/system/system_20150818.log'' in /Users/zinmon/Sites/workManagiment/library/core/Logger.php:11
+Stack trace:
+#0 /Users/zinmon/Sites/workManagiment/library/core/Logger.php(11): Phalcon\Logger\Adapter\File->__construct('../data/logs/sy...', NULL)
+#1 /Users/zinmon/Sites/workManagiment/config/services.php(83): Library\Core\Logger->__construct('../data/logs/sy...')
+#2 [internal function]: {closure}()
+#3 [internal function]: Phalcon\Di\Service->resolve(NULL, Object(Phalcon\Di\FactoryDefault))
+#4 [internal function]: Phalcon\Di->get('logger', NULL)
+#5 /Users/zinmon/Sites/workManagiment/public/index.php(75): Phalcon\Di->getShared('logger')
+#6 {main}
+  thrown in /Users/zinmon/Sites/workManagiment/library/core/Logger.php on line 11
+[18-Aug-2015 11:08:54 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 11:08:54 Asia/Rangoon] PHP Fatal error:  Class 'workManagiment\Salary\Models\Sanitize' not found in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 27
+[18-Aug-2015 11:09:28 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 61
+[18-Aug-2015 11:38:51 Asia/Rangoon] PHP Notice:  Undefined variable: manager in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 56
+[18-Aug-2015 11:38:51 Asia/Rangoon] PHP Fatal error:  Call to a member function executeQuery() on null in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 56
+[18-Aug-2015 11:39:44 Asia/Rangoon] PHP Fatal error:  Call to undefined method Phalcon\Db\Adapter\Pdo\Mysql::executeQuery() in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 56
+[18-Aug-2015 12:01:36 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/Allowances.php on line 125
+[18-Aug-2015 12:26:31 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/Allowances.php on line 125
+[18-Aug-2015 12:28:16 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/Allowances.php on line 125
+[18-Aug-2015 14:44:17 Asia/Rangoon] PHP Notice:  Use of undefined constant SalaryMaster - assumed 'SalaryMaster' in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 50
+[18-Aug-2015 14:47:09 Asia/Rangoon] PHP Notice:  Undefined variable: tbl in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 51
+[18-Aug-2015 14:47:27 Asia/Rangoon] PHP Notice:  Undefined variable: tbl in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 51
+[18-Aug-2015 14:47:29 Asia/Rangoon] PHP Notice:  Undefined variable: tbl in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 51
+[18-Aug-2015 14:48:11 Asia/Rangoon] PHP Catchable fatal error:  Object of class workManagiment\Salary\Models\SalaryMaster could not be converted to string in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:48:51 Asia/Rangoon] PHP Catchable fatal error:  Object of class workManagiment\Salary\Models\SalaryMaster could not be converted to string in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:48:54 Asia/Rangoon] PHP Catchable fatal error:  Object of class workManagiment\Salary\Models\SalaryMaster could not be converted to string in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:49:27 Asia/Rangoon] PHP Catchable fatal error:  Object of class workManagiment\Salary\Models\SalaryMaster could not be converted to string in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:49:28 Asia/Rangoon] PHP Catchable fatal error:  Object of class workManagiment\Salary\Models\SalaryMaster could not be converted to string in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:49:37 Asia/Rangoon] PHP Catchable fatal error:  Object of class workManagiment\Salary\Models\SalaryMaster could not be converted to string in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:50:53 Asia/Rangoon] PHP Notice:  Access to undefined property workManagiment\Salary\Models\SalaryMaster::db in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 78
+[18-Aug-2015 14:50:53 Asia/Rangoon] PHP Fatal error:  Call to a member function query() on null in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 78
+[18-Aug-2015 14:52:36 Asia/Rangoon] PHP Notice:  Undefined property: Phalcon\Mvc\Model\Resultset\Simple::$basic_salary in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:53:45 Asia/Rangoon] PHP Notice:  Undefined property: Phalcon\Mvc\Model\Resultset\Simple::$basic_salary in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 52
+[18-Aug-2015 14:58:14 Asia/Rangoon] PHP Notice:  Undefined property: Phalcon\Mvc\Model\Resultset\Simple::$basic_salary in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 53
+[18-Aug-2015 15:19:55 Asia/Rangoon] PHP Notice:  Undefined variable: result in /Users/zinmon/Sites/workManagiment/apps/salary/models/Allowances.php on line 125
+[18-Aug-2015 15:47:17 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 15:47:17 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 15:47:34 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 15:47:34 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 15:48:08 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 15:48:08 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 15:50:32 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 15:50:32 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 15:51:59 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[18-Aug-2015 15:52:05 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[18-Aug-2015 15:52:05 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[18-Aug-2015 15:52:05 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 15:52:05 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 15:52:30 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[18-Aug-2015 15:52:33 Asia/Rangoon] PHP Warning:  file_get_contents(http://api.geonames.org/timezoneJSON?lat=&amp;lng=&amp;username=gnext): failed to open stream: HTTP request failed! HTTP/1.1 503 Service Unavailable
+ in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 164
+[18-Aug-2015 15:52:33 Asia/Rangoon] PHP Notice:  Trying to get property of non-object in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 166
+[18-Aug-2015 16:03:43 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 16:03:43 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 16:03:46 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 16:03:46 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 16:03:48 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 16:03:48 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 16:03:51 Asia/Rangoon] PHP Deprecated:  Automatically populating $HTTP_RAW_POST_DATA is deprecated and will be removed in a future version. To avoid this warning set 'always_populate_raw_post_data' to '-1' in php.ini and use the php://input stream instead. in Unknown on line 0
+[18-Aug-2015 16:03:51 Asia/Rangoon] PHP Warning:  Cannot modify header information - headers already sent in Unknown on line 0
+[18-Aug-2015 19:28:10 Asia/Rangoon] PHP Warning:  Module 'phalcon' already loaded in Unknown on line 0
+[18-Aug-2015 19:31:51 Asia/Rangoon] PHP Notice:  Undefined index: name in /Users/zinmon/Sites/workManagiment/apps/home/views/index/index.phtml on line 7
+[18-Aug-2015 13:01:51 UTC] PHP Notice:  Undefined variable: gname in /Users/zinmon/Sites/workManagiment/apps/dashboard/controllers/IndexController.php on line 67
+[18-Aug-2015 13:01:51 UTC] PHP Warning:  Invalid argument supplied for foreach() in /Users/zinmon/Sites/workManagiment/apps/dashboard/views/index/admin.phtml on line 178
+[18-Aug-2015 19:52:15 Asia/Rangoon] PHP Warning:  Missing argument 3 for workManagiment\Salary\Models\SalaryMaster::savesalarydedution(), called in /Users/zinmon/Sites/workManagiment/apps/salary/controllers/IndexController.php on line 97 and defined in /Users/zinmon/Sites/workManagiment/apps/salary/models/SalaryMaster.php on line 48

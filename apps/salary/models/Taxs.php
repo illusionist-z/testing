@@ -8,7 +8,7 @@ use Phalcon\Mvc\Model;
 class Taxs extends Model {
 
     public function initialize() {
-        parent::initialize();
+        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
     

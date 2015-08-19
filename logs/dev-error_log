@@ -1,0 +1,140 @@
+[Fri Aug 07 10:25:48 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 07 10:25:48 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 07 10:25:49 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 07 10:25:49 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Mon Aug 10 13:23:07 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Aug 10 13:23:07 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Mon Aug 10 13:23:08 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Aug 10 13:23:08 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Tue Aug 11 12:01:19 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Tue Aug 11 12:01:19 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Tue Aug 11 12:01:20 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Tue Aug 11 12:01:20 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Tue Aug 11 12:43:22 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/favicon.ico, referer: http://test.dev/info.php
+[Tue Aug 11 12:43:50 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/zinmon/favicon.ico, referer: http://zinmon.dev/
+[Wed Aug 12 07:40:47 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 07:40:47 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Wed Aug 12 07:40:48 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 07:40:48 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Wed Aug 12 08:43:16 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/zinmon
+[Wed Aug 12 08:43:16 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/zinmon, referer: http://zinmon.dev/
+[Wed Aug 12 08:43:33 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test
+[Wed Aug 12 08:43:33 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test, referer: http://test.dev/info.php
+[Wed Aug 12 08:44:09 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/zinmon
+[Wed Aug 12 08:47:14 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test
+[Wed Aug 12 08:47:31 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/zinmon
+[Wed Aug 12 09:50:24 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/info.php
+[Wed Aug 12 09:50:44 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/phpinfo.php
+[Wed Aug 12 09:52:00 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/phpinfo.php
+[Wed Aug 12 09:52:38 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/phpinfo.php
+[Wed Aug 12 09:57:10 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/phpmyadmin
+[Wed Aug 12 09:58:15 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/phpmyadmin
+[Wed Aug 12 10:03:31 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 10:03:31 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Wed Aug 12 10:03:32 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 10:03:32 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Wed Aug 12 10:11:53 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 10:11:53 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Wed Aug 12 10:11:54 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Aug 12 10:11:54 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Wed Aug 12 10:19:22 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites
+[Wed Aug 12 10:19:22 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites, referer: http://sites.dev/
+[Wed Aug 12 10:19:27 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites
+[Wed Aug 12 10:19:34 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites
+[Wed Aug 12 10:19:45 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites
+[Wed Aug 12 10:20:19 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites
+[Thu Aug 13 07:31:40 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Aug 13 07:31:40 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Thu Aug 13 07:31:41 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Thu Aug 13 07:31:41 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Thu Aug 13 07:39:38 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/favicon.ico, referer: http://test.dev/phpinfo.php
+[Thu Aug 13 09:21:02 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Thu Aug 13 09:21:02 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Thu Aug 13 09:21:59 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Thu Aug 13 09:21:59 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Fri Aug 14 08:00:54 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 08:00:54 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 08:00:55 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 08:00:55 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 08:20:10 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 08:20:10 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Fri Aug 14 08:20:42 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/favicon.ico, referer: http://test.dev/
+[Fri Aug 14 08:22:50 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 08:22:50 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Fri Aug 14 08:23:46 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites
+[Fri Aug 14 08:23:46 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/sites, referer: http://sites.dev/
+[Fri Aug 14 08:35:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 08:35:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Fri Aug 14 08:35:18 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Fri Aug 14 08:57:08 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/workmanagiment/favicon.ico, referer: http://workmanagiment.dev/
+[Fri Aug 14 09:26:55 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:28:59 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:32:23 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:32:54 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/localhost
+[Fri Aug 14 09:32:54 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/localhost, referer: http://localhost.dev/
+[Fri Aug 14 09:33:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:36:27 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/newtest/favicon.ico, referer: http://newtest.dev/
+[Fri Aug 14 09:37:01 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:37:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:37:58 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:38:39 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:38:41 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:39:23 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:39:25 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 09:59:59 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 09:59:59 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 10:03:20 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 10:03:20 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 10:03:21 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 10:03:21 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 10:20:50 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/test/favicon.ico, referer: http://test.dev/
+[Fri Aug 14 10:21:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 10:21:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Fri Aug 14 10:41:10 2015] [error] [client 127.0.0.1] File does not exist: /Users/zinmon/Sites/anesis/favicon.ico, referer: http://anesis.dev/
+[Fri Aug 14 10:43:35 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 10:45:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 10:56:19 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 11:00:13 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Fri Aug 14 11:00:13 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://crmotion.dev/
+[Fri Aug 14 11:04:16 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 11:04:16 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 11:04:17 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 11:04:17 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 11:19:28 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 11:19:28 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: PHP message: PHP Notice:  Array to string conversion in /Users/zinmon/Sites/anesis/00_Source/library/Zend/Session/Exception.php on line 58, referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: PHP message: PHP Fatal error:  Uncaught exception 'Zend_Db_Adapter_Mysqli_Exception' with message 'Access denied for user 'root'@'localhost' (using password: NO)' in /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Adapter/Mysqli.php:333, referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: Stack trace:, referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #0 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Adapter/Abstract.php(315): Zend_Db_Adapter_Mysqli->_connect(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #1 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Adapter/Mysqli.php(194): Zend_Db_Adapter_Abstract->getConnection(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #2 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Table/Abstract.php(834): Zend_Db_Adapter_Mysqli->describeTable('core_session', NULL), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #3 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Table/Abstract.php(856): Zend_Db_Table_Abstract->_setupMetadata(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #4 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Table/Abstract.php(896): Zend_Db_Table_Abstract->_getCols(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #5 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Session/SaveHandler/DbTable.php(519): Zend_Db_Table_Abstract->_setupPrimaryKey(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:29:56 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #6 /Users/z..., referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:38:27 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Fri Aug 14 11:38:27 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: PHP message: PHP Notice:  Array to string conversion in /Users/zinmon/Sites/anesis/00_Source/library/Zend/Session/Exception.php on line 58, referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: PHP message: PHP Fatal error:  Uncaught exception 'Zend_Db_Adapter_Mysqli_Exception' with message 'Access denied for user 'root'@'localhost' (using password: NO)' in /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Adapter/Mysqli.php:333, referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: Stack trace:, referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #0 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Adapter/Abstract.php(315): Zend_Db_Adapter_Mysqli->_connect(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #1 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Adapter/Mysqli.php(194): Zend_Db_Adapter_Abstract->getConnection(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #2 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Table/Abstract.php(834): Zend_Db_Adapter_Mysqli->describeTable('core_session', NULL), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #3 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Table/Abstract.php(856): Zend_Db_Table_Abstract->_setupMetadata(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #4 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Db/Table/Abstract.php(896): Zend_Db_Table_Abstract->_getCols(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #5 /Users/zinmon/Sites/anesis/00_Source/library/Zend/Session/SaveHandler/DbTable.php(519): Zend_Db_Table_Abstract->_setupPrimaryKey(), referer: http://anesis.dev/00_Source/
+[Fri Aug 14 11:44:52 2015] [error] [client 127.0.0.1] FastCGI: server "/php-fpm" stderr: #6 /Users/z..., referer: http://anesis.dev/00_Source/
+[Mon Aug 17 08:26:20 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Aug 17 08:26:20 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Mon Aug 17 08:26:21 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Aug 17 08:26:21 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Mon Aug 17 08:30:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Mon Aug 17 08:30:08 2015] [error] [client 127.0.0.1] Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace., referer: http://workmanagiment.dev/
+[Tue Aug 18 07:58:57 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Tue Aug 18 07:58:57 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Tue Aug 18 07:58:58 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Tue Aug 18 07:58:58 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Tue Aug 18 19:27:31 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Tue Aug 18 19:27:31 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
+[Tue Aug 18 19:27:32 2015] [warn] RSA server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Tue Aug 18 19:27:32 2015] [warn] RSA server certificate wildcard CommonName (CN) `*.dev' does NOT match server name!?
