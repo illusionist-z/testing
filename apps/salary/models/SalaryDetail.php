@@ -207,13 +207,12 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
 
     public function seacrhsalary($cond) {
         try {
-            //print_r($cond);
             $select = "SELECT * FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
             $conditions = $this->setCondition($cond);
-            
+
             $sql = $select;
             if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(' AND ', $conditions) ." and MONTH(pay_date)='".$cond["mth"]."' and YEAR(pay_date)='".$cond["yr"]."'";
+                $sql .= " WHERE " . implode(' AND ', $conditions);
             }
             //echo $sql;exit;
             $result = $this->db->query($sql);
@@ -226,8 +225,7 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
     }
 
     public function setCondition($cond) {
-        $salary=  explode('~', $cond['salary']);
-        
+
         $conditions = array();
 
         if ($cond['username'] != "") {
@@ -236,15 +234,7 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
         if ($cond['dept'] != "") {
             $conditions[] = "member_dept_name='" . $cond['dept'] . "'";
         }
-        if ($cond['position'] != "") {
-            $conditions[] = "position='" . $cond['position'] . "'";
-        }
-//        if ($cond['mth'] != "") {
-//            $conditions[] = "MONTH('created_dt')='" . $cond['mth'] . "'";
-//        }
-        if ($cond['salary'] != "") {
-            $conditions[] = "basic_salary>='" . $salary[0] . "' and basic_salary<='".$salary[1]."'";
-        }
+
         return $conditions;
     }
 

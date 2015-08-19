@@ -41,17 +41,22 @@ class UserController extends ControllerBase {
         $updatedata['temp_pass']=$this->request->getPost('temp_password');
       
         $timezone=$this->request->getPost('timezone');
-        if($timezone!=0){
+        
+        if($timezone!="0"){
+            
         $arr=(explode(" ",$timezone));
        
         $sessiontz=$arr['1'];
+        
         sscanf($sessiontz, "%d:%d:%d", $hours, $minutes, $seconds);
         $time_seconds = isset($seconds) ? $hours * 3600 + $minutes * 60 + $seconds : $hours * 60 + $minutes;
         $s=($time_seconds*-1);
         $this->session->set('tzoffset', array(
             'offset'=>$s,
             'timezone'=>$arr['2']
-        ));}
+        ));
+       
+        }
         $id=$this->session->user['member_id'];
         if($_FILES["fileToUpload"]["name"]==NULL){
             

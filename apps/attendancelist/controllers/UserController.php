@@ -28,9 +28,10 @@ class UserController extends ControllerBase
         if(isset($this->session->tzoffset)){
            $offset= $this->session->tzoffset['offset'];
            $timezone=$this->session->tzoffset['timezone'];
+           $this->view->timezone=$timezone;
         }else{
         $offset= $this->session->location['offset'];
-        $timezone=$this->session->location['timezone'];
+        
         }
       
         $month = $this->request->get('month');
@@ -39,7 +40,11 @@ class UserController extends ControllerBase
         $ResultAttlist = $AttList->getattlist($id,$month);                      
          $this->view->attlist = $ResultAttlist;
          $this->view->offset=$offset;
-         $this->view->timezone=$timezone;       
-    }      
+         
+       
+    }
+    
+   
+
 }
 

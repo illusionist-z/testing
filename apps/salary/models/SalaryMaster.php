@@ -121,7 +121,7 @@ class SalaryMaster extends Model {
                         $newsalary_rate = $SM['basic_salary'] * $date_diff;
                         $countsalarydetail = $this->getCountSalarydetail($budget_startyear, $budget_endyear, $value['member_id']);
                         $old_payamount = $countsalarydetail['pay_amount'];
-                        $date_diff+=$countsalarydetail['COUNT'];
+
                         $salary_yr = $newsalary_rate + $old_payamount;
                         echo "AA".$newsalary_rate.'/////';
                     }
@@ -464,11 +464,6 @@ in (select member_id from salary_master) group by ATT .member_id";
         }
         return $row;
     }
-    /**
-     * @author David
-     * @return $res[]?true :false
-     * Salary Edit action
-     */
     public function btnedit($data){
      $res =array();         
      $res['baseerr']    = filter_var($data['basesalary'],FILTER_VALIDATE_REGEXP,                

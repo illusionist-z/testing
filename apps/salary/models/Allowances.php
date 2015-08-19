@@ -7,7 +7,7 @@ use Phalcon\Mvc\Model;
 class Allowances extends Model {
 
     public function initialize() {
-        //parent::initialize();
+        parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
     
@@ -27,8 +27,7 @@ class Allowances extends Model {
      //echo $all_name['"'.$x.'"'];echo $all_value['"'.$x.'"'];
     $this->db->query("INSERT INTO allowances (allowance_id,allowance_name,allowance_amount,created_dt) VALUES (uuid(),'" . $all_name['"'.$x.'"'] . "','" . $all_value['"'.$x.'"'] . "','" . $created_date . "')");
     }
-      echo '<script type="text/javascript">alert("Allowances are Added Successfully! ")</script>';
-     echo "<script type='text/javascript'>window.location.href='../../salary/index/allowance';</script>";
+      
      
     }
     

@@ -65,13 +65,8 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
     $arr=(explode(",",$role));
        $pass=sha1($password);
        $today=date("Y-m-d H:i:s");
-    if($username==NULL OR $password==NULL OR $dept==NULL OR $position==NULL OR $email==NULL OR $phno==NULL OR $address==NULL ){
-      
-    echo '<script type="text/javascript">alert("Please,Insert All Data! ")</script>';
-     echo "<script type='text/javascript'>window.location.href='../../manageuser/user/adduser';</script>";
-        
-    }
-    else {
+    
+    
             //uploading file
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -85,10 +80,9 @@ public function addnewuser($username,$password, $dept, $position,$email, $phno,$
          . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "')");
       
        }
-    echo '<script type="text/javascript">alert("New User is Added Successfully! ")</script>';
-     echo "<script type='text/javascript'>window.location.href='../../manageuser/user/adduser';</script>";
+
      
-        }
+        
         
         
     }

@@ -55,10 +55,14 @@ var monthlylist = function (link){
                  localcin   = hours+':'+minutes+':'+seconds;
                 //for late 
                office_stime= "08:00:00";
+               
                p = json_obj[i].att_date + " ";
+               if(p>office_stime){
 //                late = new Date(new Date(p + b) - new Date(p + a)).toUTCString().split(" ")[4];
-                  late=new Date(new Date(p + localcin) - new Date(p + office_stime)).toUTCString().split(" ")[4];
-
+                  late=new Date(new Date(p + localcin) - new Date(p + office_stime)).toUTCString().split(" ")[4];}
+              else{
+                  late="00:00:00 Hours";
+              }
                 //for check out time
                 checkout = json_obj[i].checkout_time.split(" ");
                  out = checkout[1];
