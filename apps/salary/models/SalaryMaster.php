@@ -2,7 +2,6 @@
 
 namespace workManagiment\Salary\Models;
 
-
 use Phalcon\Mvc\Model;
 //use workManagiment\Salary\Models\SalaryMaster as sa;
 use Phalcon\Mvc\Model\Query;
@@ -13,7 +12,6 @@ class SalaryMaster extends Model {
     public function initialize() {
         //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
-       
     }
 
     /**
@@ -47,17 +45,15 @@ class SalaryMaster extends Model {
      * @param type $dedution
      * @return type
      */
-    public function savesalarydedution($dedution, $member_id,$creator_id) {
+    public function savesalarydedution($dedution, $member_id, $creator_id) {
         try {
-            
+
             for ($i = 0; $i < count($dedution); $i++) {
-                
-                $sql = "INSERT INTO workManagiment\Salary\Models\CoreMemberTaxDeduce (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag) 
-                        VALUES('" . $dedution[$i] . "','" . $member_id . "', '".$creator_id."',NOW(),0,'00:00:00',0)";
+
+                $sql = "INSERT INTO workManagiment\Salary\Models\CoreMemberTaxDeduce (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag)
+                        VALUES('" . $dedution[$i] . "','" . $member_id . "', '" . $creator_id . "',NOW(),0,'00:00:00',0)";
                 $result = $this->modelsManager->executeQuery($sql);
-                
             }
-            
         } catch (Exception $e) {
             echo $e;
         }
@@ -71,7 +67,7 @@ class SalaryMaster extends Model {
      */
     public function getbasicsalary() {
         try {
-            $sql = "select basic_salary,member_id,date(created_dt)as comp_start_date from salary_master where delete_flag=0";
+            $sql = "select basic_salary,member_id,date(created_dt)as comp_start_date from salary_master where deleted_flag=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetchall();
@@ -94,28 +90,30 @@ class SalaryMaster extends Model {
             $now = new \DateTime('now');
             $budget_startyear = $now->format('Y') . '-04';
             $endyear = $now->format('Y') . '-03';
-            $budget_endyear = date("Y-m-d", strtotime("+1 year", strtotime($endyear)));
+            $budget_endyear = date("Y-m", strtotime("+1 year", strtotime($endyear)));
 
             foreach ($param as $value) {
-                $comp_start_date = $value['comp_start_date'];
+                //$comp_start_date = $value['comp_start_date'];
+                $comp_start_date = '2015-08';
+                $SM = $this->getLatestsalary($value['member_id']);
+                $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value['member_id'], $budget_startyear, $budget_endyear);
                 
-                if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear) {
+                //echo $value['member_id'] . '<br>';
+                if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear && empty($SD)) {
                     $date_diff = $this->date_difference($comp_start_date, $budget_endyear);
 
                     $salary_yr = $value['basic_salary'] * $date_diff;
-                    
+                    //echo "NEW" . $date_diff . '<br><br>';
                 }
                 //Restart from start date
-                if (date("Y-m") == $budget_startyear) {
+                //if (date("Y-m") == $budget_startyear) {
+                if ($comp_start_date == $budget_startyear) {
                     $get_latest_salary = $this->getLatestsalary($value['member_id']);
                     $salary_yr = $get_latest_salary['basic_salary'] * 12;
                     $date_diff = 12;
-                    
+                    //echo "Next year";
                 }
-                //echo $value['member_id'] . '<br>';
-                $SM = $this->getLatestsalary($value['member_id']);
 
-                $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value['member_id'], $budget_startyear, $budget_endyear);
 
                 //Check the wherether  the member is got salary or new member
                 $checkmember = $this->checkmember_id($value['member_id']);
@@ -129,7 +127,7 @@ class SalaryMaster extends Model {
                         $old_payamount = $countsalarydetail['pay_amount'];
                         $date_diff+=$countsalarydetail['COUNT'];
                         $salary_yr = $newsalary_rate + $old_payamount;
-                        
+                        //echo "EQUAl".$date_diff."<br><br>";
                     }
                 }
 
@@ -149,7 +147,6 @@ class SalaryMaster extends Model {
                     $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
                     //print_r($check_salary_detail);
                     $final_result[] = array('income_tax' => $check_salary_detail['income_tax'], 'member_id' => $check_salary_detail['member_id']);
-                    
                 } else {
                     //$salary_yr = $value['basic_salary'] * 12;
                     //get 20% for the whole year
@@ -169,7 +166,7 @@ class SalaryMaster extends Model {
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
                     //taxable income (total_basic-total deduce)
                     $income_tax = $salary_yr - $total_deduce;
-                    
+
                     //echo "Member id " . $value['member_id'] . "The latest salary is " . $latest_result . '<br>';
 
                     $taxs = $this->deducerate($income_tax, $date_diff);
@@ -194,8 +191,8 @@ class SalaryMaster extends Model {
     public function getLatestsalary($member_id) {
         try {
 
-            $sql = "select * from salary_master where member_id='" . $member_id . "'";
-            echo $sql . '<br>';
+            $sql = "select * from salary_master where member_id='" . $member_id . "' and deleted_flag=0";
+
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {
@@ -215,7 +212,8 @@ class SalaryMaster extends Model {
         $datetime2 = date_create($budget_endyear);
         $interval = date_diff($datetime1, $datetime2);
         $diff_date = $interval->format('%m');
-        $salary_year = $diff_date + '1';
+        
+        $salary_year = $diff_date + '2';
         return $salary_year;
     }
 
@@ -227,7 +225,7 @@ class SalaryMaster extends Model {
         try {
 
             $sql = "select * from salary_detail where member_id='" . $member_id . "' order by created_dt DESC";
-            echo $sql . '<br>';
+
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {
@@ -263,11 +261,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $sql = "select * from " . $tbl . " where member_id='" . $member_id . "'and DATE(created_dt)<'" . $budget_startyear . "' order by created_dt desc limit 1";
             } else {
                 $sql = "select * from " . $tbl . " where member_id='" . $member_id . "'and DATE(created_dt)>='" . $budget_startyear . "' and DATE(created_dt)<='" . $budget_endyear . "' order by created_dt desc limit 1";
-                //echo $sql.'<br>';
+                
             }
+            
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
-            //print_r($row);//exit;
+           
         } catch (Exception $e) {
             echo $e;
         }
@@ -340,7 +339,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         try {
             $sql = "select * from taxs where taxs_from<" . $income_tax . " and taxs_rate !=0";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
-            //echo $sql.'<br>';//exit;
+            
             $result = $this->db->query($sql);
             $rows = $result->fetchall();
             //print_r($rows);
@@ -383,7 +382,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     if ($income_tax > 30000000) {
                         $first_result = ($income_tax - 30000000) * ($taxs_rate[1] / 100);
                     }
-                    //echo 'Final '.$first_result."<br>"; 
+                    //echo 'Final '.$first_result."<br>";
                 } else {
                     $second_result+=$taxs_rate[0] * ($taxs_rate[1] / 100);
                 }
@@ -430,14 +429,14 @@ in (select member_id from salary_master) group by ATT .member_id";
      */
     public function sscforCompandEmp() {
         try {
-            $sql = "select member_id, 
+            $sql = "select member_id,
     (
-    CASE 
+    CASE
         WHEN basic_salary > '300000' THEN ('300000'*ssc_emp/100)
         WHEN basic_salary <= '300000' THEN (basic_salary *ssc_emp/100)
         END) AS ssc_emp,
      (
-    CASE 
+    CASE
         WHEN basic_salary > '300000' THEN ('300000'*ssc_comp/100)
         WHEN basic_salary <= '300000' THEN (basic_salary *ssc_comp/100)
         END) AS ssc_comp
@@ -452,7 +451,7 @@ in (select member_id from salary_master) group by ATT .member_id";
     }
 
     /**
-     * 
+     *
      * @param type $member_id
      */
     public function editsalary($member_id) {
