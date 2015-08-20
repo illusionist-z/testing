@@ -46,6 +46,7 @@ class IndexController extends ControllerBase {
 
     /**
      * Show salary list for monthly detail
+     * @author zinmon
      */
     public function show_salarylistAction() {
         $month = $this->request->get('month');

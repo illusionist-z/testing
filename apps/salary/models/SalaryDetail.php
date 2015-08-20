@@ -15,6 +15,7 @@ class SalaryDetail extends Model {
     /**
      * Get salary list for every month
      * @return type
+     * @author zinmon
      */
     public function geteachmonthsalary() {
 
@@ -38,8 +39,8 @@ class SalaryDetail extends Model {
             $month = $now->format('m');
             $year = $now->format('Y');
             
-            $sql = "select pay_date,member_id from salary_detail";
-            
+            //$sql = "select pay_date,member_id from salary_detail";
+            $sql = "select created_dt,member_id from core_member";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
             //exit;

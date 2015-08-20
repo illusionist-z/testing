@@ -16,8 +16,8 @@
             <div class="search_box">
             <form name="search_frm" id="search_frm">
                 <div id="Menu" >
-                    <input type="hidden" name="cond[mth]" value="<?php echo $month;?>">
-                    <input type="hidden" name="cond[yr]" value="<?php echo $year;?>">
+                    <input type="hidden" name="cond[mth]" value="<?php echo $month;?>" id="month">
+                    <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
                     <div id="M_1">User Name: 
                         <span>
                             <select class="select" data-toggle="select" name="cond[username]">
@@ -33,7 +33,7 @@
                             </select>
                         </span>
                     </div>
-                    <div id="M_4">
+                    <div id="M_2">
                         Dept: 
                         <span>
                             <select class="select" data-toggle="select" name="cond[dept]">
@@ -61,7 +61,7 @@
                                 ?>
                             </select>
                     </div>
-                    <div id="M_2">
+                    <div id="M_4">
                          salary:
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>

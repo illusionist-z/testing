@@ -19,14 +19,15 @@ class SalaryMasterController extends ControllerBase
     }
 
     /**
-     * Save salary,tax deduce and allowance to salary master
+     * Save salary,tax deduce and allowance to salary master using sanitize
+     * @author zinmon
      */
     public function savesalaryAction() {
         $dedution = $this->request->get('check_list');
         $allowance = $this->request->get('check_allow');
         $res = array();
         $data['id'] = uniqid();
-        $data['member_id'] = $this->request->get('uname', 'alphanum');
+        $data['member_id'] = $this->request->get('uname', 'string');
         $data['position'] = $this->request->get('position', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
         $data['travel_fee'] = $this->request->get('travelfee', 'int');
