@@ -123,6 +123,7 @@ class IndexController extends ControllerBase {
                 
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add);
+        $this->flashSession->success("$status");
         $this->response->redirect('dashboard/index/direct');
        
         
@@ -140,7 +141,7 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckouttime($id);
-        
+          $this->flashSession->success("$status");
           $this->response->redirect('dashboard/index/direct');
        
 

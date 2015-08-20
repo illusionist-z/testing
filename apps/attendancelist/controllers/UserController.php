@@ -36,6 +36,7 @@ class UserController extends ControllerBase
         }
       
         $month = $this->request->get('month');
+       
         $id= $this->session->user['member_id'];
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->getattlist($id,$month);                      

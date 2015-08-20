@@ -9,7 +9,7 @@ class UserController extends ControllerBase {
         parent::initialize();
         //$this->assets->addJs('common/js/btn.js');
         $this->setCommonJsAndCss();
-        $this->assets->addJs('apps/setting/js/index.js');
+        $this->assets->addJs('apps/setting/js/user-changeprofile.js');
 
     }
 

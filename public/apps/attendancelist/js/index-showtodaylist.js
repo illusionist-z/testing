@@ -13,68 +13,26 @@ var pager = new Paging.Pager();   //for pagination
  * show today list by return json array
  * @author David
  */
-var todaylist = function (){    
-        var url;        
+var todaylist = function (link,n){
+    
+        var url;
+        if(1 == n){
         var name = document.getElementById('namelist').value;
-        url = baseUri + 'attendancelist/index/todaylist?namelist='+name;        
+        url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+            }
+        else{
+        url = baseUri + 'attendancelist/index/'+link;
+        }
         $.ajax({
         url: url ,
         type: 'GET',
-        success: function (d) {               
-            //paginatior function
-            pager.perpage =3;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);    
-            $('body').html(d);
-        },
-        error: function () {
-            alert('error');
-        }       
-    });                 
-};
-$(document).ready(function () {       
-      $("tfoot").html($('tbody').html()); //for csv
-       //paging function      
-       pager.perpage =3;            
-       pager.para = $('tbody > tr');
-       pager.showPage(1);        
-      
-    
-    // ユーザーのクリックした時の動作。       
-    
-    $('#search').click(function () {
-        search();
-    });       
-    
-    $('#sub').click(function () {
-        sub();
-    });
-    
-    $('#namesearch').click(function () {        
-        todaylist();
-    });           
-});
-
-var search = function () {
-    var month = document.getElementById('month').value;
-    window.location.href = baseUri + 'attendancelist/user/attendancelist?month=' + month;
-};
-
-var sub = function () {
-    var month = document.getElementById('month').value;
-    var username = document.getElementById('username').value;
-    var year = document.getElementById('year').value;
-    // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
-    $.ajax({
-        url: baseUri + 'attendancelist/search/attsearch?month='+ month+'&username='+username+'&year='+year,
-        type: 'GET',
-        success: function (d) {                       
+        success: function (d) {   
             var json_obj = $.parseJSON(d);//parse JSON            
-           $('tbody').empty();
-           $('tfoot').empty();
+            $('tbody').empty();
             for (var i in json_obj)
             {   
-                a = "08:00:00";
+               
+                 a = "08:00:00";
                 //b=json_obj[i].checkin_time;
                  n = new Date();
                  offset = n.getTimezoneOffset();
@@ -161,20 +119,36 @@ var sub = function () {
                         + "<td>" + localcin+ "</td>"
                         + "<td>" + late + "</td>"
                         + "<td>" + localcout + "</td>"
-                        + "<td>" + workinghour + " </td>"
-                        + "<td>" +overtime+ "  </td>"
+                        + "<td>" + workinghour + "</td>"
+                        + "<td>" +overtime+ "</td>"
                         + "<td>" + ll+ "</td>"
                         + "</tr>"
-                $("tbody").append(output);  
-                $("tfoot").append(output);
+                $("tbody").append(output);                
             }
             //paginatior function
             pager.perpage =3;            
             pager.para = $('tbody > tr');
-            pager.showPage(1);               
+            pager.showPage(1);   
+            //pager.showNavi(1);
         },
         error: function (d) {
             alert('error');
         }       
     });                 
 };
+$(document).ready(function () { 
+
+    // ユーザーのクリックした時の動作。    
+
+   
+    //monthlylist
+   
+   if($('section').is('#showtodaylist')){
+       todaylist($('.content-header').attr('id'),0);
+   }
+    $('#namesearch').click(function () {        
+        todaylist($('.content-header').attr('id'),1);
+    });           
+});
+
+

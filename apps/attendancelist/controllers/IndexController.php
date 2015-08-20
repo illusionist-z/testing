@@ -8,6 +8,12 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
+        $this->setCommonJsAndCss();
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('apps/attendancelist/js/index-showtodaylist.js');    
+        $this->assets->addJs('apps/attendancelist/js/index-monthlylist.js');
+        $this->assets->addCss('common/css/pagination.css');        
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/export.js');
