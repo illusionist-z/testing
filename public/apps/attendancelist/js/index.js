@@ -113,8 +113,8 @@ var monthlylist = function (link){
                         + "<td>" + localcin+ "</td>"
                         + "<td>" + late + "</td>"
                         + "<td>" + localcout + "</td>"
-                        + "<td>" + workinghour + " Hours </td>"
-                        + "<td>" +overtime+ " Hours </td>"
+                        + "<td>" + workinghour + "</td>"
+                        + "<td>" +overtime+ "</td>"
                         + "<td>" + ll+ "</td>"
                         + "</tr>"
                 $("tbody").append(output);                
@@ -240,8 +240,8 @@ var todaylist = function (link,n){
                         + "<td>" + localcin+ "</td>"
                         + "<td>" + late + "</td>"
                         + "<td>" + localcout + "</td>"
-                        + "<td>" + workinghour + " Hours </td>"
-                        + "<td>" +overtime+ " Hours </td>"
+                        + "<td>" + workinghour + "</td>"
+                        + "<td>" +overtime+ "</td>"
                         + "<td>" + ll+ "</td>"
                         + "</tr>"
                 $("tbody").append(output);                
@@ -385,8 +385,8 @@ var sub = function () {
                         + "<td>" + localcin+ "</td>"
                         + "<td>" + late + "</td>"
                         + "<td>" + localcout + "</td>"
-                        + "<td>" + workinghour + " Hours </td>"
-                        + "<td>" +overtime+ " Hours </td>"
+                        + "<td>" + workinghour + "</td>"
+                        + "<td>" +overtime+ "</td>"
                         + "<td>" + ll+ "</td>"
                         + "</tr>"
                 $("tbody").append(output);                

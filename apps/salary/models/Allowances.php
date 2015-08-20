@@ -3,11 +3,13 @@
 namespace workManagiment\Salary\Models;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Query;
+
 
 class Allowances extends Model {
 
     public function initialize() {
-        parent::initialize();
+       
         $this->db = $this->getDI()->getShared("db");
     }
     
@@ -102,7 +104,13 @@ class Allowances extends Model {
         return $row;
     }
     
-    
+    /**
+     * 
+     * @param type $allowance
+     * @param type $member_id
+     * @return type
+     * @author zin mon
+     */
     public function saveallowance($allowance,$member_id) {
         try {
             
@@ -129,5 +137,8 @@ class Allowances extends Model {
         return $row;
     }
     
+   
+    
 
 }
+

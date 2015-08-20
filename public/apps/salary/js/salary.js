@@ -119,7 +119,8 @@ $(document).ready(function () {
 });
 var salarysearch = function () {
     var $form = $('#search_frm').serialize();
-   
+    var year=document.getElementById('year').value;
+    var month=document.getElementById('month').value;
     //window.location.href = baseUri + 'salary/search?'+$form;
     $.ajax({
         url: baseUri + 'salary/search?' + $form,
@@ -141,7 +142,7 @@ var salarysearch = function () {
                         + "<td>" + json_obj[i].ssc_comp + "</td>"
                         + "<td>" + json_obj[i].ssc_emp + "</td>"
                         + "<td>" + json_obj[i].total + "</td>"
-                        + "<td><input type='submit' value='Print'></td>"
+                        + '<td><a href="payslip?member_id='+json_obj[i].member_id+' && month='+month+' && year='+year+'" class="button">Print</a></td>'
                         + "</tr>"
                         
                 $("tbody").append(output);

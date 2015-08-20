@@ -28,15 +28,15 @@ class CalculateController extends ControllerBase
      $Salarydetail=new SalaryDetail();
      $Salarymaster=new SalaryMaster();
      $getbasic_salary=$Salarymaster->getbasicsalary();
-     //print_r($getbasic_salary);echo "<br><br>";
+     //print_r($getbasic_salary);exit;
      //calculate overtime by attendances and salary master
      $overtime=$Salarymaster->calculate_overtime();
      
-    $getcomp_startdate=$Salarydetail->getComp_startdate();
-   
+     $getcomp_startdate=$Salarydetail->getComp_startdate();
+     
     //calculate the basic salary
     $tax=$Salarymaster->calculate_tax_salary($getbasic_salary);
-    
+    //print_r($tax);exit;
     //insert taxs of all staff to salary detail
     $Salarydetail->insert_taxs($tax);
     

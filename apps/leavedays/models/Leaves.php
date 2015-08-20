@@ -100,10 +100,9 @@ class Leaves extends \Library\Core\BaseModel {
                 //check before a week
                 if ($sdate >= $checkday && $edate >= $checkday) {
                     //check $edate greater than $sdate
-                    if (strtotime($sdate) < strtotime($edate)) {
-                      
+                    if (strtotime($sdate) <= strtotime($edate)) {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
-                        $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "')");
+                        $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays,leave_status,creator_id,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "',0,'".$this->session->user['member_id']."',now())");
                         $err="Your Leave Applied Successfully!";
                     } else {
                         $err="End date must be greater than Start date";
