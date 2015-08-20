@@ -10,7 +10,7 @@
 <?php
 if(isset($Msg))
 {
-    echo "<script>alert($Msg);</script>";
+    echo "<script>alert('".$Msg."');</script>";
 }
 ?>
 <!-- Main content -->
@@ -20,7 +20,7 @@ if(isset($Msg))
             <div id="form_div">
                 <div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add salary</font></div>
                 <div class="left_div_style_box">
-                    <form action="../salarymaster/savesalary" method="post">
+                    <form id="adding_salary_form">
                     <div class="div_bottom">
                         <span class="span_style">UserName :</span>
                         <span>
@@ -38,6 +38,7 @@ if(isset($Msg))
                                 ?>
                             </select>
                         </span>
+                        <span id="user-error"></span>
                     </div>
                         
                     <div class="div_bottom">
@@ -56,21 +57,24 @@ if(isset($Msg))
                                        
                             </select>
                         </span>
+                        <span id="position-error"></span>
                     </div>
                     <div class="div_bottom">
                         <span class="span_style">Basic Salary :</span>
                         <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:34%; height: 20%;" name="bsalary"></span>
+                        <span id="bsalary-error"></span>
                     </div>
 
                     <div class="div_bottom">
                         <span class="span_style">Travel fees :</span>
                         <span><input type="text" id="travelfee" value="" placeholder="Travel fee" style="width:34%; height: 20%;" name="travelfee"></span>
+                        <span id="travelfee-error"></span>
                     </div>
 
                     <div class="div_bottom">
                         <span class="span_style">Overtime (per hr) :</span>
                         <span><input type="text" id="overtime" value="" style="width:5%;" name="overtime"></span>
-                        <span>%</span>
+                        <span id="overtime-error">%</span>
                     </div>
                         
                     <div class="div_bottom">
@@ -82,7 +86,7 @@ if(isset($Msg))
                             children<input type="checkbox" name="check_list[]" value="children">
                             life_insurance<input type="checkbox" name="check_list[]" value="life_insurance">
                         </span>
-                        
+                        <span id="SSC-error"></span>
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
                         <div style="float: left; width: 8%;">Allowance :</div>
@@ -100,7 +104,7 @@ if(isset($Msg))
                         <span class="span_style"></span>
                         <span>
 <!--                            <a href="#" class="button">Apply</a>-->
-                            <input type="submit" value="Apply" class="buttonn">
+                    <input type="submit" value="Apply" class="buttonn" onclick="return false;" id="adding_salary_submit">
                             <a href="#" class="button">Cancel</a>
                         </span>
                     </div>

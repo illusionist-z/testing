@@ -26,7 +26,7 @@ class SalaryMaster extends Model {
 //            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time,created_dt) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "',NOW())";
 //            $result = $this->db->query($sql);
             $SalaryMaster = new SalaryMaster();
-            $SalaryMaster->save($data);
+            $result=$SalaryMaster->save($data);
 //            if ($SalaryMaster->save($data) == false) {
 //                echo "Umh, We can't store robots right now ";
 //                foreach ($SalaryMaster->getMessages() as $message) {
@@ -37,8 +37,7 @@ class SalaryMaster extends Model {
 //            }
         } catch (Exception $e) {
             echo $e;
-        }
-
+        }        
         return $result;
     }
 

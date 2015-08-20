@@ -104,7 +104,7 @@ var Salary = {
         });
     }
 };
-$(document).ready(function () {
+$(document).ready(function () {       
      $("tfoot").html($('tbody').html());  //for csv
        //paging function
        pager.perpage =3;            
@@ -114,12 +114,15 @@ $(document).ready(function () {
         salarysearch();
 
     });
-    $(".displaypopup").click(function () {
+    $("tbody").on('click',('.displaypopup'),function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
     $(".print").click(function () {
         window.print();
+    });
+    $("#adding_salary_submit").click(function(){
+       SalaryAdd();
     });
 });
 var salarysearch = function () {
@@ -167,4 +170,56 @@ var salarysearch = function () {
             alert('error');
         }
     });
+};
+function SalaryAdd(){
+    this.uname = $("#uname").val()==="" ? false:true;
+    this.position = $("#position").val()==="" ? false:true;
+    this.basicsalary = $("#bsalary").val()==="" ? false:true;
+    this.checkbox = $('input[name="check_list[]"]:checked').length < 1 ? false:true ;
+    this.transfer_fee = $("#travelfee").val()===""? false:true;
+    this.overtime = $("#overtime").val()===""? false:true;
+    
+    $("#user-error").empty(),$("#position-error").empty(),$("#bsalary-error").empty(),$("#SSC-error").empty(),$("#travelfee-error").empty(),$("#overtime-error").empty();
+    
+    if(false===this.uname || false===this.position || false===this.basicsalary || false===this.checkbox || false === this.transfer_fee || false === this.overtime){
+        
+        if(false===this.uname) {$("#uname").css({border:"1px solid red",color:"red"});
+                                $("#user-error").prepend("<span style='color:red;'>*Name must be Select</span>");
+                                repair('#uname');                                
+                               }
+                               
+        if(false===this.position) {$("#position").css({border:"1px solid red",color:"red"});
+                                    $("#position-error").prepend("<span style='color:red;'>*Position must be Select</span>");
+                                    repair('#position');                                    
+                                   }
+                                   
+        if(false===this.basicsalary) {$("#bsalary").css({border:"1px solid red",color:"red"});
+                                       $("#bsalary-error").prepend("<span style='color:red;'>*Basic Salary must be Insert</span>");
+                                       repair('#bsalary');                                       
+                                      }
+                                      
+        if(false===this.transfer_fee) {$("#travelfee").css({border:"1px solid red",color:"red"});
+                                       $("#travelfee-error").prepend("<span style='color:red;'>*Travel Fee must be Insert</span>");
+                                       repair('#travelfee');                                       
+                                      }
+                                      
+        if(false===this.overtime) {$("#overtime").css({border:"1px solid red",color:"red"});
+                                       $("#overtime-error").prepend("<span style='color:red;'>*Overtime Fee must be Insert</span>");
+                                       repair('#overtime');                                       
+                                      }
+                                      
+        if(false===this.checkbox) {    $("#SSC-error").prepend("<span style='color:red;'>*At Least one must be checked</span>");                                       
+                                  }
+        }
+    else{
+        $.ajax({
+           type : "POST" ,
+           url  : baseUri +"salary/salarymaster/savesalary",
+           data : $('#adding_salary_form').serialize(),
+           success : function(d){
+               window.history.pushState("","","salarylist");
+               $('body').html(d);
+           }
+        });
+    }
 }

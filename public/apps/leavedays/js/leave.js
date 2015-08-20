@@ -8,7 +8,22 @@
  * @get @lat @lng
  */
 var pager = new Paging.Pager();
-
+/*
+*search list leave
+*@author David
+*/
+var searchleavelist=function(){     
+        var month = document.getElementById('month').value; 
+        var ltype = document.getElementById('ltype').value;      
+         $.ajax({
+             type:"GET",
+             url :baseUri + 'leavedays/user/leavelist?month='+month+'&ltype='+ltype,
+             success:function(val){                 
+                  $('body').html(val);
+             }
+         });
+    };
+    
 $(document).ready(function () {
     var userUri = baseUri + 'leavedays/';       
     $("tfoot").html($('tbody').html()); //for csv
@@ -16,8 +31,11 @@ $(document).ready(function () {
        pager.perpage =3;            
        pager.para = $('tbody > tr');
        pager.showPage(1);        
-    $('#frm_search').submit(function () {
+    $('#frm_search').submit(function () {        
         search();
+    });
+      $('#usersearch').click(function(){        
+        searchleavelist();
     });
 });
 
@@ -27,11 +45,12 @@ function search()
     var leave_type = document.getElementById('ltype').value;
     var month = document.getElementById('month').value;
     var namelist = document.getElementById('namelist').value;
+    
     /**
      * @version 18/8/15 David 
      * @desc    Get LeaveList by name
      */
-
+    
     $.ajax({
         url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
         type: 'GET',

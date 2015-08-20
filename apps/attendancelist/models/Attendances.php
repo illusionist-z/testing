@@ -59,36 +59,15 @@ class Attendances extends Model {
         $currentmth = date('m');
         //for search method
         if (isset($month)) {
-            $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
-                    ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
-                    ->getQuery()
-                    ->execute();
+            $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$month."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
         }
         //showing data with current month 
         else {
-            $row = $this->modelsManager->createBuilder()
-                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
-                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
-                    ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $currentmth . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
-                    ->getQuery()
-                    ->execute();
+            $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$currentmth."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
         }
         //paging
-        $currentPage = (int) $_GET["page"];
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 1,
-            "page" => $currentPage
-                )
-        );                
-        $list = $paginator->getPaginate();
+       $result = $this->db->query($row);
+       $list   = $result->fetchall();
         return $list;
     }
 

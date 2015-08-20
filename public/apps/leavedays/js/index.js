@@ -16,18 +16,9 @@ $(document).ready(function(){
  
     // ここに実際の処理を記述します。
   
-    $('#usersearch').click(function(){
-       
-        search();
-    });
+  
     
      
 });
 
- var search=function(){
-     
-       var month = document.getElementById('month').value; 
-        var ltype = document.getElementById('ltype').value;  
-    
-         window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'?ltype='+ltype;
-    };
+ 

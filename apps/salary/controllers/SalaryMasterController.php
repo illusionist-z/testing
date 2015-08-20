@@ -24,7 +24,7 @@ class SalaryMasterController extends ControllerBase
     public function savesalaryAction() {
         $dedution = $this->request->get('check_list');
         $allowance = $this->request->get('check_allow');
-
+        $res = array();
         $data['id'] = uniqid();
         $data['member_id'] = $this->request->get('uname', 'alphanum');
         $data['position'] = $this->request->get('position', 'string');
@@ -38,9 +38,7 @@ class SalaryMasterController extends ControllerBase
         $data['created_dt'] = date("Y-m-d H:i:s");
         $data['updater_id'] = 3;
         $data['updated_dt'] = '00:00:00';
-        $data['deleted_flag'] = 0;
-
-        //print_r($data);exit;
+        $data['deleted_flag'] = 0;                                
         $Salarymaster = new SalaryMaster();
         $Salarymaster->savesalarydedution($dedution, $data['member_id'], $data['creator_id']);
         $result = $Salarymaster->savesalary($data);
@@ -48,7 +46,7 @@ class SalaryMasterController extends ControllerBase
         $Allowance = new Allowances();
         $saveallowance = $Allowance->saveallowance($allowance, $this->request->get('uname'));
 
-        $this->response->redirect('salary/index/salarylist');
+        $this->response->redirect('salary/index/salarylist');       
     }
 }
 

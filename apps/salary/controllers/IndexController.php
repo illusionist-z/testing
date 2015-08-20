@@ -22,9 +22,9 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/salary/css/salary.css');       
-        //$this->assets->addJs('common/js/popup.js');             //popup message
-        $this->assets->addJs('apps/salary/js/salary.js');        
+        //$this->assets->addJs('common/js/popup.js');             //popup message                
         $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/salary/js/allowance.js');
         $this->assets->addJs('apps/salary/js/salarysetting.js');       
@@ -75,7 +75,8 @@ class IndexController extends ControllerBase {
         //print_r($getall_allowance);exit;
 
         $position = $this->salaryconfig->position;
-
+        $err =$this->request->get('Msg');
+        $this->view->Msg = $err;
         $this->view->setVar("usernames", $user_name);
         $this->view->position = $position;
         $this->view->getall_allowance = $getall_allowance;
@@ -139,10 +140,10 @@ class IndexController extends ControllerBase {
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $Salarydetail = new SalaryMaster();
-        $Salarydetail->btnedit($data);
+        $result=$Salarydetail->btnedit($data);
+        echo json_encode($result);
         $this->view->disable();
     }
-
     /**
      * show allowance list
      * @author Su Zin kyaw
