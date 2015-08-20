@@ -15,7 +15,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/leave.js');
+        $this->assets->addJs('apps/leavedays/js/index_leavelist.js');
         $this->assets->addJs('apps/leavedays/js/leavesetting.js');
         
     }
@@ -58,11 +58,11 @@ class IndexController extends ControllerBase {
         $month = $this->config->month;
         $leave = $this->config->leavetype;        
         $UserList=new Db\CoreMember();
-        $user_name = $UserList::getinstance()->getusername();                   
+        $GetUsername = $UserList::getinstance()->getusername();                   
         $leaves = $this->_leave->getleavelist();               
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
-        $this->view->setVar("Getname", $user_name);
+        $this->view->setVar("Getname", $GetUsername);
         $this->view->setVar("leave_result", $leave);        
 
     }

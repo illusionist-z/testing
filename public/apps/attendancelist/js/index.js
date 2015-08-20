@@ -63,9 +63,11 @@ var monthlylist = function (link){
                   late="00:00:00 Hours";
               }
                 //for check out time
-                checkout = json_obj[i].checkout_time.split(" ");
+                
+                
+                 if(json_obj[i].checkout_time!=="0000-00-00 00:00:00" ){
+                 checkout = json_obj[i].checkout_time.split("");
                  out = checkout[1];
-                 if(out!="00:00:00" ){
                   ds=out.split(":");
                   total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
                   if (sign=='-'){

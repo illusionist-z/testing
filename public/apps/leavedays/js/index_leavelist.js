@@ -12,6 +12,7 @@ $(document).ready(function () {
     var userUri = baseUri + 'leavedays/';
 
     $('#frm_search').submit(function () {
+        
         search();
     });
 });

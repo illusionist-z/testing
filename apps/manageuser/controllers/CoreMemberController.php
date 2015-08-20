@@ -51,7 +51,7 @@ class CorememberController extends ControllerBase {
             $this->flashSession->success("Your information was stored correctly!");
 
             // Make a full HTTP redirection
-            return $this->response->redirect("manageuser/user/adduser");
+            return $this->response->redirect("manageuser/index/adduser");
         }
     }
 
