@@ -18,9 +18,12 @@ class LoginController extends ControllerBase {
 
         $ModelAuth = new Models\Auth();
         $result = $ModelAuth->check($loginParams, $user);
-
+        $permission=$ModelAuth->getpermit($loginParams);
+        $this->session->set('permission_code', $permission);
+        
         $user = array();
         $this->session->set('user', $result);
+        
         if ($result) {
 
             $ModelPermission = new Models\Permission();
@@ -30,7 +33,7 @@ class LoginController extends ControllerBase {
             $Permission = $ModelPermission->get($result, $permissions);
             //print_r($Permission);exit;
             $this->session->set('auth', $Permission);
-            $this->response->redirect('home');
+                        $this->response->redirect('home');
         } else {
             //echo "error";exit;
             $this->response->redirect('auth/index/failer');

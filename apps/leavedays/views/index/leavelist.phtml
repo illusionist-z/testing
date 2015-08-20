@@ -126,14 +126,14 @@ $length = count($Month);
                         };
                                 ?></td>
                             <td><font color="red"><?php
-                    if($item['total_leavedays']>16){
+                    if($item['total_leavedays']>$max){
                             
-                            echo ($item['total_leavedays'])-16;
+                            echo ($item['total_leavedays'])-$max;
                             echo " Days are in absent";
                     }
                     else{
                                 
-                    echo 16-($item['total_leavedays']);}
+                    echo $max-($item['total_leavedays']);}
                         
                                 ?></font></td>
                         </tr>

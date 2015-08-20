@@ -11,7 +11,8 @@ class IndexController extends ControllerBase
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/attendancelist/js/index.js');        
+        $this->assets->addJs('apps/attendancelist/js/index-showtodaylist.js');    
+        $this->assets->addJs('apps/attendancelist/js/index-monthlylist.js');
         $this->assets->addCss('common/css/pagination.css');        
         $this->config = \Module_Config::getModuleConfig('leavedays');
     }
