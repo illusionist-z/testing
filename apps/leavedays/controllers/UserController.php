@@ -15,7 +15,7 @@ class UserController extends ControllerBase {
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/index.js');        
+        $this->assets->addJs('apps/leavedays/js/user-leavelist.js');        
          $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
         
@@ -63,14 +63,15 @@ class UserController extends ControllerBase {
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');             
         $leavelist = $this->_leave->getuserleavelist($leave_type,$mth,$id); 
-      
+        $max=$this->_leave->getleavesetting();
+        $max_leavedays=$max['0']['max_leavedays'];
         $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);      
         $this->view->setVar("leave_result", $leave);
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);
-        $this->view->setVar("Uname", $username);
+        $this->view->setVar("max", $max_leavedays);
     }
   
 }
