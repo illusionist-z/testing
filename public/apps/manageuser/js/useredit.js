@@ -9,10 +9,27 @@ var User = {
     Edit: function (id) {
         $.ajax({
             type: 'GET',
-            url: 'useredit?data=' + id,
-            dataType: 'html',
-            success: function (res) {                
-                User.Dialog(res);     
+            url: 'useredit?data=' + id,            
+            dataType:'json',
+            success: function (res) { 
+                var html = '<form id="edit_user"><table>'
+                    +'<tr><td>User ID :</td>'
+                    +'<td><input type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td>'
+		    +'<td>User Name :</td>'
+                    +'<td><input type="text" value="'+ res.member_login_name +'" name="name" id="edit_user_name"></td></tr>'
+                    +'<tr><td>Department :</td>'
+                    +'<td><input type="text" value="'+ res.member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td>'
+		    +'<td>Position :</td>'
+                    +'<td><input type="text" value="'+ res.job_title +'" name="position" id="edit_user_pos"></td></tr>'
+                    +'<tr><td>Email :</td>'
+                    +'<td><input type="text" value="'+ res.member_mail +'" name="email" id="edit_user_email" ></td><td></td>'
+		    +'<td>Phone no :</td>'
+                    +'<td><input type="text" value="'+ res.member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
+                    +'<tr><td>Address :</td>'
+                    +'<td colspan="4"><textarea rows="5" cols="50" name="address">'+ res.member_address +'</textarea></td></tr>'
+		    +'<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
+                    +'</tr></table></form>';                               
+                User.Dialog(html);     
             }
         });
     },
@@ -24,7 +41,7 @@ var User = {
         $ovl.dialog({
             autoOpen: false,
             height: 370,
-            async:false,            
+            async: false,            
             width: 800,
             modal: true,
             title:"User Edit"
@@ -39,8 +56,7 @@ var User = {
         $('#edit_close').click(function(e){
             e.preventDefault();
             $ovl.dialog("close");
-            this.isOvl=false;
-            $('body').load(window.location.href);
+            this.isOvl=false;            
         });
         // user delete button
         $('#edit_delete').click(function(e){
@@ -56,7 +72,7 @@ var User = {
         $form = $('#edit_user');
         $.ajax({
             type:"GET",
-            url :"userdata_edit?data="+id,            
+            url :"userdata_edit?data="+id,              
             data:$form.serialize(),
             dataType:'json',
             success:function(d){
@@ -130,12 +146,9 @@ var User = {
 };
 $(document).ready(function () {
   
-    $("tbody").on('click','.displaypopup',function () {
-        var id = $(this).attr('id');        
+    $("tbody").on('click','.displaypopup',function () {        
+        var id = $(this).attr('id');  
         User.Edit(id);
-    });        
-     if($('section').is('#showuserlist')){
-        userlist($('.content-header').attr('id'),0);        
-    }
+    });           
 });        
 
