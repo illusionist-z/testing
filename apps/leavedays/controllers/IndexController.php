@@ -58,14 +58,11 @@ class IndexController extends ControllerBase {
         $month = $this->config->month;
         $leave = $this->config->leavetype;        
         $UserList=new Db\CoreMember();
-        $user_name = $UserList::getinstance()->getusername();                   
-        $leaves = $this->_leave->getleavelist(); 
-        $max=$this->_leave->getleavesetting();
-        $max_leavedays=$max['0']['max_leavedays'];
-        
+        $GetUsername = $UserList::getinstance()->getusername();                   
+        $leaves = $this->_leave->getleavelist();               
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
-        $this->view->setVar("Getname", $user_name);
+        $this->view->setVar("Getname", $GetUsername);
         $this->view->setVar("leave_result", $leave);        
         $this->view->setVar("max", $max_leavedays); 
     }
