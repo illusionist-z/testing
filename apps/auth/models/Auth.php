@@ -24,37 +24,28 @@ class Auth extends Component {
       
         $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user = $user->fetchArray();
-       
+        
+        
         return $user;
-//        if ($user == false) {
-//            $this->failedLogin(0);
-//            return false;
-//        }
-//
-//        // Check the password
-//        if (!$this->security->checkHash($loginParams['password'], $user->password)) {
-//            $this->failedLogin($user->member_login_name);
-//            return false;
-//        }
-//
-//        $this->_setUserInfo($user);
-//        return TRUE;
-//        // Check if the user was flagged
-//        $this->checkUserFlags($user);
-//
-//        // Register the successful login
-//        $this->saveSuccessLogin($user);
-//
-//        // Check if the remember me was selected
-//        if (isset($loginParams['remember'])) {
-//            $this->createRememberEnviroment($user);
-//        }
-//
-//        $this->session->set('auth-identity', array(
-//            'id' => $user->id,
-//            'name' => $user->name,
-//            'profile' => $user->profile->name
-//        ));
+
+    }
+    
+     public function getpermit($loginParams) {
+      
+        
+        $name = $loginParams['member_login_name'];
+        $password = $loginParams['password'];
+        $this->db = $this->getDI()->getShared("db");
+      
+        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+        $user = $user->fetchArray();
+        
+        $permission = $this->db->query("SELECT rel_permission_group_code FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
+        $permission_name = $permission->fetchArray();
+        
+        return $permission_name['rel_permission_group_code'];
+        
+
     }
 
     /**

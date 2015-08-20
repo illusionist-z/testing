@@ -28,17 +28,12 @@ class Attendances extends Model {
           Condition : Already Checked in or not
          * */
         if ($att != NULL) {
-                    $status="Aleredy Checked in";
-            
-//                        echo "<script>alert('Already Checked in');</script>";
-//                        echo "<script>window.location.href='direct';</script>"; 
+                    $status=" Already Checked in ";
+
         } else {
-            
- 
            $this->db->query("INSERT INTO attendances (checkin_time,member_id,att_date,lat,lng,location) VALUES ('" . $mydate . "','" . $id . "','" . $today . "','" . $lat . "','" . $lon . "','" . $add . "')");
-           $status="Successfully Checked In";
-//            echo '<script type="text/javascript">alert("Successfully Checked In ")</script>';
-//            echo "<script>window.location.href='direct';</script>"; 
+           $status=" Successfully Checked In";
+
             
         }
         return $status;
@@ -68,10 +63,7 @@ class Attendances extends Model {
                      //check already checkout or not
                      if($outtime!=0)
                      {
-                         $status="Already Checkout";
-//                        echo '<script type="text/javascript">alert("Already Checkout ")</script>';
-//                        echo "<script>window.location.href='index';</script>"; exit;
-//                         
+                         $status=" Already Checkout";
                      }
                      else{
                         $workingHour=strtotime($att->checkin_time)-strtotime($mydate);
@@ -82,20 +74,18 @@ class Attendances extends Model {
                             $ovt=0;
                         }
                       $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."' WHERE att_date='".$today."' AND member_id='".$id."'");
-                      $status="Successfully Checked Out";
+                      $status=" Successfully Checked Out ";
                       return $status;
-//                       echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
-//                      echo "<script>window.location.href='direct';</script>"; 
+
                         
                      }
                 }
                  else{
                     
                     //check in first
-                     $status="Please Check In First";
+                     $status=" Please Check In First ";
                       return $status;
-//                     echo '<script type="text/javascript">alert("Please Check in first ")</script>';
-//                       echo "<script>window.location.href='index';</script>";exit;
+
                 }
             }
             else{
@@ -112,8 +102,7 @@ class Attendances extends Model {
                 $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."'  WHERE checkin_time='".$checkin."'  AND member_id='".$id."'");
                     $status="Successfully Checked Out";
                     return $status;
-//                echo '<script type="text/javascript">alert("Successfully Checked Out! ")</script>';
-//                echo "<script>window.location.href='direct';</script>"; 
+
             }            
          
     }  

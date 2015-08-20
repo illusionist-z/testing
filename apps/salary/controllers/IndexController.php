@@ -25,8 +25,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/salary/js/allowance.js');
-        $this->assets->addJs('apps/salary/js/salarysetting.js');
+        $this->assets->addJs('apps/salary/js/index-allowance.js');
+        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $this->setCommonJsAndCss();
     }
 
@@ -170,7 +170,9 @@ class IndexController extends ControllerBase {
             }
         }
         $all = new \workManagiment\Salary\Models\Allowances();
-        $all->addallowance($all_value, $all_name, $count); //sending data to model with array format
+        $all->addallowance($all_value, $all_name, $count);//sending data to model with array format
+        $this->view->disable();
+
     }
 
     /**

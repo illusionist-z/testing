@@ -131,7 +131,7 @@ var Categories = {
 
             }
         }).done(function(){
-           $('body').load('leavedays');
+           $('body').load('leavesetting');
         });
     }
 

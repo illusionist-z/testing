@@ -84,7 +84,7 @@ class Attendances extends Model {
         $paginator = new PaginatorModel(
                 array(
             "data" => $row,
-            "limit" => 1,
+            "limit" => 5,
             "page" => $currentPage
                 )
         );                

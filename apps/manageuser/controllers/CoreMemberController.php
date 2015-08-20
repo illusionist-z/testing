@@ -48,10 +48,10 @@ class CorememberController extends ControllerBase {
 
             $NewUser = new CoreMember;
             $NewUser->addnewuser($member_id, $username, $password, $dept, $position, $email, $phno, $address, $filename, $role);
-            $this->flashSession->success("Your information was stored correctly!");
+            $this->flashSession->success("New user is added successfully!");
 
             // Make a full HTTP redirection
-            return $this->response->redirect("manageuser/user/adduser");
+            return $this->response->redirect("manageuser/index/adduser");
         }
     }
 
