@@ -273,7 +273,6 @@ $(document).ready(function () {
         monthlylist($('.content-header').attr('id'));        
     }
    if($('section').is('#showtodaylist')){
-       alert("AAA");
        todaylist($('.content-header').attr('id'),0);
    }
     $('#namesearch').click(function () {        
