@@ -41,16 +41,16 @@ class Leaves extends \Library\Core\BaseModel {
      * @param type $month
      * @param type $namelist
      * @return type
+     * @author zinmon
      */
     public function search($ltype, $month, $namelist) {
         $this->db = $this->getDI()->getShared("db");
 
-
-        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
+        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status,total_leavedays,max_leavedays FROM leaves_setting, leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
         $conditions = array();
 
         if ($ltype != "") {
-            $conditions[] = "leaves.leave_category='" . $year . "'";
+            $conditions[] = "leaves.leave_category='" . $ltype . "'";
         }
         if ($month != "") {
             $conditions[] = "MONTH(leaves.start_date) like " . $month;

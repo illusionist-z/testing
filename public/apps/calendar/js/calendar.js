@@ -179,7 +179,7 @@ $(document).ready(function () {
             week: 'week',
             day: 'day'
         },
-        events: JSON.parse(json_events),
+        events: json_events,
         //Random default events
         selectable: true,
         resizable: true,
