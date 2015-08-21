@@ -1,7 +1,6 @@
 <?php
 
 namespace workManagiment\Manageuser\Controllers;
-use Phalcon\Validation\Validator\Email as EmailValidator;
 use workManagiment\Manageuser\Models\User as User;
 use workManagiment\Core\Models\Db;
 
@@ -15,9 +14,9 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');  
-        $this->assets->addJs('common/js/paging.js');               
-        $this->assets->addJs("apps/manageuser/js/useredit.js");
+        $this->assets->addJs('common/js/paging.js');                       
         $this->assets->addJs('apps/manageuser/js/search.js'); 
+        $this->assets->addJs("apps/manageuser/js/useredit.js");
     }
     /**
      * @author David
@@ -31,14 +30,8 @@ class IndexController extends ControllerBase
         $list = $this->user->userlist($username);
         $this->view->setVar('username', $getname);
         $this->view->setVar('Result', $list);        
-    }
-    
-     public function showuserlistAction() {        
-        $username = $this->request->get('username');
-        $list = $this->user->userlist($username);        
-        echo json_encode($list);
-        $this->view->disable();
-    }
+    }    
+   
     /**
      * @get data for user id
      * @return user data to dialog box

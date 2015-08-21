@@ -8,17 +8,16 @@
  * @get @lat @lng
  */
 
-       
-$(document).ready(function(){        
+
+$(document).ready(function(){    
+    var Search = new Leave.Search();
+    var userUri = baseUri + 'leavedays/';
     
-     
-    //set slide menu
- 
-    // ここに実際の処理を記述します。
-  
-  
+    $('#search').click(function () {        
+        this.Search;
+    });
     
-     
+  
 });
 
  

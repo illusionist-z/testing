@@ -19,11 +19,18 @@ class CoreMember extends \Library\Core\BaseModel {
         return new self();
     }
 
-    public function getusername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("SELECT * FROM core_member");        
+    public function getusername() {        
+        $this->db = $this->getDI()->getShared("db");        
+        $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
         return $getname;
+    }
+    
+    public function getoneusername($username){
+         $this->db = $this->getDI()->getShared("db");
+         $user_name = $this->db->query("SELECT * FROM core_member where member_login_name ='".$username."'");        
+         $getname = $user_name->fetchall();
+         return $getname;
     }
 
     /**
