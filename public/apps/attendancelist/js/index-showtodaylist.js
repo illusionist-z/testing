@@ -143,12 +143,12 @@ $(document).ready(function () {
    
     //monthlylist
    
-   if($('section').is('#showtodaylist')){
-       todaylist($('.content-header').attr('id'),0);
-   }
-    $('#namesearch').click(function () {        
-        todaylist($('.content-header').attr('id'),1);
-    });           
+//   if($('section').is('#showtodaylist')){
+//       todaylist($('.content-header').attr('id'),0);
+//   }
+//    $('#namesearch').click(function () {        
+//        todaylist($('.content-header').attr('id'),1);
+//    });           
 });
 
 
