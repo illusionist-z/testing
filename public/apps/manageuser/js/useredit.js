@@ -10,8 +10,8 @@ var User = {
         $.ajax({
             type: 'GET',
             url: 'useredit?data=' + id,            
-            dataType:'json',
-            success: function (res) { 
+            dataType:'json',                                   
+            success: function (res) {                 
                 var html = '<form id="edit_user"><table>'
                     +'<tr><td>User ID :</td>'
                     +'<td><input type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td>'
@@ -28,9 +28,9 @@ var User = {
                     +'<tr><td>Address :</td>'
                     +'<td colspan="4"><textarea rows="5" cols="50" name="address">'+ res.member_address +'</textarea></td></tr>'
 		    +'<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
-                    +'</tr></table></form>';                               
-                User.Dialog(html);     
-            }
+                    +'</tr></table></form>';                                                   
+            User.Dialog(html);
+            }            
         });
     },
     Dialog: function (data) {
@@ -41,7 +41,8 @@ var User = {
         $ovl.dialog({
             autoOpen: false,
             height: 370,
-            async: false,            
+            async: false,     
+            cache : false,
             width: 800,
             modal: true,
             title:"User Edit"
@@ -53,11 +54,9 @@ var User = {
             e.preventDefault();
            User.DataChange($('#edit_user_id').val()); 
         });
-        $('#edit_close').click(function(e){
-            e.preventDefault();
+        $('#edit_close').click(function(){            
             $ovl.dialog("close");
-            this.isOvl=false;      
-            //$('body').load("userlist");
+            this.isOvl=false;                  
         });
         // user delete button
         $('#edit_delete').click(function(e){
@@ -145,11 +144,4 @@ var User = {
         });
     }
 };
-$(document).ready(function () {
-  
-    $("tbody").on('click','.displaypopup',function () {        
-        var id = $(this).attr('id');  
-        User.Edit(id);
-    });           
-});        
 

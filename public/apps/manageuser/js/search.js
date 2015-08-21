@@ -12,29 +12,9 @@ var userlist = function (){
         var name = document.getElementById('username').value;        
         $.ajax({
         type: 'GET',
-        url: "showuserlist?username="+name,
-        async:true,                
-        success: function (d) {                         
-            var json_obj = $.parseJSON(d);//parse JSON                        
-            $('tbody').empty();
-            //$('tfoot').empty();
-            $.each(json_obj,function(i)
-            {   
-                var output = "<tr>"
-                        + "<td>" + json_obj[i].member_id + "</td>"
-                        + "<td>" + json_obj[i].member_login_name + "</td>"
-                        + "<td>" + json_obj[i].member_dept_name + "</td>"
-                        + "<td>" + json_obj[i].job_title + "</td>"
-                        + "<td>" + json_obj[i].member_mail + "</td>"
-                        + "<td>" + json_obj[i].member_mobile_tel + " </td>"
-                        + "<td>" + json_obj[i].member_address + '<a href="#" onclick="return false;" style="float:right;" class="button displaypopup" id="'+json_obj[i].member_login_name +'">Edit</a></td>'                          
-                        + "</tr>";                
-                $("tbody").html(output);
-                //$("tfoot").append(output); 
-            });     
-            pager.perpage =3;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);                     
+        url: "userlist?username="+name,                     
+        success:function(result){
+          $('body').html(result);
         },
         error: function (d) {
             alert('error');
@@ -52,7 +32,10 @@ $(document).ready(function(){
     $('form').on('click','#userlistsearch',function () {        
         userlist();
     });          
-     
+    $("tbody").on('click','.displaypopup',function () {        
+        var id = $(this).attr('id');  
+        User.Edit(id);
+    });     
 });
 
 

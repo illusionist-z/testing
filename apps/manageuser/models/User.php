@@ -23,8 +23,7 @@ class User extends Model {
            $user = Db\CoreMember::getusername();
         }
         else{            
-        $name = Db\CoreMember::findByMemberLoginName($username); 
-        $user[0] = $name[0];        
+        $user = Db\CoreMember::getusername($username);                
         }
         return $user;
     }
