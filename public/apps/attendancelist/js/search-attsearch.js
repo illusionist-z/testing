@@ -16,20 +16,17 @@ var pager = new Paging.Pager();   //for pagination
 
 $(document).ready(function () { 
 
-    // ユーザーのクリックした時の動作。    
-       
-    
-    $('#sub').click(function () {
-        sub();
-    });
+    // ユーザーのクリックした時の動作。           
     //monthlylist
-    
+    $('#sub').click(function () {
+        monthlylist();
+    });
              
 });
 
 
 
-var sub = function () {
+var monthlylist = function () {
     var month = document.getElementById('month').value;
     var username = document.getElementById('username').value;
     var year = document.getElementById('year').value;

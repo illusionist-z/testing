@@ -79,15 +79,13 @@ class Leaves extends \Library\Core\BaseModel {
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
 
         $this->db = $this->getDI()->getShared("db");
-        $date=$this->getcontractdata($uname);
-        
-        
-         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
-         $list = $ldata->fetchall();
-        
-         if($list==NULL){
-         $lastdata="0";}
-             else{$lastdata=($list['0']['total_leavedays']);}
+//        $date=$this->getcontractdata($uname);               
+//         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+//         $list = $ldata->fetchall();
+//        
+//         if($list==NULL){
+//         $lastdata="0";}
+//             else{$lastdata=($list['0']['total_leavedays']);}
          if ($sdate != NULL && $edate != NULL && $desc != NULL) {
             
             if (isset($sdate) AND isset($edate) AND isset($desc)) {
@@ -145,7 +143,7 @@ public  function GetDays($StartDate, $EndDate){
      * @author Su Zin Kyaw
      */
     public function getcontractdata($id){
-        $credt = $this->db->query("SELECT created_dt,updated_dt FROM salary_master  WHERE salary_master.member_id= '" . $id . "'");
+        $credt = $this->db->query("SELECT created_dt,updated_dt FROM salary_master WHERE salary_master.member_id= '" . $id . "'");
         $created_date = $credt->fetchall();
         if( $created_date['0']['updated_dt']=='0000-00-00 00:00:00'){
              $date['startDate']=$created_date['0']['created_dt'];

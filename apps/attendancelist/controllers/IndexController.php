@@ -33,16 +33,8 @@ class IndexController extends ControllerBase
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;
-    }
-    
-     public function showtodaylistAction(){
-        $name = $this->request->get('namelist');
-        $AttList = new \workManagiment\Attendancelist\Models\Attendances();        
-        //get user attendance list for today
-        $ResultAttlist = $AttList->gettodaylist($name);      
-        $this->view->disable();
-        echo json_encode($ResultAttlist);
-    }
+    }    
+  
     /**
      * Show monthly attendance list
      */

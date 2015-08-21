@@ -7,17 +7,8 @@
  * @GEOprocess()
  * @get @lat @lng
  */
-
-$(document).ready(function () {
-    var userUri = baseUri + 'leavedays/';
-
-    $('#frm_search').submit(function () {
-        search();
-    });
-});
-
-
-function search()
+var Leave = {
+    Search : function()
 {
     var leave_type = document.getElementById('ltype').value;
     var month = document.getElementById('month').value;
@@ -65,3 +56,4 @@ function search()
         }
     });
 }
+};
