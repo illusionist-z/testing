@@ -63,6 +63,7 @@ class UserController extends ControllerBase {
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');             
         $leavelist = $this->_leave->getuserleavelist($leave_type,$mth,$id); 
+       
         $max=$this->_leave->getleavesetting();
         $max_leavedays=$max['0']['max_leavedays'];
         $this->view->setVar("Result", $leavelist);
