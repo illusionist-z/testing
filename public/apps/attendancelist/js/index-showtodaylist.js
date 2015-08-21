@@ -14,7 +14,7 @@ var pager = new Paging.Pager();   //for pagination
  * @author David
  */
 var todaylist = function (link,n){
-    
+        alert(link);
         var url;
         if(1 == n){
         var name = document.getElementById('namelist').value;
@@ -147,9 +147,11 @@ $(document).ready(function () {
     //monthlylist
    
    if($('section').is('#showtodaylist')){
+       alert("aaa");
        todaylist($('.content-header').attr('id'),0);
    }
-    $('#namesearch').click(function () {        
+    $('#namesearch').click(function () {    
+        alert($('.content-header').attr('id'));
         todaylist($('.content-header').attr('id'),1);
     });           
 });
