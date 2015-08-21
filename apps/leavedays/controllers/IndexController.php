@@ -17,6 +17,9 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/leavedays/js/search.js');
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/leavedays/js/leave.js');
+        $this->assets->addJs('apps/leavedays/js/leavesetting.js');
         
     }
 
@@ -43,7 +46,7 @@ class IndexController extends ControllerBase {
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc);   
-            $noti=$userlist->GetAdminNoti();
+            $noti=$UserList->GetAdminNoti();
             $this->session->set('noti', $noti);
             echo "<script>alert('".$error."');</script>";
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
@@ -64,12 +67,7 @@ class IndexController extends ControllerBase {
         $max_leavedays=$max['0']['max_leavedays'];
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
-        $this->view->setVar("Getname", $GetUsername);
-        $this->view->setVar("leave_result", $leave);        
-        $this->view->setVar("max", $max_leavedays); 
     }
-    
-   
     
     public function decideAction(){
          $type=$this->request->getPost('submit');
@@ -130,3 +128,6 @@ class IndexController extends ControllerBase {
 
     }
 }
+        $this->view->setVar("Getname", $GetUsername);
+        $this->view->setVar("leave_result", $leave);        
+        $this->view->setVar("max", $max_leavedays); 

@@ -15,21 +15,29 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');  
-        $this->assets->addJs('apps/manageuser/js/search.js');
+        $this->assets->addJs('common/js/paging.js');               
+        $this->assets->addJs("apps/manageuser/js/useredit.js");
+        $this->assets->addJs('apps/manageuser/js/search.js'); 
     }
     /**
      * @author David
      * @desc   Array ,show all user data 
      * @since  18/7/15
      */
-    public function userlistAction() {                       
+    public function userlistAction() {          
         $UserName = new Db\CoreMember();
         $getname = $UserName::getinstance()->getusername();
         $username = $this->request->get('username');
-        $list = $this->user->userlist($username);               
+        $list = $this->user->userlist($username);
         $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list);
-        $this->view->setVar('type', 'userlist');
+        $this->view->setVar('Result', $list);        
+    }
+    
+     public function showuserlistAction() {        
+        $username = $this->request->get('username');
+        $list = $this->user->userlist($username);        
+        echo json_encode($list);
+        $this->view->disable();
     }
     /**
      * @get data for user id
@@ -39,9 +47,9 @@ class IndexController extends ControllerBase
      */
     public function usereditAction() {                       
         $name = $this->request->get('data');        
-        $edit = $this->user->useredit($name);
-        $this->view->setVar('edituser', $edit);
-        $this->view->setVar('type', 'useredit');
+        $edit = $this->user->useredit($name);                
+        echo json_encode($edit[0]);
+        $this->view->disable();        
     }  
     /**
      * @author David

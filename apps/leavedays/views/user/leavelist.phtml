@@ -58,7 +58,7 @@ $length = count($Month);
 
             </select>
            
-            <input type="submit" class="buttonn" value="Search" id="usersearch">
+            <input type="submit" onclick="return false;" class="buttonn" value="Search" id="usersearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);">Export</a>
         </form>
@@ -84,7 +84,7 @@ $length = count($Month);
                 <tbody>
                     <?php
                     //print_r($Result);
-                    foreach ($Result->items as $item) {
+                    foreach ($Result as $item) {
                         ?>
                         <tr>
                             <td><?php  $dt=  explode(" ",date($item['date']));
@@ -130,25 +130,8 @@ $length = count($Month);
                     ?>
 
                 </tbody>
+                <tfoot style="display: none;"></tfoot>
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-
-<?php
-
-
-if (isset($_GET['ltype'])or isset($_GET['month'])){
-    $lt = $_GET['ltype'];
-    $M = $_GET['month'];
-  
-}
-//echo $y.' '.$m.' '.$n.'name';
-?>
-
-
-<a href="leavelist">First</a>
-<a href="leavelist?page=<?= $Result->before; ?>&ltype=<?php echo ((isset($lt)) ? $lt : ''); ?>&month=<?php echo ((isset($M)) ? $M : ''); ?>">Previous</a>
-<a href="leavelist?page=<?= $Result->next; ?>&ltype=<?php echo ((isset($lt)) ? $lt : ''); ?>&month=<?php echo ((isset($M)) ? $M : ''); ?>">Next</a>
-<a href="leavelist?page=<?= $Result->last; ?>&ltype=<?php echo ((isset($lt)) ? $lt : ''); ?>&month=<?php echo ((isset($M)) ? $M : ''); ?>">Last</a>
-
-<?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?>
+    <div id="content"></div>

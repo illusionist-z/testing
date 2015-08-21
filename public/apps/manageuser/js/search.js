@@ -7,27 +7,52 @@
  * @GEOprocess()
  * @get @lat @lng
  */
-
-       
-$(document).ready(function(){        
+var pager = new Paging.Pager();   //for pagination
+var userlist = function (){            
+        var name = document.getElementById('username').value;        
+        $.ajax({
+        type: 'GET',
+        url: "showuserlist?username="+name,
+        async:true,                
+        success: function (d) {                         
+            var json_obj = $.parseJSON(d);//parse JSON                        
+            $('tbody').empty();
+            //$('tfoot').empty();
+            $.each(json_obj,function(i)
+            {   
+                var output = "<tr>"
+                        + "<td>" + json_obj[i].member_id + "</td>"
+                        + "<td>" + json_obj[i].member_login_name + "</td>"
+                        + "<td>" + json_obj[i].member_dept_name + "</td>"
+                        + "<td>" + json_obj[i].job_title + "</td>"
+                        + "<td>" + json_obj[i].member_mail + "</td>"
+                        + "<td>" + json_obj[i].member_mobile_tel + " </td>"
+                        + "<td>" + json_obj[i].member_address + '<a href="#" onclick="return false;" style="float:right;" class="button displaypopup" id="'+json_obj[i].member_login_name +'">Edit</a></td>'                          
+                        + "</tr>";                
+                $("tbody").html(output);
+                //$("tfoot").append(output); 
+            });     
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);                     
+        },
+        error: function (d) {
+            alert('error');
+        }       
+    });                 
+};
     
-     
-    //set slide menu
- 
-    // ここに実際の処理を記述します。
-  
-    $('#userlistsearch').click(function(){
-       
-        search();
-    });
+$(document).ready(function(){                 
     
+        $("tfoot").html($('tbody').html()); //for csv
+        pager.perpage =3;            
+        pager.para = $('tbody > tr');
+        pager.showPage(1);  
+    // ここに実際の処理を記述します。   
+    $('form').on('click','#userlistsearch',function () {        
+        userlist();
+    });          
      
 });
 
- var search=function(){
-     
-       var username = document.getElementById('username').value; 
-       
-       
-         window.location.href = baseUri + 'manageuser/user/userlist?username='+username;
-    };
+
