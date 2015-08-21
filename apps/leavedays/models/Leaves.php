@@ -81,15 +81,15 @@ class Leaves extends \Library\Core\BaseModel {
 
         $this->db = $this->getDI()->getShared("db");
         $date=$this->getcontractdata($uname);
-        
-        
-         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
-         $list = $ldata->fetchall();
-        
-         if($list==NULL){
-         $lastdata="0";}
-             else{$lastdata=($list['0']['total_leavedays']);}
-         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
+        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id='".$uname."' AND  start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY start_date DESC LIMIT 1 ");
+        $list = $ldata->fetchall();
+        if($list==NULL){
+           $lastdata=NULL;
+        }
+        else{
+            $lastdata=($list['0']['total_leavedays']);
+        }
+        if ($sdate != NULL && $edate != NULL && $desc != NULL) {
             
             if (isset($sdate) AND isset($edate) AND isset($desc)) {
               
@@ -146,20 +146,52 @@ public  function GetDays($StartDate, $EndDate){
      * @author Su Zin Kyaw
      */
     public function getcontractdata($id){
-        $credt = $this->db->query("SELECT created_dt,updated_dt FROM salary_master  WHERE salary_master.member_id= '" . $id . "'");
+        
+        $credt = $this->db->query("SELECT created_dt,updated_dt FROM core_member  WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchall();
-        if( $created_date['0']['updated_dt']=='0000-00-00 00:00:00'){
-             $date['startDate']=$created_date['0']['created_dt'];
-             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['created_dt'])));
-        }
-        else{
-             $date['startDate']=$created_date['0']['updated_dt'];
+        $this->updatecontract($created_date);
+        if( $created_date['0']['updated_dt']!='0000-00-00 00:00:00'){
+            $date['startDate']=$created_date['0']['updated_dt'];
             $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
         }
+        else{
+            $date['startDate']=$created_date['0']['created_dt'];
+            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['created_dt'])));
+        }
+       
+//        $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime())); 
+//        if($date['endDate']==date("Y-m-d H:i:s")){
+//            $this->updatecorememberdate($date['endDate'], $id);
+//        }
+//       
+////        if( $created_date['0']['updated_dt']!='0000-00-00 00:00:00'){
+////            $date['startDate']=$created_date['0']['updated_dt'];
+////            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
+////             
+////        }
+        
         
         return $date;
     }
+    public function updatecontract($created_date){
+        
+        if( $created_date['0']['updated_dt']!='0000-00-00 00:00:00'){
+             $date['startDate']=$created_date['0']['updated_dt'];
+        }
+        else{$date['startDate']=$created_date['0']['created_dt'];}
+       
+        $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($date['startDate']))); 
+        if($date['endDate']==date("Y-m-d H:i:s")){
+            $this->updatecorememberdate($date['endDate'], $id);
+        }
+       
+
+    }
     
+    public function updatecorememberdate($date,$id){
+           $this->db->query("UPDATE core_member set core_member.updated_dt='" . $date . "'  WHERE core_member.member_id= '" . $id . "'");
+
+    }
     
     /**
      * getting user leave list by user id,month and leave type
@@ -248,30 +280,10 @@ public  function GetDays($StartDate, $EndDate){
     */
     public function acceptleave($id,$sdate,$edate,$days){
         $this->db = $this->getDI()->getShared("db");
-        $date=$this->getcontractdata($id);
-        $datePeriod =$this->GetDays($sdate, $edate);
-        $length=count($datePeriod);
-        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
-        $list = $ldata->fetchall();
-       
-        $max=$this->getleavesetting();
-       
-        if($list['0']['total_leavedays']>=$max['0']['max_leavedays']){
-             $stt=2;
-        }
-        else{
-             $stt=1;
-        }
-        for($i=0;$i<($length-1);$i++){
-            echo $datePeriod[$i] ;echo $i;
-            $this->db->query("INSERT INTO absent (member_id,date,status) VALUES('" . $id . "','" . $datePeriod[$i] . "','" . $stt . "')");
-        }
-        $status=1;
-        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
-
+        $this->db->query("UPDATE leaves set leaves.leave_status=1  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
+        $stt=1;
+        $this->updateleavedata($id,$sdate,$edate,$days,$stt);
     }
-   
     /**
      * 
      * @param type $id
@@ -279,12 +291,28 @@ public  function GetDays($StartDate, $EndDate){
      * change leave status to '2'
      * when admin reject leavedays request from user
      */
-    public function rejectleave($id,$sdate){
+    public function rejectleave($id,$sdate,$edate,$days){
         $this->db = $this->getDI()->getShared("db");
         $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'";
-       $this->db->query($sql);
+        $this->db->query($sql);
+        $stt=2;
+        $this->updateleavedata($id,$sdate,$edate,$days,$stt);
+
     }
     
+    public function updateleavedata($id,$sdate,$edate,$days,$stt){
+        
+        $date=$this->getcontractdata($id);
+        $datePeriod =$this->GetDays($sdate, $edate);
+        $length=count($datePeriod);
+        
+        for($i=0;$i<($length-1);$i++){
+            echo $datePeriod[$i] ;echo $i;
+            $this->db->query("INSERT INTO absent (member_id,date,status) VALUES('" . $id . "','" . $datePeriod[$i] . "','" . $stt . "')");
+        }
+       $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
+
+    }
     
      public function getleavesetting(){
           $row = $this->modelsManager->createBuilder()

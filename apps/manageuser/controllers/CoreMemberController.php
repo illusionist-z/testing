@@ -47,8 +47,8 @@ class CorememberController extends ControllerBase {
             $filename = $_FILES["fileToUpload"]["name"];
 
             $NewUser = new CoreMember;
-            $NewUser->addnewuser($member_id, $username, $password, $dept, $position, $email, $phno, $address, $filename, $role);
-            $this->flashSession->success("New user is added successfully!");
+            $msg=$NewUser->addnewuser($member_id, $username, $password, $dept, $position, $email, $phno, $address, $filename, $role);
+            $this->flashSession->success("$msg");
 
             // Make a full HTTP redirection
             return $this->response->redirect("manageuser/index/adduser");

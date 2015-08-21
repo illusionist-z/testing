@@ -12,6 +12,7 @@ class SearchController extends ControllerBase
        
         $this->setCommonJsAndCss();
         $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
     }
 
     

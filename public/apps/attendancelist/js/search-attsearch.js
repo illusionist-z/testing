@@ -8,31 +8,41 @@
  * @get @lat @lng
  */
 var pager = new Paging.Pager();   //for pagination
-
 /*
- * show today list by return json array
- * @author David
+ * Search monthly list by return json array
+ * @author Zin Mon Thet
  */
-var todaylist = function (link,n){
+
+
+$(document).ready(function () { 
+
+    // ユーザーのクリックした時の動作。    
+       
     
-        var url;
-        if(1 == n){
-        var name = document.getElementById('namelist').value;
-        url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
-            }
-        else{
-        url = baseUri + 'attendancelist/index/'+link;
-        }
-        $.ajax({
-        url: url ,
+    $('#sub').click(function () {
+        sub();
+    });
+    //monthlylist
+    
+             
+});
+
+
+
+var sub = function () {
+    var month = document.getElementById('month').value;
+    var username = document.getElementById('username').value;
+    var year = document.getElementById('year').value;
+    // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
+    $.ajax({
+        url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
         type: 'GET',
-        success: function (d) {   
+        success: function (d) {                       
             var json_obj = $.parseJSON(d);//parse JSON            
-            $('tbody').empty();
+           $('tbody').empty();
             for (var i in json_obj)
             {   
-               
-                 a = "08:00:00";
+                a = "08:00:00";
                 //b=json_obj[i].checkin_time;
                  n = new Date();
                  offset = n.getTimezoneOffset();
@@ -49,7 +59,7 @@ var todaylist = function (link,n){
                   b = checkin[1];
                   ds=b.split(":");
                   total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
-                  if (sign==='-'){
+                  if (sign=='-'){
                   tt=total +(value*60);}
                   else{
                       tt=total-(value*60);
@@ -67,13 +77,12 @@ var todaylist = function (link,n){
                p = json_obj[i].att_date + " ";
 //                late = new Date(new Date(p + b) - new Date(p + a)).toUTCString().split(" ")[4];
                   late=new Date(new Date(p + localcin) - new Date(p + office_stime)).toUTCString().split(" ")[4];
-                  checkout="";
+
                 //for check out time
-                if(json_obj[i].checkout_time!=null){
-                   
-                checkout = json_obj[i].checkout_time.split(" ");
+                
+                 if(json_obj[i].checkout_time!=="00:00:00" ){
+                     checkout = json_obj[i].checkout_time.split(" ");
                  out = checkout[1];
-                 
                   ds=out.split(":");
                   total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
                   if (sign=='-'){
@@ -94,8 +103,7 @@ var todaylist = function (link,n){
              }
                
                 //for working hours
-                if(json_obj[i].checkout_time!=null && checkout[1]>checkin[1] ){
-                
+                if(checkout[1]>checkin[1]){
                 workinghour=new Date(new Date(p + checkout[1]) - new Date(p + checkin[1])).toUTCString().split(" ")[4];}
                 else{
                     workinghour="0";
@@ -139,19 +147,3 @@ var todaylist = function (link,n){
         }       
     });                 
 };
-$(document).ready(function () { 
-
-    // ユーザーのクリックした時の動作。    
-
-   
-    //monthlylist
-   
-   if($('section').is('#showtodaylist')){
-       todaylist($('.content-header').attr('id'),0);
-   }
-    $('#namesearch').click(function () {        
-        todaylist($('.content-header').attr('id'),1);
-    });           
-});
-
-

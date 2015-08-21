@@ -167,12 +167,16 @@ class Attendances extends Model {
      * @param  $v[0] = member_id
      */
     public function absent(){        
-        $query = "Select member_id from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
+        $query = "Select member_id from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE AND select member_id from leaves where start_date=CURRENT_DATE)";
         $res   = $this->db->query($query);
         $absent = $res->fetchall();        
         foreach ($absent as $v){
+            
             $insert = "Insert into absent (id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
             $this->db->query($insert);
+            
         }        
     }
+    
+   
 }

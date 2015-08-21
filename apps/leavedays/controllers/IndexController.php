@@ -37,7 +37,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
         if ($this->request->isPost()) {
-            $uname = $this->session->user['member_id'];
+            $uname = $this->request->getPost('uname');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
@@ -59,7 +59,9 @@ class IndexController extends ControllerBase {
         $leave = $this->config->leavetype;        
         $UserList=new Db\CoreMember();
         $GetUsername = $UserList::getinstance()->getusername();                   
-        $leaves = $this->_leave->getleavelist();               
+        $leaves = $this->_leave->getleavelist();
+         $max=$this->_leave->getleavesetting();
+        $max_leavedays=$max['0']['max_leavedays'];
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $GetUsername);
@@ -81,7 +83,7 @@ class IndexController extends ControllerBase {
              $this->_leave->acceptleave($id,$sdate,$edate,$days); 
         }
         else{
-            $this->_leave->rejectleave($id,$sdate); 
+            $this->_leave->rejectleave($id,$sdate,$edate,$days); 
         }
         $this->response->redirect('dashboard/index');
     }
