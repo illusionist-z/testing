@@ -56,7 +56,8 @@ var User = {
         $('#edit_close').click(function(e){
             e.preventDefault();
             $ovl.dialog("close");
-            this.isOvl=false;            
+            this.isOvl=false;      
+            //$('body').load("userlist");
         });
         // user delete button
         $('#edit_delete').click(function(e){

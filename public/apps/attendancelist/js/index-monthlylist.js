@@ -132,20 +132,19 @@ var monthlylist = function (link){
 };
 
 $(document).ready(function () { 
-
+         $("tfoot").html($('tbody').html()); //for csv
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);   
     // ユーザーのクリックした時の動作。    
 
     $('#search').click(function () {
         search();
-    });       
+    });         
     
     $('#sub').click(function () {
         sub();
-    });
-    //monthlylist
-    if($('section').is('#showmonthlylist')){
-        monthlylist($('.content-header').attr('id'));        
-    }
+    });  
              
 });
 

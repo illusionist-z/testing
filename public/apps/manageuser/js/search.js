@@ -11,13 +11,14 @@ var pager = new Paging.Pager();   //for pagination
 var userlist = function (){            
         var name = document.getElementById('username').value;        
         $.ajax({
-        url: "showuserlist?username="+name ,
         type: 'GET',
+        url: "showuserlist?username="+name,
+        async:true,                
         success: function (d) {                         
             var json_obj = $.parseJSON(d);//parse JSON                        
             $('tbody').empty();
             //$('tfoot').empty();
-            for (var i in json_obj)
+            $.each(json_obj,function(i)
             {   
                 var output = "<tr>"
                         + "<td>" + json_obj[i].member_id + "</td>"
@@ -30,7 +31,7 @@ var userlist = function (){
                         + "</tr>";                
                 $("tbody").html(output);
                 //$("tfoot").append(output); 
-            }     
+            });     
             pager.perpage =3;            
             pager.para = $('tbody > tr');
             pager.showPage(1);                     
