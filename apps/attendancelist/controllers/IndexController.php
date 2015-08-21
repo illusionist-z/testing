@@ -14,7 +14,8 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/attendancelist/js/index-showtodaylist.js');    
         $this->assets->addJs('apps/attendancelist/js/index-monthlylist.js');
         $this->assets->addCss('common/css/pagination.css');        
-        $this->config = \Module_Config::getModuleConfig('leavedays');                                
+        $this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
+        $this->config = \Module_Config::getModuleConfig('leavedays');
     }
 
    /**
@@ -34,6 +35,14 @@ class IndexController extends ControllerBase
         $this->view->uname = $Username;
     }
     
+     public function showtodaylistAction(){
+        $name = $this->request->get('namelist');
+        $AttList = new \workManagiment\Attendancelist\Models\Attendances();        
+        //get user attendance list for today
+        $ResultAttlist = $AttList->gettodaylist($name);      
+        $this->view->disable();
+        echo json_encode($ResultAttlist);
+    }
     /**
      * Show monthly attendance list
      */

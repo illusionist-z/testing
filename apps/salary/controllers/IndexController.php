@@ -17,13 +17,12 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
-         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('apps/salary/css/salary.css');       
-        //$this->assets->addJs('common/js/popup.js');             //popup message                
-        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addCss('apps/salary/css/salary.css');
+        $this->assets->addJs('common/js/jquery.min.js');
+        $this->assets->addJs('common/js/popup.js');             //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/salary/js/index-allowance.js');
@@ -39,9 +38,10 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
-        
-        $Salarydetail=new SalaryDetail();
-        $getsalarydetail=$Salarydetail->getsalarydetail();        
+
+        $Salarydetail = new SalaryDetail();
+        $getsalarydetail = $Salarydetail->getsalarydetail();
+        //var_dump($getsalarydetail);exit;
         $this->view->salarydetail = $getsalarydetail;
     }
 
@@ -77,8 +77,7 @@ class IndexController extends ControllerBase {
         //print_r($getall_allowance);exit;
 
         $position = $this->salaryconfig->position;
-        $err =$this->request->get('Msg');
-        $this->view->Msg = $err;
+
         $this->view->setVar("usernames", $user_name);
         $this->view->position = $position;
         $this->view->getall_allowance = $getall_allowance;
@@ -142,10 +141,10 @@ class IndexController extends ControllerBase {
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $Salarydetail = new SalaryMaster();
-        $result=$Salarydetail->btnedit($data);
-        echo json_encode($result);
+        $Salarydetail->btnedit($data);
         $this->view->disable();
     }
+
     /**
      * show allowance list
      * @author Su Zin kyaw

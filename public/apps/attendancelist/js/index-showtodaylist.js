@@ -14,7 +14,7 @@ var pager = new Paging.Pager();   //for pagination
  * @author David
  */
 var todaylist = function (link,n){
-    
+        alert(link);
         var url;
         if(1 == n){
         var name = document.getElementById('namelist').value;
@@ -49,7 +49,7 @@ var todaylist = function (link,n){
                   b = checkin[1];
                   ds=b.split(":");
                   total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
-                  if (sign=='-'){
+                  if (sign==='-'){
                   tt=total +(value*60);}
                   else{
                       tt=total-(value*60);
@@ -67,11 +67,13 @@ var todaylist = function (link,n){
                p = json_obj[i].att_date + " ";
 //                late = new Date(new Date(p + b) - new Date(p + a)).toUTCString().split(" ")[4];
                   late=new Date(new Date(p + localcin) - new Date(p + office_stime)).toUTCString().split(" ")[4];
-
+                  checkout="";
                 //for check out time
+                if(json_obj[i].checkout_time!=null){
+                   
                 checkout = json_obj[i].checkout_time.split(" ");
                  out = checkout[1];
-                 if(out!="00:00:00" ){
+                 
                   ds=out.split(":");
                   total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
                   if (sign=='-'){
@@ -92,7 +94,8 @@ var todaylist = function (link,n){
              }
                
                 //for working hours
-                if(checkout[1]>checkin[1]){
+                if(json_obj[i].checkout_time!=null && checkout[1]>checkin[1] ){
+                
                 workinghour=new Date(new Date(p + checkout[1]) - new Date(p + checkin[1])).toUTCString().split(" ")[4];}
                 else{
                     workinghour="0";
@@ -143,12 +146,14 @@ $(document).ready(function () {
    
     //monthlylist
    
-//   if($('section').is('#showtodaylist')){
-//       todaylist($('.content-header').attr('id'),0);
-//   }
-//    $('#namesearch').click(function () {        
-//        todaylist($('.content-header').attr('id'),1);
-//    });           
+   if($('section').is('#showtodaylist')){
+       alert("aaa");
+       todaylist($('.content-header').attr('id'),0);
+   }
+    $('#namesearch').click(function () {    
+        alert($('.content-header').attr('id'));
+        todaylist($('.content-header').attr('id'),1);
+    });           
 });
 
 

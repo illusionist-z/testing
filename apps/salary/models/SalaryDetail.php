@@ -77,15 +77,24 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function insert_salarydetail($row) {
         try {
+           
             $current_date=date("Y-m-d");
             //print_r($row);exit;
             foreach ($row as $rows) {
-
+                if($rows['overtime_rate']!=null){
                 //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
-                $sql = "UPDATE salary_detail SET basic_salary ='" . $rows['basic_salary'] . "',travel_fee='".$rows['travel_fee']."',overtime='".$rows['overtime_rate']."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";
+                $sql = "UPDATE salary_detail SET basic_salary ='" . $rows['basic_salary'] . "', travel_fee='".$rows['travel_fee']."', overtime='".$rows['overtime_rate']."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";
+                //$result = $this->db->query($sql);
+                    }
+                else{
+                $sql = "UPDATE salary_detail SET basic_salary ='" . $rows['basic_salary'] . "', travel_fee='".$rows['travel_fee']."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";    
+                }
+                echo $sql;
                 $result = $this->db->query($sql);
                 
             }
+           
+        
            
         } catch (Exception $e) {
             echo $e;
@@ -100,7 +109,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
         try {
             //print_r($row);exit;
             foreach ($row as $rows) {
-                $sql = "INSERT INTO salary_detail (id,member_id,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['income_tax'] . "',NOW(),NOW())";
+                $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','".$rows['income_tax']."',NOW(),NOW())";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);

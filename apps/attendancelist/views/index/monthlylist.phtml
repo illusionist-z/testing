@@ -132,7 +132,7 @@ $length = count($Month);
                                     $end = strtotime($time);
                                     $late = $end - $start;
 
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " Hours</font>";
+                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . "</font>";
                                 }
                                 ?>
                             </td>
@@ -166,7 +166,7 @@ $length = count($Month);
                                     $minutes = floor(($workingHour / 60) % 60);
                                     $seconds = $workingHour % 60;
                                     echo "$hours:$minutes:$seconds";
-                                    echo" Hours";
+                                    
                                 }
                                 ?>
                             </td>

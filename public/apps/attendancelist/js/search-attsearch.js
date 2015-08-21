@@ -9,20 +9,40 @@
  */
 var pager = new Paging.Pager();   //for pagination
 /*
- * show monthly list by return json array
- * @author David
+ * Search monthly list by return json array
+ * @author Zin Mon Thet
  */
-var monthlylist = function (link){
-        $.ajax({
-        url: baseUri + 'attendancelist/index/'+link,
+
+
+$(document).ready(function () { 
+
+    // ユーザーのクリックした時の動作。    
+       
+    
+    $('#sub').click(function () {
+        sub();
+    });
+    //monthlylist
+    
+             
+});
+
+
+
+var sub = function () {
+    var month = document.getElementById('month').value;
+    var username = document.getElementById('username').value;
+    var year = document.getElementById('year').value;
+    // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
+    $.ajax({
+        url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
         type: 'GET',
-        success: function (d) {   
+        success: function (d) {                       
             var json_obj = $.parseJSON(d);//parse JSON            
-            $('tbody').empty();
-           for (var i in json_obj)
+           $('tbody').empty();
+            for (var i in json_obj)
             {   
-               
-                 a = "08:00:00";
+                a = "08:00:00";
                 //b=json_obj[i].checkin_time;
                  n = new Date();
                  offset = n.getTimezoneOffset();
@@ -54,18 +74,15 @@ var monthlylist = function (link){
                  localcin   = hours+':'+minutes+':'+seconds;
                 //for late 
                office_stime= "08:00:00";
-               
                p = json_obj[i].att_date + " ";
-               if(p>office_stime){
 //                late = new Date(new Date(p + b) - new Date(p + a)).toUTCString().split(" ")[4];
-                  late=new Date(new Date(p + localcin) - new Date(p + office_stime)).toUTCString().split(" ")[4];}
-              else{
-                  late="00:00:00 Hours";
-              }
+                  late=new Date(new Date(p + localcin) - new Date(p + office_stime)).toUTCString().split(" ")[4];
+
                 //for check out time
-                checkout = json_obj[i].checkout_time.split(" ");
+                
+                 if(json_obj[i].checkout_time!=="00:00:00" ){
+                     checkout = json_obj[i].checkout_time.split(" ");
                  out = checkout[1];
-                 if(out!="00:00:00" ){
                   ds=out.split(":");
                   total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
                   if (sign=='-'){
@@ -130,19 +147,3 @@ var monthlylist = function (link){
         }       
     });                 
 };
-
-$(document).ready(function () { 
-         $("tfoot").html($('tbody').html()); //for csv
-            pager.perpage =3;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);   
-    // ユーザーのクリックした時の動作。    
-
-    //monthlylist
-    if($('section').is('#showmonthlylist')){
-        monthlylist($('.content-header').attr('id'));        
-    }
-             
-});
-
-

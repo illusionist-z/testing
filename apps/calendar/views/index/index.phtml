@@ -1,5 +1,5 @@
 <?php
-use Phalcon\Tag as Tag ;
+use Phalcon\Tag as Tag;
 ?>
 <div id="external-events">
     <!-- Content Wrapper. Contains page content -->
@@ -13,7 +13,7 @@ use Phalcon\Tag as Tag ;
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">calendar</li>
         </ol>
-       
+
     </section>
 </div>
 <!-- Main content -->
@@ -22,27 +22,28 @@ use Phalcon\Tag as Tag ;
         <div class="box-body no-padding">
             <div class="popup-table"></div> 
             <!-- THE CALENDAR -->
-            <div id="calendar" class="bg-info" style="width:100%;height:100%;"></div>
+            <div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>
         </div><!-- /.box-body -->
         <br><br>
     </div><!-- /. box -->
 
 </section><!-- /.content -->
-   
+
 <div id="dialog" style="display:none" title="Edit Event" class="navbar">
     <form id="edit_event" onsubmit="return false;" class="container">
         <label for="title">Title:</label><input type="text" class="box" name="title" id="title_edit_event">
         <span class="err"></span><br><br> 
-        <label for="member_name">Name:</label><select class="box input-medium" data-toggle="select" name="uname" id="show_name">
-             <option value="" disabled>Name</option>
-                <?php
-                foreach ($uname as $result) {
+        <label for="member_name">Name:</label>
+        <select class="box input-medium" data-toggle="select" name="uname" id="show_name">
+            <option value="" disabled>Name</option>
+            <?php
+            foreach ($uname as $result) {
                 ?>
-                    <option><?php echo $result['member_login_name']; ?></option>
+                <option><?php echo $result['member_login_name']; ?></option>
                 <?php
-                }
-                ?>
-            </select>
+            }
+            ?>
+        </select>
         <span></span><br><br>
         <label for="sdate"> Start Date:</label><input type="text" class="box" name="sdate" id="sdate_edit_event">
         <span class="err-sdate"></span><br><br>
@@ -56,15 +57,15 @@ use Phalcon\Tag as Tag ;
         <label for="title">Title:</label><input type="text" class="box" name="title" id="title_create_event">
         <span class="err"></span><br><br>        
         <label for="member_name">Name:</label><select class="box input-medium" data-toggle="select" name="uname" id="select_name">
-             <option value="" disabled>Name</option>
-                <?php
-                foreach ($uname as $result) {
+            <option value="" disabled>Name</option>
+            <?php
+            foreach ($uname as $result) {
                 ?>
-                    <option><?php echo $result['member_login_name']; ?></option>
+                <option><?php echo $result['member_login_name']; ?></option>
                 <?php
-                }
-                ?>
-            </select>
+            }
+            ?>
+        </select>
         <span></span><br><br>
         <label for="sdate"> Start Date:</label><input type="text" class="box" name="sdate" id="sdate_create_event">
         <span class="err-sdate"></span><br><br>
