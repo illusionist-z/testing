@@ -47,7 +47,7 @@ class SalaryMaster extends Model {
      */
     public function savesalarydedution($dedution, $member_id, $creator_id) {
         try {
-
+            
             for ($i = 0; $i < count($dedution); $i++) {
 
                 $sql = "INSERT INTO workManagiment\Salary\Models\CoreMemberTaxDeduce (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag)

@@ -10,11 +10,11 @@ class IndexController extends ControllerBase
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('common/js/export.js');              
+        $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/attendancelist/js/index-showtodaylist.js');    
+        $this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
         $this->assets->addJs('apps/attendancelist/js/index-monthlylist.js');
         $this->assets->addCss('common/css/pagination.css');        
-        $this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
         $this->config = \Module_Config::getModuleConfig('leavedays');
     }
 
@@ -22,20 +22,17 @@ class IndexController extends ControllerBase
     * show today attendance list
     */    
     public function todaylistAction() {
-        $name = $this->request->get('namelist');
-        $offset= $this->session->location['offset'];          
+        
+         $offset= $this->session->location['offset'];          
         //get user name
         //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
         $UserList=new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();        
-        $AttList = new \workManagiment\Attendancelist\Models\Attendances(); 
-        $ResultAttlist = $AttList->gettodaylist($name);        
-        $this->view->attlist=$ResultAttlist;
-        $this->view->offset= $offset;
+        //$this->view->attlist = $result_attlist;
+        $this->view->offset=$offset;
         $this->view->uname = $Username;
     }
-    
-     public function showtodaylistAction(){
+    public function showtodaylistAction(){
         $name = $this->request->get('namelist');
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();        
         //get user attendance list for today
@@ -52,12 +49,18 @@ class IndexController extends ControllerBase
         $UserList=new Db\CoreMember();
         $UserName = $UserList::getinstance()->getusername();
         $month = $this->config->month;                
-        $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
-        $monthlylist = $Attendances->showattlist();
-        $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);        
         $this->view->setVar("Getname", $UserName);                
         $this->view->offset=$offset;
+    }
+    /**
+     * show monthly attendance list by json
+     */
+    public function showmonthlylistAction(){
+        $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
+        $result = $Attendances->showattlist();
+        $this->view->disable();
+        echo json_encode($result);        
     }    
 }
 

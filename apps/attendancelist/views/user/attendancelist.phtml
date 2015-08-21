@@ -72,7 +72,7 @@
   </thead>
   <tbody>
   <?php
-	foreach ($attlist as $result) {
+	foreach ($attlist->items   as $result) {
   ?>
     <tr>
 	<td><?php echo $result['att_date']; ?></td>
@@ -162,11 +162,32 @@
         }
     ?>
 </tbody>
-<tfoot style="display : none;"></tfoot>
-</table>    
+</table>
+    
 </div>
 </section>
-<div id="content"></div><!-- for pagination button -->
+<?php
+if ( isset($_POST['month'])) {    
+    $m = $_POST['month'];   
+} 
 
+else{
+    $m=date('m');
+}
+if ( isset($_GET['month']) ){
+    
+    $m = $_GET['month'];
+    
+}
+
+?>
+<ul class="pagination pagination-sm">
+    <li><a href="attendancelist" >First</a></li>
+    <li><a href="attendancelist?page=<?= $attlist->before; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>">Previous</a></li>
+    <li><a href="attendancelist?page=<?= $attlist->next; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>" >Next</a></li>
+    <li><a href="attendancelist?page=<?= $attlist->last; ?>&month=<?php echo ((isset($m)) ? $m : ''); ?>" >Last</a></li>
+
+<?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?>
+ 
 
    

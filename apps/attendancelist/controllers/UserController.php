@@ -10,8 +10,7 @@ class UserController extends ControllerBase
     public function initialize() {
         parent::initialize();
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/attendancelist/js/index.js');        
+        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
         $this->setCommonJsAndCss();
         
     }
@@ -40,8 +39,12 @@ class UserController extends ControllerBase
         $id= $this->session->user['member_id'];
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->getattlist($id,$month);                      
-        $this->view->attlist = $ResultAttlist;
-        $this->view->offset=$offset;              
+         $this->view->attlist = $ResultAttlist;
+         $this->view->offset=$offset;
+        
+       
+        
+       
     }
     
    

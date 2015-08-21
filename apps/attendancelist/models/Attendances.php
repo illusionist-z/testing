@@ -59,15 +59,36 @@ class Attendances extends Model {
         $currentmth = date('m');
         //for search method
         if (isset($month)) {
-            $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$month."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
+            $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
+                    ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $month . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
+                    ->getQuery()
+                    ->execute();
         }
         //showing data with current month 
         else {
-            $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$currentmth."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
+            $row = $this->modelsManager->createBuilder()
+                    ->columns('att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location')
+                    ->from('workManagiment\Core\Models\Db\CoreMember')
+                    ->leftJoin('workManagiment\Attendancelist\Models\Attendances', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Attendancelist\Models\Attendances.member_id ')
+                    ->orderBy('workManagiment\Attendancelist\Models\Attendances.att_date DESC')
+                    ->where('MONTH(workManagiment\Attendancelist\Models\Attendances.att_date) =' . $currentmth . ' AND workManagiment\Attendancelist\Models\Attendances.member_id =' . "'$id'")
+                    ->getQuery()
+                    ->execute();
         }
         //paging
-       $result = $this->db->query($row);
-       $list   = $result->fetchall();
+        $currentPage = (int) $_GET["page"];
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 5,
+            "page" => $currentPage
+                )
+        );                
+        $list = $paginator->getPaginate();
         return $list;
     }
 
@@ -146,12 +167,21 @@ class Attendances extends Model {
      * @param  $v[0] = member_id
      */
     public function absent(){        
-        $query = "Select member_id from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
+        $query = "Select member_id from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE AND select member_id from leaves where start_date=CURRENT_DATE)";
         $res   = $this->db->query($query);
-        $absent = $res->fetchall();        
+        $absent = $res->fetchall();
+        $leaves= new workManagiment\Leavedays\Models\Leaves();
+        $day=1;
         foreach ($absent as $v){
+            
+            $date=$leaves->getcontractdata($v[0]);
             $insert = "Insert into absent (id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
             $this->db->query($insert);
+            $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$day."' WHERE leaves.member_id='".$v[0]."'  AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
+
+            
         }        
     }
+    
+   
 }
