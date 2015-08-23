@@ -37,6 +37,15 @@ class SearchController extends ControllerBase
         echo json_encode($result);
     }
     
+    public function searchtodayAction() {
+        $username = $this->request->get('username');
+        $Attendances=new Attendances();
+        $result=$Attendances->search_todayattlist($username);
+        
+        $this->view->disable();
+       
+        echo json_encode($result);
+    }
     
 
 }

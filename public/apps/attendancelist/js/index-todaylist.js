@@ -9,31 +9,43 @@
  */
 //var pager = new Paging.Pager();   //for pagination
 //
+///*
+// * show today list by return json array
+// * @author David
+// */
+//var todaylist = function (){               
+//        
+//        var name = document.getElementById('namelist').value;
+//        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+//        
+//        $.ajax({
+//        url: 'todaylist?namelist='+name ,
+//        type: 'GET',
+//        success: function (d) {   
+//         $('body').html(d);
+//        },
+//        error: function (d) {
+//            alert('error');
+//        }       
+//    });                 
+//};
 //$(document).ready(function () { 
-//         $("tfoot").html($('tbody').html()); //for csv
-//            pager.perpage =3;            
-//            pager.para = $('tbody > tr');
-//            pager.showPage(1);   
-//    // ユーザーのクリックした時の動作。        
-//             
+//
+//    $('#namesearch').click(function () {           
+//        todaylist();
+//    });           
 //});
 
-$(document).ready(function () {
-    var userUri = baseUri + 'attendancelist/';
 
-    MonthlyAttendances.ini();
-
-
-});
-var MonthlyAttendances = {
+var Attendances = {
     ini: function () {
         // don't use the function default form sumit
-        MonthlyAttendances.show(true);   
+        Attendances.show(true);   
     },
     show: function () {
         //window.location.href = baseUri + 'attendancelist/index/showtodaylist';
         $.ajax({
-            url: baseUri + 'attendancelist/index/showmonthlylist',
+            url: baseUri + 'attendancelist/index/showtodaylist',
             type: 'GET',
             success: function (d) {
                 var json_obj = $.parseJSON(d);//parse JSON            
@@ -150,7 +162,6 @@ var MonthlyAttendances = {
                             + "</tr>"
                     $("tbody").append(output);
                 }
-                $("tfoot").html($('tbody').html()); 
                 //paginatior function
                 pager.perpage = 3;
                 pager.para = $('tbody > tr');
@@ -166,3 +177,10 @@ var MonthlyAttendances = {
 
 }
 
+$(document).ready(function () {
+    var userUri = baseUri + 'attendancelist/';
+
+    Attendances.ini();
+
+
+});
