@@ -22,7 +22,8 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/salary/css/salary.css');        
-        $this->assets->addJs('common/js/paging.js');             //popup message
+        $this->assets->addJs('common/js/paging.js'); 
+        $this->assets->addJs('common/js/popup.js'); //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/salary/js/index-allowance.js');

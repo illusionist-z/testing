@@ -159,20 +159,21 @@ class SalaryMaster extends Model {
 //                    for ($i = 0; $i < count($result); $i++) {
 //                        $total_allowances+=$result[$i]['allowance_amount'];
 //                    }
+                    $allowance=$Allowanceresult['total_allowance_amount'];
                     if ($SM['basic_salary'] == $SD['basic_salary'])
                     {
                         $salary_yr=$SM['basic_salary'];
                     }      
                     //$salary_yr+=$total_allowances;
                     if(empty($SD['allowance_amount'])){
-                    $allowance=$Allowanceresult['total_allowance_amount'];
+                   
                     $salary_yr+=$allowance;
                     echo $salary_yr.'empty allowance';
                     
                     }
                     else if($SD['allowance_amount']!=$Allowanceresult['total_allowance_amount'])
                     {
-                    $allowance=$Allowanceresult['total_allowance_amount'];
+                    
                     $salary_yr=$allowance+$salary_yr;
 //                    echo $salary_yr;
 //                    if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear) {
@@ -189,7 +190,7 @@ class SalaryMaster extends Model {
                     }
                 }
                     
-               
+                
                     //$salary_yr = $value['basic_salary'] * 12;
                     //get 20% for the whole year
                     $basic_deduction = $salary_yr * (20 / 100);
@@ -380,7 +381,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $b_salary
      */
     public function deducerate($income_tax, $salary_year) {
-        echo "bbbbbbbbbbbb ".$income_tax; //exit;
+       
         try {
             $sql = "select * from taxs where taxs_from<" . $income_tax . " and taxs_rate !=0";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
