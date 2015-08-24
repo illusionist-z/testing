@@ -30,7 +30,10 @@ var todaylist = function (){
     });                 
 };
 $(document).ready(function () { 
-
+         $("tfoot").html($('tbody').html()); //for csv
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);   
     $('#namesearch').click(function () {           
         todaylist();
     });           
