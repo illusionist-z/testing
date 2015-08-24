@@ -4,20 +4,29 @@
  * and open the template in the editor.
  */
 /*
- * @GEOprocess()
- * @get @lat @lng
+ * @version 24/8/2015 David
+ * @LeaveList
  */
 
+this.pager = new Paging.Pager();
 
-$(document).ready(function(){    
-    var Search = new Leave.Search();
-    var userUri = baseUri + 'leavedays/';
+this.init =  function(){
+           $("tfoot").html($('tbody').html()); //for csv           
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);  
+     };
+
+
+$(document).ready(function(){        
+    //intialize paging
+    init();
+    
+    var userUri = baseUri + 'leavedays/';    
     
     $('#search').click(function () {        
-        this.Search;
-    });
-    
-  
+        Leave.Search();
+    });      
 });
 
  
