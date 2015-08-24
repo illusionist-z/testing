@@ -97,7 +97,7 @@ var Attendances = {
 
                     //for check out time
 
-                    if (json_obj[i].checkout_time !== "00:00:00") {
+                    if (json_obj[i].checkout_time !== null) {
                         checkout = json_obj[i].checkout_time.split(" ");
                         out = checkout[1];
                         ds = out.split(":");
@@ -122,12 +122,8 @@ var Attendances = {
                             seconds = "0" + seconds;
                         }
                         localcout = hours + ':' + minutes + ':' + seconds;
-                    }
-                    else {
-                        localcout = "00:00:00";
-                    }
-
-                    //for working hours
+                        
+                        //for working hours
                     if (checkout[1] > checkin[1]) {
                         workinghour = new Date(new Date(p + checkout[1]) - new Date(p + checkin[1])).toUTCString().split(" ")[4];
                     }
@@ -145,6 +141,12 @@ var Attendances = {
                     else {
                         overtime = "0";
                     }
+                    }
+                    else {
+                        localcout = "00:00:00";
+                    }
+
+                    
                     //Calculate Location
                     ll = json_obj[i].location;
 
