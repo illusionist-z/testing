@@ -8,7 +8,14 @@
  * @get @lat @lng
  */
 var pager = new Paging.Pager();   //for pagination
-var userlist = function (){            
+var ManageUser = {
+        init  : function() {
+        $("tfoot").html($('tbody').html()); //for csv
+        pager.perpage =3;            
+        pager.para = $('tbody > tr');
+        pager.showPage(1);  
+        },
+        search: function(){            
         var name = document.getElementById('username').value;        
         $.ajax({
         type: 'GET',
@@ -19,18 +26,16 @@ var userlist = function (){
         error: function (d) {
             alert('error');
         }       
-    });                 
+        });                 
+        }
 };
     
 $(document).ready(function(){                 
     
-        $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage =3;            
-        pager.para = $('tbody > tr');
-        pager.showPage(1);  
+     ManageUser.init(); 
     // ここに実際の処理を記述します。   
     $('form').on('click','#userlistsearch',function () {        
-        userlist();
+        ManageUser.search();
     });          
     $("tbody").on('click','.displaypopup',function () {        
         var id = $(this).attr('id');  

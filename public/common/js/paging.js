@@ -11,7 +11,7 @@ var Paging = {
       //get average page number
       this.numPages = function() {
 	       var numPages = 0;
-	        if (this.para != null && this.perpage != null) {
+	        if (this.para !== null && this.perpage !== null) {
 	            numPages = Math.ceil(this.para.length / this.perpage);
 	        }	         
 	        return numPages;
