@@ -141,7 +141,12 @@ class SalaryMaster extends Model {
                     && $SD['allowance_amount']!=$Allowanceresult['total_allowance_amount'])
                 {
                     $allowance=$Allowanceresult['total_allowance_amount'];
-                    $date_diff = $this->date_difference($comp_start_date, $budget_endyear);
+                    if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear) {
+                    $date_diff = $this->date_difference($comp_start_date, $budget_endyear);  
+                    }
+                    if ($comp_start_date == $budget_startyear) {
+                    $date_diff = 12;
+                    }
                     $salary_yr=($SD['basic_salary']*$date_diff)+$Allowanceresult['total_allowance_amount'];
                     $final_result=$this->CalculateIncometax($salary_yr,$date_diff,$value['member_id'],$allowance);
                 }
@@ -167,11 +172,6 @@ class SalaryMaster extends Model {
                 }
                 //Insert new allowance to add to basic salary
                 if (!empty($Allowanceresult)) {
-//                    $total_allowances = "";
-                    //print_r($result);
-//                    for ($i = 0; $i < count($result); $i++) {
-//                        $total_allowances+=$result[$i]['allowance_amount'];
-//                    }
                     
                     echo $allowance;
                     if ($SM['basic_salary'] == $SD['basic_salary'])
@@ -190,18 +190,6 @@ class SalaryMaster extends Model {
                     $allowance=$Allowanceresult['total_allowance_amount'];
                     $salary_yr=$allowance+$salary_yr;
                     
-//                    echo $salary_yr;
-//                    if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear) {
-//                    $date_diff = $this->date_difference($comp_start_date, $budget_endyear);
-//                    $salary_yr=$salary_yr*$date_diff;
-//                    echo $salary_yr."pp";
-//                        
-//                    }
-                    
-                   
-                    //$date_diff = $this->date_difference($comp_start_date, $budget_endyear);
-//                    $salary_yr=$salary*$date_diff;
-//                    echo $salary;
                     }
                     else{
                         $allowance=$Allowanceresult['total_allowance_amount'];
@@ -214,8 +202,8 @@ class SalaryMaster extends Model {
                     
                 }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
