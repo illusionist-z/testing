@@ -2,8 +2,8 @@
 
 namespace workManagiment\Manageuser\Controllers;
 
-use Phalcon\Validation\Validator\Email as EmailValidator;
 use workManagiment\Manageuser\Models\User as User;
+use workManagiment\Manageuser\Models\AddUser;
 use workManagiment\Core\Models\Db;
 use workManagiment\Core\Models\Db\CoreMember;
 
@@ -12,7 +12,7 @@ use workManagiment\Core\Models\Db\CoreMember;
  * @type   User Editing
  * @data   Abstract User Model as $user
  */
-class CorememberController extends ControllerBase {
+class CorememberController extends ControllerBase {    
 
     public $user;
 
@@ -31,28 +31,19 @@ class CorememberController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function saveuserAction() {
-
-        $this->view->setVar('type', 'userlist');
-        if ($this->request->isPost()) {
-            $member_id = $this->session->user['member_id'];
-            $username = $this->request->getPost('username');
-            $password = $this->request->getPost('password');
-            $dept = $this->request->getPost('dept');
-            $position = $this->request->getPost('position');
-            $email = $this->request->getPost('email');
-            $phno = $this->request->getPost('phno');
-            $address = $this->request->getPost('address');
-            $role = $this->request->getPost('user_role');
-
-            $filename = $_FILES["fileToUpload"]["name"];
-
-            $NewUser = new CoreMember;
-            $NewUser->addnewuser($member_id, $username, $password, $dept, $position, $email, $phno, $address, $filename, $role);
-            $this->flashSession->success("New user is added successfully!");
-
-            // Make a full HTTP redirection
-            return $this->response->redirect("manageuser/index/adduser");
+       if($this->request->isPost()){
+           $user = new AddUser();
+           $validate = $user->validate($this->request->getPost());
+           if(count($validate)){
+               foreach ($validate as $message){
+                   $json = $message->getMessage();
+               }               
+               }
+           
+           echo json_encode($json);
+           $this->view->disable();
+       }
         }
-    }
+                  
 
 }

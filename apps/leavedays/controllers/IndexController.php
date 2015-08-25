@@ -14,11 +14,8 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/leavedays/js/search.js');
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');        
-        $this->assets->addJs('apps/leavedays/js/index.js');               
+        $this->assets->addJs('common/js/export.js');        
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');                
     }
 
     public function indexAction() {
@@ -55,7 +52,10 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-    public function leavelistAction(){              
+    public function leavelistAction(){      
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/leavedays/js/search.js');
+        $this->assets->addJs('apps/leavedays/js/leavelist.js');               
         $month = $this->config->month;
         $leave = $this->config->leavetype;        
         $UserList=new Db\CoreMember();

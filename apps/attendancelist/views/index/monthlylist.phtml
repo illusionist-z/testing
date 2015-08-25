@@ -120,8 +120,7 @@ $length = count($Month);
                                 }
                                 ?>
                             </td>
-                            <td>
-                                <?php
+                            <td><?php
                                 //calculate late time
                                 $checkintime = $item['checkin_time'];
                                 $dt = new DateTime($checkintime);
@@ -136,8 +135,7 @@ $length = count($Month);
                                 }
                                 ?>
                             </td>
-                            <td>
-                                <?php
+                            <td><?php
                                 $checkouttime = $item['checkout_time'];
                                 if ($checkouttime == 0) {
                                     echo "-";
@@ -153,8 +151,7 @@ $length = count($Month);
                                 }
                                 ?>
                             </td>
-                            <td>
-                                <?php
+                            <td><?php
                                 //calculate working time
                                 $start_time = strtotime($item['checkin_time']);
                                 $end_time = strtotime($item['checkout_time']);
@@ -170,8 +167,7 @@ $length = count($Month);
                                 }
                                 ?>
                             </td>
-                            <td>
-                                <?php
+                            <td><?php
                                 //calculate overtime
                                 
                                 if ($item['overtime']!=0) {
@@ -179,12 +175,8 @@ $length = count($Month);
                                 } else {
                                     echo "-";
                                 }
-                                ?>
-                            </td>
-                            <td>
-                               <?php echo $item['location'];
-                               ?>
-                            </td>
+                                ?></td>
+                            <td><?php echo $item['location'];?></td>
                         </tr>
                         <?php
                     }

@@ -80,7 +80,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-        $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt)"
+        $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,job_title,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt)"
                 . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "','" . $member_id . "','" . $today . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $username . "'");
         $us = $user_name->fetchall();

@@ -18,9 +18,8 @@ var Leave = {
             $.ajax({
                 url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
                 type: 'GET',
-                success: function (d) {
-
-                    var json_obj = $.parseJSON(d);//parse JSON
+                success: function (d) {                    
+                    var json_obj = $.parseJSON(d);//parse JSON                    
                     var leave_left="";
                     //alert(json_obj);
                     $("tbody").empty();
