@@ -98,8 +98,8 @@ class IndexController extends ControllerBase {
     /**
      * Check in 
      */
-    public function checkinAction() {
-        
+     public function checkinAction() {
+      
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
         $lat = $this->session->location['lat'];
@@ -123,33 +123,27 @@ class IndexController extends ControllerBase {
                 
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add);
-        $this->flashSession->success("$status");
-        $this->response->redirect('dashboard/index/direct');
-       
-        
-        
-
-        
-        
-    }
+        echo "<script>alert('".$status."');</script>";
+        echo "<script type='text/javascript'>window.location.href='direct';</script>";
+     }
 
     /**
      * Check out
      */
-    public function checkoutAction() {
+   public function checkoutAction() {
 
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckouttime($id);
-          $this->flashSession->success("$status");
-          $this->response->redirect('dashboard/index/direct');
+        echo "<script>alert('".$status."');</script>";
+        echo "<script type='text/javascript'>window.location.href='direct';</script>";
        
 
     }
     
     public function directAction(){
-        $name=$this->session->user['member_login_name'];
-       if ( $name=='admin'){
+        $name=$this->session->permission_code;
+       if ( $name=='ADMIN'){
             $this->response->redirect('attendancelist/index/todaylist');
         }
         else
