@@ -14,7 +14,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');  
-        $this->assets->addJs('common/js/paging.js');                       
+                          
         $this->assets->addJs('apps/manageuser/js/search.js'); 
         $this->assets->addJs("apps/manageuser/js/useredit.js");
     }
@@ -29,7 +29,8 @@ class IndexController extends ControllerBase
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
         $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list);        
+        $this->view->setVar('Result', $list); 
+        $this->assets->addJs('common/js/paging.js');     
     }    
    
     /**
