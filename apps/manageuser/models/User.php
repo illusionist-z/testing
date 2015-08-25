@@ -95,7 +95,7 @@ class User extends Model {
                       array('options'=>array('regexp'=>'/([^\s])/')))?true:false;
         if($res['mail'] && $res['pno'] && $res['uname'] && $res['dept']){                   
         $this->db = $this->getDI()->getShared("db");        
-        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_mobile_tel='".$cond['pno']."',member_mail='".$cond['email']."',job_title='".$cond['position']."',member_address='".$cond['address']."' Where member_id='".$cond['id']."'";
+        $query = "Update core_member SET member_login_name='".$cond['name']."',member_dept_name='".$cond['dept']."',member_mobile_tel='".$cond['pno']."',member_mail='".$cond['email']."',position='".$cond['position']."',member_address='".$cond['address']."' Where member_id='".$cond['id']."'";
         $this->db->query($query);
         $res['valid']= true;
         }
