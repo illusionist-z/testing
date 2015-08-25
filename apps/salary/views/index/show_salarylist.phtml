@@ -116,7 +116,7 @@
                            
                             <td><?php echo $getsalarylist['member_login_name'] ?></td>
                             <td><?php echo $getsalarylist['member_dept_name'] ?></td>
-                            <td class="right_data_value"><?php echo number_format($getsalarylist['basic_salary']) ?></td>
+                            <td style="background-color: red; float: right;"><?php echo number_format($getsalarylist['basic_salary']) ?></td>
                             <td><?php echo number_format($getsalarylist['overtime']) ?></td>
                             <td><?php echo number_format($getsalarylist['travel_fee']) ?></td>
                             <td><?php echo number_format($getsalarylist['absent_dedution']) ?></td>
@@ -136,10 +136,10 @@
                     }
                     ?>
 
-                    <tr>
-                        <td colspan="9" style="text-align:center; background-color:#428bca; color:#ffffff;"><b>Total salary for all user</b></td>
-                        <td style="background-color:#428bca; color:#ffffff;"><b><?php echo number_format($totalresult);?></b></td>
-                        <td style="background-color:#428bca; color:#ffffff;"></td>
+                    <tr style="background-color:#428bca; color:#ffffff;">
+                        <td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>
+                        <td><b><?php echo number_format($totalresult);?></b></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>      

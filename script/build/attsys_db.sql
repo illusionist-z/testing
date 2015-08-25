@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.4.13.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 12, 2015 at 10:46 AM
--- Server version: 5.5.32
--- PHP Version: 5.4.16
+-- Host: localhost
+-- Generation Time: Aug 25, 2015 at 04:29 PM
+-- Server version: 5.6.26
+-- PHP Version: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,13 +14,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `attsys_db`
 --
-CREATE DATABASE IF NOT EXISTS `attsys_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `attsys_db`;
 
 -- --------------------------------------------------------
 
@@ -34,347 +32,6 @@ CREATE TABLE IF NOT EXISTS `absent` (
   `delete_flag` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `absent`
---
-
-INSERT INTO `absent` (`member_id`, `date`, `delete_flag`) VALUES
-('anesis', '2015-08-04', 1),
-('Doe', '2015-08-04', 1),
-('test02', '2015-08-04', 1),
-('test03', '2015-08-04', 1),
-('delete', '2015-08-04', 1),
-('suzin', '2015-08-04', 1),
-('admintest', '2015-08-04', 1),
-('member8', '2015-08-04', 1),
-('test001', '2015-08-04', 1),
-('test004', '2015-08-04', 1),
-('test01', '2015-08-04', 1),
-('david', '2015-08-04', 1),
-('anesis', '2015-08-04', 1),
-('Doe', '2015-08-04', 1),
-('test02', '2015-08-04', 1),
-('test03', '2015-08-04', 1),
-('delete', '2015-08-04', 1),
-('suzin', '2015-08-04', 1),
-('admintest', '2015-08-04', 1),
-('member8', '2015-08-04', 1),
-('test001', '2015-08-04', 1),
-('test004', '2015-08-04', 1),
-('test01', '2015-08-04', 1),
-('david', '2015-08-04', 1),
-('anesis', '2015-08-04', 1),
-('Doe', '2015-08-04', 1),
-('test02', '2015-08-04', 1),
-('test03', '2015-08-04', 1),
-('delete', '2015-08-04', 1),
-('suzin', '2015-08-04', 1),
-('admintest', '2015-08-04', 1),
-('member8', '2015-08-04', 1),
-('test001', '2015-08-04', 1),
-('test004', '2015-08-04', 1),
-('test01', '2015-08-04', 1),
-('david', '2015-08-04', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-05', 1),
-('Doe', '2015-08-05', 1),
-('test02', '2015-08-05', 1),
-('test03', '2015-08-05', 1),
-('delete', '2015-08-05', 1),
-('admin', '2015-08-05', 1),
-('suzin', '2015-08-05', 1),
-('admintest', '2015-08-05', 1),
-('member8', '2015-08-05', 1),
-('test001', '2015-08-05', 1),
-('test004', '2015-08-05', 1),
-('test01', '2015-08-05', 1),
-('david', '2015-08-05', 1),
-('anesis', '2015-08-07', 1),
-('Doe', '2015-08-07', 1),
-('test02', '2015-08-07', 1),
-('test03', '2015-08-07', 1),
-('delete', '2015-08-07', 1),
-('admin', '2015-08-07', 1),
-('suzin', '2015-08-07', 1),
-('admintest', '2015-08-07', 1),
-('member8', '2015-08-07', 1),
-('test001', '2015-08-07', 1),
-('test004', '2015-08-07', 1),
-('test01', '2015-08-07', 1),
-('david', '2015-08-07', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1),
-('anesis', '2015-08-10', 1),
-('Doe', '2015-08-10', 1),
-('test02', '2015-08-10', 1),
-('test03', '2015-08-10', 1),
-('delete', '2015-08-10', 1),
-('admin', '2015-08-10', 1),
-('suzin', '2015-08-10', 1),
-('admintest', '2015-08-10', 1),
-('member8', '2015-08-10', 1),
-('test001', '2015-08-10', 1),
-('test004', '2015-08-10', 1),
-('test01', '2015-08-10', 1),
-('david', '2015-08-10', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -385,12 +42,11 @@ CREATE TABLE IF NOT EXISTS `allowances` (
   `allowance_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `allowance_name` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `allowance_amount` double NOT NULL,
-  `creator_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL,
-  PRIMARY KEY (`allowance_id`)
+  `creator_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
+  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -399,7 +55,9 @@ CREATE TABLE IF NOT EXISTS `allowances` (
 
 INSERT INTO `allowances` (`allowance_id`, `allowance_name`, `allowance_amount`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
 ('4a53fcdc-3d17-11e5-b0fa-00ff56603869', 'service year allowance', 5000, '', '2015-08-07 00:00:00', '', '0000-00-00 00:00:00', 0),
-('4a54bc11-3d17-11e5-b0fa-00ff56603869', 'customer site allowance', 10000, '', '2015-08-07 00:00:00', '', '0000-00-00 00:00:00', 0);
+('4a54bc11-3d17-11e5-b0fa-00ff56603869', 'customer site allowance', 10000, '', '2015-08-07 00:00:00', '', '0000-00-00 00:00:00', 0),
+('995a94bf-422e-11e5-8238-31068db1cef7', 'Allowance A', 10000, '', '2015-08-14 04:46:01', '', '0000-00-00 00:00:00', 0),
+('99617d31-422e-11e5-8238-31068db1cef7', 'Allowance B', 3000, '', '2015-08-14 04:46:01', '', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -408,52 +66,36 @@ INSERT INTO `allowances` (`allowance_id`, `allowance_name`, `allowance_amount`, 
 --
 
 CREATE TABLE IF NOT EXISTS `attendances` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `att_date` date NOT NULL,
   `checkin_time` datetime NOT NULL,
-  `checkout_time` datetime NOT NULL,
-  `overtime` double NOT NULL,
-  `notes` text COLLATE utf8_unicode_ci NOT NULL,
-  `lat` double NOT NULL,
-  `lng` double NOT NULL,
-  `location` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `creator_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=36 ;
+  `checkout_time` datetime DEFAULT NULL,
+  `overtime` double DEFAULT NULL,
+  `notes` text COLLATE utf8_unicode_ci,
+  `lat` double DEFAULT NULL,
+  `lng` double DEFAULT NULL,
+  `location` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `creator_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
+  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `attendances`
 --
 
 INSERT INTO `attendances` (`id`, `member_id`, `att_date`, `checkin_time`, `checkout_time`, `overtime`, `notes`, `lat`, `lng`, `location`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-(3, '517789a4-94fc-11e4-8cf4-3b7ec45c8174', '2015-07-15', '2015-07-15 07:00:00', '2015-07-15 17:00:00', 1.12, '', 0, 0, '', '', '2015-06-10 17:45:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0),
-(12, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-17', '2015-06-17 14:24:08', '2015-06-17 14:55:57', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(13, 'efe235c2-9672-11e4-a3e5-b3f3ac838c32', '2015-05-13', '2015-05-13 14:33:12', '2015-05-13 14:48:11', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(14, 'test004', '2015-06-17', '2015-06-17 15:11:03', '0000-00-00 00:00:00', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(15, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-18', '2015-06-18 09:17:54', '2015-06-18 14:06:00', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(16, 'a752879a-6e2b-11e4-b676-82c4524d8ace', '2015-06-19', '2015-06-19 09:00:42', '0000-00-00 00:00:00', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(17, 'c422a154-c0f9-11e4-a6dd-7a12eb6538e9', '2015-06-22', '2015-06-22 09:06:49', '2015-06-22 19:20:26', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(18, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-23', '2015-06-23 08:18:47', '2015-06-23 15:04:20', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(19, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-24', '2015-06-24 10:01:32', '0000-00-00 00:00:00', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(20, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-25', '2015-06-25 07:56:05', '0000-00-00 00:00:00', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(21, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-26', '2015-06-26 08:06:25', '0000-00-00 00:00:00', 0, '', 0, 0, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(23, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-07-14', '2015-07-13 09:57:22', '0000-00-00 00:00:00', 0, '', 16.8039198, 96.1403067, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(24, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-07-15', '2015-07-15 01:45:58', '0000-00-00 00:00:00', 0, '', 16.803911499999998, 96.1403684, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(25, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-07-16', '2015-07-16 01:29:06', '2015-07-16 09:52:44', 0, '', 16.803882299999998, 96.1403256, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(26, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-07-17', '2015-07-17 01:41:34', '0000-00-00 00:00:00', 0, '', 16.8039151, 96.1402902, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(28, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-07-20', '2015-07-20 06:36:40', '0000-00-00 00:00:00', 0, '', 16.8039073, 96.1403378, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(29, 'admin', '2015-07-22', '2015-07-22 05:06:29', '0000-00-00 00:00:00', 0, '', 16.803862499999997, 96.14032999999999, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(30, 'admin', '2015-07-24', '2015-07-24 01:54:55', '0000-00-00 00:00:00', 0, '', 16.8039186, 96.1403474, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(31, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-07-24', '2015-07-24 02:15:54', '0000-00-00 00:00:00', 0, '', 16.803911499999998, 96.14034679999999, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(32, 'admin', '2015-08-04', '2015-08-04 01:45:06', '0000-00-00 00:00:00', 0, '', 16.803844299999998, 96.1402554, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(33, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-08-04', '2015-08-04 01:57:38', '0000-00-00 00:00:00', 0, '', 16.780832999999998, 96.149722, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(34, 'a341f7e8-6e4a-11e4-b676-82c4524d8ace', '2015-08-04', '2015-08-04 02:17:52', '0000-00-00 00:00:00', 0, '', 16.780832999999998, 96.149722, '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(35, 'c8169087-3fd2-11e5-9c70-9c4fb7a929cf', '2015-08-11', '2015-08-11 02:46:06', '0000-00-00 00:00:00', 0, '', 16.8037974, 96.14018449999999, 'Myanmar (Burma)', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
+(40, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-08-23', '2015-08-23 02:15:38', '2015-08-23 04:02:20', 0, NULL, 16.80365066670554, 96.14032782249012, 'Myanmar (Burma)', NULL, NULL, NULL, NULL, 0),
+(41, '0acc120c-3a4c-11e5-b951-00ff56603869', '2015-08-23', '2015-08-23 04:03:40', '2015-08-23 04:16:05', 0, NULL, 16.803693453213626, 96.14037050802725, 'Myanmar (Burma)', NULL, NULL, NULL, NULL, 0),
+(42, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-07-24', '2015-07-24 08:00:00', '2015-07-24 17:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(43, 'c422a154-c0f9-11e4-a6dd-7a12eb6538e9', '2015-08-20', '2015-08-20 08:00:00', '2015-08-20 17:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(44, 'test004', '2015-08-21', '2015-08-21 08:00:00', '2015-08-21 17:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(45, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-08-24', '2015-08-24 03:40:51', NULL, NULL, NULL, 16.803647895399713, 96.14039669943938, '', NULL, NULL, NULL, NULL, 0),
+(46, 'admin', '2015-08-24', '2015-08-24 09:46:17', NULL, NULL, NULL, 16.8037627, 96.1402134, 'Myanmar (Burma)', NULL, NULL, NULL, NULL, 0),
+(47, 'admin', '2015-08-25', '2015-08-25 03:13:34', '2015-08-25 03:13:48', 0, NULL, 16.803778599999998, 96.1401994, 'Myanmar (Burma)', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -462,28 +104,26 @@ INSERT INTO `attendances` (`id`, `member_id`, `att_date`, `checkin_time`, `check
 --
 
 CREATE TABLE IF NOT EXISTS `calendar` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `member_id` varchar(36) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `startdate` varchar(48) NOT NULL,
-  `enddate` varchar(48) NOT NULL,
-  `allDay` varchar(5) NOT NULL,
-  `creator_id` varchar(36) NOT NULL,
+  `id` int(11) NOT NULL,
+  `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `startdate` datetime NOT NULL,
+  `enddate` datetime NOT NULL,
+  `allDay` varchar(5) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `created_dt` datetime NOT NULL,
   `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `deleted_flag` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `calendar`
 --
 
 INSERT INTO `calendar` (`id`, `member_id`, `title`, `startdate`, `enddate`, `allDay`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-(2, '', 'test', '2015-07-29T09:00:00', '2015-07-29T09:00:00', 'true', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(3, '', 'test', '2015-07-29', '2015-07-30', 'true', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
+(2, '', 'test', '2015-07-29 09:00:00', '2015-07-29 09:00:00', 'true', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
+(3, '', 'test', '2015-07-29 00:00:00', '2015-07-30 00:00:00', 'true', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -719,7 +359,10 @@ INSERT INTO `core_member` (`member_id`, `member_login_name`, `member_password`, 
 ('test01', 'test01', 'c25a79c57906ba7027b36d380230db92bbc0fd64', 'User01', 'Test', 'Test User01', 'user', 'test', 'dept-admin', '取引先', '', '', 'test@example.com', '', '', 'en', '', '', 0, NULL, '1', '2014-09-17 18:01:55', 'admin', '2014-11-16 23:43:43', 0),
 ('0acc120c-3a4c-11e5-b951-00ff56603869', 'david', 'aa743a0aaec8f7d7a1f01442503957f4d7a2d634', NULL, NULL, NULL, NULL, NULL, NULL, 'web', NULL, '122333', 'david@gmail.com', NULL, 'developer', NULL, 'ygn', 'facebook.ico', 0, NULL, NULL, NULL, NULL, NULL, 0),
 ('25d2588f-3fd2-11e5-9c70-9c4fb7a929cf', 'suyamin', '03a5fbce9f1480a607198d9e2d95718527c4ebcf', NULL, NULL, NULL, NULL, NULL, NULL, 'web', NULL, '23424', 'suyamin@gmail.com', NULL, 'developer', NULL, 'ygn', '', 0, NULL, NULL, NULL, NULL, NULL, 0),
-('c8169087-3fd2-11e5-9c70-9c4fb7a929cf', 'Aung', 'ed991b466915e44d4c80e97a9f1be676b64a31f7', NULL, NULL, NULL, NULL, NULL, NULL, 'asfa', NULL, '220424', 'aung@gmail.com', NULL, 'afdfaf', NULL, 'ygn', '', 0, NULL, NULL, NULL, NULL, NULL, 0);
+('c8169087-3fd2-11e5-9c70-9c4fb7a929cf', 'Aung', 'ed991b466915e44d4c80e97a9f1be676b64a31f7', NULL, NULL, NULL, NULL, NULL, NULL, 'asfa', NULL, '220424', 'aung@gmail.com', NULL, 'afdfaf', NULL, 'ygn', '', 0, NULL, NULL, NULL, NULL, NULL, 0),
+('b05f14fa-4309-11e5-8feb-6dc698a57457', 'aye aye', 'a137cca3cf7b1ceacba15d8a6de334bd201c3e87', NULL, NULL, NULL, NULL, NULL, NULL, 'web', NULL, '2984720-4', 'ayeaye@gmail.com', NULL, 'developer', NULL, 'ygn', '', 0, NULL, NULL, NULL, NULL, NULL, 0),
+('0009813a-4681-11e5-899e-110f17471ec2', 'dd', 'ca84d1343b96baa8137c943ed1860e522cacb238', NULL, NULL, NULL, NULL, NULL, NULL, 'senior developer', NULL, 'nn', '133399', NULL, 'zinmonthet88@gmail.com', NULL, '', 'USER,user', 0, NULL, 'zin', '2015-08-19 21:15:57', NULL, NULL, 0),
+('86070d78-4746-11e5-b07c-0c61c1a7010d', 'su', '363eb224f6ff8d3c5163a8805222acbf939a65b3', NULL, NULL, NULL, NULL, NULL, NULL, 'web', NULL, '20482-134', 'aaa@gmail.com', NULL, 'ddd', NULL, 'af', '', 0, NULL, 'admin', '2015-08-20 20:49:52', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -728,40 +371,25 @@ INSERT INTO `core_member` (`member_id`, `member_login_name`, `member_password`, 
 --
 
 CREATE TABLE IF NOT EXISTS `core_member_tax_deduce` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `deduce_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `creator_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=27 ;
+  `creator_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
+  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `core_member_tax_deduce`
 --
 
 INSERT INTO `core_member_tax_deduce` (`id`, `deduce_id`, `member_id`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-(3, 'stay_father', '9af6af14-6e01-11e4-b676-82c4524d8ace', '', '2015-07-26 00:00:00', '', '0000-00-00 00:00:00', 0),
-(4, 'stay_mother', '9af6af14-6e01-11e4-b676-82c4524d8ace', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(5, 'life_insurance', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(6, 'emp_ssc', '', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(8, 'stay_father', 'efe235c2-9672-11e4-a3e5-b3f3ac838c32', '', '2015-08-01 00:00:00', '', '0000-00-00 00:00:00', 0),
-(9, 'stay_mother', 'efe235c2-9672-11e4-a3e5-b3f3ac838c32', '', '2015-08-01 00:00:00', '', '0000-00-00 00:00:00', 0),
-(10, 'stay_father', 'a752879a-6e2b-11e4-b676-82c4524d8ace', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(11, 'stay_mother', 'a752879a-6e2b-11e4-b676-82c4524d8ace', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(12, 'stay_mother', 'a341f7e8-6e4a-11e4-b676-82c4524d8ace', '', '2015-08-01 00:00:00', '', '0000-00-00 00:00:00', 0),
-(13, 'stay_father', '0acc120c-3a4c-11e5-b951-00ff56603869', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(14, 'stay_mother', '0acc120c-3a4c-11e5-b951-00ff56603869', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(15, '1', '', '', '2015-08-07 15:33:23', '', '0000-00-00 00:00:00', 0),
-(16, '1', '', '', '2015-08-07 15:34:24', '', '0000-00-00 00:00:00', 0),
-(18, 'stay_mother', 'c422a154-c0f9-11e4-a6dd-7a12eb6538e9', '', '2015-08-07 22:26:17', '', '0000-00-00 00:00:00', 0),
-(19, 'stay_father', '517789a4-94fc-11e4-8cf4-3b7ec45c8174', '', '2015-08-07 22:36:35', '', '0000-00-00 00:00:00', 0),
-(24, 'stay_father', 'a341f7e8-6e4a-11e4-b676-82c4524d8ace', '', '2015-08-11 08:18:43', '', '0000-00-00 00:00:00', 0),
-(25, 'stay_mother', 'a341f7e8-6e4a-11e4-b676-82c4524d8ace', '', '2015-08-11 08:18:43', '', '0000-00-00 00:00:00', 0),
-(26, 'stay_mother', 'c8169087-3fd2-11e5-9c70-9c4fb7a929cf', '', '2015-08-11 09:19:42', '', '0000-00-00 00:00:00', 0);
+(32, 'stay_father', '9af6af14-6e01-11e4-b676-82c4524d8ace', 'admin', '2015-08-20 21:17:59', '0', '0000-00-00 00:00:00', 0),
+(33, 'stay_mother', '9af6af14-6e01-11e4-b676-82c4524d8ace', 'admin', '2015-08-20 21:17:59', '0', '0000-00-00 00:00:00', 0),
+(34, 'stay_father', '0acc120c-3a4c-11e5-b951-00ff56603869', 'admin', '2015-08-25 14:29:28', '0', '0000-00-00 00:00:00', 0),
+(35, 'stay_mother', '0acc120c-3a4c-11e5-b951-00ff56603869', 'admin', '2015-08-25 14:29:28', '0', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -893,8 +521,8 @@ CREATE TABLE IF NOT EXISTS `core_permission_rel_member` (
   `rel_member_id` varchar(36) NOT NULL DEFAULT '0',
   `permission_member_group_member_name` varchar(100) DEFAULT NULL,
   `rel_permission_group_code` varchar(36) NOT NULL,
-  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `created_dt` datetime NOT NULL,
+  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
   `permission_member_group_is_deleted` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -907,7 +535,76 @@ INSERT INTO `core_permission_rel_member` (`rel_member_id`, `permission_member_gr
 ('9af6af14-6e01-11e4-b676-82c4524d8ace', 'user', 'USER', '', '0000-00-00 00:00:00', 0),
 ('0acc120c-3a4c-11e5-b951-00ff56603869', 'user', 'USER', '', '0000-00-00 00:00:00', 0),
 ('25d2588f-3fd2-11e5-9c70-9c4fb7a929cf', 'user', 'USER', '', '0000-00-00 00:00:00', 0),
-('c8169087-3fd2-11e5-9c70-9c4fb7a929cf', 'user', 'USER', '', '0000-00-00 00:00:00', 0);
+('c8169087-3fd2-11e5-9c70-9c4fb7a929cf', 'user', 'USER', '', '0000-00-00 00:00:00', 0),
+('b05f14fa-4309-11e5-8feb-6dc698a57457', 'user', 'USER', '', '0000-00-00 00:00:00', 0),
+('f94db930-4683-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:37:14', 0),
+('f94db930-4683-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:37:59', 0),
+('14547dc2-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:37:59', 0),
+('f94db930-4683-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:38:24', 0),
+('14547dc2-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:38:24', 0),
+('23723880-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:38:24', 0),
+('f94db930-4683-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:39:49', 0),
+('14547dc2-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:39:49', 0),
+('23723880-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:39:49', 0),
+('55f4516c-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:39:49', 0),
+('f94db930-4683-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:43:33', 0),
+('14547dc2-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:43:33', 0),
+('23723880-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:43:33', 0),
+('55f4516c-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:43:33', 0),
+('db86bdce-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:43:33', 0),
+('f94db930-4683-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:57:48', 0),
+('14547dc2-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:57:48', 0),
+('23723880-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:57:48', 0),
+('55f4516c-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:57:48', 0),
+('db86bdce-4684-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:57:48', 0),
+('d9012786-4686-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 21:57:48', 0),
+('f94db930-4683-11e5-899e-110f17471ec2', 'user', 'USER', 'admin', '2015-08-19 22:08:42', 0),
+('14547dc2-4684-11e5-899e-110f17471ec2', 'user', 'USER', 'admin', '2015-08-19 22:08:42', 0),
+('23723880-4684-11e5-899e-110f17471ec2', 'user', 'USER', 'admin', '2015-08-19 22:08:42', 0),
+('55f4516c-4684-11e5-899e-110f17471ec2', 'user', 'USER', 'admin', '2015-08-19 22:08:42', 0),
+('db86bdce-4684-11e5-899e-110f17471ec2', 'user', 'USER', 'admin', '2015-08-19 22:08:42', 0),
+('d9012786-4686-11e5-899e-110f17471ec2', 'user', 'USER', 'admin', '2015-08-19 22:08:42', 0),
+('5f1a8d7a-4688-11e5-899e-110f17471ec2', 'user', 'USER', 'admin', '2015-08-19 22:08:42', 0),
+('c0a1ce96-4688-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 22:11:26', 0),
+('c0a1ce96-4688-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 22:26:48', 0),
+('e64f5a12-468a-11e5-899e-110f17471ec2', 'adminstrator', 'ADMIN', 'admin', '2015-08-19 22:26:48', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:16:13', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:17:17', 0),
+('26bdf3e8-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:17:17', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:35:14', 0),
+('26bdf3e8-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:35:14', 0),
+('a8cec6e4-46f0-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:35:14', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:39:26', 0),
+('26bdf3e8-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:39:26', 0),
+('a8cec6e4-46f0-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:39:26', 0),
+('3f070fd6-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:39:26', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:42:09', 0),
+('26bdf3e8-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:42:09', 0),
+('a8cec6e4-46f0-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:42:09', 0),
+('3f070fd6-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:42:09', 0),
+('a0242916-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:42:09', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:44:10', 0),
+('26bdf3e8-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:44:10', 0),
+('a8cec6e4-46f0-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:44:11', 0),
+('3f070fd6-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:44:11', 0),
+('a0242916-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:44:11', 0),
+('e8b2b8b4-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:44:11', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:54:47', 0),
+('26bdf3e8-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:54:47', 0),
+('a8cec6e4-46f0-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:54:47', 0),
+('3f070fd6-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:54:47', 0),
+('a0242916-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:54:47', 0),
+('e8b2b8b4-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:54:47', 0),
+('63ffba0c-46f3-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:54:47', 0),
+('011c63c2-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('26bdf3e8-46ee-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('a8cec6e4-46f0-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('3f070fd6-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('a0242916-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('e8b2b8b4-46f1-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('63ffba0c-46f3-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('8927bfb4-46f3-11e5-bc6a-8ffb3e439523', 'adminstrator', 'ADMIN', 'admin', '2015-08-20 10:55:49', 0),
+('86070d78-4746-11e5-b07c-0c61c1a7010d', 'user', 'USER', 'admin', '2015-08-20 20:49:52', 0);
 
 -- --------------------------------------------------------
 
@@ -929,7 +626,7 @@ CREATE TABLE IF NOT EXISTS `core_session` (
 --
 
 CREATE TABLE IF NOT EXISTS `leaves` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
@@ -937,23 +634,63 @@ CREATE TABLE IF NOT EXISTS `leaves` (
   `leave_days` int(11) NOT NULL,
   `leave_category` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `leave_description` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `leave_status` tinyint(3) NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+  `leave_status` tinyint(1) NOT NULL,
+  `total_leavedays` int(11) NOT NULL,
+  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
+  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `leaves`
 --
 
-INSERT INTO `leaves` (`id`, `member_id`, `start_date`, `end_date`, `date`, `leave_days`, `leave_category`, `leave_description`, `leave_status`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-(1, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-29 00:00:00', '2015-06-30 00:00:00', '2015-06-22 00:00:00', 2, 'sick', 'wan to take 2 days leave', 0, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(2, '517789a4-94fc-11e4-8cf4-3b7ec45c8174', '2015-06-29 00:00:00', '2015-06-30 00:00:00', '2015-06-22 00:00:00', 2, 'vacation', '', 0, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(3, 'admin', '2015-07-29 00:00:00', '2015-07-30 00:00:00', '2015-07-20 00:00:00', 1, 'Because of ill', 'ggg', 0, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-(4, 'admin', '2015-07-29 00:00:00', '2015-07-30 00:00:00', '2015-07-20 00:00:00', 1, 'Because of ill', 'ggg', 0, '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0);
+INSERT INTO `leaves` (`id`, `member_id`, `start_date`, `end_date`, `date`, `leave_days`, `leave_category`, `leave_description`, `leave_status`, `total_leavedays`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
+(1, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-06-29 00:00:00', '2015-06-30 00:00:00', '2015-06-22 00:00:00', 2, 'sick', 'wan to take 2 days leave', 0, 0, '0', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
+(2, '517789a4-94fc-11e4-8cf4-3b7ec45c8174', '2015-06-29 00:00:00', '2015-06-30 00:00:00', '2015-06-22 00:00:00', 2, 'vacation', '', 0, 0, '0', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
+(3, 'admin', '2015-07-29 00:00:00', '2015-07-30 00:00:00', '2015-07-20 00:00:00', 1, 'Because of ill', 'ggg', 0, 0, '0', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
+(4, 'admin', '2015-07-29 00:00:00', '2015-07-30 00:00:00', '2015-07-20 00:00:00', 1, 'Because of ill', 'ggg', 0, 0, '0', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
+(5, 'admin', '2015-08-27 00:00:00', '2015-08-27 00:00:00', '2015-08-20 20:52:21', 0, 'Because Of ill', 'a', 0, 0, 'admin', '2015-08-20 20:52:21', NULL, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leaves_setting`
+--
+
+CREATE TABLE IF NOT EXISTS `leaves_setting` (
+  `max_leavedays` tinyint(4) NOT NULL,
+  `fine_amount` int(11) NOT NULL COMMENT 'percentage on basic salary'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `leaves_setting`
+--
+
+INSERT INTO `leaves_setting` (`max_leavedays`, `fine_amount`) VALUES
+(16, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leave_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `leave_categories` (
+  `leavetype_id` varchar(36) NOT NULL COMMENT 'uuid',
+  `leavetype_name` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `leave_categories`
+--
+
+INSERT INTO `leave_categories` (`leavetype_id`, `leavetype_name`) VALUES
+('a58f10f9-4499-11e5-a5ce-19cbaf0a2497', 'On Vacation'),
+('da75129c-4499-11e5-a5ce-19cbaf0a2497', 'Because Of ill'),
+('88278d72-4561-11e5-959c-97f2fa0c4d5d', 'Others');
 
 -- --------------------------------------------------------
 
@@ -964,35 +701,28 @@ INSERT INTO `leaves` (`id`, `member_id`, `start_date`, `end_date`, `date`, `leav
 CREATE TABLE IF NOT EXISTS `salary_detail` (
   `id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `basic_salary` double NOT NULL,
-  `travel_fee` double NOT NULL,
-  `overtime` double NOT NULL,
-  `ssc_comp` double NOT NULL,
-  `ssc_emp` double NOT NULL,
-  `absent_dedution` double NOT NULL,
-  `income_tax` double NOT NULL,
-  `pay_date` datetime NOT NULL,
-  `creator_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  `basic_salary` double DEFAULT NULL,
+  `travel_fee` double DEFAULT NULL,
+  `overtime` double DEFAULT NULL,
+  `allowance_amount` double DEFAULT NULL,
+  `ssc_comp` double DEFAULT NULL,
+  `ssc_emp` double DEFAULT NULL,
+  `absent_dedution` double DEFAULT NULL,
+  `income_tax` double DEFAULT NULL,
+  `pay_date` datetime DEFAULT NULL,
+  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
+  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `salary_detail`
 --
 
-INSERT INTO `salary_detail` (`id`, `member_id`, `basic_salary`, `travel_fee`, `overtime`, `ssc_comp`, `ssc_emp`, `absent_dedution`, `income_tax`, `pay_date`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-('7e028dae-4043-11e5-9d3e-bcee7bc172f2', 'a341f7e8-6e4a-11e4-b676-82c4524d8ace', 400000, 10000, 0, 9000, 6000, 0, 0, '2015-08-11 22:40:32', '', '2015-08-11 22:40:32', '', '0000-00-00 00:00:00', 0),
-('7e0c564e-4043-11e5-9d3e-bcee7bc172f2', 'c8169087-3fd2-11e5-9c70-9c4fb7a929cf', 500000, 20000, 0, 9000, 6000, 0, 533, '2015-08-11 22:40:32', '', '2015-08-11 22:40:32', '', '0000-00-00 00:00:00', 0),
-('7e105f05-4043-11e5-9d3e-bcee7bc172f2', '517789a4-94fc-11e4-8cf4-3b7ec45c8174', 600000, 30000, 13440, 9000, 6000, 0, 10200, '2015-08-11 22:40:32', '', '2015-08-11 22:40:32', '', '0000-00-00 00:00:00', 0),
-('83031eb1-3f31-11e5-9208-4d4984bc2170', '517789a4-94fc-11e4-8cf4-3b7ec45c8174', 500000, 0, 0, 9000, 6000, 0, 7200, '2015-04-30 00:00:00', '', '2015-04-30 00:00:00', '', '0000-00-00 00:00:00', 0),
-('96346efa-3f31-11e5-9208-4d4984bc2170', '517789a4-94fc-11e4-8cf4-3b7ec45c8174', 500000, 0, 0, 9000, 6000, 0, 7200, '2015-05-29 00:00:00', '', '2015-05-29 00:00:00', '', '0000-00-00 00:00:00', 0),
-('aa9707e4-3f31-11e5-9208-4d4984bc2170', '517789a4-94fc-11e4-8cf4-3b7ec45c8174', 500000, 0, 0, 9000, 6000, 0, 7200, '2015-06-30 00:00:00', '', '2015-06-30 00:00:00', '', '0000-00-00 00:00:00', 0),
-('e0d1aea2-3ff7-11e5-9c70-9c4fb7a929cf', 'a341f7e8-6e4a-11e4-b676-82c4524d8ace', 300000, 10000, 0, 9000, 6000, 0, 0, '2015-07-31 13:39:16', '', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 0),
-('f243fc56-3fdd-11e5-9c70-9c4fb7a929cf', '517789a4-94fc-11e4-8cf4-3b7ec45c8174', 600000, 30000, 13440, 9000, 6000, 0, 10200, '2015-07-31 10:33:38', '', '2015-07-31 00:00:00', '', '0000-00-00 00:00:00', 0);
+INSERT INTO `salary_detail` (`id`, `member_id`, `basic_salary`, `travel_fee`, `overtime`, `allowance_amount`, `ssc_comp`, `ssc_emp`, `absent_dedution`, `income_tax`, `pay_date`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
+('45d7003e-47b2-11e5-9cdd-1a4407569b08', '9af6af14-6e01-11e4-b676-82c4524d8ace', 800000, 20000, NULL, 15000, 6000, 9000, NULL, 6625, '2015-07-31 09:41:10', NULL, '2015-07-31 09:41:10', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1010,21 +740,21 @@ CREATE TABLE IF NOT EXISTS `salary_master` (
   `ssc_emp` int(11) NOT NULL DEFAULT '2',
   `ssc_comp` int(11) NOT NULL DEFAULT '3',
   `allowance_id` int(11) NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
+  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `salary_master`
 --
 
-INSERT INTO `salary_master` (`id`, `member_id`, `position`, `basic_salary`, `travel_fee`, `over_time`, `ssc_emp`, `ssc_comp`, `allowance_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-('18f3dc9c-3fcb-11e5-9c70-9c4fb7a929cf', 'a341f7e8-6e4a-11e4-b676-82c4524d8ace', 'Junior developer', 400000, 10000, '1', 2, 3, 0, '2015-07-01 00:00:00', '', '2015-08-11 00:00:00', 0),
-('9e0c2a02-3fd3-11e5-9c70-9c4fb7a929cf', 'c8169087-3fd2-11e5-9c70-9c4fb7a929cf', 'Senior developer', 500000, 20000, '2', 2, 3, 0, '2015-08-03 00:00:00', '', '0000-00-00 00:00:00', 0),
-('a81634f8-3d1e-11e5-b0fa-00ff56603869', '517789a4-94fc-11e4-8cf4-3b7ec45c8174', 'Leader', 600000, 30000, '2', 2, 3, 0, '2015-04-01 00:00:00', '', '2015-07-31 00:00:00', 0);
+INSERT INTO `salary_master` (`id`, `member_id`, `position`, `basic_salary`, `travel_fee`, `over_time`, `ssc_emp`, `ssc_comp`, `allowance_id`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
+('55d6d9b8dea41', '9af6af14-6e01-11e4-b676-82c4524d8ace', 'Junior developer', 900000, 15000, '2', 3, 2, 0, 'admin', '2015-07-31 14:26:40', '3', '2015-08-23 00:00:00', 0),
+('55dc23b008ae5', '0acc120c-3a4c-11e5-b951-00ff56603869', 'Senior developer', 1200000, 25000, '2', 3, 2, 0, 'admin', '2015-08-25 14:43:36', '3', '0000-00-00 00:00:00', 0),
+('55dc2d292aa51', 'd6c1f45a-6ffe-11e4-bf19-78638984f957', 'Junior developer', 1000000, 15000, '2', 3, 2, 0, 'admin', '2015-08-25 15:24:01', '3', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -1042,10 +772,9 @@ CREATE TABLE IF NOT EXISTS `salary_master_allowance` (
 --
 
 INSERT INTO `salary_master_allowance` (`allowance_id`, `member_id`) VALUES
-('4a53fcdc-3d17-11e5-b0fa-00ff56603869', '517789a4-94fc-11e4-8cf4-3b7ec45c8174'),
-('4a54bc11-3d17-11e5-b0fa-00ff56603869', '517789a4-94fc-11e4-8cf4-3b7ec45c8174'),
-('4a53fcdc-3d17-11e5-b0fa-00ff56603869', 'c422a154-c0f9-11e4-a6dd-7a12eb6538e9'),
-('4a54bc11-3d17-11e5-b0fa-00ff56603869', 'c422a154-c0f9-11e4-a6dd-7a12eb6538e9');
+('4a53fcdc-3d17-11e5-b0fa-00ff56603869', '0acc120c-3a4c-11e5-b951-00ff56603869'),
+('4a53fcdc-3d17-11e5-b0fa-00ff56603869', 'd6c1f45a-6ffe-11e4-bf19-78638984f957'),
+('4a54bc11-3d17-11e5-b0fa-00ff56603869', 'd6c1f45a-6ffe-11e4-bf19-78638984f957');
 
 -- --------------------------------------------------------
 
@@ -1054,31 +783,31 @@ INSERT INTO `salary_master_allowance` (`allowance_id`, `member_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `taxs` (
-  `id` int(36) NOT NULL AUTO_INCREMENT,
+  `id` int(36) NOT NULL,
   `taxs_from` double NOT NULL,
   `taxs_to` double NOT NULL,
   `taxs_rate` int(11) NOT NULL,
   `taxs_diff` double NOT NULL,
   `ssc_emp` int(11) NOT NULL,
   `ssc_comp` int(11) NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
-  `deleted_flag` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
+  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `taxs`
 --
 
-INSERT INTO `taxs` (`id`, `taxs_from`, `taxs_to`, `taxs_rate`, `taxs_diff`, `ssc_emp`, `ssc_comp`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-(1, 1, 2000000, 0, 0, 2, 3, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
-(2, 2000001, 5000000, 5, 3000000, 2, 3, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
-(3, 5000001, 10000000, 10, 5000000, 2, 3, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
-(4, 10000001, 20000000, 15, 10000000, 2, 3, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
-(5, 20000001, 30000000, 20, 10000000, 2, 3, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
-(6, 30000001, 0, 25, 0, 2, 3, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0);
+INSERT INTO `taxs` (`id`, `taxs_from`, `taxs_to`, `taxs_rate`, `taxs_diff`, `ssc_emp`, `ssc_comp`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
+(1, 1, 2000000, 0, 0, 2, 3, NULL, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
+(2, 2000001, 5000000, 5, 3000000, 2, 3, NULL, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
+(3, 5000001, 10000000, 10, 5000000, 2, 3, NULL, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
+(4, 10000001, 20000000, 15, 10000000, 2, 3, NULL, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
+(5, 20000001, 30000000, 20, 10000000, 2, 3, NULL, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0),
+(6, 30000001, 0, 25, 0, 2, 3, NULL, '2015-07-28 00:00:00', '', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -1090,10 +819,10 @@ CREATE TABLE IF NOT EXISTS `taxs_deduction` (
   `deduce_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `deduce_name` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `amount` double NOT NULL,
-  `creator_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `created_dt` datetime NOT NULL,
-  `updater_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
-  `updated_dt` datetime NOT NULL,
+  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `created_dt` datetime DEFAULT NULL,
+  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `updated_dt` datetime DEFAULT NULL,
   `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -1108,6 +837,88 @@ INSERT INTO `taxs_deduction` (`deduce_id`, `deduce_name`, `amount`, `creator_id`
 ('stay_mother', 'stay_wiith_mother', 1000000, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0),
 ('life_insurance', 'life_insurance', 0, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `allowances`
+--
+ALTER TABLE `allowances`
+  ADD PRIMARY KEY (`allowance_id`);
+
+--
+-- Indexes for table `attendances`
+--
+ALTER TABLE `attendances`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `calendar`
+--
+ALTER TABLE `calendar`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Indexes for table `core_member_tax_deduce`
+--
+ALTER TABLE `core_member_tax_deduce`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `leaves`
+--
+ALTER TABLE `leaves`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `salary_detail`
+--
+ALTER TABLE `salary_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `salary_master`
+--
+ALTER TABLE `salary_master`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `taxs`
+--
+ALTER TABLE `taxs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `attendances`
+--
+ALTER TABLE `attendances`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+--
+-- AUTO_INCREMENT for table `calendar`
+--
+ALTER TABLE `calendar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `core_member_tax_deduce`
+--
+ALTER TABLE `core_member_tax_deduce`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+--
+-- AUTO_INCREMENT for table `leaves`
+--
+ALTER TABLE `leaves`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `taxs`
+--
+ALTER TABLE `taxs`
+  MODIFY `id` int(36) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

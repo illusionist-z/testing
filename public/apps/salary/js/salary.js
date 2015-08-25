@@ -1,118 +1,10 @@
 /**
  * @author David
- * @desc   Salary Edit Search Print
- * @version 24/8/2015 David
+ * @desc   Salary Edit Dial Box
  */
-var pager = new Paging.Pager();
-
 var Salary = {
     isOvl: false,
-    init : function () {
-       $("tfoot").html($('tbody').html());  //for csv
-       //paging function
-       pager.perpage =3;            
-       pager.para = $('tbody > tr');
-       pager.showPage(1); 
-    },
-    Search : function () {
-    var $form = $('#search_frm').serialize();
-    var year=document.getElementById('year').value;
-    var month=document.getElementById('month').value;
-    //window.location.href = baseUri + 'salary/search?'+$form;
-    $.ajax({
-        url: baseUri + 'salary/search?' + $form,
-        type: 'GET',
-        success: function (d) {
-            var json_obj = $.parseJSON(d);//parse JSON            
-            $('tbody').empty();
-            for (var i in json_obj)
-            {
-
-                var output = "<tr>"
-                        + "<td>" + json_obj[i].member_login_name + "</td>"
-                        + "<td>" + json_obj[i].member_dept_name + "</td>"
-                        + "<td>" + json_obj[i].basic_salary + "</td>"
-                        + "<td>" + json_obj[i].overtime + "</td>"
-                        + "<td>" + json_obj[i].travel_fee + "</td>"
-                        + "<td>" + json_obj[i].absent_dedution + "</td>"
-                        + "<td>" + json_obj[i].income_tax + "</td>"
-                        + "<td>" + json_obj[i].ssc_comp + "</td>"
-                        + "<td>" + json_obj[i].ssc_emp + "</td>"
-                        + "<td>" + json_obj[i].total + "</td>"
-                        + '<td><a href="payslip?member_id='+json_obj[i].member_id+' && month='+month+' && year='+year+'" class="button">Print</a></td>'
-                        + "</tr>"
-                        
-                $("tbody").append(output);
-            }
-            var html='<tr style="background-color:#428bca; color:#ffffff;">'
-                        +'<td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>'
-                        +'<td><b>#####</b></td>'
-                        +'<td></td>'
-                        +'</tr>'
-            $("tbody").append(html);
-            //paginatior function
-          this.init();
-        },
-        error: function (d) {
-            alert('error');
-        }
-        });
-    },
-    AddSalary : function () {
-    this.uname = $("#uname").val()==="" ? false:true;
-    this.position = $("#position").val()==="" ? false:true;
-    this.basicsalary = $("#bsalary").val()==="" ? false:true;
-    this.checkbox = $('input[name="check_list[]"]:checked').length < 1 ? false:true ;
-    this.transfer_fee = $("#travelfee").val()===""? false:true;
-    this.overtime = $("#overtime").val()===""? false:true;
-    
-    $("#user-error").empty(),$("#position-error").empty(),$("#bsalary-error").empty(),$("#SSC-error").empty(),$("#travelfee-error").empty(),$("#overtime-error").empty();
-    
-    if(false===this.uname || false===this.position || false===this.basicsalary || false===this.checkbox || false === this.transfer_fee || false === this.overtime){
-        
-        if(false===this.uname) {$("#uname").css({border:"1px solid red",color:"red"});
-                                $("#user-error").prepend("<span style='color:red;'>*Name must be Select</span>");
-                                repair('#uname');                                
-                               }
-                               
-        if(false===this.position) {$("#position").css({border:"1px solid red",color:"red"});
-                                    $("#position-error").prepend("<span style='color:red;'>*Position must be Select</span>");
-                                    repair('#position');                                    
-                                   }
-                                   
-        if(false===this.basicsalary) {$("#bsalary").css({border:"1px solid red",color:"red"});
-                                       $("#bsalary-error").prepend("<span style='color:red;'>*Basic Salary must be Insert</span>");
-                                       repair('#bsalary');                                       
-                                      }
-                                      
-        if(false===this.transfer_fee) {$("#travelfee").css({border:"1px solid red",color:"red"});
-                                       $("#travelfee-error").prepend("<span style='color:red;'>*Travel Fee must be Insert</span>");
-                                       repair('#travelfee');                                       
-                                      }
-                                      
-        if(false===this.overtime) {$("#overtime").css({border:"1px solid red",color:"red"});
-                                       $("#overtime-error").prepend("<span style='color:red;'>*Overtime Fee must be Insert</span>");
-                                       repair('#overtime');                                       
-                                      }
-                                      
-        if(false===this.checkbox) {    $("#SSC-error").prepend("<span style='color:red;'>*At Least one must be checked</span>");                                       
-                                  }
-        }
-    else{
-        $.ajax({
-           type : "POST" ,
-           url  : baseUri +"salary/salarymaster/savesalary",
-           data : $('#adding_salary_form').serialize(),
-           success : function(d){
-               window.history.pushState("","","salarylist");
-               $('body').html(d);
-           }
-        });
-    }
-   }
-};
-  Salary.Edit = {
-        init :function (d) {
+    Edit: function (d) {
         $.ajax({
            url:"editsalary?id="+d,
            type: "GET",
@@ -134,9 +26,9 @@ var Salary = {
                         +'<tr><td></td><td><input type="hidden" value='+result[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';               
                data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
                data +='</table></form>';
-               Salary.Edit.Dia(data);
+               Salary.Dia(data);
            }
-        });    
+        });
     },
     Dia: function (d) {
         if (!this.isOvl) {
@@ -155,7 +47,7 @@ var Salary = {
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
-            Salary.Edit.BtnEdit($ovl);
+            Salary.BtnEdit($ovl);
         });
         $('#edit_close').click(function () {
             $ovl.dialog("close");
@@ -208,29 +100,67 @@ var Salary = {
                     }  
                 }
             }
-            });
-        }
-    };
-$(document).ready(function () {    
-    
-    Salary.init();
-   
+        });
+    }
+};
+$(document).ready(function () {
+
     $('#search_salary').click(function () {
-        Salary.Search();
+        salarysearch();
+
     });
-    
-    $("tbody").on('click',('.displaypopup'),function () {
+    $(".displaypopup").click(function () {
         var id = $(this).attr('id');
-        Salary.Edit.init(id);
+        Salary.Edit(id);
     });
-    //print function
     $(".print").click(function () {
         window.print();
     });
-    
-    $("#adding_salary_submit").click(function(){
-       Salary.AddSalary();
-    });
 });
+var salarysearch = function () {
+    var $form = $('#search_frm').serialize();
+    var year=document.getElementById('year').value;
+    var month=document.getElementById('month').value;
+    //window.location.href = baseUri + 'salary/search?'+$form;
+    $.ajax({
+        url: baseUri + 'salary/search?' + $form,
+        type: 'GET',
+        success: function (d) {
+            var json_obj = $.parseJSON(d);//parse JSON            
+            $('tbody').empty();
+            for (var i in json_obj)
+            {
 
-
+                var output = "<tr>"
+                        + "<td>" + json_obj[i].member_login_name + "</td>"
+                        + "<td>" + json_obj[i].member_dept_name + "</td>"
+                        + "<td>" + json_obj[i].basic_salary + "</td>"
+                        + "<td>" + json_obj[i].overtime + "</td>"
+                        + "<td>" + json_obj[i].travel_fee + "</td>"
+                        + "<td>" + json_obj[i].absent_dedution + "</td>"
+                        + "<td>" + json_obj[i].income_tax + "</td>"
+                        + "<td>" + json_obj[i].ssc_comp + "</td>"
+                        + "<td>" + json_obj[i].ssc_emp + "</td>"
+                        + "<td>" + json_obj[i].total + "</td>"
+                        + '<td><a href="payslip?member_id='+json_obj[i].member_id+' && month='+month+' && year='+year+'" class="button">Print</a></td>'
+                        + "</tr>"
+                        
+                $("tbody").append(output);
+            }
+            var html='<tr style="background-color:#428bca; color:#ffffff;">'
+                        +'<td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>'
+                        +'<td><b>#####</b></td>'
+                        +'<td></td>'
+                        +'</tr>'
+            $("tbody").append(html);
+            //paginatior function
+//            pager.perpage =3;            
+//            pager.para = $('tbody > tr');
+//            pager.showPage(1);   
+            //pager.showNavi(1);
+        },
+        error: function (d) {
+            alert('error');
+        }
+    });
+}
