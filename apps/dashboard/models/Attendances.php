@@ -64,6 +64,7 @@ class Attendances extends Model {
                      if($outtime!=0)
                      {
                          $status=" Already Checkout";
+                         return $status;
                      }
                      else{
                         $workingHour=strtotime($att->checkin_time)-strtotime($mydate);

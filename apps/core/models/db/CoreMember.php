@@ -19,12 +19,18 @@ class CoreMember extends \Library\Core\BaseModel {
         return new self();
     }
 
-    public function getusername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("SELECT * FROM core_member");
-        //print_r($user_name);exit;
+    public function getusername() {        
+        $this->db = $this->getDI()->getShared("db");        
+        $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
         return $getname;
+    }
+    
+    public function getoneusername($username){
+         $this->db = $this->getDI()->getShared("db");
+         $user_name = $this->db->query("SELECT * FROM core_member where member_login_name ='".$username."'");        
+         $getname = $user_name->fetchall();
+         return $getname;
     }
 
     /**
@@ -50,25 +56,20 @@ class CoreMember extends \Library\Core\BaseModel {
 
         $this->db->query("UPDATE core_member SET timezone ='" . $tz . "'  WHERE member_id ='" . $id . "' ");
     }
-
+    
     /**
-     * Adding new user to core member
-     * @param type $username
-     * @param type $password
-     * @param type $dept
-     * @param type $position
-     * @param type $email
-     * @param type $phno
-     * @param type $address
+     * 
+     * @param type $member_id
+     * @param type $member
      * @param type $filename
-     * @author Su Zin Kyaw
+     * @return string
      */
-    public function addnewuser($member_id, $username, $password, $dept, $position, $email, $phno, $address, $filename, $role) {
+    public function addnewuser($member_id, $member, $filename) {
 
-        $arr = (explode(",", $role));
-        $pass = sha1($password);
+        $arr = (explode(",", $member['user_role']));
+        $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
-        if($username==NULL OR $password==NULL OR $dept==NULL OR $position==NULL OR $email==NULL OR $phno==NULL OR $address==NULL ){
+        if($member['username']==NULL OR $member['password']==NULL OR $member['dept']==NULL OR $member['position']==NULL OR $member['email']==NULL OR $member['phno']==NULL OR $member['address']==NULL ){
       
           $msg="Insert All Data";
         }
@@ -78,9 +79,10 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
-                . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
-        $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $username . "'");
+                . " VALUES(uuid(),'" . $member['username'] . "','" . $pass . "','" . $member['dept'] . "','" . $member['position'] . "','" . $member['email'] . "','" . $member['phno'] . "','" . $member['address'] . "','" . $filename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
+        $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
+      
         foreach ($us as $value) {
             $this->db->query("INSERT INTO core_permission_rel_member (rel_member_id,permission_member_group_member_name,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())");
@@ -89,7 +91,7 @@ class CoreMember extends \Library\Core\BaseModel {
         }
         return $msg;
     }
-
+    
     public function UserDetail($id) {
 
         $this->db = $this->getDI()->getShared("db");
@@ -149,13 +151,15 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function updatedata($d, $id) {
         $this->db = $this->getDI()->getShared("db");
-
-        if ($d['password'] == $d['temp_pass']) {
+        //print_r($d);exit;
+        if ($d['password'] == $d['temp_password']) {
+            
             $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' , "
                     . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "'"
                     . ", core_member.member_mail='" . $d['email'] . "' , core_member.member_address='" . $d['add'] . "'"
                     . ", core_member.member_mobile_tel='" . $d['phno'] . "' ,core_member.member_profile='" . $d['file'] . "' WHERE core_member.member_id='" . $id . "' ");
         } else {
+         
             $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' ,  "
                     . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "' "
                     . "AND core_member.member_mail='" . $d['email'] . "' , core_member.member_mobile_tel='" . $d['phno'] . "' "

@@ -15,7 +15,7 @@
 </section>
 <!-- Main content -->
 <div class="demo-content" style="padding-top:2%;">
-    <form action="" method="post">
+    <form action="" id="apply_form">
         <table class="listtbl">
             <thead>
                 <tr>
@@ -26,10 +26,11 @@
                 <tr>
                     <td>User Name</td>
                     <td><select class="select" data-toggle="select" name="uname">
+                    <option value="">Name</option>
                     <?php
                     foreach ($name as $user) {
                      ?>
-                          <option value="<?php echo $user['member_id']; ?>"><?php echo $user['member_login_name']; ?></option>
+                    <option value="<?php echo $user['member_id']; ?>" id="apply_form_name"><?php echo $user['member_login_name']; ?></option>
                     <?php
                     }
                     ?> </select>                               
@@ -37,11 +38,11 @@
                 </tr>
                 <tr>
                     <td>Start Date</td>
-                    <td><input type="text" class="datepicker form-control" name="sdate"  placeholder="Start Date" style="height:39px;"></td>
+                    <td><input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px;"></td>
                 </tr>
                 <tr>
                     <td>End Date</td>
-                    <td><input type="text" class="datepicker form-control" name="edate"  placeholder="End Date" style="height:39px;"></td>
+                    <td><input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px;"></td>
                 </tr>
                 <tr>
                     <td>Leave Categories</td>
@@ -57,13 +58,13 @@
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td> <textarea rows="2" cols="100" name="description" ></textarea>
+                    <td> <textarea rows="2" cols="100" name="description" id="apply_form_desc"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td>
                     <td>
-                        <input type="submit" value="Apply" class="button" name="submit">
+                        <input type="submit" value="Apply" class="button" name="submit" id="apply_form_submit">
                     </td>
                 </tr>
             </tbody>

@@ -25,8 +25,7 @@ class CorememberController extends ControllerBase {
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('apps/manageuser/js/search.js');
     }
-
-    /**
+/**
      * ADD NEW USER 
      * @author Su Zin Kyaw
      */
@@ -35,23 +34,17 @@ class CorememberController extends ControllerBase {
         $this->view->setVar('type', 'userlist');
         if ($this->request->isPost()) {
             $member_id = $this->session->user['member_id'];
-            $username = $this->request->getPost('username');
-            $password = $this->request->getPost('password');
-            $dept = $this->request->getPost('dept');
-            $position = $this->request->getPost('position');
-            $email = $this->request->getPost('email');
-            $phno = $this->request->getPost('phno');
-            $address = $this->request->getPost('address');
-            $role = $this->request->getPost('user_role');
+            $member = $this->request->getPost('member');
+            //print_r($member);exit;
+            
 
             $filename = $_FILES["fileToUpload"]["name"];
 
             $NewUser = new CoreMember;
-            $msg=$NewUser->addnewuser($member_id, $username, $password, $dept, $position, $email, $phno, $address, $filename, $role);
-            $this->flashSession->success("$msg");
-
-            // Make a full HTTP redirection
-            return $this->response->redirect("manageuser/index/adduser");
+            $msg=$NewUser->addnewuser($member_id, $member, $filename);
+            echo "<script>alert('".$msg."');</script>";
+            echo "<script type='text/javascript'>window.location.href='../index/adduser';</script>";
+    
         }
     }
 

@@ -41,19 +41,19 @@ class Leaves extends \Library\Core\BaseModel {
      * @param type $month
      * @param type $namelist
      * @return type
+     * @author zinmon
      */
     public function search($ltype, $month, $namelist) {
         $this->db = $this->getDI()->getShared("db");
 
-
-        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
+        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status,total_leavedays,max_leavedays FROM leaves_setting, leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
         $conditions = array();
 
         if ($ltype != "") {
-            $conditions[] = "leaves.leave_category='" . $year . "'";
+            $conditions[] = "leaves.leave_category='" . $ltype . "'";
         }
         if ($month != "") {
-            $conditions[] = "MONTH(leaves.start_date) like " . $month;
+            $conditions[] = "MONTH(leaves.start_date) = '" . $month. "'";
         }
         if ($namelist != "") {
             $conditions[] = "core_member.member_login_name='" . $namelist . "'";
@@ -63,10 +63,9 @@ class Leaves extends \Library\Core\BaseModel {
         if (count($conditions) > 0) {
             $sql .= " WHERE " . implode(' AND ', $conditions);
         }
-        //echo $sql;exit;
+        
         $result = $this->db->query($sql);
-        $list = $result->fetchall();
-
+        $list = $result->fetchall();     
         return $list;
     }
     
@@ -80,18 +79,14 @@ class Leaves extends \Library\Core\BaseModel {
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
         
         $this->db = $this->getDI()->getShared("db");
-        $date=$this->getcontractdata($uname);
-        
-        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id='".$uname."' AND  start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY start_date DESC LIMIT 1 ");
-        $list = $ldata->fetchall();
-        if($list==NULL){
-           $lastdata=NULL;
-        }
-        else{
-            $lastdata=($list['0']['total_leavedays']);
-        }
-       
-        if ($sdate != NULL && $edate != NULL && $desc != NULL) {
+//        $date=$this->getcontractdata($uname);               
+//         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+//         $list = $ldata->fetchall();
+//        
+//         if($list==NULL){
+//         $lastdata="0";}
+//             else{$lastdata=($list['0']['total_leavedays']);}
+         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
             
             if (isset($sdate) AND isset($edate) AND isset($desc)) {
               
@@ -148,8 +143,7 @@ public  function GetDays($StartDate, $EndDate){
      * @author Su Zin Kyaw
      */
     public function getcontractdata($id){
-        
-        $credt = $this->db->query("SELECT created_dt,updated_dt FROM core_member  WHERE core_member.member_id= '" . $id . "'");
+        $credt = $this->db->query("SELECT created_dt,updated_dt FROM salary_master WHERE salary_master.member_id= '" . $id . "'");
         $created_date = $credt->fetchall();
 
        
@@ -216,38 +210,14 @@ public  function GetDays($StartDate, $EndDate){
         $this->db = $this->getDI()->getShared("db");
         if ($leave_type == null and $mth == null) {
             $mth = date('m');
-            //showing current month leave list
-            $row = $this->modelsManager->createBuilder()
-                    ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
-                    ->where('MONTH( workManagiment\Leavedays\Models\Leaves.start_date) ="' . $mth . '" AND  workManagiment\Leavedays\Models\Leaves.member_id ="' . $id . '"')
-                    ->getQuery()
-                    ->execute();
+            $row ="select date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays from core_member left join leaves on core_member.member_id = leaves.member_id where month(leaves.start_date)='".$mth."' AND leaves.member_id ='".$id."'";          
            
         } else {
-            //for searching by leave type and month
-           
-            $row = $this->modelsManager->createBuilder()
-                    ->columns('date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays')
-                    ->from('workManagiment\Core\Models\Db\CoreMember')
-                    ->leftJoin('workManagiment\Leavedays\Models\Leaves', 'workManagiment\Core\Models\Db\CoreMember.member_id = workManagiment\Leavedays\Models\Leaves.member_id ')
-                    ->where($this->setCondition2($mth, $leave_type) . ' AND workManagiment\Leavedays\Models\Leaves.member_id =' . "'$id'")
-                    ->getQuery()
-                    ->execute();
-           
+            //for searching by leave type and month           
+            $row ="select date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays from core_member left join leaves on core_member.member_id = leaves.member_id where ".$this->setCondition2($mth, $leave_type)."  AND leaves.member_id ='".$id."'";                               
         }
-        //for pagination
-        $currentPage = (int) $_GET["page"];
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 1,
-            "page" => $currentPage
-                )
-        );
-        $list = $paginator->getPaginate();
-        
+        $result = $this->db->query($row);
+        $list   = $result->fetchall();               
         return $list;
     }
     
@@ -263,10 +233,10 @@ public  function GetDays($StartDate, $EndDate){
 
         if ($month != "") {
 
-            $conditions[] = "MONTH(workManagiment\Leavedays\Models\Leaves.start_date) like " . $month;
+            $conditions[] = "MONTH(leaves.start_date) ='" . $month ."'";
         }
         if ($leavetype != "") {
-            $conditions[] = "workManagiment\Leavedays\Models\Leaves.leave_category='" . $leavetype . "'";
+            $conditions[] = "leaves.leave_category='" . $leavetype . "'";
         }
 
         

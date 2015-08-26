@@ -14,9 +14,10 @@ class UserController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/user-leavelist.js');        
-         $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addJs('apps/leavedays/js/leave.js');               
+        $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
         
     }
@@ -55,10 +56,8 @@ class UserController extends ControllerBase {
      */
     public function leavelistAction(){          
         $month = $this->config->month;
-        $leave = $this->config->leavetype; 
-        
-        $id= $this->session->user['member_id'];
-        
+        $leave = $this->config->leavetype;         
+        $id= $this->session->user['member_id'];        
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');             

@@ -1,7 +1,6 @@
 <?php
 
 namespace workManagiment\Manageuser\Controllers;
-use Phalcon\Validation\Validator\Email as EmailValidator;
 use workManagiment\Manageuser\Models\User as User;
 use workManagiment\Core\Models\Db;
 
@@ -15,22 +14,25 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');  
-        $this->assets->addJs('apps/manageuser/js/search.js');
+                          
+        $this->assets->addJs('apps/manageuser/js/search.js'); 
+        $this->assets->addJs("apps/manageuser/js/useredit.js");
     }
     /**
      * @author David
      * @desc   Array ,show all user data 
      * @since  18/7/15
      */
-    public function userlistAction() {                       
+    public function userlistAction() {          
         $UserName = new Db\CoreMember();
         $getname = $UserName::getinstance()->getusername();
         $username = $this->request->get('username');
-        $list = $this->user->userlist($username);               
+        $list = $this->user->userlist($username);
         $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list);
-        $this->view->setVar('type', 'userlist');
-    }
+        $this->view->setVar('Result', $list); 
+        $this->assets->addJs('common/js/paging.js');     
+    }    
+   
     /**
      * @get data for user id
      * @return user data to dialog box
@@ -39,9 +41,9 @@ class IndexController extends ControllerBase
      */
     public function usereditAction() {                       
         $name = $this->request->get('data');        
-        $edit = $this->user->useredit($name);
-        $this->view->setVar('edituser', $edit);
-        $this->view->setVar('type', 'useredit');
+        $edit = $this->user->useredit($name);                
+        echo json_encode($edit[0]);
+        $this->view->disable();        
     }  
     /**
      * @author David

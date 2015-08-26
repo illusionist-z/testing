@@ -37,8 +37,8 @@ function tz_list() {
         <form action="changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
         <div ><img src="../../uploads/<?php echo  $result['member_profile'];?>" style="width:200px; height:200px;">
         </div>
-            <input type="hidden" id="temp_password" name="temp_password" value="<?php echo  $result['member_password'];?>" disabled>
-            <input type="hidden" id="temp_file" name="temp_file" value="<?php echo  $result['member_profile'];?>" disabled>
+            <input type="hidden" id="temp_password" name="member[temp_password]" value="<?php echo  $result['member_password'];?>" disabled>
+            <input type="hidden" id="temp_file" name="member[temp_file]" value="<?php echo  $result['member_profile'];?>" disabled>
 
 	<table width="650px" height="300px"> 
             <tr>
@@ -50,48 +50,48 @@ function tz_list() {
             <td >User Name :</td>
            
 		<td>
-		<input type="text" id="username" name="username" value="<?php echo  $result['member_login_name'];?>" disabled style="width:350px;">
+		<input type="text" id="username" name="member[username]" value="<?php echo  $result['member_login_name'];?>" disabled style="width:350px;">
 		</td>
         </tr>
         <tr>
 		
 		<td>Password :</td>
-                <td><input type="password" id="password" name="password" value="<?php echo  $result['member_password'];?>" disabled style="width:350px;"></td>
+                <td><input type="password" id="password" name="member[password]" value="<?php echo  $result['member_password'];?>" disabled style="width:350px;"></td>
 	</tr>
 	<tr>
 		<td>Department:</td>
-		<td><input type="text" name="dept" id="dept" value="<?php echo  $result['member_dept_name'];?>" disabled style="width:350px;"></td>
+		<td><input type="text" name="member[dept]" id="dept" value="<?php echo  $result['member_dept_name'];?>" disabled style="width:350px;"></td>
         </tr>
         <tr>
           
 		<td>Position	:</td>
-		<td><input type="text" name="position" id="position" value="<?php echo  $result['position'];?>" disabled style="width:350px;"></td>
+		<td><input type="text" name="member[position]" id="position" value="<?php echo  $result['position'];?>" disabled style="width:350px;"></td>
 	</tr>
 	<tr>
 		<td>Email :</td>
-		<td><input type="email" name="email" id="email" value="<?php echo  $result['member_mail'];?>" disabled style="width:350px;">
+		<td><input type="email" name="member[email]" id="email" value="<?php echo  $result['member_mail'];?>" disabled style="width:350px;">
                </td>
 	</tr>
         <tr>
 		<td>Phone no</td>
-		<td><input type="text" id="phno" name= "phno" value="<?php echo  $result['member_mobile_tel'];?>" disabled style="width:350px;"></td>
+		<td><input type="text" id="phno" name= "member[phno]" value="<?php echo  $result['member_mobile_tel'];?>" disabled style="width:350px;"></td>
 	</tr>
        
 	<tr>
 		<td>Address :</td>
-		<td colspan="4"><textarea style="width:350px;" rows="5" id="add" name="add" cols="50" readonly><?php echo  $result['member_address'];?></textarea ></td>
+		<td colspan="4"><textarea style="width:350px;" rows="5" id="add" name="member[add]" cols="50" readonly><?php echo  $result['member_address'];?></textarea ></td>
 	</tr><?php }
         ?>
         <tr>
             <td>Time Zone : </td>
             <td><select style= "width:350px;  margin-top: 9px; margin-bottom: 9px;" name="timezone" id="timezone" disabled>
-    <option value="0">Please, select timezone</option>
-    <?php foreach(tz_list() as $t) { ?>
-      <option value="<?php print $t['diff_from_GMT'];echo " ";echo $t['zone'] ?>">
-        <?php print $t['diff_from_GMT'] . ' - ' . $t['zone'] ?>
-      </option>
-    <?php } ?>
-                </select></td>
+            <option value="0">Please, select timezone</option>
+            <?php foreach(tz_list() as $t) { ?>
+            <option value="<?php print $t['diff_from_GMT'];echo " ";echo $t['zone'] ?>">
+            <?php print $t['diff_from_GMT'] . ' - ' . $t['zone'] ?>
+            </option>
+             <?php } ?>
+            </select></td>
         </tr>
 	<tr>
 		<td></td>
