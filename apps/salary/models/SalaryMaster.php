@@ -153,7 +153,6 @@ class SalaryMaster extends Model {
                 
                 else {
                  
-
                 //Check the wherether  the member is got salary or new member
                 $checkmember = $this->checkmember_id($value['member_id']);
                 if (!empty($checkmember)) {
@@ -202,8 +201,8 @@ class SalaryMaster extends Model {
                     
                 }
             }
-//            print_r($final_result);
-//            exit;
+            /*print_r($final_result);
+            exit;*/
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
