@@ -32,7 +32,8 @@ class IndexController extends ControllerBase
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
         $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list);        
+        $this->view->setVar('Result', $list); 
+        $this->assets->addJs('common/js/paging.js');     
     }    
    
     /**

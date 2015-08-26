@@ -25,8 +25,7 @@ class CorememberController extends ControllerBase {
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('apps/manageuser/js/search.js');
     }
-
-    /**
+/**
      * ADD NEW USER 
      * @author Su Zin Kyaw
      * @version 26/8/2015 David
