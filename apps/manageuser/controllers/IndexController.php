@@ -14,7 +14,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');  
-                          
+        
         $this->assets->addJs('apps/manageuser/js/search.js'); 
         $this->assets->addJs("apps/manageuser/js/useredit.js");
     }
@@ -23,7 +23,8 @@ class IndexController extends ControllerBase
      * @desc   Array ,show all user data 
      * @since  18/7/15
      */
-    public function userlistAction() {          
+    public function userlistAction() {  
+        
         $UserName = new Db\CoreMember();
         $getname = $UserName::getinstance()->getusername();
         $username = $this->request->get('username');

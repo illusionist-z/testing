@@ -79,7 +79,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
         try {
            
             $current_date=date("Y-m-d");
-            //print_r($row);exit;
+            
             foreach ($row as $rows) {
                 if($rows['overtime_rate']!=null){
                 //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
@@ -109,6 +109,9 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
         try {
             //print_r($row);exit;
             foreach ($row as $rows) {
+                if($rows['allowance_amount']==""){
+                    $rows['allowance_amount']="0";
+                }
                 $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','".$rows['income_tax']."',NOW(),NOW())";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
