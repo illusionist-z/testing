@@ -39,15 +39,16 @@ class IndexController extends ControllerBase {
         if ($this->request->isPost()) {
              $user = $this->_leave;
              $validate = $user->validate($this->request->getPost());
-             if(count($validate)){
-                foreach ($validate as $message){
-                    $json[$message->getField()] = $message->getMessage();
-                }
-                $json['result'] = "error";
-                 echo json_encode($json);
-                 $this->view->disable();
-                   }     
-            
+             
+            if(count($validate)){
+               foreach ($validate as $message){
+                   $json[$message->getField()] = $message->getMessage();
+               }
+               $json['result'] = "error";
+                echo json_encode($json);
+                $this->view->disable();
+                  }     
+            else{
             $uname = $this->session->user['member_id'];
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
@@ -57,11 +58,10 @@ class IndexController extends ControllerBase {
                     $desc);   
             $noti=$userlist->GetAdminNoti();
             $this->session->set('noti', $noti);
-            echo "<script>alert('".$error."');</script>";
-            echo "<script type='text/javascript'>window.location.href="
-               . "'applyleave';</script>";
+            echo json_encode($error);
             $this->view->disable();
-        }                       
+             }
+        }
     }
   
     /**
