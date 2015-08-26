@@ -6,8 +6,7 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use workManagiment\Leavedays\Models\LeavesSetting;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Validation\Validator\Email;
-use Phalcon\Validation\Validator\Regex;
+use Phalcon\Validation\Validator\Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -78,45 +77,46 @@ class Leaves extends \Library\Core\BaseModel {
     /**
      * Get today attendance list
      * @return type
-     * @author david
+     * @author David JP <david.gnext@gmail.com>
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
 
         $this->db = $this->getDI()->getShared("db");
+        $cond = array();
 //        $date=$this->getcontractdata($uname);               
 //         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
 //         $list = $ldata->fetchall();
-//        
+//        var_dump($list);exit;
 //         if($list==NULL){
-//         $lastdata="0";}
-//             else{$lastdata=($list['0']['total_leavedays']);}
-         if ($sdate != NULL && $edate != NULL && $desc != NULL) {
-            
-            if (isset($sdate) AND isset($edate) AND isset($desc)) {
-              
-                $today = date("Y-m-d H:i:s");
-                $checkday = date("Y-m-d", strtotime("+7 days"));
-                $sdate = date("Y-m-d", strtotime($sdate));
-                $edate = date("Y-m-d", strtotime($edate));
-                //check before a week
-                if ($sdate >= $checkday && $edate >= $checkday) {
-                    //check $edate greater than $sdate
-                    if (strtotime($sdate) <= strtotime($edate)) {
-                        $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
-                        $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays,leave_status,creator_id,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "',0,'".$uname."',now())");
-                        $cond="Your Leave Applied Successfully!";
-                    } else {
-                        $cond="End date must be greater than Start date";
-                    }
+//         $lastdata="0";
+//         
+//         }
+//         else{
+//         $lastdata=($list['0']['total_leavedays']);         
+//         }           
+        if (isset($sdate) AND isset($edate) AND isset($desc)) {
+
+            $today = date("Y-m-d H:i:s");
+            $checkday = date("Y-m-d", strtotime("+7 days"));
+            $sdate = date("Y-m-d", strtotime($sdate));
+            $edate = date("Y-m-d", strtotime($edate));
+            //check before a week
+            if ($sdate >= $checkday && $edate >= $checkday) {
+                //check $edate greater than $sdate
+                if (strtotime($sdate) <= strtotime($edate)) {
+                    $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
+                    $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,leave_status,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "',0,now())");
+                    $cond['success']="Your Leave Applied Successfully!";
                 } else {
-                        $cond="Apply Leave Before a week ";                 
+                    $cond['error']="End date must be greater than Start date";
                 }
-            }
-        } else {
-                        $cond="Please,Insert All Data! ";            
+            } else {
+                    $cond['error']="Apply Leave Before a week ";                 
+            }                
         }
-        return $cond;
-    }
+
+    return $cond;
+}
     
 /**
  * get list of dates between two dates
@@ -283,38 +283,26 @@ public  function GetDays($StartDate, $EndDate){
         $validate->add('username',
                 new PresenceOf(
                 array(
-                    'message' => 'The name is required'
+                    'message' => 'Username is required'
                      )
                      ));
-        $validate->add('dept',
+        $validate->add('sdate',
                 new PresenceOf(
                 array(
-                    'message' => 'Department field is required'
+                    'message' => 'Start Date is required'
                      )
                      ))
-                ->add('position',
+                ->add('edate',
                 new PresenceOf(
                 array(
-                    'message'=> 'Position filed is required'
-                )));        
-        $validate->add('password',
+                    'message'=> 'End Date is required'
+                )));                
+        $validate->add('description',
                 new PresenceOf(
                         array(
-                            'message'=>"Password is required"
+                            'message'=>"Reason Must be Insert"
                         )));
-        $validate->add('email',
-                new Email(
-                        array(
-                            'message'=>"Email not valid"
-                        )));
-        $validate ->add('phno', new PresenceOf(array(
-        'message' => 'The telephone is required',
-        'cancelOnFail' => true
-        )))
-       ->add('phno', new Regex(array(
-        'message' => 'The telephone is required',
-        'pattern' => '/[0-9]+/'
-        ))) ;
+        
         
         $messages = $validate->validate($data);
         if (count($messages)) {

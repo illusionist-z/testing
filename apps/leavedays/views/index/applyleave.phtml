@@ -24,47 +24,52 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>User Name</td>
-                    <td><select class="select" data-toggle="select" name="username">
+                    <td style="padding-bottom:20px;">User Name</td>
+                    <td style="padding-bottom:20px;"><select class="select" data-toggle="select" name="username" id="apply_form_name">
                     <option value="">Name</option>
                     <?php
                     foreach ($name as $user) {
                      ?>
-                    <option value="<?php echo $user['member_id']; ?>" id="apply_form_name"><?php echo $user['member_login_name']; ?></option>
+                    <option value="<?php echo $user['member_id']; ?>" ><?php echo $user['member_login_name']; ?></option>
                     <?php
                     }
-                    ?> </select>                               
+                    ?> </select> 
+                    <span id="apply_form_name_error"></span>    
                     </td>
+                    
                 </tr>
                 <tr>
-                    <td>Start Date</td>
-                    <td><input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px;"></td>
+                    <td style="padding-bottom:20px;">Start Date</td>
+                    <td style="padding-bottom:20px;width:67%;"><input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px;">
+                        <span id="apply_form_sdate_error"></span></td>
                 </tr>
                 <tr>
-                    <td>End Date</td>
-                    <td><input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px;"></td>
-                </tr>
+                    <td style="padding-bottom:20px;">End Date</td>
+                    <td style="padding-bottom:20px;width:67%;"><input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px;">
+                    <span id="apply_form_edate_error"></span></td>                    
+                    
+                </tr>                                   
                 <tr>
-                    <td>Leave Categories</td>
-                    <td><select class="select" data-toggle="select" name="leavetype">
+                    <td style="padding-bottom:20px;">Leave Categories</td>
+                    <td style="padding-bottom:20px;"><select class="select" data-toggle="select" name="leavetype">
                     <?php
                     foreach ($Leavetype as $data) {
                     ?>
                          <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name']; ?></option>
                     <?php
                     }
-                    ?> </select>
+                    ?> </select>                    
                     </td>
                 </tr>
                 <tr>
-                    <td>Description</td>
-                    <td> <textarea rows="2" cols="100" name="description" id="apply_form_desc"></textarea>
-                    </td>
+                    <td style="padding-bottom:20px;">Description</td>
+                    <td style="padding-bottom:20px;"> <textarea rows="2" cols="100" name="description" id="apply_form_desc"></textarea>
+                        <span id="apply_form_desc_error"></span></td>
                 </tr>
                 <tr>
                     <td>
                     <td>
-                        <input type="submit" value="Apply" class="buttonn" name="submit" id="apply_form_submit">
+                        <input type="submit" value="Apply" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit">
                     </td>
                 </tr>
             </tbody>
