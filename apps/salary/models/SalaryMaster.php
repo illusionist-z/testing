@@ -165,7 +165,7 @@ class SalaryMaster extends Model {
 //                        $total_allowances+=$result[$i]['allowance_amount'];
 //                    }
                     //$salary_yr+=$total_allowances;
-                    echo "DDD".$Allowanceresult['total_allowance_amount'];
+                    //echo "DDD".$Allowanceresult['total_allowance_amount'];
                     if(empty($SD['allowance_amount']) && isset($Allowanceresult['total_allowance_amount'])){
                     $allowance=$Allowanceresult['total_allowance_amount'];
                     $salary_yr+=$allowance;
@@ -174,29 +174,29 @@ class SalaryMaster extends Model {
                     }
                     else if($SD['allowance_amount']!=$allowance)
                     {
-                    echo "AAAA".$salary_yr;
+                    //echo "AAAA".$salary_yr;
                     $salary=$allowance+$salary_yr;
-                     echo $salary.'///';
+                     //echo $salary.'///';
 //                    if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear) {
 //                    $date_diff = $this->date_difference($comp_start_date, $budget_endyear);
 //                    
 //                        
 //                    }
-                    if ($comp_start_date == $budget_startyear) {    
-                    //$date_diff = 12;
-                    echo "BB";
-                    }
+//                    if ($comp_start_date == $budget_startyear) {    
+//                    $date_diff = 12;
+//                    //echo "BB";
+//                    }
                    
                     //$date_diff = $this->date_difference($comp_start_date, $budget_endyear);
                    
                     }
                 }
                     
-                    echo 'SALARY'.$date_diff;
+                    //echo 'SALARY'.$date_diff;
                     //$salary_yr = $value['basic_salary'] * 12;
                     //get 20% for the whole year
                     $basic_deduction = $salary_yr * (20 / 100);
-                    echo $basic_deduction.'.............';
+                    //echo $basic_deduction.'.............';
                     //calculate ssc pay amount to deduce
                     if ($value['basic_salary'] > 300000) {
                         $emp_ssc = (300000 * 12) * (2 / 100);
@@ -209,12 +209,12 @@ class SalaryMaster extends Model {
                     //echo $deduce_amount[0]['member_id'].' '.$deduce_amount[0]['Totalamount'].' '.$basic_deduction.' '.$emp_ssc;echo "<br>";
                     //Total deduction (deduce,20%,ssc)
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    echo $total_deduce;
+                    //echo $total_deduce;
                     
                     //taxable income (total_basic-total deduce)
                     $income_tax = $salary_yr - $total_deduce;
 
-                    echo "Member id " . $salary_yr . "The latest salary is " . $income_tax . '<br>';
+                    //echo "Member id " . $salary_yr . "The latest salary is " . $income_tax . '<br>';
 
                     $taxs = $this->deducerate($income_tax, $date_diff);
                     //print_r($taxs);
@@ -222,8 +222,8 @@ class SalaryMaster extends Model {
                                       'member_id' => $value['member_id'], 'allowance_amount' => $allowance);
                 }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;

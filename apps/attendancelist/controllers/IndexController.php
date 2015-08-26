@@ -45,6 +45,7 @@ class IndexController extends ControllerBase
         $month = $this->config->month;                
         $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
         $monthlylist = $Attendances->showattlist();
+        //print_r($monthlylist);exit;
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);        
         $this->view->setVar("Getname", $UserName);                

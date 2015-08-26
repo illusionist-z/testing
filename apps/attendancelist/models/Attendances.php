@@ -81,9 +81,10 @@ class Attendances extends Model {
      */
     public function showattlist() {
         //search monthly list data
-             
+            $year=date('Y');
             $month = date('m');
-            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' order by attendances.att_date DESC";
+            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' and YEAR(attendances.att_date)='".$year."' order by attendances.att_date DESC";
+            //echo $query;exit;
             $result = $this->db->query($query);
             $row  = $result->fetchall();
             return $row;
