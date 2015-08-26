@@ -208,7 +208,7 @@ class SalaryMaster extends Model {
                     //taxable income (total_basic-total deduce)
                     $income_tax = $salary_yr - $total_deduce;
 
-                    echo "Member id " . $salary . "The latest salary is " . $income_tax . '<br>';
+                    echo "Member id " . $salary_yr . "The latest salary is " . $income_tax . '<br>';
 
                     $taxs = $this->deducerate($income_tax, $date_diff);
                     //print_r($taxs);
@@ -216,8 +216,8 @@ class SalaryMaster extends Model {
                                       'member_id' => $value['member_id'], 'allowance_amount' => $allowance);
                 }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -452,8 +452,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      */
     public function calculate_overtime() {
         try {
-            $sql = "select ATT .member_id,round(ATT.overtime*(SA.basic_salary*SA.over_time/100))as overtime_rate,SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA on ATT.member_id=SA.member_id where ATT .member_id
-in (select member_id from salary_master) group by ATT .member_id";
+            $year=date("Y");
+            $month=date("m");
+            $sql = "select ATT .member_id,round(ATT.overtime*(SA.basic_salary*SA.over_time/100))as overtime_rate,
+                SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA 
+                on ATT.member_id=SA.member_id where ATT .member_id
+in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and "
+                    . "MONTH(ATT.att_date)='".$month."' group by ATT .member_id";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);

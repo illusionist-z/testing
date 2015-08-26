@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 25, 2015 at 04:29 PM
+-- Generation Time: Aug 26, 2015 at 08:55 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.11
 
@@ -95,7 +95,7 @@ INSERT INTO `attendances` (`id`, `member_id`, `att_date`, `checkin_time`, `check
 (44, 'test004', '2015-08-21', '2015-08-21 08:00:00', '2015-08-21 17:00:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (45, '9af6af14-6e01-11e4-b676-82c4524d8ace', '2015-08-24', '2015-08-24 03:40:51', NULL, NULL, NULL, 16.803647895399713, 96.14039669943938, '', NULL, NULL, NULL, NULL, 0),
 (46, 'admin', '2015-08-24', '2015-08-24 09:46:17', NULL, NULL, NULL, 16.8037627, 96.1402134, 'Myanmar (Burma)', NULL, NULL, NULL, NULL, 0),
-(47, 'admin', '2015-08-25', '2015-08-25 03:13:34', '2015-08-25 03:13:48', 0, NULL, 16.803778599999998, 96.1401994, 'Myanmar (Burma)', NULL, NULL, NULL, NULL, 0);
+(47, 'd6c1f45a-6ffe-11e4-bf19-78638984f957', '2015-08-25', '2015-08-25 03:13:34', '2015-08-25 03:13:48', 0, NULL, 16.803778599999998, 96.1401994, 'Myanmar (Burma)', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -379,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `core_member_tax_deduce` (
   `updater_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `updated_dt` datetime DEFAULT NULL,
   `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `core_member_tax_deduce`
@@ -710,9 +710,9 @@ CREATE TABLE IF NOT EXISTS `salary_detail` (
   `absent_dedution` double DEFAULT NULL,
   `income_tax` double DEFAULT NULL,
   `pay_date` datetime DEFAULT NULL,
-  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `creator_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
-  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `updater_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `updated_dt` datetime DEFAULT NULL,
   `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -722,7 +722,9 @@ CREATE TABLE IF NOT EXISTS `salary_detail` (
 --
 
 INSERT INTO `salary_detail` (`id`, `member_id`, `basic_salary`, `travel_fee`, `overtime`, `allowance_amount`, `ssc_comp`, `ssc_emp`, `absent_dedution`, `income_tax`, `pay_date`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-('45d7003e-47b2-11e5-9cdd-1a4407569b08', '9af6af14-6e01-11e4-b676-82c4524d8ace', 800000, 20000, NULL, 15000, 6000, 9000, NULL, 6625, '2015-07-31 09:41:10', NULL, '2015-07-31 09:41:10', NULL, NULL, 0);
+('8bdcb17e-4b99-11e5-a9fb-7fe80c836c95', '9af6af14-6e01-11e4-b676-82c4524d8ace', 900000, 15000, 0, 0, 6000, 9000, NULL, 10550, '2015-08-26 08:54:15', NULL, '2015-08-26 08:54:15', NULL, NULL, 0),
+('8bdce306-4b99-11e5-a9fb-7fe80c836c95', '0acc120c-3a4c-11e5-b951-00ff56603869', 1200000, 25000, 0, 5000, 6000, 9000, NULL, 26400, '2015-08-26 08:54:15', NULL, '2015-08-26 08:54:15', NULL, NULL, 0),
+('8bdcf314-4b99-11e5-a9fb-7fe80c836c95', 'd6c1f45a-6ffe-11e4-bf19-78638984f957', 1000000, 15000, 0, 15000, 6000, 9000, NULL, 35500, '2015-08-26 08:54:15', NULL, '2015-08-26 08:54:15', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -908,7 +910,7 @@ ALTER TABLE `calendar`
 -- AUTO_INCREMENT for table `core_member_tax_deduce`
 --
 ALTER TABLE `core_member_tax_deduce`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `leaves`
 --
