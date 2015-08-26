@@ -26,7 +26,8 @@ class IndexController extends ControllerBase {
      * @type   $id,$sdate,$edate,$type,$desc
      * @desc   Apply Leave Action
      */
-    public function applyleaveAction() {               
+    public function applyleaveAction() {  
+        $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
@@ -34,17 +35,31 @@ class IndexController extends ControllerBase {
         $name = $userlist::getinstance()->getusername();           
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
+        
         if ($this->request->isPost()) {
+             $user = $this->_leave;
+             $validate = $user->validate($this->request->getPost());
+             if(count($validate)){
+                foreach ($validate as $message){
+                    $json[$message->getField()] = $message->getMessage();
+                }
+                $json['result'] = "error";
+                 echo json_encode($json);
+                 $this->view->disable();
+                   }     
+            
             $uname = $this->session->user['member_id'];
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
-            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc);   
+            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
+                    $desc);   
             $noti=$userlist->GetAdminNoti();
             $this->session->set('noti', $noti);
             echo "<script>alert('".$error."');</script>";
-            echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
+            echo "<script type='text/javascript'>window.location.href="
+               . "'applyleave';</script>";
             $this->view->disable();
         }                       
     }

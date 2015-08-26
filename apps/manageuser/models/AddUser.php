@@ -16,12 +16,23 @@ class AddUser extends Model
                 new PresenceOf(
                 array(
                     'message' => 'The name is required'
-                )
-            ));
+                     )
+                     ));
+        $validate->add('dept',
+                new PresenceOf(
+                array(
+                    'message' => 'Department field is required'
+                     )
+                     ))
+                ->add('position',
+                new PresenceOf(
+                array(
+                    'message'=> 'Position filed is required'
+                )));        
         $validate->add('password',
                 new PresenceOf(
                         array(
-                            'message'=>"Pass rerru"
+                            'message'=>"Password is required"
                         )));
         $validate->add('email',
                 new Email(
@@ -43,6 +54,6 @@ class AddUser extends Model
                                      $res[] =$message;
                                 }
                               }
-    return $res;
+        return $res;
     }
 }

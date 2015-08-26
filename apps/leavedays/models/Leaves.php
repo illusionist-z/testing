@@ -4,6 +4,10 @@ namespace workManagiment\Leavedays\Models;
 
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use workManagiment\Leavedays\Models\LeavesSetting;
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Email;
+use Phalcon\Validation\Validator\Regex;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -100,18 +104,18 @@ class Leaves extends \Library\Core\BaseModel {
                     if (strtotime($sdate) <= strtotime($edate)) {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
                         $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays,leave_status,creator_id,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "',0,'".$uname."',now())");
-                        $err="Your Leave Applied Successfully!";
+                        $cond="Your Leave Applied Successfully!";
                     } else {
-                        $err="End date must be greater than Start date";
+                        $cond="End date must be greater than Start date";
                     }
                 } else {
-                        $err="Apply Leave Before a week ";                 
+                        $cond="Apply Leave Before a week ";                 
                 }
             }
         } else {
-                        $err="Please,Insert All Data! ";            
+                        $cond="Please,Insert All Data! ";            
         }
-        return $err;
+        return $cond;
     }
     
 /**
@@ -267,6 +271,59 @@ public  function GetDays($StartDate, $EndDate){
                     ->execute();
         
      return $row;}
+     
+     /**
+      *@author David JP <david.gnext@gmail.com>
+      *@return cond array
+      *@desc   Validate Form 
+      */
+     public function validate($data){
+        $res = array();
+        $validate = new Validation();
+        $validate->add('username',
+                new PresenceOf(
+                array(
+                    'message' => 'The name is required'
+                     )
+                     ));
+        $validate->add('dept',
+                new PresenceOf(
+                array(
+                    'message' => 'Department field is required'
+                     )
+                     ))
+                ->add('position',
+                new PresenceOf(
+                array(
+                    'message'=> 'Position filed is required'
+                )));        
+        $validate->add('password',
+                new PresenceOf(
+                        array(
+                            'message'=>"Password is required"
+                        )));
+        $validate->add('email',
+                new Email(
+                        array(
+                            'message'=>"Email not valid"
+                        )));
+        $validate ->add('phno', new PresenceOf(array(
+        'message' => 'The telephone is required',
+        'cancelOnFail' => true
+        )))
+       ->add('phno', new Regex(array(
+        'message' => 'The telephone is required',
+        'pattern' => '/[0-9]+/'
+        ))) ;
+        
+        $messages = $validate->validate($data);
+        if (count($messages)) {
+                                foreach ($messages as $message) {
+                                     $res[] =$message;
+                                }
+                              }
+        return $res;
+     }
     
     
     
