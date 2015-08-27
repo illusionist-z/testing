@@ -24,7 +24,7 @@ $(document).ready(function(){
     
     var userUri = baseUri + 'leavedays/';    
     
-    $('#search').click(function () {        
+    $('#search').click(function () {  
         Leave.Search();
     });      
 });

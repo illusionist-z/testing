@@ -8,32 +8,37 @@
  * @LeaveListSearch @function
  */
 var Leave = {
-    Search : function()
-            {
-            var leave_type = document.getElementById('ltype').value;
-            var month = document.getElementById('month').value;
-            var namelist = document.getElementById('namelist').value;
+    Search: function ()
+    {
+        var leave_type = document.getElementById('ltype').value;
+        var month = document.getElementById('month').value;
+        var namelist = document.getElementById('namelist').value;
+        if (leave_type == "" && month == "" && namelist == "")
+        {
+            alert("Choose aleast one!");
+        }
+        else {
             //window.location.href = baseUri + 'leavedays/search?ltype='+leave_type+'&month='+month+'&namelist='+namelist;
             //  var $form = $('#frm_search');
             $.ajax({
                 url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
                 type: 'GET',
-                success: function (d) {                    
+                success: function (d) {
                     var json_obj = $.parseJSON(d);//parse JSON                    
-                    var leave_left="";
+                    var leave_left = "";
                     //alert(json_obj);
                     $("tbody").empty();
                     for (var i in json_obj)
                     {
-                        if(json_obj[i].total_leavedays>=json_obj[i].max_leavedays){
+                        if (json_obj[i].total_leavedays >= json_obj[i].max_leavedays) {
 
-                                   leave_left= json_obj[i].total_leavedays-json_obj[i].max_leavedays;
+                            leave_left = json_obj[i].total_leavedays - json_obj[i].max_leavedays;
 
-                            }
-                         else{
-                             leave_left=json_obj[i].max_leavedays-json_obj[i].total_leavedays;
-                         }
-                       //alert(json_obj[i].date);
+                        }
+                        else {
+                            leave_left = json_obj[i].max_leavedays - json_obj[i].total_leavedays;
+                        }
+                        //alert(json_obj[i].date);
                         var output = "<tr>"
                                 + "<td>" + json_obj[i].date + "</td>"
                                 + "<td>" + json_obj[i].member_login_name + "</td>"
@@ -54,4 +59,5 @@ var Leave = {
                 }
             });
         }
+    }
 };
