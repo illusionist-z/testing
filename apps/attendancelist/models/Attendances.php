@@ -106,9 +106,8 @@ class Attendances extends Model {
               $sql = $select;
               if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions);
-              }
-              //echo $sql;exit;
-              $result = $this->db->query($sql);
+              }              
+              $result = $this->db->query($sql);              
               $row = $result->fetchall();
         } catch (Exception $ex) {
            echo $ex; 
