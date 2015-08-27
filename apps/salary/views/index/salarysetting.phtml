@@ -1,6 +1,15 @@
 
+    <!-- Theme style -->
+    <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <!-- Admin Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="../dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+	<link href="../dist/css/dialog.css" rel="stylesheet" type="text/css" />
+	<link href="../dist/css/style.css" rel="stylesheet" type="text/css" />
+	<!--<div style="float:right;">
+	<a href="#" class="button">Print</a>
+	</div>-->
 	<style type="text/css">
-      body { }
       ul#tabs { list-style-type: none; margin: 10px 0 0 0; padding: 0 0 0.3em 0; }
       ul#tabs li { display: inline; }
       ul#tabs li a { color: #42454a; background-color: #f9f9fa; border: 1px solid #c9c3ba; border-bottom: none; padding: 0.3em; text-decoration: none; }
@@ -18,15 +27,16 @@
         <li class="active">Salary Setting</li>
     </ol>
 </section><br>
+    
+<body onload="init()">
+   
     <ul id="tabs">
-      <li><a class="selected" href="#about">Tax Setting</a></li>
-      <li><a class="" href="#advantages">Deduction Setting</a></li>
+      <li><a class="selected" href="#about">Basic salary setting</a></li>
+      <li><a class="" href="#advantages">Allowance and tax</a></li>
 
     </ul>
 <form action="" method="post">
-    <div class="tabContent" id="about">
-        <!-- start Tax setting--->
-       
+    <div class="tabContent" id="about"><!-- start Basic salary setting--->
       <table class="listtbl">
   <thead>
     <tr>
@@ -63,11 +73,10 @@
   </tbody>
       </table>
         
-        <div id="edit_tax_dia" class="navbar"></div>
-    </div>
-
-    <div class="tabContent hide" id="advantages"><!-- start Deduction setting-->
-        <div class="buttons">
+        
+    </div><!-- start Basic salary setting-->
+    <div class="tabContent hide" id="advantages"><!-- start allowance setting-->
+       <div class="buttons">
             <input type="button" class="addbtn add" onclick="return false;" value="Add New Deduction">
 			
 			
@@ -104,8 +113,8 @@
       </table>
         
     </div><!-- end allowance setting--><div id="edit_dect_dia" class="navbar"></div><div id="add_new_dt" class="navbar"></div>
-	<div style="height:10px;"></div>
-   
+	<div style="height:10px;"></div><div id="edit_tax_dia" class="navbar"></div>
+
 </form>
    
 
