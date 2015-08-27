@@ -64,7 +64,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @param type $filename
      * @return string
      */
-    public function addnewuser($member_id, $member, $filename) {
+    public function addnewuser($member_id, $member) {
 
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
@@ -114,16 +114,16 @@ class CoreMember extends \Library\Core\BaseModel {
         return $noti;
     }
 
-    /**
+      /**
      * 
      * @param type $id
      * @return type
      * getting accepted and rejected leavedays detail
      * for user notification
-     * @author Su Zin Kyaw
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function GetUserNoti($id) {
-        $UserNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status!=0 AND leaves.member_id='" . $id . "'");
+        $UserNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status!=0 AND leaves.noti_seen=0 AND  leaves.member_id='" . $id . "'");
         $noti = $UserNoti->fetchall();
         return $noti;
     }
@@ -169,6 +169,22 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+    }
+    
+    /**
+     * 
+     * @param type $id
+     * @param type $sdate
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     * update noti seen when user click ok
+     */
+    public function updateleave($id,$sdate){
+          $this->db = $this->getDI()->getShared("db");
+        $sql = "UPDATE leaves set leaves.noti_seen=1 WHERE leaves.start_date='" . $sdate . "' AND leaves.member_id='" .$id. "'";
+
+       $a=$this->db->query($sql);
+      
+       
     }
 
 }

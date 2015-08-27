@@ -33,13 +33,13 @@ class UserController extends ControllerBase {
         $ltype=$leavetype->getleavetype();     
         $this->view->setVar("Leavetype", $ltype);
           if ($this->request->isPost()) {
-            $uname = $this->request->getPost('uname');
+           $id = $this->session->user['member_id'];
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
-            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc); 
-            $id = $this->session->user['member_id'];
+            $error=$this->_leave->applyleave($id,$sdate, $edate, $type, $desc); 
+            
             $User=new Db\CoreMember;
             $noti=$User->GetUserNoti($id);
             $this->session->set('noti', $noti);
@@ -62,14 +62,16 @@ class UserController extends ControllerBase {
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');             
         $leavelist = $this->_leave->getuserleavelist($leave_type,$mth,$id); 
-      
+       
+        $max=$this->_leave->getleavesetting();
+        $max_leavedays=$max['0']['max_leavedays'];
         $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);      
         $this->view->setVar("leave_result", $leave);
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);
-        $this->view->setVar("Uname", $username);
+        $this->view->setVar("max", $max_leavedays);
     }
   
 }

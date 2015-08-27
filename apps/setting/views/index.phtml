@@ -1,48 +1,8 @@
 <!DOCTYPE html>
- <?php  $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){ ?>
-          
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Attendance System</title>
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
-        <?php $this->assets->outputCss() ?>
-    </head>
-    <body class="sidebar-mini">
-        <div class="wrapper">            
-            <?php error_reporting(0); ?> 
-                <aside class="main-sidebar">                   
-                    <!-- sidebar: style can be found in sidebar.less -->
-                    
-                    <section class="sidebar" style="margin-top:-50px!important; ">
-                      <ul class="sidebar-menu">
-                        <li class="btn-info">Administrator Menu</li>
-                        <li class="treeview"><a href="<?= $baseUri ?>setting/index/settingmodule"><img src=""><span>Setting Module</span></a></li>
-                        <li class="treeview"><a href=""><img src=""><span>Setting Order</span></a></li>
-                      
-                    
-                    </ul>
-                </section>
-
-                </aside>
-               <div class="content-wrapper" >
-                    <section class="wrapper">
-                        <?php echo $this->getContent() ?>
-                        <?php $this->assets->outputJs(); ?>
-                    </section>
-                </div>
-        </div> 
-    </body>
-        <?php }
-        
-      
-        else
-        { ?>
-            <!DOCTYPE html>
-<html>
-    <head>
+    <head><style>.ui-dialog-titlebar-close {
+  visibility: hidden;
+}</style>
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -53,31 +13,19 @@
         <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini"  onload="display_ct()" >
-        <div class="wrapper">
-
-            <header class="main-header">
-
-                <!-- Logo -->
-                <a href="index2.html" class="logo">
-                    <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini"><b>G_</b>NEXT</span>
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg">G_NEXT</span>
-                </a>
-
+    <body class="skin-blue sidebar-mini">
+          <?php error_reporting(0); ?>                                
+        <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                    <a><img src="../../common/img/menu.png"  class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
-                    </a>
+                <nav class="navbar navbar-static-top" style="margin-left:0;">   
+                    <a><img src="../../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
+                             <span class="sr-only">Toggle navigation</span>
+                             </a>
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-
+                        <ul class="nav navbar-nav">                           
                             <!-- Notifications: style can be found in dropdown.less -->
-                            <li class="dropdown notifications-menu" >
+                              <li class="dropdown notifications-menu" >
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($this->session->noti)==0){ }else{echo count($this->session->noti);}?></span>
@@ -89,11 +37,19 @@
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
-                                                <a href="#" onclick="return false;" class="notidetail" id="<?php echo  $noti['member_id']?>">
-                                                    <img src="../../common/img/notid.png"> 
-                                                    <?php if($this->session->user['member_login_name']=="admin"){
-                                                    echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
-                                                    else {?> Admin Accepted leave days for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
+                                                <?php if($this->session->permission_code=="ADMIN"){?>
+                                                <a href="#" onclick="return false;" class="adminnotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
+                                                <img src="../../common/img/notid.png"> 
+                                                <?php echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
+                                                    else {?>
+                                                <a href="#" onclick="return false;" class="usernotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
+                                                    <img src="../../common/img/notid.png"> admin<?php 
+                            switch($noti['leave_status']){
+                            
+                            case "1" : echo " Confirmed";break;
+                            case "2" : echo " Rejected";break;
+                               
+                        }?> <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
                                                                                          
                                                 </a>
                                             </li>
@@ -116,22 +72,22 @@
                                     <li class="user-header">
                                         <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
-                                            <?php echo $this->session->user['member_login_name'];
-                                            ?>
+                                            <?php echo $this->session->user['member_login_name']; ?>
                                             <small>Member since Nov. 2012</small>
                                         </p>
                                     </li>
-                                       <!-- Menu Footer-->
-                                    <li class="user-footer">
+
+                                    <!-- Menu Footer-->
+                                       <li class="user-footer">
                                       <?php $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){ ?>
+        if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index/" class="btn btn-default btn-flat">Setting</a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
                                         </div>
             
         <?php }
         else
-        { ?> 
+        {?> 
             <div class="pull-left">
                                             <a href="../../setting/user/usersetting" class="btn btn-default btn-flat">Setting</a>
                                         </div>
@@ -147,27 +103,18 @@
                             </li>
 
                         </ul>
-                    </div>
-
+                    </div>                
                 </nav>
-            </header>
+        </header>
+            
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
+            <aside class="main-sidebar" id="sidepage" style="display:none;">
                 <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-                    <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
-                        </div>
-                        <div class="pull-left info">
-                            <p><?php echo $this->session->user['member_login_name']; ?></p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
+                <section class="sidebar" >
+                    <!-- Sidebar user panel -->                   
 
                     <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <aside>
                     <ul class="sidebar-menu">
                         <li class="header">MAIN NAVIGATION</li>
                         <?php
@@ -183,10 +130,10 @@
                                     if (isset($top[1])) {
                                         echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 
@@ -224,7 +171,7 @@
 
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper" style="height:auto;">
+            <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
                 <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
@@ -232,7 +179,7 @@
                 </section>
             </div><!-- /.content-wrapper -->
 
-            <footer class="main-footer">
+            <footer class="main-footer" style="margin-left:0;">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
 
@@ -245,5 +192,3 @@
 
     </body>
 </html>
-
-        <?php } ?>

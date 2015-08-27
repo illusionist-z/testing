@@ -251,12 +251,11 @@ var Deduction = {
         });
     },
        Diaadd : function (d){
-           
         if(!this.isOvl){
             this.isOvl=true;
         }
         
-        $ovl = $('#add_new_ltype');
+        $ovl = $('#add_new_dt');
         $ovl.dialog({
             autoOpen: false,
             height: 250,
@@ -279,7 +278,7 @@ var Deduction = {
     },
      AddNew : function(d){
         var form=$('#Add_new_deduct');
-      alert(form.serialize());
+    
         $.ajax({
             type:'POST',
             data: form.serialize(),
@@ -335,6 +334,7 @@ $(document).ready(function () {
     });
     
       $(".add").click(function () {
+          
       Deduction.Add();
     });
 });

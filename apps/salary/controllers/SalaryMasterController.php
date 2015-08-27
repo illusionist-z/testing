@@ -32,8 +32,8 @@ class SalaryMasterController extends ControllerBase
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
         $data['travel_fee'] = $this->request->get('travelfee', 'int');
         $data['over_time'] = $this->request->get('overtime', 'int');
-        $data['ssc_emp'] = 3;
-        $data['ssc_comp'] = 2;
+        $data['ssc_emp'] = 2;
+        $data['ssc_comp'] = 3;
         $data['allowance_id'] = 0;
         $data['creator_id'] = $this->session->user['member_id'];
         $data['created_dt'] = date("Y-m-d H:i:s");
@@ -41,9 +41,9 @@ class SalaryMasterController extends ControllerBase
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
 
-        //print_r($data);exit;
+        
         $Salarymaster = new SalaryMaster();
-        //$Salarymaster->savesalarydedution($dedution, $data['member_id'], $data['creator_id']);
+        $Salarymaster->savesalarydedution($dedution, $data['member_id'], $data['creator_id']);
         $result = $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();

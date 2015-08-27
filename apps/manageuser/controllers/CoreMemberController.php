@@ -37,7 +37,7 @@ class CorememberController extends ControllerBase {
        if($this->request->isPost()){
 
        $user = new AddUser();
-       $validate = $user->validate($this->request->getPost());
+       $validate = $user->validat($this->request->getPost());
        if(count($validate)){
                 foreach ($validate as $message){
                     $json[$message->getField()] = $message->getMessage();
@@ -48,20 +48,12 @@ class CorememberController extends ControllerBase {
                    }           
         else
                 {
+                $member=$this->request->getPost();
                 $member_id = $this->session->user['member_id'];
-                $username = $this->request->getPost('username');
-                $password = $this->request->getPost('password');
-                $dept = $this->request->getPost('dept');
-                $position = $this->request->getPost('position');
-                $email = $this->request->getPost('email');
-                $phno = $this->request->getPost('phno');
-                $address = $this->request->getPost('address');
-                $role = $this->request->getPost('user_role');
 
-                $filename = $_FILES["fileToUpload"]["name"];            
+//                $filename = $_FILES["fileToUpload"]["name"];            
                 $NewUser = new CoreMember;
-                $NewUser->addnewuser($member_id, $username, $password,
-                $dept, $position, $email, $phno, $address,$filename,$role);
+                $NewUser->addnewuser($member_id,$member);
 
                 $this->flashSession->success("New user is added successfully!");
                 $this->view->disable();

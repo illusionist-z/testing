@@ -33,7 +33,7 @@ class LoginController extends ControllerBase {
             $Permission = $ModelPermission->get($result, $permissions);
             //print_r($Permission);exit;
             $this->session->set('auth', $Permission);
-                        $this->response->redirect('home');
+            $this->response->redirect('home');
         } else {
             //echo "error";exit;
             $this->response->redirect('auth/index/failer');

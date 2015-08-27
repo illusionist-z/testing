@@ -81,9 +81,10 @@ class Attendances extends Model {
      */
     public function showattlist() {
         //search monthly list data
-             
+            $year=date('Y');
             $month = date('m');
-            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' order by attendances.att_date DESC";
+            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' and YEAR(attendances.att_date)='".$year."' order by attendances.att_date DESC";
+            //echo $query;exit;
             $result = $this->db->query($query);
             $row  = $result->fetchall();
             return $row;
@@ -100,14 +101,16 @@ class Attendances extends Model {
      */
     public function search_attlist($year,$month,$username) {
         try {
+         
          $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
          $conditions=$this->setCondition($year, $month, $username);
 
               $sql = $select;
               if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions);
-              }              
-              $result = $this->db->query($sql);              
+              }
+              
+              $result = $this->db->query($sql);
               $row = $result->fetchall();
         } catch (Exception $ex) {
            echo $ex; 
