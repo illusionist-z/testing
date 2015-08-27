@@ -142,5 +142,22 @@ class IndexController extends ControllerBase {
         $this->response->redirect('leavedays/index/leavesetting');
 
     }
+    
+     public function acceptleaveAction(){
+        $sdate=$this->request->get('start_date');
+        $edate=$this->request->get('end_date');
+        $id=$this->request->get('id');
+        $days=$this->request->getPost('leave_days');
+        $this->_leave->acceptleave($id,$sdate,$edate,$days); 
+        $update=new \workManagiment\Core\Models\Db\CoreMember();
+       
+    }
+    public function rejectleaveAction(){
+         $sdate=$this->request->get('start_date');
+        $edate=$this->request->get('end_date');
+        $id=$this->request->get('id');
+        $days=$this->request->getPost('leave_days');
+        $this->_leave->rejectleave($id,$sdate,$edate,$days); 
+    }
 }
      
