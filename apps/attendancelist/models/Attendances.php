@@ -101,6 +101,7 @@ class Attendances extends Model {
      */
     public function search_attlist($year,$month,$username) {
         try {
+         
          $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
          $conditions=$this->setCondition($year, $month, $username);
 
@@ -108,7 +109,7 @@ class Attendances extends Model {
               if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions);
               }
-              //echo $sql;exit;
+              
               $result = $this->db->query($sql);
               $row = $result->fetchall();
         } catch (Exception $ex) {
