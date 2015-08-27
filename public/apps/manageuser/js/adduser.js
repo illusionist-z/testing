@@ -6,11 +6,13 @@
  */
 var UserAdd = {
      Submit : function (){
+         data=$("#saveuser").serialize();
         $.ajax({
             type:'POST',
             url :'../coremember/saveuser',
-            data:$("#saveuser").serialize(),
+            data:data,
             success: function(d){
+                alert(d+'mmm');
                 cond = JSON.parse(d);
                 if(cond.result === 'error')
                 {
@@ -50,7 +52,8 @@ var UserAdd = {
 $(document).ready(function(){
     
    $('.submit_useradd').click(function(){
-            //validform();   
+            //validform(); 
+            //window.location.href = baseUri + 'manageuser/coremember/saveuser';
             UserAdd.Submit();
       
    });

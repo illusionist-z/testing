@@ -32,12 +32,13 @@ class CorememberController extends ControllerBase {
      * 
      */
    public function saveuserAction() {
+       
        $json = array();
     //form validation init
        if($this->request->isPost()){
-
+        
        $user = new AddUser();
-       $validate = $user->validate($this->request->getPost());
+       $validate = $user->validate($this->request->getPost('saveuser'));
        if(count($validate)){
                 foreach ($validate as $message){
                     $json[$message->getField()] = $message->getMessage();
@@ -66,11 +67,13 @@ class CorememberController extends ControllerBase {
                 $this->flashSession->success("New user is added successfully!");
                 $this->view->disable();
                 // Make a full HTTP redirection
-                $json['result'] = "success";            
+                $json['result'] = "success";  
+                $this->view->disable(); 
                 echo json_encode($json);
 
                 }
-            }        
+            }
+            
         }
                   
 
