@@ -19,14 +19,14 @@
 	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add user form</font></div>
         
         <form id="saveuser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-	<table width="700px" height="300px">
+	<table width="650px" height="300px">
             <tr>
                 <td rowspan="15"><img src="../../common/img/profile.png" > </td>
                 <td rowspan="15"> <input type="file" name="fileToUpload" id="fileToUpload"></td>
             </tr>
 	<tr>
             
-            <td width="140px">User Name :</td>
+            <td>User Name :</td>
            
             <td style="height:40px;">
                     <input type="text" name="username" id="uname">
@@ -75,11 +75,11 @@
        
 	<tr>
 		<td>Address :</td>
-		<td colspan="4"><textarea rows="5" name="member[address]" cols="50"></textarea></td>
+		<td colspan="4"><textarea rows="5" name="address" cols="50"></textarea></td>
 	</tr>
         <tr>
 		<td>User Role :</td>
-		<td colspan="4"><select class="select" data-toggle="select" name="member[user_role]" id="member[user_role]" style="margin-top: 13px;">
+		<td colspan="4"><select class="select" data-toggle="select" name="user_role" id="member[user_role]" style="margin-top: 13px;">
             
                                <option value="ADMIN,adminstrator">          
                 Admin</option>

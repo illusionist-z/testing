@@ -19,6 +19,7 @@ var Attendance = {
             pager.perpage =3;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
+            $("tbody").show();
         },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;

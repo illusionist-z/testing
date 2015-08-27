@@ -9,7 +9,7 @@ use Phalcon\Validation\Validator\Regex;
 
 class AddUser extends Model
 {
-    public function validate($data){
+    public function validat($data){
         $res = array();
         $validate = new Validation();
         $validate->add('username',

@@ -64,7 +64,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @param type $filename
      * @return string
      */
-    public function addnewuser($member_id, $member, $filename) {
+    public function addnewuser($member_id, $member) {
 
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
