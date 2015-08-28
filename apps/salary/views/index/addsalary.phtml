@@ -29,9 +29,9 @@ if(isset($Msg))
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
-                                    <option value="<?php echo $username['member_id']; ?>"
+                                    <option value="<?php echo $username->member_id; ?>"
                                     <?php //echo(isset($Uname) && ($Uname == $result['member_login_name']) ? ' selected="selected"' : ''); ?>        
-                                            ><?php echo $username['member_login_name']; ?></option>
+                                            ><?php echo $username->member_login_name; ?></option>
 
                                     <?php
                                 }

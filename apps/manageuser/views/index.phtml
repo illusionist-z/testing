@@ -31,7 +31,7 @@
                                     <span class="label label-warning"><?php if(count($this->session->noti)==0){ }else{echo count($this->session->noti);}?></span>
                                 </a>
                                   <ul class="dropdown-menu">
-                                    <li class="header">You have <i><b style="color:red;font-size: 20px;"><?php echo count($this->session->noti);?></b></i> <b>notifications</b></li>
+                                    <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
                                        <?php foreach ($this->session->noti as $noti) {?>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
@@ -40,7 +40,7 @@
                                                 <?php if($this->session->permission_code=="ADMIN"){?>
                                                 <a href="#" onclick="return false;" class="adminnotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
                                                 <img src="../../common/img/notid.png"> 
-                                                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}
+                                                <?php echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
                                                     else {?>
                                                 <a href="#" onclick="return false;" class="usernotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
                                                     <img src="../../common/img/notid.png"> admin<?php 
@@ -56,7 +56,7 @@
                                            
                                         </ul>
                                 </li><?php } ?>
-                                    <li class="footer"><a href="../../notification/index/viewall"><b>View All</b></a></li>
+                                    <li class="footer"><a href="../../notification/index/viewall">View all</a></li>
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -72,8 +72,8 @@
                                     <li class="user-header">
                                         <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
-                                            <b><?php echo $this->session->user['member_login_name']; ?></b>
-                                            <small><b>Member since Nov. 2012</b></small>
+                                            <?php echo $this->session->user['member_login_name']; ?>
+                                            <small>Member since Nov. 2012</small>
                                         </p>
                                     </li>
 
@@ -82,20 +82,20 @@
                                       <?php $name=$this->session->user['member_login_name'];
         if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
                                         </div>
             
         <?php }
         else
         {?> 
             <div class="pull-left">
-                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat">Setting</a>
                                         </div>
         <?php }
         ?>
                                         
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
+                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout">Sign out</a>
 
                                         </div>
                                     </li>
@@ -116,24 +116,24 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <aside>
                     <ul class="sidebar-menu">
-                        <li class="header"><b>MAIN NAVIGATION</b></li>
+                        <li class="header">MAIN NAVIGATION</li>
                         <?php
                         foreach ($this->session->auth as $key_name => $key_value) {
                             //the outer main menu
                             if (count($key_value) > 1) {
 
-                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             } else {
                                 $top = explode(" ", $key_value[0]);
                                 if (strpos($key_name, 'user') !== false) {
 
                                     if (isset($top[1])) {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 

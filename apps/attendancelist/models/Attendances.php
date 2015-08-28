@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace workManagiment\Attendancelist\Models;

@@ -18,6 +18,7 @@ class Leaves extends \Library\Core\BaseModel {
 
     public function initialize() {
         parent::initialize();
+        $this->db = $this->getDI()->getShared("db");
     }
 
     /**
@@ -29,23 +30,11 @@ class Leaves extends \Library\Core\BaseModel {
      */
     public function getleavelist() {
         //select leave list
-        /*$this->db = $this->getDI()->getShared("db");
+        
+
         $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id";
         $result = $this->db->query($sql);
         $row = $result->fetchall();
-        return $row;*/
-        
-        $row =   $this->modelsManager->createBuilder()
-                      ->columns(array('core.*', 'leaves.*'))
-                      ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                      ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')                         
-                      ->getQuery()
-                      ->execute();          
-                //print_r($row);exit;
-                  /*foreach($row as $rows) {
-                          echo $rows->core->member_login_name;                         
-                    }
-                    exit;*/
         return $row;
   
     }
@@ -59,8 +48,6 @@ class Leaves extends \Library\Core\BaseModel {
      * @author zinmon
      */
     public function search($ltype, $month, $namelist) {
-        $this->db = $this->getDI()->getShared("db");
-
         $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status,total_leavedays,max_leavedays FROM leaves_setting, leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
         $conditions = array();
 
@@ -289,7 +276,7 @@ public  function GetDays($StartDate, $EndDate){
       *@return cond array
       *@desc   Validate Form 
       */
-     public function validate($data){
+     public function validat($data){
         $res = array();
         $validate = new Validation();
         $validate->add('username',
