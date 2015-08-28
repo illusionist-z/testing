@@ -12,7 +12,8 @@ var ApplyForm = {
            success: function(d){
                cond = JSON.parse(d);
                  if(cond.result === 'error')
-                {                   
+                { 
+                 $('#apply_form_sdate').css('border','black');$('#apply_form_edate').css('border','black');
                  $('#apply_form_name_error').empty();$('#apply_form_desc_error').empty();$('#apply_form_sdate_error').empty();$("#apply_form_edate_error").empty();
                  for(var i in cond){
                      switch(i){

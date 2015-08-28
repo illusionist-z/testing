@@ -3,10 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
- * @GEOprocess()
- * @get @lat @lng
- */
 var pager = new Paging.Pager();   //for pagination
 
 /*
@@ -14,12 +10,12 @@ var pager = new Paging.Pager();   //for pagination
  * @version 24/8/2015 David
  */
 var Attendance = {
-        init : function (){
-            $("tfoot").html($('tbody').html()); //for csv
+        init : function (){            
+            $('tfoot').html($('tbody').html());   //for csv
             pager.perpage =3;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
-            $("tbody").show();
+            $('tbody').show();
         },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;
@@ -40,18 +36,14 @@ var Attendance = {
         var month = document.getElementById('month').value;
         var username = document.getElementById('username').value;
         var year = document.getElementById('year').value;
-        if(month=="" && username=="" && year=="")
-        {
-            alert("Choose aleast one!");
-        }
-        else{
-        //window.location.href = baseUri + 'attendancelist/search/attsearch?month='+month+'&username='+username+'&year=' +year;
+    // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
         $.ajax({
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
             success: function (d) {                       
                 var json_obj = $.parseJSON(d);//parse JSON            
                $('tbody').empty();
+               $('tfoot').empty();
                 for (var i in json_obj)
                 {   
                     a = "08:00:00";
@@ -154,8 +146,7 @@ var Attendance = {
             error: function (d) {
                 alert('error');
             }       
-            });  
-        }
+            });                 
            }
    };
 $(document).ready(function () { 
