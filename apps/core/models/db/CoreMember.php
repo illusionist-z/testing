@@ -132,7 +132,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti() {
+    public function GetAdminNoti() {        
         $AdminNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0");
         $noti = $AdminNoti->fetchall();
         return $noti;
@@ -159,7 +159,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * getting notification detail
      * @author Su Zin Kyaw
      */
-    public function getdetail($data) {
+    public function getdetail($data) {        
         $Detail = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.start_date='" . $data['1'] . "' AND leaves.member_id='" . $data['0'] . "'");
         $detail = $Detail->fetchall();
 
