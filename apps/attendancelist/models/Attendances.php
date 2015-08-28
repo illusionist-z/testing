@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 
 namespace workManagiment\Attendancelist\Models;
@@ -28,7 +29,7 @@ class Attendances extends Model {
     public function gettodaylist($name) {        
         $today = date("Y:m:d");                
         // for search result
-        if (isset($name)) {
+        /*if (isset($name)) {
            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where core_member.member_login_name='".$name."' and attendances.att_date ='".$today."'";
         } else {
             //show att today list
@@ -36,7 +37,45 @@ class Attendances extends Model {
         }
         $result = $this->db->query($query);
         $rows = $result->fetchall();
-        return $rows;
+        return $rows;*/
+        
+        if(isset($name)){
+           //echo "Thank You";
+           //print_r($today);exit;
+           $row =   $this->modelsManager->createBuilder()
+                         ->columns(array('core.*', 'attendances.*'))
+                         ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
+                         ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                         ->where('core.member_login_name = :name:', array('name' => $name))
+                         ->andWhere('attendances.att_date = :today:', array('today' => $today))
+                         ->getQuery()
+                         ->execute();          
+                // print_r($row);exit;
+                   /* foreach($row as $rows) {
+                          echo $rows->core->member_login_name;
+                          echo $rows->attendances->att_date;
+                    }
+                    exit;*/
+           
+           
+                    
+        }else{
+            $row =   $this->modelsManager->createBuilder()
+                          ->columns(array('core.*', 'attendances.*'))
+                          ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
+                          ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                          ->where('attendances.att_date = :today:', array('today' => $today))                           
+                          ->getQuery()
+                          ->execute();          
+                // print_r($row);exit;
+                   /* foreach($row as $rows) {
+                          echo $rows->core->member_login_name;
+                          echo $rows->attendances->att_date;
+                    }
+                    exit;*/
+        }
+       // print_r($row);exit;
+        return $row;
     }
 
     /**
@@ -83,12 +122,27 @@ class Attendances extends Model {
         //search monthly list data
             $year=date('Y');
             $month = date('m');
-            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' and YEAR(attendances.att_date)='".$year."' order by attendances.att_date DESC";
+            /*$query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' and YEAR(attendances.att_date)='".$year."' order by attendances.att_date DESC";
             //echo $query;exit;
             $result = $this->db->query($query);
             $row  = $result->fetchall();
-            return $row;
-      
+            return $row;*/
+            
+            $row = $this->modelsManager->createBuilder()               
+                        ->columns(array('core.*', 'attendances.*'))                
+                        ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
+                        ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                        ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
+                        ->orderBy('attendances.att_date DESC')
+                        ->getQuery()
+                        ->execute();           
+                // print_r($row);exit;
+                   /*foreach($row as $rows) {
+                         echo $rows->core->member_login_name;
+                         echo $rows->attendances->att_date;
+                     }
+                     exit;*/
+              return $row;
     }
     
     /**

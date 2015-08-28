@@ -1,11 +1,11 @@
 
         <section class="content-header">
           <h1>
-            Add user
+            <b>Add User</b>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">add user</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
+            <li class="active"><b>Add User</b></li>
           </ol>
         </section>
 
@@ -16,69 +16,70 @@
 	 <div class="col-md-12"><!--start add user form--->
          <?php $this->flashSession->output() ?>
 	<div id="form_div">
-	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add user form</font></div>
+	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff"><b>Add User Form</b></font></div>
         
         <form id="saveuser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-	<table width="650px" height="300px">
+	<table width="700px" height="300px">
             <tr>
                 <td rowspan="15"><img src="../../common/img/profile.png" > </td>
                 <td rowspan="15"> <input type="file" name="fileToUpload" id="fileToUpload"></td>
             </tr>
 	<tr>
-            
-            <td>User Name :</td>
+
+            <td width="150px">User Name :</td>
+
            
             <td style="height:40px;">
-                    <input type="text" name="username" id="uname">
+                <input type="text" name="username" id="uname" placeholder="Write User Name">
                     <span id="user-error"></span>
 		</td>                
         </tr>        
         <tr>
 		
-		<td>Password :</td>
+		<td><b>Password :</b></td>
                 <td style="height:40px;">
-                    <input type="password" name="password" id="pass">
+                    <input type="password" name="password" id="pass" placeholder="Write Password">
                     <span id="pass-error"></span>
                 </td>                
 	</tr>
         
 	<tr>
-		<td>Department:</td>
+		<td><b>Department:</b></td>
                 <td style="height:40px;">
-                    <input type="text" name="dept" id="dept">
+                    <input type="text" name="dept" id="dept" placeholder="Write Department">
                     <span id="dept-error"></span>                
                 </td>
                 
         </tr>
         <tr>
           
-		<td>Position	:</td>
+		<td><b>Position	:</b></td>
                 <td style="height:40px;">
-                    <input type="text" name="position" id="pos">
+                    <input type="text" name="position" id="pos" placeholder="Write Position">
                     <span id="pos-error"></span>
                 </td>
 	</tr>
 	<tr>
-		<td>Email :</td>
+		<td><b>Email :</b></td>
                 <td style="height:40px;">
-                    <input type="email" name="email" id="mail">
+                    <input type="email" name="email" id="mail" placeholder="Write Email">
                     <span id="mail-error"></span>
                </td>
 	</tr>
         <tr>
-		<td>Phone no</td>
+		<td><b>Phone no:</b></td>
                 <td style="height:40px;">
-                    <input type="text" name="phno" id="pno">
+                    <input type="text" name="phno" id="pno" placeholder="Write Phone no">
                     <span id="pno-error"></span>
                 </td>
 	</tr>
        
 	<tr>
-		<td>Address :</td>
-		<td colspan="4"><textarea rows="5" name="address" cols="50"></textarea></td>
+		<td><b>Address :</b></td>
+                <td colspan="4"><textarea rows="5" name="address" cols="50" placeholder="Write Address"></textarea></td>
 	</tr>
         <tr>
-		<td>User Role :</td>
+		<td><b>User Role :</b></td>
 		<td colspan="4"><select class="select" data-toggle="select" name="user_role" id="member[user_role]" style="margin-top: 13px;">
             
                                <option value="ADMIN,adminstrator">          
@@ -92,7 +93,7 @@
 	<tr>
 		<td></td>
 		
-                <td><input type="submit" onclick="return false;" class="buttonn submit_useradd" style="margin: 13px;"  value="Add  New User"></td>
+                <td><b><input type="submit" onclick="return false;" class="buttonn submit_useradd" style="margin: 13px;"  value="Add  New User"></b></td>
 		<td></td>
 	</tr>
 	</table>

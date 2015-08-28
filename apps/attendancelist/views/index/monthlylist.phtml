@@ -17,11 +17,11 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Monthly Attendance list
+        <b>Monthly Attendance Lists</b>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">attendance list</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
+        <li class="active"><b>Monthly Attendance Lists</b></li>
     </ol>
 </section>
 
@@ -67,8 +67,8 @@ $length = count($Month);
 //print_r($Getname);
                 foreach ($Getname as $getname) {
                     ?>
-                    <option value="<?php echo $getname['member_login_name']; ?>">
-                        <?php echo $getname['member_login_name']; ?></option>
+                    <option value="<?php echo $getname->member_login_name; ?>">
+                        <?php echo $getname->member_login_name; ?></option>
                             <?php
                         }
                         ?>
@@ -76,7 +76,7 @@ $length = count($Month);
             <!-- <a href="../search/search" class="button" id='btn_search'>Search</a> -->
             <input type="submit" value="Search" class="buttonn" id="sub">
             <input type="hidden" value='' id='hidden-type' name='ExportType'/>
-            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);">Export</a>
+            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><b>Export</b></a>
 
         </form>
     </div>
@@ -104,11 +104,11 @@ $length = count($Month);
                     foreach ($monthlylist as $item) {
                         ?>
                         <tr>
-                            <td><?php echo $item['att_date']; ?></td>
+                            <td><?php echo $item->attendances->att_date; ?></td>
 
-                            <td><?php echo $item['member_login_name']; ?></td>
+                            <td><?php echo $item->core->member_login_name; ?></td>
                             <td><?php
-                                $checkintime = $item['checkin_time'];
+                                $checkintime = $item->attendances->checkin_time;
                                 if ($sign == '-') {
                                     $time = new DateTime($checkintime);
                                     $time->add(new DateInterval('PT' . $value . 'M'));
@@ -121,7 +121,7 @@ $length = count($Month);
                             </td>
                             <td><?php
                                 //calculate late time
-                                $checkintime = $item['checkin_time'];
+                                $checkintime = $item->attendances->checkin_time;
                                 $dt = new DateTime($checkintime);
                                 $time = $dt->format('H:i:s');
                                 $office_start_time = '01:30:00 ';
@@ -135,7 +135,7 @@ $length = count($Month);
                                 ?>
                             </td>
                             <td><?php
-                                $checkouttime = $item['checkout_time'];
+                                $checkouttime = $item->attendances->checkout_time;
                                 if ($checkouttime == 0) {
                                     echo "-";
                                 } else {
@@ -152,8 +152,8 @@ $length = count($Month);
                             </td>
                             <td><?php
                                 //calculate working time
-                                $start_time = strtotime($item['checkin_time']);
-                                $end_time = strtotime($item['checkout_time']);
+                                $start_time = strtotime($item->attendances->checkin_time);
+                                $end_time = strtotime($item->attendances->checkout_time);
                                 if ($end_time == 0) {
                                     echo "-";
                                 } else {
@@ -169,13 +169,13 @@ $length = count($Month);
                             <td><?php
                                 //calculate overtime
                                 
-                                if ($item['overtime']!=0) {
+                                if ($item->attendances->overtime !=0) {
                                    echo $item['overtime'];
                                 } else {
                                     echo "-";
                                 }
                                 ?></td>
-                            <td><?php echo $item['location'];?></td>
+                            <td><?php echo $item->attendances->location;?></td>
                         </tr>
                         <?php
                     }

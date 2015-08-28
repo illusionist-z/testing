@@ -20,17 +20,37 @@ class CoreMember extends \Library\Core\BaseModel {
     }
 
     public function getusername() {        
-        $this->db = $this->getDI()->getShared("db");        
+        /*$this->db = $this->getDI()->getShared("db");        
         $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
-        return $getname;
+        return $getname;*/
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember";
+        $row = $this->modelsManager->executeQuery($query);
+        //print_r($row);exit;
+        return $row;
     }
-    
+    /*
+     * user list search with name in user list
+     */
     public function getoneusername($username){
-         $this->db = $this->getDI()->getShared("db");
+         /*$this->db = $this->getDI()->getShared("db");
          $user_name = $this->db->query("SELECT * FROM core_member where member_login_name ='".$username."'");        
          $getname = $user_name->fetchall();
-         return $getname;
+         return $getname;*/
+        
+        $getname =   $this->modelsManager->createBuilder()
+                            ->columns(array('core.*'))
+                            ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))                             
+                            ->where('core.member_login_name = :username:', array('username' => $username))                            
+                            ->getQuery()
+                            ->execute();                                                   
+                // print_r($row);exit;
+                  /*  foreach($row as $rows) {
+                          echo $rows->member_login_name;
+                         // echo $rows->attendances->att_date;
+                    }
+                    exit;*/
+        return $getname;
     }
 
     /**
@@ -38,9 +58,13 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return username by last month
      */
     public function getlastname() {
-        $this->db = $this->getDI()->getShared("db");
+        /*$this->db = $this->getDI()->getShared("db");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  created_dt >= (NOW() - INTERVAL 8 MONTH) limit 4");
         $laname = $user_name->fetchall();
+        return $laname;*/
+        $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by  created_dt desc limit 4";
+        $laname=$this->modelsManager->executeQuery($username);
+       // print_r($laname);exit;
         return $laname;
     }
 
@@ -108,7 +132,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti() {
+    public function GetAdminNoti() {        
         $AdminNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0");
         $noti = $AdminNoti->fetchall();
         return $noti;
@@ -135,7 +159,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * getting notification detail
      * @author Su Zin Kyaw
      */
-    public function getdetail($data) {
+    public function getdetail($data) {        
         $Detail = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.start_date='" . $data['1'] . "' AND leaves.member_id='" . $data['0'] . "'");
         $detail = $Detail->fetchall();
 

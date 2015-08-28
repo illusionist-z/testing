@@ -167,7 +167,7 @@ class SalaryMaster extends Model {
                     //$salary_yr+=$total_allowances;
                     //echo "DDD".$Allowanceresult['total_allowance_amount'];
                     if(empty($SD['allowance_amount']) && isset($Allowanceresult['total_allowance_amount'])){
-                    $allowance=$Allowanceresult['total_allowance_amount'];
+                    $allowance=$allowance;
                     $salary_yr+=$allowance;
                     echo $salary_yr.'empty allowance';
                     
@@ -222,8 +222,8 @@ class SalaryMaster extends Model {
                                       'member_id' => $value['member_id'], 'allowance_amount' => $allowance);
                 }
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
