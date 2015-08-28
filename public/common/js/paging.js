@@ -1,5 +1,4 @@
 /**
- * @author David
  * @desc   Pagination to json data as html
  * @type json
  */
@@ -25,7 +24,7 @@ var Paging = {
 	            html += '<tr>' + $(this).html() + '</tr>';
 	        });
 	 
-	        $(this.pagingcontainer).html(html);	 
+	        $(this.pagingcontainer).html(html); 
 	        renderControls( this.currentpage, this.numPages());
 	    };
 	 //for pagination index 
@@ -36,10 +35,11 @@ var Paging = {
                 //var pageselect = '<select onchange="pager.showPage(parseInt(this.options[this.selectedIndex].value));return false;">';
                 // paging index 
                 if(0 == numPages){
-                    $('tbody').html("<tr><td colspan='8'><center>No data to display</center></td></tr>");
+                    var th_num = $('thead th').length;
+                    $('tbody').html("<tr><td colspan="+th_num+"><center>No data to display</center></td></tr>");
                 }
                 else{
-	        var pagingControls = '<ul class="pagination" style="margin-left:15px;">';
+        var pagingControls = '<ul class="pagination" style="margin-left:15px;">';
                 pagingControls += '<li><a href="#" onclick="pager.showPage(' + 1 + ');return false;">First</a></li>';             
                 // check total page number
                 if(nextpage <= numPages){                    
@@ -47,7 +47,7 @@ var Paging = {
                     if(prevpage > 0){
                                 pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';                    
                                     }
-	                        pagingControls += '<li><a href="#" onclick="pager.showPage(' + nextpage + ');return false;">Next</a></li>';	        
+                        pagingControls += '<li><a href="#" onclick="pager.showPage(' + nextpage + ');return false;">Next</a></li>';	        
                                         }                
                 else {
                     if(1 ==numPages){

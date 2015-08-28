@@ -7,8 +7,8 @@
  * @version 8/24/2015 David
  * @LeaveListSearch @function
  */
-var Leave = {
-    Search : function()
+
+     function search_list()
             {
             var leave_type = document.getElementById('ltype').value;
             var month = document.getElementById('month').value;
@@ -23,6 +23,7 @@ var Leave = {
                     var leave_left="";
                     //alert(json_obj);
                     $("tbody").empty();
+                    $("tfoot").empty();
                     for (var i in json_obj)
                     {
                         if(json_obj[i].total_leavedays>=json_obj[i].max_leavedays){
@@ -47,11 +48,11 @@ var Leave = {
                                 + "</tr>";
                         $("tbody").append(output);
                     }
-                    init();
+                    Leave.init();
                 },
                 error: function (d) {
                     alert('error');
                 }
             });
         }
-};
+

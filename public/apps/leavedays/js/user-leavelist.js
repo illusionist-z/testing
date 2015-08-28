@@ -9,10 +9,8 @@
  */
 
        
-$(document).ready(function(){        
-    
-     
-    //set slide menu
+$(document).ready(function(){
+//set slide menu
  
     // ここに実際の処理を記述します。
   
