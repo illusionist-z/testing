@@ -36,6 +36,11 @@ var Attendance = {
         var month = document.getElementById('month').value;
         var username = document.getElementById('username').value;
         var year = document.getElementById('year').value;
+        if (month == "" && username == "" && year == "")
+        {
+            alert("Choose aleast one!!");
+        }
+        else {
     // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
         $.ajax({
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
@@ -146,7 +151,8 @@ var Attendance = {
             error: function (d) {
                 alert('error');
             }       
-            });                 
+            }); 
+        }
            }
    };
 $(document).ready(function () { 
