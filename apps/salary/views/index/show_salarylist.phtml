@@ -1,10 +1,10 @@
 <section class="content-header">
     <h1>
-        Show Salary detail
+        <b>Show Salary Detail</b>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">salary detail</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
+        <li class="active"><b>Salary Detail</b></li>
     </ol>
 </section>
 
@@ -18,14 +18,15 @@
                 <div id="Menu" >
                     <input type="hidden" name="cond[mth]" value="<?php echo $month;?>" id="month">
                     <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
-                    <div id="M_1">User Name: 
+                    <div id="M_1">
+                        <b>User Name : </b>
                         <span>
                             <select class="select" data-toggle="select" name="cond[username]">
                                 <option value="">Name</option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
-                                    <option value="<?php echo $username['member_login_name']; ?>"><?php echo $username['member_login_name']; ?></option>
+                                    <option value="<?php echo $username->member_login_name; ?>"><?php echo $username->member_login_name; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -34,35 +35,35 @@
                         </span>
                     </div>
                     <div id="M_2">
-                        Dept: 
+                        <b>Department : </b>
                         <span>
                             <select class="select" data-toggle="select" name="cond[dept]">
                                 <option value="">Department</option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
-                                    <option value="<?php echo $username['member_dept_name']; ?>"><?php echo $username['member_dept_name']; ?></option>
+                                    <option value="<?php echo $username->member_dept_name; ?>"><?php echo $username->member_dept_name; ?></option>
                                     <?php
                                 }
                                 ?>
                             </select>
                     </div>
                     <div id="M_3">
-                        Position: 
+                        <b>Position : </b>
                         <span>
                             <select class="select" data-toggle="select" name="cond[position]">
                                 <option value="">Position</option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
-                                    <option value="<?php echo $username['position']; ?>"><?php echo $username['position']; ?></option>
+                                    <option value="<?php echo $username->position; ?>"><?php echo $username->position; ?></option>
                                     <?php
                                 }
                                 ?>
                             </select>
                     </div>
                     <div id="M_4">
-                         salary:
+                         <b>Salary :</b>
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
                             <option>400000~700000</option>
@@ -73,8 +74,8 @@
                 </div>
                 <div class="search_btn_box"><!--search btn-->
                     <div>
-                        <a href="#" class="button" id="search_salary" style="margin-left:71px; margin-right:28px;">Search</a>
-                        <a href="#" class="button export">Export</a>
+                        <a href="#" class="button" id="search_salary" style="margin-left:71px; margin-right:28px;"><b>Search</b></a>
+                        <a href="#" class="button export"><b>Export</b></a>
                     </div>
                 </div><!--search btn-->
             </form>

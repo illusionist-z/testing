@@ -5,12 +5,12 @@
 
 <section class="content-header">
     <h1>
-        Apply Leave
+        <b>Apply Leave</b>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#"><i class="fa fa-dashboard"></i> Leave Days</a></li>
-        <li class="active"> Apply Leave</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Leave Days</b></a></li>
+        <li class="active"> <b>Apply Leave</b></li>
     </ol>
 </section>
 <!-- Main content -->
@@ -19,18 +19,18 @@
         <table class="listtbl">
             <thead>
                 <tr>
-                    <th colspan="2">Apply Leave</th>
+                    <th colspan="2"><b>Apply Leave Form</b></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td style="padding-bottom:20px;">User Name</td>
+                    <td style="padding-bottom:20px;"><b>User Name : </b></td>
                     <td style="padding-bottom:20px;"><select class="select" data-toggle="select" name="username" id="apply_form_name">
                     <option value="">Name</option>
                     <?php
                     foreach ($name as $user) {
                      ?>
-                    <option value="<?php echo $user['member_id']; ?>" ><?php echo $user['member_login_name']; ?></option>
+                    <option value="<?php echo $user->member_id; ?>" ><?php echo $user->member_login_name; ?></option>
                     <?php
                     }
                     ?> </select> 
@@ -39,18 +39,18 @@
                     
                 </tr>
                 <tr>
-                    <td style="padding-bottom:20px;">Start Date</td>
+                    <td style="padding-bottom:20px;"><b>Start Date :</b></td>
                     <td style="padding-bottom:20px;width:67%;"><input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px;">
                         <span id="apply_form_sdate_error"></span></td>
                 </tr>
                 <tr>
-                    <td style="padding-bottom:20px;">End Date</td>
+                    <td style="padding-bottom:20px;"><b>End Date :</b></td>
                     <td style="padding-bottom:20px;width:67%;"><input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px;">
                     <span id="apply_form_edate_error"></span></td>                    
                     
                 </tr>                                   
                 <tr>
-                    <td style="padding-bottom:20px;">Leave Categories</td>
+                    <td style="padding-bottom:20px;"><b>Leave Categories :</b></td>
                     <td style="padding-bottom:20px;"><select class="select" data-toggle="select" name="leavetype">
                     <?php
                     foreach ($Leavetype as $data) {
@@ -62,7 +62,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-bottom:20px;">Description</td>
+                    <td style="padding-bottom:20px;"><b>Description :</b></td>
                     <td style="padding-bottom:20px;"> <textarea rows="2" cols="100" name="description" id="apply_form_desc"></textarea>
                         <span id="apply_form_desc_error"></span></td>
                 </tr>

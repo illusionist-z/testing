@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        User list
+        <b>User Lists</b>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">user list</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
+        <li class="active"><b>User Lists</b></li>
     </ol>
 </section>
 
@@ -19,8 +19,8 @@
                <?php
                 foreach ($username as $name){
                 ?>
-                <option value="<?php echo $name['member_login_name']; ?>" >          
-                <?php echo $name['member_login_name']; ?></option>
+                <option value="<?php echo $name->member_login_name; ?>" >          
+                <?php echo $name->member_login_name; ?></option>
                 <?php
                 }
                 ?>
@@ -54,13 +54,13 @@
                     ?>                       
                     <tr>
                         <td><?= $i ?></td>
-                        <td><?= $result['member_login_name'] ?></td>
-                        <td><?= $result['member_dept_name'] ?></td>
-                        <td><?= $result['job_title'] ?></td>
-                        <td><?= $result['member_mail'] ?></td>
-                        <td><?= $result['member_mobile_tel'] ?></td>
-                        <td><?= $result['member_address'] ?>
-                        <a href="#" onclick="return false;" style="float:right;" class="button displaypopup" id="<?=$result['member_login_name'] ?>">Edit</a>
+                        <td><?= $result->member_login_name; ?></td>
+                        <td><?= $result->member_dept_name; ?></td>
+                        <td><?= $result->position; ?></td>
+                        <td><?= $result->member_mail; ?></td>
+                        <td><?= $result->member_mobile_tel; ?></td>
+                        <td><?= $result->member_address; ?>
+                        <a href="#" onclick="return false;" style="float:right;" class="button displaypopup" id="<?=$result->member_login_name; ?>">Edit</a>
                         </td>                        
                     </tr>
                    <?php

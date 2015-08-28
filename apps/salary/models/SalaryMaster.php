@@ -222,8 +222,8 @@ class SalaryMaster extends Model {
                                       'member_id' => $value['member_id'], 'allowance_amount' => $allowance);
                 }
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;

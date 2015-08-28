@@ -14,11 +14,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Dashboard
+            <b>Dashboard</b>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
+            <li class="active"><b>Dashboard</b  ></li>
         </ol>
     </section>
 
@@ -31,8 +31,8 @@
 
         <div class="row">
             <div class="col-md-12">
-		  <div class="top_row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font>staffs attended</a></div>
-		  <div class="top_row"><a href="<?= $baseUri ?>leavedays/index/leavelist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> staffs absent<a></div>
+		  <div class="top_row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><b><font style="color:red;"><?= $attname ?> </font> Staffs Attended</b></a></div>
+		  <div class="top_row"><a href="<?= $baseUri ?>leavedays/index/leavelist"><img src="../../common/img/absence.png" class="imgstyle"><b><font style="color:red;"><?= $absent ?></font> Staffs Absent</b><a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -40,30 +40,30 @@
                                 <div class="row">
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
-              <div class="small-box bg-aqua" onclick="window.location.href='../../manageuser/user/userlist'" id="pointer_style1">
+              <div class="small-box bg-aqua" onclick="window.location.href='../../manageuser/index/userlist'" id="pointer_style1">
                   <img src="../../common/img/User-128.png">
-                                            Manage User
+                                            <b>Manage User</b>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
               <div class="small-box bg-green" onclick="window.location.href='../../attendancelist/index/todaylist'" id="pointer_style2">
                 <img src="../../common/img/View-List-128.png">
-                                            Attendance List
+                                            <b>Attendance List</b>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
               <div class="small-box bg-yellow" onclick="window.location.href='../../leavedays/index/leavelist'" id="pointer_style3">
                 <img src="../../common/img/Calendar-Date-02-128.png">
-                                            Leave Days
+                                            <b>Leave Days</b>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
               <div class="small-box bg-red" onclick="window.location.href='../../salary/index/salarylist'" id="pointer_style3">
                 <img src="../../common/img/Dollar-128.png">
-                                            Salary
+                                            <b>Salary</b>
                                         </div>
                                     </div><!-- ./col -->
                                 </div><!-- /.row -->
@@ -78,7 +78,7 @@
                                     <!-- MAP & BOX PANE -->
                                     <div class="box box-success">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Check in/out</h3>
+                                            <h3 class="box-title"><b>Check in / out</b></h3>
                                             <div class="box-tools pull-right">
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
@@ -93,11 +93,11 @@
 
 
                                                             <div class="col-md-7 col-md-offset-3">
-                                                                <h1 style="font-size:150%">Current Time :<span id="ct" style="color:red;" ></span> </h1>
+                                                                <h1 style="font-size:150%"><b>Current Time : <span id="ct" style="color:red;" ></span></b> </h1>
                                                             </div><br><br>
                                                             <div class="col-md-8 col-md-offset-3">
                                                                 <form id="theForm" name="theForm" method="post" action="">
-                                                                    <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/> If You late,Check Here and write your reason.
+                                                                    <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/> <b>If You late,Check Here</b> and write your reason.
                                                                     <div id="xtraInfo" style="display:none;">
                                                                         <textarea class="textarea" id="note" placeholder="Write your reason here" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                                     </div>
@@ -105,10 +105,10 @@
 
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="checkin"  class="btn btn-primary btn-sm btn-flat" id="" style="width: 150px;">Check In </a>
+                                                                <a href="checkin"  class="btn btn-primary btn-sm btn-flat" id="" style="width: 150px;"><b>Check In</b> </a>
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;">Check Out </a>
+                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;"><b>Check Out</b> </a>
                                                             </div><br><br>
                                                         </div>
 
@@ -128,7 +128,7 @@
 
                                     <div class="box box-default">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Latest News</h3>
+                                            <h3 class="box-title"><b>Latest News</b></h3>
                                             <div class="box-tools pull-right">
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
@@ -140,7 +140,7 @@
                                                     <div class="chart-responsive">
                                                         <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
                                                             <li>
-                                                                People who attend no leave
+                                                                People who attend <b>no leave</b>
                                                                 <ul><?php foreach ($nlname as $na){ ?>
                                                                     <li><?= $na['member_login_name'] ?></li>
                                                                     <?php } ?>
@@ -149,7 +149,7 @@
                                                         </ul>
                                                         <ul class="nav nav-pills nav-stacked">
                                                             <li>
-                                                                People who take the leave most
+                                                                People who take the <b>leave most</b>
                                                                 <ul><?php foreach ($lname as $na){ ?>
                                                                     <li><?= $na['member_login_name'] ?></li>
                                                                     <?php } ?>
@@ -167,9 +167,9 @@
                                     <!-- USERS LIST -->
                                     <div class="box box-danger">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Latest Members</h3>
+                                            <h3 class="box-title"><b>Latest Members</b></h3>
                                             <div class="box-tools pull-right">
-                                                <span class="label label-danger"><?= $newnumber ?> New Members</span>
+                                                <b><span class="label label-danger"><?= $newnumber ?> New Members</span></b>
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                             </div>
                                         </div><!-- /.box-header -->
@@ -178,14 +178,14 @@
                                                           <?php foreach($name as $v){ ?>
                                                              <li>
                                                                  <img src="../../common/img/.jpg" alt="User Image"/>
-                                                                 <a class="users-list-name" href="#"><?= $v['member_login_name'] ?></a>
-                                                                 <span class="users-list-date"><?= $v['created_dt'] ?></span>
+                                                                 <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
+                                                                 <span class="users-list-date"><?= $v->created_dt; ?></span>
                                                             </li>                          
                                                           <?php } ?>
                                             </ul><!-- /.users-list -->
                                         </div><!-- /.box-body -->
                                         <div class="box-footer text-center">
-                      <a href="../../manageuser/user/userlist" class="uppercase">View All Users</a>
+                      <a href="../../manageuser/index/userlist" class="uppercase"><b>View All Members</b></a>
                                         </div><!-- /.box-footer -->
                                     </div><!--/.box -->
 

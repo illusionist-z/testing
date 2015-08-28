@@ -7,12 +7,12 @@
 
 <section class="content-header">
           <h1>
-          Apply Leave
+          <b>Apply Leave</b>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-             <li><a href="#"><i class="fa fa-dashboard"></i> Leave Days</a></li>
-            <li class="active"> Apply Leave</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
+             <li><a href="#"><i class="fa fa-dashboard"></i> <b>Leave Days</b></a></li>
+            <li class="active"> <b>Apply Leave</b></li>
           </ol>
 </section>
         <!-- Main content -->
@@ -21,20 +21,20 @@
 <table class="listtbl">
 <thead>
     <tr>
-        <th colspan="2">Apply Leave</th>
+        <th colspan="2"><b>Apply Leave Form</b></th>
     </tr>
   </thead>
   <tbody>
       <tr>
-          <td>Start Date</td>
+          <td><b>Start Date :</b></td>
           <td><input type="text" class="datepicker form-control"  name="sdate" style="height:39px;" placeholder="Start Date"></td>
       </tr>
        <tr>
-          <td>End Date</td>
+          <td><b>End Date :</b></td>
           <td><input type="text" class="datepicker form-control" name="edate" style="height:39px;" placeholder="End Date"></td>
       </tr>
       <tr>
-          <td>Leave Categories</td>
+          <td><b>Leave Categories :</b></td>
           <td><select class="select" data-toggle="select" name="leavetype">
                     <?php
                     foreach ($Leavetype as $data) {
@@ -46,7 +46,7 @@
                     </td>
       </tr>
       <tr>
-          <td>Description</td>
+          <td><b>Description :</b></td>
           <td> <textarea rows="2" cols="100" name="description" ></textarea>
           </td>
       </tr>

@@ -29,11 +29,23 @@ class Leaves extends \Library\Core\BaseModel {
      */
     public function getleavelist() {
         //select leave list
-        $this->db = $this->getDI()->getShared("db");
-
+        /*$this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id";
         $result = $this->db->query($sql);
         $row = $result->fetchall();
+        return $row;*/
+        
+        $row =   $this->modelsManager->createBuilder()
+                      ->columns(array('core.*', 'leaves.*'))
+                      ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
+                      ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')                         
+                      ->getQuery()
+                      ->execute();          
+                //print_r($row);exit;
+                  /*foreach($row as $rows) {
+                          echo $rows->core->member_login_name;                         
+                    }
+                    exit;*/
         return $row;
   
     }

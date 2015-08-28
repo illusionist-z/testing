@@ -14,11 +14,11 @@ if ($offset < 0) {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Attendance list
+        <b>Today Attendance Lists</b>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">attendance list</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i><b>Home</b></a></li>
+        <li class="active"><b>Today Attendance Lists</b></li>
     </ol>
 </section>
 
@@ -31,7 +31,7 @@ if ($offset < 0) {
     <?php
     foreach ($uname as $result) {
     ?>
-                    <option><?php echo $result['member_login_name']; ?></option>
+                    <option><?php echo $result->member_login_name; ?></option>
 
                     <?php
                 }
@@ -41,7 +41,7 @@ if ($offset < 0) {
             </select>
             <input type="submit" class="buttonn" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
+            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><b>Export</b></a>
         </form>
     </div>
 
@@ -71,10 +71,10 @@ if ($offset < 0) {
                         $date = date('Y-m-d');
                         echo $date;
                          ?></td>
-                            <td><?php echo $result['member_login_name']; ?></td>
+                            <td><?php echo $result->core->member_login_name; ?></td>
                             <td>
                             <?php
-                            $checkintime = $result['checkin_time'];
+                            $checkintime = $result->attendances->checkin_time;
                             if ($sign == '-') {
                                 $time = new DateTime($checkintime);
                                 $time->add(new DateInterval('PT' . $value . 'M'));
@@ -88,7 +88,7 @@ if ($offset < 0) {
                             <td>
                                 <?php
                                 //calculate late time
-                                $checkintime = $result['checkin_time'];
+                                $checkintime = $result->attendances->checkin_time;
                                 $dt = new DateTime($checkintime);
                                 $time = $dt->format('H:i:s');
                                 $office_start_time = '01:30:00 ';
@@ -103,7 +103,7 @@ if ($offset < 0) {
                             </td>
                             <td>
                                 <?php
-                                $checkouttime = $result['checkout_time'];
+                                $checkouttime = $result->attendances->checkout_time;
                                 if ($checkouttime == 0) {
                                     echo "-";
                                 } else {
@@ -120,8 +120,8 @@ if ($offset < 0) {
                             <td>
                                 <?php
                                 //calculate working time
-                                $start_time = strtotime($result['checkin_time']);
-                                $end_time = strtotime($result['checkout_time']);
+                                $start_time = strtotime($result->attendances->checkin_time);
+                                $end_time = strtotime($result->attendances->checkout_time);
                                 if ($end_time == 0) {
                                     echo "-";
                                 } else {
@@ -136,7 +136,7 @@ if ($offset < 0) {
                             <td>
                                 <?php
                                 //calculate overtime
-                                if ($result['overtime']!=0) {
+                                if ($result->attendances->overtime !=0) {
                                    echo $result['overtime'];
                                 } else {
                                     echo "-";
