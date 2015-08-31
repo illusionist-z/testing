@@ -38,7 +38,9 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
-
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
         //var_dump($getsalarydetail);exit;
@@ -70,6 +72,9 @@ class IndexController extends ControllerBase {
      * Add salary form
      */
     public function addsalaryAction() {
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
         $Allowance = new Allowances();
@@ -89,6 +94,9 @@ class IndexController extends ControllerBase {
      * show total salary  of each month
      */
     public function monthlysalaryAction() {
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
@@ -150,6 +158,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin kyaw
      */
     public function allowanceAction() {
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $All_List = new \workManagiment\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         $this->view->setVar("list", $list); //paginated data
@@ -233,6 +244,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $Tax = new Taxs();
         $list = $Tax->gettaxlist();
         $this->view->setVar("result", $list); //paginated data

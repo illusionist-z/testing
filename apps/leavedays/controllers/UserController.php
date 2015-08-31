@@ -28,7 +28,11 @@ class UserController extends ControllerBase {
         //$this->response->redirect('applyleave');        
     }
 
-    public function applyleaveAction() {        
+    public function applyleaveAction() {     
+        $User=new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();     
         $this->view->setVar("Leavetype", $ltype);
@@ -54,7 +58,11 @@ class UserController extends ControllerBase {
      * display user leave list
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function leavelistAction(){          
+    public function leavelistAction(){      
+        $User=new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
         $month = $this->config->month;
          $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();         

@@ -22,6 +22,9 @@ class IndexController extends ControllerBase
      * @since  18/7/15
      */
     public function userlistAction() {     
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         //for paging and edit user
         $this->assets->addJs('common/js/paging.js');                       
         $this->assets->addJs('apps/manageuser/js/search.js'); 
@@ -82,7 +85,9 @@ class IndexController extends ControllerBase
      * @author Su Zin Kyaw
      */
     public function adduserAction(){               
-         
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $this->assets->addJs('apps/manageuser/js/adduser.js'); 
         
     }
