@@ -67,18 +67,19 @@
         <th>Late</th>
 	<th>Working Time</th>
 	<th>OverTime</th>
-        <th>Check In Place</th>
+        <th>Location</th>
     </tr>
   </thead>
   <tbody>
   <?php
 	foreach ($attlist as $result) {
+            //print_r($result);exit;
   ?>
     <tr>
-	<td><?php echo $result['att_date']; ?></td>
-	<td><?php echo $result['member_login_name']; ?></td>
+	<td><?php echo $result->attendances->att_date; ?></td>
+	<td><?php echo $result->core->member_login_name; ?></td>
 <!--        check in time-->
-	<td><?php $checkintime=$result['checkin_time'];
+	<td><?php $checkintime=$result->attendances->checkin_time;
         if ($sign=='-'){
             $cintime = new DateTime($checkintime);
         $cintime->add(new DateInterval('PT' . $value . 'M'));
@@ -92,7 +93,7 @@
         </td>
         
 <!--        check out time -->
-        <td><?php $checkouttime= $result['checkout_time'];
+        <td><?php $checkouttime= $result->attendances->checkout_time;
         if($checkouttime==0){
         echo "-";}
         else{
@@ -126,8 +127,8 @@
 <!--        Working Hour-->
 	<td>
 	<?php
-	$start_time=strtotime($result['checkin_time']);
-	$end_time=strtotime($result['checkout_time']);
+	$start_time=strtotime($result->attendances->checkin_time);
+	$end_time=strtotime($result->attendances->checkout_time);
         if ($end_time==0){
             echo "-";
         }
@@ -144,15 +145,15 @@
 <!--        Overtime-->
 	<td><?php
       	
-        if($result['overtime']!=0){
+        if($result->attendances->overtime!=0){
             
-            echo $result['overtime'];echo " Hours";
+            echo $result->attendances->overtime;echo " Hours";
         }
         else{
             echo "-";
         }
 	 ?> </td>
-        <td><?php echo $result['location'];
+        <td><?php echo $result->attendances->location;
                 
              
         ?></td>

@@ -11,6 +11,7 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
+        $this->assets->addCss('common/css/css/style.css');
         
     }
  /**

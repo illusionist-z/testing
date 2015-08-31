@@ -289,7 +289,7 @@ class SalaryMaster extends Model {
      */
     public function getAllowances($member_id) {
         try {
-
+            
             $sql = "select *,SUM(allowance_amount) as total_allowance_amount from allowances where allowance_id in (
 select allowance_id from salary_master_allowance where member_id='" . $member_id . "')";
             //echo $sql.'<br>';

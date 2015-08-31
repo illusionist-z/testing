@@ -14,6 +14,7 @@ class UserController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
+        
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/leavedays/js/leave.js');               
@@ -28,7 +29,8 @@ class UserController extends ControllerBase {
         //$this->response->redirect('applyleave');        
     }
 
-    public function applyleaveAction() {        
+    public function applyleaveAction() { 
+        $this->assets->addCss('common/css/css/style.css');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();     
         $this->view->setVar("Leavetype", $ltype);

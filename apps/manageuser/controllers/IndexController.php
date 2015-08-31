@@ -13,7 +13,8 @@ class IndexController extends ControllerBase
         $this->setCommonJsAndCss();        
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/style.css');  
+        $this->assets->addCss('common/css/style.css'); 
+        $this->assets->addCss('common/css/css/style.css');
        
     }
     /**
@@ -23,6 +24,7 @@ class IndexController extends ControllerBase
      */
     public function userlistAction() {     
         //for paging and edit user
+        
         $this->assets->addJs('common/js/paging.js');                       
         $this->assets->addJs('apps/manageuser/js/search.js'); 
         $this->assets->addJs("apps/manageuser/js/useredit.js");

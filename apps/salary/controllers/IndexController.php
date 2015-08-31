@@ -17,6 +17,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
+        
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
@@ -28,6 +29,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/salary/js/index-allowance.js');
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/css/style.css');
     }
 
     public function indexAction() {

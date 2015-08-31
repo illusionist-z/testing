@@ -91,15 +91,15 @@ var Tax = {
                
                var result = $.parseJSON(res);
                //edit dialog box
-               var data ='<form id="edit_tax_table"><table>';               
-                   data += '<tr><td>ID :</td><td><input type="text" value="'+result[0]['id']+ '" name="id"></td></tr>'
-                        +'<tr><td>Taxs From:</td><td><input type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td>'
-                        +'<td>Taxs To:</td><td><input type="text" value='+result[0]['taxs_to']+ ' name="taxs_to"></td></tr>'
-                        +'<td>Taxs Rate:</td><td><input type="text" value='+result[0]['taxs_rate']+ ' name="taxs_rate"></td></tr>'
-                        +'<td>SSC emp:</td><td><input type="text" value='+result[0]['ssc_emp']+ ' name="ssc_emp"></td>'
-                        +'<td>SSC comp:</td><td><input type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp"></td></tr>'
+               var data ='<form id="edit_tax_table" width="250px" height="200px"><table width="400px" height="270px" align="center" >';               
+                   data += '<br><tr><td> <b>ID </b> </td><td><input style="margin-top:10px;" type="text" value="'+result[0]['id']+ '" name="id"></td></tr>'
+                        +'<tr><td> <b>Taxs From </b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td></tr>'
+                        +'<tr><td> <b>Taxs To </b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['taxs_to']+ ' name="taxs_to" ></td></tr>'
+                        +'<tr><td> <b>Taxs Rate </span></b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['taxs_rate']+ ' name="taxs_rate"></td></tr>'
+                        +'<tr><td> <b>SSC emp </b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['ssc_emp']+ ' name="ssc_emp"></td>'
+                        +'<tr><td> <b>SSC comp </b></td><td><input style="margin-top:10px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp"></td></tr>'
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_tax">Save</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
+               data +='<tr><td></td><td colspan="3" ><a href="#" class="button" id="edit_tax" style="margin-top:10px;">Save</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
                data +='</table></form>';
                Tax.Dia(data);
            }
@@ -111,13 +111,23 @@ var Tax = {
         }
         
         $ovl = $('#edit_tax_dia');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 250,
+            height: 390,
             async:false,            
-            width: 700,
+            width: 530,
             modal: true,
-            title:"Tax Edit"
+            title:"Tax Edit",
+            /*show:{
+                effect:"explode",//effect:"blind",
+		duration:200
+	    },
+            hide:{
+		effect:"explode",
+		duration:200
+	    }*/
         });                        
         $ovl.html(d);
         $ovl.dialog("open");

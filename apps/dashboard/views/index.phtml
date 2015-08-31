@@ -40,10 +40,11 @@
                                                 <?php if($this->session->permission_code=="ADMIN"){?>
                                                 <a href="#" onclick="return false;" class="adminnotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
                                                 <img src="../../common/img/notid.png"> 
+                                                <!--#4682B4-->
                                                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}
                                                     else {?>
                                                 <a href="#" onclick="return false;" class="usernotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                                                    <img src="../../common/img/notid.png"> admin<?php 
+                                                    <img src="../../common/img/notid.png"> <b>admin</b><?php 
                             switch($noti['leave_status']){
                             
                             case "1" : echo " Confirmed";break;
@@ -73,7 +74,9 @@
                                         <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
                                         <p>
                                             <b><?php echo $this->session->user['member_login_name']; ?></b>
-                                            <small><b>Member since Nov. 2012</b></small>
+                                           <!-- <small><b>Member since Nov. 2012</b></small>-->
+                                            <!--<small><b>Member since <?php echo "<i style='color:black'> \" ".$this->session->user['created_dt']." \"</i>";?></b></small>-->
+                                            <small><b>Member since </b><?php echo "<b style='color:black'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
                                         </p>
                                     </li>
 

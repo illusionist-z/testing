@@ -13,6 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();        
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('common/js/export.js');        
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');                
@@ -26,7 +27,7 @@ class IndexController extends ControllerBase {
      * @type   $id,$sdate,$edate,$type,$desc
      * @desc   Apply Leave Action
      */
-    public function applyleaveAction() {  
+    public function applyleaveAction() {       
         $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
