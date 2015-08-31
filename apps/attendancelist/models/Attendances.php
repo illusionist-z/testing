@@ -39,7 +39,7 @@ class Attendances extends Model {
         return $rows;*/
         
         if(isset($name)){
-           //echo "Thank You";
+           
            //print_r($today);exit;
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
@@ -162,7 +162,6 @@ class Attendances extends Model {
               if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions);
               }
-              
               $result = $this->db->query($sql);
               $row = $result->fetchall();
         } catch (Exception $ex) {
@@ -181,16 +180,15 @@ class Attendances extends Model {
      * @author zinmon
      */
     public function setCondition($year, $month, $username) {
-       
         $conditions = array();
 
-              if ($year != "") {
+              if ($year) {
               $conditions[] = "YEAR(attendances.att_date) like " . $year;
               }
-              if ($month != "") {
+              if ($month) {
               $conditions[] = "MONTH(attendances.att_date) like " . $month;
               }
-              if ($username != "") {
+              if ($username) {
               $conditions[] = "member_login_name='" . $username . "'";
               }
         return $conditions;
