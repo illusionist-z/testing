@@ -56,7 +56,8 @@ class UserController extends ControllerBase {
      */
     public function leavelistAction(){          
         $month = $this->config->month;
-        $leave = $this->config->leavetype;         
+         $leavetype = new LeaveCategories();
+        $ltype=$leavetype->getleavetype();         
         $id= $this->session->user['member_id'];        
         //variable for search result
         $leave_type=$this->request->get('ltype');
@@ -67,7 +68,7 @@ class UserController extends ControllerBase {
         $max_leavedays=$max['0']['max_leavedays'];
         $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);      
-        $this->view->setVar("leave_result", $leave);
+        $this->view->setVar("leave_result", $ltype);
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);
