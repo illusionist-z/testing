@@ -46,16 +46,8 @@ class Allowances extends Model {
                     ->orderBy('workManagiment\Salary\Models\Allowances.created_dt DESC')
                     ->getQuery()
                     ->execute();
-        $currentPage = (int) $_GET["page"];
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 3,
-            "page" => $currentPage
-                )
-        );                
-        $list = $paginator->getPaginate();
-        return $list;
+        
+        return $row;
     }
     
     

@@ -72,7 +72,16 @@ class IndexController extends ControllerBase {
      * show user dashboard
      */
     public function userAction() {
-          
+           
+        $id=$this->session->user['member_id'];
+        $Attendances = new \workManagiment\Dashboard\Models\Attendances();
+        $numofatt=$Attendances->getattlist($id);
+        $numofleaves=$Attendances->gettotalleaves($id);
+        $this->view->setVar("numatt",$numofatt);
+        $this->view->setVar("numleaves",$numofleaves);
+
+
+        
     }
 
     /**

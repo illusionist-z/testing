@@ -23,13 +23,13 @@ $length = count($Month);
         <form id="frm_search" onsubmit="return false;">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
                 <option value="">Leave Type</option>
-                <?php
-                for($i=1;$i<=count($leave_result);$i++){
-                ?>
-                <option value="<?php echo $leave_result[$i]; ?>"><?php echo $leave_result[$i]; ?></option>
-                <?php
-                }
-                ?>
+                 <?php
+                    foreach ($Leavetype as $data) {
+                    ?>
+                         <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name']; ?></option>
+                    <?php
+                    }
+                    ?> 
 
             </select>
             <select class="select" data-toggle="select" name="month" id="month">

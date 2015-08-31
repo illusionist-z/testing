@@ -163,16 +163,31 @@ class IndexController extends ControllerBase {
         for ($x = 1; $x <= 10; $x++) { // getting all value from text boxes
             $all_name['"' . $x . '"'] = $this->request->get('textbox' . $x);
             $all_value['"' . $x . '"'] = $this->request->get('txt' . $x);
-            // echo $all_name['"'.$x.'"'];echo $all_value['$x'];
             if (!isset($all_name['"' . $x . '"'])) {
                 $count = $x;
+                
                 break; //getting the number of textboxes
             }
         }
+        foreach( $all_name as $key => $value )
+            {
+                if( empty( $value ) )
+                {
+                   unset( $all_name[$key] );
+                }
+            }
+        if( !empty( $all_name )  )
+        {
         $all = new \workManagiment\Salary\Models\Allowances();
-        $all->addallowance($all_value, $all_name, $count);//sending data to model with array format
-        $this->view->disable();
-
+        $all->addallowance($all_value, $all_name, $count);
+        echo "<script>alert('Allowances Are Added Successfully');</script>";
+        echo "<script type='text/javascript'>window.location.href='allowance';</script>";
+        
+        }
+        else{
+        echo "<script>alert('No Data.Insert Data First');</script>";
+        echo "<script type='text/javascript'>window.location.href='allowance';</script>";
+        }
     }
 
     /**

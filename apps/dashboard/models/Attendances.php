@@ -148,4 +148,30 @@ class Attendances extends Model {
         $result['absent'] = $allmember-$result['att'];
         return $result;
     }
+    
+    /**
+     * 
+     * @param type $id
+     * @return type
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
+    public function getattlist($id ) {        
+        $currentmth = date('m');
+         $this->db = $this->getDI()->getShared("db");
+
+        $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$currentmth."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
+       
+       $result = $this->db->query($row);
+       $list   = $result->fetchall();
+       return count($list);
+    }
+    
+    public function gettotalleaves($id){
+        $currentmth = date('m');
+        $this->db = $this->getDI()->getShared("db");
+        $row = "Select * from core_member left join leaves on core_member.member_id = leaves.member_id where MONTH(leaves.start_date) ='".$currentmth."' AND leaves.member_id ='".$id."' ";                                   
+       $result = $this->db->query($row);
+       $list   = $result->fetchall();
+       return count($list);
+    }
 }
