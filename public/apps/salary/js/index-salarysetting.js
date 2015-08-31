@@ -186,11 +186,11 @@ var Deduction = {
                
                var data ='<form id="edit_deduct_table"><table>';               
                    data += '<tr><td></td><td><input type="hidden" value="'+result[0]['deduce_id']+ '" name="id" ></td></tr>'
-                        +'<tr><td>Deduction Name:</td><td><input type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td>'
-                        +'<td>Deduction Amount:</td><td><input type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
+                        +'<tr><td>Deduction Name </td><td><input style="margin-top:10px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
+                        +'<tr><td>Deduction Amount </td><td><input style="margin-top:10px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_deduct">Save</a><a href="#" class="button" id="delete_deduct">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
+               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_deduct">Save</a><a href="#" class="button" id="delete_deduct">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
                data +='</table></form>';
                Deduction.Dia(data);
            }
@@ -202,11 +202,13 @@ var Deduction = {
         }
         
         $ovl = $('#edit_dect_dia');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 250,
+            height: 210,
             async:false,            
-            width: 700,
+            width: 500,
             modal: true,
             title:"Deduction Edit"
         });                        
@@ -268,14 +270,16 @@ var Deduction = {
         $ovl = $('#add_new_dt');
         $ovl.dialog({
             autoOpen: false,
-            height: 250,
+            height: 240,
             async:false,            
-            width: 700,
+            width: 500,
             modal: true,
             title:"Deduction Add"
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $('#Add_deduct').click(function(){
             Deduction.AddNew($ovl);
         });  
@@ -309,17 +313,16 @@ var Deduction = {
             
            url:"",
            type: "POST",
-           success:function(){
-              
+           success:function(){          
              
                
                var data ='<form id="Add_new_deduct"><table>';               
                    data += '<tr><td></td></tr>'
-                        +'<tr><td>Deduction Name:</td><td><input type="text" value="" name="deduce_name"></td>'
-                        +'<td>Deduction Amount:</td><td><input type="text" value="" name="amount"></td></tr>'
+                        +'<tr><br><td>Deduction Name </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>'
+                        +'<tr><td>Deduction Amount</td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="Add_deduct">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';
+               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';
                data +='</table></form>';
                Deduction.Diaadd(data);
            }

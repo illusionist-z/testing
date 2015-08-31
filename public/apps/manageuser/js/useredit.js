@@ -123,14 +123,15 @@ var User = {
     Delete: function (d){
         
         $del = $('#confirm');
-        $del.css('color','white');
-        $del.css('background','#4682B4');
+        $del.css('color','black');
+        $del.css('background','#F5F5F5');
         $del.dialog({
             autoOpen:false,
             height:190,
             width:350,
             closeText:'',
-            modal:true,            
+            modal:true,
+            
             buttons:{
                 Delete:function(){
                     User.Confirm(d);                    

@@ -78,13 +78,15 @@ var Allowance = {
     },
      Delete : function(d){
          $del = $('#confirm');
-
+        $del.css('color','black');
+        $del.css('background','#F5F5F5');
           $del.dialog({
             autoOpen:false,
             height:190,
             width:350,
             closeText:'',
             modal:true,
+            title:"Confirm Delete",
             buttons:{
                 Delete:function(){
                     Allowance.Confirm(d);
@@ -95,7 +97,7 @@ var Allowance = {
             }
            
         });
-         $del.html("<p>Are u sure to delete?</p>");
+         $del.html("<p>Are u sure to <b style='color:red'>delete</b> ?</p>");
         $del.dialog("open");  
     },
     Confirm :function(d){

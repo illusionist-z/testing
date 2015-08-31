@@ -55,7 +55,7 @@ height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
 .ui-state-focus,.ui-widget-content 
 .ui-state-focus,
 .ui-widget-header 
-.ui-state-focus{border:1px solid #999;background:red url(images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;font-weight:400;color:white;background:#4682B4;}
+.ui-state-focus{border:1px solid #999;background:red url(images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;font-weight:400;color:black;background:#F5F5F5;}
 .ui-state-hover a,
 .ui-state-hover a:hover,
 .ui-state-hover a:link,
@@ -67,7 +67,7 @@ height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
 .ui-state-active{border:1px solid #aaa;background:#fff url(images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x;font-weight:400;color:#212121}
 .ui-state-active a,.ui-state-active a:link,.ui-state-active a:visited{color:#212121;text-decoration:none}
 .ui-state-highlight,.ui-widget-content .ui-state-highlight,.ui-widget-header 
-.ui-state-highlight{border:1px solid #fcefa1;background:#fbf9ee url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;color:white;background:#4682B4;font-weight: bold;}
+.ui-state-highlight{border:1px solid #fcefa1;background:#fbf9ee url(images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x;color:black;background:white;font-weight: bold;}
 .ui-state-highlight a,.ui-widget-content .ui-state-highlight a,.ui-widget-header 
 .ui-state-highlight a{color:#363636}.ui-state-error,.ui-widget-content .ui-state-error,
 .ui-widget-header
