@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 <?php
-
 namespace workManagiment\Attendancelist\Models;
 
 use Phalcon\Mvc\Model;

@@ -2,8 +2,16 @@
  * @author David
  * @desc   Salary Edit Dial Box
  */
+this.pager = new Paging.Pager();
 var Salary = {
     isOvl: false,
+    init : function(){
+            $("tfoot").html($('tbody').html()); //for csv           
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);
+            $("tbody").show();
+    },
     Edit: function (d) {
         $.ajax({
            url:"editsalary?id="+d,
@@ -104,10 +112,9 @@ var Salary = {
     }
 };
 $(document).ready(function () {
-
+    Salary.init();
     $('#search_salary').click(function () {
         salarysearch();
-
     });
     $(".displaypopup").click(function () {
         var id = $(this).attr('id');

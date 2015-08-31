@@ -63,7 +63,7 @@ function repair (val){
          e.preventDefault();
          $(this).css("border","1px solid #ccc");  // for error border
          //for focus error text
-         if(nn){
+         if(cache){
          $(this).val(cache);
          }
          else{

@@ -57,11 +57,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return username by last month
      */
-    public function getlastname() {
-        /*$this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("SELECT * FROM core_member WHERE  created_dt >= (NOW() - INTERVAL 8 MONTH) limit 4");
-        $laname = $user_name->fetchall();
-        return $laname;*/
+    public function getlastname() {        
         $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by  created_dt desc limit 4";
         $laname=$this->modelsManager->executeQuery($username);
        // print_r($laname);exit;
