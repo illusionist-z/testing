@@ -48,14 +48,14 @@ class CorememberController extends ControllerBase {
                    }           
         else
                 {
+            
                 $member=$this->request->getPost();
                 $member_id = $this->session->user['member_id'];
 
-//                $filename = $_FILES["fileToUpload"]["name"];            
+      $filename = $_FILES["fileToUpload"]["name"];            
                 $NewUser = new CoreMember;
-                $NewUser->addnewuser($member_id,$member);
-
-                $this->flashSession->success("New user is added successfully!");
+                $NewUser->addnewuser($member_id,$member,$filename);
+                
                 $this->view->disable();
                 // Make a full HTTP redirection
                 $json['result'] = "success";            
