@@ -40,7 +40,7 @@
                 <tbody>
                 <?php
                 $n=0;
-                foreach ($list->items   as $result) {$n++;
+                foreach ($list   as $result) {$n++;
                     ?><tr>
                         <td><?php echo $n; ?></td>
                         <td><?php echo $result['allowance_name'];?></td>
@@ -57,14 +57,8 @@
 
 </section><!-- /.content -->
 <div id="edit_all_dia" class="navbar"></div>
+<div id="confirm" class="navbar"></div>
 
-<ul class="pagination pagination-sm">
-    <li><a href="allowance" ><b>First</b></a></li>
-    <li><a href="allowance?page=<?= $list->before; ?>"><b>Previous</b></a></li>
-    <li><a href="allowance?page=<?= $list->next; ?>" ><b>Next</b></a></li>
-    <li><a href="allowance?page=<?= $list->last; ?>" ><b>Last</b></a></li>
-
-        <b><?php echo "You are in page ", $list->current, " of ", $list->total_pages; ?></b></ul>
 <script type="text/javascript">
 
     $(document).ready(function () {

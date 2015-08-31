@@ -67,7 +67,29 @@ var Allowance = {
         });
     },
      Delete : function(d){
-        var form=$('#edit_all');
+         $del = $('#confirm');
+
+          $del.dialog({
+            autoOpen:false,
+            height:190,
+            width:350,
+            closeText:'',
+            modal:true,
+            buttons:{
+                Delete:function(){
+                    Allowance.Confirm(d);
+                },
+                Cancel:function(){
+                    $(this).dialog("close");
+                }
+            }
+           
+        });
+         $del.html("<p>Are u sure to delete?</p>");
+        $del.dialog("open");  
+    },
+    Confirm :function(d){
+                var form=$('#edit_all');
         $.ajax({
             type:'POST',
             data: form.serialize(),
