@@ -6,14 +6,23 @@
  */
 var UserAdd = {
      Submit : function (){
+      
         $.ajax({
             type:'POST',
             url :'../coremember/saveuser',
-            data:$("#saveuser").serialize(),
+          //data:$("#saveuser").serialize(),
+            data :new FormData($("#saveuser")[0]),
+            //async: false,
+            //cache: false,
+            processData: false,
+            contentType: false,
             success: function(d){
+               
                 cond = JSON.parse(d);
+                
                 if(cond.result === 'error')
                 {
+                   
                  $('#user-error').empty();$('#pass-error').empty();$('#dept-error').empty();$("#pos-error").empty();$("#mail-error").empty();$('#pno').empty();   
                  for(var i in cond){
                      switch(i){
@@ -40,7 +49,8 @@ var UserAdd = {
                 } 
                 else
                 {
-                    $('body').load('dashboard');
+                    //$('body').load('dashboard');
+                    alert("User Added Successfully");
                 }    
                 
             }
@@ -52,6 +62,7 @@ $(document).ready(function(){
    $('.submit_useradd').click(function(){
             //validform();   
             UserAdd.Submit();
+            
       
    });
    
