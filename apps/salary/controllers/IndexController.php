@@ -167,6 +167,7 @@ class IndexController extends ControllerBase {
             // echo $all_name['"'.$x.'"'];echo $all_value['$x'];
             if (!isset($all_name['"' . $x . '"'])) {
                 $count = $x;
+                
                 break; //getting the number of textboxes
             }
         }

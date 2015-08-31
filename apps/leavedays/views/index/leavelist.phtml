@@ -23,13 +23,13 @@ $length = count($Month);
         <form id="frm_search" onsubmit="return false;">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
                 <option value="">Leave Type</option>
-                <?php
-                for($i=1;$i<=count($leave_result);$i++){
-                ?>
-                <option value="<?php echo $leave_result[$i]; ?>"><?php echo $leave_result[$i]; ?></option>
-                <?php
-                }
-                ?>
+                 <?php
+                    foreach ($Leavetype as $data) {
+                    ?>
+                         <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name']; ?></option>
+                    <?php
+                    }
+                    ?> 
 
             </select>
             <select class="select" data-toggle="select" name="month" id="month">
@@ -55,7 +55,7 @@ $length = count($Month);
                 <?php
                 foreach ($Getname as $result) {
                     ?>
-                <option value="<?php echo $result['member_login_name']; ?>"><?php echo $result['member_login_name']; ?></option>
+                <option value="<?php echo $result->member_login_name; ?>"><?php echo $result->member_login_name; ?></option>
 
                     <?php
                 }
@@ -86,39 +86,40 @@ $length = count($Month);
                     </tr>
 
                 </thead>
-                <tbody style="display:none;">
+                <tbody>
                     <?php
                    //print_r($Result);
                     $days=0;
                     foreach ($Result as $item) {
+                       // print_r($item);exit;
                         ?>
                         <tr>
-                            <td><?php  $dt=  explode(" ",$item['date']);
+                            <td><?php  $dt=  explode(" ",$item->leaves->date);
                                 echo $dt[0];
                                 ?></td>                            
-                            <td><?php echo $item['member_login_name']; ?></td>
-                            <td><?php $start_date= explode(" ", $item['start_date']); 
+                            <td><?php echo $item->core->member_login_name; ?></td>
+                            <td><?php $start_date= explode(" ", $item->leaves->start_date); 
                                       echo $start_date[0];
                                 ?></td>                            
-                            <td><?php $end_date= explode(" ", $item['end_date']); 
+                            <td><?php $end_date= explode(" ", $item->leaves->end_date); 
                                       echo $end_date[0];
                                 
                                 ?></td>
                             <td><?php
-                                echo $item['leave_days'];
+                                echo $item->leaves->leave_days;
                                 ;
                                 //echo $days;
                                 ?></td>
                             <td><?php
-                                echo $item['leave_category'];
+                                echo $item->leaves->leave_category;
                                 ?></td>
                             <td><?php
-                                echo $item['leave_description'];
+                                echo $item->leaves->leave_description;
                                 ?></td>
                              
                             <td><?php
                                 
-                        switch($item['leave_status']){
+                        switch($item->leaves->leave_status){
                             case "0" : echo "Pending" ; break;
                             case "1" : echo "Confirmed";break;
                             case "2" : echo "Rejected";break;
@@ -126,15 +127,16 @@ $length = count($Month);
                         };
                                 ?></td>
                             <td><font color="red"><?php
-                    if($item['total_leavedays']>=$max){
-                            echo ($item['total_leavedays']);
+                    if($item->leaves->total_leavedays >=$max){
+                            echo ($item->leaves->total_leavedays);
                             echo " left";
                     }
                     else{
                                 
-                    echo $max-($item['total_leavedays']);}
+                    echo $max-($item->leaves->total_leavedays);}
                         
                                 ?></font></td>
+                        </tr>
                         </tr>
                         <?php
                     }

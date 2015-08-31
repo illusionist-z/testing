@@ -25,13 +25,14 @@ $length = count($Month);
     <div class="buttons">
         <form id="frm_search">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
+                
                 <option value="">Leave Type</option>
                 <?php
-                for($i=1;$i<=count($leave_result);$i++){
+                foreach ($leave_result as $data){
                 ?>
-                <option value="<?php echo $leave_result[$i]; ?>"
-                <?php echo(isset($Ltype)&&($Ltype==$leave_result[$i])?' selected="selected"':'');?>        
-                ><?php echo $leave_result[$i]; ?></option>
+                <option value="<?php echo $data['leavetype_name']; ?>"
+               
+                ><?php  echo $data['leavetype_name'] ?></option>
                 <?php
                 }
                 ?>
