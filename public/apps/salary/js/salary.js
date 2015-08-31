@@ -57,6 +57,9 @@ var Salary = {
         $('#edit_salary_edit').click(function () {
             Salary.BtnEdit($ovl);
         });
+        $('#edit_delete').on("click",function(){
+           alert("ちょとまてください");
+        });
         $('#edit_close').click(function () {
             $ovl.dialog("close");
         });

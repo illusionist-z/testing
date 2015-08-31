@@ -287,7 +287,7 @@ public  function GetDays($StartDate, $EndDate){
       *@return cond array
       *@desc   Validate Form 
       */
-     public function validat($data){
+     public function validating($data){
         $res = array();
         $validate = new Validation();
         $validate->add('username',

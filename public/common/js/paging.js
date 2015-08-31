@@ -50,8 +50,8 @@ var Paging = {
                         pagingControls += '<li><a href="#" onclick="pager.showPage(' + nextpage + ');return false;">Next</a></li>';	        
                                         }                
                 else {
-                    if(1 ==numPages){
-                        
+                    if(1 == numPages){
+                        $('#content').remove();      //paging disable
                     }
                     else{
                     pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';

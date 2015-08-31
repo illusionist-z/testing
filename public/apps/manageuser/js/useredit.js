@@ -20,7 +20,7 @@ var User = {
                     +'<tr><td>Department :</td>'
                     +'<td><input type="text" value="'+ res.member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td>'
 		    +'<td>Position :</td>'
-                    +'<td><input type="text" value="'+ res.job_title +'" name="position" id="edit_user_pos"></td></tr>'
+                    +'<td><input type="text" value="'+ res.position +'" name="position" id="edit_user_pos"></td></tr>'
                     +'<tr><td>Email :</td>'
                     +'<td><input type="text" value="'+ res.member_mail +'" name="email" id="edit_user_email" ></td><td></td>'
 		    +'<td>Phone no :</td>'

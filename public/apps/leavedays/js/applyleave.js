@@ -34,7 +34,7 @@ var ApplyForm = {
                 else{
                     if(cond.success) { 
                         alert(cond.success);
-                        $('body').load('applyleave');
+                        $('body').load("applyleave");
                     }
                     else if(cond.error){
                         $('#apply_form_name_error').empty();$('#apply_form_desc_error').empty();$('#apply_form_sdate_error').empty();$("#apply_form_edate_error").empty();
