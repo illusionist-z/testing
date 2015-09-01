@@ -8,13 +8,25 @@ use Phalcon\Tag as Tag;
     <section class="content-header">
         <h1>
             <b>Calendar</b>
-        </h1>            
-        <ol class="breadcrumb">
+        </h1>        
+        <ol class="breadcrumb">         
             <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
             <li class="active"><b>Calendar</b></li>
         </ol>
-
     </section>
+        <div class="btn btn-facebook">
+         <b>User Event</b> 
+         <select class="box-danger btn-tumblr dropdown-toggle" data-toggle="dropdown" name="user_event"  tabindex="3">
+             <option value="" disabled selected>Name</option>
+            <?php
+            foreach ($uname as $result) {
+                ?>
+                <option><?php echo $result->member_login_name; ?></option>
+                <?php
+            }
+            ?>
+        </select>
+         </div>
 </div>
 <!-- Main content -->
 <section class="content">

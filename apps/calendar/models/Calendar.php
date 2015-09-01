@@ -15,9 +15,9 @@ class Calendar extends Model {
      * @author David
      * @desc   Select all data 
      */
-    public function fetch() {                    
+    public function fetch($id) {                    
             $events = array();
-            $sql ="SELECT * FROM calendar";
+            $sql ="SELECT * FROM calendar where member_id ='".$id."'";
             $query=  $this->db->query($sql);                       
             $query->setFetchMode(\Phalcon\Db::FETCH_ASSOC);
           while ($fetch = $query->fetchArray()) {                      

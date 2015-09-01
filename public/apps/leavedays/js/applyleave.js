@@ -8,6 +8,7 @@ var ApplyForm = {
         $.ajax({
            type : 'POST',
            url  : 'applyleave',
+           async: false,
            data : $('#apply_form').serialize(),
            success: function(d){
                cond = JSON.parse(d);
@@ -32,9 +33,9 @@ var ApplyForm = {
                  }
                 }
                 else{
-                    if(cond.success) { 
+                    if(cond.success) {
                         alert(cond.success);
-                        $('body').load("applyleave");
+                        location.reload();
                     }
                     else if(cond.error){
                         $('#apply_form_name_error').empty();$('#apply_form_desc_error').empty();$('#apply_form_sdate_error').empty();$("#apply_form_edate_error").empty();
