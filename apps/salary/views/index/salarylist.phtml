@@ -36,13 +36,13 @@
                         ?>
                         <tr>
                             <td><?php echo $i; ?></td>
-                            <td><?php echo $salarydetails['member_login_name'] ?></td>
-                            <td><?php echo $salarydetails['basic_salary'] ?></td>
-                            <td><?php echo $salarydetails['travel_fee'] ?></td>
-                            <td><?php echo $salarydetails['over_time'].'%' ?></td>
-                            <td><?php echo $salarydetails['ssc_emp'].'%' ?></td>
-                            <td><?php echo $salarydetails['ssc_comp'].'%' ?></td>
-                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails['id'] ?>" value="Edit"></td>                            
+                            <td><?php echo $salarydetails->core->member_login_name; ?></td>
+                            <td><?php echo $salarydetails->salarymas->basic_salary; ?></td>
+                            <td><?php echo $salarydetails->salarymas->travel_fee; ?></td>
+                            <td><?php echo $salarydetails->salarymas->over_time.' %' ?></td>
+                            <td><?php echo $salarydetails->salarymas->ssc_emp.' %' ?></td>
+                            <td><?php echo $salarydetails->salarymas->ssc_comp.' %' ?></td>
+                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails->salarymas->id; ?>" value="Edit"></td>                            
                         </tr>
                         <?php
                         $i++;

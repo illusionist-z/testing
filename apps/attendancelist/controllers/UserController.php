@@ -1,6 +1,7 @@
 <?php
 
 namespace workManagiment\Attendancelist\Controllers;
+use workManagiment\Core\Models\Db;
 
 class UserController extends ControllerBase
 {
@@ -25,7 +26,10 @@ class UserController extends ControllerBase
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function attendancelistAction(){
-        
+        $User=new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
         if(isset($this->session->tzoffset)){
            $offset= $this->session->tzoffset['offset'];
            $timezone=$this->session->tzoffset['timezone'];
@@ -37,7 +41,7 @@ class UserController extends ControllerBase
       
         $month = $this->request->get('month');
        
-        $id= $this->session->user['member_id'];
+       
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->getattlist($id,$month);                      
         $this->view->attlist = $ResultAttlist;

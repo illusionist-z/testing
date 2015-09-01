@@ -120,7 +120,6 @@ class CoreMember extends \Library\Core\BaseModel {
 
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
-
         $user = $user->fetchall();
         return $user;
     }

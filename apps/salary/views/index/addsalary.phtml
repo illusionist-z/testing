@@ -22,7 +22,7 @@ if(isset($Msg))
                 <div class="left_div_style_box">
                     <form action="../salarymaster/savesalary" method="post">
                     <div class="div_bottom">
-                        <span class="span_style"><b>UserName :</b></span>
+                        <span class="span_style"><b>UserName </b></span>
                         <span>
                             <select style="width:34%;" name="uname" id="uname">
                                 <option value="">Name</option>
@@ -41,10 +41,10 @@ if(isset($Msg))
                     </div>
                         
                     <div class="div_bottom">
-                        <span class="span_style"><b>Position :</b></span>
+                        <span class="span_style"><b>Position </b></span>
                         <span>
                             <select style="width:34%;" name="position" id="position">
-                                <option value="">select position</option>
+                                <option value="">Select Position</option>
                                 <?php
                                 for($i=1;$i<count($position);$i++){
                                 ?>
@@ -58,23 +58,23 @@ if(isset($Msg))
                         </span>
                     </div>
                     <div class="div_bottom">
-                        <span class="span_style"><b>Basic Salary :</b></span>
+                        <span class="span_style"><b>Basic Salary </b></span>
                         <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:34%; height: 20%;" name="bsalary"></span>
                     </div>
 
                     <div class="div_bottom">
-                        <span class="span_style"><b>Travel fees :</b></span>
-                        <span><input type="text" id="travelfee" value="" placeholder="Travel fee" style="width:34%; height: 20%;" name="travelfee"></span>
+                        <span class="span_style"><b>Travel fees </b></span>
+                        <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee"></span>
                     </div>
 
                     <div class="div_bottom">
-                        <span class="span_style"><b>Overtime (per hr) :</b></span>
+                        <span class="span_style"><b>Overtime ( per hr ) </b></span>
                         <span><input type="text" id="overtime" value="" style="width:5%;" name="overtime" placeholder="0"></span>
                         <span>%</span>
                     </div>
                         
                     <div class="div_bottom">
-                        <span class="span_style"><b>Deduce for SSC :</b></span>
+                        <span class="span_style"><b>Deduce for SSC </b></span>
                         <span>
                             <b>with_F</b> <input type="checkbox" name="check_list[]" value="stay_father">
                             <b>with_M</b> <input type="checkbox" name="check_list[]" value="stay_mother">
@@ -85,8 +85,8 @@ if(isset($Msg))
                         
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 8%;"><b>Allowance :</b></div>
-                        <div style="margin-left: 12%;">
+                        <div style="float: left; width: 8%;"><b>Allowance </b></div>
+                        <div style="margin-left: 15%;">
                             <?php
                             //print_r($getall_allowance);
                             foreach ($getall_allowance as $getall_allowances) {
@@ -101,7 +101,8 @@ if(isset($Msg))
                         <span>
 <!--                            <a href="#" class="button">Apply</a>-->
                             <input type="submit" value="Apply" class="buttonn">
-                            <a href="#" class="button"><b>Cancel</b></a>
+                            <!--<a href="#" class="button"><b>Cancel</b></a>-->
+                            <input type="reset" class="buttonn" value="Cancel">
                         </span>
                     </div>
                 </form>
