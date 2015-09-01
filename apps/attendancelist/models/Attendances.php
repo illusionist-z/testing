@@ -159,9 +159,15 @@ class Attendances extends Model {
          $conditions=$this->setCondition($year, $month, $username);
 
               $sql = $select;
-              if (count($conditions) > 0) {
-              $sql .= " WHERE " . implode(' AND ', $conditions);
+              if (count($conditions) == 0) {
+                  $yr=date('Y');
+                  $mth=date('m');
+              $sql .= " WHERE YEAR(attendances.att_date)='".$yr."' and MONTH(attendances.att_date)='".$mth."'";
               }
+//              if (count($conditions) > 0) {
+//              $sql .= " WHERE " . implode(' AND ', $conditions);
+//              }
+              
               $result = $this->db->query($sql);
               $row = $result->fetchall();
         } catch (Exception $ex) {

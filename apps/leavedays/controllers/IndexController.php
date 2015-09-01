@@ -38,7 +38,7 @@ class IndexController extends ControllerBase {
         
         if ($this->request->isPost()) {
              $user = $this->_leave;
-             $validate = $user->validate($this->request->getPost());
+             $validate = $user->validation($this->request->getPost());
              
             if(count($validate)){
                foreach ($validate as $message){

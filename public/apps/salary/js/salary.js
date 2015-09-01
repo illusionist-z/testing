@@ -48,23 +48,24 @@ var Salary = {
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
             Salary.BtnEdit($ovl);
+            
         });
         $('#edit_close').click(function () {
             $ovl.dialog("close");
         });
     },
-    BtnEdit : function(val){
+    BtnEdit : function($val){
         var form=$('#edit_salary');
         $.ajax({
             type: 'POST',
             data: form.serialize(),
             dataType:'json',
             url : "btnedit",
-            success:function(d){                
+            success:function(d){ 
                 //if true success funcion then reload page
-                if(true === d.valid)                      
+                if(d.valid)                      
                 {
-                    val.dialog("close");
+                    $val.dialog("close");
                     $('body').load("salarylist");
                 }
                 //if fail , show error data
