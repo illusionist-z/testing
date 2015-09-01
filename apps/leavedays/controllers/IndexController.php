@@ -27,7 +27,10 @@ class IndexController extends ControllerBase {
      * @type   $id,$sdate,$edate,$type,$desc
      * @desc   Apply Leave Action
      */
-    public function applyleaveAction() {       
+    public function applyleaveAction() {    
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
@@ -50,15 +53,14 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
                   }     
             else{
-            $uname = $this->session->user['member_id'];
+            $uname = $this->request->getPost('member_id');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
                     $desc);   
-            $noti=$userlist->GetAdminNoti();
-            $this->session->set('noti', $noti);
+            
             echo json_encode($error);
             $this->view->disable();
              }

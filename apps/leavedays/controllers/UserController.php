@@ -24,12 +24,17 @@ class UserController extends ControllerBase {
     }
 
     public function indexAction() {
+        
         //$this->assets->addCss('common/css/home/home.css');        
         $user = $this->session->get('user');
         //$this->response->redirect('applyleave');        
     }
 
     public function applyleaveAction() { 
+        $User=new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
         $this->assets->addCss('common/css/css/style.css');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();     
@@ -59,7 +64,10 @@ class UserController extends ControllerBase {
     public function leavelistAction(){          
         $month = $this->config->month;
         $leave = $this->config->leavetype;         
-        $id= $this->session->user['member_id'];        
+        $id= $this->session->user['member_id'];   
+        $User=new Db\CoreMember;
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');             

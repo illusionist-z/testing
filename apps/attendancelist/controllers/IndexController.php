@@ -22,6 +22,9 @@ class IndexController extends ControllerBase
     * show today attendance list
     */    
     public function todaylistAction() {
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $name = $this->request->get('namelist');
         $offset= $this->session->location['offset'];          
         //get user name
@@ -39,7 +42,9 @@ class IndexController extends ControllerBase
      * Show monthly attendance list
      */
     public function monthlylistAction() {
-       
+       $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $offset= $this->session->location['offset'];
         $UserList=new Db\CoreMember();
         $UserName = $UserList::getinstance()->getusername();

@@ -1,7 +1,7 @@
 <?php
 
 namespace workManagiment\Auth\Controllers;
-
+use workManagiment\Core\Models\Db\CoreMember;
 use workManagiment\Auth\Models;
 
 class LoginController extends ControllerBase {
@@ -31,6 +31,7 @@ class LoginController extends ControllerBase {
 
             //Set user's permission to session 
             $Permission = $ModelPermission->get($result, $permissions);
+            
             //print_r($Permission);exit;
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');

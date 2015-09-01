@@ -24,11 +24,8 @@ class IndexController extends ControllerBase {
             if ($key_name == 'user_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
-                $id = $this->session->user['member_id'];
-                $User=new Db\CoreMember;
-                $noti=$User->GetUserNoti($id);
                 
-                $this->session->set('noti', $noti);
+               
                 
                 $this->response->redirect('dashboard/index/user');
               
@@ -36,9 +33,7 @@ class IndexController extends ControllerBase {
             if ($key_name == 'admin_dashboard') {
                 //Go to admin dashboard
                 $this->view->disable();
-                $Admin=new Db\CoreMember;
-                $noti=$Admin->GetAdminNoti();
-                $this->session->set('noti', $noti);
+                
                 $this->response->redirect('dashboard/index/admin');
             }
         }
@@ -52,7 +47,10 @@ class IndexController extends ControllerBase {
      * get last created member name
      * @type array {$gname}
      */
-    public function adminAction() {    
+    public function adminAction() { 
+    $Admin=new Db\CoreMember;
+    $noti=$Admin->GetAdminNoti();
+    $this->view->setVar("noti",$noti);
     //get last create member
     $CMember = new Db\CoreMember();
     $GetName = $CMember::getinstance()->getlastname();
@@ -73,14 +71,20 @@ class IndexController extends ControllerBase {
      * show user dashboard
      */
     public function userAction() {
-           $id=$this->session->user['member_id'];
+        
+        $User=new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
         $Attendances = new \workManagiment\Dashboard\Models\Attendances();
         $numofatt=$Attendances->getattlist($id);
         $numofleaves=$Attendances->gettotalleaves($id);
         $this->view->setVar("numatt",$numofatt);
         $this->view->setVar("numleaves",$numofleaves);
-    }
 
+
+        
+    }
     /**
      * set location,latitude and longitude to session
      */

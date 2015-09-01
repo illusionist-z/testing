@@ -90,7 +90,7 @@ class Leaves extends \Library\Core\BaseModel {
      * @author David JP <david.gnext@gmail.com>
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
-
+       
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
 //        $date=$this->getcontractdata($uname);               
