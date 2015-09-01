@@ -22,7 +22,12 @@
                     <tr>
                         <th width="150px">Month/Year</th>
                         <th>Salary</th>
-                        <th>Tax</th>
+                        <th>Allowance</th>
+                        <th>Travel Fees</th>
+                        <th>Personal Income</th>
+                        <th>SSC Employer</th>
+                        <th>SSC Employee</th>
+                        <th>Tax Total</th>
                         <th>Total</th>
 
                     </tr>
@@ -35,6 +40,11 @@
                         <tr>
                             <td><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
                             <td><?php echo number_format($geteachmonthsalary['salary_total']); ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['allowance']); ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['travel_expense']); ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['income_tax_amount']); ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['ssc_emp_amount']); ?></td>
+                            <td><?php echo number_format($geteachmonthsalary['ssc_comp_amount']); ?></td>
                             <td><?php echo number_format($geteachmonthsalary['Tax_total']); ?></td>
                             <td><?php echo number_format($geteachmonthsalary['Total']); ?></td>
                         </tr>

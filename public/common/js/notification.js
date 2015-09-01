@@ -60,7 +60,10 @@ var Noti = {
                         +'<tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_status']+ '</b></td></tr>'
                         +'<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_days']+ '</b></td></tr>'
                         +'<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_description']+ '</b></td></tr>'
-                       
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['member_id']+ ' name="id"></td><td></td></td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['end_date']+ ' name="end_date"></td><td></td></td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['leave_days']+ ' name="leave_days"></td><td></td></td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['start_date']+ ' name="start_date"></td><td></td></td></tr>';
                data +='<tr><td></td><td></td><td colspan="2"><br><a href="#" class="button" id="noti_accept">Accept</a><a href="#" class="button" id="noti_reject">Reject</a><a href="#" class="button" id="noti_cancel">Cancel</a></td></tr>';
                data +='</table></form>';
                Noti.Dialog(data);
@@ -146,7 +149,6 @@ var Noti = {
     },
     Accept : function(d){
         var form=$('#noti_detail');
-        
         $.ajax({
             type:'POST',
             data: form.serialize(),

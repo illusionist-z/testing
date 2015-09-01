@@ -20,18 +20,17 @@ class SalaryDetail extends Model {
      * @author zinmon
      */
     public function geteachmonthsalary() {
-
-        // print_r("Thank you");exit;
-       /* $sql = "SELECT MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`ssc_comp`)) AS Total,SUM(`basic_salary`) AS salary_total,SUM(`ssc_comp`) AS Tax_total
-                FROM salary_detail
-                GROUP BY YEAR(pay_date),MONTH(pay_date)
-		order by pay_date DESC";
-        $result = $this->db->query($sql);
-        $row = $result->fetchall();
-        //print_r($row);exit;
-        return $row;*/
+//        $sql = "SELECT MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`ssc_comp`)) AS Total,SUM(`basic_salary`) AS salary_total,SUM(`ssc_comp`) AS Tax_total
+//                FROM salary_detail
+//                GROUP BY YEAR(pay_date),MONTH(pay_date)
+//		order by pay_date DESC";
+//        echo $sql;exit;
+//        $result = $this->db->query($sql);
+//        $row = $result->fetchall();
+//        //print_r($row);exit;
+//        return $row;
        //print_r("thank");exit;
-        $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(ssc_comp)) AS Total,SUM(basic_salary) AS salary_total,SUM(ssc_comp) AS Tax_total "
+        $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,SUM(income_tax) as income_tax_amount,SUM(allowance_amount) as allowance,SUM(travel_fee) as travel_expense  "
                 . " FROM workManagiment\Salary\Models\SalaryDetail"
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";

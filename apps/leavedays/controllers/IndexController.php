@@ -160,7 +160,6 @@ class IndexController extends ControllerBase {
         $id=$this->request->get('id');
         $days=$this->request->getPost('leave_days');
         $this->_leave->acceptleave($id,$sdate,$edate,$days); 
-        $update=new \workManagiment\Core\Models\Db\CoreMember();
        
     }
     public function rejectleaveAction(){
