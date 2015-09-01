@@ -206,12 +206,16 @@ class Attendances extends Model {
                   $mth=date('m');
               $sql .= " WHERE YEAR(attendances.att_date)='".$yr."' and MONTH(attendances.att_date)='".$mth."'";
               }
+              else{
+                  $sql .= " WHERE " . implode(' AND ', $conditions);
+              }
 //              if (count($conditions) > 0) {
 //              $sql .= " WHERE " . implode(' AND ', $conditions);
 //              }
               
               $result = $this->db->query($sql);
               $row = $result->fetchall();
+             
         } catch (Exception $ex) {
            echo $ex; 
         }

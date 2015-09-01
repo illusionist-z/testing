@@ -30,7 +30,6 @@ class SearchController extends ControllerBase
         $username = $this->request->get('username');
         $year = $this->request->get('year');           
         $offset= $this->session->location['offset'];
-        echo $month;
         $Attendances=new Attendances();
         $result=$Attendances->search_attlist($year,$month,$username);
         $this->view->disable();

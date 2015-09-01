@@ -178,8 +178,7 @@ var Noti = {
             type:'POST',
             data: form.serialize(),
             url : "../../leavedays/index/rejectleave",
-            success:function(){
-                
+            success:function(){ 
                 d.dialog("close");
                 location.reload();
             }
