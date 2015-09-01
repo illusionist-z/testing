@@ -108,7 +108,7 @@ var Noti = {
             Noti.Accept($ovl);
             e.preventDefault();
             //$ovl.dialog("close");
-            //$('body').load(dashboard);
+            
             this.isOvl=false;
              
         }),
@@ -140,6 +140,7 @@ var Noti = {
             success:function(){
                 
                 d.dialog("close");
+                location.reload();
             }
         });
     },
@@ -153,6 +154,7 @@ var Noti = {
             success:function(){
                
                 d.dialog("close");
+                location.reload();
             }
         });
     },
@@ -179,6 +181,7 @@ var Noti = {
             success:function(){
                 
                 d.dialog("close");
+                location.reload();
             }
         });
     }

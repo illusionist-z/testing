@@ -20,6 +20,9 @@ class IndexController extends ControllerBase
 
     
    public function indexAction() {
+       $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
         $Username = $GetMember::getinstance()->getusername();
         $this->view->uname = $Username;
