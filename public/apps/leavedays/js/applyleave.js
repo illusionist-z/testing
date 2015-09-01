@@ -5,12 +5,14 @@
  */
 var ApplyForm = {
     Submit : function (){
+       
         $.ajax({
            type : 'POST',
            url  : 'applyleave',
            async: false,
            data : $('#apply_form').serialize(),
            success: function(d){
+                //alert($('#apply_form').serialize());
                cond = JSON.parse(d);
                  if(cond.result === 'error')
                 { 

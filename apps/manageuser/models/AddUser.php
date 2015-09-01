@@ -15,19 +15,19 @@ class AddUser extends Model
         $validate->add('username',
                 new PresenceOf(
                 array(
-                    'message' => 'The name is required'
+                    'message' => 'User Name is required'
                      )
                      ));
         $validate->add('dept',
                 new PresenceOf(
                 array(
-                    'message' => 'Department field is required'
+                    'message' => 'Department is required'
                      )
                      ))
                 ->add('position',
                 new PresenceOf(
                 array(
-                    'message'=> 'Position filed is required'
+                    'message'=> 'Position is required'
                 )));        
         $validate->add('password',
                 new PresenceOf(
@@ -40,7 +40,7 @@ class AddUser extends Model
                             'message'=>"Email not valid"
                         )));
         $validate ->add('phno', new PresenceOf(array(
-        'message' => 'The telephone is required',
+        'message' => 'Telephone Number is required',
         'cancelOnFail' => true
         )))
        ->add('phno', new Regex(array(

@@ -13,6 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();        
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('common/js/export.js');        
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');                
@@ -26,7 +27,10 @@ class IndexController extends ControllerBase {
      * @type   $id,$sdate,$edate,$type,$desc
      * @desc   Apply Leave Action
      */
-    public function applyleaveAction() {  
+    public function applyleaveAction() {    
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
@@ -49,15 +53,14 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
                   }     
             else{
-            $uname = $this->session->user['member_id'];
+            $uname = $this->request->getPost('member_id');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
                     $desc);   
-            $noti=$userlist->GetAdminNoti();
-            $this->session->set('noti', $noti);
+            
             echo json_encode($error);
             $this->view->disable();
              }
@@ -67,7 +70,10 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-    public function leavelistAction(){      
+    public function leavelistAction(){    
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/search.js');
         $this->assets->addJs('apps/leavedays/js/leavelist.js');               
@@ -104,6 +110,9 @@ class IndexController extends ControllerBase {
     }
     
     public function leavesettingAction(){
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();
@@ -151,7 +160,6 @@ class IndexController extends ControllerBase {
         $id=$this->request->get('id');
         $days=$this->request->getPost('leave_days');
         $this->_leave->acceptleave($id,$sdate,$edate,$days); 
-        $update=new \workManagiment\Core\Models\Db\CoreMember();
        
     }
     public function rejectleaveAction(){

@@ -17,8 +17,8 @@
             <form id='TextBoxesGroup' action='saveallowance'>
                 <div id="TextBoxDiv1">
          
-                    <label>Allowance Name 1 : </label> <input type='text' id='textbox1' name='textbox1' >
-                    <label>Allowance Amount 1 : </label> <input type='text' id='txt1' name='txt1'>
+                    <label>Allowance Name 1 : </label> <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' >
+                    <label>Allowance Amount 1 : </label> <input style="margin-top:10px;" type='text' id='txt1' name='txt1'>
                     <b><input type='button' value='+' id='addButton'></b>
                     <b><input type='button' value='-' id='removeButton'></b>
                     <b><input type='submit' value='Add' id=''></b>
@@ -40,7 +40,7 @@
                 <tbody>
                 <?php
                 $n=0;
-                foreach ($list->items   as $result) {$n++;
+                foreach ($list   as $result) {$n++;
                     ?><tr>
                         <td><?php echo $n; ?></td>
                         <td><?php echo $result['allowance_name'];?></td>
@@ -57,14 +57,8 @@
 
 </section><!-- /.content -->
 <div id="edit_all_dia" class="navbar"></div>
+<div id="confirm" class="navbar"></div>
 
-<ul class="pagination pagination-sm">
-    <li><a href="allowance" ><b>First</b></a></li>
-    <li><a href="allowance?page=<?= $list->before; ?>"><b>Previous</b></a></li>
-    <li><a href="allowance?page=<?= $list->next; ?>" ><b>Next</b></a></li>
-    <li><a href="allowance?page=<?= $list->last; ?>" ><b>Last</b></a></li>
-
-        <b><?php echo "You are in page ", $list->current, " of ", $list->total_pages; ?></b></ul>
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -82,9 +76,9 @@
                     .attr("id", 'TextBoxDiv' + counter);
 
             newTextBoxDiv.after().html('<label>Allowance Name ' + counter + ' : </label> ' +
-                    ' <input type="text" name="textbox' + counter +
+                    ' <input style="margin-top:10px;" type="text" name="textbox' + counter +
                     '" id="textbox' + counter + '" value="" > <label>Allowance Amount  ' + counter + ' : </label>' +
-                    ' <input type="text" name="txt' + counter +
+                    ' <input style="margin-top:10px;" type="text" name="txt' + counter +
                     '" id="txt' + counter + '" value="" >');
 
             newTextBoxDiv.appendTo("#TextBoxesGroup");

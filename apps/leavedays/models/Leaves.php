@@ -90,7 +90,7 @@ class Leaves extends \Library\Core\BaseModel {
      * @author David JP <david.gnext@gmail.com>
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
-
+       
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
 //        $date=$this->getcontractdata($uname);               
@@ -235,10 +235,10 @@ public  function GetDays($StartDate, $EndDate){
     */
     public function acceptleave($id,$sdate,$edate,$days){
         $this->db = $this->getDI()->getShared("db");
-        $date=$this->getcontractdata($id);
-        $datePeriod =$this->GetDays($sdate, $edate);
+        //$date=$this->getcontractdata($id);
+        //$datePeriod =$this->GetDays($sdate, $edate);
         $length=count($datePeriod);
-        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "'  ");
         $list = $ldata->fetchall();
        
         $max=$this->getleavesetting();

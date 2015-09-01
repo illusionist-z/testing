@@ -14,6 +14,7 @@ class UserController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
+        
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/leavedays/js/leave.js');               
@@ -23,12 +24,18 @@ class UserController extends ControllerBase {
     }
 
     public function indexAction() {
+        
         //$this->assets->addCss('common/css/home/home.css');        
         $user = $this->session->get('user');
         //$this->response->redirect('applyleave');        
     }
 
-    public function applyleaveAction() {        
+    public function applyleaveAction() { 
+        $User=new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
+        $this->assets->addCss('common/css/css/style.css');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();     
         $this->view->setVar("Leavetype", $ltype);
@@ -56,9 +63,11 @@ class UserController extends ControllerBase {
      */
     public function leavelistAction(){          
         $month = $this->config->month;
-         $leavetype = new LeaveCategories();
-        $ltype=$leavetype->getleavetype();         
-        $id= $this->session->user['member_id'];        
+        $leave = $this->config->leavetype;         
+        $id= $this->session->user['member_id'];   
+        $User=new Db\CoreMember;
+        $noti=$User->GetUserNoti($id);
+        $this->view->setVar("noti",$noti);
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');             
@@ -68,7 +77,7 @@ class UserController extends ControllerBase {
         $max_leavedays=$max['0']['max_leavedays'];
         $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);      
-        $this->view->setVar("leave_result", $ltype);
+        $this->view->setVar("leave_result", $leave);
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);

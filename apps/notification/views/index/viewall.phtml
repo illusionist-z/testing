@@ -1,17 +1,18 @@
    <style>.ui-dialog-titlebar-close {
   visibility: hidden;
 }</style>
+   <h3><b>Apply Leave Lists</b></h3>
 <section class="content">
           <!-- Info boxes -->
-          <div class="row">
+          <div class="row">              
              <ul class="noti">
-                 <?php foreach($all as $result){?>
-                      <li >
+                 <?php foreach($all as $result){?>                    
+                      <li type="1">
                         <a  class="adminnotidetail" id="<?php echo $result['member_id'] ?>">
-                          <i class="fa fa-users text-aqua"></i> <?php echo $result['member_login_name']?> applied <?php echo $result['leave_days']?>
-                          leave days from <?php echo date("d-m-Y", strtotime( $result['start_date']));?> to <?php echo date("d-m-Y", strtotime( $result['end_date'])); ?> under the category   "<?php echo $result['leave_category']?>"
-                          
+                          <i class="fa fa-users text-aqua"></i> <?php echo "<b>".$result['member_login_name']."</b>"?> applied <?php echo "<b style='color:red;'>".$result['leave_days']."</b>"?>
+                          leave days from <?php echo "<b>".date("d-m-Y", strtotime( $result['start_date']))."</b>";?> to <?php echo "<b>".date("d-m-Y", strtotime( $result['end_date']))."</b>"; ?> under the category   <?php echo " <i style='color:red'> \"  ".$result['leave_category']." \"</i> . "?>
                         </a>
+                         
                       </li>
                  <?php }?>
 

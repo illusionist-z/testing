@@ -4,6 +4,8 @@ namespace workManagiment\Salary\Models;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
+    use workManagiment\Salary\Models\SalaryDetail;
+    use workManagiment\Core\Models\Db\CoreMember;
 
 class SalaryDetail extends Model {
 
@@ -18,14 +20,22 @@ class SalaryDetail extends Model {
      * @author zinmon
      */
     public function geteachmonthsalary() {
-
-        $sql = "SELECT MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`ssc_comp`)) AS Total,SUM(`basic_salary`) AS salary_total,SUM(`ssc_comp`) AS Tax_total
-                FROM salary_detail
-                GROUP BY YEAR(pay_date),MONTH(pay_date)
-		order by pay_date DESC";
-        $result = $this->db->query($sql);
-        $row = $result->fetchall();
-        //print_r($row);exit;
+//        $sql = "SELECT MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`ssc_comp`)) AS Total,SUM(`basic_salary`) AS salary_total,SUM(`ssc_comp`) AS Tax_total
+//                FROM salary_detail
+//                GROUP BY YEAR(pay_date),MONTH(pay_date)
+//		order by pay_date DESC";
+//        echo $sql;exit;
+//        $result = $this->db->query($sql);
+//        $row = $result->fetchall();
+//        //print_r($row);exit;
+//        return $row;
+       //print_r("thank");exit;
+        $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,SUM(income_tax) as income_tax_amount,SUM(allowance_amount) as allowance,SUM(travel_fee) as travel_expense  "
+                . " FROM workManagiment\Salary\Models\SalaryDetail"
+                . " group by YEAR(pay_date),MONTH(pay_date)"
+                . " order by pay_date desc";
+        $row = $this->modelsManager->executeQuery($query);
+       // print_r($row);exit;
         return $row;
     }
 
@@ -148,12 +158,28 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function getpayslip($member_id,$month,$year) {
         try {
-            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='" . $member_id . "' and MONTH(pay_date)='".$month."' and YEAR(pay_date)='".$year."'";
+           /* $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='" . $member_id . "' and MONTH(pay_date)='".$month."' and YEAR(pay_date)='".$year."'";
             //echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetchall();
             //print_r($row);
-            //exit;
+            //exit;*/
+         //print_r("thank");exit;
+          $row =   $this->modelsManager->createBuilder()
+                         ->columns(array('salarydet.*', 'core.*'))
+                         ->from(array('salarydet' => 'workManagiment\Salary\Models\SalaryDetail'))
+                         ->join('workManagiment\Core\Models\Db\CoreMember','core.member_id = salarydet.member_id','core')
+                         ->where('salarydet.member_id = :member_id:', array('member_id' => $member_id))
+                         ->andWhere('MONTH(pay_date) = :month:', array('month' => $month))
+                         ->andWhere('YEAR(pay_date) = :year:', array('year' => $year))
+                         ->getQuery()
+                         ->execute();          
+                 //print_r($row);exit;
+                   /* foreach($row as $rows) {
+                          echo $rows->core->member_login_name;
+                          echo $rows->attendances->att_date;
+                    }
+                    exit;*/
         } catch (Exception $e) {
             echo $e;
         }
@@ -185,9 +211,29 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
      */
     public function getsalarydetail() {
         try {
-            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
+            //echo "Thank you";exit;
+           /* $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
             $result = $this->db->query($sql);
-            $row = $result->fetchall();
+            $row = $result->fetchall();*/
+            
+               $row =   $this->modelsManager->createBuilder()
+                         ->columns(array('salarymas.*', 'core.*'))
+                         ->from(array('salarymas' => 'workManagiment\Salary\Models\SalaryMaster'))
+                         ->leftjoin('workManagiment\Core\Models\Db\CoreMember','salarymas.member_id = core.member_id','core')                         
+                         ->getQuery()
+                         ->execute();          
+                // print_r($row);exit;
+                  /* foreach($row as $rows) {
+                          echo $rows->core->member_login_name;
+                          echo $rows->salarymas->basic_salary;
+                          echo $rows->salarymas->travel_fee;
+                          echo $rows->salarymas->over_time;
+                          echo $rows->salarymas->ssc_emp;
+                          echo $rows->salarymas->ssc_comp;
+                          echo "<br>";
+                    }
+                    
+                    exit;*/
         } catch (Exception $e) {
             echo $e;
         }

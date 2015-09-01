@@ -12,10 +12,10 @@ var User = {
             url: 'useredit?data=' + id,            
             dataType:'json',                                   
             success: function (res) {                 
-                var html = '<form id="edit_user"><table>'
-                    +'<tr><td>User ID :</td>'
-                    +'<td><input type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td>'
-		    +'<td>User Name :</td>'
+                var html = '<form id="edit_user" width="250px" height="200px"><table width="500px" height="300px" align="center" >'
+                    +'<br><tr><td><b>User ID </b></td>'
+                    +'<td><input type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
+		    +'<tr><td><b>User Name </b></td>'
                     +'<td><input type="text" value="'+ res.member_login_name +'" name="name" id="edit_user_name"></td></tr>'
                     +'<tr><td>Department :</td>'
                     +'<td><input type="text" value="'+ res.member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td>'
@@ -25,9 +25,9 @@ var User = {
                     +'<td><input type="text" value="'+ res.member_mail +'" name="email" id="edit_user_email" ></td><td></td>'
 		    +'<td>Phone no :</td>'
                     +'<td><input type="text" value="'+ res.member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
-                    +'<tr><td>Address :</td>'
-                    +'<td colspan="4"><textarea rows="5" cols="50" name="address">'+ res.member_address +'</textarea></td></tr>'
-		    +'<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
+                    +'<tr><td><b>Address </b></td>'
+                    +'<td colspan="4"><textarea rows="5" cols="50" name="address" style="color:black">'+ res.member_address +'</textarea></td></tr>'
+		    +'<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
                     +'</tr></table></form>';                                                   
             User.Dialog(html);
             }            
@@ -38,14 +38,24 @@ var User = {
             this.isOvl=true;
         }
         $ovl = $('#edituser');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 370,
+            height: 450,
             async: false,     
             cache : false,
-            width: 800,
+            width: 530,
             modal: true,
-            title:"User Edit"
+            title:"User Edit",
+           /* show:{
+                effect:"explode",//effect:"blind",
+		duration:200
+	    },
+            hide:{
+		effect:"explode",
+		duration:200
+	    }*/
         });                
         $ovl.html(data);
         $ovl.dialog("open");
@@ -63,6 +73,7 @@ var User = {
             e.preventDefault();
             User.Delete($('#edit_user_id').val());
         });
+       
     },
     /**
      * @param {type} user id
@@ -112,23 +123,28 @@ var User = {
     Delete: function (d){
         
         $del = $('#confirm');
+        $del.css('color','black');
+        $del.css('background','#F5F5F5');
         $del.dialog({
             autoOpen:false,
             height:190,
             width:350,
             closeText:'',
             modal:true,
+            
             buttons:{
                 Delete:function(){
-                    User.Confirm(d);
+                    User.Confirm(d);                    
                 },
                 Cancel:function(){
                     $(this).dialog("close");
                 }
+                
             }
+            
            
         });
-        $del.html("<p>Are u sure to delete?</p>");
+        $del.html("<p>Are you sure to <b style='color:red'>delete</b> ?</p>");
         $del.dialog("open");        
     },
     /**     

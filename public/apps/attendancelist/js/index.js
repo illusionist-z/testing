@@ -36,7 +36,16 @@ var Attendance = {
         var month = document.getElementById('month').value;
         var username = document.getElementById('username').value;
         var year = document.getElementById('year').value;
-    // window.location.href = baseUri + 'attendancelist/index/monthlylist?month='+month+'&username='+username+'&year=' +year;
+        if(month=="" && username=="" && year==""){
+            $('tbody').empty();
+             var output = "<tr>"
+                            + "<td colspan='8'><center>No data to display</center></td>"
+                           
+                            + "</tr>"
+                    $("tbody").append(output); 
+        }
+        else{
+     //window.location.href = baseUri + 'attendancelist/search/attsearch?month='+month+'&username='+username+'&year=' +year;
         $.ajax({
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
@@ -126,7 +135,7 @@ var Attendance = {
                     //Calculate Location
                      ll = json_obj[i].location;
 
-
+                     
 
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
@@ -138,7 +147,8 @@ var Attendance = {
                             + "<td>" +overtime+ "</td>"
                             + "<td>" + ll+ "</td>"
                             + "</tr>"
-                    $("tbody").append(output);                
+                    $("tbody").append(output); 
+                     
                 }
                 //paginatior function    
                 Attendance.init();
@@ -146,13 +156,14 @@ var Attendance = {
             error: function (d) {
                 alert('error');
             }       
-            });                 
+            }); 
+        }
            }
    };
 $(document).ready(function () { 
     Attendance.init();    
     
-    $('#namesearch').click(function () {           
+    $('#namesearch').click(function () {
         Attendance.todaylist();
     });           
     

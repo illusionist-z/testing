@@ -17,6 +17,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
+        
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
@@ -28,6 +29,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/salary/js/index-allowance.js');
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/css/style.css');
     }
 
     public function indexAction() {
@@ -38,7 +40,9 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
-
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
         //var_dump($getsalarydetail);exit;
@@ -70,6 +74,9 @@ class IndexController extends ControllerBase {
      * Add salary form
      */
     public function addsalaryAction() {
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
         $Allowance = new Allowances();
@@ -89,6 +96,9 @@ class IndexController extends ControllerBase {
      * show total salary  of each month
      */
     public function monthlysalaryAction() {
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
@@ -151,6 +161,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin kyaw
      */
     public function allowanceAction() {
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $All_List = new \workManagiment\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         $this->view->setVar("list", $list); //paginated data
@@ -164,17 +177,31 @@ class IndexController extends ControllerBase {
         for ($x = 1; $x <= 10; $x++) { // getting all value from text boxes
             $all_name['"' . $x . '"'] = $this->request->get('textbox' . $x);
             $all_value['"' . $x . '"'] = $this->request->get('txt' . $x);
-            // echo $all_name['"'.$x.'"'];echo $all_value['$x'];
             if (!isset($all_name['"' . $x . '"'])) {
                 $count = $x;
                 
                 break; //getting the number of textboxes
             }
         }
+        foreach( $all_name as $key => $value )
+            {
+                if( empty( $value ) )
+                {
+                   unset( $all_name[$key] );
+                }
+            }
+        if( !empty( $all_name )  )
+        {
         $all = new \workManagiment\Salary\Models\Allowances();
-        $all->addallowance($all_value, $all_name, $count);//sending data to model with array format
-        $this->view->disable();
-
+        $all->addallowance($all_value, $all_name, $count);
+        echo "<script>alert('Allowances Are Added Successfully');</script>";
+        echo "<script type='text/javascript'>window.location.href='allowance';</script>";
+        
+        }
+        else{
+        echo "<script>alert('No Data.Insert Data First');</script>";
+        echo "<script type='text/javascript'>window.location.href='allowance';</script>";
+        }
     }
 
     /**
@@ -220,6 +247,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
+         $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $Tax = new Taxs();
         $list = $Tax->gettaxlist();
         $this->view->setVar("result", $list); //paginated data
