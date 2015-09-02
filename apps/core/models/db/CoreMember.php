@@ -93,11 +93,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
-        if($member['username']==NULL OR $member['password']==NULL OR $member['dept']==NULL OR $member['position']==NULL OR $member['email']==NULL OR $member['phno']==NULL OR $member['address']==NULL ){
-      
-          $msg="Insert All Data";
-        }
-        else{
+        
         //uploading file
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -111,9 +107,8 @@ class CoreMember extends \Library\Core\BaseModel {
             $this->db->query("INSERT INTO core_permission_rel_member (rel_member_id,permission_member_group_member_name,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())");
         }
-        $msg="New User is added succesfully";
-        }
-        return $msg;
+        
+        
     }
     
     public function UserDetail($id) {

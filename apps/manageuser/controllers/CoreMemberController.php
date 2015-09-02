@@ -52,7 +52,7 @@ class CorememberController extends ControllerBase {
                 $member=$this->request->getPost();
                 $member_id = $this->session->user['member_id'];
 
-      $filename = $_FILES["fileToUpload"]["name"];            
+                $filename = $_FILES["fileToUpload"]["name"];            
                 $NewUser = new CoreMember;
                 $NewUser->addnewuser($member_id,$member,$filename);
                 
