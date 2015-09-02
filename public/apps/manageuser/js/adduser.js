@@ -17,7 +17,6 @@ var UserAdd = {
             processData: false,
             contentType: false,
             success: function(d){
-               
                 cond = JSON.parse(d);
                 
                 if(cond.result === 'error')
