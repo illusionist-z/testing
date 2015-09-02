@@ -22,7 +22,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/salary/css/salary.css');        
-        $this->assets->addJs('common/js/paging.js');    
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/popup.js');    //popup message
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
@@ -151,7 +151,8 @@ class IndexController extends ControllerBase {
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $Salarydetail = new SalaryMaster();
-        $Salarydetail->btnedit($data);
+        $cond = $Salarydetail->btnedit($data);        
+        echo json_encode($cond);
         $this->view->disable();
     }
 
