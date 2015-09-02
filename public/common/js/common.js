@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
- * @GEOprocess()
- * @get @lat @lng
- */
+
 function geo() {
     if (navigator.geolocation) { 
         var url = "location_session";
@@ -47,7 +44,7 @@ function GEOprocess(position) {
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
-    if (h >= 16) {
+    if (h === 16) {
         $.ajax({
             url: baseUri + "attendancelist/absent",
             type: 'GET',
@@ -61,20 +58,21 @@ function getAbsentMember() {
  * for error text clean
  */
 function repair (val){
-    var nn;
+    var cache;
       $(val).focus(function(e){
          e.preventDefault();
          $(this).css("border","1px solid #ccc");  // for error border
+         $(this).attr("placeholder","");
          //for focus error text
-         if(nn){
-         $(this).val(nn);
+         if(cache){
+         $(this).val(cache);
          }
          else{
          $(this).val("");}
          $(this).css("color","black");                     
          });
      $(val).focusout(function(){
-        nn=$(this).val(); 
+        cache=$(this).val(); 
      });
 }
 
@@ -117,40 +115,42 @@ $(document).ready(function () {
         window.location.href = baseUri + 'auth/logout';
 
     };
+/**
+ * @author David JP<david.gnext@gmail.com>
+ * @version 28/8/2015
+ * menu toggle function
+ */
 
+$('.sidebar-toggle').click(function (e) {
+    e.stopPropagation();
+    //get collapse content selector
+    var collapse_content_selector = $(this).attr('href');
 
-    $('.sidebar-toggle').click(function (e) {
-        e.stopPropagation();
-        //get collapse content selector
-        var collapse_content_selector = $(this).attr('href');
-
-        //make the collapse content to be shown or hide
-        var toggle_switch = $(this);
-        $(collapse_content_selector).toggle(function () {
-            if ($(this).css('display') == 'none') {
-                //change the button label to be 'Show'
-                $('.content-wrapper').css("margin-left","0");
-                $('.main-footer').css("margin-left","0");
-                toggle_switch.html('Show');
-            } else {                                
-                $('.content-wrapper').css("margin-left","230px");                
-                $('.main-footer').css("margin-left","230px");      
-                $('body').append("<style type='text/css'>@media (max-width:767px){.main-sidebar{transform:translate3d(0,0,0);}}</style>");
-                //change the button label to be 'Hide'
-                toggle_switch.html('Hide');
-            }
-        });
-
+    //make the collapse content to be shown or hide
+    var toggle_switch = $(this);
+    $(collapse_content_selector).toggle(function () {
+        if ($(this).css('display') === 'none') {
+            //change the button label to be 'Show'
+            $('.content-wrapper').css("margin-left","0");
+            $('.main-footer').css("margin-left","0");
+            toggle_switch.html('Show');
+        } else {                                
+            $('.content-wrapper').css("margin-left","230px");
+            $('.main-footer').css("margin-left","230px");
+            $('body').append("<style type='text/css'>@media(max-width:767px){.main-sidebar{transform:translate3d(0,0,0);}}</style>");
+            //change the button label to be 'Hide'
+            toggle_switch.html('Hide');
+        }
     });
-    //
+    });    
+    //toggle off when click body
     $('body').click(function (e) {       
-        if (0 == $(e.target).closest('#sidepage').length) {
+        if (0 === $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
             $('.collapse-wrapper').css("margin-left","0");
             $('.main-footer').css("margin-left","0");
         }
     });
-//   
     $('.datepicker').datepicker();
 });
   

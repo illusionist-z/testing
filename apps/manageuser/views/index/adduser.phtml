@@ -19,15 +19,10 @@
 	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff"><b>Add User Form</b></font></div>
         
         <form id="saveuser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-	<table width="700px" height="300px">
-           
-                          
+            <table width="700px" height="300px" class="adduser-table">
             <tr>
-                
-                <td rowspan="10">
-                    <img src="../../uploads/profile.png"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
-                    <input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload">
-                </td>
+                <td rowspan="15"><img src="../../common/img/profile.png" > </td>
+                <td rowspan="15"> <input type="file" name="fileToUpload" id="fileToUpload"></td>
             </tr>
 	<tr>
 
@@ -35,24 +30,26 @@
 
            
             <td style="height:40px;">
-                <input style="margin-top:10px;" type="text" name="username" id="uname" placeholder="Write User Name">
-                    <span id="user-error"></span>
-		</td>                
+                <input style="margin-top:10px;" type="text" name="username" id="uname" placeholder="Write User Name">                    
+            </td>                
         </tr>        
         <tr>
 		
 		<td><b>Password </b></td>
                 <td style="height:40px;">
-                    <input style="margin-top:10px;" type="password" name="password" id="pass" placeholder="Write Password">
-                    <span id="pass-error"></span>
+                    <input style="margin-top:10px;" type="password" name="password" id="pass" placeholder="Write Password">            
                 </td>                
 	</tr>
-        
+        <tr>		
+		<td><b>Confirm Password </b></td>
+                <td style="height:40px;">
+                    <input style="margin-top:10px;" type="password" name="confirm" id="confirmpass" placeholder="Password Again">
+                </td>
+	</tr>
 	<tr>
 		<td><b>Department </b></td>
                 <td style="height:40px;">
-                    <input style="margin-top:10px;" type="text" name="dept" id="dept" placeholder="Write Department">
-                    <span id="dept-error"></span>                
+                    <input style="margin-top:10px;" type="text" name="dept" id="dept" placeholder="Write Department"> 
                 </td>
                 
         </tr>
@@ -60,22 +57,19 @@
           
 		<td><b>Position	</b></td>
                 <td style="height:40px;">
-                    <input style="margin-top:10px;" type="text" name="position" id="pos" placeholder="Write Position">
-                    <span id="pos-error"></span>
+                    <input style="margin-top:10px;" type="text" name="position" id="pos" placeholder="Write Position">                    
                 </td>
 	</tr>
 	<tr>
 		<td><b>Email </b></td>
                 <td style="height:40px;">
-                    <input style="margin-top:10px;" type="email" name="email" id="mail" placeholder="Write Email">
-                    <span id="mail-error"></span>
+                    <input style="margin-top:10px;" type="email" name="email" id="mail" placeholder="Write Email">                    
                </td>
 	</tr>
         <tr>
 		<td><b>Phone Number </b></td>
                 <td style="height:40px;">
-                    <input style="margin-top:10px;" type="text" name="phno" id="pno" placeholder="Write Phone Number">
-                    <span id="pno-error"></span>
+                    <input style="margin-top:10px;" type="text" name="phno" id="pno" placeholder="Write Phone Number">                    
                 </td>
 	</tr>
        
@@ -86,11 +80,10 @@
         <tr>
 		<td><br><b>User Role </b></td>
 		<td colspan="4"><select class="select" data-toggle="select" name="user_role" id="member[user_role]" style="margin-top: 13px;">
-            
-                               <option value="ADMIN,adminstrator">          
-                Admin</option>
-                                <option value="USER,user">          
+                <option value="USER,user">          
                 User</option>
+                <option value="ADMIN,adminstrator">          
+                Admin</option>
                                 
                 
         </select></td>

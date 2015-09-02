@@ -6,6 +6,7 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Email;
 use Phalcon\Validation\Validator\Regex;
+use Phalcon\Validation\Validator\Confirmation;
 
 class AddUser extends Model
 {
@@ -34,6 +35,15 @@ class AddUser extends Model
                         array(
                             'message'=>"Password is required"
                         )));
+         $validate->add('confirm',
+                new Confirmation(
+                        array(
+                            'with'=>"password",
+                            'message'=>"Password is not match"
+                        )))
+        ->add('confirm',new PresenceOf(array(
+            'message' => 'Confirm Password is required'
+        )));
         $validate->add('email',
                 new Email(
                         array(

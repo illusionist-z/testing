@@ -1,7 +1,7 @@
 /** 
  * @author David JP<david.gnext@gmail.com>
  * @desc dialog box ,event edit box
- * @version 1/9/2015
+ * @version 2/9/2015 @by David JP<david.gnext@gmail.com>
  */
 var Calendar = {
     init : function (json_events) {
@@ -77,7 +77,7 @@ var Calendar = {
     });
     
     },
-    event : function(val){
+    event : function(val){        
         $.ajax({
             type : "GET",
             url  : "index/showdata",
@@ -85,21 +85,21 @@ var Calendar = {
             data : {event_id:val},
             success : function(d){
                 d = JSON.parse(d);
-                if(d.length === 0){
-            var message = "<div class='message' style='top:30%;left:25%;"
-                +"text-align:center;background:yellow;color:red;position:absolute"
-                +";width:55%;height:7%;'>No event with that user........</div>";
-                    $('body').append(message);
-                    setTimeout(function() {
-                   $('.message').remove();
-                   }, 2000);
-                }
-                else{
-                 $('#calendar').remove();    //remove calendar origin
-                 $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>');//replace a new calendar
-                 Calendar.init(d);
-                }
-            }
+    if(d.length === 0){
+    var message = "<div class='message' style='top:30%;left:25%;"
+    +"text-align:center;background:yellow;color:red;position:absolute;"
+    +";width:55%;height:7%;z-index:100;'>No event with that user........</div>";
+    $('body').append(message);
+    setTimeout(function() {
+    $('.message').remove();
+    }, 2000);
+    }
+    else{
+     $('#calendar').remove();    //remove calendar origin
+     $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>');//replace a new calendar
+     Calendar.init(d);
+    }
+    }
         });
     }
 };  
@@ -249,10 +249,17 @@ var Calendar = {
 };
 $(document).ready(function () {
       Calendar.init();
+   //select member event btn
+   $('.btn-show-event').click(function(){
+      var selectedvalue = [];
+      if($(':checkbox:checked').length > 0){
+        $(':checkbox:checked').each(function(i){
+          selectedvalue[i] = $(this).val();
+         });
+         Calendar.event(selectedvalue);
+         }
+      else {alert("You must check at least one");}
+   });
    
-   $('body').on("change",".box-danger",function(){
-      var selectedvalue = this.value;
-      Calendar.event(selectedvalue);
-   });   
 });
 

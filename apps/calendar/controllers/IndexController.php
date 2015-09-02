@@ -35,7 +35,7 @@ class IndexController extends ControllerBase
 
     public function showdataAction() {   
         $id = $this->request->get('event_id');
-        $this->view->disable();        
+        $this->view->disable();
         $events = $this->calendar->fetch($id);
         echo json_encode($events);
     }
