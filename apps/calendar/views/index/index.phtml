@@ -13,32 +13,32 @@ use Phalcon\Tag as Tag;
             <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
             <li class="active"><b>Calendar</b></li>
         </ol>
-    </section>
-        <div class="btn btn-facebook">
-         <b>User Event</b> 
-         <select class="box-danger btn-tumblr dropdown-toggle" data-toggle="dropdown" name="user_event"  tabindex="3">
-             <option value="" disabled selected>Name</option>
-            <?php
+    </section>      
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-2">
+        <h3><span class="label label-default">User Event Enable</span></h3>
+        <ul class="nav nav-pills nav-stacked" id="left-scroll">
+         <?php
             foreach ($uname as $result) {
                 ?>
-                <option><?php echo $result->member_login_name; ?></option>
+            <li class="addbtn"><input type="checkbox" value="<?= $result->member_login_name; ?>"><?php echo $result->member_login_name; ?></li>
                 <?php
             }
             ?>
-        </select>
-         </div>
-</div>
-<!-- Main content -->
-<section class="content">
-    <div class="box box-primary">
+        </ul>
+        <span class="btn btn-info col-sm-12 btn-show-event">Show Event</span>
+        <div class="alert col-sm-12">Check above user to see their event</div>
+    </div>
+    <div class="col-md-10">
         <div class="box-body no-padding">
-            <div class="popup-table"></div> 
             <!-- THE CALENDAR -->
-            <div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>
+            <div id="calendar" class="bg-info"></div>
         </div><!-- /.box-body -->
         <br><br>
     </div><!-- /. box -->
-
+    </div>
 </section><!-- /.content -->
 
 <div id="dialog" style="display:none" title="Edit Event" class="navbar">

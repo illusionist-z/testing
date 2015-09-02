@@ -62,6 +62,7 @@ function repair (val){
       $(val).focus(function(e){
          e.preventDefault();
          $(this).css("border","1px solid #ccc");  // for error border
+         $(this).attr("placeholder","");
          //for focus error text
          if(cache){
          $(this).val(cache);
