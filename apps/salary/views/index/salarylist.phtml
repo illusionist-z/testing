@@ -29,7 +29,7 @@
                     </tr>
 
                 </thead>
-                <tbody style="display:none;">
+                <tbody>
                     <?php
                     $i = 1;
                     foreach ($salarydetail as $salarydetails) {
@@ -42,18 +42,19 @@
                             <td><?php echo $salarydetails['over_time'].'%' ?></td>
                             <td><?php echo $salarydetails['ssc_emp'].'%' ?></td>
                             <td><?php echo $salarydetails['ssc_comp'].'%' ?></td>
-                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails['id'] ?>" value="Edit"></td>
+                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails['id'] ?>" value="Edit"></td>                            
                         </tr>
                         <?php
                         $i++;
                     }
                     ?>
+
+                   
                 </tbody>
-                <tfoot style="display:none;"></tfoot>
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-    <div id="content"></div>
+
 </section><!-- /.content -->
 <div id="edit_salary_dia"></div>
 
