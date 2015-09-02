@@ -221,6 +221,7 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
                          ->columns(array('salarymas.*', 'core.*'))
                          ->from(array('salarymas' => 'workManagiment\Salary\Models\SalaryMaster'))
                          ->leftjoin('workManagiment\Core\Models\Db\CoreMember','salarymas.member_id = core.member_id','core')                         
+                         ->orderby('salarymas.created_dt desc')
                          ->getQuery()
                          ->execute();          
                 // print_r($row);exit;

@@ -1,14 +1,29 @@
    <style>.ui-dialog-titlebar-close {
   visibility: hidden;
 }</style>
-   <h3><b>Apply Leave Lists</b></h3>
+   <?php if($permission=='ADMIN'){
+       $class="adminnotidetail";
+   }
+   else{
+       $class="usernotidetail";
+   }?>
+   <h3><b>View All Notification</b></h3>
 <section class="content">
           <!-- Info boxes -->
           <div class="row">              
              <ul class="noti">
                  <?php foreach($all as $result){?>                    
-                      <li type="1">
-                        <a  class="adminnotidetail" id="<?php echo $result['member_id'] ?>">
+                      <li type="none">
+                          <?php
+                                  if($result['member_profile']==null){
+                                     $img = "profile_black.png";}
+                                  else{
+                                       $img=$result['member_profile'];
+                                   }
+                        ?>                                                 
+                        <img src="../../uploads/<?php echo  $img;?>"   class="user-image" width="18px" alt="User Image"/>
+                        
+                        <a  class="<?php echo $class;?>" id=<?php echo  $result['member_id']; echo","; echo $result['start_date'];?>>
                           <i class="fa fa-users text-aqua"></i> <?php echo "<b>".$result['member_login_name']."</b>"?> applied <?php echo "<b style='color:red;'>".$result['leave_days']."</b>"?>
                           leave days from <?php echo "<b>".date("d-m-Y", strtotime( $result['start_date']))."</b>";?> to <?php echo "<b>".date("d-m-Y", strtotime( $result['end_date']))."</b>"; ?> under the category   <?php echo " <i style='color:red'> \"  ".$result['leave_category']." \"</i> . "?>
                         </a>
@@ -19,7 +34,7 @@
                     
                     </ul>
           </div><!-- /.row -->
-<div id="notidetail" style="display:none;" class="navbar">
+<div id="notidetail" style="display:none;">
 
 		  
         </section>

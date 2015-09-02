@@ -42,7 +42,7 @@ class IndexController extends ControllerBase {
         
         if ($this->request->isPost()) {
              $user = $this->_leave;
-             $validate = $user->validate($this->request->getPost());
+             $validate = $user->validation($this->request->getPost());
              
             if(count($validate)){
                foreach ($validate as $message){
@@ -53,7 +53,7 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
                   }     
             else{
-            $uname = $this->request->getPost('member_id');
+            $uname = $this->request->getPost('username');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
@@ -160,7 +160,6 @@ class IndexController extends ControllerBase {
         $id=$this->request->get('id');
         $days=$this->request->getPost('leave_days');
         $this->_leave->acceptleave($id,$sdate,$edate,$days); 
-        $update=new \workManagiment\Core\Models\Db\CoreMember();
        
     }
     public function rejectleaveAction(){

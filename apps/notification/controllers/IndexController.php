@@ -1,8 +1,7 @@
 <?php
 
 namespace workManagiment\Notification\Controllers;
-use workManagiment\Leavedays\Models\Leaves as Leaves;
-
+use workManagiment\Core\Models\Db\CoreMember;
 class IndexController extends ControllerBase
 {
     
@@ -10,6 +9,7 @@ class IndexController extends ControllerBase
         parent::initialize();
         
         $this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/css/style.css');
         
     }
 
@@ -35,10 +35,23 @@ class IndexController extends ControllerBase
      * Show All Notification in one page
      */
     public function viewallAction(){
-        $All=new \workManagiment\Core\Models\Db\CoreMember();
-        $all=$All->GetAdminNoti();
-        $this->view->setVar('type', 'viewall');
-        $this->view->setVar('all', $all);
+        $Admin=new CoreMember();
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
+        $permission=$this->session->permission_code;
+        
+        if($permission=='ADMIN'){
+           $noti=$Admin->GetAdminNoti();
+        }else
+        {
+            $id = $this->session->user['member_id'];
+             $noti=$Admin->GetUserNoti($id);
+        }
+        
+        $this->view->setVar("noti",$noti);
+        $this->view->setVar('all', $noti);
+        $this->view->setVar('permission', $permission);
+
     }
     
     /**

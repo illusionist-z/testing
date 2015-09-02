@@ -39,6 +39,7 @@ class Leaves extends \Library\Core\BaseModel {
                       ->columns(array('core.*', 'leaves.*'))
                       ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                       ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')                         
+                      ->orderBy('leaves.date DESC')
                       ->getQuery()
                       ->execute();          
                 //print_r($row);exit;
@@ -235,10 +236,10 @@ public  function GetDays($StartDate, $EndDate){
     */
     public function acceptleave($id,$sdate,$edate,$days){
         $this->db = $this->getDI()->getShared("db");
-        $date=$this->getcontractdata($id);
-        $datePeriod =$this->GetDays($sdate, $edate);
+        //$date=$this->getcontractdata($id);
+        //$datePeriod =$this->GetDays($sdate, $edate);
         $length=count($datePeriod);
-        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "'  ");
         $list = $ldata->fetchall();
        
         $max=$this->getleavesetting();
@@ -287,7 +288,7 @@ public  function GetDays($StartDate, $EndDate){
       *@return cond array
       *@desc   Validate Form 
       */
-     public function validat($data){
+     public function validation($data){
         $res = array();
         $validate = new Validation();
         $validate->add('username',

@@ -63,8 +63,8 @@
         <th>Date</th>
 	<th>User Name</th>
 	<th>Check In</th>
-	<th>Check Out</th>
-        <th>Late</th>
+	<th>Late</th>
+        <th>Check Out</th>
 	<th>Working Time</th>
 	<th>OverTime</th>
         <th>Location</th>
@@ -83,32 +83,16 @@
         if ($sign=='-'){
             $cintime = new DateTime($checkintime);
         $cintime->add(new DateInterval('PT' . $value . 'M'));
-        echo $cintime->format('Y-m-d H:i:s A');
+        echo $cintime->format('H:i:s A');
         }
         else{
-         $cintime = date("Y-m-d H:i:s A",strtotime($value." minutes",strtotime($checkintime)));
+         $cintime = date("H:i:s A",strtotime($value." minutes",strtotime($checkintime)));
             echo $cintime;
         }
      ?>
         </td>
         
-<!--        check out time -->
-        <td><?php $checkouttime= $result->attendances->checkout_time;
-        if($checkouttime==0){
-        echo "-";}
-        else{
-            if($sign=='-'){
-        $time = new DateTime($checkouttime);
-        $time->add(new DateInterval('PT' . $value . 'M'));
-        echo  $time->format('Y-m-d H:i:s A');}
-        else {
-            $time = date("Y-m-d H:i:s A",strtotime($value." minutes",strtotime($checkouttime)));
-            echo $time;
-        }
-        }
-?></td>
-        
-<!--        Late-->
+        <!--        Late-->
         <td><?php  
       $time = date("H:i:s",strtotime($value." minutes",strtotime($checkintime)));
 //           
@@ -123,6 +107,24 @@
             
         }
         ?></td>
+        
+<!--        check out time -->
+        <td><?php $checkouttime= $result->attendances->checkout_time;
+        if($checkouttime==0){
+        echo "-";}
+        else{
+            if($sign=='-'){
+        $time = new DateTime($checkouttime);
+        $time->add(new DateInterval('PT' . $value . 'M'));
+        echo  $time->format('H:i:s A');}
+        else {
+            $time = date("H:i:s A",strtotime($value." minutes",strtotime($checkouttime)));
+            echo $time;
+        }
+        }
+?></td>
+        
+
         
 <!--        Working Hour-->
 	<td>
