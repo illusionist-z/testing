@@ -20,9 +20,14 @@
         
         <form id="saveuser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
 	<table width="700px" height="300px">
+           
+                          
             <tr>
-                <td rowspan="15"><img src="../../common/img/profile.png" > </td>
-                <td rowspan="15"> <input type="file" name="fileToUpload" id="fileToUpload"></td>
+                
+                <td rowspan="10">
+                    <img src="../../uploads/profile.png"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
+                    <input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload">
+                </td>
             </tr>
 	<tr>
 
@@ -81,11 +86,11 @@
         <tr>
 		<td><br><b>User Role </b></td>
 		<td colspan="4"><select class="select" data-toggle="select" name="user_role" id="member[user_role]" style="margin-top: 13px;">
-                <option value="USER,user">          
-                User</option>
-                <option value="ADMIN,adminstrator">          
+            
+                               <option value="ADMIN,adminstrator">          
                 Admin</option>
-                                
+                                <option value="USER,user">          
+                User</option>
                                 
                 
         </select></td>

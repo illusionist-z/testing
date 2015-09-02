@@ -24,7 +24,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
         return $getname;*/
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember";
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         //print_r($row);exit;
         return $row;
@@ -93,7 +93,11 @@ class CoreMember extends \Library\Core\BaseModel {
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
-        
+        if($member['username']==NULL OR $member['password']==NULL OR $member['dept']==NULL OR $member['position']==NULL OR $member['email']==NULL OR $member['phno']==NULL OR $member['address']==NULL ){
+      
+          $msg="Insert All Data";
+        }
+        else{
         //uploading file
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -107,8 +111,9 @@ class CoreMember extends \Library\Core\BaseModel {
             $this->db->query("INSERT INTO core_permission_rel_member (rel_member_id,permission_member_group_member_name,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())");
         }
-        
-        
+        $msg="New User is added succesfully";
+        }
+        return $msg;
     }
     
     public function UserDetail($id) {
@@ -126,8 +131,9 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti() {        
-        $AdminNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0");
+    public function GetAdminNoti() { 
+        $this->db = $this->getDI()->getShared("db");
+        $AdminNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0 order by leaves.date desc");
         $noti = $AdminNoti->fetchall();
         return $noti;
     }

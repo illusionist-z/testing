@@ -1,9 +1,109 @@
 /** 
- * @author David
- * @desc dialog box ,event edit box   
+ * @author David JP<david.gnext@gmail.com>
+ * @desc dialog box ,event edit box
+ * @version 1/9/2015
  */
-
-var Dialog = {
+var Calendar = {
+    init : function (json_events) {
+        /* initialize the calendar
+     -----------------------------------------------------------------*/
+     
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        buttonText: {
+            today: 'today',
+            month: 'month',
+            week: 'week',
+            day: 'day'
+        },
+        
+        events:typeof json_events === 'undefined'? '':json_events,
+        //Random default events
+        selectable: true,
+        resizable: true,
+        editable: true,
+        droppable: true, // this allows things to be dropped onto the calendar !!!
+        eventResize: function (event) {
+            var start = event.start.format("YYYY-MM-DD");
+            var end = event.end.format("YYYY-MM-DD");
+            var shr = event.start.format("HH:mm:ss");
+            var ehr = event.end.format("HH:mm:ss");
+            //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");  
+            Calendar.Dialog.drag(start, end, event.id, event.title);
+        },
+        eventDrop: function (event) {
+            var start = event.start.format("YYYY-MM-DD"), end;
+            if (event.end == null) {
+                end = event.start.format("YYYY-MM-DD");
+            }
+            else {
+                end = event.end.format("YYYY-MM-DD");
+            }
+            Calendar.Dialog.drag(start, end, event.id, event.title);
+        },
+        select: function (start, end, allDay) {
+            var start = start.format("YYYY-MM-DD");
+            var end = end.format("YYYY-MM-DD");
+            Calendar.Dialog.new(start, end);
+        },
+        eventMouseout: function (calEvent, domEvent) {
+           $('table').remove('.popup');
+        },
+        eventMouseover: function (event) {
+            var start = event.start.format(),end;           
+            if(event.end == null){
+                 end = event.start.format();
+            }else{
+                end =event.end.format();
+            }
+            
+            if ($(this).hasClass('popup')) {
+                deselect($(this));
+            } else {
+            var str = "<table style='width:500px;height:100px;background:#aaa999;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
+            str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
+            str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";                              
+               $(this).append(str);               
+            }                                    
+        },
+        eventClick: function (event) {
+            Calendar.Dialog.open(event);
+            //$ovl.dialog("open");
+        }
+    });
+    
+    },
+    event : function(val){
+        $.ajax({
+            type : "GET",
+            url  : "index/showdata",
+            async: false,
+            data : {event_id:val},
+            success : function(d){
+                d = JSON.parse(d);
+                if(d.length === 0){
+            var message = "<div class='message' style='top:30%;left:25%;"
+                +"text-align:center;background:yellow;color:red;position:absolute"
+                +";width:55%;height:7%;'>No event with that user........</div>";
+                    $('body').append(message);
+                    setTimeout(function() {
+                   $('.message').remove();
+                   }, 2000);
+                }
+                else{
+                 $('#calendar').remove();    //remove calendar origin
+                 $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>');//replace a new calendar
+                 Calendar.init(d);
+                }
+            }
+        });
+    }
+};  
+  Calendar.Dialog = {
     isClick: false,
     isOvl: false,
     init: function () {
@@ -52,13 +152,13 @@ var Dialog = {
         $('#submit_edit_event').click(function () {
              $('.err').text('');
              $('.err-sdate').text('');
-             Dialog.edit(event.id);
+             Calendar.Dialog.edit(event.id);
         });
          $('#close_create_event').click(function () {
             $ovl.dialog("close");
         });
         $('#del_event').click(function () {
-            Dialog.delete(event.id);
+            Calendar.Dialog.delete(event.id);
         });
         $ovl.dialog("open");
     },
@@ -86,7 +186,7 @@ var Dialog = {
         $('.err').text('');
         $('.err-sdate').text('');
         $('#create_dialog').click(function () {
-            Dialog.create();
+            Calendar.Dialog.create();
         });
         $dia.dialog("open");
     },
@@ -148,90 +248,11 @@ var Dialog = {
     }
 };
 $(document).ready(function () {
-
-    //get event from database
-    $.ajax({
-        url: 'index/showdata',
-        type: 'POST',
-        datyType: 'json',
-        async: false,
-        success: function (response) {
-            json_events = response;
-        }
-    });
-
-    /* initialize the calendar
-     -----------------------------------------------------------------*/
-    //Date for the calendar events (dummy data)
-//        var date = new Date();
-//        var d = date.getDate(),
-//                m = date.getMonth(),
-//                y = date.getFullYear();
-    $('#calendar').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        },
-        buttonText: {
-            today: 'today',
-            month: 'month',
-            week: 'week',
-            day: 'day'
-        },
-        events: JSON.parse(json_events),
-        //Random default events
-        selectable: true,
-        resizable: true,
-        editable: true,
-        droppable: true, // this allows things to be dropped onto the calendar !!!
-        eventResize: function (event) {
-            var start = event.start.format("YYYY-MM-DD");
-            var end = event.end.format("YYYY-MM-DD");
-            var shr = event.start.format("HH:mm:ss");
-            var ehr = event.end.format("HH:mm:ss");
-            //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");  
-            Dialog.drag(start, end, event.id, event.title);
-        },
-        eventDrop: function (event) {
-            var start = event.start.format("YYYY-MM-DD"), end;
-            if (event.end == null) {
-                end = event.start.format("YYYY-MM-DD");
-            }
-            else {
-                end = event.end.format("YYYY-MM-DD");
-            }
-            Dialog.drag(start, end, event.id, event.title);
-        },
-        select: function (start, end, allDay) {
-            var start = start.format("YYYY-MM-DD");
-            var end = end.format("YYYY-MM-DD");
-            Dialog.new(start, end);
-        },
-        eventMouseout: function (calEvent, domEvent) {
-           $('table').remove('.popup');
-        },
-        eventMouseover: function (event) {
-            var start = event.start.format(),end;           
-            if(event.end == null){
-                 end = event.start.format();
-            }else{
-                end =event.end.format();
-            }
-            
-            if ($(this).hasClass('popup')) {
-                deselect($(this));
-            } else {
-            var str = "<table style='width:500px;height:100px;background:#aaa999;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
-            str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
-            str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";                              
-               $(this).append(str);               
-            }                                    
-        },
-        eventClick: function (event) {
-            Dialog.open(event);
-            //$ovl.dialog("open");
-        }
-    });
+      Calendar.init();
+   
+   $('body').on("change",".box-danger",function(){
+      var selectedvalue = this.value;
+      Calendar.event(selectedvalue);
+   });   
 });
 

@@ -14,6 +14,7 @@ var ManageUser = {
         pager.perpage =3;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
+        $("tbody").show();
         },
         search: function(){            
         var name = document.getElementById('username').value;        

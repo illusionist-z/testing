@@ -47,7 +47,7 @@ function GEOprocess(position) {
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
-    if (h == 16) {
+    if (h >= 16) {
         $.ajax({
             url: baseUri + "attendancelist/absent",
             type: 'GET',

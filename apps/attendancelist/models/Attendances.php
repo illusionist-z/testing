@@ -63,7 +63,8 @@ class Attendances extends Model {
                           ->columns(array('core.*', 'attendances.*'))
                           ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                           ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
-                          ->where('attendances.att_date = :today:', array('today' => $today))                           
+                          ->where('attendances.att_date = :today:', array('today' => $today))
+                          ->orderBy('attendances.checkin_time DESC')
                           ->getQuery()
                           ->execute();          
                 // print_r($row);exit;
@@ -174,7 +175,7 @@ class Attendances extends Model {
                         ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                         ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                         ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
-                        ->orderBy('attendances.att_date DESC')
+                        ->orderBy('attendances.checkin_time DESC')
                         ->getQuery()
                         ->execute();           
                 // print_r($row);exit;
@@ -201,21 +202,12 @@ class Attendances extends Model {
          $conditions=$this->setCondition($year, $month, $username);
 
               $sql = $select;
-              if (count($conditions) == 0) {
-                  $yr=date('Y');
-                  $mth=date('m');
-              $sql .= " WHERE YEAR(attendances.att_date)='".$yr."' and MONTH(attendances.att_date)='".$mth."'";
+              if (count($conditions) > 0) {
+              $sql .= " WHERE " . implode(' AND ', $conditions);
               }
-              else{
-                  $sql .= " WHERE " . implode(' AND ', $conditions);
-              }
-//              if (count($conditions) > 0) {
-//              $sql .= " WHERE " . implode(' AND ', $conditions);
-//              }
-              
+             
               $result = $this->db->query($sql);
               $row = $result->fetchall();
-             
         } catch (Exception $ex) {
            echo $ex; 
         }
