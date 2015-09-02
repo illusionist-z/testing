@@ -42,7 +42,7 @@ class IndexController extends ControllerBase {
         
         if ($this->request->isPost()) {
              $user = $this->_leave;
-             $validate = $user->validating($this->request->getPost());
+             $validate = $user->validation($this->request->getPost());
              
             if(count($validate)){
                foreach ($validate as $message){
@@ -53,7 +53,7 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
                   }     
             else{
-            $uname = $this->request->getPost('member_id');
+            $uname = $this->request->getPost('username');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');

@@ -14,17 +14,17 @@ var Noti = {
             success: function (res) {
                  var result = $.parseJSON(res);
                
-               var data ='<form id="noti_detail" width="650px" height="300px"><table width="650px" height="300px">';               
-                   data += '<tr><td>User Name :</td><td>'+result[0]['member_login_name']+ '</td>'
-                        +'<td>Start Date:</td><td>'+result[0]['start_date']+ '</td></tr>'
-                        +'<td>End Date:</td><td>'+result[0]['end_date']+ ' </td></tr>'
-                        +'<td>Leave Status:</td><td>'+result[0]['leave_status']+ '</td></tr>'
-                        +'<td>Leave Days:</td><td>'+result[0]['leave_days']+ '</td></tr>'
-                        +'<td>Leave Description:</td><td>'+result[0]['leave_description']+ '</td></tr>'
+               var data ='<form id="noti_detail" width="650px" height="300px"><table width="500px" height="300px">';               
+                   data += '<tr><td>User Name </td><td style="font-size:13px;">'+result[0]['member_login_name']+ '</td></tr>'
+                        +'<td>Start Date </td><td style="font-size:13px;">'+result[0]['start_date']+ '</td></tr>'
+                        +'<td>End Date </td><td style="font-size:13px;">'+result[0]['end_date']+ ' </td></tr>'
+                        +'<td>Leave Status </td><td style="font-size:13px;">'+result[0]['leave_status']+ '</td></tr>'
+                        +'<td>Leave Days </td><td style="font-size:13px;">'+result[0]['leave_days']+ '</td></tr>'
+                        +'<td>Leave Description</td><td style="font-size:13px;">'+result[0]['leave_description']+ '</td></tr>'
                         +'<tr><td></td><td><input type="hidden" value='+result[0]['member_id']+ ' name="id"></td><td></td></td></tr>'
                         +'<tr><td></td><td><input type="hidden" value='+result[0]['start_date']+ ' name="start_date"></td><td></td></td></tr>';             
 
-               data +='<tr><td></td><td colspan="2"><a href="#" class="button" id="noti_ok">OK</a></td></tr>';
+               data +='<tr><td></td><td colspan="2"><a href="#" class="button" id="noti_ok">OK</a><a href="#" class="button" id="noti_cancel">Cancel</a></td></tr>';
                data +='</table></form>';
                Noti.Dialog(data);    
             }
@@ -80,6 +80,7 @@ var Noti = {
         $ovl.dialog({
             
             autoOpen: false,
+            resizable:false,
             height: 395,
             async:false,
             width: 530,            

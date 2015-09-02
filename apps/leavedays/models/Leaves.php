@@ -39,6 +39,7 @@ class Leaves extends \Library\Core\BaseModel {
                       ->columns(array('core.*', 'leaves.*'))
                       ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                       ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')                         
+                      ->orderBy('leaves.date DESC')
                       ->getQuery()
                       ->execute();          
                 //print_r($row);exit;
@@ -287,7 +288,7 @@ public  function GetDays($StartDate, $EndDate){
       *@return cond array
       *@desc   Validate Form 
       */
-     public function validating($data){
+     public function validation($data){
         $res = array();
         $validate = new Validation();
         $validate->add('username',

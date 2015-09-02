@@ -2,16 +2,8 @@
  * @author David
  * @desc   Salary Edit Dial Box
  */
-this.pager = new Paging.Pager();
 var Salary = {
     isOvl: false,
-    init : function(){
-            $("tfoot").html($('tbody').html()); //for csv           
-            pager.perpage =3;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);
-            $("tbody").show();
-    },
     Edit: function (d) {
         $.ajax({
            url:"editsalary?id="+d,
@@ -68,25 +60,22 @@ var Salary = {
         $('#edit_salary_edit').click(function () {
             Salary.BtnEdit($ovl);
         });
-        $('#edit_delete').on("click",function(){
-           alert("ちょとまてください");
-        });
         $('#edit_close').click(function () {
             $ovl.dialog("close");
         });
     },
-    BtnEdit : function($val){
+    BtnEdit : function(val){
         var form=$('#edit_salary');
         $.ajax({
             type: 'POST',
             data: form.serialize(),
             dataType:'json',
             url : "btnedit",
-            success:function(d){ 
+            success:function(d){                
                 //if true success funcion then reload page
-                if(d.valid)                      
+                if(true === d.valid)                      
                 {
-                    $val.dialog("close");
+                    val.dialog("close");
                     $('body').load("salarylist");
                 }
                 //if fail , show error data
@@ -126,9 +115,10 @@ var Salary = {
     }
 };
 $(document).ready(function () {
-    Salary.init();
+
     $('#search_salary').click(function () {
         salarysearch();
+
     });
     $(".displaypopup").click(function () {
         var id = $(this).attr('id');

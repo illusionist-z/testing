@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>.ui-dialog-titlebar-close {
+    <head><style>.ui-dialog-titlebar-close {
   visibility: hidden;
 }</style>
         <meta charset="UTF-8">
@@ -27,37 +26,39 @@
                         <ul class="nav navbar-nav">                           
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
+                                <a href="#" class="dropdown-toggle" data-toggle="<?php if(count($noti)==0){echo "";}else{echo "dropdown";}?>" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
-                                    <span class="label label-warning"><?php if(count($this->session->noti)==0){ }else{echo count($this->session->noti);}?></span>
+                                    <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
                                   <ul class="dropdown-menu">
-                                    <li class="header">You have <?php echo count($this->session->noti);?> notifications</li>
-                                       <?php foreach ($this->session->noti as $noti) {?>
+                                    <li class="header">You have <i><b style="color:red;font-size: 20px;"><?php echo count($noti);?></b></i> <b>notifications</b></li>
+                                       <?php foreach ($noti as $noti) {?>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
                                                 <?php if($this->session->permission_code=="ADMIN"){?>
                                                 <a href="#" onclick="return false;" class="adminnotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                                                <img src="../../common/img/notid.png"> 
-                                                <?php echo $noti['member_login_name'];?> apply  leave for <?php echo date("d-m-Y", strtotime( $noti['start_date']));}
+                                                <!--<img src="../../common/img/notid.png"> -->
+                                                 <img src="../../common/img/notid.png"> 
+                                                <!--#4682B4-->
+                                                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}
                                                     else {?>
                                                 <a href="#" onclick="return false;" class="usernotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                                                    <img src="../../common/img/notid.png"> admin<?php 
+                                                    <img src="../../common/img/notid.png"> <b>admin</b><?php 
                             switch($noti['leave_status']){
                             
                             case "1" : echo " Confirmed";break;
                             case "2" : echo " Rejected";break;
                                
-                        }?> <?php echo date("d-m-Y", strtotime( $noti['start_date']));}?>
+                        }?> <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}?>
                                                                                          
                                                 </a>
                                             </li>
                                            
                                         </ul>
                                 </li><?php } ?>
-                                    <li class="footer"><a href="../../notification/index/viewall">View all</a></li>
+                                    <li class="footer"><a href="../../notification/index/viewall"><b>View All</b></a></li>
                                 </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -65,16 +66,36 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                    <img src="../../common/img/profile.png" class="user-image" alt="User Image"/>
+                                   <!-- <img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="user-image" alt="User Image"/>-->
+                                    <?php
+                                                    if($this->session->user['member_profile']==null){
+                                                    $img = "profile.png";}
+                                                    else{
+                                                        $img=$this->session->user['member_profile'];
+                                                    }
+                                        ?>                                                 
+                                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="../../common/img/profile.png" class="img-circle" alt="User Image" />
+                                        <!--<img src="../../common/img/profile.png" class="img-circle" alt="User Image" />-->
+                                       
+                                        <!--<img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="img-circle">-->
+                                        <?php
+                                                    if($this->session->user['member_profile']==null){
+                                                    $img = "profile.png";}
+                                                    else{
+                                                        $img=$this->session->user['member_profile'];
+                                                    }
+                                        ?>                                                 
+                                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <p>
-                                            <?php echo $this->session->user['member_login_name']; ?>
-                                            <small>Member since Nov. 2012</small>
+                                            <b><?php echo $this->session->user['member_login_name']; ?></b>
+                                           <!-- <small><b>Member since Nov. 2012</b></small>-->
+                                            <!--<small><b>Member since <?php echo "<i style='color:black'> \" ".$this->session->user['created_dt']." \"</i>";?></b></small>-->
+                                            <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
                                         </p>
                                     </li>
 
@@ -83,20 +104,20 @@
                                       <?php $name=$this->session->user['member_login_name'];
         if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
             
         <?php }
         else
         {?> 
             <div class="pull-left">
-                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat">Setting</a>
+                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
         <?php }
         ?>
                                         
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout">Sign out</a>
+                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
 
                                         </div>
                                     </li>
@@ -117,24 +138,24 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <aside>
                     <ul class="sidebar-menu">
-                        <li class="header">MAIN NAVIGATION</li>
+                        <li class="header"><b>MAIN NAVIGATION</b></li>
                         <?php
                         foreach ($this->session->auth as $key_name => $key_value) {
                             //the outer main menu
                             if (count($key_value) > 1) {
 
-                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
+                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                             } else {
                                 $top = explode(" ", $key_value[0]);
                                 if (strpos($key_name, 'user') !== false) {
 
                                     if (isset($top[1])) {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                 }
                             }
 
@@ -183,7 +204,13 @@
             <footer class="main-footer" style="margin-left:0;">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             </footer>
+
+
         </div><!-- ./wrapper -->
-<div id="notidetail" style=" display:none;" class="navbar">    
-</div>
+<div id="notidetail" style=" display:none;" class="navbar">
     
+</div>
+
+
+    </body>
+</html>

@@ -10,6 +10,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         //$this->assets->addJs('common/js/btn.js');
         $this->setCommonJsAndCss();
+        
     }
 
     public function indexAction() {

@@ -5,11 +5,9 @@
  */
 var ApplyForm = {
     Submit : function (){
-       
         $.ajax({
            type : 'POST',
            url  : 'applyleave',
-           async: false,
            data : $('#apply_form').serialize(),
            success: function(d){
                 //alert($('#apply_form').serialize());
@@ -35,7 +33,7 @@ var ApplyForm = {
                  }
                 }
                 else{
-                    if(cond.success) {
+                    if(cond.success) { 
                         alert(cond.success);
                         location.reload();
                     }

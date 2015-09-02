@@ -24,7 +24,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
         return $getname;*/
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember";
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         //print_r($row);exit;
         return $row;
@@ -57,7 +57,11 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return username by last month
      */
-    public function getlastname() {        
+    public function getlastname() {
+        /*$this->db = $this->getDI()->getShared("db");
+        $user_name = $this->db->query("SELECT * FROM core_member WHERE  created_dt >= (NOW() - INTERVAL 8 MONTH) limit 4");
+        $laname = $user_name->fetchall();
+        return $laname;*/
         $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by  created_dt desc limit 4";
         $laname=$this->modelsManager->executeQuery($username);
        // print_r($laname);exit;
@@ -127,8 +131,9 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti() {        
-        $AdminNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0");
+    public function GetAdminNoti() { 
+        $this->db = $this->getDI()->getShared("db");
+        $AdminNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0 order by leaves.date desc");
         $noti = $AdminNoti->fetchall();
         return $noti;
     }
