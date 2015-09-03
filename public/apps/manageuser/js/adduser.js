@@ -6,7 +6,7 @@
  */
 var UserAdd = {
      Submit : function (){
-      
+     
         $.ajax({
             type:'POST',
             url :'../coremember/saveuser',

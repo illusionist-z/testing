@@ -10,20 +10,20 @@ var Salary = {
            type: "GET",
            success:function(res){
                var result = $.parseJSON(res);               
-               var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
+               var data ='<form id="edit_salary" width="650px" height="500px"><table width="500px" height="300px" >';               
                    data += '<br>'
-                        +'<tr><td></td><td><b>User Name </b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result[0]['member_login_name']+ ' name="uname" disabled></td><td ></td></tr>'
-                        +'<tr><td></td><td><b>Basic Salary </b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
-                        +'<tr><td></td><td><b>Travel Fee </b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:55px;height:40px;"></td></tr>'
-                        +'<tr><td></td><td><b>Over Time </b></td>'
-                        +'<td id="overmsg"><input style="width:50px;margin-top:10px;" type="text" value="'+result[0]['over_time']+'" name="overtime" id="overerr"> %</td></tr>'
-                        +'<tr><td></td><td><b>SSC Emp </b></td>'
-                        +'<td id="empmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result[0]['ssc_emp']+' name="ssc_emp" id="emperr"> %</td><td style="width:55px;height:40px;"></td></tr>'
-                        +'<tr><td></td><td><b>SSC Comp </b></td>'
-                        +'<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>'
+                        +'<tr><td></td><td><small>User Name </small></td>'
+                        +'<td><input style="margin-top:10px;font-size:13px;" type="text" value=" '+result[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
+                        +'<tr><td></td><td><small>Basic Salary </small></td>'
+                        +'<td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
+                        +'<tr><td></td><td><small>Travel Fee </small></td>'
+                        +'<td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:55px;height:40px;"></td></tr>'
+                        +'<tr><td></td><td><small>Over Time </small></td>'
+                        +'<td id="overmsg"><input style="width:50px;margin-top:10px;font-size:13px;" type="text" value="'+result[0]['over_time']+'" name="overtime" id="overerr"> %</td></tr>'
+                        +'<tr><td></td><td><small>SSC Emp </small></td>'
+                        +'<td id="empmsg"><input style="width:50px;margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_emp']+' name="ssc_emp" id="emperr"> %</td><td style="width:55px;height:40px;"></td></tr>'
+                        +'<tr><td></td><td><small>SSC Comp </small></td>'
+                        +'<td id="compmsg"><input style="width:50px;margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>'
                         +'<tr><td></td><td><input type="hidden" value='+result[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';               
                data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >Edit</a><a href="#" class="button" id="edit_delete" >Delete</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
                data +='</table></form>';
@@ -43,7 +43,7 @@ var Salary = {
             autoOpen: false,
             height: 420,
             async: false,
-            width: 590,
+            width: 550,
             modal: true,
             title: "Salary Edit",
             /*show:{

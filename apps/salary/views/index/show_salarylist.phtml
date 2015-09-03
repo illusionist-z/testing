@@ -1,10 +1,13 @@
+<?php
+    use Phalcon\Filter;
+?>
 <section class="content-header">
     <h1>
-        <b>Show Salary Detail</b>
+        Show Salary Detail
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Salary Detail</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Salary Detail</li>
     </ol>
 </section>
 
@@ -19,7 +22,7 @@
                     <input type="hidden" name="cond[mth]" value="<?php echo $month;?>" id="month">
                     <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
                     <div id="M_1">
-                        <b>User Name : </b>
+                        User Name :
                         <span>
                             <select class="select" data-toggle="select" name="cond[username]">
                                 <option value="">Name</option>
@@ -35,7 +38,7 @@
                         </span>
                     </div>
                     <div id="M_2">
-                        <b>Department : </b>
+                        Department :
                         <span>
                             <select class="select" data-toggle="select" name="cond[dept]">
                                 <option value="">Department</option>
@@ -49,7 +52,7 @@
                             </select>
                     </div>
                     <div id="M_3">
-                        <b>Position : </b>
+                        Position :
                         <span>
                             <select class="select" data-toggle="select" name="cond[position]">
                                 <option value="">Position</option>
@@ -63,7 +66,7 @@
                             </select>
                     </div>
                     <div id="M_4">
-                         <b>Salary :</b>
+                         Salary :
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
                             <option>400000~700000</option>
@@ -74,8 +77,8 @@
                 </div>
                 <div class="search_btn_box"><!--search btn-->
                     <div>
-                        <a href="#" class="button" id="search_salary" style="margin-left:71px; margin-right:28px;"><b>Search</b></a>
-                        <a href="#" class="button export"><b>Export</b></a>
+                        <a href="#" class="button" id="search_salary" style="margin-left:71px; margin-right:28px;">Search</a>
+                        <a href="#" class="button export">Export</a>
                     </div>
                 </div><!--search btn-->
             </form>
@@ -107,6 +110,8 @@
                 </thead>
                 <tbody>
                     <?php
+                    $filter = new Filter();
+                    
                     $month=$this->request->get('month');
                     $year=$this->request->get('year');
                     $i = 1;
@@ -115,15 +120,15 @@
                         ?>
                         <tr>
                            
-                            <td><?php echo $getsalarylist['member_login_name'] ?></td>
-                            <td><?php echo $getsalarylist['member_dept_name'] ?></td>
-                            <td><div class="td_style"><?php echo number_format($getsalarylist['basic_salary']) ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($getsalarylist['overtime']) ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($getsalarylist['travel_fee']) ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($getsalarylist['absent_dedution']) ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($getsalarylist['income_tax']) ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($getsalarylist['ssc_comp']) ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($getsalarylist['ssc_emp']) ?></div></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['member_login_name'] , "string"); ?></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'] , "string") ?></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_emp'], "int")); ?></div></td>
                             
                             <td><div class="td_style"><?php 
                             $totalresult+=$getsalarylist['total'];
@@ -139,7 +144,7 @@
 
                     <tr style="background-color:#428bca; color:#ffffff;">
                         <td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>
-                        <td><div class="td_style"><b><?php echo number_format($totalresult);?></b></div></td>
+                        <td><div class="td_style"><b><?php echo number_format($filter->sanitize($totalresult, "int"));?></b></div></td>
                         <td></td>
                     </tr>
                 </tbody>

@@ -1,6 +1,11 @@
 <?php
 
 namespace workManagiment\Core\Models\Db;
+        use Phalcon\Mvc\Model;
+        use Phalcon\Mvc\Model\Query;
+        use workManagiment\Core\Models\Db\CoreMember;
+        use Phalcon\Mvc\Controller;
+        use Phalcon\Filter; 
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -102,8 +107,20 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+        
+        //sawzinmintun
+        $filter = new Filter();
+        $username = $filter->sanitize($member['username'], "alphanum");        
+        $dept = $filter->sanitize($member['dept'], "string");
+        $position = $filter->sanitize($member['position'], "string");
+        $email = $filter->sanitize($member['email'], "email");
+        $phno = $filter->sanitize($member['phno'], "int");
+        $address = $filter->sanitize($member['address'], "string");
+        
+        
+        
         $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
-                . " VALUES(uuid(),'" . $member['username'] . "','" . $pass . "','" . $member['dept'] . "','" . $member['position'] . "','" . $member['email'] . "','" . $member['phno'] . "','" . $member['address'] . "','" . $filename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
+                . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
       
@@ -176,18 +193,27 @@ class CoreMember extends \Library\Core\BaseModel {
     public function updatedata($d, $id) {
         $this->db = $this->getDI()->getShared("db");
         //print_r($d);exit;
+        
+        //sawzinmintun
+        $filter = new Filter();
+        $username = $filter->sanitize($d['username'], "string");        
+        $dept = $filter->sanitize($d['dept'], "string");
+        $position = $filter->sanitize($d['position'], "string");        
+        $phno = $filter->sanitize($d['phno'], "int");
+        $address = $filter->sanitize($d['add'], "string");
+        
         if ($d['password'] == $d['temp_password']) {
             
-            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' , "
-                    . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "'"
-                    . ", core_member.member_mail='" . $d['email'] . "' , core_member.member_address='" . $d['add'] . "'"
-                    . ", core_member.member_mobile_tel='" . $d['phno'] . "' ,core_member.member_profile='" . $d['file'] . "' WHERE core_member.member_id='" . $id . "' ");
+            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $username . "' , "
+                    . "core_member.member_dept_name='" . $dept . "' , core_member.position='" . $position . "'"
+                    . ", core_member.member_mail='" . $d['email'] . "' , core_member.member_address='" . $address . "'"
+                    . ", core_member.member_mobile_tel='" . $phno . "' ,core_member.member_profile='" . $d['file'] . "' WHERE core_member.member_id='" . $id . "' ");
         } else {
          
-            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' ,  "
-                    . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "' "
-                    . "AND core_member.member_mail='" . $d['email'] . "' , core_member.member_mobile_tel='" . $d['phno'] . "' "
-                    . "AND core_member.member_address='" . $d['add'] . "' , core_member.member_password='" . sha1($d['password']) . "' WHERE core_member.member_id='" . $id . "'");
+            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $username . "' ,  "
+                    . "core_member.member_dept_name='" . $dept . "' , core_member.position='" . $position . "' "
+                    . "AND core_member.member_mail='" . $d['email'] . "' , core_member.member_mobile_tel='" . $phno . "' "
+                    . "AND core_member.member_address='" . $address . "' , core_member.member_password='" . sha1($d['password']) . "' WHERE core_member.member_id='" . $id . "'");
         }
 
         $target_dir = "uploads/";
@@ -204,11 +230,8 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function updateleave($id,$sdate){
           $this->db = $this->getDI()->getShared("db");
-        $sql = "UPDATE leaves set leaves.noti_seen=1 WHERE leaves.start_date='" . $sdate . "' AND leaves.member_id='" .$id. "'";
-
-       $a=$this->db->query($sql);
-      
-       
+          $sql = "UPDATE leaves set leaves.noti_seen=1 WHERE leaves.start_date='" . $sdate . "' AND leaves.member_id='" .$id. "'";
+          $a=$this->db->query($sql);                                                  
     }
 
 }

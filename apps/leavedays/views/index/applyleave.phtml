@@ -1,11 +1,11 @@
 <?php $leavetypelength = count($Leavetype); ?> 
         <section class="content-header">
           <h1>
-            <b>Apply Leave</b>
+            Apply Leave
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-            <li class="active"><b>Allply Leave</b></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Allply Leave</li>
           </ol>
         </section>
 
@@ -16,14 +16,14 @@
 	 <div class="col-md-12"><!--start add user form--->
          <?php $this->flashSession->output() ?>
 	<div id="form_div">
-	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff"><b>Apply Leave Form</b></font></div>
+	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Apply Leave Form</font></div>
         
         <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
             <table width="700px" height="300px" style="margin-left: 30px;">
           
 	<tr>
             
-            <td width="200px"><b>User Name</b> </td>
+            <td width="200px">User Name </td>
            
             <td style="height:40px;">
                     <select class="select" data-toggle="select" name="username" id="apply_form_name">
@@ -40,7 +40,7 @@
         </tr>        
         <tr>
 		
-		<td><b>Start Date</b> </td>
+		<td>Start Date </td>
                 <td style="height:40px;">
                     <input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
                     <span id="apply_form_sdate_error"></span>
@@ -48,7 +48,7 @@
 	</tr>
         
 	<tr>
-		<td><b>End Date</b> </td>
+		<td>End Date </td>
                 <td style="height:40px;">
                     <input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
                     <span id="apply_form_edate_error"></span>                
@@ -57,7 +57,7 @@
         </tr>
         <tr>
           
-		<td><b>Leave Categories</b></td>
+		<td>Leave Categories</td>
                 <td style="height:40px;">
                     <select class="select" data-toggle="select" name="leavetype">
                     <?php
@@ -70,7 +70,7 @@
                 </td>
 	</tr>
 	<tr>
-		<td><b>Description</b> </td>
+		<td>Description </td>
                 <td style="height:40px;">
                     <textarea name="description" id="apply_form_desc"  rows="5"  placeholder="Write Description"></textarea>
                     <span id="apply_form_desc_error"></span>

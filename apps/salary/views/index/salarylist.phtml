@@ -1,11 +1,14 @@
+<?php
+    use Phalcon\Filter;
+?>
 <section class="content-header">
     <h1>
-        <b>Salary Lists</b>
+        Salary Lists
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Salary Lists</b></li>
-        <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);"><b>Export</b></a>        
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Salary Lists</li>
+        <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a>        
     </ol>
 </section>
 
@@ -29,31 +32,33 @@
                     </tr>
 
                 </thead>
-                <tbody style="display:none;">
+                <tbody>
                     <?php
+                    $filter = new Filter();
                     $i = 1;
                     foreach ($salarydetail as $salarydetails) {
                         ?>
                         <tr>
                             <td><?php echo $i; ?></td>
-                            <td><?php echo $salarydetails['member_login_name'] ?></td>
-                            <td><?php echo $salarydetails['basic_salary'] ?></td>
-                            <td><?php echo $salarydetails['travel_fee'] ?></td>
-                            <td><?php echo $salarydetails['over_time'].'%' ?></td>
-                            <td><?php echo $salarydetails['ssc_emp'].'%' ?></td>
-                            <td><?php echo $salarydetails['ssc_comp'].'%' ?></td>
-                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails['id'] ?>" value="Edit"></td>
+                            <td><?php echo $filter->sanitize($salarydetails->core->member_login_name, "string"); ?></td>
+                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "string")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee, "string")); ?></td>
+                            <td><?php echo $filter->sanitize($salarydetails->salarymas->over_time, "int").' %' ?></td>
+                            <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_emp, "int").' %' ?></td>
+                            <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_comp, "int").' %' ?></td>
+                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails->salarymas->id; ?>" value="Edit"></td>                            
                         </tr>
                         <?php
                         $i++;
                     }
                     ?>
+
+                   
                 </tbody>
-                <tfoot style="display:none;"></tfoot>
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-    <div id="content"></div>
+
 </section><!-- /.content -->
 <div id="edit_salary_dia"></div>
 

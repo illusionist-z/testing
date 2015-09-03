@@ -4,7 +4,7 @@
 <!--Show Drop Down list for month-->
 
 <?php
-
+    use Phalcon\Filter;
     //calculate the user time offset
    
     if ($offset<0){
@@ -22,11 +22,11 @@
 ?> 
 <section class="content-header">
           <h1>
-           <b>Attendance List</b>
+           Attendance List
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-            <li class="active"> <b>Attendance List</b></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active"> Attendance List</li>
           </ol>
 </section>
 
@@ -72,12 +72,15 @@
   </thead>
   <tbody>
   <?php
+  
+   $filter = new Filter();
+   
 	foreach ($attlist as $result) {
             //print_r($result);exit;
   ?>
     <tr>
 	<td><?php echo $result->attendances->att_date; ?></td>
-	<td><?php echo $result->core->member_login_name; ?></td>
+	<td><?php echo $filter->sanitize($result->core->member_login_name, "string"); ?></td>
 <!--        check in time-->
 	<td><?php $checkintime=$result->attendances->checkin_time;
         if ($sign=='-'){
@@ -155,7 +158,7 @@
             echo "-";
         }
 	 ?> </td>
-        <td><?php echo $result->attendances->location;
+        <td><?php echo $filter->sanitize($result->attendances->location, "string");
                 
              
         ?></td>

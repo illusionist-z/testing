@@ -58,7 +58,7 @@ var Paging = {
                        }                            
                     }                
                 pagingControls += '<li><a href="#" onclick="pager.showPage(' + numPages + ');return false;">Last</a></li>';
-                pagingControls += '<li><span class="btn" style="margin-left:20px"> Page :'+ currentPage +' in '+ numPages+'</span></li></ul>';            
+                pagingControls += '<li><span class="btn" style="margin-left:20px"> Page : '+ currentPage +' in '+ numPages+'</span></li></ul>';            
              $('#content').html(pagingControls);
                  }
         };    

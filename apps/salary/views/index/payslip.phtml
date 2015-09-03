@@ -1,11 +1,11 @@
 <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              <b>Salary Detail</b>
+              Salary Detail
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-            <li class="active"><b>Salary Detail</b></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Salary Detail</li>
           </ol>
         </section>
         
@@ -17,7 +17,7 @@
 		  
 			<div style="line-height:30px; width:65%;">
 			<div style="float:right; margin-bottom:10px;">
-			<a href="#" class="button print"><b>Print</b></a>
+			<a href="#" class="button print">Print</a>
 			</div>
 	<div style="clear:right;"></div>
         <?php 
@@ -26,29 +26,29 @@
         foreach($getsalarydetails as $getsalarydetail){
         ?>
 				<div style="border:1px solid #dcdedf;" id="printable">
-				<center style="font-size:16px;"><b>Pay slip for : <i style="color:#4682B4"><?php echo "<b style='color:black'>".date("M - Y", strtotime( $getsalarydetail->salarydet->pay_date))."</b>";?></i></b></center>
+                                    <center style="font-size:16px;">Pay slip for : <span style="font-weight: bold;"><?php echo date("M - Y", strtotime( $getsalarydetail->salarydet->pay_date));?></span></center>
 				
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Name </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Name</div>
 				<div><?php                                 
                                 echo " <b>:</b> ".$getsalarydetail->core->member_login_name;
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Department </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Department</div>
 				<div><?php                                 
                                 echo " <b>:</b> ".$getsalarydetail->core->member_dept_name;
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Position </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Position </div>
 				<div><?php                                 
                                 //echo "Web Developer";
                                 echo " <b>:</b> ".$getsalarydetail->core->position;
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Basic salary </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Basic salary </div>
 				<div><?php 
                                 $sum+=$getsalarydetail->salarydet->basic_salary;
                                 echo " <b>:</b> ".$getsalarydetail->salarydet->basic_salary;
@@ -56,7 +56,7 @@
 				</div>
 				
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>OT : 10000*2hr</b></div>
+				<div style="float:left; width:260px; padding-left:10px;">OT : 10000*2hr</div>
 				<div><?php 
                                 $sum+=$getsalarydetail->salarydet->overtime;
                                 echo " <b>:</b> ".$getsalarydetail->salarydet->overtime;
@@ -68,7 +68,7 @@
                                     $sum=$sum+$getallowances['allowance_amount'];
                                 ?>
                                 <div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b><?php echo $getallowances['allowance_name'];?></b></div>
+				<div style="float:left; width:260px; padding-left:10px;"><?php echo $getallowances['allowance_name'];?></div>
 				<div><?php echo " <b>:</b> ".$getallowances['allowance_amount'];?></div>
 				</div>
                                 <?php
@@ -77,7 +77,7 @@
                                 ?>
                                 
 				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Total amount </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Total amount </div>
                                 <div>
                                     <?php
                                     echo " <b>:</b> ".$sum;
@@ -85,27 +85,27 @@
                                 </div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Absent Deduction </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Absent Deduction </div>
 				<div><?php                                 
                                 echo " <b>:</b> ".$getsalarydetail->salarydet->absent_dedution;
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>SSC </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">SSC </div>
 				<div><?php 
                                 $deduce+=$getsalarydetail->salarydet->ssc_emp;
                                 echo " <b>:</b> ".$getsalarydetail->salarydet->ssc_emp;
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Income Tax </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Income Tax </div>
 				<div><?php 
                                 $deduce+=$getsalarydetail->salarydet->income_tax;
                                 echo " <b>:</b> ".$getsalarydetail->salarydet->income_tax;
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
-				<div style="float:left; width:260px; padding-left:10px;"><b>Total Deduction </b></div>
+				<div style="float:left; width:260px; padding-left:10px;">Total Deduction </div>
 				<div><?php echo " <b>:</b> ".$deduce;?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2; font-weight:bold;">

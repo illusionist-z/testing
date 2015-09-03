@@ -92,12 +92,12 @@ var Tax = {
                var result = $.parseJSON(res);
                //edit dialog box
                var data ='<form id="edit_tax_table" width="250px" height="200px"><table width="400px" height="270px" align="center" >';               
-                   data += '<br><tr><td> <b>ID </b> </td><td><input style="margin-top:10px;" type="text" value="'+result[0]['id']+ '" name="id"></td></tr>'
-                        +'<tr><td> <b>Taxs From </b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td></tr>'
-                        +'<tr><td> <b>Taxs To </b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['taxs_to']+ ' name="taxs_to" ></td></tr>'
-                        +'<tr><td> <b>Taxs Rate </span></b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['taxs_rate']+ ' name="taxs_rate"></td></tr>'
-                        +'<tr><td> <b>SSC emp </b> </td><td><input style="margin-top:10px;" type="text" value='+result[0]['ssc_emp']+ ' name="ssc_emp"></td>'
-                        +'<tr><td> <b>SSC comp </b></td><td><input style="margin-top:10px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp"></td></tr>'
+                   data += '<br><tr><td> <small>ID </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['id']+ '" name="id"></td></tr>'
+                        +'<tr><td> <small>Taxs From </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td></tr>'
+                        +'<tr><td> <small>Taxs To </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_to']+ ' name="taxs_to" ></td></tr>'
+                        +'<tr><td> <small>Taxs Rate </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_rate']+ ' name="taxs_rate"></td></tr>'
+                        +'<tr><td> <small>SSC emp </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_emp']+ ' name="ssc_emp"></td>'
+                        +'<tr><td> <small>SSC comp </small></td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp"></td></tr>'
                          +'<tr><td></td></tr>';             
                data +='<tr><td></td><td colspan="3" ><a href="#" class="button" id="edit_tax" style="margin-top:10px;">Save</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
                data +='</table></form>';
@@ -186,8 +186,8 @@ var Deduction = {
                
                var data ='<form id="edit_deduct_table"><table>';               
                    data += '<tr><td></td><td><input type="hidden" value="'+result[0]['deduce_id']+ '" name="id" ></td></tr>'
-                        +'<tr><td>Deduction Name </td><td><input style="margin-top:10px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
-                        +'<tr><td>Deduction Amount </td><td><input style="margin-top:10px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
+                        +'<tr><td><small>Deduction Name </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
+                        +'<tr><td><small>Deduction Amount </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
                data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_deduct">Save</a><a href="#" class="button" id="delete_deduct">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
@@ -341,8 +341,8 @@ var Deduction = {
                
                var data ='<form id="Add_new_deduct"><table>';               
                    data += '<tr><td></td></tr>'
-                        +'<tr><br><td>Deduction Name </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>'
-                        +'<tr><td>Deduction Amount</td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>'
+                        +'<tr><br><td><small>Deduction Name</small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>'
+                        +'<tr><td><small>Deduction Amount</small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
                data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';

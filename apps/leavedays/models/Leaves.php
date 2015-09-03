@@ -7,7 +7,11 @@ use workManagiment\Leavedays\Models\LeavesSetting;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Date;
-
+            use Phalcon\Mvc\Model;
+        use Phalcon\Mvc\Model\Query;
+        use workManagiment\Core\Models\Db\CoreMember;
+        use Phalcon\Mvc\Controller;
+        use Phalcon\Filter;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -111,6 +115,13 @@ class Leaves extends \Library\Core\BaseModel {
             $checkday = date("Y-m-d", strtotime("+7 days"));
             $sdate = date("Y-m-d", strtotime($sdate));
             $edate = date("Y-m-d", strtotime($edate));
+            
+                 //sawzinmintun
+                $filter = new Filter();
+                $uname = $filter->sanitize($uname, "string"); 
+                $type = $filter->sanitize($type, "string"); 
+                $desc = $filter->sanitize($desc, "string"); 
+        
             //check before a week
             if ($sdate >= $checkday && $edate >= $checkday) {
                 //check $edate greater than $sdate
