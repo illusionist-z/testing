@@ -1,5 +1,5 @@
 /**
- * @author David
+ * @author David JP<david.gnext@gmail.com>
  * @desc   Salary Edit Dial Box
  */
 var Salary = {

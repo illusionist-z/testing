@@ -4,7 +4,8 @@
  * @since 25/8/2015
  * @desc adduser form validation
  */
-var UserAdd = {
+   
+   UserAdd = {
      Submit : function (){
       
         $.ajax({
@@ -52,14 +53,3 @@ var UserAdd = {
         });
      }    
 };
-$(document).ready(function(){
-    
-   $('.submit_useradd').click(function(){
-            //validform();   
-            UserAdd.Submit();
-            
-      
-   });
-   
- 
-});
