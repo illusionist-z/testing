@@ -117,13 +117,14 @@ class IndexController extends ControllerBase {
         $this->view->setVar("noti",$noti);
         $member_id = $this->request->get('member_id');
         $month = $this->request->get('month');
-        $Mth = '';
+        //$Mth = '';
         if ($month < 10) {
-            $Mth = '0' . $month;
+            $month = '0' . $month;
         }
+        
         $year = $this->request->get('year');
         $Salarydetail = new SalaryDetail();
-        $getsalarydetail = $Salarydetail->getpayslip($member_id, $Mth, $year);
+        $getsalarydetail = $Salarydetail->getpayslip($member_id, $month, $year);
         //print_r($getsalarydetail);exit;
 
         $getallowance = $Salarydetail->getallowanceBymember_id($member_id);

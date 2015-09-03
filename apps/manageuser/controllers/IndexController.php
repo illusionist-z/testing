@@ -90,6 +90,7 @@ class IndexController extends ControllerBase
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('apps/manageuser/js/adduser.js'); 
+        $this->assets->addCss('apps/manageuser/css/manageuser.css');
         
     }
 }

@@ -8,25 +8,37 @@ use Phalcon\Tag as Tag;
     <section class="content-header">
         <h1>
             <b>Calendar</b>
-        </h1>            
+        </h1>        
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
             <li class="active"><b>Calendar</b></li>
         </ol>
-
-    </section>
-</div>
+    </section>      
 <!-- Main content -->
 <section class="content">
-    <div class="box box-primary">
+    <div class="row">
+        <div class="col-md-2">
+        <h3><span class="label label-default">User Event Enable</span></h3>
+        <ul class="nav nav-pills nav-stacked" id="left-scroll">
+         <?php
+            foreach ($uname as $result) {
+                ?>
+            <li class="addbtn"><input type="checkbox" value="<?= $result->member_login_name; ?>"><?php echo $result->member_login_name; ?></li>
+                <?php
+            }
+            ?>
+        </ul>
+        <span class="btn btn-info col-sm-12 btn-show-event">Show Event</span>
+        <div class="alert col-sm-12">Check above user to see their event</div>
+    </div>
+    <div class="col-md-10">
         <div class="box-body no-padding">
-            <div class="popup-table"></div> 
             <!-- THE CALENDAR -->
-            <div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>
+            <div id="calendar" class="bg-info"></div>
         </div><!-- /.box-body -->
         <br><br>
     </div><!-- /. box -->
-
+    </div>
 </section><!-- /.content -->
 
 <div id="dialog" style="display:none" title="Edit Event" class="navbar">

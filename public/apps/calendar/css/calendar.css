@@ -17,3 +17,13 @@
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
 }
+#left-scroll {    
+    overflow-y: scroll;
+    height: 250px;
+  }
+/*scroll bar hidden*/
+body::-webkit-scrollbar { width: 0; }
+
+#calendar{ 
+    width: 100%;
+}

@@ -15,10 +15,11 @@ class Calendar extends Model {
      * @author David
      * @desc   Select all data 
      */
-    public function fetch() {                    
+    public function fetch($id) {                    
             $events = array();
-            $sql ="SELECT * FROM calendar";
-            $query=  $this->db->query($sql);                       
+            $member_id = implode($id,"','");
+            $sql ="SELECT * FROM calendar where member_id IN ('$member_id')";
+            $query=  $this->db->query($sql);
             $query->setFetchMode(\Phalcon\Db::FETCH_ASSOC);
           while ($fetch = $query->fetchArray()) {                      
                 $e = array();
