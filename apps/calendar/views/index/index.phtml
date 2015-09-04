@@ -18,8 +18,8 @@ use Phalcon\Tag as Tag;
 <section class="content">
     <div class="row">
         <div class="col-md-2">
-        <h3><span class="label label-default">User Event Enable</span></h3>
-        <ul class="nav nav-pills nav-stacked" id="left-scroll">
+        <h3 class="col-sm-12 label label-primary">User Event Enable</h3>
+        <ul class="nav nav-pills nav-stacked col-sm-12" id="left-scroll">
          <?php
             foreach ($uname as $result) {
                 ?>
@@ -28,9 +28,9 @@ use Phalcon\Tag as Tag;
             }
             ?>
         </ul>
-        <span class="btn btn-info col-sm-12 btn-show-event">Show Event</span>
+        <span class="btn btn-primary col-sm-12 btn-show-event">Show Event</span>
         <div class="alert col-sm-12">Check above user to see their event</div>
-    </div>
+        </div>
     <div class="col-md-10">
         <div class="box-body no-padding">
             <!-- THE CALENDAR -->

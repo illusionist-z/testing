@@ -8,49 +8,51 @@ class IndexController extends ControllerBase
 {
     public $user;
     public function initialize() {
-        parent::initialize();    
+        parent::initialize();
+        $this->setCommonJsAndCss();
         $this->user = new User();
-        $this->setCommonJsAndCss();        
         $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/style.css'); 
         $this->assets->addCss('common/css/css/style.css');
-       
+        $this->assets->addJs('apps/manageuser/js/adduser.js');
+        $this->assets->addCss('apps/manageuser/css/manageuser.css');
     }
     /**
-     * @author David
+     * @author David JP <david.gnext@gmail.com>
      * @desc   Array ,show all user data 
      * @since  18/7/15
+     * @version 3/9/2015 @by David JP
      */
-    public function userlistAction() {     
+    public function userlistAction() {
         //for paging and edit user
-        $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+        $User=new Db\CoreMember;
+        $noti=$User->GetAdminNoti();
         $this->view->setVar("noti",$noti);
-        $this->assets->addJs('common/js/paging.js');                       
-        $this->assets->addJs('apps/manageuser/js/search.js'); 
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
-        
-        $UserName = new Db\CoreMember();
-        $getname = $UserName::getinstance()->getusername();
+        $this->assets->addJs('apps/manageuser/js/search.js'); 
+        $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
         $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list); 
-        $this->assets->addJs('common/js/paging.js');     
+        $this->view->setVar('Result', $list);         
     }    
    
     /**
      * @get data for user id
-     * @return user data to dialog box
+     * @return type [new || edit]
      * @author David
      * @since 20/7/15
      */
-    public function usereditAction() {                       
-        $name = $this->request->get('data');        
-        $edit = $this->user->useredit($name);                
+    public function manageuserAction() {
+        $type = $this->request->get('data');
+        if($type == 'new'){
+            echo json_encode($type);
+        }
+        else{
+        $edit = $this->user->useredit($type);
         echo json_encode($edit[0]);
-        $this->view->disable();        
+        }
+        $this->view->disable();
     }  
     /**
      * @author David
@@ -85,13 +87,8 @@ class IndexController extends ControllerBase
      * ADD NEW USER 
      * @author Su Zin Kyaw
      */
-    public function adduserAction(){               
-         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
-        $this->view->setVar("noti",$noti);
-        $this->assets->addJs('apps/manageuser/js/adduser.js'); 
-        $this->assets->addCss('apps/manageuser/css/manageuser.css');
-        
+    public function adduserAction(){
+       
     }
 }
 
