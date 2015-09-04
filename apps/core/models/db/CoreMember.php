@@ -95,7 +95,7 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function addnewuser($member_id, $member, $filename) {
 
-        $arr = (explode(",", $member['user_role']));
+       $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
         if($member['username']==NULL OR $member['password']==NULL OR $member['dept']==NULL OR $member['position']==NULL OR $member['email']==NULL OR $member['phno']==NULL OR $member['address']==NULL ){
@@ -107,20 +107,8 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-        
-        //sawzinmintun
-        $filter = new Filter();
-        $username = $filter->sanitize($member['username'], "alphanum");        
-        $dept = $filter->sanitize($member['dept'], "string");
-        $position = $filter->sanitize($member['position'], "string");
-        $email = $filter->sanitize($member['email'], "email");
-        $phno = $filter->sanitize($member['phno'], "int");
-        $address = $filter->sanitize($member['address'], "string");
-        
-        
-        
         $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
-                . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address . "','" . $filename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
+                . " VALUES(uuid(),'" . $member['username'] . "','" . $pass . "','" . $member['dept'] . "','" . $member['position'] . "','" . $member['email'] . "','" . $member['phno'] . "','" . $member['address'] . "','" . $filename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
       

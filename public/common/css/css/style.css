@@ -40,7 +40,7 @@ height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
 .ui-widget button{font-family:Verdana,Arial,sans-serif;font-size:1em}
 .ui-widget-content{border:0px solid blue;color:#4682B4 url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;font-weight: bold;margin-bottom: 1px;}
 .ui-widget-content a{color:#222}
-.ui-widget-header{border:1px solid #aaa;background:red url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;color:white;background: #4682B4;font-weight:700}
+.ui-widget-header{border:1px solid #aaa;background:red url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x;color:white;background:#3c8dbc;font-weight:700}
 .ui-widget-header a{color:#222}
 .ui-state-default,
 .ui-widget-content

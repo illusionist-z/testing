@@ -199,7 +199,7 @@ public  function GetDays($StartDate, $EndDate){
         $this->db = $this->getDI()->getShared("db");
         if ($leave_type == null and $mth == null) {
             $mth = date('m');
-            $row ="select date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays from core_member left join leaves on core_member.member_id = leaves.member_id where month(leaves.start_date)='".$mth."' AND leaves.member_id ='".$id."'";          
+            $row ="select date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays from core_member left join leaves on core_member.member_id = leaves.member_id where month(leaves.start_date)='".$mth."' AND leaves.member_id ='".$id."' order by date desc ";          
            
         } else {
             //for searching by leave type and month           

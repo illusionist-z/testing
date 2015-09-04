@@ -19,7 +19,8 @@
 }
 #left-scroll {    
     overflow-y: scroll;
-    height: 250px;
+    height: 200px;
+    width: 165px;
   }
 /*scroll bar hidden*/
 body::-webkit-scrollbar { width: 0; }

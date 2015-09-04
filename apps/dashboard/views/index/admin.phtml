@@ -182,13 +182,8 @@
                                                                  <?php
                                                                         if($v->member_profile == null){
                                                                         $img = "profile1.jpg";}
-                                                                        else{
-                                                                            if(ereg("\.jpg$",$v->member_profile)){
-                                                                                $img=$v->member_profile;
-                                                                            }else{
-                                                                                 $img=$v->member_profile;
-                                                                            }
-                                                                           
+                                                                        else{                                                                            
+                                                                                 $img=$v->member_profile;                                                                        
                                                                         }
                                                                   ?>                                                 
                                                                  <img src="../../uploads/<?php echo  $img;?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
