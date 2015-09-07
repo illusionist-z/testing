@@ -18,14 +18,20 @@ use Phalcon\Tag as Tag;
 <section class="content">
     <div class="row">
         <div class="col-md-2">
-        <h2 class="col-sm-12 label label-primary">User Event Enable</h2>
+            <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">User Event Enable</span></h2>
+            <a href="#" onClick="select_all('area', '1');">Check All</a> | <a href="#" onClick="select_all('area', '0');">Uncheck All</a> <br><br>
         <ul class="nav nav-pills nav-stacked col-sm-12" id="left-scroll">
+        
          <?php
-            foreach ($uname as $result) {
-                ?>
-            <li class="addbtn"> <input style="margin-top: -2px;margin-left: 10px;" type="checkbox" value="<?= $result->member_login_name; ?>"><?php echo " ".$result->member_login_name; ?></li>
+            $i=1;
+            foreach ($uname as $result) {               
+             
+               ?>
+            <li class="addbtn" id="form_id"><input style="margin-top: -2px;margin-left: 10px;" type="checkbox" name="area[]" value="<?php echo $result->member_id; ?>"><?php echo " ".$result->member_login_name; ?></li>
                 <?php
+               
             }
+           $i++; 
             ?>
         </ul>
         <span class="btn btn-primary col-sm-12 btn-show-event">Show Event</span>

@@ -20,7 +20,7 @@
 #left-scroll {    
     overflow-y: scroll;
     height: 200px;
-    width: 165px;
+    width: 150px;
   }
 /*scroll bar hidden*/
 body::-webkit-scrollbar { width: 0; }
