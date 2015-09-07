@@ -253,7 +253,7 @@ class Attendances extends Model {
         $res   = $this->db->query($query);
         $absent = $res->fetchall();        
         foreach ($absent as $v){
-            $insert = "Insert into absent (id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
+            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
             $this->db->query($insert);
         }        
     }

@@ -50,7 +50,7 @@ class UserController extends ControllerBase {
             $User=new Db\CoreMember;
             $noti=$User->GetUserNoti($id);
             $this->session->set('noti', $noti);
-            echo "<script>alert('".$error."');</script>";
+            
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
         }     
@@ -61,23 +61,27 @@ class UserController extends ControllerBase {
      * display user leave list
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function leavelistAction(){          
-        $month = $this->config->month;
-        $leave = $this->config->leavetype;         
-        $id= $this->session->user['member_id'];   
+    public function leavelistAction(){         
         $User=new Db\CoreMember;
+        $id= $this->session->user['member_id'];   
         $noti=$User->GetUserNoti($id);
         $this->view->setVar("noti",$noti);
+        //month
+        $month = $this->config->month;
+        $leavetype = new LeaveCategories();
+        $ltype=$leavetype->getleavetype();
+        $this->view->setVar("Leavetype", $ltype);      
+        
         //variable for search result
         $leave_type=$this->request->get('ltype');
         $mth = $this->request->get('month');             
         $leavelist = $this->_leave->getuserleavelist($leave_type,$mth,$id); 
-       
+        $this->view->setVar("Result", $leavelist);
+        //get maximum leaves days
         $max=$this->_leave->getleavesetting();
         $max_leavedays=$max['0']['max_leavedays'];
-        $this->view->setVar("Result", $leavelist);
         $this->view->setVar("Month", $month);      
-        $this->view->setVar("leave_result", $leave);
+    
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);
