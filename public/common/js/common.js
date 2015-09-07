@@ -123,7 +123,7 @@ $(document).ready(function () {
 
 $('.sidebar-toggle').click(function (e) {
     e.stopPropagation();
-    e.preventDefault();
+    //e.preventDefault();
     //get collapse content selector
     var collapse_content_selector = $(this).attr('href');
 
@@ -146,8 +146,8 @@ $('.sidebar-toggle').click(function (e) {
     });    
     //toggle off when click body
     $('body').click(function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+//        e.preventDefault();
+//        e.stopPropagation();
         if (0 === $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
             $('.collapse-wrapper').css("margin-left","0");

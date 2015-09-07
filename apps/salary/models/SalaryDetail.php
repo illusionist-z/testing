@@ -91,20 +91,13 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
             $current_date=date("Y-m-d");
             
             foreach ($row as $rows) {
-                if($rows['overtime_rate']!=null){
                 //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
                 $sql = "UPDATE salary_detail SET basic_salary ='" . $rows['basic_salary'] . "', travel_fee='".$rows['travel_fee']."', overtime='".$rows['overtime_rate']."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";
-                //$result = $this->db->query($sql);
-                    }
-                else{
-                $sql = "UPDATE salary_detail SET basic_salary ='" . $rows['basic_salary'] . "', travel_fee='".$rows['travel_fee']."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";    
-                }
-                echo $sql;
+               
+               
                 $result = $this->db->query($sql);
                 
             }
-           
-        
            
         } catch (Exception $e) {
             echo $e;
