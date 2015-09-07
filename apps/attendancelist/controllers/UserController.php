@@ -12,7 +12,7 @@ class UserController extends ControllerBase
         parent::initialize();
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/attendancelist/js/index.js');        
+        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');        
         $this->setCommonJsAndCss();
         
     }

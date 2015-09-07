@@ -71,6 +71,7 @@ var Noti = {
         });
     },
     Dialog: function (data) {
+        $("#notificationContainer").hide();
         if(!this.isOvl){
             this.isOvl=true;
         }
