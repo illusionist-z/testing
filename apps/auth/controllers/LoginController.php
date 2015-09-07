@@ -19,6 +19,8 @@ class LoginController extends ControllerBase {
         $ModelAuth = new Models\Auth();
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
+        $member=new CoreMember();
+        $member->updatecontract($loginParams);
         $this->session->set('permission_code', $permission);
         
         $user = array();
