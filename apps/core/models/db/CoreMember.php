@@ -73,17 +73,23 @@ class CoreMember extends \Library\Core\BaseModel {
         return $laname;
     }
 
-    /**
-     * 
-     * @param type $tz
-     * @param type $id
-     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
-     */
-    public function updatetimezone($tz, $id) {
-
+   
+   public function updatecontract($loginParams){
+       $name = $loginParams['member_login_name'];
+        $password = $loginParams['password'];
         $this->db = $this->getDI()->getShared("db");
-
-        $this->db->query("UPDATE core_member SET timezone ='" . $tz . "'  WHERE member_id ='" . $id . "' ");
+         $user=$this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+        $user1=$user->fetchall();
+       $today =date("Y-m-d H:i:s");
+       if($user1['0']['updated_dt']=='0000-00-00 00:00:00'){
+          $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['created_dt']))); 
+       }
+       else{
+            $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['updated_dt']))); 
+       }
+       if($end_date<=$today){
+         $this->db->query("UPDATE core_member set core_member.updated_dt='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+       }
     }
     
     /**
@@ -152,6 +158,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function GetUserNoti($id) {
+        $this->db = $this->getDI()->getShared("db");
         $UserNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status!=0 AND leaves.noti_seen=0 AND  leaves.member_id='" . $id . "'");
         $noti = $UserNoti->fetchall();
         return $noti;

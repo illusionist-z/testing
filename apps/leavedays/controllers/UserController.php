@@ -50,7 +50,7 @@ class UserController extends ControllerBase {
             $User=new Db\CoreMember;
             $noti=$User->GetUserNoti($id);
             $this->session->set('noti', $noti);
-            echo "<script>alert('".$error."');</script>";
+            
             echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
             $this->view->disable();
         }     
