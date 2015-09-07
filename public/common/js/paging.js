@@ -30,6 +30,7 @@ var Paging = {
 	 //for pagination index 
 	    var renderControls = function( currentPage, numPages) {
                 $('.pagination').empty();
+                $('#content').show();
                 var nextpage = currentPage+1,
                     prevpage = currentPage-1;
                 //var pageselect = '<select onchange="pager.showPage(parseInt(this.options[this.selectedIndex].value));return false;">';
@@ -48,10 +49,10 @@ var Paging = {
                                 pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';                    
                                     }
                         pagingControls += '<li><a href="#" onclick="pager.showPage(' + nextpage + ');return false;">Next</a></li>';	        
-                                        }                
+                                       }
                 else {
                     if(1 == numPages){
-                        $('#content').remove();      //paging disable
+                        $('#content').hide();      //paging disable
                     }
                     else{
                     pagingControls += '<li><a href="#" onclick="pager.showPage(' + prevpage + ');return false;">Previous</a></li>';
