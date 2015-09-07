@@ -18,8 +18,8 @@
 <!-- Main content -->
 <section class="content">
 <div>
-    <div class="top_row"><a href="../../attendancelist/user/attendancelist" ><?php echo Tag::image(array('common/img/att.jpg', 'width' => 27)) ?><font style="color:red;"><b> Attendance : </font><?php echo $numatt;?></b></a></div>
-    <div class="top_row"><a href="../../leavedays/user/leavelist" ><?php echo Tag::image(array('common/img/leave.jpg', 'width' => 30)) ?><font style="color:red;"><b> Leave Days : </font><?php echo $numleaves;?></b></a></div>
+    <div class="top_row"><a href="../../attendancelist/user/attendancelist" ><?php echo Tag::image(array('common/img/att.jpg', 'width' => 27)) ?><font style="color:red;"> Attendance : </font><?php echo $numatt;?></a></div>
+    <div class="top_row"><a href="../../leavedays/user/leavelist" ><?php echo Tag::image(array('common/img/leave.jpg', 'width' => 30)) ?><font style="color:red;"> Leave Days : </font><?php echo $numleaves;?></a></div>
 </div>
     <div class="row">
         <div class="col-md-12"><!--start add user form--->
@@ -29,11 +29,11 @@
                     
 
                    <div class="col-md-7 col-md-offset-3">
-          <h1 style="font-size: 184%"><b>Current Time : <span id='ct' style="color:red;" ></b></h1>
+          <h1 style="font-size: 184%">Current Time : <span id='ct' style="color:red;" ></h1>
         </div><br><br>
         <div class="col-md-8 col-md-offset-3">
             <form id="theForm" name="theForm" method="post" action="">
-             <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)" /> <b>If You late,Check Here</b> and write your reason.
+             <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)" /> If You late,Check Here and write your reason.
               <div id="xtraInfo" style="display:none;">
                 <textarea class="textarea" id="note" placeholder="Write your reason here" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
              </div>
@@ -41,10 +41,10 @@
             
         </div><br><br>
         <div class="col-md-6 col-md-offset-4">
-          <a href="checkin"  class="btn btn-primary btn-sm btn-flat" id="" style="width: 150px;"><b>Check In</b> </a>
+          <a href="checkin"  class="btn btn-primary btn-sm btn-flat" id="" style="width: 150px;">Check In </a>
         </div><br><br>
         <div class="col-md-6 col-md-offset-4">
-            <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;"><b>Check Out</b> </a>
+            <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;">Check Out </a>
         </div><br><br></form>
                 </div>
 

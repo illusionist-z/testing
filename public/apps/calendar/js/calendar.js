@@ -64,7 +64,7 @@ var Calendar = {
             if ($(this).hasClass('popup')) {
                 deselect($(this));
             } else {
-            var str = "<table style='width:500px;height:100px;background:#aaa999;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
+            var str = "<table style='width:300px;height:80px;background:#3c8dbc;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
             str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
             str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";                              
                $(this).append(str);               
@@ -86,9 +86,9 @@ var Calendar = {
             success : function(d){
                 d = JSON.parse(d);
     if(d.length === 0){
-    var message = "<div class='message' style='top:30%;left:25%;"
-    +"text-align:center;background:yellow;color:red;position:fixed;"
-    +";width:55%;height:7%;z-index:100;'>No event with that user........</div>";
+    var message = "<div class='message' style='top:30%;left:18%;"
+    +"text-align:center;background:#3c8dbc;color:white;position:absolute;"
+    +";width:78.3%;height:10%;z-index:100;font-size:33px;margin-left:10px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
     $('body').append(message);
     setTimeout(function() {
     $('.message').remove();
@@ -129,6 +129,8 @@ var Calendar = {
             }
         });
         $ovl = $('#dialog');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $('#title_edit_event').val(event.title);
         $('#sdate_edit_event').val(event.start.format());
         $('select#show_name').val(selectname);    
@@ -144,7 +146,7 @@ var Calendar = {
         $ovl.dialog({
             autoOpen: false,
             closeText: "",
-            height: 420,
+            height: 380,
             width: 450,
             modal: true
         });
@@ -167,6 +169,8 @@ var Calendar = {
             this.init();
         }
         $dia = $('#dialog_create');
+        $dia.css('color','black');
+        $dia.css('background','#F5F5F5');
         $sdate = $('#sdate_create_event').val(start);
         $edate = $('#edate_create_event').val(end);
         $title = $('#title_create_event').val();
@@ -175,8 +179,8 @@ var Calendar = {
         $dia.dialog({
             autoOpen: false,
             closeText: "",
-            height: 420,
-            width: 450,
+            height: 430,
+            width: 400,
             modal: true
         });
         $('#reset_create_event').click(function () {

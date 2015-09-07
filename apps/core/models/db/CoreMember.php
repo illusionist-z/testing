@@ -1,6 +1,11 @@
 <?php
 
 namespace workManagiment\Core\Models\Db;
+        use Phalcon\Mvc\Model;
+        use Phalcon\Mvc\Model\Query;
+        use workManagiment\Core\Models\Db\CoreMember;
+        use Phalcon\Mvc\Controller;
+        use Phalcon\Filter; 
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -90,7 +95,7 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function addnewuser($member_id, $member, $filename) {
 
-        $arr = (explode(",", $member['user_role']));
+       $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
         if($member['username']==NULL OR $member['password']==NULL OR $member['dept']==NULL OR $member['position']==NULL OR $member['email']==NULL OR $member['phno']==NULL OR $member['address']==NULL ){
@@ -176,18 +181,27 @@ class CoreMember extends \Library\Core\BaseModel {
     public function updatedata($d, $id) {
         $this->db = $this->getDI()->getShared("db");
         //print_r($d);exit;
+        
+        //sawzinmintun
+        $filter = new Filter();
+        $username = $filter->sanitize($d['username'], "string");        
+        $dept = $filter->sanitize($d['dept'], "string");
+        $position = $filter->sanitize($d['position'], "string");        
+        $phno = $filter->sanitize($d['phno'], "int");
+        $address = $filter->sanitize($d['add'], "string");
+        
         if ($d['password'] == $d['temp_password']) {
             
-            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' , "
-                    . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "'"
-                    . ", core_member.member_mail='" . $d['email'] . "' , core_member.member_address='" . $d['add'] . "'"
-                    . ", core_member.member_mobile_tel='" . $d['phno'] . "' ,core_member.member_profile='" . $d['file'] . "' WHERE core_member.member_id='" . $id . "' ");
+            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $username . "' , "
+                    . "core_member.member_dept_name='" . $dept . "' , core_member.position='" . $position . "'"
+                    . ", core_member.member_mail='" . $d['email'] . "' , core_member.member_address='" . $address . "'"
+                    . ", core_member.member_mobile_tel='" . $phno . "' ,core_member.member_profile='" . $d['file'] . "' WHERE core_member.member_id='" . $id . "' ");
         } else {
          
-            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' ,  "
-                    . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "' "
-                    . "AND core_member.member_mail='" . $d['email'] . "' , core_member.member_mobile_tel='" . $d['phno'] . "' "
-                    . "AND core_member.member_address='" . $d['add'] . "' , core_member.member_password='" . sha1($d['password']) . "' WHERE core_member.member_id='" . $id . "'");
+            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $username . "' ,  "
+                    . "core_member.member_dept_name='" . $dept . "' , core_member.position='" . $position . "' "
+                    . "AND core_member.member_mail='" . $d['email'] . "' , core_member.member_mobile_tel='" . $phno . "' "
+                    . "AND core_member.member_address='" . $address . "' , core_member.member_password='" . sha1($d['password']) . "' WHERE core_member.member_id='" . $id . "'");
         }
 
         $target_dir = "uploads/";
@@ -204,11 +218,8 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function updateleave($id,$sdate){
           $this->db = $this->getDI()->getShared("db");
-        $sql = "UPDATE leaves set leaves.noti_seen=1 WHERE leaves.start_date='" . $sdate . "' AND leaves.member_id='" .$id. "'";
-
-       $a=$this->db->query($sql);
-      
-       
+          $sql = "UPDATE leaves set leaves.noti_seen=1 WHERE leaves.start_date='" . $sdate . "' AND leaves.member_id='" .$id. "'";
+          $a=$this->db->query($sql);                                                  
     }
 
 }

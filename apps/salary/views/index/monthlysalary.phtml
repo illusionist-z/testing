@@ -1,18 +1,21 @@
+<?php
+    use Phalcon\Filter;
+?>
 <section class="content-header">
     <h1>
-        <b>Monthly Salary Lists</b>
+        Monthly Salary Lists
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Monthly Salary Lists</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Monthly Salary Lists</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <a href="#" class="button add-big" id="displaypopup"><b>Calculate salary</b></a>
-        <a href="#" class="button export"><b>Export</b></a>
+        <a href="#" class="button add-big" id="displaypopup">Calculate salary</a>
+        <a href="#" class="button export">Export</a>
     </div>
 
     <div class="row">
@@ -35,18 +38,19 @@
                 </thead>
                 <tbody>
                     <?php
+                    $filter = new Filter();
                     foreach ($geteachmonthsalarys as $geteachmonthsalary) {
                         ?>
                         <tr>
                             <td><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
-                            <td><?php echo number_format($geteachmonthsalary['salary_total']); ?></td>
-                            <td><?php echo number_format($geteachmonthsalary['allowance']); ?></td>
-                            <td><?php echo number_format($geteachmonthsalary['travel_expense']); ?></td>
-                            <td><?php echo number_format($geteachmonthsalary['income_tax_amount']); ?></td>
-                            <td><?php echo number_format($geteachmonthsalary['ssc_emp_amount']); ?></td>
-                            <td><?php echo number_format($geteachmonthsalary['ssc_comp_amount']); ?></td>
-                            <td><?php echo number_format($geteachmonthsalary['Tax_total']); ?></td>
-                            <td><?php echo number_format($geteachmonthsalary['Total']); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['salary_total'], "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['allowance'], "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['travel_expense'], "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['income_tax_amount'], "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_emp_amount'], "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_comp_amount'], "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['Tax_total'], "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['Total'], "int")); ?></td>
                         </tr>
                         <?php
                     }

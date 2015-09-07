@@ -54,6 +54,9 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function show_salarylistAction() {
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $month = $this->request->get('month');
         $year = $this->request->get('year');
         $Salarydetail = new SalaryDetail();
@@ -109,6 +112,9 @@ class IndexController extends ControllerBase {
      * get detail data for payslip
      */
     public function payslipAction() {
+        $Admin=new Db\CoreMember;
+        $noti=$Admin->GetAdminNoti();
+        $this->view->setVar("noti",$noti);
         $member_id = $this->request->get('member_id');
         $month = $this->request->get('month');
         //$Mth = '';

@@ -1,10 +1,10 @@
 <section class="content-header">
     <h1>
-        <b>Add Salary For Each Member</b>
+        Add Salary For Each Member
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Add Salary</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Add Salary</li>
     </ol>
 </section>
 <?php
@@ -18,11 +18,11 @@ if(isset($Msg))
        <div class="row">
         <div class="col-md-12"><!--start table content--->
             <div id="form_div">
-                <div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff"><b>Add Salary Form</b></font></div>
+                <div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add Salary Form</font></div>
                 <div class="left_div_style_box">
                     <form action="../salarymaster/savesalary" method="post">
                     <div class="div_bottom">
-                        <span class="span_style"><b>UserName </b></span>
+                        <span class="span_style">UserName </span>
                         <span>
                             <select style="width:34%;" name="uname" id="uname">
                                 <option value="">Name</option>
@@ -41,7 +41,7 @@ if(isset($Msg))
                     </div>
                         
                     <div class="div_bottom">
-                        <span class="span_style"><b>Position </b></span>
+                        <span class="span_style">Position </span>
                         <span>
                             <select style="width:34%;" name="position" id="position">
                                 <option value="">Select Position</option>
@@ -58,39 +58,39 @@ if(isset($Msg))
                         </span>
                     </div>
                     <div class="div_bottom">
-                        <span class="span_style"><b>Basic Salary </b></span>
+                        <span class="span_style">Basic Salary </span>
                         <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:34%; height: 20%;" name="bsalary"></span>
                     </div>
 
                     <div class="div_bottom">
-                        <span class="span_style"><b>Travel fees </b></span>
+                        <span class="span_style">Travel fees </span>
                         <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee"></span>
                     </div>
 
                     <div class="div_bottom">
-                        <span class="span_style"><b>Overtime ( per hr ) </b></span>
+                        <span class="span_style">Overtime ( per hr ) </span>
                         <span><input type="text" id="overtime" value="" style="width:5%;" name="overtime" placeholder="0"></span>
                         <span>%</span>
                     </div>
                         
                     <div class="div_bottom">
-                        <span class="span_style"><b>Deduce for SSC </b></span>
+                        <span class="span_style">Deduce for SSC </span>
                         <span>
-                            <b>with_F</b> <input type="checkbox" name="check_list[]" value="stay_father">
-                            <b>with_M</b> <input type="checkbox" name="check_list[]" value="stay_mother">
-                            <b>spouse</b> <input type="checkbox" name="check_list[]" value="spouse">
-                            <b>children</b> <input type="checkbox" name="check_list[]" value="children">
-                            <b>life_insurance</b> <input type="checkbox" name="check_list[]" value="life_insurance">
+                            with_F <input type="checkbox" name="check_list[]" value="stay_father">
+                            with_M <input type="checkbox" name="check_list[]" value="stay_mother">
+                            spouse <input type="checkbox" name="check_list[]" value="spouse">
+                            children <input type="checkbox" name="check_list[]" value="children">
+                            life_insurance <input type="checkbox" name="check_list[]" value="life_insurance">
                         </span>
                         
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 8%;"><b>Allowance </b></div>
+                        <div style="float: left; width: 8%;">Allowance </div>
                         <div style="margin-left: 15%;">
                             <?php
                             //print_r($getall_allowance);
                             foreach ($getall_allowance as $getall_allowances) {
-                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_allowances['allowance_id'].'"><b> '. $getall_allowances['allowance_name']."</b><br>";
+                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_allowances['allowance_id'].'"> '. $getall_allowances['allowance_name']."<br>";
                             }
                             ?>
                             
