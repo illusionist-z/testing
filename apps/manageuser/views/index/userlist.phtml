@@ -1,18 +1,20 @@
-
+<?php
+    use Phalcon\Filter;
+?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <b>User Lists</b>
+        User Lists
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>User Lists</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">User Lists</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <div class="buttons btn-flat ">
+    <div class="buttons">
         <!--<a href="#" class="button add-big">Add User</a>-->	
         <form>
         <select class="select" data-toggle="select" name="username" id="username">
@@ -30,7 +32,7 @@
             <input type="submit" onclick="return false;" class="buttonn" value="Search" id="userlistsearch">
             <a href="" onclick="return false;" class="buttonn addbtn" id="addinguser">Add User </a>
         </form>
-        
+
     </div>
 
     <div class="row">
@@ -49,19 +51,20 @@
                     </tr>
 
                 </thead>
-                <tbody style="display:none;">                  
+                <tbody>                  
                        <?php 
+                       $filter = new Filter();
                     $i=1;
                     foreach ($Result as $result) {                                                
                     ?>                       
                     <tr>
                         <td><?= $i ?></td>
-                        <td><?= $result->member_login_name; ?></td>
-                        <td><?= $result->member_dept_name; ?></td>
-                        <td><?= $result->position; ?></td>
-                        <td><?= $result->member_mail; ?></td>
-                        <td><?= $result->member_mobile_tel; ?></td>
-                        <td><?= $result->member_address; ?>
+                        <td><?= $filter->sanitize($result->member_login_name, "string"); ?></td>
+                        <td><?= $filter->sanitize($result->member_dept_name, "string"); ?></td>
+                        <td><?= $filter->sanitize($result->position, "string"); ?></td>
+                        <td><?= $filter->sanitize($result->member_mail, "email"); ?></td>
+                        <td><?= $filter->sanitize($result->member_mobile_tel, "int"); ?></td>
+                        <td><?= $filter->sanitize($result->member_address, "string"); ?>
                         <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="button displaypopup" id="<?=$result->member_login_name; ?>">Edit</a>
                         </td>                        
                     </tr>
@@ -70,12 +73,13 @@
                     }
                     ?>
                 </tbody>
-                <tfoot style="display:none;"></tfoot>
+                <tfoot style="display:none;"></tfoot>                    
             </table>
     </div>
 </section>   
 <div id="content"></div>
-<div id="edituser" class="navbar"></div>	
+<div id="edituser" class="navbar">    
+</div>	
 <div id="confirm" title="Confirm Delete">
     
 </div>

@@ -4,7 +4,8 @@
 //for ($i=0; $i < $length; $i++) {
 //    echo "$timezone_identifiers[$i]<br>";
 //}exit;
-
+    use Phalcon\Filter;
+    
 $length = count($Month);
 
 ?>
@@ -12,11 +13,11 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <b>Leave List</b>
+        Leave List
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Leave List</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Leave List</li>
     </ol>
 </section>
 
@@ -85,14 +86,16 @@ $length = count($Month);
                 <tbody>
                     <?php
                     //print_r($Result);
+                     $filter = new Filter();
+                     
                     foreach ($Result as $item) {
                         ?>
                         <tr>
                             <td><?php  $dt=  explode(" ",date($item['date']));
                                 echo $dt[0];
                                 ?></td>
-
-                            <td><?php echo $item['member_login_name']; ?></td>
+                                
+                            <td><?php echo $filter->sanitize($item['member_login_name'], "string"); ?></td>
                             <td><?php $start_date= explode(" ", $item['start_date']); 
                                       echo $start_date[0];
                                 ?></td>
@@ -101,19 +104,19 @@ $length = count($Month);
                                 
                                 ?></td>
                             <td><?php
-                                echo $item['leave_days'];
+                                echo $filter->sanitize($item['leave_days'], "int");
                                 
                                 ?></td>
                             <td><?php
-                                echo $item['leave_category'];
+                                echo $filter->sanitize($item['leave_category'], "string");
                                 ?></td>
                             <td><?php
-                                echo $item['leave_description'];
+                                echo $filter->sanitize($item['leave_description'], "string");
                                 ?></td>
                            
                             <td><?php
                                 
-                        switch($item['leave_status']){
+                        switch($filter->sanitize($item['leave_status'], "string")){
                             case "0" : echo "Pending" ; break;
                             case "1" : echo "Confirmed";break;
                             case "2" : echo "Rejected";break;
@@ -122,14 +125,14 @@ $length = count($Month);
                                 ?></td>
                             <td><font color="red"><?php
                                 
-                            if($item['total_leavedays']>$max){
+                            if($filter->sanitize($item['total_leavedays'], "int")>$max){
                             
-                            echo ($item['total_leavedays'])-$max;
+                            echo ($filter->sanitize($item['total_leavedays'], "int"))-$max;
                             echo " Days are in absent";
                     }
                     else{
                                 
-                    echo $max-($item['total_leavedays']);}                        
+                    echo $max-($filter->sanitize($item['total_leavedays'], "int"));}                        
                                 ?></font></td>
                         </tr>
                             <?php

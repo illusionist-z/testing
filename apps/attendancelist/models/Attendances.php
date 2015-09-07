@@ -7,6 +7,8 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 use workManagiment\Core\Models\Db\CoreMember as CoreMember;
 use workManagiment\Attendancelist\Models\Attendances as Attendances;
+
+         use Phalcon\Filter; 
 //use workManagiment\Auth\Models\Db\CoreMember as corememberresult;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,7 +28,10 @@ class Attendances extends Model {
      * @author zinmon
      */
     public function gettodaylist($name) {        
-        $today = date("Y:m:d");                
+        $today = date("Y:m:d");
+        
+        
+        
         // for search result
         /*if (isset($name)) {
            $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where core_member.member_login_name='".$name."' and attendances.att_date ='".$today."'";
@@ -66,7 +71,8 @@ class Attendances extends Model {
                           ->where('attendances.att_date = :today:', array('today' => $today))
                           ->orderBy('attendances.checkin_time DESC')
                           ->getQuery()
-                          ->execute();          
+                          ->execute(); 
+            
                 // print_r($row);exit;
                    /* foreach($row as $rows) {
                           echo $rows->core->member_login_name;

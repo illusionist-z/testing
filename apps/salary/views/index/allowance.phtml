@@ -1,10 +1,13 @@
+<?php
+    use Phalcon\Filter;
+?>
 <section class="content-header">
     <h1>
-        <b>Allowance</b>
+        Allowance
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Allowance</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Allowance</li>
     </ol>
 </section>
 
@@ -17,11 +20,11 @@
             <form id='TextBoxesGroup' action='saveallowance'>
                 <div id="TextBoxDiv1">
          
-                    <label>Allowance Name 1 : </label> <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' >
-                    <label>Allowance Amount 1 : </label> <input style="margin-top:10px;" type='text' id='txt1' name='txt1'>
-                    <b><input type='button' value='+' id='addButton'></b>
-                    <b><input type='button' value='-' id='removeButton'></b>
-                    <b><input type='submit' value='Add' id=''></b>
+                    Allowance Name 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' >
+                    Allowance Amount 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1'>
+                     <input type='button' value='+' id='addButton'>
+                    <input type='button' value='-' id='removeButton'>
+                    <input type='submit' value='Add' id=''>
 
                 </div>
             </form>
@@ -39,12 +42,13 @@
                 </thead>
                 <tbody>
                 <?php
+                 $filter = new Filter();
                 $n=0;
                 foreach ($list   as $result) {$n++;
                     ?><tr>
                         <td><?php echo $n; ?></td>
-                        <td><?php echo $result['allowance_name'];?></td>
-                        <td><?php echo $result['allowance_amount'];?></td>
+                        <td><?php echo $filter->sanitize($result['allowance_name'],"string");?></td>
+                        <td><?php echo number_format($filter->sanitize($result['allowance_amount'],"int"));?></td>
                         <td><input type="button" class="btn btn-default allpopup" onclick="return false;" id="<?= $result['allowance_id'] ?>" value="Edit"></td>
                       </tr>
                  <?php
@@ -75,9 +79,9 @@
             var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter);
 
-            newTextBoxDiv.after().html('<label>Allowance Name ' + counter + ' : </label> ' +
+            newTextBoxDiv.after().html('Allowance Name ' + counter + ' :  ' +
                     ' <input style="margin-top:10px;" type="text" name="textbox' + counter +
-                    '" id="textbox' + counter + '" value="" > <label>Allowance Amount  ' + counter + ' : </label>' +
+                    '" id="textbox' + counter + '" value="" > Allowance Amount  ' + counter + ' : ' +
                     ' <input style="margin-top:10px;" type="text" name="txt' + counter +
                     '" id="txt' + counter + '" value="" >');
 

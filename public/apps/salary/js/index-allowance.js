@@ -17,8 +17,8 @@ var Allowance = {
                var result = $.parseJSON(res);
                
                var data ='<form id="edit_all" width="250px" height="200px"><table width="450px" height="150px" align="center" >';               
-                   data += '<br><tr><td><b>Allowance Name </b></td><td><input style="margin-top:10px;" type="text" value="'+result[0]['allowance_name']+ '" name="name"></td></tr>'
-                        +'<tr><td><b>Allowance Amount </b></td><td><input style="margin-top:10px;" type="text" value='+result[0]['allowance_amount']+ ' name="allowance_amount"></td></tr>'
+                   data += '<br><tr><td style="font-size:14px;">Allowance Name </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['allowance_name']+ '" name="name"></td></tr>'
+                        +'<tr><td style="font-size:14px;">Allowance Amount </b></td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['allowance_amount']+ ' name="allowance_amount"></td></tr>'
                          +'<tr><td></td><td><input type="hidden" value='+result[0]['allowance_id']+ ' name="id"></td></td></tr>';             
                data +='<tr><td></td><td colspan="3" ><a href="#" class="button" id="edit_allowance_edit" >Save</a><a href="#" class="button" id="all_delete" >Delete</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
                data +='</table></form>';

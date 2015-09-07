@@ -1,5 +1,5 @@
 <?php 
-
+    use Phalcon\Filter; 
 //calculate the user time offset
 if ($offset < 0) {
     $sign = '-';
@@ -14,11 +14,11 @@ if ($offset < 0) {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <b>Today Attendance Lists</b>
+        Today Attendance Lists
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i><b>Home</b></a></li>
-        <li class="active"><b>Today Attendance Lists</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Today Attendance Lists</li>
     </ol>
 </section>
 
@@ -41,7 +41,7 @@ if ($offset < 0) {
             </select>
             <input type="submit" class="buttonn" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><b>Export</b></a>
+            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
         </form>
     </div>
 
@@ -64,14 +64,17 @@ if ($offset < 0) {
                 </thead>
                 <tbody>
                 <?php
-                foreach ($attlist as $result) {
-                ?>
+                
+                $filter = new Filter();
+                
+                foreach ($attlist as $result) {                                                     
+                 ?>
                         <tr>                    
                         <td><?php
                         $date = date('Y-m-d');
                         echo $date;
                          ?></td>
-                            <td><?php echo $result->core->member_login_name; ?></td>
+                            <td><?php echo $filter->sanitize($result->core->member_login_name, "string");  ?></td>
                             <td>
                             <?php
                             $checkintime = $result->attendances->checkin_time;
@@ -145,7 +148,7 @@ if ($offset < 0) {
 
                             </td>
                             <td>
-                                <?php echo $result->attendances->location;?>
+                                <?php echo $filter->sanitize($result->attendances->location, "string");?>
       </td>
                 </tr>
                 <?php

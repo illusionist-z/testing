@@ -1,5 +1,5 @@
 <?php
-
+    use Phalcon\Filter;
 use Phalcon\Tag as Tag;
 $length = count($Month);
 //print_r(count($leave_result));
@@ -9,11 +9,11 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header" id="showleavelist">
     <h1>
-        <b>Leave Lists</b>
+        Leave Lists
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b> </a></li>
-        <li class="active"><b>Leave Lists</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home </a></li>
+        <li class="active">Leave Lists</li>
     </ol>
 </section>
 
@@ -89,6 +89,9 @@ $length = count($Month);
                 <tbody>
                     <?php
                    //print_r($Result);
+                    
+                    $filter = new Filter();
+                    
                     $days=0;
                     foreach ($Result as $item) {
                        // print_r($item);exit;
@@ -97,7 +100,7 @@ $length = count($Month);
                             <td><?php  $dt=  explode(" ",$item->leaves->date);
                                 echo $dt[0];
                                 ?></td>                            
-                            <td><?php echo $item->core->member_login_name; ?></td>
+                            <td><?php echo $filter->sanitize($item->core->member_login_name, "string"); ?></td>
                             <td><?php $start_date= explode(" ", $item->leaves->start_date); 
                                       echo $start_date[0];
                                 ?></td>                            
@@ -106,20 +109,19 @@ $length = count($Month);
                                 
                                 ?></td>
                             <td><?php
-                                echo $item->leaves->leave_days;
-                                ;
+                                echo $filter->sanitize($item->leaves->leave_days, "int");                                
                                 //echo $days;
                                 ?></td>
                             <td><?php
-                                echo $item->leaves->leave_category;
+                                echo $filter->sanitize($item->leaves->leave_category, "string");
                                 ?></td>
                             <td><?php
-                                echo $item->leaves->leave_description;
+                                echo $filter->sanitize($item->leaves->leave_description, "string");
                                 ?></td>
                              
                             <td><?php
                                 
-                        switch($item->leaves->leave_status){
+                        switch($filter->sanitize($item->leaves->leave_status, "string")){
                             case "0" : echo "Pending" ; break;
                             case "1" : echo "Confirmed";break;
                             case "2" : echo "Rejected";break;
@@ -127,13 +129,13 @@ $length = count($Month);
                         };
                                 ?></td>
                             <td><font color="red"><?php
-                    if($item->leaves->total_leavedays >=$max){
-                            echo ($item->leaves->total_leavedays);
+                    if($filter->sanitize($item->leaves->total_leavedays, "int") >=$max){
+                            echo ($filter->sanitize($item->leaves->total_leavedays, "int"));
                             echo " left";
                     }
                     else{
                                 
-                    echo $max-($item->leaves->total_leavedays);}
+                    echo $max-($filter->sanitize($item->leaves->total_leavedays, "int"));}
                         
                                 ?></font></td>
                         </tr>

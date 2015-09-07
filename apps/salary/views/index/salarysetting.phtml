@@ -1,4 +1,6 @@
-
+<?php
+    use Phalcon\Filter;
+?>
     <!-- Theme style -->
     <link href="../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- Admin Skins. Choose a skin from the css/skins
@@ -20,11 +22,11 @@
     </style>
 <section class="content-header">
     <h1>
-        <b>Salary Setting</b>
+        Salary Setting
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Salary Setting</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Salary Setting</li>
     </ol>
 </section><br>
     
@@ -53,13 +55,13 @@
 	
   </thead>
   <tbody><?php
-               
+               $filter = new Filter();
                 foreach ($result  as $list) {
                     ?>
 				<tr>
 			  		<td><?php echo $list['id'];?></td>
-			  		<td><?php echo $list['taxs_from'];?></td>
-			  		<td><?php echo $list['taxs_to'];?></td>
+			  		<td><?php echo number_format($filter->sanitize($list['taxs_from'],"int"));?></td>
+			  		<td><?php echo number_format($filter->sanitize($list['taxs_to'],"int"));?></td>
 			  		<td id='tbl-no'><?php echo $list['taxs_rate'];?></td>
 			  		<td id='tbl-no'><?php echo $list['ssc_emp'];?></td>
 			  		<td id='tbl-no'><?php echo $list['ssc_comp'];?></td>
@@ -100,7 +102,7 @@
 				<tr>
 			  		<td><?php echo $n;?></td>
 			  		<td><?php echo $list['deduce_name'];?></td>
-			  		<td><?php echo $list['amount'];?></td>
+			  		<td><?php echo number_format($filter->sanitize($list['amount'],"int"));?></td>
 			  		
 					
 					
