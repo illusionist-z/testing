@@ -1,4 +1,17 @@
 <?php
+
+    function checked() {
+        if(isset($_POST['chkAllFiles'])) {
+            return 'checked="checked" ';
+        }
+        else
+        {
+            return '';
+        }
+    }
+
+?>
+<?php
 use Phalcon\Tag as Tag;
 ?>
 <div id="external-events">
@@ -17,23 +30,25 @@ use Phalcon\Tag as Tag;
 <!-- Main content -->
 <section class="content">
     <div class="row">
+        
         <div class="col-md-2">
             <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">User Event Enable</span></h2>
-            <a href="#" onClick="select_all('area', '1');">Check All</a> | <a href="#" onClick="select_all('area', '0');">Uncheck All</a> <br><br>
+        <form action="#" method="post">      
+            <span style="margin-left: 80px;"  ><input name="chkAllFiles" type="checkbox" <?php echo checked(); ?> >
+                <input style="height: 18px;width:50px;border-radius: 5px;font-weight: 700;color:white;background-color: #3c8dbc;" name="btnGo" type="submit" value="Check" /></span>
+        </p>
+           <!--<a href="#" onclick="checked()">Select All</a>-->
+       
         <ul class="nav nav-pills nav-stacked col-sm-12" id="left-scroll">
-        
          <?php
-            $i=1;
-            foreach ($uname as $result) {               
-             
-               ?>
-            <li class="addbtn" id="form_id"><input style="margin-top: -2px;margin-left: 10px;" type="checkbox" name="area[]" value="<?php echo $result->member_id; ?>"><?php echo " ".$result->member_login_name; ?></li>
+            foreach ($uname as $result) {
+                ?>
+            <li class="addbtn"> <input style="margin-top: -2px;margin-left: 10px;" type="checkbox" value="<?= $result->member_login_name; ?>" <?php echo checked(); ?>><?php echo " ".$result->member_login_name; ?></li>
                 <?php
-               
             }
-           $i++; 
             ?>
         </ul>
+         </form>
         <span class="btn btn-primary col-sm-12 btn-show-event">Show Event</span>
         <div class="alert col-sm-12">Check above user to see their event</div>
         </div>

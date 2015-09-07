@@ -28,3 +28,9 @@ body::-webkit-scrollbar { width: 0; }
 #calendar{ 
     width: 100%;
 }
+#hidden-type{
+    display: block;
+}
+#clear{
+    clear:both;
+}
