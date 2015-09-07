@@ -31,7 +31,6 @@ var Noti = {
         });
     },
     AdminDetail: function (id) {
-       
         $.ajax({
             type: 'GET',
             url: '../../notification/index/detail?data=' + id,
@@ -51,15 +50,16 @@ var Noti = {
                data +='</table></form>';
                Noti.Dialog(data);   */
                
-               var result = $.parseJSON(res);               
-               var data ='<form id="noti_detail" width="800px" height="300px" ><table width="500px" height="260px"  >';               
+               var result = $.parseJSON(res);  
+             
+               var data ='<form id="noti_detail" width="800px" height="300px" ><table width="500px" height="290px"  >';               
                    data += '<br>'
-                        +'<tr><td></td><td><small>User Name</small></td><td><span style="color:black"><b> :</b> </span><small>'+result[0]['member_login_name']+ '</small></td><td ></td></tr>'
-                        +'<tr><td></td><td><small>Start Date </small> </td><td><span style="color:black"><b> :</b> </span><small>'+result[0]['start_date']+ '</small></td></tr>'
-                        +'<tr><td></td><td><small>End Date </small> </td><td><span style="color:black"><b> :</b> </span><small>'+result[0]['end_date']+ '</small></td></tr>'
-                        +'<tr><td></td><td><small>Leave Status </small> </td><td><span style="color:black"><b> :</b> </span><small>'+result[0]['leave_status']+ '</small></td></tr>'
-                        +'<tr><td></td><td><small>Leave Days </small> </td><td><span style="color:black"><b> :</b> </span><small>'+result[0]['leave_days']+ '</small></td></tr>'
-                        +'<tr><td></td><td><small>Leave Description </small> </td><td><span style="color:black"><b> :</b> </span><small>'+result[0]['leave_description']+ '</small></td></tr>'
+                        +'<tr><td></td><td><b>User Name </b></td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['member_login_name']+ '</b></td><td ></td></tr>'
+                        +'<tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['start_date']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>End Date </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['end_date']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_status']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_days']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_description']+ '</b></td></tr>'
                         +'<tr><td></td><td><input type="hidden" value='+result[0]['member_id']+ ' name="id"></td><td></td></td></tr>'
                         +'<tr><td></td><td><input type="hidden" value='+result[0]['end_date']+ ' name="end_date"></td><td></td></td></tr>'
                         +'<tr><td></td><td><input type="hidden" value='+result[0]['leave_days']+ ' name="leave_days"></td><td></td></td></tr>'
@@ -81,7 +81,7 @@ var Noti = {
             
             autoOpen: false,
             resizable:false,
-            height: 362,
+            height: 395,
             async:false,
             width: 530,            
             modal: true,
@@ -120,6 +120,7 @@ var Noti = {
             
             e.preventDefault();
             $ovl.dialog("close");
+            location.reload();
             //$('body').load(dashboard);
             this.isOvl=false;
              
@@ -161,19 +162,7 @@ var Noti = {
             }
         });
     },
-    Refresh : function(d){
-        var form=$('#noti_detail');
-        
-        $.ajax({
-            type:'POST',
-            data: form.serialize(),
-            url : "../../leavedays/index/acceptleave",
-            success:function(){
-               
-                d.dialog("close");
-            }
-        });
-    },
+   
     Reject : function(d){
         var form=$('#noti_detail');
         
@@ -189,16 +178,43 @@ var Noti = {
     }
 
 };
+
 $(document).ready(function () {
+   
+    
     $(".usernotidetail").click(function () {
-        
+       
         var id = $(this).attr('id');
         Noti.Detail(id);
     });   
      $(".adminnotidetail").click(function () {
-      
+       
         var id = $(this).attr('id');
         Noti.AdminDetail(id);
-    });    
+    }); 
+
+    $(".noti").click(function () {
+       document.getElementById("noti").className = "noticlose";
+       $("#notificationContainer").fadeToggle(100);
+       $("#notificationsBody").load('../../notification/index/notification');
+    });
     
-});        
+    
+    $(".noticlose").click(function () {
+       $("#notificationContainer").hide();
+       document.getElementById("noti").className = "noti";
+       location.reload();
+    });
+ 
+//    $(".content").click(function()
+//    {
+//     $("#notificationContainer").hide();
+//    location.reload();
+//    });
+
+    
+});     
+
+
+
+
