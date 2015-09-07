@@ -87,7 +87,7 @@ var Calendar = {
                 d = JSON.parse(d);
     if(d.length === 0){
     var message = "<div class='message' style='top:30%;left:25%;"
-    +"text-align:center;background:yellow;color:red;position:absolute;"
+    +"text-align:center;background:yellow;color:red;position:fixed;"
     +";width:55%;height:7%;z-index:100;'>No event with that user........</div>";
     $('body').append(message);
     setTimeout(function() {

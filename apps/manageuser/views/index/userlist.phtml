@@ -12,7 +12,7 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="buttons">
+    <div class="buttons btn-flat ">
         <!--<a href="#" class="button add-big">Add User</a>-->	
         <form>
         <select class="select" data-toggle="select" name="username" id="username">
@@ -28,8 +28,9 @@
 
         </select>
             <input type="submit" onclick="return false;" class="buttonn" value="Search" id="userlistsearch">
+            <a href="" onclick="return false;" class="buttonn addbtn" id="addinguser">Add User </a>
         </form>
-
+        
     </div>
 
     <div class="row">
@@ -48,7 +49,7 @@
                     </tr>
 
                 </thead>
-                <tbody>                  
+                <tbody style="display:none;">                  
                        <?php 
                     $i=1;
                     foreach ($Result as $result) {                                                
@@ -69,7 +70,7 @@
                     }
                     ?>
                 </tbody>
-                <tfoot style="display:none;"></tfoot>                    
+                <tfoot style="display:none;"></tfoot>
             </table>
     </div>
 </section>   
