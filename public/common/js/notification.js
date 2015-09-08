@@ -195,6 +195,7 @@ $(document).ready(function () {
     }); 
 
     $(".noti").click(function () {
+       
        document.getElementById("noti").className = "noticlose";
        $("#notificationContainer").fadeToggle(100);
        $("#notificationsBody").load('../../notification/index/notification');
