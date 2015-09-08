@@ -147,7 +147,7 @@ $('.sidebar-toggle').click(function (e) {
     //toggle off when click body
     $('body').click(function (e) {
 //        e.preventDefault();
-//        e.stopPropagation();
+        e.stopPropagation();
         if (0 === $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
             $('.collapse-wrapper').css("margin-left","0");
