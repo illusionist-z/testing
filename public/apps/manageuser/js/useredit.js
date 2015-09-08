@@ -14,40 +14,39 @@
             success: function (res) {
                 var html,title;
                 if( res !== 'new' ){
-                 html = '<form id="edit_user" width="250px" height="200px"><table width="500px" height="300px" align="center" >'
-                    +'<br><tr><td><b>User ID </b></td>'
-                    +'<td><input type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
-		    +'<tr><td><b>User Name </b></td>'
-                    +'<td><input type="text" value="'+ res.member_login_name +'" name="name" id="edit_user_name"></td></tr>'
-                    +'<tr><td><b>Department </b></td>'
-                    +'<td><input type="text" value="'+ res.member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
-		    +'<tr><td><b>Position </b></td>'
-                    +'<td><input type="text" value="'+ res.job_title +'" name="position" id="edit_user_pos"></td></tr>'
-                    +'<tr><td><b>Email </b></td>'
-                    +'<td><input type="text" value="'+ res.member_mail +'" name="email" id="edit_user_email" ></td><td></td></tr>'
-		    +'<tr><td><b>Phone Number </b></td>'
-                    +'<td><input type="text" value="'+ res.member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
-                    +'<tr><td><b>Address </b></td>'
-                    +'<td colspan="4"><textarea rows="5" cols="50" name="address" style="color:black">'+ res.member_address +'</textarea></td></tr>'
+                 html = '<form id="edit_user" width="250px" height="200px"><table width="400px" height="100px" align="center"  >'
+                    +'<br><tr><td style="font-size:13px;">User ID </td>'
+                    +'<td><input style="font-size:13px;margin-top:10px;" type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
+		    +'<tr><td style="font-size:13px;">User Name </td>'
+                    +'<td><input style="font-size:13px;margin-top:10px;" type="text" value="'+ res.member_login_name +'" name="name" id="edit_user_name"></td></tr>'
+                    +'<tr><td style="font-size:13px;">Department </td>'
+                    +'<td><input style="font-size:13px;margin-top:10px;"  type="text" value="'+ res.member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
+		    +'<tr><td style="font-size:13px;">Position </td>'
+                    +'<td><input style="font-size:13px;margin-top:10px;"  type="text" value="'+ res.job_title +'" name="position" id="edit_user_pos"></td></tr>'
+                    +'<tr><td style="font-size:13px;">Email </td>'
+                    +'<td><input style="font-size:13px;margin-top:10px;" type="text" value="'+ res.member_mail +'" name="email" id="edit_user_email" ></td><td></td></tr>'
+		    +'<tr><td style="font-size:13px;">Phone Number </td>'
+                    +'<td><input style="font-size:13px;margin-top:10px;" type="text" value="'+ res.member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
+                    +'<tr><td style="font-size:13px;">Address </td>'
+                    +'<td colspan="4"><textarea style="font-size:13px;" rows="5" cols="50" name="address" style="color:black">'+ res.member_address +'</textarea></td></tr>'
 		    +'<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
                     +'</tr></table></form>'; 
                   title = "Edit User";
                     }
                     else{
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
-                   +'<table class="row-fluid"><tr><td class="col-sm-8"><b>User Name </b></td><td>'
-                   +'<input type="text" name="username" id="uname" class="col-sm-10" placeholder="Write User Name"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Password </b></td><td><input type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Confirm Password </b></td><td><input type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
-	           +'<tr><td class="col-sm-8"><b>Department </b></td><td><input type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Position</b></td><td><input type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
-	           +'<tr><td class="col-sm-8"><b>Email </b></td><td><input type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Phone Number </b></td><td><input type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Address </b></td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
-                   +'<tr><td class="col-sm-8"><br><b>User Role </b></td><td><select class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
-                   +'<option value="USER,user">User</option><option value="ADMIN,adminstrator">Admin</option></select></td></tr>'
-                   +'<tr class="jumbotron alert"><td><img src="../../common/img/profile.png" ></td><td><input type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
-                   +'<tr><td></td><td><input type="submit" onclick="return false;" class="buttonn submit_useradd" value="Add User"><input type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
+                   +'<table class="row-fluid"  style="width:550px;height:300px;" ><tr><td class="col-sm-8" style="font-size:13px;"><b>User Name </b></td><td>'
+                   +'<input style="font-size:13px;margin-top:10px;width:200px;" type="text" name="username" id="uname" class="col-sm-10" placeholder="Write User Name"></td></tr>'
+                   +'<tr><td class="col-sm-8" style="font-size:13px;"><b>Password </b></td><td><input style="font-size:13px;margin-top:10px;width:200px;" type="password" name="password"  id="pass" placeholder="Write Password"></td></tr>'
+                   +'<tr><td class="col-sm-8" style="font-size:13px;"><b>Department </b></td><td><input style="font-size:13px;margin-top:10px;width:200px;" type="text" name="dept" id="dept"  placeholder="Write Department"></td></tr>'
+                   +'<tr><td class="col-sm-8" style="font-size:13px;"><b>Position</b></td><td><input style="font-size:13px;margin-top:10px;width:200px;" type="text" name="position" id="pos"  placeholder="Write Position"></td></tr>'
+	           +'<tr><td class="col-sm-8" style="font-size:13px;" ><b>Email </b></td><td><input style="font-size:13px;margin-top:10px;width:200px;" type="email" name="email" id="mail"  placeholder="Write Email"></td></tr>'
+                   +'<tr><td class="col-sm-8" style="font-size:13px;" ><b>Phone Number </b></td><td><input style="font-size:13px;margin-top:10px;width:200px;" type="text" name="phno" id="pno"  placeholder="Write Phone Number"></td></tr>'
+                   +'<tr><td class="col-sm-8" style="font-size:13px;" ><b>Address </b></td><td><textarea style="font-size:13px;width:200px;" rows="3" name="address"  placeholder="Write Address"></textarea></td></tr>'
+                   +'<tr><td class="col-sm-8" style="font-size:13px;" ><br><b>User Role </b></td><td><select style="font-size:13px;margin-top:10px;width:200px;"  data-toggle="select" name="user_role" id="member[user_role]">'
+                   +'<option value="USER,user" style="font-size:13px;" >User</option><option value="ADMIN,adminstrator">Admin</option></select></td></tr>'
+                   +'<tr><td style="font-size:13px;">User Picture</td><td><input type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
+                   +'<tr><td></td><td><br><input style="font-size:13px;" type="submit" onclick="return false;" class="buttonn submit_useradd" value="Add User"> <input style="font-size:13px;" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
                    +'</tr></table></form>';	
                    title = "Add User";
                     }
@@ -65,10 +64,10 @@
         if(type === 'Add User'){
                         $ovl.dialog({
                         autoOpen: false,
-                        height: 650,
+                        height: 520,
                         async: false,     
                         cache : false,
-                        width: 600,
+                        width: 580,
                         modal: true,
                         position:"bottom",
                         title: type
@@ -86,10 +85,11 @@
         else{
                     $ovl.dialog({
                         autoOpen: false,
-                        height: 460,
+                        resizable:false,
+                        height: 500,
                         async: false,     
                         cache : false,
-                        width: 530,
+                        width: 500,
                         position:'center',
                         modal: true,
                         title: type
