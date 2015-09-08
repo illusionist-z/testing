@@ -35,6 +35,7 @@ class IndexController extends ControllerBase
      * Show All Notification in one page
      */
     public function viewallAction(){
+         $type=viewall;
         $Admin=new CoreMember();
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
@@ -47,7 +48,8 @@ class IndexController extends ControllerBase
             $id = $this->session->user['member_id'];
              $noti=$Admin->GetUserNoti($id);
         }
-        
+                $this->view->setVar("type",$type);
+
         $this->view->setVar("noti",$noti);
         $this->view->setVar('all', $noti);
         $this->view->setVar('permission', $permission);
@@ -63,6 +65,21 @@ class IndexController extends ControllerBase
        $sdate = $this->request->get('start_date');
        $update=new \workManagiment\Core\Models\Db\CoreMember();
        $update->updateleave($id,$sdate);
+    }
+    
+    public function notificationAction(){
+        $code=$this->session->permission_code;
+           $Admin=new CoreMember();
+        if($code=="ADMIN"){
+   
+        $noti=$Admin->GetAdminNoti();}
+        else{
+            $id = $this->session->user['member_id'];
+             $noti=$Admin->GetUserNoti($id);
+        }
+        $type=noti;
+        $this->view->setVar("noti",$noti);
+        $this->view->setVar("type",$type);
     }
     
 }
