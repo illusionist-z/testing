@@ -17,8 +17,13 @@ class Calendar extends Model {
      */
     public function fetch($id) {                    
             $events = array();
+            if(is_array($id)){
             $member_id = implode($id,"','");
             $sql ="SELECT * FROM calendar where member_id IN ('$member_id')";
+            }
+            else{
+            $sql ="SELECT * FROM calendar where id IN ('$id') or member_id IN ('$id')";
+            }
             $query=  $this->db->query($sql);
             $query->setFetchMode(\Phalcon\Db::FETCH_ASSOC);
           while ($fetch = $query->fetchArray()) {                      
@@ -47,9 +52,9 @@ class Calendar extends Model {
      * @desc   edit event
      * @author David
      */
-    public function edit_event($sdate,$edate,$title,$id){
+    public function edit_event($name,$sdate,$edate,$title,$id){
          $this->db = $this->getDI()->getShared("db");
-         $update ="UPDATE calendar SET title ='".$title."',startdate='".$sdate."',enddate='".$edate."' WHERE id='".$id."'";
+         $update ="UPDATE calendar SET member_id ='".$name."',title ='".$title."',startdate='".$sdate."',enddate='".$edate."' WHERE id='".$id."'";
          $query=  $this->db->query($update);
          return $query;
     }

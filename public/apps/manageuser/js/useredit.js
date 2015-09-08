@@ -4,7 +4,7 @@
  * @author David
  * @desc {dialog} for edit user profile
  */
-    var Manage = {}; 
+    var Manage = {};
     Manage.User = {
     Edit : function (type) {
         $.ajax({
@@ -37,14 +37,14 @@
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
                    +'<table class="row-fluid"><tr><td class="col-sm-8"><b>User Name </b></td><td>'
                    +'<input type="text" name="username" id="uname" class="col-sm-10" placeholder="Write User Name"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Password </b></td><td><input type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Confirm Password </b></td><td><input type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
-	           +'<tr><td class="col-sm-8"><b>Department </b></td><td><input type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Position</b></td><td><input type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
-	           +'<tr><td class="col-sm-8"><b>Email </b></td><td><input type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Phone Number </b></td><td><input type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
-                   +'<tr><td class="col-sm-8"><b>Address </b></td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
-                   +'<tr><td class="col-sm-8"><br><b>User Role </b></td><td><select class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
+                   +'<tr><td class="col-sm-5"><b>Password </b></td><td><input type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
+                   +'<tr><td class="col-sm-5"><b>Confirm Password </b></td><td><input type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
+	           +'<tr><td class="col-sm-5"><b>Department </b></td><td><input type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
+                   +'<tr><td class="col-sm-5"><b>Position</b></td><td><input type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
+	           +'<tr><td class="col-sm-5"><b>Email </b></td><td><input type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
+                   +'<tr><td class="col-sm-5"><b>Phone Number </b></td><td><input type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
+                   +'<tr><td class="col-sm-5"><b>Address </b></td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
+                   +'<tr><td class="col-sm-5"><br><b>User Role </b></td><td><select class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
                    +'<option value="USER,user">User</option><option value="ADMIN,adminstrator">Admin</option></select></td></tr>'
                    +'<tr class="jumbotron alert"><td><img src="../../common/img/profile.png" ></td><td><input type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
                    +'<tr><td></td><td><input type="submit" onclick="return false;" class="buttonn submit_useradd" value="Add User"><input type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
@@ -66,7 +66,7 @@
                         $ovl.dialog({
                         autoOpen: false,
                         height: 650,
-                        async: false,     
+                        async: false,
                         cache : false,
                         width: 600,
                         modal: true,
@@ -81,7 +81,7 @@
                     $('#addinguser_close').click(function(){
                         $ovl.dialog("close");
                         this.isOvl=false;
-                    });
+                    });                    
         }
         else{
                     $ovl.dialog({
@@ -110,7 +110,7 @@
                         e.preventDefault();
                         Manage.User.Delete($('#edit_user_id').val());
                     });
-    }
+     }
     },
     /**
      * @param {type} user id

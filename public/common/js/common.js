@@ -39,16 +39,16 @@ function GEOprocess(position) {
 }
 /**
  * @4:00pm check absent member
- * @author David
+ * @author David JP <david.gnext@gmail.com>
  */
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
-    if (h === 16) {
+    if (h === 13) {
         $.ajax({
             url: baseUri + "attendancelist/absent",
             type: 'GET',
-            success: function (d) {
+            success: function () {
             }
         });
     }

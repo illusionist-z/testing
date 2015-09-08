@@ -3,11 +3,11 @@
  * @desc dialog box ,event edit box
  * @version 2/9/2015 @by David JP<david.gnext@gmail.com>
  */
+var $ovl,$selectname;
 var Calendar = {
     init : function (json_events) {
         /* initialize the calendar
-     -----------------------------------------------------------------*/
-     
+        -----------------------------------------------------------------*/
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -48,7 +48,13 @@ var Calendar = {
         select: function (start, end, allDay) {
             var start = start.format("YYYY-MM-DD");
             var end = end.format("YYYY-MM-DD");
-            Calendar.Dialog.new(start, end);
+            //check if dialog is exist
+            if($('#dialog_create').hasClass('ui-dialog-content')){
+                $('#sdate_create_event').val(start);
+                $('#edate_create_event').val(end);
+                $('#dialog_create').dialog('open');
+            }
+            else{Calendar.Dialog.new(start, end);}
         },
         eventMouseout: function (calEvent, domEvent) {
            $('table').remove('.popup');
@@ -71,13 +77,30 @@ var Calendar = {
             }                                    
         },
         eventClick: function (event) {
-            Calendar.Dialog.open(event);
-            //$ovl.dialog("open");
+            //check dialog box exist
+            $ovl = $('#dialog');
+            if(!$ovl.hasClass('ui-dialog-content')) {
+                  $selectname = $('select#show_name').val();
+                  $ovl.css('color','black');
+                  $ovl.css('background','#F5F5F5'); 
+                  $('#submit_edit_event').click(function () {
+                            $('.err').text('');
+                            $('.err-sdate').text('');
+                            Calendar.Dialog.edit(event.id,$ovl);
+                  });
+                  $('#close_create_event').click(function () {
+                       $ovl.dialog("close");
+                   });
+                  $('#del_event').click(function () {
+                       Calendar.Dialog.delete(event.id,$selectname,$ovl);
+                  });
+            }
+          Calendar.Dialog.open(event);
         }
     });
     
     },
-    event : function(val){        
+    event : function(val){
         $.ajax({
             type : "GET",
             url  : "index/showdata",
@@ -118,22 +141,19 @@ var Calendar = {
          * get current name
          * @type @arr member_id
          */
-        var selectname;
+        $selectname;
         $.ajax({
             url:'index/getid?id='+event.id,
             type:'GET',
             async: false,
             dataType:'json',
             success:function(d){                
-                selectname = d[0].member_id; 
+                $selectname = d[0].member_id;
             }
         });
-        $ovl = $('#dialog');
-        $ovl.css('color','black');
-        $ovl.css('background','#F5F5F5');
         $('#title_edit_event').val(event.title);
         $('#sdate_edit_event').val(event.start.format());
-        $('select#show_name').val(selectname);    
+        $('select#show_name').val($selectname);
         /* event.end date is empty ,put start date */
         if (event.end == null) {
             $('#edate_edit_event').val(event.start.format());
@@ -149,18 +169,6 @@ var Calendar = {
             height: 380,
             width: 450,
             modal: true
-        });
-       
-        $('#submit_edit_event').click(function () {
-             $('.err').text('');
-             $('.err-sdate').text('');
-             Calendar.Dialog.edit(event.id);
-        });
-         $('#close_create_event').click(function () {
-            $ovl.dialog("close");
-        });
-        $('#del_event').click(function () {
-            Calendar.Dialog.delete(event.id);
         });
         $ovl.dialog("open");
     },
@@ -186,15 +194,12 @@ var Calendar = {
         $('#reset_create_event').click(function () {
             $dia.dialog("close");
         });
-        /*for edit box value err clear */
-        $('.err').text('');
-        $('.err-sdate').text('');
         $('#create_dialog').click(function () {
-            Calendar.Dialog.create();
+            Calendar.Dialog.create($dia);
         });
         $dia.dialog("open");
     },
-    edit: function (id) {
+    edit: function (id,dia) {
         $.ajax({
             url: "index/edit?id=" + id,
             data: $('#edit_event').serialize(),
@@ -206,7 +211,8 @@ var Calendar = {
                     $('.err-sdate').text(d.date).css("color", "red");
                 }
                 else {
-                    $('body').load("index");
+                    Calendar.event(d.name);
+                    dia.dialog("close");
                 }
             }
         });
@@ -221,7 +227,7 @@ var Calendar = {
         });
     },
     //create new event
-    create: function () {
+    create: function (dia) {
         $.ajax({
             url: "index/create",
             data: $('#create_event').serialize(),
@@ -229,26 +235,40 @@ var Calendar = {
             dataType: "json",
             success: function (d) {
                 if (false == d.cond) {
-                    $(".err").text(d.res).css("color", "red");
-                    $(".err-sdate").text(d.date).css("color", "red");
+                    if(d.title){
+                        $("#title_create_event").attr("placeholder",d.title).css("border","2px solid red");repair("#title_create_event");
+                    }
+                    if(d.date) {
+                        $("#sdate_create_event").attr("placeholder",d.date).css("border","2px solid red");repair("#sdate_create_event");
+                        $("#edate_create_event").attr("placeholder",d.date).css("border","2px solid red");repair("#sdate_create_event");
+                    }
+                    if(d.name){
+                           $("#select_name option:first").text(d.name);
+                           $("#select_name").css("border","2px solid red").focus(function(){$("#select_name option:first").text("Name");});
+                           repair("#select_name");
+                    }
                 }
                 else {
-                    $('body').load("index");
+               $('#calendar').remove(),    //remove calendar origin
+               $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'),//replace a new calendar
+               $('body').load('index');
+               dia.dialog("close");
                 }
             }
 
         });
     },
-    delete: function (id) {
+    delete: function (id,member,dia) {
         $.ajax({
             url: "index/delete",
             data: {data: id},
             async: false,
             dataType: 'json'
-        }).
-                done(
-                        $('body').load('index')
-                        );
+        }).done(
+            $('#calendar').remove(),    //remove calendar origin
+            $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'),//replace a new calendar
+            Calendar.event(member),dia.dialog("close")
+            );
     }
 };
 $(document).ready(function () {
