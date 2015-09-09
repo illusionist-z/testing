@@ -26,7 +26,6 @@ class TaxsDeduction extends Model {
         return $result;
     }
     
-    
     public function getdectdata($id){
         try {
             $data=$this->db->query("SELECT * FROM taxs_deduction WHERE deduce_id='".$id."' ");
