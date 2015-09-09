@@ -24,15 +24,28 @@
                     //alert(json_obj);
                     $("tbody").empty();
                     $("tfoot").empty();
+                     var  status;
                     for (var i in json_obj)
                     {
                         if(json_obj[i].total_leavedays>=json_obj[i].max_leavedays){
 
                                    leave_left= json_obj[i].total_leavedays-json_obj[i].max_leavedays;
+                                    status=" Days In Absent";
 
                             }
                          else{
                              leave_left=json_obj[i].max_leavedays-json_obj[i].total_leavedays;
+                              status=" Left";
+                         }
+                         var leave_status;
+                         if(json_obj[i].leave_status==='0'){
+                            leave_status =" Pending";
+                         }
+                         else if(json_obj[i].leave_status==='1'){
+                             leave_status =" Confirmed";
+                         }
+                         else{
+                             leave_status =" Rejected";
                          }
                        //alert(json_obj[i].date);
                         var output = "<tr>"
@@ -43,8 +56,8 @@
                                 + "<td>" + json_obj[i].leave_days + "</td>"
                                 + "<td>" + json_obj[i].leave_category + "</td>"
                                 + "<td>" + json_obj[i].leave_description + "</td>"
-                                + "<td>" + json_obj[i].leave_status + "</td>"
-                                + "<td style='color:red;'>" + leave_left + " left</td>"
+                                + "<td>" + leave_status + "</td>"
+                                + "<td style='color:red;'>" +leave_left +status+ "</td>"
                                 + "</tr>";
                         $("tbody").append(output);
                     }

@@ -9,7 +9,7 @@ var Noti = {
        
         $.ajax({
             type: 'GET',
-            url: '../../notification/index/detail?data=' + id,
+            url: baseUri +'notification/index/detail?data=' + id,
             dataType: 'html',
             success: function (res) {
                  var result = $.parseJSON(res);
@@ -33,7 +33,7 @@ var Noti = {
     AdminDetail: function (id) {
         $.ajax({
             type: 'GET',
-            url: '../../notification/index/detail?data=' + id,
+            url: baseUri +'notification/index/detail?data=' + id,
             dataType: 'html',
             success: function (res) {
               /* var result = $.parseJSON(res);
@@ -138,7 +138,7 @@ var Noti = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "../../notification/index/update_noti",
+            url : baseUri +"notification/index/update_noti",
             success:function(){
                 
                 d.dialog("close");
@@ -151,7 +151,7 @@ var Noti = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "../../leavedays/index/acceptleave",
+            url : baseUri +"leavedays/index/acceptleave",
             success:function(){
                
                 d.dialog("close");
@@ -166,7 +166,7 @@ var Noti = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "../../leavedays/index/rejectleave",
+            url : baseUri +"leavedays/index/rejectleave",
             success:function(){ 
                 d.dialog("close");
                 location.reload();
@@ -191,22 +191,27 @@ $(document).ready(function () {
     }); 
 
     $(".noti").click(function () {
+        
        document.getElementById("noti").className = "noticlose";
-       $("#notificationContainer").fadeToggle(100);
-       $("#notificationsBody").load('../../notification/index/notification');
+       $("#notificationContainer").fadeToggle();
+       $("#notificationsBody").load(baseUri +"notification/index/notification");
     });
     
     
     $(".noticlose").click(function () {
+        
+        $("#notificationsBody").empty();
        $("#notificationContainer").hide();
-       document.getElementById("noti").className = "noti";
-       location.reload();
+       
+      document.getElementById("noti").className = "noti";
+      location.reload();
     });
  
-//    $(".content").click(function()
-//    {
-//     $("#notificationContainer").hide();
-//    location.reload();
+////    $("body").click(function()
+////    {
+////              document.getElementById("noti").className = "noti";
+////    $("#notificationContainer").hide();
+//
 //    });
 
     
