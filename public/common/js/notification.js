@@ -195,6 +195,7 @@ $(document).ready(function () {
        document.getElementById("noti").className = "noticlose";
        $("#notificationContainer").fadeToggle();
        $("#notificationsBody").load(baseUri +"notification/index/notification");
+       return false;
     });
     
     
@@ -204,6 +205,7 @@ $(document).ready(function () {
        $("#notificationContainer").hide();
        
       document.getElementById("noti").className = "noti";
+     
       location.reload();
     });
  

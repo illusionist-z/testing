@@ -31,7 +31,8 @@ class User extends Model {
     public function alluserlist(){
         
         $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("SELECT * FROM core_member");
+        $user = $this->db->query("SELECT * FROM core_member WHERE delete_flag=0");
+     
         
         $user = $user->fetchall();
         return $user;
@@ -39,7 +40,7 @@ class User extends Model {
     
    public function searchresult($name){       
        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("SELECT * FROM core_member WHERE member_login_name='".$name."'");        
+        $user = $this->db->query("SELECT * FROM core_member WHERE member_login_name='".$name."' AND delete_flag=0");        
         $user = $user->fetchall();
         return $user;
        
@@ -87,8 +88,8 @@ class User extends Model {
 
     public function userdelete($id){
         $this->db = $this->getDI()->getShared("db");  
-        $query = "Delete from core_member where member_id ='".$id."'";  
+        $query = "UPDATE core_member SET delete_flag=1 where member_id ='".$id."'";  
         $this->db->query($query);
-         $this->db->query("Delete from core_permission_rel_member where rel_member_id ='".$id."'");
+         $this->db->query("UPDATE core_permission_rel_member SET permission_member_group_is_deleted=1 where rel_member_id ='".$id."'");
     }
 }

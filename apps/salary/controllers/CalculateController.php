@@ -31,7 +31,7 @@ class CalculateController extends ControllerBase
      $getbasic_salary=$Salarymaster->getbasicsalary();
      //print_r($getbasic_salary);exit;
      //calculate overtime by attendances and salary master
-     $overtime=$Salarymaster->calculate_overtime();
+    $overtime=$Salarymaster->calculate_overtime();
      
     $getcomp_startdate=$Salarydetail->getComp_startdate();
      
@@ -52,7 +52,7 @@ class CalculateController extends ControllerBase
     //insert ssc of all staffs to salary detail
     $Salarydetail->insert_ssc($ssc);
     
-    echo "<script>alert('complete calculation of salary');</script>";
+   
     $this->response->redirect('salary/index/monthlysalary');
     }
 }
