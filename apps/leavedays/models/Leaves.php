@@ -98,8 +98,9 @@ class Leaves extends \Library\Core\BaseModel {
        
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
-        $date=$this->getcontractdata($uname);               
-         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+        $date=$this->getcontractdata($uname);  
+        
+         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND leaves.start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
          $list = $ldata->fetchall();
         
          if($list==NULL){
@@ -245,7 +246,7 @@ public  function GetDays($StartDate, $EndDate){
       
         $status=1;
         $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
+        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
 
     }
    

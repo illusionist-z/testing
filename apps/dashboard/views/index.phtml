@@ -79,8 +79,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){?>
+                                      <?php $name=$this->session->permission_code;
+        if ( $name=='ADMIN'){?>
                                         <div class="pull-left">
                                             <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
