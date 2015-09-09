@@ -7,7 +7,7 @@ use Phalcon\Mvc\Model;
  * @desc  To create,edit,delete event
  */
 class Calendar extends Model {
-     public function initialize() {        
+     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
     }
     /**

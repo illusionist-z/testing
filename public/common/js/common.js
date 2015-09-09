@@ -44,7 +44,7 @@ function GEOprocess(position) {
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
-    if (h === 14) {
+    if (h === 18) {
         $.ajax({
             url: baseUri + "attendancelist/absent",
             type: 'GET',
@@ -146,8 +146,6 @@ $('.sidebar-toggle').click(function (e) {
     });    
     //toggle off when click body
     $('body').click(function (e) {
-//        e.preventDefault();
-        e.stopPropagation();
         if (0 === $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
             $('.collapse-wrapper').css("margin-left","0");
