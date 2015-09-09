@@ -260,10 +260,8 @@ class Attendances extends Model {
     }
     
     public function GetAbsentList(){
-        $today=date('y-m-d');
         
-         $query="Select * from absent left join core_member on core_member.member_id=absent.member_id where date='".$today."'";
-         $list=$this->db->query($query);
+        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";         $list=$this->db->query($query);
          $absentlist=$list->fetchall();
          return $absentlist;
         
