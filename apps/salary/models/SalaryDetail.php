@@ -115,7 +115,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 if($rows['allowance_amount']==""){
                     $rows['allowance_amount']="0";
                 }
-                $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','".$rows['income_tax']."',NOW(),NOW())";
+                $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,absent_dedution,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','".$rows['absent_dedution']."',".$rows['income_tax']."',NOW(),NOW())";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);
