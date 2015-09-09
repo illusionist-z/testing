@@ -133,14 +133,11 @@ var sub = function () {
                         + "<td>" + workinghour + "</td>"
                         + "<td>" +overtime+ "</td>"
                         + "<td>" + ll+ "</td>"
-                        + "</tr>"
+                        + "</tr>";
                 $("tbody").append(output);                
             }
             //paginatior function
-            pager.perpage =3;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);   
-            //pager.showNavi(1);
+           Attendance.init();
         },
         error: function (d) {
             alert('error');

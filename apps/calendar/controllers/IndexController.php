@@ -51,11 +51,15 @@ class IndexController extends ControllerBase
         $uname = $this->request->get('uname');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
-        $title = $this->request->get('title');                
+        $title = $this->request->get('title');
         $res= array();
-        if ($title == null) {            
+        if ($title == null ) {
             $res['cond']=FALSE;
-            $res['res']="title not be empty";            
+            $res['title']="Title not be empty";
+        }
+        else if($uname == null){
+            $res['cond'] = FALSE;
+            $res['name']= "Name must be insert";
         }
         else if(strtotime($sdate)>strtotime($edate)){
             $res['cond']=FALSE;
@@ -64,7 +68,8 @@ class IndexController extends ControllerBase
         else {            
             $res['cond']=TRUE;
             $event=$this->calendar->create_event($sdate, $edate, $title,$uname);
-            $res['res']=  $event;            
+            $res['res']=  $event;
+            $res['name']= $uname;
         }
         echo json_encode($res);
     }
@@ -78,6 +83,7 @@ class IndexController extends ControllerBase
         $id = $this->request->get('id');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
+        $name = $this->request->get('uname');
         $title = $this->request->get('title');        
          $res= array();
         if ($title == null) {            
@@ -90,8 +96,9 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $edit=$this->calendar->edit_event($sdate, $edate, $title, $id);
-            $res['res']=$edit;            
+            $edit=$this->calendar->edit_event($name,$sdate, $edate, $title, $id);
+            $res['res']=$edit;
+            $res['name']=$name;
         }
         echo json_encode($res);       
     }
@@ -108,7 +115,7 @@ class IndexController extends ControllerBase
     public function getidAction(){
         $this->view->disable();
         $id = $this->request->get('id');
-        $result=$this->calendar->getid_name($id);       
+        $result=$this->calendar->getid_name($id);
         echo json_encode($result);
     }
 

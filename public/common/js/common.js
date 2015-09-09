@@ -39,16 +39,16 @@ function GEOprocess(position) {
 }
 /**
  * @4:00pm check absent member
- * @author David
+ * @author David JP <david.gnext@gmail.com>
  */
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
-    if (h === 16) {
+    if (h === 13) {
         $.ajax({
             url: baseUri + "attendancelist/absent",
             type: 'GET',
-            success: function (d) {
+            success: function () {
             }
         });
     }
@@ -147,7 +147,7 @@ $('.sidebar-toggle').click(function (e) {
     //toggle off when click body
     $('body').click(function (e) {
 //        e.preventDefault();
-//        e.stopPropagation();
+        e.stopPropagation();
         if (0 === $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
             $('.collapse-wrapper').css("margin-left","0");
