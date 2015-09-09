@@ -2,8 +2,16 @@
  * @author David JP<david.gnext@gmail.com>
  * @desc   Salary Edit Dial Box
  */
+var pager = new Paging.Pager();   //for pagination
 var Salary = {
     isOvl: false,
+    init  : function() {
+        $("tfoot").html($('tbody').html()); //for csv
+        pager.perpage =3;            
+        pager.para = $('tbody > tr');
+        pager.showPage(1);  
+        $("tbody").show();
+        },
     Edit: function (d) {
         $.ajax({
            url:"editsalary?id="+d,
@@ -112,23 +120,8 @@ var Salary = {
                 }
             }
         });
-    }
-};
-$(document).ready(function () {
-
-    $('#search_salary').click(function () {
-        salarysearch();
-
-    });
-    $(".displaypopup").click(function () {
-        var id = $(this).attr('id');
-        Salary.Edit(id);
-    });
-    $(".print").click(function () {
-        window.print();
-    });
-});
-var salarysearch = function () {
+    },
+    search : function () {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
@@ -139,6 +132,7 @@ var salarysearch = function () {
         success: function (d) {
             var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
+            $('tfoot').empty();
             for (var i in json_obj)
             {
 
@@ -164,14 +158,33 @@ var salarysearch = function () {
                         +'<td></td>'
                         +'</tr>'
             $("tbody").append(html);
-            //paginatior function
-//            pager.perpage =3;            
-//            pager.para = $('tbody > tr');
-//            pager.showPage(1);   
-            //pager.showNavi(1);
         },
         error: function (d) {
             alert('error');
         }
+        });
+        }
+};
+$(document).ready(function () {
+    Salary.init();
+
+    $('#search_salary').click(function () {
+        Salary.search();
+
     });
-}
+    $(".displaypopup").click(function () {
+        var id = $(this).attr('id');
+        Salary.Edit(id);
+    });
+    
+     $(".allpopup").click(function () {
+       var id = $(this).attr('id');
+       Allowance.Edit(id);
+    });
+    
+    $(".print").click(function () {
+        window.print();
+    });
+});
+
+
