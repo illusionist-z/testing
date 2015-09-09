@@ -254,6 +254,7 @@ class Attendances extends Model {
         $absent = $res->fetchall();        
         foreach ($absent as $v){
             $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
+            $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+1 WHERE leaves.member_id='".$v[0]."' ");
             $this->db->query($insert);
         }
     }
