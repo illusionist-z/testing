@@ -16,7 +16,8 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('common/js/export.js');        
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');                
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
+        $this->assets->addJs('apps/leavedays/css/applyleave.css'); 
     }
 
     public function indexAction() {

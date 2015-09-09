@@ -13,7 +13,7 @@ var Salary = {
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="400px" height="300px" align="center" style="font-size:13px;" >';               
                    data += '<br>'
                         +'<tr><td style="width:100px;">User Name </td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result[0]['member_login_name']+ ' name="uname" disabled></td></tr>'
+                        +'<td><input style="margin-top:10px;" type="text" value="'+result[0]['member_login_name']+ '" name="uname" disabled></td></tr>'
                         +'<tr><td>Basic Salary </td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
                         +'<tr><td>Travel Fee </td>'

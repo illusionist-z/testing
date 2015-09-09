@@ -16,7 +16,7 @@ var Allowance = {
                
                var result = $.parseJSON(res);
                
-               var data ='<form id="edit_all" width="250px" height="200px"><table width="450px" height="150px"  border align="center" style="font-size:13px;" >';               
+               var data ='<form id="edit_all" width="250px" height="200px"><table width="450px" height="150px"   align="center" style="font-size:13px;" >';               
                    data += '<br><tr><td >Allowance Name </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['allowance_name']+ '" name="name"></td></tr>'
                         +'<tr><td >Allowance Amount </b></td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['allowance_amount']+ ' name="allowance_amount"></td></tr>'
                          +'<tr><td></td><td><input type="hidden" value='+result[0]['allowance_id']+ ' name="id"></td></td></tr>';             

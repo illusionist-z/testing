@@ -62,9 +62,9 @@
 			  		<td><?php echo $list['id'];?></td>
 			  		<td><?php echo number_format($filter->sanitize($list['taxs_from'],"int"));?></td>
 			  		<td><?php echo number_format($filter->sanitize($list['taxs_to'],"int"));?></td>
-			  		<td id='tbl-no'><?php echo $list['taxs_rate'];?></td>
-			  		<td id='tbl-no'><?php echo $list['ssc_emp'];?></td>
-			  		<td id='tbl-no'><?php echo $list['ssc_comp'];?></td>
+			  		<td id='tbl-no'><?php echo number_format($filter->sanitize($list['taxs_rate'],"int"));?></td>
+			  		<td id='tbl-no'><?php echo number_format($filter->sanitize($list['ssc_emp'],"int"));?></td>
+			  		<td id='tbl-no'><?php echo number_format($filter->sanitize($list['ssc_comp'],"int"));?></td>
 					
 					
 					<td id='tbl-no'><input type="button" class="btn btn-default taxpopup" onclick="return false;" id="<?= $list['id'] ?>" value="Edit"></td>
@@ -101,7 +101,7 @@
                     ?>
 				<tr>
 			  		<td><?php echo $n;?></td>
-			  		<td><?php echo $list['deduce_name'];?></td>
+			  		<td><?php echo $filter->sanitize($list['deduce_name'],"string");?></td>
 			  		<td><?php echo number_format($filter->sanitize($list['amount'],"int"));?></td>
 			  		
 					
