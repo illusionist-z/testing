@@ -12,7 +12,7 @@
 
 ?>
 <?php
-use Phalcon\Tag as Tag;
+    use Phalcon\Tag as Tag;
 ?>
 <div id="external-events">
     <!-- Content Wrapper. Contains page content -->
@@ -34,11 +34,11 @@ use Phalcon\Tag as Tag;
         <div class="col-md-2">
             <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">User Event Enable</span></h2>
         <form action="#" method="post">      
-            <span style="margin-left: 80px;"  ><input name="chkAllFiles" type="checkbox" <?php echo checked(); ?> >
-                <input style="height: 18px;width:50px;border-radius: 5px;font-weight: 700;color:white;background-color: #3c8dbc;" name="btnGo" type="submit" value="Check" /></span>
-        </p>
+           <!-- <span style="margin-left: 10px;"  ><input name="chkAllFiles" type="checkbox" <?php echo checked(); ?> >
+                <input style="height: 18px;width:50px;border-radius: 5px;font-weight: 700;color:white;background-color: #3c8dbc;" name="btnGo" type="submit" value="Check" /></span>-->
            <!--<a href="#" onclick="checked()">Select All</a>-->
-       
+           <a class="buttonn" name="btnGo" value="Check"   onclick="checked()"><input name="chkAllFiles" type="checkbox" <?php echo checked(); ?> ></a>
+       </p>
         <ul class="nav nav-pills nav-stacked col-sm-12" id="left-scroll">
          <?php
             foreach ($uname as $result) {
@@ -48,6 +48,8 @@ use Phalcon\Tag as Tag;
             }
             ?>
         </ul>
+           
+       
          </form>
         <span class="btn btn-primary col-sm-12 btn-show-event">Show Event</span>
         <div class="alert col-sm-12">Check above user to see their event</div>
