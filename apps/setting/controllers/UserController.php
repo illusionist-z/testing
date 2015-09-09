@@ -51,10 +51,9 @@ class UserController extends ControllerBase {
         $id=$this->session->user['member_id'];
         if($_FILES["fileToUpload"]["name"]==NULL){
           $updatedata['file']=$updatedata['temp_file'];
+          
         }
-        else{
-            $updatedata['file']=$_FILES["fileToUpload"]["name"];
-        }
+        
         $User=new Db\CoreMember;
         $User->updatedata($updatedata,$id);
         }
