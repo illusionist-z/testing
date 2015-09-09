@@ -45,7 +45,7 @@ class Attendances extends Model {
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $this->db = $this->getDI()->getShared("db");
-        $att = Attendances::find();
+        $att = Attendances::find("member_id='$id'");
         $last = $att->getLast();
         $checkout = $last->checkout_time;
         $checkin = $last->checkin_time;
