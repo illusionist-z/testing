@@ -91,7 +91,7 @@ var Tax = {
                
                var result = $.parseJSON(res);
                //edit dialog box
-               var data ='<form id="edit_tax_table" width="250px" height="200px"><table width="400px" height="270px" align="center" >';               
+               var data ='<form id="edit_tax_table" width="250px" height="200px"><table width="400px" height="270px" style="font-size:13px;"  align="center" >';               
                    data += '<br><tr><td> <small>ID </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['id']+ '" name="id"></td></tr>'
                         +'<tr><td> <small>Taxs From </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td></tr>'
                         +'<tr><td> <small>Taxs To </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_to']+ ' name="taxs_to" ></td></tr>'
@@ -116,8 +116,9 @@ var Tax = {
         $ovl.dialog({
             autoOpen: false,
             height: 390,
-            async:false,            
-            width: 530,
+            async:false,  
+            resizable:false,
+            width: 450,
             modal: true,
             title:"Tax Edit",
             /*show:{
@@ -184,7 +185,7 @@ var Deduction = {
                var result = $.parseJSON(res);
              
                
-               var data ='<form id="edit_deduct_table"><table>';               
+               var data ='<form id="edit_deduct_table"><table style="font-size:13px;">';               
                    data += '<tr><td></td><td><input type="hidden" value="'+result[0]['deduce_id']+ '" name="id" ></td></tr>'
                         +'<tr><td><small>Deduction Name </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
                         +'<tr><td><small>Deduction Amount </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
