@@ -62,6 +62,7 @@
                                 echo " <b>:</b> ".$getsalarydetail->salarydet->overtime;
                                 ?></div>
 				</div>
+
                                 <?php
                                 if(!empty($getallowance)){
                                 foreach($getallowance as $getallowances){
@@ -75,7 +76,13 @@
                                 }
                                 }
                                 ?>
-                                
+                                <div style="border-bottom:1px dotted gray;">
+				<div style="float:left; width:260px; padding-left:10px;">Travel Fee</div>
+				<div><?php 
+                                $sum+=$getsalarydetail->salarydet->travel_fee;
+                                echo " <b>:</b> ".$getsalarydetail->salarydet->travel_fee;
+                                ?></div>
+				</div>
 				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2;">
 				<div style="float:left; width:260px; padding-left:10px;">Total amount </div>
                                 <div>
