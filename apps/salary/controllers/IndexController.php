@@ -8,7 +8,7 @@ use workManagiment\Salary\Models\SalaryMaster;
 use workManagiment\Salary\Models\Allowances;
 use workManagiment\Salary\Models\Taxs;
 use workManagiment\Salary\Models\TaxsDeduction;
-
+use workManagiment\Salary\Models\CoreMemberTaxDeduce;
 
 
 class IndexController extends ControllerBase {
@@ -135,13 +135,24 @@ class IndexController extends ControllerBase {
 
     /**
      * Edit salary detail
+     * @version 9/9/15
      */
     public function editsalaryAction() {
         $member_id = $this->request->get('id');
         $Salarydetail = new SalaryMaster();
         $editsalary = $Salarydetail->editsalary($member_id);
+        $resultsalary['data']=$editsalary;
+        $Permit_allowance = new SalaryDetail();
+        $resultsalary['permit_allowance'] = $Permit_allowance->getallowanceBymember_id($editsalary[0]['member_id']);
+        $Permit_dedution = new CoreMemberTaxDeduce();
+        $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
+        $Dedution = new TaxsDeduction();
+        $resultsalary['dedution']=$Dedution->getdedlist();
+        $Allowance = new Allowances();
+        $resultsalary['allowance'] = $Allowance->getall_allowances();
+       
         $this->view->disable();
-        echo json_encode($editsalary);
+        echo json_encode($resultsalary);
     }
 
     /**
@@ -157,8 +168,9 @@ class IndexController extends ControllerBase {
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
+        //$che = $this->request->getPost('check_allow');var_dump($che);exit;
         $Salarydetail = new SalaryMaster();
-        $cond = $Salarydetail->btnedit($data);        
+        $cond = $Salarydetail->btnedit($data);
         echo json_encode($cond);
         $this->view->disable();
     }

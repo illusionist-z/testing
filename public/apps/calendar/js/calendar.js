@@ -86,7 +86,7 @@ var Calendar = {
                   $('#submit_edit_event').click(function () {
                             $('.err').text('');
                             $('.err-sdate').text('');
-                            Calendar.Dialog.edit(event.id,$ovl);
+                            Calendar.Dialog.edit(event.id,$selectname,$ovl);
                   });
                   $('#close_create_event').click(function () {
                        $ovl.dialog("close");
@@ -199,7 +199,7 @@ var Calendar = {
         });
         $dia.dialog("open");
     },
-    edit: function (id,dia) {
+    edit: function (id,old_id,dia) {
         $.ajax({
             url: "index/edit?id=" + id,
             data: $('#edit_event').serialize(),
@@ -211,7 +211,7 @@ var Calendar = {
                     $('.err-sdate').text(d.date).css("color", "red");
                 }
                 else {
-                    Calendar.event(d.name);
+                    Calendar.event(old_id);
                     dia.dialog("close");
                 }
             }

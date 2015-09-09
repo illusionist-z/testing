@@ -245,7 +245,7 @@ class Attendances extends Model {
     }
     /**
      * @desc   insert absent member to absent 
-     * @author David
+     * @author David JP <david.gnext@gmail.com>
      * @param  $v[0] = member_id
      */
     public function absent(){

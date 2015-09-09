@@ -2,34 +2,62 @@
  * @author David JP<david.gnext@gmail.com>
  * @desc   Salary Edit Dial Box
  */
+var pager = new Paging.Pager();   //for pagination
 var Salary = {
     isOvl: false,
+    init  : function() {
+        $("tfoot").html($('tbody').html()); //for csv
+        pager.perpage =3;            
+        pager.para = $('tbody > tr');
+        pager.showPage(1);  
+        $("tbody").show();
+        },
     Edit: function (d) {
         $.ajax({
            url:"editsalary?id="+d,
            type: "GET",
            success:function(res){
                var result = $.parseJSON(res);               
-               var data ='<form id="edit_salary" width="650px" height="500px"><table width="400px" height="300px" align="center" style="font-size:13px;" >';               
-                   data += '<br>'
-                        +'<tr><td style="width:100px;">User Name </td>'
-                        +'<td><input style="margin-top:10px;" type="text" value="'+result[0]['member_login_name']+ '" name="uname" disabled></td></tr>'
-                        +'<tr><td>Basic Salary </td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
-                        +'<tr><td>Travel Fee </td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td></tr>'
-                        +'<tr><td>Over Time </td>'
-                        +'<td id="overmsg"><input style="width:50px;margin-top:10px;" type="text" value="'+result[0]['over_time']+'" name="overtime" id="overerr"> %</td></tr>'
-                        +'<tr><td>SSC Emp </td>'
-                        +'<td id="empmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result[0]['ssc_emp']+' name="ssc_emp" id="emperr"> %</td></tr>'
-                        +'<tr><td>SSC Comp </td>'
-                        +'<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>'
-                        +'<tr><td><input type="hidden" value='+result[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';               
-               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >Edit</a><a href="#" class="button" id="edit_delete" >Delete</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
+               var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
+                   data +='<tr><td></td><td><b>User Name </b></td>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['member_id']+ ' name="uname" disabled></td><td ></td></tr>'
+                        +'<tr><td></td><td><b>Basic Salary </b></td>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
+                        +'<tr><td></td><td><b>Travel Fee </b></td>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:55px;height:40px;"></td></tr>'
+                        +'<tr><td></td><td><b>Over Time </b></td>'
+                        +'<td id="overmsg"><input style="width:50px;margin-top:10px;" type="text" value="'+result.data[0]['over_time']+'" name="overtime" id="overerr"> %</td></tr>'
+                        +'<tr><td></td><td><b>SSC Emp </b></td>'
+                        +'<td id="empmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_emp']+' name="ssc_emp" id="emperr"> %</td><td style="width:55px;height:40px;"></td></tr>'
+                        +'<tr><td></td><td><b>SSC Comp </b></td>'
+                        +'<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
+               data += '<tr><td colspan="4" style="font-size:12px;">';
+               for(var j in result.dedution){
+               var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
+               data +=result.dedution[j]["deduce_name"]+'<input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'>';
+               }
+               data +='</td></tr>';
+               for(var i in result.allowance){
+               var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
+               data +='<tr><td></td><td><input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'>' + result.allowance[i]["allowance_name"]+'</td></tr>';
+               }
+               data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >Edit</a><a href="#" class="button" id="edit_delete" >Delete</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
                data +='</table></form>';
                Salary.Dia(data);
            }
         });
+    },
+    Check: function(name,permit){
+        var $check;
+        for(var n in permit){
+         var permit_name = permit[n]['allowance_name']||permit[n][0];
+         switch(permit_name){
+             case name:$check="checked";break;
+             default  :break;
+         }
+        }
+        return $check;
     },
     Dia: function (d) {
         if (!this.isOvl) {
@@ -41,10 +69,9 @@ var Salary = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 420,
-            resizable:false,
+            height: 500,
             async: false,
-            width: 450,
+            width: 600,
             modal: true,
             title: "Salary Edit",
             /*show:{
@@ -113,23 +140,8 @@ var Salary = {
                 }
             }
         });
-    }
-};
-$(document).ready(function () {
-
-    $('#search_salary').click(function () {
-        salarysearch();
-
-    });
-    $(".displaypopup").click(function () {
-        var id = $(this).attr('id');
-        Salary.Edit(id);
-    });
-    $(".print").click(function () {
-        window.print();
-    });
-});
-var salarysearch = function () {
+    },
+    search : function () {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
@@ -140,6 +152,7 @@ var salarysearch = function () {
         success: function (d) {
             var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
+            $('tfoot').empty();
             for (var i in json_obj)
             {
 
@@ -165,14 +178,33 @@ var salarysearch = function () {
                         +'<td></td>'
                         +'</tr>'
             $("tbody").append(html);
-            //paginatior function
-//            pager.perpage =3;            
-//            pager.para = $('tbody > tr');
-//            pager.showPage(1);   
-            //pager.showNavi(1);
         },
         error: function (d) {
             alert('error');
         }
+        });
+        }
+};
+$(document).ready(function () {
+    Salary.init();
+
+    $('#search_salary').click(function () {
+        Salary.search();
+
     });
-}
+    $(".displaypopup").click(function () {
+        var id = $(this).attr('id');
+        Salary.Edit(id);
+    });
+    
+     $(".allpopup").click(function () {
+       var id = $(this).attr('id');
+       Allowance.Edit(id);
+    });
+    
+    $(".print").click(function () {
+        window.print();
+    });
+});
+
+
