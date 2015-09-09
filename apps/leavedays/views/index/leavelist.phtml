@@ -129,8 +129,8 @@ $length = count($Month);
                                 ?></td>
                             <td><font color="red"><?php
                     if($item->leaves->total_leavedays >=$max){
-                            echo ($item->leaves->total_leavedays);
-                            echo " left";
+                            echo ($item->leaves->total_leavedays-$max);
+                            echo " days in absent";
                     }
                     else{
                                 

@@ -260,7 +260,7 @@ class SalaryMaster extends Model {
                     //echo "Member id " . $salary_yr . "The Income tax  is " . $income_tax . '<br>';
 
                     $taxs = $this->deducerate($income_tax, $date_diff);
-                    //print_r($taxs);
+//                    print_r($taxs);
                     $final_result[] = array('income_tax' => $taxs, 
                                       'member_id' => $value['member_id'], 'allowance_amount' => $allowance);
                 }
