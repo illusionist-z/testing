@@ -29,7 +29,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
         return $getname;*/
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by created_dt desc";
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE delete_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         //print_r($row);exit;
         return $row;
@@ -185,7 +185,16 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function updatedata($d, $id) {
         $this->db = $this->getDI()->getShared("db");
-        $filename=rand(1,99999) . '.' . end(explode(".",$_FILES["fileToUpload"]["name"]));
+        if($_FILES["fileToUpload"]["name"]==NULL){
+            $filename=$d['file'];
+        }
+        else{
+            $filename=rand(1,99999) . '.' . end(explode(".",$_FILES["fileToUpload"]["name"]));
+             $target_dir = "uploads/";
+        $target_file = $target_dir . $filename;
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+        }
+                
         if ($d['password'] == $d['temp_password']) {
             
             $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' , "
@@ -200,9 +209,7 @@ class CoreMember extends \Library\Core\BaseModel {
                     . "AND core_member.member_address='" . $d['add'] . "' , core_member.member_password='" . sha1($d['password']) . "' WHERE core_member.member_id='" . $id . "'");
         }
 
-        $target_dir = "uploads/";
-        $target_file = $target_dir . $filename;
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+       
     }
     
     /**
