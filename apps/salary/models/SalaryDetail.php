@@ -293,11 +293,13 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
         if ($cond['position'] != "") {
             $conditions[] = "position='" . $cond['position'] . "'";
         }
-//        if ($cond['mth'] != "") {
-//            $conditions[] = "MONTH('created_dt')='" . $cond['mth'] . "'";
-//        }
         if ($cond['salary'] != "") {
-            $conditions[] = "basic_salary>='" . $salary[0] . "' and basic_salary<='".$salary[1]."'";
+            if($salary[1]!=""){
+            $conditions[] = "basic_salary>='" . $salary[0] . "' and basic_salary<='".$salary[1]."'";    
+            }
+            else{
+            $conditions[] = "basic_salary>='" . $salary[0] . "'";
+            }
         }
         return $conditions;
     }

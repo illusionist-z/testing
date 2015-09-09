@@ -23,15 +23,15 @@
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th width="150px">Month/Year</th>
-                        <th>Salary</th>
-                        <th>Allowance</th>
-                        <th>Travel Fees</th>
-                        <th>Personal Income</th>
-                        <th>SSC Employer</th>
-                        <th>SSC Employee</th>
-                        <th>Tax Total</th>
-                        <th>Total</th>
+                        <th><center>Month/Year</center></th>
+                        <th><center>Salary</center></th>
+                        <th><center>Allowance</center></th>
+                        <th><center>Travel Fees</center></th>
+                        <th><center>Personal Income</center></th>
+                        <th><center>SSC Employer</center></th>
+                        <th><center>SSC Employee</center></th>
+                        <th><center>Tax Total</center></th>
+                        <th><center>Total</center></th>
 
                     </tr>
 
@@ -42,15 +42,15 @@
                     foreach ($geteachmonthsalarys as $geteachmonthsalary) {
                         ?>
                         <tr>
-                            <td><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['salary_total'], "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['allowance'], "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['travel_expense'], "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['income_tax_amount'], "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_emp_amount'], "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_comp_amount'], "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['Tax_total'], "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($geteachmonthsalary['Total'], "int")); ?></td>
+                            <td width="50px"><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['salary_total'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['allowance'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['travel_expense'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['income_tax_amount'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_emp_amount'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_comp_amount'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['Tax_total'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($geteachmonthsalary['Total'], "int")); ?></div></td>
                         </tr>
                         <?php
                     }
