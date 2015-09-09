@@ -45,23 +45,12 @@ class Attendances extends Model {
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $this->db = $this->getDI()->getShared("db");
-        $att = Attendances::find("member_id='$id'");
-        $last = $att->getLast();
-        $checkout = $last->checkout_time;
-        $checkin = $last->checkin_time;
-        $date = $last->att_date;
-        /**
-          Condition : Check Last data check out=NULL OR NOT
-         * if checkout time exists,check today check in or not
-         * */
-       if ($checkout!=0){    
-                 $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'");
+        $att =Attendances::findFirst("att_date = '$today' AND member_id='$id'");
                  //Check today check in or not
-                if ( $att!=NULL){ 
-                  
-                     $outtime=$att->checkout_time;
-                     //check already checkout or not
-                     if($outtime!=0)
+            if ( $att!=NULL){ 
+                $outtime=$att->checkout_time;
+                //check already checkout or not
+                if($outtime!=0)
                      {
                          $status=" Already Checkout";
                          return $status;
@@ -89,24 +78,8 @@ class Attendances extends Model {
 
                 }
             }
-            else{
-                 $workingHour=strtotime($mydate)-strtotime($checkin);
-                 
-                 if($workingHour>28800){
-                 $ovt=number_format((($workingHour-28800)/3600), 2, '.', ',');
-               
-                        } 
-                  else{
-                      $ovt=0;
-                  }
-                //insert checkout time for last data
-                $a=$this->db->query("UPDATE attendances SET checkout_time='".$mydate."',overtime='".$ovt."'  WHERE checkin_time='".$checkin."'  AND member_id='".$id."'");
-                    $status="Successfully Checked Out";
-                    return $status;
-
-            }            
-         
-    }  
+            
+     
       /**
      * @author david
      * @return array {leave name}

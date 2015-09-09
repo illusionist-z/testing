@@ -36,7 +36,7 @@
 <div id="notificationsBody" class="notifications">
 
 </div>
-<div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall">See All</a></div>
+                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">See All</span></a></div>
                                 </div>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -79,8 +79,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){?>
+                                      <?php $name=$this->session->permission_code;
+        if ( $name=='ADMIN'){?>
                                         <div class="pull-left">
                                             <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>

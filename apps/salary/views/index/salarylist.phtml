@@ -32,7 +32,7 @@
                     </tr>
 
                 </thead>
-                <tbody style="display:none;">
+                <tbody>
                     <?php
                     $filter = new Filter();
                     $i = 1;
@@ -41,8 +41,8 @@
                         <tr>
                             <td><?php echo $i; ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->core->member_login_name, "string"); ?></td>
-                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "string")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee, "string")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "int")); ?></td>
+                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee, "int")); ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->over_time, "int").' %' ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_emp, "int").' %' ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_comp, "int").' %' ?></td>
@@ -55,11 +55,10 @@
 
                    
                 </tbody>
-                <tfoot style="display:none;"></tfoot>
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-    <div id="content"></div>
+
 </section><!-- /.content -->
 <div id="edit_salary_dia"></div>
 

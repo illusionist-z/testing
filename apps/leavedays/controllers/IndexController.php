@@ -16,7 +16,8 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/style.css');
         $this->assets->addJs('common/js/export.js');        
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');                
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
+        $this->assets->addJs('apps/leavedays/css/applyleave.css'); 
     }
 
     public function indexAction() {
@@ -53,7 +54,7 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
                   }     
             else{
-            $uname = $this->request->getPost('username');
+            $uname =$this->request->getPost('username');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');

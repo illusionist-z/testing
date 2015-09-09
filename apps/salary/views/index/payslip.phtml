@@ -1,3 +1,6 @@
+<?php
+    use Phalcon\Filter;
+?>
 <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -21,6 +24,9 @@
 			</div>
 	<div style="clear:right;"></div>
         <?php 
+        
+         $filter = new Filter(); 
+         
         $sum='';
         $deduce='';
         foreach($getsalarydetails as $getsalarydetail){
@@ -31,27 +37,27 @@
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Name</div>
 				<div><?php                                 
-                                echo " <b>:</b> ".$getsalarydetail->core->member_login_name;
+                                echo " <b>:</b> ".$filter->sanitize($getsalarydetail->core->member_login_name , "string");
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Department</div>
 				<div><?php                                 
-                                echo " <b>:</b> ".$getsalarydetail->core->member_dept_name;
+                                echo " <b>:</b> ".$filter->sanitize($getsalarydetail->core->member_dept_name , "string");
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Position </div>
 				<div><?php                                 
                                 //echo "Web Developer";
-                                echo " <b>:</b> ".$getsalarydetail->core->position;
+                                echo " <b>:</b> ".$filter->sanitize($getsalarydetail->core->position , "string");
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Basic salary </div>
 				<div><?php 
                                 $sum+=$getsalarydetail->salarydet->basic_salary;
-                                echo " <b>:</b> ".$getsalarydetail->salarydet->basic_salary;
+                                echo " <b>:</b> ".number_format($filter->sanitize($getsalarydetail->salarydet->basic_salary, "int"));
                                 ?></div>
 				</div>
 				
@@ -59,7 +65,7 @@
 				<div style="float:left; width:260px; padding-left:10px;">OT : 10000*2hr</div>
 				<div><?php 
                                 $sum+=$getsalarydetail->salarydet->overtime;
-                                echo " <b>:</b> ".$getsalarydetail->salarydet->overtime;
+                                echo " <b>:</b> ".number_format($filter->sanitize($getsalarydetail->salarydet->overtime, "int"));
                                 ?></div>
 				</div>
                                 <?php
@@ -69,7 +75,7 @@
                                 ?>
                                 <div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;"><?php echo $getallowances['allowance_name'];?></div>
-				<div><?php echo " <b>:</b> ".$getallowances['allowance_amount'];?></div>
+				<div><?php echo " <b>:</b> ".number_format($filter->sanitize($getallowances['allowance_amount'], "int"));?></div>
 				</div>
                                 <?php
                                 }
@@ -80,40 +86,40 @@
 				<div style="float:left; width:260px; padding-left:10px;">Total amount </div>
                                 <div>
                                     <?php
-                                    echo " <b>:</b> ".$sum;
+                                    echo " <b>:</b> ".number_format($filter->sanitize($sum, "int"));
                                     ?>
                                 </div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Absent Deduction </div>
 				<div><?php                                 
-                                echo " <b>:</b> ".$getsalarydetail->salarydet->absent_dedution;
+                                echo " <b>:</b> ".number_format($filter->sanitize($getsalarydetail->salarydet->absent_dedution, "int"));
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">SSC </div>
 				<div><?php 
                                 $deduce+=$getsalarydetail->salarydet->ssc_emp;
-                                echo " <b>:</b> ".$getsalarydetail->salarydet->ssc_emp;
+                                echo " <b>:</b> ".number_format($filter->sanitize($getsalarydetail->salarydet->ssc_emp, "int"));
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Income Tax </div>
 				<div><?php 
                                 $deduce+=$getsalarydetail->salarydet->income_tax;
-                                echo " <b>:</b> ".$getsalarydetail->salarydet->income_tax;
+                                echo " <b>:</b> ".number_format($filter->sanitize($getsalarydetail->salarydet->income_tax, "int"));
                                 ?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray;">
 				<div style="float:left; width:260px; padding-left:10px;">Total Deduction </div>
-				<div><?php echo " <b>:</b> ".$deduce;?></div>
+				<div><?php echo " <b>:</b> ".number_format($filter->sanitize($deduce, "int"));?></div>
 				</div>
 				<div style="border-bottom:1px dotted gray; background-color:#e0e8f2; font-weight:bold;">
 				<div style="float:left; width:260px; padding-left:10px;">Net Payments </div>
                                 <div>
                                     <?php
                                     $netpay=$sum-$deduce;
-                                    echo ": ".$netpay;
+                                    echo ": ".number_format($filter->sanitize($netpay, "int"));
                                     ?>
                                 </div>
 				</div>

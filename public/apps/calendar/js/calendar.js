@@ -111,7 +111,7 @@ var Calendar = {
     if(d.length === 0){
     var message = "<div class='message' style='top:30%;left:18%;"
     +"text-align:center;background:#3c8dbc;color:white;position:absolute;"
-    +";width:78.3%;height:10%;z-index:100;font-size:33px;margin-left:10px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
+    +";width:80.5%;height:10%;z-index:100;font-size:33px;margin-left:3px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
     $('body').append(message);
     setTimeout(function() {
     $('.message').remove();
@@ -187,7 +187,7 @@ var Calendar = {
         $dia.dialog({
             autoOpen: false,
             closeText: "",
-            height: 430,
+            height: 380,
             width: 400,
             modal: true
         });
