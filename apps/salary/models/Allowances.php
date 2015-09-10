@@ -4,7 +4,7 @@ namespace workManagiment\Salary\Models;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
-
+    use Phalcon\Filter;
 
 class Allowances extends Model {
 
@@ -59,7 +59,10 @@ class Allowances extends Model {
      */
     public function edit_allowance($data){
         try{
-         $sql = "Update allowances SET allowance_name ='".$data['name']."',allowance_amount ='".$data['allowance_amount']."' Where allowances.allowance_id='".$data['id']."'";
+             $filter = new Filter();
+             $name = $filter->sanitize($data['name'], "string");
+             $allowance_amount = $filter->sanitize($data['allowance_amount'], "string");
+         $sql = "Update allowances SET allowance_name ='". $name ."',allowance_amount ='".$allowance_amount."' Where allowances.allowance_id='".$data['id']."'";
          $this->db->query($sql);
      } catch (Exception $ex) {
          echo $ex;

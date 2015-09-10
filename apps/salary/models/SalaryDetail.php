@@ -6,6 +6,7 @@ use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
     use workManagiment\Salary\Models\SalaryDetail;
     use workManagiment\Core\Models\Db\CoreMember;
+    use Phalcon\Filter;
 
 class SalaryDetail extends Model {
 
@@ -91,9 +92,15 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
            
             $current_date=date("Y-m-d");
             
+             $filter = new Filter();
+             $basic_salary = number_format($filter->sanitize($rows['basic_salary'], "int"));
+             $travel_fee = number_format($filter->sanitize($rows['travel_fee'], "int"));
+             $overtime_rate = $filter->sanitize($rows['overtime_rate'], "int");
+             
+            
             foreach ($row as $rows) {
                 //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
-                $sql = "UPDATE salary_detail SET basic_salary ='" . $rows['basic_salary'] . "', travel_fee='".$rows['travel_fee']."', overtime='".$rows['overtime_rate']."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";
+                $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', travel_fee='". $travel_fee ."', overtime='". $overtime_rate ."'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='".$current_date."'";
                
                
                 $result = $this->db->query($sql);
@@ -133,10 +140,14 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function insert_ssc($row) {
         try {
+            $filter = new Filter();
+            $ssc_comp = $filter->sanitize($rows['ssc_comp'], "int");
+            $ssc_emp = $filter->sanitize($rows['ssc_emp'], "int");
+             
             //print_r($row);exit;
             foreach ($row as $rows) {
                 //echo "Member_id ".$rows['member_id']." "." Income tax ".$rows['income_tax'].'<br>';
-                $sql = "UPDATE salary_detail SET ssc_comp ='" . $rows['ssc_comp'] . "',ssc_emp='" . $rows['ssc_emp'] . "'  WHERE member_id ='" . $rows['member_id'] . "' ";
+                $sql = "UPDATE salary_detail SET ssc_comp ='" . $ssc_comp . "',ssc_emp='" . $ssc_emp . "'  WHERE member_id ='" . $rows['member_id'] . "' ";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);
             }
@@ -251,7 +262,14 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
     }
     public function btnedit($data){
      try{
-         $sql = "Update salary_master SET basic_salary ='".$data['basesalary']."',travel_fee ='".$data['travelfee']."',over_time ='".$data['overtime']."',ssc_emp ='".$data['ssc_emp']."',ssc_comp ='".$data['ssc_comp']."' Where id='".$data['id']."'";
+         $filter = new Filter();
+         $basic_salary = number_format($filter->sanitize($data['basesalary'], "int"));
+         $travel_fee = number_format($filter->sanitize($data['travelfee'], "int"));
+         $overtime = $filter->sanitize($data['overtime'], "int");
+         $ssc_emp = $filter->sanitize($data['ssc_emp'], "int");
+         $ssc_comp = $filter->sanitize($data['ssc_comp'], "int");
+             
+         $sql = "Update salary_master SET basic_salary ='". $basic_salary ."',travel_fee ='". $travel_fee ."',over_time ='". $overtime ."',ssc_emp ='". $ssc_emp ."',ssc_comp ='". $ssc_comp ."' Where id='".$data['id']."'";
          $this->db->query($sql);
      } catch (Exception $ex) {
          echo $ex;

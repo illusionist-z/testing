@@ -44,7 +44,8 @@ class Attendances extends Model {
         return $rows;*/
         
         if(isset($name)){
-           
+            $filter = new Filter();
+            $name = $filter->sanitize($name, "string");
            //print_r($today);exit;
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
@@ -116,9 +117,12 @@ class Attendances extends Model {
        $list   = $result->fetchall();
         return $list;*/
         
-        if(isset($name)){
+        if(isset($month)){
            //echo "Thank You";
            //print_r($today);exit;
+            $filter = new Filter();
+            $month = $filter->sanitize($month, "string");
+            
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
                          ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
@@ -204,6 +208,9 @@ class Attendances extends Model {
     public function search_attlist($year,$month,$username) {
         try {
          
+            $filter = new Filter();
+            $username = $filter->sanitize($username, "string");
+       
          $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
          $conditions=$this->setCondition($year, $month, $username);
 
