@@ -190,17 +190,11 @@ $(document).ready(function () {
 
     $('#search_salary').click(function () {
         Salary.search();
-
     });
-    $(".displaypopup").click(function () {
+    $("body").on("click",".displaypopup",function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
-    
-//     $(".allpopup").click(function () {
-//       var id = $(this).attr('id');
-//       Allowance.Edit(id);
-//    });
     
     $(".print").click(function () {
         window.print();
