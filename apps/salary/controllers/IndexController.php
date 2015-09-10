@@ -37,6 +37,7 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
+        $this->assets->addJs('apps/salary/js/salary.js');
          $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
@@ -97,6 +98,7 @@ class IndexController extends ControllerBase {
      * show total salary  of each month
      */
     public function monthlysalaryAction() {
+        $this->assets->addJs('apps/salary/js/salary.js');
          $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
@@ -166,8 +168,7 @@ class IndexController extends ControllerBase {
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
-        $check_deduce = $this->request->getPost('check_list');var_dump($check_deduce);
-        $che_allow = $this->request->getPost('check_allow');var_dump($che_allow);
+        //$che = $this->request->getPost('check_allow');var_dump($che);exit;
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
         
