@@ -197,12 +197,13 @@ $(document).ready(function () {
     $(".noti").click(function () {
        document.getElementById("noti").className = "noticlose";
        $("#notificationContainer").fadeToggle(100);
-       $("#notificationsBody").load('../../notification/index/notification');
+       $("#notificationsBody").load(baseUri+'notification/index/notification');
     });
     
     
     $(".noticlose").click(function () {
        $("#notificationContainer").hide();
+       
        document.getElementById("noti").className = "noti";
        location.reload();
     });
