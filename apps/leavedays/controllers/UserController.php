@@ -17,7 +17,7 @@ class UserController extends ControllerBase {
         
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/leave.js');               
+        $this->assets->addJs('apps/leavedays/js/user-leavelist.js');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
         

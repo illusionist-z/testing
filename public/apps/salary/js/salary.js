@@ -197,10 +197,10 @@ $(document).ready(function () {
         Salary.Edit(id);
     });
     
-     $(".allpopup").click(function () {
-       var id = $(this).attr('id');
-       Allowance.Edit(id);
-    });
+//     $(".allpopup").click(function () {
+//       var id = $(this).attr('id');
+//       Allowance.Edit(id);
+//    });
     
     $(".print").click(function () {
         window.print();

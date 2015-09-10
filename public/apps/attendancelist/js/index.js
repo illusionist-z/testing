@@ -39,9 +39,8 @@ var Attendance = {
         if(month=="" && username=="" && year==""){
             $('tbody').empty();
              var output = "<tr>"
-                            + "<td colspan='8'><center>No data to display</center></td>"
-                           
-                            + "</tr>"
+                            + "<td colspan='8'><center>No data to display</center></td>"                           
+                            + "</tr>";
                     $("tbody").append(output); 
         }
         else{
@@ -146,7 +145,7 @@ var Attendance = {
                             + "<td>" + workinghour + "</td>"
                             + "<td>" +overtime+ "</td>"
                             + "<td>" + ll+ "</td>"
-                            + "</tr>"
+                            + "</tr>";
                     $("tbody").append(output); 
                      
                 }
