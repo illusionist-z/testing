@@ -22,7 +22,6 @@ class LoginController extends ControllerBase {
         $member=new CoreMember();
         $member->updatecontract($loginParams);
         $this->session->set('permission_code', $permission);
-        
         $user = array();
         $this->session->set('user', $result);
         

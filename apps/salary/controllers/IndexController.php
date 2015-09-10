@@ -54,6 +54,7 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function show_salarylistAction() {
+     
         $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
