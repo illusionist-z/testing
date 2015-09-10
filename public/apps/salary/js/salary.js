@@ -20,7 +20,7 @@ var Salary = {
                var result = $.parseJSON(res);               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>User Name </b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['member_id']+ ' name="uname" disabled></td><td ></td></tr>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['member_id']+ ' name="uname"></td><td ></td></tr>'
                         +'<tr><td></td><td><b>Basic Salary </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
                         +'<tr><td></td><td><b>Travel Fee </b></td>'
@@ -94,12 +94,14 @@ var Salary = {
     },
     BtnEdit : function(val){
         var form=$('#edit_salary');
+        
         $.ajax({
             type: 'POST',
             data: form.serialize(),
             dataType:'json',
             url : "btnedit",
-            success:function(d){                
+            success:function(d){   
+                
                 //if true success funcion then reload page
                 if(true === d.valid)                      
                 {
