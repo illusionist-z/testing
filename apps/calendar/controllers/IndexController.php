@@ -22,8 +22,17 @@ class IndexController extends ControllerBase
 
     
    public function indexAction() {
-       $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+        $User=new Db\CoreMember;
+        
+       if($this->session->permission_code=="ADMIN"){
+            $noti=$User->GetAdminNoti();
+       }
+       else{
+           $id = $this->session->user['member_id'];
+        $noti=$User->GetUserNoti($id);        
+
+       }
+       
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
         $Username = $GetMember::getinstance()->getusername();
