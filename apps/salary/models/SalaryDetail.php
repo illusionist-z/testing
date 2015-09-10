@@ -68,7 +68,8 @@ class SalaryDetail extends Model {
      */
     public function salarylist($month,$year) {
         try {
-            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
+            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
+                from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
 select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='".$year."' GROUP BY id";
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
@@ -292,11 +293,13 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
         if ($cond['position'] != "") {
             $conditions[] = "position='" . $cond['position'] . "'";
         }
-//        if ($cond['mth'] != "") {
-//            $conditions[] = "MONTH('created_dt')='" . $cond['mth'] . "'";
-//        }
         if ($cond['salary'] != "") {
-            $conditions[] = "basic_salary>='" . $salary[0] . "' and basic_salary<='".$salary[1]."'";
+            if($salary[1]!=""){
+            $conditions[] = "basic_salary>='" . $salary[0] . "' and basic_salary<='".$salary[1]."'";    
+            }
+            else{
+            $conditions[] = "basic_salary>='" . $salary[0] . "'";
+            }
         }
         return $conditions;
     }

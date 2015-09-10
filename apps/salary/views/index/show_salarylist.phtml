@@ -69,9 +69,9 @@
                          Salary :
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
-                            <option>400000~700000</option>
-                            <option>700000~1000000</option>
-
+                            <option>400001~700000</option>
+                            <option>700001~1000000</option>
+                            <option>1000001~</option>
                         </select>
                     </div>
                 </div>
@@ -99,6 +99,7 @@
                         <th><center>Basic Salary</center></th>
                         <th><center>Overtime</center></th>
                         <th><center>Travel fees</center></th>
+                        <th><center>Allowance amount</center></th>
                         <th><center>Absent</center></th>
                         <th><center>Tax</center></th>
                         <th><center>SSC_comp</center></th>
@@ -125,6 +126,7 @@
                             <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
                             <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
                             <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['allowance_amount'], "int")); ?></div></td>
                             <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
                             <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
                             <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
@@ -143,7 +145,7 @@
                     ?>
 
                     <tr style="background-color:#3c8dbc; color:#ffffff;">
-                        <td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>
+                        <td colspan="10" style="text-align:center;"><b>Total salary for all user</b></td>
                         <td><div class="td_style"><b><?php echo number_format($filter->sanitize($totalresult, "int"));?></b></div></td>
                         <td></td>
                     </tr>

@@ -23,6 +23,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('apps/salary/css/salary.css');
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/popup.js');    //popup message
+
         $this->assets->addJs('common/js/export.js');
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
@@ -51,6 +52,7 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function show_salarylistAction() {
+     
         $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
