@@ -12,8 +12,9 @@ class AbsentController extends ControllerBase
 {
     
     public function initialize() {
-        parent::initialize(); 
-        $this->setCommonJsAndCss();
+        parent::initialize();      
+           $this->setCommonJsAndCss();
+
     }
 
     
@@ -23,7 +24,7 @@ class AbsentController extends ControllerBase
        $this->view->disable(); 
     }
     
-      public function absentlistAction(){
+     public function absentlistAction(){
          $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
@@ -33,5 +34,6 @@ class AbsentController extends ControllerBase
 
 
     }
-}
-
+    
+    
+}    
