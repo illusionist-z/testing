@@ -36,7 +36,7 @@
                     </tr>
 
                 </thead>
-                <tbody>
+                <tbody style="display: none;">
                     <?php
                     $filter = new Filter();
                     foreach ($geteachmonthsalarys as $geteachmonthsalary) {
@@ -55,13 +55,12 @@
                         <?php
                     }
                     ?>
-
-
                 </tbody>
+                <tfoot style="display: none;"></tfoot>
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-    
+    <div id="content"></div>
     <div id="myPopup" style="display:none;" title=""><a id="popupClose">x</a><h1>Add confirm</h1>
     <div>Do you want to new pay list for this month  
         <?php
@@ -71,12 +70,7 @@
         ?>
     </div>
     <div style="height:30px;"></div>
-    <a href="../calculate" class="button">Yes</a><a href="#" class="button" id="btn_close">No</a>
+    <a href="../calculate" class="button">Yes</a><a href="#" class="button">No</a>
     </div>	
 </section><!-- /.content -->
 
-<script>
-$('#btn_close').click(function(){
-    document.getElementById('myPopup').style.display = 'none';;
-});
-</script>

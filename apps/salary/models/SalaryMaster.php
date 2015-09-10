@@ -654,7 +654,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
      */
     public function editsalary($member_id) {
         try {
-            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id where salary_master.id ='" . $member_id . "'";
+            $sql = "select * from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE salary_master.id ='".$member_id."'";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
         } catch (Exception $e) {
@@ -664,7 +664,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
     }
 
     /**
-     * @author David
+     * @author David JP <david.gnext@gmail.com>
      * @return $res[]?true :false
      * Salary Edit action
      */
