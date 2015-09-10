@@ -23,6 +23,12 @@ class SalaryMasterAllowance extends Model {
         return $result;
     }
     
+    /**
+     * 
+     * @param type $allowance
+     * @param type $member_id
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function edit_allowanceByMemberid($allowance,$member_id) {
          try{
              
@@ -34,7 +40,7 @@ class SalaryMasterAllowance extends Model {
                 for($i=0;$i<count($allowance);$i++){
                    
                     try {
-//                        
+                        
                 $sql = "INSERT INTO salary_master_allowance (allowance_id,member_id) VALUES('".$allowance[$i]."','". $member_id . "')";
                 echo $sql;
                 $result = $this->db->query($sql);

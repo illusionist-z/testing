@@ -26,7 +26,7 @@ class CoreMemberTaxDeduce extends Model {
      * @param type $deduce
      * @param type $member_id
      * @return type
-     * 
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function edit_taxByMemberid($deduce,$member_id) {
          try{
