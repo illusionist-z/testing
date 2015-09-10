@@ -9,7 +9,7 @@ var Noti = {
        
         $.ajax({
             type: 'GET',
-            url: baseUri +'notification/index/detail?data=' + id,
+            url: '../../notification/index/detail?data=' + id,
             dataType: 'html',
             success: function (res) {
                  var result = $.parseJSON(res);
@@ -33,7 +33,7 @@ var Noti = {
     AdminDetail: function (id) {
         $.ajax({
             type: 'GET',
-            url: baseUri +'notification/index/detail?data=' + id,
+            url: '../../notification/index/detail?data=' + id,
             dataType: 'html',
             success: function (res) {
               /* var result = $.parseJSON(res);
@@ -52,22 +52,26 @@ var Noti = {
                
                var result = $.parseJSON(res);  
              
-               var data ='<form id="noti_detail" width="800px" height="300px" ><table width="500px" height="290px" style="font-size:13px;" >';               
+               var data ='<form id="noti_detail" width="800px" height="300px" ><table width="500px" height="290px"  >';               
                    data += '<br>'
-                        +'<tr><td>User Name </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['member_login_name']+ '</b></td><td ></td></tr>'
-                        +'<tr><td>Start Date </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['start_date']+ '</b></td></tr>'
-                        +'<tr><td>End Date </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['end_date']+ '</b></td></tr>'
-                        +'<tr><td>Leave Status</td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_status']+ '</b></td></tr>'
-                        +'<tr><td>Leave Days  </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_days']+ '</b></td></tr>'
-                        +'<tr><td>Leave Description  </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_description']+ '</b></td></tr>';
-               data +='<tr><td></td><td colspan="2"><br><a href="#" class="button" id="noti_accept">Accept</a><a href="#" class="button" id="noti_reject">Reject</a><a href="#" class="button" id="noti_cancel">Cancel</a></td></tr>';
+                        +'<tr><td></td><td><b>User Name </b></td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['member_login_name']+ '</b></td><td ></td></tr>'
+                        +'<tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['start_date']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>End Date </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['end_date']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_status']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_days']+ '</b></td></tr>'
+                        +'<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;">'+result[0]['leave_description']+ '</b></td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['member_id']+ ' name="id"></td><td></td></td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['end_date']+ ' name="end_date"></td><td></td></td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['leave_days']+ ' name="leave_days"></td><td></td></td></tr>'
+                        +'<tr><td></td><td><input type="hidden" value='+result[0]['start_date']+ ' name="start_date"></td><td></td></td></tr>';
+               data +='<tr><td></td><td></td><td colspan="2"><br><a href="#" class="button" id="noti_accept">Accept</a><a href="#" class="button" id="noti_reject">Reject</a><a href="#" class="button" id="noti_cancel">Cancel</a></td></tr>';
                data +='</table></form>';
                Noti.Dialog(data);
             }
         });
     },
     Dialog: function (data) {
-        $("#notificationContainer").hide();
+         $("#notificationContainer").hide();
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -78,7 +82,7 @@ var Noti = {
             
             autoOpen: false,
             resizable:false,
-            height: 392,
+            height: 395,
             async:false,
             width: 530,            
             modal: true,
@@ -138,7 +142,7 @@ var Noti = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : baseUri +"notification/index/update_noti",
+            url : "../../notification/index/update_noti",
             success:function(){
                 
                 d.dialog("close");
@@ -151,7 +155,7 @@ var Noti = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : baseUri +"leavedays/index/acceptleave",
+            url : "../../leavedays/index/acceptleave",
             success:function(){
                
                 d.dialog("close");
@@ -166,7 +170,7 @@ var Noti = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : baseUri +"leavedays/index/rejectleave",
+            url : "../../leavedays/index/rejectleave",
             success:function(){ 
                 d.dialog("close");
                 location.reload();
@@ -191,29 +195,22 @@ $(document).ready(function () {
     }); 
 
     $(".noti").click(function () {
-        
        document.getElementById("noti").className = "noticlose";
-       $("#notificationContainer").fadeToggle();
-       $("#notificationsBody").load(baseUri +"notification/index/notification");
-       return false;
+       $("#notificationContainer").fadeToggle(100);
+       $("#notificationsBody").load('../../notification/index/notification');
     });
     
     
     $(".noticlose").click(function () {
-        
-        $("#notificationsBody").empty();
        $("#notificationContainer").hide();
-       
-      document.getElementById("noti").className = "noti";
-     
-      location.reload();
+       document.getElementById("noti").className = "noti";
+       location.reload();
     });
  
-////    $("body").click(function()
-////    {
-////              document.getElementById("noti").className = "noti";
-////    $("#notificationContainer").hide();
-//
+//    $(".content").click(function()
+//    {
+//     $("#notificationContainer").hide();
+//    location.reload();
 //    });
 
     
