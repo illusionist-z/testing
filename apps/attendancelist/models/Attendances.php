@@ -116,7 +116,7 @@ class Attendances extends Model {
        $list   = $result->fetchall();
         return $list;*/
         
-        if(isset($month)){
+        if(isset($name)){
            //echo "Thank You";
            //print_r($today);exit;
            $row =   $this->modelsManager->createBuilder()
@@ -245,23 +245,23 @@ class Attendances extends Model {
     }
     /**
      * @desc   insert absent member to absent 
-     * @author David JP <david.gnext@gmail.com>
+     * @author David
      * @param  $v[0] = member_id
      */
     public function absent(){
-        $query = "Select member_id from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
+        $query = "Select member_id from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
         $res   = $this->db->query($query);
-        $absent = $res->fetchall();   
+        $absent = $res->fetchall();        
         foreach ($absent as $v){
             $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
-            $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+1 WHERE leaves.member_id='".$v[0]."' ");
             $this->db->query($insert);
         }
     }
     
-    public function GetAbsentList(){
+     public function GetAbsentList(){
         
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";         $list=$this->db->query($query);
+        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";    
+        $list=$this->db->query($query);
          $absentlist=$list->fetchall();
          return $absentlist;
         

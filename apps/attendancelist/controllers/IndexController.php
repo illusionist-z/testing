@@ -57,7 +57,5 @@ class IndexController extends ControllerBase
         $this->view->setVar("Getname", $UserName);                
         $this->view->offset=$offset;
     }    
-    
-   
 }
 

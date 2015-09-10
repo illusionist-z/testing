@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
     <head><style>.ui-dialog-titlebar-close {
   visibility: hidden;
@@ -14,7 +13,7 @@
         <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini" >
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -27,17 +26,42 @@
                         <ul class="nav navbar-nav">                           
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
-                                <a href="#" class="noti" id="noti" data-toggle="<?php if(count($noti)==0){echo "";}else{echo "dropdown";}?>" style="padding-top: 20px;">
+                                <a href="#" class="dropdown-toggle" data-toggle="<?php if(count($noti)==0){echo "";}else{echo "dropdown";}?>" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
-                                  <div id="notificationContainer">
-                                  <div id="notificationTitle">Notifications</div>
-<div id="notificationsBody" class="notifications">
-
-</div>
-<div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall">See All</a></div>
-                                </div>
+                                  <ul class="dropdown-menu">
+                                    <li class="header">You have <i><b style="color:red;font-size: 20px;"><?php echo count($noti);?></b></i> notifications</li>
+                                       <?php foreach ($noti as $noti) {?>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        
+                                        <ul class="menu" >
+                                            
+                                            <li>
+                                                <?php if($this->session->permission_code=="ADMIN"){?>
+                                                <a href="#" onclick="return false;" class="adminnotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
+                                                <!--<img src="../../common/img/notid.png"> -->
+                                                 <img src="../../common/img/notid.png"> 
+                                                <!--#4682B4-->
+                                                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <span style="font-weight:bold;"><?php echo date("d-m-Y", strtotime( $noti['start_date']));}
+                                                    else {?></span>
+                                                <a href="#" onclick="return false;" class="usernotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
+                                                    <img src="../../common/img/notid.png"> <b>admin</b><?php 
+                            switch($noti['leave_status']){
+                            
+                            case "1" : echo " Confirmed";break;
+                            case "2" : echo " Rejected";break;
+                               
+                        }?> <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}?>
+                                                                                         
+                                                </a>
+                                            </li>
+                                           
+                                        </ul>
+                                </li><?php } ?>
+                                    <li class="footer"><a href="../../notification/index/viewall">View All</a></li>
+                                </ul>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
 
@@ -47,13 +71,13 @@
                                    <!-- <img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="user-image" alt="User Image"/>-->
                                     <?php
                                                     if($this->session->user['member_profile']==null){
-                                                    $img = "profile.png";}
+                                                        $img = "profile.png";}
                                                     else{
                                                         $img=$this->session->user['member_profile'];
                                                     }
                                         ?>                                                 
                                         <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
-                                    <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
+                                    <span class="hidden-xs" style="font-weight:bold;"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -70,10 +94,10 @@
                                         ?>                                                 
                                         <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <p>
-                                            <b><?php echo $this->session->user['member_login_name']; ?></b>
+                                            <span style="font-weight:bold;"><?php echo $this->session->user['member_login_name']; ?></span>
                                            <!-- <small><b>Member since Nov. 2012</b></small>-->
                                             <!--<small><b>Member since <?php echo "<i style='color:black'> \" ".$this->session->user['created_dt']." \"</i>";?></b></small>-->
-                                            <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
+                                            <small>Member Since <span style="font-weight:bold;"><?php echo date("M - Y", strtotime( $this->session->user['created_dt']));?></span></small>
                                         </p>
                                     </li>
 
@@ -82,20 +106,20 @@
                                       <?php $name=$this->session->user['member_login_name'];
         if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat">Setting</a>
                                         </div>
             
         <?php }
         else
         {?> 
             <div class="pull-left">
-                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat">Setting</a>
                                         </div>
         <?php }
         ?>
                                         
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
+                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout">Sign out</a>
 
                                         </div>
                                     </li>
@@ -116,24 +140,24 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <aside>
                     <ul class="sidebar-menu">
-                        <li class="header"><b>MAIN NAVIGATION</b></li>
+                        <li class="header">MAIN NAVIGATION</li>
                         <?php
                         foreach ($this->session->auth as $key_name => $key_value) {
                             //the outer main menu
                             if (count($key_value) > 1) {
 
-                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a>';
                             } else {
                                 $top = explode(" ", $key_value[0]);
                                 if (strpos($key_name, 'user') !== false) {
 
                                     if (isset($top[1])) {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span>' . $key_value[0] . '</span></a></li>';
                                 }
                             }
 

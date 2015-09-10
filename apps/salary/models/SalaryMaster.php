@@ -69,7 +69,7 @@ class SalaryMaster extends Model {
      */
     public function getbasicsalary() {
         try {
-            $sql = "select basic_salary,status,member_id,date(created_dt)as comp_start_date "
+            $sql = "select basic_salary,status,member_id,travel_fee,date(created_dt)as comp_start_date "
                     . "from salary_master where deleted_flag=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);
