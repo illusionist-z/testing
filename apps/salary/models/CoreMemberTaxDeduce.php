@@ -15,7 +15,7 @@ class CoreMemberTaxDeduce extends Model {
     public function getdeduceBymember_id($member_id){
         try{
             $data=$this->db->query("SELECT DISTINCT deduce_id from core_member_tax_deduce where member_id='".$member_id."'");
-            $result=$data->fetcharray();
+            $result=$data->fetchall();
         } catch (Exception $ex) {
             echo $ex;
         }
