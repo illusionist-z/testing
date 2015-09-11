@@ -34,7 +34,7 @@ var Salary = {
                         +'<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
                data += '<tr><td colspan="4" style="font-size:12px;">';
                for(var j in result.dedution){
-               var duct = Salary.Checkdeduce(result.dedution[j]['deduce_name'],result.permit_dedution);
+               var duct = Salary.Check(result.dedution[j]['deduce_name'],result.permit_dedution);
                data +=result.dedution[j]["deduce_name"]+'<input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'>';
                }
                data +='</td></tr>';
@@ -51,7 +51,7 @@ var Salary = {
     Check: function(name,permit){
         var $check;
         for(var n in permit){
-         var permit_name = permit[n]['allowance_name']||permit[n][0];
+         var permit_name = permit[n]['allowance_name']||permit[n];
          switch(permit_name){
              case name:$check="checked";break;
              default  :break;
@@ -62,7 +62,7 @@ var Salary = {
     Checkdeduce: function(name,permit){
         var $check;
         for(var n in permit){
-         var permit_name = permit[n]['deduce_name']||permit[n][0];
+         var permit_name = permit[n]['deduce_name']||permit[n];
          switch(permit_name){
              case name:$check="checked";break;
              default  :break;

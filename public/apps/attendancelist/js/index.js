@@ -49,7 +49,7 @@ var Attendance = {
         $.ajax({
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
-            success: function (d) {                       
+            success: function (d) {
                 var json_obj = $.parseJSON(d);//parse JSON            
                $('tbody').empty();
                $('tfoot').empty();
@@ -93,8 +93,8 @@ var Attendance = {
 
                     //for check out time
 
-                     if(json_obj[i].checkout_time!=="00:00:00" ){
-                         checkout = json_obj[i].checkout_time.split(" ");
+                     if(json_obj[i].checkout_time!=null){
+                     checkout = json_obj[i].checkout_time.split(" ");
                      out = checkout[1];
                       ds=out.split(":");
                       total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
@@ -113,10 +113,12 @@ var Attendance = {
                      localcout   = hours+':'+minutes+':'+seconds;}
                  else{
                      localcout="00:00:00";
+                     out="00:00:00";
+                     
                  }
 
                     //for working hours
-                    if(checkout[1]>checkin[1]){
+                    if(out>checkin[1]){
                     workinghour=new Date(new Date(p + checkout[1]) - new Date(p + checkin[1])).toUTCString().split(" ")[4];}
                     else{
                         workinghour="0";
