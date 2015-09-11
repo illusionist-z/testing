@@ -76,11 +76,13 @@ if(isset($Msg))
                     <div class="div_bottom">
                         <span class="span_style">Deduce for SSC </span>
                         <span>
-                            with_F <input type="checkbox" name="check_list[]" value="stay_father">
-                            with_M <input type="checkbox" name="check_list[]" value="stay_mother">
-                            spouse <input type="checkbox" name="check_list[]" value="spouse">
-                            children <input type="checkbox" name="check_list[]" value="children">
-                            life_insurance <input type="checkbox" name="check_list[]" value="life_insurance">
+                            <?php
+                            //print_r($getall_allowance);
+                            foreach ($getall_deduce as $getall_deduces) {
+                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_deduces['deduce_id'].'"> '. $getall_deduces['deduce_name'];
+                            }
+                            ?>
+                            
                         </span>
                         
                     </div>

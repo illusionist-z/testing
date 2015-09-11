@@ -69,6 +69,7 @@ class Attendances extends Model {
                           ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                           ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                           ->where('attendances.att_date = :today:', array('today' => $today))
+                          ->andWhere('core.deleted_flag = 0')
                           ->orderBy('attendances.checkin_time DESC')
                           ->getQuery()
                           ->execute(); 
@@ -116,7 +117,7 @@ class Attendances extends Model {
        $list   = $result->fetchall();
         return $list;*/
         
-        if(isset($name)){
+        if(isset($month)){
            //echo "Thank You";
            //print_r($today);exit;
            $row =   $this->modelsManager->createBuilder()
@@ -125,6 +126,7 @@ class Attendances extends Model {
                          ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                          ->where('MONTH(attendances.att_date) = :month:', array('month' => $month))
                          ->andWhere('attendances.member_id = :id:', array('id' => $id))
+                          ->andWhere('core.deleted_flag = 0')
                          ->orderBy('attendances.att_date DESC')
                          ->getQuery()
                          ->execute();          
@@ -144,6 +146,7 @@ class Attendances extends Model {
                          ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                          ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
                          ->andWhere('attendances.member_id = :id:', array('id' => $id))
+                          ->andWhere('core.deleted_flag = 0')
                          ->orderBy('attendances.att_date DESC')
                          ->getQuery()
                          ->execute();           
@@ -181,6 +184,7 @@ class Attendances extends Model {
                         ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                         ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                         ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
+                        ->andWhere('core.deleted_flag = 0')
                         ->orderBy('attendances.checkin_time DESC')
                         ->getQuery()
                         ->execute();           
@@ -202,11 +206,11 @@ class Attendances extends Model {
      * @author zinmon
      */
     public function search_attlist($year,$month,$username) {
+       
         try {
          
-         $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
+         $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id";
          $conditions=$this->setCondition($year, $month, $username);
-
               $sql = $select;
               if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions);
@@ -249,18 +253,18 @@ class Attendances extends Model {
      * @param  $v[0] = member_id
      */
     public function absent(){
-        $query = "Select member_id from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
+        $query = "Select member_id from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)  AND deleted_flag=0";
         $res   = $this->db->query($query);
         $absent = $res->fetchall();        
         foreach ($absent as $v){
-            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,0)";
+            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
             $this->db->query($insert);
         }
     }
     
-     public function GetAbsentList(){
+    public function GetAbsentList(){
         
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";    
+        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0";    
         $list=$this->db->query($query);
          $absentlist=$list->fetchall();
          return $absentlist;

@@ -39,8 +39,9 @@ var Attendance = {
         if(month=="" && username=="" && year==""){
             $('tbody').empty();
              var output = "<tr>"
-                            + "<td colspan='8'><center>No data to display</center></td>"                           
-                            + "</tr>";
+                            + "<td colspan='8'><center>No data to display</center></td>"
+                           
+                            + "</tr>"
                     $("tbody").append(output); 
         }
         else{
@@ -55,99 +56,91 @@ var Attendance = {
                 for (var i in json_obj)
                 {   
                     a = "08:00:00";
-                    //b=json_obj[i].checkin_time;
-                     n = new Date();
-                     offset = n.getTimezoneOffset();
-                       if (offset<0){
-                     sign='-';
+                    n = new Date();
+                    offset = n.getTimezoneOffset();
+                    if (offset<0){
+                    sign='-';
                     value=offset*(-1);
-                  }
-                else{
-                value=offset*(-1);
-                 sign='+';
-                } 
+                    }
+                    else{
+                    value=offset*(-1);
+                    sign='+';
+                    } 
 
-                      checkin = json_obj[i].checkin_time.split(" ");
-                      b = checkin[1];
-                      ds=b.split(":");
-                      total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
-                      if (sign=='-'){
-                      tt=total +(value*60);}
-                      else{
-                          tt=total-(value*60);
-                      }
-                      hours   = Math.floor(tt / 3600);
-                     minutes = Math.floor((tt - (hours * 3600)) / 60);
-                     seconds = tt - (hours * 3600) - (minutes * 60);
+                    checkin = json_obj[i].checkin_time.split(" ");
+                    b = checkin[1];
+                    ds=b.split(":");
+                    total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
+                    if (sign==='-'){
+                    time_diff=total +(value*60);}
+                    else{
+                    time_diff=total-(value*60);
+                    }
+                    hours   = Math.floor(time_diff / 3600);
+                    minutes = Math.floor((time_diff - (hours * 3600)) / 60);
+                    seconds = time_diff - (hours * 3600) - (minutes * 60);
 
                     if (hours   < 10) {hours   = "0"+hours;}
                     if (minutes < 10) {minutes = "0"+minutes;}
                     if (seconds < 10) {seconds = "0"+seconds;}
-                     localcin   = hours+':'+minutes+':'+seconds;
+                    localcheckin   = hours+':'+minutes+':'+seconds;
                     //for late 
-                   office_stime= "08:00:00";
-                   p = json_obj[i].att_date + " ";
-    //                late = new Date(new Date(p + b) - new Date(p + a)).toUTCString().split(" ")[4];
-                      late=new Date(new Date(p + localcin) - new Date(p + office_stime)).toUTCString().split(" ")[4];
-
+                    office_stime= "08:00:00";
+                    p = json_obj[i].att_date + " ";
+                    late=new Date(new Date(p + localcheckin) - new Date(p + office_stime)).toUTCString().split(" ")[4];
+                    
                     //for check out time
-
-                     if(json_obj[i].checkout_time!=="00:00:00" ){
-                         checkout = json_obj[i].checkout_time.split(" ");
-                     out = checkout[1];
-                      ds=out.split(":");
-                      total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
-                      if (sign=='-'){
-                      tt=total +(value*60);}
-                      else{
-                          tt=total-(value*60);
-                      }
-                      hours   = Math.floor(tt / 3600);
-                     minutes = Math.floor((tt - (hours * 3600)) / 60);
-                     seconds = tt - (hours * 3600) - (minutes * 60);
+                    if(json_obj[i].checkout_time!==null ){
+                        checkout = json_obj[i].checkout_time.split(" ");
+                        out = checkout[1];
+                        ds=out.split(":");
+                        total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
+                        
+                        //changing utc time to current timezone
+                        if (sign==='-'){
+                          time_diff=total +(value*60);}
+                        else{
+                          time_diff=total-(value*60);
+                        }
+                        hours   = Math.floor(time_diff / 3600);
+                        minutes = Math.floor((time_diff - (hours * 3600)) / 60);
+                        seconds = time_diff - (hours * 3600) - (minutes * 60);
 
                     if (hours   < 10) {hours   = "0"+hours;}
                     if (minutes < 10) {minutes = "0"+minutes;}
                     if (seconds < 10) {seconds = "0"+seconds;}
-                     localcout   = hours+':'+minutes+':'+seconds;}
-                 else{
-                     localcout="00:00:00";
-                 }
-
-                    //for working hours
-                    if(checkout[1]>checkin[1]){
-                    workinghour=new Date(new Date(p + checkout[1]) - new Date(p + checkin[1])).toUTCString().split(" ")[4];}
-                    else{
-                        workinghour="0";
-                    }
-
-                    //Calcute overtime time
-                    wh = "08:00:00";
-
-                    if (workinghour > wh) {
-                        overtime=new Date(new Date(p + workinghour) - new Date(p + wh)).toUTCString().split(" ")[4];
-
+                    
+                    
+                    localcheckout  = hours+':'+minutes+':'+seconds;
+                        if(checkout[1]>checkin[1]){
+                        workinghour=new Date(new Date(p + checkout[1]) - new Date(p + checkin[1])).toUTCString().split(" ")[4];
+                        regularworkinghour = "08:00:00";
+                            if (workinghour > regularworkinghour) {
+                            overtime=new Date(new Date(p + workinghour) - new Date(p + regularworkinghour)).toUTCString().split(" ")[4];
+                            }
+                            else{
+                                overtime="0";
+                            }
+                        }
                     }
                     else{
-                        overtime="0";
+                       localcout="00:00:00";
+                       workinghour="0";
+                       overtime="0";
                     }
                     //Calculate Location
-                     ll = json_obj[i].location;
-
-                     
-
+                     location = json_obj[i].location;
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
                             + "<td>" + json_obj[i].member_login_name + "</td>"
-                            + "<td>" + localcin+ "</td>"
+                            + "<td>" + localcheckin+ "</td>"
                             + "<td>" + late + "</td>"
-                            + "<td>" + localcout + "</td>"
+                            + "<td>" + localcheckout + "</td>"
                             + "<td>" + workinghour + "</td>"
                             + "<td>" +overtime+ "</td>"
-                            + "<td>" + ll+ "</td>"
-                            + "</tr>";
+                            + "<td>" + location+ "</td>"
+                            + "</tr>"
                     $("tbody").append(output); 
-                     
                 }
                 //paginatior function    
                 Attendance.init();
@@ -167,6 +160,8 @@ $(document).ready(function () {
     });           
     
      $('#sub').click(function () {
+                 
+
         Attendance.monthlylist();
     });
 });

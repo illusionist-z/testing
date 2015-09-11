@@ -42,7 +42,8 @@ class Leaves extends \Library\Core\BaseModel {
         $row =   $this->modelsManager->createBuilder()
                       ->columns(array('core.*', 'leaves.*'))
                       ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                      ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')                         
+                      ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')  
+                      ->Where('core.deleted_flag = 0')
                       ->orderBy('leaves.date DESC')
                       ->getQuery()
                       ->execute();          
@@ -64,6 +65,10 @@ class Leaves extends \Library\Core\BaseModel {
      * @author zinmon
      */
     public function search($ltype, $month, $namelist) {
+        $filter = new Filter();
+        $ltype = $filter->sanitize($ltype, "string");
+        $namelist = $filter->sanitize($namelist, "string");
+        
         $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status,total_leavedays,max_leavedays FROM leaves_setting, leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
         $conditions = array();
 
@@ -95,7 +100,12 @@ class Leaves extends \Library\Core\BaseModel {
      * @author David JP <david.gnext@gmail.com>
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
-       
+        $filter = new Filter();
+        $uname = $filter->sanitize($uname, "string");
+        $uname = $filter->sanitize($uname, "string");
+        $type = $filter->sanitize($type, "string");
+        $desc = $filter->sanitize($desc, "string");
+        
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
         $date=$this->getcontractdata($uname);  
@@ -190,7 +200,9 @@ public  function GetDays($StartDate, $EndDate){
 
     public function getuserleavelist($leave_type, $mth, $id) {
         //select leave list
-
+        $filter = new Filter();
+        $leave_type = $filter->sanitize($leave_type, "string");
+        
         $this->db = $this->getDI()->getShared("db");
         if ($leave_type == null and $mth == null) {
             $mth = date('m');
@@ -213,7 +225,8 @@ public  function GetDays($StartDate, $EndDate){
      */
     public function setCondition2( $month, $leavetype) {
         $conditions = array();
-
+        $filter = new Filter();
+        $leavetype = $filter->sanitize($leavetype, "string");
 
         if ($month != "") {
 

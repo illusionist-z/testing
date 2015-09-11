@@ -26,10 +26,10 @@ class SearchController extends ControllerBase
      * 
      */
     public function attsearchAction() {  
-        $month = $this->request->getQuery('month');
+        $month =$this->request->getQuery('month');
         $username = $this->request->get('username');
-        $year = $this->request->get('year');           
-        $offset= $this->session->location['offset'];
+        $year =$this->request->get('year');           
+        //$offset= $this->session->location['offset'];
         $Attendances=new Attendances();
         $result=$Attendances->search_attlist($year,$month,$username);
         $this->view->disable();

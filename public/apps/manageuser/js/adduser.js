@@ -15,6 +15,7 @@
             data :new FormData($("#saveuser")[0]),
             //async: false,
             //cache: false,
+             
             processData: false,
             contentType: false,
             success: function(d){

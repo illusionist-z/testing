@@ -4,7 +4,7 @@ namespace workManagiment\Salary\Models;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
-
+    use Phalcon\Filter;
 
 class Allowances extends Model {
 
@@ -22,7 +22,11 @@ class Allowances extends Model {
      * Adding Allowances to allowance table
      */
     public function addallowance($all_value,$all_name,$count){
-   
+        
+         $filter = new Filter();
+         $all_value = $filter->sanitize($all_value, "int");
+         $all_name = $filter->sanitize($all_name, "string");
+        
     $created_date=date("Y-m-d H:i:s");
     $this->db=$this->getDI()->getShared("db");  
      for ($x = 1; $x <$count; $x++) {
@@ -59,8 +63,13 @@ class Allowances extends Model {
      */
     public function edit_allowance($data){
         try{
-         $sql = "Update allowances SET allowance_name ='".$data['name']."',allowance_amount ='".$data['allowance_amount']."' Where allowances.allowance_id='".$data['id']."'";
+             $filter = new Filter();
+             $name = $filter->sanitize($data['name'], "string");
+             $allowance_amount = $filter->sanitize($data['allowance_amount'], "int");
+            
+         $sql = "Update allowances SET allowance_name ='". $name ."',allowance_amount ='".$allowance_amount."' Where allowances.allowance_id='".$data['id']."'";
          $this->db->query($sql);
+          print_r($allowance_amount);exit;
      } catch (Exception $ex) {
          echo $ex;
      }

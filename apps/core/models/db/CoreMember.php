@@ -29,7 +29,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
         return $getname;*/
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE delete_flag=0 order by created_dt desc";
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         //print_r($row);exit;
         return $row;
@@ -42,7 +42,8 @@ class CoreMember extends \Library\Core\BaseModel {
          $user_name = $this->db->query("SELECT * FROM core_member where member_login_name ='".$username."'");        
          $getname = $user_name->fetchall();
          return $getname;*/
-        
+        $filter = new Filter();
+        $username = $filter->sanitize($username, "string");
         $getname =   $this->modelsManager->createBuilder()
                             ->columns(array('core.*'))
                             ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))                             
@@ -63,20 +64,21 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return username by last month
      */
     public function getlastname() {
-        /*$this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("SELECT * FROM core_member WHERE  created_dt >= (NOW() - INTERVAL 8 MONTH) limit 4");
-        $laname = $user_name->fetchall();
-        return $laname;*/
-        $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by  created_dt desc limit 4";
+        $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember where deleted_flag=0 order by  created_dt desc limit 4";
         $laname=$this->modelsManager->executeQuery($username);
-       // print_r($laname);exit;
         return $laname;
     }
 
-   
+   /**
+    * 
+    * @param type $loginParams
+    * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+    * updating core member updated_dt after one year
+    */
    public function updatecontract($loginParams){
-       $name = $loginParams['member_login_name'];
-        $password = $loginParams['password'];
+       $filter = new Filter();
+       $name = $filter->sanitize($loginParams['member_login_name'], "string");
+        $password = $filter->sanitize($loginParams['password'], "string");
         $this->db = $this->getDI()->getShared("db");
          $user=$this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user1=$user->fetchall();
@@ -105,6 +107,15 @@ class CoreMember extends \Library\Core\BaseModel {
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
         
+        $filter = new Filter();
+        $username = $filter->sanitize($member['username'], "string");
+        $pass = $filter->sanitize($pass, "string");
+        $dept = $filter->sanitize($member['dept'], "string");
+        $position = $filter->sanitize($member['position'], "string");
+        $email = $filter->sanitize($member['email'], "email");
+        $phno = $filter->sanitize($member['phno'], "int");
+        $address = $filter->sanitize($member['address'], "string");
+        
         //uploading file
         $target_dir = "uploads/";
         //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -113,7 +124,7 @@ class CoreMember extends \Library\Core\BaseModel {
 
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
         $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
-                . " VALUES(uuid(),'" . $member['username'] . "','" . $pass . "','" . $member['dept'] . "','" . $member['position'] . "','" . $member['email'] . "','" . $member['phno'] . "','" . $member['address'] . "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
+                . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
       
@@ -172,7 +183,6 @@ class CoreMember extends \Library\Core\BaseModel {
     public function getdetail($data) {        
         $Detail = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.start_date='" . $data['1'] . "' AND leaves.member_id='" . $data['0'] . "'");
         $detail = $Detail->fetchall();
-
         return $detail;
     }
 
@@ -189,6 +199,8 @@ class CoreMember extends \Library\Core\BaseModel {
             $filename=$d['file'];
         }
         else{
+            $pic=$d['file'];
+            unlink("uploads/$pic");
             $filename=rand(1,99999) . '.' . end(explode(".",$_FILES["fileToUpload"]["name"]));
              $target_dir = "uploads/";
         $target_file = $target_dir . $filename;

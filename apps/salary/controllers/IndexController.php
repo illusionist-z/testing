@@ -85,11 +85,15 @@ class IndexController extends ControllerBase {
         $getall_allowance = $Allowance->getall_allowances();
         //print_r($getall_allowance);exit;
 
+        $TaxDeduction=new TaxsDeduction();
+        $deduce=$TaxDeduction->getdedlist();
+        
         $position = $this->salaryconfig->position;
 
         $this->view->setVar("usernames", $user_name);
         $this->view->position = $position;
         $this->view->getall_allowance = $getall_allowance;
+        $this->view->getall_deduce = $deduce;
     }
 
    
@@ -144,8 +148,10 @@ class IndexController extends ControllerBase {
         $resultsalary['data']=$editsalary;
         $Permit_allowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $Permit_allowance->getallowanceBymember_id($editsalary[0]['member_id']);
+        //print_r($resultsalary['permit_allowance']);
         $Permit_dedution = new CoreMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
+        //print_r($resultsalary['permit_dedution']);
         $Dedution = new TaxsDeduction();
         $resultsalary['dedution']=$Dedution->getdedlist();
         $Allowance = new Allowances();
@@ -168,7 +174,9 @@ class IndexController extends ControllerBase {
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
-        //$che = $this->request->getPost('check_allow');var_dump($che);exit;
+        $check_allow = $this->request->getPost('check_allow');
+        $check_deduce= $this->request->getPost('check_list');
+        
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
         
@@ -176,7 +184,7 @@ class IndexController extends ControllerBase {
         $Taxdeduce->edit_taxByMemberid($check_deduce,$data['uname']);
         
         $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
-        $SalaryMasterAllowance->edit_allowanceByMemberid($che_allow,$data['uname']);
+        $SalaryMasterAllowance->edit_allowanceByMemberid($check_allow,$data['uname']);
         
         echo json_encode($cond);
         $this->view->disable();

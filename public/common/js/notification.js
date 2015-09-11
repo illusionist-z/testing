@@ -9,7 +9,7 @@ var Noti = {
        
         $.ajax({
             type: 'GET',
-            url: '../../notification/index/detail?data=' + id,
+            url: baseUri+'notification/index/detail?data=' + id,
             dataType: 'html',
             success: function (res) {
                  var result = $.parseJSON(res);
@@ -33,7 +33,7 @@ var Noti = {
     AdminDetail: function (id) {
         $.ajax({
             type: 'GET',
-            url: '../../notification/index/detail?data=' + id,
+            url: baseUri+'notification/index/detail?data=' + id,
             dataType: 'html',
             success: function (res) {
               /* var result = $.parseJSON(res);
@@ -189,9 +189,9 @@ $(document).ready(function () {
         Noti.Detail(id);
     });   
      $(".adminnotidetail").click(function () {
-       
         var id = $(this).attr('id');
         Noti.AdminDetail(id);
+
     }); 
 
     $(".noti").click(function () {
