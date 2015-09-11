@@ -29,7 +29,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $user_name = $this->db->query("SELECT * FROM core_member");                                          
         $getname = $user_name->fetchall();
         return $getname;*/
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE delete_flag=0 order by created_dt desc";
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         //print_r($row);exit;
         return $row;
@@ -63,17 +63,17 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return username by last month
      */
     public function getlastname() {
-        /*$this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("SELECT * FROM core_member WHERE  created_dt >= (NOW() - INTERVAL 8 MONTH) limit 4");
-        $laname = $user_name->fetchall();
-        return $laname;*/
-        $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember order by  created_dt desc limit 4";
+        $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember where deleted_flag=0 order by  created_dt desc limit 4";
         $laname=$this->modelsManager->executeQuery($username);
-       // print_r($laname);exit;
         return $laname;
     }
 
-   
+   /**
+    * 
+    * @param type $loginParams
+    * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+    * updating core member updated_dt after one year
+    */
    public function updatecontract($loginParams){
        $name = $loginParams['member_login_name'];
         $password = $loginParams['password'];
@@ -189,6 +189,8 @@ class CoreMember extends \Library\Core\BaseModel {
             $filename=$d['file'];
         }
         else{
+            $pic=$d['file'];
+            unlink("uploads/$pic");
             $filename=rand(1,99999) . '.' . end(explode(".",$_FILES["fileToUpload"]["name"]));
              $target_dir = "uploads/";
         $target_file = $target_dir . $filename;
