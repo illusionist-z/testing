@@ -62,6 +62,7 @@ class UserController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function leavelistAction(){         
+        $this->assets->addJs('apps/leavedays/js/user-leavelist.js');
         $User=new Db\CoreMember;
         $id= $this->session->user['member_id'];   
         $noti=$User->GetUserNoti($id);
@@ -74,14 +75,13 @@ class UserController extends ControllerBase {
         
         //variable for search result
         $leave_type=$this->request->get('ltype');
-        $mth = $this->request->get('month');             
-        $leavelist = $this->_leave->getuserleavelist($leave_type,$mth,$id); 
+        $mth = $this->request->get('month');
+        $leavelist = $this->_leave->getuserleavelist($leave_type,$mth,$id);
         $this->view->setVar("Result", $leavelist);
         //get maximum leaves days
         $max=$this->_leave->getleavesetting();
         $max_leavedays=$max['0']['max_leavedays'];
-        $this->view->setVar("Month", $month);      
-    
+        $this->view->setVar("Month", $month);
         
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);

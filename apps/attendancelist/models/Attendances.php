@@ -257,12 +257,12 @@ class Attendances extends Model {
         $res   = $this->db->query($query);
         $absent = $res->fetchall();        
         foreach ($absent as $v){
-            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,0)";
+            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
             $this->db->query($insert);
         }
     }
     
-     public function GetAbsentList(){
+    public function GetAbsentList(){
         
         $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0";    
         $list=$this->db->query($query);

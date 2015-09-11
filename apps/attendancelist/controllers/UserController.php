@@ -26,7 +26,6 @@ class UserController extends ControllerBase
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function attendancelistAction(){
-
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti=$User->GetUserNoti($id);

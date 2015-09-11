@@ -17,17 +17,14 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
-        
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('apps/salary/css/salary.css');        
-        
-        $this->assets->addJs('common/js/popup.js');    //popup message
+        $this->assets->addCss('apps/salary/css/salary.css');
         $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('common/js/popup.js');    //popup message
+
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/salary/js/index-allowance.js');
-        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
     }
@@ -88,11 +85,15 @@ class IndexController extends ControllerBase {
         $getall_allowance = $Allowance->getall_allowances();
         //print_r($getall_allowance);exit;
 
+        $TaxDeduction=new TaxsDeduction();
+        $deduce=$TaxDeduction->getdedlist();
+        
         $position = $this->salaryconfig->position;
 
         $this->view->setVar("usernames", $user_name);
         $this->view->position = $position;
         $this->view->getall_allowance = $getall_allowance;
+        $this->view->getall_deduce = $deduce;
     }
 
    
@@ -147,8 +148,10 @@ class IndexController extends ControllerBase {
         $resultsalary['data']=$editsalary;
         $Permit_allowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $Permit_allowance->getallowanceBymember_id($editsalary[0]['member_id']);
+        //print_r($resultsalary['permit_allowance']);
         $Permit_dedution = new CoreMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
+        //print_r($resultsalary['permit_dedution']);
         $Dedution = new TaxsDeduction();
         $resultsalary['dedution']=$Dedution->getdedlist();
         $Allowance = new Allowances();
@@ -171,9 +174,18 @@ class IndexController extends ControllerBase {
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
-        //$che = $this->request->getPost('check_allow');var_dump($che);exit;
+        $check_allow = $this->request->getPost('check_allow');
+        $check_deduce= $this->request->getPost('check_list');
+        
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
+        
+        $Taxdeduce=new CoreMemberTaxDeduce();
+        $Taxdeduce->edit_taxByMemberid($check_deduce,$data['uname']);
+        
+        $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
+        $SalaryMasterAllowance->edit_allowanceByMemberid($check_allow,$data['uname']);
+        
         echo json_encode($cond);
         $this->view->disable();
     }
@@ -183,7 +195,8 @@ class IndexController extends ControllerBase {
      * @author Su Zin kyaw
      */
     public function allowanceAction() {
-         $Admin=new Db\CoreMember;
+        $this->assets->addJs('apps/salary/js/index-allowance.js');
+        $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
         $All_List = new \workManagiment\Salary\Models\Allowances();
@@ -269,6 +282,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
+        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
          $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
