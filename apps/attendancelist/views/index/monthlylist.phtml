@@ -171,31 +171,12 @@ $length = count($Month);
                             </td>
                             <td><?php
                                 //calculate overtime
-                                $start_time = strtotime($item->attendances->checkin_time);
-                                $end_time = strtotime($item->attendances->checkout_time);
-                                $workingHour = $end_time - $start_time;
-                                    $hours = floor($workingHour / 3600);
-                                    $minutes = floor(($workingHour / 60) % 60);
-                                    $seconds = $workingHour % 60;
-                                    $overtime = "$hours:$minutes:$seconds";                                     
                                
-                                $office_start_time = '08:00:00';
-                                if ($overtime > $office_start_time) {
-                                    $start = strtotime($office_start_time);
-                                    $end = strtotime($overtime);
-                                    $late = $end - $start;
-                                   
-
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " Hours</font>";
-                                }
-                                else{
-                                    echo "-";
-                                }
-                               /* if ($item->attendances->overtime !=0) {
+                                if ($item->attendances->overtime !=0) {
                                    echo $item['overtime'];
                                 } else {
                                     echo "-";
-                                }*/
+                                }
                                 ?></td>
                             <td><?php echo $filter->sanitize($item->attendances->location, "string")?></td>
                         </tr>
