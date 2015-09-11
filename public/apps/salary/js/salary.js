@@ -101,7 +101,7 @@ var Salary = {
             url : "btnedit",
             success:function(d){                
                 //if true success funcion then reload page
-                if(true === d.valid)                      
+                if(true === d.valid)
                 {
                     val.dialog("close");
                     $('body').load("salarylist");

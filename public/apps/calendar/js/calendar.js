@@ -72,9 +72,9 @@ var Calendar = {
             } else {
             var str = "<table style='width:300px;height:80px;background:#3c8dbc;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
             str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
-            str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";                              
-               $(this).append(str);               
-            }                                    
+            str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";
+               $(this).append(str);
+            }
         },
         eventClick: function (event) {
             //check dialog box exist
@@ -103,7 +103,7 @@ var Calendar = {
     event : function(val){
         $.ajax({
             type : "GET",
-            url  : "index/showdata",
+            url  : "showdata",
             async: false,
             data : {event_id:val},
             success : function(d){
@@ -143,7 +143,7 @@ var Calendar = {
          */
         $selectname;
         $.ajax({
-            url:'index/getid?id='+event.id,
+            url:'getid?id='+event.id,
             type:'GET',
             async: false,
             dataType:'json',
@@ -201,7 +201,7 @@ var Calendar = {
     },
     edit: function (id,old_id,dia) {
         $.ajax({
-            url: "index/edit?id=" + id,
+            url: "edit?id=" + id,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -220,7 +220,7 @@ var Calendar = {
     //drag & resize event 
     drag: function (start, end, id, title) {
         $.ajax({
-            url: "index/edit",
+            url: "edit",
             data: {sdate: start, edate: end, id: id, title: title},
             async: false,
             dataType: 'json'
@@ -229,7 +229,7 @@ var Calendar = {
     //create new event
     create: function (dia) {
         $.ajax({
-            url: "index/create",
+            url: "create",
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",
@@ -260,7 +260,7 @@ var Calendar = {
     },
     delete: function (id,member,dia) {
         $.ajax({
-            url: "index/delete",
+            url: "delete",
             data: {data: id},
             async: false,
             dataType: 'json'
