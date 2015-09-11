@@ -86,7 +86,7 @@
         else{
                     $ovl.dialog({
                         autoOpen: false,
-                        height: 495,
+                        height: 500,
                         async: false,     
                         cache : false,
                         resizable:false,

@@ -102,6 +102,9 @@ if ($offset < 0) {
 
                                     echo "<font color='red'>" . gmdate("H:i:s", $late) . " Hours</font>";
                                 }
+                                else{
+                                    echo "-";
+                                }
                                 ?>
                             </td>
                             <td>
@@ -139,11 +142,31 @@ if ($offset < 0) {
                             <td>
                                 <?php
                                 //calculate overtime
+                                $start_time = strtotime($result->attendances->checkin_time);
+                                $end_time = strtotime($result->attendances->checkout_time);
+                                $workingHour = $end_time - $start_time;
+                                    $hours = floor($workingHour / 3600);
+                                    $minutes = floor(($workingHour / 60) % 60);
+                                    $seconds = $workingHour % 60;
+                                    $overtime = "$hours:$minutes:$seconds";                                     
+                               
+                                $office_start_time = '10:00:00 ';
+                                if ($overtime > $office_start_time) {
+                                    $start = strtotime($office_start_time);
+                                    $end = strtotime($overtime);
+                                    $late = $end - $start;
+
+                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " Hours</font>";
+                                }
+                                else{
+                                    echo "-";
+                                }
+                                /*
                                 if ($result->attendances->overtime !=0) {
                                    echo $result['overtime'];
                                 } else {
                                     echo "-";
-                                }
+                                }*/
                                 ?> 
 
                             </td>
