@@ -42,7 +42,8 @@ class Leaves extends \Library\Core\BaseModel {
         $row =   $this->modelsManager->createBuilder()
                       ->columns(array('core.*', 'leaves.*'))
                       ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                      ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')                         
+                      ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')  
+                      ->Where('core.deleted_flag = 0')
                       ->orderBy('leaves.date DESC')
                       ->getQuery()
                       ->execute();          

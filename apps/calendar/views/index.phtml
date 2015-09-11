@@ -11,7 +11,6 @@
 
         <!-- Ionicons -->
 
-        <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
@@ -19,7 +18,7 @@
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" style="margin-left:0;">   
-                    <a><img src="../../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
+                    <a><img src="../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
                     <!-- Navbar Right Menu -->
@@ -28,7 +27,7 @@
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
-                                    <img src="../../common/img/noti.png">
+                                    <img src="../common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
                                   <div id="notificationContainer">
@@ -52,7 +51,7 @@
                                                         $img=$this->session->user['member_profile'];
                                                     }
                                         ?>                                                 
-                                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -68,7 +67,7 @@
                                                         $img=$this->session->user['member_profile'];
                                                     }
                                         ?>                                                 
-                                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <p>
                                             <b><?php echo $this->session->user['member_login_name']; ?></b>
                                            <!-- <small><b>Member since Nov. 2012</b></small>-->
@@ -82,14 +81,14 @@
                                       <?php $name=$this->session->user['member_login_name'];
         if ( $name=='admin'){?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
             
         <?php }
         else
         {?> 
             <div class="pull-left">
-                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
         <?php }
         ?>
@@ -122,18 +121,18 @@
                             //the outer main menu
                             if (count($key_value) > 1) {
 
-                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                echo ' <li class="treeview"><a href="#"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                             } else {
                                 $top = explode(" ", $key_value[0]);
                                 if (strpos($key_name, 'user') !== false) {
 
                                     if (isset($top[1])) {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                 }
                             }
 
@@ -149,13 +148,13 @@
                                     }
                                     if (strpos($key_name, 'user') !== false) {
                                         if($this->session->permission_code=="ADMIN"){
-                                         echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';       
+                                         echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../common/img/li.png" >' . $value . '</a></li>';       
                                         }
                                         else{
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';
+                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../common/img/li.png" >' . $value . '</a></li>';
                                         }
                                     } else {
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';
+                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../common/img/li.png" >' . $value . '</a></li>';
                                     }
                                 }
 

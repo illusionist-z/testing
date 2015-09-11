@@ -164,14 +164,20 @@ $length = count($Month);
                                     $hours = floor($workingHour / 3600);
                                     $minutes = floor(($workingHour / 60) % 60);
                                     $seconds = $workingHour % 60;
-                                    echo "$hours:$minutes:$seconds";
+                                    if($hours<10){
+                                        $hours="0".$hours;
+                                    }
+                                    if($minutes<10){
+                                        $minutes="0".$minutes;
+                                    }
+                                    echo "$hours:$minutes:$seconds"." Hours";
                                     
                                 }
                                 ?>
                             </td>
                             <td><?php
                                 //calculate overtime
-                                
+                               
                                 if ($item->attendances->overtime !=0) {
                                    echo $item['overtime'];
                                 } else {

@@ -65,6 +65,7 @@
         if(type === 'Add User'){
                         $ovl.dialog({
                         autoOpen: false,
+                         resizable:false,
                         height: 590,
                         async: false,
                         cache : false,
@@ -86,7 +87,7 @@
         else{
                     $ovl.dialog({
                         autoOpen: false,
-                        height: 495,
+                        height: 500,
                         async: false,     
                         cache : false,
                         resizable:false,
@@ -165,6 +166,7 @@
         $del.css('background','#F5F5F5');
         $del.dialog({
             autoOpen:false,
+             resizable:false,
             height:190,
             width:350,
             closeText:'',

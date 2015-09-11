@@ -100,7 +100,10 @@ if ($offset < 0) {
                                     $end = strtotime($time);
                                     $late = $end - $start;
 
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " Hours</font>";
+                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . "</font>";
+                                }
+                                else{
+                                    echo "-";
                                 }
                                 ?>
                             </td>
@@ -132,13 +135,14 @@ if ($offset < 0) {
                                     $hours = floor($workingHour / 3600);
                                     $minutes = floor(($workingHour / 60) % 60);
                                     $seconds = $workingHour % 60;
-                                    echo "$hours:$minutes:$seconds"." Hours";                                    
+                                    echo "$hours:$minutes:$seconds";                                    
                                 }
                                 ?>
                             </td>
                             <td>
                                 <?php
-                                //calculate overtime
+                                //calculate overtime                                               
+                               
                                 if ($result->attendances->overtime !=0) {
                                    echo $result['overtime'];
                                 } else {
