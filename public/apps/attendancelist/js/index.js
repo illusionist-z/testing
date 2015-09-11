@@ -129,7 +129,7 @@ var Attendance = {
                        overtime="0";
                     }
                     //Calculate Location
-                     ll = json_obj[i].location;
+                     location = json_obj[i].location;
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
                             + "<td>" + json_obj[i].member_login_name + "</td>"
@@ -138,7 +138,7 @@ var Attendance = {
                             + "<td>" + localcheckout + "</td>"
                             + "<td>" + workinghour + "</td>"
                             + "<td>" +overtime+ "</td>"
-                            + "<td>" + ll+ "</td>"
+                            + "<td>" + location+ "</td>"
                             + "</tr>"
                     $("tbody").append(output); 
                 }
