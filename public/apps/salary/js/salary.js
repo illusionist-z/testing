@@ -20,7 +20,7 @@ var Salary = {
                var result = $.parseJSON(res);               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>User Name </b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['member_id']+ ' name="uname" disabled></td><td ></td></tr>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['member_id']+ ' name="uname"></td><td ></td></tr>'
                         +'<tr><td></td><td><b>Basic Salary </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
                         +'<tr><td></td><td><b>Travel Fee </b></td>'
@@ -34,7 +34,7 @@ var Salary = {
                         +'<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
                data += '<tr><td colspan="4" style="font-size:12px;">';
                for(var j in result.dedution){
-               var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
+               var duct = Salary.Checkdeduce(result.dedution[j]['deduce_name'],result.permit_dedution);
                data +=result.dedution[j]["deduce_name"]+'<input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'>';
                }
                data +='</td></tr>';
@@ -52,6 +52,17 @@ var Salary = {
         var $check;
         for(var n in permit){
          var permit_name = permit[n]['allowance_name']||permit[n][0];
+         switch(permit_name){
+             case name:$check="checked";break;
+             default  :break;
+         }
+        }
+        return $check;
+    },
+    Checkdeduce: function(name,permit){
+        var $check;
+        for(var n in permit){
+         var permit_name = permit[n]['deduce_name']||permit[n][0];
          switch(permit_name){
              case name:$check="checked";break;
              default  :break;

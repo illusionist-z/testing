@@ -39,7 +39,7 @@ class CoreMemberTaxDeduce extends Model {
                    
                     try {
                         
-                $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,updater_id,updated_dt) VALUES('".$deduce[$i]."','". $member_id . "','".$creartor_id. "',NOW())";
+                $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id . "','".$creartor_id. "',NOW())";
                 $result = $this->db->query($sql);
                         
                         
@@ -51,7 +51,7 @@ class CoreMemberTaxDeduce extends Model {
             }
             else{
                 for($i=0;$i<count($deduce);$i++){
-                $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,updater_id,updated_dt) VALUES('".$deduce[$i]."','". $member_id . "','".$creartor_id. "',NOW())";
+                $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id . "','".$creartor_id. "',NOW())";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);
                 }

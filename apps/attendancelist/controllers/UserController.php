@@ -12,7 +12,7 @@ class UserController extends ControllerBase
         parent::initialize();
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
+        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');        
         $this->setCommonJsAndCss();
         
     }
@@ -26,7 +26,6 @@ class UserController extends ControllerBase
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function attendancelistAction(){
-
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti=$User->GetUserNoti($id);

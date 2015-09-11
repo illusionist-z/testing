@@ -11,36 +11,25 @@
  * show monthly list by return json array
  * @author Su ZIn Kyaw
  */
-var pager = new Paging.Pager(),User={};   //for pagination
 
-/*
- * show today list by return json array
- * @version 24/8/2015 David
- */
-   User.Attendance = {
-        init : function (){
-            $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =3;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);  
-            $('tbody').show();
-        },
-        search : function (){
-        var month = document.getElementById('month').value;    
-        window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
-        }
-    };
 $(document).ready(function () { 
 
     // ユーザーのクリックした時の動作。    
 
-    User.Attendance.init();
+         
     
     $('#search').click(function () {
-        User.Attendance.search();
+       
+        search();
     });
+             
 });
 
 
 
-
+var search = function () {
+    var month = document.getElementById('month').value;
+    
+     window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
+    
+};

@@ -44,8 +44,7 @@ class Attendances extends Model {
         return $rows;*/
         
         if(isset($name)){
-            $filter = new Filter();
-            $name = $filter->sanitize($name, "string");
+           
            //print_r($today);exit;
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
@@ -117,12 +116,9 @@ class Attendances extends Model {
        $list   = $result->fetchall();
         return $list;*/
         
-        if(isset($month)){
+        if(isset($name)){
            //echo "Thank You";
            //print_r($today);exit;
-            $filter = new Filter();
-            $month = $filter->sanitize($month, "string");
-            
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
                          ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
@@ -208,9 +204,6 @@ class Attendances extends Model {
     public function search_attlist($year,$month,$username) {
         try {
          
-            $filter = new Filter();
-            $username = $filter->sanitize($username, "string");
-       
          $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
          $conditions=$this->setCondition($year, $month, $username);
 
@@ -256,21 +249,12 @@ class Attendances extends Model {
      * @param  $v[0] = member_id
      */
     public function absent(){
-        $query = "Select member_id from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
+        $query = "Select member_id from core_member where member_login_name NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";
         $res   = $this->db->query($query);
         $absent = $res->fetchall();        
         foreach ($absent as $v){
-            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,0)";
+            $insert = "Insert into absent (member_id,date,delete_flag) VALUES ('".$v[0]."',CURRENT_DATE,1)";
             $this->db->query($insert);
         }
-    }
-    
-     public function GetAbsentList(){
-        
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)";    
-        $list=$this->db->query($query);
-         $absentlist=$list->fetchall();
-         return $absentlist;
-        
     }
 }
