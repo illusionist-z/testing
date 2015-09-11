@@ -18,7 +18,7 @@ var Salary = {
            type: "GET",
            success:function(res){
                var result = $.parseJSON(res);               
-               var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
+               var data ='<form id="edit_salary" width="650px" height="500px"><input type="hidden" value='+result.data[0]['id']+ ' name="id"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>User Name </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['member_id']+ ' name="uname"></td><td ></td></tr>'
                         +'<tr><td></td><td><b>Basic Salary </b></td>'
@@ -51,7 +51,7 @@ var Salary = {
     Check: function(name,permit){
         var $check;
         for(var n in permit){
-         var permit_name = permit[n]['allowance_name']||permit[n];
+         var permit_name = permit[n]['allowance_name']||permit[n][0];
          switch(permit_name){
              case name:$check="checked";break;
              default  :break;
@@ -59,17 +59,7 @@ var Salary = {
         }
         return $check;
     },
-    Checkdeduce: function(name,permit){
-        var $check;
-        for(var n in permit){
-         var permit_name = permit[n]['deduce_name']||permit[n];
-         switch(permit_name){
-             case name:$check="checked";break;
-             default  :break;
-         }
-        }
-        return $check;
-    },
+    
     Dia: function (d) {
         if (!this.isOvl) {
             this.isOvl = true;
@@ -110,7 +100,7 @@ var Salary = {
             data: form.serialize(),
             dataType:'json',
             url : "btnedit",
-            success:function(d){                
+            success:function(d){
                 //if true success funcion then reload page
                 if(true === d.valid)                      
                 {

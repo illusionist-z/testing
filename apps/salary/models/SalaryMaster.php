@@ -289,8 +289,8 @@ class SalaryMaster extends Model {
                         'absent_dedution'=>$absent_deduce);
                 }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;

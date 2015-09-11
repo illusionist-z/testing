@@ -151,7 +151,7 @@ class IndexController extends ControllerBase {
         //print_r($resultsalary['permit_allowance']);
         $Permit_dedution = new CoreMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
-        //print_r($resultsalary['permit_dedution']);
+        //print_r($resultsalary['permit_dedution']);exit;
         $Dedution = new TaxsDeduction();
         $resultsalary['dedution']=$Dedution->getdedlist();
         $Allowance = new Allowances();
