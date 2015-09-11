@@ -56,7 +56,18 @@ var Salary = {
     Check: function(name,permit){
         var $check;
         for(var n in permit){
-         var permit_name = permit[n]['allowance_name']||permit[n][0];
+         var permit_name = permit[n]['allowance_name']||permit[n];
+         switch(permit_name){
+             case name:$check="checked";break;
+             default  :break;
+         }
+        }
+        return $check;
+    },
+    Checkdeduce: function(name,permit){
+        var $check;
+        for(var n in permit){
+         var permit_name = permit[n]['deduce_name']||permit[n];
          switch(permit_name){
              case name:$check="checked";break;
              default  :break;
