@@ -68,11 +68,10 @@
         
     </div><!-- start Basic salary setting-->
     <div class="tabContent hide" id="advantages"><!-- start allowance setting-->
-       <div class="buttons">
+      <!-- <div class="buttons">
             <input type="button" class="addbtn add" onclick="return false;" value="Add New Deduction">
 			
-			
-	 </div>
+	 </div>-->
       <table class="listtbl">
   <thead>
     <tr>
@@ -81,7 +80,7 @@
 			<th>Deduction Amount</th>
 			
 			
-			<th width="50px"></th>
+			<th width="50px"><input style="color:black;height: 50px;"  id="inimg" type="button" class="addbtn add" onclick="return false;" value=" Add New Deduction"></th>
 	</tr>
 	
   </thead>
@@ -96,7 +95,7 @@
 			  		
 					
 					
-					<td id='tbl-no'><input type="button" class="btn btn-default dedtpopup" onclick="return false;" id="<?= $list['deduce_id'] ?>" value="Edit"></td>
+					<td id='tbl-no'><input style="float:right;" type="button" class="btn btn-default dedtpopup" onclick="return false;" id="<?= $list['deduce_id'] ?>" value="Edit"></td>
 			  	</tr>
                  <?php
                 }

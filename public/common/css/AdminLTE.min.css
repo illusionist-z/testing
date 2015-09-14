@@ -176,18 +176,23 @@ a.export {
     font-size: 12px;
     padding: 6px 10px 6px 26px;
 }
-.inimg{
-    background: url("../img/5Fm069k.png")  10px -27px no-repeat #F8F8F8 ;
+.addimg{
+    background: url("../img/5Fm069k.png")  10px -28px no-repeat #F8F8F8 ;
     font-size: 12px;
+    padding: 6px 10px 6px 26px;
+}
+#inimg{
+    background: url("../img/5Fm069k.png")  10px -17px no-repeat #F8F8F8 ;
+   
     padding: 6px 10px 6px 26px;
 }
 
 .addbtnn{
     background: #F8F8F8;
-    font-size: 12px; 
-   
+    font-size: 12px;    
     
 }
+
 #nav{list-style:none;margin: 0px;
 padding: 0px;}
 #nav li {
