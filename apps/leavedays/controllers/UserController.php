@@ -17,7 +17,7 @@ class UserController extends ControllerBase {
         
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/user-leavelist.js');               
+        //$this->assets->addJs('apps/leavedays/js/user-leavelist.js');               
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
         
@@ -31,6 +31,7 @@ class UserController extends ControllerBase {
     }
 
     public function applyleaveAction() { 
+        $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti=$User->GetUserNoti($id);

@@ -93,8 +93,8 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
             $current_date=date("Y-m-d");
             
              $filter = new Filter();
-             $basic_salary = $filter->sanitize($rows['basic_salary'], "int");
-             $travel_fee = $filter->sanitize($rows['travel_fee'], "int");
+             $basic_salary = number_format($filter->sanitize($rows['basic_salary'], "int"));
+             $travel_fee = number_format($filter->sanitize($rows['travel_fee'], "int"));
              $overtime_rate = $filter->sanitize($rows['overtime_rate'], "int");
              
             
@@ -119,15 +119,11 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
     public function insert_taxs($row) {
         try {
             //print_r($row);exit;
-            $filter = new Filter();
-             $allowance_amount = $filter->sanitize($rows['allowance_amount'], "int");
-             
-             
             foreach ($row as $rows) {
                 if($rows['allowance_amount']==""){
                     $rows['allowance_amount']="0";
                 }
-                $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,absent_dedution,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $allowance_amount . "','".$rows['absent_dedution']."',".$rows['income_tax']."',NOW(),NOW())";
+                $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,absent_dedution,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','".$rows['absent_dedution']."',".$rows['income_tax']."',NOW(),NOW())";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);
@@ -267,8 +263,8 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
     public function btnedit($data){
      try{
          $filter = new Filter();
-         $basic_salary = $filter->sanitize($data['basesalary'], "int");
-         $travel_fee = $filter->sanitize($data['travelfee'], "int");
+         $basic_salary = number_format($filter->sanitize($data['basesalary'], "int"));
+         $travel_fee = number_format($filter->sanitize($data['travelfee'], "int"));
          $overtime = $filter->sanitize($data['overtime'], "int");
          $ssc_emp = $filter->sanitize($data['ssc_emp'], "int");
          $ssc_comp = $filter->sanitize($data['ssc_comp'], "int");

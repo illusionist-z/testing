@@ -174,7 +174,7 @@ var Salary = {
                 $("tbody").append(output);
             }
             var html='<tr style="background-color:#428bca; color:#ffffff;">'
-                        +'<td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>'
+                        +'<td colspan="10" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><b>#####</b></td>'
                         +'<td></td>'
                         +'</tr>'
@@ -186,6 +186,7 @@ var Salary = {
         });
         }
 };
+
 $(document).ready(function () {
     Salary.init();
 
@@ -199,6 +200,10 @@ $(document).ready(function () {
     
     $(".print").click(function () {
         window.print();
+    });
+    
+    $("#resign").click(function () {
+        
     });
 });
 
