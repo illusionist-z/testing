@@ -78,7 +78,7 @@ class CoreMember extends \Library\Core\BaseModel {
    public function updatecontract($loginParams){
        $filter = new Filter();
        $name = $filter->sanitize($loginParams['member_login_name'], "string");
-        $password = $filter->sanitize($loginParams['password'], "string");
+       $password = $filter->sanitize($loginParams['password'], "string");
         $this->db = $this->getDI()->getShared("db");
          $user=$this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user1=$user->fetchall();
