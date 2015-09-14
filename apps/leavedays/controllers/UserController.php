@@ -9,6 +9,7 @@ use workManagiment\Leavedays\Models\LeaveCategories as LeaveCategories;
 use workManagiment\Core\Models\Db;
 class UserController extends ControllerBase {
     public $config;    
+      public $_leave;
     public function initialize() {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
@@ -29,29 +30,67 @@ class UserController extends ControllerBase {
     }
 
     public function applyleaveAction() { 
+//        $User=new Db\CoreMember;
+//        $id = $this->session->user['member_id'];
+//        $noti=$User->GetUserNoti($id);
+//        $this->view->setVar("noti",$noti);
+//        $this->assets->addCss('common/css/css/style.css');
+//        $leavetype = new LeaveCategories();
+//        $ltype=$leavetype->getleavetype();     
+//        $this->view->setVar("Leavetype", $ltype);
+//          if ($this->request->isPost()) {
+//           $id = $this->session->user['member_id'];
+//            $sdate = $this->request->getPost('sdate');
+//            $edate = $this->request->getPost('edate');
+//            $type = $this->request->getPost('leavetype');
+//            $desc = $this->request->getPost('description');                     
+//            $error=$this->_leave->applyleave($id,$sdate, $edate, $type, $desc); 
+//            
+//            $User=new Db\CoreMember;
+//            $noti=$User->GetUserNoti($id);
+//            $this->session->set('noti', $noti);
+//            
+//            echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
+//            $this->view->disable();
+//        }     
         $User=new Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        $noti=$User->GetUserNoti($id);
-        $this->view->setVar("noti",$noti);
-        $this->assets->addCss('common/css/css/style.css');
+        $id=$this->session->user['member_id'];
+         $noti=$User->GetUserNoti($id);
+          $this->session->set('noti', $noti);
+        $this->assets->addJs('apps/leavedays/js/user-applyleave.js');
         $leavetype = new LeaveCategories();
-        $ltype=$leavetype->getleavetype();     
+        $ltype=$leavetype->getleavetype();
+        $userlist=new Db\CoreMember();
+        
+        $name = $userlist::getinstance()->getusername();           
+        $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
-          if ($this->request->isPost()) {
-           $id = $this->session->user['member_id'];
+        
+        if ($this->request->isPost()) {
+             $user = $this->_leave;
+             $validate = $user->User_Validation($this->request->getPost());
+             
+            if(count($validate)){
+               foreach ($validate as $message){
+                   $json[$message->getField()] = $message->getMessage();
+               }
+               $json['result'] = "error";
+                echo json_encode($json);
+                $this->view->disable();
+                  }     
+            else{
+            $uname =$this->session->user['member_id'];
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
-            $error=$this->_leave->applyleave($id,$sdate, $edate, $type, $desc); 
+            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
+                    $desc);   
             
-            $User=new Db\CoreMember;
-            $noti=$User->GetUserNoti($id);
-            $this->session->set('noti', $noti);
-            
-            echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
+            echo json_encode($error);
             $this->view->disable();
-        }     
+             }
+        }
         
     }
      /**

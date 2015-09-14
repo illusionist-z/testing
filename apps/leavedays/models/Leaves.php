@@ -102,6 +102,7 @@ class Leaves extends \Library\Core\BaseModel {
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
         $filter = new Filter();
         $uname = $filter->sanitize($uname, "string");
+        
         $uname = $filter->sanitize($uname, "string");
         $type = $filter->sanitize($type, "string");
         $desc = $filter->sanitize($desc, "string");
@@ -141,7 +142,7 @@ class Leaves extends \Library\Core\BaseModel {
                     $cond['error']="Apply Leave Before a week ";                 
             }                
         }
-
+   //print_r($cond);exit;
     return $cond;
 }
     
@@ -330,6 +331,37 @@ public  function GetDays($StartDate, $EndDate){
         return $res;
      }
     
+     
+       public function User_Validation($data){
+        $res = array();
+        $validate = new Validation();
+       
+        $validate->add('sdate',
+                new PresenceOf(
+                array(
+                    'message' => 'Start Date is required'
+                     )
+                     ))
+                ->add('edate',
+                new PresenceOf(
+                array(
+                    'message'=> 'End Date is required'
+                )));                
+        $validate->add('description',
+                new PresenceOf(
+                        array(
+                            'message'=>"Reason Must be Insert"
+                        )));
+        
+        
+        $messages = $validate->validate($data);
+        if (count($messages)) {
+                                foreach ($messages as $message) {
+                                     $res[] =$message;
+                                }
+                              }
+        return $res;
+     }
     
     
     
