@@ -103,7 +103,7 @@ var Calendar = {
     event : function(val){
         $.ajax({
             type : "GET",
-            url  : "showdata",
+            url  : "index/showdata",
             async: false,
             data : {event_id:val},
             success : function(d){
@@ -143,7 +143,7 @@ var Calendar = {
          */
         $selectname;
         $.ajax({
-            url:'getid?id='+event.id,
+            url:'index/getid?id='+event.id,
             type:'GET',
             async: false,
             dataType:'json',
@@ -201,7 +201,7 @@ var Calendar = {
     },
     edit: function (id,old_id,dia) {
         $.ajax({
-            url: "edit?id=" + id,
+            url: "index/edit?id=" + id,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -220,7 +220,7 @@ var Calendar = {
     //drag & resize event 
     drag: function (start, end, id, title) {
         $.ajax({
-            url: "edit",
+            url: "index/edit",
             data: {sdate: start, edate: end, id: id, title: title},
             async: false,
             dataType: 'json'
@@ -229,7 +229,7 @@ var Calendar = {
     //create new event
     create: function (dia) {
         $.ajax({
-            url: "create",
+            url: "index/create",
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",
@@ -260,7 +260,7 @@ var Calendar = {
     },
     delete: function (id,member,dia) {
         $.ajax({
-            url: "delete",
+            url: "index/delete",
             data: {data: id},
             async: false,
             dataType: 'json'

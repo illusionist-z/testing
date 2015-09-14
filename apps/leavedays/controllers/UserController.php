@@ -15,11 +15,8 @@ class UserController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
-                $this->_leave = new Leave();
-
-        //$this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
-        //$this->assets->addJs('apps/leavedays/js/user-leavelist.js');   
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
         
@@ -101,7 +98,8 @@ class UserController extends ControllerBase {
      * display user leave list
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function leavelistAction(){         
+    public function leavelistAction(){   
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/user-leavelist.js');
         $User=new Db\CoreMember;
         $id= $this->session->user['member_id'];   

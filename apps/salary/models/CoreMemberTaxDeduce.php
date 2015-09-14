@@ -14,7 +14,7 @@ class CoreMemberTaxDeduce extends Model {
     
     public function getdeduceBymember_id($member_id){
         try{
-            $data=$this->db->query("SELECT DISTINCT deduce_id from core_member_tax_deduce where member_id='".$member_id."'");
+            $data=$this->db->query("SELECT deduce_id from core_member_tax_deduce where member_id='".$member_id."'");
             $result=$data->fetchall();
         } catch (Exception $ex) {
             echo $ex;
@@ -29,7 +29,7 @@ class CoreMemberTaxDeduce extends Model {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function edit_taxByMemberid($deduce,$member_id) {
-         try{            
+         try{
             $count=  $this->getdeduceBymember_id($member_id);
             $creartor_id="admin";
             if(!empty($count)){
@@ -40,9 +40,10 @@ class CoreMemberTaxDeduce extends Model {
                     try {
                         
                 $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id . "','".$creartor_id. "',NOW())";
+                
                 $result = $this->db->query($sql);
                         
-                       
+                        
                     } catch (Exception $exc) {
                         echo $exc->getTraceAsString();
                     }
@@ -54,7 +55,6 @@ class CoreMemberTaxDeduce extends Model {
                 $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id . "','".$creartor_id. "',NOW())";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);
-                
                 }
             }
             //exit;
