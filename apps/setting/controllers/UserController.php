@@ -49,13 +49,11 @@ class UserController extends ControllerBase {
         ));
         }
         $id=$this->session->user['member_id'];
-        
-          $updatedata['file']=$updatedata['temp_file'];
-          
-        
-        
+        $updatedata['file']=$updatedata['temp_file'];
         $User=new Db\CoreMember;
         $User->updatedata($updatedata,$id);
+    
+       
         }
          $this->response->redirect('setting/user/usersetting');
 

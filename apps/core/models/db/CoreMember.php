@@ -188,19 +188,19 @@ class CoreMember extends \Library\Core\BaseModel {
 
    /**
      * 
-     * @param type $d
+     * @param type $data
      * updating core member'profile
      * while user change something in profile
      * @author Su Zin Kyaw
      */
-    public function updatedata($d, $id) {
+    public function updatedata($data, $id) {
         $this->db = $this->getDI()->getShared("db");
         
         if($_FILES["fileToUpload"]["name"]==NULL){
-            $filename=$d['file'];
+            $filename=$data['file'];
         }
         else{
-          $pic=$d['file'];
+          $pic=$data['file'];
             unlink("uploads/$pic");
             $filename=rand(1,99999) . '.' . end(explode(".",$_FILES["fileToUpload"]["name"]));
              $target_dir = "uploads/";
@@ -208,21 +208,21 @@ class CoreMember extends \Library\Core\BaseModel {
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         }
            
-        if ($d['password'] == $d['temp_password']) {
+        if ($data['password'] == $data['temp_password']) {
             
-            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' , "
-                    . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "'"
-                    . ", core_member.member_mail='" . $d['email'] . "' , core_member.member_address='" . $d['add'] . "'"
-                    . ", core_member.member_mobile_tel='" . $d['phno'] . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "' ");
+            $this->db->query("UPDATE core_member set core_member.member_login_name='" . $data['username'] . "' , "
+                    . "core_member.member_dept_name='" . $data['dept'] . "' , core_member.position='" . $data['position'] . "'"
+                    . ", core_member.member_mail='" . $data['email'] . "' , core_member.member_address='" . $data['add'] . "'"
+                    . ", core_member.member_mobile_tel='" . $data['phno'] . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "' ");
         } else {
-            $changeprofile="UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' ,  "
-                    . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "' "
-                    . " ,core_member.member_mail='" . $d['email'] . "' , core_member.member_mobile_tel='" . $d['phno'] . "' "
-                    . " ,core_member.member_address='" . $d['add'] . "' , core_member.member_password='" . sha1($d['password']) . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "'";
+            $changeprofile="UPDATE core_member set core_member.member_login_name='" . $data['username'] . "' ,  "
+                    . "core_member.member_dept_name='" . $data['dept'] . "' , core_member.position='" . $data['position'] . "' "
+                    . " ,core_member.member_mail='" . $data['email'] . "' , core_member.member_mobile_tel='" . $data['phno'] . "' "
+                    . " ,core_member.member_address='" . $data['add'] . "' , core_member.member_password='" . sha1($data['password']) . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "'";
             $this->db->query($changeprofile);
             //echo $changeprofile;exit;
         }
-
+        return $filename;
        
     }
     
