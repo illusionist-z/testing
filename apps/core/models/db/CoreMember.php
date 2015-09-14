@@ -143,7 +143,15 @@ class CoreMember extends \Library\Core\BaseModel {
         $user = $user->fetchall();
         return $user;
     }
-
+    
+    public function Userdata($id){
+        $this->db = $this->getDI()->getShared("db");
+        $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
+        $user = $user->fetchArray();
+        return $user;
+        
+        
+    }
     /**
      * 
      * @return type
