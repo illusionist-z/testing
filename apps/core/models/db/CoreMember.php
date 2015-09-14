@@ -218,7 +218,7 @@ class CoreMember extends \Library\Core\BaseModel {
             $changeprofile="UPDATE core_member set core_member.member_login_name='" . $d['username'] . "' ,  "
                     . "core_member.member_dept_name='" . $d['dept'] . "' , core_member.position='" . $d['position'] . "' "
                     . " ,core_member.member_mail='" . $d['email'] . "' , core_member.member_mobile_tel='" . $d['phno'] . "' "
-                    . " ,core_member.member_address='" . $d['add'] . "' , core_member.member_password='" . sha1($d['password']) . "' WHERE core_member.member_id='" . $id . "'";
+                    . " ,core_member.member_address='" . $d['add'] . "' , core_member.member_password='" . sha1($d['password']) . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "'";
             $this->db->query($changeprofile);
             //echo $changeprofile;exit;
         }
