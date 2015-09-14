@@ -45,16 +45,19 @@ var Attendance = {
                     $("tbody").append(output); 
         }
         else{
+           
      //window.location.href = baseUri + 'attendancelist/search/attsearch?month='+month+'&username='+username+'&year=' +year;
         $.ajax({
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
-            success: function (d) {                       
+            success: function (d) {  
+               
                 var json_obj = $.parseJSON(d);//parse JSON            
                $('tbody').empty();
                $('tfoot').empty();
                 for (var i in json_obj)
                 {   
+                    checkin_place = json_obj[i].location;
                     a = "08:00:00";
                     n = new Date();
                     offset = n.getTimezoneOffset();
@@ -124,12 +127,12 @@ var Attendance = {
                         }
                     }
                     else{
-                       localcout="00:00:00";
+                       localcheckout="00:00:00";
                        workinghour="0";
                        overtime="0";
                     }
                     //Calculate Location
-                     location = json_obj[i].location;
+                    
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
                             + "<td>" + json_obj[i].member_login_name + "</td>"
@@ -138,7 +141,7 @@ var Attendance = {
                             + "<td>" + localcheckout + "</td>"
                             + "<td>" + workinghour + "</td>"
                             + "<td>" +overtime+ "</td>"
-                            + "<td>" + location+ "</td>"
+                            + "<td>" + checkin_place+ "</td>"
                             + "</tr>"
                     $("tbody").append(output); 
                 }
