@@ -202,9 +202,6 @@ $(document).ready(function () {
         window.print();
     });
     
-    $("#resign").click(function () {
-        
-    });
 });
 
 
