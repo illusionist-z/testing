@@ -90,7 +90,7 @@ class Attendances extends Model {
         $this->db = $this->getDI()->getShared("db");        
         //select where user most leave taken
         $query    ="select member_login_name from core_member where member_id in
-                   (select member_id from absent group by member_id order by count(member_id) DESC)  limit 3";        
+                   (select member_id from absent group by member_id order by count(*) DESC)  limit 3";        
         $data      =$this->db->query($query);
         //select where no leave name in current month
         $query1    ="select member_login_name from core_member where member_id not in
