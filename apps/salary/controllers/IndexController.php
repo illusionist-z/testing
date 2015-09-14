@@ -20,11 +20,13 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('apps/salary/css/salary.css');
+        $this->assets->addCss('apps/salary/css/salary.css');        
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/popup.js');    //popup message
-
+        //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('apps/salary/js/index-allowance.js');
+        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
     }
@@ -52,7 +54,7 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function show_salarylistAction() {
-     
+        $this->assets->addJs('apps/salary/js/salary.js');
         $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
@@ -116,6 +118,7 @@ class IndexController extends ControllerBase {
      * get detail data for payslip
      */
     public function payslipAction() {
+        $this->assets->addJs('apps/salary/js/salary.js');
         $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
@@ -151,7 +154,7 @@ class IndexController extends ControllerBase {
         //print_r($resultsalary['permit_allowance']);
         $Permit_dedution = new CoreMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
-        //print_r($resultsalary['permit_dedution']);
+        //print_r($resultsalary['permit_dedution']);exit;
         $Dedution = new TaxsDeduction();
         $resultsalary['dedution']=$Dedution->getdedlist();
         $Allowance = new Allowances();

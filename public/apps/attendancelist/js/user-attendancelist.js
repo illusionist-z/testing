@@ -3,33 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/*
- * @GEOprocess()
- * @get @lat @lng
  //for pagination
 /*
  * show monthly list by return json array
  * @author Su ZIn Kyaw
  */
-
+ var User={},pager = new Paging.Pager();
+ User.Attendance = {
+    init : function(){
+            $('tfoot').html($('tbody').html());   //for csv
+            pager.perpage =3;            
+            pager.para = $('tbody > tr');
+            pager.showPage(1);  
+            $('tbody').show();
+    },
+    search : function(){
+      var month = document.getElementById('month').value;
+    
+     window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
+    }
+ };
 $(document).ready(function () { 
 
     // ユーザーのクリックした時の動作。    
-
-         
+    User.Attendance.init();
     
     $('#search').click(function () {
-       
-        search();
+         User.Attendance.search();
     });
              
 });
-
-
-
-var search = function () {
-    var month = document.getElementById('month').value;
-    
-     window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
-    
-};

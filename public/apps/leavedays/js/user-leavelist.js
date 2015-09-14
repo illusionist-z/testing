@@ -21,7 +21,7 @@ var pager = new Paging.Pager(),User={};   //for pagination
         search : function(){
             var month = document.getElementById('month').value; 
             var ltype = document.getElementById('ltype').value;  
-            window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'?ltype='+ltype;
+            window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'&ltype='+ltype;
         }
     };
 $(document).ready(function(){
@@ -37,10 +37,3 @@ $(document).ready(function(){
      
 });
 
- var search=function(){
-    
-       var month = document.getElementById('month').value; 
-        var ltype = document.getElementById('ltype').value;  
-    
-         window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'&ltype='+ltype;
-    };

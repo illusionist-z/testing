@@ -6,7 +6,6 @@ use Phalcon\Mvc\Model;
 //use workManagiment\Salary\Models\SalaryMaster as sa;
 use Phalcon\Mvc\Model\Query;
 use workManagiment\Salary\Models\CoreMemberTaxDeduce;
-     use Phalcon\Filter;
 
 class SalaryMaster extends Model {
 
@@ -290,8 +289,8 @@ class SalaryMaster extends Model {
                         'absent_dedution'=>$absent_deduce);
                 }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -680,17 +679,10 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
         $res['sscemp'] = preg_match('/^(?=.*\d)[0-9]*$/', $data['ssc_emp']) ? true : false;
 
         $res['ssccomp'] = preg_match('/^(?=.*\d)[0-9]*$/', $data['ssc_comp']) ? true : false;
-        
-        $filter = new Filter();
-        $basic_salary = $filter->sanitize($data['basesalary'], "int");
-        $travelfee = $filter->sanitize($data['travelfee'], "int");
-        $overtime = $filter->sanitize($data['overtime'], "int");
-        $ssc_emp = $filter->sanitize($data['ssc_emp'], "int");
-        $ssc_comp = $filter->sanitize($data['ssc_comp'], "int");
 
         if ($res['baseerr'] && $res['travelerr'] && $res['overtimerr'] && $res['sscemp'] && $res['ssccomp']) {
             try {
-                $sql = "Update salary_master SET basic_salary ='" . $basic_salary . "',travel_fee ='" . $travelfee . "',over_time ='" . $overtime . "',ssc_emp ='" . $ssc_emp . "',ssc_comp ='" . $ssc_comp . "',updated_dt=NOW() Where id='" . $data['id'] . "'";
+                $sql = "Update salary_master SET basic_salary ='" . $data['basesalary'] . "',travel_fee ='" . $data['travelfee'] . "',over_time ='" . $data['overtime'] . "',ssc_emp ='" . $data['ssc_emp'] . "',ssc_comp ='" . $data['ssc_comp'] . "',updated_dt=NOW() Where id='" . $data['id'] . "'";
                 $this->db->query($sql);
                 $res['valid'] = true;
             } catch (Exception $ex) {

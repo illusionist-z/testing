@@ -42,7 +42,7 @@ class SalaryMasterAllowance extends Model {
                     try {
                         
                 $sql = "INSERT INTO salary_master_allowance (allowance_id,member_id) VALUES('".$allowance[$i]."','". $member_id . "')";
-                echo $sql;
+                //echo $sql;
                 $result = $this->db->query($sql);
                        
                         
@@ -55,7 +55,7 @@ class SalaryMasterAllowance extends Model {
             else{
                 for($i=0;$i<count($allowance);$i++){
                 $sql = "INSERT INTO salary_master_allowance (allowance_id,member_id) VALUES('".$allowance[$i]."','". $member_id . "')";
-                echo $sql;
+                //echo $sql;
                 $result = $this->db->query($sql);
                 }
             }
