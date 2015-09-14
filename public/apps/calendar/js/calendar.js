@@ -143,7 +143,7 @@ var Calendar = {
          */
         $selectname;
         $.ajax({
-            url:'getid?id='+event.id,
+            url:'index/getid?id='+event.id,
             type:'GET',
             async: false,
             dataType:'json',
@@ -229,7 +229,7 @@ var Calendar = {
     //create new event
     create: function (dia) {
         $.ajax({
-            url: "create",
+            url: "index/create",
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",
@@ -260,7 +260,7 @@ var Calendar = {
     },
     delete: function (id,member,dia) {
         $.ajax({
-            url: "delete",
+            url: "index/delete",
             data: {data: id},
             async: false,
             dataType: 'json'
