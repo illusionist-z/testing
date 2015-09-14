@@ -81,7 +81,7 @@ var Noti = {
         $ovl.dialog({
             
             autoOpen: false,
-            resizable:false,
+            resizable:false,            
             height: 395,
             async:false,
             width: 530,            

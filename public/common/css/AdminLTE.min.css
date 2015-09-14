@@ -277,12 +277,19 @@ font-size: 11px;
     overflow-x: hidden;
 }
 .forscroll{
-    overflow-y: scroll;
-    height: 150px;
+    overflow-y: hidden;
+    height: 70px;
 }
+.forscroll:hover{
+    overflow: auto;
+}
+.foruser{     
+    height: 100%;
+}
+
 ::-webkit-scrollbar {
 background:#fff;
-width:6px;
+width:3px;
 }
 ::-webkit-scrollbar-thumb {
 -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
