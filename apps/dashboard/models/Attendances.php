@@ -90,11 +90,11 @@ class Attendances extends Model {
         $this->db = $this->getDI()->getShared("db");        
         //select where user most leave taken
         $query    ="select member_login_name from core_member where member_id in
-                   (select member_id from absent group by member_id order by count(*) DESC) AND core_member.deleted_flag=0 limit 3";        
+                   (select member_id from absent group by member_id order by count(*) DESC) order by member_id desc limit 3";        
         $data      =$this->db->query($query);
         //select where no leave name in current month
         $query1    ="select member_login_name from core_member where member_id not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) AND core_member.deleted_flag=0 limit 4";        
+                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) order by created_dt desc  limit 3";        
         $data1      =$this->db->query($query1);        
         $res['leave_name']= $data->fetchall();
         $res['noleave_name']=$data1->fetchall();
@@ -114,7 +114,7 @@ class Attendances extends Model {
         $data = $query->fetchall();
         $result['att'] = $data[0]['att'];
         //today leave list
-        $query1 = "select count(*) as allmember from core_member where core_member.deleted_flag=0";
+        $query1 = "select count(*) as allmember from core_member";
         $query1 =  $this->db->query($query1);
         $data1 = $query1->fetchall();
         $allmember = $data1[0]['allmember'];
@@ -132,10 +132,7 @@ class Attendances extends Model {
         $currentmth = date('m');
          $this->db = $this->getDI()->getShared("db");
 
-        $row = "Select att_date,member_login_name,checkin_time,checkout_time,"
-                . "lat,lng,overtime,location from core_member left join "
-                . "attendances on core_member.member_id = attendances.member_id "
-                . "where MONTH(attendances.att_date) ='".$currentmth."' AND attendances.member_id ='".$id."' AND core_member.deleted_flag=0 order by attendances.att_date DESC ";                                   
+        $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$currentmth."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
        
        $result = $this->db->query($row);
        $list   = $result->fetchall();
