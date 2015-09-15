@@ -55,7 +55,12 @@ class UserController extends ControllerBase {
         
         
         $User=new Db\CoreMember;
-        $User->updatedata($updatedata,$id);
+        $profile_pic=$User->updatedata($updatedata,$id);
+        $user= $User->Userdata($id);
+        $this->session->set('user', $user);
+
+       
+
         }
          $this->response->redirect('setting/user/usersetting');
 
