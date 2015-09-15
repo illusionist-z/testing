@@ -28,7 +28,7 @@ class SalaryMasterController extends ControllerBase
 
         $data['id'] = uniqid();
         $data['member_id'] = $this->request->get('uname', 'string');
-        $data['position'] = $this->request->get('position', 'string');
+        //$data['position'] = $this->request->get('position', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
         $data['travel_fee'] = $this->request->get('travelfee', 'int');
         $data['over_time'] = $this->request->get('overtime', 'int');

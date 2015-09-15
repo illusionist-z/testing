@@ -37,7 +37,7 @@ class SalaryMaster extends Model {
             echo $e;
         }
 
-        return $result;
+        
     }
 
     /**

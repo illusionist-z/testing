@@ -20,7 +20,7 @@ var Salary = {
           success:function(res){
                var result = $.parseJSON(res);               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
-                   data +='<tr><td></td><td><b>User Name </b></td>'
+                   data +='<tr><td></td><td><b>User Name </b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
                         +'<tr><td></td><td><b>Basic Salary </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
