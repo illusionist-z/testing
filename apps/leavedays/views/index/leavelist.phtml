@@ -125,7 +125,7 @@ $length = count($Month);
                             case "1" : echo "Confirmed";break;
                             case "2" : echo "Rejected";break;
                                
-                        };
+                        }
                                 ?></td>
                             <td><font color="red"><?php
                     if($item->leaves->total_leavedays >=$max){
@@ -134,7 +134,9 @@ $length = count($Month);
                     }
                     else{
                                 
-                    echo $max-($item->leaves->total_leavedays);}
+                    echo $max-($item->leaves->total_leavedays);
+                    echo " Left";
+                    }
                         
                                 ?></font></td>
                         </tr>

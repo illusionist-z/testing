@@ -11,7 +11,9 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
+        //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
+        
         
     }
  /**
@@ -109,9 +111,10 @@ class IndexController extends ControllerBase {
      * Check in 
      */
      public function checkinAction() {
-      
+         
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
+        echo $note;exit;
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
        

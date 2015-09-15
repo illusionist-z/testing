@@ -48,8 +48,9 @@ class SalaryMasterController extends ControllerBase
 
         $Allowance = new Allowances();
         $saveallowance = $Allowance->saveallowance($allowance, $this->request->get('uname'));
-
-        $this->response->redirect('salary/index/salarylist');
+        echo "<script>alert('Salary Added Successfully');</script>";
+        echo "<script type='text/javascript'>window.location.href='../../salary/index/salarylist';</script>";
+//        $this->response->redirect('salary/index/salarylist');
     }
 }
 
