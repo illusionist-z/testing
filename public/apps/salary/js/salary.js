@@ -1,3 +1,4 @@
+
 /**
  * @author David JP<david.gnext@gmail.com>
  * @desc   Salary Edit Dial Box
@@ -16,10 +17,10 @@ var Salary = {
         $.ajax({
            url:"editsalary?id="+d,
            type: "GET",
-           success:function(res){
+          success:function(res){
                var result = $.parseJSON(res);               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
-                   data +='<tr><td></td><td><b>User Name </b></td>'
+                   data +='<tr><td></td><td><b>User Name </b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
                         +'<tr><td></td><td><b>Basic Salary </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
@@ -43,12 +44,12 @@ var Salary = {
                for(var i in result.allowance){
                var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
                data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
-               }
-               data +='</td></tr>';
+              }
+             data +='</td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
-              
+             
                data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >Edit</a><a href="#" class="button" id="edit_delete" >Delete</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
-               data +='</table></form>';
+             data +='</table></form>';
                Salary.Dia(data);
            }
         });
@@ -56,7 +57,7 @@ var Salary = {
     Check: function(name,permit){
         var $check;
         for(var n in permit){
-         var permit_name = permit[n]['allowance_name']||permit[n];
+         var permit_name = permit[n]['allowance_name']||permit[n][0];
          switch(permit_name){
              case name:$check="checked";break;
              default  :break;
@@ -64,17 +65,7 @@ var Salary = {
         }
         return $check;
     },
-    Checkdeduce: function(name,permit){
-        var $check;
-        for(var n in permit){
-         var permit_name = permit[n]['deduce_name']||permit[n];
-         switch(permit_name){
-             case name:$check="checked";break;
-             default  :break;
-         }
-        }
-        return $check;
-    },
+    
     Dia: function (d) {
         if (!this.isOvl) {
             this.isOvl = true;
@@ -85,7 +76,6 @@ var Salary = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            resizable:false,
             height: 600,
             async: false,
             width: 600,
@@ -116,7 +106,7 @@ var Salary = {
             data: form.serialize(),
             dataType:'json',
             url : "btnedit",
-            success:function(d){                
+            success:function(d){
                 //if true success funcion then reload page
                 if(true === d.valid)                      
                 {
@@ -190,7 +180,7 @@ var Salary = {
                 $("tbody").append(output);
             }
             var html='<tr style="background-color:#428bca; color:#ffffff;">'
-                        +'<td colspan="9" style="text-align:center;"><b>Total salary for all user</b></td>'
+                        +'<td colspan="10" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><b>#####</b></td>'
                         +'<td></td>'
                         +'</tr>'
@@ -202,6 +192,7 @@ var Salary = {
         });
         }
 };
+
 $(document).ready(function () {
     Salary.init();
 
@@ -216,6 +207,7 @@ $(document).ready(function () {
     $(".print").click(function () {
         window.print();
     });
+    
 });
 
 

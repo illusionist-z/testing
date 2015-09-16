@@ -98,7 +98,8 @@ class UserController extends ControllerBase {
      * display user leave list
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function leavelistAction(){         
+    public function leavelistAction(){   
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/user-leavelist.js');
         $User=new Db\CoreMember;
         $id= $this->session->user['member_id'];   
