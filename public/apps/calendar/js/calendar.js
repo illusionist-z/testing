@@ -124,6 +124,40 @@ var Calendar = {
     }
     }
         });
+    },
+    /**
+     * @author David 9/16/2015
+     * @desc    member search adding
+     * @returns {json data}
+     */
+    getmemberevent : function(){                              
+        $("#member_event_dialog").dialog({
+            autoOpen :false,
+            height: 160,
+            width : 400,
+            title: "test",
+            modal :true
+        });                
+      $("#member_event_dialog_close").on("click",function(){
+            $("#member_event_dialog").dialog("close");            
+        });
+        $("#member_event_dialog").dialog("open");        
+        $("#member_event").autocomplete({
+         source: function( request, response ) {
+          $.ajax({                
+                 url: "index/getmember",
+                dataType: "json",                               
+                data :{ q :request.term},
+               success: function( data ) {                   
+                   response(data);                
+             }
+            });
+      },
+             minLength: 1,
+           select: function(event, ui) {         
+               $("#member_event_add").attr("disabled",false);
+          }
+        });
     }
 };  
   Calendar.Dialog = {
@@ -269,7 +303,7 @@ var Calendar = {
             $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'),//replace a new calendar
             Calendar.event(member),dia.dialog("close")
             );
-    }
+    }    
 };
 $(document).ready(function () {
       Calendar.init();
@@ -283,6 +317,9 @@ $(document).ready(function () {
          Calendar.event(selectedvalue);
          }
       else {alert("You must check at least one");}
+   });
+   $('#shapbott').click(function(){
+       Calendar.getmemberevent();
    });
    
 });

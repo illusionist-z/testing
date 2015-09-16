@@ -40,7 +40,7 @@ try {
 			"dbname" => $config->database->dbname
 		));
 	});
-
+        
     /**
      * Include services
      */
@@ -66,7 +66,7 @@ try {
     /**
      * Module config 
      */
-    require __DIR__ . '/../config/module_config.php';
+    require __DIR__ . '/../config/module_config.php';    
     echo $application->handle()->getContent();
 
 } catch (Phalcon\Exception $e) {

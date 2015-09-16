@@ -35,13 +35,18 @@ body::-webkit-scrollbar { width: 0; }
 #clear{
     clear:both;
 }
-#shapbott{   
-    float: left;
-    margin-top: 7px;
-    width: 15px;
-    height: 15px;
-
+#shapbott{       
+    height: 20px;    
 }
+.content{
+    padding: 0;
+}
+.btn{
+    margin-left: 50px !important;
+}
+.addbtn{
+  background: url("../../../common/img/5Fm069k.png")  10px -32px no-repeat #F8F8F8 ;  
+  }
 ::-webkit-scrollbar {
 background:#fff;
 width:6px;

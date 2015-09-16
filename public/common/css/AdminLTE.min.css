@@ -290,3 +290,7 @@ background-image: -webkit-linear-gradient(top,#FFF  10%, #3c8dbc 51%);
 }
 ::-webkit-scrollbar-track {
 }
+footer .language{
+    float: right !important;
+    margin-left:400px !important;
+}

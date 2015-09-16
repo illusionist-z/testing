@@ -23,6 +23,7 @@
      window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
     }
  };
+ 
 $(document).ready(function () { 
 
     // ユーザーのクリックした時の動作。    
