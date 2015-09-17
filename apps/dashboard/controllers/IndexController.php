@@ -114,7 +114,7 @@ class IndexController extends ControllerBase {
          
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
-        echo $note;exit;
+        
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
        

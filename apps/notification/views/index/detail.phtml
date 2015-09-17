@@ -1,0 +1,21 @@
+<?php  foreach ($result as $data) {
+  
+   
+ ?>
+
+<form id="noti_detail" width="800px" height="300px" ><table width="500px" height="290px"  >             
+<br>
+<tr><td></td><td><b>User Name </b></td><td><span style="color:black"><b><?php echo $data['member_login_name'];?>:</b> </span><b style="font-size:13px;"></b></td><td ></td></tr>
+<tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>End Date </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"><b> :</b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><input type="hidden"  name="id"></td><td></td></td></tr>
+<tr><td></td><td><input type="hidden"  name="end_date"></td><td></td></td></tr>
+<tr><td></td><td><input type="hidden"  name="leave_days"></td><td></td></td></tr>
+<tr><td></td><td><input type="hidden"  name="start_date"></td><td></td></td></tr>
+<tr><td></td><td></td><td colspan="2"><br><a href="#" class="button" id="noti_accept">Accept</a><a href="#" class="button" id="noti_reject">Reject</a><a href="#" class="button" id="noti_cancel">Cancel</a></td></tr>
+    </table></form>
+
+<?php  } ?>

@@ -28,7 +28,7 @@ class SalaryMasterController extends ControllerBase
 
         $data['id'] = uniqid();
         $data['member_id'] = $this->request->get('uname', 'string');
-        $data['position'] = $this->request->get('position', 'string');
+        //$data['position'] = $this->request->get('position', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
         $data['travel_fee'] = $this->request->get('travelfee', 'int');
         $data['over_time'] = $this->request->get('overtime', 'int');
@@ -48,9 +48,8 @@ class SalaryMasterController extends ControllerBase
 
         $Allowance = new Allowances();
         $saveallowance = $Allowance->saveallowance($allowance, $this->request->get('uname'));
-        echo "<script>alert('Salary Added Successfully');</script>";
-        echo "<script type='text/javascript'>window.location.href='../../salary/index/salarylist';</script>";
-//        $this->response->redirect('salary/index/salarylist');
+
+        $this->response->redirect('salary/index/salarylist');
     }
 }
 

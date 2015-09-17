@@ -161,9 +161,19 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function GetAdminNoti() { 
         $this->db = $this->getDI()->getShared("db");
-        $AdminNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status=0 order by leaves.date desc");
+        $AdminNoti = $this->db->query("SELECT * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 ");
         $noti = $AdminNoti->fetchall();
-        return $noti;
+        //print_r($noti);exit;
+        foreach ($noti as $noti){
+          $result= $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
+          $final_result=$result->fetchall();
+          foreach($final_result as $final_result){
+              $final_result['module_name']=$noti['module_name'];
+          }
+        } 
+        //print_r($final_result);exit;
+            
+        return $final_result;
     }
 
       /**

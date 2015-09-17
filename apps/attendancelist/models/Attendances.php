@@ -2,19 +2,6 @@
 
 namespace workManagiment\Attendancelist\Models;
 
-use Phalcon\Mvc\Model;
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-
-use workManagiment\Core\Models\Db\CoreMember as CoreMember;
-use workManagiment\Attendancelist\Models\Attendances as Attendances;
-
-         use Phalcon\Filter; 
-//use workManagiment\Auth\Models\Db\CoreMember as corememberresult;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 class Attendances extends Model {
     public function initialize() {

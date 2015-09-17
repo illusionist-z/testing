@@ -176,6 +176,18 @@ var Noti = {
                 location.reload();
             }
         });
+    },
+    
+    NotiDetail: function(d){
+         $.ajax({
+            type:'POST',
+            data: d,
+            url : baseUri+"notification/index/detail",
+            success:function(){ 
+                alert("success");
+                //location.reload();
+            }
+        });
     }
 
 };
@@ -186,11 +198,15 @@ $(document).ready(function () {
     $(".usernotidetail").click(function () {
        
         var id = $(this).attr('id');
-        Noti.Detail(id);
+        
+        Noti.NotiDetail(id);
     });   
      $(".adminnotidetail").click(function () {
+         
         var id = $(this).attr('id');
-        Noti.AdminDetail(id);
+        //alert(id);
+        //window.location.href ="notification/index/detail";
+        //Noti.NotiDetail(id);
 
     }); 
 

@@ -99,49 +99,49 @@ class Leaves extends \Library\Core\BaseModel {
      * @return type
      * @author David JP <david.gnext@gmail.com>
      */
-    public function applyleave($uname, $sdate, $edate, $type, $desc) {
-        $filter = new Filter();
-        $uname = $filter->sanitize($uname, "string");
-        
-        $uname = $filter->sanitize($uname, "string");
-        $type = $filter->sanitize($type, "string");
-        $desc = $filter->sanitize($desc, "string");
-        
-        $this->db = $this->getDI()->getShared("db");
-        $cond = array();
-        $date=$this->getcontractdata($uname);  
-        
-         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND leaves.start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
-         $list = $ldata->fetchall();
-        
-         if($list==NULL){
-         $lastdata="0";
+public function applyleave($uname, $sdate, $edate, $type, $desc,$creator_id) {
+    $filter = new Filter();
+    $uname = $filter->sanitize($uname, "string");
+    $uname = $filter->sanitize($uname, "string");
+    $type = $filter->sanitize($type, "string");
+    $desc = $filter->sanitize($desc, "string");
+       
+    $this->db = $this->getDI()->getShared("db");
+    $cond = array();
+    $date=$this->getcontractdata($uname);  
+      
+    $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND leaves.start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+    $list = $ldata->fetchall();
+       
+    if($list==NULL){
+      $lastdata="0";
          
-         }
-         else{
-         $lastdata=($list['0']['total_leavedays']);         
-         }           
+    }
+    else{
+      $lastdata=($list['0']['total_leavedays']);         
+    }           
          
-        if (isset($sdate) AND isset($edate) AND isset($desc)) {
-
-            $today = date("Y-m-d H:i:s");
-            $checkday = date("Y-m-d", strtotime("+7 days"));
-            $sdate = date("Y-m-d", strtotime($sdate));
-            $edate = date("Y-m-d", strtotime($edate));
-            //check before a week
-            if ($sdate >= $checkday && $edate >= $checkday) {
-                //check $edate greater than $sdate
-                if (strtotime($sdate) <= strtotime($edate)) {
-                    $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
-                    $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays,leave_status,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "',0,now())");
-                    $cond['success']="Your Leave Applied Successfully!";
-                } else {
-                    $cond['error']="End date must be greater than Start date";
-                }
-            } else {
-                    $cond['error']="Apply Leave Before a week ";                 
-            }                
-        }
+    if (isset($sdate) AND isset($edate) AND isset($desc)) {
+     $noti_id=rand();
+     $today = date("Y-m-d H:i:s");
+     $checkday = date("Y-m-d", strtotime("+7 days"));
+     $sdate = date("Y-m-d", strtotime($sdate));
+     $edate = date("Y-m-d", strtotime($edate));
+     //check before a week
+     if ($sdate >= $checkday && $edate >= $checkday) {
+     //check $edate greater than $sdate
+        if (strtotime($sdate) <= strtotime($edate)) {
+            $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
+            $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays,leave_status,noti_id,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "',0,'" . $noti_id . "',now())");
+            $cond['success']="Your Leave Applied Successfully!";
+        } else {
+            $cond['error']="End date must be greater than Start date";
+            }
+     } else {
+        $cond['error']="Apply Leave Before a week ";                 
+     }                
+    }
+    $result = $this->db->query("INSERT INTO notification (noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
    //print_r($cond);exit;
     return $cond;
 }

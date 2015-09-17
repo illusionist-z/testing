@@ -2,6 +2,7 @@
 
 namespace workManagiment\Notification\Controllers;
 use workManagiment\Core\Models\Db\CoreMember;
+
 class IndexController extends ControllerBase
 {
     
@@ -17,18 +18,18 @@ class IndexController extends ControllerBase
     public function indexAction(){
     }
     
-    /**
-     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
-     * get detail of the notification
-     */
-    public function detailAction() {
-    $id= $this->request->get('data');
-    $data= (explode(",",$id));
-    $NotiDetail=new \workManagiment\Core\Models\Db\CoreMember();
-    $noti=$NotiDetail->getdetail($data);
-    $this->view->disable();
-    echo json_encode($noti);
-    }
+//    /**
+//     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+//     * get detail of the notification
+//     */
+//    public function detailAction() {
+//    $id= $this->request->get('data');
+//    $data= (explode(",",$id));
+//    $NotiDetail=new \workManagiment\Core\Models\Db\CoreMember();
+//    $noti=$NotiDetail->getdetail($data);
+//    $this->view->disable();
+//    echo json_encode($noti);
+//    }
     
     /**
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
@@ -77,9 +78,30 @@ class IndexController extends ControllerBase
             $id = $this->session->user['member_id'];
              $noti=$Admin->GetUserNoti($id);
         }
-        $type=noti;
+        $type='noti';
+        //print_r($noti);exit;
         $this->view->setVar("noti",$noti);
         $this->view->setVar("type",$type);
+    }
+    
+    public function detailAction(){
+        $code=$this->session->permission_code;
+        $Admin=new CoreMember();
+        if($code=="ADMIN"){
+            $noti=$Admin->GetAdminNoti();}
+        else{
+            $id = $this->session->user['member_id'];
+            $noti=$Admin->GetUserNoti($id);
+        }
+        $this->view->setVar("noti",$noti);
+        $type="aa";
+        $this->view->setVar("type",$type);
+        
+        $noti_id= $this->request->get('id');
+        $module_name= $this->request->get('mname');
+        $Noti_detail=new \workManagiment\Notification\Models\Notification();
+        $Detail_result=$Noti_detail->GetNotiInfo($module_name, $noti_id);
+        $this->view->setVar("result",$Detail_result);
     }
     
 }

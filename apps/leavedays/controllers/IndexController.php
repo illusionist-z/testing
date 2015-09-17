@@ -54,13 +54,14 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
                   }     
             else{
+            $creator_id=$this->session->user['member_id'];
             $uname =$this->request->getPost('username');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
-                    $desc);   
+                    $desc,$creator_id);   
             
             echo json_encode($error);
             $this->view->disable();

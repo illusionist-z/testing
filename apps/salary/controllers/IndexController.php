@@ -171,6 +171,7 @@ class IndexController extends ControllerBase {
      */
     public function btneditAction() {
         $data['id'] = $this->request->getPost('id');
+        $data['member_id'] = $this->request->getPost('member_id');
         $data['uname'] = $this->request->getPost('uname');
         $data['basesalary'] = $this->request->getPost('basesalary');
         $data['travelfee'] = $this->request->getPost('travelfee');
@@ -179,15 +180,15 @@ class IndexController extends ControllerBase {
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce= $this->request->getPost('check_list');
-        
+        //print_r($data['member_id']);exit;
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
         
         $Taxdeduce=new CoreMemberTaxDeduce();
-        $Taxdeduce->edit_taxByMemberid($check_deduce,$data['uname']);
+        $Taxdeduce->edit_taxByMemberid($check_deduce,$data['member_id']);
         
         $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
-        $SalaryMasterAllowance->edit_allowanceByMemberid($check_allow,$data['uname']);
+        $SalaryMasterAllowance->edit_allowanceByMemberid($check_allow,$data['member_id']);
         
         echo json_encode($cond);
         $this->view->disable();

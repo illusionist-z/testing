@@ -1,12 +1,13 @@
 <div class="forscroll">
- <?php foreach ($noti as $noti) {?>
+    
+
                                     <li >
                                         <!-- inner menu: contains the actual data -->
                                         <ul class="menu">
                                             <li>
                                                 <?php if($this->session->permission_code=="ADMIN"){?>
                                                
-                                                <a href="#" onclick="return false;" class="adminnotidetail" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
+                                                <a href="../../notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
                                                 <!--<img src="../../common/img/notid.png"> -->
                                                  <img src="../../common/img/notid.png"> 
                                                 <!--#4682B4-->
@@ -25,5 +26,5 @@
                                             </li>
                                            
                                         </ul>
-                                </li><?php } ?>
+                                </li>
 </div>
