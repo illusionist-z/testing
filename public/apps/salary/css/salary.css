@@ -11,3 +11,6 @@ body * {
      padding-right: 20px;
 }
 
+.detail_tbl th,.detail_tbl td{
+    padding-left: 10px;
+}
