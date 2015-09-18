@@ -51,7 +51,7 @@ class IndexController extends ControllerBase {
      */
     public function adminAction() { 
     $Admin=new Db\CoreMember;
-    $noti=$Admin->GetAdminNoti();
+    $noti=$Admin->NoOfNotiforAdmin();
     $this->view->setVar("noti",$noti);
     //get last create member
     $CMember = new Db\CoreMember();

@@ -3,7 +3,7 @@
 namespace workManagiment\Attendancelist\Models;
 
 
-class Attendances extends Model {
+class Attendances  extends \Library\Core\BaseModel {
     public function initialize() {
         //parent::initialize();
         $this->db = $this->getDI()->getShared("db");

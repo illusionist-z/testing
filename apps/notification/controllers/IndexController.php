@@ -62,10 +62,9 @@ class IndexController extends ControllerBase
      * when user seen noti and click ok update data
      */
     public function update_notiAction(){
-       $id = $this->request->get('id');
-       $sdate = $this->request->get('start_date');
-       $update=new \workManagiment\Core\Models\Db\CoreMember();
-       $update->updateleave($id,$sdate);
+       $noti_id=$this->request->getPost('noti_id');
+       $update=new \workManagiment\Notification\Models\NotificationRelMember();
+       $update->updateNoti($noti_id);
     }
     
     public function notificationAction(){
@@ -96,11 +95,11 @@ class IndexController extends ControllerBase
         $this->view->setVar("noti",$noti);
         $type="aa";
         $this->view->setVar("type",$type);
-        
         $noti_id= $this->request->get('id');
         $module_name= $this->request->get('mname');
         $Noti_detail=new \workManagiment\Notification\Models\Notification();
         $Detail_result=$Noti_detail->GetNotiInfo($module_name, $noti_id);
+        $this->view->setVar("module_name",$module_name);
         $this->view->setVar("result",$Detail_result);
     }
     

@@ -142,7 +142,8 @@ public function applyleave($uname, $sdate, $edate, $type, $desc,$creator_id) {
      }                
     }
     $result = $this->db->query("INSERT INTO notification (noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
-   //print_r($cond);exit;
+    $this->db->query("INSERT INTO notification_rel_member (member_id,noti_id,status) VALUES('" . $uname . "','" . $noti_id . "',0)");
+
     return $cond;
 }
     
@@ -254,14 +255,17 @@ public  function GetDays($StartDate, $EndDate){
     * when admin accept leavedays request from user
     * @author Su Zin kyaw
     */
-    public function acceptleave($id,$sdate,$edate,$days){
+    public function acceptleave($id,$days,$noti_id){
         $this->db = $this->getDI()->getShared("db");
         $date=$this->getcontractdata($id);
       
         $status=1;
-        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
+        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.noti_id='".noti_id."'");
         $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
+        $this->db->query("UPDATE notification set notification.noti_status=1  WHERE notification.noti_id='".$noti_id."'");
+        $this->db->query("UPDATE notification_rel_member set notification_rel_member.status=1  WHERE notification_rel_member.noti_id='".$noti_id."'");
 
+        
     }
    
     /**
@@ -271,9 +275,10 @@ public  function GetDays($StartDate, $EndDate){
      * change leave status to '2'
      * when admin reject leavedays request from user
      */
-    public function rejectleave($id,$sdate){
+    public function rejectleave($noti_id){
         $this->db = $this->getDI()->getShared("db");
-        $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'";
+        $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.noti_id='".$noti_id."'";
+        $this->db->query("UPDATE notification set notification.noti_status=1  WHERE notification.noti_id='".$noti_id."'");
        $this->db->query($sql);
     }
     

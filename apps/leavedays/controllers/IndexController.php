@@ -141,19 +141,22 @@ class IndexController extends ControllerBase {
     }
     
      public function acceptleaveAction(){
-        $sdate=$this->request->get('start_date');
-        $edate=$this->request->get('end_date');
+        //$sdate=$this->request->get('start_date');
+        //$edate=$this->request->get('end_date');
         $id=$this->request->get('id');
         $days=$this->request->getPost('leave_days');
-        $this->_leave->acceptleave($id,$sdate,$edate,$days); 
+        $noti_id=$this->request->getPost('noti_id');
+        $this->_leave->acceptleave($id,$days,$noti_id); 
        
     }
     public function rejectleaveAction(){
-         $sdate=$this->request->get('start_date');
-        $edate=$this->request->get('end_date');
-        $id=$this->request->get('id');
-        $days=$this->request->getPost('leave_days');
-        $this->_leave->rejectleave($id,$sdate,$edate,$days); 
+//         $sdate=$this->request->get('start_date');
+//        $edate=$this->request->get('end_date');
+//        $id=$this->request->get('id');
+//        $days=$this->request->getPost('leave_days');
+        $noti_id=$this->request->getPost('noti_id');
+        
+        $this->_leave->rejectleave($noti_id); 
     }
 }
      

@@ -165,14 +165,10 @@ class CoreMember extends \Library\Core\BaseModel {
         $noti = $AdminNoti->fetchall();
         //print_r($noti);exit;
         foreach ($noti as $noti){
-          $result= $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
-          $final_result=$result->fetchall();
-          foreach($final_result as $final_result){
-              $final_result['module_name']=$noti['module_name'];
-          }
-        } 
-        //print_r($final_result);exit;
             
+          $result= $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
+          $final_result[]=$result->fetchall();
+        } 
         return $final_result;
     }
 
@@ -186,23 +182,18 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function GetUserNoti($id) {
         $this->db = $this->getDI()->getShared("db");
-        $UserNoti = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.leave_status!=0 AND leaves.noti_seen=0 AND  leaves.member_id='" . $id . "'");
+        $UserNoti =$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=1 ");
         $noti = $UserNoti->fetchall();
-        return $noti;
+        foreach ($noti as $noti){
+            
+          $result= $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
+          $final_result[]=$result->fetchall();
+        } 
+        return $final_result;
+       
     }
 
-    /**
-     * 
-     * @param type $id
-     * @return type
-     * getting notification detail
-     * @author Su Zin Kyaw
-     */
-    public function getdetail($data) {        
-        $Detail = $this->db->query("SELECT * FROM leaves JOIN core_member ON core_member.member_id=leaves.member_id WHERE leaves.start_date='" . $data['1'] . "' AND leaves.member_id='" . $data['0'] . "'");
-        $detail = $Detail->fetchall();
-        return $detail;
-    }
+    
 
    /**
      * 
@@ -257,4 +248,9 @@ class CoreMember extends \Library\Core\BaseModel {
           $a=$this->db->query($sql);                                                  
     }
 
+     public function NoOfNotiforAdmin(){
+      $result= $this->db->query("SELECT  * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 ");
+      $result=$result->fetchall();
+      return $result;
+    }
 }
