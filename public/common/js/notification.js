@@ -13,6 +13,8 @@ var Noti = {
             data: form.serialize(),
             url : baseUri+"notification/index/update_noti",
             success:function(){
+               window.location.href=baseUri+'dashboard';
+
             }
         });
     },
@@ -42,18 +44,8 @@ var Noti = {
                 window.location.href=baseUri+'dashboard';
             }
         });
-    },
-    
-    NotiDetail: function(d){
-         $.ajax({
-            type:'POST',
-            data: d,
-            url : baseUri+"notification/index/detail",
-            success:function(){ 
-                
-            }
-        });
     }
+   
 
 };
 
@@ -72,10 +64,7 @@ $(document).ready(function () {
             
              
         }),
-        $('#noti_cancel').click(function(e){
-            
-             
-        }),
+       
         $('#noti_ok').click(function(e){
             
             Noti.Seen();

@@ -182,8 +182,9 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function GetUserNoti($id) {
         $this->db = $this->getDI()->getShared("db");
-        $UserNoti =$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=1 ");
+        $UserNoti =$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=1 AND notification_rel_member.member_id= '" . $id . "'");
         $noti = $UserNoti->fetchall();
+        
         foreach ($noti as $noti){
             
           $result= $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");

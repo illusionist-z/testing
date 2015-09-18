@@ -5,7 +5,7 @@ namespace workManagiment\Attendancelist\Models;
 
 class Attendances  extends \Library\Core\BaseModel {
     public function initialize() {
-        //parent::initialize();
+        parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
     
@@ -17,18 +17,6 @@ class Attendances  extends \Library\Core\BaseModel {
     public function gettodaylist($name) {        
         $today = date("Y:m:d");
         
-        
-        
-        // for search result
-        /*if (isset($name)) {
-           $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where core_member.member_login_name='".$name."' and attendances.att_date ='".$today."'";
-        } else {
-            //show att today list
-           $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where attendances.att_date ='".$today."'";
-        }
-        $result = $this->db->query($query);
-        $rows = $result->fetchall();
-        return $rows;*/
         
         if(isset($name)){
            

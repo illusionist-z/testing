@@ -142,7 +142,7 @@ public function applyleave($uname, $sdate, $edate, $type, $desc,$creator_id) {
      }                
     }
     $result = $this->db->query("INSERT INTO notification (noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
-    $this->db->query("INSERT INTO notification_rel_member (member_id,noti_id,status) VALUES('" . $uname . "','" . $noti_id . "',0)");
+    $this->db->query("INSERT INTO notification_rel_member (member_id,noti_id,status,module_name) VALUES('" . $uname . "','" . $noti_id . "',0,'leaves')");
 
     return $cond;
 }
@@ -260,10 +260,10 @@ public  function GetDays($StartDate, $EndDate){
         $date=$this->getcontractdata($id);
       
         $status=1;
-        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.noti_id='".noti_id."'");
+        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.noti_id='".$noti_id."'");
         $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
         $this->db->query("UPDATE notification set notification.noti_status=1  WHERE notification.noti_id='".$noti_id."'");
-        $this->db->query("UPDATE notification_rel_member set notification_rel_member.status=1  WHERE notification_rel_member.noti_id='".$noti_id."'");
+        $this->db->query("UPDATE notification_rel_member set notification_rel_member.status=1,module_name='leaves'  WHERE notification_rel_member.noti_id='".$noti_id."'");
 
         
     }
@@ -279,6 +279,8 @@ public  function GetDays($StartDate, $EndDate){
         $this->db = $this->getDI()->getShared("db");
         $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.noti_id='".$noti_id."'";
         $this->db->query("UPDATE notification set notification.noti_status=1  WHERE notification.noti_id='".$noti_id."'");
+        $this->db->query("UPDATE notification_rel_member set notification_rel_member.status=1,module_name='leaves'  WHERE notification_rel_member.noti_id='".$noti_id."'");
+
        $this->db->query($sql);
     }
     

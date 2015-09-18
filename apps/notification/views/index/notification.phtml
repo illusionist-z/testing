@@ -16,7 +16,7 @@
                                                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}
                                                     else {?><span class="foruser">
                                                 <a href="../../notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                                                    <img src="../../common/img/notid.png"> <b>admin</b><?php 
+                                                    <img src="../../common/img/notid.png"> <b>admin</b><?php echo $noti['leave_status'];
                             switch($noti['leave_status']){
                             
                             case "1" : echo " Confirmed";break;

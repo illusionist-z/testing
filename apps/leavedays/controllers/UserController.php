@@ -55,6 +55,7 @@ class UserController extends ControllerBase {
 //        }     
         $User=new Db\CoreMember;
         $id=$this->session->user['member_id'];
+        $creator_id=$id;
          $noti=$User->GetUserNoti($id);
           $this->session->set('noti', $noti);
         $this->assets->addJs('apps/leavedays/js/user-applyleave.js');
@@ -85,7 +86,7 @@ class UserController extends ControllerBase {
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
-                    $desc);   
+                    $desc,$creator_id);   
             
             echo json_encode($error);
             $this->view->disable();
