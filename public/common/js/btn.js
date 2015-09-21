@@ -5,19 +5,18 @@
  */
 var Content = {
     View: function (url) {
+        
         if (url == 'checkin') {
             var note = document.getElementById('note').value;            
-               
                 $.ajax({
-                    url: "dashboard/index/"+url + "?note=" + note,
+                    url: url + "?note=" + note,
                     type: 'GET',
                     dataType: 'html',
                     success: function (d) {                        
                         $('body').html(d);
                     }
-                });
+                });           
             
-          
         }
 //        else if(url =='todaylist'){
 //            $.ajax({

@@ -47,7 +47,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $getname =   $this->modelsManager->createBuilder()
                             ->columns(array('core.*'))
                             ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))                             
-                            ->where('core.member_login_name = :username:', array('username' => $username))                            
+                            ->where('core.member_id = :username:', array('username' => $username))                            
                             ->getQuery()
                             ->execute();                                                   
                 // print_r($row);exit;

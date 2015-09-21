@@ -27,14 +27,16 @@ class IndexController extends ControllerBase
        if($this->session->permission_code=="ADMIN"){
             $noti=$User->GetAdminNoti();
        }
-       else{           
-        $noti=$User->GetUserNoti($id);        
-       }
-       
+       else{                      
+        $noti=$User->GetUserNoti($id);     
+       }       
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
-        $Username = $GetMember::getinstance()->getoneusername($id);
-        $this->view->uname = $Username[0]->member_login_name;
+        $permitname = $this->calendar->getalluser($id);
+        $Allname   = $GetMember::getinstance()->getusername();                
+        $this->view->event_name = $permitname;
+        $this->view->member_name=$id;
+        $this->view->uname = $Allname;
     }
     
     public function getmemberAction() {
@@ -47,6 +49,20 @@ class IndexController extends ControllerBase
         }       
         $this->view->disable();        
         echo json_encode($json_array);
+    }
+    
+    public function addmemberAction(){
+        $permit_name = $this->request->get("permit");
+        $id = $this->session->user['member_id'];
+        $data = $this->calendar->add_permit_name($permit_name,$id);
+        echo json_encode($data);
+        $this->view->disable();
+    }
+    
+    public function removeEventBynameAction() {
+        $remove = $this->request->getPost('remove');
+        $id = $this->session->user['member_id'];
+        $data = $this->calendar->remove_member($remove,$id);        
     }
     /**
      * @desc calendar event show
@@ -65,8 +81,9 @@ class IndexController extends ControllerBase
      * @category create event
      * @return   json { error message }
      */
-    public function createAction() {
-        $this->view->disable();
+    public function createAction($id) {
+        var_dump($id);exit;
+        $this->view->disable();        
         $uname = $this->request->get('uname');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
@@ -86,7 +103,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($sdate, $edate, $title,$uname);
+            $event=$this->calendar->create_event($id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
             $res['name']= $uname;
         }
@@ -97,9 +114,8 @@ class IndexController extends ControllerBase
      * @category edit event
      * @return   json { error message }
      */
-    public function editAction() {
-        $this->view->disable();
-        $id = $this->request->get('id');
+    public function editAction($id,$member_id) {        
+        $this->view->disable();        
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $name = $this->request->get('uname');
@@ -115,7 +131,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $edit=$this->calendar->edit_event($name,$sdate, $edate, $title, $id);
+            $edit=$this->calendar->edit_event($name,$sdate, $edate, $title, $id,$member_id);
             $res['res']=$edit;
             $res['name']=$name;
         }

@@ -39,14 +39,25 @@ body::-webkit-scrollbar { width: 0; }
 #shapbott{       
     height: 20px;    
 }
+#disabledevent{
+    height: 20px;       
+}
 .content{
     padding: 0;
 }
-.btn{
-    margin-left: 50px !important;
+.bg-info{
+    background: #fffff0;
+}
+.addmember{
+  margin-left: 50px !important;
 }
 .addbtn{
   background: url("../../../common/img/5Fm069k.png")  10px -32px no-repeat #F8F8F8 ;  
+  }
+  .minusbtn{
+      background: url("../../../common/img/5Fm069k.png")  10px -68px no-repeat #F8F8F8 ;  
+      font-size: 12px;
+      padding: 6px 10px 6px 26px;
   }
 ::-webkit-scrollbar {
 background:#fff;
