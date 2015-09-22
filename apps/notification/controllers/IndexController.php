@@ -38,7 +38,8 @@ class IndexController extends ControllerBase
     public function viewallAction(){
          $type=viewall;
         $Admin=new CoreMember();
-        $noti=$Admin->GetAdminNoti();
+        $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $permission=$this->session->permission_code;
         
@@ -70,9 +71,10 @@ class IndexController extends ControllerBase
     public function notificationAction(){
         $code=$this->session->permission_code;
            $Admin=new CoreMember();
+           $id = $this->session->user['member_id'];
         if($code=="ADMIN"){
    
-        $noti=$Admin->GetAdminNoti();}
+        $noti=$Admin->GetAdminNoti($id);}
         else{
             $id = $this->session->user['member_id'];
              $noti=$Admin->GetUserNoti($id);
@@ -86,10 +88,11 @@ class IndexController extends ControllerBase
     public function detailAction(){
         $code=$this->session->permission_code;
         $Admin=new CoreMember();
+        $id = $this->session->user['member_id'];
         if($code=="ADMIN"){
-            $noti=$Admin->GetAdminNoti();}
+            $noti=$Admin->GetAdminNoti($id);}
         else{
-            $id = $this->session->user['member_id'];
+            
             $noti=$Admin->GetUserNoti($id);
         }
         $this->view->setVar("noti",$noti);
@@ -101,6 +104,18 @@ class IndexController extends ControllerBase
         $Detail_result=$Noti_detail->GetNotiInfo($module_name, $noti_id);
         $this->view->setVar("module_name",$module_name);
         $this->view->setVar("result",$Detail_result);
+    }
+    
+    public function noticalendarAction(){
+        
+        $id=$this->request->getPost('id');
+        $Noti=new \workManagiment\Notification\Models\Notification();
+        if($this->session->permission_code=='ADMIN'){
+        $Noti->calendarnotification($id);}
+        else{
+            $member_id=$this->session->user['member_id'];
+            $Noti->usercalendarnotification($id,$member_id);
+        }
     }
     
 }

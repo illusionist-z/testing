@@ -159,16 +159,21 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti() { 
+    public function GetAdminNoti($id) { 
         $this->db = $this->getDI()->getShared("db");
-        $AdminNoti = $this->db->query("SELECT * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 ");
+        $AdminNoti = $this->db->query("SELECT * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 AND notification.noti_creator_id='" . $id . "' ");
         $noti = $AdminNoti->fetchall();
-        //print_r($noti);exit;
+       //$notirel=$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=2 AND notification_rel_member.member_id!= '" . $id . "'");
+       //$noti[]=$notirel->fetchall();
+      //var_dump($noti);exit;
         foreach ($noti as $noti){
-            
-          $result= $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
-          $final_result[]=$result->fetchall();
-        } 
+           
+        $sql="SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ";
+        //print_r($sql);exit;
+        $result= $this->db->query($sql);
+        $final_result[]=$result->fetchall();
+        }  
+       //var_dump($final_result);exit;
         return $final_result;
     }
 
@@ -182,9 +187,12 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function GetUserNoti($id) {
         $this->db = $this->getDI()->getShared("db");
-        $UserNoti =$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=1 AND notification_rel_member.member_id= '" . $id . "'");
-        $noti = $UserNoti->fetchall();
+        $sql="SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=1 AND notification_rel_member.member_id= '" . $id . "'";
+//       print_r($sql);exit;
+        $UserNoti =$this->db->query($sql);
         
+        $noti = $UserNoti->fetchall();
+       
         foreach ($noti as $noti){
             
           $result= $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");

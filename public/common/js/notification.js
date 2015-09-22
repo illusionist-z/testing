@@ -44,6 +44,18 @@ var Noti = {
                 window.location.href=baseUri+'dashboard';
             }
         });
+    },
+      Calendar : function(id){
+     
+      $.ajax({
+            type:'POST',
+            data:  {id : id},
+            url : baseUri+"notification/index/noticalendar",
+            success:function(){ 
+                
+                window.location.href=baseUri+'calendar/index';
+            }
+        });
     }
    
 
@@ -54,25 +66,21 @@ $(document).ready(function () {
     $('#noti_reject').click(function(e){
             Noti.Reject();
             e.preventDefault();
-            
-             
         }),
         $('#noti_accept').click(function(e){
             Noti.Accept();
-            //$ovl.dialog("close");
-            
-            
-             
+      
         }),
        
         $('#noti_ok').click(function(e){
             
             Noti.Seen();
-            
-             
         });
-   
-   
+        $('.calendar').click(function(e){
+            var id=$(this).attr('id');
+          //  alert(id);
+           Noti.Calendar(id);
+        });
 
     $(".noti").click(function () {
        document.getElementById("noti").className = "noticlose";
