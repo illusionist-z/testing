@@ -2,7 +2,6 @@
 <?php
     use Phalcon\Tag as Tag;
 ?>
-<div id="external-events">
     <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Header (Page header) -->
@@ -19,31 +18,27 @@
 <section class="content">
     <div class="row">
         
-        <div class="col-md-2">
+        <div class="col-md-3">
             <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">
-                   <!-- <input type='checkbox'  id='selectall'/>-->
-                    <input type='checkbox' id='shapbott' name='checkall' onclick='checkedAll(frm1);'>
-                    User Event Enable</span></h2>            
+                   <!-- <input type='checkbox'  id='selectall'/>-->                    
+                    
+                    User Event Enable                                        
+                    <input type='button' id='shapbott' name='checkall' class="addbtn">
+                </span>
+            </h2>            
           
-           <form id ="frm1">
-               
-       </p>
-        <ul class="nav nav-pills nav-stacked col-sm-12" id="left-scroll">
-         <?php
-            foreach ($uname as $result) {
-                ?>
-            <li class="addbtnn"> <input style="margin-top: -2px;margin-left: 10px;" type="checkbox" class='case' name='checkbox[]' value="<?= $result->member_login_name; ?>" ><?php echo " ".$result->member_login_name; ?></li>
-                <?php
-            }
-            ?>
-        </ul>
-           
+           <form id ="frm1">             
        
+          <ul class="nav nav-pills nav-stacked col-sm-12" id="left-scroll">
+         
+            <li class="addbtnn"> <input style="margin-top: -2px;margin-left: 10px;" type="checkbox" class='case' name='checkbox[]' value="<?= $uname ?>" ><?php echo " ".$uname; ?></li>
+         
+          </ul>                  
            </form>
         <span class="btn btn-primary col-sm-12 btn-show-event">Show Event</span>
         <div class="alert col-sm-12">Check above user to see their event</div>
         </div>
-    <div class="col-md-10">
+    <div class="col-md-8">
         <div class="box-body no-padding">
             <!-- THE CALENDAR -->
             <div id="calendar" class="bg-info"></div>
@@ -52,7 +47,11 @@
     </div><!-- /. box -->
     </div>
 </section><!-- /.content -->
-
+<div id="member_event_dialog" class="navbar row" style="display: none;">
+    <label for="member_event">Search Member</label><input type="text" id="member_event">
+    <button class="btn btn-primary" id="member_event_add" disabled>Add Member</button>
+    <button class="btn btn-primary" id="member_event_dialog_close">Close</button>
+</div>
 <div id="dialog" style="display:none" title="Edit Event" class="navbar">
     <form id="edit_event" onsubmit="return false;" class="container">
         <label for="title">Title</label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_edit_event">

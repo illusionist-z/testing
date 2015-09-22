@@ -1,5 +1,4 @@
 <?php
-
 namespace workManagiment\Attendancelist\Controllers;
 
 use workManagiment\Core\Models\Db;
@@ -16,7 +15,7 @@ class IndexController extends ControllerBase
         //$this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->assets->addCss('common/css/css/style.css');
-    }
+    }   
 
    /**
     * show today attendance list
@@ -36,6 +35,7 @@ class IndexController extends ControllerBase
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;
+        $this->view->t = $this->_getTranslation();
     }    
   
     /**

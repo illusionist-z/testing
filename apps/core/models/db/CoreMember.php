@@ -58,7 +58,14 @@ class CoreMember extends \Library\Core\BaseModel {
                     exit;*/
         return $getname;
     }
-
+    
+    public function searchuser($search) {
+        $filter = new Filter();
+        $search = $filter->sanitize($search,"string");
+        $searchname = $this->db->query("select member_login_name from core_member where member_login_name like '%$search%' ");
+        $return = $searchname->fetchall();
+        return $return;
+    }
     /**
      * @author david
      * @return username by last month

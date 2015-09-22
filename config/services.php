@@ -26,7 +26,7 @@ $di->set('router', function () {
     foreach ($aryModules as $module){
         if($def_mod === $module){
             continue;
-        }
+        }             
         
         $router->add('/'.$module, [
         'module' => $module,

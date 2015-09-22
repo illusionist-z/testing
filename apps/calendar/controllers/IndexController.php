@@ -23,20 +23,30 @@ class IndexController extends ControllerBase
     
    public function indexAction() {
         $User=new Db\CoreMember;
-        
+        $id = $this->session->user['member_id'];
        if($this->session->permission_code=="ADMIN"){
             $noti=$User->GetAdminNoti();
        }
-       else{
-           $id = $this->session->user['member_id'];
+       else{           
         $noti=$User->GetUserNoti($id);        
-
        }
        
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
-        $Username = $GetMember::getinstance()->getusername();
-        $this->view->uname = $Username;
+        $Username = $GetMember::getinstance()->getoneusername($id);
+        $this->view->uname = $Username[0]->member_login_name;
+    }
+    
+    public function getmemberAction() {
+        $member_search = $this->request->get("q");
+        $json_array = array();
+        $CoreMember = new Db\CoreMember();
+        $member = $CoreMember->searchuser($member_search);
+        foreach($member as $all){
+            $json_array[] = $all['member_login_name'];
+        }       
+        $this->view->disable();        
+        echo json_encode($json_array);
     }
     /**
      * @desc calendar event show
@@ -51,7 +61,7 @@ class IndexController extends ControllerBase
         echo json_encode($events);
     }
     /**
-     * @author   David
+     * @author David JP <david.gnext@gmail.com>
      * @category create event
      * @return   json { error message }
      */
