@@ -332,7 +332,7 @@ var Deduction = {
         });
     },
       Add : function (){
-        
+        alert("add");
         $.ajax({
             
            url:"",
@@ -371,7 +371,6 @@ $(document).ready(function () {
     });
     
       $(".add").click(function () {
-          
       Deduction.Add();
     });
 });

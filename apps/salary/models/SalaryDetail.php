@@ -326,5 +326,13 @@ select allowance_id from salary_master_allowance where member_id='".$member_id."
         }
         return $conditions;
     }
-
+    
+    public function addresign($data){
+          try{
+         $sql = "Update salary_detail SET resign_date ='". $data['resign_date'] ."' Where member_id='".$data['member_id']."'";
+         $this->db->query($sql);
+     } catch (Exception $ex) {
+         echo $ex;
+     }
+    }
 }
