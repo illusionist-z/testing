@@ -81,8 +81,7 @@ class IndexController extends ControllerBase
      * @category create event
      * @return   json { error message }
      */
-    public function createAction($id) {
-        var_dump($id);exit;
+    public function createAction($id) {        
         $this->view->disable();        
         $uname = $this->request->get('uname');
         $sdate = $this->request->get('sdate');
@@ -104,7 +103,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($creator_id,$sdate, $edate, $title,$uname);
+            $event=$this->calendar->create_event($creator_id,$id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
             $res['name']= $uname;
         }
