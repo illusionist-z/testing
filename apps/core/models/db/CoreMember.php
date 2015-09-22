@@ -253,5 +253,16 @@ class CoreMember extends \Library\Core\BaseModel {
           $sql = "UPDATE leaves set leaves.noti_seen=1 WHERE leaves.start_date='" . $sdate . "' AND leaves.member_id='" .$id. "'";
           $a=$this->db->query($sql);                                                  
     }
+    
+    public function autousername() {        
+        $this->db = $this->getDI()->getShared("db");        
+        $user_name = $this->db->query("SELECT full_name FROM core_member");                                          
+        $getname = $user_name->fetchall();
+        return $getname;
+//        $query = "SELECT member_login_name FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
+//        $row = $this->modelsManager->executeQuery($query);
+//        //print_r($row);exit;
+//        return $row;
+    }
 
 }

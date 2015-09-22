@@ -4,7 +4,8 @@ body * {
 }
 @media print{
   body *{ visibility: hidden; }
-  #printable *{ visibility: visible;}  
+  #printable *{ visibility: visible;}
+  .p_break{page-break-after: always;}
 }
 .td_style{
      float: right; 

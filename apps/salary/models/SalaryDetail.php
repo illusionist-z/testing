@@ -7,7 +7,7 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
-use workManagiment\Attendancelist\Models\Attendances;
+use workManagiment\Core\Models\Db\Attendances;
     
 
 class SalaryDetail extends Model {
@@ -173,14 +173,15 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
 //            exit;
          //print_r("thank");exit;
           $row =   $this->modelsManager->createBuilder()
-                         ->columns(array('salarydet.*', 'core.*','salarymast.*'))
+                         ->columns(array('salarydet.*', 'core.*','salarymast.*','attend.*'))
                          ->from(array('salarydet' => 'workManagiment\Salary\Models\SalaryDetail'))
                          ->join('workManagiment\Core\Models\Db\CoreMember','core.member_id = salarydet.member_id','core')
                          ->join('workManagiment\Salary\Models\SalaryMaster','salarymast.member_id = salarydet.member_id','salarymast')
-                         //->join('workManagiment\Attendancelist\Models\Attendances','attend.member_id = salarymast.member_id','attend')
+                         ->join('workManagiment\Core\Models\Db\Attendances','attend.member_id = salarymast.member_id','attend')
                          ->where('salarydet.member_id = :member_id:', array('member_id' => $member_id))
                          ->andWhere('MONTH(pay_date) = :month:', array('month' => $month))
                          ->andWhere('YEAR(pay_date) = :year:', array('year' => $year))
+                         ->limit(1)
                          ->getQuery()
                          ->execute();          
                  //print_r($row);exit;

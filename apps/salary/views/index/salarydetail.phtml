@@ -9,6 +9,7 @@
                 <div style="padding: 10px 10px 10px 10px">
                     <div style="float:left;"><button id="btnEditInfo">EDIT</button>
                     <button id="btn_savedetail" disabled>Save</button>
+                    <button id="btn_resign">Resign</button>
                     </div>
                     <div style="float:right;">
                     <a href="#" id="display1" class="display">PREV</a> |
@@ -45,11 +46,11 @@
     <h3><center>G-Next Official Salary Report</center></h3>
 <div>
     <div style="width: 10%; float: left;">Name</div>
-    <div><input type="text" name="txtname" id="txtname" value="<?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?>" disabled="disabled"/></div>
+    <div><?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?></div>
 </div>
 <div>
     <div style="width: 10%; float: left;">Month</div>
-    <div><input type="text" name="txtmonth" value="<?php echo date("M - Y", strtotime( $A[$i]->salarydet->pay_date));?>" id="txtmonth" disabled="disabled"></div>
+    <div><?php echo date("M - Y", strtotime( $A[$i]->salarydet->pay_date));?></div>
 </div>
 <div>
     <table border="1px solid gray" style="width:100%" class="detail_tbl">
@@ -75,12 +76,19 @@
   </tr>
   <tr>
     <td>Overtime Hour</td>
-    <td><input type="text" name="txtovertimehour" value="2" id="txtovertimehour" disabled="disabled"></td>
+    <td><input type="text" name="txtovertimehour" value="<?php echo $filter->sanitize($A[$i]->attend->overtime , "string");?>hr" id="txtovertimehour" disabled="disabled"></td>
     <td></td>
   </tr>
   <tr>
     <td>Overtime Payment</td>
-    <td><input type="text" name="txtovertimepay" value="" id="txtovertimepay" disabled="disabled"></td>
+    <td><input type="text" name="txtovertimepay" value="<?php 
+    if($filter->sanitize($A[$i]->attend->overtime , "string")>0){
+        $overtime_pay_perhr=$A[$i]->salarydet->basic_salary*$A[$i]->salarymast->over_time/100;
+        $overtime_payment=$overtime_pay_perhr*$A[$i]->attend->overtime;
+        echo $overtime_payment;
+        $sum+=$overtime_payment;
+    }
+    ?>" id="txtovertimepay" disabled="disabled"></td>
     <td></td>
   </tr>
   <tr>

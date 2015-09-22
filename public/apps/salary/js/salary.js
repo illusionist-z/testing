@@ -204,10 +204,6 @@ $(document).ready(function () {
         Salary.Edit(id);
     });
     
-    $(".print").click(function () {
-        window.print();
-    });
-    
 });
 
 

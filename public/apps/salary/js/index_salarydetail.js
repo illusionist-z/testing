@@ -33,9 +33,9 @@ $(document).ready(function () {
 
 
     $('#btnEditInfo').click(function () {
-        document.getElementById('txtname').disabled=false;
+        //document.getElementById('txtname').disabled=false;
         document.getElementById('btn_savedetail').disabled=false;
-        document.getElementById('txtmonth').disabled=false;
+        document.getElementById('txtbsalary').disabled=false;
         document.getElementById('txtbsalary').disabled=false;
         document.getElementById('txtovertimehour').disabled=false;
         document.getElementById('txtallowance').disabled=false;
