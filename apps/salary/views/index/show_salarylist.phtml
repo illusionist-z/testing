@@ -77,8 +77,9 @@
                 </div>
                 <div class="search_btn_box"><!--search btn-->
                     <div>
-                        <a href="#" class="button" id="search_salary" style="margin-left:71px; margin-right:28px;">Search</a>
+                        <a href="#" class="button" id="search_salary">Search</a>
                         <a href="#" class="button export">Export</a>
+                        <a href="#" class="button" id="btn_print_salary">Print</a>
                     </div>
                 </div><!--search btn-->
             </form>
@@ -93,7 +94,7 @@
             <table class="listtbl" >
                 <thead>
                     <tr>
-                        
+                        <th><INPUT type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
                         <th>Name</th>
                         <th>Department</th>
                         <th><center>Basic Salary</center></th>
@@ -117,10 +118,11 @@
                     $year=$this->request->get('year');
                     $i = 1;
                     $totalresult="";
+                    echo '<form id ="frm1">';
                     foreach ($getsalarylists as $getsalarylist) {
                         ?>
                         <tr>
-                           
+                            <td><input type="checkbox" class='case' name='chk[]' value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_login_name'] , "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'] , "string") ?></td>
                             <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
@@ -136,16 +138,21 @@
                             $totalresult+=$getsalarylist['total'];
                             echo number_format($getsalarylist['total']); 
                                     
-                                ?></div></td>
-                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button" id="displaypopup">Print</a></td>
+                                ?></div>
+                                <input type="hidden" value="<?php echo $month; ?>" name="month" id="month">
+                                <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">
+                            </td>
+<!--                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button">Detail</a></td>-->
+                            <td><a href="#" class="button" id="btn_detail">Detail</a></td>
                         </tr>
                         <?php
                         $i++;
                     }
+                    echo '</form>';
                     ?>
-
+                           
                     <tr>
-                        <td colspan="10" style="text-align:center; background-color:#3c8dbc; color: #FFFFFF"><b>Total salary for all user</b></td>
+                        <td colspan="11" style="text-align:center; background-color:#3c8dbc; color: #FFFFFF"><b>Total salary for all user</b></td>
                         <td style="background-color:#3c8dbc; color: #FFFFFF"><div class="td_style"><b><?php echo number_format($filter->sanitize($totalresult, "int"));?></b></div></td>
                         <td style="background-color:#3c8dbc;"></td>
                     </tr>

@@ -26,7 +26,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * initialize controller
      */
     public function initialize() {
-        $this->view->baseUri = $this->url->getBaseUri();
+        $this->view->baseUri = $this->url->getBaseUri();        
     }
 
     /**
@@ -46,15 +46,15 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * @param \Phalcon\Mvc\Dispatcher $dispatcher
      */
     public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
-        // set module
-        if (isset($this->session->get('user')['lang'])) {
-            $this->lang = $this->session->get('user')['lang'];
+        // set module        
+        if($this->session->get('language')) {
+            $this->lang = $this->session->get('language');
         } else {
             $this->lang = $this->request->getBestLanguage();
         }
         $this->moduleName = $dispatcher->getModuleName();
     }
-
+ 
     /**
      * 
      * @param type $prefix
@@ -74,7 +74,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
             // fallback to some default
             require $langDir . '/' . $prefix . "ja.php";
         }
-
+        
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $messages
@@ -140,11 +140,12 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
             // fallback to some default
             require $langDir . '/' . $prefix . "ja.php";
         }
-
+        
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $messages
         ));
     }
+    
 
 }

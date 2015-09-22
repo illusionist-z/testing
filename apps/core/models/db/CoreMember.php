@@ -47,7 +47,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $getname =   $this->modelsManager->createBuilder()
                             ->columns(array('core.*'))
                             ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))                             
-                            ->where('core.member_login_name = :username:', array('username' => $username))                            
+                            ->where('core.member_id = :username:', array('username' => $username))                            
                             ->getQuery()
                             ->execute();                                                   
                 // print_r($row);exit;
@@ -58,7 +58,14 @@ class CoreMember extends \Library\Core\BaseModel {
                     exit;*/
         return $getname;
     }
-
+    
+    public function searchuser($search) {
+        $filter = new Filter();
+        $search = $filter->sanitize($search,"string");
+        $searchname = $this->db->query("select member_login_name from core_member where member_login_name like '%$search%' ");
+        $return = $searchname->fetchall();
+        return $return;
+    }
     /**
      * @author david
      * @return username by last month
@@ -255,6 +262,17 @@ class CoreMember extends \Library\Core\BaseModel {
           $this->db = $this->getDI()->getShared("db");
           $sql = "UPDATE leaves set leaves.noti_seen=1 WHERE leaves.start_date='" . $sdate . "' AND leaves.member_id='" .$id. "'";
           $a=$this->db->query($sql);                                                  
+    }
+    
+    public function autousername() {        
+        $this->db = $this->getDI()->getShared("db");        
+        $user_name = $this->db->query("SELECT full_name FROM core_member");                                          
+        $getname = $user_name->fetchall();
+        return $getname;
+//        $query = "SELECT member_login_name FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
+//        $row = $this->modelsManager->executeQuery($query);
+//        //print_r($row);exit;
+//        return $row;
     }
 
      public function NoOfNotiforAdmin(){

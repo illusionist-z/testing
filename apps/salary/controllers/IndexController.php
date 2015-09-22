@@ -55,6 +55,7 @@ class IndexController extends ControllerBase {
      */
     public function show_salarylistAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
+        $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
         $Admin=new Db\CoreMember;
         $noti=$Admin->GetAdminNoti();
         $this->view->setVar("noti",$noti);
@@ -379,4 +380,47 @@ class IndexController extends ControllerBase {
         $this->view->disable();
     }
 
+    
+    public function printsalaryAction() {
+         $this->assets->addJs('apps/salary/js/print.js');
+        $month=$this->request->get('month');
+        $year=$this->request->get('year');
+        $member_id=$this->request->get('chk_val');
+        $mid=  explode(',', $member_id);
+        //echo count($mid);
+        $Salarydetail = new SalaryDetail();
+        for($i=0;$i<count($mid);$i++){
+            echo $mid[$i]."<br>";
+            if($mid[$i]!='on'){
+            $getsalarydetail[] = $Salarydetail->getpayslip($mid[$i], $month, $year);
+                
+            }
+        }
+        
+       //print_r($getsalarydetail);exit;
+        
+        $this->view->getsalarydetails = $getsalarydetail;
+    }
+    
+    
+    public function salarydetailAction() {
+        $this->assets->addJs('apps/salary/js/index_salarydetail.js');
+        $month=$this->request->get('month');
+        $year=$this->request->get('year');
+        $member_id=$this->request->get('chk_val');
+        $mid=  explode(',', $member_id);
+        //echo count($mid);
+        $Salarydetail = new SalaryDetail();
+        for($i=0;$i<count($mid);$i++){
+            echo $mid[$i]."<br>";
+            if($mid[$i]!='on'){
+            $getsalarydetail[] = $Salarydetail->getpayslip($mid[$i], $month, $year);
+                
+            }
+        }
+        
+      // print_r($getsalarydetail);exit;
+        
+        $this->view->getsalarydetails = $getsalarydetail;
+    }
 }

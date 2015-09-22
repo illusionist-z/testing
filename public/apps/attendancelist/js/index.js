@@ -17,6 +17,63 @@ var Attendance = {
             pager.showPage(1);  
             $('tbody').show();
         },
+         autolist: function (){                       
+       // var name = document.getElementById('namelist').value;
+            
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+        
+       
+                      
+//        $('.tags').autocomplete({
+//                source: function(request, response) {
+//                    var result = $.ajax({
+//                        url:'autolist',
+//                        method: 'GET',
+//                        dataType: 'json',
+//                        success: function(data) {
+//                            alert(data);
+//                            var array = [];
+//                            response($.each( data, function(item) {
+//                                //var aa=data[item].fullname;
+//                                array.push(data[item].full_name);
+//                               // array.push(item);
+//                              //alert(array);
+//                                return array;
+//                            }));
+//                          //  array.push(this.toString());
+//                           // alert(array.toString());
+//                            return array.toString();
+//                        }
+//                    });
+//                }
+//            });  
+
+                        var dict = [];
+//
+         $.ajax({
+                        url:'autolist',
+                        method: 'GET',
+                        //dataType: 'json',
+                        success: function(data) {
+                            
+                            $.each(data, function() {
+      dict.push(this.toString());
+     alert(dict);
+    });
+    alert(dict);
+    return dict;
+                        }
+                    });
+//
+            $('.tags').autocomplete({
+              source: dict
+            });
+
+    
+ 
+  
+                 
+       },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;
         //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
@@ -167,6 +224,10 @@ $(document).ready(function () {
 
         Attendance.monthlylist();
     });
+    $('.tags').click(function () {
+        Attendance.autolist();
+    }); 
+    
+    
 });
-
 
