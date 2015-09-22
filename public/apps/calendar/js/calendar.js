@@ -118,12 +118,29 @@ var Calendar = {
     }, 2000);
     }
     else{
-     $('#calendar').remove();    //remove calendar origin
-     $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>');//replace a new calendar
-     Calendar.init(d);
+     $('#calendar').remove();    //remove calendar origin     
+     $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>');//replace a new calendar               
+     Calendar.init(d);     
     }
     }
         });
+    },
+    remove_event_member : function() {
+       var selectedvalue = [];
+      if($(':checkbox:checked').length > 0){
+        $(':checkbox:checked').each(function(i){
+          selectedvalue[i] = $(this).val();
+         });
+         $.ajax({
+             url : "index/removeEventByname",
+             data : {remove : selectedvalue},
+             type : "POST",
+             success : function(){                 
+                 $('body').load('index');
+             }
+         });
+         }
+       else {alert("You must check at least one");}
     },
     /**
      * @author David 9/16/2015
@@ -142,20 +159,38 @@ var Calendar = {
             $("#member_event_dialog").dialog("close");            
         });
         $("#member_event_dialog").dialog("open");        
-        $("#member_event").autocomplete({
+        $("#member_event").autocomplete({   
          source: function( request, response ) {
           $.ajax({                
                  url: "index/getmember",
                 dataType: "json",                               
                 data :{ q :request.term},
                success: function( data ) {                   
-                   response(data);                
+                   response(data);
              }
             });
       },
              minLength: 1,
            select: function(event, ui) {         
-               $("#member_event_add").attr("disabled",false);
+               $("#member_event_add").attr("disabled",false);               
+               $("#member_event_add").unbind("click").bind("click",function(e){
+                   e.preventDefault();
+                   $.ajax({
+                       type : "GET",
+                       data:{permit:ui.item.value},
+                       url :"index/addmember",
+                       dataType:"json",
+                       success:function(d){
+                           if( d === 1){
+                               alert("Already exist");
+                           }
+                           else{
+                               location.reload();
+                           }
+                       }
+                   });                  
+                   return false;
+               });
           }
         });
     }
@@ -182,7 +217,7 @@ var Calendar = {
             async: false,
             dataType:'json',
             success:function(d){                
-                $selectname = d[0].member_id;
+                $selectname = d[0].member_name;
             }
         });
         $('#title_edit_event').val(event.title);
@@ -234,8 +269,9 @@ var Calendar = {
         $dia.dialog("open");
     },
     edit: function (id,old_id,dia) {
+        $name = $('#show_name option:selected').attr("name");
         $.ajax({
-            url: "index/edit?id=" + id,
+            url: "index/edit/"+id+"/"+$name,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -262,8 +298,9 @@ var Calendar = {
     },
     //create new event
     create: function (dia) {
+        $id = $('#select_name option:selected').attr("name");
         $.ajax({
-            url: "index/create",
+            url: "index/create/"+$id,
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",
@@ -320,6 +357,9 @@ $(document).ready(function () {
    });
    $('#shapbott').click(function(){
        Calendar.getmemberevent();
+   });
+   $('#disabledevent').click(function(){
+       Calendar.remove_event_member();
    });
    
 });
