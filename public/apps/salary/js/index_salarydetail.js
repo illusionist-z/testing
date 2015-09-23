@@ -37,9 +37,22 @@ $(document).ready(function () {
         document.getElementById('btn_savedetail').disabled=false;
         document.getElementById('txtbsalary').disabled=false;
         document.getElementById('txtbsalary').disabled=false;
-        document.getElementById('txtovertimehour').disabled=false;
+        document.getElementById('txtovertimerate').disabled=false;
         document.getElementById('txtallowance').disabled=false;
     });
 
+    $("#btn_savedetail").click(function () {
+       $member_id=document.getElementById('member_id').value; 
+       $b_salary=document.getElementById('txtbsalary').value;
+       $overtime_rate=document.getElementById('txtovertimerate').value;
+       $specific_deduce=document.getElementById('txtallowance').value;
+       if($specific_deduce=="")
+       {
+         window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
+       }
+       else{
+       window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/'+$specific_deduce+'/'+$member_id;
+        }
+    });
    
 });

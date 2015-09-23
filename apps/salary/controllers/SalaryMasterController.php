@@ -51,5 +51,13 @@ class SalaryMasterController extends ControllerBase
 
         $this->response->redirect('salary/index/salarylist');
     }
+    
+    public function editsalarydetailAction($bsalary,$overtimerate,$allowance,$member_id) {
+        //echo $bsalary.' '.$overtimerate.' '.$allowance;exit;
+        $Salarymaster = new SalaryMaster();
+        $Salarymaster->updatesalarydetail($bsalary,$overtimerate,$member_id);
+        $Allowance = new Allowances();
+        $Allowance->updateallowance($allowance,$member_id);
+    }
 }
 

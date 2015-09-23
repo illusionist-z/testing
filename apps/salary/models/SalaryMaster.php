@@ -106,11 +106,13 @@ class SalaryMaster extends Model {
                 $SM = $this->getLatestsalary($value['member_id']);
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
                         $value['member_id'], $budget_startyear, $budget_endyear);
+                $latest_payday='0';
+                if(!empty($SD)){
                 $payday=  explode("-", $SD['pay_date']);
                 $latest_payday=$payday[1];
                 $update=  explode(" ", $SM['updated_dt']);
                 $dt=  explode("-", $update[0]);
-                $up_date=$dt[0].'-'.$dt[1];
+                $up_date=$dt[0].'-'.$dt[1];}
                 //Check there is allowance or not
                 $Allowanceresult = $this->getAllowances($value['member_id']);
                 if(isset($Allowanceresult['total_allowance_amount']))
@@ -693,5 +695,14 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
         }
         return $res;
     }
-
+    
+    public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
+        try {
+                $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
+                $this->db->query($sql);
+                $res['valid'] = true;
+            } catch (Exception $ex) {
+                echo $ex;
+            }
+    }
 }
