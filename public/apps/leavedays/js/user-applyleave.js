@@ -5,6 +5,7 @@
  */
 var ApplyForm = {
     Submit : function (){
+        
         $.ajax({
            type : 'POST',
            url  : 'applyleave',
@@ -12,6 +13,7 @@ var ApplyForm = {
            success: function(d){
               
                cond = JSON.parse(d);
+               
                  if(cond.result === 'error')
                 { 
                  $('#apply_form_sdate').css('border','black');$('#apply_form_edate').css('border','black');
@@ -51,7 +53,7 @@ var ApplyForm = {
 $(document).ready(function(){
    
     $('#apply_form_submit').on('click',function(){
-        
+      
       ApplyForm.Submit();
    });
 });

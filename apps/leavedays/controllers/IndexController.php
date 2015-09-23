@@ -54,13 +54,14 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
                   }     
             else{
+            $creator_id=$this->session->user['member_id'];
             $uname =$this->request->getPost('username');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
-                    $desc);   
+                    $desc,$creator_id);   
             
             echo json_encode($error);
             $this->view->disable();
@@ -140,19 +141,22 @@ class IndexController extends ControllerBase {
     }
     
      public function acceptleaveAction(){
-        $sdate=$this->request->get('start_date');
-        $edate=$this->request->get('end_date');
+        //$sdate=$this->request->get('start_date');
+        //$edate=$this->request->get('end_date');
         $id=$this->request->get('id');
         $days=$this->request->getPost('leave_days');
-        $this->_leave->acceptleave($id,$sdate,$edate,$days); 
+        $noti_id=$this->request->getPost('noti_id');
+        $this->_leave->acceptleave($id,$days,$noti_id); 
        
     }
     public function rejectleaveAction(){
-         $sdate=$this->request->get('start_date');
-        $edate=$this->request->get('end_date');
-        $id=$this->request->get('id');
-        $days=$this->request->getPost('leave_days');
-        $this->_leave->rejectleave($id,$sdate,$edate,$days); 
+//         $sdate=$this->request->get('start_date');
+//        $edate=$this->request->get('end_date');
+//        $id=$this->request->get('id');
+//        $days=$this->request->getPost('leave_days');
+        $noti_id=$this->request->getPost('noti_id');
+        
+        $this->_leave->rejectleave($noti_id); 
     }
 }
      

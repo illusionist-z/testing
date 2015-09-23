@@ -1,0 +1,25 @@
+<?php  foreach ($result as $data) {
+  if ($module_name=='leaves'){
+      $leave_stt=$data['leave_status'];
+   
+ ?>
+
+<form id="noti_detail" width="800px" height="300px" ><table width="500px" height="290px"  >             
+<br>
+<tr><td></td><td><b>User Name </b></td><td><span style="color:black"><b>: <?php echo $data['member_login_name'];?></b> </span><b style="font-size:13px;"></b></td><td ></td></tr>
+<tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"><b> : <?php echo $data['start_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>End Date </b> </td><td><span style="color:black"><b> : <?php echo $data['end_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+  <tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"><b> : <?php if($leave_stt==0){echo 'pending';}else if($leave_stt==1){echo 'Confirmed';}else{echo 'Rejected';}?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_days'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Category </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_category'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_description'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><input type="hidden" value="<?php echo $data['member_id'];?>"  name="id"></td><td></td></td></tr>
+<tr><td></td><td><input type="hidden" value="<?php echo $data['end_date'];?>"  name="end_date"></td><td></td></td></tr>
+<tr><td></td><td><input type="hidden" value="<?php echo $data['leave_days'];?>"  name="leave_days"></td><td></td></td></tr>
+<tr><td></td><td><input type="hidden" value="<?php echo $data['start_date'];?>"  name="start_date"></td><td></td></td></tr>
+<tr><td></td><td><input type="hidden" value="<?php echo $data['noti_id'];?>"  name="noti_id"></td><td></td></td></tr>
+<tr><td></td><td></td><?php if ($this->session->permission_code=='ADMIN'){ ?><td colspan="2"><br><a href="#" class="button" id="noti_accept">Accept</a><a href="#" class="button" id="noti_reject">Reject</a>
+    <?php }else { ?><td colspan="2"><br><a href="#" class="button" id="noti_ok">Back</a>
+    </td></tr><?php }?>
+</table></form><?php }}?>  
+

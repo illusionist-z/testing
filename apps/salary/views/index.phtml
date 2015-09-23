@@ -18,7 +18,7 @@
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top" style="margin-left:0;">   
+                <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
                     <a><img src="../../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
@@ -130,10 +130,10 @@
                                     if (isset($top[1])) {
                                         echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                     } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                     }
                                 } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                 }
                             }
 
@@ -172,11 +172,11 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
-                <section class="content">
+<!--                <section class="content">-->
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
                     <?php $this->assets->outputJs(); ?>
-                </section>
+<!--                </section>-->
             </div><!-- /.content-wrapper -->
 
             <footer class="main-footer" style="margin-left:0;">

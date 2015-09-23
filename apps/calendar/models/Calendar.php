@@ -41,11 +41,25 @@ class Calendar extends Model {
     /**
      * @desc create new event by click on calendar
      * @author David
+     * @version Su Zin Kyaw
      */
-    public function create_event($id,$sdate,$edate,$title,$uname){
+    public function create_event($creator_id,$id,$sdate,$edate,$title,$uname){
+        $noti_id=rand();
          $this->db = $this->getDI()->getShared("db");
-         $insert ="INSERT INTO calendar (member_name,member_id,title,startdate,enddate,allDay) Values ('".$uname."','".$id."','".$title."','".$sdate."','".$edate."','true')";
+         $insert ="INSERT INTO calendar (member_name,member_id,title,startdate,enddate,allDay,noti_id) Values ('".$uname."','".$id."','".$title."','".$sdate."','".$edate."','true','" . $noti_id . "')";
          $query=  $this->db->query($insert);
+        $admins=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='ADMIN' and core_member.member_id!= '" . $creator_id . "' ");
+        $admins=$admins->fetchall();
+        foreach ($admins as $admins) {
+           // echo $admins['member_id'];echo "---";
+        $this->db->query("INSERT INTO notification (noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
+        }
+        $users=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id!= '" . $creator_id . "' ");
+        $users=$users->fetchall();
+        foreach ($users as $users) {
+            //echo $users['member_id'];echo "---";
+        $this->db->query("INSERT INTO notification_rel_member (member_id,noti_id,status,module_name) VALUES('" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
+        }
          return $query;
     }
     /**

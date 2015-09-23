@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage =3;            
+        pager.perpage =9;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -204,10 +204,7 @@ $(document).ready(function () {
         Salary.Edit(id);
     });
     
-    $(".print").click(function () {
-        window.print();
-    });
-    
 });
+
 
 

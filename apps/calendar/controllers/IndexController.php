@@ -87,6 +87,7 @@ class IndexController extends ControllerBase
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $title = $this->request->get('title');
+        $creator_id=$this->session->user['member_id'];
         $res= array();
         if ($title == null ) {
             $res['cond']=FALSE;
@@ -102,7 +103,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($id,$sdate, $edate, $title,$uname);
+            $event=$this->calendar->create_event($creator_id,$id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
             $res['name']= $uname;
         }
