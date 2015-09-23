@@ -379,6 +379,10 @@ $(document).ready(function () {
      $('#sub').click(function () { 
          Attendance.monthlylist();
     });
+    $('.tags').click(function () {
+        Attendance.autolist();
+    }); 
+    
+    
 });
-
 

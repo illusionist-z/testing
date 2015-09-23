@@ -106,11 +106,12 @@ class SalaryMaster extends Model {
                 $SM = $this->getLatestsalary($value['member_id']);
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
                         $value['member_id'], $budget_startyear, $budget_endyear);
+                if(!empty($SD)){
                 $payday=  explode("-", $SD['pay_date']);
                 $latest_payday=$payday[1];
                 $update=  explode(" ", $SM['updated_dt']);
                 $dt=  explode("-", $update[0]);
-                $up_date=$dt[0].'-'.$dt[1];
+                $up_date=$dt[0].'-'.$dt[1];}
                 //Check there is allowance or not
                 $Allowanceresult = $this->getAllowances($value['member_id']);
                 if(isset($Allowanceresult['total_allowance_amount']))
@@ -375,7 +376,7 @@ class SalaryMaster extends Model {
         try {
 
             $sql = "select * from salary_master where member_id='" . $member_id . "' and deleted_flag=0";
-            //echo $sql;
+            //echo $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {
@@ -456,7 +457,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 //                
 //            }
             $sql = "select * from " . $tbl . " where member_id='" . $member_id . "' order by created_dt desc limit 1";
-            //echo $sql.'<br>';
+           // echo $sql.'<br>';exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
            

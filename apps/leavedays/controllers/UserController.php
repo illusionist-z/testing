@@ -30,31 +30,10 @@ class UserController extends ControllerBase {
     }
 
     public function applyleaveAction() { 
-//        $User=new Db\CoreMember;
-//        $id = $this->session->user['member_id'];
-//        $noti=$User->GetUserNoti($id);
-//        $this->view->setVar("noti",$noti);
-//        $this->assets->addCss('common/css/css/style.css');
-//        $leavetype = new LeaveCategories();
-//        $ltype=$leavetype->getleavetype();     
-//        $this->view->setVar("Leavetype", $ltype);
-//          if ($this->request->isPost()) {
-//           $id = $this->session->user['member_id'];
-//            $sdate = $this->request->getPost('sdate');
-//            $edate = $this->request->getPost('edate');
-//            $type = $this->request->getPost('leavetype');
-//            $desc = $this->request->getPost('description');                     
-//            $error=$this->_leave->applyleave($id,$sdate, $edate, $type, $desc); 
-//            
-//            $User=new Db\CoreMember;
-//            $noti=$User->GetUserNoti($id);
-//            $this->session->set('noti', $noti);
-//            
-//            echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
-//            $this->view->disable();
-//        }     
+
         $User=new Db\CoreMember;
         $id=$this->session->user['member_id'];
+        $creator_id=$id;
          $noti=$User->GetUserNoti($id);
           $this->session->set('noti', $noti);
         $this->assets->addJs('apps/leavedays/js/user-applyleave.js');
@@ -85,7 +64,7 @@ class UserController extends ControllerBase {
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
-                    $desc);   
+                    $desc,$creator_id);   
             
             echo json_encode($error);
             $this->view->disable();
