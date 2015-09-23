@@ -25,12 +25,11 @@
  };
  
 $(document).ready(function () { 
-
-    // ユーザーのクリックした時の動作。    
+    
     User.Attendance.init();
     
     $('#search').click(function () {
          User.Attendance.search();
-    });
+    });  
              
 });

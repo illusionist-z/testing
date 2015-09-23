@@ -81,8 +81,7 @@ class IndexController extends ControllerBase
      * @category create event
      * @return   json { error message }
      */
-    public function createAction($id) {
-        var_dump($id);exit;
+    public function createAction($id) {        
         $this->view->disable();        
         $uname = $this->request->get('uname');
         $sdate = $this->request->get('sdate');

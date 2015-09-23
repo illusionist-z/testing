@@ -42,7 +42,7 @@ class Calendar extends Model {
      * @desc create new event by click on calendar
      * @author David
      */
-    public function create_event($id,$sdate,$edate,$title,$uname){                        
+    public function create_event($id,$sdate,$edate,$title,$uname){
          $this->db = $this->getDI()->getShared("db");
          $insert ="INSERT INTO calendar (member_name,member_id,title,startdate,enddate,allDay) Values ('".$uname."','".$id."','".$title."','".$sdate."','".$edate."','true')";
          $query=  $this->db->query($insert);

@@ -267,7 +267,16 @@ class Attendances extends Model {
         $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0";    
         $list=$this->db->query($query);
          $absentlist=$list->fetchall();
-         return $absentlist;
-        
+         return $absentlist;        
+    }
+    public function getAttTime($id) {
+        $query = "Select * from attendances where id ='".$id."'";
+        $data = $this->db->query($query);
+        $result = $data->fetchall();
+        return $result;
+    }
+    public function editAtt($data,$id) {
+        $query = "update attendances set checkin_time='".$data['time']."' where id='".$id."'";
+        $this->db->query($query);
     }
 }
