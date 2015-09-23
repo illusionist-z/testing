@@ -55,7 +55,7 @@ var Attendance = {
                 complete : function(){
                      $('.datetimepicker').datetimepicker({
                           dateFormat:"yy-mm-dd",
-                          timeFormat: "HH:mm:ss"
+                          timeFormat: "HH:mm:ss"                          
                       });
                 }
             });            
