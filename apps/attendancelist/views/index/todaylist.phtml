@@ -12,7 +12,7 @@ if ($offset < 0) {
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" style="height:auto;margin-top: 40px;">
     <h1>
         Today Attendance Lists
     </h1>
@@ -26,19 +26,40 @@ if ($offset < 0) {
 <section class="content">
     <div class="buttons">
         <form onsubmit="return false;" method="post">
-            <select class="select" data-toggle="select" name="namelist" id="namelist">
+            <!--<select class="select" data-toggle="select" name="namelist" id="namelist">
                 <option value="">Name</option>
     <?php
     foreach ($uname as $result) {
     ?>
-                    <option><?php echo $result->member_login_name; ?></option>
+                    <option><?php echo $result->full_name; ?></option>
 
                     <?php
                 }
-                ?>
-
-
-            </select>
+                ?>                      
+            </select>-->
+            
+            <input class="tags" name="namelist" id="searchid" id="namelist" placeholder="Search User Name"><!--
+            <div id="result">
+</div>-->
+<!--            <div id="searchfield">
+        <form><input type="text" name="currency" class="biginput" id="autocomplete"></form>
+      </div> @end #searchfield 
+      -->
+      
+<!--           <div class="content">
+            <form>
+                <div class="label_div">Type a keyword : </div>
+                <div class="input_container">
+                    <input type="text" id="country_id" onkeyup="autocomplet()">
+                    <ul id="country_list_id"></ul>
+                </div>
+            </form>
+        </div>-->
+                    <!--<input type="text" name="namelist" id="namelist" id="tags" onkeyup="autocomplet()">
+                    <ul class="showname" ></ul>-->
+               
+                   
+                
             <input type="submit" class="buttonn" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
@@ -74,7 +95,7 @@ if ($offset < 0) {
                         $date = date('Y-m-d');
                         echo $date;
                          ?></td>
-                            <td><?php echo $filter->sanitize($result->core->member_login_name, "string");  ?></td>
+                            <td><?php echo $filter->sanitize($result->core->full_name, "string");  ?></td>
                             <td>
                             <?php
                             $checkintime = $result->attendances->checkin_time;

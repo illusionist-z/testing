@@ -14,11 +14,11 @@
         <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
-          <?php error_reporting(0); ?>
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
+          <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top" style="margin-left:0;">   
+                <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
                     <a><img src="../../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
@@ -27,7 +27,7 @@
                         <ul class="nav navbar-nav">                           
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
-                                <a href="#" class="noti" id="noti" data-toggle="<?php if(count($noti)==0){echo "";}else{echo "dropdown";}?>" style="padding-top: 20px;">
+                                <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
@@ -52,7 +52,7 @@
                                                         $img=$this->session->user['member_profile'];
                                                     }
                                         ?>                                                 
-                                        <img src="../../uploads/<?php echo  $img;?>" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -79,8 +79,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){?>
+                                      <?php $name=$this->session->permission_code;
+        if ( $name=='ADMIN'){?>
                                         <div class="pull-left">
                                             <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>

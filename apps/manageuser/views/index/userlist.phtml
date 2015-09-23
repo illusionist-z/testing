@@ -2,7 +2,7 @@
     use Phalcon\Filter;
 ?>
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" style="height:auto;margin-top: 40px;">
     <h1>
         User Lists
     </h1>
@@ -48,17 +48,18 @@
                         <th width="150px">Position</th>
                         <th width="150px">Email</th>
                         <th width="150px">Phone no</th>
-                        <th width="150px">Address</th>                        
+                        <th width="100px">Address</th> 
+                        <th width="30px;"></th>
                     </tr>
 
                 </thead>
-                <tbody>                  
+                <tbody  >                  
                        <?php 
                        $filter = new Filter();
                     $i=1;
                     foreach ($Result as $result) {                                                
                     ?>                       
-                    <tr>
+                    <tr class="trhover">
                         <td><?= $i ?></td>
                         <td><?= $filter->sanitize($result->member_login_name, "string"); ?></td>
                         <td><?= $filter->sanitize($result->member_dept_name, "string"); ?></td>
@@ -66,7 +67,10 @@
                         <td><?= $filter->sanitize($result->member_mail, "email"); ?></td>
                         <td><?= $filter->sanitize($result->member_mobile_tel, "int"); ?></td>
                         <td><?= $filter->sanitize($result->member_address, "string"); ?>
-                        <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="button displaypopup" id="<?=$result->member_login_name; ?>">Edit</a>
+                        <!--<a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="button displaypopup" id="<?=$result->member_login_name; ?>">Edit</a>-->
+                           <td > <a href="#"  onclick="return false;" class=" inedit displaypopup" id="<?=$result->member_login_name; ?>"></a>
+                               
+                           </td>
                         </td>                        
                     </tr>
                    <?php

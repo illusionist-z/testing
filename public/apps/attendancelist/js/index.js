@@ -12,11 +12,210 @@ var pager = new Paging.Pager();   //for pagination
 var Attendance = {
         init : function (){            
             $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =3;            
+            pager.perpage =7;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
             $('tbody').show();
+           
         },
+        autolist: function (){                       
+        var name = document.getElementById('namelist').value;
+            
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+        $.ajax({
+        url: 'autolist' ,
+        type: 'GET',
+        success: function (d) { 
+            alert(d);
+            // alert(d);
+            
+//             var arr=[];
+//             for(var i in d){
+//                 arr.push(d[i]);
+//                 
+//             }
+//             //alert(arr);
+//            // alert(arr);
+//             $( ".tags" ).autocomplete({
+//                        source: arr
+//                      });
+                 //var arr=["aye aye","bie bie","sine sine","kyaw kyaw"];
+//                  var arr=[d];
+//                for(var i in d){
+//                        var aa=d[i].full_name;
+//                       // alert(aa);
+//                       // alert(data[i].full_name);
+//                        arr.push(aa);
+//                        
+//                }
+//                
+//                 alert(arr);
+//            
+//           // alert(arr);
+//            // alert(arr);
+//             $( ".tags" ).autocomplete({
+//                        source: arr
+//                      }); 
+//
+
+
+                    var JSONString = d; // Replace ... with your JSON String
+                      //  alert(JSONString);
+                      var JSONObject = $.parseJSON(JSONString);
+                     // console.log(JSONObject);      // Dump all data of the Object in the console
+                    var aa = JSONObject[0]["full_name"]; // Access Object data
+                        alert(aa);
+                        //alert(JSONObject);
+                       $( ".tags" ).autocomplete({
+                                   source: JSONObject
+                                 });
+
+//                            var data = eval('(' + d + ')');
+//                           // var data = JSON.stringify(eval("(" + d + ")"));
+//                          //var data = $.parseJSON('[' + d + ']');
+//                            var arr=["zin min tun","mg mg","su su","kyaw kyaw"];
+//                            for(var i in data){
+//                                var aa=data[i].full_name;
+//                               // alert(aa);
+//                               // alert(data[i].full_name);
+//                                arr.push(aa);
+//                            }
+//                         // alert(arr);
+//                          
+//
+//
+////                          function strToJson(str) {
+////                                 eval("var x = " + str + ";");
+////                                 return JSON.stringify(x);
+////                           }
+////
+////
+////                var str = arr;
+//              //  alert( strToJson(str) );
+//              var data = arr;
+//             // alert(data);
+//              data = [data];
+//              //alert(data);
+//                $( ".tags" ).autocomplete({
+//                    source: data
+//               });
+//               
+//               
+//                        var bb = eval('(' + d + ')');
+//                       // alert(bb);
+//                        var data = JSON.stringify(eval("(" + d + ")"));
+//                      //var data = $.parseJSON('[' + d + ']');
+//                      //alert(data);
+//                     // var obj = JSON.parse(data);
+//                      var obj = $.parseJSON(d);
+//                     // alert(obj);
+//                     var jsondata=[];
+//                      for (var x in obj){
+//                         
+//                        if (obj.hasOwnProperty(x)){
+//                          // your code
+//                            var aa=obj[x].full_name;
+//                            jsondata.push(aa);
+//                        }
+//                         
+//                      }
+//                      //alert(jsondata);
+//                      
+//                       var arr=[jsondata,"zin min tun","mg mg","su su","kyaw kyaw"];
+//                    
+//                   //alert(arr);
+//                      $( ".tags" ).autocomplete({
+//                                   source: arr
+//                                 });
+////
+//                        var arr=["zin min tun","mg mg","su su","kyaw kyaw"];
+//                        for(var i in data){
+//                            var aa=data[i].full_name;
+//                           // alert(aa);
+//                           // alert(data[i].full_name);
+//                            arr.push(aa);
+//                        }
+//                     // alert(arr);
+//                       // alert(arr);
+//                        $( ".tags" ).autocomplete({
+//                                   source: arr
+//                                 }); 
+
+//             var data = eval('(' + d + ')');
+//            // var data = JSON.stringify(eval("(" + d + ")"));
+//           //var data = $.parseJSON('[' + d + ']');
+//             var arr=["zin min tun","mg mg","su su","kyaw kyaw"];
+//             for(var i in data){
+//                 var aa=data[i].full_name;
+//                // alert(aa);
+//                // alert(data[i].full_name);
+//                 arr.push(aa);
+//             }
+//           alert(arr);
+//            // alert(arr);
+//             $( ".tags" ).autocomplete({
+//                        source: arr
+//                      }); 
+                      
+            
+//            //alert(d);
+//             var data = JSON.stringify(d);
+//            // alert(data);
+//             var arr=[];
+//             for(var i in data){
+//                 arr.push(data[i]);
+//             }
+//             //alert(arr);
+//             $( ".tags" ).autocomplete({
+//                        source: arr
+//                      });
+         //('body').html(d);
+//         if(name ==''){
+//             alert(d);
+//            var json_obj = $.parseJSON(d);//parse JSON   
+//            
+//            var obj = JSON.parse(json_obj);
+//            alert(obj);
+//                for (var i in obj)
+//                {   
+//                    
+//                   var availableTags = obj[i].full_name;
+//                 $("tbody").append(availableTags);    
+//                //alert(availableTags);                
+//                      
+//                }
+//                alert(availableTags);
+//                $( ".tags" ).autocomplete({
+//                        source: availableTags
+//
+//                      });
+//               
+//             $( ".tags" ).autocomplete({
+//                        source: availableTags
+//                      });
+//         }
+//         else{
+//             alert(name);
+//           
+//         }
+          
+           
+           // alert(json_obj);exit;
+           
+           
+        },
+        error: function (d) {
+            alert('error');
+        }       
+       }); 
+        
+     
+   
+    
+ 
+  
+                 
+       },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;
         //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
@@ -36,13 +235,16 @@ var Attendance = {
         var month = document.getElementById('month').value;
         var username = document.getElementById('username').value;
         var year = document.getElementById('year').value;
+        //$('tbody').empty();
         if(month=="" && username=="" && year==""){
             $('tbody').empty();
+            
              var output = "<tr>"
                             + "<td colspan='8'><center>No data to display</center></td>"
                            
                             + "</tr>"
-                    $("tbody").append(output); 
+                    $("tbody").append(output);
+                    Attendance.init();
         }
         else{
            
@@ -51,10 +253,13 @@ var Attendance = {
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
             success: function (d) {  
-               
+               //alert(d);exit;
+               //alert(d);
                 var json_obj = $.parseJSON(d);//parse JSON            
-               $('tbody').empty();
+               //alert(json_obj);
+               $('tbody').empty();  
                $('tfoot').empty();
+              
                 for (var i in json_obj)
                 {   
                     checkin_place = json_obj[i].location;
@@ -135,37 +340,44 @@ var Attendance = {
                     
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
-                            + "<td>" + json_obj[i].member_login_name + "</td>"
-                            + "<td>" + localcheckin+ "</td>"
-                            + "<td>" + late + "</td>"
+                            + "<td>" + json_obj[i].full_name + "</td>"
+                            + "<td>" + localcheckin+ " </td>"
+                            + "<td style='color:red'>" + late + "</td>"
                             + "<td>" + localcheckout + "</td>"
                             + "<td>" + workinghour + "</td>"
                             + "<td>" +overtime+ "</td>"
                             + "<td>" + checkin_place+ "</td>"
-                            + "</tr>"
+                            + "</tr>";
+                    
                     $("tbody").append(output); 
+                    
                 }
+                
                 //paginatior function    
-                Attendance.init();
+                 Attendance.init();
+              
+               
             },
             error: function (d) {
                 alert('error');
-            }       
-            }); 
+            } 
+            
+            });
         }
            }
    };
 $(document).ready(function () { 
     Attendance.init();    
+     $('.tags').click(function () {
+        Attendance.autolist();
+    });           
     
     $('#namesearch').click(function () {
         Attendance.todaylist();
     });           
     
-     $('#sub').click(function () {
-                 
-
-        Attendance.monthlylist();
+     $('#sub').click(function () { 
+         Attendance.monthlylist();
     });
 });
 

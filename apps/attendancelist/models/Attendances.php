@@ -50,11 +50,12 @@ class Attendances extends Model {
                          ->columns(array('core.*', 'attendances.*'))
                          ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                          ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
-                         ->where('core.member_login_name = :name:', array('name' => $name))
+                         ->where('core.full_name = :name:', array('name' => $name))
                          ->andWhere('attendances.att_date = :today:', array('today' => $today))
                          ->getQuery()
-                         ->execute();          
-                // print_r($row);exit;
+                         ->execute();
+           
+// print_r($row);exit;
                    /* foreach($row as $rows) {
                           echo $rows->core->member_login_name;
                           echo $rows->attendances->att_date;
@@ -215,13 +216,15 @@ class Attendances extends Model {
               if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions);
               }
-             
+             //echo $sql;exit;
               $result = $this->db->query($sql);
               $row = $result->fetchall();
+              
         } catch (Exception $ex) {
            echo $ex; 
+           
         }
-        
+       
         return $row;
     }
     
@@ -237,14 +240,17 @@ class Attendances extends Model {
         $conditions = array();
 
               if ($year) {
-              $conditions[] = "YEAR(attendances.att_date) like " . $year;
+                  $start =  date("Y-m-d",strtotime($year));
+              $conditions[] = "attendances.att_date >=  ' " . $start . " ' ";
               }
               if ($month) {
-              $conditions[] = "MONTH(attendances.att_date) like " . $month;
+                   $end =  date("Y-m-d",strtotime($month));
+              $conditions[] = "attendances.att_date <=  ' " . $end . " ' ";
               }
               if ($username) {
-              $conditions[] = "member_login_name='" . $username . "'";
+              $conditions[] = "full_name ='" . $username . "'";
               }
+               
         return $conditions;
     }
     /**
