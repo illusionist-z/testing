@@ -34,17 +34,7 @@ class CoreMember extends \Library\Core\BaseModel {
         //print_r($row);exit;
         return $row;
     }
-     public function autousername() {   
-        // $keyword = '%'.$_POST['keyword'].'%';
-        $this->db = $this->getDI()->getShared("db");        
-        $user_name = $this->db->query("SELECT full_name FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id WHERE attendances.att_date = curdate();");                                                
-        $getname = $user_name->fetchall();       
-        return $getname;
-//        $query = "SELECT member_login_name FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
-//        $row = $this->modelsManager->executeQuery($query);
-//        //print_r($row);exit;
-//        return $row;
-    }
+  
     public function username($name) {        
         /*$this->db = $this->getDI()->getShared("db");        
         $user_name = $this->db->query("SELECT * FROM core_member");                                          
