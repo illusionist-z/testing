@@ -320,7 +320,7 @@ background-image: -webkit-linear-gradient(top,#FFF  10%, #3c8dbc 51%);
     font-size: 18px;
 }
 #fixedheader{
- position: fixed;
+ //position: fixed;
  width:  100%;
   /* background-position:left top(or)right top(or) center top;*/
 }

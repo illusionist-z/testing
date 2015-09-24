@@ -322,7 +322,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
 
     public function updatesalarydetail($allowancetoadd, $member_id) {
-        echo "FFFFFF";exit;
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
@@ -339,13 +338,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $salaryyr_month = explode('-', $salary_update[0]);
         $update = $salaryyr_month[0] . '-' . $salaryyr_month[1];
         $year="";
-        
-         $resigndate='2015-09-25';
-        $resignyear='2015';
-        $resignmonth='09';
+        $resign=  $this->getResigndate($member_id);
+        $resigndate=  explode("-", $resign['resign_date']);
+        $resignyear=$resigndate[1];
+        $resignmonth=$resigndate[0];
         if($resigndate!=""){
             $bsalaryparday=$SM['basic_salary']/28;
-            $count_attdate=$this->countattdate($resigndate,$resignyear,$resignmonth,$member_id);
+            $count_attdate=$this->countattdate($resign['resign_date'],$resignyear,$resignmonth,$member_id);
             
             $salary=$count_attdate['count_attdate']*$bsalaryparday;
             $count_paymonth=  $this->getpaysalary_month($resignyear,$resignmonth,$member_id);
@@ -439,6 +438,19 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
     
+    public function getResigndate($member_id) {
+        try {
+            $sql = "select resign_date from salary_detail where member_id='" . $member_id . "'";
+            //echo $sql.'<br>';exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+
+        return $row;
+    }
+    
     public function countattdate($resigndate,$resignyear,$resignmonth,$member_id) {
         try {
             $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and MONTH(att_date)<'" . $resignmonth . "'and YEAR(att_date)='".$resignyear."' and DATE(att_date)<'" . $resigndate . "'";
@@ -465,6 +477,16 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         }
 
         return $row;
+    }
+    
+    
+    public function addresign($data){
+          try{
+         $sql = "Update salary_detail SET resign_date ='". $data['resign_date'] ."' Where member_id='".$data['member_id']."'";
+         $this->db->query($sql);
+     } catch (Exception $ex) {
+         echo $ex;
+     }
     }
 
 }
