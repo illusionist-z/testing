@@ -34,6 +34,35 @@ class CoreMember extends \Library\Core\BaseModel {
         //print_r($row);exit;
         return $row;
     }
+     public function autousername() {   
+        // $keyword = '%'.$_POST['keyword'].'%';
+        $this->db = $this->getDI()->getShared("db");        
+        $user_name = $this->db->query("SELECT full_name FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id WHERE attendances.att_date = curdate();");                                                
+        $getname = $user_name->fetchall();       
+        return $getname;
+//        $query = "SELECT member_login_name FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
+//        $row = $this->modelsManager->executeQuery($query);
+//        //print_r($row);exit;
+//        return $row;
+    }
+    public function username($name) {        
+        /*$this->db = $this->getDI()->getShared("db");        
+        $user_name = $this->db->query("SELECT * FROM core_member");                                          
+        $getname = $user_name->fetchall();
+        return $getname;*/
+    $name = '%'.$name.'%';
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE full_name = '$name' order by created_dt desc";
+        $row = $this->modelsManager->executeQuery($query);
+        // print_r($name);exit;
+        //print_r($row);exit;
+        foreach ($row as $rs) {
+	// put in bold the written text
+                    //$full_name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs['full_name']);
+	// add new option
+                echo '<li>'.$rs->full_name.'</li>';
+        }
+        return $row;
+    }
     /*
      * user list search with name in user list
      */
@@ -50,12 +79,13 @@ class CoreMember extends \Library\Core\BaseModel {
                             ->where('core.member_id = :username:', array('username' => $username))                            
                             ->getQuery()
                             ->execute();                                                   
-                // print_r($row);exit;
+                //print_r($row);exit;
                   /*  foreach($row as $rows) {
                           echo $rows->member_login_name;
                          // echo $rows->attendances->att_date;
                     }
                     exit;*/
+                
         return $getname;
     }
     

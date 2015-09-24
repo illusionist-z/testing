@@ -7,7 +7,7 @@ $length = count($Month);
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header" id="showleavelist">
+<section class="content-header" id="showleavelist" style="height:auto;margin-top: 40px;">
     <h1>
         <b>Leave Lists</b>
     </h1>
@@ -125,7 +125,7 @@ $length = count($Month);
                             case "1" : echo "Confirmed";break;
                             case "2" : echo "Rejected";break;
                                
-                        }
+                        };
                                 ?></td>
                             <td><font color="red"><?php
                     if($item->leaves->total_leavedays >=$max){
@@ -134,9 +134,7 @@ $length = count($Month);
                     }
                     else{
                                 
-                    echo $max-($item->leaves->total_leavedays);
-                    echo " Left";
-                    }
+                    echo $max-($item->leaves->total_leavedays);}
                         
                                 ?></font></td>
                         </tr>

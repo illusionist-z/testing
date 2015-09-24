@@ -17,63 +17,60 @@ var Attendance = {
             pager.showPage(1);  
             $('tbody').show();
         },
-         autolist: function (){                       
-       // var name = document.getElementById('namelist').value;
-            
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
-        
-       
-                      
-//        $('.tags').autocomplete({
-//                source: function(request, response) {
-//                    var result = $.ajax({
-//                        url:'autolist',
-//                        method: 'GET',
-//                        dataType: 'json',
-//                        success: function(data) {
-//                            alert(data);
-//                            var array = [];
-//                            response($.each( data, function(item) {
-//                                //var aa=data[item].fullname;
-//                                array.push(data[item].full_name);
-//                               // array.push(item);
-//                              //alert(array);
-//                                return array;
-//                            }));
-//                          //  array.push(this.toString());
-//                           // alert(array.toString());
-//                            return array.toString();
-//                        }
-//                    });
-//                }
-//            });  
-
-                        var dict = [];
-//
-         $.ajax({
-                        url:'autolist',
-                        method: 'GET',
-                        //dataType: 'json',
-                        success: function(data) {
-                            
-                            $.each(data, function() {
-      dict.push(this.toString());
-     alert(dict);
-    });
-    alert(dict);
-    return dict;
-                        }
-                    });
-//
-            $('.tags').autocomplete({
-              source: dict
-            });
-
-    
- 
-  
-                 
-       },
+        time_edit : function (id) {            
+            $.ajax({
+                url : "editTimedialog/"+id,
+                type :"GET",   
+                dataType : 'json',
+                success : function(d){                    
+                    $('#edit_att_time').empty();
+                       var dia_div = '<form id="edit_attendance"><div class="row">'
+                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" name="time" value="'+d['checkin_time'] +'"></div></div>'
+                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_id']+'"></div></div>'               
+                                   +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
+                                   +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
+                                  +'</div></form>';
+                        $('#edit_att_time').append(dia_div);
+                        $dia = $('#edit_att_time');
+                        $dia.css('color','black');
+                        $dia.css('background','#F5F5F5');
+                        $dia.dialog({
+                            modal :true,
+                            height:300,
+                            width : 500,
+                            autoOpen: false,
+                            title : "Edit Attendance Time"
+                        });
+                      $dia.dialog("open");
+                      $('#edit_attendance_close').click(function(e){
+                          e.preventDefault();
+                          $dia.dialog("close");
+                          $('#edit_att_time').empty();
+                      });
+                      $("#edit_attendance_edit").click(function(e){
+                          e.preventDefault();
+                          Attendance.time_edit_btn(id);                        
+                        });                      
+                },
+                complete : function(){
+                     $('.datetimepicker').datetimepicker({
+                          dateFormat:"yy-mm-dd",
+                          timeFormat: "HH:mm:ss"                          
+                      });
+                }
+            });            
+        },
+        time_edit_btn : function(id) {
+           var form = $('#edit_attendance');
+                        $.ajax({
+                            url : "editTime/"+id,
+                            data : form.serialize(),
+                            type : "POST",
+                            success : function () {
+                                $('body').load('todaylist');
+                            }
+                        });
+        },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;
         //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
@@ -213,21 +210,22 @@ var Attendance = {
            }
    };
 $(document).ready(function () { 
-    Attendance.init();    
-    
+    Attendance.init();         
+                      
     $('#namesearch').click(function () {
         Attendance.todaylist();
     });           
     
-     $('#sub').click(function () {
-                 
-
+     $('#sub').click(function () {               
         Attendance.monthlylist();
     });
-    $('.tags').click(function () {
-        Attendance.autolist();
-    }); 
-    
-    
+   
+    $('.listtbl').on("click",".displaypopup",function(e){
+        e.preventDefault();
+        var id = $(this).attr('id');
+        Attendance.time_edit(id);                
+    });
+  
 });
+
 
