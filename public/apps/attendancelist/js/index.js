@@ -18,61 +18,34 @@ var Attendance = {
             $('tbody').show();
         },
          autolist: function (){                       
-       // var name = document.getElementById('namelist').value;
-            
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
-        
-       
-                      
-//        $('.tags').autocomplete({
-//                source: function(request, response) {
-//                    var result = $.ajax({
-//                        url:'autolist',
-//                        method: 'GET',
-//                        dataType: 'json',
-//                        success: function(data) {
-//                            alert(data);
-//                            var array = [];
-//                            response($.each( data, function(item) {
-//                                //var aa=data[item].fullname;
-//                                array.push(data[item].full_name);
-//                               // array.push(item);
-//                              //alert(array);
-//                                return array;
-//                            }));
-//                          //  array.push(this.toString());
-//                           // alert(array.toString());
-//                            return array.toString();
-//                        }
-//                    });
-//                }
-//            });  
+   
+                        var dict=[];
+                            //var dict = ["Test User02","Adminstrator"];
 
-                        var dict = [];
 //
          $.ajax({
-                        url:'autolist',
-                        method: 'GET',
-                        //dataType: 'json',
-                        success: function(data) {
-                            
-                            $.each(data, function() {
-      dict.push(this.toString());
-     alert(dict);
-    });
-    alert(dict);
-    return dict;
+                url:'autolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
                         }
+                        
                     });
-//
-            $('.tags').autocomplete({
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.tags').autocomplete({
               source: dict
             });
-
-    
- 
-  
-                 
+       // ... do whatever you need to do with icon here
+   }
        },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;

@@ -68,7 +68,7 @@ class IndexController extends ControllerBase
         //echo json_encode($result);
          $UserList=new Db\CoreMember();
         $Username = $UserList->autousername(); 
-        //print_r($UserList);exit;
+       // print_r($UserList);exit;
         $this->view->disable();    
         echo json_encode($Username);
 //        

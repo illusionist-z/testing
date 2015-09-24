@@ -1,6 +1,22 @@
 <?php
     use Phalcon\Filter;
-
+?>
+<!-- Main content -->
+<section class="content">
+    <div class="row"><!-- for search form-->
+        <div class="col-md-12"><!--start add user form--->
+            <div style="width:100%;">
+                <div style="padding: 10px 10px 10px 10px">
+                    <div style="float:left;"><button id="btnEditInfo">EDIT</button>
+                    <button id="btn_savedetail" disabled>Save</button>
+                    <button id="btn_resign" class="btn_resign" >Resign</button>                    </div>
+                    <div style="float:right;">
+                    <a href="#" id="display1" class="display">PREV</a> |
+                    <a href="#" id="display" class="display">NEXT</a>
+                    </div>
+                </div>
+                <div style="clear:both;">
+                    <?php
 //                    for ($x = 1; $x <= 3; $x++) {
 //    echo '<div class="sample">div'.$x.'</div>';
 //} 
@@ -25,29 +41,13 @@
                 
           
 ?>
-<!-- Main content -->
-<section class="content">
-    <div class="row"><!-- for search form-->
-        <div class="col-md-12"><!--start add user form--->
-            <div style="width:100%;">
-                <div style="padding: 10px 10px 10px 10px">
-                    <div style="float:left;"><button id="btnEditInfo">EDIT</button>
-                    <button id="btn_savedetail" disabled>Save</button>
-                    <button id="btn_resign" class="btn_resign" >Resign</button>
-                    <input type="hidden" value="<?php echo $filter->sanitize($A[$i]->core->member_id , "string"); ?>" id="member_id">
-                    </div>
-                    <div style="float:right;">
-                    <a href="#" id="display1" class="display">PREV</a> |
-                    <a href="#" id="display" class="display">NEXT</a>
-                    </div>
-                </div>
-                <div style="clear:both;">
-
 <div style="padding: 0 10px 10px 10px" class="sample">
     <h3><center>G-Next Official Salary Report</center></h3>
 <div>
     <div style="width: 10%; float: left;">Name</div>
-    <div><?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?></div>
+    <div><?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?>
+        <input type="hidden" value="<?php echo $A[$i]->core->member_id;?>" id="member_id" name="member_id">
+    </div>
 </div>
 <div>
     <div style="width: 10%; float: left;">Month</div>
@@ -72,7 +72,7 @@
   </tr>
   <tr>
     <td>Overtime Rate</td>
-    <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string"); $sum+=$A[$i]->salarymast->over_time; ?>%" id="txtovertimerate" disabled="disabled"></td>
+    <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string"); $sum+=$A[$i]->salarymast->over_time; ?>" id="txtovertimerate" disabled="disabled">%</td>
     <td></td>
   </tr>
   <tr>
@@ -100,6 +100,11 @@
   <tr>
       <td colspan="2">Gross Salary</td>
   <td><?php echo $sum; ?></td>
+  <td></td>                   
+  </tr>
+  <tr>
+  <td colspan="2">Deduce for Absent</td>
+  <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->absent_dedution , "string"); $deduce+=$A[$i]->salarydet->income_tax;?>" id="txtallowance" disabled="disabled"></td>
   <td></td>                   
   </tr>
   <tr>
@@ -156,4 +161,3 @@
     </div>
 </section>
 <div id="resign" class="navbar"></div>
-

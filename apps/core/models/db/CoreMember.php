@@ -116,6 +116,8 @@ class CoreMember extends \Library\Core\BaseModel {
         
         $filter = new Filter();
         $username = $filter->sanitize($member['username'], "string");
+        $full_name = $filter->sanitize($member['full_name'], "string");
+
         $pass = $filter->sanitize($pass, "string");
         $dept = $filter->sanitize($member['dept'], "string");
         $position = $filter->sanitize($member['position'], "string");
@@ -130,8 +132,8 @@ class CoreMember extends \Library\Core\BaseModel {
         $targetfile = $target_dir . $newfilename;
 
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
-        $this->db->query("INSERT INTO core_member (member_id,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
-                . " VALUES(uuid(),'" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
+        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
+                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
       
@@ -266,8 +268,9 @@ class CoreMember extends \Library\Core\BaseModel {
     
     public function autousername() {        
         $this->db = $this->getDI()->getShared("db");        
-        $user_name = $this->db->query("SELECT full_name FROM core_member");                                          
+        $user_name = $this->db->query("Select * from core_member where member_id  IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0");                                          
         $getname = $user_name->fetchall();
+        //print_r($getname);exit;
         return $getname;
 //        $query = "SELECT member_login_name FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
 //        $row = $this->modelsManager->executeQuery($query);
