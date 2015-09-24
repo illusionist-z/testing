@@ -197,6 +197,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw
      */
     public function GetAdminNoti($id) { 
+        $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $AdminNoti = $this->db->query("SELECT * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 AND notification.noti_creator_id='" . $id . "' ");
         $noti = $AdminNoti->fetchall();
@@ -294,16 +295,7 @@ class CoreMember extends \Library\Core\BaseModel {
           $a=$this->db->query($sql);                                                  
     }
     
-    public function autousername() {        
-        $this->db = $this->getDI()->getShared("db");        
-        $user_name = $this->db->query("SELECT full_name FROM core_member");                                          
-        $getname = $user_name->fetchall();
-        return $getname;
-//        $query = "SELECT member_login_name FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
-//        $row = $this->modelsManager->executeQuery($query);
-//        //print_r($row);exit;
-//        return $row;
-    }
+ 
 
      public function NoOfNotiforAdmin(){
       $result= $this->db->query("SELECT  * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 ");
