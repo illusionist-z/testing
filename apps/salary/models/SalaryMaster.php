@@ -375,7 +375,7 @@ class SalaryMaster extends Model {
      */
     public function getLatestsalary($member_id) {
         try {
-
+            $this->db = $this->getDI()->getShared("db");
             $sql = "select * from salary_master where member_id='" . $member_id . "' and deleted_flag=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);
@@ -386,6 +386,23 @@ class SalaryMaster extends Model {
         return $row;
     }
 
+    /**
+     * Get today salary master for updating salary
+     * @param type $member_id
+     * @return type
+     */
+    function getTodaysalaryMaster($member_id) {
+        try {
+            $this->db = $this->getDI()->getShared("db");
+            $sql = "select *,MONTH(updated_dt) as updatemonth from salary_master where member_id='" . $member_id . "' and deleted_flag=0 and DATE(updated_dt) = CURDATE()";
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
     /**
      * calculate date difference
      * @param type $date_difference
@@ -559,6 +576,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $income_tax
      */
     public function calculate_deducerate($taxsrate_data, $income_tax, $salary_year) {
+        echo "DDD".$salary_year;
         $latest_rateval = end($taxsrate_data);
         $start_rateval = reset($taxsrate_data);
         $first_result = "";

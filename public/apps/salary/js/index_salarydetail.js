@@ -124,8 +124,17 @@ $(document).ready(function () {
        $specific_deduce=document.getElementById('txtallowance').value;
        if($specific_deduce=="")
        {
-         window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
-       }
+         //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
+       $.ajax({
+            type:'get',
+            //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
+            url : baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id,
+            success:function(){
+                alert("aaa");
+               // window.location.reload();
+            }
+        })
+        }
        else{
        window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/'+$specific_deduce+'/'+$member_id;
         }

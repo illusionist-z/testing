@@ -56,8 +56,10 @@ class SalaryMasterController extends ControllerBase
         //echo $bsalary.' '.$overtimerate.' '.$allowance;exit;
         $Salarymaster = new SalaryMaster();
         $Salarymaster->updatesalarydetail($bsalary,$overtimerate,$member_id);
-        $Allowance = new Allowances();
-        $Allowance->updateallowance($allowance,$member_id);
+        $Salarydetail=new SalaryDetail();
+        $Salarydetail->updatesalarydetail($allowance,$member_id);
+        $this->view->disable();
+        echo json_encode($resultsalary);
     }
 }
 
