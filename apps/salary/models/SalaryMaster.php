@@ -717,6 +717,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
     public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
         try {
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
+                //echo $sql;exit;
                 $this->db->query($sql);
                 $res['valid'] = true;
             } catch (Exception $ex) {

@@ -420,7 +420,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
        
         $final_result[] = array('income_tax' => $taxs,
             'member_id' => $member_id, 'allowance_amount' => $allowance,
-            'absent_dedution' => $absent_deduce);
+            'absent_dedution' => $absent_deduce,'basic_salary' => $SM['basic_salary']);
         print_r($final_result);
         exit;
     }
