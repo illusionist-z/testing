@@ -377,7 +377,7 @@ class SalaryMaster extends Model {
         try {
 
             $sql = "select * from salary_master where member_id='" . $member_id . "' and deleted_flag=0";
-            //echo $sql;
+            //echo $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {
@@ -458,7 +458,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 //                
 //            }
             $sql = "select * from " . $tbl . " where member_id='" . $member_id . "' order by created_dt desc limit 1";
-            //echo $sql.'<br>';
+           // echo $sql.'<br>';exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
            

@@ -26,12 +26,88 @@ $('a.display').on('click', function(e) {
         that.hide().prev('div.sample').show()
     }
 });
+var Resign = {
+    
+      Add : function (id){
+        //alert(id);
+        $.ajax({
+            
+           url:"",
+           type: "POST",
+           success:function(){          
+               var data ='<form id="Resign_Date"><table>';               
+                   data += '<tr><td></td></tr>'
+                        +'<tr><br><td><small>Resign Date:</small> </td><td style="font-size:10px;"><input type="text" class="datepicker form-control" name="resign_date" id="resign_date" placeholder="Resign Date" ></td></tr>';
+                         +'<tr><td></td></tr>';             
+                data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_Resign_Date">Save</a><a href="#" class="button" id="cancel">Cancel</a></td></tr>';
+                data+='<input type="hidden" name="member_id" id="resign_date" value="'+id+ '"td></tr>';
+
+               data +='</table></form>';
+               Resign.Diaadd(data);
+           }
+        });
+        },
+        Diaadd : function (d){
+        if(!this.isOvl){
+            this.isOvl=true;
+        }
+        
+        $ovl = $('#resign');
+        $ovl.dialog({
+            autoOpen: false,
+            height: 240,
+            async:false,            
+            width: 500,
+            modal: true,
+            title:"Add Resign Date"
+        });                        
+        $ovl.html(d);
+        $ovl.dialog("open");
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
+                $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+
+        $('#Add_Resign_Date').click(function(){
+            Resign.AddNew($ovl);
+        });
+         $('#cancel').click(function(){
+           $ovl.dialog("close");
+          // location.reload();
+
+        });
+        
+        },
+         AddNew : function(d){
+        var form=$('#Resign_Date');
+       //alert(form.serialize());
+        $.ajax({
+            type:'POST',
+            data: form.serialize(),
+            url : baseUri+"salary/index/addresigndate",
+            success:function(){
+                
+                d.dialog("close");
+                
+
+            }
+        }).done(function(){
+           //location.reload();
+        });
+    }
+    
+};
 
 $(document).ready(function () {
 
     // ユーザーのクリックした時の動作。
 
-
+   
+    
+     $('.btn_resign').click(function () {
+        // alert("aa");
+       var id= document.getElementById("member_id").value;
+        Resign.Add(id);
+    });
     $('#btnEditInfo').click(function () {
         //document.getElementById('txtname').disabled=false;
         document.getElementById('btn_savedetail').disabled=false;

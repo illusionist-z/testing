@@ -423,4 +423,11 @@ class IndexController extends ControllerBase {
         
         $this->view->getsalarydetails = $getsalarydetail;
     }
+    
+    public function addresigndateAction(){
+        $Salarydetail = new SalaryDetail();
+        $data['member_id'] = $this->request->getPost('member_id');
+        $data['resign_date'] = $this->request->getPost('resign_date');
+        $Salarydetail->addresign($data);
+    }
 }

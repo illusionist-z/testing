@@ -1,23 +1,6 @@
 <?php
     use Phalcon\Filter;
-?>
-<!-- Main content -->
-<section class="content">
-    <div class="row"><!-- for search form-->
-        <div class="col-md-12"><!--start add user form--->
-            <div style="width:100%;">
-                <div style="padding: 10px 10px 10px 10px">
-                    <div style="float:left;"><button id="btnEditInfo">EDIT</button>
-                    <button id="btn_savedetail" disabled>Save</button>
-                    <button id="btn_resign">Resign</button>
-                    </div>
-                    <div style="float:right;">
-                    <a href="#" id="display1" class="display">PREV</a> |
-                    <a href="#" id="display" class="display">NEXT</a>
-                    </div>
-                </div>
-                <div style="clear:both;">
-                    <?php
+
 //                    for ($x = 1; $x <= 3; $x++) {
 //    echo '<div class="sample">div'.$x.'</div>';
 //} 
@@ -42,6 +25,24 @@
                 
           
 ?>
+<!-- Main content -->
+<section class="content">
+    <div class="row"><!-- for search form-->
+        <div class="col-md-12"><!--start add user form--->
+            <div style="width:100%;">
+                <div style="padding: 10px 10px 10px 10px">
+                    <div style="float:left;"><button id="btnEditInfo">EDIT</button>
+                    <button id="btn_savedetail" disabled>Save</button>
+                    <button id="btn_resign" class="btn_resign" >Resign</button>
+                    <input type="hidden" value="<?php echo $filter->sanitize($A[$i]->core->member_id , "string"); ?>" id="member_id">
+                    </div>
+                    <div style="float:right;">
+                    <a href="#" id="display1" class="display">PREV</a> |
+                    <a href="#" id="display" class="display">NEXT</a>
+                    </div>
+                </div>
+                <div style="clear:both;">
+
 <div style="padding: 0 10px 10px 10px" class="sample">
     <h3><center>G-Next Official Salary Report</center></h3>
 <div>
@@ -161,3 +162,5 @@
         </div>
     </div>
 </section>
+<div id="resign" class="navbar"></div>
+
