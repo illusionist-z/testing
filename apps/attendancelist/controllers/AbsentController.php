@@ -25,7 +25,8 @@ class AbsentController extends ControllerBase
     
     public function absentlistAction(){
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+        $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);;
         $this->view->setVar("noti",$noti);
         $AbsentList = new \workManagiment\Attendancelist\Models\Attendances();
         $Result= $AbsentList->GetAbsentList();

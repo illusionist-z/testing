@@ -26,7 +26,8 @@ class IndexController extends ControllerBase
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');  
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $name = $this->request->get('namelist');
         $offset= $this->session->location['offset'];                  
@@ -59,7 +60,8 @@ class IndexController extends ControllerBase
      */
     public function monthlylistAction() {
        $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $offset= $this->session->location['offset'];
         $UserList=new Db\CoreMember();

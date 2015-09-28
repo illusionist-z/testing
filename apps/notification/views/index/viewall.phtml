@@ -1,16 +1,4 @@
-   <style>.ui-dialog-titlebar-close {
-  visibility: hidden;
-}</style>
-   <?php if($permission=='ADMIN'){
-       $class="adminnotidetail";
-   }
-   else{
-       $class="usernotidetail";
-   }?>
-   <h3><b>View All Notification</b></h3>
-<section class="content">
-          <!-- Info boxes -->
-         <div class="forscroll">
+<div class="forscroll">
 <?php foreach( $noti as $noti){
     foreach ($noti as $noti){
         ?>
@@ -42,19 +30,12 @@
        <!-- inner menu: contains the actual data -->
             <ul class="menu">
                 <li>
-                <?php if($this->session->permission_code=="ADMIN"){?>
+               
                     
                 <a href="" class="calendar" id="<?php echo  $noti['noti_id'];?>">
                 <img src="../../common/img/notid.png"> 
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> marked calendar for  <?php echo $noti['title']; echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
-                }else {?>
-                <span class="foruser">
-                    <a href="../../notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                    <img src="../../common/img/notid.png"> <b>admin</b><?php echo $noti['leave_status'];
-                    switch($noti['leave_status']){
-                        case "1" : echo " Confirmed";break;
-                        case "2" : echo " Rejected";break;
-                }?> <?php echo "leave days for <b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}?></a></span>
+               ?></a></span>
                 </li>
             </ul>
         </li>
@@ -64,8 +45,3 @@
 }// end of file for second for each 
  } // end of file for first for each?>
 </div>
-
-<div id="notidetail" style="display:none;">
-
-		  
-        </section>

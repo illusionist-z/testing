@@ -37,24 +37,21 @@ class IndexController extends ControllerBase
      */
     public function viewallAction(){
          $type=viewall;
-        $Admin=new CoreMember();
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
-        $permission=$this->session->permission_code;
         
-        if($permission=='ADMIN'){
-           $noti=$Admin->GetAdminNoti();
-        }else
-        {
+        
+        $code=$this->session->permission_code;
+           $Admin=new CoreMember();
+           $id = $this->session->user['member_id'];
+        if($code=="ADMIN"){
+   
+        $noti=$Admin->GetAdminNoti($id);}
+        else{
             $id = $this->session->user['member_id'];
              $noti=$Admin->GetUserNoti($id);
         }
-                $this->view->setVar("type",$type);
-
+       
         $this->view->setVar("noti",$noti);
-        $this->view->setVar('all', $noti);
-        $this->view->setVar('permission', $permission);
+        $this->view->setVar("type",$type);
 
     }
     

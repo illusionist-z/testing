@@ -180,6 +180,16 @@ class IndexController extends ControllerBase {
     $tzone=$data->timezoneId;
      
     return $tzone;
-}
+    }
+    public function mailAction(){
+        $to      = 'jellyminchi@gmail.com';
+    $subject = 'the subject';
+    $message = 'hello';
+    $headers = 'From: zinlay.11.mm@example.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
+    }
     
 }

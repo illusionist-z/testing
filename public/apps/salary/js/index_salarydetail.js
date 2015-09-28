@@ -67,8 +67,8 @@ var Resign = {
         $ovl.dialog("open");
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-          $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});      
-               
+           
+         $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
         $('#Add_Resign_Date').click(function(){
             Resign.AddNew($ovl);
         });
@@ -99,6 +99,8 @@ var Resign = {
     
 };
 
+
+
 $(document).ready(function () {
 
     // ユーザーのクリックした時の動作。
@@ -109,6 +111,7 @@ $(document).ready(function () {
         // alert("aa");
        var id= document.getElementById("member_id").value;
        //alert(id);
+       
         Resign.Add(id);
     });
     $('#btnEditInfo').click(function () {

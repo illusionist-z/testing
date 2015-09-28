@@ -25,7 +25,8 @@ class IndexController extends ControllerBase
     public function userlistAction() {
         //for paging and edit user
         $User=new Db\CoreMember;
-        $noti=$User->GetAdminNoti();
+        $id=$this->session->user['member_id'];
+        $noti=$User->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
