@@ -81,7 +81,7 @@ class Attendances extends Model {
             
      
       /**
-     * @author david
+     * @author David JP <david.gnext@gmail.com>
      * @return array {leave name}
      * @return array {no leave name}
      */
