@@ -91,5 +91,6 @@ class User extends Model {
         $query = "UPDATE core_member SET deleted_flag=1 where member_id ='".$id."'";  
         $this->db->query($query);
          $this->db->query("UPDATE core_permission_rel_member SET permission_member_group_is_deleted=1 where rel_member_id ='".$id."'");
+         $this->db->query("UPDATE absent SET deleted_flag=1 where member_id ='".$id."'");
     }
 }

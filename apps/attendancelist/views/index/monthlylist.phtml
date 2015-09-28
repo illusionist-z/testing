@@ -16,7 +16,7 @@ $length = count($Month);
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" style="height:auto;margin-top: 40px;">
     <h1>
         Monthly Attendance Lists
     </h1>
@@ -31,49 +31,24 @@ $length = count($Month);
     <div class="buttons">
         <!--        <form action="monthlysearch" method="post">-->
         <form onsubmit="return false;" method="post">
-            <select class="select" data-toggle="select" name="year" id="year">
-                <option value="">Year</option>
-                <?php
-                $thisyr = date("Y");
-                for ($i = 2012; $i <= $thisyr; $i++) {
-                    ?>
-                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                            <?php
-                        }
-                        ?>
+          
+            <input type="text" name="year" id="year" class="datepicker"   placeholder="Start Date" style="margin-top: 9px;height:25px; width: 100px;">
 
-            </select>
-
-            <select class="select" data-toggle="select" name="month" id="month">
-                <option value="">Month</option>
-                <?php
-                for ($i = 1; $i <= $length; $i++) {
-                    ?>
-                    <option value="<?php
-                    if ($i < 10) {
-                        echo '0' . $i;
-                    } else {
-                        echo $i;
-                    }
-                    ?>"
-                    ><?php echo $Month[$i]; ?></option>
-                            <?php
-                        }
-                        ?>
-
-            </select>
+          
+                    <input type="text" name="month" id="month" class="datepicker"   placeholder="End Date" style="margin-top: 9px;height:25px; width: 100px;">
             <select class="select" data-toggle="select" name="username" id="username">
                 <option value="">Name</option>
                 <?php
 //print_r($Getname);
                 foreach ($Getname as $getname) {
                     ?>
-                    <option value="<?php echo $getname->member_login_name; ?>">
-                        <?php echo $getname->member_login_name; ?></option>
+                    <option value="<?php echo $getname->full_name; ?>">
+                        <?php echo $getname->full_name; ?></option>
                             <?php
                         }
                         ?>
             </select>
+             <!-- <input class="tags" name="username" id="username" placeholder="Search User Name">          -->
             <!-- <a href="../search/search" class="button" id='btn_search'>Search</a> -->
             <input type="submit" value="Search" class="buttonn" id="sub">
             <input type="hidden" value='' id='hidden-type' name='ExportType'/>
@@ -105,11 +80,12 @@ $length = count($Month);
                     $filter = new Filter();
                     
                     foreach ($monthlylist as $item) {
+                                                
                         ?>
                         <tr>
                             <td><?php echo $item->attendances->att_date; ?></td>
 
-                            <td><?php echo $filter->sanitize($item->core->member_login_name, "string"); ?></td>
+                            <td><?php echo $filter->sanitize($item->core->full_name, "string"); ?></td>
                             <td><?php
                                 $checkintime = $item->attendances->checkin_time;
                                 if ($sign == '-') {
@@ -170,20 +146,40 @@ $length = count($Month);
                                     if($minutes<10){
                                         $minutes="0".$minutes;
                                     }
-                                    echo "$hours:$minutes:$seconds"." Hours";
+                                    $workingHour = "$hours:$minutes:$seconds";
+                                    echo $workingHour;
                                     
                                 }
                                 ?>
                             </td>
                             <td><?php
                                 //calculate overtime
-                               
-                                if ($item->attendances->overtime !=0) {
-                                   echo $item['overtime'];
+                            if ($item->attendances->overtime !=0) {
+                                   echo $result['overtime'];
                                 } else {
                                     echo "-";
                                 }
-                                ?></td>
+                                  
+//                                    
+//                               $time = date($workingHour);               
+//          
+//                                    $office_start_time='08:00:00 ';
+//
+//                                    if($time>$office_start_time){
+//                                        $start=strtotime($office_start_time);
+//                                        $end=strtotime($time);
+//                                        $late=$end-$start;
+//                                        echo $end_time;
+//                                        echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
+//
+//                                    }  elseif ($time<$office_start_time) {
+//                                        echo '-';
+//                                    }
+//                                    elseif ($checkouttime == 0) {
+//                                        echo '-';
+//                                     }
+                                    
+                                                            ?></td>
                             <td><?php echo $filter->sanitize($item->attendances->location, "string")?></td>
                         </tr>
                         <?php
