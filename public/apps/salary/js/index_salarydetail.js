@@ -43,6 +43,7 @@ var Resign = {
                 data+='<input type="hidden" name="member_id" id="resign_date" value="'+id+ '"td></tr>';
 
                data +='</table></form>';
+                //$( ".datepicker" ).datepicker();
                Resign.Diaadd(data);
            }
         });
@@ -65,10 +66,11 @@ var Resign = {
         
         $ovl.html(d);
         $ovl.dialog("open");
+             
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-           
-         $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
+       
+   // $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
         $('#Add_Resign_Date').click(function(){
             Resign.AddNew($ovl);
         });
@@ -111,7 +113,6 @@ $(document).ready(function () {
         // alert("aa");
        var id= document.getElementById("member_id").value;
        //alert(id);
-       
         Resign.Add(id);
     });
     $('#btnEditInfo').click(function () {

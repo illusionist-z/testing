@@ -77,34 +77,21 @@ class IndexController extends ControllerBase
     }  
     
      public function autolistAction() {
-//         $name = $this->request->get('namelist');          
-//        //$offset= $this->session->location['offset'];
-//        $Attendances=new Attendances();
-//        $result=$Attendances->gettodaylist($name);
-//        print_r($result);exit;
-//        $this->view->disable();    
-        
-        //echo json_encode($result);
+
          $UserList=new Db\CoreMember();
         $Username = $UserList->autousername(); 
-       // print_r($UserList);exit;
         $this->view->disable();    
         echo json_encode($Username);
-//        
-//        $name = $this->request->get('namelist');
-//       // echo $name;exit;
-////        $offset= $this->session->location['offset'];          
-//        //get user name
-//        //$userlist= new \workManagiment\Attendancelist\Models\CoreMember();
-//        $UserList=new Db\CoreMember();
-//        $Username = $UserList::getinstance()->getusername();        
-//       $AttList = new \workManagiment\Attendancelist\Models\Attendances(); 
-//       $ResultAttlist = $AttList->gettodaylist($name);
-//           // print_r($ResultAttlist);exit;
-//        $this->view->disable();       
-//        echo json_encode($ResultAttlist);
-        
        
+    } 
+    //for monthly autocomplete 
+     public function monthautolistAction() {
+        //echo json_encode($result);
+         $UserList=new Db\CoreMember();
+        $Username = $UserList->monthautolistusername(); 
+        //print_r($UserList);exit;
+        $this->view->disable();    
+        echo json_encode($Username);
     } 
 }
 

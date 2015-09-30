@@ -37,7 +37,16 @@ class IndexController extends ControllerBase
        
         $this->view->setVar('username', $getname);
         $this->view->setVar('Result', $list);         
-    }    
+    } 
+     //for monthly list autocomplete
+    public function usernameautolistAction() {
+        //echo json_encode($result);
+         $UserList=new Db\CoreMember();
+        $Username = $UserList->userautolistusername(); 
+        //print_r($UserList);exit;
+        $this->view->disable();    
+        echo json_encode($Username);
+    } 
    
     /**
      * @get data for user id

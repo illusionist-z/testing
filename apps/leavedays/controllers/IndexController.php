@@ -23,6 +23,16 @@ class IndexController extends ControllerBase {
     public function indexAction() {
         
     }
+    
+     
+    public function leaveuserautolistAction() {
+        //echo json_encode($result);
+         $UserList=new Db\CoreMember();
+        $Username = $UserList->leaveuserautolistusername(); 
+        //print_r($UserList);exit;
+        $this->view->disable();    
+        echo json_encode($Username);
+    } 
     /**
      * @author David
      * @type   $id,$sdate,$edate,$type,$desc

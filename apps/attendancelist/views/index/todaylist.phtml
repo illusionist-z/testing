@@ -26,7 +26,7 @@ if ($offset < 0) {
 <section class="content">  
     <div class="buttons">
         <form onsubmit="return false;" method="post">
-            <select class="select" data-toggle="select" name="namelist" id="namelist">
+<!--            <select class="select" data-toggle="select" name="namelist" id="namelist">
                 <option value="">Name</option>
     <?php
     foreach ($uname as $result) {
@@ -38,7 +38,9 @@ if ($offset < 0) {
                 ?>
 
 
-            </select>
+            </select>-->
+                        <input class="tags" name="namelist"  id="namelist" placeholder="Search User Name">
+
             <input type="submit" class="buttonn" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
