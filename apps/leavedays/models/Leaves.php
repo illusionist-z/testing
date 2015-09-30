@@ -4,6 +4,10 @@ namespace workManagiment\Leavedays\Models;
 
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use workManagiment\Leavedays\Models\LeavesSetting;
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Email;
+use Phalcon\Validation\Validator\Regex;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -77,7 +81,7 @@ class Leaves extends \Library\Core\BaseModel {
      * @author david
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc) {
-        
+
         $this->db = $this->getDI()->getShared("db");
 //        $date=$this->getcontractdata($uname);               
 //         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
@@ -100,18 +104,18 @@ class Leaves extends \Library\Core\BaseModel {
                     if (strtotime($sdate) <= strtotime($edate)) {
                         $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
                         $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays,leave_status,creator_id,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "',0,'".$uname."',now())");
-                        $err="Your Leave Applied Successfully!";
+                        $cond="Your Leave Applied Successfully!";
                     } else {
-                        $err="End date must be greater than Start date";
+                        $cond="End date must be greater than Start date";
                     }
                 } else {
-                        $err="Apply Leave Before a week ";                 
+                        $cond="Apply Leave Before a week ";                 
                 }
             }
         } else {
-                        $err="Please,Insert All Data! ";            
+                        $cond="Please,Insert All Data! ";            
         }
-        return $err;
+        return $cond;
     }
     
 /**
@@ -145,55 +149,18 @@ public  function GetDays($StartDate, $EndDate){
     public function getcontractdata($id){
         $credt = $this->db->query("SELECT created_dt,updated_dt FROM salary_master WHERE salary_master.member_id= '" . $id . "'");
         $created_date = $credt->fetchall();
-
-       
-        $this->updatecontract($created_date);
-        if( $created_date['0']['updated_dt']!='0000-00-00 00:00:00' OR null ){
-            $date['startDate']=$created_date['0']['updated_dt'];
-            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
+        if( $created_date['0']['updated_dt']=='0000-00-00 00:00:00'){
+             $date['startDate']=$created_date['0']['created_dt'];
+             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['created_dt'])));
         }
         else{
-            $date['startDate']=$created_date['0']['created_dt'];
-            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['created_dt'])));
+             $date['startDate']=$created_date['0']['updated_dt'];
+            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
         }
-      //        $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime())); 
-//        if($date['endDate']==date("Y-m-d H:i:s")){
-//            $this->updatecorememberdate($date['endDate'], $id);
-//        }
-//       
-////        if( $created_date['0']['updated_dt']!='0000-00-00 00:00:00'){
-////            $date['startDate']=$created_date['0']['updated_dt'];
-////            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
-////             
-////        }
-        
         
         return $date;
     }
-    public function updatecontract($created_date){
-       
-        if( $created_date['0']['updated_dt']!=null){
-             $date['startDate']=$created_date['0']['updated_dt'];
-             
-             
-        }
-        else{$date['startDate']=$created_date['0']['created_dt'];
-      
-        }
-       
-        $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($date['startDate']))); 
-        if($date['endDate']==date("Y-m-d H:i:s")){
-            $this->updatecorememberdate($date['endDate'], $id);
-        }
-        
-       return $date;
-
-    }
     
-    public function updatecorememberdate($date,$id){
-           $this->db->query("UPDATE core_member set core_member.updated_dt='" . $date . "'  WHERE core_member.member_id= '" . $id . "'");
-
-    }
     
     /**
      * getting user leave list by user id,month and leave type
@@ -258,10 +225,30 @@ public  function GetDays($StartDate, $EndDate){
     */
     public function acceptleave($id,$sdate,$edate,$days){
         $this->db = $this->getDI()->getShared("db");
-        $this->db->query("UPDATE leaves set leaves.leave_status=1  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
-        $stt=1;
-        $this->updateleavedata($id,$sdate,$edate,$days,$stt);
+        $date=$this->getcontractdata($id);
+        $datePeriod =$this->GetDays($sdate, $edate);
+        $length=count($datePeriod);
+        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $id . "' AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+        $list = $ldata->fetchall();
+       
+        $max=$this->getleavesetting();
+       
+        if($list['0']['total_leavedays']>=$max['0']['max_leavedays']){
+             $stt=2;
+        }
+        else{
+             $stt=1;
+        }
+        for($i=0;$i<($length-1);$i++){
+            echo $datePeriod[$i] ;echo $i;
+            $this->db->query("INSERT INTO absent (member_id,date,status) VALUES('" . $id . "','" . $datePeriod[$i] . "','" . $stt . "')");
+        }
+        $status=1;
+        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'");
+        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
+
     }
+   
     /**
      * 
      * @param type $id
@@ -269,31 +256,12 @@ public  function GetDays($StartDate, $EndDate){
      * change leave status to '2'
      * when admin reject leavedays request from user
      */
-    public function rejectleave($id,$sdate,$edate,$days){
+    public function rejectleave($id,$sdate){
         $this->db = $this->getDI()->getShared("db");
         $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.member_id='".$id."' AND leaves.start_date='".$sdate."'";
-        $this->db->query($sql);
-        
-        
-        
-
+       $this->db->query($sql);
     }
     
-    public function updateleavedata($id,$sdate,$edate,$days,$stt){
-        
-        $date=$this->getcontractdata($id);
-//        print_r($date);exit;
-        $datePeriod =$this->GetDays($sdate, $edate);
-        $length=count($datePeriod);
-        
-        for($i=0;$i<($length-1);$i++){
-            
-            $this->db->query("INSERT INTO absent (member_id,date,status) VALUES('" . $id . "','" . $datePeriod[$i] . "','" . $stt . "')");
-        }
-       
-       $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
-
-    }
     
      public function getleavesetting(){
           $row = $this->modelsManager->createBuilder()
@@ -303,6 +271,59 @@ public  function GetDays($StartDate, $EndDate){
                     ->execute();
         
      return $row;}
+     
+     /**
+      *@author David JP <david.gnext@gmail.com>
+      *@return cond array
+      *@desc   Validate Form 
+      */
+     public function validate($data){
+        $res = array();
+        $validate = new Validation();
+        $validate->add('username',
+                new PresenceOf(
+                array(
+                    'message' => 'The name is required'
+                     )
+                     ));
+        $validate->add('dept',
+                new PresenceOf(
+                array(
+                    'message' => 'Department field is required'
+                     )
+                     ))
+                ->add('position',
+                new PresenceOf(
+                array(
+                    'message'=> 'Position filed is required'
+                )));        
+        $validate->add('password',
+                new PresenceOf(
+                        array(
+                            'message'=>"Password is required"
+                        )));
+        $validate->add('email',
+                new Email(
+                        array(
+                            'message'=>"Email not valid"
+                        )));
+        $validate ->add('phno', new PresenceOf(array(
+        'message' => 'The telephone is required',
+        'cancelOnFail' => true
+        )))
+       ->add('phno', new Regex(array(
+        'message' => 'The telephone is required',
+        'pattern' => '/[0-9]+/'
+        ))) ;
+        
+        $messages = $validate->validate($data);
+        if (count($messages)) {
+                                foreach ($messages as $message) {
+                                     $res[] =$message;
+                                }
+                              }
+        return $res;
+     }
     
     
     

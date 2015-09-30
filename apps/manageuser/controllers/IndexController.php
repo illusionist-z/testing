@@ -14,16 +14,18 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');  
-        
-        $this->assets->addJs('apps/manageuser/js/search.js'); 
-        $this->assets->addJs("apps/manageuser/js/useredit.js");
+       
     }
     /**
      * @author David
      * @desc   Array ,show all user data 
      * @since  18/7/15
      */
-    public function userlistAction() {  
+    public function userlistAction() {     
+        //for paging and edit user
+        $this->assets->addJs('common/js/paging.js');                       
+        $this->assets->addJs('apps/manageuser/js/search.js'); 
+        $this->assets->addJs("apps/manageuser/js/useredit.js");
         
         $UserName = new Db\CoreMember();
         $getname = $UserName::getinstance()->getusername();
@@ -79,9 +81,9 @@ class IndexController extends ControllerBase
      * ADD NEW USER 
      * @author Su Zin Kyaw
      */
-    public function adduserAction(){
-        
-        $this->view->setVar('type','userlist');
+    public function adduserAction(){               
+         
+        $this->assets->addJs('apps/manageuser/js/adduser.js'); 
         
     }
 }

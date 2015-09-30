@@ -14,11 +14,8 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/leavedays/js/search.js');
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');        
-        $this->assets->addJs('apps/leavedays/js/index.js');               
+        $this->assets->addJs('common/js/export.js');        
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');                
     }
 
     public function indexAction() {
@@ -29,7 +26,8 @@ class IndexController extends ControllerBase {
      * @type   $id,$sdate,$edate,$type,$desc
      * @desc   Apply Leave Action
      */
-    public function applyleaveAction() {               
+    public function applyleaveAction() {  
+        $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
@@ -37,17 +35,31 @@ class IndexController extends ControllerBase {
         $name = $userlist::getinstance()->getusername();           
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
+        
         if ($this->request->isPost()) {
-            $uname = $this->request->getPost('uname');
+             $user = $this->_leave;
+             $validate = $user->validate($this->request->getPost());
+             if(count($validate)){
+                foreach ($validate as $message){
+                    $json[$message->getField()] = $message->getMessage();
+                }
+                $json['result'] = "error";
+                 echo json_encode($json);
+                 $this->view->disable();
+                   }     
+            
+            $uname = $this->session->user['member_id'];
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
-            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type, $desc);   
+            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
+                    $desc);   
             $noti=$userlist->GetAdminNoti();
             $this->session->set('noti', $noti);
             echo "<script>alert('".$error."');</script>";
-            echo "<script type='text/javascript'>window.location.href='applyleave';</script>";
+            echo "<script type='text/javascript'>window.location.href="
+               . "'applyleave';</script>";
             $this->view->disable();
         }                       
     }
@@ -55,7 +67,10 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-    public function leavelistAction(){              
+    public function leavelistAction(){      
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/leavedays/js/search.js');
+        $this->assets->addJs('apps/leavedays/js/leavelist.js');               
         $month = $this->config->month;
         $leave = $this->config->leavetype;        
         $UserList=new Db\CoreMember();
@@ -81,7 +96,7 @@ class IndexController extends ControllerBase {
              $this->_leave->acceptleave($id,$sdate,$edate,$days); 
         }
         else{
-            $this->_leave->rejectleave($id,$sdate,$edate,$days); 
+            $this->_leave->rejectleave($id,$sdate); 
         }
         $this->response->redirect('dashboard/index');
     }

@@ -18,7 +18,7 @@
 	<div id="form_div">
 	<div style="height:30px; background-color:#428bca; padding:5px 0 5px 15px;"><font color="#fffff">Add user form</font></div>
         
-        <form action="../coremember/saveuser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
+        <form id="saveuser" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
 	<table width="650px" height="300px">
             <tr>
                 <td rowspan="15"><img src="../../common/img/profile.png" > </td>
@@ -26,35 +26,51 @@
             </tr>
 	<tr>
             
-            <td >User Name :</td>
+            <td>User Name :</td>
            
-		<td>
-		<input type="text" name="member[username]" value="">
-		</td>
-        </tr>
+            <td style="height:40px;">
+                    <input type="text" name="username" id="uname">
+                    <span id="user-error"></span>
+		</td>                
+        </tr>        
         <tr>
 		
 		<td>Password :</td>
-                <td><input type="password" name="member[password]" value=""></td>
+                <td style="height:40px;">
+                    <input type="password" name="password" id="pass">
+                    <span id="pass-error"></span>
+                </td>                
 	</tr>
         
 	<tr>
 		<td>Department:</td>
-		<td><input type="text" name="member[dept]" value=""></td>
+                <td style="height:40px;">
+                    <input type="text" name="dept" id="dept">
+                    <span id="dept-error"></span>                
+                </td>
+                
         </tr>
         <tr>
           
 		<td>Position	:</td>
-		<td><input type="text" name="member[position]" value=""></td>
+                <td style="height:40px;">
+                    <input type="text" name="position" id="pos">
+                    <span id="pos-error"></span>
+                </td>
 	</tr>
 	<tr>
 		<td>Email :</td>
-		<td><input type="email" name="member[email]" value="">
+                <td style="height:40px;">
+                    <input type="email" name="email" id="mail">
+                    <span id="mail-error"></span>
                </td>
 	</tr>
         <tr>
 		<td>Phone no</td>
-		<td><input type="text" name= "member[phno]" value=""></td>
+                <td style="height:40px;">
+                    <input type="text" name="phno" id="pno">
+                    <span id="pno-error"></span>
+                </td>
 	</tr>
        
 	<tr>
@@ -76,7 +92,7 @@
 	<tr>
 		<td></td>
 		
-                <td><input type="submit" class="buttonn" style="margin: 13px;"  value="Add  New User"></td>
+                <td><input type="submit" onclick="return false;" class="buttonn submit_useradd" style="margin: 13px;"  value="Add  New User"></td>
 		<td></td>
 	</tr>
 	</table>
