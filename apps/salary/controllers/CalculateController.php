@@ -41,9 +41,9 @@ class CalculateController extends ControllerBase
     //insert taxs of all staff to salary detail
     $Salarydetail->insert_taxs($tax);
     
+    //print_r($overtime);exit;
     //insert overtime and salary information to salary detail
     $Salarydetail->insert_salarydetail($overtime);
-    
     
     
     //calculate ssc fee of employee and employer

@@ -30,15 +30,15 @@
          
         $sum='';
         $deduce='';
+        $j=0;
         //print_r($getsalarydetails);
         foreach($getsalarydetails as $A){
+            $j++;
             for($i=0;$i<count($A);$i++){
-                //echo $A[$i]['member_id'];
-                
-          
 ?>
 <div style="padding: 0 10px 10px 10px" class="sample"  id="printable">
     <h3><center>G-Next Official Salary Report</center></h3>
+    
 <div>
     <div style="width: 10%; float: left;">Name</div>
     <div><?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?></div>
@@ -132,8 +132,12 @@
 </table>
     </div>
                 </div>
-<div class="p_break"></div>
+
 <?php
+  }
+  if($j==count($A)){
+      echo '<div class="p_break"></div>';
+      
   }
         }
 ?>

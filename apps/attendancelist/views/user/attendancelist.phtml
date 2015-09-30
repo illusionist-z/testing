@@ -20,7 +20,7 @@
 
 
 ?> 
-<section class="content-header" style="height:auto;margin-top: 40px;">
+<section class="content-header" style="height:auto;">
           <h1>
            Attendance List
           </h1>
@@ -35,7 +35,7 @@
         <div class="buttons">
             <?php  if(isset($timezone)){?><p  onmouseover="aa" style="font-size: 17px">Current Timezone : <font color='red'><?php echo $timezone;?></font></p><?php }?>
             <form id="frm_search" onsubmit="return false;">
-             <select class="select" data-toggle="select" name="month" id="month">
+<!--             <select class="select" data-toggle="select" name="month" id="month">
             <option value="">Month</option>
             <option value="01">January</option>
             <option value="02">February</option>
@@ -49,7 +49,10 @@
             <option value="10">Octobers</option>
             <option value="11">November</option>
             <option value="12">December</option>
-        </select>
+        </select>-->
+            <input type="text" name="year" id="startdate" class="datepicker"  placeholder="Start Date" style="margin-top: 10px;height:28px; width: 100px;">          
+            <input type="text" name="month" id="enddate"  class="datepicker"   placeholder="End Date" style="margin-top: 10px;height:28px; width: 100px;">
+            
             <input type="submit" class="buttonn" value="Search" id="search">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'),'attendance_list.csv']);">Export</a>

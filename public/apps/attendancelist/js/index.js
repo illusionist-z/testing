@@ -71,13 +71,12 @@ var Attendance = {
                             }
                         });
         },
-         autolist: function (){                       
-   
-                        var dict=[];
-                            //var dict = ["Test User02","Adminstrator"];
-
-//
-         $.ajax({
+          autolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+          //  alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
                 url:'autolist',
                 method: 'GET',
                 //dataType: 'json',
@@ -100,6 +99,36 @@ var Attendance = {
             });
        // ... do whatever you need to do with icon here
    }
+    
+       },
+       monthautolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+          //  alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'monthautolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.monthauto').autocomplete({
+              source: dict
+            });
+       // ... do whatever you need to do with icon here
+   } 
        },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;
@@ -120,13 +149,16 @@ var Attendance = {
         var month = document.getElementById('month').value;
         var username = document.getElementById('username').value;
         var year = document.getElementById('year').value;
+       
         if(month=="" && username=="" && year==""){
-            $('tbody').empty();
+             $('tbody').empty();
+           
              var output = "<tr>"
                             + "<td colspan='8'><center>No data to display</center></td>"
                            
                             + "</tr>"
-                    $("tbody").append(output); 
+                    $("tbody").append(output);
+                    Attendance.init();
         }
         else{
            
@@ -135,13 +167,18 @@ var Attendance = {
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
             success: function (d) {  
-               
+               //alert(d);exit;
+               //alert(d);
                 var json_obj = $.parseJSON(d);//parse JSON            
-               $('tbody').empty();
+               //alert(json_obj);
+               $('tbody').html("");  
+               
                $('tfoot').empty();
+              
                 for (var i in json_obj)
-                {   
+                {  
                     checkin_place = json_obj[i].location;
+                    //alert(checkin_place);
                     a = "08:00:00";
                     n = new Date();
                     offset = n.getTimezoneOffset();
@@ -216,26 +253,35 @@ var Attendance = {
                        overtime="0";
                     }
                     //Calculate Location
-                    
+                      
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
-                            + "<td>" + json_obj[i].member_login_name + "</td>"
-                            + "<td>" + localcheckin+ "</td>"
-                            + "<td>" + late + "</td>"
+                            + "<td>" + json_obj[i].full_name + "</td>"
+                            + "<td>" + localcheckin + " </td>"
+                            + "<td style='color:red'>" + late + "</td>"
                             + "<td>" + localcheckout + "</td>"
                             + "<td>" + workinghour + "</td>"
-                            + "<td>" +overtime+ "</td>"
-                            + "<td>" + checkin_place+ "</td>"
-                            + "</tr>"
-                    $("tbody").append(output); 
+                            + "<td>" + overtime + "</td>"
+                            + "<td>" + checkin_place + "</td>"
+                            + "</tr>";
+                    $("tbody").html(output);
+                    
                 }
+               // alert(output);
+                //$('tbody').html("");
+                
+                //$('tbody').html("");
+
                 //paginatior function    
-                Attendance.init();
+                 Attendance.init();
+              
+               
             },
             error: function (d) {
                 alert('error');
-            }       
-            }); 
+            } 
+            
+            });
         }
            }
    };
@@ -249,7 +295,14 @@ $(document).ready(function () {
      $('#sub').click(function () {               
         Attendance.monthlylist();
     });
-   
+    $('.tags').click(function () {
+        //alert("aaa");
+        Attendance.autolist();
+    }); 
+    $('.monthauto').click(function () {
+        //alert("aaa");
+        Attendance.monthautolist();
+    }); 
     $('.listtbl').on("click",".displaypopup",function(e){
         e.preventDefault();
         var id = $(this).attr('id');

@@ -1,7 +1,7 @@
 <?php
     use Phalcon\Filter;
 ?>
-<section class="content-header" style="height:auto;margin-top: 40px;">
+<section class="content-header" style="height:auto;margin-top: 5px;">
     <h1>
         Monthly Salary Lists
     </h1>
@@ -59,9 +59,10 @@
 
 
                 </tbody>
+                <tfoot style="display:none;"></tfoot>
             </table>      
         </div><!--end table content--->
-        
+        <div id="content"></div>
     </div><!-- /.row -->
     <div id="content"></div>
     <div id="myPopup" style="display:none;" title=""><a id="popupClose">x</a><h1>Add confirm</h1>
@@ -76,10 +77,10 @@
     <a href="../calculate" class="button">Yes</a><a href="#" class="button" id="btn_close">No</a>
     </div>	
 </section><!-- /.content -->
-<div id="resign" class="navbar">    
-</div>	
 <script>
 $('#btn_close').click(function(){
     document.getElementById('myPopup').style.display = 'none';;
 });
 </script>
+
+

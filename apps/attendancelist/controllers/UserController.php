@@ -38,12 +38,12 @@ class UserController extends ControllerBase
         $offset= $this->session->location['offset'];
         
         }
-      
-        $month = $this->request->get('month');
+        $startdate = $this->request->get('startdate');       
+        $enddate = $this->request->get('enddate');
        
        
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->getattlist($id,$month);                      
+        $ResultAttlist = $AttList->getattlist($id,$startdate,$enddate);                      
         $this->view->attlist = $ResultAttlist;
         $this->view->offset=$offset;              
     }

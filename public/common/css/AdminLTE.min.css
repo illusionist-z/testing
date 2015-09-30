@@ -385,3 +385,6 @@ background-image: -webkit-linear-gradient(top,#FFF  10%, #3c8dbc 51%);
 		color:#FFF;
 		cursor:pointer;
 	}
+.language{
+    float: right;
+}

@@ -1,15 +1,19 @@
 <?php
     use Phalcon\Filter;
 ?>
-<section class="content-header" style="height:auto;margin-top: 40px;">
+<section class="content-header" style="height:auto;margin-top: 5px;">
     <h1>
         Salary Lists
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Salary Lists</li>
-        <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a>        
+               
     </ol>
+    <br>
+    <div style="float:right; padding-bottom: 10px;">
+    <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a> 
+    </div>
 </section>
 
 <!-- Main content -->

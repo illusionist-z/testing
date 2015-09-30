@@ -106,6 +106,7 @@ class SalaryMaster extends Model {
                 $SM = $this->getLatestsalary($value['member_id']);
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
                         $value['member_id'], $budget_startyear, $budget_endyear);
+                $latest_payday='0';
                 if(!empty($SD)){
                 $payday=  explode("-", $SD['pay_date']);
                 $latest_payday=$payday[1];
@@ -121,7 +122,7 @@ class SalaryMaster extends Model {
                    else{
                        $allowance=0;
                    }
-                   
+                echo "basic salary".$value['basic_salary'].'<br>';
                 //check the user who is absent.
                 $absent=  $this->checkAbsent($value['member_id']);
                 
@@ -273,10 +274,10 @@ class SalaryMaster extends Model {
 
                     $deduce_amount = $this->getreduce($value['member_id']);
                     
-                    //echo $deduce_amount[0]['member_id'].' '.$deduce_amount[0]['Totalamount'].' '.$basic_deduction.' '.$emp_ssc;echo "<br>";
+                    //echo 'Member_id'.$deduce_amount[0]['member_id'].' //// deducemount '.$deduce_amount[0]['Totalamount'].' '.$basic_deduction.' '.$emp_ssc;echo "<br>";
                     //Total deduction (deduce,20%,ssc)
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    //echo "Total deduction is ".$total_deduce;
+                    echo "Total deduction is ".$total_deduce;
                     
                     //taxable income (total_basic-total deduce)
                     $income_tax = $salary - $total_deduce;
@@ -374,7 +375,7 @@ class SalaryMaster extends Model {
      */
     public function getLatestsalary($member_id) {
         try {
-
+            $this->db = $this->getDI()->getShared("db");
             $sql = "select * from salary_master where member_id='" . $member_id . "' and deleted_flag=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);
@@ -385,6 +386,23 @@ class SalaryMaster extends Model {
         return $row;
     }
 
+    /**
+     * Get today salary master for updating salary
+     * @param type $member_id
+     * @return type
+     */
+    function getTodaysalaryMaster($member_id) {
+        try {
+            $this->db = $this->getDI()->getShared("db");
+            $sql = "select *,MONTH(updated_dt) as updatemonth from salary_master where member_id='" . $member_id . "' and deleted_flag=0 and DATE(updated_dt) = CURDATE()";
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
     /**
      * calculate date difference
      * @param type $date_difference
@@ -558,6 +576,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $income_tax
      */
     public function calculate_deducerate($taxsrate_data, $income_tax, $salary_year) {
+        
         $latest_rateval = end($taxsrate_data);
         $start_rateval = reset($taxsrate_data);
         $first_result = "";
@@ -592,7 +611,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $Result = ($income_tax - $todeduce) * ($taxs_rate[1] / 100);
             }
         }
-        echo 'Year difference '.$Result.' ////';
+        echo 'Year difference '.$salary_year.' ////';
 
         $latest_result = round($Result / $salary_year);
         return $latest_result;
@@ -694,5 +713,15 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
         }
         return $res;
     }
-
+    
+    public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
+        try {
+                $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
+                //echo $sql;exit;
+                $this->db->query($sql);
+                $res['valid'] = true;
+            } catch (Exception $ex) {
+                echo $ex;
+            }
+    }
 }

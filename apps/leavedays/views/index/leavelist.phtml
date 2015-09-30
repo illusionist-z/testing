@@ -51,7 +51,7 @@ $length = count($Month);
                         ?>
 
             </select>
-            <select class="select" data-toggle="select" name="namelist" id="namelist">
+<!--            <select class="select" data-toggle="select" name="namelist" id="namelist">
                 <option value="">User Name</option>
                 <?php
                 foreach ($Getname as $result) {
@@ -63,7 +63,9 @@ $length = count($Month);
                 ?>
 
 
-            </select>
+            </select>-->
+                        <input class="userauto" name="namelist" id="namelist" placeholder="Search User Name">
+
             <input type="submit" class="buttonn" value="Search" id="search">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);">Export</a>
