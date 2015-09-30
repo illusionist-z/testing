@@ -21,6 +21,7 @@ class CalculateController extends ControllerBase
      * calculation of salary and tax
      */
     public function indexAction(){
+        
      $basic_salary_ssc=$this->config->salary['basic_salary_ssc'];
      $deduce=$this->config->salary['deduce'];
      $overrate=$this->config->salary['overrate'];

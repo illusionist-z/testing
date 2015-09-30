@@ -103,7 +103,13 @@ class SalaryMaster extends Model {
                         $value['member_id'], $budget_startyear, $budget_endyear);
                 //Check there is allowance or not
                 $Allowanceresult = $this->getAllowances($value['member_id']);
-                $allowance=$Allowanceresult['total_allowance_amount'];
+                if(isset($Allowanceresult['total_allowance_amount']))
+                   {
+                    $allowance=$Allowanceresult['total_allowance_amount'];
+                   }
+                   else{
+                       $allowance=0;
+                   }
                 echo $SM['basic_salary'] . '<br>';
                 if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear && empty($SD)) {
                     $date_diff = $this->date_difference($comp_start_date, $budget_endyear);
@@ -139,10 +145,10 @@ class SalaryMaster extends Model {
                 }
 
 
-                    
+                   
                 if ($SM['basic_salary'] == $SD['basic_salary'] && 
                     date("Y-m") > $budget_startyear && date("Y-m") <= $budget_endyear 
-                    && $SD['allowance_amount']==$Allowanceresult['total_allowance_amount'])
+                    && $SD['allowance_amount']==$allowance)
                 {
                     echo "===";
                     $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
@@ -159,16 +165,16 @@ class SalaryMaster extends Model {
 //                        $total_allowances+=$result[$i]['allowance_amount'];
 //                    }
                     //$salary_yr+=$total_allowances;
-                    if(empty($SD['allowance_amount'])){
+                    echo "DDD".$Allowanceresult['total_allowance_amount'];
+                    if(empty($SD['allowance_amount']) && isset($Allowanceresult['total_allowance_amount'])){
                     $allowance=$Allowanceresult['total_allowance_amount'];
                     $salary_yr+=$allowance;
                     echo $salary_yr.'empty allowance';
                     
                     }
-                    else if($SD['allowance_amount']!=$Allowanceresult['total_allowance_amount'])
+                    else if($SD['allowance_amount']!=$allowance)
                     {
-                    $allowance=$Allowanceresult['total_allowance_amount'];
-                   
+                    echo "AAAA".$salary_yr;
                     $salary=$allowance+$salary_yr;
                      echo $salary.'///';
 //                    if ($comp_start_date > $budget_startyear && $comp_start_date < $budget_endyear) {
@@ -216,8 +222,8 @@ class SalaryMaster extends Model {
                                       'member_id' => $value['member_id'], 'allowance_amount' => $allowance);
                 }
             }
-            /*print_r($final_result);
-            exit;*/
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;

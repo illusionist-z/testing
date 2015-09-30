@@ -92,14 +92,14 @@
                         
                         <th>Name</th>
                         <th>Department</th>
-                        <th>Basic Salary</th>
-                        <th>Overtime</th>
-                        <th>Travel fees</th>
-                        <th>Absent</th>
-                        <th>Tax</th>
-                        <th>SSC_comp</th>
-                        <th>SSC_emp</th>
-                        <th>Total</th>
+                        <th><center>Basic Salary</center></th>
+                        <th><center>Overtime</center></th>
+                        <th><center>Travel fees</center></th>
+                        <th><center>Absent</center></th>
+                        <th><center>Tax</center></th>
+                        <th><center>SSC_comp</center></th>
+                        <th><center>SSC_emp</center></th>
+                        <th><center>Total</center></th>
                         <th width="30px"></th>
                     </tr>
 
@@ -116,19 +116,19 @@
                            
                             <td><?php echo $getsalarylist['member_login_name'] ?></td>
                             <td><?php echo $getsalarylist['member_dept_name'] ?></td>
-                            <td style="background-color: red; float: right;"><?php echo number_format($getsalarylist['basic_salary']) ?></td>
-                            <td><?php echo number_format($getsalarylist['overtime']) ?></td>
-                            <td><?php echo number_format($getsalarylist['travel_fee']) ?></td>
-                            <td><?php echo number_format($getsalarylist['absent_dedution']) ?></td>
-                            <td><?php echo number_format($getsalarylist['income_tax']) ?></td>
-                            <td><?php echo number_format($getsalarylist['ssc_comp']) ?></td>
-                            <td><?php echo number_format($getsalarylist['ssc_emp']) ?></td>
+                            <td><div class="td_style"><?php echo number_format($getsalarylist['basic_salary']) ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($getsalarylist['overtime']) ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($getsalarylist['travel_fee']) ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($getsalarylist['absent_dedution']) ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($getsalarylist['income_tax']) ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($getsalarylist['ssc_comp']) ?></div></td>
+                            <td><div class="td_style"><?php echo number_format($getsalarylist['ssc_emp']) ?></div></td>
                             
-                            <td><?php 
+                            <td><div class="td_style"><?php 
                             $totalresult+=$getsalarylist['total'];
                             echo number_format($getsalarylist['total']); 
                                     
-                                ?></td>
+                                ?></div></td>
                             <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button" id="displaypopup">Print</a></td>
                         </tr>
                         <?php

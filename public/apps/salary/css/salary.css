@@ -6,3 +6,7 @@ body * {
   body *{ visibility: hidden; }
   #printable *{ visibility: visible;}  
 }
+.td_style{
+     float: right; 
+     padding-right: 20px;
+}
