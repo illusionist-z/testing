@@ -11,7 +11,8 @@ $(document).ready(function () {
 
 
     $('#edit').click(function () {
-        document.getElementById('username').disabled=false;
+        document.getElementsByClassName('username').disabled=false;
+        //alert(document.getElementsByClassName('username').value);
         document.getElementById('password').disabled=false;
         document.getElementById('temp_password').disabled=false;
         document.getElementById('temp_file').disabled=false;
