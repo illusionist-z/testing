@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var baseUri='/workManagiment/';
 function checktime(i) {
     if(i<10){
         i = "0"+i;  // add zero in front of numbers < 10        
