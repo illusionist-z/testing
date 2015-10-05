@@ -111,7 +111,7 @@ var Calendar = {
     if(d.length === 0){
     var message = "<div class='message' style='top:30%;left:18%;"
     +"text-align:center;background:#3c8dbc;color:white;position:absolute;"
-    +"width:80.5%;height:10%;z-index:100;font-size:33px;margin-left:3px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
+    +";width:80.5%;height:10%;z-index:100;font-size:33px;margin-left:3px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
     $('body').append(message);
     setTimeout(function() {
     $('.message').remove();
@@ -125,16 +125,22 @@ var Calendar = {
     }
         });
     },
-    remove_event_member : function(val) {
-             
+    remove_event_member : function() {
+       var selectedvalue = [];
+      if($(':checkbox:checked').length > 0){
+        $(':checkbox:checked').each(function(i){
+          selectedvalue[i] = $(this).val();
+         });
          $.ajax({
              url : "index/removeEventByname",
-             data : {remove : val},
+             data : {remove : selectedvalue},
              type : "POST",
              success : function(){                 
                  $('body').load('index');
              }
-         });             
+         });
+         }
+       else {alert("You must check at least one");}
     },
     /**
      * @author David 9/16/2015
@@ -330,9 +336,9 @@ var Calendar = {
             async: false,
             dataType: 'json'
         }).done(
-       //     $('#calendar').remove(),    //remove calendar origin
-             Calendar.event(member),dia.dialog("close")
-          //   $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>')//replace a new calendar                                
+            $('#calendar').remove(),    //remove calendar origin
+            $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'),//replace a new calendar
+            Calendar.event(member),dia.dialog("close")
             );
     }    
 };
@@ -353,8 +359,7 @@ $(document).ready(function () {
        Calendar.getmemberevent();
    });
    $('#disabledevent').click(function(){
-       var del_name = $(this).attr('name');
-       Calendar.remove_event_member(del_name);
+       Calendar.remove_event_member();
    });
    
 });

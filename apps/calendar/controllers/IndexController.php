@@ -23,7 +23,7 @@ class IndexController extends ControllerBase
     
    public function indexAction() {
         $User=new Db\CoreMember;
-        $id = $this->session->user['member_id'];        
+        $id = $this->session->user['member_id'];
        if($this->session->permission_code=="ADMIN"){
     $noti=$User->GetAdminNoti($id);
        }
@@ -32,10 +32,10 @@ class IndexController extends ControllerBase
        }       
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
-        $permitname = $this->calendar->getalluser($id); 
-        $Allname   = $GetMember::getinstance()->getusername();                                     
+        $permitname = $this->calendar->getalluser($id);
+        $Allname   = $GetMember::getinstance()->getusername();                
         $this->view->event_name = $permitname;
-        $this->view->member_name=  $this->session->user['member_login_name'];        
+        $this->view->member_name=$id;
         $this->view->uname = $Allname;
     }
     

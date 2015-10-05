@@ -47,7 +47,6 @@ var Resign = {
                Resign.Diaadd(data);
            }
         });
-        
         },
         Diaadd : function (d){
         if(!this.isOvl){
@@ -62,15 +61,14 @@ var Resign = {
             width: 500,
             modal: true,
             title:"Add Resign Date"
-        });      
-        
+        });                        
         $ovl.html(d);
         $ovl.dialog("open");
              
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-       
-   // $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
+                $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
+
         $('#Add_Resign_Date').click(function(){
             Resign.AddNew($ovl);
         });
@@ -101,8 +99,6 @@ var Resign = {
     
 };
 
-
-
 $(document).ready(function () {
 
     // ユーザーのクリックした時の動作。
@@ -112,16 +108,19 @@ $(document).ready(function () {
      $('.btn_resign').click(function () {
         // alert("aa");
        var id= document.getElementById("member_id").value;
-       //alert(id);
         Resign.Add(id);
     });
-    $('#btnEditInfo').click(function () {
+    $('.btnEditInfo').click(function () {
         //document.getElementById('txtname').disabled=false;
-        document.getElementById('btn_savedetail').disabled=false;
-        document.getElementById('txtbsalary').disabled=false;
-        document.getElementById('txtbsalary').disabled=false;
-        document.getElementById('txtovertimerate').disabled=false;
-        document.getElementById('txtallowance').disabled=false;
+//        document.getElementById('btn_savedetail').disabled=false;
+//        document.getElementById('txtbsalary').disabled=false;
+//        document.getElementById('txtbsalary').disabled=false;
+//        document.getElementById('txtovertimerate').disabled=false;
+//        document.getElementById('txtallowance').disabled=false;
+var cells = document.getElementsByClassName("txtenable"); 
+for (var i = 0; i < cells.length; i++) { 
+    cells[i].disabled = false;
+}
     });
 
     $("#btn_savedetail").click(function () {
