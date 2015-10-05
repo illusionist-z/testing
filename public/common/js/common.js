@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+/* global baseUri */
+
 function geo() {
     if (navigator.geolocation) { 
         var url = "location_session";
@@ -80,7 +82,7 @@ $(document).ready(function () {
     //absent member
     $('body').attr('onload', getAbsentMember());
     // ここに実際の処理を記述します。
-    var logout = function () {
+    var logout = function () { 
         window.location.href = baseUri + 'auth/logout';
 
     };
