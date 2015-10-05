@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<?php use Phalcon\Tag as Tag; ?>
 <html>
     <head><style>.ui-dialog-titlebar-close {
   visibility: hidden;
@@ -14,7 +14,7 @@
         <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -52,7 +52,7 @@
                                                         $img=$this->session->user['member_profile'];
                                                     }
                                         ?>                                                 
-                                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -79,8 +79,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){?>
+                                      <?php $name=$this->session->permission_code;
+        if ( $name=='ADMIN'){?>
                                         <div class="pull-left">
                                             <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
@@ -172,15 +172,18 @@
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
-<!--                <section class="content">-->
+                <section class="content">
                     <?php echo $this->getContent() ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
                     <?php $this->assets->outputJs(); ?>
-<!--                </section>-->
+                </section>
             </div><!-- /.content-wrapper -->
 
             <footer class="main-footer" style="margin-left:0;">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+                <div class="language">
+                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "English") ?>  | <?php echo Tag::linkTo("core/index/setLanguage/ja", "Japanese") ?>| <?php echo Tag::linkTo("core/index/setLanguage/my", "Myanmar") ?>
+                </div>
             </footer>
 
 

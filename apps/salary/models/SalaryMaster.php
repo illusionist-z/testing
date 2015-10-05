@@ -106,6 +106,7 @@ class SalaryMaster extends Model {
                 $SM = $this->getLatestsalary($value['member_id']);
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
                         $value['member_id'], $budget_startyear, $budget_endyear);
+                $latest_payday='0';
                 if(!empty($SD)){
                 $payday=  explode("-", $SD['pay_date']);
                 $latest_payday=$payday[1];
@@ -374,7 +375,7 @@ class SalaryMaster extends Model {
      */
     public function getLatestsalary($member_id) {
         try {
-
+            $this->db = $this->getDI()->getShared("db");
             $sql = "select * from salary_master where member_id='" . $member_id . "' and deleted_flag=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);
@@ -385,6 +386,23 @@ class SalaryMaster extends Model {
         return $row;
     }
 
+    /**
+     * Get today salary master for updating salary
+     * @param type $member_id
+     * @return type
+     */
+    function getTodaysalaryMaster($member_id) {
+        try {
+            $this->db = $this->getDI()->getShared("db");
+            $sql = "select *,MONTH(updated_dt) as updatemonth from salary_master where member_id='" . $member_id . "' and deleted_flag=0 and DATE(updated_dt) = CURDATE()";
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
     /**
      * calculate date difference
      * @param type $date_difference
@@ -558,6 +576,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $income_tax
      */
     public function calculate_deducerate($taxsrate_data, $income_tax, $salary_year) {
+        echo "DDD".$salary_year;
         $latest_rateval = end($taxsrate_data);
         $start_rateval = reset($taxsrate_data);
         $first_result = "";
@@ -694,5 +713,15 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
         }
         return $res;
     }
-
+    
+    public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
+        try {
+                $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
+                //echo $sql;exit;
+                $this->db->query($sql);
+                $res['valid'] = true;
+            } catch (Exception $ex) {
+                echo $ex;
+            }
+    }
 }

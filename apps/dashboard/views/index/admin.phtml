@@ -1,16 +1,15 @@
 <script type="text/javascript">
-         function checkValue() {
-  var linkemail=document.forms["theForm"]["linkemail"].checked
-  if (linkemail) {
-    document.getElementById('xtraInfo').style.display='';
-  } else {
-    document.getElementById('xtraInfo').style.display='none';
-  } 
-} 
+    function checkValue() {
+        var linkemail = document.forms["theForm"]["linkemail"].checked
+        if (linkemail) {
+            document.getElementById('xtraInfo').style.display = '';
+        } else {
+            document.getElementById('xtraInfo').style.display = 'none';
+        }
+    }
 
 </script>
-
-<div class="">
+<div class="" style="height:auto;margin-top: 40px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
@@ -26,13 +25,11 @@
     <section class="content">
         <!-- Info boxes -->
         <div class="row">
-
         </div><!-- /.row -->
-
         <div class="row">
             <div class="col-md-12">
-		  <div class="top_row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font> Staffs Attended</a></div>
-		  <div class="top_row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> Staffs Absent<a></div>
+                <div class="top_row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font> Staffs Attended</a></div>
+                <div class="top_row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> Staffs Absent<a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -40,30 +37,30 @@
                                 <div class="row">
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
-              <div class="small-box bg-aqua" onclick="window.location.href='../../manageuser/index/userlist'" id="pointer_style1">
-                  <img src="../../common/img/User-128.png">
+                                        <div class="small-box bg-aqua" onclick="window.location.href = '../../manageuser/index/userlist'" id="pointer_style1">
+                                            <img src="../../common/img/User-128.png">
                                             <span class="forsize"> Manage User</span>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
-              <div class="small-box bg-green" onclick="window.location.href='../../attendancelist/index/todaylist'" id="pointer_style2">
-                <img src="../../common/img/View-List-128.png" ">
-                                        <span class="forsize"> Attendance List</span>
+                                        <div class="small-box bg-green" onclick="window.location.href = '../../attendancelist/index/todaylist'" id="pointer_style2">
+                                            <img src="../../common/img/View-List-128.png" ">
+                                            <span class="forsize"> Attendance List</span>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
-              <div class="small-box bg-yellow" onclick="window.location.href='../../leavedays/index/leavelist'" id="pointer_style3">
-                <img src="../../common/img/Calendar-Date-02-128.png">
-                                           <span class="forsize">  Leave Days</span>
+                                        <div class="small-box bg-yellow" onclick="window.location.href = '../../leavedays/index/leavelist'" id="pointer_style3">
+                                            <img src="../../common/img/Calendar-Date-02-128.png">
+                                            <span class="forsize">  Leave Days</span>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
-              <div class="small-box bg-red" onclick="window.location.href='../../salary/index/salarylist'" id="pointer_style3">
-                <img src="../../common/img/Dollar-128.png">
-                                           <span class="forsize">  Salary</span>
+                                        <div class="small-box bg-red" onclick="window.location.href = '../../salary/index/salarylist'" id="pointer_style3">
+                                            <img src="../../common/img/Dollar-128.png">
+                                            <span class="forsize">  Salary</span>
                                         </div>
                                     </div><!-- ./col -->
                                 </div><!-- /.row -->
@@ -105,7 +102,7 @@
 
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="#" class="btn btn-primary btn-sm btn-flat" onclick="Content.View.apply(this,['checkin']);" style="width: 150px";>Check In</a>
+                                                                <a href="#" class="btn btn-primary btn-sm btn-flat" onclick="Content.View.apply(this, ['checkin']);" style="width: 150px";>Check In</a>
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
                                                                 <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;">Check Out </a>
@@ -141,7 +138,7 @@
                                                         <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
                                                             <li>
                                                                 People who attend no leave
-                                                                <ul><?php foreach ($nlname as $na){ ?>
+                                                                <ul><?php foreach ($nlname as $na) { ?>
                                                                     <li><?= $na['member_login_name'] ?></li>
                                                                     <?php } ?>
                                                                 </ul>
@@ -150,8 +147,8 @@
                                                         <ul class="nav nav-pills nav-stacked">
                                                             <li>
                                                                 People who take the leave most
-                                                                <ul><?php foreach ($lname as $na){ ?>
-                                                                    <li><?= $na['member_login_name'] ?></li>
+                                                                <ul><?php foreach ($lname as $na) { ?>
+                                                                        <li><?= $na['member_login_name'] ?></li>
                                                                     <?php } ?>
                                                                 </ul>
                                                             </li>
@@ -175,26 +172,26 @@
                                         </div><!-- /.box-header -->
                                         <div class="box-body no-padding">
                                             <ul class="users-list clearfix">
-                                                          <?php foreach($name as $v){ ?>
-                                                             <li>
-                                                                 <!--<img src="../../common/img/.jpg" alt="User Image"/>-->
-                                                                 <!--<img src="../../uploads/<?php echo  $v->member_profile;?>" class="user-image" alt="User Image"/>-->
-                                                                 <?php
-                                                                        if($v->member_profile == null){
-                                                                        $img = "profile1.jpg";}
-                                                                        else{                                                                            
-                                                                                 $img=$v->member_profile;                                                                        
-                                                                        }
-                                                                  ?>                                                 
-                                                                 <img src="../../uploads/<?php echo  $img;?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
-                                                                 <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
-                                                                 <span class="users-list-date"><?= $v->created_dt; ?></span>
-                                                            </li>                          
-                                                          <?php } ?>
+                                                <?php foreach ($name as $v) { ?>
+                                                    <li>
+                                                        <!--<img src="../../common/img/.jpg" alt="User Image"/>-->
+                                                        <!--<img src="../../uploads/<?php echo $v->member_profile; ?>" class="user-image" alt="User Image"/>-->
+                                                        <?php
+                                                        if ($v->member_profile == null) {
+                                                            $img = "profile1.jpg";
+                                                        } else {
+                                                            $img = $v->member_profile;
+                                                        }
+                                                        ?>                                                 
+                                                        <img src="../../uploads/<?php echo $img; ?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
+                                                        <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
+                                                        <span class="users-list-date"><?= $v->created_dt; ?></span>
+                                                    </li>                          
+                                                <?php } ?>
                                             </ul><!-- /.users-list -->
                                         </div><!-- /.box-body -->
                                         <div class="box-footer text-center">
-                      <a href="../../manageuser/index/userlist" class="uppercase">View All Members</a>
+                                            <a href="../../manageuser/index/userlist" class="uppercase">View All Members</a>
                                         </div><!-- /.box-footer -->
                                     </div><!--/.box -->
 

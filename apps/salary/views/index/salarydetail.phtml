@@ -9,7 +9,7 @@
                 <div style="padding: 10px 10px 10px 10px">
                     <div style="float:left;"><button id="btnEditInfo">EDIT</button>
                     <button id="btn_savedetail" disabled>Save</button>
-                    <button id="btn_resign" class="btn_resign" >Resign</button>                    </div>
+<button id="btn_resign" class="btn_resign" >Resign</button>                    </div>
                     <div style="float:right;">
                     <a href="#" id="display1" class="display">PREV</a> |
                     <a href="#" id="display" class="display">NEXT</a>
@@ -72,7 +72,7 @@
   </tr>
   <tr>
     <td>Overtime Rate</td>
-    <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string"); $sum+=$A[$i]->salarymast->over_time; ?>" id="txtovertimerate" disabled="disabled">%</td>
+    <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string"); $sum+=$A[$i]->salarymast->over_time; ?>" id="txtovertimerate" style="width:50px;" disabled="disabled">%</td>
     <td></td>
   </tr>
   <tr>
@@ -159,5 +159,5 @@
         </div>
         </div>
     </div>
+    <div id="resign" class="navbar"></div>
 </section>
-<div id="resign" class="navbar"></div>
