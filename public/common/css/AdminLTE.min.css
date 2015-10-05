@@ -1,4 +1,4 @@
-/*!
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);/*!
  *   AdminLTE v2.1.0
  *   Author: Almsaeed Studio
  *	 Website: Almsaeed Studio <http://almsaeedstudio.com>
@@ -188,8 +188,8 @@ a.export {
     padding: 6px 10px 6px 26px;
 }
 .inedit{
-    background: url("../img/images.png")  1px 10px no-repeat  ;   
-    padding: 6px 10px 6px 8px;    
+    background: url("../img/images.png")  1px 0px no-repeat  ;   
+    padding: 6px 10px 12px 8px;    
 }
 .indelete{
     background: url("../img/delete2.png")  1px 10px no-repeat  ;   
@@ -202,8 +202,7 @@ a.export {
 
 .addbtnn{
     background: #F8F8F8;
-    font-size: 12px;    
-    
+    font-size: 12px;        
 }
 
 #nav{list-style:none;margin: 0px;
@@ -320,8 +319,8 @@ background-image: -webkit-linear-gradient(top,#FFF  10%, #3c8dbc 51%);
     font-size: 18px;
 }
 #fixedheader{
-
-     width:  100%;
+ //position: fixed;
+ width:  100%;
   /* background-position:left top(or)right top(or) center top;*/
 }
 #fixedleftside{
@@ -385,6 +384,3 @@ background-image: -webkit-linear-gradient(top,#FFF  10%, #3c8dbc 51%);
 		color:#FFF;
 		cursor:pointer;
 	}
-.language{
-    float: right;
-}

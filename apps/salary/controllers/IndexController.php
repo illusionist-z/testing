@@ -26,7 +26,7 @@ class IndexController extends ControllerBase {
         //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/salary/js/index-allowance.js');
-        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
     }
@@ -41,7 +41,8 @@ class IndexController extends ControllerBase {
     public function salarylistAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
          $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+        $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
@@ -57,7 +58,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $month = $this->request->get('month');
         $year = $this->request->get('year');
@@ -80,9 +82,8 @@ class IndexController extends ControllerBase {
      */
     public function addsalaryAction() {
         $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
+ $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);        $this->view->setVar("noti",$noti);
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
         $Allowance = new Allowances();
@@ -108,8 +109,8 @@ class IndexController extends ControllerBase {
     public function monthlysalaryAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
          $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
-        $this->view->setVar("noti",$noti);
+ $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);        $this->view->setVar("noti",$noti);
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
@@ -122,8 +123,8 @@ class IndexController extends ControllerBase {
     public function payslipAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
-        $this->view->setVar("noti",$noti);
+ $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);        $this->view->setVar("noti",$noti);
         $member_id = $this->request->get('member_id');
         $month = $this->request->get('month');
         //$Mth = '';
@@ -203,8 +204,8 @@ class IndexController extends ControllerBase {
     public function allowanceAction() {
         $this->assets->addJs('apps/salary/js/index-allowance.js');
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
-        $this->view->setVar("noti",$noti);
+ $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);        $this->view->setVar("noti",$noti);
         $All_List = new \workManagiment\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         $this->view->setVar("list", $list); //paginated data
@@ -289,8 +290,8 @@ class IndexController extends ControllerBase {
      */
     public function salarysettingAction() {
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
-        $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
+         $Admin=new Db\CoreMember;
+         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $Tax = new SalaryTaxs();
@@ -325,7 +326,7 @@ class IndexController extends ControllerBase {
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $data['taxs_rate'] = $this->request->getPost('taxs_rate');
-        $Tax = new SalaryTaxs();
+        $Tax = new Taxs();
         $Tax->edit_tax($data);
         $this->view->disable();
     }

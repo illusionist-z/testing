@@ -18,11 +18,14 @@
         -webkit-border-radius: 5px;
 }
 #left-scroll {    
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
     height: 200px;
     width: 100%;
     margin-bottom: 10px;
+  }
+  #left-scroll:hover{
+       overflow-y: scroll;
   }
 /*scroll bar hidden*/
 body::-webkit-scrollbar { width: 0; }
@@ -37,25 +40,27 @@ body::-webkit-scrollbar { width: 0; }
     clear:both;
 }
 #shapbott{       
-    height: 20px;    
+    height: 20px; 
+    width:10px;
 }
 #disabledevent{
-    height: 20px;       
+    height: 20px;
+    width:30px;
 }
 .content{
     padding: 0;
 }
 .bg-info{
-    background: #fffff0;
+    background: white;
 }
 .addmember{
-  margin-left: 50px !important;
+  margin-left: 125px !important;
 }
 .addbtn{
-  background: url("../../../common/img/5Fm069k.png")  10px -32px no-repeat #F8F8F8 ;  
+  background: url("../../../common/img/5Fm069k.png")  10px -33px no-repeat #F8F8F8 ;  
   }
   .minusbtn{
-      background: url("../../../common/img/5Fm069k.png")  10px -68px no-repeat #F8F8F8 ;  
+      background: url("../../../common/img/5Fm069k.png")  10px -67px no-repeat #F8F8F8 ;  
       font-size: 12px;
       padding: 6px 10px 6px 26px;
   }

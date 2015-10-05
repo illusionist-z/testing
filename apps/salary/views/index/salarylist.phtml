@@ -1,21 +1,17 @@
 <?php
     use Phalcon\Filter;
 ?>
-<section class="content-header" style="height:auto;margin-top: 5px;">
+<section class="content-header" style="height:auto;">
     <h1>
         Salary Lists
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Salary Lists</li>
-               
+        <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a>        
     </ol>
-    <br>
-    <div style="float:right; padding-bottom: 10px;">
-    <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a> 
-    </div>
 </section>
-
+<br>
 <!-- Main content -->
 <section class="content">
     
@@ -50,7 +46,10 @@
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->over_time, "int").' %' ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_emp, "int").' %' ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_comp, "int").' %' ?></td>
-                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails->salarymas->id; ?>" value="Edit"></td>                            
+<!--                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails->salarymas->id; ?>" value="Edit"></td>                            -->
+                            <td>
+                                <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="inedit displaypopup" id="<?= $salarydetails->salarymas->id; ?>"></a>
+                            </td>
                         </tr>
                         <?php
                         $i++;

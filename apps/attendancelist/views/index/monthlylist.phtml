@@ -16,7 +16,7 @@ $length = count($Month);
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header" style="height:auto;">
+<section class="content-header" style="height:auto;margin-top: 40px;">
     <h1>
         Monthly Attendance Lists
     </h1>
@@ -110,8 +110,12 @@ $length = count($Month);
                                     $start = strtotime($office_start_time);
                                     $end = strtotime($time);
                                     $late = $end - $start;
-
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . "</font>";
+                    if($item->attendances->notes!=''){
+                                 echo "<font color='red'>". gmdate("H:i:s",$late)."(".$item->attendances->notes." )</font>";
+                            }
+                        else{
+                             echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
+                            }
                                 }
                                 ?>
                             </td>

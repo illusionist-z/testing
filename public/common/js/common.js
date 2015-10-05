@@ -3,15 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-/* global baseUri */
+function checktime(i) {
+    if(i<10){
+        i = "0"+i;  // add zero in front of numbers < 10        
+    }
+    return i;
+}
+function link_height(){
+    //for link border right in link page
+var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$(".navbar").outerHeight());
+$(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
+}
 
 function geo() {
-    if (navigator.geolocation) { 
+    if (navigator.geolocation) {
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
-       
         $.ajax({
             url: url + "?offset=" + offset,
             type: 'GET',
@@ -82,7 +90,7 @@ $(document).ready(function () {
     //absent member
     $('body').attr('onload', getAbsentMember());
     // ここに実際の処理を記述します。
-    var logout = function () { 
+    var logout = function () {
         window.location.href = baseUri + 'auth/logout';
 
     };
@@ -115,7 +123,6 @@ $(document).ready(function () {
 
     var logout = function () {
         window.location.href = baseUri + 'auth/logout';
-
     };
 /**
  * @author David JP<david.gnext@gmail.com>
@@ -131,29 +138,30 @@ $('.sidebar-toggle').click(function (e) {
 
     //make the collapse content to be shown or hide
     var toggle_switch = $(this);
-    $(collapse_content_selector).toggle(function () {
-        if ($(this).css('display') === 'none') {
+    $(collapse_content_selector).toggle();
+//        if ($(this).css('display') === 'none') {
             //change the button label to be 'Show'
-            $('.content-wrapper').css("margin-left","0");
-            $('.main-footer').css("margin-left","0");
-            toggle_switch.html('Show');
-        } else {                                
-            $('.content-wrapper').css("margin-left","230px");
-            $('.main-footer').css("margin-left","230px");
-            $('body').append("<style type='text/css'>@media(max-width:767px){.main-sidebar{transform:translate3d(0,0,0);}}</style>");
-            //change the button label to be 'Hide'
-            toggle_switch.html('Hide');
-        }
-    });
-    });    
+            //$('.content-wrapper').css("margin-left","0");
+            //$('.main-footer').css("margin-left","0");
+            //toggle_switch.html('Show');
+//        } else {                                
+//            $('.content-wrapper').css("margin-left","230px");
+//            $('.main-footer').css("margin-left","230px");
+//            $('body').append("<style type='text/css'>@media(max-width:767px){.main-sidebar{transform:translate3d(0,0,0);}}</style>");
+//            //change the button label to be 'Hide'
+//            toggle_switch.html('Hide');
+//        }
+//    });
+//    });    
     //toggle off when click body
     $('body').click(function (e) {
         if (0 === $(e.target).closest('#sidepage').length) {
             $('#sidepage').fadeOut(200);
-            $('.collapse-wrapper').css("margin-left","0");
-            $('.main-footer').css("margin-left","0");
+            //$('.collapse-wrapper').css("margin-left","0");
+            //$('.main-footer').css("margin-left","0");
         }
     });
           $('.datepicker').datepicker(); 
 });
-  
+link_height();
+});
