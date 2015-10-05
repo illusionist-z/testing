@@ -48,7 +48,7 @@ class IndexController extends ControllerBase
         $this->view->disable();
     }
     
-    public function editTimeAction($id,$localtime) {
+     public function editTimeAction($id,$localtime) {
         
         $offset= $this->session->location['offset'];
         $post = $localtime;
