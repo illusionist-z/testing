@@ -6,9 +6,9 @@ use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
 use workManagiment\Salary\Models\Allowances;
-use workManagiment\Salary\Models\Taxs;
-use workManagiment\Salary\Models\TaxsDeduction;
-use workManagiment\Salary\Models\CoreMemberTaxDeduce;
+use workManagiment\Salary\Models\SalaryTaxs;
+use workManagiment\Salary\Models\SalaryTaxsDeduction;
+use workManagiment\Salary\Models\SalaryMemberTaxDeduce;
 
 
 class IndexController extends ControllerBase {
@@ -90,7 +90,7 @@ class IndexController extends ControllerBase {
         $getall_allowance = $Allowance->getall_allowances();
         //print_r($getall_allowance);exit;
 
-        $TaxDeduction=new TaxsDeduction();
+        $TaxDeduction=new SalaryTaxsDeduction();
         $deduce=$TaxDeduction->getdedlist();
         
         $position = $this->salaryconfig->position;
@@ -155,10 +155,10 @@ class IndexController extends ControllerBase {
         $Permit_allowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $Permit_allowance->getallowanceBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_allowance']);
-        $Permit_dedution = new CoreMemberTaxDeduce();
+        $Permit_dedution = new SalaryMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_dedution']);exit;
-        $Dedution = new TaxsDeduction();
+        $Dedution = new SalaryTaxsDeduction();
         $resultsalary['dedution']=$Dedution->getdedlist();
         $Allowance = new Allowances();
         $resultsalary['allowance'] = $Allowance->getall_allowances();
@@ -187,7 +187,7 @@ class IndexController extends ControllerBase {
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
         
-        $Taxdeduce=new CoreMemberTaxDeduce();
+        $Taxdeduce=new SalaryMemberTaxDeduce();
         $Taxdeduce->edit_taxByMemberid($check_deduce,$data['member_id']);
         
         $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
@@ -291,12 +291,13 @@ class IndexController extends ControllerBase {
     public function salarysettingAction() {
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
          $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
-        $Tax = new Taxs();
+        $Tax = new SalaryTaxs();
         $list = $Tax->gettaxlist();
         $this->view->setVar("result", $list); //paginated data
-        $Deduction = new TaxsDeduction();
+        $Deduction = new SalaryTaxsDeduction();
         $dlist = $Deduction->getdedlist();
         $this->view->setVar("deduction", $dlist);
     }
@@ -308,7 +309,7 @@ class IndexController extends ControllerBase {
     public function taxdiaAction() {
         $id = $this->request->get('id');
 
-        $tax = new Taxs();
+        $tax = new SalaryTaxs();
         $data = $tax->gettaxdata($id);
         $this->view->disable();
         echo json_encode($data);
@@ -337,7 +338,7 @@ class IndexController extends ControllerBase {
     public function dectdiaAction() {
         $id = $this->request->get('id');
 
-        $Deduction = new TaxsDeduction();
+        $Deduction = new SalaryTaxsDeduction();
         $data = $Deduction->getdectdata($id);
         $this->view->disable();
         echo json_encode($data);
@@ -351,7 +352,7 @@ class IndexController extends ControllerBase {
         $data['id'] = $this->request->getPost('id');
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
-        $Deduction = new TaxsDeduction();
+        $Deduction = new SalaryTaxsDeduction();
 
         $Deduction->edit_deduction($data);
         $this->view->disable();
@@ -365,7 +366,7 @@ class IndexController extends ControllerBase {
 
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
-        $Deduction = new TaxsDeduction();
+        $Deduction = new SalaryTaxsDeduction();
 
         $Deduction->add_deduction($data);
         $this->view->disable();
@@ -377,7 +378,7 @@ class IndexController extends ControllerBase {
      */
     public function delete_deductAction() {
         $deduce_id = $this->request->getPost('id');
-        $Deduction = new TaxsDeduction();
+        $Deduction = new SalaryTaxsDeduction();
         $Deduction->delete_deduction($deduce_id);
         $this->view->disable();
     }

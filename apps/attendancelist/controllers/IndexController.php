@@ -48,15 +48,11 @@ class IndexController extends ControllerBase
         $this->view->disable();
     }
     
-    public function editTimeAction($id,$localtime) {
-        
-        $offset= $this->session->location['offset'];
-        $post = $localtime;
-       
+    public function editTimeAction($id) {
+        $post = $this->request->getPost();
         $Att  = new \workManagiment\Attendancelist\Models\Attendances();
-         $Att->editAtt($post,$id,$offset); 
-         $this->response->redirect('attendancelist/index/todaylist');
-//        $this->view->disable();
+        $data = $Att->editAtt($post,$id);        
+        $this->view->disable();
     }
 
     /**

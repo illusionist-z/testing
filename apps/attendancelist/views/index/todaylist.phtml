@@ -98,8 +98,14 @@ if ($offset < 0) {
                                     $start = strtotime($office_start_time);
                                     $end = strtotime($time);
                                     $late = $end - $start;
+                                    if($result->attendances->notes!=''){
+                                      echo "<font color='red'>". gmdate("H:i:s",$late)."(".$result->attendances->notes." )</font>";
 
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . "</font>";
+                                    }
+                                    else{
+                                        echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
+
+                                    }
                                 }
                                 else{
                                     echo "-";
@@ -150,9 +156,13 @@ if ($offset < 0) {
                                 ?> 
 
                             </td>
-                            <td class="row">
+<!--                            <td class="row">
                                 <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
                                  <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="button displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal">Edit</a></div>
+                            </td>-->
+                            <td class="row">
+                                <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
+                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>
                             </td>
                 </tr>
                 <?php
