@@ -2,7 +2,7 @@
 <?php
     use Phalcon\Tag as Tag;
 ?>
-<div id="external-events" style="height:auto;">
+<div id="external-events" style="height:auto;margin-top: 40px;">
     <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Header (Page header) -->
@@ -24,17 +24,25 @@
                    <!-- <input type='checkbox'  id='selectall'/>-->                    
                     
                     User Event Enable                                        
-                    <input type='button' id='shapbott' name='checkall' class="addbtn">
-                    <input type="button" id="disabledevent" name="" class="minusbtn">
+                    <input type='button' id='shapbott' name='checkall' class="addbtn">                    
                 </span>
             </h2>            
           
            <form id ="frm1">             
        
-          <ul class="nav nav-pills nav-stacked col-sm-12" id="left-scroll">
-              <li class="addbtnn"> <input style="margin-top: -2px;margin-left: 10px;" type="checkbox" class="case" name='checkbox[]' value="<?= $member_name ?>" ><?php echo " ".$member_name; ?></li>
+          <ul class="nav col-sm-12" id="left-scroll">
+              <li class="addbtnn col-sm-12">                  
+                  <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>" checked disabled><span class="col-sm-6"><?php echo " ".$member_name; ?></span>                  
+              </li>
             <?php  foreach($event_name as $eventname) {    ?>                
-                <li class="addbtnn"> <input style="margin-top: -2px;margin-left: 10px;" type="checkbox" class="case" name='checkbox[]' value="<?= $eventname['permit_name'] ?>" ><?php echo " ".$eventname['permit_name']; ?></li>
+                
+              <li class="col-sm-12 addbtnn">                    
+                  <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " ".$eventname['permit_name']; ?></span>
+                  <input type="button" id="disabledevent" name="<?=$eventname['permit_name']?>" class="minusbtn col-sm-6 col-xs-offset-2" >
+                   
+                </li>
+              
+                
             <?php       }          ?>                    
           </ul>                  
            </form>
@@ -61,8 +69,7 @@
         <label for="title">Title</label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_edit_event">
         <span class="err"></span>
         <label for="member_name">Name</label>
-        <select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">
-            <option value="">Name</option>
+        <select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">            
             <?php
             foreach ($uname as $result) {
                 ?>
@@ -87,12 +94,11 @@
              </tr>
              <tr>
                  <td>
-                     <label for="member_name">Name</label><select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name">
-                         <option value="" disabled selected>Name</option>
+                     <label for="member_name">Name</label><select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name">                         
                             <?php
                             foreach ($uname as $result) {                     
                                 ?>
-                                <option name="<?= $result->member_id ?>"><?php echo $result->member_login_name; ?></option>
+                                <option name="<?= $result->member_id ?>" ><?php echo $result->member_login_name; ?></option>
                                 <?php
                             }
                             ?>

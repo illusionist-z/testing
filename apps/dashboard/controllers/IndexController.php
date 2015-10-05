@@ -44,8 +44,8 @@ class IndexController extends ControllerBase {
     public function adminAction() { 
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
-    $noti=$Admin->GetAdminNoti($id);
-    $this->view->setVar("noti",$noti);
+    //$noti=$Admin->GetAdminNoti($id);
+    //$this->view->setVar("noti",$noti);
     //get last create member
     $CMember = new Db\CoreMember();
     $GetName = $CMember::getinstance()->getlastname();
