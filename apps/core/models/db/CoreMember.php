@@ -110,14 +110,14 @@ class CoreMember extends \Library\Core\BaseModel {
          $user=$this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user1=$user->fetchall();
        $today =date("Y-m-d H:i:s");
-       if($user1['0']['updated_dt']=='0000-00-00 00:00:00'){
+       if($user1['0']['working_year_by_year']==NULL){
           $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['created_dt']))); 
        }
        else{
-            $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['updated_dt']))); 
+            $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year']))); 
        }
        if($end_date<=$today){
-         $this->db->query("UPDATE core_member set core_member.updated_dt='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+         $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
        }
     }
    

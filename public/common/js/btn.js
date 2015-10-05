@@ -7,7 +7,8 @@ var Content = {
     View: function (url) {
         
         if (url == 'checkin') {
-            var note = document.getElementById('note').value;            
+            var note = document.getElementById('note').value;     
+           
                 $.ajax({
                     url: url + "?note=" + note,
                     type: 'GET',
