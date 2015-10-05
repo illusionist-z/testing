@@ -265,15 +265,17 @@ var Attendance = {
                             + "<td>" + checkin_place + "</td>"
                             + "</tr>";
                     $("tbody").html(output);
-                    
                 }
+                 
+                Attendance.init();
+
                // alert(output);
                 //$('tbody').html("");
                 
                 //$('tbody').html("");
 
                 //paginatior function    
-                 Attendance.init();
+                 //Attendance.init();
               
                
             },
