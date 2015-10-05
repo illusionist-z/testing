@@ -24,8 +24,38 @@ var Attendance = {
                 dataType : 'json',
                 success : function(d){                    
                     $('#edit_att_time').empty();
+                       
+                    n = new Date();
+                    offset = n.getTimezoneOffset();
+                    if (offset<0){
+                    sign='-';
+                    value=offset*(-1);
+                    }
+                    else{
+                    value=offset*(-1);
+                    sign='+';
+                    } 
+
+                    checkin = d['checkin_time'].split(" ");
+                    b = checkin[1];
+                    ds=b.split(":");
+                    total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
+                    if (sign==='-'){
+                    time_diff=total +(value*60);}
+                    else{
+                    time_diff=total-(value*60);
+                    }
+                    hours   = Math.floor(time_diff / 3600);
+                    minutes = Math.floor((time_diff - (hours * 3600)) / 60);
+                    seconds = time_diff - (hours * 3600) - (minutes * 60);
+
+                    if (hours   < 10) {hours   = "0"+hours;}
+                    if (minutes < 10) {minutes = "0"+minutes;}
+                    if (seconds < 10) {seconds = "0"+seconds;}
+                    localcheckin   = checkin[0] +' '+hours+':'+minutes+':'+seconds;
+                    
                        var dia_div = '<form id="edit_attendance"><div class="row">'
-                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" name="time" value="'+d['checkin_time'] +'"></div></div>'
+                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" id="time" name="time" value="'+localcheckin +'"></div></div>'
                                     +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_id']+'"></div></div>'               
                                    +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
                                    +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
@@ -61,15 +91,20 @@ var Attendance = {
             });            
         },
         time_edit_btn : function(id) {
-           var form = $('#edit_attendance');
-                        $.ajax({
-                            url : "editTime/"+id,
-                            data : form.serialize(),
-                            type : "POST",
-                            success : function () {
-                                $('body').load('todaylist');
-                            }
-                        });
+           //alert(id);
+           localtime=document.getElementById('time').value;
+           //var form = $('#edit_attendance');
+           window.location.href=baseUri+'attendancelist/index/editTime/'+id+'/'+localtime;
+           
+//                        $.ajax({
+//                            url : "editTime/"+id+"/"+localtime,
+//                            //data : localtime,
+//                            type : "GET",
+//                            success : function () {
+//                                //alert(form.serialize());
+//                                //$('body').load('todaylist');
+//                            }
+//                        });
         },
           autolist: function (){                       
         //var name = document.getElementById('namelist').value;
