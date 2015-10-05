@@ -89,8 +89,12 @@
             $start=strtotime($office_start_time);
             $end=strtotime($time);
             $late=$end-$start;
-        
+        if($result->attendances->notes!=''){
+            echo "<font color='red'>". gmdate("H:i:s",$late)."(".$result->attendances->notes." )</font>";
+        }
+        else{
             echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
+        }
             
         }
         ?></td>
