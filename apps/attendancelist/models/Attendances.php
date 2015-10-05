@@ -1,7 +1,7 @@
 <?php
 
 namespace workManagiment\Attendancelist\Models;
-
+use DateTime;
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
@@ -50,7 +50,7 @@ class Attendances extends Model {
                          ->columns(array('core.*', 'attendances.*'))
                          ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                          ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
-                         ->where('core.full_name = :name:', array('name' => $name))
+                         ->where('core.member_login_name = :name:', array('name' => $name))
                          ->andWhere('attendances.att_date = :today:', array('today' => $today))
                          ->getQuery()
                          ->execute();          
@@ -134,7 +134,7 @@ class Attendances extends Model {
                 //print_r($start);
                 //print_r($end);exit;
                    /* foreach($row as $rows) {
-                              echo $rows->core->member_login_name;
+                          echo $rows->core->member_login_name;
                           echo $rows->attendances->att_date;
                     }
                     exit;*/
@@ -217,21 +217,45 @@ class Attendances extends Model {
     }
     
     public function GetAbsentList(){
-        
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0";    
+        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0";
         $list=$this->db->query($query);
          $absentlist=$list->fetchall();
-         return $absentlist;        
+         return $absentlist;
     }
     public function getAttTime($id) {
-        $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where attendances.id ='".$id."' ";
+        $query = "Select * from attendances where id ='".$id."'";
         $data = $this->db->query($query);
         $result = $data->fetchall();
         return $result;
     }
-    public function editAtt($data,$id) {
-        $query = "update attendances set checkin_time='".$data['time']."' where id='".$id."'";
+    public function editAtt($data,$id,$offset) {
+        //print_r($data);exit;
+        
+        $localtime=$this->LocalToUTC($data,$offset);
+        //echo $localtime;
+        $query = "update attendances set checkin_time='".$localtime."' where id='".$id."'";
         $this->db->query($query);
+    }
+    
+    public function LocalToUTC($data,$offset){
+        
+        if ($offset<0){
+           //$sign='-';
+           $value=$offset;
+           $localtime = date("Y-m-d H:i:s",strtotime($value." minutes",strtotime($data)));
+           
+        }
+        else{
+           $value=$offset;
+           $localtime = date("Y-m-d H:i:s",strtotime($value." minutes",strtotime($data)));
+           //$sign='+';
+//           $localtime = new DateTime($data);
+//           $localtime->add(new DateInterval('PT' . $value . 'M'));
+//           $localtime=$localtime->format('y-m-d H:i:s');echo '+';
+           
+        } 
+        return $localtime;
+        
     }
     
      public function search_attlist($year,$month,$username) {

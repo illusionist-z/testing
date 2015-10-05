@@ -81,7 +81,7 @@ class Attendances extends Model {
             
      
       /**
-     * @author david
+     * @author David JP <david.gnext@gmail.com>
      * @return array {leave name}
      * @return array {no leave name}
      */
@@ -115,7 +115,7 @@ class Attendances extends Model {
         $data = $query->fetchall();
         $result['att'] = $data[0]['att'];
         //today leave list
-        $query1 = "select count(*) as allmember from core_member where deleted_flag=0";
+        $query1 = "select count(*) as allmember from core_member";
         $query1 =  $this->db->query($query1);
         $data1 = $query1->fetchall();
         $allmember = $data1[0]['allmember'];

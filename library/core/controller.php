@@ -19,13 +19,13 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * 
      * @var type 
      */
-    public $lang;
+    public $lang;    
     public $_isJsonResponse = FALSE;
 
     /**
      * initialize controller
      */
-    public function initialize() {
+    public function initialize() {        
         $this->view->baseUri = $this->url->getBaseUri();        
     }
 
@@ -45,34 +45,30 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * 
      * @param \Phalcon\Mvc\Dispatcher $dispatcher
      */
-    public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
-        // set module        
-        if($this->session->get('language')) {
+    public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {        // set module          
+        if($this->session->has('language')){
             $this->lang = $this->session->get('language');
-        } else {
-            $this->lang = $this->request->getBestLanguage();
+        }
+        else{
+            $this->lang =  "en";
         }
         $this->moduleName = $dispatcher->getModuleName();
     }
  
     /**
      * 
-     * @param type $prefix
+     *
      * @return \Phalcon\Translate\Adapter\NativeArray
      */
-    protected function _getTranslation($prefix = '') {
+    protected function _getTranslation() {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/{$this->moduleName}/messages";
-        if ('' !== $prefix) {
-            $prefix .= '-';
-        }
-
-        // 
-        if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
-            require $langDir . '/' . $prefix . $this->lang . '.php';
+        
+        if (file_exists($langDir . '/' . $this->lang . '.php')) {
+            require $langDir . '/' . $this->lang . '.php';
         } else {
             // fallback to some default
-            require $langDir . '/' . $prefix . "ja.php";
+            require $langDir . '/' ."ja.php";
         }
         
         //Return a translation object
@@ -126,19 +122,19 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
 
     // After route executed event
     public function afterExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
-        
+     
     }
 
     private function _getCoreTranslation() {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/core/messages";
 
-        $prefix = 'apps-';
-        if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
-            require $langDir . '/' . $prefix . $this->lang . '.php';
+        
+        if (file_exists($langDir . '/'. $this->lang . '.php')) {
+            require $langDir . '/'  . $this->lang . '.php';
         } else {
             // fallback to some default
-            require $langDir . '/' . $prefix . "ja.php";
+            require $langDir . '/' ."ja.php";
         }
         
         //Return a translation object

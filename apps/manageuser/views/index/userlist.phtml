@@ -32,9 +32,8 @@
                                  <input class="userauto" name="username" id="username" placeholder="Search User Name">
 
             <input type="submit" onclick="return false;" class="buttonn" value="Search" id="userlistsearch">
-<!--            <input style="color:black;height:30px;" class="addimg" type="button" class="inimg" class="buttonn" id="addinguser" onclick="return false;" value=" Add User">-->
-<!--            <a href="#" style="color:black;" class="addimg" onclick="return false;" class="button displaypopup"  id="addinguser">Add User</a>-->
-             <a href="#" onclick="return false;" style="float:right;"  class="button displaypopup" id="addinguser">Add User</a>
+            <input style="color:black;height:30px;" class="addimg" type="button" class="inimg" class="buttonn" id="addinguser" onclick="return false;" value=" Add User">
+            <!--<a href="" style="color:black;" class="inimg" onclick="return false;" class="buttonn" id="addinguser">Add User</a>-->
         </form>
 
     </div>
@@ -69,7 +68,7 @@
                         <td><?= $filter->sanitize($result->member_mail, "email"); ?></td>
                         <td><?= $filter->sanitize($result->member_mobile_tel, "int"); ?></td>
                         <td><?= $filter->sanitize($result->member_address, "string"); ?>
-                        <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="inedit displaypopup" id="<?=$result->member_login_name; ?>"></a>
+                        <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="button displaypopup" id="<?=$result->member_login_name; ?>">Edit</a>
                         </td>
                     </tr>
                    <?php
@@ -80,7 +79,7 @@
                 <tfoot style="display:none;"></tfoot>                    
             </table>
     </div>
-</section>   
+</section>
 <div id="content"></div>
 <div id="edituser" class="navbar">    
 </div>	

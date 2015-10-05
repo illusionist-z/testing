@@ -36,11 +36,8 @@ if ($offset < 0) {
                     <?php
                 }
                 ?>
-
-
             </select>-->
-                        <input class="tags" name="namelist"  id="namelist" placeholder="Search User Name">
-
+            <input class="tags" name="namelist"  id="namelist" placeholder="Search User Name">
             <input type="submit" class="buttonn" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
@@ -49,7 +46,7 @@ if ($offset < 0) {
 
     <div class="row">
         <div class="col-md-12"><!--start table content--->
-            <?php $this->flashSession->output() ?>
+            <?php $this->flashSession->output()?>
             <table class="listtbl">
                 <thead>
                     <tr>
@@ -62,7 +59,6 @@ if ($offset < 0) {
                         <th width="150px">Working Time</th>
                         <th width="150px">OverTime</th>
                         <th width="150px">Location</th>
-                       
                     </tr>
                 </thead>
                 <tbody>
@@ -77,7 +73,7 @@ if ($offset < 0) {
                         $date = date('Y-m-d');
                         echo $date;
                          ?></td>
-                            <td><?php echo $filter->sanitize($result->core->full_name, "string");  ?></td>
+                            <td><?php echo $filter->sanitize($result->core->member_login_name, "string");  ?></td>
                             <td>
                             <?php
                             $checkintime = $result->attendances->checkin_time;
@@ -102,8 +98,14 @@ if ($offset < 0) {
                                     $start = strtotime($office_start_time);
                                     $end = strtotime($time);
                                     $late = $end - $start;
+                                    if($result->attendances->notes!=''){
+                                      echo "<font color='red'>". gmdate("H:i:s",$late)."(".$result->attendances->notes." )</font>";
 
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . "</font>";
+                                    }
+                                    else{
+                                        echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
+
+                                    }
                                 }
                                 else{
                                     echo "-";
@@ -120,7 +122,7 @@ if ($offset < 0) {
                                         $time = new DateTime($checkouttime);
                                         $time->add(new DateInterval('PT' . $value . 'M'));
                                         echo $time->format('H:i:s A');
-                                    } else {
+                                    }else {
                                         $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkouttime)));
                                         echo $datetime_from;
                                     }
@@ -156,7 +158,7 @@ if ($offset < 0) {
                             </td>
                             <td class="row">
                                 <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
-                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>
+                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="button displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal">Edit</a></div>
                             </td>
                 </tr>
                 <?php

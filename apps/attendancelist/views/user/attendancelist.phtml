@@ -5,20 +5,15 @@
 
 <?php
     use Phalcon\Filter;
-    //calculate the user time offset
-   
+    //calculate the user localtime offset
     if ($offset<0){
     $sign='-';
     $value=$offset*(-1);
-    
-  
   }
     else{
     $value=$offset*(-1);
     $sign='+';
 } 
-
-
 ?> 
 <section class="content-header" style="height:auto;">
           <h1>
@@ -35,24 +30,8 @@
         <div class="buttons">
             <?php  if(isset($timezone)){?><p  onmouseover="aa" style="font-size: 17px">Current Timezone : <font color='red'><?php echo $timezone;?></font></p><?php }?>
             <form id="frm_search" onsubmit="return false;">
-<!--             <select class="select" data-toggle="select" name="month" id="month">
-            <option value="">Month</option>
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">Augusts</option>
-            <option value="09">September</option>
-            <option value="10">Octobers</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>-->
             <input type="text" name="year" id="startdate" class="datepicker"  placeholder="Start Date" style="margin-top: 10px;height:28px; width: 100px;">          
             <input type="text" name="month" id="enddate"  class="datepicker"   placeholder="End Date" style="margin-top: 10px;height:28px; width: 100px;">
-            
             <input type="submit" class="buttonn" value="Search" id="search">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'),'attendance_list.csv']);">Export</a>
@@ -87,11 +66,13 @@
 <!--        check in time-->
 	<td><?php $checkintime=$result->attendances->checkin_time;
         if ($sign=='-'){
+            //add utc offset to local time
             $cintime = new DateTime($checkintime);
         $cintime->add(new DateInterval('PT' . $value . 'M'));
         echo $cintime->format('H:i:s A');
         }
         else{
+            //minus utc time to local time
          $cintime = date("H:i:s A",strtotime($value." minutes",strtotime($checkintime)));
             echo $cintime;
         }
@@ -108,8 +89,12 @@
             $start=strtotime($office_start_time);
             $end=strtotime($time);
             $late=$end-$start;
-        
+        if($result->attendances->notes!=''){
+            echo "<font color='red'>". gmdate("H:i:s",$late)."(".$result->attendances->notes." )</font>";
+        }
+        else{
             echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
+        }
             
         }
         ?></td>

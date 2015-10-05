@@ -189,6 +189,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw
      */
     public function GetAdminNoti($id) { 
+        $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql="SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' ";
         $AdminNoti = $this->db->query($sql);
