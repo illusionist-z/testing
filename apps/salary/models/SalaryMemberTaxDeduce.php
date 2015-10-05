@@ -14,7 +14,7 @@ class SalaryMemberTaxDeduce extends Model {
     
     public function getdeduceBymember_id($member_id){
         try{
-            $data=$this->db->query("SELECT deduce_id from core_member_tax_deduce where member_id='".$member_id."'");
+            $data=$this->db->query("SELECT deduce_id from salary_member_tax_deduce where member_id='".$member_id."'");
             $result=$data->fetchall();
         } catch (Exception $ex) {
             echo $ex;
@@ -33,13 +33,13 @@ class SalaryMemberTaxDeduce extends Model {
             $count=  $this->getdeduceBymember_id($member_id);
             $creartor_id="admin";
             if(!empty($count)){
-                $delete="DELETE FROM core_member_tax_deduce WHERE member_id='".$member_id."'";
+                $delete="DELETE FROM salary_member_tax_deduce WHERE member_id='".$member_id."'";
                 $query=  $this->db->query($delete);
                 for($i=0;$i<count($deduce);$i++){
                    
                     try {
                         
-                $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id ."','".$creartor_id. "',NOW())";
+                $sql = "INSERT INTO salary_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id ."','".$creartor_id. "',NOW())";
                 //echo "Tax ".$sql;exit;
                 $result = $this->db->query($sql);
                         
@@ -52,7 +52,7 @@ class SalaryMemberTaxDeduce extends Model {
             }
             else{
                 for($i=0;$i<count($deduce);$i++){
-                $sql = "INSERT INTO core_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id ."','".$creartor_id. "',NOW())";
+                $sql = "INSERT INTO salary_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id ."','".$creartor_id. "',NOW())";
                 echo "Tax ".$sql;exit;
                 $result = $this->db->query($sql);
                 }

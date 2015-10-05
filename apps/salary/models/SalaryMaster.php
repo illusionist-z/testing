@@ -537,7 +537,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         //echo $member_id.'<br><br>';
         try {
 
-            $sql = "select SUM(amount) Totalamount, TD.*,CMT.member_id from salary_taxs_deduction as TD join core_member_tax_deduce as CMT on TD.deduce_id=CMT.deduce_id where CMT.deduce_id in (select deduce_id from core_member_tax_deduce CMTD where CMTD.member_id='" . $member_id . "')and CMT.member_id='" . $member_id . "'";
+            $sql = "select SUM(amount) Totalamount, TD.*,CMT.member_id from salary_taxs_deduction as TD join salary_member_tax_deduce as CMT on TD.deduce_id=CMT.deduce_id where CMT.deduce_id in (select deduce_id from salary_member_tax_deduce CMTD where CMTD.member_id='" . $member_id . "')and CMT.member_id='" . $member_id . "'";
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetchall();

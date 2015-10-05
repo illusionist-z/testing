@@ -289,8 +289,9 @@ class IndexController extends ControllerBase {
      */
     public function salarysettingAction() {
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
-         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+        $Admin=new Db\CoreMember;
+        $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $Tax = new SalaryTaxs();
         $list = $Tax->gettaxlist();
