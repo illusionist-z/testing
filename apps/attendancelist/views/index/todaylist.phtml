@@ -26,7 +26,7 @@ if ($offset < 0) {
 <section class="content">  
     <div class="buttons">
         <form onsubmit="return false;" method="post">
-            <select class="select" data-toggle="select" name="namelist" id="namelist">
+<!--            <select class="select" data-toggle="select" name="namelist" id="namelist">
                 <option value="">Name</option>
     <?php
     foreach ($uname as $result) {
@@ -36,9 +36,8 @@ if ($offset < 0) {
                     <?php
                 }
                 ?>
-
-
-            </select>
+            </select>-->
+            <input class="tags" name="namelist"  id="namelist" placeholder="Search User Name">
             <input type="submit" class="buttonn" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
@@ -47,7 +46,7 @@ if ($offset < 0) {
 
     <div class="row">
         <div class="col-md-12"><!--start table content--->
-            <?php $this->flashSession->output() ?>
+            <?php $this->flashSession->output()?>
             <table class="listtbl">
                 <thead>
                     <tr>
@@ -117,7 +116,7 @@ if ($offset < 0) {
                                         $time = new DateTime($checkouttime);
                                         $time->add(new DateInterval('PT' . $value . 'M'));
                                         echo $time->format('H:i:s A');
-                                    } else {
+                                    }else {
                                         $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkouttime)));
                                         echo $datetime_from;
                                     }

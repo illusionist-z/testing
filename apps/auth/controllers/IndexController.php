@@ -25,6 +25,9 @@ class IndexController extends ControllerBase
         $this->view->pick('index/index');
     }
     
-
+    public function forgotpasswordAction(){
+        echo "aaa";
+    
+    }
 }
 

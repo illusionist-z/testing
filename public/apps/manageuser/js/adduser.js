@@ -7,7 +7,7 @@
    
    UserAdd = {
      Submit : function (){
-      
+      //alert(new FormData($("#saveuser")[0]));
         $.ajax({
             type:'POST',
             url :'../coremember/saveuser',

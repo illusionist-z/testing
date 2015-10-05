@@ -25,7 +25,7 @@ class IndexController extends ControllerBase
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];        
        if($this->session->permission_code=="ADMIN"){
-            $noti=$User->GetAdminNoti();
+    $noti=$User->GetAdminNoti($id);
        }
        else{                      
         $noti=$User->GetUserNoti($id);     

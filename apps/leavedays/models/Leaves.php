@@ -7,11 +7,11 @@ use workManagiment\Leavedays\Models\LeavesSetting;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Date;
-            use Phalcon\Mvc\Model;
-        use Phalcon\Mvc\Model\Query;
-        use workManagiment\Core\Models\Db\CoreMember;
-        use Phalcon\Mvc\Controller;
-        use Phalcon\Filter;
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Query;
+use workManagiment\Core\Models\Db\CoreMember;
+use Phalcon\Mvc\Controller;
+use Phalcon\Filter;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,12 +19,10 @@ use Phalcon\Validation\Validator\Date;
  */
 
 class Leaves extends \Library\Core\BaseModel {
-
     public function initialize() {
         parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
-
     /**
      * 
      * @param type $leave_type
@@ -33,27 +31,16 @@ class Leaves extends \Library\Core\BaseModel {
      * @return type
      */
     public function getleavelist() {
-        //select leave list             
-       /* $sql = "SELECT * FROM leaves JOIN core_member ON leaves.member_id=core_member.member_id";
-        $result = $this->db->query($sql);
-        $row = $result->fetchall();
-        return $row;*/
-        
         $row =   $this->modelsManager->createBuilder()
                       ->columns(array('core.*', 'leaves.*'))
                       ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                      ->join('workManagiment\Leavedays\Models\Leaves','core.member_id = leaves.member_id','leaves')  
+                      ->join('workManagiment\Leavedays\Models\Leaves',
+                              'core.member_id = leaves.member_id','leaves')  
                       ->Where('core.deleted_flag = 0')
                       ->orderBy('leaves.date DESC')
                       ->getQuery()
                       ->execute();          
-                //print_r($row);exit;
-                  /*foreach($row as $rows) {
-                          echo $rows->core->member_login_name;                         
-                    }
-                    exit;*/
         return $row;
-  
     }
 
     /**
@@ -69,7 +56,13 @@ class Leaves extends \Library\Core\BaseModel {
         $ltype = $filter->sanitize($ltype, "string");
         $namelist = $filter->sanitize($namelist, "string");
         
-        $select = "SELECT date(date) as date,member_login_name,date(start_date) as start_date, date(end_date) as end_date,leave_days,leave_category,leave_description,leave_status,total_leavedays,max_leavedays FROM leaves_setting, leaves JOIN core_member ON leaves.member_id=core_member.member_id ";
+        $select = "SELECT date(date) as date,member_login_name,date(start_date)"
+                . "as start_date, date(end_date) as end_date,leave_days,"
+                . "leave_category,leave_description,leave_status,"
+                . "total_leavedays,max_leavedays FROM leaves_setting,"
+                . " leaves JOIN core_member ON "
+                . "leaves.member_id=core_member.member_id ";
+        
         $conditions = array();
 
         if ($ltype != "") {
@@ -110,7 +103,9 @@ public function applyleave($uname, $sdate, $edate, $type, $desc,$creator_id) {
     $cond = array();
     $date=$this->getcontractdata($uname);  
       
-    $ldata = $this->db->query("SELECT total_leavedays FROM leaves  WHERE leaves.member_id= '" . $uname . "' AND leaves.start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
+    $ldata = $this->db->query("SELECT total_leavedays FROM leaves  "
+            . "WHERE leaves.member_id= '" . $uname . "' AND leaves.start_date "
+            . "BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "' ORDER BY date DESC LIMIT 1 ");
     $list = $ldata->fetchall();
        
     if($list==NULL){
@@ -131,8 +126,16 @@ public function applyleave($uname, $sdate, $edate, $type, $desc,$creator_id) {
      if ($sdate >= $checkday && $edate >= $checkday) {
      //check $edate greater than $sdate
         if (strtotime($sdate) <= strtotime($edate)) {
-            $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;   //for calculate leave day             
-            $result = $this->db->query("INSERT INTO leaves (member_id,date,start_date,end_date,leave_days,leave_category,leave_description,total_leavedays,leave_status,noti_id,created_dt) VALUES('" . $uname . "','" . $today . "','" . $sdate . "','" . $edate . "','" . $leave_day . "','" . $type . "','" . $desc . "','" . $lastdata . "',0,'" . $noti_id . "',now())");
+             //for calculate leave day
+            $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;               
+            $result = $this->db->query("INSERT INTO leaves (member_id,date,"
+                    . "start_date,end_date,leave_days,leave_category,"
+                    . "leave_description,total_leavedays,leave_status,"
+                    . "noti_id,created_dt) VALUES('" . $uname . "',"
+                    . "'" . $today . "','" . $sdate . "',"
+                    . "'" . $edate . "','" . $leave_day . "',"
+                    . "'" . $type . "','" . $desc . "',"
+                    . "'" . $lastdata . "',0,'" . $noti_id . "',now())");
             $cond['success']="Your Leave Applied Successfully!";
         } else {
             $cond['error']="End date must be greater than Start date";
@@ -141,8 +144,12 @@ public function applyleave($uname, $sdate, $edate, $type, $desc,$creator_id) {
         $cond['error']="Apply Leave Before a week ";                 
      }                
     }
-    $result = $this->db->query("INSERT INTO notification (noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
-    $this->db->query("INSERT INTO notification_rel_member (member_id,noti_id,status,module_name) VALUES('" . $uname . "','" . $noti_id . "',0,'leaves')");
+    $result = $this->db->query("INSERT INTO core_notification (noti_creator_id,"
+            . "module_name,noti_id,noti_status) "
+            . "VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
+    $this->db->query("INSERT INTO core_notification_rel_member "
+            . "(member_id,noti_id,status,module_name) "
+            . "VALUES('" . $uname . "','" . $noti_id . "',0,'leaves')");
 
     return $cond;
 }
@@ -176,15 +183,18 @@ public  function GetDays($StartDate, $EndDate){
      * @author Su Zin Kyaw
      */
     public function getcontractdata($id){
-        $credt = $this->db->query("SELECT created_dt,updated_dt FROM core_member WHERE core_member.member_id= '" . $id . "'");
+        $credt = $this->db->query("SELECT created_dt,updated_dt "
+                . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchall();
         if( $created_date['0']['updated_dt']=='0000-00-00 00:00:00'){
              $date['startDate']=$created_date['0']['created_dt'];
-             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['created_dt'])));
+             $date['endDate'] = date('Y-m-d', strtotime("+1 year",
+                     strtotime($created_date['0']['created_dt'])));
         }
         else{
              $date['startDate']=$created_date['0']['updated_dt'];
-            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
+            $date['endDate']=date('Y-m-d', strtotime("+1 year",
+                    strtotime($created_date['0']['updated_dt'])));
         }
         
         return $date;
@@ -208,11 +218,23 @@ public  function GetDays($StartDate, $EndDate){
         $this->db = $this->getDI()->getShared("db");
         if ($leave_type == null and $mth == null) {
             $mth = date('m');
-            $row ="select date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays from core_member left join leaves on core_member.member_id = leaves.member_id where month(leaves.start_date)='".$mth."' AND leaves.member_id ='".$id."' order by date desc ";          
+            $row ="select date,start_date,member_login_name,"
+                    . "end_date,leave_category,leave_status,leave_days,"
+                    . "leave_description,total_leavedays from core_member"
+                    . " left join leaves on "
+                    . "core_member.member_id = leaves.member_id"
+                    . " where month(leaves.start_date)='".$mth."' "
+                    . "AND leaves.member_id ='".$id."' order by date desc ";          
            
         } else {
             //for searching by leave type and month           
-            $row ="select date,start_date,member_login_name,end_date,leave_category,leave_status,leave_days,leave_description,total_leavedays from core_member left join leaves on core_member.member_id = leaves.member_id where ".$this->setCondition2($mth, $leave_type)."  AND leaves.member_id ='".$id."'";                               
+            $row ="select date,start_date,member_login_name,end_date,"
+                    . "leave_category,leave_status,leave_days,"
+                    . "leave_description,total_leavedays "
+                    . "from core_member left join leaves on "
+                    . "core_member.member_id = leaves.member_id "
+                    . "where ".$this->setCondition2($mth, $leave_type)."  "
+                    . "AND leaves.member_id ='".$id."'";                               
         }
         $result = $this->db->query($row);
         $list   = $result->fetchall();               
@@ -260,10 +282,19 @@ public  function GetDays($StartDate, $EndDate){
         $date=$this->getcontractdata($id);
       
         $status=1;
-        $this->db->query("UPDATE leaves set leaves.leave_status='".$status."'  WHERE leaves.noti_id='".$noti_id."'");
-        $this->db->query("UPDATE leaves set leaves.total_leavedays=total_leavedays+'".$days."' WHERE leaves.member_id='".$id."'  AND start_date BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
-        $this->db->query("UPDATE notification set notification.noti_status=1  WHERE notification.noti_id='".$noti_id."'");
-        $this->db->query("UPDATE notification_rel_member set notification_rel_member.status=1,module_name='leaves'  WHERE notification_rel_member.noti_id='".$noti_id."'");
+        $this->db->query("UPDATE leaves set"
+                . " leaves.leave_status='".$status."' "
+                . " WHERE leaves.noti_id='".$noti_id."'");
+        $this->db->query("UPDATE leaves set "
+                . "leaves.total_leavedays=total_leavedays+'".$days."' "
+                . "WHERE leaves.member_id='".$id."'  AND start_date "
+                . "BETWEEN '" . $date['startDate'] . "' AND  '" .  $date['endDate']. "'");
+        $this->db->query("UPDATE core_notification set"
+                . " core_notification.noti_status=1  "
+                . "WHERE core_notification.noti_id='".$noti_id."'");
+        $this->db->query("UPDATE core_notification_rel_member "
+                . "set core_notification_rel_member.status=1,module_name='leaves' "
+                . " WHERE core_notification_rel_member.noti_id='".$noti_id."'");
 
         
     }
@@ -277,9 +308,14 @@ public  function GetDays($StartDate, $EndDate){
      */
     public function rejectleave($noti_id){
         $this->db = $this->getDI()->getShared("db");
-        $sql = "UPDATE leaves set leaves.leave_status=2 WHERE leaves.noti_id='".$noti_id."'";
-        $this->db->query("UPDATE notification set notification.noti_status=1  WHERE notification.noti_id='".$noti_id."'");
-        $this->db->query("UPDATE notification_rel_member set notification_rel_member.status=1,module_name='leaves'  WHERE notification_rel_member.noti_id='".$noti_id."'");
+        $sql = "UPDATE leaves set leaves.leave_status=2 "
+                . "WHERE leaves.noti_id='".$noti_id."'";
+        $this->db->query("UPDATE core_notification "
+                . "set core_notification.noti_status=1  "
+                . "WHERE core_notification.noti_id='".$noti_id."'");
+        $this->db->query("UPDATE core_notification_rel_member set "
+                . "core_notification_rel_member.status=1,module_name='leaves'"
+                . "  WHERE core_notification_rel_member.noti_id='".$noti_id."'");
 
        $this->db->query($sql);
     }

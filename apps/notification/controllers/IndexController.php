@@ -16,46 +16,26 @@ class IndexController extends ControllerBase
 
     
     public function indexAction(){
+        
     }
-    
-//    /**
-//     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
-//     * get detail of the notification
-//     */
-//    public function detailAction() {
-//    $id= $this->request->get('data');
-//    $data= (explode(",",$id));
-//    $NotiDetail=new \workManagiment\Core\Models\Db\CoreMember();
-//    $noti=$NotiDetail->getdetail($data);
-//    $this->view->disable();
-//    echo json_encode($noti);
-//    }
-    
+
     /**
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * Show All Notification in one page
      */
     public function viewallAction(){
-         $type=viewall;
+        $type=viewall;
+        $code=$this->session->permission_code;
         $Admin=new CoreMember();
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
-        $permission=$this->session->permission_code;
-        
-        if($permission=='ADMIN'){
-           $noti=$Admin->GetAdminNoti();
-        }else
-        {
+        $id = $this->session->user['member_id'];
+        if($code=="ADMIN"){
+            $noti=$Admin->GetAdminNoti($id);}
+        else{
             $id = $this->session->user['member_id'];
-             $noti=$Admin->GetUserNoti($id);
+            $noti=$Admin->GetUserNoti($id);
         }
-                $this->view->setVar("type",$type);
-
         $this->view->setVar("noti",$noti);
-        $this->view->setVar('all', $noti);
-        $this->view->setVar('permission', $permission);
-
+        $this->view->setVar("type",$type);
     }
     
     /**
@@ -64,7 +44,7 @@ class IndexController extends ControllerBase
      */
     public function update_notiAction(){
        $noti_id=$this->request->getPost('noti_id');
-       $update=new \workManagiment\Notification\Models\NotificationRelMember();
+       $update=new \workManagiment\Notification\Models\CoreNotificationRelMember();
        $update->updateNoti($noti_id);
     }
     
@@ -100,16 +80,20 @@ class IndexController extends ControllerBase
         $this->view->setVar("type",$type);
         $noti_id= $this->request->get('id');
         $module_name= $this->request->get('mname');
-        $Noti_detail=new \workManagiment\Notification\Models\Notification();
+        $Noti_detail=new \workManagiment\Notification\Models\CoreNotification();
         $Detail_result=$Noti_detail->GetNotiInfo($module_name, $noti_id);
         $this->view->setVar("module_name",$module_name);
         $this->view->setVar("result",$Detail_result);
     }
     
+    /**
+     * notification for calendar
+     * when someone add event on calendar
+     */
     public function noticalendarAction(){
         
         $id=$this->request->getPost('id');
-        $Noti=new \workManagiment\Notification\Models\Notification();
+        $Noti=new \workManagiment\Notification\Models\CoreNotification();
         if($this->session->permission_code=='ADMIN'){
         $Noti->calendarnotification($id);}
         else{

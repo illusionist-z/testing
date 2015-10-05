@@ -33,12 +33,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `noti_status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `notification`
---
 
-INSERT INTO `notification` (`noti_creator_id`, `module_name`, `noti_id`, `noti_status`) VALUES
-('admin', 'calendar', '31226', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

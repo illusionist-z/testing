@@ -25,7 +25,8 @@ class IndexController extends ControllerBase
     public function userlistAction() {
         //for paging and edit user
         $User=new Db\CoreMember;
-        $noti=$User->GetAdminNoti();
+        $id=$this->session->user['member_id'];
+        $noti=$User->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
@@ -36,7 +37,16 @@ class IndexController extends ControllerBase
        
         $this->view->setVar('username', $getname);
         $this->view->setVar('Result', $list);         
-    }    
+    } 
+     //for monthly list autocomplete
+    public function usernameautolistAction() {
+        //echo json_encode($result);
+         $UserList=new Db\CoreMember();
+        $Username = $UserList->userautolistusername(); 
+        //print_r($UserList);exit;
+        $this->view->disable();    
+        echo json_encode($Username);
+    } 
    
     /**
      * @get data for user id

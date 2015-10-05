@@ -18,9 +18,10 @@
             $('tbody').show();
     },
     search : function(){
-      var month = document.getElementById('month').value;
-    
-     window.location.href = baseUri + 'attendancelist/user/attendancelist?month='+month;
+      var startdate = document.getElementById('startdate').value;
+      var enddate = document.getElementById('enddate').value;
+      //alert(startdate);alert(enddate);
+     window.location.href = baseUri + 'attendancelist/user/attendancelist?startdate='+startdate+'&enddate='+enddate;
     }
  };
  
@@ -29,6 +30,7 @@ $(document).ready(function () {
     User.Attendance.init();
     
     $('#search').click(function () {
+        //alert("search");
          User.Attendance.search();
     });  
              

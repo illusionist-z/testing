@@ -26,7 +26,8 @@ class IndexController extends ControllerBase
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');  
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $name = $this->request->get('namelist');
         $offset= $this->session->location['offset'];                  
@@ -47,11 +48,15 @@ class IndexController extends ControllerBase
         $this->view->disable();
     }
     
-    public function editTimeAction($id) {
-        $post = $this->request->getPost();
+    public function editTimeAction($id,$localtime) {
+        
+        $offset= $this->session->location['offset'];
+        $post = $localtime;
+       
         $Att  = new \workManagiment\Attendancelist\Models\Attendances();
-        $data = $Att->editAtt($post,$id);        
-        $this->view->disable();
+         $Att->editAtt($post,$id,$offset); 
+         $this->response->redirect('attendancelist/index/todaylist');
+//        $this->view->disable();
     }
 
     /**
@@ -59,7 +64,8 @@ class IndexController extends ControllerBase
      */
     public function monthlylistAction() {
        $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $offset= $this->session->location['offset'];
         $UserList=new Db\CoreMember();
@@ -72,6 +78,24 @@ class IndexController extends ControllerBase
         $this->view->setVar("Month", $month);        
         $this->view->setVar("Getname", $UserName);                
         $this->view->offset=$offset;
-    }    
+    }  
+    
+     public function autolistAction() {
+
+         $UserList=new Db\CoreMember();
+        $Username = $UserList->autousername(); 
+        $this->view->disable();    
+        echo json_encode($Username);
+       
+    } 
+    //for monthly autocomplete 
+     public function monthautolistAction() {
+        //echo json_encode($result);
+         $UserList=new Db\CoreMember();
+        $Username = $UserList->monthautolistusername(); 
+        //print_r($UserList);exit;
+        $this->view->disable();    
+        echo json_encode($Username);
+    } 
 }
 

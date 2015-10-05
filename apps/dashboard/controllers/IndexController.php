@@ -26,23 +26,15 @@ class IndexController extends ControllerBase {
             if ($key_name == 'user_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
-                
-               
-                
                 $this->response->redirect('dashboard/index/user');
-              
             } 
             if ($key_name == 'admin_dashboard') {
                 //Go to admin dashboard
                 $this->view->disable();
-                
                 $this->response->redirect('dashboard/index/admin');
             }
         }
-        
-        
     }
-
     /**
      * show admin dashboard
      * @author david
@@ -72,9 +64,9 @@ class IndexController extends ControllerBase {
     
     /**
      * show user dashboard
+     * 
      */
     public function userAction() {
-        
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti=$User->GetUserNoti($id);
@@ -84,77 +76,64 @@ class IndexController extends ControllerBase {
         $numofleaves=$Attendances->gettotalleaves($id);
         $this->view->setVar("numatt",$numofatt);
         $this->view->setVar("numleaves",$numofleaves);
-
-
-        
     }
     /**
      * set location,latitude and longitude to session
      */
     public function location_sessionAction() {
-     
         $lat = $this->request->get('lat');
         $lng = $this->request->get('lng');
-        
         $offset = $this->request->get('offset');
-        
-      
         $this->session->set('location', array(
             'lat' => $lat,
             'lng' => $lng,
-            
             'offset' => $offset
         ));
-    
     }
     
     /**
      * Check in 
      */
      public function checkinAction() {
-         
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
-        
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
        
+        //get user location using lat and log
           if(0==$lon && 0==$lat){
                $add="-";
+               
                 }
                 else{
                 $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
                 $json = @file_get_contents($url);
                 $data=json_decode($json);
-                if( $data){
+                if( isset($data->results[5]->formatted_address)){
                 $add= $data->results[5]->formatted_address;
                 }
                 else
                 {
                    $add="-";
                 }
-                }
                 
+                }
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add);
         echo "<script>alert('".$status."');</script>";
         echo "<script type='text/javascript'>window.location.href='direct';</script>";
      }
-
     /**
      * Check out
      */
    public function checkoutAction() {
-
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckouttime($id);
         echo "<script>alert('".$status."');</script>";
         echo "<script type='text/javascript'>window.location.href='direct';</script>";
-       
-
     }
-    
+    //define user or admin
     public function directAction(){
         $name=$this->session->permission_code;
        if ( $name=='ADMIN'){
@@ -164,22 +143,16 @@ class IndexController extends ControllerBase {
         {
             $this->response->redirect('attendancelist/user/attendancelist');
         }
-        
     }
     
-    /**
-     * Get timezone using lat & lang passing from js
-     * @param type $latForGeo
-     * @param type $lngForGeo
-     * @return type
-     */
-    public function getTimezoneGeo($latForGeo, $lngForGeo) {
-        
-    $json = file_get_contents("http://api.geonames.org/timezoneJSON?lat=".$latForGeo."&lng=".$lngForGeo."&username=gnext");
-    $data = json_decode($json);
-    $tzone=$data->timezoneId;
-     
-    return $tzone;
-}
+//    public function mailAction(){
+//        $to      = 'jellyminchi@gmail.com';
+//    $subject = 'the subject';
+//    $message = 'hello';
+//    $headers = 'From: zinlay.11.mm@example.com' . "\r\n" .
+//    'Reply-To: webmaster@example.com' . "\r\n" .
+//    'X-Mailer: PHP/' . phpversion();
+//    mail($to, $subject, $message, $headers);
+//    }
     
 }

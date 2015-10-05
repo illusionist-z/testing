@@ -30,25 +30,21 @@ class UserController extends ControllerBase {
     }
 
     public function applyleaveAction() { 
-
         $User=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $creator_id=$id;
-         $noti=$User->GetUserNoti($id);
-          $this->session->set('noti', $noti);
+        $id=$User->GetAdminstratorId();
+        $creator_id=$id[0]['rel_member_id'];
+        $noti=$User->GetUserNoti($id);
+        $this->session->set('noti', $noti);
         $this->assets->addJs('apps/leavedays/js/user-applyleave.js');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
-        
         $name = $userlist::getinstance()->getusername();           
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
-        
         if ($this->request->isPost()) {
              $user = $this->_leave;
              $validate = $user->User_Validation($this->request->getPost());
-             
             if(count($validate)){
                foreach ($validate as $message){
                    $json[$message->getField()] = $message->getMessage();
@@ -56,7 +52,7 @@ class UserController extends ControllerBase {
                $json['result'] = "error";
                 echo json_encode($json);
                 $this->view->disable();
-                  }     
+            }     
             else{
             $uname =$this->session->user['member_id'];
             $sdate = $this->request->getPost('sdate');

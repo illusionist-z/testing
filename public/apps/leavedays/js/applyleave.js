@@ -11,6 +11,7 @@ var ApplyForm = {
            data : $('#apply_form').serialize(),
            success: function(d){
                cond = JSON.parse(d);
+               
                  if(cond.result === 'error')
                 { 
                  $('#apply_form_sdate').css('border','black');$('#apply_form_edate').css('border','black');

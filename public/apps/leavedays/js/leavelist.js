@@ -18,6 +18,37 @@ Leave.List = function () {
            search_list();  
 };
 
+var User = {       
+        userautolist: function (){                       
+        
+         var dict = [];
+       $.ajax({
+                url:'leaveuserautolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.userauto').autocomplete({
+              source: dict
+            });
+      
+                } 
+       }
+};
+            
+    
 $(document).ready(function(){        
     //intialize paging
     Leave.init();
@@ -26,7 +57,11 @@ $(document).ready(function(){
     
     $('#search').click(function () {        
         Leave.List();
-    });      
+    }); 
+     $('.userauto').click(function () {
+        //alert("aaa");
+        User.userautolist();
+    }); 
 });
 
  

@@ -23,6 +23,16 @@ class IndexController extends ControllerBase {
     public function indexAction() {
         
     }
+    
+     
+    public function leaveuserautolistAction() {
+        //echo json_encode($result);
+         $UserList=new Db\CoreMember();
+        $Username = $UserList->leaveuserautolistusername(); 
+        //print_r($UserList);exit;
+        $this->view->disable();    
+        echo json_encode($Username);
+    } 
     /**
      * @author David
      * @type   $id,$sdate,$edate,$type,$desc
@@ -30,7 +40,8 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {    
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $leavetype = new LeaveCategories();
@@ -74,7 +85,8 @@ class IndexController extends ControllerBase {
      */
     public function leavelistAction(){    
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/search.js');
@@ -97,7 +109,8 @@ class IndexController extends ControllerBase {
     
     public function leavesettingAction(){
         $Admin=new Db\CoreMember;
-        $noti=$Admin->GetAdminNoti();
+         $id=$this->session->user['member_id'];
+    $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();

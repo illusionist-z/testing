@@ -37,6 +37,7 @@
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
                    +'<table class="row-fluid" style="font-size:13px;"><tr><td class="col-sm-8">User Name </td><td>'
                    +'<input style="margin-top:10px" type="text" name="username" id="uname" class="col-sm-10" placeholder="Write User Name"></td></tr>'
+                   +'<tr><td class="col-sm-5"> Name: </td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Write your full name"></td></tr>'
                    +'<tr><td class="col-sm-5">Password </td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
                    +'<tr><td class="col-sm-5">Confirm Password </td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
 	           +'<tr><td class="col-sm-5">Department </td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
