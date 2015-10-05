@@ -8,7 +8,7 @@ use workManagiment\Salary\Models\SalaryMaster;
 use workManagiment\Salary\Models\Allowances;
 use workManagiment\Salary\Models\SalaryTaxs;
 use workManagiment\Salary\Models\SalaryTaxsDeduction;
-use workManagiment\Salary\Models\CoreMemberTaxDeduce;
+use workManagiment\Salary\Models\SalaryMemberTaxDeduce;
 
 
 class IndexController extends ControllerBase {
@@ -155,7 +155,7 @@ class IndexController extends ControllerBase {
         $Permit_allowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $Permit_allowance->getallowanceBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_allowance']);
-        $Permit_dedution = new CoreMemberTaxDeduce();
+        $Permit_dedution = new SalaryMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_dedution']);exit;
         $Dedution = new SalaryTaxsDeduction();
@@ -187,7 +187,7 @@ class IndexController extends ControllerBase {
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
         
-        $Taxdeduce=new CoreMemberTaxDeduce();
+        $Taxdeduce=new SalaryMemberTaxDeduce();
         $Taxdeduce->edit_taxByMemberid($check_deduce,$data['member_id']);
         
         $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
