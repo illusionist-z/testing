@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<?php use Phalcon\Tag as Tag; ?>
 <html>
     <head><style>.ui-dialog-titlebar-close {
   visibility: hidden;
@@ -213,13 +213,13 @@
                                      ?>
                        <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
             </div><!-- /.content-wrapper -->
-
-            <footer class="main-footer" style="margin-left:0;">
+             <footer class="main-footer" style="margin-left:0;">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+                <div class="language">
+                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "English") ?>  | <?php echo Tag::linkTo("core/index/setLanguage/ja", "Japanese") ?>| <?php echo Tag::linkTo("core/index/setLanguage/my", "Myanmar") ?>
+                </div>
             </footer>
-
-
-        </div><!-- ./wrapper -->
+       
 <div id="notidetail" style=" display:none;" class="navbar">
     
 </div>
