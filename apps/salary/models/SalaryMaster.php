@@ -5,7 +5,7 @@ namespace workManagiment\Salary\Models;
 use Phalcon\Mvc\Model;
 //use workManagiment\Salary\Models\SalaryMaster as sa;
 use Phalcon\Mvc\Model\Query;
-use workManagiment\Salary\Models\CoreMemberTaxDeduce;
+use workManagiment\Salary\Models\SalaryMemberTaxDeduce;
 
 class SalaryMaster extends Model {
 
@@ -50,7 +50,7 @@ class SalaryMaster extends Model {
             
             for ($i = 0; $i < count($dedution); $i++) {
 
-                $sql = "INSERT INTO workManagiment\Salary\Models\CoreMemberTaxDeduce 
+                $sql = "INSERT INTO workManagiment\Salary\Models\SalaryMemberTaxDeduce 
                         (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag)
                         VALUES('" . $dedution[$i] . "','" . $member_id . "', '" 
                         . $creator_id . "',NOW(),0,'00:00:00',0)";
@@ -125,7 +125,6 @@ class SalaryMaster extends Model {
                 echo "basic salary".$value['basic_salary'].'<br>';
                 //check the user who is absent.
                 $absent=  $this->checkAbsent($value['member_id']);
-                
                 $leavesetting=  $this->getleavesetting();
                 if($absent['countAbsent']>$leavesetting['max_leavedays']){
                     if($leavesetting['fine_amount']!="")
@@ -291,8 +290,8 @@ class SalaryMaster extends Model {
                         'absent_dedution'=>$absent_deduce);
                 }
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -325,7 +324,6 @@ class SalaryMaster extends Model {
         try{
             $absent_deduce="";
             $getStartandEnd=  $this->getStartandEnd_date($member_id);
-            //print_r($getStartandEnd);exit;
             $sql = "select count(date) as countAbsent from absent where member_id='" . $member_id . "' and date>='".$getStartandEnd['startDate']."' and date<='".$getStartandEnd['endDate']."' and deleted_flag=0";
             
             $result = $this->db->query($sql);
@@ -337,11 +335,19 @@ class SalaryMaster extends Model {
         return $row;
     }
     
+    /**
+     * get start and end date after 1 year
+     * @param type $id
+     * @return type
+     */
    
      public function getStartandEnd_date($id){
-        $credt = $this->db->query("SELECT DATE(created_dt) as created_dt,DATE(updated_dt) as updated_dt FROM core_member WHERE core_member.member_id= '" . $id . "'");
+        $sql="SELECT DATE(created_dt) as created_dt,DATE(working_year_by_year) as updated_dt FROM core_member WHERE core_member.member_id= '" . $id . "'";
+        //echo $sql;
+        $credt = $this->db->query($sql);
         $created_date = $credt->fetcharray();
-        if( $created_date['updated_dt']=='NULL'){
+        //print_r($created_date);
+        if( $created_date['updated_dt']==NULL){
              $date['startDate']=$created_date['created_dt'];
              $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['created_dt'])));
         }
@@ -531,7 +537,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         //echo $member_id.'<br><br>';
         try {
 
-            $sql = "select SUM(amount) Totalamount, TD.*,CMT.member_id from taxs_deduction as TD join core_member_tax_deduce as CMT on TD.deduce_id=CMT.deduce_id where CMT.deduce_id in (select deduce_id from core_member_tax_deduce CMTD where CMTD.member_id='" . $member_id . "')and CMT.member_id='" . $member_id . "'";
+            $sql = "select SUM(amount) Totalamount, TD.*,CMT.member_id from salary_taxs_deduction as TD join core_member_tax_deduce as CMT on TD.deduce_id=CMT.deduce_id where CMT.deduce_id in (select deduce_id from core_member_tax_deduce CMTD where CMTD.member_id='" . $member_id . "')and CMT.member_id='" . $member_id . "'";
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetchall();

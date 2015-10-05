@@ -5,7 +5,7 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 
 
-class CoreMemberTaxDeduce extends Model {
+class SalaryMemberTaxDeduce extends Model {
 
     public function initialize() {
         //parent::initialize();

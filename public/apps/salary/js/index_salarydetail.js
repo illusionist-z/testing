@@ -110,13 +110,17 @@ $(document).ready(function () {
        var id= document.getElementById("member_id").value;
         Resign.Add(id);
     });
-    $('#btnEditInfo').click(function () {
+    $('.btnEditInfo').click(function () {
         //document.getElementById('txtname').disabled=false;
-        document.getElementById('btn_savedetail').disabled=false;
-        document.getElementById('txtbsalary').disabled=false;
-        document.getElementById('txtbsalary').disabled=false;
-        document.getElementById('txtovertimerate').disabled=false;
-        document.getElementById('txtallowance').disabled=false;
+//        document.getElementById('btn_savedetail').disabled=false;
+//        document.getElementById('txtbsalary').disabled=false;
+//        document.getElementById('txtbsalary').disabled=false;
+//        document.getElementById('txtovertimerate').disabled=false;
+//        document.getElementById('txtallowance').disabled=false;
+var cells = document.getElementsByClassName("txtenable"); 
+for (var i = 0; i < cells.length; i++) { 
+    cells[i].disabled = false;
+}
     });
 
     $("#btn_savedetail").click(function () {

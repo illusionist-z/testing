@@ -5,7 +5,7 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 
 
-class TaxsDeduction extends Model {
+class SalaryTaxsDeduction extends Model {
 
     public function initialize() {
        //parent::initialize();
@@ -15,7 +15,7 @@ class TaxsDeduction extends Model {
     public function getdedlist(){
         try {
             
-           $data=$this->db->query("SELECT * FROM taxs_deduction ");
+           $data=$this->db->query("SELECT * FROM salary_taxs_deduction ");
             $result=$data->fetchall();
         
         } catch (Exception $exc) {
@@ -28,7 +28,7 @@ class TaxsDeduction extends Model {
     
     public function getdectdata($id){
         try {
-            $data=$this->db->query("SELECT * FROM taxs_deduction WHERE deduce_id='".$id."' ");
+            $data=$this->db->query("SELECT * FROM salary_taxs_deduction WHERE deduce_id='".$id."' ");
             $result=$data->fetchall();
           
         } catch (Exception $exc) {
@@ -41,7 +41,7 @@ class TaxsDeduction extends Model {
     public function edit_deduction($data){
           try {
               
-         $sql = "Update taxs_deduction SET deduce_name ='".$data['deduce_name']."',amount ='".$data['amount']."'  Where taxs_deduction.deduce_id='".$data['id']."'";
+         $sql = "Update salary_taxs_deduction SET deduce_name ='".$data['deduce_name']."',amount ='".$data['amount']."'  Where taxs_deduction.deduce_id='".$data['id']."'";
          $this->db->query($sql);
           
         } catch (Exception $exc) {
@@ -54,7 +54,7 @@ class TaxsDeduction extends Model {
     public function add_deduction($data){
         try {
               
-        $this->db->query("INSERT INTO taxs_deduction (deduce_id,deduce_name,amount) VALUES (uuid(),'" . $data['deduce_name'] . "','" . $data['amount'] . "')");
+        $this->db->query("INSERT INTO salary_taxs_deduction (deduce_id,deduce_name,amount) VALUES (uuid(),'" . $data['deduce_name'] . "','" . $data['amount'] . "')");
          
         
         } catch (Exception $exc) {
@@ -66,7 +66,7 @@ class TaxsDeduction extends Model {
     public function delete_deduction($deduce_id){
          try {
               
-        $this->db->query("DELETE FROM  taxs_deduction WHERE deduce_id='".$deduce_id."'");
+        $this->db->query("DELETE FROM  salary_taxs_deduction WHERE deduce_id='".$deduce_id."'");
          
           
         } catch (Exception $exc) {

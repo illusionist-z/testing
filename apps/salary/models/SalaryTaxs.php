@@ -5,7 +5,7 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 
 
-class Taxs extends Model {
+class SalaryTaxs extends Model {
 
     public function initialize() {
         //parent::initialize();

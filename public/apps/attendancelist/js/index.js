@@ -264,7 +264,7 @@ var Attendance = {
                             + "<td>" + overtime + "</td>"
                             + "<td>" + checkin_place + "</td>"
                             + "</tr>";
-                    $("tbody").html(output);
+                    $("tbody").append(output);
                 }
                  
                 Attendance.init();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php use Phalcon\Tag as Tag; ?>
+
 <html>
     <head><style>.ui-dialog-titlebar-close {
   visibility: hidden;
@@ -14,7 +14,7 @@
         <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini" >
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -181,9 +181,6 @@
 
             <footer class="main-footer" style="margin-left:0;">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-                <div class="language">
-                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "English") ?>  | <?php echo Tag::linkTo("core/index/setLanguage/ja", "Japanese") ?>| <?php echo Tag::linkTo("core/index/setLanguage/my", "Myanmar") ?>
-                </div>
             </footer>
 
 
