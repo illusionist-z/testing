@@ -22,10 +22,17 @@ var Attendance = {
                 url : "editTimedialog/"+id,
                 type :"GET",   
                 dataType : 'json',
-                success : function(d){                    
+                success : function(d){
+                    var date = new Date(d['checkin_time']+" UTC");
+                    var h =date.getHours();
+                    var m = date.getMinutes();
+                    var s = date.getSeconds();
+                    h = checktime(h);
+                    m = checktime(m);
+                    s = checktime(s);  
                     $('#edit_att_time').empty();
                        var dia_div = '<form id="edit_attendance"><div class="row">'
-                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" name="time" value="'+d['checkin_time'] +'"></div></div>'
+                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" name="time" value="'+date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+" "+h+":"+m+":"+s+'"></div></div>'
                                     +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_id']+'"></div></div>'               
                                    +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
                                    +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
@@ -50,16 +57,17 @@ var Attendance = {
                       $("#edit_attendance_edit").click(function(e){
                           e.preventDefault();
                           Attendance.time_edit_btn(id);                        
-                        });                      
-                },
-                complete : function(){
-                     $('.datetimepicker').datetimepicker({
-                          dateFormat:"yy-mm-dd",
-                          timeFormat: "HH:mm:ss"                          
-                      });
-                }
-            });            
-        },
+                        });             
+                      $('.datetimepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                                                                                                        showTimezone :false,
+                                                                                                         maskInput : true,                                                                                                         
+                                                                                                         timeFormat: "HH:mm:ss"}).focus();                               
+                     });                       
+               }
+      });        
+},
         time_edit_btn : function(id) {
            var form = $('#edit_attendance');
                         $.ajax({
@@ -67,7 +75,7 @@ var Attendance = {
                             data : form.serialize(),
                             type : "POST",
                             success : function () {
-                                $('body').load('todaylist');
+                                //location.reload();
                             }
                         });
         },
@@ -211,7 +219,7 @@ var Attendance = {
    };
 $(document).ready(function () { 
     Attendance.init();         
-                      
+                       
     $('#namesearch').click(function () {
         Attendance.todaylist();
     });           

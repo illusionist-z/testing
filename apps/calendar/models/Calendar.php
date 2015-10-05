@@ -19,7 +19,7 @@ class Calendar extends Model {
             $events = array();                        
             if(is_array($id)){
             $member_id = implode($id,"','");
-            $sql ="SELECT * FROM calendar where member_name IN ('$member_id')";            
+            $sql ="SELECT * FROM calendar where member_name IN ('$member_id')";           
             }
             else{                
             $sql ="SELECT * FROM calendar where id IN ('$id') or member_name IN ('$id')";
@@ -90,9 +90,8 @@ class Calendar extends Model {
         return $query;
     }
     
-    public function remove_member($remove_id,$id){        
-        $remove_id = implode($remove_id,"','");                
-        $query = "update member_event_permission set delete_flag =1 where permit_name IN ('$remove_id') and member_name = '".$id."'";
+    public function remove_member($remove_id,$id){                               
+        $query = "update member_event_permission set delete_flag =1 where permit_name ='$remove_id' and member_name = '".$id."'";
         $this->db->query($query);                             
     }
    /**
@@ -101,21 +100,21 @@ class Calendar extends Model {
     * @param type $id    
     * @desc    event permit action
     */
-    public function add_permit_name($permit_name,$id) {
+    public function add_permit_name($permit_name,$id) {        
         $query = "Select * from member_event_permission where permit_name ='".$permit_name."' and member_name = '".$id."' ";
-        $result = $this->db->query($query);                
+        $result = $this->db->query($query);
         if($result->numRows() == 0){                        
-            $query1 = "Insert into member_event_permission (member_name,permit_name,delete_flag) Values ('".$id."','".$permit_name."',0)";
+            $query1 = "Insert into member_event_permission (member_name,permit_name,delete_flag) Values ('$id','".$permit_name."',0)";
             $this->db->query($query1);            
             $return  = 0;
         }
-        else{            
+        else{                        
             $query2 = "Select * from member_event_permission where permit_name ='".$permit_name."' and member_name = '".$id."' and delete_flag=1";
             $result2 = $this->db->query($query2);
                 if($result2->numRows() == 0){
                 $return = 1;
                 }
-                else{
+                else{          
                     $query3 = "update member_event_permission set delete_flag = 0 where permit_name = '".$permit_name."' and member_name = '".$id."'";
                     $this->db->query($query3);
                 $return = 0;
@@ -124,7 +123,7 @@ class Calendar extends Model {
         return $return;
     }
     public function getalluser($id){
-        $query = "Select member_name ,permit_name from member_event_permission where member_name ='".$id."' and delete_flag=0";
+        $query = "Select member_name,permit_name from member_event_permission where member_name ='".$id."' and delete_flag=0";
         $result = $this->db->query($query);
         $data = $result->fetchall();
         return $data;

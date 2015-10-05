@@ -39,8 +39,8 @@ try {
 			"password" => $config->database->password,
 			"dbname" => $config->database->dbname
 		));
-	});
-        
+	});          
+     
     /**
      * Include services
      */

@@ -108,7 +108,7 @@
         </header>
             
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar" id="sidepage" style="display:none;">
+            <aside class="main-sidebar" id="sidepage" style="display:none;height: auto;">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar" >
                     <!-- Sidebar user panel -->                   
@@ -171,12 +171,46 @@
 
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
-                <section class="content">
-                    <?php echo $this->getContent() ?>
-                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
-                    <?php $this->assets->outputJs(); ?>
-                </section>
+              <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">             
+                 <?php  
+                          $module= explode("\\",__DIR__);
+                          $module_name = $module[5];
+                          foreach ($this->session->auth as $key_name => $key_value) {                                                                                                                              
+                                            $top = explode(" ", $key_value[0]);
+                                            if(strtolower($top[0] . $top[1]) ==$module_name){
+                                           if(count($key_value) >1 ){
+                                           echo '<div class="row"><div class="col-sm-2 link">';
+                                            echo '<aside class="sidebar-menu">';
+                                            foreach ($key_value as $name => $value) {
+                                                  if ($name > 0) {
+                                                      if ($v_result = explode(" ", $value)) {
+                                                          //set to link action value
+                                                          $link_val = strtolower($v_result[0] . $v_result[1]);
+                                                          $mod = explode(" ", $key_value[0]);
+                                                      }
+                                                      if (strpos($key_name, 'user') !== false) {
+                                                          if($this->session->permission_code=="ADMIN"){
+                                                           echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $value . '</a></li>';       
+                                                          }
+                                                          else{
+                                                          echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $value . '</a></li>';
+                                                          }
+                                                      } else {
+                                                          echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $value . '</a></li>';
+                                                      }
+                                                         
+                                                  }                                             
+                                            }
+                                              echo '</aside></div><div class="col-sm-10">';
+                                         }
+                                     }
+                                 }                               
+               
+                                  echo '<section class="content">';
+                                  echo $this->getContent();
+                                  $this->assets->outputJs();
+                                 echo '</section></div></div>';
+                                     ?>
             </div><!-- /.content-wrapper -->
 
             <footer class="main-footer" style="margin-left:0;">
