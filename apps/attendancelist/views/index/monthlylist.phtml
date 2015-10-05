@@ -16,7 +16,7 @@ $length = count($Month);
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header" style="height:auto;margin-top: 40px;">
+<section class="content-header" >
     <h1>
         Monthly Attendance Lists
     </h1>
@@ -36,7 +36,7 @@ $length = count($Month);
 
           
                     <input type="text" name="month" id="month" class="datepicker"   placeholder="End Date" style="margin-top: 9px;height:25px; width: 100px;">
-            <select class="select" data-toggle="select" name="username" id="username">
+<!--            <select class="select" data-toggle="select" name="username" id="username">
                 <option value="">Name</option>
                 <?php
 //print_r($Getname);
@@ -47,7 +47,9 @@ $length = count($Month);
                             <?php
                         }
                         ?>
-            </select>
+            </select>-->
+                                                 <input class="monthauto" name="username" id="username" placeholder="Search User Name">
+
              <!-- <input class="tags" name="username" id="username" placeholder="Search User Name">          -->
             <!-- <a href="../search/search" class="button" id='btn_search'>Search</a> -->
             <input type="submit" value="Search" class="buttonn" id="sub">

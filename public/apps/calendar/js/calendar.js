@@ -111,7 +111,7 @@ var Calendar = {
     if(d.length === 0){
     var message = "<div class='message' style='top:30%;left:18%;"
     +"text-align:center;background:#3c8dbc;color:white;position:absolute;"
-    +";width:80.5%;height:10%;z-index:100;font-size:33px;margin-left:3px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
+    +";width:70%;height:10%;z-index:100;font-size:33px;margin-left:125px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
     $('body').append(message);
     setTimeout(function() {
     $('.message').remove();
@@ -137,6 +137,7 @@ var Calendar = {
              type : "POST",
              success : function(){                 
                  $('body').load('index');
+                  
              }
          });
          }
@@ -150,9 +151,10 @@ var Calendar = {
     getmemberevent : function(){                              
         $("#member_event_dialog").dialog({
             autoOpen :false,
-            height: 160,
-            width : 400,
-            title: "test",
+            height: 140,
+            width : 350,
+            resizable:false,
+            title: "Add Member",
             modal :true
         });                
       $("#member_event_dialog_close").on("click",function(){
@@ -237,6 +239,7 @@ var Calendar = {
             closeText: "",
             height: 380,
             width: 450,
+            resizable:false,
             modal: true
         });
         $ovl.dialog("open");
@@ -258,6 +261,7 @@ var Calendar = {
             closeText: "",
             height: 380,
             width: 400,
+            resizable:false,
             modal: true
         });
         $('#reset_create_event').click(function () {
@@ -338,7 +342,7 @@ var Calendar = {
         }).done(
             $('#calendar').remove(),    //remove calendar origin
             $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'),//replace a new calendar
-            Calendar.event(member),dia.dialog("close")
+            Calendar.event(member),dia.dialog("close")           
             );
     }    
 };
@@ -346,11 +350,12 @@ $(document).ready(function () {
       Calendar.init();
    //select member event btn
    $('.btn-show-event').click(function(){
+      // alert("aaaa");
       var selectedvalue = [];
       if($(':checkbox:checked').length > 0){
         $(':checkbox:checked').each(function(i){
           selectedvalue[i] = $(this).val();
-         });
+         });         
          Calendar.event(selectedvalue);
          }
       else {alert("You must check at least one");}

@@ -12,7 +12,7 @@ var pager = new Paging.Pager();   //for pagination
 var Attendance = {
         init : function (){            
             $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =3;            
+            pager.perpage =7;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
             $('tbody').show();
@@ -24,20 +24,27 @@ var Attendance = {
                 dataType : 'json',
                 success : function(d){                    
                     $('#edit_att_time').empty();
-                       var dia_div = '<form id="edit_attendance"><div class="row">'
-                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" name="time" value="'+d['checkin_time'] +'"></div></div>'
-                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_id']+'"></div></div>'               
-                                   +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
-                                   +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
-                                  +'</div></form>';
+//                       var dia_div = '<form id="edit_attendance"><div class="row">'
+//                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" name="time" value="'+d['checkin_time'] +'"></div></div>'
+//                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['full_name']+'"></div></div>'               
+//                                   +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
+//                                   +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
+//                                  +'</div></form>';
+                    var dia_div = '<form id="edit_attendance"><table>'
+                                   +'<tr><td><label for="title">Attendance Time</label></td><td><input  style="margin-top:10px;"  type="text" class="form-control datetimepicker" name="time" value="'+d['checkin_time'] +'"></td></tr>'
+                                   +'<tr><td><label for="member_name">Name</label></td><td><input disabled style="margin-top:10px;" type="text" class="form-control" name="uname" value="'+d['full_name']+'"></td></tr>'               
+                                   +'<tr><td><label for="reason">Reason Note</label></td><td><input disabled  style="margin-top:10px;" style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></td></tr>'
+                                   +'<tr><td></td><td ><input style="margin-top:10px;" type="submit" value="Edit" id="edit_attendance_edit"> <input style="margin-top:10px;" type="reset" value="Cancel" id="edit_attendance_close"></td></tr>'
+                                  +'</table></form>';
+                          
                         $('#edit_att_time').append(dia_div);
                         $dia = $('#edit_att_time');
                         $dia.css('color','black');
                         $dia.css('background','#F5F5F5');
                         $dia.dialog({
                             modal :true,
-                            height:300,
-                            width : 500,
+                            height:250,
+                            width : 470,
                             autoOpen: false,
                             title : "Edit Attendance Time"
                         });
@@ -71,13 +78,12 @@ var Attendance = {
                             }
                         });
         },
-         autolist: function (){                       
-   
-                        var dict=[];
-                            //var dict = ["Test User02","Adminstrator"];
-
-//
-         $.ajax({
+          autolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+          //  alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
                 url:'autolist',
                 method: 'GET',
                 //dataType: 'json',
@@ -100,6 +106,36 @@ var Attendance = {
             });
        // ... do whatever you need to do with icon here
    }
+    
+       },
+       monthautolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+          //  alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'monthautolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.monthauto').autocomplete({
+              source: dict
+            });
+       // ... do whatever you need to do with icon here
+   } 
        },
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;
@@ -120,13 +156,16 @@ var Attendance = {
         var month = document.getElementById('month').value;
         var username = document.getElementById('username').value;
         var year = document.getElementById('year').value;
+       
         if(month=="" && username=="" && year==""){
-            $('tbody').empty();
+             $('tbody').empty();
+           
              var output = "<tr>"
                             + "<td colspan='8'><center>No data to display</center></td>"
                            
                             + "</tr>"
-                    $("tbody").append(output); 
+                    $("tbody").append(output);
+                    Attendance.init();
         }
         else{
            
@@ -135,13 +174,18 @@ var Attendance = {
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
             success: function (d) {  
-               
+               //alert(d);exit;
+               //alert(d);
                 var json_obj = $.parseJSON(d);//parse JSON            
-               $('tbody').empty();
+               //alert(json_obj);
+               $('tbody').html("");  
+               
                $('tfoot').empty();
+              
                 for (var i in json_obj)
-                {   
+                {  
                     checkin_place = json_obj[i].location;
+                    //alert(checkin_place);
                     a = "08:00:00";
                     n = new Date();
                     offset = n.getTimezoneOffset();
@@ -216,26 +260,37 @@ var Attendance = {
                        overtime="0";
                     }
                     //Calculate Location
-                    
+                      
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
-                            + "<td>" + json_obj[i].member_login_name + "</td>"
-                            + "<td>" + localcheckin+ "</td>"
-                            + "<td>" + late + "</td>"
+                            + "<td>" + json_obj[i].full_name + "</td>"
+                            + "<td>" + localcheckin + " </td>"
+                            + "<td style='color:red'>" + late + "</td>"
                             + "<td>" + localcheckout + "</td>"
                             + "<td>" + workinghour + "</td>"
-                            + "<td>" +overtime+ "</td>"
-                            + "<td>" + checkin_place+ "</td>"
-                            + "</tr>"
-                    $("tbody").append(output); 
+                            + "<td>" + overtime + "</td>"
+                            + "<td>" + checkin_place + "</td>"
+                            + "</tr>";
+                    $("tbody").html(output);
                 }
-                //paginatior function    
+                 
                 Attendance.init();
+
+               // alert(output);
+                //$('tbody').html("");
+                
+                //$('tbody').html("");
+
+                //paginatior function    
+                 //Attendance.init();
+              
+               
             },
             error: function (d) {
                 alert('error');
-            }       
-            }); 
+            } 
+            
+            });
         }
            }
    };
@@ -249,7 +304,14 @@ $(document).ready(function () {
      $('#sub').click(function () {               
         Attendance.monthlylist();
     });
-   
+    $('.tags').click(function () {
+        //alert("aaa");
+        Attendance.autolist();
+    }); 
+    $('.monthauto').click(function () {
+        //alert("aaa");
+        Attendance.monthautolist();
+    }); 
     $('.listtbl').on("click",".displaypopup",function(e){
         e.preventDefault();
         var id = $(this).attr('id');

@@ -26,7 +26,7 @@ if ($offset < 0) {
 <section class="content">  
     <div class="buttons">
         <form onsubmit="return false;" method="post">
-            <select class="select" data-toggle="select" name="namelist" id="namelist">
+<!--            <select class="select" data-toggle="select" name="namelist" id="namelist">
                 <option value="">Name</option>
     <?php
     foreach ($uname as $result) {
@@ -38,7 +38,9 @@ if ($offset < 0) {
                 ?>
 
 
-            </select>
+            </select>-->
+                        <input class="tags" name="namelist"  id="namelist" placeholder="Search User Name">
+
             <input type="submit" class="buttonn" value="Search" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
@@ -60,6 +62,7 @@ if ($offset < 0) {
                         <th width="150px">Working Time</th>
                         <th width="150px">OverTime</th>
                         <th width="150px">Location</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -74,7 +77,7 @@ if ($offset < 0) {
                         $date = date('Y-m-d');
                         echo $date;
                          ?></td>
-                            <td><?php echo $filter->sanitize($result->core->member_login_name, "string");  ?></td>
+                            <td><?php echo $filter->sanitize($result->core->full_name, "string");  ?></td>
                             <td>
                             <?php
                             $checkintime = $result->attendances->checkin_time;
@@ -153,7 +156,7 @@ if ($offset < 0) {
                             </td>
                             <td class="row">
                                 <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
-                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="button displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal">Edit</a></div>
+                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>
                             </td>
                 </tr>
                 <?php

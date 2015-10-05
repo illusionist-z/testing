@@ -10,7 +10,7 @@
       div.tabContent { border: 1px solid #c9c3ba; padding: 0.5em; background-color: #f9f9fa; }
       div.tabContent.hide { display: none; }
     </style>
-<section class="content-header" style="height:auto;margin-top: 40px;">
+<section class="content-header" style="height:auto;">
     <h1>
         Salary Setting
     </h1>
@@ -57,7 +57,10 @@
 			  		<td id='tbl-no'><?php echo number_format($filter->sanitize($list['ssc_comp'],"int"));?></td>
 					
 					
-					<td id='tbl-no'><input type="button" class="btn btn-default taxpopup" onclick="return false;" id="<?= $list['id'] ?>" value="Edit"></td>
+<!--					<td id='tbl-no'><input type="button" class="btn btn-default taxpopup" onclick="return false;" id="<?= $list['id'] ?>" value="Edit"></td>-->
+                                         <td id='tbl-no'>
+                                                 <a href="#" onclick="return false;" style="float:right;" class="inedit taxpopup" id="<?= $list['id'] ?>"></a>
+                                         </td>
 			  	</tr>
                  <?php
                 }
@@ -80,7 +83,10 @@
 			<th>Deduction Amount</th>
 			
 			
-			<th width="50px"><input style="color:black;height: 50px;"  id="inimg" type="button" class="addbtn add" onclick="return false;" value=" Add New Deduction"></th>
+			<!--<th width="50px"><input style="color:black;height: 50px;"  id="inimg" type="button" class="addbtn add" onclick="return false;" value=" Add New Deduction"></th>-->
+                        <th > 
+                            <a href="#" onclick="return false;" style="float:right;"  class="button add" >Add New Deduction</a>
+                        </th>
 	</tr>
 	
   </thead>
@@ -95,7 +101,10 @@
 			  		
 					
 					
-					<td id='tbl-no'><input style="float:right;" type="button" class="btn btn-default dedtpopup" onclick="return false;" id="<?= $list['deduce_id'] ?>" value="Edit"></td>
+<!--					<td id='tbl-no'><input style="float:right;" type="button" class="btn btn-default dedtpopup" onclick="return false;" id="<?= $list['deduce_id'] ?>" value="Edit"></td>-->
+                                        <td id='tbl-no'>
+                                                 <a href="#" onclick="return false;" style="float:right;" class="inedit dedtpopup" id="<?= $list['deduce_id'] ?>"></a>
+                                        </td>
 			  	</tr>
                  <?php
                 }

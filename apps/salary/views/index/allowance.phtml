@@ -1,7 +1,7 @@
 <?php
     use Phalcon\Filter;
 ?>
-<section class="content-header" style="height:auto;margin-top: 40px;">
+<section class="content-header" style="height:auto;">
     <h1>
         Allowance
     </h1>
@@ -20,8 +20,8 @@
             <form id='TextBoxesGroup' action='saveallowance'>
                 <div id="TextBoxDiv1">
          
-                    Allowance Name 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' >
-                    Allowance Amount 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1'>
+                    Allowance Name 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' placeholder="Enter Allowance Name" >
+                    Allowance Amount 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1' placeholder="Enter Allowance Amount">
                      <input type='button' value='+' id='addButton'>
                     <input type='button' value='-' id='removeButton'>
                     <input type='submit' value='Add' id=''>
@@ -49,7 +49,10 @@
                         <td><?php echo $n; ?></td>
                         <td><?php echo $filter->sanitize($result['allowance_name'],"string");?></td>
                         <td><?php echo number_format($filter->sanitize($result['allowance_amount'],"int"));?></td>
-                        <td><input type="button" class="btn btn-default allpopup" onclick="return false;" id="<?= $result['allowance_id'] ?>" value="Edit"></td>
+<!--                        <td><input type="button" class="btn btn-default allpopup" onclick="return false;" id="<?= $result['allowance_id'] ?>" value="Edit"></td>-->
+                         <td>
+                               <a href="#" onclick="return false;" style="float:right;" class="inedit allpopup" id="<?= $result['allowance_id']  ?>"></a>
+                         </td>
                       </tr>
                  <?php
                 }
@@ -60,8 +63,11 @@
     </div><!-- /.row -->
 
 </section><!-- /.content -->
-<div id="edit_all_dia" class="navbar"></div>
-<div id="confirm" class="navbar"></div>
+<!--<div id="edit_all_dia" class="navbar"></div>
+<div id="confirm" class="navbar"></div>-->
+<div id="edit_all_dia"></div>
+
+
 
 <script type="text/javascript">
 
@@ -81,9 +87,9 @@
 
             newTextBoxDiv.after().html('Allowance Name ' + counter + ' :  ' +
                     ' <input style="margin-top:10px;" type="text" name="textbox' + counter +
-                    '" id="textbox' + counter + '" value="" > Allowance Amount  ' + counter + ' : ' +
+                    '" id="textbox' + counter + '" value="" placeholder="Enter Allowance Name"> Allowance Amount  ' + counter + ' : ' +
                     ' <input style="margin-top:10px;" type="text" name="txt' + counter +
-                    '" id="txt' + counter + '" value="" >');
+                    '" id="txt' + counter + '" value=""  placeholder="Enter Allowance Amount">');
 
             newTextBoxDiv.appendTo("#TextBoxesGroup");
 

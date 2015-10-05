@@ -2,7 +2,7 @@
 <?php
     use Phalcon\Tag as Tag;
 ?>
-<div id="external-events" style="height:auto;margin-top: 40px;">
+<div id="external-events" style="height:auto;">
     <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Header (Page header) -->
@@ -21,11 +21,13 @@
         
         <div class="col-md-3">
             <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">
-                   <!-- <input type='checkbox'  id='selectall'/>-->                    
-                    
-                    User Event Enable                                        
+                   <!-- <input type='checkbox'  id='selectall'/>-->                                     
+                   <input type='checkbox' onclick='checkedAll(frm1);' style="float: left;margin-top: 8px;margin-left: 4px;">
+                    User Event Enable 
+                   <span style="float: right;">
                     <input type='button' id='shapbott' name='checkall' class="addbtn">
-                    <input type="button" id="disabledevent" name="" class="minusbtn">
+                    <input type="button" id="disabledevent" name="" class="minusbtn" >
+                   </span>
                 </span>
             </h2>            
           
@@ -41,7 +43,7 @@
         <span class=" btn-primary btn col-sm-12 btn-show-event">Show Event</span>
         <div class="alert col-sm-12">Check above user to see their event</div>
         </div>
-    <div class="col-md-8">
+    <div class="cal">
         <div class="box-body no-padding">
             <!-- THE CALENDAR -->
             <div id="calendar" class="bg-info"></div>
@@ -51,7 +53,7 @@
     </div>
 </section><!-- /.content -->
 <div id="member_event_dialog" class="navbar row" style="display: none;">
-    <label for="member_event">Search Member</label><input type="text" id="member_event">
+    <label for="member_event"> Search Member</label> <input type="text" id="member_event" placeholder="Enter Member Name">
     <button class="btn btn-primary addmember" id="member_event_add" disabled>Add Member</button>
     <button class="btn btn-primary" id="member_event_dialog_close">Close</button>
 </div>
@@ -75,7 +77,7 @@
         <label for="sdate"> Start Date</label><input style="font-size: 13px;" type="text" class="box" name="sdate" id="sdate_edit_event">
         <span class="err-sdate"></span>
         <label for="edate"> End Date</label><input style="font-size: 13px;" type="text" class="box" name="edate" id="edate_edit_event"><br><br>
-        <input type="submit" value="Edit"  id="submit_edit_event"> <input type="submit" value="Delete"  id="del_event"> <input type="reset" value="Cancel" id="close_create_event">
+        <input type="submit" value="Save"  id="submit_edit_event"> <input type="submit" value="Delete"  id="del_event"> <input type="reset" value="Cancel" id="close_create_event">
     </form>
 </div>
 <!--//create dialog event-->

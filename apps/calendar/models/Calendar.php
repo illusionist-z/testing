@@ -16,7 +16,7 @@ class Calendar extends Model {
      * @desc   Select all data 
      */
     public function fetch($id) {                    
-            $events = array();                        
+            $events = array();                   
             if(is_array($id)){
             $member_id = implode($id,"','");
             $sql ="SELECT * FROM calendar where member_name IN ('$member_id')";            
