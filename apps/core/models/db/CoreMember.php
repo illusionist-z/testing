@@ -197,8 +197,7 @@ class CoreMember extends \Library\Core\BaseModel {
        //$notirel=$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=2 AND notification_rel_member.member_id!= '" . $id . "'");
        //$noti[]=$notirel->fetchall();
        //var_dump($noti);exit;
-        foreach ($noti as $noti){
-           
+        foreach ($noti as $noti){            
         $sql="SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ";
         //print_r($sql);exit;
         $result= $this->db->query($sql);
