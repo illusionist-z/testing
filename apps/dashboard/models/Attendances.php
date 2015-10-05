@@ -24,6 +24,7 @@ class Attendances extends Model {
      */
     public function setcheckintime($id, $note, $lat, $lon, $add) {
         $this->db = $this->getDI()->getShared("db");
+        
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $att = Attendances::findFirst("att_date = '$today' AND member_id='$id'");
@@ -34,9 +35,9 @@ class Attendances extends Model {
             $status = " Already Checked in ";
         } else {
             $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
-                    . "att_date,lat,lng,location) VALUES ('" . $mydate . "'"
+                    . "att_date,lat,lng,location,notes) VALUES ('" . $mydate . "'"
                     . ",'" . $id . "','" . $today . "','" . $lat . "'"
-                    . ",'" . $lon . "','" . $add . "')");
+                    . ",'" . $lon . "','" . $add . "','" . $note . "')");
             $status = " Successfully Checked In";
         }
         return $status;

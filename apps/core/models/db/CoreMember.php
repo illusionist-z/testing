@@ -110,14 +110,14 @@ class CoreMember extends \Library\Core\BaseModel {
          $user=$this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user1=$user->fetchall();
        $today =date("Y-m-d H:i:s");
-       if($user1['0']['updated_dt']=='0000-00-00 00:00:00'){
+       if($user1['0']['working_year_by_year']==NULL){
           $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['created_dt']))); 
        }
        else{
-            $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['updated_dt']))); 
+            $end_date=date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year']))); 
        }
        if($end_date<=$today){
-         $this->db->query("UPDATE core_member set core_member.updated_dt='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+         $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
        }
     }
    
@@ -190,11 +190,12 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function GetAdminNoti($id) { 
         $this->db = $this->getDI()->getShared("db");
-        $AdminNoti = $this->db->query("SELECT * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 AND notification.noti_creator_id='" . $id . "' ");
+        $sql="SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' ";
+        $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
        //$notirel=$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=2 AND notification_rel_member.member_id!= '" . $id . "'");
        //$noti[]=$notirel->fetchall();
-      //var_dump($noti);exit;
+       //var_dump($noti);exit;
         foreach ($noti as $noti){
            
         $sql="SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ";
@@ -216,8 +217,8 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function GetUserNoti($id) {
         $this->db = $this->getDI()->getShared("db");
-        $sql="SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=1 AND notification_rel_member.member_id= '" . $id . "'";
-//       print_r($sql);exit;
+        $sql="SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id . "'";
+      //print_r($sql);exit;
         $UserNoti =$this->db->query($sql);
         
         $noti = $UserNoti->fetchall();
@@ -315,8 +316,15 @@ class CoreMember extends \Library\Core\BaseModel {
     }
 
      public function NoOfNotiforAdmin(){
-      $result= $this->db->query("SELECT  * FROM notification JOIN core_member ON core_member.member_id=notification.noti_creator_id WHERE notification.noti_status=0 ");
+      $result= $this->db->query("SELECT  * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 ");
       $result=$result->fetchall();
+      return $result;
+    }
+    
+    public function GetAdminstratorId(){
+      $result= $this->db->query("SELECT rel_member_id FROM core_permission_rel_member JOIN core_member ON core_member.member_id=core_permission_rel_member.rel_member_id WHERE core_permission_rel_member.rel_permission_group_code='ADMIN' ");
+      $result=$result->fetchall();
+      
       return $result;
     }
 }

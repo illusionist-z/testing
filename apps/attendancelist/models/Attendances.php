@@ -1,7 +1,7 @@
 <?php
 
 namespace workManagiment\Attendancelist\Models;
-
+use DateTime;
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
@@ -229,9 +229,34 @@ class Attendances extends Model {
         $result = $data->fetchall();
         return $result;
     }
-    public function editAtt($data,$id) {
-        $query = "update attendances set checkin_time='".$data['time']."' where id='".$id."'";
+    public function editAtt($data,$id,$offset) {
+        //print_r($data);exit;
+        
+        $localtime=$this->LocalToUTC($data,$offset);
+        //echo $localtime;
+        $query = "update attendances set checkin_time='".$localtime."' where id='".$id."'";
         $this->db->query($query);
+    }
+    
+    public function LocalToUTC($data,$offset){
+        
+        if ($offset<0){
+           //$sign='-';
+           $value=$offset;
+           $localtime = date("Y-m-d H:i:s",strtotime($value." minutes",strtotime($data)));
+           
+        }
+        else{
+           $value=$offset;
+           $localtime = date("Y-m-d H:i:s",strtotime($value." minutes",strtotime($data)));
+           //$sign='+';
+//           $localtime = new DateTime($data);
+//           $localtime->add(new DateInterval('PT' . $value . 'M'));
+//           $localtime=$localtime->format('y-m-d H:i:s');echo '+';
+           
+        } 
+        return $localtime;
+        
     }
     
      public function search_attlist($year,$month,$username) {
