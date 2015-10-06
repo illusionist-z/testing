@@ -5,7 +5,7 @@ namespace workManagiment\Salary\Models;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 use workManagiment\Salary\Models\Allowances;
-use workManagiment\Salary\Models\CoreMemberTaxDeduce;
+
 class SalaryMasterAllowance extends Model {
 
     public function initialize() {

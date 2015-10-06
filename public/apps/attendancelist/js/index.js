@@ -22,14 +22,7 @@ var Attendance = {
                 url : "editTimedialog/"+id,
                 type :"GET",   
                 dataType : 'json',
-                success : function(d){
-                    var date = new Date(d['checkin_time']+" UTC");
-                    var h =date.getHours();
-                    var m = date.getMinutes();
-                    var s = date.getSeconds();
-                    h = checktime(h);
-                    m = checktime(m);
-                    s = checktime(s);  
+                success : function(d){                    
                     $('#edit_att_time').empty();
                        
                     n = new Date();
@@ -307,7 +300,7 @@ var Attendance = {
                             + "<td>" + overtime + "</td>"
                             + "<td>" + checkin_place + "</td>"
                             + "</tr>";
-                    $("tbody").html(output);
+                    $("tbody").append(output);
                 }
                  
                 Attendance.init();
@@ -332,7 +325,7 @@ var Attendance = {
    };
 $(document).ready(function () { 
     Attendance.init();         
-                       
+                      
     $('#namesearch').click(function () {
         Attendance.todaylist();
     });           

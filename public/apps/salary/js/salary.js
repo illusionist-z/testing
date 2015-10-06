@@ -76,7 +76,7 @@ var Salary = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 600,
+            height: 500,
             async: false,
             width: 600,
             modal: true,

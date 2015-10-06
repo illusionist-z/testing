@@ -188,8 +188,8 @@ a.export {
     padding: 6px 10px 6px 26px;
 }
 .inedit{
-    background: url("../img/images.png")  1px 10px no-repeat  ;   
-    padding: 6px 10px 6px 8px;    
+    background: url("../img/images.png")  1px 0px no-repeat  ;   
+    padding: 6px 10px 12px 8px;    
 }
 .indelete{
     background: url("../img/delete2.png")  1px 10px no-repeat  ;   
@@ -384,3 +384,6 @@ background-image: -webkit-linear-gradient(top,#FFF  10%, #3c8dbc 51%);
 		color:#FFF;
 		cursor:pointer;
 	}
+.language{
+    float: right;    
+}

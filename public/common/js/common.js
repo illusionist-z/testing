@@ -163,7 +163,7 @@ $('.sidebar-toggle').click(function (e) {
             //$('.main-footer').css("margin-left","0");
         }
     });
-          $('.datepicker').datepicker(); 
-});
+      });
+ $('.datepicker').datepicker(); 
 link_height();
 });

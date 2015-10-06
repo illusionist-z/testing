@@ -1,5 +1,6 @@
 <?php
-    use Phalcon\Filter;
+
+use Phalcon\Filter;
 ?>
 <!-- Main content -->
 <section class="content">
@@ -8,138 +9,143 @@
             <div style="width:100%;">
                 <div style="padding: 10px 10px 10px 10px">
                     <div style="float:right;">
-                    <a href="#" class="button print">Print</a>
+                        <a href="#" class="button print">Print</a>
                     </div>
                 </div>
                 <div style="clear:both;">
+
                     <?php
-//                    for ($x = 1; $x <= 3; $x++) {
-//    echo '<div class="sample">div'.$x.'</div>';
-//} 
-//                    ?>
-<!--                <div class="sample">div1</div>
-                <div clas
+                    $filter = new Filter();
+
+                    $sum = '';
+                    $deduce = '';
+                    $j = 0;
+                    //print_r($getsalarydetails);
+                    foreach ($getsalarydetails as $A) {
+                        $j++;
+                        for ($i = 0; $i < count($A); $i++) {
+                            ?>
+                            <div style="padding: 0 10px 10px 10px" class="sample"  id="printable">
+                                <h3><center>G-Next Official Salary Report</center></h3>
+
+                                <div>
+                                    <div style="width: 10%; float: left;">Name</div>
+                                    <div><?php echo $filter->sanitize($A[$i]->core->member_login_name, "string"); ?></div>
+                                </div>
+                                <div>
+                                    <div style="width: 10%; float: left;">Month</div>
+                                    <div><?php echo date("M - Y", strtotime($A[$i]->salarydet->pay_date)); ?></div>
+                                </div>
+                                <div>
+                                    <table border="1px solid gray" style="width:100%" class="detail_tbl">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2">Item</th>
+                                                <th>Amount</th>
+                                                <th width="200px"></th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <td rowspan="5" style="border-bottom-color: #ecf0f5"></td>
+                                        <td>Basic Salary</td>
+                                        <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->basic_salary, "string"));
+                    $sum+=$A[$i]->salarydet->basic_salary; ?></td>
+                                        <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Overtime Rate</td>
+                                            <td><?php echo $filter->sanitize($A[$i]->salarymast->over_time, "string");
+                    $sum+=$A[$i]->salarymast->over_time; ?>%</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Overtime Hour</td>
+                                            <td><?php echo $filter->sanitize($A[$i]->attend->overtime, "string");
+                    $sum+=$A[$i]->attend->overtime; ?>hr</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Overtime Payment</td>
+                                            <td>
+                                                <?php
+                                                if ($filter->sanitize($A[$i]->attend->overtime, "string") > 0) {
+                                                    $overtime_pay_perhr = $A[$i]->salarydet->basic_salary * $A[$i]->salarymast->over_time / 100;
+                                                    $overtime_payment = $overtime_pay_perhr * $A[$i]->attend->overtime;
+                                                    echo $overtime_payment;
+                                                    $sum+=$overtime_payment;
+                                                }
+                                                ?>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Allowance for specific duty</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Gross Salary</td>
+                                            <td><?php echo number_format($sum); ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Personal Income Tax</td>
+                                            <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->income_tax, "string"));
+                                                $deduce+=$A[$i]->salarydet->income_tax; ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">SSB Employee 2%</td>
+                                            <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->ssc_emp, "string"));
+                                                $deduce+=$A[$i]->salarydet->ssc_emp; ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Sub Total</td>
+                                            <td><?php echo number_format($deduce); ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Sub Total(Rounded up)</td>
+                                            <td>
+        <?php
+        $sub_total = $sum - $deduce;
+        echo number_format($sub_total);
+        ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Commute Fee</td>
+                                            <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->travel_fee, "string")); ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" height="50px">Grand Total</td>
+                                            <td>
+        <?php
+        $grand_total = $sub_total + $A[$i]->salarydet->travel_fee;
+        echo number_format($grand_total);
+        ?>
+                                            </td>
+                                            <td></td>                   
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <?php
+                        }
+                        if ($j == count($A)) {
+                            echo '<div class="p_break"></div>';
+                        }
+                    }
+                    ?>
+
                 </div>
-
-        </div>
-        </dis="sample">div2</div>
-                <div class="sample">div3</div>-->
-<?php 
-        
-         $filter = new Filter(); 
-         
-        $sum='';
-        $deduce='';
-        //print_r($getsalarydetails);
-        foreach($getsalarydetails as $A){
-            for($i=0;$i<count($A);$i++){
-                //echo $A[$i]['member_id'];
-                
-          
-?>
-<div style="padding: 0 10px 10px 10px" class="sample"  id="printable">
-    <h3><center>G-Next Official Salary Report</center></h3>
-<div>
-    <div style="width: 10%; float: left;">Name</div>
-    <div><?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?></div>
-</div>
-<div>
-    <div style="width: 10%; float: left;">Month</div>
-    <div><?php echo date("M - Y", strtotime( $A[$i]->salarydet->pay_date));?></div>
-</div>
-<div>
-    <table border="1px solid gray" style="width:100%" class="detail_tbl">
-                <thead>
-                    <tr>
-                        <th colspan="2">Item</th>
-                        <th>Amount</th>
-                        <th width="200px"></th>
-                        
-                    </tr>
-
-                </thead>
-                <tbody>
-                <td rowspan="5" style="border-bottom-color: #ecf0f5"></td>
-    <td>Basic Salary</td>
-    <td><?php echo $filter->sanitize($A[$i]->salarydet->basic_salary , "string"); $sum+=$A[$i]->salarydet->basic_salary;?></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Overtime Rate</td>
-    <td><?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string"); $sum+=$A[$i]->salarymast->over_time; ?>%</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Overtime Hour</td>
-    <td><?php echo $filter->sanitize($A[$i]->attend->overtime , "string"); $sum+=$A[$i]->attend->overtime; ?>hr</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Overtime Payment</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Allowance for specific duty</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-      <td colspan="2">Gross Salary</td>
-  <td><?php echo $sum; ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2">Personal Income Tax</td>
-  <td><?php echo $filter->sanitize($A[$i]->salarydet->income_tax , "string"); $deduce+=$A[$i]->salarydet->income_tax;?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2">SSB Employee 2%</td>
-  <td><?php echo $filter->sanitize($A[$i]->salarydet->ssc_emp , "string"); $deduce+=$A[$i]->salarydet->ssc_emp; ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2">Sub Total</td>
-  <td><?php echo $deduce; ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2">Sub Total(Rounded up)</td>
-  <td>
-  <?php 
-  $sub_total=$sum-$deduce;
-  echo $sub_total;
-  ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2">Commute Fee</td>
-  <td><?php echo $filter->sanitize($A[$i]->salarydet->travel_fee , "string"); ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2" height="50px">Grand Total</td>
-  <td>
-      <?php
-      $grand_total=$sub_total+$A[$i]->salarydet->travel_fee;
-      echo $grand_total;
-      ?>
-  </td>
-  <td></td>                   
-  </tr>
-</tbody>
-</table>
-    </div>
-                </div>
-<div class="p_break"></div>
-<?php
-  }
-        }
-?>
-
-</div>
-        </div>
+            </div>
         </div>
     </div>
 </section>

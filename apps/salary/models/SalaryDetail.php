@@ -339,10 +339,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $update = $salaryyr_month[0] . '-' . $salaryyr_month[1];
         $year="";
         $resign=  $this->getResigndate($member_id);
-        $resigndate=  explode("-", $resign['resign_date']);
-        $resignyear=$resigndate[1];
-        $resignmonth=$resigndate[0];
-        if($resigndate!=""){
+        if($resign['resign_date']!=0){
+            $resigndate=  explode("-", $resign['resign_date']);
+            $resignyear=$resigndate[1];
+            $resignmonth=$resigndate[0];
             $bsalaryparday=$SM['basic_salary']/28;
             $count_attdate=$this->countattdate($resign['resign_date'],$resignyear,$resignmonth,$member_id);
             
@@ -355,29 +355,37 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         if ($SM['updatemonth'] >= $budget_startmonth) {
             $year = $Salarymaster->date_difference($update, $budget_endyear);
             $newsalary = $SM['basic_salary'] * $year;
-            $aa = $this->getoldsalary($member_id, $salaryyr_month[0], $salaryyr_month[1]);
-            if ($aa['total_salary'] == "") {
+            echo "Basic Salary ".$newsalary;
+            $Totalsalary = $this->getoldsalary($member_id, $salaryyr_month[0], $salaryyr_month[1]);
+            print_r($Totalsalary);
+            if ($Totalsalary['total_salary'] == "") {
                 $salary = $newsalary;
                 echo "AA" . $salary;
             } else {
-                $salary = $newsalary + $aa['total_salary'];
+                $salary = $newsalary + $Totalsalary['total_salary'];
+                $year+=$Totalsalary['count_pay'];
+                 echo "BB" . $salary;
             }
         }
 
         if ($SM['updatemonth'] <= $budget_endmonth) {
             $year = 3;
             $newsalary = $SM['basic_salary'] * $year;
-            $aa = $this->getoldsalary($member_id, $salaryyr_month[0], $salaryyr_month[1]);
-            if ($aa['total_salary'] == "") {
+            $Totalsalary = $this->getoldsalary($member_id, $salaryyr_month[0], $salaryyr_month[1]);
+            if ($Totalsalary['total_salary'] == "") {
                 $salary = $newsalary;
             } else {
-                $salary = $newsalary + $aa['total_salary'];
+                $salary = $newsalary + $Totalsalary['total_salary'];
+                
             }
         }
         }
         $Allowanceresult = $Salarymaster->getAllowances($member_id);
+        
         if (isset($Allowanceresult['total_allowance_amount'])) {
             $allowance = $Allowanceresult['total_allowance_amount'];
+            $salary+=$allowance;
+            echo "salary with allowance is ".$salary;
         } else {
             $allowance = 0;
         }
@@ -398,7 +406,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $absent_deduce = 0;
         }
         $basic_deduction = $salary * (20 / 100);
-        
+        echo "testing ".$basic_deduction;
         //calculate ssc pay amount to deduce
         if ($SM['basic_salary'] > 300000) {
             $emp_ssc = (300000 * 12) * (2 / 100);
@@ -411,20 +419,46 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         //echo $deduce_amount[0]['member_id'].' '.$deduce_amount[0]['Totalamount'].' '.$basic_deduction.' '.$emp_ssc;echo "<br>";
         //Total deduction (deduce,20%,ssc)
         $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-        //echo "Total deduction is " . $total_deduce;
+        echo "Total deduction is " . $total_deduce;
 
         //taxable income (total_basic-total deduce)
         $income_tax = $salary - $total_deduce;
+        echo "Income Tax is ".$income_tax;
         $taxs = $Salarymaster->deducerate($income_tax, $year);
         
        
         $final_result[] = array('income_tax' => $taxs,
             'member_id' => $member_id, 'allowance_amount' => $allowance,
             'absent_dedution' => $absent_deduce,'basic_salary' => $SM['basic_salary']);
-        print_r($final_result);
-        exit;
+//        print_r($final_result);
+//        exit;
+        $this->savesalaryeditdata($final_result);
+        
     }
     
+    public function savesalaryeditdata($param) {
+        try {
+            $filter = new Filter();
+            foreach ($param as $params) {
+            $basic_salary = $filter->sanitize($param[0]['basic_salary'], "int");
+            $member_id = $filter->sanitize($param[0]['member_id'], "string");
+            $allowance_amount = $filter->sanitize($param[0]['allowance_amount'], "int");
+            $income_tax = $filter->sanitize($param[0]['income_tax'], "int");
+            $absent_deduction = $filter->sanitize($param[0]['absent_dedution'], "int");
+            $year=  date("Y");
+            $month=  date("m");
+            $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."'  WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $year . "' and MONTH(pay_date)='".$month."'";
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray(); 
+            }
+            
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+
+        return $row;
+    }
     public function getpaysalary_month($resignyear,$resignmonth,$member_id) {
         try {
             $sql = "select count(pay_date) as count_pay_date from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<'" . $resignmonth . "' and YEAR(pay_date)='".$resignyear."'";
@@ -467,7 +501,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     public function getoldsalary($member_id, $salary_update_yr, $salary_update_mth) {
         try {
 
-            $sql = "select sum('basic_salary') as total_salary from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<'" . $salary_update_mth . "' and YEAR(pay_date)<'" . $salary_update_yr . "'";
+            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<'" . $salary_update_mth . "' and YEAR(pay_date)<='" . $salary_update_yr . "'";
 
             //echo $sql.'<br>';exit;
             $result = $this->db->query($sql);

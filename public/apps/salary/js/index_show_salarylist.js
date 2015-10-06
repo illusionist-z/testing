@@ -4,19 +4,17 @@
  * @desc   Salary Edit Dial Box
  */
 $(function () {
-     $('#btn_print_salary').click(function () {
-         var month = document.getElementById('month').value;
-         var year = document.getElementById('year').value;
-         var chkbox = document.getElementsByName('chk[]');
-         var chk = [];
-         var vals = "";
+    $('#btn_print_salary').click(function () {
+    var month = document.getElementById('month').value;
+    var year = document.getElementById('year').value;
+    var chkbox = document.getElementsByName('chk[]');
+    var chk = [];
     for (var i=0, n=chkbox .length;i<n;i++) {
         if (chkbox [i].checked) 
         {
             chk.push(chkbox[i].value);
         }
     }
-    alert(chk);
          window.location.href = baseUri + 'salary/index/printsalary?chk_val='+chk+'&month='+month+'&year='+year;
 //         $.ajax({
 //             url: baseUri + 'salary/index/printsalary',
@@ -26,20 +24,26 @@ $(function () {
 //         });
      });
      //click the detail button for detail of salary
-     $('#btn_detail').click(function () {
-         var month = document.getElementById('month').value;
-         var year = document.getElementById('year').value;
-         var chkbox = document.getElementsByName('chk[]');
-         var chk = [];
-//    var vals = "";
+     $('.btn_detail').click(function () {
+     var month = document.getElementById('month').value;
+     var year = document.getElementById('year').value;
+     var chkbox = document.getElementsByName('chk[]');
+     var chk = [];
     for (var i=0, n=chkbox .length;i<n;i++) {
         if (chkbox [i].checked) 
         {
             chk.push(chkbox[i].value);
         }
+       
     }
-alert(chk); 
-         window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
+    if(chk!=""){
+        window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
+    }
+    else{
+        alert("please check aleast one!");
+        location.reload();
+    }
+         //window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
 //         $.ajax({
 //             url: baseUri + 'salary/index/salarydetail',
 //             type: 'get',
