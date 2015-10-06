@@ -3,8 +3,7 @@
 namespace workManagiment\Dashboard\Controllers;
 use workManagiment\Core\Models\Db;
 use Phalcon\Flash\Direct as FlashDirect;
-
-class IndexController extends ControllerBase {
+class IndexController extends  ControllerBase {
 
     public function initialize() {
         parent::initialize();
@@ -21,6 +20,8 @@ class IndexController extends ControllerBase {
      *Check User or Admin 
      */
     public function indexAction() {
+        //$this->aa();exit;
+        
         foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'user_dashboard') {
@@ -44,8 +45,8 @@ class IndexController extends ControllerBase {
     public function adminAction() { 
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
-    //$noti=$Admin->GetAdminNoti($id);
-    //$this->view->setVar("noti",$noti);
+    $noti=$Admin->GetAdminNoti($id);
+    $this->view->setVar("noti",$noti);
     //get last create member
     $CMember = new Db\CoreMember();
     $GetName = $CMember::getinstance()->getlastname();
@@ -95,11 +96,13 @@ class IndexController extends ControllerBase {
      * Check in 
      */
      public function checkinAction() {
+         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
-       
+        $noti_Creatorid=$User->GetAdminstratorId();
+        $creator_id=$noti_Creatorid[0]['rel_member_id'];
         //get user location using lat and log
           if(0==$lon && 0==$lat){
                $add="-";
@@ -119,7 +122,7 @@ class IndexController extends ControllerBase {
                 
                 }
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
-        $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add);
+        $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add,$creator_id);
         echo "<script>alert('".$status."');</script>";
         echo "<script type='text/javascript'>window.location.href='direct';</script>";
      }

@@ -91,9 +91,9 @@ var Attendance = {
                       $('.datetimepicker').on('click',function(e){
                           e.preventDefault();                                                    
                          $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",                                                                                           
-                                                                                                        showTimezone :false,
-                                                                                                         maskInput : true,                                                                                                         
-                                                                                                         timeFormat: "HH:mm:ss"}).focus();                               
+                            showTimezone :false,
+                            maskInput : true,                                                                                                         
+                           timeFormat: "HH:mm:ss"}).focus();                               
                      });                       
                }
       });        

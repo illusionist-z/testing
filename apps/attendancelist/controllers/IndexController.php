@@ -1,6 +1,5 @@
 <?php
 namespace workManagiment\Attendancelist\Controllers;
-
 use workManagiment\Core\Models\Db;
 class IndexController extends ControllerBase
 {
@@ -23,6 +22,7 @@ class IndexController extends ControllerBase
     * show today attendance list
     */    
     public function todaylistAction( ) {
+       
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');  
         $Admin=new Db\CoreMember;

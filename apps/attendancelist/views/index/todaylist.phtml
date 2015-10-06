@@ -75,7 +75,7 @@ if ($offset < 0) {
                          ?></td>
                             <td><?php echo $filter->sanitize($result->core->member_login_name, "string");  ?></td>
                             <td>
-                            <?php
+                            <?php 
                             $checkintime = $result->attendances->checkin_time;
                             if ($sign == '-') {
                                 $time = new DateTime($checkintime);

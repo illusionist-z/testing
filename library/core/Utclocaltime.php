@@ -10,7 +10,7 @@ namespace Library\Core;
 
 use workManagiment\Core\Models\Db;
 
-abstract class Controller extends \Phalcon\Mvc\Controller {
+abstract class Utclocaltime extends \Phalcon\Mvc\Controller {
 
     public $moduleName;
 
@@ -27,7 +27,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     
     public function aa(){
-        echo "aa";
+        echo "bb";
     }
     public function initialize() {        
         $this->view->baseUri = $this->url->getBaseUri();        
