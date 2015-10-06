@@ -9,12 +9,19 @@ class IndexController extends ControllerBase
     public $user;
     public function initialize() {
         parent::initialize();
+        self::getmodulename();
         $this->setCommonJsAndCss();
         $this->user = new User();
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
+    }
+    
+      public function getmodulename() {
+                  $url = str_replace("\\","/",__DIR__);                                 
+                  $module= explode("/",$url);
+                  $this->view->module_name = $module[5];
     }
     /**
      * @author David JP <david.gnext@gmail.com>

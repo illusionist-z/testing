@@ -172,9 +172,7 @@
 
             <!-- Content Wrapper. Contains page content -->
                    <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">             
-                 <?php  
-                          $module= explode("\\",__DIR__);
-                          $module_name = $module[5];
+                 <?php                     
                           foreach ($this->session->auth as $key_name => $key_value) {                                                                                                                              
                                             $top = explode(" ", $key_value[0]);
                                             if(strtolower($top[0] . $top[1]) ==$module_name){

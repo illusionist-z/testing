@@ -11,6 +11,7 @@ class IndexController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         parent::initialize();        
+        parent::getmodulename();
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/css/style.css');

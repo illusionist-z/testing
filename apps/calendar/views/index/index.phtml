@@ -28,24 +28,21 @@
                 </span>
             </h2>            
           
-           <form id ="frm1">             
+           
        
           <ul class="nav col-sm-12" id="left-scroll">
-              <li class="addbtnn col-sm-12">                  
+              <li class="addbtnn col-sm-12">            
                   <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>" checked disabled><span class="col-sm-6"><?php echo " ".$member_name; ?></span>                  
               </li>
             <?php  foreach($event_name as $eventname) {    ?>                
                 
-              <li class="col-sm-12 addbtnn">                    
+              <li class="addbtnn col-sm-12">
                   <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " ".$eventname['permit_name']; ?></span>
-                  <input type="button" id="disabledevent" name="<?=$eventname['permit_name']?>" class="minusbtn col-sm-6 col-xs-offset-2" >
-                   
-                </li>
-              
-                
+                  <input type="button" name="<?=$eventname['permit_name']?>" class="minusbtn col-sm-6 col-xs-offset-2 disabledevent">
+              </li>                              
             <?php       }          ?>                    
           </ul>                  
-           </form>
+           
         <span class=" btn-primary btn col-sm-12 btn-show-event">Show Event</span>
         <div class="alert col-sm-12">Check above user to see their event</div>
         </div>

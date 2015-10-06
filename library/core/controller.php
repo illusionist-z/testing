@@ -27,7 +27,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();        
-    }
+    } 
 
     /**
      * Call this func to set json response enabled

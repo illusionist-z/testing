@@ -15,6 +15,7 @@ class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
+        self::getmodulename();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
         $this->assets->addCss('common/css/style.css');
@@ -30,7 +31,13 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
     }
-
+ 
+      public function getmodulename() {                 
+                  $url = str_replace("\\","/",__DIR__);
+                  $module= explode("/",$url);
+                  $this->view->module_name = $module[5];
+    }
+    
     public function indexAction() {
         
     }

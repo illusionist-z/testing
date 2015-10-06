@@ -7,6 +7,7 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
+        self::getmodulename();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');                         
@@ -18,7 +19,12 @@ class IndexController extends ControllerBase
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->assets->addCss('common/css/css/style.css');
     }   
-
+    
+    public function getmodulename() {
+                  $url = str_replace("\\","/",__DIR__);                                 
+                  $module= explode("/",$url);
+                  $this->view->module_name = $module[5];
+    }
    /**
     * show today attendance list
     */    

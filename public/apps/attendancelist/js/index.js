@@ -81,11 +81,11 @@ var Attendance = {
                           e.preventDefault();
                           Attendance.time_edit_btn(id);                        
                         });                      
-                },
-                complete : function(){
-                     $('.datetimepicker').datetimepicker({
-                          dateFormat:"yy-mm-dd",
-                          timeFormat: "HH:mm:ss"                          
+                      $('.datetimepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",
+                                                                                                         maskInput : true,                                                                                                    
+                                                                                                         timeFormat: "HH:mm:ss"}).focus();                               
                       });
                 }
             });            

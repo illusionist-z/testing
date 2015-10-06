@@ -7,6 +7,7 @@ class IndexController extends ControllerBase
     public $calendar;
     public function initialize() {
         parent::initialize();  
+        self::getmodulename();
         $this->calendar = new \workManagiment\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
          $this->assets->addCss('apps/calendar/css/calendar.css');
@@ -20,6 +21,11 @@ class IndexController extends ControllerBase
          $this->assets->addCss('common/css/css/style.css');
     }
 
+      public function getmodulename() {
+                  $url = str_replace("\\","/",__DIR__);                                 
+                  $module= explode("/",$url);
+                  $this->view->module_name = $module[5];
+     }
     
    public function indexAction() {
         $User=new Db\CoreMember;
