@@ -1,18 +1,19 @@
-<?php namespace workManagiment\Auth;
+<?php
+
+namespace workManagiment\Auth;
 
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
-class Module extends \Library\Core\Module implements ModuleDefinitionInterface
-{
+class Module extends \Library\Core\Module implements ModuleDefinitionInterface {
 
     public function __construct() {
         parent::__construct(__DIR__);
     }
+
     /**
      * Registers the module auto-loader
      */
-    public function registerAutoloaders(\Phalcon\DiInterface $di = null)
-    {
+    public function registerAutoloaders(\Phalcon\DiInterface $di = null) {
         parent::registerAutoloaders();
     }
 
@@ -21,13 +22,11 @@ class Module extends \Library\Core\Module implements ModuleDefinitionInterface
      *
      * @param Phalcon\DI $di
      */
-    public function registerServices(\Phalcon\DiInterface $di)
-    {
+    public function registerServices(\Phalcon\DiInterface $di) {
         /**
          * Read configuration
          */
         parent::registerServices($di);
-
     }
 
 }

@@ -172,13 +172,10 @@
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">             
                  <?php  
-                           $geturl= $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-
-                          $module= explode("/",$geturl);
-                          $module_name = $module[2];
+                         
                           foreach ($this->session->auth as $key_name => $key_value) {                                                                                                                              
                                             $top = explode(" ", $key_value[0]);
-                                            if(strtolower($top[0] . $top[1]) ==$module_name){
+                                            if(strtolower($top[0] . $top[1]) ==$modulename){
                                            if(count($key_value) >1 ){
                                            echo '<div class="row"><div class="col-sm-2 link">';
                                             echo '<aside class="sidebar-menu">';

@@ -8,7 +8,10 @@ class IndexController extends Library\Core\Controller
     public function initialize() {
         parent::initialize();
     }
-    
+    public function  indexAction(){
+         $this->setCommonJsAndCss();
+
+    }
       
      public function setLanguageAction($language='')
     {  

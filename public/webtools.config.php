@@ -16,7 +16,7 @@
   | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
   |          Eduar Carvajal <eduar@phalconphp.com>                         |
   +------------------------------------------------------------------------+
-*/
+ */
 
 /**
  * Phalcon Developers Tools can only be used in local machines, however
