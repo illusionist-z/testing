@@ -7,12 +7,12 @@ body * {
   #printable *{ visibility: visible;}
   .p_break{page-break-after: always;}
 }
-.td_style{
+.td-style{
      float: right; 
      padding-right: 20px;
 }
 
-.detail_tbl th,.detail_tbl td{
+.detail-tbl th,.detail-tbl td{
     padding: 9px 0 0 10px;
 }
 

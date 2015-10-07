@@ -11,7 +11,7 @@ class CalculateController extends ControllerBase
     public function initialize() {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('salary');
-        $this->assets->addCss('common/css/style.css');
+        //$this->assets->addCss('common/css/style.css');
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->setCommonJsAndCss();
         

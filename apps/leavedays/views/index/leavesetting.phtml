@@ -11,21 +11,21 @@
 </section>
 
 <br>
-<div class="search_box">
+<div class="search-box">
             <form name="setting" id="search_frm" method="post" action="editleavesetting">
                 <div id="Menu">
                     <?php foreach($leave_setting as $data){?>
-                    <div id="M_1">Maximum Leavedays allowed: 
+                    <div id="leave_setting_div1">Maximum Leavedays allowed: 
                         <span>
-                            <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; " disabled> Days
+                            <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; height: 26px;" disabled> Days
                         </span>
                     </div>
-                    <div id="M_1">Percentage of Fine On Basic Salary: 
+                    <div id="leave_setting_div2">Percentage of Fine On Basic Salary: 
                         <span>
-                           <input type="text" value="<?php echo $data['fine_amount']; ?>" id="fine_amount" name="fine_amount" style="width: 31px; " disabled> %
+                           <input type="text" value="<?php echo $data['fine_amount']; ?>" id="fine_amount" name="fine_amount" style="width: 31px; height: 26px;" disabled> %
                         </span>
                     </div>
-                    <div id="M_1">
+                    <div id="leave_setting_div3">
                         <span>
                             <input type="button" class="btn btn-default editsetting" onclick="return false;" id="" value="Edit">
                             <input type="submit" class="btn btn-default savesetting" id="savesetting" value="Save" disabled>

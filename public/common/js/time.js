@@ -16,17 +16,3 @@ function display_ct() {
     document.getElementById('ct').innerHTML = h+":"+m+":"+s;    
      var t = setTimeout(function(){display_ct()},500);     
 }
-
-//function gettimezone(){
-//            var tz = jstz.determine();
-//        var timezone = tz.name();
-//
-//        alert(timezone);
-//        $("#tz").html(timezone);
-//        
-//        // display current time based on user location
-//        var current_time =  moment().tz(timezone).format('MMMM Do YYYY, h:mm:ss a');
-//        $("#time").html(current_time);
-//        
-//     
-//}

@@ -90,9 +90,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setCommonJsAndCss() {
         $this->assets->addCss('common/css/bootstrap/bootstrap.min.css')
-                     ->addCss('common/css/bootstrap/common.css')
                      ->addCss('common/css/bootstrap.min.css')
-                     ->addCss('common/css/AdminLTE.min.css')  
+                     ->addCss('common/css/common.css')  
                      ->addCss('common/css/jquery-ui.css')
                      ->addCss('common/css/skins.min.css');
                      
