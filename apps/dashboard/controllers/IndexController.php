@@ -66,6 +66,7 @@ class IndexController extends ControllerBase {
     $this->view->setVar("lname",$leave_name['leave_name']);
     $this->view->setVar("name",$GetName);
     $this->view->setVar("newnumber",$newmember);
+    $this->view->t = $this->_getTranslation();
     }
     
     /**

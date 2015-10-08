@@ -13,7 +13,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Dashboard
+            <?= $t->_("dashboard"); ?>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -28,8 +28,8 @@
         </div><!-- /.row -->
         <div class="row">
             <div class="col-md-12">
-                <div class="top_row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font> Staffs Attended</a></div>
-                <div class="top_row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> Staffs Absent<a></div>
+                <div class="top_row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
+                <div class="top_row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?><a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -39,28 +39,28 @@
                                         <!-- small box -->
                                         <div class="small-box bg-aqua" onclick="window.location.href = '../../manageuser/index/userlist'" id="pointer_style1">
                                             <img src="../../common/img/User-128.png">
-                                            <span class="forsize"> Manage User</span>
+                                            <span class="forsize"><?= $t->_("manageuser"); ?></span>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
                                         <div class="small-box bg-green" onclick="window.location.href = '../../attendancelist/index/todaylist'" id="pointer_style2">
                                             <img src="../../common/img/View-List-128.png" ">
-                                            <span class="forsize"> Attendance List</span>
+                                            <span class="forsize"><?= $t->_("attendancelist"); ?></span>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
                                         <div class="small-box bg-yellow" onclick="window.location.href = '../../leavedays/index/leavelist'" id="pointer_style3">
                                             <img src="../../common/img/Calendar-Date-02-128.png">
-                                            <span class="forsize">  Leave Days</span>
+                                            <span class="forsize"><?= $t->_("leaveday"); ?></span>
                                         </div>
                                     </div><!-- ./col -->
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
                                         <div class="small-box bg-red" onclick="window.location.href = '../../salary/index/salarylist'" id="pointer_style3">
                                             <img src="../../common/img/Dollar-128.png">
-                                            <span class="forsize">  Salary</span>
+                                            <span class="forsize"><?= $t->_("salary"); ?></span>
                                         </div>
                                     </div><!-- ./col -->
                                 </div><!-- /.row -->
@@ -90,11 +90,11 @@
 
 
                                                             <div class="col-md-7 col-md-offset-3">
-                                                                <h1 style="font-size:150%">Current Time : <span id="ct" style="color:red;" ></span> </h1>
+                                                                <h1 style="font-size:150%"><?= $t->_("current_time"); ?> :<span id="ct" style="color:red;" ></span> </h1>
                                                             </div><br><br>
                                                             <div class="col-md-8 col-md-offset-3">
                                                                 <form id="theForm" name="theForm" method="post" action="">
-                                                                    <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/> If You late,Check Here and write your reason.
+                                                                    <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/><?= $t->_("late_reason"); ?>
                                                                     <div id="xtraInfo" style="display:none;">
                                                                         <textarea class="textarea" id="note" placeholder="Write your reason here" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                                     </div>
@@ -164,9 +164,9 @@
                                     <!-- USERS LIST -->
                                     <div class="box box-danger">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Latest Members</h3>
+                                            <h3 class="box-title"><?= $t->_("last_member"); ?></h3>
                                             <div class="box-tools pull-right">
-                                                <span class="label label-danger"><?= $newnumber ?> New Members</span>
+                                                <span class="label label-danger"><?php echo $newnumber. $t->_("new_member"); ?> </span>
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                             </div>
                                         </div><!-- /.box-header -->

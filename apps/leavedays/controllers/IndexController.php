@@ -49,10 +49,10 @@ class IndexController extends ControllerBase {
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
         
-        $name = $userlist::getinstance()->getusername();           
+        $name = $userlist::getinstance()->getusername();       
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
-        
+        $this->view->t = $this->_getTranslation();
         if ($this->request->isPost()) {
              $user = $this->_leave;
              $validate = $user->validation($this->request->getPost());
@@ -106,6 +106,7 @@ class IndexController extends ControllerBase {
         $this->view->Getname = $GetUsername;
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
+        $this->view->t = $this->_getTranslation();
     }
     
     public function leavesettingAction(){

@@ -47,7 +47,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
         // set module        
-        if($this->session->get('language')) {
+        if($this->session->has('language')) {            
             $this->lang = $this->session->get('language');
         } else {
             $this->lang = $this->request->getBestLanguage();
@@ -60,21 +60,17 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * @param type $prefix
      * @return \Phalcon\Translate\Adapter\NativeArray
      */
-    protected function _getTranslation($prefix = '') {
+    protected function _getTranslation() {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/{$this->moduleName}/messages";
-        if ('' !== $prefix) {
-            $prefix .= '-';
-        }
 
         // 
-        if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
-            require $langDir . '/' . $prefix . $this->lang . '.php';
+        if (file_exists($langDir . '/' . $this->lang . '.php')) {
+            require $langDir . '/' . $this->lang . '.php';
         } else {
             // fallback to some default
-            require $langDir . '/' . $prefix . "ja.php";
-        }
-        
+            require $langDir . '/' . "ja.php";
+        }        
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $messages

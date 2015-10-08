@@ -22,7 +22,7 @@ class IndexController extends ControllerBase
     }
 
       public function getmodulename() {
-                  $url = str_replace("\\","/",__DIR__);                                 
+                  $url = str_replace("\\","/",__DIR__);                      
                   $module= explode("/",$url);
                   $this->view->module_name = $module[5];
      }
@@ -41,7 +41,7 @@ class IndexController extends ControllerBase
         $permitname = $this->calendar->getalluser($id);
         $Allname   = $GetMember::getinstance()->getusername();                
         $this->view->event_name = $permitname;
-        $this->view->member_name=$id;
+        $this->view->member_name=  $this->session->user['member_login_name'];
         $this->view->uname = $Allname;
     }
     

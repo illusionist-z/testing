@@ -40,7 +40,7 @@ class IndexController extends ControllerBase
         $UserList=new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();        
         $AttList = new \workManagiment\Attendancelist\Models\Attendances(); 
-        $ResultAttlist = $AttList->gettodaylist($name);             
+        $ResultAttlist = $AttList->gettodaylist($name);
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;
@@ -80,6 +80,7 @@ class IndexController extends ControllerBase
         $this->view->setVar("Month", $month);        
         $this->view->setVar("Getname", $UserName);                
         $this->view->offset=$offset;
+        $this->view->t = $this->_getTranslation();
     }  
     
      public function autolistAction() {

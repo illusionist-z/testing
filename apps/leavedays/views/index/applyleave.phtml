@@ -1,7 +1,7 @@
 <?php $leavetypelength = count($Leavetype); ?> 
         <section class="content-header" >
           <h1>
-            Apply Leave
+            <?= $t->_("applyleave"); ?>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -23,7 +23,7 @@
           
 	<tr>
             
-            <td width="200px">User Name </td>
+            <td width="200px"><?= $t->_("name"); ?></td>
            
             <td style="height:40px;" >
                     <select class="select" data-toggle="select" name="username" id="apply_form_name">
@@ -40,7 +40,7 @@
         </tr>        
         <tr>
 		
-		<td>Start Date </td>
+		<td><?= $t->_("start_date"); ?></td>
                 <td style="height:40px;">
                     <input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
                     <span id="apply_form_sdate_error"></span>
@@ -48,7 +48,7 @@
 	</tr>
         
 	<tr>
-		<td>End Date </td>
+		<td><?= $t->_("end_date"); ?></td>
                 <td style="height:40px;">
                     <input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
                     <span id="apply_form_edate_error"></span>                
@@ -57,7 +57,7 @@
         </tr>
         <tr>
           
-		<td>Leave Categories</td>
+		<td><?= $t->_("leave_category"); ?></td>
                 <td style="height:40px;">
                     <select class="select" data-toggle="select" name="leavetype">
                     <?php
@@ -70,7 +70,7 @@
                 </td>
 	</tr>
 	<tr>
-		<td>Description </td>
+		<td><?= $t->_("leave_desc"); ?></td>
                 <td style="height:40px;">
                     <textarea name="description" id="apply_form_desc"  rows="5"  placeholder="Write Description"></textarea>
                     <span id="apply_form_desc_error"></span>
