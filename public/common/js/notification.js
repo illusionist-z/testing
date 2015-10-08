@@ -52,8 +52,18 @@ var Noti = {
             data:  {id : id},
             url : baseUri+"notification/index/noticalendar",
             success:function(){ 
-                
                 window.location.href=baseUri+'calendar/index';
+            }
+        });
+    },
+     Attendances : function(id){
+     
+      $.ajax({
+            type:'POST',
+            data:  {id : id},
+            url : baseUri+"notification/index/notiattendances",
+            success:function(){ 
+                window.location.href=baseUri+'attendancelist/index/todaylist';
             }
         });
     }
@@ -80,6 +90,11 @@ $(document).ready(function () {
             var id=$(this).attr('id');
           //  alert(id);
            Noti.Calendar(id);
+        });
+        $('.attendances').click(function(e){
+            var id=$(this).attr('id');
+          //  alert(id);
+           Noti.Attendances(id);
         });
 
     $(".noti").click(function () {

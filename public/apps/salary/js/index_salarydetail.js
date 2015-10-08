@@ -67,8 +67,11 @@ var Resign = {
              
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-                $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
-
+        $('.datepicker').on('click',function(e){
+            e.preventDefault();                                                    
+            $(this).removeClass('datepicker').datepicker().focus();                               
+        });   
+     //$('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
         $('#Add_Resign_Date').click(function(){
             Resign.AddNew($ovl);
         });
@@ -77,6 +80,7 @@ var Resign = {
           // location.reload();
 
         });
+        
         
         },
          AddNew : function(d){

@@ -1,13 +1,11 @@
 <?php
 namespace workManagiment\Attendancelist\Controllers;
-
 use workManagiment\Core\Models\Db;
 class IndexController extends ControllerBase
 {
     
     public function initialize() {
         parent::initialize();
-        self::getmodulename();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');                         
@@ -19,16 +17,12 @@ class IndexController extends ControllerBase
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->assets->addCss('common/css/css/style.css');
     }   
-    
-    public function getmodulename() {
-                  $url = str_replace("\\","/",__DIR__);                                 
-                  $module= explode("/",$url);
-                  $this->view->module_name = $module[5];
-    }
+
    /**
     * show today attendance list
     */    
     public function todaylistAction( ) {
+       
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');  
         $Admin=new Db\CoreMember;
@@ -40,7 +34,7 @@ class IndexController extends ControllerBase
         $UserList=new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();        
         $AttList = new \workManagiment\Attendancelist\Models\Attendances(); 
-        $ResultAttlist = $AttList->gettodaylist($name);
+        $ResultAttlist = $AttList->gettodaylist($name);             
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;
@@ -54,11 +48,15 @@ class IndexController extends ControllerBase
         $this->view->disable();
     }
     
-    public function editTimeAction($id) {
-        $post = $this->request->getPost();
+     public function editTimeAction($id,$localtime) {
+        
+        $offset= $this->session->location['offset'];
+        $post = $localtime;
+       
         $Att  = new \workManagiment\Attendancelist\Models\Attendances();
-        $data = $Att->editAtt($post,$id);        
-        $this->view->disable();
+         $Att->editAtt($post,$id,$offset); 
+         $this->response->redirect('attendancelist/index/todaylist');
+//        $this->view->disable();
     }
 
     /**
@@ -80,7 +78,6 @@ class IndexController extends ControllerBase
         $this->view->setVar("Month", $month);        
         $this->view->setVar("Getname", $UserName);                
         $this->view->offset=$offset;
-        $this->view->t = $this->_getTranslation();
     }  
     
      public function autolistAction() {

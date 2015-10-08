@@ -102,5 +102,13 @@ class IndexController extends ControllerBase
         }
     }
     
+     public function notiattendancesAction(){
+        
+        $id=$this->request->getPost('id');
+        $Noti=new \workManagiment\Notification\Models\CoreNotification();
+        $Noti->attnotification($id);
+      
+    }
+    
 }
 
