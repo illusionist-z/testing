@@ -9,14 +9,15 @@ class IndexController extends ControllerBase
         parent::initialize();  
         $this->calendar = new \workManagiment\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
-         $this->assets->addCss('apps/calendar/css/calendar.css');
+        $this->assets->addCss('apps/calendar/css/calendar.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
         $this->assets->addJs('apps/calendar/js/moment.min.js');
         $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
         $this->assets->addJs('apps/calendar/js/calendar.js');   
-         $this->assets->addJs('apps/calendar/js/selectall.js');
-       
+        $this->assets->addJs('apps/calendar/js/selectall.js');
+        $this->module_name =  $this->router->getModuleName();
+        $this->permission = $this->setPermission();
     }
 
     
@@ -24,7 +25,7 @@ class IndexController extends ControllerBase
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
        if($this->session->permission_code=="ADMIN"){
-    $noti=$User->GetAdminNoti($id);
+        $noti=$User->GetAdminNoti($id);
        }
        else{                      
         $noti=$User->GetUserNoti($id);     
@@ -36,6 +37,7 @@ class IndexController extends ControllerBase
         $this->view->event_name = $permitname;
         $this->view->member_name=$id;
         $this->view->uname = $Allname;
+        $this->view->modulename = $this->module_name;
     }
     
     public function getmemberAction() {

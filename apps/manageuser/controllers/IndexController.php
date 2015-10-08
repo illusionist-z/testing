@@ -15,6 +15,8 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
+        $this->module_name =  $this->router->getModuleName();
+        $this->permission = $this->setPermission();
     }
     /**
      * @author David JP <david.gnext@gmail.com>
@@ -34,9 +36,14 @@ class IndexController extends ControllerBase
         $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
-       
+        if($this->permission==1){
+        $this->view->modulename = $this->module_name;
         $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list);         
+        $this->view->setVar('Result', $list);
+        }
+        else {
+            $this->response->redirect('core/index');
+        }
     } 
      //for monthly list autocomplete
     public function usernameautolistAction() {

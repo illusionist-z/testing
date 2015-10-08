@@ -39,6 +39,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
 //        echo $this->router->getActionName();
 //        echo $module.'<br><br>';
         //print_r($this->session->auth);
+        $ctrname=$this->router->getControllerName();
         $actname=$this->router->getActionName();
         $chksubmenu="";
         $permission="";
@@ -55,11 +56,13 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 foreach ($key_value as $name => $value) {
                 $submenu = explode(" ", $value); 
                 if(isset($submenu[1])){
-                $chksubmenu= strtolower($submenu[0] . $submenu[1]);
+                $chksubmenu = strtolower($submenu[0] . $submenu[1]);
                 //echo "aaaaaa".$chksubmenu.'<br>';
-                
                 }
-                if($actname==$chksubmenu){
+                else{
+                $chksubmenu = strtolower($submenu[0]);
+                }
+                if($actname === $chksubmenu){
                 //echo "Equal<br>";
                 $permission=1;
                }
@@ -71,11 +74,11 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                                   
                
         }
-        
+        //exit;
         return $permission;
        
         
-        //exit;
+       
     }
     /**
      * Call this func to set json response enabled

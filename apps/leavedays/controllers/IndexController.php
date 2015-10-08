@@ -18,6 +18,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');        
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
         $this->assets->addJs('apps/leavedays/js/applyleave.js'); 
+        $this->module_name =  $this->router->getModuleName();
+        $this->permission = $this->setPermission();
     }
 
     public function indexAction() {
@@ -40,18 +42,23 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {    
         $Admin=new Db\CoreMember;
-         $id=$this->session->user['member_id'];
-    $noti=$Admin->GetAdminNoti($id);
+        $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('apps/leavedays/js/applyleave.js');
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
         
-        $name = $userlist::getinstance()->getusername();           
+        $name = $userlist::getinstance()->getusername(); 
+        if($this->permission==1){
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
-        
+        $this->view->modulename = $this->module_name;
+        }
+        else {
+            $this->response->redirect('core/index');
+        }
         if ($this->request->isPost()) {
              $user = $this->_leave;
              $validate = $user->validation($this->request->getPost());
@@ -85,8 +92,8 @@ class IndexController extends ControllerBase {
      */
     public function leavelistAction(){    
         $Admin=new Db\CoreMember;
-         $id=$this->session->user['member_id'];
-    $noti=$Admin->GetAdminNoti($id);
+        $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/search.js');
@@ -101,24 +108,35 @@ class IndexController extends ControllerBase {
         $leaves = $this->_leave->getleavelist();
         $max=$this->_leave->getleavesetting();
         $max_leavedays=$max['0']['max_leavedays'];
+        if($this->permission==1){
         $this->view->max = $max_leavedays;
         $this->view->Getname = $GetUsername;
         $this->view->setVar("Result", $leaves);
         $this->view->setVar("Month", $month);
+        $this->view->modulename = $this->module_name;
+        }
+        else {
+            $this->response->redirect('core/index');
+        }
     }
     
     public function leavesettingAction(){
         $Admin=new Db\CoreMember;
-         $id=$this->session->user['member_id'];
-    $noti=$Admin->GetAdminNoti($id);
+        $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();
         $setting=$LeaveSetting->getleavesetting();
-        
+        if($this->permission==1){
+        $this->view->modulename = $this->module_name;
         $this->view->setVar("leave_typelist", $typelist);  
-        $this->view->setVar("leave_setting", $setting);  
+        $this->view->setVar("leave_setting", $setting); 
+        }
+        else {
+            $this->response->redirect('core/index');
+        }
     }
     
     public function ltypediaAction(){
