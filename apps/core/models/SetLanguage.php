@@ -24,12 +24,5 @@ class SetLanguage extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
         $query = "update core_member set lang = '".$language."' where member_id='$member'";
         $this->db->query($query);
-    }   
-    
-    public function getlanguage($member) {
-        $query = "select lang from workManagiment\Core\Models\Db\CoreMember where member_id='$member'";
-        $data = $this->modelsManager->executeQuery($query);
-        $result = $data[0]->lang;
-        return $result; 
-    }
+    }         
 }

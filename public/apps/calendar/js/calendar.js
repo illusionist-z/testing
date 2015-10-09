@@ -125,22 +125,16 @@ var Calendar = {
     }
         });
     },
-    remove_event_member : function() {
-       var selectedvalue = [];
-      if($(':checkbox:checked').length > 0){
-        $(':checkbox:checked').each(function(i){
-          selectedvalue[i] = $(this).val();
-         });
+    remove_event_member : function(val) {
+             
          $.ajax({
              url : "index/removeEventByname",
-             data : {remove : selectedvalue},
+             data : {remove : val},
              type : "POST",
              success : function(){                 
                  $('body').load('index');
              }
          });
-         }
-       else {alert("You must check at least one");}
     },
     /**
      * @author David 9/16/2015
@@ -345,7 +339,8 @@ var Calendar = {
 $(document).ready(function () {
       Calendar.init();
    //select member event btn
-   $('.btn-show-event').click(function(){
+   $('.btn-show-event').click(function(e){
+       e.preventDefault();
       var selectedvalue = [];
       if($(':checkbox:checked').length > 0){
         $(':checkbox:checked').each(function(i){
@@ -358,8 +353,10 @@ $(document).ready(function () {
    $('#shapbott').click(function(){
        Calendar.getmemberevent();
    });
-   $('#disabledevent').click(function(){
-       Calendar.remove_event_member();
+   $('.disabledevent').click(function(e){
+       e.preventDefault();
+       var del_name = $(this).attr('name');
+       Calendar.remove_event_member(del_name);
    });
    
 });

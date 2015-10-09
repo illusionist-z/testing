@@ -41,8 +41,7 @@ function GEOprocess(position) {
         url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&offset=" + offset,
         type: 'GET',
         dataType: 'json',
-        success: function(d) {
-
+        success: function (d) {
         },
         error: function(d) {
 
@@ -56,7 +55,7 @@ function GEOprocess(position) {
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
-    if (h >= 13) {
+    if (h = 16) {
         $.ajax({
             url: baseUri + "attendancelist/absent",
             type: 'GET',
@@ -155,16 +154,20 @@ $(document).ready(function() {
 //            toggle_switch.html('Hide');
 //        }
 //    });
-//    });    
-        //toggle off when click body
-        $('body').click(function(e) {
-            if (0 === $(e.target).closest('#sidepage').length) {
-                $('#sidepage').fadeOut(200);
-                //$('.collapse-wrapper').css("margin-left","0");
-                //$('.main-footer').css("margin-left","0");
-            }
-        });
+//    });     
+ 
+      });
+         //toggle off or notification off when click body
+         $('body').click(function (e) {        
+        if (0 === $(e.target).closest('#sidepage').length) {
+            $('#sidepage').fadeOut(200);
+            //$('.collapse-wrapper').css("margin-left","0");
+            //$('.main-footer').css("margin-left","0");
+        }
+        if(0 === $(e.target).closest('#noti').length){
+            $('#notificationContainer').fadeOut(300);            
+        }
     });
-    $('.datepicker').datepicker();
-    link_height();
+ $('.datepicker').datepicker(); 
+link_height();
 });

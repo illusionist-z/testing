@@ -1,7 +1,6 @@
 <?php
 
 namespace workManagiment\Auth\Controllers;
-
 use workManagiment\Core\Models\Db\CoreMember;
 use workManagiment\Auth\Models;
 
@@ -19,8 +18,10 @@ class LoginController extends ControllerBase {
 
         $ModelAuth = new Models\Auth();
         $result = $ModelAuth->check($loginParams, $user);
-        $permission = $ModelAuth->getpermit($loginParams);
-        $member = new CoreMember();
+        $permission=$ModelAuth->getpermit($loginParams);
+        $member=new CoreMember();
+        $lang = $member->getlang($loginParams);        
+        $this->session->set('language',$lang['lang']);
         $member->updatecontract($loginParams);
         $this->session->set('permission_code', $permission);
         $user = array();
@@ -33,7 +34,7 @@ class LoginController extends ControllerBase {
 
             //Set user's permission to session 
             $Permission = $ModelPermission->get($result, $permissions);
-
+            
             //print_r($Permission);exit;
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');

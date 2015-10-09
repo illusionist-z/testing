@@ -27,7 +27,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
-        
     }
     /**
      * Set Permission
@@ -146,7 +145,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
 
         $this->assets->addJs('common/js/jquery.min.js')
                 ->addJs('common/js/common.js')
-                ->addJs('common/js/jQuery-2.1.4.min.js')
+                //->addJs('common/js/jQuery-2.1.4.min.js')
                 ->addJs('common/js/bootstrap.min.js')
                 ->addJs('common/js/app.min.js')
                 ->addJs('common/js/jquery-ui.js')

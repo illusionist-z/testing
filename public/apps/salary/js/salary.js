@@ -20,7 +20,7 @@ var Salary = {
           success:function(res){
                var result = $.parseJSON(res);               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
-                   data +='<tr><td></td><td><b>User Name </b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id"></td>'
+                   data +='<tr><td></td><td><b>User Name </b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
                         +'<tr><td></td><td><b>Basic Salary </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
@@ -95,6 +95,9 @@ var Salary = {
         $('#edit_salary_edit').click(function () {
             Salary.BtnEdit($ovl);
         });
+        $('#edit_delete').click(function () {
+            Salary.Delete($ovl);
+        });
         $('#edit_close').click(function () {
             $ovl.dialog("close");
         });
@@ -148,6 +151,45 @@ var Salary = {
             }
         });
     },
+    Delete : function(d){
+         $del = $('#confirm');
+        $del.css('color','black');
+        $del.css('background','#F5F5F5');
+          $del.dialog({
+            autoOpen:false,
+            height:190,
+            width:350,
+            closeText:'',
+            modal:true,
+            title:"Confirm Delete",
+            buttons:{
+                Yes:function(){
+                    Salary.Confirm(d);
+                },
+                No:function(){
+                    $(this).dialog("close");
+                }
+            }
+           
+        });
+         $del.html("<p>Are u sure to <b style='color:red'>delete</b> ?</p>");
+        $del.dialog("open");  
+    },
+    Confirm :function(d){
+        var form=$('#edit_salary');
+        var member_id=document.getElementById('member_id').value;
+        $.ajax({
+            type:'POST',
+            data: {id: member_id },
+            url : "delete_salary",
+            success:function(){
+                
+                d.dialog("close");
+            }
+        }).done(function(){
+            $('body').load('salarylist');
+        });
+    },
     search : function () {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
@@ -164,6 +206,7 @@ var Salary = {
             {
 
                 var output = "<tr>"
+                        + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
                         + "<td>" + json_obj[i].member_login_name + "</td>"
                         + "<td>" + json_obj[i].member_dept_name + "</td>"
                         + "<td>" + json_obj[i].basic_salary + "</td>"
@@ -174,23 +217,49 @@ var Salary = {
                         + "<td>" + json_obj[i].ssc_comp + "</td>"
                         + "<td>" + json_obj[i].ssc_emp + "</td>"
                         + "<td>" + json_obj[i].total + "</td>"
-                        + '<td><a href="payslip?member_id='+json_obj[i].member_id+' && month='+month+' && year='+year+'" class="button">Print</a></td>'
+                        + '<td><a href="#" class="btn_detail">Detail</a></td>'
                         + "</tr>"
                         
                 $("tbody").append(output);
             }
-            var html='<tr style="background-color:#428bca; color:#ffffff;">'
-                        +'<td colspan="10" style="text-align:center;"><b>Total salary for all user</b></td>'
+            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
+                        +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><b>#####</b></td>'
                         +'<td></td>'
                         +'</tr>'
             $("tbody").append(html);
+            //click event for detail after search
+            $('.btn_detail').click(function () {
+            var month = document.getElementById('month').value;
+            var year = document.getElementById('year').value;
+            var chkbox = document.getElementsByName('chk[]');
+            var chk = [];
+            for (var i=0, n=chkbox .length;i<n;i++) {
+            if (chkbox [i].checked) 
+            {
+            chk.push(chkbox[i].value);
+            }
+       
+            }
+            if(chk!=""){
+            window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
+            }
+            else{
+            alert("please check aleast one!");
+            location.reload();
+            }
+         //window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
+
+            });
         },
         error: function (d) {
             alert('error');
         }
+        
         });
+         
         }
+        
 };
 
 $(document).ready(function () {
@@ -239,6 +308,7 @@ $(document).ready(function () {
 		popupStatus = 1;
 	}
     }
+    
 
 });
 

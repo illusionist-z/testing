@@ -15,7 +15,7 @@
                 }else {?>
                 <span class="foruser">
                     <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                    <img src="<?php echo $baseUri;?>common/img/notid.png"> <b>admin</b><?php 
+                    <img src="<?php echo $baseUri;?>common/img/notid.png"> <b>admin</b><?php echo $noti['leave_status'];
                     switch($noti['leave_status']){
                         case "1" : echo " Confirmed";break;
                         case "2" : echo " Rejected";break;

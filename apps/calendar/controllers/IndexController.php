@@ -16,26 +16,30 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');
         $this->assets->addJs('apps/calendar/js/moment.min.js');
-        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
-        $this->assets->addJs('apps/calendar/js/calendar.js');
+        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
+        $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
+        $this->module_name =  $this->router->getModuleName();
+        $this->permission = $this->setPermission();
     }
 
     public function indexAction() {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        if ($this->session->permission_code == "ADMIN") {
-            $noti = $User->GetAdminNoti($id);
-        } else {
-            $noti = $User->GetUserNoti($id);
-        }
-        $this->view->setVar("noti", $noti);
-        $GetMember = new Db\CoreMember();
+       if($this->session->permission_code=="ADMIN"){
+        $noti=$User->GetAdminNoti($id);
+       }
+       else{                      
+        $noti=$User->GetUserNoti($id);     
+       }       
+        $this->view->setVar("noti",$noti);
+        $GetMember=new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);
         $Allname = $GetMember::getinstance()->getusername();
         $this->view->event_name = $permitname;
-        $this->view->member_name = $this->session->user['member_login_name'];
+        $this->view->member_name=$this->session->user['member_login_name'];
         $this->view->uname = $Allname;
+        $this->view->modulename = $this->module_name;
     }
 
     public function getmemberAction() {

@@ -9,12 +9,13 @@ class IndexController extends Library\Core\Controller {
     public function initialize() {
         parent::initialize();
     }
+    public function  indexAction(){
+         $this->setCommonJsAndCss();
 
-    public function indexAction() {
-        $this->setCommonJsAndCss();
     }
-
-    public function setLanguageAction($language = '') {
+      
+     public function setLanguageAction($language='')
+    {  
         //Change the language, reload translations if needed        
         $this->session->set('language', $language);
 
