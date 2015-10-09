@@ -27,6 +27,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/salary/js/index-allowance.js');
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
+
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         $this->module_name =  $this->router->getModuleName();
