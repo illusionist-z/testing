@@ -12,13 +12,14 @@ class UserController extends ControllerBase {
       public $_leave;
     public function initialize() {
         parent::initialize();
+        parent::getmodulename();
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/jquery-ui.css');
-      
+        $this->assets->addCss('common/css/style.css');
         
     }
 
