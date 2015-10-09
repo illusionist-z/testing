@@ -12,7 +12,9 @@ function display_ct() {
     var s = x.getSeconds();
     h = checktime(h);
     m = checktime(m);
-    s = checktime(s);        
-    document.getElementById('ct').innerHTML = h+":"+m+":"+s;    
-     var t = setTimeout(function(){display_ct()},500);     
+    s = checktime(s);
+    document.getElementById('ct').innerHTML = h + ":" + m + ":" + s;
+    var t = setTimeout(function() {
+        display_ct()
+    }, 500);
 }

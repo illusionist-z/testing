@@ -290,8 +290,8 @@ class SalaryMaster extends Model {
                         'absent_dedution'=>$absent_deduce);
                 }
             }
-            print_r($final_result);
-            exit;
+            //print_r($final_result);
+            //exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -555,7 +555,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     public function deducerate($income_tax, $salary_year) {
         //echo "bbbbbbbbbbbb ".$income_tax; //exit;
         try {
-            $sql = "select * from taxs where taxs_from<" . $income_tax . " and taxs_rate !=0";
+            $sql = "select * from salary_taxs where taxs_from<" . $income_tax . " and taxs_rate !=0";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
             
             $result = $this->db->query($sql);

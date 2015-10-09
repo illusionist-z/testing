@@ -1,4 +1,7 @@
-<?php namespace Lib\Core;
+<?php
+
+namespace Lib\Core;
+
 /**
  * @author Created by dungtn
  * @version 1.0
@@ -6,91 +9,88 @@
  * @subpackage FdocSystem
  *
  */
-
 class TextCommon {
 
-	/**
-	 * instance object FDocTextCommon
-	 *
-	 * @var FDocTextCommon
-	 */
-	private static $_instance = null;
+    /**
+     * instance object FDocTextCommon
+     *
+     * @var FDocTextCommon
+     */
+    private static $_instance = null;
 
-	/**
-	 * Constructor method
-	 *
-	 */
-	private function __construct(){
+    /**
+     * Constructor method
+     *
+     */
+    private function __construct() {
+        
+    }
 
-	}
-
-	/**
-	 * get Instance class
-	 *
-	 * @return FDocTextCommon
-	 */
-	public static function getInstance() {
-		if (!isset(self::$_instance)) {
-			$cls = __CLASS__;
-			self::$_instance = new $cls();
-		}
-		return self::$_instance;
-	}
-
-	/**
-	 * trim space character mulbyte
-	 *
-	 * @param string $str
-	 * @param string $chars
-	 * @return string
-	 */
-	public static function trimMultiByte($str, $chars = '\s　') {
-		$str = preg_replace("/^[$chars]+/u", '', $str);
-		$str = preg_replace("/[$chars]+$/u", '', $str);
-		return $str;
+    /**
+     * get Instance class
+     *
+     * @return FDocTextCommon
+     */
+    public static function getInstance() {
+        if (!isset(self::$_instance)) {
+            $cls = __CLASS__;
+            self::$_instance = new $cls();
         }
-	
-	
-	/**
-	 * Truncate string to max length
-	 *
-	 * @param String $str
-	 * @param Integer $maxLen
-	 * @param String $replaceStr
-	 * @param String $charset
-	 * @return String
-	 */
-	public function mbTextTruncate ($str, $maxLen, $replaceStr = '。。。', $charset = 'UTF-8') {
-		$intStrLen = mb_strlen($str, $charset);
-		if($intStrLen <= $maxLen) return $str;
+        return self::$_instance;
+    }
 
-		$str = mb_substr($str, 0, $maxLen - mb_strlen($replaceStr, $charset), $charset);
-		$str .= $replaceStr;		
-		return $str;
-	}
-	
-	/**
-	 * filters value for CSV content
-	 *
-	 * @param string $val
-	 * @return string
-	 */
-	public function filterCSV($val) {
-		if (!$val)
-			return;
-		
-		$ret = $val;
+    /**
+     * trim space character mulbyte
+     *
+     * @param string $str
+     * @param string $chars
+     * @return string
+     */
+    public static function trimMultiByte($str, $chars = '\s　') {
+        $str = preg_replace("/^[$chars]+/u", '', $str);
+        $str = preg_replace("/[$chars]+$/u", '', $str);
+        return $str;
+    }
 
-		if (preg_match("/,|\"|\r\n|\n/", $ret)) {
-			$ret = preg_replace('/"/', '""', $ret);
-		}
-		$ret = '"' . $ret . '"';
+    /**
+     * Truncate string to max length
+     *
+     * @param String $str
+     * @param Integer $maxLen
+     * @param String $replaceStr
+     * @param String $charset
+     * @return String
+     */
+    public function mbTextTruncate($str, $maxLen, $replaceStr = '。。。', $charset = 'UTF-8') {
+        $intStrLen = mb_strlen($str, $charset);
+        if ($intStrLen <= $maxLen)
+            return $str;
 
-		return $ret;
-	}
-    
+        $str = mb_substr($str, 0, $maxLen - mb_strlen($replaceStr, $charset), $charset);
+        $str .= $replaceStr;
+        return $str;
+    }
 
-    
+    /**
+     * filters value for CSV content
+     *
+     * @param string $val
+     * @return string
+     */
+    public function filterCSV($val) {
+        if (!$val)
+            return;
+
+        $ret = $val;
+
+        if (preg_match("/,|\"|\r\n|\n/", $ret)) {
+            $ret = preg_replace('/"/', '""', $ret);
+        }
+        $ret = '"' . $ret . '"';
+
+        return $ret;
+    }
+
     /**
      * @desc remove all the comment from sql string
      * 
@@ -122,14 +122,13 @@ class TextCommon {
         return $output;
     }
 
-
-    
     /*
      * @desc split_sql_file will split an uploaded sql file into single sql statements.
      * Note: expects trim() to have already been run on $sql.
      *
      * @author Tuyendn<tuyendn@vnext.vn>
      */
+
     function splitSqlFile($sql, $delimiter) {
         // Split up our string into "possible" SQL statements.
         $tokens = explode($delimiter, $sql);
@@ -212,54 +211,56 @@ class TextCommon {
      * 
      * @author Tran Nghia <nghiat@vnext.vn>
      * @since 2013/01/03
-    */
+     */
     public function getAryHoliday() {
-        $xmlPath = APPLICATION_PATH.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR. 'xml'.DIRECTORY_SEPARATOR.'holiday.xml';
+        $xmlPath = APPLICATION_PATH . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'xml' . DIRECTORY_SEPARATOR . 'holiday.xml';
         $strXml = simplexml_load_file($xmlPath);
-        
+
         $aryHoliday = array();
         $aryJson = json_decode(json_encode($strXml));
-        
-        if(is_array($aryJson->day)) {
+
+        if (is_array($aryJson->day)) {
             foreach ($aryJson->day as $key => $value) {
                 $aryHoliday[] = $value;
             }
         }
-        
-        return $aryHoliday;
 
+        return $aryHoliday;
     }
-    
+
     /**
      * @desc return true/false
      * 
      * @author Tran Nghia <nghiat@vnext.vn>
      * @since 2013/01/03
-    **/
+     * */
     public function isHoliday($date) {
-        
+
         //check weekend
-        $day = date('D',strtotime($date));
-        if($day == 'Sat' || $day == 'Sun')
+        $day = date('D', strtotime($date));
+        if ($day == 'Sat' || $day == 'Sun')
             return true;
-       
+
         //check holiday
-        $date = date('Ymd',strtotime($date));
+        $date = date('Ymd', strtotime($date));
         $aryHoliday = $this->getAryHoliday();
-        if(in_array($date, $aryHoliday))
+        if (in_array($date, $aryHoliday))
             return true;
-        else 
+        else
             return false;
     }
+
     /**
      * @desc remove string 2byte, 1byte space left, right
      * @author TuanDV <tuandv@vnext.vn>
      * @since 2013/12/30
      */
-    public function trimValues(&$values){
-        if(!is_array($values)) is_array ($values);
-        if(empty($values)) return false;
-        foreach($values as $key => $value){
+    public function trimValues(&$values) {
+        if (!is_array($values))
+            is_array($values);
+        if (empty($values))
+            return false;
+        foreach ($values as $key => $value) {
             $values[$key] = trim($this->mbTrim($value));
         }
         return true;

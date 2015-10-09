@@ -12,6 +12,7 @@ date_default_timezone_set("UTC");
  */
 
 class Attendances extends Model {
+
     /**
      * set check in time when user click 'checkin'button
      * @param type $id
@@ -22,9 +23,9 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckintime($id, $note, $lat, $lon, $add,$creator_id) {
+    public function setcheckintime($id, $note, $lat, $lon, $add, $creator_id) {
         $this->db = $this->getDI()->getShared("db");
-        
+
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $att = Attendances::findFirst("att_date = '$today' AND member_id='$id'");
@@ -34,19 +35,18 @@ class Attendances extends Model {
         if ($att != NULL) {
             $status = " Already Checked in ";
         } else {
-            $noti_id=rand();
-            if($note!=NULL){
-               
+            $noti_id = rand();
+            if ($note != NULL) {
+
                 $this->db->query("INSERT INTO core_notification (noti_creator_id,"
-            . "module_name,noti_id,noti_status) "
-            . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
+                        . "module_name,noti_id,noti_status) "
+                        . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
             }
             $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
                     . "att_date,lat,lng,location,notes,noti_id) VALUES ('" . $mydate . "'"
                     . ",'" . $id . "','" . $today . "','" . $lat . "'"
                     . ",'" . $lon . "','" . $add . "','" . $note . "','" . $noti_id . "')");
             $status = " Successfully Checked In";
-            
         }
         return $status;
     }
@@ -72,20 +72,20 @@ class Attendances extends Model {
             } else {
                 $workingHour = strtotime($att->checkin_time) - strtotime($mydate);
                 if ($workingHour > 28800) {
-                $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',');
+                    $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',');
                 } else {
-                 $ovt = 0;
+                    $ovt = 0;
                 }
                 $this->db->query("UPDATE attendances SET "
-                     . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
-                    . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
+                        . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
+                        . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
                 $status = " Successfully Checked Out ";
                 return $status;
             }
         } else {
-        //check in first
-         $status = " Please Check In First ";
-         return $status;
+            //check in first
+            $status = " Please Check In First ";
+            return $status;
         }
     }
 

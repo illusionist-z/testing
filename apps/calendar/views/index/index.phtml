@@ -1,8 +1,9 @@
 
 <?php
-    use Phalcon\Tag as Tag;
+
+use Phalcon\Tag as Tag;
 ?>
-<div id="external-events" style="height:auto;margin-top: 40px;">
+<div id="external-events" style="height:auto;">
     <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Header (Page header) -->
@@ -15,115 +16,115 @@
             <li class="active">Calendar</li>
         </ol>
     </section>      
-<!-- Main content -->
-<section class="content">
-    <div class="row">
-        
-        <div class="col-md-3">
-            <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">
-                   <!-- <input type='checkbox'  id='selectall'/>-->                    
-                    
-                    User Event Enable                                        
-                    <input type='button' id='shapbott' name='checkall' class="addbtn">                    
-                </span>
-            </h2>            
-          
-           <form id ="frm1">             
-       
-          <ul class="nav col-sm-12" id="left-scroll">
-              <li class="addbtnn col-sm-12">                  
-                  <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>" checked disabled><span class="col-sm-6"><?php echo " ".$member_name; ?></span>                  
-              </li>
-            <?php  foreach($event_name as $eventname) {    ?>                
-                
-              <li class="col-sm-12 addbtnn">                    
-                  <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " ".$eventname['permit_name']; ?></span>
-                  <input type="button" id="disabledevent" name="<?=$eventname['permit_name']?>" class="minusbtn col-sm-6 col-xs-offset-2" >
-                   
-                </li>
-              
-                
-            <?php       }          ?>                    
-          </ul>                  
-           </form>
-        <span class=" btn-primary btn col-sm-12 btn-show-event">Show Event</span>
-        <div class="alert col-sm-12">Check above user to see their event</div>
-        </div>
-    <div class="col-md-8">
-        <div class="box-body no-padding">
-            <!-- THE CALENDAR -->
-            <div id="calendar" class="bg-info"></div>
-        </div><!-- /.box-body -->
-        <br><br>
-    </div><!-- /. box -->
-    </div>
-</section><!-- /.content -->
-<div id="member_event_dialog" class="navbar row" style="display: none;">
-    <label for="member_event">Search Member</label><input type="text" id="member_event">
-    <button class="btn btn-primary addmember" id="member_event_add" disabled>Add Member</button>
-    <button class="btn btn-primary" id="member_event_dialog_close">Close</button>
-</div>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
 
-<div id="dialog" style="display:none" title="Edit Event" class="navbar">
-    <form id="edit_event" onsubmit="return false;" class="container">
-        <label for="title">Title</label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_edit_event">
-        <span class="err"></span>
-        <label for="member_name">Name</label>
-        <select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">            
-            <?php
-            foreach ($uname as $result) {
-                ?>
-                <option  name="<?= $result->member_id ?>"><?php echo $result->member_login_name; ?></option>
+            <div class="col-md-3">
+                <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">
+                       <!-- <input type='checkbox'  id='selectall'/>-->                    
+
+                        User Event Enable                                        
+                        <input type='button' id='shapbott' name='checkall' class="addbtn">                    
+                    </span>
+                </h2>            
+
+                <form id ="frm1">             
+
+                    <ul class="nav col-sm-12" id="left_scroll">
+                        <li class="addbtnn col-sm-12">                  
+                            <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>" checked disabled><span class="col-sm-6"><?php echo " " . $member_name; ?></span>                  
+                        </li>
+<?php foreach ($event_name as $eventname) { ?>                
+
+                            <li class="col-sm-12 addbtnn">                    
+                                <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " " . $eventname['permit_name']; ?></span>
+                                <input type="button" id="disabledevent" name="<?= $eventname['permit_name'] ?>" class="minusbtn col-sm-6 col-xs-offset-2" >
+
+                            </li>
+
+
+<?php } ?>                    
+                    </ul>                  
+                </form>
+                <span class=" btn-primary btn col-sm-12 btn-show-event">Show Event</span>
+                <div class="alert col-sm-12">Check above user to see their event</div>
+            </div>
+            <div class="col-md-8">
+                <div class="box-body no-padding">
+                    <!-- THE CALENDAR -->
+                    <div id="calendar" class="bg-info"></div>
+                </div><!-- /.box-body -->
+                <br><br>
+            </div><!-- /. box -->
+        </div>
+    </section><!-- /.content -->
+    <div id="member_event_dialog" class="navbar row" style="display: none;">
+        <label for="member_event">Search Member</label><input type="text" id="member_event">
+        <button class="btn btn-primary addmember" id="member_event_add" disabled>Add Member</button>
+        <button class="btn btn-primary" id="member_event_dialog_close">Close</button>
+    </div>
+
+    <div id="dialog" style="display:none" title="Edit Event" class="navbar">
+        <form id="edit_event" onsubmit="return false;" class="container">
+            <label for="title">Title</label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_edit_event">
+            <span class="err"></span>
+            <label for="member_name">Name</label>
+            <select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">            
                 <?php
-            }
-            ?>
-        </select>
-        <span></span>
-        <label for="sdate"> Start Date</label><input style="font-size: 13px;" type="text" class="box" name="sdate" id="sdate_edit_event">
-        <span class="err-sdate"></span>
-        <label for="edate"> End Date</label><input style="font-size: 13px;" type="text" class="box" name="edate" id="edate_edit_event"><br><br>
-        <input type="submit" value="Edit"  id="submit_edit_event"> <input type="submit" value="Delete"  id="del_event"> <input type="reset" value="Cancel" id="close_create_event">
-    </form>
-</div>
-<!--//create dialog event-->
-<div id="dialog_create" style="display:none" title="Create Event" class="navbar">
-    <form id="create_event" onsubmit="return false;" class="container">
-        <table>
-            <tr>
-                <td> <label for="title">Title</label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_create_event" placeholder="Write Title"></span> </td>
-             </tr>
-             <tr>
-                 <td>
-                     <label for="member_name">Name</label><select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name">                         
+                foreach ($uname as $result) {
+                    ?>
+                    <option  name="<?= $result->member_id ?>"><?php echo $result->member_login_name; ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+            <span></span>
+            <label for="sdate"> Start Date</label><input style="font-size: 13px;" type="text" class="box" name="sdate" id="sdate_edit_event">
+            <span class="err-sdate"></span>
+            <label for="edate"> End Date</label><input style="font-size: 13px;" type="text" class="box" name="edate" id="edate_edit_event"><br><br>
+            <input type="submit" value="Edit"  id="submit_edit_event"> <input type="submit" value="Delete"  id="del_event"> <input type="reset" value="Cancel" id="close_create_event">
+        </form>
+    </div>
+    <!--//create dialog event-->
+    <div id="dialog_create" style="display:none" title="Create Event" class="navbar">
+        <form id="create_event" onsubmit="return false;" class="container">
+            <table>
+                <tr>
+                    <td> <label for="title">Title</label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_create_event" placeholder="Write Title"></span> </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="member_name">Name</label><select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name">                         
                             <?php
-                            foreach ($uname as $result) {                     
+                            foreach ($uname as $result) {
                                 ?>
                                 <option name="<?= $result->member_id ?>" ><?php echo $result->member_login_name; ?></option>
                                 <?php
                             }
                             ?>
                         </select>
-                 </td>
-             </tr>
-             <tr>
-                 <td>
-                     <label for="sdate"> Start Date </label><input style="width:250px;font-size: 13px;" type="text" class="box" name="sdate" id="sdate_create_event">
-                 </td>
-             </tr>
-             <tr>
-                 <td>
-                     <label for="edate"> End Date</label><input style="width:250px;font-size: 13px;" type="text" class="box" name="edate" id="edate_create_event">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sdate"> Start Date </label><input style="width:250px;font-size: 13px;" type="text" class="box" name="sdate" id="sdate_create_event">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="edate"> End Date</label><input style="width:250px;font-size: 13px;" type="text" class="box" name="edate" id="edate_create_event">
                         <span class="err-edate"></span><br><br>
-                 </td>
-             </tr>
-             <tr>
-                 <td>
-                     <input type="submit" value="Create" class="btn-facebook" id="create_dialog"> <input type="reset" value="Cancel" id="reset_create_event">
-                 </td>
-             </tr>
-        </table>
-    </form>
-</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Create" class="btn-facebook" id="create_dialog"> <input type="reset" value="Cancel" id="reset_create_event">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 
 
 

@@ -15,8 +15,8 @@ Class Module implements ModuleDefinitionInterface {
     public $_moduleDir;
 
     public function __construct($__DIR__) {
-        $this->_moduleDir = $__DIR__;                
-        $this->_moduleName = ucfirst(basename($__DIR__));                
+        $this->_moduleDir = $__DIR__;
+        $this->_moduleName = ucfirst(basename($__DIR__));
     }
 
     /**

@@ -1,12 +1,14 @@
-<?php 
-    use Phalcon\Filter; 
+<?php
+
+use Phalcon\Filter;
+
 //calculate the user time offset
 if ($offset < 0) {
     $sign = '-';
     $value = $offset * (-1);
 } else {
-    $sign='+';
-            
+    $sign = '+';
+
     $value = $offset * (-1);
 }
 ?>
@@ -14,7 +16,7 @@ if ($offset < 0) {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo $t->_("hi"); ?>
+<?php echo $t->_("hi"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -28,14 +30,14 @@ if ($offset < 0) {
         <form onsubmit="return false;" method="post">
 <!--            <select class="select" data-toggle="select" name="namelist" id="namelist">
                 <option value="">Name</option>
-    <?php
-    foreach ($uname as $result) {
-    ?>
-                    <option><?php echo $result->member_login_name; ?></option>
-
-                    <?php
-                }
+            <?php
+            foreach ($uname as $result) {
                 ?>
+                        <option><?php echo $result->member_login_name; ?></option>
+
+                <?php
+            }
+            ?>
             </select>-->
             <input class="tags" name="namelist"  id="namelist" placeholder="Search User Name">
             <input type="submit" class="buttonn" value="Search" id="namesearch">
@@ -46,7 +48,7 @@ if ($offset < 0) {
 
     <div class="row">
         <div class="col-md-12"><!--start table content--->
-            <?php $this->flashSession->output()?>
+<?php $this->flashSession->output() ?>
             <table class="listtbl">
                 <thead>
                     <tr>
@@ -62,30 +64,29 @@ if ($offset < 0) {
                     </tr>
                 </thead>
                 <tbody>
-                <?php
-                
-                $filter = new Filter();
-                
-                foreach ($attlist as $result) {                                                     
-                 ?>
+                    <?php
+                    $filter = new Filter();
+
+                    foreach ($attlist as $result) {
+                        ?>
                         <tr>                    
-                        <td><?php
-                        $date = date('Y-m-d');
-                        echo $date;
-                         ?></td>
-                            <td><?php echo $filter->sanitize($result->core->member_login_name, "string");  ?></td>
+                            <td><?php
+                                $date = date('Y-m-d');
+                                echo $date;
+                                ?></td>
+                            <td><?php echo $filter->sanitize($result->core->member_login_name, "string"); ?></td>
                             <td>
-                            <?php 
-                            $checkintime = $result->attendances->checkin_time;
-                            if ($sign == '-') {
-                                $time = new DateTime($checkintime);
-                                $time->add(new DateInterval('PT' . $value . 'M'));
-                                echo $time->format('H:i:s A ');
-                            } else {
-                                $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
-                                echo $datetime_from;
-                            }
-                            ?>
+                                <?php
+                                $checkintime = $result->attendances->checkin_time;
+                                if ($sign == '-') {
+                                    $time = new DateTime($checkintime);
+                                    $time->add(new DateInterval('PT' . $value . 'M'));
+                                    echo $time->format('H:i:s A ');
+                                } else {
+                                    $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
+                                    echo $datetime_from;
+                                }
+                                ?>
                             </td>
                             <td>
                                 <?php
@@ -98,16 +99,12 @@ if ($offset < 0) {
                                     $start = strtotime($office_start_time);
                                     $end = strtotime($time);
                                     $late = $end - $start;
-                                    if($result->attendances->notes!=''){
-                                      echo "<font color='red'>". gmdate("H:i:s",$late)."(".$result->attendances->notes." )</font>";
-
+                                    if ($result->attendances->notes != '') {
+                                        echo "<font color='red'>" . gmdate("H:i:s", $late) . "(" . $result->attendances->notes . " )</font>";
+                                    } else {
+                                        echo "<font color='red'>" . gmdate("H:i:s", $late) . "</font>";
                                     }
-                                    else{
-                                        echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
-
-                                    }
-                                }
-                                else{
+                                } else {
                                     echo "-";
                                 }
                                 ?>
@@ -122,7 +119,7 @@ if ($offset < 0) {
                                         $time = new DateTime($checkouttime);
                                         $time->add(new DateInterval('PT' . $value . 'M'));
                                         echo $time->format('H:i:s A');
-                                    }else {
+                                    } else {
                                         $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkouttime)));
                                         echo $datetime_from;
                                     }
@@ -140,16 +137,16 @@ if ($offset < 0) {
                                     $hours = floor($workingHour / 3600);
                                     $minutes = floor(($workingHour / 60) % 60);
                                     $seconds = $workingHour % 60;
-                                    echo "$hours:$minutes:$seconds";                                    
+                                    echo "$hours:$minutes:$seconds";
                                 }
                                 ?>
                             </td>
                             <td>
                                 <?php
                                 //calculate overtime                                               
-                               
-                                if ($result->attendances->overtime !=0) {
-                                   echo $result['overtime'];
+
+                                if ($result->attendances->overtime != 0) {
+                                    echo $result['overtime'];
                                 } else {
                                     echo "-";
                                 }
@@ -157,13 +154,13 @@ if ($offset < 0) {
 
                             </td>
                             <td class="row">
-                                <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
-                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="button displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal">Edit</a></div>
+                                <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string"); ?>
+                                    <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="button displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal">Edit</a></div>
                             </td>
-                </tr>
-                <?php
-                }
-                ?>
+                        </tr>
+    <?php
+}
+?>
                 </tbody>
                 <tfoot style="display:none;"></tfoot>
             </table>      
@@ -172,6 +169,6 @@ if ($offset < 0) {
 </section>
 <div id="content"></div>  
 <div id="edit_att_time"></div>
-  
-  
+
+
 

@@ -16,6 +16,7 @@ class SalaryMasterController extends ControllerBase
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
         
+        
     }
 
     /**

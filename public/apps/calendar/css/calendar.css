@@ -17,14 +17,14 @@
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
 }
-#left-scroll {    
+#left_scroll {    
     overflow-y: hidden;
     overflow-x: hidden;
     height: 200px;
     width: 100%;
     margin-bottom: 10px;
   }
-  #left-scroll:hover{
+  #left_scroll:hover{
        overflow-y: scroll;
   }
 /*scroll bar hidden*/
@@ -33,7 +33,7 @@ body::-webkit-scrollbar { width: 0; }
 #calendar{ 
     width: 100%;
 }
-#hidden-type{
+#hidden_type{
     display: block;
 }
 #clear{

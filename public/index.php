@@ -4,22 +4,20 @@ use Phalcon\Mvc\Application;
 use Phalcon\Config\Adapter\Ini;
 
 //error_reporting(E_ALL);
-
 //$debug = new \Phalcon\Debug();
 //$debug->listen();
 
 try {
-    
+
     //Register an autoloader
     $loader = new \Phalcon\Loader();
     //Register some namespaces
     $loader->registerNamespaces(array(
-      // set namespace for libraries
-      'Library\Core' => '../library/core/',
-      
-      // set namespace for the core module
-      'workManagiment\Core\Controllers' => '../apps/core/controllers/',
-      'workManagiment\Core\Models' => '../apps/core/models/',
+        // set namespace for libraries
+        'Library\Core' => '../library/core/',
+        // set namespace for the core module
+        'workManagiment\Core\Controllers' => '../apps/core/controllers/',
+        'workManagiment\Core\Models' => '../apps/core/models/',
     ));
 
     //register autoloader
@@ -27,25 +25,25 @@ try {
 
     //get config
     $config = new Ini(__DIR__ . '/../config/config.ini');
-    
+
     //Create a DI
     $di = new \Phalcon\DI\FactoryDefault();
-    
+
     //db set up
     $di->set('db', function() use ($config) {
-		return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
-			"host" => $config->database->host,
-			"username" => $config->database->username,
-			"password" => $config->database->password,
-			"dbname" => $config->database->dbname
-		));
-	});
-        
+        return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+            "host" => $config->database->host,
+            "username" => $config->database->username,
+            "password" => $config->database->password,
+            "dbname" => $config->database->dbname
+        ));
+    });
+
     /**
      * Include services
      */
     require __DIR__ . '/../config/services.php';
-      
+
     /**
      * Handle the request
      */
@@ -55,10 +53,10 @@ try {
      * Assign the DI
      */
     $application->setDI($di);
-    
+
     // register di
     \Phalcon\DI::setDefault($di);
-    
+
     /**
      * Include modules
      */
@@ -66,14 +64,13 @@ try {
     /**
      * Module config 
      */
-    require __DIR__ . '/../config/module_config.php';    
+    require __DIR__ . '/../config/module_config.php';
     echo $application->handle()->getContent();
-
 } catch (Phalcon\Exception $e) {
-    $logString = $e->getMessage()." [{$e->getFile()}({$e->getLine()})]".PHP_EOL
-               . "Started Trace".PHP_EOL . $e->getTraceAsString();
+    $logString = $e->getMessage() . " [{$e->getFile()}({$e->getLine()})]" . PHP_EOL
+            . "Started Trace" . PHP_EOL . $e->getTraceAsString();
     $di->getShared('logger')->error($logString);
-    
+
     echo $e->getMessage();
 } catch (PDOException $e) {
     echo $e->getMessage();

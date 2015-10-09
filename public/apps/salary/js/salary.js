@@ -195,7 +195,7 @@ var Salary = {
 
 $(document).ready(function () {
     Salary.init();
-
+    var popupStatus = 0;
     $('#search_salary').click(function () {
         Salary.search();
     });
@@ -203,7 +203,43 @@ $(document).ready(function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
-    
+    //display popup to calculate monthly salary
+    $("#displaypopup").click(function(){
+		//centering with css
+		centerPopup();
+		//load popup
+		loadPopup();
+               
+	});
+    //centering popup
+    function centerPopup(){
+	
+	//request data for centering
+	var windowWidth = $(window).width();
+	var windowHeight = $(window).height();		
+        
+	$("#myPopup").css({
+		"position": "absolute",
+		"top"     : windowHeight/4,
+                "left"    : windowWidth/2.5
+	});
+	$("body").css("overflow","hidden");
+	$("#backgroundPopup").css({
+		"height": windowHeight
+	});
+       }
+       
+    function loadPopup(){
+	if(popupStatus==0){
+		$("#backgroundPopup").css({
+			"opacity": "0.5"
+		});
+		$("#backgroundPopup").fadeIn("slow");
+		$("#myPopup").fadeIn("slow");
+		popupStatus = 1;
+	}
+    }
+
 });
 
 

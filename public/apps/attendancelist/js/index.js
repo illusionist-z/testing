@@ -22,7 +22,8 @@ var Attendance = {
                 url : "editTimedialog/"+id,
                 type :"GET",   
                 dataType : 'json',
-                success : function(d){                    
+                success : function(d){  
+                    
                     $('#edit_att_time').empty();
                        
                     n = new Date();
@@ -56,7 +57,7 @@ var Attendance = {
                     
                        var dia_div = '<form id="edit_attendance"><div class="row">'
                                    +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" id="time" name="time" value="'+localcheckin+'"></div></div>'
-                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_id']+'"></div></div>'               
+                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_login_name']+'"></div></div>'               
                                    +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
                                    +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
                                   +'</div></form>';

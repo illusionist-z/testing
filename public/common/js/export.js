@@ -1,5 +1,5 @@
- var Export= {
- Export: function (table, filename) {
+var Export = {
+    Export: function(table, filename) {
         var headers = table.find('tr:has(th)')
                 , $rows = table.find('tfoot>tr:has(td)')
                 // Temporary delimiter characters unlikely to be typed by keyboard
@@ -47,5 +47,5 @@
 
         }
     }
- };
- 
+};
+
