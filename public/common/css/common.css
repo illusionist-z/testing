@@ -447,3 +447,12 @@ float:left;
     font-size: 24px;
     font-family: monospace;
 }
+
+.successMessage{
+    color : red;
+    font-size : 16px;
+}
+.indelete{
+    background: url("../img/delete2.png") 1px 0px no-repeat;
+    padding: 1px 1px 16px 15px;
+}

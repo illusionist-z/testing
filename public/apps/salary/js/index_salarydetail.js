@@ -114,6 +114,7 @@ $(document).ready(function () {
        var id= document.getElementById("member_id").value;
         Resign.Add(id);
     });
+    //Enable the textbox for salary detail
     $('.btnEditInfo').click(function () {
         //document.getElementById('txtname').disabled=false;
 //        document.getElementById('btn_savedetail').disabled=false;
