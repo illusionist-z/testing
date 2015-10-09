@@ -9,8 +9,6 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();
         
-        $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/css/style.css');
         
     }
 
@@ -24,6 +22,8 @@ class IndexController extends ControllerBase
      * Show All Notification in one page
      */
     public function viewallAction(){
+        $this->setCommonJsAndCss();
+
         $type=viewall;
         $code=$this->session->permission_code;
         $Admin=new CoreMember();
@@ -66,6 +66,7 @@ class IndexController extends ControllerBase
     }
     
     public function detailAction(){
+        $this->setCommonJsAndCss();
         $code=$this->session->permission_code;
         $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
@@ -76,7 +77,7 @@ class IndexController extends ControllerBase
             $noti=$Admin->GetUserNoti($id);
         }
         $this->view->setVar("noti",$noti);
-        $type="aa";
+        $type="detail";
         $this->view->setVar("type",$type);
         $noti_id= $this->request->get('id');
         $module_name= $this->request->get('mname');

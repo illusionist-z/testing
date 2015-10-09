@@ -187,7 +187,7 @@ var Salary = {
                 d.dialog("close");
             }
         }).done(function(){
-            $('body').load('allowance');
+            $('body').load('salarylist');
         });
     },
     search : function () {

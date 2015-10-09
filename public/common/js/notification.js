@@ -93,23 +93,19 @@ $(document).ready(function() {
     });
 
     $(".noti").click(function() {
-        document.getElementById("noti").className = "noticlose";
+        //document.getElementById("noti").className = "noticlose";
         $("#notificationContainer").fadeToggle(100);
         $("#notificationsBody").load(baseUri + 'notification/index/notification');
     });
 
 
-    $(".noticlose").click(function() {
+    $(".content").click(function() {
         $("#notificationContainer").hide();
-        document.getElementById("noti").className = "noti";
-        location.reload();
+        //document.getElementById("noti").className = "noti";
+        //location.reload();
     });
 
-//    $(".content").click(function()
-//    {
-//     $("#notificationContainer").hide();
-//    location.reload();
-//    });
+
 
 
 });
