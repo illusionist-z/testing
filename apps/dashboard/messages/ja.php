@@ -11,6 +11,10 @@ $messages = array(
     "current_time" => "いま時間",
     "late_reason" =>  "お忘れた、李流を書きて下さい.",
     "last_member" => "さいきんMember",
-    "new_member" => "人"
+    "new_member" => "人",
+    "attendance"    => "kyo hito",
+    "leave"          => "yasumi hito",
+    "checkin"       => "Chatku timu",
+    "checkout"     => "Chatout timu",
 );
 

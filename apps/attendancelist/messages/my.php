@@ -1,7 +1,7 @@
 <?php
 
 $messages = array(
-    "hi"      => "ယေန႕စာရင္း",
+    "attendancelist"      => "ယေန႕စာရင္း",
     "monthlylist" =>"လစဥ္တက္ေရာက္စာရင္း",
     "bye"     => "sayounara",
     "hi-name" => "Bonjour %name%",

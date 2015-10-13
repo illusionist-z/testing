@@ -4,7 +4,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        User Lists
+        <?= $t->_("userlist"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -46,12 +46,12 @@
                 <thead>
                     <tr>
                         <th width="50px">ID</th>
-                        <th width="150px">Name</th>
-                        <th width="150px">Department</th>
-                        <th width="150px">Position</th>
-                        <th width="150px">Email</th>
-                        <th width="150px">Phone no</th>
-                        <th width="150px">Address</th>                        
+                        <th width="150px"><?= $t->_("name"); ?></th>
+                        <th width="150px"><?= $t->_("dept"); ?></th>
+                        <th width="150px"><?= $t->_("position"); ?></th>
+                        <th width="150px"><?= $t->_("mail"); ?></th>
+                        <th width="150px"><?= $t->_("phone"); ?></th>
+                        <th width="150px"><?= $t->_("address"); ?></th>                        
                     </tr>
 
                 </thead>

@@ -3,7 +3,7 @@
 ?>
 <section class="content-header" style="height:auto;">
     <h1>
-        Monthly Salary Lists
+        <?= $t->_("monthly_salary_list"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -24,15 +24,15 @@
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th><center>Month/Year</center></th>
-                        <th><center>Salary</center></th>
-                        <th><center>Allowance</center></th>
-                        <th><center>Travel Fees</center></th>
-                        <th><center>Personal Income</center></th>
+                        <th><center><?= $t->_("mth/yr"); ?></center></th>
+                        <th><center><?= $t->_("salary"); ?></center></th>
+                        <th><center><?= $t->_("allowance"); ?></center></th>
+                        <th><center><?= $t->_("travel_fee"); ?></center></th>
+                        <th><center><?= $t->_("income"); ?></center></th>
                         <th><center>SSC Employer</center></th>
                         <th><center>SSC Employee</center></th>
-                        <th><center>Tax Total</center></th>
-                        <th><center>Total</center></th>
+                        <th><center><?= $t->_("tax_total"); ?></center></th>
+                        <th><center><?= $t->_("total"); ?></center></th>
 
                     </tr>
 

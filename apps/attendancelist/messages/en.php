@@ -2,7 +2,7 @@
 
 
 $messages = array(
-    "hi"      => "Attendance List",
+    "attendancelist"      => "Attendance List",
     "monthlylist" =>"Monthly Attendance List",    
     "bye"     => "Good Bye",
     "hi-name" => "Bonjour %name%",

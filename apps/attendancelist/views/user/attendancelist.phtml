@@ -17,7 +17,7 @@
 ?> 
 <section class="content-header" style="height:auto;">
           <h1>
-           Attendance List
+           <?= $t->_("attendancelist"); ?>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -42,14 +42,14 @@
 <table class="listtbl">
 <thead>
     <tr>
-        <th>Date</th>
-	<th>User Name</th>
-	<th>Check In</th>
-	<th>Late</th>
-        <th>Check Out</th>
-	<th>Working Time</th>
-	<th>OverTime</th>
-        <th>Location</th>
+                <th><?= $t->_("date"); ?></th>
+	<th><?= $t->_("username"); ?></th>
+	<th><?= $t->_("checkin"); ?></th>
+	<th><?= $t->_("late"); ?></th>
+              <th><?= $t->_("checkout"); ?></th>
+	<th><?= $t->_("workingtime"); ?></th>
+	<th><?= $t->_("overtime"); ?></th>
+                <th><?= $t->_("location"); ?></th>
     </tr>
   </thead>
   <tbody style="display: none;">

@@ -121,6 +121,14 @@ class CoreMember extends \Library\Core\BaseModel {
        }
     }
    
+    public function getlang($member){
+        var_dump($member);
+        $query = "Select lang from core_member where member_login_name ='".$member['member_login_name']."'";
+        $result = $this->db->query($query);
+        $lang =$result->fetch();        
+        return $lang;
+    }
+    
     /**
      * 
      * @param type $member_id

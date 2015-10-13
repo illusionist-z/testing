@@ -11,5 +11,10 @@ $messages = array(
     "current_time" => "အခ်ိန္",
     "late_reason" =>  "ေနာက္က်ခဲ့ရင္,ေၿဖရွင္းခ်က္ကိုေရးေပးခဲ့ပါ",
     "last_member" => "ေနာက္ဆံုးမန္ဘာ၀င္သူ",
-    "new_member" => "ေယာက္"
+    "new_member" => "ေယာက္",
+    "attendance"  => "ရံုးတက္သူ",
+    "leave"           => "ရံုးပ်က္သူ",
+    "checkin"        => "ေရာက္ရွိၿခင္း",
+    "checkout"      => "ထြက္ခြာၿခင္း",
+    
 );

@@ -3,7 +3,7 @@
 ?>
 <section class="content-header" style="height:auto;">
     <h1>
-        Allowance
+        <?= $t->_("allowance"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,8 +20,8 @@
             <form id='TextBoxesGroup' action='saveallowance'>
                 <div id="TextBoxDiv1">
          
-                    Allowance Name 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' placeholder="Enter Allowance Name" >
-                    Allowance Amount 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1' placeholder="Enter Allowance Amount">
+                    <?= $t->_("allowance"); ?> <?= $t->_("name");?> 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' placeholder="Enter Allowance Name" >
+                    <?= $t->_("allowance"); ?> <?= $t->_("amount");?> 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1' placeholder="Enter Allowance Amount">
                      <input type='button' value='+' id='addButton'>
                     <input type='button' value='-' id='removeButton'>
                     <input type='submit' value='Add' id=''>
@@ -33,9 +33,9 @@
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Allowance Name</th>
-                        <th>Allowance Amount</th>
+                        <th><?= $t->_("no"); ?></th>
+                        <th><?= $t->_("allowance"); ?> <?= $t->_("name");?></th>
+                        <th><?= $t->_("allowance"); ?> <?= $t->_("amount");?></th>
                         <th width="30px"></th>
                     </tr>
 

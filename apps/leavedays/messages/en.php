@@ -14,4 +14,7 @@ $messages = array(
   "leave_status" => "Leave Status",
   "leave_left" => "Leave Day Left",
   "applyleave" => "Apply Leave",
+  "leavesetting" => "Leave Setting",
+  "max_leavedays" => "Maximum Leavedays Allowed",
+  "percent_basic_salary" => "Percentage of Fine On Basic Salary",
 );
