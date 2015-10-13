@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <?php use Phalcon\Tag as Tag; ?>
 <html>
-    <head><style>.ui-dialog-titlebar-close {
-  visibility: hidden;
-}</style>
+    <head>
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
@@ -217,7 +215,7 @@
             <footer class="main-footer" style="margin-left:0;">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
                 <div class="language">
-                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "English") ?>  | <?php echo Tag::linkTo("core/index/setLanguage/ja", "Japanese") ?>| <?php echo Tag::linkTo("core/index/setLanguage/my", "Myanmar") ?>
+                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
                 </div>
             </footer>
         
