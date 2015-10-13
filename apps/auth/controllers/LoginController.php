@@ -20,7 +20,7 @@ class LoginController extends ControllerBase {
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();
-        $lang = $member->getlang($loginParams);        
+        $lang = $member->getlang($loginParams); 
         $this->session->set('language',$lang['lang']);
         $member->updatecontract($loginParams);
         $this->session->set('permission_code', $permission);

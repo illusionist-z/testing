@@ -14,7 +14,7 @@ class UserController extends ControllerBase
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');        
         $this->setCommonJsAndCss();
-        
+        $this->view->t  = $this->_getTranslation();
     }
     
     public function indexAction(){                

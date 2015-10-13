@@ -79,6 +79,7 @@ class IndexController extends  ControllerBase {
         $numofleaves=$Attendances->gettotalleaves($id);
         $this->view->setVar("numatt",$numofatt);
         $this->view->setVar("numleaves",$numofleaves);
+        $this->view->t = $this->_getTranslation();
     }
     /**
      * set location,latitude and longitude to session

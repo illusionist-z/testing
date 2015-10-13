@@ -12,7 +12,7 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <b>Leave List</b>
+        <b><?= $t->_("leave_list"); ?></b>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
@@ -26,7 +26,7 @@ $length = count($Month);
         <form id="frm_search">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
                 
-                <option value="">Leave Type</option>
+                <option value=""><?= $t->_("leave_type"); ?></option>
                 <?php
                 foreach ($Leavetype as $data){
                 ?>
@@ -39,7 +39,7 @@ $length = count($Month);
 
             </select>
             <select class="select" data-toggle="select" name="month" id="month">
-                <option value="">Month</option>
+                <option value=""><?= $t->_("month"); ?></option>
                 <?php
                 for ($i = 1; $i <= $length; $i++) {
                     ?>
@@ -70,15 +70,15 @@ $length = count($Month);
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th width="150px">Date</th>
-                        <th width="150px">Name</th>
-                        <th width="150px">Start Date</th>
-                        <th width="150px">End Date</th>
-                        <th width="150px">Leave days</th>
-                        <th width="150px">Leave type</th>
-                        <th width="150px">Leave description</th>
-                        <th width="150px">Leave status</th>
-                        <th width="150px">Leave day left</th>
+                        <th width="150px"><?= $t->_("date"); ?></th>
+                        <th width="150px"><?= $t->_("name"); ?></th>
+                        <th width="150px"><?= $t->_("start_date"); ?></th>
+                        <th width="150px"><?= $t->_("end_date"); ?></th>
+                        <th width="150px"><?= $t->_("leave_day"); ?></th>
+                        <th width="150px"><?= $t->_("leave_type"); ?></th>
+                        <th width="150px"><?= $t->_("leave_desc"); ?></th>
+                        <th width="150px"><?= $t->_("leave_status"); ?></th>
+                        <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
 
                 </thead>

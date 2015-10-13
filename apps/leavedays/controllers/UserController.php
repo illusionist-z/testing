@@ -20,7 +20,7 @@ class UserController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/style.css');
-        
+        $this->view->t = $this->_getTranslation();
     }
 
     public function indexAction() {

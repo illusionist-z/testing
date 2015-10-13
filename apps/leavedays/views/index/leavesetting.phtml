@@ -1,7 +1,7 @@
 
 <section class="content-header" style="height:auto;margin-top: 5px;">
     <h1>
-        Leave Setting
+        <?= $t->_("leavesetting"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -15,12 +15,12 @@
             <form name="setting" id="search_frm" method="post" action="editleavesetting">
                 <div id="Menu">
                     <?php foreach($leave_setting as $data){?>
-                    <div id="leave_setting_div1">Maximum Leavedays allowed: 
+                    <div id="leave_setting_div1"><?= $t->_("max_leavedays"); ?>: 
                         <span>
                             <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; height: 26px; margin-top: 8px;" disabled> Days
                         </span>
                     </div>
-                    <div id="leave_setting_div2">Percentage of Fine On Basic Salary: 
+                    <div id="leave_setting_div2"><?= $t->_("percent_basic_salary"); ?>: 
                         <span>
                            <input type="text" value="<?php echo $data['fine_amount']; ?>" id="fine_amount" name="fine_amount" style="width: 31px; height: 26px; margin-top: 8px;" disabled> %
                         </span>
@@ -49,7 +49,7 @@
   <thead>
     <tr>
 			<th width="120px">ID</th>
-			<th>Leave Type </th>
+			<th><?= $t->_("leave_type"); ?></th>
 			
 			
 			

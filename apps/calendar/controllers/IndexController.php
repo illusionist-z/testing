@@ -16,9 +16,9 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
-        $this->assets->addCss('common/css/css/style.css');
         $this->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
+        $this->view->t = $this->_getTranslation();
     }
 
     
@@ -64,9 +64,7 @@ class IndexController extends ControllerBase
     public function removeEventBynameAction() {
         $remove = $this->request->getPost('remove');
         $id = $this->session->user['member_id'];
-        $data = $this->calendar->remove_member($remove,$id); 
-        echo json_encode($data);
-        $this->view->disable(); 
+        $data = $this->calendar->remove_member($remove,$id);        
     }
     /**
      * @desc calendar event show
