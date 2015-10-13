@@ -37,7 +37,7 @@ class CalculateController extends ControllerBase
      
     //calculate the basic salary
     $tax=$Salarymaster->calculate_tax_salary($getbasic_salary);
-    //print_r($tax);exit;
+    print_r($tax);
     //insert taxs of all staff to salary detail
     $Salarydetail->insert_taxs($tax);
     

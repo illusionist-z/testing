@@ -120,7 +120,12 @@ class CoreMember extends \Library\Core\BaseModel {
          $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
        }
     }
-   
+   public function getlang($member){        
+     $query = "Select lang from core_member where member_login_name ='".$member['member_login_name']."'";
+        $result = $this->db->query($query);
+        $lang=$result->fetch();
+        return $lang;        
+    }
     /**
      * 
      * @param type $member_id
@@ -147,13 +152,14 @@ class CoreMember extends \Library\Core\BaseModel {
         
         //uploading file
         $target_dir = "uploads/";
+        $profile = $_FILES["fileToUpload"]["name"];
         //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $newfilename = rand(1,99999) . '.' . end(explode(".",$_FILES["fileToUpload"]["name"]));
         $targetfile = $target_dir . $newfilename;
 
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
         $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
-                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
+                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $profile . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
       

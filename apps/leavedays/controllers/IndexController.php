@@ -51,7 +51,8 @@ class IndexController extends ControllerBase {
         $userlist=new Db\CoreMember();
         
         $name = $userlist::getinstance()->getusername(); 
-        if($this->permission==1){
+        
+        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
         $this->view->modulename = $this->module_name;
@@ -108,7 +109,7 @@ class IndexController extends ControllerBase {
         $leaves = $this->_leave->getleavelist();
         $max=$this->_leave->getleavesetting();
         $max_leavedays=$max['0']['max_leavedays'];
-        if($this->permission==1){
+        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
         $this->view->max = $max_leavedays;
         $this->view->Getname = $GetUsername;
         $this->view->setVar("Result", $leaves);

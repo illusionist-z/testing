@@ -20,12 +20,12 @@ if(isset($Msg))
             <div id="form_div">
                 <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Add Salary Form</font></div>
                 <div class="left-div-style-box">
-                    <form action="../salarymaster/savesalary" method="post">
+                    <form action="#" method="post" id="add_salary">
                     <div class="div-bottom">
                         <span class="span-style">UserName </span>
                         <span>
                             <select style="width:34%;" name="uname" id="uname">
-                                <option value="">Name</option>
+                                <option value="" name="uname">Name</option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -37,7 +37,9 @@ if(isset($Msg))
                                 }
                                 ?>
                             </select>
+                             <span id="add_salary_uname_error"></span> 
                         </span>
+                       
                     </div>
                         
 <!--                    <div class="div-bottom">
@@ -60,17 +62,22 @@ if(isset($Msg))
                     <div class="div-bottom">
                         <span class="span-style">Basic Salary </span>
                         <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:34%; height: 20%;" name="bsalary"></span>
+                         <span id="add_salary_bsalary_error"></span>
                     </div>
 
                     <div class="div-bottom">
                         <span class="span-style">Travel fees </span>
-                        <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee"></span>
+                        <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee">
+                           
+                        </span>
+                         
                     </div>
 
                     <div class="div-bottom">
                         <span class="span-style">Overtime ( per hr ) </span>
                         <span><input type="text" id="overtime" value="" style="width:5%;" name="overtime" placeholder="0"></span>
                         <span>%</span>
+                        
                     </div>
                         
                     <div class="div-bottom">
@@ -78,31 +85,33 @@ if(isset($Msg))
                         <span>
                             <?php
                             //print_r($getall_allowance);
+//                            
                             foreach ($getall_deduce as $getall_deduces) {
-                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_deduces['deduce_id'].'"> '. $getall_deduces['deduce_name'];
-                            }
+                                echo '<input type="checkbox" name="checkall[]" id="checkall" value="'.$getall_deduces['deduce_id'].'"> '. $getall_deduces['deduce_name'];
+                           }
                             ?>
                             
                         </span>
-                        
+                         <span id="add_salary_ssc_error"></span>
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
                         <div style="float: left; width: 8%;">Allowance </div>
-                        <div style="margin-left: 11%;">
+                       <div style="margin-left: 11%;">
                             <?php
                             //print_r($getall_allowance);
+                            
                             foreach ($getall_allowance as $getall_allowances) {
-                                echo '<input type="checkbox" name="check_allow[]" value="'.$getall_allowances['allowance_id'].'"> '. $getall_allowances['allowance_name']."<br>";
+                                echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="'.$getall_allowances['allowance_id'].'"> '. $getall_allowances['allowance_name']."<br>";
                             }
                             ?>
-                            
+                           
                         </div>
                     </div>
                         <div class="div-bottom" style="clear: both;">
                         <span class="span-style"></span>
                         <span>
 <!--                            <a href="#" class="button">Apply</a>-->
-                            <input type="submit" value="Apply" class="buttonn">
+                            <input type="submit" value="Apply" onclick="return false;" id="addsalary" class="buttonn">
                             <!--<a href="#" class="button"><b>Cancel</b></a>-->
                             <input type="reset" class="buttonn" value="Cancel">
                         </span>

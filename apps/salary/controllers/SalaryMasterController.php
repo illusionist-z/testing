@@ -6,16 +6,16 @@ use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
 use workManagiment\Salary\Models\Allowances;
-
+use workManagiment\Salary\Models\Salary;
 
 class SalaryMasterController extends ControllerBase
 {
-    
+    public $_addsalary;
     public function initialize() {
-        
+        $this->_addsalary= new Salary;
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
-        
+        //$this->assets->addJs('apps/salary/js/addsalary.js');
     }
 
     /**
@@ -23,9 +23,8 @@ class SalaryMasterController extends ControllerBase
      * @author zinmon
      */
     public function savesalaryAction() {
-        $dedution = $this->request->get('check_list');
+        $dedution = $this->request->get('checkall');
         $allowance = $this->request->get('check_allow');
-
         $data['id'] = uniqid();
         $data['member_id'] = $this->request->get('uname', 'string');
         //$data['position'] = $this->request->get('position', 'string');
@@ -40,7 +39,20 @@ class SalaryMasterController extends ControllerBase
         $data['updater_id'] = 3;
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
-
+        //print_r($dedution);exit;
+         if ($this->request->isPost()) {
+             $user = $this->_addsalary;
+             $validate = $user->chk_validate($this->request->getPost());
+             
+            if(count($validate)){
+               foreach ($validate as $message){
+                   $json[$message->getField()] = $message->getMessage();
+               }
+               $json['result'] = "error";
+                echo json_encode($json);
+                $this->view->disable();
+                  }     
+            else{
         
         $Salarymaster = new SalaryMaster();
         $Salarymaster->savesalarydedution($dedution, $data['member_id'], $data['creator_id']);
@@ -50,6 +62,10 @@ class SalaryMasterController extends ControllerBase
         $saveallowance = $Allowance->saveallowance($allowance, $this->request->get('uname'));
 
         $this->response->redirect('salary/index/salarylist');
+             }
+             
+             }
+       
     }
     
     public function editsalarydetailAction($bsalary,$overtimerate,$allowance,$member_id) {

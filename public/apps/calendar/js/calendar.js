@@ -111,7 +111,7 @@ var Calendar = {
     if(d.length === 0){
     var message = "<div class='message' style='top:30%;left:18%;"
     +"text-align:center;background:#3c8dbc;color:white;position:absolute;"
-    +";width:80.5%;height:10%;z-index:100;font-size:33px;margin-left:3px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
+    +";width:64%;height:10%;z-index:100;font-size:33px;margin-left:115px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
     $('body').append(message);
     setTimeout(function() {
     $('.message').remove();
@@ -125,16 +125,24 @@ var Calendar = {
     }
         });
     },
-    remove_event_member : function(val) {
-             
+    remove_event_member : function() {                                              
+        var selectedvalue = [];        
+      if($(':checkbox:checked').length > 0){
+        $(':checkbox:checked').each(function(i){
+          selectedvalue[i] = $(this).val();
+          //alert(selectedvalue[i]);
+         });
          $.ajax({
              url : "index/removeEventByname",
-             data : {remove : val},
+             data : {remove : selectedvalue},
              type : "POST",
-             success : function(){                 
-                 $('body').load('index');
+             success : function(){
+                // alert(d);
+              $('body').load('index');
              }
          });
+         }
+       else {alert("You must check at least one");}
     },
     /**
      * @author David 9/16/2015
@@ -146,7 +154,7 @@ var Calendar = {
             autoOpen :false,
             height: 160,
             width : 400,
-            title: "test",
+            title: "Add Member",
             modal :true
         });                
       $("#member_event_dialog_close").on("click",function(){
@@ -339,8 +347,7 @@ var Calendar = {
 $(document).ready(function () {
       Calendar.init();
    //select member event btn
-   $('.btn-show-event').click(function(e){
-       e.preventDefault();
+   $('.btn-show-event').click(function(){
       var selectedvalue = [];
       if($(':checkbox:checked').length > 0){
         $(':checkbox:checked').each(function(i){
@@ -353,10 +360,8 @@ $(document).ready(function () {
    $('#shapbott').click(function(){
        Calendar.getmemberevent();
    });
-   $('.disabledevent').click(function(e){
-       e.preventDefault();
-       var del_name = $(this).attr('name');
-       Calendar.remove_event_member(del_name);
+   $('.disabledevent').click(function(){
+       Calendar.remove_event_member();
    });
    
 });
