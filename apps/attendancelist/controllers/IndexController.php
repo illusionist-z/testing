@@ -18,7 +18,7 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
-
+        $this->view->t = $this->_getTranslation();
         
     }
 
