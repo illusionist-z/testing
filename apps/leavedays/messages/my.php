@@ -14,6 +14,8 @@ $messages = array(
   "leave_status" => "အတည္ၿပဳခ်က္",
   "leave_left" => "ခြင့္က်န္ရက္",
    "applyleave" => "ခြင့္ေလွ်ာက္လႊာ",
-   
+   "leavesetting" => "ခြင့္ Setting",
+    "max_leavedays" => "ခြင့္ၿပဳခြင့္မဲ့ရက္မ်ား",
+    "percent_basic_salary" => "လစာမွႏုတ္ယူရာခိုင္ႏွုန္း",
     
 );

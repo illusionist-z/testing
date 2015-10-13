@@ -1,6 +1,6 @@
 <section class="content-header" style="height:auto;">
     <h1>
-        Add Salary For Each Member
+        <?= $t->_("addsalary_title"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,7 +22,7 @@ if(isset($Msg))
                 <div class="left-div-style-box">
                     <form action="../salarymaster/savesalary" method="post">
                     <div class="div-bottom">
-                        <span class="span-style">UserName </span>
+                        <span class="span-style"><?= $t->_("name"); ?></span>
                         <span>
                             <select style="width:34%;" name="uname" id="uname">
                                 <option value="">Name</option>
@@ -58,23 +58,23 @@ if(isset($Msg))
                         </span>
                     </div>-->
                     <div class="div-bottom">
-                        <span class="span-style">Basic Salary </span>
+                        <span class="span-style"><?= $t->_("basic_salary"); ?></span>
                         <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:34%; height: 20%;" name="bsalary"></span>
                     </div>
 
                     <div class="div-bottom">
-                        <span class="span-style">Travel fees </span>
+                        <span class="span-style"><?= $t->_("travel_fee"); ?></span>
                         <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee"></span>
                     </div>
 
                     <div class="div-bottom">
-                        <span class="span-style">Overtime ( per hr ) </span>
+                        <span class="span-style"><?= $t->_("overtime"); ?></span>
                         <span><input type="text" id="overtime" value="" style="width:5%;" name="overtime" placeholder="0"></span>
                         <span>%</span>
                     </div>
                         
                     <div class="div-bottom">
-                        <span class="span-style">Deduce for SSC </span>
+                        <span class="span-style"><?= $t->_("deduce_ssc"); ?></span>
                         <span>
                             <?php
                             //print_r($getall_allowance);
@@ -87,7 +87,7 @@ if(isset($Msg))
                         
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 8%;">Allowance </div>
+                        <div style="float: left; width: 8%;"><?= $t->_("allowance"); ?></div>
                         <div style="margin-left: 11%;">
                             <?php
                             //print_r($getall_allowance);
@@ -102,7 +102,7 @@ if(isset($Msg))
                         <span class="span-style"></span>
                         <span>
 <!--                            <a href="#" class="button">Apply</a>-->
-                            <input type="submit" value="Apply" class="buttonn">
+                            <input type="submit" value="<?= $t->_("apply"); ?>" class="buttonn">
                             <!--<a href="#" class="button"><b>Cancel</b></a>-->
                             <input type="reset" class="buttonn" value="Cancel">
                         </span>

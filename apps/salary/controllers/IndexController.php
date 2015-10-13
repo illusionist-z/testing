@@ -37,6 +37,7 @@ class IndexController extends ControllerBase {
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
+        $this->view->t = $this->_getTranslation();
     }
 
     public function indexAction() {
@@ -58,7 +59,7 @@ class IndexController extends ControllerBase {
         }
         else {
         $this->response->redirect('core/index');
-        }
+        }        
     }
 
     /**
@@ -109,7 +110,7 @@ class IndexController extends ControllerBase {
         }
         else {
         $this->response->redirect('core/index');
-        }
+        }       
     }
 
    
@@ -130,7 +131,7 @@ class IndexController extends ControllerBase {
         }
         else {
         $this->response->redirect('core/index');
-        }
+        }        
     }
 
     /**

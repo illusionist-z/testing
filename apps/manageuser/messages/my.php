@@ -1,8 +1,13 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$messages = array(
+   "userlist" => "လူဦးေရစာရင္း", 
+    "name"   => "နာမည္",
+    "dept"   => "ဌာန",
+    "position" => "ရာထူး",
+    "mail"     => "ေမးလ္",
+    "phone" => "ဖုန္းနံပတ္",
+    "address" => "လိပ္စာ",
+);
+
 

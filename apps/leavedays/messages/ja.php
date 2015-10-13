@@ -14,5 +14,8 @@ $messages = array(
   "leave_status" => "",
   "leave_left" => "",
   "applyleave" => "休み人",
+  "leavesetting" => "yasumi Setting",
+  "max_leavedays" => "yasumi permit",
+    "percent_basic_salary" => "pernceto okane"
 );
 

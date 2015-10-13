@@ -126,14 +126,15 @@ class CoreMember extends \Library\Core\BaseModel {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
     }
-    
-      public function getlang($member){        
-     $query = "Select lang from core_member where member_login_name ='".$member['member_login_name']."'";
+   
+    public function getlang($member){
+        var_dump($member);
+        $query = "Select lang from core_member where member_login_name ='".$member['member_login_name']."'";
         $result = $this->db->query($query);
-        $lang=$result->fetch();
-        return $lang;        
+        $lang =$result->fetch();        
+        return $lang;
     }
-
+    
     /**
      * 
      * @param type $member_id

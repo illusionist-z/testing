@@ -12,7 +12,7 @@
     </style>
 <section class="content-header" style="height:auto;">
     <h1>
-        Salary Setting
+        <?= $t->_("salary");?> Setting
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -23,7 +23,7 @@
 <body onload="init()">
    
     <ul id="tabs">
-      <li><a class="selected" href="#about">Tax Setting</a></li>
+      <li><a class="selected" href="#about"><?= $t->_("tax");?> Setting</a></li>
       <li><a class="" href="#advantages">Deduction Setting </a></li>
 
     </ul>
@@ -33,9 +33,9 @@
   <thead>
     <tr>
 			<th width="120px">ID</th>
-			<th>Taxs From </th>
-			<th>Taxs To</th>
-			<th>Taxs Rate</th>
+			<th><?= $t->_("tax_from"); ?></th>
+			<th><?= $t->_("tax_to"); ?></th>
+			<th><?= $t->_("tax_rate"); ?></th>
 			<th>SSC emp</th>
 			<th>SSC comp</th>
 			
@@ -79,8 +79,8 @@
   <thead>
     <tr>
 			<th width="120px">ID</th>
-			<th>Deduction Name </th>
-			<th>Deduction Amount</th>
+			<th>Deduction <?= $t->_("name"); ?> </th>
+			<th><?= $t->_("deduction_amt"); ?></th>
 			
 			
 <!--			<th width="50px"><input style="color:black;height: 50px;"  id="inimg" type="button" class="addbtn add" onclick="return false;" value=" Add New Deduction"></th>-->

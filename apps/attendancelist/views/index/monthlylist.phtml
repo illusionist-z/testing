@@ -20,7 +20,7 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Monthly Attendance Lists
+        <?= $t->_("monthlylist"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -67,14 +67,14 @@ $length = count($Month);
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th width="150px">Date</th>
-                        <th width="150px">User Name</th>
-                        <th width="150px">Check In</th>
-                        <th width="150px">Late</th>
-                        <th width="150px">Check Out</th>
-                        <th width="150px">Working Time</th>
-                        <th width="150px">OverTime</th>
-                        <th width="150px">Location</th>
+                        <th width="150px"><?= $t->_("date"); ?></th>
+                        <th width="150px"><?= $t->_("username"); ?></th>
+                        <th width="150px"><?= $t->_("checkin"); ?></th>
+                        <th width="150px"><?= $t->_("late"); ?></th>
+                        <th width="150px"><?= $t->_("checkout"); ?></th>
+                        <th width="150px"><?= $t->_("workingtime"); ?></th>
+                        <th width="150px"><?= $t->_("overtime"); ?></th>
+                        <th width="150px"><?= $t->_("location"); ?></th>
                     </tr>
 
                 </thead>

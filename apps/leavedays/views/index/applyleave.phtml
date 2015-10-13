@@ -1,93 +1,92 @@
 <?php $leavetypelength = count($Leavetype); ?> 
-<section class="content-header" >
-    <h1>
-        Apply Leave
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Apply Leave</li>
-    </ol>
-</section>
+        <section class="content-header" >
+          <h1>
+            <?= $t->_("applyleave"); ?>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Apply Leave</li>
+          </ol>
+        </section>
 
-<!-- Main content -->
-<section class="content">
-
-    <div class="row">
-        <div class="col-md-12"><!--start add user form--->
-            <?php $this->flashSession->output() ?>
-            <div id="form_div">
-                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Apply Leave Form</font></div>
-
-                <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-                    <table width="700px" height="300px" style="margin-left: 30px;">
-
-                        <tr>
-
-                            <td width="200px">User Name </td>
-
-                            <td style="height:40px;" >
-                                <select class="select" data-toggle="select" name="username" id="apply_form_name">
-                                    <option value="">Name</option>
-                                    <?php
-                                    foreach ($name as $user) {
-                                        ?>
-                                        <option value="<?php echo $user->member_id; ?>" ><?php echo $user->member_login_name; ?></option>
-                                        <?php
-                                    }
-                                    ?> </select> 
-                                <span id="apply_form_name_error"></span>
-                            </td>                
-                        </tr>        
-                        <tr>
-
-                            <td>Start Date </td>
-                            <td style="height:40px;">
-                                <input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
-                                <span id="apply_form_sdate_error"></span>
-                            </td>                
-                        </tr>
-
-                        <tr>
-                            <td>End Date </td>
-                            <td style="height:40px;">
-                                <input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
-                                <span id="apply_form_edate_error"></span>                
-                            </td>
-
-                        </tr>
-                        <tr>
-
-                            <td>Leave Categories</td>
-                            <td style="height:40px;">
-                                <select class="select" data-toggle="select" name="leavetype">
-                                    <?php
-                                    foreach ($Leavetype as $data) {
-                                        ?>
-                                        <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name']; ?></option>
-                                        <?php
-                                    }
-                                    ?> </select>    
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description </td>
-                            <td style="height:40px;">
-                                <textarea name="description" id="apply_form_desc"  rows="5"  placeholder="Write Description"></textarea>
-                                <span id="apply_form_desc_error"></span>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td></td>		
-                            <td><br><input type="submit" value="Apply" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" class="buttonn" value="Cancel"></td>
-                            <td></td>
-                        </tr>
-                    </table>
-
-                </form>
-            </div>
-        </div><!--end add user form--->
-    </div><!-- /.row -->
-
-</section><!-- /.content -->
-
+        <!-- Main content -->
+        <section class="content">
+         
+         <div class="row">
+	 <div class="col-md-12"><!--start add user form--->
+         <?php $this->flashSession->output() ?>
+	<div id="form_div">
+	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Apply Leave Form</font></div>
+        
+        <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
+            <table width="700px" height="300px" style="margin-left: 30px;">
+          
+	<tr>
+            
+            <td width="200px"><?= $t->_("name"); ?></td>
+           
+            <td style="height:40px;" >
+                    <select class="select" data-toggle="select" name="username" id="apply_form_name">                   
+                    <?php
+                    foreach ($name as $user) {
+                     ?>
+                    <option value="<?php echo $user->member_id; ?>" ><?php echo $user->member_login_name; ?></option>
+                    <?php
+                    }
+                    ?> </select> 
+                    <span id="apply_form_name_error"></span>
+		</td>                
+        </tr>        
+        <tr>
+		
+		<td><?= $t->_("start_date"); ?></td>
+                <td style="height:40px;">
+                    <input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
+                    <span id="apply_form_sdate_error"></span>
+                </td>                
+	</tr>
+        
+	<tr>
+		<td><?= $t->_("end_date"); ?> </td>
+                <td style="height:40px;">
+                    <input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
+                    <span id="apply_form_edate_error"></span>                
+                </td>
+                
+        </tr>
+        <tr>
+          
+		<td><?= $t->_("leave_category"); ?></td>
+                <td style="height:40px;">
+                    <select class="select" data-toggle="select" name="leavetype">
+                    <?php
+                    foreach ($Leavetype as $data) {
+                    ?>
+                         <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name']; ?></option>
+                    <?php
+                    }
+                    ?> </select>    
+                </td>
+	</tr>
+	<tr>
+		<td><?= $t->_("leave_desc"); ?></td>
+                <td style="height:40px;">
+                    <textarea name="description" id="apply_form_desc"  rows="5"  placeholder="Write Description"></textarea>
+                    <span id="apply_form_desc_error"></span>
+               </td>
+	</tr>
+        
+	<tr>
+		<td></td>		
+                <td><br><input type="submit" value="Apply" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" class="buttonn" value="Cancel"></td>
+		<td></td>
+	</tr>
+	</table>
+	
+</form>
+			</div>
+          </div><!--end add user form--->
+          </div><!-- /.row -->
+		  
+        </section><!-- /.content -->
+    

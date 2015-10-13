@@ -8,7 +8,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Calendar
+            <?= $t->_("calendar"); ?>
         </h1>        
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -23,8 +23,8 @@
             <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">
                    <!-- <input type='checkbox'  id='selectall'/>-->                    
                     
-                    User Event Enable                                        
-                    <input type='button' id='shapbott' name='checkall' class="addbtn">                    
+                    <?= $t->_("event_enable"); ?>
+                    <input type='button' id='shapbott' name='checkall' class="addbtn">
                 </span>
             </h2>            
           
@@ -46,7 +46,7 @@
             <?php       }          ?>                    
           </ul>                  
            </form>
-        <span class=" btn-primary btn col-sm-12 btn-show-event">Show Event</span>
+        <span class=" btn-primary btn col-sm-12 btn-show-event"><?= $t->_("show_event"); ?></span>
         <div class="alert col-sm-12">Check above user to see their event</div>
         </div>
     <div class="col-md-8">
