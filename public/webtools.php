@@ -16,7 +16,7 @@
   | Authors: Andres Gutierrez <andres@phalconphp.com>                      |
   |          Eduar Carvajal <eduar@phalconphp.com>                         |
   +------------------------------------------------------------------------+
-*/
+ */
 
 use Phalcon\Web\Tools;
 

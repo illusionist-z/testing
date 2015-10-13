@@ -3,7 +3,7 @@
 // use library
 use Library;
 
-class ControllerBase extends Library\Core\Utclocaltime
+class ControllerBase extends Library\Core\Controller
 {
     
 }

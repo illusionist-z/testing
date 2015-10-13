@@ -66,6 +66,7 @@ class IndexController extends  ControllerBase {
     
     /**
      * show user dashboard
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * 
      */
     public function userAction() {
@@ -81,6 +82,7 @@ class IndexController extends  ControllerBase {
     }
     /**
      * set location,latitude and longitude to session
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function location_sessionAction() {
         $lat = $this->request->get('lat');
@@ -94,7 +96,8 @@ class IndexController extends  ControllerBase {
     }
     
     /**
-     * Check in 
+     * Check In Action
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
      public function checkinAction() {
          $User=new Db\CoreMember;
@@ -129,6 +132,7 @@ class IndexController extends  ControllerBase {
      }
     /**
      * Check out
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
    public function checkoutAction() {
         $id = $this->session->user['member_id'];
@@ -137,7 +141,11 @@ class IndexController extends  ControllerBase {
         echo "<script>alert('".$status."');</script>";
         echo "<script type='text/javascript'>window.location.href='direct';</script>";
     }
-    //define user or admin
+    
+    /**
+     * define user or admin
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
     public function directAction(){
         $name=$this->session->permission_code;
        if ( $name=='ADMIN'){
@@ -149,14 +157,6 @@ class IndexController extends  ControllerBase {
         }
     }
     
-//    public function mailAction(){
-//        $to      = 'jellyminchi@gmail.com';
-//    $subject = 'the subject';
-//    $message = 'hello';
-//    $headers = 'From: zinlay.11.mm@example.com' . "\r\n" .
-//    'Reply-To: webmaster@example.com' . "\r\n" .
-//    'X-Mailer: PHP/' . phpversion();
-//    mail($to, $subject, $message, $headers);
-//    }
+
     
 }

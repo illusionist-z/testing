@@ -1,20 +1,20 @@
-<?php namespace workManagiment\Notification;
+<?php
 
+namespace workManagiment\Notification;
 
-class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface
-{
+class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
+
     /**
      * constructor
      */
     public function __construct() {
         parent::__construct(__DIR__);
     }
-    
+
     /**
      * Registers the module auto-loader
      */
-    public function registerAutoloaders(\Phalcon\DiInterface $di = null)
-    {
+    public function registerAutoloaders(\Phalcon\DiInterface $di = null) {
         parent::registerAutoloaders();
     }
 
@@ -23,8 +23,7 @@ class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefiniti
      *
      * @param Phalcon\DI $di
      */
-    public function registerServices(\Phalcon\DiInterface $di)
-    {
+    public function registerServices(\Phalcon\DiInterface $di) {
         parent::registerServices($di);
     }
 

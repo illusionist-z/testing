@@ -1,23 +1,22 @@
 <?php
 
 namespace workManagiment\Core\Controllers;
-use workManagiment\Core\Models\SetLanguage;
+
 use Library;
 class IndexController extends Library\Core\Controller
 {      
     public function initialize() {
         parent::initialize();
     }
-    
+    public function  indexAction(){
+         $this->setCommonJsAndCss();
+
+    }
       
      public function setLanguageAction($language='')
     {  
-        if($language){
-            $member = $this->session->user['member_id'];
-            $Lang = SetLanguage::getInstance()->settinglanguage($language, $member);
-        }
-        //Change the language, reload translations if needed   
-            $this->session->set('language', $language);
+        //Change the language, reload translations if needed        
+            $this->session->set('language', $language);            
         
         //Go to the last place
         $referer = $this->request->getHTTPReferer();

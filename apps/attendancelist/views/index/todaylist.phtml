@@ -51,14 +51,14 @@ if ($offset < 0) {
                 <thead>
                     <tr>
 
-                        <th width="150px"><?=  $t->_("date"); ?></th>
-                        <th width="150px"><?=  $t->_("username"); ?></th>
+                        <th width="150px">Date</th>
+                        <th width="150px">User Name</th>
                         <th width="150px">Check In</th>
-                        <th width="150px"><?=  $t->_("late"); ?></th>
+                        <th width="150px">Late</th>
                         <th width="150px">Check Out</th>
-                        <th width="150px"><?=  $t->_("workingtime"); ?></th>
-                        <th width="150px"><?=  $t->_("overtime"); ?></th>
-                        <th width="150px"><?=  $t->_("location"); ?></th>
+                        <th width="150px">Working Time</th>
+                        <th width="150px">OverTime</th>
+                        <th width="150px">Location</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,7 +75,7 @@ if ($offset < 0) {
                          ?></td>
                             <td><?php echo $filter->sanitize($result->core->member_login_name, "string");  ?></td>
                             <td>
-                            <?php
+                            <?php 
                             $checkintime = $result->attendances->checkin_time;
                             if ($sign == '-') {
                                 $time = new DateTime($checkintime);
@@ -156,10 +156,6 @@ if ($offset < 0) {
                                 ?> 
 
                             </td>
-<!--                            <td class="row">
-                                <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
-                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="button displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal">Edit</a></div>
-                            </td>-->
                             <td class="row">
                                 <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
                                  <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>

@@ -19,7 +19,7 @@ var Categories = {
                        
                         +'<tr></tr><br>'
                          +'<tr><td></td></tr>';             
-               data +='<tr><td style="padding-top: 13px;"><a href="#" class="button" id="delete_ltype">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
+               data +='<tr><td style="padding-top: 13px;"><a href="#" class="button" id="delete_ltype">Yes</a><a href="#" class="button" id="edit_close">No</a></td></tr>';
                data +='</table></form>';
                Categories.Dia(data);
            }
@@ -34,7 +34,8 @@ var Categories = {
         $ovl.dialog({
             autoOpen: false,
             height: 200,
-            async:false,            
+            async:false,
+            resizable:false,
             width: 400,
             modal: true,
             title:"Delete Leave Categories"
@@ -81,11 +82,10 @@ var Categories = {
                
                var data ='<form id="Add_new_ltype"><table>';               
                    data += '<tr><td></td></tr>'
-                        +'<tr><td>Name:</td><td><input type="text" value="" name="ltype_name"></td>'
+                        +'<tr><td>Leave Type:</td><td><input type="text" value="" name="ltype_name" placeholder="Enter Leave type"></td>'
                        
-                        
                          +'<tr><td></td></tr>';             
-               data +='<tr><td colspan="3"><a href="#" class="button" id="Add_ltype">Save</a><a href="#" class="button" id="cancel_ltype">Cancel</a></td></tr>';
+               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype">Save</a><a href="#" class="button" id="cancel_ltype">Cancel</a></td></tr>';
                data +='</table></form>';
                Categories.Diaadd(data);
            }
@@ -100,8 +100,9 @@ var Categories = {
         $ovl = $('#add_new_ltype');
         $ovl.dialog({
             autoOpen: false,
-            height: 200,
-            async:false,            
+            height: 155,
+            async:false, 
+            resizable:false,
             width: 400,
             modal: true,
             title:"Leave Categories Add"

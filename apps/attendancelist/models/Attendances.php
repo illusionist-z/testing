@@ -31,21 +31,7 @@ class Attendances extends Model {
         $today = date("Y:m:d");
         
         
-        
-        // for search result
-        /*if (isset($name)) {
-           $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where core_member.member_login_name='".$name."' and attendances.att_date ='".$today."'";
-        } else {
-            //show att today list
-           $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id where attendances.att_date ='".$today."'";
-        }
-        $result = $this->db->query($query);
-        $rows = $result->fetchall();
-        return $rows;*/
-        
         if(isset($name)){
-           
-           //print_r($today);exit;
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
                          ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
@@ -54,12 +40,7 @@ class Attendances extends Model {
                          ->andWhere('attendances.att_date = :today:', array('today' => $today))
                          ->getQuery()
                          ->execute();          
-                // print_r($row);exit;
-                   /* foreach($row as $rows) {
-                          echo $rows->core->member_login_name;
-                          echo $rows->attendances->att_date;
-                    }
-                    exit;*/
+         
            
            
                     
@@ -74,14 +55,7 @@ class Attendances extends Model {
                           ->getQuery()
                           ->execute(); 
             
-                // print_r($row);exit;
-                   /* foreach($row as $rows) {
-                          echo $rows->core->member_login_name;
-                          echo $rows->attendances->att_date;
-                    }
-                    exit;*/
         }
-       // print_r($row);exit;
         return $row;
     }
 
@@ -103,22 +77,9 @@ class Attendances extends Model {
      */
     public function getattlist($id,$year,$month) {        
         $currentmth = date('m');
-        //for search method
-        /*if (isset($month)) {
-            $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$month."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
-        }
-        //showing data with current month 
-        else {
-            $row = "Select att_date,member_login_name,checkin_time,checkout_time,lat,lng,overtime,location from core_member left join attendances on core_member.member_id = attendances.member_id where MONTH(attendances.att_date) ='".$currentmth."' AND attendances.member_id ='".$id."' order by attendances.att_date DESC ";                                   
-        }
-        //paging
-       $result = $this->db->query($row);
-       $list   = $result->fetchall();
-        return $list;*/
+        
         
         if(isset($year) || isset($month)){
-           //echo "Thank You";
-           //print_r($today);exit;
            $start =  date("Y-m-d",strtotime($year));
            $end =  date("Y-m-d",strtotime($month));
            $row =   $this->modelsManager->createBuilder()
@@ -131,15 +92,7 @@ class Attendances extends Model {
                          ->andWhere('core.deleted_flag = 0')                        
                          ->getQuery()
                          ->execute();          
-                //print_r($start);
-                //print_r($end);exit;
-                   /* foreach($row as $rows) {
-                          echo $rows->core->member_login_name;
-                          echo $rows->attendances->att_date;
-                    }
-                    exit;*/
-           
-           
+                
                     
         }else{
             
@@ -153,12 +106,7 @@ class Attendances extends Model {
                          ->orderBy('attendances.att_date DESC')
                          ->getQuery()
                          ->execute();           
-               // print_r($row);exit;
-                   /* foreach($row as $rows) {
-                          echo $rows->core->member_login_name;
-                          echo $rows->attendances->att_date;
-                    }
-                    exit;*/
+               
         }
         return $row;
         
@@ -176,11 +124,7 @@ class Attendances extends Model {
         //search monthly list data
             $year=date('Y');
             $month = date('m');
-            /*$query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where MONTH(attendances.att_date) ='".$month."' and YEAR(attendances.att_date)='".$year."' order by attendances.att_date DESC";
-            //echo $query;exit;
-            $result = $this->db->query($query);
-            $row  = $result->fetchall();
-            return $row;*/
+           
             
             $row = $this->modelsManager->createBuilder()               
                         ->columns(array('core.*', 'attendances.*'))                
@@ -191,12 +135,7 @@ class Attendances extends Model {
                         ->orderBy('attendances.checkin_time DESC')
                         ->getQuery()
                         ->execute();           
-                // print_r($row);exit;
-                   /*foreach($row as $rows) {
-                         echo $rows->core->member_login_name;
-                         echo $rows->attendances->att_date;
-                     }
-                     exit;*/
+                
               return $row;
     }
     
@@ -262,7 +201,7 @@ class Attendances extends Model {
        
         try {
          
-         $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id";
+         $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
          $conditions=$this->setCondition($year, $month, $username);
               $sql = $select;
               if (count($conditions) > 0) {

@@ -19,18 +19,18 @@ abstract class Utclocaltime extends \Phalcon\Mvc\Controller {
      * 
      * @var type 
      */
-    public $lang;    
+    public $lang;
     public $_isJsonResponse = FALSE;
 
     /**
      * initialize controller
      */
-    
-    public function aa(){
+    public function aa() {
         echo "bb";
     }
-    public function initialize() {        
-        $this->view->baseUri = $this->url->getBaseUri();        
+
+    public function initialize() {
+        $this->view->baseUri = $this->url->getBaseUri();
     }
 
     /**
@@ -50,15 +50,14 @@ abstract class Utclocaltime extends \Phalcon\Mvc\Controller {
      * @param \Phalcon\Mvc\Dispatcher $dispatcher
      */
     public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {        // set module          
-        if($this->session->has('language')){
+        if ($this->session->has('language')) {
             $this->lang = $this->session->get('language');
-        }
-        else{
-            $this->lang =  "en";
+        } else {
+            $this->lang = "en";
         }
         $this->moduleName = $dispatcher->getModuleName();
     }
- 
+
     /**
      * 
      *
@@ -67,14 +66,14 @@ abstract class Utclocaltime extends \Phalcon\Mvc\Controller {
     protected function _getTranslation() {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/{$this->moduleName}/messages";
-        
+
         if (file_exists($langDir . '/' . $this->lang . '.php')) {
             require $langDir . '/' . $this->lang . '.php';
         } else {
             // fallback to some default
-            require $langDir . '/' ."ja.php";
+            require $langDir . '/' . "ja.php";
         }
-        
+
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $messages
@@ -84,24 +83,6 @@ abstract class Utclocaltime extends \Phalcon\Mvc\Controller {
     /**
      * 
      */
-    public function setCommonJsAndCss() {
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css')
-                     ->addCss('common/css/bootstrap/common.css')
-                     ->addCss('common/css/bootstrap.min.css')
-                     ->addCss('common/css/AdminLTE.min.css')  
-                     ->addCss('common/css/jquery-ui.css')
-                     ->addCss('common/css/skins.min.css');
-                     
-        
-        $this->assets->addJs('common/js/jquery.min.js')
-                     ->addJs('common/js/common.js')
-                     //->addJs('common/js/jQuery-2.1.4.min.js')
-                     ->addJs('common/js/bootstrap.min.js')
-                     ->addJs('common/js/app.min.js')
-                     ->addJs('common/js/jquery-ui.js')
-                     ->addJs('common/js/notification.js');
-                     
-    }
 
     /**
      * using slide menu
@@ -126,26 +107,25 @@ abstract class Utclocaltime extends \Phalcon\Mvc\Controller {
 
     // After route executed event
     public function afterExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
-     
+        
     }
 
     private function _getCoreTranslation() {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/core/messages";
 
-        
-        if (file_exists($langDir . '/'. $this->lang . '.php')) {
-            require $langDir . '/'  . $this->lang . '.php';
+
+        if (file_exists($langDir . '/' . $this->lang . '.php')) {
+            require $langDir . '/' . $this->lang . '.php';
         } else {
             // fallback to some default
-            require $langDir . '/' ."ja.php";
+            require $langDir . '/' . "ja.php";
         }
-        
+
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $messages
         ));
     }
-    
 
 }

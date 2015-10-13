@@ -171,15 +171,15 @@
 
 
             <!-- Content Wrapper. Contains page content -->
-              <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
-                 <?php         
+              <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">             
+                 <?php  
                           foreach ($this->session->auth as $key_name => $key_value) {                                                                                                                              
-                                            $top = explode(" ", $key_value[0]);
-                                            if(strtolower($top[0] . $top[1]) ==$module_name){
+                                           $top = explode(" ", $key_value[0]);
+                                           if(strtolower($top[0] . $top[1]) ==$modulename){
                                            if(count($key_value) >1 ){
                                            echo '<div class="row"><div class="col-sm-2 link">';
-                                            echo '<aside class="sidebar-menu">';
-                                            foreach ($key_value as $name => $value) {
+                                           echo '<aside class="sidebar-menu">';
+                                           foreach ($key_value as $name => $value) {
                                                   if ($name > 0) {
                                                       if ($v_result = explode(" ", $value)) {
                                                           //set to link action value
@@ -207,7 +207,7 @@
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();
-                                 echo '</section></div></div>';
+                                  echo '</section></div></div>';
                                      ?>
                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
             </div><!-- /.content-wrapper -->

@@ -34,8 +34,9 @@ class Attendances extends Model {
         if ($att != NULL) {
             $status = " Already Checked in ";
         } else {
+            $noti_id=rand();
             if($note!=NULL){
-               $noti_id=rand();
+               
                 $this->db->query("INSERT INTO core_notification (noti_creator_id,"
             . "module_name,noti_id,noti_status) "
             . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");

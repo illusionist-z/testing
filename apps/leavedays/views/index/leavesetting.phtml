@@ -11,21 +11,21 @@
 </section>
 
 <br>
-<div class="search_box">
+<div class="search-box">
             <form name="setting" id="search_frm" method="post" action="editleavesetting">
                 <div id="Menu">
                     <?php foreach($leave_setting as $data){?>
-                    <div id="M_1">Maximum Leavedays allowed: 
+                    <div id="leave_setting_div1">Maximum Leavedays allowed: 
                         <span>
-                            <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; " disabled> Days
+                            <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; height: 26px; margin-top: 8px;" disabled> Days
                         </span>
                     </div>
-                    <div id="M_1">Percentage of Fine On Basic Salary: 
+                    <div id="leave_setting_div2">Percentage of Fine On Basic Salary: 
                         <span>
-                           <input type="text" value="<?php echo $data['fine_amount']; ?>" id="fine_amount" name="fine_amount" style="width: 31px; " disabled> %
+                           <input type="text" value="<?php echo $data['fine_amount']; ?>" id="fine_amount" name="fine_amount" style="width: 31px; height: 26px; margin-top: 8px;" disabled> %
                         </span>
                     </div>
-                    <div id="M_1">
+                    <div id="leave_setting_div3">
                         <span>
                             <input type="button" class="btn btn-default editsetting" onclick="return false;" id="" value="Edit">
                             <input type="submit" class="btn btn-default savesetting" id="savesetting" value="Save" disabled>
@@ -38,9 +38,9 @@
             </form>
 </div><br>
 <div class="buttons">
-            <input type="button" class="addbtn add" onclick="return false;" value="Add New Leave Categories">
+<!--            <input type="button" class="addbtn add" onclick="return false;" value="Add New Leave Categories">-->
 			
-			
+    <a href="#" onclick="return false;" class="button add" id="addinguser">Add New Leave Categories</a>		
 	 </div>
 <form action="" method="post">
     
@@ -62,8 +62,11 @@
       
         <tr>
 			<td width="120px"><?php echo $n;?></td>
-			<td><?php echo $result['leavetype_name'];?> </td>					
-			<td width="50px"><input type="button" class="btn btn-default ltypepopup" onclick="return false;" id="<?php echo $result['leavetype_id'];?>" value="Delete"></td>
+			<td><?php echo $result['leavetype_name'];?> </td>
+			
+			
+                        <td width="50px"> <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="indelete ltypepopup" id="<?php echo $result['leavetype_id'];?>"></a></td>
+<!--			<td width="50px"><input type="button" class="btn btn-default ltypepopup" onclick="return false;" id="<?php echo $result['leavetype_id'];?>" value="Delete"></td>-->
 	</tr>
       <?php } ?>
   </tbody>

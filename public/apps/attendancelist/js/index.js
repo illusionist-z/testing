@@ -55,7 +55,7 @@ var Attendance = {
                     localcheckin   = checkin[0] +' '+hours+':'+minutes+':'+seconds;
                     
                        var dia_div = '<form id="edit_attendance"><div class="row">'
-                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" id="time" name="time" value="'+date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+" "+h+":"+m+":"+s+'"></div></div>'
+                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" id="time" name="time" value="'+localcheckin+'"></div></div>'
                                     +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_id']+'"></div></div>'               
                                    +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
                                    +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
@@ -80,17 +80,18 @@ var Attendance = {
                       $("#edit_attendance_edit").click(function(e){
                           e.preventDefault();
                           Attendance.time_edit_btn(id);                        
-                        });                      
+                        });             
                       $('.datetimepicker').on('click',function(e){
                           e.preventDefault();                                                    
-                         $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",
-                                                                                                         maskInput : true,                                                                                                    
-                                                                                                         timeFormat: "HH:mm:ss"}).focus();                               
-                      });
-                }
-            });            
-        },
-        time_edit_btn : function(id) {
+                         $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            showTimezone :false,
+                            maskInput : true,                                                                                                         
+                           timeFormat: "HH:mm:ss"}).focus();                               
+                     });                       
+               }
+      });        
+},
+         time_edit_btn : function(id) {
            //alert(id);
            localtime=document.getElementById('time').value;
            //var form = $('#edit_attendance');

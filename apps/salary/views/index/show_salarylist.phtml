@@ -16,12 +16,12 @@
     <div class="row"><!-- for search form-->
         <div class="col-md-12"><!--start add user form--->
 
-            <div class="search_box">
+            <div class="search-box">
             <form name="search_frm" id="search_frm">
                 <div id="Menu" >
                     <input type="hidden" name="cond[mth]" value="<?php echo $month;?>" id="month">
                     <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
-                    <div id="M_1">
+                    <div id="salary_detail_div1">
                         User Name :
                         <span>
                             <select class="select" data-toggle="select" name="cond[username]">
@@ -37,7 +37,7 @@
                             </select>
                         </span>
                     </div>
-                    <div id="M_2">
+                    <div id="salary_detail_div2">
                         Department :
                         <span>
                             <select class="select" data-toggle="select" name="cond[dept]">
@@ -51,7 +51,7 @@
                                 ?>
                             </select>
                     </div>
-                    <div id="M_3">
+                    <div id="salary_detail_div3">
                         Position :
                         <span>
                             <select class="select" data-toggle="select" name="cond[position]">
@@ -65,7 +65,7 @@
                                 ?>
                             </select>
                     </div>
-                    <div id="M_4">
+                    <div id="salary_detail_div4">
                          Salary :
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
@@ -75,7 +75,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="search_btn_box"><!--search btn-->
+                <div class="search-btn-box"><!--search btn-->
                     <div>
                         <a href="#" class="button" id="search_salary">Search</a>
                         <a href="#" class="button export">Export</a>
@@ -125,16 +125,16 @@
                             <td><input type="checkbox" class='case' name='chk[]' value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_login_name'] , "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'] , "string") ?></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['allowance_amount'], "int")); ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
-                            <td><div class="td_style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_emp'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['allowance_amount'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_emp'], "int")); ?></div></td>
                             
-                            <td><div class="td_style"><?php 
+                            <td><div class="td-style"><?php 
                             $totalresult+=$getsalarylist['total'];
                             echo number_format($getsalarylist['total']); 
                                     
@@ -143,7 +143,7 @@
                                 <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">
                             </td>
 <!--                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button">Detail</a></td>-->
-                            <td><a href="#" class="button" id="btn_detail">Detail</a></td>
+                            <td><a href="#" class="btn_detail">Detail</a></td>
                         </tr>
                         <?php
                         $i++;
@@ -153,7 +153,7 @@
                            
                     <tr>
                         <td colspan="11" style="text-align:center; background-color:#3c8dbc; color: #FFFFFF"><b>Total salary for all user</b></td>
-                        <td style="background-color:#3c8dbc; color: #FFFFFF"><div class="td_style"><b><?php echo number_format($filter->sanitize($totalresult, "int"));?></b></div></td>
+                        <td style="background-color:#3c8dbc; color: #FFFFFF"><div class="td-style"><b><?php echo number_format($filter->sanitize($totalresult, "int"));?></b></div></td>
                         <td style="background-color:#3c8dbc;"></td>
                     </tr>
                 </tbody>
