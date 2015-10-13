@@ -42,7 +42,7 @@ class CoreMember extends \Library\Core\BaseModel {
           $getname = $user_name->fetchall();
           return $getname; */
         $name = '%' . $name . '%';
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE full_name = '$name' order by created_dt desc";
+        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE full_name = '$name' AND deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         // print_r($name);exit;
         //print_r($row);exit;
@@ -99,6 +99,9 @@ class CoreMember extends \Library\Core\BaseModel {
         $laname = $this->modelsManager->executeQuery($username);
         return $laname;
     }
+    
+     
+    
 
     /**
      * 
@@ -122,6 +125,13 @@ class CoreMember extends \Library\Core\BaseModel {
         if ($end_date <= $today) {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
+    }
+    
+      public function getlang($member){        
+     $query = "Select lang from core_member where member_login_name ='".$member['member_login_name']."'";
+        $result = $this->db->query($query);
+        $lang=$result->fetch();
+        return $lang;        
     }
 
     /**

@@ -39,7 +39,7 @@ class UserController extends ControllerBase {
         $startdate = $this->request->get('startdate');
         $enddate = $this->request->get('enddate');
 
-
+        $id=$this->session->user['member_id'];
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->getattlist($id, $startdate, $enddate);
         $this->view->attlist = $ResultAttlist;

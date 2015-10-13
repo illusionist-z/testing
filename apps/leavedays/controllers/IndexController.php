@@ -76,6 +76,7 @@ class IndexController extends ControllerBase {
                 echo json_encode($json);
                 $this->view->disable();
             } else {
+                
                 $creator_id = $this->session->user['member_id'];
                 $uname = $this->request->getPost('username');
                 $sdate = $this->request->getPost('sdate');

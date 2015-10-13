@@ -7,7 +7,7 @@ var ApplyForm = {
     Submit : function (){
         $.ajax({
            type : 'POST',
-           url  : 'applyleave',
+           url  : baseUri+'leavedays/index/applyleave',
            data : $('#apply_form').serialize(),
            success: function(d){
                cond = JSON.parse(d);
@@ -34,7 +34,7 @@ var ApplyForm = {
                 }
                 else{
                     if(cond.success) { 
-                        alert(cond.success);
+                        alert(cond.success);//alert("aa");
                         location.reload();
                     }
                     else if(cond.error){

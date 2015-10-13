@@ -44,28 +44,28 @@ var Noti = {
             }
         });
     },
-    Calendar: function(id) {
-
-        $.ajax({
-            type: 'POST',
-            data: {id: id},
-            url: baseUri + "notification/index/noticalendar",
-            success: function() {
-                window.location.href = baseUri + 'calendar/index';
-            }
-        });
-    },
-    Attendances: function(id) {
-
-        $.ajax({
-            type: 'POST',
-            data: {id: id},
-            url: baseUri + "notification/index/notiattendances",
-            success: function() {
-                window.location.href = baseUri + 'attendancelist/index/todaylist';
-            }
-        });
-    }
+//    Calendar: function(id) {
+//
+//        $.ajax({
+//            type: 'POST',
+//            data: {id: id},
+//            url: baseUri + "notification/index/noticalendar",
+//            success: function() {
+//                window.location.href = baseUri + 'calendar/index';
+//            }
+//        });
+//    },
+//    Attendances: function(id) {
+//        alert(id);
+//        $.ajax({
+//            type: 'POST',
+//            data: {id: id},
+//            url: baseUri + "notification/index/notiattendances",
+//            success: function() {
+//                window.location.href = baseUri + 'attendancelist/index/todaylist';
+//            }
+//        });
+//    }
 
 
 };
@@ -82,16 +82,16 @@ $(document).ready(function() {
             $('#noti_ok').click(function(e) {
         Noti.Seen();
     });
-    $('.calendar').click(function(e) {
-        var id = $(this).attr('id');
-        //  alert(id);
-        Noti.Calendar(id);
-    });
-    $('.attendances').click(function(e) {
-        var id = $(this).attr('id');
-        //  alert(id);
-        Noti.Attendances(id);
-    });
+//    $('.calendar').click(function(e) {
+//        var id = $(this).attr('id');
+//        alert(id);
+//        Noti.Calendar(id);
+//    });
+//    $('.attendances').click(function(e) {
+//        var id = $(this).attr('id');
+//          alert(id);
+//        Noti.Attendances(id);
+//    });
 
     $(".noti").click(function() {
         //document.getElementById("noti").className = "noticlose";
