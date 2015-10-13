@@ -10,7 +10,7 @@ class UserController extends ControllerBase
 
     public function initialize() {
         parent::initialize();
-        parent::getmodulename();
+//        parent::getmodulename();
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');        

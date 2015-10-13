@@ -8,10 +8,7 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-        
-        $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/css/style.css');
-        
+        $this->assets->addCss('common/css/css/style.css');        
     }
 
     
