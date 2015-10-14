@@ -13,8 +13,14 @@ function checktime(i) {
 }
 function link_height(){
     //for link border right in link page
+var link_width = $(document).outerWidth();
 var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$(".navbar").outerHeight());
+if(link_width>745){
 $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
+}
+else{
+    $(".link").css({"height":link_height/5.5+"px","border-right":"1px solid #aaa","background":"#fff"});
+}
 }
 
 function geo() {
@@ -169,4 +175,7 @@ $('.sidebar-toggle').click(function (e) {
     });
  $('.datepicker').datepicker(); 
 link_height();
+});
+$(window).resize(function(){
+    link_height();
 });

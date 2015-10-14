@@ -44,8 +44,7 @@ class SalaryMasterController extends ControllerBase
         
         $Salarymaster = new SalaryMaster();
         $Salarymaster->savesalarydedution($dedution, $data['member_id'], $data['creator_id']);
-        $result = $Salarymaster->savesalary($data);
-
+        $result = $Salarymaster->savesalary($data);        
         $Allowance = new Allowances();
         $saveallowance = $Allowance->saveallowance($allowance, $this->request->get('uname'));
 

@@ -45,8 +45,7 @@ class IndexController extends ControllerBase {
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
-        $this->assets->addJs('apps/leavedays/js/applyleave.js');
+        $this->view->setVar("noti",$noti);        
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
@@ -59,8 +58,11 @@ class IndexController extends ControllerBase {
         }
         else {
             $this->response->redirect('core/index');
-        }
-        if ($this->request->isPost()) {
+        }     
+    }
+    
+    public function checkapplyAction() {
+       if ($this->request->isPost()) {
              $user = $this->_leave;
              $validate = $user->validation($this->request->getPost());
              
@@ -85,7 +87,7 @@ class IndexController extends ControllerBase {
             echo json_encode($error);
             $this->view->disable();
              }
-        }
+        }    
     }
   
     /**

@@ -7,7 +7,7 @@ var ApplyForm = {
     Submit : function (){
         $.ajax({
            type : 'POST',
-           url  : 'applyleave',
+           url  : 'checkapply',
            data : $('#apply_form').serialize(),
            success: function(d){
                cond = JSON.parse(d);
@@ -50,7 +50,8 @@ var ApplyForm = {
 };
 $(document).ready(function(){
    
-    $('#apply_form_submit').on('click',function(){
+    $('#apply_form_submit').on('click',function(e){
+      e.preventDefault();
       ApplyForm.Submit();
    });
 });

@@ -3,7 +3,7 @@
 namespace workManagiment\Salary\Models;
 
 use Phalcon\Mvc\Model;
-//use workManagiment\Salary\Models\SalaryMaster as sa;
+use workManagiment\Salary\Models\SalaryMaster;
 use Phalcon\Mvc\Model\Query;
 use workManagiment\Salary\Models\SalaryMemberTaxDeduce;
 
