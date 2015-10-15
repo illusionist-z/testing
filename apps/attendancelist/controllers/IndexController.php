@@ -34,6 +34,7 @@ class IndexController extends ControllerBase {
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);
+        
         $this->view->attlist = $ResultAttlist;
         $this->view->offset = $offset;
         $this->view->uname = $Username;

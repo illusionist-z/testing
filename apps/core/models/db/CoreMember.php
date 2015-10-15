@@ -165,7 +165,7 @@ class CoreMember extends \Library\Core\BaseModel {
 
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
         $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt)"
-                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $profile . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
+                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
 
@@ -226,6 +226,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function GetUserNoti($id) {
+        $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id . "'";
         //print_r($sql);exit;
@@ -238,6 +239,7 @@ class CoreMember extends \Library\Core\BaseModel {
             $result = $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
             $final_result[] = $result->fetchall();
         }
+       //print_r($final_result);exit;
         return $final_result;
     }
 
@@ -323,13 +325,10 @@ class CoreMember extends \Library\Core\BaseModel {
         return $getname;
     }
 
-    public function NoOfNotiforAdmin() {
-        $result = $this->db->query("SELECT  * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 ");
-        $result = $result->fetchall();
-        return $result;
-    }
+  
 
     public function GetAdminstratorId() {
+        $this->db = $this->getDI()->getShared("db");
         $result = $this->db->query("SELECT rel_member_id FROM core_permission_rel_member JOIN core_member ON core_member.member_id=core_permission_rel_member.rel_member_id WHERE core_permission_rel_member.rel_permission_group_code='ADMIN' ");
         $result = $result->fetchall();
 

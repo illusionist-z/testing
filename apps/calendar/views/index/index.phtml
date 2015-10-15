@@ -24,24 +24,22 @@
                    <!-- <input type='checkbox'  id='selectall'/>-->                    
                     
                     User Event Enable                                        
-<!--                    <input type='button' id='shapbott' name='checkall' class="addbtn">                    -->
-                    <a href="#" onclick="return false;"   style="margin-left: 80px;"  class="dateimg checkall" id="shapbott"></a>
-                    <a href="#" onclick="return false;" style="float:right;"  class="dateminusimg disabledevent" ></a>
+                    <input type='button' id='shapbott' name='checkall' class="addbtn">                    
                 </span>
             </h2>            
           
            <form id ="frm1">             
        
-          <ul id="left-scroll">
+          <ul class="nav col-sm-12" id="left-scroll">
               <li class="addbtnn col-sm-12">                  
-                  <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>"  ><span class="col-sm-6"><?php echo " ".$member_name; ?></span>                  
+                  <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>" checked disabled><span class="col-sm-6"><?php echo " ".$member_name; ?></span>                  
               </li>
             <?php  foreach($event_name as $eventname) {    ?>                
                 
               <li class="col-sm-12 addbtnn">                    
                   <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " ".$eventname['permit_name']; ?></span>
-<!--                  <input type="button" id="disabledevent" name="<?=$eventname['permit_name']?>" class="minusbtn col-sm-6 col-xs-offset-2" >-->
-                  
+                  <input type="button" id="disabledevent" name="<?=$eventname['permit_name']?>" class="minusbtn col-sm-6 col-xs-offset-2" >
+                   
                 </li>
               
                 
@@ -61,7 +59,7 @@
     </div>
 </section><!-- /.content -->
 <div id="member_event_dialog" class="navbar row" style="display: none;">
-    <label for="member_event"> Search Member </label> <input style="margin-top: 10px;" type="text" id="member_event" placeholder="Enter Member Name">
+    <label for="member_event">Search Member</label><input type="text" id="member_event">
     <button class="btn btn-primary addmember" id="member_event_add" disabled>Add Member</button>
     <button class="btn btn-primary" id="member_event_dialog_close">Close</button>
 </div>

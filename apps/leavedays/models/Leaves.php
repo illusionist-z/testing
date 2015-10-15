@@ -134,6 +134,12 @@ class Leaves extends \Library\Core\BaseModel {
                             . "'" . $edate . "','" . $leave_day . "',"
                             . "'" . $type . "','" . $desc . "',"
                             . "'" . $lastdata . "',0,'" . $noti_id . "',now())");
+                    $result = $this->db->query("INSERT INTO core_notification (noti_creator_id,"
+                . "module_name,noti_id,noti_status) "
+                . "VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
+        $this->db->query("INSERT INTO core_notification_rel_member "
+                . "(member_id,noti_id,status,module_name) "
+                . "VALUES('" . $uname . "','" . $noti_id . "',0,'leaves')");
                     $cond['success'] = "Your Leave Applied Successfully!";
                 } else {
                     $cond['error'] = "End date must be greater than Start date";
@@ -142,12 +148,7 @@ class Leaves extends \Library\Core\BaseModel {
                 $cond['error'] = "Apply Leave Before a week ";
             }
         }
-        $result = $this->db->query("INSERT INTO core_notification (noti_creator_id,"
-                . "module_name,noti_id,noti_status) "
-                . "VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
-        $this->db->query("INSERT INTO core_notification_rel_member "
-                . "(member_id,noti_id,status,module_name) "
-                . "VALUES('" . $uname . "','" . $noti_id . "',0,'leaves')");
+        
 
         return $cond;
     }
@@ -356,7 +357,7 @@ class Leaves extends \Library\Core\BaseModel {
         return $res;
     }
 
-    public function User_Validation($data) {
+    public function uservalidation($data) {
         $res = array();
         $validate = new Validation();
 

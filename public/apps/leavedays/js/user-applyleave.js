@@ -8,12 +8,10 @@ var ApplyForm = {
         
         $.ajax({
            type : 'POST',
-           url  : 'applyleave',
+           url  : baseUri+'leavedays/user/applyleave',
            data : $('#apply_form').serialize(),
            success: function(d){
-              
                cond = JSON.parse(d);
-                alert(cond.success);
 
                  if(cond.result === 'error')
                 { 
@@ -54,7 +52,6 @@ var ApplyForm = {
 $(document).ready(function(){
    
     $('#apply_form_submit').on('click',function(){
-      
       ApplyForm.Submit();
    });
 });

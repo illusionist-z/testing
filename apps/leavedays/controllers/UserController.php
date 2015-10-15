@@ -22,8 +22,12 @@ class UserController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/style.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->view->t = $this->_getTranslation();
+        $User = new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti = $User->GetUserNoti($id);
+        $this->view->setVar("noti", $noti);
     }
 
     public function indexAction() {
@@ -34,12 +38,12 @@ class UserController extends ControllerBase {
     }
 
     public function applyleaveAction() {
+        //echo "test";exit;
         $User = new Db\CoreMember;
         $admin_id = $User->GetAdminstratorId();
         $creator_id = $admin_id[0]['rel_member_id'];
         $id = $this->session->user['member_id'];
-        $noti = $User->GetUserNoti($id);
-        $this->view->setVar("noti", $noti);
+        
 
         $this->assets->addJs('apps/leavedays/js/user-applyleave.js');
         $leavetype = new LeaveCategories();
@@ -49,15 +53,18 @@ class UserController extends ControllerBase {
         $this->view->setVar("name", $name);
         $this->view->setVar("Leavetype", $ltype);
         if ($this->request->isPost()) {
+            
             $user = $this->_leave;
-            $validate = $user->User_Validation($this->request->getPost());
+            $validate = $user->uservalidation($this->request->getPost());
             if (count($validate)) {
+               
                 foreach ($validate as $message) {
                     $json[$message->getField()] = $message->getMessage();
                 }
                 $json['result'] = "error";
+                
                 echo json_encode($json);
-                $this->view->disable();
+               $this->view->disable();
             } else {
                 $uname = $this->session->user['member_id'];
                 $sdate = $this->request->getPost('sdate');
@@ -71,6 +78,8 @@ class UserController extends ControllerBase {
             }
         }
     }
+    
+    
 
     /**
      * 

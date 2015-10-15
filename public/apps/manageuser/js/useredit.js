@@ -7,6 +7,7 @@
     var Manage = {};
     Manage.User = {
     Edit : function (type) {
+        
         $.ajax({
             type: 'GET',
             url: 'manageuser?data=' + type,

@@ -94,6 +94,7 @@ $(document).ready(function() {
 //    });
 
     $(".noti").click(function() {
+        //alert("aa");
         //document.getElementById("noti").className = "noticlose";
         $("#notificationContainer").fadeToggle(100);
         $("#notificationsBody").load(baseUri + 'notification/index/notification');

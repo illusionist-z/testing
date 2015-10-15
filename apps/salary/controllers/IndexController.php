@@ -385,7 +385,7 @@ class IndexController extends ControllerBase {
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
         $Deduction = new SalaryTaxsDeduction();
-
+        //print_r($data);exit;
         $Deduction->edit_deduction($data);
         $this->view->disable();
     }
