@@ -2,9 +2,9 @@
 
 
 $messages = array(
-    "attendancelist"      => "Attendance List",
+    "todayattendancelist"      => "Today Attendance List",
     "monthlylist" =>"Monthly Attendance List",    
-    "bye"     => "Good Bye",
+    "home"     => "Home",
     "hi-name" => "Bonjour %name%",
     "song"    => "La chanson est %song%",
      "date" => "Date",
@@ -14,5 +14,10 @@ $messages = array(
     "checkout" => "Check Out",
     "workingtime" => "Working Time",
     "overtime" => "Overtime",
-    "location" => "Location"
+    "location" => "Location",
+    "search" => "Search",
+    "export" => "Export",
+    "searchusername" => "Search User Name",
+    "startdate" => "Start Date",
+    "enddate" => "End Date"
 );

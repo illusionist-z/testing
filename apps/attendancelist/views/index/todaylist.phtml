@@ -14,11 +14,11 @@ if ($offset < 0) {
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        <?php echo $t->_("hi"); ?>
+        <?php echo $t->_("todayattendancelist"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li class="active">Today Attendance Lists</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i><?php echo $t->_("home"); ?></a></li>
+        <li class="active"><?php echo $t->_("todayattendancelist"); ?></li>
     </ol>
 </section>
 
@@ -37,10 +37,10 @@ if ($offset < 0) {
                 }
                 ?>
             </select>-->
-            <input class="tags" name="namelist"  id="namelist" placeholder="Search User Name">
-            <input type="submit" class="buttonn" value="Search" id="namesearch">
+            <input class="tags" name="namelist"  id="namelist" placeholder="<?php echo $t->_("searchusername"); ?>">
+            <input type="submit" class="buttonn" value="<?php echo $t->_("search"); ?>" id="namesearch">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);">Export</a>
+            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><?php echo $t->_("export"); ?></a>
         </form>
     </div>
 
