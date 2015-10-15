@@ -91,6 +91,7 @@ class IndexController extends ControllerBase {
      * Add salary form
      */
     public function addsalaryAction() {
+        $this->assets->addJs('apps/salary/js/addsalary.js');
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
         $Allowance = new Allowances();

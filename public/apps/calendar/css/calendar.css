@@ -16,24 +16,30 @@
         border-radius: 5px;
         -moz-border-radius: 5px;
         -webkit-border-radius: 5px;
+        position: absolute;
+        z-index: -1;
 }
-#left_scroll {    
-    overflow-y: hidden;
+#left-scroll {    
+/*    overflow-y: hidden;*/
     overflow-x: hidden;
-    height: 200px;
+    height: 100px;
     width: 100%;
     margin-bottom: 10px;
+    margin-left: 0;
+    list-style: none;
+/*    border-style: solid;
+    border-color:red;*/
   }
-  #left_scroll:hover{
+ /* #left-scroll:hover{
        overflow-y: scroll;
-  }
+  }*/
 /*scroll bar hidden*/
 body::-webkit-scrollbar { width: 0; }
 
 #calendar{ 
     width: 100%;
 }
-#hidden_type{
+#hidden-type{
     display: block;
 }
 #clear{
@@ -43,7 +49,7 @@ body::-webkit-scrollbar { width: 0; }
     height: 20px; 
     width:10px;
 }
-.disabledevent{
+#disabledevent{
     height: 20px;
     width:30px;
 }

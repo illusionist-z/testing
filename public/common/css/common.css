@@ -185,6 +185,14 @@ a.export {
     background: url("../img/images.png")  1px 0px no-repeat  ;   
     padding: 6px 10px 12px 8px;    
 }
+.dateimg{
+    background: url("../img/5Fm069k.png")  2px -27px no-repeat  ;   
+    padding: 0px 10px 0px 8px;    
+}
+.dateminusimg{
+    background: url("../img/5Fm069k.png")  2px -60px no-repeat  ;   
+    padding: 11px 10px 15px 10px;    
+}
 .indelete{
     background: url("../img/delete2.png")  1px 10px no-repeat  ;   
     padding: 6px 10px 6px 26px;    
