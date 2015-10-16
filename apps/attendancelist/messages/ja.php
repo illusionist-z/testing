@@ -11,11 +11,8 @@ $messages = array(
     "username" => "名前",
     "checkin" => "出勤時間",
     "late" =>"遅れ時間",
-    "checkout" => "",
-    "workingtime" => "仕事時間",
-    "overtime" => "",
-    "location" => "場所",
-    "latereason"=>"遅れるの理由"
+    
+    "latereason"=>"遅れるの理由",
     "checkout" => "退勤時間",
     "workingtime" => "作業時間",
     "overtime" => "残業時間",
