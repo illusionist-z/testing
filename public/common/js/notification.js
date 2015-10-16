@@ -43,29 +43,7 @@ var Noti = {
                 window.location.href = baseUri + 'dashboard';
             }
         });
-    },
-//    Calendar: function(id) {
-//
-//        $.ajax({
-//            type: 'POST',
-//            data: {id: id},
-//            url: baseUri + "notification/index/noticalendar",
-//            success: function() {
-//                window.location.href = baseUri + 'calendar/index';
-//            }
-//        });
-//    },
-//    Attendances: function(id) {
-//        alert(id);
-//        $.ajax({
-//            type: 'POST',
-//            data: {id: id},
-//            url: baseUri + "notification/index/notiattendances",
-//            success: function() {
-//                window.location.href = baseUri + 'attendancelist/index/todaylist';
-//            }
-//        });
-//    }
+    }
 
 
 };
@@ -82,20 +60,10 @@ $(document).ready(function() {
             $('#noti_ok').click(function(e) {
         Noti.Seen();
     });
-//    $('.calendar').click(function(e) {
-//        var id = $(this).attr('id');
-//        alert(id);
-//        Noti.Calendar(id);
-//    });
-//    $('.attendances').click(function(e) {
-//        var id = $(this).attr('id');
-//          alert(id);
-//        Noti.Attendances(id);
-//    });
+
 
     $(".noti").click(function() {
-        //alert("aa");
-        //document.getElementById("noti").className = "noticlose";
+        
         $("#notificationContainer").fadeToggle(100);
         $("#notificationsBody").load(baseUri + 'notification/index/notification');
     });
@@ -103,15 +71,10 @@ $(document).ready(function() {
 
     $(".content").click(function() {
         $("#notificationContainer").hide();
-        //document.getElementById("noti").className = "noti";
-        //location.reload();
+        
     });
 
-//    $(".content").click(function()
-//    {
-//     $("#notificationContainer").hide();
-//    location.reload();
-//    });
+
 
 
 });

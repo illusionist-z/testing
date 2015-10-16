@@ -14,5 +14,6 @@ $messages = array(
     "checkout" => "",
     "workingtime" => "仕事時間",
     "overtime" => "",
-    "location" => "場所"
+    "location" => "場所",
+    "latereason"=>"遅れるの理由"
 );

@@ -14,6 +14,7 @@ $messages = array(
     "checkout" => "",
     "workingtime" => "အလုပ္ခ်ိန္",
     "overtime" => "အခ်ိန္ပို",
-    "location" => "ေနရာ"
+    "location" => "ေနရာ",
+    "latereason"=>"ေနာက္က်ရေသာ အေၾကာင္းအရင္း"
 );
 
