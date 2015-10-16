@@ -4,9 +4,8 @@
         <?= $t->_("leavesetting"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#"><i class="fa fa-dashboard"></i> Leave Days</a></li>
-        <li class="active"> Leave Setting</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
+        <li class="active"><?= $t->_("leavesetting"); ?></li>
     </ol>
 </section>
 
@@ -27,8 +26,8 @@
                     </div>
                     <div id="leave_setting_div3">
                         <span>
-                            <input type="button" class="btn btn-default editsetting" onclick="return false;" id="" value="Edit">
-                            <input type="submit" class="btn btn-default savesetting" id="savesetting" value="Save" disabled>
+                            <input type="button" class="btn btn-default editsetting" onclick="return false;" id="" value="<?= $t->_("edit"); ?>">
+                            <input type="submit" class="btn btn-default savesetting" id="savesetting" value="<?= $t->_("save"); ?>" disabled>
                         </span>
                     </div>
                        
@@ -40,7 +39,7 @@
 <div class="buttons">
 <!--            <input type="button" class="addbtn add" onclick="return false;" value="Add New Leave Categories">-->
 			
-    <a href="#" onclick="return false;" class="button add" id="addinguser">Add New Leave Categories</a>		
+    <a href="#" onclick="return false;" class="button add" id="addinguser"><?= $t->_("addleavetype"); ?></a>		
 	 </div>
 <form action="" method="post">
     

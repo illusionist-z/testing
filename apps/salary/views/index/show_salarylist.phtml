@@ -3,11 +3,11 @@
 ?>
 <section class="content-header" style="height:auto;">
     <h1>
-        Show Salary Detail
+        <?= $t->_("show_salary_detail");?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Salary Detail</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home");?></a></li>
+        <li class="active"><?= $t->_("show_salary_detail");?></li>
     </ol>
 </section>
 
@@ -22,10 +22,10 @@
                     <input type="hidden" name="cond[mth]" value="<?php echo $month;?>" id="month">
                     <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
                     <div id="salary_detail_div1">
-                        User Name :
+                        <?= $t->_("username");?> :
                         <span>
                             <select class="select" data-toggle="select" name="cond[username]">
-                                <option value="">Name</option>
+                                <option value=""><?= $t->_("username");?></option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -38,10 +38,10 @@
                         </span>
                     </div>
                     <div id="salary_detail_div2">
-                        Department :
+                        <?= $t->_("department");?> :
                         <span>
                             <select class="select" data-toggle="select" name="cond[dept]">
-                                <option value="">Department</option>
+                                <option value=""><?= $t->_("department");?></option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -52,10 +52,10 @@
                             </select>
                     </div>
                     <div id="salary_detail_div3">
-                        Position :
+                        <?= $t->_("position");?> :
                         <span>
                             <select class="select" data-toggle="select" name="cond[position]">
-                                <option value="">Position</option>
+                                <option value=""><?= $t->_("position");?></option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -66,7 +66,7 @@
                             </select>
                     </div>
                     <div id="salary_detail_div4">
-                         Salary :
+                         <?= $t->_("position");?> :
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
                             <option>400001~700000</option>
@@ -77,9 +77,9 @@
                 </div>
                 <div class="search-btn-box"><!--search btn-->
                     <div>
-                        <a href="#" class="button" id="search_salary">Search</a>
-                        <a href="#" class="button export">Export</a>
-                        <a href="#" class="button" id="btn_print_salary">Print</a>
+                        <a href="#" class="button" id="search_salary"><?= $t->_("search");?></a>
+                        <a href="#" class="button export"><?= $t->_("export");?></a>
+                        <a href="#" class="button" id="btn_print_salary"><?= $t->_("print");?></a>
                     </div>
                 </div><!--search btn-->
             </form>
@@ -95,17 +95,17 @@
                 <thead>
                     <tr>
                         <th><INPUT type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
-                        <th>Name</th>
-                        <th>Department</th>
-                        <th><center>Basic Salary</center></th>
-                        <th><center>Overtime</center></th>
-                        <th><center>Travel fees</center></th>
-                        <th><center>Allowance amount</center></th>
-                        <th><center>Absent</center></th>
-                        <th><center>Tax</center></th>
-                        <th><center>SSC_comp</center></th>
-                        <th><center>SSC_emp</center></th>
-                        <th><center>Total</center></th>
+                        <th><?= $t->_("name");?></th>
+                        <th><?= $t->_("department");?></th>
+                        <th><center><?= $t->_("basic_salary");?></center></th>
+                        <th><center><?= $t->_("overtime");?></center></th>
+                        <th><center><?= $t->_("travel_fee");?></center></th>
+                        <th><center><?= $t->_("allowance");?></center></th>
+                        <th><center><?= $t->_("absent");?></center></th>
+                        <th><center><?= $t->_("tax");?></center></th>
+                        <th><center><?= $t->_("ssc_comp");?></center></th>
+                        <th><center><?= $t->_("ssc_emp");?></center></th>
+                        <th><center><?= $t->_("total");?></center></th>
                         <th width="30px"></th>
                     </tr>
 
@@ -143,7 +143,7 @@
                                 <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">
                             </td>
 <!--                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button">Detail</a></td>-->
-                            <td><a href="#" class="btn_detail">Detail</a></td>
+                            <td><a href="#" class="btn_detail"><?= $t->_("detail");?></a></td>
                         </tr>
                         <?php
                         $i++;

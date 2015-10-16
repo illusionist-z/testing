@@ -7,8 +7,8 @@
         <?= $t->_("userlist"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">User Lists</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
+        <li class="active"><?= $t->_("userlist"); ?></li>
     </ol>
 </section>
 
@@ -29,12 +29,12 @@
                 ?>
 
         </select>-->
-                                 <input class="userauto" name="username" id="username" placeholder="Search User Name">
+                                 <input class="userauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>">
 
-            <input type="submit" onclick="return false;" class="buttonn" value="Search" id="userlistsearch">
+            <input type="submit" onclick="return false;" class="buttonn" value="<?= $t->_("search"); ?>" id="userlistsearch">
 <!--            <input style="color:black;height:30px;" class="addimg" type="button" class="inimg" class="buttonn" id="addinguser" onclick="return false;" value=" Add User">-->
             <!--<a href="" style="color:black;" class="inimg" onclick="return false;" class="buttonn" id="addinguser">Add User</a>-->
-             <a href="#" onclick="return false;" style="float:right;"  class="button displaypopup" id="addinguser">Add User</a>
+             <a href="#" onclick="return false;" style="float:right;"  class="button displaypopup" id="addinguser"><?= $t->_("adduser"); ?></a>
         </form>
 
     </div>

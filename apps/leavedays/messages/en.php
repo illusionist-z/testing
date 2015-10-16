@@ -17,4 +17,10 @@ $messages = array(
   "leavesetting" => "Leave Setting",
   "max_leavedays" => "Maximum Leavedays Allowed",
   "percent_basic_salary" => "Percentage of Fine On Basic Salary",
+  "home" => "Home",
+  "search" => "Search",
+  "export" => "Export",
+  "edit" => "Edit",
+  "save" => "Save",
+  "addleavetype" => "Add New Leave Categories"
 );
