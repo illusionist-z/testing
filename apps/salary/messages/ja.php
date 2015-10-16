@@ -23,6 +23,14 @@ $messages = array(
     "tax_to"             => "Taku made",
     "tax_rate"          => "Taku rato",
     "deduction_amt" => "okane too",
+    "allowance_amt" => "allowanto amot",
     "allowance"        => "Allownsjfkl",
+    "allowance_edit"  => "allownace to editot",
+    "allowance_name" => "allwnace namae",
     "amount"           => "gurai",
+    "edit_salary"      => "shusei Salary",
+    "edit_btn"         => "shursei shimasu",
+    "delete_btn"     => "kensa ku shi",
+    "cancel_btn"     => "cancel shimasu",
+    "save_btn"       => "obee shimasu"
 );

@@ -41,16 +41,11 @@ class IndexController extends ControllerBase
         $this->view->modulename = $this->module_name;
     }
     
-    public function getmemberAction() {
-        $member_search = $this->request->get("q");
-        $json_array = array();
-        $CoreMember = new Db\CoreMember();
-        $member = $CoreMember->searchuser($member_search);
-        foreach($member as $all){
-            $json_array[] = $all['member_login_name'];
-        }       
-        $this->view->disable();        
-        echo json_encode($json_array);
+    public function getmemberAction() {        
+      $MemberList=new Db\CoreMember();
+        $Username = $MemberList->userautolistusername(); 
+        $this->view->disable();    
+        echo json_encode($Username);
     }
     
     public function addmemberAction(){

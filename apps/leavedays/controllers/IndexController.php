@@ -132,7 +132,7 @@ class IndexController extends ControllerBase {
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();
-        $setting=$LeaveSetting->getleavesetting();
+        $setting=$LeaveSetting->getleavesetting();                
         if($this->permission==1){
         $this->view->modulename = $this->module_name;
         $this->view->setVar("leave_typelist", $typelist);  

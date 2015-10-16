@@ -24,7 +24,7 @@ var Attendance = {
                 dataType : 'json',
                 success : function(d){                    
                     $('#edit_att_time').empty();
-                       
+                    var data = d[0];                    
                     n = new Date();
                     offset = n.getTimezoneOffset();
                     if (offset<0){
@@ -34,9 +34,8 @@ var Attendance = {
                     else{
                     value=offset*(-1);
                     sign='+';
-                    } 
-
-                    checkin = d['checkin_time'].split(" ");
+                    }                    
+                    checkin = data['checkin_time'].split(" ");
                     b = checkin[1];
                     ds=b.split(":");
                     total=(ds[0]*3600)+(ds[1]*60)+(ds[2]*1);
@@ -55,9 +54,9 @@ var Attendance = {
                     localcheckin   = checkin[0] +' '+hours+':'+minutes+':'+seconds;
                     
                        var dia_div = '<form id="edit_attendance"><div class="row">'
-                                   +'<div class="col-sm-9"><label for="title">Attendance Time</label><input  type="text" class="form-control datetimepicker" id="time" name="time" value="'+localcheckin+'"></div></div>'
-                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">Name</label><input disabled type="text" class="form-control" name="uname" value="'+d['member_id']+'"></div></div>'               
-                                   +'<div class="row"><div class="col-sm-9"><label for="reason">Reason Note</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+d['notes']+'"></div></div>'
+                                   +'<div class="col-sm-9"><label for="title">'+d[1]['attlist']+'</label><input  type="text" class="form-control datetimepicker" id="time" name="time" value="'+localcheckin+'"></div></div>'
+                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">'+d[1]['name']+'</label><input disabled type="text" class="form-control" name="uname" value="'+data['member_id']+'"></div></div>'               
+                                   +'<div class="row"><div class="col-sm-9"><label for="reason">'+d[1]['note']+'</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+data['notes']+'"></div></div>'
                                    +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
                                   +'</div></form>';
                         $('#edit_att_time').append(dia_div);
@@ -69,7 +68,7 @@ var Attendance = {
                             height:300,
                             width : 500,
                             autoOpen: false,
-                            title : "Edit Attendance Time"
+                            title : d[1]['edit_att']
                         });
                       $dia.dialog("open");
                       $('#edit_attendance_close').click(function(e){

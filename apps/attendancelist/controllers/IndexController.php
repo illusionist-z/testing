@@ -45,10 +45,15 @@ class IndexController extends ControllerBase
         
     }        
    
-    public function editTimedialogAction($id){        
+    public function editTimedialogAction($id){
         $Att  = new \workManagiment\Attendancelist\Models\Attendances();
+        $t = $this->_getTranslation();//for translate
         $data = $Att->getAttTime($id);
-        echo json_encode($data[0]);
+        $data[1]['attlist'] = $t->_("attendancelist");
+        $data[1]['edit_att'] = $t->_("edit_att_list");
+        $data[1]['name'] = $t->_("username");
+        $data[1]['note'] = $t->_("note");
+        echo json_encode($data);
         $this->view->disable();
     }
     /**

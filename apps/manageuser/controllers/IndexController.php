@@ -64,12 +64,35 @@ class IndexController extends ControllerBase
      */
     public function manageuserAction() {
         $type = $this->request->get('data');
+        $t = $this->_getTranslation();
+        $edit = array();
         if($type == 'new'){
-            echo json_encode($type);
+            $edit[0] = $type;
+            $edit[1]["add"] = $t->_("adduser");
+            $edit[1]["name"] = $t->_("name");
+            $edit[1]["pass"] = $t->_("password");
+            $edit[1]["confirm"] = $t->_("confirm_pass");
+            $edit[1]["dept"] = $t->_("dept");
+            $edit[1]["pos"] = $t->_("position");
+            $edit[1]["mail"] = $t->_("mail");
+            $edit[1]["pno"] = $t->_("phone");
+            $edit[1]["address"] = $t->_("address");
+            $edit[1]["role"] = $t->_("user_role");
+            $edit[1]["profile"] = $t->_("user_profile");
+            echo json_encode($edit);
         }
         else{
-        $edit = $this->user->useredit($type);
-        echo json_encode($edit[0]);
+        $res = $this->user->useredit($type);
+            $edit[0] = $res[0];
+            $edit[1]["edit"] = $t->_("edit_user");
+            $edit[1]["id"] = $t->_("id");
+            $edit[1]["name"] = $t->_("name");            
+            $edit[1]["dept"] = $t->_("dept");
+            $edit[1]["pos"] = $t->_("position");
+            $edit[1]["mail"] = $t->_("mail");
+            $edit[1]["pno"] = $t->_("phone");
+            $edit[1]["address"] = $t->_("address");        
+        echo json_encode($edit);
         }
         $this->view->disable();
     }  

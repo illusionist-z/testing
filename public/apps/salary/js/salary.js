@@ -20,13 +20,13 @@ var Salary = {
           success:function(res){
                var result = $.parseJSON(res);               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
-                   data +='<tr><td></td><td><b>User Name </b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
+                   data +='<tr><td></td><td><b>'+result.t['name']+'</b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
-                        +'<tr><td></td><td><b>Basic Salary </b></td>'
+                        +'<tr><td></td><td><b>'+result.t['b_salary']+' </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
-                        +'<tr><td></td><td><b>Travel Fee </b></td>'
+                        +'<tr><td></td><td><b>'+result.t['t_fee']+'</b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:55px;height:40px;"></td></tr>'
-                        +'<tr><td></td><td><b>Over Time </b></td>'
+                        +'<tr><td></td><td><b>'+result.t['ot']+'</b></td>'
                         +'<td id="overmsg"><input style="width:50px;margin-top:10px;" type="text" value="'+result.data[0]['over_time']+'" name="overtime" id="overerr"> %</td></tr>'
                         +'<tr><td></td><td>SSC Emp </td>'
                         +'<td id="empmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_emp']+' name="ssc_emp" id="emperr"> %</td><td style="width:55px;height:40px;"></td></tr>'
@@ -48,9 +48,9 @@ var Salary = {
              data +='</td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
              
-               data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >Edit</a><a href="#" class="button" id="edit_delete" >Delete</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
+               data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
              data +='</table></form>';
-               Salary.Dia(data);
+               Salary.Dia(data,result.t['title']);
            }
         });
     },
@@ -66,7 +66,7 @@ var Salary = {
         return $check;
     },
     
-    Dia: function (d) {
+    Dia: function (d,title) {
         if (!this.isOvl) {
             this.isOvl = true;
         }
@@ -80,7 +80,7 @@ var Salary = {
             async: false,
             width: 600,
             modal: true,
-            title: "Salary Edit",
+            title: title,
             /*show:{
                 effect:"explode",//effect:"blind",
 		duration:200

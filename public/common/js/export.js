@@ -10,7 +10,7 @@ var Export = {
                 , colDelim = '","'
                 , rowDelim = '"\n"';
         // Grab text from table into CSV formatted string
-        var csv = '"';
+        var csv = '\uFEFF'+'"';
         csv += formatRows(headers.map(grabRow));
         csv += rowDelim;
         csv += formatRows($rows.map(grabRow)) + '"';
@@ -19,8 +19,7 @@ var Export = {
         $(this).attr({
             'download': filename,
             'href': csvData
-                    //'target': '_blank'
-        });                      //,'target' : '_blank' //if you want it to open in a new window
+        });
 
         // Format the output so it has the appropriate delimiters
         function formatRows(rows) {

@@ -14,5 +14,7 @@ $messages = array(
     "checkout" => "Check Out",
     "workingtime" => "Working Time",
     "overtime" => "Overtime",
-    "location" => "Location"
+    "location" => "Location",
+    "edit_att_list" => "Edit Attendance List",
+    "note"      => "Reason Note"
 );

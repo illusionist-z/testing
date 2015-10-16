@@ -24,6 +24,15 @@ $messages = array(
     "tax_to"             => "အခြန္ေငြသို႕",
     "tax_rate"          => "အခြန္ေငြႏွုန္း",
     "deduction_amt" => "ေပးေဆာင္ရမည့္ပမာဏ",
+    "allowance_amt" => "ေထာက္ပံ႔ေၾကးပမာဏ",
     "allowance"        => "ေထာက္ပံ့ေၾကး",
+    "allowance_edit"        => "ေထာက္ပံ့ေၾကးၿပင္မည္",
+    "allowance_name"        => "ေထာက္ပံ့ေၾကးအမည္",
     "amount"           => "ပမာဏ",
+    "edit_salary"      => "လစာၿပင္ၿခင္း",
+    "edit_btn"         => "ၿပင္မည္",
+    "delete_btn"     => "ဖ်က္မည္",
+    "cancel_btn"     => "ပယ္မည္",
+    "save_btn"       => "သိမ္းဆည္းမည္"
+    
 );
