@@ -1,7 +1,7 @@
 <?php
 
 namespace workManagiment\Salary\Controllers;
-
+use Phalcon\Flash\Direct as FlashDirect;
 use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
@@ -27,6 +27,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         //$this->assets->addJs('apps/salary/js/index-allowance.js');
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
+
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         $this->module_name =  $this->router->getModuleName();
@@ -399,7 +401,7 @@ class IndexController extends ControllerBase {
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
         $Deduction = new SalaryTaxsDeduction();
-
+        //print_r($data);exit;
         $Deduction->edit_deduction($data);
         $this->view->disable();
     }

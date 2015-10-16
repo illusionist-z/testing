@@ -3,6 +3,7 @@
 $messages = array(   
     //add salary
    "addsalary_title"       => "လစာေပးၿခင္း(၀န္ထမ္း)",
+    "month"       => "လ",
     "name"                  => "နာမည္",
     "basic_salary"        => "အေၿခခံလစာ",
     "travel_fee"           =>  "ခရီးစရိတ္",

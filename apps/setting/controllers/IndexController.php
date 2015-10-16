@@ -1,7 +1,9 @@
 <?php
 
 use Phalcon\Config;
+
 namespace workManagiment\Setting\Controllers;
+
 use workManagiment\Core\Models\Db;
 
 class IndexController extends ControllerBase {
@@ -10,24 +12,16 @@ class IndexController extends ControllerBase {
         parent::initialize();
         //$this->assets->addJs('common/js/btn.js');
         $this->setCommonJsAndCss();
-        
     }
 
     public function indexAction() {
-          
-           
+        
     }
+
     public function settingmoduleAction() {
-        $UserList=new Db\CoreMember();
+        $UserList = new Db\CoreMember();
         $username = $UserList::getinstance()->getusername();
-        $this->view->setVar("member",$username);
+        $this->view->setVar("member", $username);
     }
-    
-   
- 
-        
-     
-        
-   
-  
+
 }

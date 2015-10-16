@@ -13,9 +13,16 @@ $messages = array(
   "leave_desc" => "အေၾကာင္းအရာ",
   "leave_status" => "အတည္ၿပဳခ်က္",
   "leave_left" => "ခြင့္က်န္ရက္",
-   "applyleave" => "ခြင့္ေလွ်ာက္လႊာ",
-   "leavesetting" => "ခြင့္ Setting",
-    "max_leavedays" => "ခြင့္ၿပဳခြင့္မဲ့ရက္မ်ား",
-    "percent_basic_salary" => "လစာမွႏုတ္ယူရာခိုင္ႏွုန္း",
+  "applyleave" => "ခြင့္ေလွ်ာက္လႊာ",
+  "leavesetting" => "ခြင့္ Setting",
+  "max_leavedays" => "ခြင့္ၿပဳခြင့္မဲ့ရက္မ်ား",
+  "percent_basic_salary" => "လစာမွႏုတ္ယူရာခိုင္ႏွုန္း",
+  "home" => "မူလစာမ်က္ႏွာ",
+  "search" => "ရွာေဖြပါ",
+  "export" => "Export",
+  "searchusername" => "အမည္ျဖင္႔ရွာရန္",
+  "edit" => "ျပင္ရန္",
+  "save" => "သိမ္းရန္",
+  "addleavetype" => "ခြင္႔အမ်ဳိးအစားအသစ္ထည္႔ရန္"
     
 );

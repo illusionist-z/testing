@@ -15,25 +15,23 @@ class LeavesSetting extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    
-    
-    public function getleavesetting(){
-          $row = $this->modelsManager->createBuilder()
-                    ->columns('max_leavedays,fine_amount')
-                    ->from('workManagiment\Leavedays\Models\LeavesSetting')
-                    ->getQuery()
-                    ->execute();
-        
+    public function getleavesetting() {
+        $row = $this->modelsManager->createBuilder()
+                ->columns('max_leavedays,fine_amount')
+                ->from('workManagiment\Leavedays\Models\LeavesSetting')
+                ->getQuery()
+                ->execute();
+
         return $row;
     }
-   
-    public function editleavesetting($max_leavedays,$fine_amount){
-         try{
-         $sql = "Update leaves_setting SET max_leavedays ='".$max_leavedays."',fine_amount ='".$fine_amount."' ";
-         $this->db->query($sql);
-     } catch (Exception $ex) {
-         echo $ex;
-     }
+
+    public function editleavesetting($max_leavedays, $fine_amount) {
+        try {
+            $sql = "Update leaves_setting SET max_leavedays ='" . $max_leavedays . "',fine_amount ='" . $fine_amount . "' ";
+            $this->db->query($sql);
+        } catch (Exception $ex) {
+            echo $ex;
+        }
     }
-   
+
 }

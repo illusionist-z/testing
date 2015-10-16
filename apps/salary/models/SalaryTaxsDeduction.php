@@ -41,7 +41,7 @@ class SalaryTaxsDeduction extends Model {
     public function edit_deduction($data){
           try {
               
-         $sql = "Update salary_taxs_deduction SET deduce_name ='".$data['deduce_name']."',amount ='".$data['amount']."'  Where taxs_deduction.deduce_id='".$data['id']."'";
+         $sql = "Update salary_taxs_deduction SET deduce_name ='".$data['deduce_name']."',amount ='".$data['amount']."'  Where salary_taxs_deduction.deduce_id='".$data['id']."'";
          $this->db->query($sql);
           
         } catch (Exception $exc) {

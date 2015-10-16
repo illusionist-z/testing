@@ -46,6 +46,8 @@
 	<th><?= $t->_("username"); ?></th>
 	<th><?= $t->_("checkin"); ?></th>
 	<th><?= $t->_("late"); ?></th>
+                                <th width="150px"><?= $t->_("latereason"); ?></th>
+
               <th><?= $t->_("checkout"); ?></th>
 	<th><?= $t->_("workingtime"); ?></th>
 	<th><?= $t->_("overtime"); ?></th>
@@ -80,24 +82,33 @@
         </td>
         
         <!--        Late-->
-        <td><?php  
-      $time = date("H:i:s",strtotime($value." minutes",strtotime($checkintime)));
-//           
-        $office_start_time='08:00:00 ';
-      
-        if($time>$office_start_time){
-            $start=strtotime($office_start_time);
-            $end=strtotime($time);
-            $late=$end-$start;
-        if($result->attendances->notes!=''){
-            echo "<font color='red'>". gmdate("H:i:s",$late)."(".$result->attendances->notes." )</font>";
-        }
-        else{
-            echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
-        }
-            
-        }
-        ?></td>
+       <td>
+                                <?php
+                                //calculate late time
+                                $checkintime = $result->attendances->checkin_time;
+                                $dt = new DateTime($checkintime);
+                                $time = $dt->format('H:i:s');
+                                $office_start_time = '01:30:00 ';
+                                if ($time > $office_start_time) {
+                                    $start = strtotime($office_start_time);
+                                    $end = strtotime($time);
+                                    $late = $end - $start;
+                                    
+                                        echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
+                                   
+                                } else {
+                                    echo "-";
+                                }
+                                ?>
+                            </td>
+                              <td><?php
+                                
+                                    if ($result->attendances->notes != '') {
+                                        echo "<font color='red'>" .  $result->attendances->notes . " </font>";
+                                    }
+                                
+                                ?>
+                            </td>
         
 <!--        check out time -->
         <td><?php $checkouttime= $result->attendances->checkout_time;

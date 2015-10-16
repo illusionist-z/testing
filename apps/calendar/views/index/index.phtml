@@ -8,11 +8,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            <?= $t->_("calendar"); ?>
+            <?php echo $t->_("calendar"); ?>
         </h1>        
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Calendar</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> <?php echo $t->_("home"); ?></a></li>
+            <li class="active"><?php echo $t->_("calendar"); ?></li>
         </ol>
     </section>      
 <!-- Main content -->
@@ -23,7 +23,7 @@
             <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">
                    <!-- <input type='checkbox'  id='selectall'/>-->                    
                     
-                    <?= $t->_("event_enable"); ?>
+                     <?php echo $t->_("event_enable"); ?>                                         
 <!--                    <input type='button' id='shapbott' name='checkall' class="addbtn">                    -->
                     <a href="#" onclick="return false;"   style="margin-left: 80px;"  class="dateimg checkall" id="shapbott"></a>
                     <a href="#" onclick="return false;" style="float:right;"  class="dateminusimg disabledevent" ></a>
@@ -48,8 +48,8 @@
             <?php       }          ?>                    
           </ul>                  
            </form>
-        <span class=" btn-primary btn col-sm-12 btn-show-event"><?= $t->_("show_event"); ?></span>
-        <div class="alert col-sm-12">Check above user to see their event</div>
+        <span class=" btn-primary btn col-sm-12 btn-show-event"><?php echo $t->_("show_event"); ?></span>
+        <div class="alert col-sm-12"><?php echo $t->_("chkevent"); ?></div>
         </div>
     <div class="col-md-8">
         <div class="box-body no-padding">

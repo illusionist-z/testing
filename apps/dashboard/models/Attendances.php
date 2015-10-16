@@ -70,7 +70,8 @@ class Attendances extends Model {
                 $status = " Already Checkout";
                 return $status;
             } else {
-                $workingHour = strtotime($att->checkin_time) - strtotime($mydate);
+                $workingHour = strtotime($mydate)-strtotime($att->checkin_time);
+                
                 if ($workingHour > 28800) {
                 $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',');
                 } else {

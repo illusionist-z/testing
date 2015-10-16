@@ -3,6 +3,7 @@
 $messages = array(
    "userlist" => "လူဦးေရစာရင္း", 
     "name"   => "နာမည္",
+    "home"   => "ပင္မစာမ်က္ႏွာ",
     "dept"   => "ဌာန",
     "position" => "ရာထူး",
     "mail"     => "ေမးလ္",

@@ -14,4 +14,8 @@ $messages = array(
     "cancel_btn" => "けさ",
       "edit_btn"    => "Edito",
     "delete_btn" => "kensasu",
+"event_enable" => "ユザーのイベント",
+"show_event"  => "イベントを表示する",
+"chkevent"   => "ユザーのイベントをチェックしてください。",
+"home"   => "ホーム"
 );

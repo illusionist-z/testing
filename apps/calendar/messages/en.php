@@ -14,5 +14,7 @@ $messages = array (
     "edit_btn"    => "Edit",
     "delete_btn" => "Delete",
     "cancel_btn" => "Cancel",
+   "chkevent"   => "Check above user to see their event",
+   "home"   => "Home"
 );
 

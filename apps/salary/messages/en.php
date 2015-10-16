@@ -3,11 +3,14 @@
 $messages = array(
    
    "addsalary_title"       => "Add Salary For Each Member",
+   "month"       => "month",
    "name"                   => "User Name",
    "basic_salary"         => "Basic Salary",
    "travel_fee"            => "Travel Fees",
    "overtime"             => "Overtime(per hr)",
    "deduce_ssc"         =>  "Deduce for SSC",
+   "ssc_comp"         =>  "SSC_comp",
+   "ssc_emp"         =>  "SSC_emp",
    "allowance"           => "Allowance",
    "apply"                 => "Apply",
    "salary_list"          => "Salary Lists",

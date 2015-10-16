@@ -9,7 +9,8 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();
         
-        
+               //$this->assets->addJs('common/js/notification.js');
+
     }
 
     
@@ -93,7 +94,7 @@ class IndexController extends ControllerBase
      */
     public function noticalendarAction(){
         
-        $id=$this->request->getPost('id');
+        $id=$this->request->get('id');
         $Noti=new \workManagiment\Notification\Models\CoreNotification();
         if($this->session->permission_code=='ADMIN'){
         $Noti->calendarnotification($id);}
@@ -101,13 +102,16 @@ class IndexController extends ControllerBase
             $member_id=$this->session->user['member_id'];
             $Noti->usercalendarnotification($id,$member_id);
         }
+        $this->response->redirect("calendar/index");
     }
     
      public function notiattendancesAction(){
         
-        $id=$this->request->getPost('id');
+        $id=$this->request->get('id');
         $Noti=new \workManagiment\Notification\Models\CoreNotification();
         $Noti->attnotification($id);
+        $this->response->redirect("attendancelist/index/todaylist");
+
       
     }
     

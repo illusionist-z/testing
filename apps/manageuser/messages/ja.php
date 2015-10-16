@@ -1,19 +1,23 @@
 <?php
 
 $messages = array(
-   "userlist" => "user listo", 
-    "name"   => "namae",
-    "dept"     => "Departo",
-    "position" => "bashou",
-    "mail"     =>  "meiru",
-    "phone" => "denwa bengo",
-    "address" => "jimushou",
-     "adduser" => "userru addto",
-    "password" => "passwortods",
-    "confirm_pass" => "Confirm passwordto",
-    "user_role" => "useru rolue",
-    "user_profile" => "shashin",
-    "edit_user"  => "naosuru",        
-    "id"     => "userru ID",
+    "userlist" => "ユザー一連", 
+    "name"   => "名前",
+    "home"   => "ホーム",
+    "dept"     => "部門",
+    "position" => "立場",
+    "mail"     =>  "メール",
+    "phone" => "電話番号",
+    "address" => "住所",
+    "searchusername" => "名前で検索",
+    "search" => "検索",
+    "adduser" => "新規入力",
+    "username" => "ユザー名",
+    "password" => "パスワード",
+    "confirmpassword" => "確認パスワード",
+    "email" => "メール",
+    "phoneno" => "電話番号",
+    "userrole" => "ユザーロール",
+    "userprofile" => "ユザー写真"
 );
 

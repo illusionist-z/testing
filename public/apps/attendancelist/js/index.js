@@ -22,7 +22,8 @@ var Attendance = {
                 url : "editTimedialog/"+id,
                 type :"GET",   
                 dataType : 'json',
-                success : function(d){                    
+                success : function(d){  
+                    
                     $('#edit_att_time').empty();
                     var data = d[0];                    
                     n = new Date();

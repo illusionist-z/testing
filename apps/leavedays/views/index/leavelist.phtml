@@ -9,11 +9,11 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header" id="showleavelist"">
     <h1>
-        <b><?= $t->_("leave_list"); ?></b>
+        <?= $t->_("leave_list"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b> </a></li>
-        <li class="active"><b>Leave Lists</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?> </a></li>
+        <li class="active"><?= $t->_("leave_list"); ?></li>
     </ol>
 </section>
 
@@ -64,11 +64,11 @@ $length = count($Month);
 
 
             </select>-->
-                        <input class="userauto" name="namelist" id="namelist" placeholder="Search User Name">
+                        <input class="userauto" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>">
 
-            <input type="submit" class="buttonn" value="Search" id="search">
+            <input type="submit" class="buttonn" value="<?= $t->_("search"); ?>" id="search">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);">Export</a>
+            <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);"><?= $t->_("export"); ?></a>
         </form>
     </div>
 
