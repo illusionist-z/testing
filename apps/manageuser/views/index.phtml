@@ -47,7 +47,7 @@
                                    <!-- <img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="user-image" alt="User Image"/>-->
                                     <?php
                                                     if($this->session->user['member_profile']==null){
-                                                    $img = "profile.png";}
+                                                    $img = "profile1.jpg";}
                                                     else{
                                                         $img=$this->session->user['member_profile'];
                                                     }
@@ -63,7 +63,7 @@
                                         <!--<img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="img-circle">-->
                                         <?php
                                                     if($this->session->user['member_profile']==null){
-                                                    $img = "profile.png";}
+                                                    $img = "profile1.jpg";}
                                                     else{
                                                         $img=$this->session->user['member_profile'];
                                                     }
@@ -215,7 +215,7 @@
              <footer class="main-footer" style="margin-left:0;">
                 <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
                 <div class="language">
-                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "English") ?>  | <?php echo Tag::linkTo("core/index/setLanguage/ja", "Japanese") ?>| <?php echo Tag::linkTo("core/index/setLanguage/my", "Myanmar") ?>
+                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
                 </div>
             </footer>
        

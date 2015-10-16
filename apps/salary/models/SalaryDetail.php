@@ -99,9 +99,12 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 $basic_salary = $filter->sanitize($rows['basic_salary'], "int");
                 $travel_fee = $filter->sanitize($rows['travel_fee'], "int");
                 $overtime_rate = $filter->sanitize($rows['overtime_rate'], "int");
+                if($overtime_rate==""){
+                    $overtime_rate=0;
+                }
                 //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
                 $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', travel_fee='" . $travel_fee . "', overtime='" . $overtime_rate . "'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='" . $current_date . "'";
-
+                //echo $sql;exit;
                 $result = $this->db->query($sql);
             }
         } catch (Exception $e) {
@@ -117,7 +120,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
         try {
             //print_r($row);exit;
             foreach ($row as $rows) {
-                if ($rows['allowance_amount'] == "") {
+                if ($rows['allowance_amount'] === "") {
                     $rows['allowance_amount'] = "0";
                 }
                 $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,absent_dedution,income_tax,pay_date,created_dt) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','" . $rows['absent_dedution'] . "','" . $rows['income_tax'] . "',NOW(),NOW())";

@@ -90,9 +90,10 @@ class Calendar extends Model {
         return $query;
     }
     
-    public function remove_member($remove_id,$id){                               
-        $query = "update member_event_permission set delete_flag =1 where permit_name ='$remove_id' and member_name = '".$id."'";
-        $this->db->query($query);                             
+    public function remove_member($remove_id,$id){ 
+        $remove_id = implode($remove_id,"','");                
+        $query = "update member_event_permission set delete_flag = 1 where permit_name IN ('$remove_id') and member_name = '".$id."'";
+        $this->db->query($query);                          
     }
    /**
     * @author David JP <david.gnext@gmail.com>
@@ -103,7 +104,7 @@ class Calendar extends Model {
     public function add_permit_name($permit_name,$id) {        
         $query = "Select * from member_event_permission where permit_name ='".$permit_name."' and member_name = '".$id."' ";
         $result = $this->db->query($query);
-        if($result->numRows() == 0){                  
+        if($result->numRows() == 0){                        
             $query1 = "Insert into member_event_permission (member_name,permit_name,delete_flag) Values ('$id','".$permit_name."',0)";
             $this->db->query($query1);            
             $return  = 0;

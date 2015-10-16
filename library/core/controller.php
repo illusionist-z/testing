@@ -38,7 +38,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
 //        echo $this->router->getControllerName();
 //        echo $this->router->getActionName();
 //        echo $module.'<br><br>';
-        //print_r($this->session->auth);
+       // print_r($this->session->auth);exit;
         $ctrname=$this->router->getControllerName();
         $actname=$this->router->getActionName();
         $chksubmenu="";
