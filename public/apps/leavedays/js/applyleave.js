@@ -10,7 +10,7 @@ var ApplyForm = {
            url  : baseUri+'leavedays/index/applyleave',
            data : $('#apply_form').serialize(),
            success: function(d){
-               //alert(d);
+                
                cond = JSON.parse(d);
                
                  if(cond.result === 'error')

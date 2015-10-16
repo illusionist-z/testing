@@ -6,13 +6,13 @@
 
 <form id="noti_detail" width="800px" height="300px" ><table width="500px" height="290px"  >             
 <br>
-<tr><td></td><td><b>User Name </b></td><td><span style="color:black"><b>: <?php echo $data['member_login_name'];?></b> </span><b style="font-size:13px;"></b></td><td ></td></tr>
-<tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"><b> : <?php echo $data['start_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b>End Date </b> </td><td><span style="color:black"><b> : <?php echo $data['end_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-  <tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"><b> : <?php if($leave_stt==0){echo 'pending';}else if($leave_stt==1){echo 'Confirmed';}else{echo 'Rejected';}?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_days'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b>Leave Category </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_category'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_description'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b><?= $t->_("username"); ?></b></td><td><span style="color:black"><b>: <?php echo $data['member_login_name'];?></b> </span><b style="font-size:13px;"></b></td><td ></td></tr>
+<tr><td></td><td><b><?= $t->_("startdate"); ?> </b> </td><td><span style="color:black"><b> : <?php echo $data['start_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b><?= $t->_("enddate"); ?> </b> </td><td><span style="color:black"><b> : <?php echo $data['end_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+  <tr><td></td><td><b><?= $t->_("leavestatus"); ?> </b> </td><td><span style="color:black"><b> : <?php if($leave_stt==0){echo 'pending';}else if($leave_stt==1){echo 'Confirmed';}else{echo 'Rejected';}?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b><?= $t->_("leaveday"); ?></b> </td><td><span style="color:black"><b> : <?php echo $data['leave_days'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b><?= $t->_("leavecategory"); ?> </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_category'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b><?= $t->_("leavedes"); ?>  </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_description'];?></b> </span><b style="font-size:13px;"></b></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['member_id'];?>"  name="id"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['end_date'];?>"  name="end_date"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['leave_days'];?>"  name="leave_days"></td><td></td></td></tr>

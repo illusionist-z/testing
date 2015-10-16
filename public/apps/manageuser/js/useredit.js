@@ -20,6 +20,8 @@
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
 		    +'<tr><td>User Name </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_login_name +'" name="name" id="edit_user_name"></td></tr>'
+                    +'<tr><td>Working Start Date: </td>'
+                    +'<td><input style="margin-top:10px;" class="datepicker" type="text" value="'+ res.working_start_dt+'" name="work_sdate" id="edit_work_sdate"></td></tr>'
                     +'<tr><td>Department </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
 		    +'<tr><td>Position </td>'
@@ -41,7 +43,8 @@
                    +'<tr><td class="col-sm-5"> Name: </td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Write your full name"></td></tr>'
                    +'<tr><td class="col-sm-5">Password </td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
                    +'<tr><td class="col-sm-5">Confirm Password </td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
-	           +'<tr><td class="col-sm-5">Department </td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
+	           +'<tr><td class="col-sm-5">Working Start Date </td><td><input style="margin-top:10px" type="text" name="work_sdate" id="work_sdate" class="col-sm-10 datepicker" placeholder="Enter the first date of working"></td></tr>'
+                   +'<tr><td class="col-sm-5">Department </td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
                    +'<tr><td class="col-sm-5">Position</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
 	           +'<tr><td class="col-sm-5">Email </td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
                    +'<tr><td class="col-sm-5">Phone Number </td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
@@ -78,9 +81,15 @@
                     });                
                     $ovl.html(data);
                     $ovl.dialog("open");
+                  $('.datepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            }).focus();                               
+                     }); 
                     $('.submit_useradd').click(function(){
                        UserAdd.Submit();
                     });
+                   
                     $('#addinguser_close').click(function(){
                         $ovl.dialog("close");
                         this.isOvl=false;
@@ -114,6 +123,11 @@
                         e.preventDefault();
                         Manage.User.Delete($('#edit_user_id').val());
                     });
+                    $('.datepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            }).focus();                               
+                     }); 
      }
     },
     /**
