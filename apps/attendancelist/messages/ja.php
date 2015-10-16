@@ -16,8 +16,7 @@ $messages = array(
     "overtime" => "overt mu",
     "location" => "場所",
     "edit_att_list" => "editto attenc listo",
-    "note"      => "noto"
-    
+    "note"      => "noto",    
     "latereason"=>"遅れるの理由",
     "checkout" => "退勤時間",
     "workingtime" => "作業時間",
