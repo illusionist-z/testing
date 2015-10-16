@@ -69,8 +69,9 @@ class SalaryMaster extends Model {
      */
     public function getbasicsalary() {
         try {
+            $month=  date('m');
             $sql = "select basic_salary,status,member_id,travel_fee,date(created_dt)as comp_start_date "
-                    . "from salary_master where deleted_flag=0";
+                    . "from salary_master where deleted_flag=0 and member_id in (select member_id from attendances where MONTH(att_date)=$month)";
             //echo $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetchall();
@@ -206,8 +207,8 @@ class SalaryMaster extends Model {
                         'absent_dedution'=>$absent_dedution);
                 }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -806,15 +807,34 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
         }
         return $res;
     }
-    
+    /**
+     * Update salary detail after calculating
+     * @param type $bsalary
+     * @param type $overtimerate
+     * @param type $member_id
+     */
     public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
         try {
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
                 //echo $sql;exit;
                 $this->db->query($sql);
-                $res['valid'] = true;
+                //$res['valid'] = true;
+//                $salarybymember_id=$this->getbsalarybyMember_id($member_id);
+//                $latersalarydetail=  $this->getOldSalarydetail($member_id);
+//                print_r($salarybymember_id['member_id'] );exit;
             } catch (Exception $ex) {
                 echo $ex;
             }
     }
+    
+//    public function getbsalarybyMember_id($member_id) {
+//        try {
+//            $sql = "select * from salary_master WHERE member_id ='".$member_id."'";
+//            $result = $this->db->query($sql);
+//            $row = $result->fetcharray();
+//        } catch (Exception $exc) {
+//            echo $exc->getTraceAsString();
+//        }
+//        return $row;
+//        }
 }

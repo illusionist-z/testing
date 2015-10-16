@@ -16,5 +16,6 @@ $messages = array(
     "leave"          => "yasumi hito",
     "checkin"       => "Chatku timu",
     "checkout"     => "Chatout timu",
+    "home"       => "ホーム"
 );
 

@@ -141,8 +141,8 @@ for (var i = 0; i < cells.length; i++) {
             //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
             url : baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id,
             success:function(){
-                alert("aaa");
-               // window.location.reload();
+                alert("Data has been updated");
+                window.location.reload();
             }
         })
         }

@@ -22,13 +22,13 @@ class CalculateController extends ControllerBase
      */
     public function indexAction(){
         
-     $basic_salary_ssc=$this->config->salary['basic_salary_ssc'];
-     $deduce=$this->config->salary['deduce'];
-     $overrate=$this->config->salary['overrate'];
+    $basic_salary_ssc=$this->config->salary['basic_salary_ssc'];
+    $deduce=$this->config->salary['deduce'];
+    $overrate=$this->config->salary['overrate'];
      
-     $Salarydetail=new SalaryDetail();
-     $Salarymaster=new SalaryMaster();
-     $getbasic_salary=$Salarymaster->getbasicsalary();
+    $Salarydetail=new SalaryDetail();
+    $Salarymaster=new SalaryMaster();
+    $getbasic_salary=$Salarymaster->getbasicsalary();
      //print_r($getbasic_salary);exit;
      //calculate overtime by attendances and salary master
     $overtime=$Salarymaster->calculate_overtime();
@@ -37,7 +37,7 @@ class CalculateController extends ControllerBase
      
     //calculate the basic salary
     $tax=$Salarymaster->calculate_tax_salary($getbasic_salary);
-    print_r($tax);
+    //print_r($tax);
     //insert taxs of all staff to salary detail
     $Salarydetail->insert_taxs($tax);
     
