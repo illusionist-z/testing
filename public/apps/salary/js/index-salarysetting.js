@@ -231,7 +231,7 @@ var Deduction = {
     },
     BtnEdit : function(d){
         var form=$('#edit_deduct_table');
-      
+       //alert(form.serialize());
         $.ajax({
             type:'POST',
             data: form.serialize(),

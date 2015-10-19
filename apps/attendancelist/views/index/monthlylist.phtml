@@ -1,5 +1,7 @@
 <?php
-    use Phalcon\Filter; 
+
+use Phalcon\Filter;
+
 //calculate the user time offset
 
 if ($offset < 0) {
@@ -7,7 +9,7 @@ if ($offset < 0) {
     $value = $offset * (-1);
 } else {
     $value = $offset * (-1);
-    $sign='+';
+    $sign = '+';
 }
 
 $length = count($Month);
@@ -37,8 +39,8 @@ $length = count($Month);
           
                     <input type="text" name="month" id="month" class="datepicker"   placeholder="<?= $t->_("enddate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
 <!--            <select class="select" data-toggle="select" name="username" id="username">
-                <option value="">Name</option>
-                <?php
+        <option value="">Name</option>
+            <?php
 //print_r($Getname);
                 foreach ($Getname as $getname) {
                     ?>
@@ -60,7 +62,7 @@ $length = count($Month);
     </div>
 
     <div class="row">
-        <?php //$this->partial('attendance/showlist');  ?>
+<?php //$this->partial('attendance/showlist');   ?>
         <div class="col-md-12"><!--start table content--->
             <table class="listtbl">
                 <thead>
@@ -69,6 +71,7 @@ $length = count($Month);
                         <th width="150px"><?= $t->_("username"); ?></th>
                         <th width="150px"><?= $t->_("checkin"); ?></th>
                         <th width="150px"><?= $t->_("late"); ?></th>
+                        <th width="150px"><?= $t->_("latereason"); ?></th>
                         <th width="150px"><?= $t->_("checkout"); ?></th>
                         <th width="150px"><?= $t->_("workingtime"); ?></th>
                         <th width="150px"><?= $t->_("overtime"); ?></th>
@@ -80,9 +83,8 @@ $length = count($Month);
                     <?php
 //***************Show monthly attendance list******************************
                     $filter = new Filter();
-                    
+
                     foreach ($monthlylist as $item) {
-                                                
                         ?>
                         <tr>
                             <td><?php echo $item->attendances->att_date; ?></td>
@@ -110,13 +112,18 @@ $length = count($Month);
                                     $start = strtotime($office_start_time);
                                     $end = strtotime($time);
                                     $late = $end - $start;
-                    if($item->attendances->notes!=''){
-                                 echo "<font color='red'>". gmdate("H:i:s",$late)."(".$item->attendances->notes." )</font>";
-                            }
-                        else{
-                             echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
-                            }
+                                    echo "<font color='red'>" . gmdate("H:i:s", $late)." </font>";
+                                 
                                 }
+                                ?>
+                            </td>
+                            
+                             <td><?php
+                                
+                                    if ($item->attendances->notes != '') {
+                                        echo "<font color='red'>" .  $item->attendances->notes . " </font>";
+                                    }
+                                
                                 ?>
                             </td>
                             <td><?php
@@ -146,51 +153,32 @@ $length = count($Month);
                                     $hours = floor($workingHour / 3600);
                                     $minutes = floor(($workingHour / 60) % 60);
                                     $seconds = $workingHour % 60;
-                                    if($hours<10){
-                                        $hours="0".$hours;
+                                    if ($hours < 10) {
+                                        $hours = "0" . $hours;
                                     }
-                                    if($minutes<10){
-                                        $minutes="0".$minutes;
+                                    if ($minutes < 10) {
+                                        $minutes = "0" . $minutes;
                                     }
                                     $workingHour = "$hours:$minutes:$seconds";
                                     echo $workingHour;
-                                    
                                 }
                                 ?>
                             </td>
                             <td><?php
-                                //calculate overtime
-                            if ($item->attendances->overtime !=0) {
-                                   echo $result['overtime'];
-                                } else {
-                                    echo "-";
-                                }
-                                  
-//                                    
-//                               $time = date($workingHour);               
-//          
-//                                    $office_start_time='08:00:00 ';
-//
-//                                    if($time>$office_start_time){
-//                                        $start=strtotime($office_start_time);
-//                                        $end=strtotime($time);
-//                                        $late=$end-$start;
-//                                        echo $end_time;
-//                                        echo "<font color='red'>". gmdate("H:i:s",$late)."</font>";
-//
-//                                    }  elseif ($time<$office_start_time) {
-//                                        echo '-';
-//                                    }
-//                                    elseif ($checkouttime == 0) {
-//                                        echo '-';
-//                                     }
-                                    
-                                                            ?></td>
-                            <td><?php echo $filter->sanitize($item->attendances->location, "string")?></td>
+                            //calculate overtime
+                            if ($item->attendances->overtime != 0) {
+                                echo $item->attendances->overtime;
+                            } else {
+                                echo "-";
+                            }
+
+
+                                ?></td>
+                            <td><?php echo $filter->sanitize($item->attendances->location, "string") ?></td>
                         </tr>
-                        <?php
-                    }
-                    ?>
+    <?php
+}
+?>
                 </tbody>
                 <tfoot style="display: none;"></tfoot>
             </table>      

@@ -9,16 +9,13 @@ $messages = array(
     "mail"     => "ေမးလ္",
     "phone" => "ဖုန္းနံပတ္",
     "address" => "လိပ္စာ",
-    "searchusername" => "အမည္ျဖင္႔ရွာပါ",
-    "search" => "ရွာေဖြပါ",
-    "adduser" => "အသစ္ထည္႔ရန္",
-    "username" => "အမည္",
-    "password" => "လွ်ိဳ႔၀ွက္နံပါတ္",
-    "confirmpassword" => "Confirm Password",
-    "email" => "ေမးလ္",
-    "phoneno" => "ဖုုန္းနံပါတ္",
-    "userrole" => "ယူဇာရိုုးလ္",
-    "userprofile" => "ယူဇာ ပရိုုဖိုုင္"
+     "adduser" => "၀န္ထမ္းသစ္ေပါင္းၿခင္း",
+    "password" => "လ်ွိဳ႕၀ွက္ကုတ္",
+    "confirm_pass" => "အတည္ၿပဳကုတ္",
+    "user_role" => "ကဏ",
+    "user_profile" => "အသံုးၿပဳပံု",
+    "edit_user"  => "မြမ္းမံၿခင္း",        
+    "id"     => "အသံုးၿပဳသူID"
 );
 
 

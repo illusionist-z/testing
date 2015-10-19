@@ -9,7 +9,8 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();
         
-        
+               //$this->assets->addJs('common/js/notification.js');
+
     }
 
     
@@ -110,6 +111,7 @@ class IndexController extends ControllerBase
         $Noti=new \workManagiment\Notification\Models\CoreNotification();
         $Noti->attnotification($id);
         $this->response->redirect("attendancelist/index/todaylist");
+
       
     }
     

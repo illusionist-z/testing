@@ -8,16 +8,13 @@ $messages = array(
    "position" => "Position",
    "mail"      => "Email",
    "phone"   => "Phone No",
-   "address" => "Address",
-   "searchusername" => "Search User Name",
-   "search" => "Search",
-   "adduser" => "Add User",
-   "username" => "User Name",
-   "password" => "Password",
-   "confirmpassword" => "Confirm Password",
-   "email" => "Email",
-   "phoneno" => "Phone Number",
-   "userrole" => "User Role",
-   "userprofile" => "User Profile"
+    "address" => "Address",
+    "adduser" => "Add User",
+    "password" => "Password",
+    "confirm_pass" => "Confirm Password",
+    "user_role" => "User Role",
+    "user_profile" => "User Profile",
+    "edit_user"  => "Edit User",
+    "id"     => "User ID"
 );
 

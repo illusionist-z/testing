@@ -149,7 +149,20 @@ var Calendar = {
      * @desc    member search adding
      * @returns {json data}
      */
-    getmemberevent : function(){                              
+    getmemberevent : function(){                        
+         var member = [];
+       $.ajax({
+                url:'index/getmember',
+                method: 'GET',                
+                success: function(data) {                
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){                  
+                member.push(json_obj[i].full_name);
+                }                  
+                  Calendar.automember(member);
+                        }                        
+                    });                
+       
         $("#member_event_dialog").dialog({
             autoOpen :false,
             height: 160,
@@ -160,19 +173,13 @@ var Calendar = {
       $("#member_event_dialog_close").on("click",function(){
             $("#member_event_dialog").dialog("close");            
         });
-        $("#member_event_dialog").dialog("open");        
+        $("#member_event_dialog").dialog("open");      
+    },
+    automember : function (d){
+             
         $("#member_event").autocomplete({   
-         source: function( request, response ) {
-          $.ajax({                
-                 url: "index/getmember",
-                dataType: "json",                               
-                data :{ q :request.term},
-               success: function( data ) {                   
-                   response(data);
-             }
-            });
-      },
-             minLength: 1,
+           source:      d,          
+          minLength: 1,
            select: function(event, ui) {         
                $("#member_event_add").attr("disabled",false);               
                $("#member_event_add").unbind("click").bind("click",function(e){
@@ -195,7 +202,7 @@ var Calendar = {
                });
           }
         });
-    }
+    }    
 };  
   Calendar.Dialog = {
     isClick: false,

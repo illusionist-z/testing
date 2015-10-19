@@ -3,15 +3,17 @@
  * @desc Apply Leave Form validation
  * @author David JP <david.gnext@gmail.com>
  */
-var ApplyForm = {
+var Salary = {
     Submit : function (){
-        
+       // alert($('#add_salary').serialize());
         $.ajax({
            type : 'POST',
-           url  : baseUri+'leavedays/user/applyleave',
-           data : $('#apply_form').serialize(),
+           url  : '../salarymaster/savesalary',
+           data : $('#add_salary').serialize(),
            success: function(d){
+              //alert("aa");
                cond = JSON.parse(d);
+                alert(cond.success);
 
                  if(cond.result === 'error')
                 { 
@@ -51,8 +53,9 @@ var ApplyForm = {
 };
 $(document).ready(function(){
    
-    $('#apply_form_submit').on('click',function(){
-      ApplyForm.Submit();
+    $('#savesalary').on('click',function(){
+      
+      Salary.Submit();
    });
 });
 

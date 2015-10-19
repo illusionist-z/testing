@@ -1,7 +1,7 @@
 <?php
 
 namespace workManagiment\Salary\Controllers;
-
+use Phalcon\Flash\Direct as FlashDirect;
 use workManagiment\Core\Models\Db;
 use workManagiment\Salary\Models\SalaryDetail;
 use workManagiment\Salary\Models\SalaryMaster;
@@ -25,8 +25,10 @@ class IndexController extends ControllerBase {
         //$this->assets->addJs('common/js/popup.js');    //popup message
         //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/salary/js/index-allowance.js');
+        //$this->assets->addJs('apps/salary/js/index-allowance.js');
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
+
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         $this->module_name =  $this->router->getModuleName();
@@ -164,6 +166,7 @@ class IndexController extends ControllerBase {
      */
     public function editsalaryAction() {
         $member_id = $this->request->get('id');
+        $t = $this->_getTranslation();
         $Salarydetail = new SalaryMaster();
         $editsalary = $Salarydetail->editsalary($member_id);
         $resultsalary['data']=$editsalary;
@@ -177,7 +180,14 @@ class IndexController extends ControllerBase {
         $resultsalary['dedution']=$Dedution->getdedlist();
         $Allowance = new Allowances();
         $resultsalary['allowance'] = $Allowance->getall_allowances();
-       
+       $resultsalary['t']['title'] = $t->_("edit_salary");
+       $resultsalary['t']['name'] = $t->_("name");
+       $resultsalary['t']['b_salary'] = $t->_("basic_salary");
+       $resultsalary['t']['t_fee'] = $t->_("travel_fee");
+       $resultsalary['t']['ot'] = $t->_("overtime");
+       $resultsalary['t']['edit_btn'] = $t->_("edit_btn");
+       $resultsalary['t']['delete_btn'] = $t->_("delete_btn");
+       $resultsalary['t']['cancel_btn'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($resultsalary);
     }
@@ -272,11 +282,19 @@ class IndexController extends ControllerBase {
     /**
      * edit dialog box
      * @author Su Zin Kyaw
+     * @update translate #jp
      */
     public function editallowanceAction() {
         $all_id = $this->request->get('id');
+        $t = $this->_getTranslation();
         $all = new Allowances();
-        $data = $all->editall($all_id);
+        $data = $all->editall($all_id);        
+        $data[1]['allowance_name'] = $t->_("allowance_name");
+        $data[1]['allowance_edit'] = $t->_("allowance_edit");
+        $data[1]['allowance_amt'] = $t->_("allowance_amt");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['delete'] = $t->_("delete_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }
@@ -383,7 +401,7 @@ class IndexController extends ControllerBase {
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
         $Deduction = new SalaryTaxsDeduction();
-
+        //print_r($data);exit;
         $Deduction->edit_deduction($data);
         $this->view->disable();
     }

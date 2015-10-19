@@ -62,8 +62,10 @@ $(document).ready(function() {
     });
 
 
-    $(".noti").click(function() {
-        
+
+    $(".noti").click(function(e) {
+        e.preventDefault();
+        //document.getElementById("noti").className = "noticlose";
         $("#notificationContainer").fadeToggle(100);
         $("#notificationsBody").load(baseUri + 'notification/index/notification');
     });
