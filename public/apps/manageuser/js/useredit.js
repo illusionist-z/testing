@@ -12,25 +12,26 @@
             url: 'manageuser?data=' + type,
             dataType:'json',
             success: function (res) {
+                
                 var html,title,id;
                 if( res[0] !== 'new' ){
                  html = '<form id="edit_user" width="250px" height="200px"><table width="420px" height="100px" align="center" style="font-size:13px;">'
-                    +'<br><tr><td>User ID </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
-		    +'<tr><td>User Name </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_login_name +'" name="name" id="edit_user_name"></td></tr>'
+                    +'<br><tr><td>'+res[1]['id']+' </td>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
+		    +'<tr><td>'+res[1]['name']+' </td>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_login_name +'" name="name" id="edit_user_name"></td></tr>'
                     +'<tr><td>Working Start Date: </td>'
-                    +'<td><input style="margin-top:10px;" class="datepicker" type="text" value="'+ res.working_start_dt+'" name="work_sdate" id="edit_work_sdate"></td></tr>'
-                    +'<tr><td>Department </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
-		    +'<tr><td>Position </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res.position +'" name="position" id="edit_user_pos"></td></tr>'
-                    +'<tr><td>Email </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_mail +'" name="email" id="edit_user_email" ></td><td></td></tr>'
-		    +'<tr><td>Phone Number </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
-                    +'<tr><td>Address </td>'
-                    +'<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="50" name="address" style="color:black">'+ res.member_address +'</textarea></td></tr>'
+                    +'<td><input style="margin-top:10px;" class="datepicker" type="text" value="'+ res[0].working_start_dt+'" name="work_sdate" id="edit_work_sdate"></td></tr>'
+                    +'<tr><td>'+res[1]['dept']+'</td>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
+		    +'<tr><td>'+res[1]['pos']+'</td>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].position +'" name="position" id="edit_user_pos"></td></tr>'
+                    +'<tr><td>'+res[1]['mail']+' </td>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mail +'" name="email" id="edit_user_email" ></td><td></td></tr>'
+		    +'<tr><td>'+res[1]['pno']+'</td>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
+                    +'<tr><td>'+res[1]['address']+' </td>'
+                    +'<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="50" name="address" style="color:black">'+ res[0].member_address +'</textarea></td></tr>'
 		    +'<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
                     +'</tr></table></form>'; 
                   title = res[1]['edit'];
