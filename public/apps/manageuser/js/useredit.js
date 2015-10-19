@@ -7,14 +7,13 @@
     var Manage = {};
     Manage.User = {
     Edit : function (type) {
-       
         $.ajax({
             type: 'GET',
             url: 'manageuser?data=' + type,
             dataType:'json',
             success: function (res) {
-                var html,title;
-                if( res !== 'new' ){
+                var html,title,id;
+                if( res[0] !== 'new' ){
                  html = '<form id="edit_user" width="250px" height="200px"><table width="420px" height="100px" align="center" style="font-size:13px;">'
                     +'<br><tr><td>User ID </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res.member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
@@ -34,11 +33,12 @@
                     +'<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="50" name="address" style="color:black">'+ res.member_address +'</textarea></td></tr>'
 		    +'<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
                     +'</tr></table></form>'; 
-                  title = "Edit User";
+                  title = res[1]['edit'];
+                  id = 0;
                     }
                     else{
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
-                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="col-sm-8">User Name </td><td>'
+                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="col-sm-8">'+res[1]['name']+'</td><td>'
                    +'<input style="margin-top:10px" type="text" name="username" id="uname" class="col-sm-10" placeholder="Write User Name"></td></tr>'
                    +'<tr><td class="col-sm-5"> Name: </td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Write your full name"></td></tr>'
                    +'<tr><td class="col-sm-5">Password </td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
@@ -51,23 +51,24 @@
                    +'<tr><td class="col-sm-5">Address </td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
                    +'<tr><td class="col-sm-5"><br>User Role </td><td><select style="margin-top:10px" class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
                    +'<option value="USER,user">User</option><option value="ADMIN,adminstrator">Admin</option></select></td></tr>'
-                   +'<tr><td>User Profile</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
+                   +'<tr><td>'+res[1]['profile']+'</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
                    +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" value="Add User"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
                    +'</tr></table></form>';	
-                   title = "Add User";
+                   title = res[1]['add'];
+                   id = 1;
                     }
-            Manage.User.Dialog(html,title);
+            Manage.User.Dialog(html,title,id);
             }            
         });
     },
-    Dialog: function (data,type) {
+    Dialog: function (data,title,id) {
         if(!this.isOvl){
             this.isOvl=true;
            $ovl = $('#edituser');
            $ovl.css('color','black');
            $ovl.css('background','#F5F5F5');
         }
-        if(type === 'Add User'){
+        if(id === 1){
                         $ovl.dialog({
                         autoOpen: false,
                          resizable:false,
@@ -77,7 +78,7 @@
                         width: 600,
                         modal: true,
                         position:"bottom",
-                        title: type
+                        title: title
                     });                
                     $ovl.html(data);
                     $ovl.dialog("open");
@@ -89,8 +90,7 @@
                     $('.submit_useradd').click(function(){
                        UserAdd.Submit();
                     });
-                   
-                    $('#addinguser_close').click(function(){
+                    $('#addinguser_close').unbind().bind('click',function(){
                         $ovl.dialog("close");
                         this.isOvl=false;
                     });                    
@@ -105,7 +105,7 @@
                         width: 500,
                         position:'center',
                         modal: true,
-                        title: type
+                        title: title
                     });                
                     $ovl.html(data);
                     $ovl.dialog("open");

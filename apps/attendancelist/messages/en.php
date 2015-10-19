@@ -15,8 +15,9 @@ $messages = array(
     "workingtime" => "Working Time",
     "overtime" => "Overtime",
     "location" => "Location",
-    "latereason"=> "Reason Of Late",
-    
+    "edit_att_list" => "Edit Attendance List",
+    "note"      => "Reason Note",
+    "latereason"=> "Reason Of Late",    
     "search" => "Search",
     "export" => "Export",
     "searchusername" => "Search User Name",

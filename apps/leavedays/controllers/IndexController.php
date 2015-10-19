@@ -50,8 +50,7 @@ class IndexController extends ControllerBase {
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
-        $this->assets->addJs('apps/leavedays/js/applyleave.js');
+        $this->view->setVar("noti",$noti);        
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
@@ -65,32 +64,36 @@ class IndexController extends ControllerBase {
         }
         else {
             $this->response->redirect('core/index');
-        }
-        if ($this->request->isPost()) {
-            $user = $this->_leave;
-            $validate = $user->validation($this->request->getPost());
-
-            if (count($validate)) {
-                foreach ($validate as $message) {
-                    $json[$message->getField()] = $message->getMessage();
-                }
-                $json['result'] = "error";
+        }     
+    }
+    
+    public function checkapplyAction() {
+       if ($this->request->isPost()) {
+             $user = $this->_leave;
+             $validate = $user->validation($this->request->getPost());
+             
+            if(count($validate)){
+               foreach ($validate as $message){
+                   $json[$message->getField()] = $message->getMessage();
+               }
+               $json['result'] = "error";
                 echo json_encode($json);
                 $this->view->disable();
-            } else {
-                
-                $creator_id = $this->session->user['member_id'];
-                $uname = $this->request->getPost('username');
-                $sdate = $this->request->getPost('sdate');
-                $edate = $this->request->getPost('edate');
-                $type = $this->request->getPost('leavetype');
-                $desc = $this->request->getPost('description');
-                $error = $this->_leave->applyleave($uname, $sdate, $edate, $type, $desc, $creator_id);
-
-                echo json_encode($error);
-                $this->view->disable();
-            }
-        }
+                  }     
+            else{
+            $creator_id=$this->session->user['member_id'];
+            $uname =$this->request->getPost('username');
+            $sdate = $this->request->getPost('sdate');
+            $edate = $this->request->getPost('edate');
+            $type = $this->request->getPost('leavetype');
+            $desc = $this->request->getPost('description');                     
+            $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
+                    $desc,$creator_id);   
+            
+            echo json_encode($error);
+            $this->view->disable();
+             }
+        }    
     }
 
     /**
@@ -134,7 +137,7 @@ class IndexController extends ControllerBase {
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();
-        $setting=$LeaveSetting->getleavesetting();
+        $setting=$LeaveSetting->getleavesetting();                
         if($this->permission==1){
         $this->view->modulename = $this->module_name;
         $this->view->setVar("leave_typelist", $typelist);  

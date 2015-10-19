@@ -1,11 +1,10 @@
 <section class="content-header" style="height:auto;">
     <h1>
         <?= $t->_("addsalary_title"); ?>
-
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
-        <li class="active"><?= $t->_("addsalary_title"); ?></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Add Salary</li>
     </ol>
 </section>
 <?php
@@ -23,10 +22,10 @@ if(isset($Msg))
                 <div class="left-div-style-box">
                     <form action="#" method="post" id="add_salary">
                     <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("name"); ?> </span>
+                        <span class="span-style"><?= $t->_("name"); ?></span>
                         <span>
                             <select style="width:34%;" name="uname" id="uname">
-                                <option value="" name="uname">Name</option>
+                                <option value="">Name</option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -67,18 +66,14 @@ if(isset($Msg))
                     </div>
 
                     <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("travel_fee"); ?> </span>
-                        <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee">
-                           
-                        </span>
-                         
+                        <span class="span-style"><?= $t->_("travel_fee"); ?></span>
+                        <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee"></span>
                     </div>
 
                     <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("overtime"); ?> </span>
+                        <span class="span-style"><?= $t->_("overtime"); ?></span>
                         <span><input type="text" id="overtime" value="" style="width:5%;" name="overtime" placeholder="0"></span>
                         <span>%</span>
-                        
                     </div>
                         
                     <div class="div-bottom">
@@ -86,7 +81,6 @@ if(isset($Msg))
                         <span>
                             <?php
                             //print_r($getall_allowance);
-//                            
                             foreach ($getall_deduce as $getall_deduces) {
                                 echo '<input type="checkbox" name="checkall[]" id="checkall" value="'.$getall_deduces['deduce_id'].'"> '. $getall_deduces['deduce_name'];
                            }
@@ -96,7 +90,7 @@ if(isset($Msg))
                          <span id="add_salary_ssc_error"></span>
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 8%;"><?= $t->_("allowance"); ?> </div>
+                        <div style="float: left; width: 8%;"><?= $t->_("allowance"); ?></div>
                        <div style="margin-left: 11%;">
                             <?php
                             //print_r($getall_allowance);
@@ -112,7 +106,7 @@ if(isset($Msg))
                         <span class="span-style"></span>
                         <span>
 <!--                            <a href="#" class="button">Apply</a>-->
-                            <input type="submit" value="<?= $t->_("apply"); ?>" onclick="return false;" id="addsalary" class="buttonn">
+                            <input type="submit" value="<?= $t->_("apply"); ?>" class="buttonn">
                             <!--<a href="#" class="button"><b>Cancel</b></a>-->
                             <input type="reset" class="buttonn" value="Cancel">
                         </span>

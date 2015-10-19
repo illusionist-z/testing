@@ -17,16 +17,16 @@ var Allowance = {
                var result = $.parseJSON(res);
                
                var data ='<form id="edit_all" width="250px" height="200px"><table width="450px" height="150px"   align="center" style="font-size:13px;" >';               
-                   data += '<br><tr><td >Allowance Name </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['allowance_name']+ '" name="name"></td></tr>'
-                        +'<tr><td >Allowance Amount </b></td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['allowance_amount']+ ' name="allowance_amount"></td></tr>'
+                   data += '<br><tr><td >'+result[1]['allowance_name']+'</td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['allowance_name']+ '" name="name"></td></tr>'
+                        +'<tr><td >'+result[1]['allowance_amt']+'</b></td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['allowance_amount']+ ' name="allowance_amount"></td></tr>'
                          +'<tr><td></td><td><input type="hidden" value='+result[0]['allowance_id']+ ' name="id"></td></td></tr>';             
-               data +='<tr><td></td><td colspan="3" ><a href="#" class="button" id="edit_allowance_edit" >Save</a><a href="#" class="button" id="all_delete" >Delete</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
+               data +='<tr><td></td><td colspan="3" ><a href="#" class="button" id="edit_allowance_edit" >'+result[1]['save']+'</a><a href="#" class="button" id="all_delete" >'+result[1]['delete']+'</a><a href="#" class="button" id="edit_close" >'+result[1]['cancel']+'</a></td></tr>';
                data +='</table></form>';
-               Allowance.Dia(data);
+               Allowance.Dia(data,result[1]['allowance_edit']);
            }
         });
         },
-    Dia : function (d){
+    Dia : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -41,7 +41,7 @@ var Allowance = {
             async:false,            
             width: 500,
             modal: true,
-            title:"Allowance Edit",
+            title:title,
            /* show:{
                 effect:"explode",//effect:"blind",
 		duration:200

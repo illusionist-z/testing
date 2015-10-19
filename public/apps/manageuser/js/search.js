@@ -16,7 +16,7 @@ var User = {
         pager.showPage(1);  
         $("tbody").show();
         },
-        userautolist: function (){                       
+        userautolist: function (){
         
          var dict = [];
        $.ajax({

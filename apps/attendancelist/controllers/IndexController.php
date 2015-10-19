@@ -20,31 +20,17 @@ class IndexController extends ControllerBase {
         $this->view->setVar("noti", $noti);
         $this->view->t = $this->_getTranslation();
         
-    }
-
-    /**
-     * show today attendance list
-     */
-    public function todaylistAction() {
-        $this->assets->addJs('common/js/jquery-ui-timepicker.js');
-        $this->assets->addCss('common/css/jquery-ui-timepicker.css');
-        $name = $this->request->get('namelist');
-        $offset = $this->session->location['offset'];
-        $UserList = new Db\CoreMember();
-        $Username = $UserList::getinstance()->getusername();
-        $AttList = new \workManagiment\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->gettodaylist($name);
-        
-        $this->view->attlist = $ResultAttlist;
-        $this->view->offset = $offset;
-        $this->view->uname = $Username;
-        $this->view->t = $this->_getTranslation();
-    }
-
-    public function editTimedialogAction($id) {
-        $Att = new \workManagiment\Attendancelist\Models\Attendances();
+    }        
+   
+    public function editTimedialogAction($id){
+        $Att  = new \workManagiment\Attendancelist\Models\Attendances();
+        $t = $this->_getTranslation();//for translate
         $data = $Att->getAttTime($id);
-        echo json_encode($data[0]);
+        $data[1]['attlist'] = $t->_("attendancelist");
+        $data[1]['edit_att'] = $t->_("edit_att_list");
+        $data[1]['name'] = $t->_("username");
+        $data[1]['note'] = $t->_("note");
+        echo json_encode($data);
         $this->view->disable();
     }
 
