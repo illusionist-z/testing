@@ -359,7 +359,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $year = $Salarymaster->date_difference($update, $budget_endyear);
             $newsalary = $SM['basic_salary'] * $year;
             echo "Basic Salary ".$newsalary;
-            $Totalsalary = $this->getoldsalary($member_id, $salaryyr_month[0], $salaryyr_month[1]);
+            $Totalsalary = $this->getoldsalary($budget_startmonth,$member_id, $salaryyr_month[0], $salaryyr_month[1]);
             print_r($Totalsalary);
             if ($Totalsalary['total_salary'] == "") {
                 $salary = $newsalary;
@@ -367,7 +367,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             } else {
                 $salary = $newsalary + $Totalsalary['total_salary'];
                 $year+=$Totalsalary['count_pay'];
-                 echo "BB" . $salary;
+                 echo "BB" . $salary.'year '.$Totalsalary['count_pay'];
             }
         }
 
@@ -501,10 +501,11 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
 
-    public function getoldsalary($member_id, $salary_update_yr, $salary_update_mth) {
+    public function getoldsalary($budget_startmonth,$member_id, $salary_update_yr, $salary_update_mth) {
         try {
-
-            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<'" . $salary_update_mth . "' and YEAR(pay_date)<='" . $salary_update_yr . "'";
+            
+            $salary_update_mth =$salary_update_mth-1;
+            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<='" . $salary_update_mth . "' and YEAR(pay_date)='" . $salary_update_yr . "' and MONTH(pay_date)>='".$budget_startmonth."'";
 
             //echo $sql.'<br>';exit;
             $result = $this->db->query($sql);

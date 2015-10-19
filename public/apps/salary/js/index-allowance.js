@@ -12,7 +12,7 @@ var Allowance = {
            url:"editallowance?id="+d,
            type: "GET",
            success:function(res){
-//               alert(res);alert("aa");
+               //alert(res);
                
                var result = $.parseJSON(res);
                
