@@ -88,4 +88,22 @@ class IndexController extends ControllerBase {
         echo json_encode($Username);
     }
 
+    /**
+     * show today attendance list
+     */
+    public function todaylistAction() {
+        $this->assets->addJs('common/js/jquery-ui-timepicker.js');
+        $this->assets->addCss('common/css/jquery-ui-timepicker.css');
+        $name = $this->request->get('namelist');
+        $offset = $this->session->location['offset'];
+        $UserList = new Db\CoreMember();
+        $Username = $UserList::getinstance()->getusername();
+        $AttList = new \workManagiment\Attendancelist\Models\Attendances();
+        $ResultAttlist = $AttList->gettodaylist($name);
+        
+        $this->view->attlist = $ResultAttlist;
+        $this->view->offset = $offset;
+        $this->view->uname = $Username;
+        $this->view->t = $this->_getTranslation();
+    }     
 }

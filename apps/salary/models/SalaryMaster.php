@@ -102,10 +102,22 @@ class SalaryMaster extends Model {
             $final_result="";
             $up_date="";
             $absent_dedution="";
+            //print_r($param);
             foreach ($param as $value) {
-                
+                //get the create date to calculate salary
                 $start_date = explode("-", $value['comp_start_date']);
                 $comp_start_date=$start_date[0].'-'.$start_date[1];
+                $w_startdt=  $this->getWorkingStartdt($value['member_id']);
+                
+                //get the working start date from core_member table
+                $working_start_date = explode("-", $w_startdt['working_start_dt']);
+                $w_start_dt=$working_start_date[0].'-'.$working_start_date[1];
+                if($comp_start_date!=$w_start_dt)
+                {
+                    $comp_start_date=$w_start_dt;
+                }
+                
+                
                 $comp_start_month = $start_date[1];
                 $SM = $this->getLatestsalary($value['member_id']);
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
@@ -207,8 +219,8 @@ class SalaryMaster extends Model {
                         'absent_dedution'=>$absent_dedution);
                 }
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -216,6 +228,17 @@ class SalaryMaster extends Model {
         return $final_result;
     }
 
+    public function getWorkingStartdt($member_id) {
+        try {
+            $sql = "select * from core_member where member_id='" . $member_id . "' and deleted_flag=0";
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
     public function Addallowance($Allowanceresult,$salary,$detailallowance,$date_diff,$allowance,
             $up_date, $budget_endyear,$budget_startyear,$salarymaster,$member_id) {
         //Insert new allowance to add to basic salary
