@@ -184,7 +184,7 @@ class Leaves extends \Library\Core\BaseModel {
         $credt = $this->db->query("SELECT working_start_dt,working_year_by_year "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchall();
-        if ($created_date['0']['updated_dt'] == '0000-00-00 00:00:00') {
+        if ($created_date['0']['working_year_by_year'] == '0000-00-00 00:00:00') {
             $date['startDate'] = $created_date['0']['working_start_dt'];
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['working_start_dt'])));
         } else {
