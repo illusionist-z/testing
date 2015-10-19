@@ -23,7 +23,7 @@
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
 		    +'<tr><td>'+res[1]['pos']+'</td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].position +'" name="position" id="edit_user_pos"></td></tr>'
-                    +'<tr><td>'+res[1]['pos']+'</td>'
+                    +'<tr><td>'+res[1]['mail']+'</td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mail +'" name="email" id="edit_user_email" ></td><td></td></tr>'
 		    +'<tr><td>'+res[1]['pno']+'</td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
