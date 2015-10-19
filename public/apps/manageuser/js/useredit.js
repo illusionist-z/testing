@@ -12,22 +12,25 @@
             url: 'manageuser?data=' + type,
             dataType:'json',
             success: function (res) {
+                
                 var html,title,id;
                 if( res[0] !== 'new' ){
                  html = '<form id="edit_user" width="250px" height="200px"><table width="420px" height="100px" align="center" style="font-size:13px;">'
                     +'<br><tr><td>'+res[1]['id']+' </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
-		    +'<tr><td>'+res[1]['name']+'</td>'
+		    +'<tr><td>'+res[1]['name']+' </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_login_name +'" name="name" id="edit_user_name"></td></tr>'
-                    +'<tr><td>'+res[1]['dept']+' </td>'
+                    +'<tr><td>Working Start Date: </td>'
+                    +'<td><input style="margin-top:10px;" class="datepicker" type="text" value="'+ res[0].working_start_dt+'" name="work_sdate" id="edit_work_sdate"></td></tr>'
+                    +'<tr><td>'+res[1]['dept']+'</td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
 		    +'<tr><td>'+res[1]['pos']+'</td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].position +'" name="position" id="edit_user_pos"></td></tr>'
-                    +'<tr><td>'+res[1]['mail']+'</td>'
+                    +'<tr><td>'+res[1]['mail']+' </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mail +'" name="email" id="edit_user_email" ></td><td></td></tr>'
 		    +'<tr><td>'+res[1]['pno']+'</td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
-                    +'<tr><td>'+res[1]['address']+'</td>'
+                    +'<tr><td>'+res[1]['address']+' </td>'
                     +'<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="50" name="address" style="color:black">'+ res[0].member_address +'</textarea></td></tr>'
 		    +'<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">Edit</a><a href="#" class="button" id="edit_delete">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td>'
                     +'</tr></table></form>'; 
@@ -38,15 +41,16 @@
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
                    +'<table class="row-fluid" style="font-size:13px;"><tr><td class="col-sm-8">'+res[1]['name']+'</td><td>'
                    +'<input style="margin-top:10px" type="text" name="username" id="uname" class="col-sm-10" placeholder="Write User Name"></td></tr>'
-                   +'<tr><td class="col-sm-5">'+res[1]['name']+'</td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Write your full name"></td></tr>'
-                   +'<tr><td class="col-sm-5">'+res[1]['pass']+' </td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
-                   +'<tr><td class="col-sm-5">'+res[1]['confirm']+'</td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
-	           +'<tr><td class="col-sm-5">'+res[1]['dept']+'</td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
-                   +'<tr><td class="col-sm-5">'+res[1]['pos']+'</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
-	           +'<tr><td class="col-sm-5">'+res[1]['mail']+'</td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
-                   +'<tr><td class="col-sm-5">'+res[1]['pno']+' </td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
-                   +'<tr><td class="col-sm-5">'+res[1]['address']+'</td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
-                   +'<tr><td class="col-sm-5"><br>'+res[1]['role']+'</td><td><select style="margin-top:10px" class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
+                   +'<tr><td class="col-sm-5"> Name: </td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Write your full name"></td></tr>'
+                   +'<tr><td class="col-sm-5">Password </td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
+                   +'<tr><td class="col-sm-5">Confirm Password </td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
+	           +'<tr><td class="col-sm-5">Working Start Date </td><td><input style="margin-top:10px" type="text" name="work_sdate" id="work_sdate" class="col-sm-10 datepicker" placeholder="Enter the first date of working"></td></tr>'
+                   +'<tr><td class="col-sm-5">Department </td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
+                   +'<tr><td class="col-sm-5">Position</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
+	           +'<tr><td class="col-sm-5">Email </td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
+                   +'<tr><td class="col-sm-5">Phone Number </td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
+                   +'<tr><td class="col-sm-5">Address </td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
+                   +'<tr><td class="col-sm-5"><br>User Role </td><td><select style="margin-top:10px" class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
                    +'<option value="USER,user">User</option><option value="ADMIN,adminstrator">Admin</option></select></td></tr>'
                    +'<tr><td>'+res[1]['profile']+'</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
                    +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" value="Add User"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
@@ -79,6 +83,11 @@
                     });                
                     $ovl.html(data);
                     $ovl.dialog("open");
+                  $('.datepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            }).focus();                               
+                     }); 
                     $('.submit_useradd').click(function(){
                        UserAdd.Submit();
                     });
@@ -115,6 +124,11 @@
                         e.preventDefault();
                         Manage.User.Delete($('#edit_user_id').val());
                     });
+                    $('.datepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            }).focus();                               
+                     }); 
      }
     },
     /**

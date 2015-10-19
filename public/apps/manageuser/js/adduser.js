@@ -28,6 +28,8 @@
                      switch(i){
                          case 'username':$("#uname").css({border:"1px solid red",color:"red"}).attr("placeholder",cond[i]);
                                          repair('#uname');break;
+                         case 'work_sdate':$("#work_sdate").css({border:"1px solid red",color:"red"}).attr("placeholder",cond[i]);
+                                         repair('#work_sdate');break;
                          case 'position':$("#pos").css({border:"1px solid red",color:"red"}).attr("placeholder",cond[i]);                                         
                                          repair('#pos');break;
                          case 'password':$("#pass").css({border:"1px solid red",color:"red"}).attr("placeholder",cond[i]);                                         

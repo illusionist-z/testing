@@ -19,6 +19,12 @@ class AddUser extends Model
                     'message' => 'User Name is required'
                      )
                      ));
+         $validate->add('work_sdate',
+                new PresenceOf(
+                array(
+                    'message' => 'working start date is required'
+                     )
+                     ));
         $validate->add('dept',
                 new PresenceOf(
                 array(
@@ -29,7 +35,8 @@ class AddUser extends Model
                 new PresenceOf(
                 array(
                     'message'=> 'Position is required'
-                )));        
+                )));      
+        
         $validate->add('password',
                 new PresenceOf(
                         array(
