@@ -332,7 +332,7 @@ var Deduction = {
         });
     },
       Add : function (){
-        alert("add");
+        //alert("add");
         $.ajax({
             
            url:"",
