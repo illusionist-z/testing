@@ -22,5 +22,13 @@ $messages = array(
     "export" => "Export",
     "searchusername" => "Search User Name",
     "startdate" => "Start Date",
-    "enddate" => "End Date"
+    "enddate" => "End Date",
+    "absentlist"       => "Absent Lists",
+    "no"       => "No",
+    "name"       => "Name",
+    "department"       => "Department",
+    "position"       => "Position",
+    "email"       => "Email",
+    "phoneno"       => "Phone no",
+    "address"       => "Address"
 );

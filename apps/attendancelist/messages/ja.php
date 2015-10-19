@@ -26,5 +26,13 @@ $messages = array(
     "export" => "エクスポート",
     "searchusername" => "名前で検索",
     "startdate" => "開始日",
-    "enddate" => "終わり日"
+    "enddate" => "終わり日",
+    "absentlist"       => "休みのリスト",
+    "no"       => "番号",
+    "name"       => "名前",
+    "department"       => "部門",
+    "position"       => "立場",
+    "email"       => "メール",
+    "phoneno"       => "電話番号",
+    "address"       => "住所"
 );

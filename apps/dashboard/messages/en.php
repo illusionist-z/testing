@@ -16,5 +16,6 @@ $messages = array(
     "checkin"        => "Check In",
     "checkout"       => "Check Out",
     "home"       => "Home"
+    
 );
 

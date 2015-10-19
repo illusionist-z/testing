@@ -17,11 +17,19 @@ $messages = array(
     "location" => "ေနရာ",
     "edit_att_list" => "ၿပဳၿပင္ၿခင္း",
     "note"      => "အေၾကာင္းၿပခ်က္",
-    "latereason"=>"ေနာက္က်ရေသာ အေၾကာင္းအရင္း",
+    "latereason"=>"အေၾကာင္းအရင္း",
     "search" => "ရွာေဖြပါ",
     "export" => "Export",
     "searchusername" => "အမည္ျဖင္႔ရွာပါ",
     "startdate" => "စတင္မည္႔ရက္",
-    "enddate" => "ျပီးဆံုုးမည္႔ရက္"
+    "enddate" => "ျပီးဆံုုးမည္႔ရက္",
+    "absentlist"       => "ရံုုးပ်က္စာရင္း",
+    "no"       => "စဥ္",
+    "name"       => "အမည္",
+    "department"       => "ဌာန",
+    "position"       => "ရာထူး",
+    "email"       => "အီးေမးလ္",
+    "phoneno"       => "ဖုုန္းနံပါတ္",
+    "address"       => "လိပ္စာ"
 );
 

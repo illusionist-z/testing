@@ -5,11 +5,11 @@ use Phalcon\Filter;
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Absent Lists
+        <?= $t->_("absentlist"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Absent Lists</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
+        <li class="active"><?= $t->_("absentlist"); ?></li>
     </ol>
 </section>
 
@@ -23,13 +23,13 @@ use Phalcon\Filter;
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th width="50px">ID</th>
-                        <th width="150px">Name</th>
-                        <th width="150px">Department</th>
-                        <th width="150px">Position</th>
-                        <th width="150px">Email</th>
-                        <th width="150px">Phone no</th>
-                        <th width="150px">Address</th>                        
+                        <th width="50px"><?= $t->_("no"); ?></th>
+                        <th width="150px"><?= $t->_("name"); ?></th>
+                        <th width="150px"><?= $t->_("department"); ?></th>
+                        <th width="150px"><?= $t->_("position"); ?></th>
+                        <th width="150px"><?= $t->_("email"); ?></th>
+                        <th width="150px"><?= $t->_("phoneno"); ?></th>
+                        <th width="150px"><?= $t->_("address"); ?></th>                        
                     </tr>
                 </thead>
                 <tbody>                  
