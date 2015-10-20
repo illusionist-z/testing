@@ -50,6 +50,7 @@ $messages = array(
     "commute_fee"           => "Commute Fee",
     "grand_total"           => "Grand Total",
     "enter_allname"           => "Enter allowance name",
-    "enter_allamount"           => "Enter allowance amount"
+    "enter_allamount"           => "Enter allowance amount",
+    "tax_form" =>"Tax Form",
 );
 

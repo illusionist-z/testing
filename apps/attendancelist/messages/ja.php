@@ -3,7 +3,7 @@
 
 $messages = array(
     "todayattendancelist"      => "出勤リスト（本日）",
-    "monthlylist" =>"出勤リスト（毎月）",
+    "monthlylist" =>"出勤リスト（毎月）",   
     "home"     => "ホーム",
     "hi-name" => "Bonjour %name%",
     "song"    => "La chanson est %song%",
@@ -15,8 +15,8 @@ $messages = array(
     "workingtime" => "仕事時間",
     "overtime" => "overt mu",
     "location" => "場所",
-    "edit_att_list" => "editto attenc listo",
-    "note"      => "noto",    
+    "edit_att_list" => "チェックしたしたを編集する",
+    "note"      => "ノート",    
     "latereason"=>"遅れるの理由",
     "checkout" => "退勤時間",
     "workingtime" => "作業時間",
@@ -26,5 +26,6 @@ $messages = array(
     "export" => "エクスポート",
     "searchusername" => "名前で検索",
     "startdate" => "開始日",
-    "enddate" => "終わり日"
+    "enddate" => "終わり日",
+    
 );

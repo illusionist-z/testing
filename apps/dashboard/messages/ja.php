@@ -7,15 +7,19 @@ $messages = array(
      "manageuser" => "",
     "attendancelist" => "",
     "leaveday" => "休み日",
-    "salary" => "",
-    "current_time" => "いま時間",
-    "late_reason" =>  "お忘れた、李流を書きて下さい.",
-    "last_member" => "さいきんMember",
+    "salary" => "給与",
+    "current_time" => "今時間",
+    "late_reason" =>  "遅れている場合は、、理由を書きて下さい.",
+    "last_member" => "最近メンバー",
     "new_member" => "人",
     "attendance"    => "kyo hito",
     "leave"          => "yasumi hito",
-    "checkin"       => "Chatku timu",
-    "checkout"     => "Chatout timu",
-    "home"       => "ホーム"
+    "checkin"       => "チェックイン",
+    "checkout"     => "チェックアウト",
+    "home"       => "ホーム",
+    "checkinout" => "チェックイン / チェックアウト ",
+    "latest_news" => "最近のニュース",
+    "no_leave"=>"休暇をぜんぜん取らない人",
+    
 );
 

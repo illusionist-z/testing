@@ -75,7 +75,7 @@
                                     <!-- MAP & BOX PANE -->
                                     <div class="box box-success">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Check in / out</h3>
+                                            <h3 class="box-title"><?= $t->_("checkinout"); ?></h3>
                                             <div class="box-tools pull-right">
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
@@ -102,10 +102,10 @@
 
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="#" class="btn btn-primary btn-sm btn-flat" onclick="Content.View.apply(this, ['checkin']);" style="width: 150px">Check In</a>
+                                                                <a href="#" class="btn btn-primary btn-sm btn-flat" onclick="Content.View.apply(this, ['checkin']);" style="width: 150px"><?= $t->_("checkin"); ?></a>
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;">Check Out </a>
+                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;"><?= $t->_("checkout"); ?></a>
                                                             </div><br><br>
                                                         </div>
 
@@ -125,7 +125,7 @@
 
                                     <div class="box box-default">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Latest News</h3>
+                                            <h3 class="box-title"><?= $t->_("latest_news"); ?></h3>
                                             <div class="box-tools pull-right">
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
