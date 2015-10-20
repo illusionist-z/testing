@@ -34,7 +34,7 @@
                     
                 <a href="<?php echo $baseUri;?>notification/index/noticalendar?id=<?php echo $noti['noti_id'];?>" class="calendar" id="<?php echo  $noti['noti_id'];?>">
                 <img src="<?php echo $baseUri;?>common/img/notid.png"> 
-                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> marked calendar for  <?php echo $noti['title']; echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
+                <b><i style="color:red"><?php echo $noti['creator_name'];?></i></b> marked calendar for  <?php echo $noti['member_login_name']; echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
                ?></a></span>
                 </li>
             </ul>

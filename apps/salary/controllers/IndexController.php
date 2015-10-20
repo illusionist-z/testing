@@ -491,4 +491,9 @@ class IndexController extends ControllerBase {
         $sql_salaryallowance="DELETE FROM salary_member_tax_deduce WHERE member_id='".$member_id."'";
         $this->db->query($sql_salaryallowance);
     }
+    
+    public function printtaxformAction(){
+    
+        
+    }
 }

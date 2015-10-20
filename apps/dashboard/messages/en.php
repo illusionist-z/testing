@@ -15,7 +15,10 @@ $messages = array(
     "leave"          =>  "Leave",
     "checkin"        => "Check In",
     "checkout"       => "Check Out",
-    "home"       => "Home"
+    "home"       => "Home",
+    "checkinout" => "Check In / Check Out",
+    "latest_news" => "Latest News",
+    "no_leave" => "People who doesn't take leave"
     
 );
 
