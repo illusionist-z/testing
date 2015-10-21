@@ -13,14 +13,10 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/attendancelist/js/index.js');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->config = \Module_Config::getModuleConfig('leavedays');
-        $this->module_name =  $this->router->getModuleName();
+        $this->config = \Module_Config::getModuleConfig('leavedays');        
+        $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
-        $this->module_name =  $this->router->getModuleName();
-        $this->permission = $this->setPermission();
-        $this->view->t = $this->_getTranslation();
-        $this->view->modulename=$this->module_name;
         
     }        
     
@@ -36,13 +32,11 @@ class IndexController extends ControllerBase {
         $UserList = new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->gettodaylist($name);
-        
+        $ResultAttlist = $AttList->gettodaylist($name);        
         $this->view->attlist = $ResultAttlist;
         $this->view->offset = $offset;
-        $this->view->uname = $Username;
-        $this->view->t = $this->_getTranslation();
-        
+        $this->view->uname = $Username;       
+        //$this->view->modulename=$this->module_name;
     }
    
     public function editTimedialogAction($id){

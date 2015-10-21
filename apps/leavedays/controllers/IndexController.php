@@ -21,9 +21,8 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         
         $this->assets->addJs('common/js/export.js');        
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
-        
-        $this->module_name =  $this->router->getModuleName();
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');           
+        $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
     }
