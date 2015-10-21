@@ -39,21 +39,21 @@
                     }
                     else{
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
-                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="col-sm-8">'+res[1]['name']+'</td><td>'
+                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">'+res[1]['name']+'</td><td>'
                    +'<input style="margin-top:10px" type="text" name="username" id="uname" class="col-sm-10" placeholder="Write User Name"></td></tr>'
-                   +'<tr><td class="col-sm-5"> Name: </td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Write your full name"></td></tr>'
-                   +'<tr><td class="col-sm-5">Password </td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
-                   +'<tr><td class="col-sm-5">Confirm Password </td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
-	           +'<tr><td class="col-sm-5">Working Start Date </td><td><input style="margin-top:10px" type="text" name="work_sdate" id="work_sdate" class="col-sm-10 datepicker" placeholder="Enter the first date of working"></td></tr>'
-                   +'<tr><td class="col-sm-5">Department </td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
-                   +'<tr><td class="col-sm-5">Position</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
-	           +'<tr><td class="col-sm-5">Email </td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
-                   +'<tr><td class="col-sm-5">Phone Number </td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
-                   +'<tr><td class="col-sm-5">Address </td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
-                   +'<tr><td class="col-sm-5"><br>User Role </td><td><select style="margin-top:10px" class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
+                   +'<tr><td> Name: </td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Write your full name"></td></tr>'
+                   +'<tr><td>Password </td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="Write Password"></td></tr>'
+                   +'<tr><td>Confirm Password </td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="Password Again"></td></tr>'
+	           +'<tr><td>Working Start Date </td><td><input style="margin-top:10px" type="text" name="work_sdate" id="work_sdate" class="col-sm-10 datepicker" placeholder="Enter the first date of working"></td></tr>'
+                   +'<tr><td>Department </td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="Write Department"></td></tr>'
+                   +'<tr><td>Position</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="Write Position"></td></tr>'
+	           +'<tr><td>Email </td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="Write Email"></td></tr>'
+                   +'<tr><td>Phone Number </td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="Write Phone Number"></td></tr>'
+                   +'<tr><td>Address </td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="Write Address"></textarea></td></tr>'
+                   +'<tr><td><br>User Role </td><td><select style="margin-top:10px" class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
                    +'<option value="USER,user">User</option><option value="ADMIN,adminstrator">Admin</option></select></td></tr>'
                    +'<tr><td>'+res[1]['profile']+'</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
-                   +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" value="Add User"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
+                   +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="Add User"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
                    +'</tr></table></form>';	
                    title = res[1]['add'];
                    id = 1;
@@ -73,10 +73,11 @@
                         $ovl.dialog({
                         autoOpen: false,
                          resizable:false,
-                        height: 630,
+                        height: 'auto',
                         async: false,
                         cache : false,
-                        width: 600,
+                        width: 'auto',
+                       position: ['center', 80],
                         modal: true,
                         position:"bottom",
                         title: title
@@ -99,11 +100,11 @@
         else{
                     $ovl.dialog({
                         autoOpen: false,
-                        height: 500,
+                        height: 'auto',
                         async: false,     
                         cache : false,
                         resizable:false,
-                        width: 500,
+                        width: 'auto',
                         position:'center',
                         modal: true,
                         title: title

@@ -190,6 +190,52 @@ var Salary = {
             $('body').load('salarylist');
         });
     },
+    calSalary : function (){
+        //alert("add");
+        
+        $.ajax({
+            
+           url:"",
+           type: "POST",
+           success:function(){   
+               var data ='<form id="Add_new_deduct"><table>';               
+                   data += '<tr><td>Do you want to new pay list for this month  </td></tr>'
+                                    
+               data +='<tr><td><br><a href="../calculate" class="button" id="cal_salary">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';
+               data +='</table></form>';
+               Salary.Diaaadd(data);
+           }
+        });
+        },
+        Diaaadd : function (d){
+        if(!this.isOvl){
+            this.isOvl=true;
+        }
+        
+        $ovl = $('#add_new_dt');
+        $ovl.dialog({
+            autoOpen: false,
+            height: 'auto',
+            async:false,     
+            resizable:false,
+            width: 'auto',
+            modal: true,
+            title:"Calculate Salary"
+        });                        
+        $ovl.html(d);
+        $ovl.dialog("open");
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
+        $('#Add_deduct').click(function(){
+            Deduction.AddNew($ovl);
+        });  
+          
+        $('#cancel_deduct').click(function(){
+           $ovl.dialog("close");
+           location.reload();
+
+        });       
+    },
     search : function () {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
@@ -272,44 +318,48 @@ $(document).ready(function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
-    //display popup to calculate monthly salary
+//    //display popup to calculate monthly salary
+//    $("#displaypopup").click(function(){
+//		//centering with css
+//		centerPopup();
+//		//load popup
+//		loadPopup();
+//               
+//	});
+//    //centering popup
+//    function centerPopup(){
+//	
+//	//request data for centering
+//	var windowWidth = $(window).width();
+//	var windowHeight = $(window).height();		
+//        
+//	$("#myPopup").css({
+//		"position": "absolute",
+//		"top"     : windowHeight/4,
+//                "left"    : windowWidth/2.5
+//	});
+//	$("body").css("overflow","hidden");
+//	$("#backgroundPopup").css({
+//		"height": windowHeight
+//	});
+//       }
+//       
+//    function loadPopup(){
+//	if(popupStatus==0){
+//		$("#backgroundPopup").css({
+//			"opacity": "0.5"
+//		});
+//		$("#backgroundPopup").fadeIn("slow");
+//		$("#myPopup").fadeIn("slow");
+//		popupStatus = 1;
+//	}
+//    }
+    
+//isplay popup to calculate monthly salary
     $("#displaypopup").click(function(){
-		//centering with css
-		centerPopup();
-		//load popup
-		loadPopup();
+		Salary.calSalary();
                
 	});
-    //centering popup
-    function centerPopup(){
-	
-	//request data for centering
-	var windowWidth = $(window).width();
-	var windowHeight = $(window).height();		
-        
-	$("#myPopup").css({
-		"position": "absolute",
-		"top"     : windowHeight/4,
-                "left"    : windowWidth/2.5
-	});
-	$("body").css("overflow","hidden");
-	$("#backgroundPopup").css({
-		"height": windowHeight
-	});
-       }
-       
-    function loadPopup(){
-	if(popupStatus==0){
-		$("#backgroundPopup").css({
-			"opacity": "0.5"
-		});
-		$("#backgroundPopup").fadeIn("slow");
-		$("#myPopup").fadeIn("slow");
-		popupStatus = 1;
-	}
-    }
-    
-
 });
 
 

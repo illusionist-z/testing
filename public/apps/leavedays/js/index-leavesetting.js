@@ -31,12 +31,14 @@ var Categories = {
         }
         
         $ovl = $('#edit_ltype_dia');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 200,
+            height: 'auto',
             async:false,
             resizable:false,
-            width: 400,
+            width: 'auto',
             modal: true,
             title:"Delete Leave Categories"
         });                        
@@ -79,7 +81,7 @@ var Categories = {
            success:function(){                         
                var data ='<form id="Add_new_ltype"><table>';               
                    data += '<tr><td></td></tr>'
-                        +'<tr><td>Leave Type:</td><td><input type="text" value="" name="ltype_name" placeholder="Enter Leave type"></td>'
+                        +'<tr><td>Leave Type  </td><td><input type="text" style="margin-top:10px;" value="" name="ltype_name" placeholder="Enter Leave type"></td>'
                        
                          +'<tr><td></td></tr>';             
                data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype">Save</a><a href="#" class="button" id="cancel_ltype">Cancel</a></td></tr>';
@@ -95,12 +97,14 @@ var Categories = {
         
         
         $ovl = $('#add_new_ltype');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 155,
+            height: 'auto',
             async:false, 
             resizable:false,
-            width: 400,
+            width: 'auto',
             modal: true,
             title:"Leave Categories Add"
         });                        

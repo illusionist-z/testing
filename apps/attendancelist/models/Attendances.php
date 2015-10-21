@@ -38,6 +38,7 @@ class Attendances extends Model {
                          ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                          ->where('core.member_login_name = :name:', array('name' => $name))
                          ->andWhere('attendances.att_date = :today:', array('today' => $today))
+                         ->andWhere('core.deleted_flag = 0') 
                          ->getQuery()
                          ->execute();          
          
@@ -206,7 +207,7 @@ class Attendances extends Model {
          $conditions=$this->setCondition($year, $month, $username);
               $sql = $select;
               if (count($conditions) > 0) {
-              $sql .= " WHERE " . implode(' AND ', $conditions);
+              $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0";
               }
              //echo $sql;exit;
               $result = $this->db->query($sql);

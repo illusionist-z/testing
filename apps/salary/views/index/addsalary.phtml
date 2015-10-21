@@ -91,7 +91,7 @@ if(isset($Msg))
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
                         <div style="float: left; width: 8%;"><?= $t->_("allowance"); ?></div>
-                       <div style="margin-left: 11%;">
+                       <div style="margin-left: 14%;">
                             <?php
                             //print_r($getall_allowance);
                             
@@ -106,9 +106,9 @@ if(isset($Msg))
                         <span class="span-style"></span>
                         <span>
 <!--                            <a href="#" class="button">Apply</a>-->
-                            <input type="submit" value="<?= $t->_("apply"); ?>" class="buttonn">
+                            <input type="submit" value="<?= $t->_("apply"); ?>" id="add_salary_apply" class="buttonn">
                             <!--<a href="#" class="button"><b>Cancel</b></a>-->
-                            <input type="reset" class="buttonn" value="Cancel">
+                            <input type="reset" id="add_salary_cancel" class="buttonn" value="Cancel">
                         </span>
                     </div>
                 </form>

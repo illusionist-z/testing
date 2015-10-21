@@ -66,8 +66,8 @@ var Attendance = {
                         $dia.css('background','#F5F5F5');
                         $dia.dialog({
                             modal :true,
-                            height:300,
-                            width : 500,
+                            height:'auto',
+                            width : 'auto',
                             autoOpen: false,
                             title : d[1]['edit_att']
                         });

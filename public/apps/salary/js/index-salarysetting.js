@@ -294,9 +294,10 @@ var Deduction = {
         $ovl = $('#add_new_dt');
         $ovl.dialog({
             autoOpen: false,
-            height: 240,
-            async:false,            
-            width: 500,
+            height: 'auto',
+            async:false,     
+            resizable:false,
+            width: 'auto',
             modal: true,
             title:"Deduction Add"
         });                        

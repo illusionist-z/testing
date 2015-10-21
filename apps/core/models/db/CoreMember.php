@@ -70,6 +70,7 @@ class CoreMember extends \Library\Core\BaseModel {
                 ->columns(array('core.*'))
                 ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                 ->where('core.full_name = :username:', array('username' => $username))
+                ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
         //print_r($row);exit;
@@ -334,7 +335,13 @@ class CoreMember extends \Library\Core\BaseModel {
         $getname = $user_name->fetchall();
         return $getname;
     }
-
+     //calender for auto complete for username
+    public function calenderautousername() {
+        $this->db = $this->getDI()->getShared("db");
+        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
+        $getname = $user_name->fetchall();
+        return $getname;
+    }
   
 
     public function GetAdminstratorId() {
