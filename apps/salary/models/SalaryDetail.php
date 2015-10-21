@@ -118,7 +118,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function insert_taxs($row) {
         try {
-            //print_r($row);exit;
+            print_r($row);exit;
             foreach ($row as $rows) {
                 if ($rows['allowance_amount'] === "") {
                     $rows['allowance_amount'] = "0";

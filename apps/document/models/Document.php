@@ -16,8 +16,11 @@ class Document extends Model {
      */
     public function getsalary_info() {
      try{
-         $sql = "select * from salary_detail join core_member on core_member.member_id=salary_detail.member_id where income_tax!=0";
-         
+         $month=  date("m");
+         $sql = "select * from core_member join (select member_id,deduce_name,amount from salary_taxs_deduction as STD "
+                 . "join salary_member_tax_deduce as SMTD on STD .deduce_id= SMTD .deduce_id) as deduce_tbl on core_member.member_id=deduce_tbl.member_id "
+                 . "JOIN salary_detail AS SD ON SD.member_id=core_member.member_id where income_tax!=0 AND MONTH(SD.pay_date)=".$month." GROUP BY core_member.member_id";
+         //echo $sql;exit;
          $result = $this->db->query($sql);
          $row = $result->fetchall();
      } catch (Exception $ex) {

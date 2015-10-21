@@ -167,8 +167,11 @@ class SalaryMaster extends Model {
                     echo "notting<br>";
                    $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
                    //print_r($check_salary_detail);
-                   $final_result[] = array('income_tax' => $check_salary_detail['income_tax'], 
-                                    'member_id' => $check_salary_detail['member_id'], 
+                   $final_result[] = array('income_tax' => $check_salary_detail['income_tax'],
+                                     'income_tax_annual' => $check_salary_detail['total_annual_income'],
+                                     'basic_salary_annual' => $check_salary_detail['basic_salary_annual'],
+                                     'basic_examption' => $check_salary_detail['basic_examption'],
+                                     'member_id' => $check_salary_detail['member_id'], 
                                      'allowance_amount' => $check_salary_detail['allowance_amount'], 
                                      'absent_dedution'=>$absent_dedution);
                   }  
@@ -178,8 +181,11 @@ class SalaryMaster extends Model {
                     echo "testing";
                     $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
                     //print_r($check_salary_detail);
-                    $final_result[] = array('income_tax' => $check_salary_detail['income_tax'], 
-                                      'member_id' => $check_salary_detail['member_id'], 
+                    $final_result[] = array('income_tax' => $check_salary_detail['income_tax'],
+                        'income_tax_annual' => $check_salary_detail['total_annual_income'],
+                        'basic_salary_annual' => $check_salary_detail['basic_salary_annual'],
+                        'basic_examption' => $check_salary_detail['basic_examption'],
+                        'member_id' => $check_salary_detail['member_id'], 
                         'allowance_amount' => $check_salary_detail['allowance_amount'], 
                         'absent_dedution'=>$absent_dedution);
                 } 
@@ -188,7 +194,7 @@ class SalaryMaster extends Model {
                 
                     //Insert new allowance to add to basic salary
                     $getsalary=$this->Addallowance($Allowanceresult,$salary,$SD['allowance_amount'],$date_diff,
-                        $allowance,$up_date, $budget_endyear,$budget_startyear,$SM['basic_salary'],$value['member_id']);
+                    $allowance,$up_date, $budget_endyear,$budget_startyear,$SM['basic_salary'],$value['member_id']);
                     $salary=$getsalary;
                     //get 20% for the whole year
                     $basic_deduction = $salary * (20 / 100);
@@ -214,13 +220,16 @@ class SalaryMaster extends Model {
 
                     $taxs = $this->deducerate($income_tax, $date_diff);
 //                    print_r($taxs);
-                    $final_result[] = array('income_tax' => $taxs, 
-                                      'member_id' => $value['member_id'], 'allowance_amount' => $allowance, 
+                    $final_result[] = array('income_tax' => $taxs['income'],
+                        'income_tax_annual' => $taxs['incomepermth'],
+                        'basic_salary_annual' => $salary,
+                        'basic_examption' => $basic_deduction,
+                        'member_id' => $value['member_id'], 'allowance_amount' => $allowance, 
                         'absent_dedution'=>$absent_dedution);
                 }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -731,7 +740,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         echo 'Year difference '.$salary_year.' ////';
 
         $latest_result = round($Result / $salary_year);
-        return $latest_result;
+        $result['income']=$Result;
+        $result['incomepermth']=$latest_result;
+        //print_r($result);exit;
+        return $result;
     }
 
     /**

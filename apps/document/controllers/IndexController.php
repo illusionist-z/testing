@@ -160,6 +160,7 @@ class IndexController extends ControllerBase
     }
 
     public function taxdocumentAction() {
+        $this->assets->addJs('apps/salary/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getsalary_info();
         $this->view->salary_info=$result;

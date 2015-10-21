@@ -433,7 +433,7 @@ class IndexController extends ControllerBase {
 
     
     public function printsalaryAction() {
-         $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/salary/js/print.js');
         $month=$this->request->get('month');
         $year=$this->request->get('year');
         $member_id=$this->request->get('chk_val');
