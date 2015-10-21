@@ -10,12 +10,20 @@
                 <?php if($this->session->permission_code=="ADMIN"){?>
                     
                 <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
+                    <?php
+                                  if($noti['member_profile']==null){
+                                     $img = "profile1.jpg";}
+                                  else{
+                                       $img=$noti['member_profile'];
+                                   }
+                        ?>                                                 
+                        <img src="../../uploads/<?php echo  $img;?>"  width="20px" alt="Image"/>
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
                 }else {?>
                 <span class="foruser">
                     <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                    <img src="<?php echo $baseUri;?>common/img/notid.png"> <b>admin</b><?php 
+                    <img src="<?php echo $baseUri;?>common/img/notid.png"> <b>admin</b><?php echo $noti['leave_status'];
                     switch($noti['leave_status']){
                         case "1" : echo " Confirmed";break;
                         case "2" : echo " Rejected";break;
@@ -32,9 +40,9 @@
                 <li>
                
                     
-                <a href="<?php echo $baseUri;?>notification/index/noticalendar?id=<?php echo $noti['noti_id'];?>" class="calendar" id="<?php echo  $noti['noti_id'];?>">
+                <a href="" class="calendar" id="<?php echo  $noti['noti_id'];?>">
                 <img src="<?php echo $baseUri;?>common/img/notid.png"> 
-                <b><i style="color:red"><?php echo $noti['creator_name'];?></i></b> marked calendar for  <?php echo $noti['member_login_name']; echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
+                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> marked calendar for  <?php echo $noti['title']; echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
                ?></a></span>
                 </li>
             </ul>
@@ -49,7 +57,7 @@
                 <li>
                
                     
-                <a href="<?php echo $baseUri;?>notification/index/notiattendances?id=<?php echo $noti['noti_id'];?>" class="attendances" id="<?php echo  $noti['noti_id'];?>">
+                <a href="" class="attendances" id="<?php echo  $noti['noti_id'];?>">
                 <img src="<?php echo $baseUri;?>common/img/notid.png"> 
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> is Late for   <?php echo $noti['notes']; echo " at <b>".date("d-m-Y", strtotime( $noti['checkin_time']))."</b> ";
                ?></a></span>

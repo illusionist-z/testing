@@ -19,8 +19,8 @@ var ApplyForm = {
                  for(var i in cond){
                      switch(i){
                          case 'username':$("#apply_form_name").css({border:"1px solid red",color:"red"});
-                                         $('#apply_form_name_error').text(cond[i]).css({color:'red'});
-                                         repair('#apply_form_name');break;
+                                         $('#apply_form_username_error').text(cond[i]).css({color:'red'});
+                                         repair('#apply_form_username_error');break;
                          case 'description':$("#apply_form_desc").css({border:"1px solid red",color:"red"});                    
                                          $('#apply_form_desc_error').text(cond[i]).css({color:'red'});
                                          repair('#apply_form_desc');break;
@@ -46,7 +46,34 @@ var ApplyForm = {
                 }
            }
         });
-    }
+    },
+       applyautolist: function (){                       
+        
+         var dict = [];
+       $.ajax({
+                url:'applyautolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+               //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('#apply_form_name').autocomplete({
+              source: dict
+            });
+      
+                } 
+       }
 };
 $(document).ready(function(){
    
@@ -54,5 +81,10 @@ $(document).ready(function(){
       e.preventDefault();
       ApplyForm.Submit();
    });
+   
+   $('#apply_form_name').click(function () {
+       // alert("aaa");
+        ApplyForm.applyautolist();
+    }); 
 });
 

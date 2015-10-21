@@ -322,8 +322,9 @@ var Calendar = {
         $dia.dialog({
             autoOpen: false,
             closeText: "",
-            height: 380,
-            width: 400,
+            height: 'auto',
+            width: 'auto',
+            resizable:false,
             modal: true
         });
         $('#reset_create_event').click(function () {

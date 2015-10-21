@@ -97,9 +97,9 @@
 <!--//create dialog event-->
 <div id="dialog_create" style="display:none; margin-bottom: 0px;" title="Create Event" class="navbar">
     <form id="create_event" onsubmit="return false;" class="container">
-        <table>
+        <table style="width:100%;height: 100%;" >
             <tr>
-                <td> <label for="title"><?php echo $t->_("title"); ?></label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_create_event" placeholder="Write Title"></span> </td>
+                <td> <label for="title"><?php echo $t->_("title"); ?></label></td><td><input style="font-size: 13px;margin-top: 10px;" type="text" class="box" name="title" id="title_create_event" placeholder="Write Title"></span> </td>
              </tr>
              <tr>
                  <td>
@@ -112,24 +112,25 @@
                             }
                             ?>
                         </select>-->
-                     <label for="member_name"><?php echo $t->_("name"); ?></label>
-                     <input style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name" placeholder="Enter your Name">
+                     <label for="member_name"><?php echo $t->_("name"); ?></label></td><td>
+                     <input style="font-size: 13px;margin-top: 10px;" class="box input-medium" data-toggle="select" name="uname" id="select_name" placeholder="Enter your Name">
                  </td>
              </tr>
              <tr>
                  <td>
-                     <label for="sdate"> <?php echo $t->_("start_date"); ?> </label><input style="font-size: 13px;" type="text" class="box" name="sdate" id="sdate_create_event">
+                     <label for="sdate"> <?php echo $t->_("start_date"); ?> </label></td><td><input style="font-size: 13px;margin-top: 10px;" type="text" class="box" name="sdate" id="sdate_create_event">
                  </td>
              </tr>
              <tr>
                  <td>
-                     <label for="edate"> <?php echo $t->_("end_date"); ?></label><input style="font-size: 13px;" type="text" class="box" name="edate" id="edate_create_event">
+                     <label for="edate"> <?php echo $t->_("end_date"); ?></label></td><td><input style="font-size: 13px;margin-top: 20px;" type="text" class="box" name="edate" id="edate_create_event">
                         <span class="err-edate"></span><br><br>
                  </td>
              </tr>
              <tr>
-                 <td>
-                     <input type="submit" value="<?php echo $t->_("create"); ?>" class="btn-facebook" id="create_dialog"> <input type="reset" value="<?php echo $t->_("cancel"); ?>" id="reset_create_event">
+                 <td></td>
+                 
+                 <td>    <input type="submit" value="<?php echo $t->_("create"); ?>" class="btn-facebook" id="create_dialog"> <input type="reset" value="<?php echo $t->_("cancel"); ?>" id="reset_create_event">
                  </td>
              </tr>
         </table>

@@ -198,5 +198,11 @@ class IndexController extends ControllerBase {
 
         $this->_leave->rejectleave($noti_id);
     }
-
+    //apply auto username
+    public function applyautolistAction() {
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->applyautousername();
+        $this->view->disable();
+        echo json_encode($Username);
+    }
 }
