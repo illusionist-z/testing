@@ -29,6 +29,7 @@ Class Module implements ModuleDefinitionInterface {
         $loader->registerNamespaces(array(
             'workManagiment\\' . $this->_moduleName . '\Controllers' => $this->_moduleDir . '/controllers/',
             'workManagiment\\' . $this->_moduleName . '\Models' => $this->_moduleDir . '/models/',
+            'workManagiment\Auth\Models' =>'C:\xampp\htdocs\workManagiment\apps\auth/models/'                //for permission module language getting in all module
         ));
 
         $loader->register();

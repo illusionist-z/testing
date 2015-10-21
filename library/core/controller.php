@@ -207,5 +207,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
             "content" => $messages
         ));
     }
+     
+
 
 }
