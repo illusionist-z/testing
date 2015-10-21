@@ -501,4 +501,14 @@ class IndexController extends ControllerBase {
     
         
     }
+    
+     //for salary username autocomplete 
+    public function salaryusernameAction() {
+        //echo json_encode($result);
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->salunameautolistusername();
+        //print_r($UserList);exit;
+        $this->view->disable();
+        echo json_encode($Username);
+    }
 }

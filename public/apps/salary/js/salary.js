@@ -360,6 +360,7 @@ $(document).ready(function () {
 		Salary.calSalary();
                
 	});
+    
 });
 
 

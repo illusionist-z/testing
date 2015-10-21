@@ -222,8 +222,9 @@ var Calendar = {
        
         $("#member_event_dialog").dialog({
             autoOpen :false,
-            height: 160,
-            width : 400,
+            height: 'auto',
+            width : 'auto',
+            resizable:false,
             title: "Add Member",
             modal :true
         });                
@@ -301,8 +302,8 @@ var Calendar = {
         $ovl.dialog({
             autoOpen: false,
             closeText: "",
-            height: 380,
-            width: 450,
+            height: 'auto',
+            width: 'auto',
             modal: true
         });
         $ovl.dialog("open");

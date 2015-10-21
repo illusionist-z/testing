@@ -52,7 +52,37 @@ var AddSalary = {
                 
            }
         });
-    }
+    },
+    
+     salnameautolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+            //alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'salaryusername',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.salusername').autocomplete({
+              source: dict
+            });
+       // ... do whatever you need to do with icon here
+   } 
+       }
 };
 
 
@@ -62,4 +92,8 @@ var AddSalary = {
         //alert("aaa");
        AddSalary.Submit();
     });
+    $(".salusername").click(function(){
+		AddSalary.salnameautolist();
+               
+	});
    });

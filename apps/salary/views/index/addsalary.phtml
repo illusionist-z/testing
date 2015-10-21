@@ -24,7 +24,7 @@ if(isset($Msg))
                     <div class="div-bottom">
                         <span class="span-style"><?= $t->_("name"); ?></span>
                         <span>
-                            <select style="width:34%;" name="uname" id="uname">
+<!--                            <select style="width:34%;" name="uname" id="uname">
                                 <option value="">Name</option>
                                 <?php
                                 foreach ($usernames as $username) {
@@ -37,7 +37,8 @@ if(isset($Msg))
                                 }
                                 ?>
                             </select>
-                             <span id="add_salary_uname_error"></span> 
+                             <span id="add_salary_uname_error"></span> -->
+                            <input class="salusername" name="uname" id="uname" placeholder="<?php echo $t->_("searchusername"); ?>">
                         </span>
                        
                     </div>
