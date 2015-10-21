@@ -76,6 +76,7 @@ var Calendar = {
                $(this).append(str);
             }
         },
+        
         eventClick: function (event) {
             //check dialog box exist
             $ovl = $('#dialog');
@@ -124,6 +125,62 @@ var Calendar = {
     }
     }
         });
+    },
+    calenderautolist: function() {                                              
+       var dict = [];
+       $.ajax({
+                url:'index/calenderauto',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+               // alert(json_obj);
+                for (var i in json_obj){
+                    //alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('#select_name').autocomplete({
+              source: dict
+            });
+       // ... do whatever you need to do with icon here
+   }
+    
+    },
+    eventcalenderautolist: function() {                                              
+       var dict = [];
+       $.ajax({
+                url:'index/calenderauto',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+               // alert(json_obj);
+                for (var i in json_obj){
+                    //alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('#event_uname').autocomplete({
+              source: dict
+            });
+       
+   }
+    
     },
     remove_event_member : function() {                                              
         var selectedvalue = [];        
@@ -369,6 +426,14 @@ $(document).ready(function () {
    });
    $('.disabledevent').click(function(){
        Calendar.remove_event_member();
+   });
+   //for calender auto complete username
+   $('#select_name').click(function(){
+       Calendar.calenderautolist();
+   });
+    //for event calender auto complete username
+   $('#event_uname').click(function(){
+       Calendar.eventcalenderautolist();
    });
    
 });

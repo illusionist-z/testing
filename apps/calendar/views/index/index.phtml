@@ -70,8 +70,8 @@
     <form id="edit_event" onsubmit="return false;" class="container">
         <label for="title"><?php echo $t->_("title"); ?></label><input style="font-size: 13px;" type="text" class="box" name="title" id="title_edit_event">
         <span class="err"></span>
-        <label for="member_name"><?php echo $t->_("name"); ?></label>
-        <select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">            
+         <label for="member_name"><?php echo $t->_("name"); ?></label>
+<!--       <select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">            
             <?php
             foreach ($uname as $result) {
                 ?>
@@ -79,7 +79,14 @@
                 <?php
             }
             ?>
-        </select>
+        </select>-->
+       
+        
+<!--                <option  name="<?= $result->member_id ?>"><?php echo $result->member_login_name; ?></option>-->
+        <label for="member_name"><?php echo $t->_("name"); ?></label>
+         <input style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="event_uname" >
+              
+                    
         <span></span>
         <label for="sdate"> <?php echo $t->_("start_date"); ?></label><input style="font-size: 13px;" type="text" class="box" name="sdate" id="sdate_edit_event">
         <span class="err-sdate"></span>
@@ -96,7 +103,7 @@
              </tr>
              <tr>
                  <td>
-                     <label for="member_name"><?php echo $t->_("name"); ?></label><select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name">                         
+<!--                     <label for="member_name"><?php echo $t->_("name"); ?></label><select style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name">                         
                             <?php
                             foreach ($uname as $result) {                     
                                 ?>
@@ -104,17 +111,19 @@
                                 <?php
                             }
                             ?>
-                        </select>
+                        </select>-->
+                     <label for="member_name"><?php echo $t->_("name"); ?></label>
+                     <input style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="select_name" placeholder="Enter your Name">
                  </td>
              </tr>
              <tr>
                  <td>
-                     <label for="sdate"> <?php echo $t->_("start_date"); ?> </label><input style="width:250px;font-size: 13px;" type="text" class="box" name="sdate" id="sdate_create_event">
+                     <label for="sdate"> <?php echo $t->_("start_date"); ?> </label><input style="font-size: 13px;" type="text" class="box" name="sdate" id="sdate_create_event">
                  </td>
              </tr>
              <tr>
                  <td>
-                     <label for="edate"> <?php echo $t->_("end_date"); ?></label><input style="width:250px;font-size: 13px;" type="text" class="box" name="edate" id="edate_create_event">
+                     <label for="edate"> <?php echo $t->_("end_date"); ?></label><input style="font-size: 13px;" type="text" class="box" name="edate" id="edate_create_event">
                         <span class="err-edate"></span><br><br>
                  </td>
              </tr>

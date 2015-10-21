@@ -49,6 +49,15 @@ class IndexController extends ControllerBase
         echo json_encode($Username);
     }
     
+    //calender auto complete  for username
+    public function calenderautoAction() {
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->calenderautousername();
+        //print_r($Username);exit;
+        $this->view->disable();
+        echo json_encode($Username);
+    }
+    
     public function addmemberAction(){
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
@@ -88,7 +97,6 @@ class IndexController extends ControllerBase
         $edate = $this->request->get('edate');
         $title = $this->request->get('title');
         $creator_id=$this->session->user['member_id'];
-        $creator_name=$this->session->user['member_login_name'];
         $res= array();
         if ($title == null ) {
             $res['cond']=FALSE;
@@ -104,7 +112,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($creator_name,$creator_id,$id,$sdate, $edate, $title,$uname);
+            $event=$this->calendar->create_event($creator_id,$id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
             $res['name']= $uname;
         }
@@ -154,6 +162,6 @@ class IndexController extends ControllerBase
         $result=$this->calendar->getid_name($id);
         echo json_encode($result);
     }
-
+     
 }
 
