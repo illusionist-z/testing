@@ -35,6 +35,22 @@ $messages = array(
     "edit_btn"         => "Edit",
     "delete_btn"     => "Delete",
     "cancel_btn"     => "Cancel",
-    "save_btn"       => "Save"
+    "save_btn"       => "Save",
+     "bsalary"           => "Basic Salary",
+    "overtime_rate"           => "Overtime Rate",
+    "overtime_hour"           => "overtime_hour",
+    "overtime_payment"           => "Overtime Payment",
+    "allowance_for_specific"           => "Allowance for specific duty",
+    "gross_salary"           => "Gross Salary",
+    "deduce_for_absent"           => "Dedue for Absent",
+    "personal_income"           => "Personal Income Tax",
+    "ssb_employee"           => "SSB Employee 2%",
+    "subtotal"           => "Sub Total",
+    "rounded_up"           => "Sub Total(Rounded up)",
+    "commute_fee"           => "Commute Fee",
+    "grand_total"           => "Grand Total",
+    "enter_allname"           => "Enter allowance name",
+    "enter_allamount"           => "Enter allowance amount",
+    "tax_form" =>"Tax Form",
 );
 

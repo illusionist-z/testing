@@ -17,7 +17,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
-        //$this->assets->addCss('common/css/style.css');
+        
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/salary/css/salary.css');        
@@ -491,4 +491,5 @@ class IndexController extends ControllerBase {
         $sql_salaryallowance="DELETE FROM salary_member_tax_deduce WHERE member_id='".$member_id."'";
         $this->db->query($sql_salaryallowance);
     }
+    
 }

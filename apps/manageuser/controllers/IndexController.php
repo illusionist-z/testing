@@ -121,6 +121,7 @@ class IndexController extends ControllerBase
         $cond['email']=$this->request->get('email');
         $cond['pno']=$this->request->get('pno');
         $cond['address']=$this->request->get('address');
+        $cond['work_sdate']=$this->request->get('work_sdate');
         $result=$this->user->editbycond($cond);        
         echo json_encode($result);             // send validating data
         $this->view->disable();        

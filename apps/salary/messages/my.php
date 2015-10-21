@@ -34,6 +34,22 @@ $messages = array(
     "edit_btn"         => "ၿပင္မည္",
     "delete_btn"     => "ဖ်က္မည္",
     "cancel_btn"     => "ပယ္မည္",
-    "save_btn"       => "သိမ္းဆည္းမည္"
+    "save_btn"       => "သိမ္းဆည္းမည္",
+    "item"           => "Item",
+    "bsalary"           => "အေျခခံလစာ",
+    "overtime_rate"           => "အခ်ိန္ပိုုေၾကးႏႈနး",
+    "overtime_hour"           => "အခ်ိန္ပိုုနာရီ",
+    "overtime_payment"           => "အခ်ိန္ပိုုေၾကး",
+    "allowance_for_specific"           => "အက်ဳိးခံစားခံင္႔",
+    "gross_salary"           => "Gross Salary",
+    "deduce_for_absent"           => "ရံုုးပ်က္ရက္",
+    "personal_income"           => "အခြန္",
+    "ssb_employee"           => "လူမႈဖူလံုုေရး",
+    "subtotal"           => "Sub Total",
+    "rounded_up"           => "Sub Total(Rounded up)",
+    "commute_fee"           => "ခရီးစရိတ္",
+    "grand_total"           => "Grand Total",
+    "enter_allname"           => "အက်ဳိးခံစားခြင္႔အမည္",
+    "enter_allamount"           => "အက်ဳိးခံစားခြင္႔ ေငြပမာဏ"
     
 );

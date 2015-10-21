@@ -181,15 +181,15 @@ class Leaves extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw
      */
     public function getcontractdata($id) {
-        $credt = $this->db->query("SELECT created_dt,updated_dt "
+        $credt = $this->db->query("SELECT working_start_dt,working_year_by_year "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchall();
-        if ($created_date['0']['updated_dt'] == '0000-00-00 00:00:00') {
-            $date['startDate'] = $created_date['0']['created_dt'];
-            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['created_dt'])));
+        if ($created_date['0']['working_year_by_year'] == '0000-00-00 00:00:00') {
+            $date['startDate'] = $created_date['0']['working_start_dt'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['working_start_dt'])));
         } else {
-            $date['startDate'] = $created_date['0']['updated_dt'];
-            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['updated_dt'])));
+            $date['startDate'] = $created_date['0']['working_year_by_year'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['0']['working_year_by_year'])));
         }
 
         return $date;

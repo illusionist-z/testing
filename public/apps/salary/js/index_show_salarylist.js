@@ -23,6 +23,45 @@ $(function () {
 //
 //         });
      });
+     
+     
+     
+    $('#btn_tax_form').click(function () {  
+    var month = document.getElementById('month').value;
+    var year = document.getElementById('year').value;
+    var chkbox = document.getElementsByName('chk[]');
+    var chk = [];
+    for (var i=0, n=chkbox .length;i<n;i++) {
+        if (chkbox [i].checked) 
+        {
+            chk.push(chkbox[i].value);
+        }
+    }
+    
+         window.location.href = baseUri + 'salary/index/printtaxform?chk_val='+chk+'&month='+month+'&year='+year;
+//         $.ajax({
+//             url: baseUri + 'salary/index/printsalary',
+//             type: 'get',
+//             data : {chk_val:chk},
+//
+//         });
+     });
+     $('#btn_tax').click(function () {  
+    var month = document.getElementById('month').value;
+    var year = document.getElementById('year').value;
+    var chkbox = document.getElementsByName('chk[]');
+    var chk = [];
+    for (var i=0, n=chkbox .length;i<n;i++) {
+        if (chkbox [i].checked) 
+        {
+            chk.push(chkbox[i].value);
+        }
+    }
+    
+         window.location.href = baseUri + 'salary/index/printtax?chk_val='+chk+'&month='+month+'&year='+year;
+
+     });
+     
      //click the detail button for detail of salary
      $('.btn_detail').click(function () {
      var month = document.getElementById('month').value;
@@ -71,5 +110,8 @@ function checkAll(ele) {
          }
      }
  }
+
+ 
+ 
 
 

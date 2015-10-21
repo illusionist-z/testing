@@ -76,9 +76,7 @@ var Categories = {
             
            url:"",
            type: "POST",
-           dataType : 'json',
-           success:function(r){                         
-               console.log(r);
+           success:function(){                         
                var data ='<form id="Add_new_ltype"><table>';               
                    data += '<tr><td></td></tr>'
                         +'<tr><td>Leave Type:</td><td><input type="text" value="" name="ltype_name" placeholder="Enter Leave type"></td>'

@@ -20,8 +20,8 @@
             <form id='TextBoxesGroup' action='saveallowance'>
                 <div id="TextBoxDiv1">
          
-                    <?= $t->_("allowance"); ?> <?= $t->_("name");?> 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' placeholder="Enter Allowance Name" >
-                    <?= $t->_("allowance"); ?> <?= $t->_("amount");?> 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1' placeholder="Enter Allowance Amount">
+                    <?= $t->_("allowance_name");?> 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' placeholder="<?= $t->_("enter_allname");?>" >
+                    <?= $t->_("amount");?> 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1' placeholder="<?= $t->_("enter_allamount");?>">
                      <input type='button' value='+' id='addButton'>
                     <input type='button' value='-' id='removeButton'>
                     <input type='submit' value='Add' id=''>
@@ -72,7 +72,10 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-
+        var allowance_name='<?= $t->_("allowance_name");?>';
+        var allowance_amount='<?= $t->_("amount");?>';
+        var enter_allname='<?= $t->_("enter_allname");?>';
+        var enter_allamount='<?= $t->_("enter_allamount");?>';
         var counter = 2;
         var counter1=2;
         $("#addButton").click(function () {
@@ -85,11 +88,11 @@
             var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter);
 
-            newTextBoxDiv.after().html('Allowance Name ' + counter + ' :  ' +
+            newTextBoxDiv.after().html('' + allowance_name+' '+counter + ' :  ' +
                     ' <input style="margin-top:10px;" type="text" name="textbox' + counter +
-                    '" id="textbox' + counter + '" value="" placeholder="Enter Allowance Name"> Allowance Amount  ' + counter + ' : ' +
+                    '" id="textbox' + counter + '" value="" placeholder="'+enter_allname+'"> ' + allowance_amount+' '+counter + ' : ' +
                     ' <input style="margin-top:10px;" type="text" name="txt' + counter +
-                    '" id="txt' + counter + '" value=""  placeholder="Enter Allowance Amount">');
+                    '" id="txt' + counter + '" value=""  placeholder="'+enter_allamount+'">');
 
             newTextBoxDiv.appendTo("#TextBoxesGroup");
 

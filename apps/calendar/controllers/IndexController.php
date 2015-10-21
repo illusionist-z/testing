@@ -49,6 +49,15 @@ class IndexController extends ControllerBase
         echo json_encode($Username);
     }
     
+    //calender auto complete  for username
+    public function calenderautoAction() {
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->calenderautousername();
+        //print_r($Username);exit;
+        $this->view->disable();
+        echo json_encode($Username);
+    }
+    
     public function addmemberAction(){
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
@@ -153,6 +162,6 @@ class IndexController extends ControllerBase
         $result=$this->calendar->getid_name($id);
         echo json_encode($result);
     }
-
+     
 }
 

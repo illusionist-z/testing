@@ -69,8 +69,9 @@ class SalaryMaster extends Model {
      */
     public function getbasicsalary() {
         try {
+            $month=  date('m');
             $sql = "select basic_salary,status,member_id,travel_fee,date(created_dt)as comp_start_date "
-                    . "from salary_master where deleted_flag=0";
+                    . "from salary_master where deleted_flag=0 and member_id in (select member_id from attendances where MONTH(att_date)=$month)";
             //echo $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetchall();
@@ -101,10 +102,22 @@ class SalaryMaster extends Model {
             $final_result="";
             $up_date="";
             $absent_dedution="";
+            //print_r($param);
             foreach ($param as $value) {
-                
+                //get the create date to calculate salary
                 $start_date = explode("-", $value['comp_start_date']);
                 $comp_start_date=$start_date[0].'-'.$start_date[1];
+                $w_startdt=  $this->getWorkingStartdt($value['member_id']);
+                
+                //get the working start date from core_member table
+                $working_start_date = explode("-", $w_startdt['working_start_dt']);
+                $w_start_dt=$working_start_date[0].'-'.$working_start_date[1];
+                if($comp_start_date!=$w_start_dt)
+                {
+                    $comp_start_date=$w_start_dt;
+                }
+                
+                
                 $comp_start_month = $start_date[1];
                 $SM = $this->getLatestsalary($value['member_id']);
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
@@ -215,6 +228,17 @@ class SalaryMaster extends Model {
         return $final_result;
     }
 
+    public function getWorkingStartdt($member_id) {
+        try {
+            $sql = "select * from core_member where member_id='" . $member_id . "' and deleted_flag=0";
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
     public function Addallowance($Allowanceresult,$salary,$detailallowance,$date_diff,$allowance,
             $up_date, $budget_endyear,$budget_startyear,$salarymaster,$member_id) {
         //Insert new allowance to add to basic salary
@@ -806,15 +830,34 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
         }
         return $res;
     }
-    
+    /**
+     * Update salary detail after calculating
+     * @param type $bsalary
+     * @param type $overtimerate
+     * @param type $member_id
+     */
     public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
         try {
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
                 //echo $sql;exit;
                 $this->db->query($sql);
-                $res['valid'] = true;
+                //$res['valid'] = true;
+//                $salarybymember_id=$this->getbsalarybyMember_id($member_id);
+//                $latersalarydetail=  $this->getOldSalarydetail($member_id);
+//                print_r($salarybymember_id['member_id'] );exit;
             } catch (Exception $ex) {
                 echo $ex;
             }
     }
+    
+//    public function getbsalarybyMember_id($member_id) {
+//        try {
+//            $sql = "select * from salary_master WHERE member_id ='".$member_id."'";
+//            $result = $this->db->query($sql);
+//            $row = $result->fetcharray();
+//        } catch (Exception $exc) {
+//            echo $exc->getTraceAsString();
+//        }
+//        return $row;
+//        }
 }

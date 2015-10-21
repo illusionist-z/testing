@@ -46,7 +46,8 @@ class IndexController extends ControllerBase {
      * @type   $id,$sdate,$edate,$type,$desc
      * @desc   Apply Leave Action
      */
-    public function applyleaveAction() {    
+    public function applyleaveAction() {  
+        $this->assets->addJs('apps/leavedays/js/applyleave.js');    
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);

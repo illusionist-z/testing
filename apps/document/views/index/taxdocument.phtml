@@ -1,0 +1,140 @@
+<?php
+    use Phalcon\Filter;
+?>
+<!-- Main content -->
+<section class="content">
+    <div class="row"><!-- for search form-->
+        
+        <div class="col-md-12"><!--start add user form--->
+            G-Next Co.,Ltd.<br>
+            <u>For the Month of June 15</u><br><br>
+            <table border="1px;" class="tbl-tax">
+                <thead>
+                <tr>
+                    <td rowspan="2">
+                        Sr No.
+                    </td>
+                    <td rowspan="2">
+                        Name
+                    </td>
+                    <td rowspan="2">
+                        Starting Date
+                    </td>
+                    <td rowspan="2">
+                        Basic Pay<br>
+                        (MMK)
+                    </td>
+                    <td rowspan="2">
+                        Total Annual<br>
+                        Income<br>
+                        (MMK)
+                    </td>
+                    
+                    <td rowspan="2">
+                        Marriage<br>
+                        [Y/N]
+                    </td>
+                    <td colspan="6">
+                        Tax Allowance
+                    </td>
+                    
+                    <td rowspan="2">Taxable<br>
+                        Income
+                    </td>
+                    <td rowspan="2">Income<br>
+                        Tax for<br>
+                        June 15
+                    </td>
+                </tr>
+                <tr>
+                    
+                   
+                    <td>
+                        Employer<br>
+                        အလုုပ္ရွင္
+                    </td>
+                    
+                    <td>
+                        Employer<br>
+                        အလုုပ္ရွင္  ၃%
+                    </td>
+                    <td>
+                        Employee<br>
+                        အလုုပ္သမား ၂%
+                    </td>
+                    <td>
+                        Total<br>
+                        စုုစုုေပါင္း ၅%
+                    </td>
+                    <td>
+                        Total<br>
+                        စုုစုုေပါင္း ၅%
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    print_r($salary_info);
+                    foreach ($salary_info as $salary_infos) {
+                    ?>
+                    
+                    <tr>
+                        <td>၁</td>
+                        <td><?php echo $salary_infos['member_login_name']; ?></td>
+                        <td></td>
+                        <td>၁၈၀၀၀၀</td>
+                        <td>၅၀၀၀</td>
+                        <td>၅၀၀၀</td>
+                        <td>၂၅၀၀</td>
+                        <td>၇၅၀၀</td>
+                        <td>၅၀၀၀</td>
+                        <td>၁၂၅၀၀</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                   <?php
+                    }
+                    ?>
+                    <tr>
+                        <td>၂</td>
+                        <td>ေဒးဗစ္</td>
+                        <td></td>
+                        <td>၁၈၀၀၀၀</td>
+                        <td>၅၀၀၀</td>
+                        <td>၅၀၀၀</td>
+                        <td>၂၅၀၀</td>
+                        <td>၇၅၀၀</td>
+                        <td>၅၀၀၀</td>
+                        <td>၁၂၅၀၀</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>၁၅၀၀၀</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="resign" class="navbar"></div>
+</section>

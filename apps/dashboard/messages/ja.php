@@ -8,13 +8,14 @@ $messages = array(
     "attendancelist" => "",
     "leaveday" => "休み日",
     "salary" => "",
-    "current_time" => "いま時間",
-    "late_reason" =>  "お忘れた、李流を書きて下さい.",
+    "current_time" => "今の時間",
+    "late_reason" =>  "遅れの理由.",
     "last_member" => "さいきんMember",
-    "new_member" => "人",
+    "new_member" => "新入社員",
     "attendance"    => "kyo hito",
     "leave"          => "yasumi hito",
-    "checkin"       => "Chatku timu",
-    "checkout"     => "Chatout timu",
+    "checkin"       => "チェックイン",
+    "checkout"     => "チェックウト",
+    "home"       => "ホーム"
 );
 

@@ -15,6 +15,7 @@ class AbsentController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->view->t = $this->_getTranslation();
     }
 
     public function indexAction() {

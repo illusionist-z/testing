@@ -62,6 +62,7 @@ $(document).ready(function() {
     });
 
 
+
     $(".noti").click(function(e) {
         e.preventDefault();
         //document.getElementById("noti").className = "noticlose";
@@ -79,7 +80,3 @@ $(document).ready(function() {
 
 
 });
-
-
-
-
