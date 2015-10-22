@@ -26,8 +26,8 @@ class SalaryMasterController extends ControllerBase
         $dedution = $this->request->get('checkall');
         $allowance = $this->request->get('check_allow');
         $data['id'] = uniqid();
-        $data['member_id'] = $this->request->get('uname', 'string');
-        //$data['position'] = $this->request->get('position', 'string');
+        $data['member_id'] = $this->request->get('member_id', 'string');
+        //$data['uname'] = $this->request->get('uname', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
         $data['travel_fee'] = $this->request->get('travelfee', 'int');
         $data['over_time'] = $this->request->get('overtime', 'int');
@@ -39,7 +39,7 @@ class SalaryMasterController extends ControllerBase
         $data['updater_id'] = 3;
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
-        //print_r($dedution);exit;
+        //print_r($data);//exit;
          if ($this->request->isPost()) {
              $user = $this->_addsalary;
              $validate = $user->chk_validate($this->request->getPost());
@@ -48,10 +48,10 @@ class SalaryMasterController extends ControllerBase
                foreach ($validate as $message){
                    $json[$message->getField()] = $message->getMessage();
                }
-               $json['result'] = "error";
+                $json['result'] = "error";
                 echo json_encode($json);
                 $this->view->disable();
-                  }     
+                }     
             else{
         
         $Salarymaster = new SalaryMaster();
@@ -60,8 +60,11 @@ class SalaryMasterController extends ControllerBase
 
         $Allowance = new Allowances();
         $saveallowance = $Allowance->saveallowance($allowance, $this->request->get('uname'));
-
-        $this->response->redirect('salary/index/salarylist');
+        $msg="success";
+        //$this->response->redirect('salary/index/salarylist');
+        $this->view->disable();
+        echo json_encode($msg);
+                
              }
              
              }

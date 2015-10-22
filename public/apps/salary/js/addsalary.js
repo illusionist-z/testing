@@ -32,23 +32,18 @@ var AddSalary = {
                      }
                  }
                 
-            }
-                else{
-                    if(cond.success) { 
-                        alert(cond.success);
-                        location.reload();
-                    }
-                    else if(cond.error){
+                }
+                else if(cond.error){
                         $('#add_salary_uname_error').empty();$('#add_salary_bsalary_error').empty();$("#add_salary_ssc_error").empty();
                        // alert(cond.error);
                         
                         $('#add_salary_bsalary').css({border:'1px solid red'});repair('#add_salary_bsalary');
                         $('#add_salary_check').css({border:'1px solid red'}); repair('#add_salary_checkall');
                     }
-                    
-                    
-                   
-                }
+                else{
+                    alert(d);
+                    window.location.href = baseUri + 'salary/index/salarylist';
+                    }
                 
            }
         });

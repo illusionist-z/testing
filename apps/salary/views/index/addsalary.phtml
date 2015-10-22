@@ -39,6 +39,7 @@ if(isset($Msg))
                             </select>
                              <span id="add_salary_uname_error"></span> -->
                             <input class="salusername" name="uname" id="uname" placeholder="<?php echo $t->_("searchusername"); ?>">
+                            <span id="add_salary_uname_error"></span>
                         </span>
                        
                     </div>
@@ -107,7 +108,7 @@ if(isset($Msg))
                         <span class="span-style"></span>
                         <span>
 <!--                            <a href="#" class="button">Apply</a>-->
-                            <input type="submit" value="<?= $t->_("apply"); ?>" id="add_salary_apply" class="buttonn">
+                           <input type="submit" value="<?= $t->_("apply"); ?>" onclick="return false;" id="addsalary" class="buttonn">
                             <!--<a href="#" class="button"><b>Cancel</b></a>-->
                             <input type="reset" id="add_salary_cancel" class="buttonn" value="Cancel">
                         </span>
