@@ -1,0 +1,21 @@
+/******** for tax form *************/
+.top-center{
+    padding: 0px;
+    text-align: center;
+}
+.ssb-left{
+    float: left;
+    width: 74%;
+    height: 50px;
+}
+.tbl-tax{
+    width: 100%;
+}
+.tbl-tax td{
+    padding: 10px;
+}
+
+
+@media print{
+  body *{ visibility: hidden; }
+  #printable *{ visibility: visible;}}

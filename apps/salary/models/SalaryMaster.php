@@ -21,7 +21,7 @@ class SalaryMaster extends Model {
      */
     public function savesalary($data) {
         try {
-            //print_r($data);
+            
 //            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time,created_dt) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "',NOW())";
 //            $result = $this->db->query($sql);
             $SalaryMaster = new SalaryMaster();
@@ -113,12 +113,12 @@ class SalaryMaster extends Model {
                 //get the working start date from core_member table
                 $working_start_date = explode("-", $w_startdt['working_start_dt']);
                 $w_start_dt=$working_start_date[0].'-'.$working_start_date[1];
-                if($comp_start_date!=$w_start_dt)
-                {
-                    $comp_start_date=$w_start_dt;
-                }
+//                if($comp_start_date!==$w_start_dt)
+//                {
+//                    $comp_start_date=$w_start_dt;
+//                }
                 
-                
+                echo "STARTING date ".$comp_start_date.'<br>';
                 $comp_start_month = $start_date[1];
                 $SM = $this->getLatestsalary($value['member_id']);
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
