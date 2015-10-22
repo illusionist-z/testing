@@ -23,7 +23,10 @@ class IndexController extends ControllerBase
      * @author zinmon
      */
     public function ssbdocumentAction() {
-        
+        $this->assets->addJs('apps/salary/js/print.js');
+        $SalaryDetail= new Document();
+        $result=$SalaryDetail->getssb_info();
+        $this->view->salary_info=$result; 
     }
 
     public function taxdocumentAction() {

@@ -191,7 +191,8 @@ var Salary = {
                 d.dialog("close");
             }
         }).done(function(){
-            $('body').load('salarylist');
+            //$('body').load('salarylist');
+            location.reload();
         });
     },
     calSalary : function (){

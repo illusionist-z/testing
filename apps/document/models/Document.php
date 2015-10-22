@@ -28,4 +28,21 @@ class Document extends Model {
      }
      return $row;
     }
+    /**
+     * get salary detail to show in ssb tax form
+     * @return type
+     */
+    public function getssb_info() {
+    try{
+         $month=  date("m");
+         $sql = "SELECT * FROM salary_detail JOIN core_member ON salary_detail.member_id=core_member.member_id "
+                 . "WHERE MONTH(pay_date)=".$month." GROUP BY core_member.member_id";
+         //echo $sql;exit;
+         $result = $this->db->query($sql);
+         $row = $result->fetchall();
+     } catch (Exception $ex) {
+         echo $ex;
+     }
+     return $row;
+    }
 }

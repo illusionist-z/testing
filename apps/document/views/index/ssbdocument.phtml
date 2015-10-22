@@ -6,6 +6,8 @@
     <div class="row"><!-- for search form-->
         
         <div class="col-md-12"><!--start add user form--->
+            <span style="float: right;"><a href="#" class="button print">Print</a></span>
+            <div id="printable">
             <div id="ssb_top">
                 <div class="top-center">
                     လူမႈဖူလံုုေရးအဖြဲ႔<br>
@@ -23,6 +25,7 @@
                     </div>
                 </div>
             </div>
+            
             <table border="1px;" class="tbl-tax">
                 <thead>
                 <tr>
@@ -92,47 +95,87 @@
                 </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $no=1;
+                    $ssb_total=0;
+                    $sum1=0;
+                    $sum2=0;
+                    $sum3=0;
+                    $sum4=0;
+                    $sum5=0;
+                    $Total=0;
+                    foreach ($salary_info as $salary_infos) {
+                    ?>
                     <tr>
-                        <td>၁</td>
-                        <td>စုုဇင္ေက်ာ္</td>
+                        <td><?php echo $no;?></td>
+                        <td><?php echo $salary_infos['member_login_name'];?></td>
                         <td></td>
-                        <td>၁၈၀၀၀၀</td>
-                        <td>၅၀၀၀</td>
-                        <td>၅၀၀၀</td>
-                        <td>၂၅၀၀</td>
-                        <td>၇၅၀၀</td>
-                        <td>၅၀၀၀</td>
-                        <td>၁၂၅၀၀</td>
+                        <td><?php echo $salary_infos['basic_salary'];?></td>
+                        <td>
+                            <?php 
+                            $sum1=$sum1+$salary_infos['ssc_emp'];
+                            echo $salary_infos['ssc_emp'];
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $sum2=$sum2+$salary_infos['ssc_emp'];
+                            echo $salary_infos['ssc_emp'];
+                            ?>
+                        </td>
+                        <td>
+                            <?php 
+                            $onepercent=$salary_infos['ssc_emp']/2;
+                            $sum3=$sum3+$onepercent;
+                            echo $onepercent;
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $ssb_total=$ssb_total+$salary_infos['ssc_comp'];
+                            $sum4=$sum4+$salary_infos['ssc_comp'];
+                            echo $salary_infos['ssc_comp'];
+                            ?>
+                        </td>
+                        <td>
+                            <?php 
+                            $ssb_total=$ssb_total+$salary_infos['ssc_emp'];
+                            $sum5=$sum5+$salary_infos['ssc_emp'];
+                            echo $salary_infos['ssc_emp'];
+                            ?>
+                        </td>
+                        <td>
+                            <?php 
+                            echo number_format($ssb_total);
+                            ?>
+                        </td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>၂</td>
-                        <td>ေဒးဗစ္</td>
-                        <td></td>
-                        <td>၁၈၀၀၀၀</td>
-                        <td>၅၀၀၀</td>
-                        <td>၅၀၀၀</td>
-                        <td>၂၅၀၀</td>
-                        <td>၇၅၀၀</td>
-                        <td>၅၀၀၀</td>
-                        <td>၁၂၅၀၀</td>
-                        <td></td>
-                    </tr>
+                    <?php
+                    $no++;
+                    }
+                    ?>
+                    
                     <tr>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>၁၅၀၀၀</td>
-                        <td></td>
-                        <td></td>
+                        <td><?php echo number_format($sum1)?></td>
+                        <td><?php echo number_format($sum2)?></td>
+                        <td><?php echo number_format($sum3)?></td>
+                        <td><?php echo number_format($sum4)?></td>
+                        <td><?php echo number_format($sum5)?></td>
+                        <td>
+                            <?php
+                            $Total=$Total+$sum4+$sum5;
+                            echo number_format($Total);
+                            ?></td>
                         <td></td>
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
     <div id="resign" class="navbar"></div>

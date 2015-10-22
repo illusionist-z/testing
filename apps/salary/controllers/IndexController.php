@@ -222,6 +222,19 @@ class IndexController extends ControllerBase {
         $this->view->disable();
     }
 
+     /**
+     * 
+     * get member_id salary Dialog Box
+     
+     */
+    public function getmemberidAction() {
+       $data = $this->request->get('uname');
+       //print_r($uname);exit;
+        $Salarydetail = new SalaryMaster();
+        $cond = $Salarydetail->memidsalary($data);
+        echo json_encode($cond);
+        $this->view->disable();
+    }
     /**
      * show allowance list
      * @author Su Zin kyaw

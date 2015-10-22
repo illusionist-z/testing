@@ -40,26 +40,26 @@ class SalaryMasterController extends ControllerBase
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
         //print_r($data);//exit;
-         if ($this->request->isPost()) {
+        if ($this->request->isPost()) {
              $user = $this->_addsalary;
              $validate = $user->chk_validate($this->request->getPost());
              
-            if(count($validate)){
+        if(count($validate)){
                foreach ($validate as $message){
                    $json[$message->getField()] = $message->getMessage();
                }
                 $json['result'] = "error";
                 echo json_encode($json);
                 $this->view->disable();
-                }     
-            else{
+            }     
+        else{
         
         $Salarymaster = new SalaryMaster();
         $Salarymaster->savesalarydedution($dedution, $data['member_id'], $data['creator_id']);
         $result = $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();
-        $saveallowance = $Allowance->saveallowance($allowance, $this->request->get('uname'));
+        $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);
         $msg="success";
         //$this->response->redirect('salary/index/salarylist');
         $this->view->disable();

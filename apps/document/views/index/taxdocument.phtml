@@ -102,6 +102,7 @@
                 <tbody>
                     <?php 
                     $i=1;
+                    $total="";
                     foreach ($salary_info as $salary_infos) {
                     ?>
                     
@@ -122,7 +123,7 @@
                         </td>
                         <td>
                             <?php
-                            echo $salary_infos['absent_dedution'];
+                            echo number_format($salary_infos['basic_examption']);
                             ?>
                         </td>
                         <td>
@@ -170,12 +171,13 @@
                         </td>
                         <td>
                             <?php 
-                            echo $salary_infos['total_annual_income'];
+                            echo number_format($salary_infos['total_annual_income']);
                             ?>
                         </td>
                         <td>
                             <?php 
-                            echo $salary_infos['income_tax'];
+                            $total=$total+$salary_infos['income_tax'];
+                            echo number_format($salary_infos['income_tax']);
                             ?>
                         </td>
                     </tr>
@@ -183,7 +185,22 @@
                    $i++;
                     }
                     ?>
-                    
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><?php echo number_format($total);?></td>
+                    </tr>
                 </tbody>
             </table>
             </div>
