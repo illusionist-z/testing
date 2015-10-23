@@ -329,7 +329,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
-        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
@@ -355,9 +355,17 @@ class IndexController extends ControllerBase {
      */
     public function taxdiaAction() {
         $id = $this->request->get('id');
-
+        $t = $this->_getTranslation();
         $tax = new SalaryTaxs();
         $data = $tax->gettaxdata($id);
+        $data[1]['tax_edit'] = $t->_("tax_edit");
+        $data[1]['tax_from'] = $t->_("tax_from");
+        $data[1]['tax_to'] = $t->_("tax_to");
+        $data[1]['tax_rate'] = $t->_("tax_rate");
+        $data[1]['ssc_emp'] = $t->_("ssc_emp");
+        $data[1]['ssc_comp'] = $t->_("ssc_comp");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }

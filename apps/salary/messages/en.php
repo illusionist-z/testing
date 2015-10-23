@@ -21,6 +21,7 @@ $messages = array(
     "income"             => "Personal Income",
     "tax_total"           => "Tax Total",
     "total"                => "Total",
+    "tax_edit"          => "Tax Edit",
     "tax"                   => "Tax",
     "tax_from"         => "Tax From",
     "tax_to"             => "Tax To",

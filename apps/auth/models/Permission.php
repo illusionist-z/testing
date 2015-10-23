@@ -94,17 +94,16 @@ class Permission {
             ]);
           
             // The permissions set up for each module. 
-            while ($results->valid()) {
-                //$row = $results->current();
+            while ($results->valid()) {                
                 foreach ($results as $row) {
                 $permis =new Db\CorePermission();
                 //get language module foreach
-                $permissions = $permis->moduleLang($row->permission_code,$lang);                   
+                $permissions = $permis->moduleLang($row->permission_code,$lang);        
                    if($permissions){                   
 //                    $per_result[$row->permission_code][] = $row->permission_name;
                        $i = 0;
                         foreach ($permissions as $res) {                             
-                             $per_result[$res['permission_code']][] = $res[2];             //get translate menu text
+                            $per_result[$res['permission_code']][] = $res[2];             //get translate menu text
                             $per_result[$res['permission_code']]['link'.$i] = $res[1];    //get link text
                             $i++;
                             }

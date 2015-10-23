@@ -19,6 +19,7 @@ $messages = array(
     "income"               => "税金(PIT)",
       "tax_total"           => "税金合計",
     "total"                => "合計",
+    "tax_edit"          => "",
     "tax"                    => "税金",
     "tax_from"         => "〜税金",
     "tax_to"             => "税金〜",
