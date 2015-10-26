@@ -164,9 +164,11 @@ class Attendances extends Model {
          return $absentlist;
     }
     public function getAttTime($id) {
-        $query = "Select * from attendances where id ='".$id."'";
+        $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where attendances.id ='".$id."' ";
+       
         $data = $this->db->query($query);
         $result = $data->fetchall();
+        // print_r($result);exit;
         return $result;
     }
     public function editAtt($data,$id,$offset) {

@@ -13,6 +13,7 @@ class IndexController extends  ControllerBase {
         //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
+        $this->permission = $this->setPermission();
         
     }
  /**
@@ -43,6 +44,7 @@ class IndexController extends  ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() { 
+    //echo $this->permission;exit;
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
     $noti=$Admin->GetAdminNoti($id);
@@ -55,6 +57,8 @@ class IndexController extends  ControllerBase {
     $CheckLeave = new \workManagiment\Dashboard\Models\Attendances();
     $leave_name =$CheckLeave->checkleave();
     $status     =$CheckLeave->todayattleave();
+    
+    if($this->permission==1 && $this->session->permission_code=='ADMIN'){
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
@@ -62,6 +66,11 @@ class IndexController extends  ControllerBase {
     $this->view->setVar("name",$GetName);
     $this->view->setVar("newnumber",$newmember);
     $this->view->t = $this->_getTranslation();
+        }
+        else {
+            $this->response->redirect('core/index');
+        }  
+    
     }
     
     /**

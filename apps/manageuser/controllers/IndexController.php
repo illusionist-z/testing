@@ -15,7 +15,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
-        $this->module_name =  $this->router->getModuleName();
+        $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
     }

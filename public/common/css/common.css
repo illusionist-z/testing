@@ -28,15 +28,17 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 }
 #userlistsearch,#namesearch,#sub,#search,#apply_form_submit,#add_salary_apply,
 #search_salary,#add_user,#edit_edit,#Add_deduct,#Add_ltype,#delete_ltype,#cal_salary,
-#create_dialog,#submit_edit_event{
+#create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,
+#edit_allowance_edit,#edit_attendance_edit,#alladd,#Add_Resign_Date{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
 #apply_cancel,#add_salary_cancel,#displaypopup,#add_dec,#addinguser_close,#edit_close,
-#cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event{
+#cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
+#cancel{
     border-color:#3c8dbc;color: #3c8dbc;border-radius: 4px;
 }
 
-#edit_delete,#del_event{
+#edit_delete,#del_event,#delete_deduct,#all_delete{
     color:red;
     border-radius: 4px;
 }
@@ -219,6 +221,28 @@ a.export {
 .indelete{
     background: url("../img/delete2.png")  1px 10px no-repeat  ;   
     padding: 6px 10px 6px 26px;    
+}
+#printimg{
+    background: url("../img/print7.png")  1px 1px no-repeat ;   
+   padding: 20px 10px 7px 20px; 
+}
+.printimg{
+    background: url("../img/print7.png")  1px 1px no-repeat ;   
+   padding: 1px 1px 2px 18px; 
+  
+}
+#detail_img{
+     background: url("../img/detail2.png")  1px 1px no-repeat ;   
+     padding: 13px 10px 2px 6px;      
+}
+.preimg{
+    background: url("../img/pre1.png")  10px 0px no-repeat  ;      
+}
+.nextimg{
+    background: url("../img/next1.png")  10px 0px no-repeat  ;      
+}
+.prehide{
+    opacity: 0;
 }
 .trhover:hover{
     background: red;

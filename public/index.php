@@ -18,6 +18,7 @@ try {
         // set namespace for the core module
         'workManagiment\Core\Controllers' => '../apps/core/controllers/',
         'workManagiment\Core\Models' => '../apps/core/models/',
+        'workManagiment\Auth\Models' => '../apps/auth/models/',
     ));
 
     //register autoloader

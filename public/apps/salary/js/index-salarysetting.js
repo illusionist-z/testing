@@ -115,10 +115,10 @@ var Tax = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 390,
+            height: 'auto',
             async:false,  
             resizable:false,
-            width: 450,
+            width: 'auto',
             modal: true,
             title:"Tax Edit",
             /*show:{
@@ -207,9 +207,9 @@ var Deduction = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 210,
+            height: 'auto',
             async:false,            
-            width: 500,
+            width: 'auto',
             modal: true,
             title:"Deduction Edit"
         });                        
@@ -248,21 +248,25 @@ var Deduction = {
     },
     Delete : function(d){
         $del = $('#confirm');
-
+        $del.css('color','black');
+        $del.css('background','#F5F5F5');
           $del.dialog({
             autoOpen:false,
-            height:190,
-            width:350,
+            height:'auto',
+            width:'auto',
             closeText:'',
+            resizable:false,
+            title:'Confirm Delete',
             modal:true,
             buttons:{
-                Delete:function(){
+                Yes:function(){
                     Deduction.Confirm(d);
                 },
-                Cancel:function(){
+                No:function(){
                     $(this).dialog("close");
                 }
             }
+           
            
         });
          $del.html("<p>Are u sure to delete?</p>");

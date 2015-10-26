@@ -31,7 +31,7 @@ class IndexController extends ControllerBase {
 
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
-        $this->module_name =  $this->router->getModuleName();
+        $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];

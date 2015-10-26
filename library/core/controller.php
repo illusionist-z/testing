@@ -41,8 +41,10 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
        // print_r($this->session->auth);exit;
         $ctrname=$this->router->getControllerName();
         $actname=$this->router->getActionName();
+        
         $chksubmenu="";
         $permission="";
+        
         foreach ($this->session->auth as $key_name => $key_value) { 
             //print_r($key_value).'<br>';
              $top = explode(" ", $key_value[0]);
@@ -54,6 +56,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                  $chkmodule= strtolower($top[0]);
                 }
                 foreach ($key_value as $name => $value) {
+                //echo $value." ".$module."<br>";
+                $bigmenu=strtolower($value);
                 $submenu = explode(" ", $value); 
                 if(isset($submenu[1])){
                 $chksubmenu = strtolower($submenu[0] . $submenu[1]);
@@ -66,6 +70,10 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 //echo "Equal<br>";
                 $permission=1;
                }
+               if($module === $bigmenu){
+                //echo "Equal<br>";
+                $permission=1;
+               }
 //                else {
 //                    //echo "Not equal";
 //                    $permission_notequal=0;
@@ -74,7 +82,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                                   
                
         }
-        //exit;
+//        echo $permission;
+//        exit;
         return $permission;
        
         

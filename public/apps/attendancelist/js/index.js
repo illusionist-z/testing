@@ -25,7 +25,9 @@ var Attendance = {
                 success : function(d){  
                     
                     $('#edit_att_time').empty();
-                    var data = d[0];                    
+                    var data = d[0]; 
+                    var username = data['full_name'];
+                    var notes = data['notes'];
                     n = new Date();
                     offset = n.getTimezoneOffset();
                     if (offset<0){
@@ -54,12 +56,12 @@ var Attendance = {
                     if (seconds < 10) {seconds = "0"+seconds;}
                     localcheckin   = checkin[0] +' '+hours+':'+minutes+':'+seconds;
                     
-                       var dia_div = '<form id="edit_attendance"><div class="row">'
-                                   +'<div class="col-sm-9"><label for="title">'+d[1]['attlist']+'</label><input  type="text" class="form-control datetimepicker" id="time" name="time" value="'+localcheckin+'"></div></div>'
-                                    +'<div class="row"><div class="col-sm-9"><label for="member_name">'+d[1]['name']+'</label><input disabled type="text" class="form-control" name="uname" value="'+data['member_id']+'"></div></div>'               
-                                   +'<div class="row"><div class="col-sm-9"><label for="reason">'+d[1]['note']+'</label><input disabled style="font-size: 13px;" type="text" class="form-control" name="note" value="'+data['notes']+'"></div></div>'
-                                   +'<div class="row"><div class="col-sm-9"><input type="submit" value="Edit" id="edit_attendance_edit"> <input type="reset" value="Cancel" id="edit_attendance_close"></div>'
-                                  +'</div></form>';
+                         var dia_div = '<form id="edit_attendance"><table>'
+                                   +'<tr><td><label for="title">Attendance Time</label></td><td><input  style="margin-top:10px;" size="25" type="text" class="form-control datetimepicker" name="time" id="time" value="'+localcheckin +'"></td></tr>'
+                                   +'<tr><td><label for="member_name">Name</label></td><td><input  style="margin-top:10px;" type="text" class="form-control" name="uname" value="'+username+'"></td></tr>'               
+                                   +'<tr><td><label for="reason">Reason Note</label></td><td><input   style="margin-top:10px;" style="font-size: 13px;" type="textarea" class="form-control" name="note" value="'+notes+'"></td></tr>'
+                                   +'<tr><td></td><td ><input style="margin-top:10px;" type="submit" class="buttonn bcbgcolor" value="Save" id="edit_attendance_edit"> <input style="margin-top:10px;" class="buttonn cbcbgcolor" type="reset" value="Cancel" id="edit_attendance_close"></td></tr>'
+                                  +'</table></form>';
                         $('#edit_att_time').append(dia_div);
                         $dia = $('#edit_att_time');
                         $dia.css('color','black');

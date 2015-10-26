@@ -13,6 +13,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/attendancelist/js/index.js');
         $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
@@ -20,9 +21,11 @@ class IndexController extends ControllerBase {
         $this->view->setVar("noti", $noti);
         $this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();
+        
         $this->permission = $this->setPermission();
+        
         $this->view->t = $this->_getTranslation();
-        $this->view->modulename=$this->module_name;
+        $this->view->module_name=$this->module_name;
         
     }        
     
@@ -39,11 +42,17 @@ class IndexController extends ControllerBase {
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);
+      
         
+        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
         $this->view->attlist = $ResultAttlist;
         $this->view->offset = $offset;
         $this->view->uname = $Username;
         $this->view->t = $this->_getTranslation();
+        }
+        else {
+            $this->response->redirect('core/index');
+        }  
         
     }
    
@@ -90,10 +99,15 @@ class IndexController extends ControllerBase {
         $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
         $monthlylist = $Attendances->showattlist();
         //print_r($monthlylist);exit;
+        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $UserName);
         $this->view->offset = $offset;
+        }
+        else {
+            $this->response->redirect('core/index');
+        }  
     }
 
     public function autolistAction() {

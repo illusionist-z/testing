@@ -161,8 +161,8 @@ var Salary = {
         $del.css('background','#F5F5F5');
           $del.dialog({
             autoOpen:false,
-            height:190,
-            width:350,
+            height:'auto',
+            width:'auto',
             closeText:'',
             modal:true,
             title:"Confirm Delete",
@@ -176,7 +176,7 @@ var Salary = {
             }
            
         });
-         $del.html("<p>Are u sure to <b style='color:red'>delete</b> ?</p>");
+         $del.html("<p>Are u sure to delete?</p>");
         $del.dialog("open");  
     },
     Confirm :function(d){
