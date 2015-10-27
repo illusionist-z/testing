@@ -130,6 +130,9 @@ class IndexController extends ControllerBase {
         }
     }
     
+    /**
+     * Leave Setting
+     */
     public function leavesettingAction(){
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
@@ -148,13 +151,30 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
+    
+    public function ltyaddAction() {
+        $t = $this->_getTranslation();
+        $data[1]['addleavetype'] = $t->_("addleavetype");
+        $data[1]['leave_category'] = $t->_("leave_category");
+        $data[1]['yes'] = $t->_("yes");
+        $data[1]['no'] = $t->_("cancel");
+        $data[1]['enterltp'] = $t->_("enterltp");
+        //print_r($data);exit;
+        $this->view->disable();
+        echo json_encode($data);
+    }
 
-    public function ltypediaAction() {
+    /**
+     * Edit Leave categories with dialog
+     */
+     public function ltypediaAction() {
         $id = $this->request->get('id');
-
+        $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
         $data = $LeaveCategories->getltypedata($id);
-
+        $data[1]['delete_confirm'] = $t->_("deleteleavetype");
+        $data[1]['yes'] = $t->_("yes");
+        $data[1]['no'] = $t->_("cancel");
         $this->view->disable();
         echo json_encode($data);
     }

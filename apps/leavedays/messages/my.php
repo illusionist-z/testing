@@ -23,6 +23,10 @@ $messages = array(
   "searchusername" => "အမည္ျဖင္႔ရွာရန္",
   "edit" => "ျပင္ရန္",
   "save" => "သိမ္းရန္",
-  "addleavetype" => "ခြင္႔အမ်ဳိးအစားအသစ္ထည္႔ရန္"
+  "addleavetype" => "ခြင္႔အမ်ဳိးအစားအသစ္ထည္႔ရန္",
+  "deleteleavetype" => "ခြင္႔ႊရက္ကိုု ဖ်က္ရန္",
+  "yes" => "Yes",
+  "cancel" => "No",
+  "enterltp" => "ခြင္႔အမ်ဳိးအစား"
     
 );

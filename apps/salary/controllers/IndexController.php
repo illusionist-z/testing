@@ -368,10 +368,18 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function taxdiaAction() {
-        $id = $this->request->get('id');
-
+             $id = $this->request->get('id');
+        $t = $this->_getTranslation();
         $tax = new SalaryTaxs();
         $data = $tax->gettaxdata($id);
+        $data[1]['tax_edit'] = $t->_("tax_edit");
+        $data[1]['tax_from'] = $t->_("tax_from");
+        $data[1]['tax_to'] = $t->_("tax_to");
+        $data[1]['tax_rate'] = $t->_("tax_rate");
+        $data[1]['ssc_emp'] = $t->_("ssc_emp");
+        $data[1]['ssc_comp'] = $t->_("ssc_comp");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }
@@ -398,9 +406,15 @@ class IndexController extends ControllerBase {
      */
     public function dectdiaAction() {
         $id = $this->request->get('id');
-
+        $t = $this->_getTranslation();
         $Deduction = new SalaryTaxsDeduction();
         $data = $Deduction->getdectdata($id);
+        $data[1]['deduct_name'] = $t->_("deduction_name");
+        $data[1]['taxeditform'] = $t->_("taxeditform");
+        $data[1]['deduct_amt'] = $t->_("deduction_amt");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['delete'] = $t->_("delete_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }
@@ -433,6 +447,19 @@ class IndexController extends ControllerBase {
         $this->view->disable();
     }
 
+    public function show_add_dectAction() {
+        $t = $this->_getTranslation();
+        $data[1]['deduce_frm'] = $t->_("deduce_frm");
+        $data[1]['deduce_name'] = $t->_("deduce_name");
+        $data[1]['amount'] = $t->_("amount");
+        $data[1]['wr_deduce_name'] = $t->_("wr_deduce_name");
+        $data[1]['wr_deduce_amount'] = $t->_("wr_deduce_amount");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
+        $this->view->disable();
+        echo json_encode($data);
+        
+    }
     /**
      * Delete Deduction 
      * @author Su Zin Kyaw

@@ -64,6 +64,9 @@ class IndexController extends ControllerBase {
         $data[1]['edit_att'] = $t->_("edit_att_list");
         $data[1]['name'] = $t->_("username");
         $data[1]['note'] = $t->_("note");
+        $data[1]['att_time'] = $t->_("att_time");
+        $data[1]['save'] = $t->_("save");
+        $data[1]['cancel'] = $t->_("cancel");
         echo json_encode($data);
         $this->view->disable();
     }

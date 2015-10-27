@@ -22,5 +22,9 @@ $messages = array(
   "export" => "Export",
   "edit" => "Edit",
   "save" => "Save",
-  "addleavetype" => "Add New Leave Categories"
+  "addleavetype" => "Add New Leave Categories",
+  "deleteleavetype" => "Delete Categories",
+  "yes" => "Yes",
+  "cancel" => "No",
+  "enterltp" => "Enter Leave type"
 );

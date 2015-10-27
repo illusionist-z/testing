@@ -34,5 +34,9 @@ $messages = array(
     "position"       => "立場",
     "email"       => "メール",
     "phoneno"       => "電話番号",
-    "address"       => "住所"
+    "address"       => "住所",
+    "att_time" => "出勤時間",
+    "note" =>"理由",
+    "save" => "保存",
+    "cancel" => "中止"
 );

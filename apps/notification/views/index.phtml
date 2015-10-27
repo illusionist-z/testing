@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 
 <html>
-    <head><style>.ui-dialog-titlebar-close {
-  visibility: hidden;
-}</style>
+    <head>
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 
-        <!-- Ionicons -->
-
-        <script src="../../common/js/jquery.min.js"></script>
         <?php $this->assets->outputCss() ?>
     </head>
     <?php if($type=="noti") {            
@@ -26,11 +21,11 @@
         <?php
 }else{
         ?>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
-                <nav class="navbar navbar-static-top" style="margin-left:0;">   
+                <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
                     <a><img src="../../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
@@ -38,17 +33,17 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">                           
                             <!-- Notifications: style can be found in dropdown.less -->
-                                <li class="dropdown notifications-menu" >
+                              <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
                                     <img src="../../common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
                                   <div id="notificationContainer">
                                   <div id="notificationTitle">Notifications</div>
-                                   <div id="notificationsBody" class="notifications">
+<div id="notificationsBody" class="notifications">
 
-                                  </div>
-                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">View All</span></a></div>
+</div>
+                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">See All</span></a></div>
                                 </div>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -59,12 +54,12 @@
                                    <!-- <img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="user-image" alt="User Image"/>-->
                                     <?php
                                                     if($this->session->user['member_profile']==null){
-                                                    $img = "profile.png";}
+                                                    $img = "profile1.jpg";}
                                                     else{
                                                         $img=$this->session->user['member_profile'];
                                                     }
                                         ?>                                                 
-                                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -75,7 +70,7 @@
                                         <!--<img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="img-circle">-->
                                         <?php
                                                     if($this->session->user['member_profile']==null){
-                                                    $img = "profile.png";}
+                                                    $img = "profile1.jpg";}
                                                     else{
                                                         $img=$this->session->user['member_profile'];
                                                     }
@@ -91,8 +86,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){?>
+                                      <?php $name=$this->session->permission_code;
+        if ( $name=='ADMIN'){?>
                                         <div class="pull-left">
                                             <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
@@ -120,7 +115,7 @@
         </header>
             
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar" id="sidepage" style="display:none;">
+            <aside class="main-sidebar" id="sidepage" style="display:none;height: auto;">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar" >
                     <!-- Sidebar user panel -->                   
@@ -129,74 +124,126 @@
                     <aside>
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
-                        <?php
-                        foreach ($this->session->auth as $key_name => $key_value) {
-                            //the outer main menu
-                            if (count($key_value) > 1) {
+                       <?php                                       
+                        foreach ($this->session->auth as $key_name => $key_value) {                            
+                                                                                //the outer main menu                            
+                                       if (count($key_value) > 2) {
+                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                                                              }
+                                                                      else {                                
+                                                                                    $top = explode(" ", $key_value["link0"]);
+                                                                                    if (strpos($key_name, 'user') !== false) {
+                                                                                          //var_dump($top);
+                                                                                                if (isset($top[1])) {
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                } else {
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                }
+                                                                                    } else {
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                    }
+                                                                                }
+                                                                                $i = 0;
+                                                                                //for the sub menu                            
+                                                                                foreach ($key_value as $name => $value)
+                                                                                 {
+                                                                                    echo '<ul class="treeview-menu">';                                                                                 
 
-                                echo ' <li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
-                            } else {
-                                $top = explode(" ", $key_value[0]);
-                                if (strpos($key_name, 'user') !== false) {
+                                                                                                if($i > 1){
+                                                                                                    if($i %2==0){
+                                                                                                               $link_name = $value;                                  
+                                                                                                         }   
 
-                                    if (isset($top[1])) {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
-                                    } else {
-                                        echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
-                                    }
-                                } else {
-                                    echo '<li><a href="' . $baseUri . strtolower($key_value[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
-                                }
-                            }
+                                                                                                if (is_string($name))
+                                                                                                    {                                                               
+                                                                                                                        if ($v_result = explode(" ", $value)) {                                       
+                                                                                                                             //set to link action value
+                                                                                                                             $link_val = strtolower($v_result[0] . $v_result[1]);   
+                                                                                                                             $mod = explode(" ", $key_value["link0"]);
+                                                                                                                         }                                                                                                                              
 
-                            //for the sub menu
-                            foreach ($key_value as $name => $value) {
-                                //print "Key = " . $name . " Value = " . $value . "<BR>";
-                                echo '<ul class="treeview-menu">';
-                                if ($name > 0) {
-                                    if ($v_result = explode(" ", $value)) {
-                                        //set to link action value
-                                        $link_val = strtolower($v_result[0] . $v_result[1]);
-                                        $mod = explode(" ", $key_value[0]);
-                                    }
-                                    if (strpos($key_name, 'user') !== false) {
-                                        if($this->session->permission_code=="ADMIN"){
-                                         echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';       
-                                        }
-                                        else{
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';
-                                        }
-                                    } else {
-                                        echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $value . '</a></li>';
-                                    }
-                                }
+                                                                                                                      if (strpos($key_name, 'user') !== false) {
+                                                                                                                                if($this->session->permission_code=="ADMIN"){
+                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
+                                                                                                                                }
+                                                                                                                                else{
+                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                                }
+                                                                                                                        }
+                                                                                                                        else {                                                            
+                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                        }                         
 
-                                echo '</ul>';
-                            }
-                            echo '</li>';
+                                                                                                     }
+                                                                                               }
+                                                                                  echo '</ul>';             
+                                                                                $i++; 
+                                                                        }    
+                                                       echo '</li>';                       
                         }
                         ?>
                     </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
 
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
+                <?php                           
+                          $j=0;
+                          foreach ($this->session->auth as $key_name => $key_value) {                                 
+                                       $top = explode(" ", $key_value["link0"]);
+                                        if(strtolower($top[0] . $top[1]) ==$module_name) {
+                                               if(count($key_value) >2 ) {
+                                                             echo '<div class="row"><div class="col-sm-2 link">';
+                                                             echo '<aside class="sidebar-menu">';
+                                                           foreach ($key_value as $name => $value) {
+                                                                                if($j > 1){
+                                                                                                if($j %2 ==0){
+                                                                                                    $link_name=$value;
+                                                                                                }
+                                                                                                if(is_string($name))
+                                                                                                {
+                                                                                                            if ($v_result = explode(" ", $value)) {
+                                                                                                                //set to link action value
+                                                                                                                $link_val = strtolower($v_result[0] . $v_result[1]);
+                                                                                                                $mod = explode(" ", $key_value["link0"]);
+                                                                                                            }
+                                                                                                            if (strpos($key_name, 'user') !== false) {
+                                                                                                             if($this->session->permission_code=="ADMIN"){
+                                                                                                              echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
+                                                                                                             }
+                                                                                                             else{
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                             }
+                                                                                                         } 
+                                                                                                         else {
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                         }       
+                                                                                               }
+                                                                                        }
+                                                                                   $j++;
+                                                                                }
+                                                                          echo '</aside></div><div class="col-sm-10">';
+                                                                   }
+                                                            }
+                               }                               
+               
+                                  echo '<section class="content">';
+                                  echo $this->getContent();
+                                  $this->assets->outputJs();
+                                 echo '</section></div></div>';
+                           ?>
+            <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
+        </div><!-- /.content-wrapper -->
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
-                <section class="content">
-                    <?php echo $this->getContent() ?>
-                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
-                    <?php $this->assets->outputJs(); ?>
-                </section>
-            </div><!-- /.content-wrapper -->
-
-            <footer class="main-footer" style="margin-left:0;">
-                <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-            </footer>
-
-
-        </div><!-- ./wrapper -->
+        <footer class="main-footer" style="margin-left:0;">
+            <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+            <div class="language">
+                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+            </div>
+        </footer>
+       
 <div id="notidetail" style=" display:none;" class="navbar">
     
 </div>

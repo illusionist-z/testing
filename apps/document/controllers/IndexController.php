@@ -15,7 +15,7 @@ class IndexController extends ControllerBase
         
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/document/css/index_ssbdocument.css');
-        $this->assets->addJs('apps/document/js/letterhead.js');
+        
         $this->assets->addJs('apps/document/js/FileSaver.js');
         $this->assets->addJs('apps/document/js/FileSaver.min.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
@@ -57,6 +57,7 @@ class IndexController extends ControllerBase
     }
     
     public function letterheadAction(){
+        $this->assets->addJs('apps/document/js/letterhead.js');
         $Cinfo=new \workManagiment\Document\Models\CompanyInfo();
         $info=$Cinfo->GetCompanyInfo();
         

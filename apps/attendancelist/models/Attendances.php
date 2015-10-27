@@ -146,15 +146,21 @@ class Attendances extends Model {
      * @author David
      * @param  $v[0] = member_id
      */
-    public function absent(){
-        $today = date("Y:m:d");
-        $query = "Select member_id from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE)  AND deleted_flag=0";
-        $res   = $this->db->query($query);
-        $absent = $res->fetchall();        
-        foreach ($absent as $v){
-            $insert = "Insert into absent (member_id,date,deleted_flag,created_dt) VALUES ('".$v[0]."',CURRENT_DATE,0,'" . $today . "')";
+      public function absent($id) {
+        $sql = "Select member_id,date from absent where member_id='" . $id . "' and date=CURRENT_DATE";
+        $absentlist = $this->db->query($sql);
+        $finalresult = $absentlist->fetchall();
+        
+        if ($finalresult == null) {
+            $insert = "Insert into absent (member_id,date,deleted_flag) VALUES ('" . $id . "',CURRENT_DATE,1)";
             $this->db->query($insert);
+            $message = "Adding is successfully";
+        } 
+        else {
+            $message = "Already Exit";
         }
+        // print_r($message);exit;       
+        return $message;
     }
     
     public function GetAbsentList(){

@@ -30,6 +30,10 @@ $messages = array(
     "position"       => "ရာထူး",
     "email"       => "အီးေမးလ္",
     "phoneno"       => "ဖုုန္းနံပါတ္",
-    "address"       => "လိပ္စာ"
+    "address"       => "လိပ္စာ",
+    "att_time" => "ရံုုးတက္ခ်ိန္",
+    "note" =>"အေၾကာင္းအရာ",
+    "save" => "သိမ္းရန္",
+    "cancel" => "Cancel"
 );
 
