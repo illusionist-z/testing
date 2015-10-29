@@ -73,6 +73,38 @@ var ApplyForm = {
             });
       
                 } 
+       },
+       getmemid: function (name){                       
+        //var name = document.getElementById('namelist').value;
+           // alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'getapplymemberid?username='+name,
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                    //alert(json_obj[i].member_id);
+               // var aa = json_obj[i].member_id;
+                //alert(aa);
+                //$('#formemberid').text(json_obj[i].member_id);
+               // $(".salusername").text(aa);
+                dict.push(json_obj[i].member_id);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                 //alert(dict);
+                 loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                      // alert(dict);
+                        $('#formemberid').val(dict);
+                     }
+                     
        }
 };
 $(document).ready(function(){
@@ -86,5 +118,11 @@ $(document).ready(function(){
        // alert("aaa");
         ApplyForm.applyautolist();
     }); 
+    $("#apply_form_sdate").click(function(){
+       var name = document.getElementById('apply_form_name').value;
+      //alert(name);
+		ApplyForm.getmemid(name);
+               
+	});
 });
 
