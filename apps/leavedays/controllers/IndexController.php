@@ -41,6 +41,19 @@ class IndexController extends ControllerBase {
         echo json_encode($Username);
     }
 
+      /**
+     * 
+     * get member_id 
+     
+     */
+    public function getapplymemberidAction() {
+       $data = $this->request->get('username');
+       //print_r($uname);exit;
+        $leavetype = new LeaveCategories();
+        $cond = $leavetype->memidapplyleave($data);
+        echo json_encode($cond);
+        $this->view->disable();
+    }
     /**
      * @author David
      * @type   $id,$sdate,$edate,$type,$desc
@@ -83,7 +96,7 @@ class IndexController extends ControllerBase {
                   }     
             else{
             $creator_id=$this->session->user['member_id'];
-            $uname =$this->request->getPost('username');
+            $uname =$this->request->getPost('member_id');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
