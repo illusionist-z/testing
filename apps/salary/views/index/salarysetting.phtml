@@ -114,12 +114,12 @@ use Phalcon\Filter;
                 </tbody>
             </table>
 
-        </div><!-- end allowance setting--><div id="edit_dect_dia" class="navbar"></div><div id="add_new_dt" class="navbar" style="display:none;">
+        </div><!-- end allowance setting--><div id="edit_dect_dia" class="navbar"></div><div id="add_new_dt" class="navbar" style="display:none;" title="<?= $t->_("deduction_add"); ?>">
             <form id="Add_new_deduct">
                 <table>
                     <tr><td></td></tr>
-                    <tr><br><td><small>Deduction Name</small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>
-                    <tr><td><small>Deduction Amount</small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>                     
+                    <tr><br><td><small><?= $t->_("deduction_name"); ?></small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>
+                    <tr><td><small><?= $t->_("deduction_amt"); ?></small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>                     
                     <tr><td></td></tr>
                     <tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct"><?= $t->_("save_btn"); ?></a><a href="#" class="button" id="cancel_deduct"><?= $t->_("cancel_btn"); ?></a></td></tr>
                 </table>

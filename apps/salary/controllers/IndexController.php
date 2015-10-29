@@ -392,9 +392,14 @@ class IndexController extends ControllerBase {
      */
     public function dectdiaAction() {
         $id = $this->request->get('id');
-
+        $t = $this->_getTranslation();
         $Deduction = new SalaryTaxsDeduction();
         $data = $Deduction->getdectdata($id);
+        $data[1]['deduct_name'] = $t->_("deduction_name");
+       $data[1]['deduct_amt'] = $t->_("deduction_amt");
+       $data[1]['save'] = $t->_("save_btn");
+       $data[1]['delete'] = $t->_("delete_btn");
+       $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }
@@ -404,12 +409,13 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function edit_deductAction() {
-        $data['id'] = $this->request->getPost('id');
+        $data['id'] = $this->request->getPost('id');        
         $data['deduce_name'] = $this->request->getPost('deduce_name');
-        $data['amount'] = $this->request->getPost('amount');
-        $Deduction = new SalaryTaxsDeduction();
+        $data['amount'] = $this->request->getPost('amount');       
+        $Deduction = new SalaryTaxsDeduction();        
         //print_r($data);exit;
         $Deduction->edit_deduction($data);
+        
         $this->view->disable();
     }
 

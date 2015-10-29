@@ -118,19 +118,19 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
-                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                                                                    echo '<li class="treeview"><a href="#"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                                                                               }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
                                                                                                 if (isset($top[1])) {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                     } else {
-                                                                                                 echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                     }
                                                                                 }
                                                                                 $i = 0;
@@ -154,14 +154,14 @@
 
                                                                                                                       if (strpos($key_name, 'user') !== false) {
                                                                                                                                 if($this->session->permission_code=="ADMIN"){
-                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
+                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../common/img/li.png" >' . $link_name . '</a></li>';       
                                                                                                                                 }
                                                                                                                                 else{
-                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../common/img/li.png" >' . $link_name . '</a></li>';
                                                                                                                                 }
                                                                                                                         }
                                                                                                                         else {                                                            
-                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../common/img/li.png" >' . $link_name . '</a></li>';
                                                                                                                         }                         
 
                                                                                                      }
@@ -180,43 +180,51 @@
 
             <!-- Content Wrapper. Contains page content -->
                <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">             
-                 <?php  
-                          foreach ($this->session->auth as $key_name => $key_value) {                                                                                                                              
-                                           $top = explode(" ", $key_value[0]);
-                                           if(strtolower($top[0] . $top[1]) ==$modulename){
-                                           if(count($key_value) >1 ){
-                                           echo '<div class="row"><div class="col-sm-2 link">';
-                                           echo '<aside class="sidebar-menu">';
-                                           foreach ($key_value as $name => $value) {
-                                                  if ($name > 0) {
-                                                      if ($v_result = explode(" ", $value)) {
-                                                          //set to link action value
-                                                          $link_val = strtolower($v_result[0] . $v_result[1]);
-                                                          $mod = explode(" ", $key_value[0]);
-                                                      }
-                                                      if (strpos($key_name, 'user') !== false) {
-                                                          if($this->session->permission_code=="ADMIN"){
-                                                           echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $value . '</a></li>';       
-                                                          }
-                                                          else{
-                                                          echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $value . '</a></li>';
-                                                          }
-                                                      } else {
-                                                          echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $value . '</a></li>';
-                                                      }
-                                                         
-                                                  }                                             
-                                            }
-                                              echo '</aside></div><div class="col-sm-10">';
-                                         }
-                                     }
-                                 }                               
+               <?php                           
+                          $j=0;
+                          foreach ($this->session->auth as $key_name => $key_value) {                                 
+                                       $top = explode(" ", $key_value["link0"]);
+                                        if(strtolower($top[0] . $top[1]) ==$module_name) {
+                                               if(count($key_value) >2 ) {
+                                                             echo '<div class="row"><div class="col-sm-2 link">';
+                                                             echo '<aside class="sidebar-menu">';
+                                                           foreach ($key_value as $name => $value) {
+                                                                                if($j > 1){
+                                                                                                if($j %2 ==0){
+                                                                                                    $link_name=$value;
+                                                                                                }
+                                                                                                if(is_string($name))
+                                                                                                {
+                                                                                                            if ($v_result = explode(" ", $value)) {
+                                                                                                                //set to link action value
+                                                                                                                $link_val = strtolower($v_result[0] . $v_result[1]);
+                                                                                                                $mod = explode(" ", $key_value["link0"]);
+                                                                                                            }
+                                                                                                            if (strpos($key_name, 'user') !== false) {
+                                                                                                             if($this->session->permission_code=="ADMIN"){
+                                                                                                              echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
+                                                                                                             }
+                                                                                                             else{
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                             }
+                                                                                                         } 
+                                                                                                         else {
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                         }       
+                                                                                               }
+                                                                                        }
+                                                                                   $j++;
+                                                                                }
+                                                                          echo '</aside></div><div class="col-sm-10">';
+                                                                   }
+                                                            }
+                               }                               
                
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();
                                  echo '</section></div></div>';
-                                     ?>
+                           ?>
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
             </div><!-- /.content-wrapper -->
 

@@ -147,8 +147,7 @@ class Leaves extends \Library\Core\BaseModel {
             } else {
                 $cond['error'] = "Apply Leave Before a week ";
             }
-        }
-        
+        }        
 
         return $cond;
     }

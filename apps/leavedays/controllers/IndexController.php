@@ -88,8 +88,8 @@ class IndexController extends ControllerBase {
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
-                    $desc,$creator_id);   
-            
+                    $desc,$creator_id);
+
             echo json_encode($error);
             $this->view->disable();
              }
@@ -130,18 +130,18 @@ class IndexController extends ControllerBase {
     }
     
     public function leavesettingAction(){
-        $Admin=new Db\CoreMember;
+        $Admin=new Db\CoreMember;               
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();
-        $setting=$LeaveSetting->getleavesetting();                
+        $setting=$LeaveSetting->getleavesetting();
         if($this->permission==1){
         $this->view->modulename = $this->module_name;
-        $this->view->setVar("leave_typelist", $typelist);  
-        $this->view->setVar("leave_setting", $setting); 
+        $this->view->setVar("leave_typelist", $typelist);
+        $this->view->setVar("leave_setting", $setting);
         }
         else {
             $this->response->redirect('core/index');
@@ -150,10 +150,12 @@ class IndexController extends ControllerBase {
 
     public function ltypediaAction() {
         $id = $this->request->get('id');
-
+        $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
         $data = $LeaveCategories->getltypedata($id);
-
+        $data[1]['delete_confirm'] = $t->_("deleteleavetype");
+        $data[1]['yes'] = $t->_("yes");
+        $data[1]['no'] = $t->_("cancel");
         $this->view->disable();
         echo json_encode($data);
     }

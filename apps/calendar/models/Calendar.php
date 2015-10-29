@@ -68,7 +68,7 @@ class Calendar extends Model {
      */
     public function edit_event($name,$sdate,$edate,$title,$id,$member_id){
          $this->db = $this->getDI()->getShared("db");
-         $update ="UPDATE calendar SET member_name ='".$name."',title ='".$title."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
+         $update ="UPDATE calendar SET member_name ='".$name."',title ='".mysql_real_escape_string($title)."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
          $query=  $this->db->query($update);
          return $query;
     }
@@ -83,7 +83,7 @@ class Calendar extends Model {
      * @since 27/7/15
      * @author David
      */     
-    public function delete_event($id) {                
+    public function delete_event($id) {
         $this->db=  $this->getDI()->getShared("db");
         $delete="DELETE FROM calendar WHERE id='".$id."'";
         $query=  $this->db->query($delete);

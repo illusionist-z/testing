@@ -51,6 +51,8 @@ $messages = array(
     "commute_fee"           => "ခရီးစရိတ္",
     "grand_total"           => "Grand Total",
     "enter_allname"           => "အက်ဳိးခံစားခြင္႔အမည္",
-    "enter_allamount"           => "အက်ဳိးခံစားခြင္႔ ေငြပမာဏ"
-    
+    "enter_allamount"           => "အက်ဳိးခံစားခြင္႔ ေငြပမာဏ",
+       "deduction_add" => "အခြန္ကင္းလြတ္အမ်ိဳးအစား",
+    "deduction_name" => "အခြန္ကင္းလြတ္အမည္",
+    "deduction_amt"  => "အခြန္ကင္းလြတ္ပမာဏ"
 );

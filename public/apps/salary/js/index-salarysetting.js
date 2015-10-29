@@ -178,19 +178,17 @@ var Deduction = {
             
            url:"dectdia?id="+d,
            type: "GET",
-           success:function(res){
+           success:function(res){          
                
-               
-               var result = $.parseJSON(res);
-             
-               
+               var result = $.parseJSON(res);             
+               console.log(result);
                var data ='<form id="edit_deduct_table"><table style="font-size:13px;">';               
                    data += '<tr><td></td><td><input type="hidden" value="'+result[0]['deduce_id']+ '" name="id" ></td></tr>'
-                        +'<tr><td><small>Deduction Name </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
-                        +'<tr><td><small>Deduction Amount </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
+                        +'<tr><td><small>'+result[1]['deduct_name']+'</small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
+                        +'<tr><td><small>'+result[1]['deduct_amt']+'</small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_deduct">Save</a><a href="#" class="button" id="delete_deduct">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
+               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_deduct">'+result[1]['save']+'</a><a href="#" class="button" id="delete_deduct">'+result[1]['delete']+'</a><a href="#" class="button" id="edit_close">'+result[1]['cancel']+'</a></td></tr>';
                data +='</table></form>';
                Deduction.Dia(data);
            }
@@ -296,8 +294,7 @@ var Deduction = {
             height: 240,
             async:false,            
             width: 500,
-            modal: true,
-            title:"Deduction Add"
+            modal: true            
         });                                
         $ovl.dialog("open");
         $ovl.css('color','black');
@@ -309,7 +306,6 @@ var Deduction = {
         $('#cancel_deduct').click(function(){
            $ovl.dialog("close");
            location.reload();
-
         });       
     },
      AddNew : function(d){

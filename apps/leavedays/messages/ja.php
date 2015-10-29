@@ -23,6 +23,9 @@ $messages = array(
   "searchusername" => "名前で検索",
   "edit" => "編集",
   "save" => "保存",
-  "addleavetype" => "休暇タイプ新規入力"
+    "yes" => "はい",
+  "cancel" => "Cancelru",
+  "addleavetype" => "休暇タイプ新規入力",
+    "deleteleavetype" => "あなたはほんとですか。"
 );
 

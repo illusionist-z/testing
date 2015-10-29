@@ -50,5 +50,8 @@ $messages = array(
     "commute_fee"           => "交通費",
     "grand_total"           => "Grand Total",
     "enter_allname"           => "手当名を記入してください。",
-    "enter_allamount"           => "手当金額を記入してください。"
+    "enter_allamount"           => "手当金額を記入してください。",
+       "deduction_add" => "Deduction Addto",
+    "deduction_name" => "Deduction 名前",
+    "deduction_amt"  => "Deduction Amount"
 );
