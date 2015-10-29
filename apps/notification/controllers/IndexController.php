@@ -87,13 +87,13 @@ class IndexController extends ControllerBase
         $this->view->setVar("result",$Detail_result);
     }
     
-    /**
+   /**
      * notification for calendar
      * when someone add event on calendar
      */
     public function noticalendarAction(){
         
-        $id=$this->request->getPost('id');
+        $id=$this->request->get('id');
         $Noti=new \workManagiment\Notification\Models\CoreNotification();
         if($this->session->permission_code=='ADMIN'){
         $Noti->calendarnotification($id);}
@@ -101,13 +101,16 @@ class IndexController extends ControllerBase
             $member_id=$this->session->user['member_id'];
             $Noti->usercalendarnotification($id,$member_id);
         }
+        $this->response->redirect("calendar/index");
     }
     
      public function notiattendancesAction(){
         
-        $id=$this->request->getPost('id');
+        $id=$this->request->get('id');
         $Noti=new \workManagiment\Notification\Models\CoreNotification();
         $Noti->attnotification($id);
+        $this->response->redirect("attendancelist/index/todaylist");
+
       
     }
     
