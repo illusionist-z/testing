@@ -21,6 +21,7 @@ var Noti = {
     },
     Accept: function() {
         var form = $('#noti_detail');
+         
 
         $.ajax({
             type: 'POST',

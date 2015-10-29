@@ -50,7 +50,7 @@ class IndexController extends ControllerBase
     public function usernameautolistAction() {
         //echo json_encode($result);
          $UserList=new Db\CoreMember();
-        $Username = $UserList->userautolistusername(); 
+        $Username = $UserList->autousername(); 
         //print_r($UserList);exit;
         $this->view->disable();    
         echo json_encode($Username);

@@ -94,7 +94,7 @@ class IndexController extends ControllerBase {
      * 
      */
     public function monthlylistAction() {
-     
+        $this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
         $UserName = $UserList::getinstance()->getusername();
@@ -120,15 +120,7 @@ class IndexController extends ControllerBase {
         echo json_encode($Username);
     }
 
-    //for monthly autocomplete 
-    public function monthautolistAction() {
-        //echo json_encode($result);
-        $UserList = new Db\CoreMember();
-        $Username = $UserList->monthautolistusername();
-        //print_r($UserList);exit;
-        $this->view->disable();
-        echo json_encode($Username);
-    }
+    
 
         
 }

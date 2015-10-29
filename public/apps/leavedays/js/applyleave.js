@@ -51,7 +51,7 @@ var ApplyForm = {
         
          var dict = [];
        $.ajax({
-                url:'applyautolist',
+                url:'autolist',
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
