@@ -38,12 +38,13 @@ class Calendar extends Model {
             }            
             return $events;
     }
-     /**
+    /**
      * @desc create new event by click on calendar
      * @author David
      * @version Su Zin Kyaw
+     
      */
-    public function create_event($creator_name,$creator_id,$id,$sdate,$edate,$title,$uname){
+    public function create_event($creator_id,$id,$sdate,$edate,$title,$uname){
         $noti_id=rand();
          $this->db = $this->getDI()->getShared("db");
          $insert ="INSERT INTO calendar (member_name,member_id,title,startdate,enddate,allDay,noti_id) Values ('".$uname."','".$id."','".$title."','".$sdate."','".$edate."','true','" . $noti_id . "')";
@@ -51,14 +52,14 @@ class Calendar extends Model {
         $admins=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='ADMIN' and core_member.member_id!= '" . $creator_id . "' ");
         $admins=$admins->fetchall();
         foreach ($admins as $admins) {
-           
-        $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_name . "','" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
+           // echo $admins['member_id'];echo "---";
+        $this->db->query("INSERT INTO core_notification (noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
         }
         $users=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id!= '" . $creator_id . "' ");
         $users=$users->fetchall();
         foreach ($users as $users) {
             //echo $users['member_id'];echo "---";
-        $this->db->query("INSERT INTO core_notification_rel_member (creator_name,member_id,noti_id,status,module_name) VALUES('" . $creator_name. "','" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
+        $this->db->query("INSERT INTO core_notification_rel_member (member_id,noti_id,status,module_name) VALUES('" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
         }
          return $query;
     }
@@ -128,6 +129,21 @@ class Calendar extends Model {
         $data = $result->fetchall();
         return $data;
     }
-    
+    /**
+     *
+     *  type get $member_id
+     * @author Saw Zin Min Tun
+     */
+    public function memidcal($uname) {
+        
+            //$sql = "select salary_master.member_id from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE core_member.full_name ='".$uname."'";
+            $sql = "select * from core_member WHERE full_name ='".$uname."'";
+           // print_r($sql);exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+           //print_r($row);exit;
+        
+        return $row;
+    }
     
 }

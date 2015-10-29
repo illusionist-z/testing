@@ -32,10 +32,10 @@ class IndexController extends ControllerBase {
         
     }
 
-    public function leaveuserautolistAction() {
+    public function autolistAction() {
         //echo json_encode($result);
         $UserList = new Db\CoreMember();
-        $Username = $UserList->leaveuserautolistusername();
+        $Username = $UserList->autousername();
         //print_r($UserList);exit;
         $this->view->disable();
         echo json_encode($Username);

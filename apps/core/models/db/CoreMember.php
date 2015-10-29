@@ -305,56 +305,14 @@ class CoreMember extends \Library\Core\BaseModel {
         $a = $this->db->query($sql);
     }
 
+    //for auto complete function
     public function autousername() {
         $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where member_id  IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-
-    //for monthly list complete username
-    public function monthautolistusername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-     //for salary username complete 
-    public function salunameautolistusername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-    // for apply auto username
-    public function applyautousername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-    //for user list complete username
-    public function userautolistusername() {
-        $this->db = $this->getDI()->getShared("db");
         $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
         $getname = $user_name->fetchall();
         return $getname;
     }
 
-    //for leave list complete username
-    public function leaveuserautolistusername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-     //calender for auto complete for username
-    public function calenderautousername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
   
 
     public function GetAdminstratorId() {

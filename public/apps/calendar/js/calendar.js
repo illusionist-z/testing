@@ -182,6 +182,39 @@ var Calendar = {
    }
     
     },
+    getmemid: function (name){                       
+        //var name = document.getElementById('namelist').value;
+           // alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'index/getcalmemberid?uname='+name,
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                //alert(json_obj);
+                for (var i in json_obj){
+                    //alert(json_obj[i].member_id);
+               // var aa = json_obj[i].member_id;
+                //alert(aa);
+                //$('#formemberid').text(json_obj[i].member_id);
+               // $(".salusername").text(aa);
+                dict.push(json_obj[i].member_id);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                // alert(dict);
+                 loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                      //alert(dict);
+                        $('#formemberid').val(dict);
+                     }
+                     
+       },
     remove_event_member : function() {                                              
         var selectedvalue = [];        
       if($(':checkbox:checked').length > 0){
@@ -366,9 +399,11 @@ var Calendar = {
     },
     //create new event
     create: function (dia) {
-        $id = $('#select_name option:selected').attr("name");
+         
+        //alert($('#create_event').serialize());
+       // $id = $('#select_name option:selected').attr("name");
         $.ajax({
-            url: "index/create/"+$id,
+            url: "index/create",
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",
@@ -437,6 +472,12 @@ $(document).ready(function () {
    $('#event_uname').click(function(){
        Calendar.eventcalenderautolist();
    });
-   
+    $("#create_dialog").mouseenter(function(){
+       
+       var name = document.getElementById('select_name').value;
+      //alert(name);
+		Calendar.getmemid(name);
+               
+	});
 });
 
