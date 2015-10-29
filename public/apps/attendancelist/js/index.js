@@ -297,6 +297,7 @@ var Attendance = {
                             + "<td>" + json_obj[i].full_name + "</td>"
                             + "<td>" + localcheckin + " </td>"
                             + "<td style='color:red'>" + late + "</td>"
+                            + "<td>" + json_obj[i].notes + "</td>"
                             + "<td>" + localcheckout + "</td>"
                             + "<td>" + workinghour + "</td>"
                             + "<td>" + overtime + "</td>"

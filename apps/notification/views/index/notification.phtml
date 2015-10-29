@@ -40,7 +40,7 @@
                 <li>
                
                     
-                <a href="" class="calendar" id="<?php echo  $noti['noti_id'];?>">
+                <a href="<?php echo $baseUri;?>notification/index/noticalendar?id=<?php echo $noti['noti_id'];?>" class="calendar" id="<?php echo  $noti['noti_id'];?>">
                 <img src="<?php echo $baseUri;?>common/img/notid.png"> 
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> marked calendar for  <?php echo $noti['title']; echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
                ?></a></span>
@@ -57,7 +57,7 @@
                 <li>
                
                     
-                <a href="" class="attendances" id="<?php echo  $noti['noti_id'];?>">
+                <a href="<?php echo $baseUri;?>notification/index/notiattendances?id=<?php echo $noti['noti_id'];?>" class="attendances" id="<?php echo  $noti['noti_id'];?>">
                 <img src="<?php echo $baseUri;?>common/img/notid.png"> 
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> is Late for   <?php echo $noti['notes']; echo " at <b>".date("d-m-Y", strtotime( $noti['checkin_time']))."</b> ";
                ?></a></span>
