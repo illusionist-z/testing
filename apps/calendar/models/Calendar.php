@@ -81,7 +81,7 @@ class Calendar extends Model {
     }
     /**    
      * @since 27/7/15
-     * @author David
+     * @author David JP <david.gnext@gmail.com>
      */     
     public function delete_event($id) {
         $this->db=  $this->getDI()->getShared("db");
@@ -115,7 +115,7 @@ class Calendar extends Model {
                 if($result2->numRows() == 0){
                 $return = 1;
                 }
-                else{          
+                else{
                     $query3 = "update member_event_permission set delete_flag = 0 where permit_name = '".$permit_name."' and member_name = '".$id."'";
                     $this->db->query($query3);
                 $return = 0;

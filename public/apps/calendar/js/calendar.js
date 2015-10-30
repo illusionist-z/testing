@@ -107,8 +107,8 @@ var Calendar = {
                 else {
                     $('#calendar').remove();    //remove calendar origin     
                     $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>');//replace a new calendar               
-                    Calendar.init(d);
-                }
+                    
+                }Calendar.init(d);
             }
         });
     },

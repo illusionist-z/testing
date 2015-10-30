@@ -24,20 +24,29 @@ class IndexController extends ControllerBase {
     /**
      * show today attendance list
      */
-    public function todaylistAction() {
+    public function todaylistAction( ) {
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');
+        $Admin=new Db\CoreMember;
+        $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
+        $this->view->setVar("noti",$noti);
         $name = $this->request->get('namelist');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);        
-        $this->view->attlist = $ResultAttlist;
-        $this->view->offset = $offset;
+        if($this->permission==1){
+        $this->view->attlist=$ResultAttlist;
+        $this->view->offset= $offset;
         $this->view->uname = $Username;       
-        //$this->view->modulename=$this->module_name;
+        $this->view->modulename = $this->module_name;        
     }
+        else {
+            $this->response->redirect('core/index');
+        }   
+    }        
    
     public function editTimedialogAction($id){
         $Att  = new \workManagiment\Attendancelist\Models\Attendances();
@@ -105,5 +114,4 @@ class IndexController extends ControllerBase {
         echo json_encode($Username);
     }
 
-        
 }

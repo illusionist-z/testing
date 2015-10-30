@@ -13,7 +13,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
         $this->assets->addJs('apps/calendar/js/moment.min.js');
-        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
+        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
