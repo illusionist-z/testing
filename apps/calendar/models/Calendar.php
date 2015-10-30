@@ -42,6 +42,7 @@ class Calendar extends Model {
      * @desc create new event by click on calendar
      * @author David
      * @version Su Zin Kyaw
+     
      */
     public function create_event($creator_id,$id,$sdate,$edate,$title,$uname){
         $noti_id=rand();
@@ -68,7 +69,7 @@ class Calendar extends Model {
      */
     public function edit_event($name,$sdate,$edate,$title,$id,$member_id){
          $this->db = $this->getDI()->getShared("db");
-         $update ="UPDATE calendar SET member_name ='".$name."',title ='".mysql_real_escape_string($title)."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
+         $update ="UPDATE calendar SET member_name ='".$name."',title ='".$title."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
          $query=  $this->db->query($update);
          return $query;
     }
@@ -81,9 +82,9 @@ class Calendar extends Model {
     }
     /**    
      * @since 27/7/15
-     * @author David JP <david.gnext@gmail.com>
+     * @author David
      */     
-    public function delete_event($id) {
+    public function delete_event($id) {                
         $this->db=  $this->getDI()->getShared("db");
         $delete="DELETE FROM calendar WHERE id='".$id."'";
         $query=  $this->db->query($delete);
@@ -91,8 +92,7 @@ class Calendar extends Model {
     }
     
     public function remove_member($remove_id,$id){                               
-        $remove_id = implode($remove_id,"','");                
-        $query = "update member_event_permission set delete_flag = 1 where permit_name IN ('$remove_id') and member_name = '".$id."'";
+        $query = "update member_event_permission set delete_flag =1 where permit_name ='$remove_id' and member_name = '".$id."'";
         $this->db->query($query);                             
     }
    /**
@@ -115,7 +115,7 @@ class Calendar extends Model {
                 if($result2->numRows() == 0){
                 $return = 1;
                 }
-                else{
+                else{          
                     $query3 = "update member_event_permission set delete_flag = 0 where permit_name = '".$permit_name."' and member_name = '".$id."'";
                     $this->db->query($query3);
                 $return = 0;
@@ -129,6 +129,21 @@ class Calendar extends Model {
         $data = $result->fetchall();
         return $data;
     }
-    
+    /**
+     *
+     *  type get $member_id
+     * @author Saw Zin Min Tun
+     */
+    public function memidcal($uname) {
+        
+            //$sql = "select salary_master.member_id from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE core_member.full_name ='".$uname."'";
+            $sql = "select * from core_member WHERE full_name ='".$uname."'";
+           // print_r($sql);exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+           //print_r($row);exit;
+        
+        return $row;
+    }
     
 }

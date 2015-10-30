@@ -13,10 +13,19 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/attendancelist/js/index.js');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->config = \Module_Config::getModuleConfig('leavedays');        
-        $this->view->module_name =  $this->router->getModuleName();
-        $this->permission = $this->setPermission();
+        $this->assets->addCss('common/css/css/style.css');
+        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $Admin = new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti = $Admin->GetAdminNoti($id);
+        $this->view->setVar("noti", $noti);
         $this->view->t = $this->_getTranslation();
+        $this->module_name =  $this->router->getModuleName();
+        
+        $this->permission = $this->setPermission();
+        
+        $this->view->t = $this->_getTranslation();
+        $this->view->module_name=$this->module_name;
         
     }        
     
@@ -56,6 +65,9 @@ class IndexController extends ControllerBase {
         $data[1]['edit_att'] = $t->_("edit_att_list");
         $data[1]['name'] = $t->_("username");
         $data[1]['note'] = $t->_("note");
+        $data[1]['att_time'] = $t->_("att_time");
+        $data[1]['save'] = $t->_("save");
+        $data[1]['cancel'] = $t->_("cancel");
         echo json_encode($data);
         $this->view->disable();
     }
@@ -83,7 +95,7 @@ class IndexController extends ControllerBase {
      * 
      */
     public function monthlylistAction() {
-     
+        $this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
         $UserName = $UserList::getinstance()->getusername();
@@ -91,10 +103,15 @@ class IndexController extends ControllerBase {
         $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
         $monthlylist = $Attendances->showattlist();
         //print_r($monthlylist);exit;
+        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $UserName);
         $this->view->offset = $offset;
+        }
+        else {
+            $this->response->redirect('core/index');
+        }  
     }
 
     public function autolistAction() {
@@ -104,14 +121,6 @@ class IndexController extends ControllerBase {
         echo json_encode($Username);
     }
 
-    //for monthly autocomplete 
-    public function monthautolistAction() {
-        //echo json_encode($result);
-        $UserList = new Db\CoreMember();
-        $Username = $UserList->monthautolistusername();
-        //print_r($UserList);exit;
-        $this->view->disable();
-        echo json_encode($Username);
-    }
+    
 
 }

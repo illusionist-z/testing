@@ -16,12 +16,17 @@ class AbsentController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->view->t = $this->_getTranslation();
+        $this->assets->addJs('apps/attendancelist/js/absent.js');
     }
 
-    public function indexAction() {
+      public function addAbsentAction() {
+
         $Attendance = new Attendance();
-        $Attendance->absent();
+        $id = $this->request->get('id');
+        $message = $Attendance->absent($id);
+        echo json_encode($message);
         $this->view->disable();
+        //$this->response->redirect('attendancelist/absent/absentlist');
     }
 
     public function absentlistAction() {

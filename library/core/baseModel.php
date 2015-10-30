@@ -9,7 +9,7 @@ namespace Library\Core;
  */
 
 Class BaseModel extends \Phalcon\Mvc\Model {
-    
+
     public function initialize() {
         
     }

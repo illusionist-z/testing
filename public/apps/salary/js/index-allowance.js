@@ -36,10 +36,10 @@ var Allowance = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 260,
+            height: 'auto',
             resizable:false,
             async:false,            
-            width: 500,
+            width: 'auto',
             modal: true,
             title:title,
            /* show:{
@@ -83,22 +83,23 @@ var Allowance = {
         $del.css('background','#F5F5F5');
           $del.dialog({
             autoOpen:false,
-            height:190,
-            width:350,
+            height:'auto',
+            width:'auto',
+            resizable: false,
             closeText:'',
             modal:true,
             title:"Confirm Delete",
             buttons:{
-                Delete:function(){
+                Yes:function(){
                     Allowance.Confirm(d);
                 },
-                Cancel:function(){
+                No:function(){
                     $(this).dialog("close");
                 }
             }
            
         });
-         $del.html("<p>Are u sure to <b style='color:red'>delete</b> ?</p>");
+         $del.html("<p>Are u sure to delete?</p>");
         $del.dialog("open");  
     },
     Confirm :function(d){

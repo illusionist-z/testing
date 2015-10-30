@@ -10,14 +10,14 @@ namespace workManagiment\Core\Models;
  * and open the template in the editor.
  */
 
-class SetLanguage extends \Library\Core\BaseModel {
+class SetLanguage extends \Library\Core\BaseModel {    
     
     public function initialize() {        
         parent::initialize();        
     }
 
     public static function getInstance() {
-       return new self();
+        return new self();
     }
     
     public function settinglanguage($language,$member) {        

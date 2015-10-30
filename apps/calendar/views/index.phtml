@@ -9,6 +9,7 @@
 
         <!-- Ionicons -->
 
+       
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
@@ -49,7 +50,7 @@
                                                         $img=$this->session->user['member_profile'];
                                                     }
                                         ?>                                                 
-                                    <img src="../uploads/<?php echo  $img;?>" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -76,8 +77,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->user['member_login_name'];
-        if ( $name=='admin'){?>
+                                      <?php $name=$this->session->permission_code;
+        if ( $name=='ADMIN'){?>
                                         <div class="pull-left">
                                             <a href="../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
@@ -114,7 +115,7 @@
                     <aside>
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
-                            <?php                                       
+                       <?php                                       
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
@@ -173,9 +174,9 @@
                         }
                         ?>
                     </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
 
 
             <!-- Content Wrapper. Contains page content -->
@@ -228,14 +229,13 @@
                     <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
             </div><!-- /.content-wrapper -->
 
-            <footer class="main-footer" style="margin-left:0;">
-                <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-                   <div class="language">
+        <footer class="main-footer" style="margin-left:0;">
+            <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+            <div class="language">
                    <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../common/img/myanmar.jpg' width='25px'>") ?>
-                </div>
-            </footer>
-
-
+            </div>
+        </footer>
+       
 <div id="notidetail" style=" display:none;" class="navbar">
     
 </div>

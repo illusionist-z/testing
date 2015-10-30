@@ -1,17 +1,32 @@
+<div class="noticenter">
+    <h1>Apply Leave Lists</h1>
+    
+</div>
 <div class="forscroll">
+    
 <?php  foreach( $noti as $noti){
     foreach ($noti as $noti){
         ?>
         <?php switch($noti['module_name']){ case "leaves": {?>
+    
         <li>
        <!-- inner menu: contains the actual data -->
-            <ul class="menu">
+      
+            <ul class="menu" id="showcenter">
                 <li>
                 <?php if($this->session->permission_code=="ADMIN"){?>
                     
-                <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
-                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
+               <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
+    <!--                 <img src="<?php echo $baseUri;?>common/img/notid.png" class="img-circle"> -->
+                    <?php
+                                  if($noti['member_profile']==null){
+                                     $img = "profile1.jpg";}
+                                  else{
+                                       $img=$noti['member_profile'];
+                                   }
+                        ?>                                                 
+                   <img src="../../uploads/<?php echo  $img;?>"  id="imghover" class="img-circle" width="20px" alt="Image"/>    
+                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> to <b>".date("d-m-Y", strtotime( $noti['end_date']))."</b>";
                 }else {?>
                 <span class="foruser">
                     <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">

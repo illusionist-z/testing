@@ -3,14 +3,16 @@
 namespace workManagiment\Core\Controllers;
 use workManagiment\Core\Models\SetLanguage;
 use workManagiment\Auth\Models\Permission;
+use Library;
 
-class IndexController extends ControllerBase {
+class IndexController extends Library\Core\Controller {
 
     public function initialize() {
         parent::initialize();
     }
     public function  indexAction(){
          $this->setCommonJsAndCss();
+
     }
       
      public function setLanguageAction($language='')

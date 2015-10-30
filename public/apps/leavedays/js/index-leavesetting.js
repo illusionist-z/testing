@@ -1,8 +1,7 @@
 
 var Categories = {
     isOvl:false,
-    DeleteDia : function (d){
-        
+     DeleteDia : function (d){
         $.ajax({
             
            url:"ltypedia?id="+d,
@@ -30,12 +29,14 @@ var Categories = {
         }
         
         $ovl = $('#edit_ltype_dia');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 200,
+            height: 'auto',
             async:false,
             resizable:false,
-            width: 400,
+            width: 'auto',
             modal: true,
             title:"Delete Leave Categories"
         });                        
@@ -66,31 +67,55 @@ var Categories = {
 
             }
         }).done(function(){
-            $('body').load('leavesetting');
+            location.reload();
         });
-    },   
-       Diaadd : function (){
+    },
+     Add : function (){
+      
+        $.ajax({
+            
+           url:"ltyadd",
+           type: "get",
+           success:function(d){      
+              var result = $.parseJSON(d);
+               var data ='<form id="Add_new_ltype"><table>';               
+                   data += '<tr><td></td></tr>'
+                        +'<tr><td>'+result[1]['leave_category']+'</td><td><input type="text" style="margin-top:10px;" value="" name="ltype_name" placeholder="'+result[1]['enterltp']+'"></td>'
+                       
+                         +'<tr><td></td></tr>';             
+               data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype">'+result[1]['yes']+'</a><a href="#" class="button" id="cancel_ltype">'+result[1]['no']+'</a></td></tr>';
+               data +='</table></form>';
+               Categories.Diaadd(data,result[1]['addleavetype']);
+           }
+        });
+        },
+       Diaadd : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
         }        
         
         $ovl = $('#add_new_ltype');
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 155,
+            height: 'auto',
             async:false, 
             resizable:false,
-            width: 400,
-            modal: true            
-        });                                
+            width: 'auto',
+            modal: true,
+            title:title
+        });                        
+        $ovl.html(d);
         $ovl.dialog("open");
         $('#Add_ltype').click(function(){
             Categories.AddNew($ovl);
+           
         });  
           
         $('#cancel_ltype').click(function(){
            $ovl.dialog("close");
-           $('body').load('leavesetting');
+         
 
         });       
     },
@@ -104,9 +129,9 @@ var Categories = {
                 d.dialog("close");                
             }
         }).done(function(){
-           $('body').load('leavesetting',function(){
-               $('.dropdown-toggle').dropdown();
-           }); 
+             $('body').load('leavesetting',function(){
+                 $('.dropdown-toggle').dropdown();
+             });
         });
     }
 

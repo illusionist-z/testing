@@ -176,17 +176,15 @@
                         }
                         ?>
                     </ul>
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
 
-
-            <!-- Content Wrapper. Contains page content -->
-                  <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">             
-                  <?php                           
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
+                <?php                           
                           $j=0;
-                          foreach ($this->session->auth as $key_name => $key_value) {   
-                              
+                          foreach ($this->session->auth as $key_name => $key_value) {                                 
                                        $top = explode(" ", $key_value["link0"]);
                                         if(strtolower($top[0] . $top[1]) ==$module_name) {
                                                if(count($key_value) >2 ) {
@@ -222,21 +220,22 @@
                                                                           echo '</aside></div><div class="col-sm-10">';
                                                                    }
                                                             }
-                                }                               
+                               }                               
                
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();
                                  echo '</section></div></div>';
-                                     ?>
-                       <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
-            </div><!-- /.content-wrapper -->
-             <footer class="main-footer" style="margin-left:0;">
-                <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-                <div class="language">
+                           ?>
+            <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
+        </div><!-- /.content-wrapper -->
+
+        <footer class="main-footer" style="margin-left:0;">
+            <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+            <div class="language">
                    <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
-                </div>
-            </footer>
+            </div>
+        </footer>
        
 <div id="notidetail" style=" display:none;" class="navbar">
     

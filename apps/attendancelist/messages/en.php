@@ -30,5 +30,9 @@ $messages = array(
     "position"       => "Position",
     "email"       => "Email",
     "phoneno"       => "Phone no",
-    "address"       => "Address"
+    "address"       => "Address",
+    "att_time" => "Attendance Time",
+    "note" =>"Reason Note",
+    "save" => "Save",
+    "cancel" => "Cancel"
 );

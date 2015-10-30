@@ -27,5 +27,10 @@ $messages = array(
   "cancel" => "Cancelru",
   "addleavetype" => "休暇タイプ新規入力",
     "deleteleavetype" => "あなたはほんとですか。"
+  "addleavetype" => "休暇タイプ新規入力",
+  "deleteleavetype" => "休暇タイプの削除",
+  "yes" => "はい",
+  "cancel" => "いいえ",
+  "enterltp" => "休暇タイプを入力してください"
 );
 

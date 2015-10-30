@@ -27,4 +27,10 @@ $messages = array(
    "cancel" => "ပယ္မည္",
   "addleavetype" => "ခြင္႔အမ်ဳိးအစားအသစ္ထည္႔ရန္",
     "deleteleavetype" => "ဖ်က္ရန္အတည္ၿပဳေပးပါ။"
+  "addleavetype" => "ခြင္႔အမ်ဳိးအစားအသစ္ထည္႔ရန္",
+  "deleteleavetype" => "ခြင္႔ႊရက္ကိုု ဖ်က္ရန္",
+  "yes" => "Yes",
+  "cancel" => "No",
+  "enterltp" => "ခြင္႔အမ်ဳိးအစား"
+    
 );

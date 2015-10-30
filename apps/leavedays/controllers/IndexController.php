@@ -21,7 +21,8 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         
         $this->assets->addJs('common/js/export.js');        
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');           
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
+        
         $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
@@ -31,15 +32,28 @@ class IndexController extends ControllerBase {
         
     }
 
-    public function leaveuserautolistAction() {
+    public function autolistAction() {
         //echo json_encode($result);
         $UserList = new Db\CoreMember();
-        $Username = $UserList->leaveuserautolistusername();
+        $Username = $UserList->autousername();
         //print_r($UserList);exit;
         $this->view->disable();
         echo json_encode($Username);
     }
 
+      /**
+     * 
+     * get member_id 
+     
+     */
+    public function getapplymemberidAction() {
+       $data = $this->request->get('username');
+       //print_r($uname);exit;
+        $leavetype = new LeaveCategories();
+        $cond = $leavetype->memidapplyleave($data);
+        echo json_encode($cond);
+        $this->view->disable();
+    }
     /**
      * @author David
      * @type   $id,$sdate,$edate,$type,$desc
@@ -82,7 +96,7 @@ class IndexController extends ControllerBase {
                   }     
             else{
             $creator_id=$this->session->user['member_id'];
-            $uname =$this->request->getPost('username');
+            $uname =$this->request->getPost('member_id');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');
@@ -129,6 +143,9 @@ class IndexController extends ControllerBase {
         }
     }
     
+    /**
+     * Leave Setting
+     */
     public function leavesettingAction(){
         $Admin=new Db\CoreMember;               
         $id=$this->session->user['member_id'];
@@ -147,8 +164,23 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
+    
+    public function ltyaddAction() {
+        $t = $this->_getTranslation();
+        $data[1]['addleavetype'] = $t->_("addleavetype");
+        $data[1]['leave_category'] = $t->_("leave_category");
+        $data[1]['yes'] = $t->_("yes");
+        $data[1]['no'] = $t->_("cancel");
+        $data[1]['enterltp'] = $t->_("enterltp");
+        //print_r($data);exit;
+        $this->view->disable();
+        echo json_encode($data);
+    }
 
-    public function ltypediaAction() {
+    /**
+     * Edit Leave categories with dialog
+     */
+     public function ltypediaAction() {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
@@ -199,5 +231,11 @@ class IndexController extends ControllerBase {
 
         $this->_leave->rejectleave($noti_id);
     }
-
+    //apply auto username
+    public function applyautolistAction() {
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->applyautousername();
+        $this->view->disable();
+        echo json_encode($Username);
+    }
 }

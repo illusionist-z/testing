@@ -114,10 +114,10 @@ var Tax = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 390,
+            height: 'auto',
             async:false,  
             resizable:false,
-            width: 450,
+            width: 'auto',
             modal: true,
             title:title,
             /*show:{
@@ -172,7 +172,7 @@ var Tax = {
  */
 var Deduction = {
     isOvl:false,
-    Edit : function (d){
+   Edit : function (d){
         
         $.ajax({
             
@@ -190,11 +190,11 @@ var Deduction = {
                          +'<tr><td></td></tr>';             
                data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_deduct">'+result[1]['save']+'</a><a href="#" class="button" id="delete_deduct">'+result[1]['delete']+'</a><a href="#" class="button" id="edit_close">'+result[1]['cancel']+'</a></td></tr>';
                data +='</table></form>';
-               Deduction.Dia(data);
+               Deduction.Dia(data,result[1]['deduce_frm']);
            }
         });
         },
-    Dia : function (d){
+    Dia : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -204,11 +204,11 @@ var Deduction = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 210,
+            height: 'auto',
             async:false,            
-            width: 500,
+            width: 'auto',
             modal: true,
-            title:"Deduction Edit"
+            title:title
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
@@ -245,21 +245,25 @@ var Deduction = {
     },
     Delete : function(d){
         $del = $('#confirm');
-
+        $del.css('color','black');
+        $del.css('background','#F5F5F5');
           $del.dialog({
             autoOpen:false,
-            height:190,
-            width:350,
+            height:'auto',
+            width:'auto',
             closeText:'',
+            resizable:false,
+            title:'Confirm Delete',
             modal:true,
             buttons:{
-                Delete:function(){
+                Yes:function(){
                     Deduction.Confirm(d);
                 },
-                Cancel:function(){
+                No:function(){
                     $(this).dialog("close");
                 }
             }
+           
            
         });
          $del.html("<p>Are u sure to delete?</p>");
@@ -283,7 +287,7 @@ var Deduction = {
            location.reload();
         });
     },
-       Diaadd : function (){
+       Diaadd : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -291,11 +295,14 @@ var Deduction = {
         $ovl = $('#add_new_dt');
         $ovl.dialog({
             autoOpen: false,
-            height: 240,
-            async:false,            
-            width: 500,
-            modal: true            
-        });                                
+            height: 'auto',
+            async:false,     
+            resizable:false,
+            width: 'auto',
+            modal: true,
+            title:title
+        });                        
+        $ovl.html(d);
         $ovl.dialog("open");
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');

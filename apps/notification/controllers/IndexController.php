@@ -9,8 +9,7 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();
         
-               //$this->assets->addJs('common/js/notification.js');
-
+        
     }
 
     
@@ -86,11 +85,9 @@ class IndexController extends ControllerBase
         $Detail_result=$Noti_detail->GetNotiInfo($module_name, $noti_id);
         $this->view->setVar("module_name",$module_name);
         $this->view->setVar("result",$Detail_result);
-         $this->view->t = $this->_getTranslation();
-
     }
     
-    /**
+   /**
      * notification for calendar
      * when someone add event on calendar
      */

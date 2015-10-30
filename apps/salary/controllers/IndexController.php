@@ -17,7 +17,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
-        
+        $this->assets->addCss('apps/salary/css/index_show_salarylist.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/salary/css/salary.css');        
@@ -26,7 +26,7 @@ class IndexController extends ControllerBase {
         //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
         //$this->assets->addJs('apps/salary/js/index-allowance.js');
-        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
 
         $this->setCommonJsAndCss();
@@ -54,7 +54,8 @@ class IndexController extends ControllerBase {
         //var_dump($getsalarydetail);exit;
         if($this->permission==1){
         
-        $this->view->salarydetail = $getsalarydetail;        
+        $this->view->salarydetail = $getsalarydetail;
+        $this->view->modulename = $this->module_name;
         }
         else {
         $this->response->redirect('core/index');
@@ -221,6 +222,19 @@ class IndexController extends ControllerBase {
         $this->view->disable();
     }
 
+     /**
+     * 
+     * get member_id salary Dialog Box
+     
+     */
+    public function getmemberidAction() {
+       $data = $this->request->get('uname');
+       //print_r($uname);exit;
+        $Salarydetail = new SalaryMaster();
+        $cond = $Salarydetail->memidsalary($data);
+        echo json_encode($cond);
+        $this->view->disable();
+    }
     /**
      * show allowance list
      * @author Su Zin kyaw
@@ -396,10 +410,11 @@ class IndexController extends ControllerBase {
         $Deduction = new SalaryTaxsDeduction();
         $data = $Deduction->getdectdata($id);
         $data[1]['deduct_name'] = $t->_("deduction_name");
-       $data[1]['deduct_amt'] = $t->_("deduction_amt");
-       $data[1]['save'] = $t->_("save_btn");
-       $data[1]['delete'] = $t->_("delete_btn");
-       $data[1]['cancel'] = $t->_("cancel_btn");
+        $data[1]['taxeditform'] = $t->_("taxeditform");
+        $data[1]['deduct_amt'] = $t->_("deduction_amt");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['delete'] = $t->_("delete_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }
@@ -433,6 +448,19 @@ class IndexController extends ControllerBase {
         $this->view->disable();
     }
 
+    public function show_add_dectAction() {
+        $t = $this->_getTranslation();
+        $data[1]['deduce_frm'] = $t->_("deduce_frm");
+        $data[1]['deduce_name'] = $t->_("deduce_name");
+        $data[1]['amount'] = $t->_("amount");
+        $data[1]['wr_deduce_name'] = $t->_("wr_deduce_name");
+        $data[1]['wr_deduce_amount'] = $t->_("wr_deduce_amount");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
+        $this->view->disable();
+        echo json_encode($data);
+        
+    }
     /**
      * Delete Deduction 
      * @author Su Zin Kyaw
@@ -505,4 +533,23 @@ class IndexController extends ControllerBase {
         $this->db->query($sql_salaryallowance);
     }
     
+    public function printtaxformAction(){
+    
+        
+    }
+    
+    public function printtaxAction(){
+    
+        
+    }
+    
+     //for salary username autocomplete 
+    public function salaryusernameAction() {
+        //echo json_encode($result);
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->autousername();
+        //print_r($UserList);exit;
+        $this->view->disable();
+        echo json_encode($Username);
+    }
 }

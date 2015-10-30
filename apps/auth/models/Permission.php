@@ -2,17 +2,16 @@
 namespace workManagiment\Auth\Models;
 use workManagiment\Auth\Models\Db;
 use Phalcon\Mvc\Model;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-class Permission { 
+class Permission {
 
     public static function getInstance() {
-        return new self();
+    return new self();
     }
     
     /**
@@ -23,11 +22,12 @@ class Permission {
      */
     public function get($user, &$permissions = array(),$lang) {
       
+        //print_r($user);
         $id = $user['member_id'];
-        $dept_code = $user['member_dept_code'];
+        //$dept_code = $user['member_dept_code'];
         
         // Get Permission groups
-        $permissinGroups = $this->getGroup($id, $dept_code);
+        $permissinGroups = $this->getGroup($id);
         
         // Get Permissons for user
         if (!$this->getPermissions($permissinGroups, $permissions,$lang)) {
@@ -44,7 +44,7 @@ class Permission {
      * @param string $dept_code
      * @return array Permission code.
      */
-    public function getGroup($id, $dept_code) {
+    public function getGroup($id) {
         try {
             $permissions = Db\CorePermissionRelMember::findByRelMemberId($id);
        //var_dump($permissions);exit;
@@ -60,6 +60,7 @@ class Permission {
         } catch (\Exception $e) {
             throw $e;
         }
+        //print_r($permissionGroups);exit;
         return $permissionGroups;
     }
 
@@ -92,7 +93,7 @@ class Permission {
                         'permission_group_code IN (' . implode(',', $inFields) . ') ',
                         'bind' => $aryBind
             ]);
-          
+            
             // The permissions set up for each module. 
             while ($results->valid()) {                
                 foreach ($results as $row) {
@@ -107,10 +108,11 @@ class Permission {
                             $per_result[$res['permission_code']]['link'.$i] = $res[1];    //get link text
                             $i++;
                             }
-                   }
-                    
-                }              
-            }                          
+                   
+                   //$results->next()
+                }
+            }
+            //print_r($per_result);exit;
         } catch (\Exception $e) {
             throw $e;
         }

@@ -55,4 +55,12 @@ $messages = array(
        "deduction_add" => "အခြန္ကင္းလြတ္အမ်ိဳးအစား",
     "deduction_name" => "အခြန္ကင္းလြတ္အမည္",
     "deduction_amt"  => "အခြန္ကင္းလြတ္ပမာဏ"
+    "taxeditform" => "Tax deduce ျပင္ရန္",
+    "tax_edit" => "အခြန္ႏႈန္းျပင္ရန္",
+    "deduce_frm" => "deduceပံုုစံျဖည္႔ရန္",
+    "deduce_name" => "deduceအမည္",
+    "amount" => "ႏႈန္း",
+    "wr_deduce_name" => "deduceအမ်ဳိးအစား",
+    "wr_deduce_amount" => "deduceႏႈန္း"
+    
 );

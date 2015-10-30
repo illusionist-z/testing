@@ -26,4 +26,9 @@ $messages = array(
   "cancel" => "Cancel",
   "addleavetype" => "Add New Leave Categories",
   "deleteleavetype" => "Are you sure to delete"
+  "addleavetype" => "Add New Leave Categories",
+  "deleteleavetype" => "Delete Categories",
+  "yes" => "Yes",
+  "cancel" => "No",
+  "enterltp" => "Enter Leave type"
 );

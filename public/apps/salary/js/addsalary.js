@@ -32,27 +32,84 @@ var AddSalary = {
                      }
                  }
                 
-            }
-                else{
-                    if(cond.success) { 
-                        alert(cond.success);
-                        location.reload();
-                    }
-                    else if(cond.error){
+                }
+                else if(cond.error){
                         $('#add_salary_uname_error').empty();$('#add_salary_bsalary_error').empty();$("#add_salary_ssc_error").empty();
                        // alert(cond.error);
                         
                         $('#add_salary_bsalary').css({border:'1px solid red'});repair('#add_salary_bsalary');
                         $('#add_salary_check').css({border:'1px solid red'}); repair('#add_salary_checkall');
                     }
-                    
-                    
-                   
-                }
+                else{
+                    alert(d);
+                    window.location.href = baseUri + 'salary/index/salarylist';
+                    }
                 
            }
         });
-    }
+    },
+    
+     salnameautolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+            //alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'salaryusername',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.salusername').autocomplete({
+              source: dict
+            });
+       // ... do whatever you need to do with icon here
+   } 
+       },
+       getmemid: function (name){                       
+        //var name = document.getElementById('namelist').value;
+           // alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'getmemberid?uname='+name,
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                    //alert(json_obj[i].member_id);
+               // var aa = json_obj[i].member_id;
+                //alert(aa);
+                //$('#formemberid').text(json_obj[i].member_id);
+               // $(".salusername").text(aa);
+                dict.push(json_obj[i].member_id);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                  //alert(dict);
+                 loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                      // alert(dict);
+                        $('#formemberid').val(dict);
+                     }
+                     
+       }
 };
 
 
@@ -62,4 +119,15 @@ var AddSalary = {
         //alert("aaa");
        AddSalary.Submit();
     });
+    $(".salusername").click(function(){
+		AddSalary.salnameautolist();
+               
+	});
+    
+    $("#bsalary").click(function(){
+       var name = document.getElementById('uname').value;
+       //alert(name);
+		AddSalary.getmemid(name);
+               
+	});
    });

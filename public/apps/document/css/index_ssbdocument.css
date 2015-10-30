@@ -1,6 +1,9 @@
 /******** for tax form *************/
+#ssb_top{
+    margin: 25px 0 0 0;
+}
 .top-center{
-    padding: 0px;
+    padding: 0px 0px 15px 0px;
     text-align: center;
 }
 .ssb-left{
@@ -14,3 +17,11 @@
 .tbl-tax td{
     padding: 10px;
 }
+
+.ssb-right{
+  width:26%;
+  float: right;
+}
+@media print{
+  body *{ visibility: hidden; }
+  #printable *{ visibility: visible;}}
