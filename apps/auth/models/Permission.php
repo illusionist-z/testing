@@ -113,7 +113,9 @@ class Permission {
                 }
             }
             //print_r($per_result);exit;
-        } catch (\Exception $e) {
+        } 
+        }
+        catch (\Exception $e) {
             throw $e;
         }
         return $per_result;

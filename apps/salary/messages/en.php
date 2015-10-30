@@ -55,8 +55,7 @@ $messages = array(
     "tax_form" =>"Tax Form",
     "deduction_add" => "Deduction Add",
     "deduction_name" => "Deduction Name",
-    "deduction_amt"  => "Deduction Amount"
-);
+    "deduction_amt"  => "Deduction Amount",
     "deduce_editform" => "Deduce Edit Form",
     "tax_edit" => "Tax Edit Form",
     "deduce_frm" => "Deduce Form",
