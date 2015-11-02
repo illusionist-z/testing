@@ -181,8 +181,14 @@
                                                             $img = "profile1.jpg";
                                                         } else {
                                                             $img = $v->member_profile;
+                                                            if(file_exists('./uploads/'.$img)){                                                            
+                                                                $img=$img;                                                            
+                                                            }else{  
+                                                                $img = "profile1.jpg";
+                                                                 
+                                                            }
                                                         }
-                                                        ?>                                                 
+                                                        ?>                                                
                                                         <img src="../../uploads/<?php echo $img; ?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
                                                         <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
                                                         <span class="users-list-date"><?= $v->created_dt; ?></span>
