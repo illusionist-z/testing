@@ -15,7 +15,7 @@ function link_height() {
     //for link border right in link page
 var link_width = $(document).outerWidth();
 var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$(".navbar").outerHeight());
-if(link_width>745){
+if(link_width>770){
 $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
 }
 else{
