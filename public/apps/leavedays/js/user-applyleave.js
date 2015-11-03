@@ -8,7 +8,7 @@ var ApplyForm = {
         
         $.ajax({
            type : 'POST',
-           url  : baseUri+'leavedays/user/applyleave',
+           url  : 'applyleave',
            data : $('#apply_form').serialize(),
            success: function(d){
                cond = JSON.parse(d);

@@ -15,6 +15,8 @@ try {
     $loader->registerNamespaces(array(
         // set namespace for libraries
         'Library\Core' => '../library/core/',
+        //set namespace for auth model
+        'workManagiment\Auth\Models' => '../apps/auth/models/',
         // set namespace for the core module
         'workManagiment\Core\Controllers' => '../apps/core/controllers/',
         'workManagiment\Core\Models' => '../apps/core/models/',

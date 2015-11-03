@@ -180,9 +180,10 @@
             <!-- /.sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-                <?php                           
+
+            <!-- Content Wrapper. Contains page content -->
+               <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">             
+               <?php                           
                           $j=0;
                           foreach ($this->session->auth as $key_name => $key_value) {                                 
                                        $top = explode(" ", $key_value["link0"]);
@@ -227,8 +228,8 @@
                                   $this->assets->outputJs();
                                  echo '</section></div></div>';
                            ?>
-            <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
-        </div><!-- /.content-wrapper -->
+                    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
+            </div><!-- /.content-wrapper -->
 
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.

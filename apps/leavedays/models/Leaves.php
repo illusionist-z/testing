@@ -94,8 +94,8 @@ class Leaves extends \Library\Core\BaseModel {
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc, $creator_id) {
         $filter = new Filter();
-        $uname = $filter->sanitize($uname, "string");
-        $uname = $filter->sanitize($uname, "string");
+        $uname = $filter->sanitize($uname, "string");        
+        //$uname = $filter->sanitize($uname, "string");
         $type = $filter->sanitize($type, "string");
         $desc = $filter->sanitize($desc, "string");
 
@@ -147,8 +147,7 @@ class Leaves extends \Library\Core\BaseModel {
             } else {
                 $cond['error'] = "Apply Leave Before a week ";
             }
-        }
-        
+        }        
 
         return $cond;
     }

@@ -13,11 +13,11 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
         $this->assets->addJs('apps/calendar/js/moment.min.js');
-        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
+        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
-        //$this->module_name =  $this->router->getModuleName();
+        $this->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
     }
@@ -52,24 +52,10 @@ class IndexController extends ControllerBase
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autousername();
+        $Username = $UserList->calenderautousername();
         //print_r($Username);exit;
         $this->view->disable();
         echo json_encode($Username);
-    }
-    
-    /**
-     * 
-     * get member_id 
-     
-     */
-    public function getcalmemberidAction() {
-       $data = $this->request->get('uname');
-       //print_r($uname);exit;
-        //$leavetype = new Calender();
-        $cond = $this->calendar->memidcal($data);
-        echo json_encode($cond);
-        $this->view->disable();
     }
     
     public function addmemberAction(){
@@ -104,9 +90,8 @@ class IndexController extends ControllerBase
      * @category create event
      * @return   json { error message }
      */
-    public function createAction() {        
-        $this->view->disable();     
-        $id=$this->request->get('member_id');
+    public function createAction($id) {        
+        $this->view->disable();        
         $uname = $this->request->get('uname');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
