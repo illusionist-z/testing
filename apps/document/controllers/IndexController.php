@@ -87,7 +87,6 @@ class IndexController extends ControllerBase
             $updateinfo['company_logo']=$updateinfo['temp_logo'];
         }
         else{
-            
             $updateinfo['company_logo']=$filename;
         }
                $Cinfo->EditCompanyInfo($updateinfo);
