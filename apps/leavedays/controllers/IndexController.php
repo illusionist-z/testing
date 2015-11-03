@@ -102,8 +102,8 @@ class IndexController extends ControllerBase {
             $type = $this->request->getPost('leavetype');
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
-                    $desc,$creator_id);
-
+                    $desc,$creator_id);   
+            
             echo json_encode($error);
             $this->view->disable();
              }
@@ -147,18 +147,18 @@ class IndexController extends ControllerBase {
      * Leave Setting
      */
     public function leavesettingAction(){
-        $Admin=new Db\CoreMember;               
+        $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
         $this->view->setVar("noti",$noti);
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();
-        $setting=$LeaveSetting->getleavesetting();
+        $setting=$LeaveSetting->getleavesetting();                
         if($this->permission==1){
         $this->view->modulename = $this->module_name;
-        $this->view->setVar("leave_typelist", $typelist);
-        $this->view->setVar("leave_setting", $setting);
+        $this->view->setVar("leave_typelist", $typelist);  
+        $this->view->setVar("leave_setting", $setting); 
         }
         else {
             $this->response->redirect('core/index');
@@ -219,6 +219,7 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $days = $this->request->getPost('leave_days');
         $noti_id = $this->request->getPost('noti_id');
+        
         $this->_leave->acceptleave($id, $days, $noti_id);
     }
 
