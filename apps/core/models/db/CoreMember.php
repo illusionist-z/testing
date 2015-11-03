@@ -243,8 +243,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $noti = $UserNoti->fetchall();
         $i=0;
         foreach ($noti as $noti) {
-
-            $result = $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
+            $result = $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" .$noti['module_name']. ".member_id WHERE " .$noti['module_name']. ".noti_id='" .$noti['noti_id']. "' ");
             $final_result[] = $result->fetchall();
             $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
