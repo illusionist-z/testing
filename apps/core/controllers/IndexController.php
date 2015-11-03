@@ -20,7 +20,7 @@ class IndexController extends Library\Core\Controller {
             if($language){
             //set language action
             $member = $this->session->user['member_id'];
-            $Lang = SetLanguage::getInstance()->settinglanguage($language, $member);   
+            $Lang = SetLanguage::getInstance()->settinglanguage($language, $member);
             //get module language action
             $permission = [];
             $Permission = Permission::getInstance()->get($this->session->user,$permission,$language);

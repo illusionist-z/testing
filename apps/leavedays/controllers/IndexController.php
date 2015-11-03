@@ -219,6 +219,7 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $days = $this->request->getPost('leave_days');
         $noti_id = $this->request->getPost('noti_id');
+        
         $this->_leave->acceptleave($id, $days, $noti_id);
     }
 

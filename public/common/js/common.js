@@ -54,22 +54,22 @@ function GEOprocess(position) {
         }
     });
 }
-/**
- * @4:00pm check absent member
- * @author David JP <david.gnext@gmail.com>
- */
-function getAbsentMember() {
-    var x = new Date();
-    var h = x.getHours();
-    if (h = 11) {
-        $.ajax({
-            url: baseUri + "attendancelist/absent",
-            type: 'GET',
-            success: function() {
-            }
-        });
-    }
-}
+///**
+// * @4:00pm check absent member
+// * @author David JP <david.gnext@gmail.com>
+// */
+//function getAbsentMember() {
+//    var x = new Date();
+//    var h = x.getHours();
+//    if (h = 11) {
+//        $.ajax({
+//            url: baseUri + "attendancelist/absent",
+//            type: 'GET',
+//            success: function() {
+//            }
+//        });
+//    }
+//}
 /*
  * @author David
  * for error text clean
@@ -96,7 +96,7 @@ function repair(val) {
 
 $(document).ready(function() {
     //absent member
-    $('body').attr('onload', getAbsentMember());
+    //$('body').attr('onload', getAbsentMember());
     // ここに実際の処理を記述します。
     var logout = function() {
         window.location.href = baseUri + 'auth/logout';

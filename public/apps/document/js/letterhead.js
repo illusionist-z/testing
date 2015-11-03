@@ -17,6 +17,21 @@ document.getElementById('editinfo').style.display = 'none';
         
 
     });
+ $('.export').click(function () {
+    var doc_content=document.getElementById('letterhead').innerHTML;
+
+     window.location.href = baseUri + 'document/index/export?doc_content='+doc_content;
+     //location.replace("document/index/export");
+//       //alert(doc_content);
+//        $.ajax({
+//            url: baseUri + "document/index/export",
+//            type: 'GET',
+//            data: { doc_content: doc_content },
+//            success: function() {
+//                //alert("ok");
+//            }
+//        });
+    });
     
     jQuery(document).ready(function($) {
         $("#word-export").click(function(event) {

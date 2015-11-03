@@ -11,14 +11,13 @@ class IndexController extends ControllerBase
     public function initialize() {
         parent::initialize();  
        
-        $this->setCommonJsAndCss();
         
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('apps/document/css/index_ssbdocument.css');
         
-        $this->assets->addJs('apps/document/js/FileSaver.js');
-        $this->assets->addJs('apps/document/js/FileSaver.min.js');
-        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
+//        $this->assets->addCss('common/css/jquery-ui.css');
+//        
+//        $this->assets->addJs('apps/document/js/FileSaver.js');
+//        $this->assets->addJs('apps/document/js/FileSaver.min.js');
+//        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
         $this->permission = $this->setPermission();
     }
 
@@ -28,6 +27,8 @@ class IndexController extends ControllerBase
      * @author zinmon
      */
     public function ssbdocumentAction() {
+        $this->setCommonJsAndCss();
+        $this->assets->addCss('apps/document/css/index_ssbdocument.css');
         $this->assets->addJs('apps/salary/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getssb_info();
@@ -44,6 +45,7 @@ class IndexController extends ControllerBase
     }
 
     public function taxdocumentAction() {
+        $this->setCommonJsAndCss();
         $this->assets->addJs('apps/salary/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getsalary_info();
@@ -57,6 +59,7 @@ class IndexController extends ControllerBase
     }
     
     public function letterheadAction(){
+        $this->setCommonJsAndCss();
         $this->assets->addJs('apps/document/js/letterhead.js');
         $Cinfo=new \workManagiment\Document\Models\CompanyInfo();
         $info=$Cinfo->GetCompanyInfo();
@@ -90,6 +93,28 @@ class IndexController extends ControllerBase
         }
                $Cinfo->EditCompanyInfo($updateinfo);
         $this->response->redirect("document/index/letterhead");
+    }
+    /**
+     * @author SuZinKyaw <gnext.suzin@gmail.com>
+     * export letterhead into word document
+     */
+    public function exportAction(){
+    $doc_content=$this->request->get('doc_content');
+    $this->view->disable();
+    $ExcelFileName="letterhead.doc";
+    header("Content-type: application/x-ms-download");
+    header("Content-Disposition: attachment; filename=\"".basename($ExcelFileName)."\"");
+    header('Cache-Control: public');
+    $content=<<<EOD
+
+    $doc_content
+EOD;
+    echo $content;
+    //$this->view->disable();
+    }
+    
+    public function aaAction(){
+        echo "aa";exit;
     }
 }
 
