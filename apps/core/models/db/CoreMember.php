@@ -311,9 +311,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
         $getname = $user_name->fetchall();
         return $getname;
-    }
-
-  
+    }  
 
     public function GetAdminstratorId() {
         $this->db = $this->getDI()->getShared("db");

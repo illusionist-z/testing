@@ -44,7 +44,7 @@ class IndexController extends ControllerBase
     
     public function getmemberAction() {        
       $MemberList=new Db\CoreMember();
-        $Username = $MemberList->userautolistusername(); 
+        $Username = $MemberList->autousername(); 
         $this->view->disable();    
         echo json_encode($Username);
     }
@@ -52,7 +52,7 @@ class IndexController extends ControllerBase
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->calenderautousername();
+        $Username = $UserList->autousername();
         //print_r($Username);exit;
         $this->view->disable();
         echo json_encode($Username);
