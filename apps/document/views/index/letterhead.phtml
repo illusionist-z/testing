@@ -1,5 +1,5 @@
 <?php
-
+$dir= getcwd() ;
 ?>
  <head>
         <meta charset="UTF-8">
@@ -29,7 +29,7 @@
                         <td style="width:100px">
                                 
                    
-                            <img src="C:\xampp\htdocs\workManagiment\public\uploads\<?php echo $info['company_logo']?>"  style="width:100px; height:90px" />
+                            <div id="lh"><img src="..\..\uploads\<?php echo $info['company_logo']?>"  style="width:100px;height:90px;" /></div>
                             <input type="file" id="my_file" style="display: none;" />
                         </td>
                         <td style=" width: 1000px;">
@@ -56,6 +56,12 @@
                             <input style="height: 1%" type="hidden" class="temp_logo" id="temp_logo" name="update[temp_logo]" value="<?php echo  $info['company_logo'];?>"  style="width:350px;">
 
                         </div>
+                <div id="ep">
+                    <img src="<?php echo $dir;?>\uploads\<?php echo $info['company_logo']?>"  style="width:100px;height:90px;" />
+                </div>
+                <div id="lh2">
+                    <img src="..\..\uploads\<?php echo $info['company_logo']?>"  style="width:100px;height:90px;" />
+                </div>
                 
             </div>
            

@@ -83,7 +83,6 @@ class IndexController extends ControllerBase
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         $Cinfo=new \workManagiment\Document\Models\CompanyInfo();
         $updateinfo = $this->request->getPost('update');
-        //print_r($updateinfo);exit;
         if($_FILES["fileToUpload"]["name"]==null){
             $updateinfo['company_logo']=$updateinfo['temp_logo'];
         }
@@ -113,8 +112,7 @@ EOD;
     //$this->view->disable();
     }
     
-    public function aaAction(){
-        echo "aa";exit;
-    }
+    
+
 }
 
