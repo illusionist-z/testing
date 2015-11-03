@@ -71,7 +71,13 @@
   </tbody>
       </table></form>
         <div id="edit_ltype_dia" class="navbar"></div>
-        <div id="add_new_ltype" class="navbar"></div>
+        <div id="add_new_ltype" class="navbar" style="display:none;" title="<?= $t->_('addleavetype'); ?>">
+                 <form id="Add_new_ltype"><table>
+                        <tr><td></td></tr><tr><td><?= $t->_("leave_type"); ?>:</td><td><input type="text" value="" name="ltype_name" placeholder="Enter Leave type"></td>                       
+                        <tr><td></td></tr>
+                        <tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype"><?= $t->_("save"); ?></a><a href="#" class="button" id="cancel_ltype"><?= $t->_("cancel"); ?></a></td></tr>
+                </table></form>
+        </div>
         
    
 

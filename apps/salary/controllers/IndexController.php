@@ -343,7 +343,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
-        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
@@ -368,7 +368,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function taxdiaAction() {
-             $id = $this->request->get('id');
+        $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $tax = new SalaryTaxs();
         $data = $tax->gettaxdata($id);
@@ -424,12 +424,13 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function edit_deductAction() {
-        $data['id'] = $this->request->getPost('id');
+        $data['id'] = $this->request->getPost('id');        
         $data['deduce_name'] = $this->request->getPost('deduce_name');
-        $data['amount'] = $this->request->getPost('amount');
-        $Deduction = new SalaryTaxsDeduction();
+        $data['amount'] = $this->request->getPost('amount');       
+        $Deduction = new SalaryTaxsDeduction();        
         //print_r($data);exit;
         $Deduction->edit_deduction($data);
+        
         $this->view->disable();
     }
 

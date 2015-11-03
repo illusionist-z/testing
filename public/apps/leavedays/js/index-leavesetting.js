@@ -92,8 +92,7 @@ var Categories = {
        Diaadd : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
-        }
-        
+        }        
         
         $ovl = $('#add_new_ltype');
         $ovl.css('color','black');
@@ -126,11 +125,8 @@ var Categories = {
             type:'POST',
             data: form.serialize(),
             url : "add_ltype",
-            success:function(){
-                
-                d.dialog("close");
-                
-
+            success:function(){                
+                d.dialog("close");                
             }
         }).done(function(){
              $('body').load('leavesetting',function(){
@@ -149,9 +145,8 @@ $(document).ready(function () {
     });
         
     
-      $(".add").click(function () {
-          
-      Categories.Add();
+      $(".add").click(function () {          
+      Categories.Diaadd();
     });
     
        $('.editsetting').click(function () {

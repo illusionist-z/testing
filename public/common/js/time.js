@@ -16,5 +16,5 @@ function display_ct() {
     document.getElementById('ct').innerHTML = h + ":" + m + ":" + s;
     var t = setTimeout(function() {
         display_ct()
-    }, 500);
+    }, 500);    
 }

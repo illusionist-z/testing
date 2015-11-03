@@ -16,8 +16,8 @@ class IndexController extends Library\Core\Controller {
     }
       
      public function setLanguageAction($language='')
-    {  
-            if($language){
+    {
+        if($language){
             //set language action
             $member = $this->session->user['member_id'];
             $Lang = SetLanguage::getInstance()->settinglanguage($language, $member);
