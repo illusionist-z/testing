@@ -31,7 +31,7 @@ class IndexController extends ControllerBase {
 
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
-        $this->view->module_name =  $this->router->getModuleName();
+        //$this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
@@ -48,6 +48,7 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
+        $this->view->module_name =  $this->router->getModuleName();
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
@@ -69,7 +70,7 @@ class IndexController extends ControllerBase {
     public function show_salarylistAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
-        
+        $this->view->module_name =  $this->router->getModuleName();
         $month = $this->request->get('month');
         $year = $this->request->get('year');
         $Salarydetail = new SalaryDetail();
@@ -92,6 +93,7 @@ class IndexController extends ControllerBase {
      */
     public function addsalaryAction() {
         $this->assets->addJs('apps/salary/js/addsalary.js');
+        $this->view->module_name =  $this->router->getModuleName();
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
         $Allowance = new Allowances();
@@ -121,7 +123,7 @@ class IndexController extends ControllerBase {
      */
     public function monthlysalaryAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
-             
+        $this->view->module_name =  $this->router->getModuleName();     
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
@@ -206,9 +208,10 @@ class IndexController extends ControllerBase {
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
+        $data['start_date'] = $this->request->getPost('work_sdate');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce= $this->request->getPost('check_list');
-        //print_r($data['member_id']);exit;
+        //print_r($data['start_date']);exit;
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
         
@@ -241,7 +244,7 @@ class IndexController extends ControllerBase {
      */
     public function allowanceAction() {
         $this->assets->addJs('apps/salary/js/index-allowance.js');
-               
+        $this->view->module_name =  $this->router->getModuleName();       
         $All_List = new \workManagiment\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         //echo $this->permission;
@@ -343,7 +346,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
-        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->view->module_name =  $this->router->getModuleName();
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
