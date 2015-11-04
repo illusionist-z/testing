@@ -848,6 +848,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
                         "',updated_dt=NOW(), start_date='".$data['start_date']."' Where id='" . $data['id'] . "'";
                 
                 $this->db->query($sql);
+                
                 $res['valid'] = true;
             } catch (Exception $ex) {
                 echo $ex;
@@ -868,6 +869,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
                 echo $sql;
                 $this->db->query($sql);
+                //print_r($sql);exit;
                 //$res['valid'] = true;
 //                $salarybymember_id=$this->getbsalarybyMember_id($member_id);
 //                $latersalarydetail=  $this->getOldSalarydetail($member_id);

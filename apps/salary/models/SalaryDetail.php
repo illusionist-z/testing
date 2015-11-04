@@ -456,10 +456,11 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $month=  date("m");
             //echo $income_tax;exit;
             $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."'  WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $year . "' and MONTH(pay_date)='".$month."'";
-            //echo $sql;exit;
+            echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetcharray(); 
             }
+            exit;
             
         } catch (Exception $ex) {
             echo $ex;

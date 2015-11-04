@@ -45,8 +45,8 @@
     <h3><center>G-Next Official Salary Report</center></h3>
 <div>
     <div style="width: 10%; float: left;"><?= $t->_("name");?></div>
-    <div><?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?>
-        <input type="hidden" value="<?php echo $A[$i]->core->member_id;?>" id="member_id" name="member_id">
+    <div><?php echo $filter->sanitize($A[$i]->core->full_name , "string"); ?>
+        <input type="text" value="<?php echo $A[$i]->core->member_id;?>" id="member_id" name="member_id">
     </div>
 </div>
 <div>
