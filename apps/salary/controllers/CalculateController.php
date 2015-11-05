@@ -21,7 +21,8 @@ class CalculateController extends ControllerBase
      * calculation of salary and tax
      */
     public function indexAction(){
-        
+    $salary_start_date=$this->request->get('salary_date');
+    
     $basic_salary_ssc=$this->config->salary['basic_salary_ssc'];
     $deduce=$this->config->salary['deduce'];
     $overrate=$this->config->salary['overrate'];
@@ -36,7 +37,7 @@ class CalculateController extends ControllerBase
     $getcomp_startdate=$Salarydetail->getComp_startdate();
      
     //calculate the basic salary
-    $tax=$Salarymaster->calculate_tax_salary($getbasic_salary);
+    $tax=$Salarymaster->calculate_tax_salary($getbasic_salary,$salary_start_date);
     //print_r($tax);exit;
     //insert taxs of all staff to salary detail
     $Salarydetail->insert_taxs($tax);

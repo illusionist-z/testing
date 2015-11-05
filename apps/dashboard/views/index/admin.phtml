@@ -139,7 +139,24 @@
                                                             <li>
                                                                 People who attend no leave
                                                                 <ul><?php foreach ($nlname as $na) { ?>
-                                                                    <li><?= $na['member_login_name'] ?></li>
+                                                                    <li id="noleaveli">
+                                                                        <?php
+                                                                        if ($na['member_profile'] == null) {
+                                                                            $img = "profile1.jpg";
+                                                                        } else {
+                                                                            $img = $na['member_profile'];
+                                                                            if(file_exists('./uploads/'.$img)){                                                            
+                                                                                $img=$img;                                                            
+                                                                            }else{  
+                                                                                $img = "profile1.jpg";                                                                 
+                                                                            }
+                                                                        }
+                                                                        ?> 
+
+
+                                                                        <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
+                                                                        <?= $na['full_name'] ?>
+                                                                    </li>
                                                                     <?php } ?>
                                                                 </ul>
                                                             </li>
@@ -148,7 +165,24 @@
                                                             <li>
                                                                 People who take the leave most
                                                                 <ul><?php foreach ($lname as $na) { ?>
-                                                                        <li><?= $na['member_login_name'] ?></li>
+                                                                        <li id="noleaveli">
+                                                                        <?php
+                                                                        if ($na['member_profile'] == null) {
+                                                                            $img = "profile1.jpg";
+                                                                        } else {
+                                                                            $img = $na['member_profile'];
+                                                                            if(file_exists('./uploads/'.$img)){                                                            
+                                                                                $img=$img;                                                            
+                                                                            }else{  
+                                                                                $img = "profile1.jpg";                                                                 
+                                                                            }
+                                                                        }
+                                                                        ?> 
+
+
+                                                                        <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
+                                                                        <?= $na['full_name'] ?>
+                                                                    </li>
                                                                     <?php } ?>
                                                                 </ul>
                                                             </li>

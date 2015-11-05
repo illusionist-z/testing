@@ -126,7 +126,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,absent_dedution,"
                        . "income_tax,pay_date,created_dt,basic_salary_annual,total_annual_income,basic_examption) "
                         . "VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','" 
-                        . $rows['absent_dedution'] . "','" . $rows['income_tax'] . "',NOW(),NOW(),'"
+                        . $rows['absent_dedution'] . "','" . $rows['income_tax'] . "','".$rows['pay_date']."',NOW(),'"
                         .$rows['basic_salary_annual']."','".$rows['total_annual_income']."','".$rows['basic_examption']."')";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
@@ -432,9 +432,9 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $income_tax = $salary - $total_deduce;
         echo "Income Tax is ".$income_tax;
         $taxs = $Salarymaster->deducerate($income_tax, $year);
-        
+        //print_r($taxs);
        
-        $final_result[] = array('income_tax' => $taxs,
+        $final_result[] = array('income_tax' => $taxs['tax_result'],
             'member_id' => $member_id, 'allowance_amount' => $allowance,
             'absent_dedution' => $absent_deduce,'basic_salary' => $SM['basic_salary']);
 //        print_r($final_result);
@@ -454,6 +454,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $absent_deduction = $filter->sanitize($param[0]['absent_dedution'], "int");
             $year=  date("Y");
             $month=  date("m");
+            //echo $income_tax;exit;
             $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."'  WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $year . "' and MONTH(pay_date)='".$month."'";
             //echo $sql;exit;
             $result = $this->db->query($sql);
