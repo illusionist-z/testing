@@ -11,7 +11,7 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/attendancelist/js/index.js');
+        
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/css/style.css');
         $this->config = \Module_Config::getModuleConfig('leavedays');
@@ -34,7 +34,7 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction( ) {
-        $this->assets->addJs('common/js/jquery-ui-timepicker.js');
+        $this->assets->addJs('common/js/jquery-ui-timepicker.js');$this->assets->addJs('apps/attendancelist/js/index.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];

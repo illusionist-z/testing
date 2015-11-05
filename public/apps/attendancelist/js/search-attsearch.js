@@ -99,7 +99,7 @@ var Attendance = {
                            
                             + "</tr>"
                     $("tbody").append(output);
-                    Attendance.init();
+                    //Attendance.init();
         }
         else{
            
@@ -112,7 +112,7 @@ var Attendance = {
                //alert(d);
                 var json_obj = $.parseJSON(d);//parse JSON            
                //alert(json_obj);
-               $('tbody').html("");  
+               $('tbody').empty();
                
                $('tfoot').empty();
               
@@ -207,11 +207,12 @@ var Attendance = {
                             + "<td>" + checkin_place + "</td>"
                             
                             + "</tr>";
-                    $("tbody").append(output);
+                  $("tbody").append(output);
+                    
                 }
-                 
-                Attendance.init();
-
+                
+                Attendance.init(); 
+                
                // alert(output);
                 //$('tbody').html("");
                 

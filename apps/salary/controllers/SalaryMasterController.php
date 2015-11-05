@@ -33,6 +33,7 @@ class SalaryMasterController extends ControllerBase
         $data['over_time'] = $this->request->get('overtime', 'int');
         $data['ssc_emp'] = 2;
         $data['ssc_comp'] = 3;
+        $data['salary_start_date'] = date("Y-m-d");
         $data['allowance_id'] = 0;
         $data['creator_id'] = $this->session->user['member_id'];
         $data['created_dt'] = date("Y-m-d H:i:s");

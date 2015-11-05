@@ -100,6 +100,7 @@ class IndexController extends ControllerBase
     $doc_content=$this->request->get('doc_content');
     $this->view->disable();
     $ExcelFileName="letterhead.doc";
+    header('Content-Type: image/jpeg');
     header("Content-type: application/x-ms-download");
     header("Content-Disposition: attachment; filename=\"".basename($ExcelFileName)."\"");
     header('Cache-Control: public');
@@ -108,7 +109,6 @@ class IndexController extends ControllerBase
     $doc_content
 EOD;
     echo $content;
-    //$this->view->disable();
     }
     
     
