@@ -292,7 +292,10 @@ a.export {
 .trhover:hover{
     background: red;
 }
-
+.absentcheck{
+     background: url("../img/absent.png")  0px 0px no-repeat ;   
+     padding: 20px 10px 2px 6px;  
+}
 
 .addbtnn{
     background: #F8F8F8;

@@ -86,14 +86,14 @@
                                       <?php $name=$this->session->permission_code;
         if ( $name=='ADMIN'){?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat" id="settingborder"><b>Setting</b></a>
                                         </div>
             
         <?php }
         else
         {?> 
             <div class="pull-left">
-                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat" id="settingborder"><b>Setting</b></a>
                                         </div>
         <?php }
         ?>
@@ -126,16 +126,16 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
-                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b> ' . $key_value[0] . '</b></span></a>';
                                                                               }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
                                                                                                 if (isset($top[1])) {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list'.$count.'.png" ><span><b> ' . $key_value[0] . ' </b></span></a></li>';
                                                                                                 } else {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                     } else {
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
