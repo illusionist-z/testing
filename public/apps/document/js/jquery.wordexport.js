@@ -4,13 +4,13 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
             fileName = typeof fileName !== 'undefined' ? fileName : "Letter Head";
             var static = {
                 mhtml: {
-                    top: "Mime-Version: 1.0\nContent-Base: " + location.href + "\nContent-Type: Multipart/related; boundary=\"NEXT.ITEM-BOUNDARY\";type=\"text/html\"\n\n--NEXT.ITEM-BOUNDARY\nContent-Type: text/html; charset=\"utf-8\"\nContent-Location: " + location.href + "\n\n<!DOCTYPE html>\n<html>\n_html_</html>",
+                    top: "\nContent-Base: " + location.href + "\nContent-Type: Multipart/related; boundary=\"NEXT.ITEM-BOUNDARY\";type=\"text/html\"\n\n--NEXT.ITEM-BOUNDARY\nContent-Type: text/html; charset=\"utf-8\"\nContent-Location: " + location.href + "\n\n<!DOCTYPE html>\n<html>\n_html_</html>",
                     head: "<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n<style>\n_styles_\n</style>\n</head>\n",
                     body: "<body>_body_</body>"
                 }
             };
             var options = {
-                maxWidth: 100
+                maxWidth: 150
             };
             // Clone selected element before manipulating it
             var markup = $(this).clone();

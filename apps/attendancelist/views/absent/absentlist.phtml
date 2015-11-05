@@ -30,7 +30,7 @@ use Phalcon\Filter;
                         <th width="150px"><?= $t->_("email"); ?></th>
                         <th width="150px"><?= $t->_("phoneno"); ?></th>
                         <th width="150px"><?= $t->_("address"); ?></th>
-                        <th width="150px"></th>
+                        <th width="30px"></th>
                     </tr>
                 </thead>
                 <tbody>                  
@@ -49,8 +49,8 @@ use Phalcon\Filter;
                             <td><?= $filter->sanitize($result['member_address'], "string"); ?>
                             </td>
                             <td>
-                                 <button onclick="return false;" class="absentcheck buttonn" id="<?php echo $result['member_id'] ?>">Absent</button>
-                                
+<!--                                 <button onclick="return false;" class="absentcheck buttonn" id="<?php echo $result['member_id'] ?>">Absent</button>-->
+                                <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="absentcheck" title="Absent" id="<?php echo $result['member_id'] ?>" ></a>
                             </td>   
                         </tr>
                         <?php

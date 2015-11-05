@@ -30,7 +30,7 @@
 <div id="notificationsBody" class="notifications">
 
 </div>
-                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">See All</span></a></div>
+                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">View All</span></a></div>
                                 </div>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -44,6 +44,11 @@
                                                     $img = "profile1.jpg";}
                                                     else{
                                                         $img=$this->session->user['member_profile'];
+                                                        if(file_exists('./uploads/'.$img)){                                                            
+                                                                $img=$img;                                                            
+                                                        }else{  
+                                                               $img = "profile1.jpg";                                                                 
+                                                        }
                                                     }
                                         ?>                                                 
                                         <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
@@ -60,6 +65,11 @@
                                                     $img = "profile1.jpg";}
                                                     else{
                                                         $img=$this->session->user['member_profile'];
+                                                        if(file_exists('./uploads/'.$img)){                                                            
+                                                                $img=$img;                                                            
+                                                        }else{  
+                                                               $img = "profile1.jpg";                                                                 
+                                                        }
                                                     }
                                         ?>                                                 
                                         <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
@@ -116,16 +126,16 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
-                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0]. '</b></span></a>';
+                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b> ' . $key_value[0]. '</b></span></a>';
                                                                               }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
                                                                                                 if (isset($top[1])) {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list'.$count.'.png" ><span><b> ' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                     } else {
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';

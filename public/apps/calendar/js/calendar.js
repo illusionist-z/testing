@@ -281,6 +281,7 @@ var Calendar = {
                        url :"index/addmember",
                        dataType:"json",
                        success:function(d){
+                           
                            if( d === 1){
                                alert("Already exist");
                            }
@@ -322,7 +323,7 @@ var Calendar = {
         });
         $('#title_edit_event').val(event.title);
         $('#sdate_edit_event').val(event.start.format());
-        $('select#show_name').val($selectname);
+        $('#uname_edit_event').val($selectname);
         /* event.end date is empty ,put start date */
         if (event.end == null) {
             $('#edate_edit_event').val(event.start.format());
@@ -337,6 +338,7 @@ var Calendar = {
             closeText: "",
             height: 'auto',
             width: 'auto',
+            resizable:false,
             modal: true
         });
         $ovl.dialog("open");
