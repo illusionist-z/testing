@@ -44,7 +44,7 @@ class IndexController extends ControllerBase
     
     public function getmemberAction() {        
       $MemberList=new Db\CoreMember();
-        $Username = $MemberList->userautolistusername(); 
+        $Username = $MemberList->autousername(); 
         $this->view->disable();    
         echo json_encode($Username);
     }
