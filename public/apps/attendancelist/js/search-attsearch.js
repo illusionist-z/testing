@@ -89,7 +89,7 @@ var Attendance = {
              $('tbody').empty();
            
              var output = "<tr>"
-                            + "<td colspan='8'><center>No data to display</center></td>"
+                            + "<td colspan='9'><center>No data to display</center></td>"
                            
                             + "</tr>"
                     $("tbody").append(output);

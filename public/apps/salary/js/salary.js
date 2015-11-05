@@ -33,24 +33,30 @@ var Salary = {
                         +'<tr><td></td><td><b>SSC Comp </b></td>'
                         +'<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>';
                        
-               data += '<tr><td></td><td>Decut Name </td><td colspan="4" style="font-size:12px;">';
-               for(var j in result.dedution){
-               var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
-               data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> '+result.dedution[j]["deduce_name"]+'<br>';
-               }
-               data +='<br></td></tr>';
+                data += '<tr><td></td><td>Decut Name </td><td colspan="4" style="font-size:12px;">';
+                for(var j in result.dedution){
+                var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
+                data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> '+result.dedution[j]["deduce_name"]+'<br>';
+                }
+                data +='<br></td></tr>';
                
-                data += '<tr><td></td><td>Allow Name </td><td colspan="4" style="font-size:12px;">';
-               for(var i in result.allowance){
-               var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
-               data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
-              }
-             data +='</td></tr>';
+                    data += '<tr><td></td><td>Allow Name </td><td colspan="4" style="font-size:12px;">';
+                for(var i in result.allowance){
+                var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
+                data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
+                }
+                data +='</td></tr>';
+                data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value="" name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
              
-               data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
-             data +='</table></form>';
-               Salary.Dia(data,result.t['title']);
+                data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
+                data +='</table></form>';
+                Salary.Dia(data,result.t['title']);
+                $('.datepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            }).focus();                               
+                     }); 
            }
         });
     },
@@ -203,11 +209,11 @@ var Salary = {
            url:"",
            type: "POST",
            success:function(){   
-               var data ='<form id="Add_new_deduct"><table>';               
-                   data += '<tr><td>Do you want to new pay list for this month  </td></tr>'
-                                    
-               data +='<tr><td><br><a href="../calculate" class="button" id="cal_salary">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';
-               data +='</table></form>';
+                var data ='<form id="Add_new_deduct"><table>';               
+                    data += '<tr><td>Do you want to new pay list for this month  </td></tr>'
+                       +'<tr><td><input type="text" class="datepicker"  placeholder="Calculate Date" style="height:39px; width: 260px;"></td></tr>'        
+                    data +='<tr><td><a href="../calculate" class="button" id="cal_salary">Yes</a><a href="#" class="button" id="cancel_deduct">No</a></td></tr>';
+                    data +='</table></form>';
                Salary.Diaaadd(data);
            }
         });
@@ -239,7 +245,12 @@ var Salary = {
            $ovl.dialog("close");
            location.reload();
 
-        });       
+        });
+        $('.datepicker').on('click',function(e){
+             e.preventDefault();                                                    
+             $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+             }).focus();                               
+        });
     },
     search : function () {
     var $form = $('#search_frm').serialize();

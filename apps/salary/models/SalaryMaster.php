@@ -172,7 +172,7 @@ class SalaryMaster extends Model {
                    $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
                    //print_r($check_salary_detail);
                    $final_result[] = array('income_tax' => $check_salary_detail['income_tax'],
-                                    'total_annual_income' => $check_salary_detail['total_tax_annual'],
+                                    'total_annual_income' => $check_salary_detail['total_annual_income'],
                                     'basic_salary_annual' => $check_salary_detail['basic_salary_annual'],
                                     'basic_examption' => $check_salary_detail['basic_examption'],
                                     'member_id' => $check_salary_detail['member_id'], 
@@ -186,7 +186,7 @@ class SalaryMaster extends Model {
                     $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
                     //print_r($check_salary_detail);
                     $final_result[] = array('income_tax' => $check_salary_detail['income_tax'],
-                        'total_annual_income' => $check_salary_detail['total_tax_annual'],
+                        'total_annual_income' => $check_salary_detail['total_annual_income'],
                         'basic_salary_annual' => $check_salary_detail['basic_salary_annual'],
                         'basic_examption' => $check_salary_detail['basic_examption'],
                         'member_id' => $check_salary_detail['member_id'], 
@@ -554,7 +554,7 @@ class SalaryMaster extends Model {
         try {
 
             $sql = "select * from salary_detail where member_id='" . $member_id . "' order by created_dt DESC";
-
+            
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {
@@ -828,6 +828,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
      * Salary Edit action
      */
     public function btnedit($data) {
+        
         $res = array();
         $res['baseerr'] = filter_var($data['basesalary'], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/^([\d])/'))) ? true : false;
 
@@ -841,8 +842,13 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
 
         if ($res['baseerr'] && $res['travelerr'] && $res['overtimerr'] && $res['sscemp'] && $res['ssccomp']) {
             try {
-                $sql = "Update salary_master SET basic_salary ='" . $data['basesalary'] . "',travel_fee ='" . $data['travelfee'] . "',over_time ='" . $data['overtime'] . "',ssc_emp ='" . $data['ssc_emp'] . "',ssc_comp ='" . $data['ssc_comp'] . "',updated_dt=NOW() Where id='" . $data['id'] . "'";
+                $sql = "Update salary_master SET basic_salary ='" . $data['basesalary'] . 
+                        "',travel_fee ='" . $data['travelfee'] . "',over_time ='" . $data['overtime'] . 
+                        "',ssc_emp ='" . $data['ssc_emp'] . "',ssc_comp ='" . $data['ssc_comp'] . 
+                        "',updated_dt=NOW(), start_date='".$data['start_date']."' Where id='" . $data['id'] . "'";
+                
                 $this->db->query($sql);
+                
                 $res['valid'] = true;
             } catch (Exception $ex) {
                 echo $ex;
@@ -861,8 +867,9 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
     public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
         try {
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
-                //echo $sql;exit;
+                echo $sql;
                 $this->db->query($sql);
+               // print_r($sql);exit;
                 //$res['valid'] = true;
 //                $salarybymember_id=$this->getbsalarybyMember_id($member_id);
 //                $latersalarydetail=  $this->getOldSalarydetail($member_id);

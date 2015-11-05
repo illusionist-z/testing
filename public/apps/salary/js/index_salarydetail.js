@@ -133,6 +133,8 @@ for (var i = 0; i < cells.length; i++) {
        $b_salary=document.getElementById('txtbsalary').value;
        $overtime_rate=document.getElementById('txtovertimerate').value;
        $specific_deduce=document.getElementById('txtallowance').value;
+//        $month = document.getElementById('month').value;
+//     $year = document.getElementById('year').value;
        if($specific_deduce=="")
        {
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
@@ -141,12 +143,13 @@ for (var i = 0; i < cells.length; i++) {
             //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
             url : baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id,
             success:function(){
-                alert("Data has been updated");
-                window.location.reload();
+//                alert("Data has been updated");
+//                window.location.reload();
             }
         })
         }
        else{
+           
        window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/'+$specific_deduce+'/'+$member_id;
         }
     });

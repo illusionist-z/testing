@@ -16,9 +16,14 @@
                                      $img = "profile1.jpg";}
                                   else{
                                        $img=$noti['member_profile'];
+                                        if(file_exists('./uploads/'.$img)){                                                            
+                                             $img=$img;                                                            
+                                        }else{  
+                                            $img = "profile1.jpg";                                                                 
+                                        }
                                    }
                         ?>                                                 
-                        <img src="../../uploads/<?php echo  $img;?>"  width="20px" alt="Image"/>
+                    <img src="../../uploads/<?php echo  $img;?>"  width="20px"  class="img-circle" alt="Image"/>
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
                 }else {?>
                 <span class="foruser">

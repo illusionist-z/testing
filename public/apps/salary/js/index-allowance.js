@@ -120,9 +120,7 @@ var Allowance = {
     
 };
 $(document).ready(function () {
-
-   
-     $(".allpopup").click(function () {
+    $(".allpopup").click(function () {
        var id = $(this).attr('id');
        Allowance.Edit(id);
     });
