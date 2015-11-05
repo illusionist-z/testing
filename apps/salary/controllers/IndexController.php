@@ -504,18 +504,20 @@ class IndexController extends ControllerBase {
         $year=$this->request->get('year');
         $member_id=$this->request->get('chk_val');
         $mid=  explode(',', $member_id);
-        //echo count($mid);
+        
         $Salarydetail = new SalaryDetail();
         for($i=0;$i<count($mid);$i++){
-            echo $mid[$i]."<br>";
+            
             if($mid[$i]!='on'){
+                
             $getsalarydetail[] = $Salarydetail->getpayslip($mid[$i], $month, $year);
                 
             }
         }
         
       //print_r($getsalarydetail);exit;
-        
+        $this->view->year = $year;
+        $this->view->month = $month;
         $this->view->getsalarydetails = $getsalarydetail;
     }
     

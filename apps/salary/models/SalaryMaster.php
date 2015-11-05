@@ -231,7 +231,8 @@ class SalaryMaster extends Model {
 
                     $taxs = $this->deducerate($income_tax, $date_diff);
 //                    print_r($taxs);
-                    $final_result[] = array('income_tax' => $taxs['tax_result'],
+                    $final_result[] = array('basic_salary' => $value['basic_salary'],
+                        'income_tax' => $taxs['tax_result'],
                         'total_annual_income' => $taxs['total_tax_annual'],
                         'basic_salary_annual' => $salary,
                         'basic_examption' => $basic_deduction,
@@ -913,7 +914,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
     public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
         try {
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
-                echo $sql;
+                //echo $sql;
                 $this->db->query($sql);
                // print_r($sql);exit;
                 //$res['valid'] = true;

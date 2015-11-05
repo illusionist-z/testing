@@ -88,10 +88,10 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      * insert salary detail and overtime to salary_detail
      * @param type $row
      */
-    public function insert_salarydetail($row) {
+    public function insert_salarydetail($row,$salary_start_date) {
         try {
 
-            $current_date = date("Y-m-d");
+            //$current_date = date("Y-m-d");
 
             $filter = new Filter();
 
@@ -103,8 +103,8 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                     $overtime_rate=0;
                 }
                 //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
-                $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', travel_fee='" . $travel_fee . "', overtime='" . $overtime_rate . "'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='" . $current_date . "'";
-                //echo $sql;exit;
+                $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', travel_fee='" . $travel_fee . "', overtime='" . $overtime_rate . "'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='" . $salary_start_date . "'";
+                //echo $sql;
                 $result = $this->db->query($sql);
             }
         } catch (Exception $e) {
@@ -123,9 +123,9 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 if ($rows['allowance_amount'] === "") {
                     $rows['allowance_amount'] = "0";
                 }
-                $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,absent_dedution,"
+                $sql = "INSERT INTO salary_detail (id,member_id,basic_salary,allowance_amount,absent_dedution,"
                        . "income_tax,pay_date,created_dt,basic_salary_annual,total_annual_income,basic_examption) "
-                        . "VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','" 
+                        . "VALUES(uuid(),'" . $rows['member_id'] . "','". $rows['basic_salary']."','" . $rows['allowance_amount'] . "','" 
                         . $rows['absent_dedution'] . "','" . $rows['income_tax'] . "','".$rows['pay_date']."',NOW(),'"
                         .$rows['basic_salary_annual']."','".$rows['total_annual_income']."','".$rows['basic_examption']."')";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
@@ -167,6 +167,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function getpayslip($member_id, $month, $year) {
         try {
+            
 //            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='" . $member_id . "' and MONTH(pay_date)='".$month."' and YEAR(pay_date)='".$year."'";
 //            echo $sql;
 //            $result = $this->db->query($sql);
@@ -187,11 +188,11 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                     ->getQuery()
                     ->execute();
             //print_r($row);exit;
-            /* foreach($row as $rows) {
-              echo $rows->core->member_login_name;
-              echo $rows->attendances->att_date;
-              }
-              exit; */
+//             foreach($row as $rows) {
+//              echo $rows->core->member_login_name;
+//              //echo $rows->attendances->att_date;
+//              }
+//              exit; 
         } catch (Exception $e) {
             echo $e;
         }
@@ -328,7 +329,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $conditions;
     }
 
-    public function updatesalarydetail($allowancetoadd, $member_id) {
+    public function updatesalarydetail($allowancetoadd, $member_id,$pay_year,$pay_month) {
+        
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
@@ -364,7 +366,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $newsalary = $SM['basic_salary'] * $year;
             echo "Basic Salary ".$newsalary;
             $Totalsalary = $this->getoldsalary($budget_startmonth,$member_id, $salaryyr_month[0], $salaryyr_month[1]);
-            print_r($Totalsalary);
+            //print_r($Totalsalary);
             if ($Totalsalary['total_salary'] == "") {
                 $salary = $newsalary;
                 echo "AA" . $salary;
@@ -439,12 +441,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             'absent_dedution' => $absent_deduce,'basic_salary' => $SM['basic_salary']);
 //        print_r($final_result);
 //        exit;
-        $this->savesalaryeditdata($final_result);
+        $this->savesalaryeditdata($final_result,$pay_year,$pay_month);
         
     }
     
-    public function savesalaryeditdata($param) {
+    public function savesalaryeditdata($param,$year,$month) {
         try {
+            
             $filter = new Filter();
             foreach ($param as $params) {
             $basic_salary = $filter->sanitize($param[0]['basic_salary'], "int");
@@ -452,11 +455,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $allowance_amount = $filter->sanitize($param[0]['allowance_amount'], "int");
             $income_tax = $filter->sanitize($param[0]['income_tax'], "int");
             $absent_deduction = $filter->sanitize($param[0]['absent_dedution'], "int");
-            $year=  date("Y");
-            $month=  date("m");
+            
             //echo $income_tax;exit;
             $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."'  WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $year . "' and MONTH(pay_date)='".$month."'";
-            //echo $sql;exit;
+           // echo $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray(); 
             }

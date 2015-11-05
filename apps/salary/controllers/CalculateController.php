@@ -44,7 +44,7 @@ class CalculateController extends ControllerBase
     
     //print_r($overtime);exit;
     //insert overtime and salary information to salary detail
-    $Salarydetail->insert_salarydetail($overtime);
+    $Salarydetail->insert_salarydetail($overtime,$salary_start_date);
     
     
     //calculate ssc fee of employee and employer
