@@ -281,6 +281,7 @@ var Calendar = {
                        url :"index/addmember",
                        dataType:"json",
                        success:function(d){
+                           
                            if( d === 1){
                                alert("Already exist");
                            }
