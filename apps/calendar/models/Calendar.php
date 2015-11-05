@@ -85,7 +85,7 @@ class Calendar extends Model {
      */     
     public function delete_event($id) {                
         $this->db=  $this->getDI()->getShared("db");
-        $delete="DELETE FROM calendar WHERE id='".$id."'";
+        $delete= "DELETE FROM calendar WHERE id='".$id."'";
         $query=  $this->db->query($delete);
         return $query;
     }
