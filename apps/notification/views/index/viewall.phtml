@@ -6,25 +6,12 @@
         <?php switch($noti['module_name']){ case "leaves": {?>
         <li>
        <!-- inner menu: contains the actual data -->
-            <ul class="menu" id="noneli">
+            <ul class="menu">
                 <li>
                 <?php if($this->session->permission_code=="ADMIN"){?>
                     
                 <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
-                    <?php
-                                  if($noti['member_profile']==null){
-                                     $img = "profile1.jpg";}
-                                  else{
-                                       $img=$noti['member_profile'];
-                                       if(file_exists('./uploads/'.$img)){                                                            
-                                             $img=$img;                                                            
-                                        }else{  
-                                            $img = "profile1.jpg";                                                                 
-                                        }
-                                   }
-                        ?>                                                 
-                    <img src="../../uploads/<?php echo  $img;?>" class="img-circle" width="20px" alt="Image"/>
+                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
                 }else {?>
                 <span class="foruser">
