@@ -28,22 +28,16 @@ var Attendance = {
             $('tbody').show();
         },
         autolist: function (){                       
-        //var name = document.getElementById('namelist').value;
-          //  alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+       
          var dict = [];
        $.ajax({
                 url:'autolist',
                 method: 'GET',
-                //dataType: 'json',
                 success: function(data) {
-               // alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                   // alert(json_obj[i].full_name);
                 dict.push(json_obj[i].full_name);
                 }
-                  //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);
                         }
                         
@@ -112,8 +106,8 @@ var Attendance = {
                //alert(d);
                 var json_obj = $.parseJSON(d);//parse JSON            
                //alert(json_obj);
-               $('tbody').html("");  
-               
+               $('tbody').empty();  
+              
                $('tfoot').empty();
               
                 for (var i in json_obj)
