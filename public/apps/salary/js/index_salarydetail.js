@@ -148,6 +148,7 @@ for (var i = 0; i < cells.length; i++) {
         })
         }
        else{
+           
        window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/'+$specific_deduce+'/'+$member_id;
         }
     });

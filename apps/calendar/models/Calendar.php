@@ -42,7 +42,6 @@ class Calendar extends Model {
      * @desc create new event by click on calendar
      * @author David
      * @version Su Zin Kyaw
-     
      */
     public function create_event($creator_id,$id,$sdate,$edate,$title,$uname){
         $noti_id=rand();
@@ -69,7 +68,7 @@ class Calendar extends Model {
      */
     public function edit_event($name,$sdate,$edate,$title,$id,$member_id){
          $this->db = $this->getDI()->getShared("db");
-         $update ="UPDATE calendar SET member_name ='".$name."',title ='".$title."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
+         $update ="UPDATE calendar SET member_name ='".$name."',title ='".mysql_real_escape_string($title)."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
          $query=  $this->db->query($update);
          return $query;
     }
@@ -91,7 +90,8 @@ class Calendar extends Model {
         return $query;
     }
     
-    public function remove_member($remove_id,$id){                               
+    public function remove_member($remove_id,$id){                   
+        $remove_id = implode($remove_id,",");
         $query = "update member_event_permission set delete_flag =1 where permit_name ='$remove_id' and member_name = '".$id."'";
         $this->db->query($query);                             
     }

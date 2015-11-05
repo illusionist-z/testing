@@ -14,7 +14,7 @@ class IndexController extends  ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->permission = $this->setPermission();
-        
+        $this->view->module_name =  $this->router->getModuleName();
     }
  /**
      * 

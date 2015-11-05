@@ -5,7 +5,7 @@
         <?php switch($noti['module_name']){ case "leaves": {?>
         <li>
        <!-- inner menu: contains the actual data -->
-            <ul class="menu">
+            <ul class="menu" id="noneli">
                 <li>
                 <?php if($this->session->permission_code=="ADMIN"){?>
                     
@@ -16,9 +16,14 @@
                                      $img = "profile1.jpg";}
                                   else{
                                        $img=$noti['member_profile'];
+                                       if(file_exists('./uploads/'.$img)){                                                            
+                                             $img=$img;                                                            
+                                        }else{  
+                                            $img = "profile1.jpg";                                                                 
+                                        }
                                    }
                         ?>                                                 
-                        <img src="../../uploads/<?php echo  $img;?>"  width="20px" alt="Image"/>
+                    <img src="../../uploads/<?php echo  $img;?>" class="img-circle" width="20px" alt="Image"/>
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
                 }else {?>
                 <span class="foruser">

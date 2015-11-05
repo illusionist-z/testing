@@ -26,7 +26,6 @@ class LoginController extends ControllerBase {
         $this->session->set('permission_code', $permission);
         $user = array();
         $this->session->set('user', $result);
-        //print_r($this->session->user);exit;
         if ($result) {
 
             $ModelPermission = new Models\Permission();

@@ -20,7 +20,7 @@ try {
         // set namespace for the core module
         'workManagiment\Core\Controllers' => '../apps/core/controllers/',
         'workManagiment\Core\Models' => '../apps/core/models/',
-        'workManagiment\Auth\Models' => '../apps/auth/models/',
+       
     ));
 
     //register autoloader
@@ -38,7 +38,7 @@ try {
             "host" => $config->database->host,
             "username" => $config->database->username,
             "password" => $config->database->password,
-            "dbname" => $config->database->dbname
+            "dbname" => $config->database->dbname     
         ));
     });
 
