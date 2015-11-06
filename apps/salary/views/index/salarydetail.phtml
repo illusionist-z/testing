@@ -46,7 +46,9 @@
 <div>
     <div style="width: 10%; float: left;"><?= $t->_("name");?></div>
     <div><?php echo $filter->sanitize($A[$i]->core->full_name , "string"); ?>
-        <input type="text" value="<?php echo $A[$i]->core->member_id;?>" id="member_id" name="member_id">
+        <input type="hidden" value="<?php echo $A[$i]->core->member_id;?>" id="member_id" name="member_id">
+        <input type="text" value="<?php echo $year;?>" id="year" name="year">
+        <input type="text" value="<?php echo $month;?>" id="month" name="month">
     </div>
 </div>
 <div>
@@ -109,12 +111,12 @@
   </tr>
   <tr>
   <td colspan="2"><?= $t->_("personal_income");?></td>
-  <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->income_tax , "string"); $deduce+=$A[$i]->salarydet->income_tax;?>" id="txtallowance" disabled="disabled" class="txtenable"></td>
+  <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->income_tax , "string"); $deduce+=$A[$i]->salarydet->income_tax;?>" id="txtallowance" disabled="disabled"></td>
   <td></td>                   
   </tr>
   <tr>
   <td colspan="2"><?= $t->_("ssb_employee");?></td>
-  <td><input type="text" name="txtssb" value="<?php echo $filter->sanitize($A[$i]->salarydet->ssc_emp , "string"); $deduce+=$A[$i]->salarydet->ssc_emp; ?>" id="txtssb" disabled="disabled" class="txtenable"></td>
+  <td><input type="text" name="txtssb" value="<?php echo $filter->sanitize($A[$i]->salarydet->ssc_emp , "string"); $deduce+=$A[$i]->salarydet->ssc_emp; ?>" id="txtssb" disabled="disabled"></td>
   <td></td>                   
   </tr>
   <tr>

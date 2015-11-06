@@ -72,12 +72,12 @@ class SalaryMasterController extends ControllerBase
        
     }
     
-    public function editsalarydetailAction($bsalary,$overtimerate,$allowance,$member_id) {
-       // echo $bsalary.' '.$overtimerate.' '.$allowance;
+    public function editsalarydetailAction($bsalary,$overtimerate,$allowance,$member_id,$year,$month) {
+        //echo $bsalary.' '.$overtimerate.' '.$allowance.' '.$year.' '.$month;exit;
         $Salarymaster = new SalaryMaster();
         $Salarymaster->updatesalarydetail($bsalary,$overtimerate,$member_id);
         $Salarydetail=new SalaryDetail();
-        $Salarydetail->updatesalarydetail($allowance,$member_id);
+        $Salarydetail->updatesalarydetail($allowance,$member_id,$year,$month);
         $this->view->disable();
         echo json_encode($resultsalary);
     }
