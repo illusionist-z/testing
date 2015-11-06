@@ -28,8 +28,8 @@
         </div><!-- /.row -->
         <div class="row">
             <div class="col-md-12">
-                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
-                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?><a></div>
+                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/user-man-accept-icon.png" class="imgstyle"><font style="color:green;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
+                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/user-man-delete-icon.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?><a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -102,10 +102,10 @@
 
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="#" class="btn btn-primary btn-sm btn-flat" onclick="Content.View.apply(this, ['checkin']);" style="width: 150px"><?= $t->_("checkin"); ?></a>
+                                                                <a href="#" class="btn btn-primary btn-sm btn-flat" onclick="Content.View.apply(this, ['checkin']);" style="width: 150px;border-radius: 5px;"><?= $t->_("checkin"); ?></a>
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;"><?= $t->_("checkout"); ?></a>
+                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;border-radius: 5px;"><?= $t->_("checkout"); ?></a>
                                                             </div><br><br>
                                                         </div>
 

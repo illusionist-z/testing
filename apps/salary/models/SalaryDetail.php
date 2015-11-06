@@ -286,8 +286,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function seacrhsalary($cond) {
         try {
-            //print_r($cond);
-            $select = "SELECT * FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
+           // print_r($cond);
+            $select = "SELECT *, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total  FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
             $conditions = $this->setCondition($cond);
 
             $sql = $select;
@@ -309,8 +309,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
         $conditions = array();
 
-        if ($cond['username'] != "") {
-            $conditions[] = "member_login_name='" . $cond['username'] . "'";
+        if ($cond['mem'] != "") {
+            $conditions[] = "core_member.member_id ='" . $cond['mem'] . "'";  
         }
         if ($cond['dept'] != "") {
             $conditions[] = "member_dept_name='" . $cond['dept'] . "'";

@@ -171,6 +171,7 @@ var Salary = {
             width:'auto',
             closeText:'',
             modal:true,
+            resizable:false,
             title:"Confirm Delete",
             buttons:{
                 Yes:function(){
@@ -252,6 +253,68 @@ var Salary = {
              }).focus();                               
         });
     },
+    autolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+          //  alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'autolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+               // alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.tags').autocomplete({
+              source: dict
+            });
+       // ... do whatever you need to do with icon here
+   }
+    
+       },
+        getmemid: function (name){                       
+        //var name = document.getElementById('namelist').value;
+           // alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'getmemberid?uname='+name,
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                    //alert(json_obj[i].member_id);
+               // var aa = json_obj[i].member_id;
+                //alert(aa);
+                //$('#formemberid').text(json_obj[i].member_id);
+               // $(".salusername").text(aa);
+                dict.push(json_obj[i].member_id);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                  //alert(dict);
+                 loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                      // alert(dict);
+                        $('#formemberid').val(dict);
+                     }
+                     
+       },
     search : function () {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
@@ -266,23 +329,27 @@ var Salary = {
             $('tfoot').empty();
             for (var i in json_obj)
             {
-
-                var output = "<tr>"
+                
+                    var output = "<tr>"
                         + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
-                        + "<td>" + json_obj[i].member_login_name + "</td>"
+                        + "<td>" + json_obj[i].full_name + "</td>"
                         + "<td>" + json_obj[i].member_dept_name + "</td>"
-                        + "<td>" + json_obj[i].basic_salary + "</td>"
-                        + "<td>" + json_obj[i].overtime + "</td>"
-                        + "<td>" + json_obj[i].travel_fee + "</td>"
-                        + "<td>" + json_obj[i].absent_dedution + "</td>"
-                        + "<td>" + json_obj[i].income_tax + "</td>"
-                        + "<td>" + json_obj[i].ssc_comp + "</td>"
-                        + "<td>" + json_obj[i].ssc_emp + "</td>"
-                        + "<td>" + json_obj[i].total + "</td>"
-                        + '<td><a href="#" class="btn_detail">Detail</a></td>'
+                        + "<td><div class='td-style'>" + json_obj[i].basic_salary + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].overtime + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].travel_fee + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].allowance_amount + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].absent_dedution + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].income_tax + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].ssc_comp + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].ssc_emp + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].total + "</div></td>"
+                        + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
+                        
                         + "</tr>"
                         
                 $("tbody").append(output);
+                
+                
             }
             var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
                         +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
@@ -347,6 +414,15 @@ $(document).ready(function () {
     $('#cal_salary').click(function () {
         Salary.search();
     });
+    $('.tags').click(function () {
+       // alert("aaa");
+        Salary.autolist();
+    });
+    $("#search_salary").mouseenter(function(){
+       var name = document.getElementById('namelist').value;
+      // alert(name);
+		Salary.getmemid(name);      
+	});
 });
 
 
