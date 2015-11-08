@@ -29,6 +29,7 @@ class Calendar extends Model {
           while ($fetch = $query->fetchArray()) {                      
                 $e = array();
                 $e['id'] = $fetch['id'];
+                $e['member_name'] = $fetch['member_name'];
                 $e['title'] = $fetch['title'];
                 $e['start'] = $fetch['startdate'];
                 $e['end'] = $fetch['enddate'];
@@ -43,7 +44,7 @@ class Calendar extends Model {
      * @author David
      * @version Su Zin Kyaw
      */
-    public function create_event($creator_id,$id,$sdate,$edate,$title,$uname){
+    public function create_event($creator_name,$creator_id,$id,$sdate,$edate,$title,$uname){
         $noti_id=rand();
          $this->db = $this->getDI()->getShared("db");
          $insert ="INSERT INTO calendar (member_name,member_id,title,startdate,enddate,allDay,noti_id) Values ('".$uname."','".$id."','".$title."','".$sdate."','".$edate."','true','" . $noti_id . "')";
@@ -52,13 +53,14 @@ class Calendar extends Model {
         $admins=$admins->fetchall();
         foreach ($admins as $admins) {
            // echo $admins['member_id'];echo "---";
-        $this->db->query("INSERT INTO core_notification (noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
+        $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_name . "','" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
         }
         $users=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id!= '" . $creator_id . "' ");
         $users=$users->fetchall();
+        print_r($users);exit;
         foreach ($users as $users) {
             //echo $users['member_id'];echo "---";
-        $this->db->query("INSERT INTO core_notification_rel_member (member_id,noti_id,status,module_name) VALUES('" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
+        $this->db->query("INSERT INTO core_notification_rel_member (creator_name,member_id,noti_id,status,module_name) VALUES('" . $creator_name . "','" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
         }
          return $query;
     }
@@ -68,7 +70,7 @@ class Calendar extends Model {
      */
     public function edit_event($name,$sdate,$edate,$title,$id,$member_id){
          $this->db = $this->getDI()->getShared("db");
-         $update ="UPDATE calendar SET member_name ='".$name."',title ='".$title."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
+         $update ="UPDATE calendar SET member_name ='".$name."',title ='".mysql_real_escape_string($title)."',startdate='".$sdate."',enddate='".$edate."',member_id ='".$member_id."' WHERE id='".$id."'";
          $query=  $this->db->query($update);
          return $query;
     }
@@ -85,12 +87,13 @@ class Calendar extends Model {
      */     
     public function delete_event($id) {                
         $this->db=  $this->getDI()->getShared("db");
-        $delete="DELETE FROM calendar WHERE id='".$id."'";
+        $delete= "DELETE FROM calendar WHERE id='".$id."'";
         $query=  $this->db->query($delete);
         return $query;
     }
     
-    public function remove_member($remove_id,$id){                               
+    public function remove_member($remove_id,$id){                   
+        $remove_id = implode($remove_id,",");
         $query = "update member_event_permission set delete_flag =1 where permit_name ='$remove_id' and member_name = '".$id."'";
         $this->db->query($query);                             
     }
@@ -128,6 +131,21 @@ class Calendar extends Model {
         $data = $result->fetchall();
         return $data;
     }
-    
+    /**
+     *
+     *  type get $member_id
+     * @author Saw Zin Min Tun
+     */
+    public function memidcal($uname) {
+        
+            //$sql = "select salary_master.member_id from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE core_member.full_name ='".$uname."'";
+            $sql = "select * from core_member WHERE full_name ='".$uname."'";
+           // print_r($sql);exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+           //print_r($row);exit;
+        
+        return $row;
+    }
     
 }

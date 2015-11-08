@@ -17,7 +17,7 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
-        $this->module_name =  $this->router->getModuleName();
+        //$this->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
     }
@@ -44,7 +44,7 @@ class IndexController extends ControllerBase
     
     public function getmemberAction() {        
       $MemberList=new Db\CoreMember();
-        $Username = $MemberList->userautolistusername(); 
+        $Username = $MemberList->autousername(); 
         $this->view->disable();    
         echo json_encode($Username);
     }
@@ -52,10 +52,24 @@ class IndexController extends ControllerBase
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->calenderautousername();
+        $Username = $UserList->autousername();
         //print_r($Username);exit;
         $this->view->disable();
         echo json_encode($Username);
+    }
+    
+    /**
+     * 
+     * get member_id 
+     
+     */
+    public function getcalmemberidAction() {
+       $data = $this->request->get('uname');
+       //print_r($uname);exit;
+        //$leavetype = new Calender();
+        $cond = $this->calendar->memidcal($data);
+        echo json_encode($cond);
+        $this->view->disable();
     }
     
     public function addmemberAction(){
@@ -90,13 +104,15 @@ class IndexController extends ControllerBase
      * @category create event
      * @return   json { error message }
      */
-    public function createAction($id) {        
-        $this->view->disable();        
+    public function createAction() {        
+        $this->view->disable();     
+        $id=$this->request->get('member_id');
         $uname = $this->request->get('uname');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $title = $this->request->get('title');
         $creator_id=$this->session->user['member_id'];
+        $creator_name=$this->session->user['member_login_name'];
         $res= array();
         if ($title == null ) {
             $res['cond']=FALSE;
@@ -112,7 +128,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($creator_id,$id,$sdate, $edate, $title,$uname);
+            $event=$this->calendar->create_event($creator_name,$creator_id,$id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
             $res['name']= $uname;
         }

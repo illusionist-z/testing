@@ -8,6 +8,7 @@ var baseUri;
 var Noti = {
     Seen: function(d) {
         var form = $('#noti_detail');
+        
         $.ajax({
             type: 'POST',
             data: form.serialize(),
@@ -20,6 +21,7 @@ var Noti = {
     },
     Accept: function() {
         var form = $('#noti_detail');
+         
 
         $.ajax({
             type: 'POST',

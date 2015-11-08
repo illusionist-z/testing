@@ -23,7 +23,7 @@ var User = {
         
          var dict = [];
        $.ajax({
-                url:'leaveuserautolist',
+                url:'autolist',
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
@@ -62,6 +62,7 @@ $(document).ready(function(){
         //alert("aaa");
         User.userautolist();
     }); 
+    
 });
 
  

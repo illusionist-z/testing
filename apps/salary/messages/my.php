@@ -50,6 +50,13 @@ $messages = array(
     "commute_fee"           => "ခရီးစရိတ္",
     "grand_total"           => "Grand Total",
     "enter_allname"           => "အက်ဳိးခံစားခြင္႔အမည္",
-    "enter_allamount"           => "အက်ဳိးခံစားခြင္႔ ေငြပမာဏ"
+    "enter_allamount"           => "အက်ဳိးခံစားခြင္႔ ေငြပမာဏ",
+    "taxeditform" => "Tax deduce ျပင္ရန္",
+    "tax_edit" => "အခြန္ႏႈန္းျပင္ရန္",
+    "deduce_frm" => "deduceပံုုစံျဖည္႔ရန္",
+    "deduce_name" => "deduceအမည္",
+    "amount" => "ႏႈန္း",
+    "wr_deduce_name" => "deduceအမ်ဳိးအစား",
+    "wr_deduce_amount" => "deduceႏႈန္း"
     
 );

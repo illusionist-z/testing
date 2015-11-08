@@ -70,6 +70,7 @@ class CoreMember extends \Library\Core\BaseModel {
                 ->columns(array('core.*'))
                 ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
                 ->where('core.full_name = :username:', array('username' => $username))
+                ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
         //print_r($row);exit;
@@ -161,7 +162,8 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_dir = "uploads/";
         $profile = $_FILES["fileToUpload"]["name"];
         //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $newfilename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
+        $Real_pic_name=explode(".", $_FILES["fileToUpload"]["name"]);
+        $newfilename = rand(1, 99999) . '.' . end($Real_pic_name);
         $targetfile = $target_dir . $newfilename;
 
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
@@ -304,31 +306,8 @@ class CoreMember extends \Library\Core\BaseModel {
         $a = $this->db->query($sql);
     }
 
+    //for auto complete function
     public function autousername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where member_id  IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-
-    //for monthly list complete username
-    public function monthautolistusername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-
-    //for user list complete username
-    public function userautolistusername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
-
-    //for leave list complete username
-    public function leaveuserautolistusername() {
         $this->db = $this->getDI()->getShared("db");
         $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
         $getname = $user_name->fetchall();

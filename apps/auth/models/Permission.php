@@ -10,25 +10,30 @@ use Phalcon\Mvc\Model;
 
 class Permission {
 
+    public static function getInstance() {
+    return new self();
+    }
+    
     /**
      * Get permission
      * @param type $id
      * @param type $dept_code
      * @author zinmon
      */
-    public function get($user, &$permissions = array()) {
+    public function get($user, &$permissions = array(),$lang) {
       
+        //print_r($user);
         $id = $user['member_id'];
-        $dept_code = $user['member_dept_code'];
+        //$dept_code = $user['member_dept_code'];
         
         // Get Permission groups
-        $permissinGroups = $this->getGroup($id, $dept_code);
+        $permissinGroups = $this->getGroup($id);
         
         // Get Permissons for user
-        if (!$this->getPermissions($permissinGroups, $permissions)) {
+        if (!$this->getPermissions($permissinGroups, $permissions,$lang)) {
             return FALSE;
         }
-        $result=$this->getPermissions($permissinGroups, $permissions);
+        $result=$this->getPermissions($permissinGroups, $permissions,$lang);
         //print_r($result);exit;
         return $result;
     }
@@ -39,7 +44,7 @@ class Permission {
      * @param string $dept_code
      * @return array Permission code.
      */
-    public function getGroup($id, $dept_code) {
+    public function getGroup($id) {
         try {
             $permissions = Db\CorePermissionRelMember::findByRelMemberId($id);
        //var_dump($permissions);exit;
@@ -55,6 +60,7 @@ class Permission {
         } catch (\Exception $e) {
             throw $e;
         }
+        //print_r($permissionGroups);exit;
         return $permissionGroups;
     }
 
@@ -65,7 +71,7 @@ class Permission {
      * @return type
      * @author zinmon
      */
-    public function getPermissions($permissionGroups, & $permissions) {
+    public function getPermissions($permissionGroups, & $permissions,$lang) {
 
         try {
             $permissions = [];
@@ -87,21 +93,23 @@ class Permission {
                         'permission_group_code IN (' . implode(',', $inFields) . ') ',
                         'bind' => $aryBind
             ]);
-          
+            
             // The permissions set up for each module. 
-            while ($results->valid()) {
-                //$row = $results->current();
-                foreach ($results as $row) {
-                $permissions = Db\CorePermission::findByPermissionCode($row->permission_code);
-                    while ($permissions->valid()) {
-                        //$row = $permissions->current();
+                  foreach ($results as $row) {
+                $permis =new Db\CorePermission();
+                //get language module foreach
+                $permissions = $permis->moduleLang($row->permission_code,$lang); 
+                //print_r($permissions);
+                   if($permissions){                   
 //                    $per_result[$row->permission_code][] = $row->permission_name;
-//                    $permissions->next();
-                        foreach ($permissions as $res) { 
-                            $per_result[$res->permission_code][] = $res->permission_name;
-                }
-            }
-                    //$results->next()
+                       $i = 0;
+                        foreach ($permissions as $res) {                             
+                            $per_result[$res['permission_code']][] = $res[2];             //get translate menu text
+                            $per_result[$res['permission_code']]['link'.$i] = $res[1];    //get link text
+                            $i++;
+                            }
+                   
+                   //$results->next()
                 }
             }
             //print_r($per_result);exit;

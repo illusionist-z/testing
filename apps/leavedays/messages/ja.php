@@ -23,6 +23,10 @@ $messages = array(
   "searchusername" => "名前で検索",
   "edit" => "編集",
   "save" => "保存",
-  "addleavetype" => "休暇タイプ新規入力"
+  "addleavetype" => "休暇タイプ新規入力",
+  "deleteleavetype" => "休暇タイプの削除",
+  "yes" => "はい",
+  "cancel" => "いいえ",
+  "enterltp" => "休暇タイプを入力してください"
 );
 

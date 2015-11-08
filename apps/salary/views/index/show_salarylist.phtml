@@ -23,19 +23,8 @@
                     <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
                     <div id="salary_detail_div1">
                         <?= $t->_("username");?> :
-                        <span>
-                            <select class="select" data-toggle="select" name="cond[username]">
-                                <option value=""><?= $t->_("username");?></option>
-                                <?php
-                                foreach ($usernames as $username) {
-                                    ?>
-                                    <option value="<?php echo $username->member_login_name; ?>"><?php echo $username->member_login_name; ?></option>
-                                    <?php
-                                }
-                                ?>
-
-                            </select>
-                        </span>
+                        <input  class="tags"   style="width:100%;margin-top: 1px;"  id="namelist" placeholder="<?php echo $t->_("username"); ?>">
+                        <input type="hidden" value="" id="formemberid" name="cond[mem]">
                     </div>
                     <div id="salary_detail_div2">
                         <?= $t->_("department");?> :
@@ -66,7 +55,7 @@
                             </select>
                     </div>
                     <div id="salary_detail_div4">
-                         <?= $t->_("position");?> :
+                         <?= $t->_("salary_rate");?> :
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
                             <option>400001~700000</option>
@@ -79,9 +68,8 @@
                     <div>
                         <a href="#" class="button" id="search_salary"><?= $t->_("search");?></a>
                         <a href="#" class="button export"><?= $t->_("export");?></a>
-                        <a href="#" class="button" id="btn_print_salary"><?= $t->_("print");?></a>
-                        <a href="#" class="button" id="btn_tax_form" style="margin-top: 3%;"><?= $t->_("tax_form");?></a>
-                        <a href="#" class="button" id="btn_tax" style="margin-top: 3%;">Tax</a>
+                        <a href="#" title="Print" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a><br>
+                       
                     </div>
                 </div><!--search btn-->
             </form>
@@ -145,7 +133,7 @@
                                 <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">
                             </td>
 <!--                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button">Detail</a></td>-->
-                            <td><a href="#" class="btn_detail"><?= $t->_("detail");?></a></td>
+                            <td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></td>
                         </tr>
                         <?php
                         $i++;

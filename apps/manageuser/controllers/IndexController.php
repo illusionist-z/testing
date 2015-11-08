@@ -15,7 +15,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
-        $this->module_name =  $this->router->getModuleName();
+        $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
     }
@@ -50,7 +50,7 @@ class IndexController extends ControllerBase
     public function usernameautolistAction() {
         //echo json_encode($result);
          $UserList=new Db\CoreMember();
-        $Username = $UserList->userautolistusername(); 
+        $Username = $UserList->autousername(); 
         //print_r($UserList);exit;
         $this->view->disable();    
         echo json_encode($Username);
@@ -70,6 +70,7 @@ class IndexController extends ControllerBase
             $edit[0] = $type;
             $edit[1]["add"] = $t->_("adduser");
             $edit[1]["name"] = $t->_("name");
+            $edit[1]["username"] = $t->_("username");
             $edit[1]["pass"] = $t->_("password");
             $edit[1]["confirm"] = $t->_("confirm_pass");
             $edit[1]["dept"] = $t->_("dept");
@@ -79,6 +80,17 @@ class IndexController extends ControllerBase
             $edit[1]["address"] = $t->_("address");
             $edit[1]["role"] = $t->_("user_role");
             $edit[1]["profile"] = $t->_("user_profile");
+            $edit[1]["w_start_dt"] = $t->_("w_start_dt");
+            $edit[1]["placeholder1"] = $t->_("placeholder1");
+            $edit[1]["placeholder2"] = $t->_("placeholder2");
+            $edit[1]["placeholder3"] = $t->_("placeholder3");
+            $edit[1]["placeholder4"] = $t->_("placeholder4");
+            $edit[1]["placeholder5"] = $t->_("placeholder5");
+            $edit[1]["placeholder6"] = $t->_("placeholder6");
+            $edit[1]["placeholder7"] = $t->_("placeholder7");
+            $edit[1]["placeholder8"] = $t->_("placeholder8");
+            $edit[1]["placeholder9"] = $t->_("placeholder9");
+            $edit[1]["placeholder10"] = $t->_("placeholder10");
             echo json_encode($edit);
         }
         else{
@@ -91,7 +103,11 @@ class IndexController extends ControllerBase
             $edit[1]["pos"] = $t->_("position");
             $edit[1]["mail"] = $t->_("mail");
             $edit[1]["pno"] = $t->_("phone");
-            $edit[1]["address"] = $t->_("address");        
+            $edit[1]["address"] = $t->_("address");
+            $edit[1]["w_start_dt"] = $t->_("w_start_dt");
+            $edit[1]["btn_edit"] = $t->_("btn_edit");
+            $edit[1]["btn_delete"] = $t->_("btn_delete");
+            $edit[1]["btn_cancel"] = $t->_("btn_cancel");
         echo json_encode($edit);
         }
         $this->view->disable();

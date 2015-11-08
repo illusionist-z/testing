@@ -23,13 +23,14 @@ use Phalcon\Filter;
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th width="50px"><?= $t->_("no"); ?></th>
+                        <th width="80px"><?= $t->_("no"); ?></th>
                         <th width="150px"><?= $t->_("name"); ?></th>
                         <th width="150px"><?= $t->_("department"); ?></th>
                         <th width="150px"><?= $t->_("position"); ?></th>
                         <th width="150px"><?= $t->_("email"); ?></th>
                         <th width="150px"><?= $t->_("phoneno"); ?></th>
-                        <th width="150px"><?= $t->_("address"); ?></th>                        
+                        <th width="150px"><?= $t->_("address"); ?></th>
+                        <th width="150px"></th>
                     </tr>
                 </thead>
                 <tbody>                  
@@ -46,7 +47,11 @@ use Phalcon\Filter;
                             <td><?= $filter->sanitize($result['member_mail'], "email"); ?></td>
                             <td><?= $filter->sanitize($result['member_mobile_tel'], "int"); ?></td>
                             <td><?= $filter->sanitize($result['member_address'], "string"); ?>
-                            </td>                        
+                            </td>
+                            <td>
+                                 <button onclick="return false;" class="absentcheck buttonn" id="<?php echo $result['member_id'] ?>">Absent</button>
+                                
+                            </td>   
                         </tr>
                         <?php
                         $i++;

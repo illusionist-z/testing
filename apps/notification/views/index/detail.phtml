@@ -4,22 +4,43 @@
    
  ?>
 
-<form id="noti_detail" width="800px" height="300px" ><table width="500px" height="290px"  >             
-<br>
-<tr><td></td><td><b><?= $t->_("username"); ?></b></td><td><span style="color:black"><b>: <?php echo $data['member_login_name'];?></b> </span><b style="font-size:13px;"></b></td><td ></td></tr>
-<tr><td></td><td><b><?= $t->_("startdate"); ?> </b> </td><td><span style="color:black"><b> : <?php echo $data['start_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b><?= $t->_("enddate"); ?> </b> </td><td><span style="color:black"><b> : <?php echo $data['end_date'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-  <tr><td></td><td><b><?= $t->_("leavestatus"); ?> </b> </td><td><span style="color:black"><b> : <?php if($leave_stt==0){echo 'pending';}else if($leave_stt==1){echo 'Confirmed';}else{echo 'Rejected';}?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b><?= $t->_("leaveday"); ?></b> </td><td><span style="color:black"><b> : <?php echo $data['leave_days'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b><?= $t->_("leavecategory"); ?> </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_category'];?></b> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b><?= $t->_("leavedes"); ?>  </b> </td><td><span style="color:black"><b> : <?php echo $data['leave_description'];?></b> </span><b style="font-size:13px;"></b></td></tr>
+
+
+
+<form id="noti_detail" width="10px" height="300px" >
+   <fieldset>
+       <legend>
+           <?php
+                                if($data['member_profile']==null){
+                                     $img = "profile1.jpg";}
+                                  else{
+                                       $img=$data['member_profile'];
+                                   }
+                        ?>                                                 
+                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" style="margin-left: 350px;box-shadow: 0px 0px 5px #3c8dbc;" width="100px" alt="Image"/>
+       </legend>
+      
+       <table width="500px" height="290px" style="margin-left: 400px;background-color: whitesmoke;border-radius: 20px;box-shadow: 0px 0px 5px #3c8dbc;" > 
+           <tr><td></td><td><b>User Name </b></td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['member_login_name'];?>" disabled> </span><b style="font-size:13px;"></b></td><td ></td></tr>
+<tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['start_date'];?>" > </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>End Date </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['end_date'];?>"> </span><b style="font-size:13px;"></b></td></tr>
+  <tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php if($leave_stt==0){echo 'pending';}else if($leave_stt==1){echo 'Confirmed';}else{echo 'Rejected';}?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_days'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Category </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_category'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_description'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['member_id'];?>"  name="id"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['end_date'];?>"  name="end_date"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['leave_days'];?>"  name="leave_days"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['start_date'];?>"  name="start_date"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['noti_id'];?>"  name="noti_id"></td><td></td></td></tr>
-<tr><td></td><td></td><?php if ($this->session->permission_code=='ADMIN'){ ?><td colspan="2"><br><a href="#" class="button" id="noti_accept">Accept</a><a href="#" class="button" id="noti_reject">Reject</a>
+<tr><td></td><td></td><?php if ($this->session->permission_code=='ADMIN'){ ?><td colspan="2"><br><a href="#" class="button" id="noti_accept" style="background: #3c8dbc;color:white;margin-right: 13px;">Accept</a><a href="#" class="button" id="noti_reject" style="color:#3c8dbc;">Reject</a>
     <?php }else { ?><td colspan="2"><br><a href="#" class="button" id="noti_ok">Back</a>
     </td></tr><?php }?>
-</table></form><?php }}?>  
+    </table>
+        
+   </div>
+    </div>   
+   </fieldset></form>
+
+        <?php }}?>  
 

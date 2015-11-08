@@ -18,7 +18,8 @@ $messages = array(
     "home"       => "Home",
     "checkinout" => "Check In / Check Out",
     "latest_news" => "Latest News",
-    "no_leave" => "People who doesn't take leave"
+    "no_leave" => "People who doesn't take leave",
+    "viewallmember" => "View All Members"
     
 );
 

@@ -29,6 +29,7 @@ Class Module implements ModuleDefinitionInterface {
         $loader->registerNamespaces(array(
             'workManagiment\\' . $this->_moduleName . '\Controllers' => $this->_moduleDir . '/controllers/',
             'workManagiment\\' . $this->_moduleName . '\Models' => $this->_moduleDir . '/models/',
+            
         ));
 
         $loader->register();

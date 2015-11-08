@@ -33,24 +33,30 @@ var Salary = {
                         +'<tr><td></td><td><b>SSC Comp </b></td>'
                         +'<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>';
                        
-               data += '<tr><td></td><td>Decut Name </td><td colspan="4" style="font-size:12px;">';
-               for(var j in result.dedution){
-               var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
-               data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> '+result.dedution[j]["deduce_name"]+'<br>';
-               }
-               data +='<br></td></tr>';
+                data += '<tr><td></td><td>Decut Name </td><td colspan="4" style="font-size:12px;">';
+                for(var j in result.dedution){
+                var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
+                data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> '+result.dedution[j]["deduce_name"]+'<br>';
+                }
+                data +='<br></td></tr>';
                
-                data += '<tr><td></td><td>Allow Name </td><td colspan="4" style="font-size:12px;">';
-               for(var i in result.allowance){
-               var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
-               data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
-              }
-             data +='</td></tr>';
+                    data += '<tr><td></td><td>Allow Name </td><td colspan="4" style="font-size:12px;">';
+                for(var i in result.allowance){
+                var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
+                data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
+                }
+                data +='</td></tr>';
+                data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value="" name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
              
-               data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
-             data +='</table></form>';
-               Salary.Dia(data,result.t['title']);
+                data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
+                data +='</table></form>';
+                Salary.Dia(data,result.t['title']);
+                $('.datepicker').on('click',function(e){
+                          e.preventDefault();                                                    
+                         $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            }).focus();                               
+                     }); 
            }
         });
     },
@@ -76,11 +82,15 @@ var Salary = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 500,
+            height: 'auto',
             async: false,
-            width: 600,
+            width: 'auto',
+            resizable:false,
+             position:'absolute',
+             
             modal: true,
             title: title,
+            
             /*show:{
                 effect:"explode",//effect:"blind",
 		duration:200
@@ -157,8 +167,8 @@ var Salary = {
         $del.css('background','#F5F5F5');
           $del.dialog({
             autoOpen:false,
-            height:190,
-            width:350,
+            height:'auto',
+            width:'auto',
             closeText:'',
             modal:true,
             title:"Confirm Delete",
@@ -172,7 +182,7 @@ var Salary = {
             }
            
         });
-         $del.html("<p>Are u sure to <b style='color:red'>delete</b> ?</p>");
+         $del.html("<p>Are u sure to delete?</p>");
         $del.dialog("open");  
     },
     Confirm :function(d){
@@ -187,9 +197,124 @@ var Salary = {
                 d.dialog("close");
             }
         }).done(function(){
-            $('body').load('salarylist');
+            //$('body').load('salarylist');
+            location.reload();
         });
     },
+    calSalary : function (){
+        //alert("add");
+        
+        $.ajax({
+            
+           url:"",
+           type: "POST",
+           success:function(){   
+                var data ='<form id="Add_new_deduct"><table>';               
+                    data += '<tr><td>Choose pay month to calculate salary <br></td></tr>'
+                       +'<tr><td><input type="text" class="datepicker"  placeholder="Choose pay month" style="height:39px; width: 260px;" id="salary_start"></td></tr>'        
+                    data +='<tr><td><a href="#" class="button" id="cal_salary">Yes</a><a href="#" class="button" id="cancel_deduct">No</a></td></tr>';
+                    data +='</table></form>';
+               Salary.Diaaadd(data);
+           }
+        });
+        },
+        Diaaadd : function (d){
+        if(!this.isOvl){
+            this.isOvl=true;
+        }
+        
+        $ovl = $('#add_new_dt');
+        $ovl.dialog({
+            autoOpen: false,
+            height: 'auto',
+            async:false,     
+            resizable:false,
+            width: 'auto',
+            modal: true,
+            title:"Calculate Salary"
+        });                        
+        $ovl.html(d);
+        $ovl.dialog("open");
+        $ovl.css('color','black');
+        $ovl.css('background','#F5F5F5');
+        $('#cal_salary').click(function(){
+            Salary.SaveSalary();
+        });  
+          
+        $('#cancel_deduct').click(function(){
+           $ovl.dialog("close");
+           location.reload();
+
+        });
+        $('.datepicker').on('click',function(e){
+             e.preventDefault();                                                    
+             $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
+             }).focus();                               
+        });
+    },
+    
+    autolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+          //  alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'autolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+               
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);
+                        $('.tags').autocomplete({
+              source: dict
+            });
+       // ... do whatever you need to do with icon here
+   }
+    
+       },
+        getmemid: function (name){                       
+        //var name = document.getElementById('namelist').value;
+           // alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'getmemberid?uname='+name,
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                    //alert(json_obj[i].member_id);
+               // var aa = json_obj[i].member_id;
+                //alert(aa);
+                //$('#formemberid').text(json_obj[i].member_id);
+               // $(".salusername").text(aa);
+                dict.push(json_obj[i].member_id);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                  //alert(dict);
+                 loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                      // alert(dict);
+                        $('#formemberid').val(dict);
+                     }
+                     
+       },
     search : function () {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
@@ -199,32 +324,38 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-            var json_obj = $.parseJSON(d);//parse JSON            
+             var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
             $('tfoot').empty();
+            var totalsal = 0;
             for (var i in json_obj)
-            {
-
-                var output = "<tr>"
+            {   
+                var aa = parseInt(json_obj[i].total);
+                 totalsal =totalsal + aa ;
+                    var output = "<tr>"
                         + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
-                        + "<td>" + json_obj[i].member_login_name + "</td>"
+                        + "<td>" + json_obj[i].full_name + "</td>"
                         + "<td>" + json_obj[i].member_dept_name + "</td>"
-                        + "<td>" + json_obj[i].basic_salary + "</td>"
-                        + "<td>" + json_obj[i].overtime + "</td>"
-                        + "<td>" + json_obj[i].travel_fee + "</td>"
-                        + "<td>" + json_obj[i].absent_dedution + "</td>"
-                        + "<td>" + json_obj[i].income_tax + "</td>"
-                        + "<td>" + json_obj[i].ssc_comp + "</td>"
-                        + "<td>" + json_obj[i].ssc_emp + "</td>"
-                        + "<td>" + json_obj[i].total + "</td>"
-                        + '<td><a href="#" class="btn_detail">Detail</a></td>'
+                        + "<td><div class='td-style'>" + json_obj[i].basic_salary + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].overtime + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].travel_fee + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].allowance_amount + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].absent_dedution + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].income_tax + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].ssc_comp + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].ssc_emp + "</div></td>"
+                        + "<td><div class='td-style'>" + json_obj[i].total + "</div></td>"
+                        + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
+                        
                         + "</tr>"
                         
                 $("tbody").append(output);
+                
+                
             }
             var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
                         +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
-                        +'<td><b>#####</b></td>'
+                        +'<td><div class="td-style"> '+totalsal+'</div></td>'
                         +'<td></td>'
                         +'</tr>'
             $("tbody").append(html);
@@ -258,6 +389,10 @@ var Salary = {
         
         });
          
+        },
+        SaveSalary : function (){
+        var salary_start_date=document.getElementById('salary_start').value;
+        window.location.href=baseUri+'salary/calculate?salary_date='+salary_start_date;
         }
         
 };
@@ -272,44 +407,24 @@ $(document).ready(function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
-    //display popup to calculate monthly salary
+    
+//isplay popup to calculate monthly salary
     $("#displaypopup").click(function(){
-		//centering with css
-		centerPopup();
-		//load popup
-		loadPopup();
+		Salary.calSalary();
                
 	});
-    //centering popup
-    function centerPopup(){
-	
-	//request data for centering
-	var windowWidth = $(window).width();
-	var windowHeight = $(window).height();		
-        
-	$("#myPopup").css({
-		"position": "absolute",
-		"top"     : windowHeight/4,
-                "left"    : windowWidth/2.5
+    $('#cal_salary').click(function () {
+        Salary.search();
+    });
+    $('.tags').click(function () {
+       // alert("aaa");
+        Salary.autolist();
+    });
+    $("#search_salary").mouseenter(function(){
+       var name = document.getElementById('namelist').value;
+      // alert(name);
+		Salary.getmemid(name);      
 	});
-	$("body").css("overflow","hidden");
-	$("#backgroundPopup").css({
-		"height": windowHeight
-	});
-       }
-       
-    function loadPopup(){
-	if(popupStatus==0){
-		$("#backgroundPopup").css({
-			"opacity": "0.5"
-		});
-		$("#backgroundPopup").fadeIn("slow");
-		$("#myPopup").fadeIn("slow");
-		popupStatus = 1;
-	}
-    }
-    
-
 });
 
 

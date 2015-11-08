@@ -118,7 +118,7 @@ class Allowances extends Model {
             echo $e;
         }
 
-        return $result;
+        //return $result;
     }
     
     public function editall($allid){

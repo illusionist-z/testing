@@ -37,7 +37,7 @@ var Resign = {
            success:function(){          
                var data ='<form id="Resign_Date"><table>';               
                    data += '<tr><td></td></tr>'
-                        +'<tr><br><td><small>Resign Date:</small> </td><td style="font-size:10px;"><input type="text" class="datepicker form-control" name="resign_date" id="resign_date" placeholder="Resign Date" ></td></tr>';
+                        +'<tr><br><td><small>Resign Date:</small> </td><td style="font-size:10px;"><input type="text" style="margin-top:10px;" class="datepicker form-control" name="resign_date" id="resign_date" placeholder="Resign Date" ></td></tr>';
                          +'<tr><td></td></tr>';             
                 data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_Resign_Date">Save</a><a href="#" class="button" id="cancel">Cancel</a></td></tr>';
                 data+='<input type="hidden" name="member_id" id="resign_date" value="'+id+ '"td></tr>';
@@ -56,9 +56,9 @@ var Resign = {
         $ovl = $('#resign');
         $ovl.dialog({
             autoOpen: false,
-            height: 240,
+            height: 'auto',
             async:false,            
-            width: 500,
+            width: 'auto',
             modal: true,
             title:"Add Resign Date"
         });                        
@@ -129,17 +129,28 @@ for (var i = 0; i < cells.length; i++) {
     });
 
     $("#btn_savedetail").click(function () {
-       $member_id=document.getElementById('member_id').value; 
-       $b_salary=document.getElementById('txtbsalary').value;
-       $overtime_rate=document.getElementById('txtovertimerate').value;
-       $specific_deduce=document.getElementById('txtallowance').value;
-       if($specific_deduce=="")
+      $(".txtenable").each(function() {
+    alert($(this).val());
+});
+
+       var member_id=document.getElementById('member_id').value;
+        
+       var b_salary=document.getElementById('txtbsalary').value;
+       var overtime_rate=document.getElementById('txtovertimerate').value;
+       var specific_deduce=document.getElementById('txtallowance').value;
+       var year=document.getElementById('year').value;
+       var month=document.getElementById('month').value;
+       //alert(b_salary);
+//       $year=document.getElementById('year').value;
+//       $month=document.getElementById('month').value;
+//       
+       if(specific_deduce=="")
        {
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
        $.ajax({
             type:'get',
             //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
-            url : baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id,
+            url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'+overtime_rate+'/0/'+member_id+'/'+year+'/'+'/'+month,
             success:function(){
                 alert("Data has been updated");
                 window.location.reload();
@@ -147,7 +158,8 @@ for (var i = 0; i < cells.length; i++) {
         })
         }
        else{
-       window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/'+$specific_deduce+'/'+$member_id;
+       
+       window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'+overtime_rate+'/'+specific_deduce+'/'+member_id+'/'+year+'/'+'/'+month;
         }
     });
    
