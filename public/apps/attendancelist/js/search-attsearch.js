@@ -22,7 +22,7 @@ $(document).ready(function () {
 var Attendance = {
         init : function (){            
             $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =3;            
+            pager.perpage = 5;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
             $('tbody').show();
@@ -37,7 +37,7 @@ var Attendance = {
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-               // alert(data);    
+               //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
@@ -233,3 +233,14 @@ var Attendance = {
         };
 
 
+
+$(document).ready(function () { 
+    Attendance.init();         
+                      
+   
+    $('.monthauto').click(function () {
+        //alert("aaa");
+        Attendance.monthautolist();
+    }); 
+   
+});

@@ -38,7 +38,8 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 }
 #apply_cancel,#add_salary_cancel,#displaypopup,#add_dec,#addinguser_close,#edit_close,
 #cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
-#cancel,#save,#btn_logout,#settingimg,#settingborder,#apply_form_cancel,#noti_reject{
+#cancel,#save,#btn_logout,#settingimg,#settingborder,#apply_form_cancel,#noti_reject,
+#editsetting,#savesetting{
     border-color:#3c8dbc;color: #3c8dbc;border-radius: 4px;
 }
 
@@ -251,7 +252,7 @@ a.export {
     padding: 6px 10px 6px 26px;
 }
 .inedit{
-    background: url("../img/images.png")  1px 0px no-repeat  ;   
+    background: url("../img/images1.png")  1px 0px no-repeat  ;   
     padding: 6px 10px 12px 8px;    
 }
 .dateimg{
@@ -581,4 +582,5 @@ float:left;
 #noneli{
    text-indent: 10%;
    background-color: whitesmoke;
+   
 }

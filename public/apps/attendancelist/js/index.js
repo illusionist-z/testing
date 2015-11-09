@@ -119,7 +119,7 @@ var Attendance = {
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-                alert(data);    
+               // alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
@@ -139,6 +139,7 @@ var Attendance = {
    }
     
        },
+      
        
         todaylist: function (){                       
         var name = document.getElementById('namelist').value;
@@ -171,10 +172,7 @@ $(document).ready(function () {
         //alert("aaa");
         Attendance.autolist();
     }); 
-    $('.monthauto').click(function () {
-        //alert("aaa");
-        Attendance.monthautolist();
-    }); 
+    
     $('.listtbl').on("click",".displaypopup",function(e){
         e.preventDefault();
         var id = $(this).attr('id');

@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage =9;            
+        pager.perpage = 9;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -86,8 +86,7 @@ var Salary = {
             async: false,
             width: 'auto',
             resizable:false,
-             position:'absolute',
-             
+            position:'absolute',
             modal: true,
             title: title,
             
@@ -99,7 +98,8 @@ var Salary = {
 		effect:"explode",
 		duration:200
 	    }*/
-        });
+        }).parent('.ui-dialog').css('zIndex',9999);
+        
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
