@@ -175,14 +175,16 @@ class IndexController extends ControllerBase {
     public function editsalaryAction() {
         $member_id = $this->request->get('id');
         $t = $this->_getTranslation();
-        $Salarydetail = new SalaryMaster();
-        $editsalary = $Salarydetail->editsalary($member_id);
+        $Salarymaster = new SalaryMaster();
+        $editsalary = $Salarymaster->editsalary($member_id);
         $resultsalary['data']=$editsalary;
         $Permit_allowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $Permit_allowance->getallowanceBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_allowance']);
+        
         $Permit_dedution = new SalaryMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
+        $resultsalary['no_of_children']=$Permit_dedution->getnoofchildrenBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_dedution']);exit;
         $Dedution = new SalaryTaxsDeduction();
         $resultsalary['dedution']=$Dedution->getdedlist();
@@ -215,6 +217,7 @@ class IndexController extends ControllerBase {
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $data['start_date'] = $this->request->getPost('work_sdate');
+        $data['no_of_children']=$this->request->getPost('no_of_children');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce= $this->request->getPost('check_list');
         //print_r($data['start_date']);exit;
@@ -222,7 +225,7 @@ class IndexController extends ControllerBase {
         $cond = $Salarydetail->btnedit($data);
         
         $Taxdeduce=new SalaryMemberTaxDeduce();
-        $Taxdeduce->edit_taxByMemberid($check_deduce,$data['member_id']);
+        $Taxdeduce->edit_taxByMemberid($check_deduce,$data['no_of_children'],$data['member_id']);
         
         $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
         $SalaryMasterAllowance->edit_allowanceByMemberid($check_allow,$data['member_id']);
@@ -522,8 +525,9 @@ class IndexController extends ControllerBase {
         }
         
       //print_r($getsalarydetail);exit;
-        
         $this->view->getsalarydetails = $getsalarydetail;
+        $this->view->year = $year;
+        $this->view->month = $month;
     }
     
     public function addresigndateAction(){

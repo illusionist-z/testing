@@ -8,10 +8,10 @@ class UserController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
+        $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
-        $this->setCommonJsAndCss();
         $this->view->t  = $this->_getTranslation();
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];

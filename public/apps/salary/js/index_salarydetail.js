@@ -71,7 +71,7 @@ var Resign = {
             e.preventDefault();                                                    
             $(this).removeClass('datepicker').datepicker().focus();                               
         });   
-     //$('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
+        $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
         $('#Add_Resign_Date').click(function(){
             Resign.AddNew($ovl);
         });
@@ -129,18 +129,18 @@ for (var i = 0; i < cells.length; i++) {
     });
 
     $("#btn_savedetail").click(function () {
-      $(".txtenable").each(function() {
-    alert($(this).val());
-});
+        //alert("AAA");
+//      $(".txtenable").each(function() {
+//    //alert($(this).val());
+//});
 
-       var member_id=document.getElementById('member_id').value;
-        
+       var member_id=document.getElementById('member_id').value; 
        var b_salary=document.getElementById('txtbsalary').value;
        var overtime_rate=document.getElementById('txtovertimerate').value;
        var specific_deduce=document.getElementById('txtallowance').value;
        var year=document.getElementById('year').value;
        var month=document.getElementById('month').value;
-       //alert(b_salary);
+       //alert(document.getElementById('txtbsalary').value);
 //       $year=document.getElementById('year').value;
 //       $month=document.getElementById('month').value;
 //       
@@ -152,8 +152,8 @@ for (var i = 0; i < cells.length; i++) {
             //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
             url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'+overtime_rate+'/0/'+member_id+'/'+year+'/'+'/'+month,
             success:function(){
-                alert("Data has been updated");
-                window.location.reload();
+//                alert("Data has been updated");
+//                window.location.reload();
             }
         })
         }

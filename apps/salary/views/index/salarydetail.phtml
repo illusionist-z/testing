@@ -47,6 +47,8 @@
     <div style="width: 10%; float: left;"><?= $t->_("name");?></div>
     <div><?php echo $filter->sanitize($A[$i]->core->member_login_name , "string"); ?>
         <input type="hidden" value="<?php echo $A[$i]->core->member_id;?>" id="member_id" name="member_id">
+        <input type="hidden" value="<?php echo $year;?>" id="year" name="year">
+        <input type="hidden" value="<?php echo $month;?>" id="month" name="month">
     </div>
 </div>
 <div>
@@ -109,7 +111,7 @@
   </tr>
   <tr>
   <td colspan="2"><?= $t->_("personal_income");?></td>
-  <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->income_tax , "string"); $deduce+=$A[$i]->salarydet->income_tax;?>" id="txtallowance" disabled="disabled" class="txtenable"></td>
+  <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->income_tax , "string"); $deduce+=$A[$i]->salarydet->income_tax;?>" id="income_tax" disabled="disabled" class="txtenable"></td>
   <td></td>                   
   </tr>
   <tr>

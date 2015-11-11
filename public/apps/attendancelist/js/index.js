@@ -57,7 +57,7 @@ var Attendance = {
                     
                          var dia_div = '<form id="edit_attendance"><table>'
                                    +'<tr><td><label for="title">'+d[1]['att_time']+'</label></td><td><input  style="margin-top:10px;" size="25" type="text" class="form-control datetimepicker" name="time" id="time" value="'+localcheckin +'"></td></tr>'
-                                   +'<tr><td><label for="member_name">'+d[1]['name']+'</label></td><td><input  style="margin-top:10px;" type="text" class="form-control" name="uname" value="'+d[1]['name']+'"></td></tr>'               
+                                   +'<tr><td><label for="member_name">'+d[1]['name']+'</label></td><td><input  style="margin-top:10px;" type="text" class="form-control" name="uname" value="'+username+'"></td></tr>'               
                                    +'<tr><td><label for="reason">'+d[1]['note']+'</label></td><td><input   style="margin-top:10px;" style="font-size: 13px;" type="textarea" class="form-control" name="note" value="'+notes+'"></td></tr>'
                                    +'<tr><td></td><td ><input style="margin-top:10px;" type="submit" class="buttonn bcbgcolor" value="'+d[1]['save']+'" id="edit_attendance_edit"> <input style="margin-top:10px;" class="buttonn cbcbgcolor" type="reset" value="'+d[1]['cancel']+'" id="edit_attendance_close"></td></tr>'
                                   +'</table></form>';
