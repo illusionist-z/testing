@@ -17,6 +17,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
+        $this->setCommonJsAndCss();
         $this->assets->addCss('apps/salary/css/index_show_salarylist.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
@@ -26,10 +27,8 @@ class IndexController extends ControllerBase {
         //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
         //$this->assets->addJs('apps/salary/js/index-allowance.js');
-        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
-        $this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
-
-        $this->setCommonJsAndCss();
+        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');        
         $this->assets->addCss('common/css/css/style.css');
         $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();

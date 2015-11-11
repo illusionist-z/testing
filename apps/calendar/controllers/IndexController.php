@@ -40,14 +40,7 @@ class IndexController extends ControllerBase
         $this->view->member_name=$this->session->user['member_login_name'];
         $this->view->uname = $Allname;
         $this->view->modulename = $this->module_name;
-    }
-    
-    public function getmemberAction() {        
-      $MemberList=new Db\CoreMember();
-        $Username = $MemberList->userautolistusername(); 
-        $this->view->disable();    
-        echo json_encode($Username);
-    }
+    } 
     
     //calender auto complete  for username
     public function calenderautoAction() {
@@ -75,7 +68,7 @@ class IndexController extends ControllerBase
     public function addmemberAction(){
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
-        $data = $this->calendar->add_permit_name($permit_name,$id);
+        $data = ($permit_name == $id ? 1 : $this->calendar->add_permit_name($permit_name, $id));                  
         echo json_encode($data);
         $this->view->disable();
     }

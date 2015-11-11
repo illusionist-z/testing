@@ -26,3 +26,4 @@ var Content = {
 $('.geolocation').ready(function() {
     geo();
 });
+

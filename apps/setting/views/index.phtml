@@ -3,12 +3,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Attendance System</title>
+        <title>Admin Setting</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini" >
+    <body class="skin-blue sidebar-mini">
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -111,12 +111,12 @@
                     <aside>
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
-                       <?php             
+                        <?php  
                         $count=1;
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
-                                       if (count($key_value) > 2) {
-                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                        if (count($key_value) > 2) {
+                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0]. '</b></span></a>';
                                                                               }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
@@ -130,7 +130,7 @@
                                                                                     } else {
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                     }
-                                                                                }
+                                                                            }
                                                                                 $i = 0;
                                                                                 //for the sub menu                            
                                                                                 foreach ($key_value as $name => $value)
@@ -151,6 +151,7 @@
                                                                                                                          }                                                                                                                              
 
                                                                                                                       if (strpos($key_name, 'user') !== false) {
+                                                                                                                          
                                                                                                                                 if($this->session->permission_code=="ADMIN"){
                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
                                                                                                                                 }
@@ -164,11 +165,11 @@
 
                                                                                                      }
                                                                                                }
-                                                                                  echo '</ul>';             
+                                                                                echo '</ul>';             
                                                                                 $i++; 
                                                                         }    
-                                                       echo '</li>';     
-                                                       $count++;
+                                                        echo '</li>'; 
+                                                        $count++;
                         }
                         ?>
                     </ul>
@@ -178,54 +179,13 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-                <?php                           
-                          $j=0;
-                          foreach ($this->session->auth as $key_name => $key_value) {                                 
-                                       $top = explode(" ", $key_value["link0"]);
-                                        if(strtolower($top[0] . $top[1]) ==$module_name) {
-                                               if(count($key_value) >2 ) {
-                                                             echo '<div class="row"><div class="col-sm-2 link">';
-                                                             echo '<aside class="sidebar-menu">';
-                                                           foreach ($key_value as $name => $value) {
-                                                                                if($j > 1){
-                                                                                                if($j %2 ==0){
-                                                                                                    $link_name=$value;
-                                                                                                }
-                                                                                                if(is_string($name))
-                                                                                                {
-                                                                                                            if ($v_result = explode(" ", $value)) {
-                                                                                                                //set to link action value
-                                                                                                                $link_val = strtolower($v_result[0] . $v_result[1]);
-                                                                                                                $mod = explode(" ", $key_value["link0"]);
-                                                                                                            }
-                                                                                                            if (strpos($key_name, 'user') !== false) {
-                                                                                                             if($this->session->permission_code=="ADMIN"){
-                                                                                                              echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
-                                                                                                             }
-                                                                                                             else{
-                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
-                                                                                                             }
-                                                                                                         } 
-                                                                                                         else {
-                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
-                                                                                                         }       
-                                                                                               }
-                                                                                        }
-                                                                                   $j++;
-                                                                                }
-                                                                          echo '</aside></div><div class="col-sm-10">';
-                                                                   }
-                                                            }
-                               }                               
-               
-                                  echo '<section class="content">';
-                                  echo $this->getContent();
-                                  $this->assets->outputJs();
-                                 echo '</section></div></div>';
-                           ?>
-            <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
+                 
+                             <?php
+                                                                        echo $this->getContent();
+                                                                        $this->assets->outputJs();
+                                                        ?>
         </div><!-- /.content-wrapper -->
-
+ <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">

@@ -1,11 +1,25 @@
 /** 
  * @author David JP<david.gnext@gmail.com>
  * @desc dialog box ,event edit box
- * @version 2/9/2015 @by David JP<david.gnext@gmail.com>
+ * @version 2/9/2015
  */
-var $ovl,$selectname;
+var $ovl,$selectname,dict=[];
 var Calendar = {
     init : function (json_events) {
+          $.ajax({
+                url:'index/calenderauto',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+               // alert(json_obj);
+                for (var i in json_obj){
+                    //alert(json_obj[i].full_name);
+                dict.push(json_obj[i].full_name);
+                }                                
+                }                       
+              });
         /* initialize the calendar
         -----------------------------------------------------------------*/
     $('#calendar').fullCalendar({
@@ -125,63 +139,7 @@ var Calendar = {
     }
     }
         });
-    },
-    calenderautolist: function() {                                              
-       var dict = [];
-       $.ajax({
-                url:'index/calenderauto',
-                method: 'GET',
-                //dataType: 'json',
-                success: function(data) {
-                //alert(data);    
-                var json_obj = $.parseJSON(data);
-               // alert(json_obj);
-                for (var i in json_obj){
-                    //alert(json_obj[i].full_name);
-                dict.push(json_obj[i].full_name);
-                }
-                  //var dict = ["Test User02","Adminstrator"];
-                loadIcon(dict);
-                        }
-                        
-                    });
-                     function loadIcon(dict) {
-                       //alert(dict);
-                        $('#select_name').autocomplete({
-              source: dict
-            });
-       // ... do whatever you need to do with icon here
-   }
-    
-    },
-    eventcalenderautolist: function() {                                              
-       var dict = [];
-       $.ajax({
-                url:'index/calenderauto',
-                method: 'GET',
-                //dataType: 'json',
-                success: function(data) {
-                //alert(data);    
-                var json_obj = $.parseJSON(data);
-               // alert(json_obj);
-                for (var i in json_obj){
-                    //alert(json_obj[i].full_name);
-                dict.push(json_obj[i].full_name);
-                }
-                  //var dict = ["Test User02","Adminstrator"];
-                loadIcon(dict);
-                        }
-                        
-                    });
-                     function loadIcon(dict) {
-                       //alert(dict);
-                        $('#event_uname').autocomplete({
-              source: dict
-            });
-       
-   }
-    
-    },
+    }, 
     getmemid: function (name){                       
         //var name = document.getElementById('namelist').value;
            // alert("aaa");
@@ -215,7 +173,7 @@ var Calendar = {
                      }
                      
        },
-    remove_event_member : function() {                                              
+    remove_event_member : function() {
         var selectedvalue = [];        
       if($(':checkbox:checked').length > 0){
         $(':checkbox:checked').each(function(i){
@@ -239,20 +197,7 @@ var Calendar = {
      * @desc    member search adding
      * @returns {json data}
      */
-    getmemberevent : function(){                        
-         var member = [];
-       $.ajax({
-                url:'index/getmember',
-                method: 'GET',                
-                success: function(data) {                
-                var json_obj = $.parseJSON(data);
-                for (var i in json_obj){                  
-                member.push(json_obj[i].full_name);
-                }                  
-                  Calendar.automember(member);
-                        }                        
-                    });                
-       
+    getmemberevent : function(){                          
         $("#member_event_dialog").dialog({
             autoOpen :false,
             height: 'auto',
@@ -264,12 +209,11 @@ var Calendar = {
       $("#member_event_dialog_close").on("click",function(){
             $("#member_event_dialog").dialog("close");            
         });
-        $("#member_event_dialog").dialog("open");      
-    },
-    automember : function (d){
-             
-        $("#member_event").autocomplete({   
-           source:      d,          
+        
+        $("#member_event_dialog").dialog("open");                
+        //add member autocomplete @dialog box
+        $("#member_event").autocomplete({
+           source:      dict,          
           minLength: 1,
            select: function(event, ui) {         
                $("#member_event_add").attr("disabled",false);               
@@ -293,7 +237,7 @@ var Calendar = {
                });
           }
         });
-    }    
+    }
 };  
   Calendar.Dialog = {
     isClick: false,
@@ -466,11 +410,15 @@ $(document).ready(function () {
    });
    //for calender auto complete username
    $('#select_name').click(function(){
-       Calendar.calenderautolist();
+       $(this).autocomplete({
+           source : dict
+       });
    });
     //for event calender auto complete username
    $('#event_uname').click(function(){
-       Calendar.eventcalenderautolist();
+       $(this).autocomplete({
+           source : dict
+       });
    });
     $("#create_dialog").mouseenter(function(){
        
@@ -478,6 +426,6 @@ $(document).ready(function () {
       //alert(name);
 		Calendar.getmemid(name);
                
-	});
+	});           
 });
 
