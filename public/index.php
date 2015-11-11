@@ -15,6 +15,8 @@ try {
     $loader->registerNamespaces(array(
         // set namespace for libraries
         'Library\Core' => '../library/core/',
+        //set namespace for auth model
+        'workManagiment\Auth\Models' => '../apps/auth/models/',
         // set namespace for the core module
         'workManagiment\Core\Controllers' => '../apps/core/controllers/',
         'workManagiment\Core\Models' => '../apps/core/models/',
@@ -36,7 +38,7 @@ try {
             "host" => $config->database->host,
             "username" => $config->database->username,
             "password" => $config->database->password,
-            "dbname" => $config->database->dbname
+            "dbname" => $config->database->dbname     
         ));
     });
 

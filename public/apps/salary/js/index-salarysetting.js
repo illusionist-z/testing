@@ -370,6 +370,6 @@ $(document).ready(function () {
     });
     
       $(".add").click(function () {
-      Deduction.Add();
+      Deduction.Diaadd();
     });
 });

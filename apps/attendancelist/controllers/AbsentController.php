@@ -17,6 +17,7 @@ class AbsentController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->view->t = $this->_getTranslation();
         $this->assets->addJs('apps/attendancelist/js/absent.js');
+        $this->assets->addCss('common/css/css/style.css');
     }
 
       public function addAbsentAction() {

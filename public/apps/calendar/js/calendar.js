@@ -72,7 +72,8 @@ var Calendar = {
             } else {
             var str = "<table style='width:300px;height:80px;background:#3c8dbc;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
             str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
-            str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";
+            str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr>";
+            str += "</table>";
                $(this).append(str);
             }
         },
@@ -112,7 +113,7 @@ var Calendar = {
     if(d.length === 0){
     var message = "<div class='message' style='top:30%;left:18%;"
     +"text-align:center;background:#3c8dbc;color:white;position:absolute;"
-    +";width:64%;height:10%;z-index:100;font-size:33px;margin-left:115px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
+    +";width:67.5%;height:10%;z-index:100;font-size:33px;margin-left:120px;'><div style='margin-top:5px;'>No event with that user........</div></div>";
     $('body').append(message);
     setTimeout(function() {
     $('.message').remove();

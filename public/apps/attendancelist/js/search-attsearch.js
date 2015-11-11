@@ -22,7 +22,7 @@ $(document).ready(function () {
 var Attendance = {
         init : function (){            
             $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =3;            
+            pager.perpage = 5;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
             $('tbody').show();
@@ -37,7 +37,7 @@ var Attendance = {
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-               // alert(data);    
+               //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
@@ -95,11 +95,11 @@ var Attendance = {
              $('tbody').empty();
            
              var output = "<tr>"
-                            + "<td colspan='8'><center>No data to display</center></td>"
+                            + "<td colspan='9'><center>No data to display</center></td>"
                            
                             + "</tr>"
                     $("tbody").append(output);
-                    Attendance.init();
+                    //Attendance.init();
         }
         else{
            
@@ -112,7 +112,7 @@ var Attendance = {
                //alert(d);
                 var json_obj = $.parseJSON(d);//parse JSON            
                //alert(json_obj);
-               $('tbody').html("");  
+               $('tbody').empty();
                
                $('tfoot').empty();
               
@@ -207,11 +207,12 @@ var Attendance = {
                             + "<td>" + checkin_place + "</td>"
                             
                             + "</tr>";
-                    $("tbody").append(output);
+                  $("tbody").append(output);
+                    
                 }
-                 
-                Attendance.init();
-
+                
+                Attendance.init(); 
+                
                // alert(output);
                 //$('tbody').html("");
                 
@@ -232,3 +233,14 @@ var Attendance = {
         };
 
 
+
+$(document).ready(function () { 
+    Attendance.init();         
+                      
+   
+    $('.monthauto').click(function () {
+        //alert("aaa");
+        Attendance.monthautolist();
+    }); 
+   
+});

@@ -19,11 +19,8 @@
 	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Apply Leave Form</font></div>
         
         <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-            <table width="700px" height="300px" style="margin-left: 30px;">
-          
-	      
-        <tr>
-		
+            <table width="700px" height="300px" style="margin-left: 30px;"> 
+               <tr>		
 		<td><?= $t->_("start_date"); ?> </td>
                 <td style="height:40px;">
                     <input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
@@ -63,7 +60,7 @@
         
 	<tr>
 		<td></td>		
-                <td><br><input type="submit" value="Apply" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" class="buttonn" value="Cancel"></td>
+                <td><br><input type="submit" value="Apply" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" class="buttonn" id="apply_form_cancel" value="Cancel"></td>
 		<td></td>
 	</tr>
 	</table>

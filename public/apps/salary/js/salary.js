@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage =9;            
+        pager.perpage = 9;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -94,8 +94,6 @@ var Salary = {
             async: false,
             width: 'auto',
             resizable:false,
-             position:'absolute',
-             
             modal: true,
             title: title,
             
@@ -108,6 +106,8 @@ var Salary = {
 		duration:200
 	    }*/
         }).parent('.ui-dialog').css('zIndex',9999);
+             position:'absolute',
+             
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
@@ -179,6 +179,7 @@ var Salary = {
             width:'auto',
             closeText:'',
             modal:true,
+            resizable:false,
             title:"Confirm Delete",
             buttons:{
                 Yes:function(){
@@ -260,18 +261,6 @@ var Salary = {
              }).focus();                               
         });
     },
-    
-    autolist: function (){                       
-        //var name = document.getElementById('namelist').value;
-          //  alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
-         var dict = [];
-       $.ajax({
-                url:'autolist',
-                method: 'GET',
-                //dataType: 'json',
-                success: function(data) {
-               
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
@@ -332,15 +321,24 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-             var json_obj = $.parseJSON(d);//parse JSON            
+    
+    autolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+          //  alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'autolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+               
             $('tbody').empty();
             $('tfoot').empty();
             var totalsal = 0;
             for (var i in json_obj)
             {   
                 var aa = parseInt(json_obj[i].total);
-                totalsal =totalsal + aa ;
-                var formatter = new Intl.NumberFormat(); //Create our number formatter.
                  
                     var output = "<tr>"
                         + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
@@ -439,3 +437,4 @@ $(document).ready(function () {
 
 
 
+             var json_obj = $.parseJSON(d);//parse JSON            

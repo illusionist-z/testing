@@ -260,7 +260,7 @@ class SalaryMaster extends Model {
                     //taxable income (total_basic-total deduce)
                     $income_tax = $salary - $total_deduce;
 
-                    echo "The Income tax  is " . $income_tax . '<br>';
+                    //echo "The Income tax  is " . $income_tax . '<br>';
 
                     $taxs = $this->deducerate($income_tax, $date_diff);
 //                    print_r($taxs);
@@ -378,7 +378,7 @@ class SalaryMaster extends Model {
     $date_diff+=$countsalarydetail['COUNT'];
     $data['date_diff']=$date_diff;
     $data['salary'] = ($newsalary_rate + $old_payamount)-$absent_deduce;
-    echo "FFFFvv".$data['salary'];
+    //echo "FFFFvv".$data['salary'];
     }
    }
    if(!empty($data)){
@@ -812,7 +812,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $Result = ($income_tax - $todeduce) * ($taxs_rate[1] / 100);
             }
         }
-        echo 'Year difference '.$salary_year.' ////';
+        //echo 'Year difference '.$salary_year.' ////';
 
         $latest_result = round($Result / $salary_year);
         if($Result=="")

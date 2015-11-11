@@ -185,16 +185,16 @@
         $del.dialog({
             autoOpen:false,
              resizable:false,
-            height:190,
-            width:350,
+            height:'auto',
+            width:'auto',
             closeText:'',
             modal:true,
             
             buttons:{
-                Delete:function(){
+                Yes:function(){
                    Manage.User.Confirm(d);                    
                 },
-                Cancel:function(){
+                No:function(){
                     $(this).dialog("close");
                 }
                 
@@ -202,7 +202,7 @@
             
            
         });
-        $del.html("<p>Are you sure to <b style='color:red'>delete</b> ?</p>");
+        $del.html("<p>Are you sure to delete ?</p>");
         $del.dialog("open");        
     },
     /**     

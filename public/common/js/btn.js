@@ -8,7 +8,7 @@ var Content = {
 
         if (url == 'checkin') {
             var note = document.getElementById('note').value;
-
+           
             $.ajax({
                 url: url + "?note=" + note,
                 type: 'GET',
