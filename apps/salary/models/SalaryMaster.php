@@ -275,8 +275,8 @@ class SalaryMaster extends Model {
                         'pay_date'=>$salary_start_date);
                 }
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
