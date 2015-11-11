@@ -79,18 +79,27 @@ if(isset($Msg))
                         <span>%</span>
                     </div>
                         
-                    <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("deduce_ssc"); ?></span>
-                        <span>
+                           
+                    <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
+                        <div style="float: left; width: 8%;"><?= $t->_("deduce_ssc"); ?></div>
+                       <div style="margin-left: 14%;">
                             <?php
                             //print_r($getall_allowance);
+                            $i=1;
                             foreach ($getall_deduce as $getall_deduces) {
-                                echo '<input type="checkbox" name="checkall[]" id="checkall" value="'.$getall_deduces['deduce_id'].'"> '. $getall_deduces['deduce_name'];
-                           }
+                                echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall'.$i.'" value="'.$getall_deduces['deduce_id'].'"> '.  $getall_deduces['deduce_name']."<br>";
+                                $i++;
+                                if($i==3){
+                                     echo "<div id='No_of_children' style='display:none;'>
+                                <input type='text'  name='no_of_children' id='no_of_children' placeholder='number of children'>
+                            </div>";
+                                }
+                               
+                            }
                             ?>
-                            
-                        </span>
-                         <span id="add_salary_ssc_error"></span>
+                           
+                        </div>
+                        <span id="add_salary_ssc_error"></span>
                     </div>
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
                         <div style="float: left; width: 8%;"><?= $t->_("allowance"); ?></div>
@@ -122,3 +131,14 @@ if(isset($Msg))
     </div><!-- /.row -->
     <div id="content"></div>
 </section><!-- /.content -->
+<script type="text/javascript">
+    function checkValue() {
+        var linkemail = document.forms["add_salary"]["checkall2"].checked
+        if (linkemail) {
+            document.getElementById('No_of_children').style.display = '';
+        } else {
+            document.getElementById('No_of_children').style.display = 'none';
+        }
+    }
+
+</script>

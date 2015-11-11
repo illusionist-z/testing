@@ -332,35 +332,33 @@ var Deduction = {
            location.reload();
         });
     },
-//      Add : function (){
-//        //alert("add");
-//        $.ajax({
-//            
-//           url:"",
-//           type: "POST",
-//           success:function(){
-//             
-//               
-//               var data ='<form id="Add_new_deduct"><table>';               
-//                   data += '<tr><td></td></tr>'
-//                        +'<tr><br><td><small>Deduction Name</small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>'
-//                        +'<tr><td><small>Deduction Amount</small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>'
-//                        
-//                         +'<tr><td></td></tr>';             
-//               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';
-//               data +='</table></form>';
-//               Deduction.Diaadd(data);
-//           }
-//        });
-//        },
-//     
+      Add : function (){
+        //alert("add");
+        $.ajax({
+            
+           url:"show_add_dect",
+           type: "get",
+           success:function(d){          
+            var result = $.parseJSON(d); 
+               
+               var data ='<form id="Add_new_deduct"><table>';               
+                   data += '<tr><td></td></tr>'
+                        +'<tr><br><td><small>'+result[1]['deduce_name']+'</small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="'+result[1]['wr_deduce_name']+'"></td></tr>'
+                        +'<tr><td><small>'+result[1]['amount']+'</small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="'+result[1]['wr_deduce_amount']+'"></td></tr>'
+                        
+                         +'<tr><td></td></tr>';             
+               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct">'+result[1]['save']+'</a><a href="#" class="button" id="cancel_deduct">'+result[1]['cancel']+'</a></td></tr>';
+               data +='</table></form>';
+               Deduction.Diaadd(data,result[1]['deduce_frm']);
+           }
+        });
+        },
+     
     
     
     
 };
 $(document).ready(function () {
-
-   
      $(".taxpopup").click(function () {
        var id = $(this).attr('id');
        Tax.Edit(id);

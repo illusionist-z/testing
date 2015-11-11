@@ -37,14 +37,12 @@
                   <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>"  ><span class="col-sm-6"><?php echo " ".$member_name; ?></span>                  
               </li>
             <?php  foreach($event_name as $eventname) {    ?>                
-               <?php if($eventname['permit_name'] != $member_name){?> 
-                     <li class="col-sm-12 addbtnn">                    
+                
+              <li class="col-sm-12 addbtnn">                    
                   <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " ".$eventname['permit_name']; ?></span>
 <!--                  <input type="button" id="disabledevent" name="<?=$eventname['permit_name']?>" class="minusbtn col-sm-6 col-xs-offset-2" >-->
                   
                 </li>
-               <?php }?> 
-             
               
                 
             <?php       }          ?>                    

@@ -7,7 +7,7 @@
    
    UserAdd = {
      Submit : function (){
-      //alert(new FormData($("#saveuser")[0]));
+      
         $.ajax({
             type:'POST',
             url :'../coremember/saveuser',
@@ -19,9 +19,8 @@
             processData: false,
             contentType: false,
             success: function(d){
-                cond = JSON.parse(d);
                 
-                if(cond.result === 'error')
+                if(d.result === 'error')
                 {
                  for(var i in cond){
                      $('input').addClass('adduser-table');//for placeholder text color

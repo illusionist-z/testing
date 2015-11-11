@@ -53,9 +53,6 @@ $messages = array(
     "enter_allname"           => "Enter allowance name",
     "enter_allamount"           => "Enter allowance amount",
     "tax_form" =>"Tax Form",
-    "deduction_add" => "Deduction Add",
-    "deduction_name" => "Deduction Name",
-    "deduction_amt"  => "Deduction Amount",
     "deduce_editform" => "Deduce Edit Form",
     "tax_edit" => "Tax Edit Form",
     "deduce_frm" => "Deduce Form",
@@ -64,3 +61,4 @@ $messages = array(
     "wr_deduce_name" => "Write Deduce Name",
     "wr_deduce_amount" => "Write Deduce Amount"
     );
+

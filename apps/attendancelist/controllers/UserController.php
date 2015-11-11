@@ -11,8 +11,7 @@ class UserController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');        
+        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
         $this->view->t  = $this->_getTranslation();
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];

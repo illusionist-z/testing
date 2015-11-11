@@ -8,17 +8,19 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 9;            
+        pager.perpage =9;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
         },
-    Edit: function (d) {
+     Edit: function (d) {
         $.ajax({
            url:"editsalary?id="+d,
            type: "GET",
           success:function(res){
-               var result = $.parseJSON(res);               
+              
+               var result = $.parseJSON(res);
+              // alert(result.no_of_children);
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>'+result.t['name']+'</b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
@@ -36,8 +38,14 @@ var Salary = {
                 data += '<tr><td></td><td>Decut Name </td><td colspan="4" style="font-size:12px;">';
                 for(var j in result.dedution){
                 var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
-                data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> '+result.dedution[j]["deduce_name"]+'<br>';
+               
+                data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> ';
+                 if(j==1){
+                    data+='<input type="text" name="no_of_children" value='+result.no_of_children+' style="width:10%;margin-bottom:-1px">';
                 }
+                data+=result.dedution[j]["deduce_name"]+'<br>'
+              }
+                
                 data +='<br></td></tr>';
                
                     data += '<tr><td></td><td>Allow Name </td><td colspan="4" style="font-size:12px;">';
@@ -45,8 +53,8 @@ var Salary = {
                 var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
                 data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
                 }
-                data +='</td></tr>';
-                data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value="" name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
+                //data +='<input type="hidden" value= " '+result.data[0]['salary_start_date']+ ' " name="work_sdate" id="work_sdate"></td></tr>';
+                  data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value="" name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
              
                 data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
@@ -86,7 +94,8 @@ var Salary = {
             async: false,
             width: 'auto',
             resizable:false,
-            position:'absolute',
+             position:'absolute',
+             
             modal: true,
             title: title,
             
@@ -99,7 +108,6 @@ var Salary = {
 		duration:200
 	    }*/
         }).parent('.ui-dialog').css('zIndex',9999);
-        
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
@@ -171,7 +179,6 @@ var Salary = {
             width:'auto',
             closeText:'',
             modal:true,
-            resizable:false,
             title:"Confirm Delete",
             buttons:{
                 Yes:function(){
@@ -253,6 +260,7 @@ var Salary = {
              }).focus();                               
         });
     },
+    
     autolist: function (){                       
         //var name = document.getElementById('namelist').value;
           //  alert("aaa");
@@ -263,7 +271,7 @@ var Salary = {
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-               // alert(data);    
+               
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
@@ -324,17 +332,15 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-            //alert(d);
-            var json_obj = $.parseJSON(d);//parse JSON            
+             var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
             $('tfoot').empty();
             var totalsal = 0;
             for (var i in json_obj)
             {   
                 var aa = parseInt(json_obj[i].total);
-                 totalsal =totalsal + aa ;
-                 
-                 var formatter = new Intl.NumberFormat(); //Create our number formatter.
+                totalsal =totalsal + aa ;
+                var formatter = new Intl.NumberFormat(); //Create our number formatter.
                  
                     var output = "<tr>"
                         + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"

@@ -24,7 +24,7 @@
                 </div>
                 <br>
                 <div style="clear:both;" id="letterhead">
-                <table style="border: none;">
+                <table>
                     <tr>
                         <td style="width:100px">
                             
@@ -32,12 +32,11 @@
                             <img src="<?php echo $baseUri ?>public/uploads/<?php echo $info['company_logo']?>"  style="width:100px; height:90px" />
                             <input type="file" id="my_file" style="display: none;" />
                         </td>
-                        <td class="info" style=" width: 1000px;">
+                        <td style=" width: 1000px;">
                              <div id="document" style="width: 36%;display: inline-block;float: right;margin-right: 62%;">
                         <h4><?php echo $info['company_name']?></h4>
                         <p><?php echo $info['company_address']?></p>
-                        <p>Tel: <?php echo $info['company_phno']?></p>
-                             <p>Mail: <?php echo $info['company_email']?></p></div>
+                        <p>Tel: <?php echo $info['company_phno']?></p></div>
                         </td>
                     </tr>
                 </table> <div id="divId"><input  type="file"  style="margin-left: 20px;"   name="fileToUpload"   id="fileToUpload" style="margin-bottom: 1%;" > </div>
@@ -54,7 +53,6 @@
                             <input style="height: 1%" type="text" class="company_name" id="company_name" name="update[company_name]" value="<?php echo  $info['company_name'];?>"  style="width:350px;">
                             <input style="height: 1%; width: 90%" type="text" class="company_address" id="company_address" name="update[company_address]" value="<?php echo  $info['company_address'];?>"  style="width:350px;">
                             <input style="height: 1%" type="text" class="company_phno" id="company_phno" name="update[company_phno]" value="<?php echo  $info['company_phno'];?>"  style="width:350px;">
-                            <input style="height: 1%" type="text" class="company_phno" id="company_phno" name="update[company_email]" value="<?php echo  $info['company_email'];?>"  style="width:350px;">
                             <input style="height: 1%" type="hidden" class="temp_logo" id="temp_logo" name="update[temp_logo]" value="<?php echo  $info['company_logo'];?>"  style="width:350px;">
 
                         </div>

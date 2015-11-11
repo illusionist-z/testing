@@ -28,7 +28,7 @@ class SalaryMemberTaxDeduce extends Model {
      * @return type
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function edit_taxByMemberid($deduce,$member_id) {
+    public function edit_taxByMemberid($deduce,$no_of_children,$member_id) {
          try{
             $count=  $this->getdeduceBymember_id($member_id);
             $creartor_id="admin";
@@ -53,16 +53,31 @@ class SalaryMemberTaxDeduce extends Model {
             else{
                 for($i=0;$i<count($deduce);$i++){
                 $sql = "INSERT INTO salary_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('".$deduce[$i]."','". $member_id ."','".$creartor_id. "',NOW())";
-                echo "Tax ".$sql;exit;
+              
                 $result = $this->db->query($sql);
                 }
             }
+            $sql="UPDATE salary_member_tax_deduce SET"
+                . " no_of_children='" . $no_of_children. "' WHERE member_id='" . $member_id. "' and deduce_id='children'";
+              //echo $sql;exit;
+            $this->db->query($sql);
             //exit;
         } catch (Exception $ex) {
             echo $ex;
         }
         //return $result;
     }
-   
+     public function getnoofchildrenBymember_id($member_id){
+        try{
+            $sql="SELECT no_of_children from salary_member_tax_deduce where member_id='".$member_id."' and deduce_id='children'";
+            $data=$this->db->query($sql);
+            $result=$data->fetchArray();
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        
+         
+        return $result['no_of_children'];
+    }
 
 }

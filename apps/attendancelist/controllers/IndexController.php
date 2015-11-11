@@ -11,7 +11,7 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
-        
+        $this->assets->addJs('apps/attendancelist/js/index.js');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/css/style.css');
         $this->config = \Module_Config::getModuleConfig('leavedays');
@@ -33,29 +33,28 @@ class IndexController extends ControllerBase {
     /**
      * show today attendance list
      */
-    public function todaylistAction( ) {
-        $this->assets->addJs('common/js/jquery-ui-timepicker.js');$this->assets->addJs('apps/attendancelist/js/index.js');
+    public function todaylistAction() {
+        $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');
-        $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
         $name = $this->request->get('namelist');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \workManagiment\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->gettodaylist($name);        
-        if($this->permission==1){
-        $this->view->attlist=$ResultAttlist;
-        $this->view->offset= $offset;
-        $this->view->uname = $Username;       
-        $this->view->modulename = $this->module_name;        
-    }
+        $ResultAttlist = $AttList->gettodaylist($name);
+      
+        
+        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
+        $this->view->attlist = $ResultAttlist;
+        $this->view->offset = $offset;
+        $this->view->uname = $Username;
+        $this->view->t = $this->_getTranslation();
+        }
         else {
             $this->response->redirect('core/index');
-        }   
-    }        
+        }  
+        
+    }
    
     public function editTimedialogAction($id){
         $Att  = new \workManagiment\Attendancelist\Models\Attendances();
@@ -123,4 +122,5 @@ class IndexController extends ControllerBase {
 
     
 
+        
 }

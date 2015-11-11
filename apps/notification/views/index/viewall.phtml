@@ -1,5 +1,5 @@
 <div class="forscroll">
-    <div id="notiheader">Notifications...</div>
+    <div id="notiheader">Notifications.....</div>
 <?php  foreach( $noti as $noti){
     foreach ($noti as $noti){
         ?>
@@ -25,7 +25,7 @@
                                    }
                         ?>                                                 
                     <img src="../../uploads/<?php echo  $img;?>"  width="20px"  class="img-circle" alt="Image"/>
-                <b><i style="color:red"><?php echo $noti['full_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
+                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
                 }else {?>
                 <span class="foruser">
                     <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
@@ -56,7 +56,7 @@
         case "calendar" :{?> 
         <li>
        <!-- inner menu: contains the actual data -->
-            <ul class="menu"  id="noneli">
+            <ul class="menu">
                 <li>
                
                     
