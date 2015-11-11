@@ -6,7 +6,7 @@
     <div class="row"><!-- for search form-->
         
         <div class="col-md-12"><!--start add user form--->
-            <span style="float: right;"><a href="#" class="button print">Print</a></span>
+            <span style="float: right;"><a href="#" title="Print" class="print" id="printimg"></a></span>
             <div id="printable">
             G-Next Co.,Ltd.<br>
             <u>For the Month of June 15</u>
@@ -103,6 +103,7 @@
                     <?php 
                     $i=1;
                     $total="";
+                    if(!empty($salary_info)){
                     foreach ($salary_info as $salary_infos) {
                     ?>
                     
@@ -184,6 +185,7 @@
                    <?php
                    $i++;
                     }
+                    
                     ?>
                     <tr>
                         <td></td>
@@ -201,6 +203,9 @@
                         <td></td>
                         <td><?php echo number_format($total);?></td>
                     </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
             </table>
             </div>

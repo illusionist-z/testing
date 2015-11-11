@@ -15,7 +15,7 @@ var pager = new Paging.Pager(),User={};   //for pagination
             $('tfoot').html($('tbody').html());   //for csv
             pager.perpage =7;            
             pager.para = $('tbody > tr');
-            pager.showPage(1);
+            pager.showPage(1);  
             $('tbody').show();
         },
         search : function(){

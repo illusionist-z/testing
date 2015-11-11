@@ -40,11 +40,8 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($Username);
     }
-
-      /**
-     * 
-     * get member_id 
-     
+    /**
+     * get member id
      */
     public function getapplymemberidAction() {
        $data = $this->request->get('username');
@@ -103,7 +100,6 @@ class IndexController extends ControllerBase {
             $desc = $this->request->getPost('description');                     
             $error=$this->_leave->applyleave($uname,$sdate, $edate, $type,
                     $desc,$creator_id);   
-            
             echo json_encode($error);
             $this->view->disable();
              }
@@ -124,7 +120,6 @@ class IndexController extends ControllerBase {
         $month = $this->config->month;
         $leavetype = new LeaveCategories();
         $ltype = $leavetype->getleavetype();
-
         $this->view->setVar("Leavetype", $ltype);
         $UserList = new Db\CoreMember();
         $GetUsername = $UserList::getinstance()->getusername();
@@ -144,7 +139,9 @@ class IndexController extends ControllerBase {
     }
     
     /**
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * Leave Setting
+     * to edit leave categories and max leave day
      */
     public function leavesettingAction(){
         $Admin=new Db\CoreMember;
@@ -164,7 +161,10 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
-    
+    /**
+     * adding leave categories dialog box
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
     public function ltyaddAction() {
         $t = $this->_getTranslation();
         $data[1]['addleavetype'] = $t->_("addleavetype");
@@ -172,12 +172,12 @@ class IndexController extends ControllerBase {
         $data[1]['yes'] = $t->_("yes");
         $data[1]['no'] = $t->_("cancel");
         $data[1]['enterltp'] = $t->_("enterltp");
-        //print_r($data);exit;
         $this->view->disable();
         echo json_encode($data);
     }
 
     /**
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * Edit Leave categories with dialog
      */
      public function ltypediaAction() {
@@ -191,20 +191,30 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($data);
     }
-
+    /**
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     * Deleting leave categories in leave setting
+     */
     public function delete_ltypeAction() {
         $leavetype_id = $this->request->getPost('id');
         $LeaveCategories = new LeaveCategories();
         $LeaveCategories->delete_categories($leavetype_id);
         $this->view->disable();
     }
-
+    /**
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     * Adding new leave categories in leave setting
+     */
     public function add_ltypeAction() {
         $leavetype_name = $this->request->getPost('ltype_name');
         $LeaveCategories = new LeaveCategories();
         $LeaveCategories->add_newcategories($leavetype_name);
     }
-
+    /**
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     * editting the setting of leave
+     * max leavedays/leave categories
+     */
     public function editleavesettingAction() {
         $max_leavedays = $this->request->getPost('max_leavedays');
         $fine_amount = $this->request->getPost('fine_amount');
@@ -212,27 +222,29 @@ class IndexController extends ControllerBase {
         $LeaveSetting->editleavesetting($max_leavedays, $fine_amount);
         $this->response->redirect('leavedays/index/leavesetting');
     }
-
+    /**
+     * @author Su Zin Kyaw<gnext.suzin@gmail.com>
+     * Admin Accepting the leave request
+     */
     public function acceptleaveAction() {
-        //$sdate=$this->request->get('start_date');
-        //$edate=$this->request->get('end_date');
         $id = $this->request->get('id');
-        $days = $this->request->getPost('leave_days');
-        $noti_id = $this->request->getPost('noti_id');
+        $days =$this->request->getPost('leave_days');
+        $noti_id =$this->request->getPost('noti_id');
         
         $this->_leave->acceptleave($id, $days, $noti_id);
     }
-
+    /**
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     * Admin rejecting the leave request
+     */
     public function rejectleaveAction() {
-//         $sdate=$this->request->get('start_date');
-//        $edate=$this->request->get('end_date');
-//        $id=$this->request->get('id');
-//        $days=$this->request->getPost('leave_days');
         $noti_id = $this->request->getPost('noti_id');
-
         $this->_leave->rejectleave($noti_id);
     }
-    //apply auto username
+    /**
+     * auto complete username when apply leave
+     * @author Saw Zin Min Htun 
+     */
     public function applyautolistAction() {
         $UserList = new Db\CoreMember();
         $Username = $UserList->applyautousername();

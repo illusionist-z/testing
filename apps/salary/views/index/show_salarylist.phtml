@@ -23,19 +23,8 @@
                     <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
                     <div id="salary_detail_div1">
                         <?= $t->_("username");?> :
-                        <span>
-                            <select class="select" data-toggle="select" name="cond[username]">
-                                <option value=""><?= $t->_("username");?></option>
-                                <?php
-                                foreach ($usernames as $username) {
-                                    ?>
-                                    <option value="<?php echo $username->member_login_name; ?>"><?php echo $username->member_login_name; ?></option>
-                                    <?php
-                                }
-                                ?>
-
-                            </select>
-                        </span>
+                        <input  class="tags"   style="width:100%;margin-top: 1px;"  id="namelist" placeholder="<?php echo $t->_("username"); ?>">
+                        <input type="hidden" value="" id="formemberid" name="cond[mem]">
                     </div>
                     <div id="salary_detail_div2">
                         <?= $t->_("department");?> :
@@ -66,7 +55,7 @@
                             </select>
                     </div>
                     <div id="salary_detail_div4">
-                         <?= $t->_("position");?> :
+                         <?= $t->_("salary_rate");?> :
                         <select class="select" data-toggle="select" name="cond[salary]">
                             <option>200000~400000</option>
                             <option>400001~700000</option>
@@ -124,7 +113,7 @@
                         ?>
                         <tr>
                             <td><input type="checkbox" class='case' name='chk[]' value="<?= $getsalarylist['member_id']; ?>" ></td>
-                            <td><?php echo $filter->sanitize($getsalarylist['member_login_name'] , "string"); ?></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['full_name'] , "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'] , "string") ?></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>

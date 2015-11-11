@@ -162,7 +162,8 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_dir = "uploads/";
         $profile = $_FILES["fileToUpload"]["name"];
         //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $newfilename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
+        $Real_pic_name=explode(".", $_FILES["fileToUpload"]["name"]);
+        $newfilename = rand(1, 99999) . '.' . end($Real_pic_name);
         $targetfile = $target_dir . $newfilename;
 
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);

@@ -61,16 +61,20 @@
     </div>
 </section><!-- /.content -->
 <div id="member_event_dialog" class="navbar row" style="display: none;">
-    <table style="background:#F5F5F5;" >
+    <table style="background:#F5F5F5;"  >
         <tr>
-            <td><label for="member_event"> <?php echo $t->_("search_member"); ?> </label> </td>
-            <td><input style="margin-top: 10px;" type="text" id="member_event" placeholder="Enter Member Name"></td>
+            <td><label for="member_event"> <?php echo $t->_("search_member"); ?> </label> 
+            <input style="margin-top: 10px;" type="text" id="member_event" placeholder="Enter Member Name">
+            </td>
+            
         </tr>
         <tr>
-            <td></td>
+            
             <td >
-                <button  class="btn btn-primary addmember" id="member_event_add" disabled><?php echo $t->_("add_member"); ?> </button>
-                <button  class="btn btn-primary" id="member_event_dialog_close"><?php echo $t->_("cancel"); ?></button>
+<!--                <button  class="btn btn-primary addmember" id="member_event_add" disabled><?php echo $t->_("add_member"); ?> </button>
+                <button  class="btn btn-primary" id="member_event_dialog_close"><?php echo $t->_("cancel"); ?></button>-->
+                <a href="#" onclick="return false;"  class="btn btn-primary addmember" id="member_event_add" disabled><?php echo $t->_("add_member"); ?></a>
+                <a href="#" onclick="return false;"   class="btn btn-primary" id="member_event_dialog_close"><?php echo $t->_("cancel"); ?></a>
             </td>
         </tr>
     </table>
@@ -90,20 +94,20 @@
             <tr>
                 <td><label for="member_name"><?php echo $t->_("name"); ?></label></td>
                 <td>
-                    <select style="font-size: 13px;margin-top: 10px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">            
+<!--        <select style="font-size: 13px;margin-top: 10px;" class="box input-medium" data-toggle="select" name="uname" id="show_name">            
             <?php
             foreach ($uname as $result) {
                 ?>
-                <option  name="<?= $result->member_id ?>"><?php echo $result->member_login_name; ?></option>
+                <option  name="<?= $result->member_id ?>"><?php echo $result->full_name; ?></option>
                 <?php
             }
             ?>
-        </select>
+        </select>-->
        
         
 <!--                <option  name="<?= $result->member_id ?>"><?php echo $result->member_login_name; ?></option>-->
-<!--        <label for="member_name"><?php echo $t->_("name"); ?></label>
-         <input style="font-size: 13px;" class="box input-medium" data-toggle="select" name="uname" id="event_uname" >-->
+<!--        <label for="member_name"><?php echo $t->_("name"); ?></label>-->
+                    <input type="text" style="font-size: 13px;width: 100%;margin-top: 10px;" class="input-medium" data-toggle="select" name="uname" id="uname_edit_event" >
                 <span></span>    
                 </td>
             </tr>
@@ -143,7 +147,7 @@
                             ?>
                         </select>-->
                      <label for="member_name"><?php echo $t->_("name"); ?></label></td><td>
-                     <input style="font-size: 13px;margin-top: 10px;" class="box input-medium" data-toggle="select" name="uname" id="select_name" placeholder="Enter your Name">
+                     <input type="text" style="font-size: 13px;width: 100%;margin-top: 10px;" class="input-medium" data-toggle="select" name="uname" id="select_name" placeholder="Enter your Name">
                      <input type="hidden" value="" id="formemberid" name="member_id" >
                  </td>
              </tr>

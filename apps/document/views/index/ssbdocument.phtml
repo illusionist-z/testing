@@ -6,7 +6,7 @@
     <div class="row"><!-- for search form-->
         
         <div class="col-md-12"><!--start add user form--->
-            <span style="float: right;"><a href="#" class="button print">Print</a></span>
+            <span style="float: right;"><a href="#" title="Print" class="print" id="printimg"></a></span>
             <div id="printable">
             <div id="ssb_top">
                 <div class="top-center">
@@ -104,6 +104,8 @@
                     $sum4=0;
                     $sum5=0;
                     $Total=0;
+                    if(!empty($salary_info))
+                    {
                     foreach ($salary_info as $salary_infos) {
                     ?>
                     <tr>
@@ -173,6 +175,9 @@
                             ?></td>
                         <td></td>
                     </tr>
+                  <?php
+                    }
+                  ?>
                 </tbody>
             </table>
             </div>

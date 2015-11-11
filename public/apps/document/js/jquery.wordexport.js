@@ -10,7 +10,7 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
                 }
             };
             var options = {
-                maxWidth: 100
+                maxWidth: 624
             };
             // Clone selected element before manipulating it
             var markup = $(this).clone();
