@@ -577,10 +577,13 @@ float:left;
     font-size: 30px;
     letter-spacing: 3px;
     font-weight: bold;
-    text-indent: 5%;
+    text-indent: 10%;
 }
 #noneli{
    text-indent: 10%;
    background-color: whitesmoke;
-   
+   width: 800px;
+   height: 100%;
+   margin: auto;
+   border: 3px double #d2d6de;  
 }

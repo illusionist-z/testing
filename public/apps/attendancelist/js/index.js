@@ -12,7 +12,7 @@ var pager = new Paging.Pager();   //for pagination
 var Attendance = {
         init : function (){            
             $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =5;            
+            pager.perpage = 5;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
             $('tbody').show();
@@ -59,7 +59,7 @@ var Attendance = {
                          var dia_div = '<form id="edit_attendance"><table>'
                                    +'<tr><td><label for="title">'+d[1]['att_time']+'</label></td><td><input  style="margin-top:10px;" size="25" type="text" class="form-control datetimepicker" name="time" id="time" value="'+localcheckin +'"></td></tr>'
                                    +'<tr><td><label for="member_name">'+d[1]['name']+'</label></td><td><input  style="margin-top:10px;" type="text" class="form-control" name="uname" value="'+ username +'"></td></tr>'               
-                                   +'<tr><td><label for="reason">'+d[1]['note']+'</label></td><td><input   style="margin-top:10px;" style="font-size: 13px;" type="textarea" class="form-control" name="note" value="'+notes+'"></td></tr>'
+                                   +'<tr><td><label for="reason">'+d[1]['note']+'</label></td><td><textarea style="margin-top:10px;color:black;width:300px;"  rows="2" cols="50" name="address" >'+ notes +'</textarea></td></tr>'
                                    +'<tr><td></td><td ><input style="margin-top:10px;" type="submit" class="buttonn bcbgcolor" value="'+d[1]['save']+'" id="edit_attendance_edit"> <input style="margin-top:10px;" class="buttonn cbcbgcolor" type="reset" value="'+d[1]['cancel']+'" id="edit_attendance_close"></td></tr>'
                                   +'</table></form>';
                         $('#edit_att_time').append(dia_div);
@@ -70,6 +70,7 @@ var Attendance = {
                             modal :true,
                             height:'auto',
                             width : 'auto',
+                            resizable: false,
                             autoOpen: false,
                             title : d[1]['edit_att']
                         });
