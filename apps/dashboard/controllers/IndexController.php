@@ -8,7 +8,6 @@ class IndexController extends  ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
         //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
@@ -44,6 +43,7 @@ class IndexController extends  ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() { 
+    $this->assets->addJs('common/js/time.js');
     //echo $this->permission;exit;
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
@@ -79,6 +79,7 @@ class IndexController extends  ControllerBase {
      * 
      */
     public function userAction() {
+        $this->assets->addJs('common/js/time.js');
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti=$User->GetUserNoti($id);
@@ -138,7 +139,7 @@ class IndexController extends  ControllerBase {
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add,$creator_id);
         echo "<script>alert('".$status."');</script>";
-        echo "<script type='text/javascript'>window.location.href='direct';</script>";
+       echo "<script type='text/javascript'>window.location.href='direct';</script>";
      }
     /**
      * Check out
