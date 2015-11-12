@@ -108,8 +108,6 @@ var Attendance = {
             url: baseUri + 'attendancelist/search/attsearch?month=' + month + '&username=' + username + '&year=' + year,
             type: 'GET',
             success: function (d) {  
-               //alert(d);exit;
-               //alert(d);
                 var json_obj = $.parseJSON(d);//parse JSON            
                //alert(json_obj);
                $('tbody').empty();

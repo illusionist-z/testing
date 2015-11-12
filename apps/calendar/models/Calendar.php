@@ -92,7 +92,7 @@ class Calendar extends Model {
         return $query;
     }
     
-    public function remove_member($remove_id,$id){                   
+    public function remove_member($remove_id,$id){          
         $remove_id = implode($remove_id,",");
         $query = "update member_event_permission set delete_flag =1 where permit_name ='$remove_id' and member_name = '".$id."'";
         $this->db->query($query);                             

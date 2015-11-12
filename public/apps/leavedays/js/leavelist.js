@@ -5,24 +5,16 @@
  */
 
 this.pager = new Paging.Pager();
-var Leave = {};
+var Leave = {},dict=[];
 
-Leave.init =  function(){
+Leave.init =  function(reload){
            $("tfoot").html($('tbody').html()); //for csv           
             pager.perpage =7;            
             pager.para = $('tbody > tr');
             pager.showPage(1);
             $("tbody").show();
-     };
-Leave.List = function () {
-           search_list();  
-};
-
-var User = {       
-        userautolist: function (){                       
-        
-         var dict = [];
-       $.ajax({
+            if(reload){
+              $.ajax({
                 url:'autolist',
                 method: 'GET',
                 //dataType: 'json',
@@ -31,36 +23,30 @@ var User = {
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].full_name);
+                      dict.push(json_obj[i].full_name);
+                      }                  
                 }
-                  //var dict = ["Test User02","Adminstrator"];
-                loadIcon(dict);
-                        }
                         
-                    });
-                     function loadIcon(dict) {
-                       //alert(dict);
-                        $('.userauto').autocomplete({
-              source: dict
-            });
-      
-                } 
-       }
-};
-            
+                });
+            }
+     };
+Leave.List = function () {
+           search_list();  
+};          
     
-$(document).ready(function(){        
+$(document).ready(function(){     
     //intialize paging
-    Leave.init();
+    Leave.init('reload');
     
     var userUri = baseUri + 'leavedays/';    
     
     $('#search').click(function () {        
         Leave.List();
     }); 
-     $('.userauto').click(function () {
-        //alert("aaa");
-        User.userautolist();
+   $('.userauto').click(function () {   
+        $(this).autocomplete({
+            source : dict
+        });
     }); 
     
 });

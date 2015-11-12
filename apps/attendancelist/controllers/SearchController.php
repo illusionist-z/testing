@@ -9,9 +9,6 @@ class SearchController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-
-        $this->setCommonJsAndCss();
-        $this->assets->addJs('apps/attendancelist/js/search-attsearch.js');
         $this->config = \Module_Config::getModuleConfig('leavedays');
     }
 
@@ -24,16 +21,16 @@ class SearchController extends ControllerBase {
      * 
      */
     public function attsearchAction() {
-        $month = $this->request->getQuery('month');
-        $username = $this->request->get('username');
-        $year = $this->request->get('year');
-        //$offset= $this->session->location['offset'];
-        $Attendances = new Attendances();
-        $result = $Attendances->search_attlist($year, $month, $username);
-
-        $this->view->disable();
-
-        echo json_encode($result);
+            if ($this->request->isAjax() == true) {
+                $month = $this->request->get('month');
+                $username = $this->request->get('username',"string");
+                $year = $this->request->get('year');
+                //$offset= $this->session->location['offset'];
+                $Attendances = new Attendances();
+                $result = $Attendances->search_attlist($year, $month, $username);
+                $this->view->disable();
+                echo json_encode($result);
+            }        
     }
 
 }

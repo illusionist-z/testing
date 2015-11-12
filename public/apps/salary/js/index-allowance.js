@@ -120,6 +120,62 @@ var Allowance = {
     
 };
 $(document).ready(function () {
+    
+        var allowance_name='Allowance Name';
+        var allowance_amount='Amount';
+        var enter_allname='Enter Allowance Name';
+        var enter_allamount='Enter Allowance Amount';
+        var counter = 2;
+        var counter1=2;
+        $("#addButton").click(function () {
+
+            if (counter > 10) {
+                alert("Only 10 textboxes allow");
+                return false;
+            }
+           
+            var newTextBoxDiv = $(document.createElement('div'))
+                    .attr("id", 'TextBoxDiv' + counter);
+
+            newTextBoxDiv.after().html('' + allowance_name+' '+counter + ' :  ' +
+                    ' <input style="margin-top:10px;" type="text" name="textbox' + counter +
+                    '" id="textbox' + counter + '" value="" placeholder="'+enter_allname+'"> ' + allowance_amount+' '+counter + ' : ' +
+                    ' <input style="margin-top:10px;" type="text" name="txt' + counter +
+                    '" id="txt' + counter + '" value=""  placeholder="'+enter_allamount+'">');
+
+            newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+
+            counter++;
+        });
+
+        $("#removeButton").click(function () {
+            if (counter == 2) {
+                alert("No more textbox to remove");
+                return false;
+            }
+
+            counter--;
+
+            $("#TextBoxDiv" + counter).remove();
+
+        });
+        
+        $("#getButtonValue").click(function () {
+            alert(counter);
+//window.location.href = baseUri + 'salary/index/saveallowance?count='+counter;
+//            var msg = '';
+//            for (i = 1; i < counter; i++) {
+//                msg += "\n Textbox #" + i + " : " + $('#textbox' + i).val();
+//                msg += "\n Textbox #" + i + " : " + $('#txt' + i).val();
+//            }
+//          
+//            alert(msg);
+        });
+
+
+
+    
     $(".allpopup").click(function () {
        var id = $(this).attr('id');
        Allowance.Edit(id);
