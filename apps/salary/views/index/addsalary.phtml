@@ -82,7 +82,7 @@ if(isset($Msg))
                            
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
                         <div style="float: left; width: 8%;"><?= $t->_("deduce_ssc"); ?></div>
-                       <div style="margin-left: 14%;">
+                        <div style="margin-left: 14%;width: 150px;">
                             <?php
                             //print_r($getall_allowance);
                             $i=1;
@@ -96,11 +96,17 @@ if(isset($Msg))
                                 }
                                
                             }
-                            ?>
-                           
+                            ?>                            
                         </div>
-                        <span id="add_salary_ssc_error"></span>
+                        <div id="clear"></div>
+                        <div style="margin-left: 40%;float: right;margin-top: -100px;margin-right: 500px;">
+                            <span id="add_salary_ssc_error"></span>
+                        </div>
                     </div>
+                       
+                                           
+                       
+
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
                         <div style="float: left; width: 8%;"><?= $t->_("allowance"); ?></div>
                        <div style="margin-left: 14%;">

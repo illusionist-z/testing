@@ -45,3 +45,6 @@ a.btn_detail {
     -moz-border-radius: 2px;
     margin-right: 1px;
 }
+#clear{
+    clear: both;
+}

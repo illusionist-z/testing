@@ -327,11 +327,30 @@ var Salary = {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
-    //window.location.href = baseUri + 'salary/search?'+$form;
+    var namelist=document.getElementById('namelist').value;
+    var department=document.getElementById('department').value;
+    var position=document.getElementById('position').value;
+    var salary_rate=document.getElementById('salary_rate').value;
+    var namelist=document.getElementById('namelist').value;
+   // alert(salary_rate);
+   if(namelist=="" && department=="" && position=="" && salary_rate==""){
+             $('tbody').empty();
+         //   $('#sal_check').hide(); //check box don't show when No data to display
+             var output = "<tr>"
+                            + "<td colspan='13'><center>No data to display</center></td>"
+                            + "</tr>"
+                    $("tbody").append(output);
+                    //Attendance.init();
+        }
+    else{
+       // alert(namelist);
+                //window.location.href = baseUri + 'salary/search?'+$form;
+    
     $.ajax({
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
+            //alert(d);
              var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
             $('tfoot').empty();
@@ -339,7 +358,7 @@ var Salary = {
             for (var i in json_obj)
             {   
                 var aa = parseInt(json_obj[i].total);
-                totalsal =totalsal + aa ;
+                totalsal += aa ;
                 var formatter = new Intl.NumberFormat(); //Create our number formatter.
                  
                     var output = "<tr>"
@@ -386,7 +405,7 @@ var Salary = {
             window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
             }
             else{
-            alert("please check aleast one!");
+            alert("Please check aleast one!");
             location.reload();
             }
          //window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
@@ -398,6 +417,8 @@ var Salary = {
         }
         
         });
+    }
+    
          
         },
         SaveSalary : function (){
