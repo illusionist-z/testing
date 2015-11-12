@@ -7,18 +7,15 @@
  * @GEOprocess()
  * @get @lat @lng
  */
-var pager = new Paging.Pager();   //for pagination
+var pager = new Paging.Pager(),dict = [];   //for pagination
 var User = {
-        init  : function() {
+        init  : function(reload) {
         $("tfoot").html($('tbody').html()); //for csv
         pager.perpage =6;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
-        $("tbody").show();
-        },
-        userautolist: function (){
-        
-         var dict = [];
+        $("tbody").show();         
+        if(reload){
        $.ajax({
                 url:'usernameautolist',
                 method: 'GET',
@@ -29,27 +26,19 @@ var User = {
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
                 dict.push(json_obj[i].full_name);
+                }                  
+                        }                        
+                    });     
                 }
-                  //var dict = ["Test User02","Adminstrator"];
-                loadIcon(dict);
-                        }
-                        
-                    });
-                     function loadIcon(dict) {
-                       //alert(dict);
-                        $('.userauto').autocomplete({
-              source: dict
-            });
-       // ... do whatever you need to do with icon here
-   } 
        },
         search: function(){
         var name = document.getElementById('username').value;
         $.ajax({
         type: 'GET',
         url: "userlist?username="+name,
-        success:function(result){
+        success:function(result){       
           $('body').html(result);
+           $('.dropdown-toggle').dropdown();
         },
         error: function (d) {
             alert('error');
@@ -60,7 +49,7 @@ var User = {
     
 $(document).ready(function(){                 
     
-     User.init(); 
+     User.init('reload'); 
     // ここに実際の処理を記述します。   
     $('form').on('click','#userlistsearch',function () {        
         User.search();
@@ -73,9 +62,11 @@ $(document).ready(function(){
         Manage.User.Edit(type);
     });
      $('.userauto').click(function () {
-        //alert("aaa");
-        User.userautolist();
+              $(this).autocomplete({
+                                   source: dict
+                          });
     }); 
+       
 });
 
 

@@ -222,10 +222,8 @@ class Attendances extends Model {
               $row = $result->fetchall();
               
         } catch (Exception $ex) {
-           echo $ex; 
-           
+           echo $ex;            
         }
-       
         return $row;
     }
     

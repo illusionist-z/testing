@@ -2,11 +2,12 @@
  * @desc   Pagination to json data as html
  * @type json
  */
+//var para;
 var Paging = {
     Pager: function() {
-        this.perpage = 3;
-        this.currentpage = 1;
-        this.pagingcontainer = 'tbody';
+        //this.perpage=1,        
+        //this.currentpage,
+        //this.pagingcontainer = 'tbody';
         //get average page number
         this.numPages = function() {
             var numPages = 0;
@@ -18,13 +19,12 @@ var Paging = {
         //show page on click 
         this.showPage = function(page) {
             this.currentpage = page;
-            var html = '';
-            this.para.slice((page - 1) * this.perpage,
-                    ((page - 1) * this.perpage) + this.perpage).each(function() {
+            var html;
+            this.para.slice((this.currentpage - 1) * this.perpage,
+                    ((this.currentpage - 1) * this.perpage) + this.perpage).each(function() {                        
                 html += '<tr>' + $(this).html() + '</tr>';
             });
-
-            $(this.pagingcontainer).html(html);
+            $('tbody').html(html);
             renderControls(this.currentpage, this.numPages());
         };
         //for pagination index 

@@ -100,7 +100,6 @@ $(document).ready(function() {
     // ここに実際の処理を記述します。
     var logout = function() {
         window.location.href = baseUri + 'auth/logout';
-
     };
 //   
     // ユーザーのクリックした時の動作。
@@ -128,10 +127,7 @@ $(document).ready(function() {
             }
         });
     });
-
-    var logout = function() {
-        window.location.href = baseUri + 'auth/logout';
-    };
+  
     /**
      * @author David JP<david.gnext@gmail.com>
      * @version 28/8/2015
@@ -174,9 +170,13 @@ $(document).ready(function() {
             $('#notificationContainer').fadeOut(300);            
         }
     });
+    
  $('.datepicker').datepicker(); 
+ 
 link_height();
+
 });
+
 $(window).resize(function(){
     link_height();
 });

@@ -3,7 +3,24 @@
  * @desc Apply Leave Form validation
  * @author David JP <david.gnext@gmail.com>
  */
+var dict=[];
 var ApplyForm = {
+    init : function (){
+         $.ajax({
+                url:'autolist',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+               //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                        dict.push(json_obj[i].full_name);
+                        }              
+                }
+                        
+               }); 
+    },
     Submit : function (){
         $.ajax({
            type : 'POST',
@@ -46,34 +63,7 @@ var ApplyForm = {
                 }
            }
         });
-    },
-       applyautolist: function (){                       
-        
-         var dict = [];
-       $.ajax({
-                url:'autolist',
-                method: 'GET',
-                //dataType: 'json',
-                success: function(data) {
-               //alert(data);    
-                var json_obj = $.parseJSON(data);
-                for (var i in json_obj){
-                   // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].full_name);
-                }
-                  //var dict = ["Test User02","Adminstrator"];
-                loadIcon(dict);
-                        }
-                        
-                    });
-                     function loadIcon(dict) {
-                       //alert(dict);
-                        $('#apply_form_name').autocomplete({
-              source: dict
-            });
-      
-                } 
-       },
+    },  
        getmemid: function (name){                       
         //var name = document.getElementById('namelist').value;
            // alert("aaa");
@@ -108,15 +98,18 @@ var ApplyForm = {
        }
 };
 $(document).ready(function(){
+    
+   ApplyForm.init();
    
     $('#apply_form_submit').on('click',function(e){
       e.preventDefault();
       ApplyForm.Submit();
    });
    
-   $('#apply_form_name').click(function () {
-       // alert("aaa");
-        ApplyForm.applyautolist();
+   $('#apply_form_name').click(function () {       
+        $(this).autocomplete({
+            source : dict
+        });
     }); 
     $("#apply_form_sdate").click(function(){
        var name = document.getElementById('apply_form_name').value;
