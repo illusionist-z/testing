@@ -32,32 +32,19 @@ $length = count($Month);
 <section class="content">
     <div class="buttons">
         <!--        <form action="monthlysearch" method="post">-->
-        <form onsubmit="return false;" method="post">
-          
-            <input type="text" name="year" id="year" class="datepicker"   placeholder="<?= $t->_("startdate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
-
+                  
+                    <input type="text" name="year" id="year" class="datepicker"   placeholder="<?= $t->_("startdate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
           
                     <input type="text" name="month" id="month" class="datepicker"   placeholder="<?= $t->_("enddate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
-<!--            <select class="select" data-toggle="select" name="username" id="username">
-        <option value="">Name</option>
-            <?php
-//print_r($Getname);
-                foreach ($Getname as $getname) {
-                    ?>
-                    <option value="<?php echo $getname->full_name; ?>">
-                        <?php echo $getname->full_name; ?></option>
-                            <?php
-                        }
-                        ?>
-            </select>-->
-            <input class="monthauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>">
-             <!-- <input class="tags" name="username" id="username" placeholder="Search User Name">          -->
-            <!-- <a href="../search/search" class="button" id='btn_search'>Search</a> -->
+
+                    <input type="text" class="monthauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px; width: 100px;" autocomplete="off">
+
+          
             <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn" id="sub">
             <input type="hidden" value='' id='hidden-type' name='ExportType'/>
             <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><b><?php echo $t->_("export"); ?></b></a>
 
-        </form>
+        
     </div>
 
     <div class="row">
