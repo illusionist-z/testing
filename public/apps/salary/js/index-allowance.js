@@ -120,12 +120,17 @@ var Allowance = {
     
 };
 $(document).ready(function () {
-    
-        var allowance_name='Allowance Name';
-        var allowance_amount='Amount';
-        var enter_allname='Enter Allowance Name';
-        var enter_allamount='Enter Allowance Amount';
-        var counter = 2;
+         $.ajax({
+            
+           url:"gettranslate",
+           type: "GET",
+           success:function(res){
+               var result = $.parseJSON(res);
+               var allowance_name=result['allowance_name'];
+               var allowance_amount=result['amount'];
+               var enter_allname=result['enter_allname'];
+               var enter_allamount=result['enter_allamount'];
+               var counter = 2;
         var counter1=2;
         $("#addButton").click(function () {
 
@@ -144,8 +149,6 @@ $(document).ready(function () {
                     '" id="txt' + counter + '" value=""  placeholder="'+enter_allamount+'">');
 
             newTextBoxDiv.appendTo("#TextBoxesGroup");
-
-
             counter++;
         });
 
@@ -154,25 +157,17 @@ $(document).ready(function () {
                 alert("No more textbox to remove");
                 return false;
             }
-
             counter--;
-
             $("#TextBoxDiv" + counter).remove();
 
         });
-        
-        $("#getButtonValue").click(function () {
-            alert(counter);
-//window.location.href = baseUri + 'salary/index/saveallowance?count='+counter;
-//            var msg = '';
-//            for (i = 1; i < counter; i++) {
-//                msg += "\n Textbox #" + i + " : " + $('#textbox' + i).val();
-//                msg += "\n Textbox #" + i + " : " + $('#txt' + i).val();
-//            }
-//          
-//            alert(msg);
+           }
         });
-
+    
+       
+        
+        
+       
 
 
     

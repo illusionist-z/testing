@@ -110,6 +110,7 @@ class Permission {
                             }
                    
                    //$results->next()
+                            
                 }
             }
             //print_r($per_result);exit;

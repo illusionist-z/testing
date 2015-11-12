@@ -22,12 +22,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/salary/css/salary.css');        
         $this->assets->addJs('common/js/paging.js');
-        //$this->assets->addJs('common/js/popup.js');    //popup message
-        //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
-        //$this->assets->addJs('apps/salary/js/index-allowance.js');
-        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
-
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         //$this->view->module_name =  $this->router->getModuleName();
@@ -50,7 +45,6 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
-        //var_dump($getsalarydetail);exit;
         if($this->permission==1){
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->salarydetail = $getsalarydetail;
@@ -237,7 +231,6 @@ class IndexController extends ControllerBase {
      /**
      * 
      * get member_id salary Dialog Box
-     
      */
     public function getmemberidAction() {
        $data = $this->request->get('uname');
@@ -295,19 +288,16 @@ class IndexController extends ControllerBase {
         $all->addallowance($all_value, $all_name, $count);
         $this->response->redirect('salary/index/allowance');
         $this->flashSession->success("Allowances are added successfully!");
-        
-        
         }
         else{
         $this->response->redirect('salary/index/allowance');
         $this->flashSession->success("No data!Insert Data First");
-        
         }
     }
 
     /**
      * edit dialog box
-     * @author Su Zin Kyaw
+     * @author Su Zin Kyaw<gnext.suzin@gmail.com>
      * @update translate #jp
      */
     public function editallowanceAction() {
@@ -324,13 +314,26 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($data);
     }
+    
+    /**
+     * get translation for allowance text box
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
+    public function gettranslateAction(){
+        $t = $this->_getTranslation();
+         $data['allowance_name'] = $t->_("allowance_name");
+        $data['amount'] = $t->_("amount");
+        $data['enter_allname'] = $t->_("enter_allname");
+        $data['enter_allamount'] = $t->_("enter_allamount");
+       $this->view->disable();
+        echo json_encode($data);
+    }
 
     /**
      * edit allowance data
-     * @author Su Zin Kyaw
+     * @author Su Zin Kyaw<gnext.suzin@gmail.com>
      */
     public function edit_dataAction() {
-
         $data['id'] = $this->request->getPost('id');
         $data['name'] = $this->request->getPost('name');
         $data['allowance_amount'] = $this->request->getPost('allowance_amount');
@@ -360,7 +363,6 @@ class IndexController extends ControllerBase {
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
-        
         $Tax = new SalaryTaxs();
         $list = $Tax->gettaxlist();
         $this->view->setVar("result", $list); //paginated data
@@ -370,7 +372,6 @@ class IndexController extends ControllerBase {
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("noti",$noti);
         $this->view->setVar("deduction", $dlist);
-        
         }
         else {
         $this->response->redirect('core/index');

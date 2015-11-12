@@ -23,7 +23,6 @@ class IndexController extends ControllerBase {
     }
 
     public function forgotpasswordAction() {
-        echo "aaa";
     }
 
 }
