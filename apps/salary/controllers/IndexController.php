@@ -19,17 +19,12 @@ class IndexController extends ControllerBase {
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
         $this->assets->addCss('apps/salary/css/index_show_salarylist.css');
-        $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('apps/salary/css/salary.css');        
-        $this->assets->addJs('common/js/paging.js');
-        //$this->assets->addJs('common/js/popup.js');    //popup message
-        //$this->assets->addJs('apps/salary/js/salary.js');
+        $this->assets->addCss('common/css/dialog.css');        
+        $this->assets->addCss('apps/salary/css/salary.css');
+        $this->assets->addJs('common/js/paging.js');        
         $this->assets->addJs('common/js/export.js');
         //$this->assets->addJs('apps/salary/js/index-allowance.js');
-        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
-
-        $this->setCommonJsAndCss();
+        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');        
         $this->assets->addCss('common/css/css/style.css');
         //$this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
@@ -135,9 +130,7 @@ class IndexController extends ControllerBase {
         //print_r($geteachmonthsalary);exit;
         if($this->permission==1){
         $this->view->module_name =  $this->router->getModuleName();
-        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
-        
-        
+        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);               
         }
         else {
         $this->response->redirect('core/index');

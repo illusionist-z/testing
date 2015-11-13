@@ -1,0 +1,68 @@
+<?php
+    use Phalcon\Filter;
+?>
+
+     
+                                     <br>
+                                <h3>Change User Rule  </h3>
+                                
+                                <br>
+                             
+                                
+                                  <table class="listtbladmin listtbl">
+                        
+                        <thead>
+                        <br>
+                                <tr>                                  
+                                <th width="100">Group ID</th>                                
+                                <th width="">User Name</th>
+                                <th width="">Action</th>
+                                 
+                                </tr>
+                        </thead>
+            
+                   <?php 
+                   foreach($coreuser as $datauser){ ?>
+                                <tr>                                        
+                                        <td><?= $datauser['group_id'] ?></td>
+                                        <td><?= $datauser['member_login_name'] ?></td>
+                                        
+                                        <td>        
+            <a href="#" onclick="showDialoguser.apply(this);return false;" class="btn" type="black" id="<?= $datauser['member_id'] ?>"> Edit </a>  
+                                        </td> 
+                                         
+                                </tr>
+                                
+                                <div id="openu<?= $datauser['member_id'] ?>" title="Change User Rule" style="display: none;">
+                                       <form method="POST" action="UserRuleSetting">    
+                                           <br> 
+                                         Group ID    :                                                                                                                          
+                                        <br> 
+                                        User Name  : 
+                                        <input type="text" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" >
+                                        <br><br>
+                                           Group Rule
+                                           
+<!--                                        <input type="hidden" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" >-->
+                                           <select type="text" name='user_rule' value='' id="changeuser<?= $datauser['member_id'] ?>">
+                                        <?php
+                                        foreach($coreid as $data){
+                                          ?>
+                                        <option value="<?= $data->group_id ?>">
+                                            <?= $data->name_of_group ?>
+                                        </option>
+                                        <?php
+                                         }
+                                         ?>
+                                        </select>
+                                        </form>
+                                            
+                              </div>
+                                
+                                
+                                
+                                
+                                
+                   <?php }
+                   ?>
+            </table>  
