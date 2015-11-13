@@ -138,6 +138,7 @@ class IndexController extends  ControllerBase {
                 }
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add,$creator_id);
+        $this->view->disable();
         echo "<script>alert('".$status."');</script>";
        echo "<script type='text/javascript'>window.location.href='direct';</script>";
      }
@@ -149,6 +150,7 @@ class IndexController extends  ControllerBase {
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckouttime($id);
+        $this->view->disable();
         echo "<script>alert('".$status."');</script>";
         echo "<script type='text/javascript'>window.location.href='direct';</script>";
     }
@@ -158,8 +160,8 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function directAction(){
-        $name=$this->session->permission_code;
-       if ( $name=='ADMIN'){
+        $name= $this->session->permission_code;
+       if ( 'ADMIN'==$name){
             $this->response->redirect('attendancelist/index/todaylist');
         }
         else

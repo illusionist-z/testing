@@ -19,10 +19,9 @@ class IndexController extends ControllerBase {
          
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');  
-        //$this->assets->addJs('common/js/bootstrap.min.js');  
-        //$this->assets->addJs('common/js/app.min.js'); 
-        //$this->assets->addJs('common/js/common.js'); 
-        $this->assets->addJs('apps/setting/js/setting.js');  
+        $this->assets->addJs('apps/setting/js/setting.js'); 
+        $this->view->t = $this->_getTranslation();
+
  }
     
     

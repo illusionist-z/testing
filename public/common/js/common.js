@@ -104,7 +104,17 @@ $(document).ready(function() {
 //   
     // ユーザーのクリックした時の動作。
     $('#btn_logout').click(function() {
-        alert("ログアウトしました。");
+         $.ajax({
+            
+           url:baseUri+"auth/logout/gettranslate",
+           type: "GET",
+           success:function(res){
+               var result = $.parseJSON(res);
+               var logout=result['logout'];
+               alert(logout);
+           }
+        });
+      
         logout();
     });
 

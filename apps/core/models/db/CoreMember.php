@@ -202,7 +202,7 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetAdminNoti($id) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' ";
+        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' order by created_time desc";
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
         //$notirel=$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=2 AND notification_rel_member.member_id!= '" . $id . "'");
@@ -215,7 +215,7 @@ class CoreMember extends \Library\Core\BaseModel {
             //print_r($sql);exit;
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-            //$final_result[$i]['0']['creator_name']=$noti['creator_name'];
+            $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
            
             
@@ -236,7 +236,7 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetUserNoti($id) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id . "'";
+        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id . "'order by created_time desc";
         //print_r($sql);exit;
         $UserNoti = $this->db->query($sql);
 
