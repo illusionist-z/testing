@@ -31,6 +31,15 @@ $messages = array(
   "deleteleavetype" => "休暇タイプの削除",
   "yes" => "はい",
   "cancel" => "いいえ",
-  "enterltp" => "休暇タイプを入力してください"
+  "enterltp" => "休暇タイプを入力してください",
+    
+    "People who take no leave" => "休暇を取らない人",
+  
+    
+     "Department"     => "部門",
+    "Position" => "立場",
+    "Email"     =>  "メール",
+    "Phone" => "電話番号",
+    "Address" => "住所",
 );
 

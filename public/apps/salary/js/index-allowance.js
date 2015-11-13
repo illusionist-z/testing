@@ -161,6 +161,7 @@ $(document).ready(function () {
 
         });
         
+        
         $("#getButtonValue").click(function () {
             alert(counter);
 //window.location.href = baseUri + 'salary/index/saveallowance?count='+counter;

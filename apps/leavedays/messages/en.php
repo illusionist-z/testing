@@ -30,5 +30,11 @@ $messages = array(
   "deleteleavetype" => "Delete Categories",
   "yes" => "Yes",
   "cancel" => "No",
-  "enterltp" => "Enter Leave type"
+  "enterltp" => "Enter Leave type",
+  "People who take no leave" => "People who take no leave",
+    "Department" => "Department",
+    "Position"  => "Position",
+    "Email" => "Email",
+    "Phone" => "Phone",
+    "Address" => "Address"
 );

@@ -17,7 +17,7 @@ class LeaveCategories extends \Library\Core\BaseModel {
 
     public function getleavetype() {
 
-        $sql = "SELECT * FROM leave_categories";
+        $sql = "SELECT * FROM leave_categories   order by created_dt desc";
         $results = $this->db->query($sql);
         $typelist = $results->fetchall();
         return $typelist;
@@ -37,7 +37,7 @@ class LeaveCategories extends \Library\Core\BaseModel {
     }
 
     public function add_newcategories($ltype_name) {
-        $this->db->query("INSERT INTO leave_categories(leavetype_id,leavetype_name) VALUES (uuid(),'" . $ltype_name . "')");
+        $this->db->query("INSERT INTO leave_categories(leavetype_id,leavetype_name,created_dt) VALUES (uuid(),'" . $ltype_name . "',now() )");
     }
     /**
      *

@@ -251,4 +251,24 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($Username);
     }
+    
+    /**
+     * @author Saw Zin Min Tun
+     * @type   
+     * @desc   No Leave Action
+     */
+    public function noleavelistAction() {  
+        $Admin=new Db\CoreMember;
+        $id=$this->session->user['member_id'];
+        $noti=$Admin->GetAdminNoti($id);
+        $this->view->setVar("noti",$noti);
+    
+        $Result = $Admin->checkleave();
+     
+        $this->assets->addJs('apps/leavedays/js/noleavelist.js');
+       $this->view->setVar("Result",$Result);
+        
+       
+    }
+    
 }

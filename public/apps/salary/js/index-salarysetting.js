@@ -207,6 +207,7 @@ var Deduction = {
             height: 'auto',
             async:false,            
             width: 'auto',
+            resizable:false,
             modal: true,
             title:title
         });                        

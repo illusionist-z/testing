@@ -39,7 +39,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #apply_cancel,#add_salary_cancel,#displaypopup,#add_dec,#addinguser_close,#edit_close,
 #cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
 #cancel,#save,#btn_logout,#settingimg,#settingborder,#apply_form_cancel,#noti_reject,
-#editsetting,#savesetting{
+#editsetting,#savesetting,#noleaveview{
     border-color:#3c8dbc;color: #3c8dbc;border-radius: 4px;
 }
 
@@ -586,4 +586,9 @@ float:left;
    height: 100%;
    margin: auto;
    border: 3px double #d2d6de;  
+}
+
+#viewallnoleave{
+   margin-left: 35%;
+   
 }

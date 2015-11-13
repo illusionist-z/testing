@@ -32,7 +32,7 @@ class Attendances extends Model {
           Condition : Already Checked in or not
          * */
         if ($att != NULL) {
-            $status = " Already Checked in ";
+            $status = " Already Checked In ";
         } else {
             $noti_id=rand();
             if($note!=NULL){

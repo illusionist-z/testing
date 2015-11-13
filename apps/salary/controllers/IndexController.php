@@ -27,6 +27,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         //$this->assets->addJs('apps/salary/js/index-allowance.js');
         //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
 
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
@@ -47,14 +48,15 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
+        $this->view->module_name =  $this->router->getModuleName();
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
         //var_dump($getsalarydetail);exit;
         if($this->permission==1){
-        $this->view->module_name =  $this->router->getModuleName();
-        $this->view->salarydetail = $getsalarydetail;
         
+        $this->view->salarydetail = $getsalarydetail;
+        $this->view->modulename = $this->module_name;
         }
         else {
         $this->response->redirect('core/index');
@@ -68,7 +70,7 @@ class IndexController extends ControllerBase {
     public function show_salarylistAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
-        
+        $this->view->module_name =  $this->router->getModuleName();
         $month = $this->request->get('month');
         $year = $this->request->get('year');
         $Salarydetail = new SalaryDetail();
@@ -82,7 +84,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("usernames", $user_name);
         $this->view->setVar("getsalarylists", $getsalarylist);
         $this->view->setVar("allowancenames", $allowancename);
-        $this->view->module_name = $this->router->getModuleName();
+        $this->view->modulename = $this->module_name;
        
     }
 
@@ -90,8 +92,8 @@ class IndexController extends ControllerBase {
      * Add salary form
      */
     public function addsalaryAction() {
-        //$this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
         $this->assets->addJs('apps/salary/js/addsalary.js');
+        $this->view->module_name =  $this->router->getModuleName();
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
         $Allowance = new Allowances();
@@ -103,39 +105,31 @@ class IndexController extends ControllerBase {
         
         $position = $this->salaryconfig->position;
         if($this->permission==1){
-        $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("usernames", $user_name);
         $this->view->position = $position;
         $this->view->getall_allowance = $getall_allowance;
         $this->view->getall_deduce = $deduce;
-        
+        $this->view->modulename = $this->module_name;
         }
         else {
         $this->response->redirect('core/index');
         }       
     }
 
-     public function autolistAction() {
-        $UserList = new Db\CoreMember();
-        $Username = $UserList->autousername();
-        $this->view->disable();
-        echo json_encode($Username);
-    }
-
+   
 
     /**
      * show total salary  of each month
      */
     public function monthlysalaryAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
-             
+        $this->view->module_name =  $this->router->getModuleName();     
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
         if($this->permission==1){
-        $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
-        
+        $this->view->modulename = $this->module_name;
         
         }
         else {
@@ -175,16 +169,14 @@ class IndexController extends ControllerBase {
     public function editsalaryAction() {
         $member_id = $this->request->get('id');
         $t = $this->_getTranslation();
-        $Salarymaster = new SalaryMaster();
-        $editsalary = $Salarymaster->editsalary($member_id);
+        $Salarydetail = new SalaryMaster();
+        $editsalary = $Salarydetail->editsalary($member_id);
         $resultsalary['data']=$editsalary;
         $Permit_allowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $Permit_allowance->getallowanceBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_allowance']);
-        
         $Permit_dedution = new SalaryMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $Permit_dedution->getdeduceBymember_id($editsalary[0]['member_id']);
-        $resultsalary['no_of_children']=$Permit_dedution->getnoofchildrenBymember_id($editsalary[0]['member_id']);
         //print_r($resultsalary['permit_dedution']);exit;
         $Dedution = new SalaryTaxsDeduction();
         $resultsalary['dedution']=$Dedution->getdedlist();
@@ -217,7 +209,6 @@ class IndexController extends ControllerBase {
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $data['start_date'] = $this->request->getPost('work_sdate');
-        $data['no_of_children']=$this->request->getPost('no_of_children');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce= $this->request->getPost('check_list');
         //print_r($data['start_date']);exit;
@@ -225,7 +216,7 @@ class IndexController extends ControllerBase {
         $cond = $Salarydetail->btnedit($data);
         
         $Taxdeduce=new SalaryMemberTaxDeduce();
-        $Taxdeduce->edit_taxByMemberid($check_deduce,$data['no_of_children'],$data['member_id']);
+        $Taxdeduce->edit_taxByMemberid($check_deduce,$data['member_id']);
         
         $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
         $SalaryMasterAllowance->edit_allowanceByMemberid($check_allow,$data['member_id']);
@@ -253,14 +244,13 @@ class IndexController extends ControllerBase {
      */
     public function allowanceAction() {
         $this->assets->addJs('apps/salary/js/index-allowance.js');
-               
+        $this->view->module_name =  $this->router->getModuleName();       
         $All_List = new \workManagiment\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         //echo $this->permission;
         if($this->permission==1){
         $this->view->setVar("list", $list); //paginated data
-        
-        $this->view->module_name =  $this->router->getModuleName();
+        $this->view->modulename = $this->module_name;
         }
         else {
         $this->response->redirect('core/index');
@@ -295,13 +285,10 @@ class IndexController extends ControllerBase {
         $all->addallowance($all_value, $all_name, $count);
         $this->response->redirect('salary/index/allowance');
         $this->flashSession->success("Allowances are added successfully!");
-        
-        
         }
         else{
         $this->response->redirect('salary/index/allowance');
-        $this->flashSession->success("No data!Insert Data First");
-        
+        $this->flashSession->success('No data! Insert Data First');   
         }
     }
 
@@ -356,7 +343,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
-        $this->assets->addJs('apps/salary/js/index-salarysetting.js');
+        $this->view->module_name =  $this->router->getModuleName();
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
@@ -367,10 +354,9 @@ class IndexController extends ControllerBase {
         $Deduction = new SalaryTaxsDeduction();
         $dlist = $Deduction->getdedlist();
         if($this->permission==1){
-        $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("noti",$noti);
         $this->view->setVar("deduction", $dlist);
-        
+        $this->view->modulename = $this->module_name;
         }
         else {
         $this->response->redirect('core/index');
@@ -438,12 +424,13 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function edit_deductAction() {
-        $data['id'] = $this->request->getPost('id');
+        $data['id'] = $this->request->getPost('id');        
         $data['deduce_name'] = $this->request->getPost('deduce_name');
-        $data['amount'] = $this->request->getPost('amount');
-        $Deduction = new SalaryTaxsDeduction();
+        $data['amount'] = $this->request->getPost('amount');       
+        $Deduction = new SalaryTaxsDeduction();        
         //print_r($data);exit;
         $Deduction->edit_deduction($data);
+        
         $this->view->disable();
     }
 
@@ -525,9 +512,8 @@ class IndexController extends ControllerBase {
         }
         
       //print_r($getsalarydetail);exit;
+        
         $this->view->getsalarydetails = $getsalarydetail;
-        $this->view->year = $year;
-        $this->view->month = $month;
     }
     
     public function addresigndateAction(){
@@ -539,9 +525,12 @@ class IndexController extends ControllerBase {
     
     public function delete_salaryAction() {
         $member_id = $this->request->getPost('id');
-        $SalaryMaster=new SalaryMaster();
-        $SalaryMaster->deleteSalaryInfo($member_id);
-        
+        $sql_salarymaster="DELETE FROM salary_master  WHERE member_id='".$member_id."'";
+        $this->db->query($sql_salarymaster);
+        $sql_salaryallowance="DELETE FROM salary_master_allowance WHERE member_id='".$member_id."'";
+        $this->db->query($sql_salaryallowance);
+        $sql_salaryallowance="DELETE FROM salary_member_tax_deduce WHERE member_id='".$member_id."'";
+        $this->db->query($sql_salaryallowance);
     }
     
     public function printtaxformAction(){

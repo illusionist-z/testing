@@ -31,6 +31,11 @@ $messages = array(
   "deleteleavetype" => "ခြင္႔ႊရက္ကိုု ဖ်က္ရန္",
   "yes" => "Yes",
   "cancel" => "No",
-  "enterltp" => "ခြင္႔အမ်ဳိးအစား"
-    
+  "enterltp" => "ခြင္႔အမ်ဳိးအစား",
+    "People who take no leave" => "ရံုးတက္မွန္သူမ်ားစာရင္း",
+     "Department"   => "ဌာန",
+    "Position" => "ရာထူး",
+    "Email"     => "ေမးလ္",
+    "Phone" => "ဖုန္းနံပတ္",
+    "Address" => "လိပ္စာ"
 );
