@@ -128,9 +128,7 @@ class IndexController extends ControllerBase {
         //print_r($geteachmonthsalary);exit;
         if($this->permission==1){
         $this->view->module_name =  $this->router->getModuleName();
-        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
-        
-        
+        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);               
         }
         else {
         $this->response->redirect('core/index');

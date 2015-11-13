@@ -1,91 +1,33 @@
-   function showDialog()
-    {
-        
+/**
+ * @author David Jor Hpan<david.gnext@gmail.com>
+ * @type Edit ,delete for Setting Module
+ * 
+ */
+var Setting = {
     
-        var dia_id = $(this).attr('id'); 
-        $("#open"+dia_id).dialog({
-                modal: true,
-                draggable: false,	 
-	resizable: false,
-                width: 300,
-                height: 300,
-                buttons: {
-                'Save': function() {
-                $("form").submit();
-                } ,
-                'Delete': function() {
-                jQuery( this ) . dialog( 'submit' );
-                } ,
-               'Cancel': function() {
-                jQuery( this ) . dialog( 'close' );
-            }
-        
-        }
-        
-        
-            });
-      
-          
-
- }    
-        
-        
+};
  
-          
-  function showDialogname()
-    {
-        var dia_id_name = $(this).attr('id');
-        $("#opent"+dia_id_name).dialog({
-                modal: true,
-                draggable: false,	 
-	resizable: false,
-                width: 300,
-                height: 350,
-                buttons: {
-                'Save': function() {
-                jQuery( this ) . dialog( 'submit' );
-                } ,
-                'Delete': function() {
-                jQuery( this ) . dialog( 'submit' );
-                } ,
-               'Cancel': function() {
-                jQuery( this ) . dialog( 'close' );
+Setting.GroupRule = {
+    delete : function(id){
+        $.ajax({
+            url : " DelGroupRule",
+            data : {group_id : id},
+            type : "POST",
+            success: function(){
+                location.reload();
             }
-        
-        }
-   
-            });
-        
-        }
-        
-    
-  function showDialoguser()
-    {
-        var dia_id_name = $(this).attr('id');
-        $("#openu"+dia_id_name).dialog({
-                modal: true,
-                draggable: false,	 
-	resizable: false,
-                width: 300,
-                height: 350,
-                buttons: {
-                'Save': function() {
-                jQuery( this ) . dialog( 'submit' );
-                } ,
-                'Delete': function() {
-                jQuery( this ) . dialog( 'submit' );
-                } ,
-               'Cancel': function() {
-                jQuery( this ) . dialog( 'close' );
+        });
+    } 
+ };
+ Setting.UserRule = {
+    update : function(id,groupid,grouptext){
+        $.ajax({
+            url : 'UserRuleSetting',
+            data : {rel_member_id : id, group_id :groupid,group_text : grouptext},
+            type : "POST",
+            success : function(){
+                location.reload();
             }
-        
-        }
-   
-            });       
- }
-
- $(document).ready(function(){
-     $('#changeuser').on('change',function(){
-         alert($(this).val());
-     });   
- });
+        });
+    } 
+ };

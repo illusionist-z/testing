@@ -5,6 +5,8 @@ namespace workManagiment\Core\Models\Db;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
 use workManagiment\Core\Models\Db\CoreMember;
+use workManagiment\Core\Models\Db\CorePermissionRelMember;
+use workManagiment\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
@@ -35,21 +37,24 @@ class CoreMember extends \Library\Core\BaseModel {
         //print_r($row);exit;
         return $row;
     }
-
-    public function username($name) {
-        /* $this->db = $this->getDI()->getShared("db");        
-          $user_name = $this->db->query("SELECT * FROM core_member");
-          $getname = $user_name->fetchall();
-          return $getname; */
+    
+    public function getgroupid() {
+    $query = "Select member_id,member_login_name,group_id from core_member "
+                . "left join core_permission_rel_member on core_member.member_id=core_permission_rel_member.rel_member_id "
+                . "left join core_permission_group_id on core_permission_group_id.name_of_group = core_permission_rel_member.rel_permission_group_code";        
+    
+    $data = $this->db->query($query);
+    
+    $groupid = $data->fetchall();
+    
+     return $groupid;
+    }      
+    
+    public function username($name) {     
         $name = '%' . $name . '%';
         $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE full_name = '$name' AND deleted_flag=0 order by created_dt desc";
-        $row = $this->modelsManager->executeQuery($query);
-        // print_r($name);exit;
-        //print_r($row);exit;
-        foreach ($row as $rs) {
-            // put in bold the written text
-            //$full_name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs['full_name']);
-            // add new option
+        $row = $this->modelsManager->executeQuery($query);        
+        foreach ($row as $rs) {            
             echo '<li>' . $rs->full_name . '</li>';
         }
         return $row;
