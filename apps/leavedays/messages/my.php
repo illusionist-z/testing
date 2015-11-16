@@ -33,6 +33,7 @@ $messages = array(
   "cancel" => "No",
   "enterltp" => "ခြင္႔အမ်ဳိးအစား",
     "People who take no leave" => "ရံုးတက္မွန္သူမ်ားစာရင္း",
+    "People who take the leave most" => "ခြင္႔အမ်ားဆံုးယူစာရင္း",
      "Department"   => "ဌာန",
     "Position" => "ရာထူး",
     "Email"     => "ေမးလ္",

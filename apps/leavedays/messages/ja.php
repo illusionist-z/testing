@@ -34,7 +34,7 @@ $messages = array(
   "enterltp" => "休暇タイプを入力してください",
     
     "People who take no leave" => "休暇を取らない人",
-  
+    "People who take the leave most" =>"ほとんどの休暇を取る人",
     
      "Department"     => "部門",
     "Position" => "立場",
