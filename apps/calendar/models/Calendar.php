@@ -52,14 +52,11 @@ class Calendar extends Model {
         $admins=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='ADMIN' and core_member.member_id!= '" . $creator_id . "' ");
         $admins=$admins->fetchall();
         foreach ($admins as $admins) {
-           // echo $admins['member_id'];echo "---";
         $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_name . "','" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
         }
         $users=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id!= '" . $creator_id . "' ");
         $users=$users->fetchall();
-        print_r($users);exit;
         foreach ($users as $users) {
-            //echo $users['member_id'];echo "---";
         $this->db->query("INSERT INTO core_notification_rel_member (creator_name,member_id,noti_id,status,module_name) VALUES('" . $creator_name . "','" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
         }
          return $query;

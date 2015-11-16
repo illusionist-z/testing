@@ -97,7 +97,7 @@ class Permission {
             // The permissions set up for each module. 
                   foreach ($results as $row) {
                 $permis =new Db\CorePermission();
-                //get language module foreach
+                //get language module foreach               
                 $permissions = $permis->moduleLang($row->permission_code,$lang); 
                 //print_r($permissions);
                    if($permissions){                   
@@ -110,6 +110,7 @@ class Permission {
                             }
                    
                    //$results->next()
+                            
                 }
             }
             //print_r($per_result);exit;

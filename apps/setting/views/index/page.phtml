@@ -1,0 +1,73 @@
+<?php
+    use Phalcon\Filter;
+?>
+
+             <br>
+                                <h3>Page Rule Setting </h3>
+                                
+                                <br>
+                                <input type="button" name="AddPageName" value="Add Page Name"> 
+                                <br>
+                                
+                <table class="listtbladmin listtbl">
+                    
+                        <thead>
+                         <br>
+                                <tr>
+                                <th width="100">Group ID</th>
+                                <th width="">Core Page Name</th>
+                                 <th width="">Group Rule</th>
+                                <th width="">Action</th>
+                                 </tr>
+                        </thead>
+            
+                   <?php 
+                   foreach($core as $datagroup){ ?>
+                                <tr>
+                                        <td><?= $datagroup->permission_group_id ?></td>
+                                        <td><?= $datagroup->permission_code ?></td>
+                                        <td><?= $datagroup->permission_group_code ?></td>
+                                        <td>  
+         <a href="#" onclick="showDialogname.apply(this); return false;" class="btn" type="black" id="<?= $datagroup->permission_code ?>"> Edit </a>
+                                        </td> 
+                                         
+                                </tr>
+                                
+                                <div id="opent<?= $datagroup->permission_code ?>" title="Change Page Rule" style="display: none;">
+                                        Group ID    :
+                                        
+                                        <select type="text" name=id value=>
+                                        <?php
+                                        foreach($coreid as $data){ 
+                                          ?>
+                                        <option value="<?= $data->group_id ?>">
+                                            <?= $data->group_id ?>
+                                        </option>
+                                        <?php
+                                         }
+                                         ?>
+                                        </select>
+                                        <br><br>
+                                        Core Page Name  :
+                                                      <?= $datagroup->permission_code ?> 
+                                        <br><br>
+                                           Group Rule
+                                        <select type="text" name=id value=>
+                                        <?php
+                                        foreach($coreid as $data){ 
+                                          ?>
+                                        <option value="<?= $data->name_of_group ?>">
+                                            <?= $data->name_of_group ?>
+                                        </option>
+                                        <?php
+                                         }
+                                         ?>
+                                        </select>
+                                        
+                                            
+                              </div>
+                                
+                                
+                   <?php }
+                   ?>
+            </table>  

@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/user-man-accept-icon.png" class="imgstyle"><font style="color:green;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
-                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/user-man-delete-icon.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?><a></div>
+                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/user-man-delete-icon.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?></a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -96,7 +96,7 @@
                                                                 <form id="theForm" name="theForm" method="post" action="">
                                                                     <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/><?= $t->_("late_reason"); ?>
                                                                     <div id="xtraInfo" style="display:none;">
-                                                                        <textarea class="textarea" id="note" placeholder="Write your reason here" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                                        <textarea class="textarea" id="note" placeholder="Write your reason here" maxlength="60" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                                     </div>
                                                                 </form>
 

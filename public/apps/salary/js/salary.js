@@ -38,11 +38,11 @@ var Salary = {
                 data += '<tr><td></td><td>Decut Name </td><td colspan="4" style="font-size:12px;">';
                 for(var j in result.dedution){
                 var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
-               //alert(result.dedution[0]["no_of_children"]);
-              // alert(result.dedution['no_of_children']);
+               if(Salary.Check('children',result.permit_dedution)!='checked'){
+                   result.no_of_children='No';
+               };
                 data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> ';
                  if(j==1){
-                    data+='<input type="text" name="no_of_children" value='+ result['no_of_children'] +' style="width:10%;margin-bottom:-1px">';
                 }
                 data+=result.dedution[j]["deduce_name"]+'<br>'
               }
@@ -445,22 +445,21 @@ $(document).ready(function () {
     
 //isplay popup to calculate monthly salary
     $("#displaypopup").click(function(){
-		Salary.calSalary();
+        Salary.calSalary();
                
 	});
     $('#cal_salary').click(function () {
         Salary.search();
     });
     $('.tags').click(function () {
-       // alert("aaa");
         Salary.autolist();
     });
     $("#search_salary").mouseenter(function(){
        var name = document.getElementById('namelist').value;
-      // alert(name);
 		Salary.getmemid(name);      
 	});
 });
 
 
 
+                    data+='<input type="text" name="no_of_children" value='+result.no_of_children+' style="width:13%;margin-bottom:-1px">';
