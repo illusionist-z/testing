@@ -19,7 +19,7 @@ function tz_list() {
 
         <section class="content-header">
           <h1>
-            <b>Profile</b>
+            <b><?= $t->_("pf"); ?></b>
           </h1>
           
         </section>
@@ -30,22 +30,17 @@ function tz_list() {
          <div class="row">
 	 <div class="col-md-12"><!--start add user form--->
 	<div id="form_div">
-	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff"><b>Add User Form</b></font></div>
+	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff"><b><?= $t->_("title"); ?></b></font></div>
             <?php
 	foreach ($userdetail  as $result) {
   ?>
         <form action="changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-        <div ><b>Change Profile Picture</b>
+        <div ><b><?= $t->_("change_pp"); ?></b>
              <?php
                       if($result['member_profile']==null){
                         $img = "profile.png";}
                    else{
                            $img=$result['member_profile'];
-                            if(file_exists('./uploads/'.$img)){                                                            
-                                     $img=$img;                                                            
-                            }else{  
-                                     $img = "profile1.jpg";                                                                 
-                            }
                          }
                ?>                                                 
               <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
@@ -60,7 +55,7 @@ function tz_list() {
             </tr>
 	<tr>
             
-            <td ><b>User Name </b></td>
+            <td ><b><?= $t->_("uname"); ?></b></td>
            
 		<td>
 		<input style="margin-top: 10px;" type="text" class="username" id="username" name="member[username]" value="<?php echo  $result['member_login_name'];?>" disabled style="width:350px;">
@@ -68,35 +63,35 @@ function tz_list() {
         </tr>
         <tr>
 		
-		<td><b>Password </b></td>
-                <td><input style="margin-top: 10px;" type="password" id="password" name="member[password]" value="<?php echo  $result['member_password'];?>" disabled style="width:350px;"></td>
+		<td><b><?= $t->_("pw"); ?> </b></td>
+                <td><input style="margin-top: 10px;" type="password" id="password" name="member[password]" value="password" disabled style="width:350px;"></td>
 	</tr>
 	<tr>
-		<td><b>Department </b></td>
+		<td><b><?= $t->_("dept"); ?> </b></td>
 		<td><input style="margin-top: 10px;" type="text" name="member[dept]" id="dept" value="<?php echo  $result['member_dept_name'];?>" disabled style="width:350px;"></td>
         </tr>
         <tr>
           
-		<td><b>Position	</b></td>
+		<td><b><?= $t->_("pst"); ?>	</b></td>
 		<td><input style="margin-top: 10px;" type="text" name="member[position]" id="position" value="<?php echo  $result['position'];?>" disabled style="width:350px;"></td>
 	</tr>
 	<tr>
-		<td><b>Email </b></td>
+		<td><b><?= $t->_("email"); ?> </b></td>
 		<td><input style="margin-top: 10px;" type="email" name="member[email]" id="email" value="<?php echo  $result['member_mail'];?>" disabled style="width:350px;">
                </td>
 	</tr>
         <tr>
-		<td><b>Phone no</b></td>
+		<td><b><?= $t->_("phno"); ?></b></td>
 		<td><input style="margin-top: 10px;" type="text" id="phno" name= "member[phno]" value="<?php echo  $result['member_mobile_tel'];?>" disabled style="width:350px;"></td>
 	</tr>
        
 	<tr>
-		<td><b>Address </b></td>
+		<td><b><?= $t->_("add"); ?> </b></td>
 		<td colspan="4"><textarea style="width:350px;" rows="5" id="add" name="member[add]" cols="50" readonly><?php echo  $result['member_address'];?></textarea ></td>
 	</tr><?php }
         ?>
         <tr>
-            <td><b>Time Zone </b> </td>
+            <td><b><?= $t->_("tz"); ?> </b> </td>
             <td><select style= "width:350px;  margin-top: 9px; margin-bottom: 9px;" name="timezone" id="timezone" disabled>
             <option value="0">Please, select timezone</option>
             <?php foreach(tz_list() as $t) { ?>

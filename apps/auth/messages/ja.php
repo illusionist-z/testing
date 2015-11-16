@@ -8,8 +8,6 @@
 
 //app/messages/es.php
 $messages = array(
-    "LABEL_LOGIN"      => "ログイン名",
-    "LABEL_PASSWORD"     => "パスワード",
-    "hi-name" => "Hello %name%",
-    "song"    => "This song is %song%"
+   
+    "logout"  =>"ログアウトしました"
 );

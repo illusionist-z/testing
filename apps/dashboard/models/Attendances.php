@@ -92,6 +92,7 @@ class Attendances extends Model {
 
     /**
      * @author david
+     * @version Saw Zin Min Tun
      * @return array {leave name}
      * @return array {no leave name}
      */

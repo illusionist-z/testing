@@ -25,9 +25,20 @@
                                 <h3 link="#Group">Group Rule Setting </h3>
                                 
                                 <br>
-                                <input type="button" name="AddGroupName" value="Add Group Name"> 
+                                 <a href="#" onclick="addGroup.apply(this); return false;" class="btn" type="black" id=""> <input type="button" name="AddGroupName" value="Add Group Name">  </a>   
+                                
+                                 
+                                 
+                                  <div id="addGroup" title="Add Group Rule" style="display: none;">
+                                        <form method="POST" action="AddGroupRule">
+                                                  Group Name      :<input type="text" name="name_of_group" value="" >
+                                        </form>
+                                        </div>            
+                                 
                                 <br>
-                                 <table class="listtbladmin listtbl">
+                
+                                
+                <table class="listtbladmin listtbl">
                     
                         <thead>
                          <br>
@@ -49,15 +60,15 @@
                                         <td><?= $data->group_id ?></td>
                                         <td><?= $data->name_of_group ?></td>
                                         <td>                                                    
-                                                    <a href="#" onclick="showDialog.apply(this); return false;" class="btn" type="black" id="<?= $data->group_id ?>"> Edit </a>                                                    
+                                                    <a href="#" onclick="showDialog.apply(this); return false;" class="btn" type="black" id="<?= $data->group_id ?>"> Edit </a>                                                                                                           
                                         </td> 
                                 </tr>                                                                                                   
                                         <div id="open<?= $data->group_id ?>" title="Change Group Rule" style="display: none;">
-                                            <form method="POST" action="GroupRuleSetting">
+                                        <form method="POST" action="GroupRuleSetting">
                                                 <input type="hidden" name="group_id" value="<?= $data->group_id ?>" >
                                                 Group ID   :<input type="text" value="<?= $data->group_id ?>" disabled>
-                                                Group Name      :<input type="text" name="name_of_group" value="<?= $data->name_of_group ?>" style="text-transform:uppercase;">
-                                            </form>
+                                                Group Name      :<input type="text" name="name_of_group" value="<?= $data->name_of_group ?>">
+                                        </form>
                                         </div>                                                                                                
                                
                         <?php 
@@ -67,140 +78,11 @@
                                 
             </table>    
                                 
-                                 <br>
-                                <h3>Page Rule Setting </h3>
-                                
-                                <br>
-                                <input type="button" name="AddPageName" value="Add Page Name"> 
-                                <br>
-                                
-                <table class="listtbladmin listtbl">
-                    
-                        <thead>
-                         <br>
-                                <tr>
-                                <th width="100">Group ID</th>
-                                <th width="">Core Page Name</th>
-                                 <th width="">Group Rule</th>
-                                <th width="">Action</th>
-                                 </tr>
-                        </thead>
-            
-                   <?php 
-                   foreach($core as $datagroup){ ?>
-                                <tr>
-                                        <td><?= $datagroup->permission_group_id ?></td>
-                                        <td><?= $datagroup->permission_code ?></td>
-                                        <td><?= $datagroup->permission_group_code ?></td>
-                                        <td>  
-         <a href="#" onclick="showDialogname.apply(this); return false;" class="btn" type="black" id="<?= $datagroup->permission_code ?>"> Edit </a>
-                                        </td> 
-                                         
-                                </tr>
-                                
-                                <div id="opent<?= $datagroup->permission_code ?>" title="Change Page Rule" style="display: none;">
-                                        Group ID    :
-                                        
-                                        <select type="text" name=id value=>
-                                        <?php
-                                        foreach($coreid as $data){ 
-                                          ?>
-                                        <option value="<?= $data->group_id ?>">
-                                            <?= $data->group_id ?>
-                                        </option>
-                                        <?php
-                                         }
-                                         ?>
-                                        </select>
-                                        <br><br>
-                                        Core Page Name  :
-                                                      <?= $datagroup->permission_code ?> 
-                                        <br><br>
-                                           Group Rule
-                                        <select type="text" name=id value=>
-                                        <?php
-                                        foreach($coreid as $data){ 
-                                          ?>
-                                        <option value="<?= $data->name_of_group ?>">
-                                            <?= $data->name_of_group ?>
-                                        </option>
-                                        <?php
-                                         }
-                                         ?>
-                                        </select>
-                                        
-                                            
-                              </div>
-                                
-                                
-                   <?php }
-                   ?>
-            </table>  
-                                
-                                
-                                <br>
-                                <h3>Change User Rule  </h3>
-                                
-                                <br>
-                             
-                                
-                                  <table class="listtbladmin listtbl">
-                        
-                        <thead>
-                        <br>
-                                <tr>
-                                <th width="100">Group ID</th>
-                                <th width="">User Name</th>
-                                <th width="">Action</th>
-                                 
-                                </tr>
-                        </thead>
-            
-                   <?php 
-                   foreach($coreuser as $datauser){ ?>
-                                <tr>
-                                        <td><?= $datauser->user_rule ?></td>
-                                        <td><?= $datauser->member_login_name ?></td>
-                                        
-                                        <td>
-        
-         <a href="#" onclick="showDialoguser.apply(this); return false;" class="btn" type="black" id="<?= $datauser->user_rule ?>"> Edit </a>                                    
-                                        </td> 
-                                         
-                                </tr>
-                                
-                                <div id="openu<?= $datauser->user_rule ?>" title="Change User Rule" style="display: none;">
-                                         <br> 
-                                         Group ID    :
-                                           <?= $datauser->user_rule ?> 
-                                         
-                                        <br><br>
-                                        User Name  :
-                                                      <?= $datauser->member_login_name ?> 
-                                        <br><br>
-                                           Group Rule
-                                           <select type="text" name='id' value='' id="changeuser">
-                                        <?php
-                                        foreach($coreid as $data){ 
-                                          ?>
-                                        <option value="<?= $data->group_id ?>">
-                                            <?= $data->name_of_group ?>
-                                        </option>
-                                        <?php
-                                         }
-                                         ?>
-                                        </select>
-                                        
-                                            
-                              </div>
-                                
-                                
-                                
-                                
-                                
-                   <?php }
-                   ?>
-            </table>  
+                     <?php
+                     
+             require_once 'page.phtml';
+                     require_once 'user.phtml';
+                     ?>
                         
                                         </div>
                                         <!-- /.content-wrapper-content -->

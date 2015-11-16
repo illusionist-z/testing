@@ -10,13 +10,13 @@ var Export = {
                 , colDelim = '","'
                 , rowDelim = '"\n"';
         // Grab text from table into CSV formatted string
-        var csv = '\uFEFF'+'"';
+        var csv ='"';
         csv += formatRows(headers.map(grabRow));
         csv += rowDelim;
         csv += formatRows($rows.map(grabRow)) + '"';
         // Data URI
-        var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
-        //var csvData = 'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv);
+        //var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+        var csvData = 'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv);
         $(this).attr({
             'download': filename,
             'href': csvData

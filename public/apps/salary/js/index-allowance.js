@@ -120,6 +120,50 @@ var Allowance = {
     
 };
 $(document).ready(function () {
+         $.ajax({
+            
+           url:"gettranslate",
+           type: "GET",
+           success:function(res){
+               var result = $.parseJSON(res);
+               var allowance_name=result['allowance_name'];
+               var allowance_amount=result['amount'];
+               var enter_allname=result['enter_allname'];
+               var enter_allamount=result['enter_allamount'];
+               var counter = 2;
+        var counter1=2;
+        $("#addButton").click(function () {
+
+            if (counter > 10) {
+                alert("Only 10 textboxes allow");
+                return false;
+            }
+           
+            var newTextBoxDiv = $(document.createElement('div'))
+                    .attr("id", 'TextBoxDiv' + counter);
+
+            newTextBoxDiv.after().html('' + allowance_name+' '+counter + ' :  ' +
+                    ' <input style="margin-top:10px;" type="text" name="textbox' + counter +
+                    '" id="textbox' + counter + '" value="" placeholder="'+enter_allname+'"> ' + allowance_amount+' '+counter + ' : ' +
+                    ' <input style="margin-top:10px;" type="text" name="txt' + counter +
+                    '" id="txt' + counter + '" value=""  placeholder="'+enter_allamount+'">');
+
+            newTextBoxDiv.appendTo("#TextBoxesGroup");
+            counter++;
+        });
+
+        $("#removeButton").click(function () {
+            if (counter == 2) {
+                alert("No more textbox to remove");
+                return false;
+            }
+            counter--;
+            $("#TextBoxDiv" + counter).remove();
+
+        });
+           }
+        });
+    
     $(".allpopup").click(function () {
        var id = $(this).attr('id');
        Allowance.Edit(id);
