@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 9;            
+        pager.perpage =3;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -18,7 +18,7 @@ var Salary = {
            url:"editsalary?id="+d,
            type: "GET",
           success:function(res){
-              //alert(res);
+              
                var result = $.parseJSON(res);
               // alert(result.no_of_children);
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
@@ -43,6 +43,7 @@ var Salary = {
                };
                 data +=' <input type="checkbox" name="check_list[]" value="'+result.dedution[j]["deduce_id"]+'" '+(duct!=='undefined'?duct:"") +'> ';
                  if(j==1){
+                    data+='<input type="text" name="no_of_children" value='+result.no_of_children+' style="width:13%;margin-bottom:-1px">';
                 }
                 data+=result.dedution[j]["deduce_name"]+'<br>'
               }
@@ -55,7 +56,7 @@ var Salary = {
                 data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
                 }
                 //data +='<input type="hidden" value= " '+result.data[0]['salary_start_date']+ ' " name="work_sdate" id="work_sdate"></td></tr>';
-                  data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text"  name="work_sdate" id="work_sdate" value='+result.data[0]['salary_start_date']+ ' ></td></tr>';
+                  data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value="" name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
              
                 data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
@@ -117,14 +118,12 @@ var Salary = {
         $('#edit_delete').click(function () {
             Salary.Delete($ovl);
         });
-        
         $('#edit_close').click(function () {
             $ovl.dialog("close");
         });
     },
     BtnEdit : function(val){
         var form=$('#edit_salary');
-      //  alert(form);
         $.ajax({
             type: 'POST',
             data: form.serialize(),
@@ -132,7 +131,6 @@ var Salary = {
             url : "btnedit",
             success:function(d){
                 //if true success funcion then reload page
-                //alert(d);
                 if(true === d.valid)                      
                 {
                     val.dialog("close");
@@ -193,7 +191,7 @@ var Salary = {
                 }
             }
            
-        }).parent('.ui-dialog').css('zIndex',9999);
+        });
          $del.html("<p>Are u sure to delete?</p>");
         $del.dialog("open");  
     },
@@ -331,30 +329,11 @@ var Salary = {
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
-    var namelist=document.getElementById('namelist').value;
-    var department=document.getElementById('department').value;
-    var position=document.getElementById('position').value;
-    var salary_rate=document.getElementById('salary_rate').value;
-    
-   // alert(salary_rate);
-   if(namelist=="" && department=="" && position=="" && salary_rate==""){
-             $('tbody').empty();
-            $('#sal_check').hide(); //check box don't show when No data to display
-             var output = "<tr>"
-                            + "<td colspan='13'><center>No data to display</center></td>"
-                            + "</tr>"
-                    $("tbody").append(output);
-                    //Attendance.init();
-        }
-    else{
-       // alert(namelist);
-                //window.location.href = baseUri + 'salary/search?'+$form;
-    
+    //window.location.href = baseUri + 'salary/search?'+$form;
     $.ajax({
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-            //alert(d);
              var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
             $('tfoot').empty();
@@ -362,7 +341,7 @@ var Salary = {
             for (var i in json_obj)
             {   
                 var aa = parseInt(json_obj[i].total);
-                totalsal += aa ;
+                totalsal =totalsal + aa ;
                 var formatter = new Intl.NumberFormat(); //Create our number formatter.
                  
                     var output = "<tr>"
@@ -409,7 +388,7 @@ var Salary = {
             window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
             }
             else{
-            alert("Please check aleast one!");
+            alert("please check aleast one!");
             location.reload();
             }
          //window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
@@ -421,8 +400,6 @@ var Salary = {
         }
         
         });
-    }
-    
          
         },
         SaveSalary : function (){
@@ -462,4 +439,3 @@ $(document).ready(function () {
 
 
 
-                    data+='<input type="text" name="no_of_children" value='+result.no_of_children+' style="width:13%;margin-bottom:-1px">';
