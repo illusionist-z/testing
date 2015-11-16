@@ -120,11 +120,11 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 if ($rows['allowance_amount'] === "") {
                     $rows['allowance_amount'] = "0";
                 }
-                $sql = "INSERT INTO salary_detail (id,member_id,allowance_amount,absent_dedution,"
-                       . "income_tax,pay_date,created_dt,basic_salary_annual,total_annual_income,basic_examption) "
-                        . "VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['allowance_amount'] . "','" 
+                $sql = "INSERT INTO salary_detail (id,member_id,basic_salary,allowance_amount,absent_dedution,"
+                       . "income_tax,pay_date,created_dt,basic_salary_annual,total_annual_income,basic_examption,travel_fee,overtime,creator_id) "
+            . "VALUES(uuid(),'" . $rows['member_id'] . "','".$rows['basic_salary']."','" . $rows['allowance_amount'] . "','" 
                         . $rows['absent_dedution'] . "','" . $rows['income_tax'] . "','".$rows['pay_date']."',NOW(),'"
-                        .$rows['basic_salary_annual']."','".$rows['total_annual_income']."','".$rows['basic_examption']."')";
+                        .$rows['basic_salary_annual']."','".$rows['total_annual_income']."','".$rows['basic_examption']."','".$rows['travel_fee']."','".$rows['overtime']."','".$rows['creator_id']."')";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
                 $result = $this->db->query($sql);

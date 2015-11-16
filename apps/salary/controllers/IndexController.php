@@ -460,7 +460,11 @@ class IndexController extends ControllerBase {
         $Deduction->add_deduction($data);
         $this->view->disable();
     }
-
+    
+    /**
+     * show deduction related with salary calculation
+     * @author Su Zin Kyaw
+     */
     public function show_add_dectAction() {
         $t = $this->_getTranslation();
         $data[1]['deduce_frm'] = $t->_("deduce_frm");
@@ -484,10 +488,13 @@ class IndexController extends ControllerBase {
         $Deduction->delete_deduction($deduce_id);
         $this->view->disable();
     }
-
     
+    /**
+     * Print salary action
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function printsalaryAction() {
-         $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/salary/js/print.js');
         $month=$this->request->get('month');
         $year=$this->request->get('year');
         $member_id=$this->request->get('chk_val');
@@ -507,7 +514,10 @@ class IndexController extends ControllerBase {
         $this->view->getsalarydetails = $getsalarydetail;
     }
     
-    
+    /**
+     * Show salary detail
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia> 
+     */
     public function salarydetailAction() {
         $this->assets->addJs('apps/salary/js/index_salarydetail.js');
         $month=$this->request->get('month');
@@ -529,14 +539,20 @@ class IndexController extends ControllerBase {
         $this->view->year = $year;
         $this->view->month = $month;
     }
-    
+    /**
+     * Save resign date 
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function addresigndateAction(){
         $Salarydetail = new SalaryDetail();
         $data['member_id'] = $this->request->getPost('member_id');
         $data['resign_date'] = $this->request->getPost('resign_date');
         $Salarydetail->addresign($data);
     }
-    
+    /**
+     * Delete salary detail
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function delete_salaryAction() {
         $member_id = $this->request->getPost('id');
         $SalaryMaster=new SalaryMaster();

@@ -93,7 +93,7 @@ class SalaryMaster extends Model {
      * calculate basic salary for the whole year
      * @param type $param
      */
-    public function calculate_tax_salary($param,$salary_start_date) {
+    public function calculate_tax_salary($param,$salary_start_date,$creator_id) {
 
         try {
             //echo $salary_start_date;exit;
@@ -102,10 +102,11 @@ class SalaryMaster extends Model {
             $deduce_amount = array();
             $now = new \DateTime('now');
             $budget_startmonth ='04';
-            $budget_startyear =$now->format('Y').'-04';
+            $budget_startyear =$now->format('Y').'-04-01';
             $budget_endmonth = '03';
-            $endyear = $now->format('Y') . '-03';
+            $endyear = $now->format('Y') . '-03-31';
             $budget_endyear = date("Y-m", strtotime("+1 year", strtotime($endyear)));
+            $budget_endyear_one = date("Y-m-d", strtotime("+1 year", strtotime($endyear)));
             $allowance="";
             $final_result="";
             $up_date="";
@@ -114,145 +115,73 @@ class SalaryMaster extends Model {
             foreach ($param as $value) {
                 //get the salary start date to calculate salary
                 $start_date = explode("-", $value['comp_start_date']);
-                $comp_start_date=$start_date[0].'-'.$start_date[1];
-                $comp_start_month = $start_date[1];
+                $salary_starting_date=$start_date[0].'-'.$start_date[1];
+                $salary_starting_month = $start_date[1];
                 //$w_startdt=  $this->getWorkingStartdt($value['member_id']);
                 
                 //get the working start date from core_member table
                 $working_start_date = explode("-", $salary_start_date);
                 $w_start_dt=$working_start_date[0].'-'.$working_start_date[1];
-               
-                if($comp_start_date!==$w_start_dt)
-                {
-                   
+                
                     $comp_start_date=$w_start_dt;
                     $start_date = explode("-", $comp_start_date);
-                    $comp_start_date=$start_date[0].'-'.$start_date[1];
-                    
-                }
+                    $salary_starting_date=$start_date[0].'-'.$start_date[1];
+                    $salary_starting_month=$start_date[1];
+                    //calculate date difference between starting date and budget end year
+                    $date_diff=$this->date_difference($salary_starting_date, $budget_endyear);
+                    $basic_salary_annual=$value['basic_salary']*$date_diff;
+                   
+                    $date_to_calculate=$date_diff;
                 
-                echo "STARTING date ".$comp_start_date.'<br>';
-                //Get the basic salary from salary master
-                $SM = $this->getLatestsalary($value['member_id']);
+               
+               if(03==$working_start_date[1] || 03==$salary_starting_month)
+               {
+                   //calculate date difference between starting date and budget end year
+                    $date_diff=1;
+                    $basic_salary_annual=$value['basic_salary']*$date_diff;
+                    $date_to_calculate=$date_diff;
+                    $this->change_status($member_id);
+               }
+                echo $value['basic_salary'].'<br>';
+                echo "salary starting date ".$budget_endyear.'<br>';
                 //Get the basic salary which the latest pay in salary 
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
-                        $value['member_id'], $budget_startyear, $budget_endyear);
-                $latest_payday='0';
-                //if data is exist in salary detail
-                if(!empty($SD)){
-                //echo "STARTING date ".$comp_start_date.'<br>';
-                $payday=  explode("-", $SD['pay_date']);
-                $latest_payday=$payday[1];
-                echo 'RRRR'.$comp_start_date;
-//                $update=  explode(" ", $SM['salary_start_date']);
-//                $dt=  explode("-", $update[0]);
-//                $up_date=$dt[0].'-'.$dt[1];
+                        $value['member_id'], $budget_startyear, $budget_endyear_one);
+                //Get the basic salary from salary master
+                $SM = $this->getLatestsalary($value['member_id']);
                 
-                $date_diff=$this->date_difference($comp_start_date, $budget_endyear);
-                
-                $new_salary=$SM['basic_salary']*$date_diff;
-                
-                //Get the old basic salary
-                $countsalarydetail = $this->getCountSalarydetail(
-                                $budget_startyear, $budget_endyear, $value['member_id']);
-                        $old_payamount = $countsalarydetail['pay_amount'];
-                $date_diff=$date_diff+$countsalarydetail['COUNT']; 
-                $salary=$new_salary+$old_payamount;
-                echo 'RRRR'.$salary;
+                if(!empty($SD))
+                {
+                    $basic_salary_annual=$basic_salary_annual+$SD['total_basic_salary'];
+                    $old_allowance=$SD['total_all_amount'];
+                    $date_to_calculate=$date_diff+$SD['count_pay'];
+                    echo "basic salary in salary detail ".$basic_salary_annual;
                 }
                 
+                $Allowanceresult = $this->getAllowances($value['member_id'],$basic_salary_annual,$date_diff,$old_allowance,$SM['status']);
+                $basic_salary_allowance_annual=$Allowanceresult['basic_salary_annual'];
+                
+                //calculating of overtime 
+                $overtime=$this->calculate_overtime($value['member_id'],$salary_starting_date);
+                $overtime_fees=$overtime['overtime_rate'];
+                $basic_salary_allowance_annual=$basic_salary_allowance_annual+$overtime_fees;
                 //check the user who is absent.
                 $absent=  $this->checkAbsent($value['member_id']);
                 //Get the data of leave setting
                 $leavesetting=  $this->getleavesetting();
                 //calculate absent deduce
-                $countabsent=$this->CalculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $SM['basic_salary']);
+                $countabsent=$this->CalculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $value['basic_salary']);
                 $absent_dedution=$countabsent;
-                
-                //check salary detail is over one year or not
-                $chkStatus=$this->chkStatus($value['member_id'],$value['status'], $comp_start_month, 
-                $budget_startmonth,$countabsent,$latest_payday, $budget_startyear, $comp_start_date,
-                $budget_endyear, $SD, $SM['basic_salary'], $SD['basic_salary'],$budget_endmonth);
-                //print_r($chkStatus);
-                
-                if(isset($chkStatus['date_diff']))
-                {
-               
-                $date_diff=$chkStatus['date_diff'];
-                $salary=$chkStatus['salary'];
-                 echo "mmmmmmmmmmmmmm".$date_diff;
-                }
-                
-                //Get the total allowance amount
-                $Allowanceresult = $this->getAllowances($value['member_id']);
-                $allowance=$Allowanceresult['total_allowance_amount'];
-                //Check total allowance is or not
-                $chkallowance=$this->CalculateAllowance($Allowanceresult['total_allowance_amount'],$date_diff);
-               
-                echo "basic salary".$SM['basic_salary'].'<br>'.$date_diff.'<br>';
-                
-                //Get data of salary detail by member id
-                $checkmember = $this->checkmember_id($value['member_id']);
-                $chkSalary=$this->chkSalarybyMember_id($checkmember,$SM['basic_salary'],$SD['basic_salary'],
-                $value['status'],$comp_start_date,$budget_endyear,$value['member_id'],$budget_startyear,$countabsent,
-                $SD['allowance_amount'],$chkallowance);
-                //print_r($chkSalary);
-                if($chkSalary['date_diff']!="")
-                {
-                
-                $date_diff=$chkSalary['date_diff'];
-                $salary=$chkSalary['salary'];
-                }
-                echo "Date ".$salary .'//';
-                if ($SM['basic_salary'] === $SD['basic_salary']
-                    && $SD['allowance_amount']==$chkallowance && $value['status']==0)
-                  {
-                   
-                   $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
-                   
-                   $final_result[] = array('basic_salary' => $value['basic_salary'],
-                                    'income_tax' => $check_salary_detail['income_tax'],
-                                    'total_annual_income' => $check_salary_detail['total_annual_income'],
-                                    'basic_salary_annual' => $check_salary_detail['basic_salary_annual'],
-                                    'basic_examption' => $check_salary_detail['basic_examption'],
-                                    'member_id' => $check_salary_detail['member_id'], 
-                                    'allowance_amount' => $check_salary_detail['allowance_amount'], 
-                                    'absent_dedution'=>$absent_dedution,
-                                    'pay_date'=>$salary_start_date);
-                  }  
-                else if ($SM['basic_salary'] === $SD['basic_salary'] 
-                    && $SD['allowance_amount']==$chkallowance && $value['status']==1 && $latest_payday!='03')
-                {
-                    
-                    $check_salary_detail = $this->getsalarydetail_check($value['member_id']);
-                    //print_r($check_salary_detail);
-                    $final_result[] = array('basic_salary' => $value['basic_salary'],
-                        'income_tax' => $check_salary_detail['income_tax'],
-                        'total_annual_income' => $check_salary_detail['total_annual_income'],
-                        'basic_salary_annual' => $check_salary_detail['basic_salary_annual'],
-                        'basic_examption' => $check_salary_detail['basic_examption'],
-                        'member_id' => $check_salary_detail['member_id'], 
-                        'allowance_amount' => $check_salary_detail['allowance_amount'], 
-                        'absent_dedution'=>$absent_dedution,
-                        'pay_date'=>$salary_start_date);
-                } 
-                
-                else {
-                    echo "//".$salary.'????';
-                    //Insert new allowance to add to basic salary
-                    $getsalary=$this->Addallowance($Allowanceresult,$salary,$SD['allowance_amount'],$date_diff,
-                    $allowance,$up_date, $budget_endyear,$budget_startyear,$SM['basic_salary'],$value['member_id']);
-                    $salary=$getsalary;
-                    
-                    //get 20% for the whole year
-                    $basic_deduction = $salary * (20 / 100);
-                    echo "SALARY ".$salary;
+                $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
+                    echo "SALARY ".$basic_salary_allowance_annual;
                     
                     //calculate ssc pay amount to deduce
                     if ($value['basic_salary'] > 300000) {
-                        $emp_ssc = (300000 * $date_diff) * (2 / 100);
+                        
+                        $emp_ssc = (300000 * $date_to_calculate) * (2 / 100);
                     } else {
-                        $emp_ssc = ($value['basic_salary'] * $date_diff) * (2 / 100);
+                        
+                        $emp_ssc = ($value['basic_salary'] * $date_to_calculate) * (2 / 100);
                     }
 
                     $deduce_amount = $this->getreduce($value['member_id']);
@@ -262,25 +191,26 @@ class SalaryMaster extends Model {
                     echo "Total deduction is ".$total_deduce;
                     
                     //taxable income (total_basic-total deduce)
-                    $income_tax = $salary - $total_deduce;
+                    $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
                     echo "The Income tax  is " . $income_tax . '<br>';
-
-                    $taxs = $this->deducerate($income_tax, $date_diff);
+                    $taxs = $this->deducerate($income_tax, $date_to_calculate);
 //                    print_r($taxs);
                     $final_result[] = array('basic_salary' => $value['basic_salary'],
                         'income_tax' => $taxs['tax_result'],
                         'total_annual_income' => $taxs['total_tax_annual'],
-                        'basic_salary_annual' => $salary,
+                        'travel_fee' => $value['travel_fee'],
+                        'overtime' => $overtime_fees,
+                        'basic_salary_annual' => $basic_salary_annual,
                         'basic_examption' => $basic_deduction,
                         'member_id' => $value['member_id'], 
-                        'allowance_amount' => $allowance, 
+                        'allowance_amount' => $Allowanceresult['allowance'], 
                         'absent_dedution'=>$absent_dedution,
+                        'creator_id'=>$creator_id,
                         'pay_date'=>$salary_start_date);
-                }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -288,134 +218,7 @@ class SalaryMaster extends Model {
         return $final_result;
     }
 
-//    public function getWorkingStartdt($member_id) {
-//        try {
-//            $sql = "select * from core_member where member_id='" . $member_id . "' and deleted_flag=0";
-//            //echo $sql;exit;
-//            $result = $this->db->query($sql);
-//            $row = $result->fetcharray();
-//        } catch (Exception $e) {
-//            echo $e;
-//        }
-//        return $row;
-//    }
-    public function Addallowance($Allowanceresult,$salary,$detailallowance,$date_diff,$allowance,
-            $up_date, $budget_endyear,$budget_startyear,$salarymaster,$member_id) {
-        //Insert new allowance to add to basic salary
-                
-                if (!empty($Allowanceresult)) {
-                    if(empty($detailallowance) && isset($Allowanceresult['total_allowance_amount'])){
-                    $allowance=$Allowanceresult['total_allowance_amount']*$date_diff;
-                    $salary+=$allowance;
-                    echo "ALLOWANCE".$salary.'??';
-                    }
-                    else if($detailallowance!=$allowance)
-                    {
-                    $date_diff = $this->date_difference($up_date, $budget_endyear);
-                        $newsalary_rate = $salarymaster * $date_diff;
-                        
-                        $countsalarydetail = $this->getCountSalarydetail(
-                                $budget_startyear, $budget_endyear, $member_id);
-                        $old_payamount = $countsalarydetail['pay_amount'];
-                        $date_diff+=$countsalarydetail['COUNT'];
-                        $salaryone = $newsalary_rate + $old_payamount;
-                        $salary=$allowance*$date_diff+$salaryone;
-                        //echo $old_payamount.'///';
 
-                   
-                    }
-                    else {
-                        
-                        $salary=$allowance*$date_diff+$salary;
-                        echo $salary."Eain";
-                    }
-                }
-                return $salary;
-    }
-    /**
-     * Check salary by memberid
-     * @param type $checkmember
-     * @param type $salarymaster
-     * @param type $salarydetail
-     * @param type $status
-     * @param type $up_date
-     * @param type $budget_endyear
-     * @param type $member_id
-     * @param type $budget_startyear
-     * @param type $absent_deduce
-     * @param type $allowance_amount
-     * @param type $allowance
-     * @return type
-     */
-    public function chkSalarybyMember_id($checkmember,$salarymaster,$salarydetail,
-            $status,$up_date,$budget_endyear,$member_id,$budget_startyear,$absent_deduce,$allowance_amount,$allowance) 
-    {
-    echo "money.....".$up_date;
-    //Check the wherether  the member is got salary or new member
-    
-    if (!empty($checkmember)) {
-    //echo 'The member_id is in salary detail';
-    if ($salarymaster != $salarydetail && $status==0) {
-                        
-    //If salary is increased or changed
-    $date_diff = $this->date_difference($up_date, $budget_endyear);
-    $newsalary_rate = $salarymaster * $date_diff;
-    echo "New salary ".$newsalary_rate.'//';
-    //get the sum of old salary
-    $countsalarydetail = $this->getCountSalarydetail(
-    $budget_startyear, $budget_endyear, $member_id);
-    $old_payamount = $countsalarydetail['pay_amount'];
-    $date_diff+=$countsalarydetail['COUNT'];
-    $data['date_diff']=$date_diff;
-    //get the year to calculate salary
-    $data['salary'] = ($newsalary_rate + $old_payamount)-$absent_deduce;
-    echo "M ID ".$data['salary']."Not EQUAl".$date_diff."<br><br>";
-    }
-    //Check the salary is changed after 1 year
-    if ($salarymaster != $salarydetail && $status==1) {
-    $date_diff = $this->date_difference($up_date, $budget_endyear);
-    $newsalary_rate = $salarymaster * $date_diff;
-    //echo "DDD".$newsalary_rate."GGG";
-    $countsalarydetail = $this->getCountSalarydetail(
-    $budget_startyear, $budget_endyear, $member_id);
-    $old_payamount = $countsalarydetail['pay_amount'];
-    $date_diff+=$countsalarydetail['COUNT'];
-    $data['date_diff']=$date_diff;
-    $data['salary'] = ($newsalary_rate + $old_payamount)-$absent_deduce;
-    echo "FFFFvv".$budget_endyear;
-    }
-    if($budget_endyear==$up_date)
-        {
-        $date_diff=1;
-        $newsalary_rate = $salarymaster ;
-        $countsalarydetail = $this->getCountSalarydetail(
-        $budget_startyear, $budget_endyear, $member_id);
-        $old_payamount = $countsalarydetail['pay_amount'];
-        $date_diff+=$countsalarydetail['COUNT'];
-        $data['date_diff']=$date_diff;
-        $data['salary'] = ($newsalary_rate + $old_payamount)-$absent_deduce;
-        }
-   }
-   if(!empty($data)){
-   return $data;}
-    }
-
-    /**
-     * Calculate total allowance
-     * @param type $total_allowance_amount
-     * @return int
-     */
-    public function CalculateAllowance($total_allowance_amount,$date_diff) {
-        if(isset($total_allowance_amount))
-        {
-        $allowance=$total_allowance_amount*$date_diff;
-        }
-        else{
-        $allowance=0;
-        }
-        
-        return $allowance;
-    }
     /**
      * calculate the absent amount
      * @param type $countabsent
@@ -443,76 +246,7 @@ class SalaryMaster extends Model {
         }
         return $absent_deduce;
     }
-    /**
-     * Check status after one year service
-     * @param type $member_id
-     * @param type $status
-     * @param type $comp_start_month
-     * @param type $budget_startmonth
-     * @param type $absent_deduce
-     * @param type $latest_payday
-     * @param type $budget_startyear
-     * @param type $comp_start_date
-     * @param type $budget_endyear
-     * @param type $SD
-     * @param type $salarymaster
-     * @param type $salarydetail
-     * @param type $budget_endmonth
-     * @return type
-     */
-    public function chkStatus($member_id,$status,$comp_start_month,$budget_startmonth,$absent_deduce,$latest_payday,
-    $budget_startyear,$comp_start_date,$budget_endyear,$SD,$salarymaster,$salarydetail,$budget_endmonth) 
-    {
-    //befor one year service
-    if($status==0)
-    {
-    //if company starting date is equal to budget start date
-    if($comp_start_month==$budget_startmonth or $latest_payday==$budget_startmonth){
-    $data['date_diff']=12;
-    $data['salary']=($salarymaster*$data['date_diff'])-$absent_deduce;
-    //echo "new year ";
-    }
     
-    //if company start date is between budget start date and end date
-    if($comp_start_date>$budget_startyear && $comp_start_date<$budget_endyear  && empty($SD)){
-    
-    $data['date_diff']=$this->date_difference($comp_start_date,$budget_endyear);
-    $data['salary']=($salarymaster*$data['date_diff'])-$absent_deduce;
-    //echo "aaaaaaaa".$data['salary'].'<br>';
-    }
-    //if company start month is equal with budget end month
-    if($comp_start_month==$budget_endmonth && $salarydetail==""){
-    $data['salary']=$salarymaster-$absent_deduce;
-    //change the status to 1 because of over 1year
-    $this->change_status($member_id);
-    
-    }
-    //if company start month is lessthen and equal budget end month
-    if($comp_start_month<=$budget_endmonth)
-    {
-    $data['date_diff']=($budget_endmonth-$comp_start_month)+1;
-    //$data['date_diff']=$this->date_difference_new($comp_start_date,$budget_startyear);
-    $data['salary']=($salarymaster*$data['date_diff'])-$absent_deduce;
-    echo "HHhhhhhhhhh".$data['salary'];
-    }
-      
-    if($latest_payday=='03')
-        {
-    $this->change_status($member_id);
-    
-        }
-    }
-    //After company starting one year
-    if($status==1){
-    $data['date_diff']=12;
-    $data['salary']=($salarymaster*$data['date_diff'])-$absent_deduce;
-    
-    }
-    //print_r($data);
-    if(!empty($data)){
-    return $data;
-        }
-    }
     /**
      * get leave setting data
      */
@@ -670,7 +404,7 @@ class SalaryMaster extends Model {
      * @param type $member_id
      * @return type
      */
-    public function getAllowances($member_id) {
+    public function getAllowances($member_id,$basic_salary_annual,$date_diff,$old_allowance,$status) {
         try {
             
             $sql = "select *,SUM(allowance_amount) as total_allowance_amount from allowances where allowance_id in (
@@ -678,20 +412,31 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
-            //print_r($row);//exit;
+            if(isset($row['total_allowance_amount']))
+            {
+                $new_allowance=$row['total_allowance_amount']*$date_diff;
+                $total_allowance=$new_allowance+$old_allowance;
+               
+                
+                $basic_salary_annual=$basic_salary_annual+$total_allowance;
+                echo 'Basic salary annual with allowance '.$basic_salary_annual;
+            }
+            $data['basic_salary_annual']=$basic_salary_annual;
+            $data['allowance']=$row['total_allowance_amount'];
         } catch (Exception $e) {
             echo $e;
         }
-        return $row;
+        return $data;
     }
 
     //Check basic salary By member
     public function checkBasicsalaryBymember_id($tbl, $member_id, $budget_startyear, $budget_endyear) {
         try {
 
-            $sql = "select * from " . $tbl . " where member_id='" . $member_id . 
+            $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
+                    . ", COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
                     "' order by created_dt desc limit 1";
-           // echo $sql.'<br>';exit;
+           //echo $sql.'<br>';exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
            
@@ -701,43 +446,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
 
-    public function getCountSalarydetail($budget_startyear, $budget_endyear, $member_id) {
-        try {
-            if (date("Y-m-d") < $budget_startyear) {
-                $last_budget_startyear = date("Y-m-d", strtotime("-1 year", strtotime($budget_startyear)));
-                $sql = "select *,count(pay_date) as COUNT, SUM(basic_salary)as pay_amount from salary_detail where member_id='" . $member_id . "' and pay_date>='" . $last_budget_startyear . "' and pay_date<'" . $budget_startyear . "'";
-            } else {
-                $sql = "select *,count(pay_date) as COUNT, SUM(basic_salary)as pay_amount from salary_detail where member_id='" . $member_id . "' and pay_date>='" . $budget_startyear . "' and pay_date<='" . $budget_endyear . "'";
-                //echo $sql.'<br>';
-            }
-            $result = $this->db->query($sql);
-            $row = $result->fetcharray();
-//            print_r($row);
-//            exit;
-        } catch (Exception $e) {
-            echo $e;
-        }
-        return $row;
-    }
-
-    /**
-     * check memberid whether is in salary detail table
-     * @param type $member_id
-     * @return type
-     */
-    public function checkmember_id($member_id) {
-        try {
-
-            $sql = "select pay_date from salary_detail where member_id='" . $member_id . "'";
-            //echo $sql.'<br>';
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
-            //print_r($row);//exit;
-        } catch (Exception $e) {
-            echo $e;
-        }
-        return $row;
-    }
+   
 
     /**
      * calculate reduce rate
@@ -807,18 +516,18 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
                 if ($taxsrate_data[$i] == $latest_rateval) {
                     $first_result = ($income_tax - $latest_rateval) * ($taxs_rate[1] / 100);
-
+                    
                     if ($income_tax > 30000000) {
                         $first_result = ($income_tax - 30000000) * ($taxs_rate[1] / 100);
                     }
-                    //echo 'Final '.$first_result."<br>";
+                    
                 } else {
                     $second_result+=$taxs_rate[0] * ($taxs_rate[1] / 100);
                 }
                 //echo $second_result.'<br>';
             }
             $Result = $first_result + $second_result;
-           // echo "Final result ".$Result.'<br>';
+            //echo "Final result ".$Result.'<br>';
         } else {
 
             for ($i = 0; $i < count($taxsrate_data); $i++) {
@@ -842,11 +551,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * Calaculate for employee
      * @return type
      */
-    public function calculate_overtime() {
+    public function calculate_overtime($member_id,$salary_starting_date) {
         try {
-            $year=date("Y");
-            $month=date("m");
-            $sql = "select ATT .member_id,round(ATT.overtime*(SA.basic_salary*SA.over_time/100))as overtime_rate,
+            $dating=  explode('-', $salary_starting_date);
+            $year=$dating[0];
+            $month=$dating[1];
+            $sql = "select ATT .member_id,SUM((case when (ATT.overtime) then ATT.overtime*SA.over_time else 0 end)) as overtime_rate,
                 SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA 
                 on ATT.member_id=SA.member_id where ATT .member_id
 in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and "
@@ -854,8 +564,8 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);
-            $rows = $result->fetchall();
-            //print_r($rows);exit;
+            $rows = $result->fetcharray();
+            
         } catch (Exception $exc) {
             echo $exc;
         }
