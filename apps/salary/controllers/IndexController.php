@@ -325,6 +325,19 @@ class IndexController extends ControllerBase {
         echo json_encode($data);
     }
 
+      /**
+     * get translation for allowance text box
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
+    public function gettranslateAction(){
+        $t = $this->_getTranslation();
+         $data['allowance_name'] = $t->_("allowance_name");
+        $data['amount'] = $t->_("amount");
+        $data['enter_allname'] = $t->_("enter_allname");
+        $data['enter_allamount'] = $t->_("enter_allamount");
+       $this->view->disable();
+        echo json_encode($data);
+    }
     /**
      * edit allowance data
      * @author Su Zin Kyaw
