@@ -22,7 +22,12 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('apps/salary/css/salary.css');        
         $this->assets->addJs('common/js/paging.js');
+        //$this->assets->addJs('common/js/popup.js');    //popup message
+        //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
+        //$this->assets->addJs('apps/salary/js/index-allowance.js');
+        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
+
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         //$this->view->module_name =  $this->router->getModuleName();
@@ -45,6 +50,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
+        //var_dump($getsalarydetail);exit;
         if($this->permission==1){
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->salarydetail = $getsalarydetail;
@@ -128,7 +134,9 @@ class IndexController extends ControllerBase {
         //print_r($geteachmonthsalary);exit;
         if($this->permission==1){
         $this->view->module_name =  $this->router->getModuleName();
-        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);               
+        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
+        
+        
         }
         else {
         $this->response->redirect('core/index');
@@ -229,6 +237,7 @@ class IndexController extends ControllerBase {
      /**
      * 
      * get member_id salary Dialog Box
+     
      */
     public function getmemberidAction() {
        $data = $this->request->get('uname');
@@ -286,16 +295,19 @@ class IndexController extends ControllerBase {
         $all->addallowance($all_value, $all_name, $count);
         $this->response->redirect('salary/index/allowance');
         $this->flashSession->success("Allowances are added successfully!");
+        
+        
         }
         else{
         $this->response->redirect('salary/index/allowance');
         $this->flashSession->success("No data!Insert Data First");
+        
         }
     }
 
     /**
      * edit dialog box
-     * @author Su Zin Kyaw<gnext.suzin@gmail.com>
+     * @author Su Zin Kyaw
      * @update translate #jp
      */
     public function editallowanceAction() {
@@ -312,8 +324,8 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($data);
     }
-    
-    /**
+
+      /**
      * get translation for allowance text box
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
@@ -326,12 +338,12 @@ class IndexController extends ControllerBase {
        $this->view->disable();
         echo json_encode($data);
     }
-
     /**
      * edit allowance data
-     * @author Su Zin Kyaw<gnext.suzin@gmail.com>
+     * @author Su Zin Kyaw
      */
     public function edit_dataAction() {
+
         $data['id'] = $this->request->getPost('id');
         $data['name'] = $this->request->getPost('name');
         $data['allowance_amount'] = $this->request->getPost('allowance_amount');
@@ -361,6 +373,7 @@ class IndexController extends ControllerBase {
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
+        
         $Tax = new SalaryTaxs();
         $list = $Tax->gettaxlist();
         $this->view->setVar("result", $list); //paginated data
@@ -370,6 +383,7 @@ class IndexController extends ControllerBase {
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("noti",$noti);
         $this->view->setVar("deduction", $dlist);
+        
         }
         else {
         $this->response->redirect('core/index');
@@ -459,7 +473,11 @@ class IndexController extends ControllerBase {
         $Deduction->add_deduction($data);
         $this->view->disable();
     }
-
+    
+    /**
+     * show deduction related with salary calculation
+     * @author Su Zin Kyaw
+     */
     public function show_add_dectAction() {
         $t = $this->_getTranslation();
         $data[1]['deduce_frm'] = $t->_("deduce_frm");
@@ -483,10 +501,13 @@ class IndexController extends ControllerBase {
         $Deduction->delete_deduction($deduce_id);
         $this->view->disable();
     }
-
     
+    /**
+     * Print salary action
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function printsalaryAction() {
-         $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/salary/js/print.js');
         $month=$this->request->get('month');
         $year=$this->request->get('year');
         $member_id=$this->request->get('chk_val');
@@ -506,7 +527,10 @@ class IndexController extends ControllerBase {
         $this->view->getsalarydetails = $getsalarydetail;
     }
     
-    
+    /**
+     * Show salary detail
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia> 
+     */
     public function salarydetailAction() {
         $this->assets->addJs('apps/salary/js/index_salarydetail.js');
         $month=$this->request->get('month');
@@ -528,14 +552,20 @@ class IndexController extends ControllerBase {
         $this->view->year = $year;
         $this->view->month = $month;
     }
-    
+    /**
+     * Save resign date 
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function addresigndateAction(){
         $Salarydetail = new SalaryDetail();
         $data['member_id'] = $this->request->getPost('member_id');
         $data['resign_date'] = $this->request->getPost('resign_date');
         $Salarydetail->addresign($data);
     }
-    
+    /**
+     * Delete salary detail
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function delete_salaryAction() {
         $member_id = $this->request->getPost('id');
         $SalaryMaster=new SalaryMaster();

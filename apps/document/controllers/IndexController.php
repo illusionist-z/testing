@@ -57,7 +57,10 @@ class IndexController extends ControllerBase
             $this->response->redirect('core/index');
         }
     }
-
+    /**
+     * tax documentation form
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function taxdocumentAction() {
         $this->assets->addJs('apps/salary/js/print.js');
         $SalaryDetail= new Document();
