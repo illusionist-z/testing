@@ -72,10 +72,10 @@ var Resign = {
             $(this).removeClass('datepicker').datepicker().focus();                               
         });   
         $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
-        $('#Add_Resign_Date').click(function(){
+        $('#Add_Resign_Date').on('click',function(){
             Resign.AddNew($ovl);
         });
-         $('#cancel').click(function(){
+         $('#cancel').on('click',function(){
            $ovl.dialog("close");
           // location.reload();
 
@@ -109,13 +109,13 @@ $(document).ready(function () {
 
    
     
-     $('.btn_resign').click(function () {
+     $('.btn_resign').on('click',function(){
         // alert("aa");
        var id= document.getElementById("member_id").value;
         Resign.Add(id);
     });
     //Enable the textbox for salary detail
-    $('.btnEditInfo').click(function () {
+    $('.btnEditInfo').on('click',function(){
         //document.getElementById('txtname').disabled=false;
 //        document.getElementById('btn_savedetail').disabled=false;
 //        document.getElementById('txtbsalary').disabled=false;
@@ -128,7 +128,7 @@ for (var i = 0; i < cells.length; i++) {
 }
     });
 
-    $("#btn_savedetail").click(function () {
+    $("#btn_savedetail").on('click',function(){
         //alert("AAA");
 //      $(".txtenable").each(function() {
 //    //alert($(this).val());

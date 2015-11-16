@@ -33,7 +33,7 @@ $('.geolocation').ready(function() {
  * @author Su Zin Kyaw<gnext.suzin@gmail.com>
  */
 $(document).ready(function(){
-    $('.checkin').click(function () {
+    $('.checkin').on('click',function(){
        var note = document.getElementById('note').value;
        window.location.href = baseUri + 'dashboard/index/checkin?note='+note;
 

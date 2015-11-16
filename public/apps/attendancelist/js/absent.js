@@ -13,7 +13,7 @@ var Absent = {
 }
 $(document).ready(function () {
 
-    $('.absentcheck').click(function (e) {
+    $('.absentcheck').on('click',function(e){
         e.preventDefault();
         var id = $(this).attr('id');
         Absent.Search(id);

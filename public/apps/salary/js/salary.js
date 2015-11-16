@@ -112,13 +112,13 @@ var Salary = {
         }).parent('.ui-dialog').css('zIndex',9999);
         $ovl.html(d);
         $ovl.dialog("open");
-        $('#edit_salary_edit').click(function () {
+        $('#edit_salary_edit').on('click',function(){
             Salary.BtnEdit($ovl);
         });
-        $('#edit_delete').click(function () {
+        $('#edit_delete').on('click',function(){
             Salary.Delete($ovl);
         });
-        $('#edit_close').click(function () {
+        $('#edit_close').on('click',function(){
             $ovl.dialog("close");
         });
     },
@@ -247,11 +247,11 @@ var Salary = {
         $ovl.dialog("open");
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-        $('#cal_salary').click(function(){
+        $('#cal_salary').on('click',function(){
             Salary.SaveSalary();
         });  
           
-        $('#cancel_deduct').click(function(){
+        $('#cancel_deduct').on('click',function(){
            $ovl.dialog("close");
            location.reload();
 
@@ -372,7 +372,7 @@ var Salary = {
                         +'</tr>'
             $("tbody").append(html);
             //click event for detail after search
-            $('.btn_detail').click(function () {
+            $('.btn_detail').on('click',function(){
             var month = document.getElementById('month').value;
             var year = document.getElementById('year').value;
             var chkbox = document.getElementsByName('chk[]');
@@ -412,7 +412,7 @@ var Salary = {
 $(document).ready(function () {
     Salary.init();
     var popupStatus = 0;
-    $('#search_salary').click(function () {
+    $('#search_salary').on('click',function(){
         Salary.search();
     });
     $("body").on("click",".displaypopup",function () {
@@ -421,14 +421,14 @@ $(document).ready(function () {
     });
     
 //isplay popup to calculate monthly salary
-    $("#displaypopup").click(function(){
+    $("#displaypopup").on('click',function(){
         Salary.calSalary();
                
 	});
-    $('#cal_salary').click(function () {
+    $('#cal_salary').on('click',function(){
         Salary.search();
     });
-    $('.tags').click(function () {
+    $('.tags').on('click',function(){
         Salary.autolist();
     });
     $("#search_salary").mouseenter(function(){

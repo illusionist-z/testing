@@ -26,7 +26,7 @@ $(function () {
      
      
      
-    $('#btn_tax_form').click(function () {  
+    $('#btn_tax_form').on('click',function(){ 
     var month = document.getElementById('month').value;
     var year = document.getElementById('year').value;
     var chkbox = document.getElementsByName('chk[]');
@@ -46,7 +46,7 @@ $(function () {
 //
 //         });
      });
-     $('#btn_tax').click(function () {  
+     $('#btn_tax').on('click',function(){ 
     var month = document.getElementById('month').value;
     var year = document.getElementById('year').value;
     var chkbox = document.getElementsByName('chk[]');
@@ -63,7 +63,7 @@ $(function () {
      });
      
      //click the detail button for detail of salary
-     $('.btn_detail').click(function () {
+     $('.btn_detail').on('click',function(){
      var month = document.getElementById('month').value;
      var year = document.getElementById('year').value;
      var chkbox = document.getElementsByName('chk[]');

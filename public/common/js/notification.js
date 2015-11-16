@@ -52,20 +52,20 @@ var Noti = {
 
 $(document).ready(function() {
 
-    $('#noti_reject').click(function(e) {
+    $('#noti_reject').on('click',function(e){
         Noti.Reject();
         e.preventDefault();
     }),
-            $('#noti_accept').click(function(e) {
+            $('#noti_accept').on('click',function(){
         Noti.Accept();
     }),
-            $('#noti_ok').click(function(e) {
+            $('#noti_ok').on('click',function(){
         Noti.Seen();
     });
 
 
 
-    $(".noti").click(function(e) {
+    $(".noti").on('click',function(e){
         e.preventDefault();
         //document.getElementById("noti").className = "noticlose";
         $("#notificationContainer").fadeToggle(100);
@@ -73,7 +73,7 @@ $(document).ready(function() {
     });
 
 
-    $(".content").click(function() {
+    $(".content").on('click',function(){
         $("#notificationContainer").hide();
         
     });

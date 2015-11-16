@@ -119,12 +119,12 @@ var AddSalary = {
         //alert("aaa");
        AddSalary.Submit();
     });
-    $(".salusername").click(function(){
+    $(".salusername").on('click',function(){
 		AddSalary.salnameautolist();
                
 	});
     
-    $("#bsalary").click(function(){
+    $("#bsalary").on('click',function(){
        var name = document.getElementById('uname').value;
        //alert(name);
 		AddSalary.getmemid(name);

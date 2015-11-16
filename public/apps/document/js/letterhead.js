@@ -6,7 +6,7 @@ $(document).ready(function(){
 document.getElementById('divId').style.display = 'none';
 document.getElementById('editinfo').style.display = 'none';
 
- $('#edit').click(function () {
+ $('#edit').on('click',function(){
       //e.preventDefault();
         var content = $("#editinfo").html();
         $('#document').replaceWith('<div class="editinfo"  style="width: 36%;display: inline-block;float: right;margin-right: 62%;">'+content+'</div>');
@@ -19,7 +19,7 @@ document.getElementById('editinfo').style.display = 'none';
     });
     
     jQuery(document).ready(function($) {
-        $("#word-export").click(function(event) {
+        $("#word-export").on('click',function(event){
             $("#letterhead").wordExport();
         });
     });

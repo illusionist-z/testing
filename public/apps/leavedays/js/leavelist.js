@@ -40,10 +40,10 @@ $(document).ready(function(){
     
     var userUri = baseUri + 'leavedays/';    
     
-    $('#search').click(function () {        
+    $('#search').on('click',function(){     
         Leave.List();
     }); 
-   $('.userauto').click(function () {   
+   $('.userauto').on('click',function(){
         $(this).autocomplete({
             source : dict
         });
