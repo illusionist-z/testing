@@ -537,7 +537,7 @@ class IndexController extends ControllerBase {
         $year=$this->request->get('year');
         $member_id=$this->request->get('chk_val');
         $mid=  explode(',', $member_id);
-        //echo count($mid);
+        
         $Salarydetail = new SalaryDetail();
         for($i=0;$i<count($mid);$i++){
             echo $mid[$i]."<br>";
@@ -546,8 +546,9 @@ class IndexController extends ControllerBase {
                 
             }
         }
-        
+        //exit;
       //print_r($getsalarydetail);exit;
+    
         $this->view->getsalarydetails = $getsalarydetail;
         $this->view->year = $year;
         $this->view->month = $month;

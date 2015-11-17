@@ -26,6 +26,7 @@ class SalaryMaster extends Model {
 //            $result = $this->db->query($sql);
             $SalaryMaster = new SalaryMaster();
             $SalaryMaster->save($data);
+           
 //            if ($SalaryMaster->save($data) == false) {
 //                echo "Umh, We can't store robots right now ";
 //                foreach ($SalaryMaster->getMessages() as $message) {

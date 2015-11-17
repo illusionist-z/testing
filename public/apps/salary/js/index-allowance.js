@@ -53,13 +53,13 @@ var Allowance = {
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
-        $('#edit_allowance_edit').on('click',function(){
+        $('#edit_allowance_edit').click(function(){
             Allowance.BtnEdit($ovl);
         });  
-        $('#all_delete').on('click',function(){
+        $('#all_delete').click(function(){
              Allowance.Delete($ovl);
         });   
-        $('#edit_close').on('click',function(){
+        $('#edit_close').click(function(){
            $ovl.dialog("close");
         });       
     },
@@ -132,7 +132,7 @@ $(document).ready(function () {
                var enter_allamount=result['enter_allamount'];
                var counter = 2;
         var counter1=2;
-        $("#addButton").on('click',function(){
+        $("#addButton").click(function () {
 
             if (counter > 10) {
                 alert("Only 10 textboxes allow");
@@ -152,7 +152,7 @@ $(document).ready(function () {
             counter++;
         });
 
-        $("#removeButton").on('click',function(){
+        $("#removeButton").click(function () {
             if (counter == 2) {
                 alert("No more textbox to remove");
                 return false;
@@ -164,7 +164,7 @@ $(document).ready(function () {
            }
         });
     
-    $(".allpopup").on('click',function(){
+    $(".allpopup").click(function () {
        var id = $(this).attr('id');
        Allowance.Edit(id);
     });

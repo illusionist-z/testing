@@ -96,7 +96,7 @@ var Salary = {
             async: false,
             width: 'auto',
             resizable:false,
-             position:'absolute',
+            position:'absolute',
              
             modal: true,
             title: title,
@@ -109,16 +109,16 @@ var Salary = {
 		effect:"explode",
 		duration:200
 	    }*/
-        }).parent('.ui-dialog').css('zIndex',9999);
+        }).parent('.ui-dialog').css('zIndex',1030);
         $ovl.html(d);
         $ovl.dialog("open");
-        $('#edit_salary_edit').on('click',function(){
+        $('#edit_salary_edit').click(function () {
             Salary.BtnEdit($ovl);
         });
-        $('#edit_delete').on('click',function(){
+        $('#edit_delete').click(function () {
             Salary.Delete($ovl);
         });
-        $('#edit_close').on('click',function(){
+        $('#edit_close').click(function () {
             $ovl.dialog("close");
         });
     },
@@ -179,6 +179,7 @@ var Salary = {
             autoOpen:false,
             height:'auto',
             width:'auto',
+            resizable: false,
             closeText:'',
             modal:true,
             title:"Confirm Delete",
@@ -191,7 +192,7 @@ var Salary = {
                 }
             }
            
-        });
+        }).parent('.ui-dialog').css('zIndex',9999);
          $del.html("<p>Are u sure to delete?</p>");
         $del.dialog("open");  
     },
@@ -247,11 +248,11 @@ var Salary = {
         $ovl.dialog("open");
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-        $('#cal_salary').on('click',function(){
+        $('#cal_salary').click(function(){
             Salary.SaveSalary();
         });  
           
-        $('#cancel_deduct').on('click',function(){
+        $('#cancel_deduct').click(function(){
            $ovl.dialog("close");
            location.reload();
 
@@ -372,7 +373,7 @@ var Salary = {
                         +'</tr>'
             $("tbody").append(html);
             //click event for detail after search
-            $('.btn_detail').on('click',function(){
+            $('.btn_detail').click(function () {
             var month = document.getElementById('month').value;
             var year = document.getElementById('year').value;
             var chkbox = document.getElementsByName('chk[]');
@@ -412,7 +413,7 @@ var Salary = {
 $(document).ready(function () {
     Salary.init();
     var popupStatus = 0;
-    $('#search_salary').on('click',function(){
+    $('#search_salary').click(function () {
         Salary.search();
     });
     $("body").on("click",".displaypopup",function () {
@@ -421,14 +422,14 @@ $(document).ready(function () {
     });
     
 //isplay popup to calculate monthly salary
-    $("#displaypopup").on('click',function(){
+    $("#displaypopup").click(function(){
         Salary.calSalary();
                
 	});
-    $('#cal_salary').on('click',function(){
+    $('#cal_salary').click(function () {
         Salary.search();
     });
-    $('.tags').on('click',function(){
+    $('.tags').click(function () {
         Salary.autolist();
     });
     $("#search_salary").mouseenter(function(){

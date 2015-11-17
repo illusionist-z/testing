@@ -1,29 +1,34 @@
 // selects all the divs of class='sample',hides them, finds the first, and shows it
 $('div.sample').hide().first().show();
-
+var i=0;
 // binds a click event-handler to a elements whose class='display'
 $('a.display').on('click', function(e) {
     // prevents the default action of the link
     e.preventDefault();
+    
 
     // assigns the currently visible div.sample element to a variable
     var that = $('div.sample:visible'),
         // assigns the text of the clicked-link to a variable for comparison purposes
         t = $(this).text();
-
     // checks if it was the 'next' link, and ensures there's a div to show after the currently-shown one
     if (t == 'NEXT' && that.next('div.sample').length > 0) {
         // hides all the div.sample elements
+        i++;
         $('div.sample').hide();
-
+        
         // shows the 'next'
-        that.next('div.sample').show()
+        
+        that.next('div.sample').show();
     }
+    
     // exactly the same as above, but checking that it's the 'prev' link
     // and that there's a div 'before' the currently-shown element.
     else if (t == 'PREV' && that.prev('div.sample').length > 0) {
+    i--;
+       
         $('div.sample').hide();
-        that.hide().prev('div.sample').show()
+        that.hide().prev('div.sample').show();
     }
 });
 var Resign = {
@@ -72,10 +77,10 @@ var Resign = {
             $(this).removeClass('datepicker').datepicker().focus();                               
         });   
         $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});         
-        $('#Add_Resign_Date').on('click',function(){
+        $('#Add_Resign_Date').click(function(){
             Resign.AddNew($ovl);
         });
-         $('#cancel').on('click',function(){
+         $('#cancel').click(function(){
            $ovl.dialog("close");
           // location.reload();
 
@@ -109,13 +114,13 @@ $(document).ready(function () {
 
    
     
-     $('.btn_resign').on('click',function(){
+     $('.btn_resign').click(function () {
         // alert("aa");
        var id= document.getElementById("member_id").value;
         Resign.Add(id);
     });
     //Enable the textbox for salary detail
-    $('.btnEditInfo').on('click',function(){
+    $('.btnEditInfo').click(function () {
         //document.getElementById('txtname').disabled=false;
 //        document.getElementById('btn_savedetail').disabled=false;
 //        document.getElementById('txtbsalary').disabled=false;
@@ -128,22 +133,23 @@ for (var i = 0; i < cells.length; i++) {
 }
     });
 
-    $("#btn_savedetail").on('click',function(){
+    $("#btn_savedetail").click(function () {
         //alert("AAA");
 //      $(".txtenable").each(function() {
 //    //alert($(this).val());
 //});
-
-       var member_id=document.getElementById('member_id').value; 
-       var b_salary=document.getElementById('txtbsalary').value;
-       var overtime_rate=document.getElementById('txtovertimerate').value;
-       var specific_deduce=document.getElementById('txtallowance').value;
-       var year=document.getElementById('year').value;
-       var month=document.getElementById('month').value;
-       //alert(document.getElementById('txtbsalary').value);
-//       $year=document.getElementById('year').value;
-//       $month=document.getElementById('month').value;
-//       
+       var member_id_arr=document.getElementsByClassName("member_id");//document.getElementById('member_id').value; 
+       var b_salary_arr=document.getElementsByClassName('txtbsalary');
+       var overtime_rate_arr=document.getElementsByClassName('txtovertimerate');
+       var specific_deduce_arr=document.getElementsByClassName('txtallowance');
+       var year=document.getElementById('year');
+       var month=document.getElementById('month');
+      
+       b_salary=b_salary_arr[i].value;
+       member_id=member_id_arr[i].value;
+       overtime_rate=overtime_rate_arr[i].value;
+       specific_deduce=specific_deduce_arr[i].value;
+       alert(b_salary);
        if(specific_deduce=="")
        {
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
@@ -152,8 +158,8 @@ for (var i = 0; i < cells.length; i++) {
             //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
             url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'+overtime_rate+'/0/'+member_id+'/'+year+'/'+'/'+month,
             success:function(){
-//                alert("Data has been updated");
-//                window.location.reload();
+                alert("Data has been updated");
+                window.location.reload();
             }
         })
         }

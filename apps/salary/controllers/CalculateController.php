@@ -34,7 +34,7 @@ class CalculateController extends ControllerBase
     //calculate overtime by attendances and salary master
     //$overtime=$Salarymaster->calculate_overtime();
      
-    $getcomp_startdate=$Salarydetail->getComp_startdate();
+   // $getcomp_startdate=$Salarydetail->getComp_startdate();
     $creator_id=$this->session->user['member_id'];
     //calculate the basic salary
     $tax=$Salarymaster->calculate_tax_salary($getbasic_salary,$salary_start_date,$creator_id);
@@ -44,7 +44,7 @@ class CalculateController extends ControllerBase
     
     //print_r($overtime);exit;
     //insert overtime and salary information to salary detail
-    $Salarydetail->insert_salarydetail($overtime,$salary_start_date);
+    //$Salarydetail->insert_salarydetail($overtime,$salary_start_date);
     
     
     //calculate ssc fee of employee and employer

@@ -131,12 +131,12 @@ var Tax = {
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
-        $('#edit_tax').on('click',function(){
+        $('#edit_tax').click(function(){
             Tax.BtnEdit($ovl);
             
         });  
           
-        $('#edit_close').on('click',function(){
+        $('#edit_close').click(function(){
            $ovl.dialog("close");
          
            location.reload();
@@ -212,15 +212,15 @@ var Deduction = {
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
-        $('#edit_deduct').on('click',function(){
+        $('#edit_deduct').click(function(){
             Deduction.BtnEdit($ovl);
         });  
 
-        $('#delete_deduct').on('click',function(){
+        $('#delete_deduct').click(function(){
             
             Deduction.Delete($ovl);
         }); 
-        $('#edit_close').on('click',function(){
+        $('#edit_close').click(function(){
            $ovl.dialog("close");
            location.reload();
 
@@ -306,11 +306,11 @@ var Deduction = {
         $ovl.dialog("open");
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-        $('#Add_deduct').on('click',function(){
+        $('#Add_deduct').click(function(){
             Deduction.AddNew($ovl);
         });  
           
-        $('#cancel_deduct').on('click',function(){
+        $('#cancel_deduct').click(function(){
            $ovl.dialog("close");
            location.reload();
         });       
@@ -359,17 +359,17 @@ var Deduction = {
     
 };
 $(document).ready(function () {
-     $(".taxpopup").on('click',function(){
+     $(".taxpopup").click(function () {
        var id = $(this).attr('id');
        Tax.Edit(id);
     });
     
-     $(".dedtpopup").on('click',function(){
+     $(".dedtpopup").click(function () {
       var id = $(this).attr('id');
       Deduction.Edit(id);
     });
     
-      $(".add").on('click',function(){
+      $(".add").click(function () {
       Deduction.Diaadd();
     });
 });

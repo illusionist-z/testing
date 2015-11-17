@@ -6,9 +6,8 @@ var AddSalary = {
            url  : baseUri+'salary/salarymaster/savesalary',
            data : $('#add_salary').serialize(),
            success: function(d){ 
-               
                cond = JSON.parse(d);
-              
+             
                 if(cond.result === 'error')
                 { 
                  $('#add_salary_bsalary').css('border','black');$('#add_salary_ssc').css('border','black');
@@ -119,12 +118,12 @@ var AddSalary = {
         //alert("aaa");
        AddSalary.Submit();
     });
-    $(".salusername").on('click',function(){
+    $(".salusername").click(function(){
 		AddSalary.salnameautolist();
                
 	});
     
-    $("#bsalary").on('click',function(){
+    $("#bsalary").click(function(){
        var name = document.getElementById('uname').value;
        //alert(name);
 		AddSalary.getmemid(name);
