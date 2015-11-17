@@ -51,8 +51,7 @@ class SalaryMasterController extends ControllerBase
                    $json[$message->getField()] = $message->getMessage();
                }
                 $json['result'] = "error";
-                echo json_encode($json);
-                $this->view->disable();
+                
             }     
         else{
        
@@ -63,13 +62,12 @@ class SalaryMasterController extends ControllerBase
 
         $Allowance = new Allowances();
         $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);
-        $msg="success";
-        //$this->response->redirect('salary/index/salarylist');
-        $this->view->disable();
-        echo json_encode($msg);
-                
+
+        $json['result'] = "success";
              }
-             
+             //print_r($json);
+        echo json_encode($json);
+        $this->view->disable();
              }
        
     }
