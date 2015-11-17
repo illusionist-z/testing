@@ -523,8 +523,8 @@ class IndexController extends ControllerBase {
         }
         
        //print_r($getsalarydetail);exit;
-        
-        $this->view->getsalarydetails = $getsalarydetail;
+        $this->view->setVar("getsalarydetails",$getsalarydetail);
+        //$this->view->getsalarydetails = $getsalarydetail;
     }
     
     /**

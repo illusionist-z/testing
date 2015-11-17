@@ -11,6 +11,7 @@ $('a.display').on('click', function(e) {
     var that = $('div.sample:visible'),
         // assigns the text of the clicked-link to a variable for comparison purposes
         t = $(this).text();
+        //alert(that.next('div.sample').length);
     // checks if it was the 'next' link, and ensures there's a div to show after the currently-shown one
     if (t == 'NEXT' && that.next('div.sample').length > 0) {
         // hides all the div.sample elements
@@ -134,22 +135,18 @@ for (var i = 0; i < cells.length; i++) {
     });
 
     $("#btn_savedetail").click(function () {
-        //alert("AAA");
-//      $(".txtenable").each(function() {
-//    //alert($(this).val());
-//});
+      
        var member_id_arr=document.getElementsByClassName("member_id");//document.getElementById('member_id').value; 
        var b_salary_arr=document.getElementsByClassName('txtbsalary');
        var overtime_rate_arr=document.getElementsByClassName('txtovertimerate');
        var specific_deduce_arr=document.getElementsByClassName('txtallowance');
-       var year=document.getElementById('year');
-       var month=document.getElementById('month');
+       var year=document.getElementById('year').value;
+       var month=document.getElementById('month').value;
       
        b_salary=b_salary_arr[i].value;
        member_id=member_id_arr[i].value;
        overtime_rate=overtime_rate_arr[i].value;
        specific_deduce=specific_deduce_arr[i].value;
-       alert(b_salary);
        if(specific_deduce=="")
        {
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  

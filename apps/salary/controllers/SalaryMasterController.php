@@ -62,7 +62,7 @@ class SalaryMasterController extends ControllerBase
         $result = $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();
-        $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);exit;
+        $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);
         $msg="success";
         //$this->response->redirect('salary/index/salarylist');
         $this->view->disable();

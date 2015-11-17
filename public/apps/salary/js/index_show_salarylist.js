@@ -72,7 +72,7 @@ $(function () {
     for (var i=0, n=chkbox .length;i<n;i++) {
         if (chkbox [i].checked) 
         {
-           alert(chkbox[i].value);
+          // alert(chkbox[i].value);
             chk.push(chkbox[i].value);
         }
        
