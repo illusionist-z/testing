@@ -44,7 +44,7 @@ var Resign = {
                var data ='<form id="Resign_Date"><table>';               
                    data += '<tr><td></td></tr>'
                         +'<tr><br><td><small>Resign Date:</small> </td><td style="font-size:10px;"><input type="text" style="margin-top:10px;" class="datepicker form-control" name="resign_date" id="resign_date" placeholder="Resign Date" ></td></tr>';
-                         +'<tr><td></td></tr>';             
+                        +'<tr><td></td></tr>';             
                 data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_Resign_Date">Save</a><a href="#" class="button" id="cancel">Cancel</a></td></tr>';
                 data+='<input type="hidden" name="member_id" id="resign_date" value="'+id+ '"td></tr>';
 
@@ -135,18 +135,19 @@ for (var i = 0; i < cells.length; i++) {
     });
 
     $("#btn_savedetail").click(function () {
-      
+
        var member_id_arr=document.getElementsByClassName("member_id");//document.getElementById('member_id').value; 
        var b_salary_arr=document.getElementsByClassName('txtbsalary');
        var overtime_rate_arr=document.getElementsByClassName('txtovertimerate');
        var specific_deduce_arr=document.getElementsByClassName('txtallowance');
        var year=document.getElementById('year').value;
        var month=document.getElementById('month').value;
-      
+       
        b_salary=b_salary_arr[i].value;
        member_id=member_id_arr[i].value;
        overtime_rate=overtime_rate_arr[i].value;
        specific_deduce=specific_deduce_arr[i].value;
+       
        if(specific_deduce=="")
        {
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
@@ -155,8 +156,8 @@ for (var i = 0; i < cells.length; i++) {
             //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
             url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'+overtime_rate+'/0/'+member_id+'/'+year+'/'+'/'+month,
             success:function(){
-                alert("Data has been updated");
-                window.location.reload();
+//                alert("Data has been updated");
+//                window.location.reload();
             }
         })
         }

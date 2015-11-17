@@ -539,7 +539,7 @@ class IndexController extends ControllerBase {
         $mid=  explode(',', $member_id);
         
         $Salarydetail = new SalaryDetail();
-        for($i=0;$i<count($mid);$i++){
+        for($i=0;$i<=count($mid);$i++){
             echo $mid[$i]."<br>";
             if($mid[$i]!='on'){
             $getsalarydetail[] = $Salarydetail->getpayslip($mid[$i], $month, $year);
@@ -547,7 +547,7 @@ class IndexController extends ControllerBase {
             }
         }
         //exit;
-      //print_r($getsalarydetail);exit;
+        //print_r($getsalarydetail);exit;
     
         $this->view->getsalarydetails = $getsalarydetail;
         $this->view->year = $year;
