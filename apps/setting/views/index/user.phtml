@@ -2,30 +2,52 @@
     use Phalcon\Filter;
 ?>
 
-     
+<a name="User"> </a>
                                      <br>
                                 <h3>Change User Rule  </h3>
                                 
                                 <br>
                              
                                 
-                                  <table class="listtbladmin listtbl">
+                                <table class="listtbladmin listtbl" id="user_role">
                         
                         <thead>
                         <br>
                                 <tr>                                  
                                 <th width="100">Group ID</th>                                
-                                <th width="">User Name</th>
+                                <th width="175">User Name</th>
+                                 <th width="">Group Name</th>
                                 <th width="">Action</th>
                                  
                                 </tr>
                         </thead>
-            
+                        <tbody style="display:none;">
                    <?php 
                    foreach($coreuser as $datauser){ ?>
                                 <tr>                                        
                                         <td><?= $datauser['group_id'] ?></td>
                                         <td><?= $datauser['member_login_name'] ?></td>
+                                        
+                                        
+                                       <?php
+                                        foreach($coreid as $data){ 
+                                            
+                                            if( $datauser['group_id']  == $data->group_id){
+                                                
+                                          
+                                        ?>
+                                        <td> 
+                                       
+                                            
+                                        <?=  $data->name_of_group ?>  
+                                        (<?=  $datauser['group_id']  ?>)
+                                        </td>
+                                        <?php
+                                         }
+                                       
+                                         }
+                                         ?>
+                                        
                                         
                                         <td>        
             <a href="#" onclick="showDialoguser.apply(this);return false;" class="btn" type="black" id="<?= $datauser['member_id'] ?>"> Edit </a>  
@@ -36,10 +58,9 @@
                                 <div id="openu<?= $datauser['member_id'] ?>" title="Change User Rule" style="display: none;">
                                        <form method="POST" action="UserRuleSetting">    
                                            <br> 
-                                         Group ID    :                                                                                                                          
-                                        <br> 
+                                        
                                         User Name  : 
-                                        <input type="text" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" >
+                                        <input type="text" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" disabled>
                                         <br><br>
                                            Group Rule
                                            
@@ -64,5 +85,6 @@
                                 
                                 
                    <?php }
-                   ?>
+                   ?></tbody>
             </table>  
+                                <div id="content"></div>

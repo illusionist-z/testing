@@ -9,8 +9,7 @@ class IndexController extends ControllerBase
         parent::initialize();  
         $this->calendar = new \workManagiment\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('apps/calendar/css/calendar.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('apps/calendar/css/calendar.css');        
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
         $this->assets->addJs('apps/calendar/js/moment.min.js');
         $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
@@ -162,7 +161,7 @@ class IndexController extends ControllerBase
      */
     public function deleteAction() {
         $this->view->disable();
-        $id = $this->request->get('data');        
+        $id = $this->request->get('data');
         $this->calendar->delete_event($id);
     }
     public function getidAction(){

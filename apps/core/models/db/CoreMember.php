@@ -328,5 +328,9 @@ class CoreMember extends \Library\Core\BaseModel {
 
         return $result;
     }
+    
+    public function functionName($param) {
+        
+    }
 
 }

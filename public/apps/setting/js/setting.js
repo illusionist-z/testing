@@ -3,8 +3,16 @@
  * @type Edit ,delete for Setting Module
  * 
  */
-var Setting = {
-    
+var pager = new Paging.Pager();
+var Setting = {    
+    init  : function () {        
+           tbody = 'table#user_role > tbody';
+            pager.perpage =4;
+            pager.pagingcontainer = tbody;
+            pager.para = $(tbody+" > tr ");
+            pager.showPage(1);
+            $('tbody').show();
+    }
 };
  
 Setting.GroupRule = {
@@ -31,3 +39,7 @@ Setting.GroupRule = {
         });
     } 
  };
+ 
+$(document).ready(function(){
+    Setting.init();
+});

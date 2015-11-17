@@ -57,7 +57,7 @@ class Calendar extends Model {
         }
         $users=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id!= '" . $creator_id . "' ");
         $users=$users->fetchall();
-        print_r($users);exit;
+        //print_r($users);exit;
         foreach ($users as $users) {
             //echo $users['member_id'];echo "---";
         $this->db->query("INSERT INTO core_notification_rel_member (creator_name,member_id,noti_id,status,module_name) VALUES('" . $creator_name . "','" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
@@ -88,8 +88,7 @@ class Calendar extends Model {
     public function delete_event($id) {                
         $this->db=  $this->getDI()->getShared("db");
         $delete= "DELETE FROM calendar WHERE id='".$id."'";
-        $query=  $this->db->query($delete);
-        return $query;
+        $query=  $this->db->query($delete);        
     }
     
     public function remove_member($remove_id,$id){          

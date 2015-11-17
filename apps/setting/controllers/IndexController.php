@@ -1,27 +1,29 @@
 <?php
 
 use Phalcon\Config;
-
 use Phalcon\Mvc\Url as UrlProvider;
-
 namespace workManagiment\Setting\Controllers;
 use workManagiment\Setting\Models\CorePermissionGroup; 
 use workManagiment\Setting\Models\CorePermissionGroupId; 
 use workManagiment\Setting\Models\CorePermissionRelMember; 
 use workManagiment\Core\Models\Db\CoreMember;
 use Phalcon\Http\Response;
+ 
 
-    
+
+/**
+ * @author Yan Lin Pai  <> <wizardrider@gmail.com>
+ * @desc     CorePermissionGroup
+ */
+
 class IndexController extends ControllerBase {
 
    public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-         
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');  
-        //$this->assets->addJs('common/js/bootstrap.min.js');  
-        //$this->assets->addJs('common/js/app.min.js'); 
+        $this->assets->addJs('common/js/paging.js'); 
         $this->assets->addJs('apps/setting/js/index.js'); 
         $this->assets->addJs('apps/setting/js/setting.js');  
  }
@@ -35,31 +37,31 @@ class IndexController extends ControllerBase {
         * @desc    $core_user = {}
         */
         public function indexAction() {     
-        $core = new CorePermissionGroup();
+        
         $coreid = new CorePermissionGroupId(); 
+        $corememberid = new CorePermissionRelMember(); 
         $coreuser = new CoreMember(); 
-        
-        $core_group=$core::find();
-        
+        $coreuser2 = new CorePermissionGroup(); 
         $core_groupid=$coreid::find();
-         
-        $core_groupuser=$coreuser->getgroupid();         
-        $this->view->core = $core_group;
+        $coremember= $corememberid::find();
+        $core_groupuser2=$coreuser2::find();
+        $core_groupuser=$coreuser->getgroupid();
         $this->view->coreid = $core_groupid;
-        $this->view->coreuser = $core_groupuser;
-         
+        $this->view->coremember = $coremember; 
+        $this->view->coreuser = $core_groupuser; 
+        $this->view->coreuser2 = $core_groupuser2; 
+
   }     
- 
- 
-         /**
+        /**
         * @author Yan Lin Pai <wizardrider@gmail.com>
         * @desc    $core = {}
+        * @public function 4 set
         */
         public function AddGroupRuleAction()
         {
         $core = new CorePermissionGroupId();
         $core->save($this->request->getPost());
-        //var_dump($core);exit;
+        
         $this->view->disable();
         $this->response->redirect('setting/index/index');
         }
@@ -81,20 +83,27 @@ class IndexController extends ControllerBase {
         $core->update();        
         $this->view->disable();
         $this->response->redirect('setting/index/index');
-        
+        }
+         /**
+        * @author Yan Lin Pai <wizardrider@gmail.com>
+        * @desc    $core = {}
+        * @public function 4 set
+        */     
+        public function User2RuleSettingAction()
+        {     
+                $idpage = $this->request->getPost("idpage");
+                $page_rule_group = $this->request->getPost("page_rule_group");
+                $success=$this->db->execute("UPDATE core_permission_group SET page_rule_group=$page_rule_group
+                                                                WHERE idpage=$idpage");
+                if($success)
+                {
+                $this->view->disable();
+                $this->response->redirect('setting/index/index');
+                }
+                else  { echo "Failed!!"; }
         }
         
-
-         public function PageRuleSettingAction()
-        {
-        $corepage = new CorePermissionGroup();
-        $corepage->save($this->request->getPost());
-        //var_dump($core);exit;
-        $this->view->disable();
-        $this->response->redirect('setting/index/index');
-        }
-        
-         public function UserRuleSettingAction()
+          public function UserRuleSettingAction()
         {                                 
         $core = new CorePermissionRelMember();
         $id = $this->request->getPost('rel_member_id');
@@ -114,35 +123,20 @@ class IndexController extends ControllerBase {
         *       
         * Shows the view to "edit" an existing product
         */
-        public function editAction()
-        {
-         
-        }
-
+ 
         /**
         * Creates a product based on the data entered in the "new" action
         */
-        public function createAction()
-        {
-        // ...
-        }
-
+ 
+         
         /**
         * Updates a product based on the data entered in the "edit" action
         */
-        public function saveAction()
-        {
-           // ...
-        }
-
+        
         /**
         * Deletes an existing product
         */
-        public function deleteAction()
-        {
-           // ...
-        }
-
+        
         public function settingmoduleAction() {
            $UserList = new Db\CoreMember();
            $username = $UserList::getinstance()->getusername();

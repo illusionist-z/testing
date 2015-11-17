@@ -1,11 +1,7 @@
 <?php
 namespace workManagiment\Setting\Models;
 use Phalcon\Mvc\Model;
-
-/**
- * @author David JP <david.gnext@gmail.com>
- * @desc    
- */
+ 
 
 class CorePermissionRelMember extends Model
 {
