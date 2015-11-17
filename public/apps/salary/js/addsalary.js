@@ -39,8 +39,8 @@ var AddSalary = {
                         $('#add_salary_bsalary').css({border:'1px solid red'});repair('#add_salary_bsalary');
                         $('#add_salary_check').css({border:'1px solid red'}); repair('#add_salary_checkall');
                     }
-                else{
-                    alert(d);
+                else if(cond.result === 'success'){
+                    alert(cond.result);
                     window.location.href = baseUri + 'salary/index/salarylist';
                     }
                 
