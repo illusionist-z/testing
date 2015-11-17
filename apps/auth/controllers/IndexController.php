@@ -1,6 +1,8 @@
 <?php
 
 namespace workManagiment\Auth\Controllers;
+use workManagiment\Core\Models\Db\CoreMember;
+use workManagiment\Auth\Models;
 
 class IndexController extends ControllerBase {
 
@@ -21,8 +23,23 @@ class IndexController extends ControllerBase {
         $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
         $this->view->pick('index/index');
     }
-
-    public function forgotpasswordAction() {
+    /**
+     * When user failed  email  go 
+     * @param type $mode
+     */
+    public function faileremailAction($mode = 1) {
+        $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
+        $this->view->pick('index/forgotpassword');
     }
-
+    
+    public function forgotpasswordAction() {
+       
+    }
+    public function findmemberAction() {
+//       $member_mail = $this->request->getPost('emailaddress');       
+//       //print_r($member_mail);exit;
+//      // echo $member_mail;exit;
+//         $ModelAuth = new Models\Auth();
+//        $ModelAuth->find($member_mail);
+    }
 }
