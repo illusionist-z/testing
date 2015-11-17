@@ -43,10 +43,10 @@ var Categories = {
         $ovl.dialog("open");
          
 
-        $('#delete_ltype').click(function(){
+        $('#delete_ltype').on('click',function(){
             Categories.Delete($ovl);
         }); 
-        $('#edit_close').click(function(){
+        $('#edit_close').on('click',function(){
            $ovl.dialog("close");
             //$('body').load('leavedays');
         });       
@@ -105,12 +105,12 @@ var Categories = {
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
-        $('#Add_ltype').click(function(){
+        $('#Add_ltype').on('click',function(){
             Categories.AddNew($ovl);
            
         });  
           
-        $('#cancel_ltype').click(function(){
+        $('#cancel_ltype').on('click',function(){
            $ovl.dialog("close");
          
 
@@ -136,17 +136,17 @@ var Categories = {
 $(document).ready(function () {
 
    
-     $(".ltypepopup").click(function () {
+     $(".ltypepopup").on('click',function(){
        var id = $(this).attr('id');
        Categories.DeleteDia(id);
     });
         
     
-      $(".add").click(function () {          
+      $(".add").on('click',function(){         
       Categories.Diaadd();
     });
     
-       $('.editsetting').click(function () {
+       $('.editsetting').on('click',function(){
         
         document.getElementById('max_leavedays').disabled=false;
         document.getElementById('fine_amount').disabled=false;

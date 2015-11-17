@@ -6,9 +6,8 @@ var AddSalary = {
            url  : baseUri+'salary/salarymaster/savesalary',
            data : $('#add_salary').serialize(),
            success: function(d){ 
-               
                cond = JSON.parse(d);
-              
+             
                 if(cond.result === 'error')
                 { 
                  $('#add_salary_bsalary').css('border','black');$('#add_salary_ssc').css('border','black');
@@ -40,8 +39,8 @@ var AddSalary = {
                         $('#add_salary_bsalary').css({border:'1px solid red'});repair('#add_salary_bsalary');
                         $('#add_salary_check').css({border:'1px solid red'}); repair('#add_salary_checkall');
                     }
-                else{
-                    alert(d);
+                else if(cond.result === 'success'){
+                    alert(cond.result);
                     window.location.href = baseUri + 'salary/index/salarylist';
                     }
                 

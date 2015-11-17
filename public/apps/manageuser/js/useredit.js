@@ -89,7 +89,7 @@
                          $(this).removeClass('datepicker').datepicker( { dateFormat:"yy-mm-dd",                                                                                           
                             }).focus();                               
                      }); 
-                    $('.submit_useradd').click(function(){
+                    $('.submit_useradd').on('click',function(){
                        UserAdd.Submit();
                     });
                     $('#addinguser_close').unbind().bind('click',function(){
@@ -112,16 +112,16 @@
                     $ovl.html(data);
                     $ovl.dialog("open");
                     // user edit button
-                    $('#edit_edit').click(function(e){
+                    $('#edit_edit').on('click',function(e){
                         e.preventDefault();
                        Manage.User.DataChange($('#edit_user_id').val()); 
                     });
-                    $('#edit_close').click(function(){            
+                    $('#edit_close').on('click',function(){          
                         $ovl.dialog("close");
                         this.isOvl=false;                  
                     });
                     // user delete button
-                    $('#edit_delete').click(function(e){
+                    $('#edit_delete').on('click',function(e){
                         e.preventDefault();
                         Manage.User.Delete($('#edit_user_id').val());
                     });

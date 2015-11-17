@@ -41,7 +41,7 @@ class SalaryMasterController extends ControllerBase
         $data['updater_id'] = 3;
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
-        //print_r($data);//exit;
+//        print_r($dedution);exit;
         if ($this->request->isPost()) {
              $user = $this->_addsalary;
              $validate = $user->chk_validate($this->request->getPost());
@@ -51,34 +51,33 @@ class SalaryMasterController extends ControllerBase
                    $json[$message->getField()] = $message->getMessage();
                }
                 $json['result'] = "error";
-                echo json_encode($json);
-                $this->view->disable();
+                
             }     
         else{
-        
+       
         $Salarymaster = new SalaryMaster();
+        
         $Salarymaster->savesalarydedution($dedution,$data['no_of_children'], $data['member_id'], $data['creator_id']);
         $result = $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();
         $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);
-        $msg="success";
-        //$this->response->redirect('salary/index/salarylist');
-        $this->view->disable();
-        echo json_encode($msg);
-                
+
+        $json['result'] = "success";
              }
-             
+             //print_r($json);
+        echo json_encode($json);
+        $this->view->disable();
              }
        
     }
     
     public function editsalarydetailAction($bsalary,$overtimerate,$allowance,$member_id,$year,$month) {
-        //echo $bsalary.' '.$overtimerate.' '.$allowance;exit;
+        
         $Salarymaster = new SalaryMaster();
         $Salarymaster->updatesalarydetail($bsalary,$overtimerate,$member_id);
         $Salarydetail=new SalaryDetail();
-        $Salarydetail->updatesalarydetail($allowance,$member_id,$year,$month);
+        $Salarydetail->updatesalarydetail($bsalary,$allowance,$member_id,$year,$month);
         $this->view->disable();
         echo json_encode($resultsalary);
     }

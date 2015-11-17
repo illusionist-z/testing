@@ -181,8 +181,8 @@ class Leaves extends \Library\Core\BaseModel {
         $credt = $this->db->query("SELECT * "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchArray();
+        
         if ($created_date['working_year_by_year'] == NULL) {
-            
             $date['startDate'] = $created_date['working_start_dt'];
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_start_dt'])));
         } else {
@@ -190,7 +190,6 @@ class Leaves extends \Library\Core\BaseModel {
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
             //print_r($date);exit;
         }
-        //print_r($date);exit;
         return $date;
     }
 

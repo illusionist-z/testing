@@ -26,6 +26,7 @@ class SalaryMaster extends Model {
 //            $result = $this->db->query($sql);
             $SalaryMaster = new SalaryMaster();
             $SalaryMaster->save($data);
+           
 //            if ($SalaryMaster->save($data) == false) {
 //                echo "Umh, We can't store robots right now ";
 //                foreach ($SalaryMaster->getMessages() as $message) {
@@ -419,7 +420,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                
                 
                 $basic_salary_annual=$basic_salary_annual+$total_allowance;
-                echo 'Basic salary annual with allowance '.$basic_salary_annual;
+                echo 'Basic salary annual with allowance '.$new_allowance;
             }
             $data['basic_salary_annual']=$basic_salary_annual;
             $data['allowance']=$row['total_allowance_amount'];
@@ -539,7 +540,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         }
        
         $latest_result = round($Result / $salary_year);
-        echo 'Year difference '.$salary_year.' ////';
+        echo 'Year difference '.$Result.' ////';
         if($Result=="")
         {$Result=0;}
         $result['total_tax_annual']=$Result;
