@@ -62,7 +62,7 @@ class SalaryMasterController extends ControllerBase
         $result = $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();
-        $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);exit;
+        $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);
         $msg="success";
         //$this->response->redirect('salary/index/salarylist');
         $this->view->disable();
@@ -75,11 +75,11 @@ class SalaryMasterController extends ControllerBase
     }
     
     public function editsalarydetailAction($bsalary,$overtimerate,$allowance,$member_id,$year,$month) {
-        //echo $bsalary.' '.$overtimerate.' '.$allowance;exit;
+        
         $Salarymaster = new SalaryMaster();
         $Salarymaster->updatesalarydetail($bsalary,$overtimerate,$member_id);
         $Salarydetail=new SalaryDetail();
-        $Salarydetail->updatesalarydetail($allowance,$member_id,$year,$month);
+        $Salarydetail->updatesalarydetail($bsalary,$allowance,$member_id,$year,$month);
         $this->view->disable();
         echo json_encode($resultsalary);
     }

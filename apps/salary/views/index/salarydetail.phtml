@@ -37,13 +37,12 @@
         $deduce='';
         
         foreach($getsalarydetails as $A){
-           
             for($i=0;$i<count($A);$i++){
-               //echo count($getsalarydetails ) ;
+              
                 
           
 ?>
-<div style="padding: 0 10px 10px 10px">
+<div style="padding: 0 10px 10px 10px" class="sample">
     <h3><center>G-Next Official Salary Report</center></h3>
     <?php   //echo $A[$i]->core->member_id;?>
 <div>
@@ -124,7 +123,7 @@
   </tr>
   <tr>
   <td colspan="2"><?= $t->_("subtotal");?></td>
-  <td><?php echo $deduce; ?></td>
+  <td><?php echo number_format($deduce); ?></td>
   <td></td>                   
   </tr>
   <tr>
@@ -132,13 +131,13 @@
   <td>
   <?php 
   $sub_total=$sum-$deduce;
-  echo $sub_total;
+  echo number_format($sub_total);
   ?></td>
   <td></td>                   
   </tr>
   <tr>
   <td colspan="2"><?= $t->_("commute_fee");?></td>
-  <td><?php echo $filter->sanitize($A[$i]->salarydet->travel_fee , "string"); ?></td>
+  <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->travel_fee , "string")); ?></td>
   <td></td>                   
   </tr>
   <tr>
@@ -146,7 +145,7 @@
   <td>
       <?php
       $grand_total=$sub_total+$A[$i]->salarydet->travel_fee;
-      echo $grand_total;
+      echo number_format($grand_total);
       ?>
   </td>
   <td></td>                   
