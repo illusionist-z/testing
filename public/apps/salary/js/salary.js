@@ -56,8 +56,7 @@ var Salary = {
                 data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
                 }
                 //data +='<input type="hidden" value= " '+result.data[0]['salary_start_date']+ ' " name="work_sdate" id="work_sdate"></td></tr>';
-                //  data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value="" name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
-                data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text"  name="work_sdate" id="work_sdate" value='+result.data[0]['salary_start_date']+ ' ></td></tr>';
+                  data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value="" name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
              
                 data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
@@ -110,12 +109,11 @@ var Salary = {
 		effect:"explode",
 		duration:200
 	    }*/
-        }).parent('.ui-dialog').css('zIndex',9999);
+        }).parent('.ui-dialog').css('zIndex',1030);
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
             Salary.BtnEdit($ovl);
-            
         });
         $('#edit_delete').click(function () {
             Salary.Delete($ovl);
@@ -125,7 +123,6 @@ var Salary = {
         });
     },
     BtnEdit : function(val){
-        
         var form=$('#edit_salary');
         $.ajax({
             type: 'POST',
@@ -175,14 +172,14 @@ var Salary = {
         });
     },
     Delete : function(d){
-        //d.dialog("close");
-        $del = $('#confirm');
+         $del = $('#confirm');
         $del.css('color','black');
         $del.css('background','#F5F5F5');
-        $del.dialog({
+          $del.dialog({
             autoOpen:false,
             height:'auto',
             width:'auto',
+            resizable: false,
             closeText:'',
             modal:true,
             title:"Confirm Delete",
@@ -196,7 +193,7 @@ var Salary = {
             }
            
         }).parent('.ui-dialog').css('zIndex',9999);
-        $del.html("<p>Are u sure to delete?</p>");
+         $del.html("<p>Are u sure to delete?</p>");
         $del.dialog("open");  
     },
     Confirm :function(d){
@@ -216,6 +213,7 @@ var Salary = {
         });
     },
     calSalary : function (){
+        //alert("add");
         
         $.ajax({
             

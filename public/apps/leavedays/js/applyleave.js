@@ -106,12 +106,12 @@ $(document).ready(function(){
       ApplyForm.Submit();
    });
    
-   $('#apply_form_name').click(function () {       
+   $('#apply_form_name').on('click',function(){     
         $(this).autocomplete({
             source : dict
         });
     }); 
-    $("#apply_form_sdate").click(function(){
+    $("#apply_form_sdate").on('click',function(){
        var name = document.getElementById('apply_form_name').value;
       //alert(name);
 		ApplyForm.getmemid(name);

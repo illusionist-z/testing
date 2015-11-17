@@ -30,7 +30,7 @@ $(document).ready(function(){
     // ここに実際の処理を記述します。
     User.LeaveList.init();
     
-    $('#usersearch').click(function(){
+    $('#usersearch').on('click',function(){
           User.LeaveList.search();
     });
     

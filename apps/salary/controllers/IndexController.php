@@ -548,6 +548,7 @@ class IndexController extends ControllerBase {
         }
         //exit;
       //print_r($getsalarydetail);exit;
+    
         $this->view->getsalarydetails = $getsalarydetail;
         $this->view->year = $year;
         $this->view->month = $month;

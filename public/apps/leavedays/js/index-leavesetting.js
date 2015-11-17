@@ -12,9 +12,8 @@ var Categories = {
                
               
                var data ='<form id="edit_ltype_table"><table>';               
-                   data += '<tr><td></td><td><input type="hidden" value="'+result[0]['leavetype_id']+ '" name="id" ></td></tr>'
+                   data += '<tr><td></td><td><input type="hidden"  value="'+result[0]['leavetype_id']+ '" name="id" ></td></tr>'
                         +'<tr><td>'+result[1]['delete_confirm']+'"'+result[0]['leavetype_name']+ '"?</td>'
-                       
                         +'<tr></tr><br>'
                          +'<tr><td></td></tr>';             
                data +='<tr><td style="padding-top: 13px;"><a href="#" class="button" id="delete_ltype">'+result[1]['yes']+'</a><a href="#" class="button" id="edit_close">'+result[1]['no']+'</a></td></tr>';
@@ -44,13 +43,12 @@ var Categories = {
         $ovl.dialog("open");
          
 
-        $('#delete_ltype').click(function(){
+        $('#delete_ltype').on('click',function(){
             Categories.Delete($ovl);
         }); 
-        $('#edit_close').click(function(){
+        $('#edit_close').on('click',function(){
            $ovl.dialog("close");
             //$('body').load('leavedays');
-
         });       
     },
  
@@ -80,9 +78,8 @@ var Categories = {
               var result = $.parseJSON(d);
                var data ='<form id="Add_new_ltype"><table>';               
                    data += '<tr><td></td></tr>'
-                        +'<tr><td>'+result[1]['leave_category']+'</td><td><input type="text" style="margin-top:10px;" value="" name="ltype_name" placeholder="'+result[1]['enterltp']+'"></td>'
-                       
-                         +'<tr><td></td></tr>';             
+                        +'<tr><td> '+result[1]['leave_category']+'</td><td><input type="text"   value="" name="ltype_name" placeholder="'+result[1]['enterltp']+'"></td>'
+                        +'<tr><td></td></tr>';             
                data +='<tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype">'+result[1]['yes']+'</a><a href="#" class="button" id="cancel_ltype">'+result[1]['no']+'</a></td></tr>';
                data +='</table></form>';
                Categories.Diaadd(data,result[1]['addleavetype']);
@@ -108,12 +105,12 @@ var Categories = {
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
-        $('#Add_ltype').click(function(){
+        $('#Add_ltype').on('click',function(){
             Categories.AddNew($ovl);
            
         });  
           
-        $('#cancel_ltype').click(function(){
+        $('#cancel_ltype').on('click',function(){
            $ovl.dialog("close");
          
 
@@ -139,17 +136,17 @@ var Categories = {
 $(document).ready(function () {
 
    
-     $(".ltypepopup").click(function () {
+     $(".ltypepopup").on('click',function(){
        var id = $(this).attr('id');
        Categories.DeleteDia(id);
     });
         
     
-      $(".add").click(function () {          
+      $(".add").on('click',function(){         
       Categories.Diaadd();
     });
     
-       $('.editsetting').click(function () {
+       $('.editsetting').on('click',function(){
         
         document.getElementById('max_leavedays').disabled=false;
         document.getElementById('fine_amount').disabled=false;

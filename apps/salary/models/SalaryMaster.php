@@ -26,6 +26,7 @@ class SalaryMaster extends Model {
 //            $result = $this->db->query($sql);
             $SalaryMaster = new SalaryMaster();
             $SalaryMaster->save($data);
+           
 //            if ($SalaryMaster->save($data) == false) {
 //                echo "Umh, We can't store robots right now ";
 //                foreach ($SalaryMaster->getMessages() as $message) {
@@ -92,7 +93,6 @@ class SalaryMaster extends Model {
     /**
      * calculate basic salary for the whole year
      * @param type $param
-     * @author zinmon
      */
     public function calculate_tax_salary($param,$salary_start_date,$creator_id) {
 
@@ -250,7 +250,6 @@ class SalaryMaster extends Model {
     
     /**
      * get leave setting data
-     * @author zin mon
      */
     function getleavesetting() {
         try{
@@ -691,7 +690,7 @@ in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and 
     
     public function deleteSalaryInfo($member_id) {
         try {
-        $sql_salarymaster="UPDATE salary_master SET deleted_flag='1' WHERE member_id='".$member_id."'";
+        $sql_salarymaster="DELETE FROM salary_master  WHERE member_id='".$member_id."'";
         $this->db->query($sql_salarymaster);
         $sql_salaryallowance="DELETE FROM salary_master_allowance WHERE member_id='".$member_id."'";
         $this->db->query($sql_salaryallowance);

@@ -6,7 +6,7 @@
  */
 
 $(document).ready(function () {
-    $('#edit').click(function () {
+    $('#edit').on('click',function(){
         document.getElementById('fileToUpload').disabled = false;
         document.getElementById('username').disabled=false;
         document.getElementById('password').disabled=false;

@@ -29,7 +29,7 @@ $(document).ready(function () {
     
     User.Attendance.init();
     
-    $('#search').click(function () {
+    $('#search').on('click',function(){
         //alert("search");
          User.Attendance.search();
     });  
