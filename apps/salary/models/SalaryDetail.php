@@ -103,7 +103,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 //$sql = "INSERT INTO salary_detail (id,member_id,basic_salary,travel_fee,overtime,pay_date) VALUES(uuid(),'" . $rows['member_id'] . "','" . $rows['basic_salary'] . "','" . $rows['travel_fee'] . "','" . $rows['overtime_rate'] . "',NOW())";
                 $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', travel_fee='" . $travel_fee . "', overtime='" . $overtime_rate . "'  WHERE member_id ='" . $rows['member_id'] . "' and DATE(pay_date)='" . $pay_start_date . "'";
                 //echo $sql;exit;
-                $result = $this->db->query($sql);
+                $this->db->query($sql);
             }
         } catch (Exception $e) {
             echo $e;
@@ -168,8 +168,8 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
 //            echo $sql;
 //            $result = $this->db->query($sql);
 //            $row = $result->fetchall();
-//            //print_r($row);
-//            exit;
+            //print_r($row);
+            //exit;
             //print_r("thank");exit;
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarydet.*', 'core.*', 'salarymast.*', 'attend.*'))
@@ -229,6 +229,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     ->columns(array('salarymas.*', 'core.*'))
                     ->from(array('salarymas' => 'workManagiment\Salary\Models\SalaryMaster'))
                     ->leftjoin('workManagiment\Core\Models\Db\CoreMember', 'salarymas.member_id = core.member_id', 'core')
+                    ->where('salarymas.deleted_flag=0')
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
                     ->execute();

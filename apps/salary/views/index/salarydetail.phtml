@@ -37,11 +37,11 @@
         //print_r($getsalarydetails);
         foreach($getsalarydetails as $A){
             for($i=0;$i<count($A);$i++){
-                //echo $A[$i]['member_id'];
+               echo $A[$i]->core->member_id.'aa';
                 
           
 ?>
-<div style="padding: 0 10px 10px 10px" class="sample">
+<div style="padding: 0 10px 10px 10px">
     <h3><center>G-Next Official Salary Report</center></h3>
 <div>
     <div style="width: 10%; float: left;"><?= $t->_("name");?></div>

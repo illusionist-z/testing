@@ -68,9 +68,11 @@ $(function () {
      var year = document.getElementById('year').value;
      var chkbox = document.getElementsByName('chk[]');
      var chk = [];
+     
     for (var i=0, n=chkbox .length;i<n;i++) {
         if (chkbox [i].checked) 
         {
+           
             chk.push(chkbox[i].value);
         }
        

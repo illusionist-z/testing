@@ -10,7 +10,6 @@ $('a.display').on('click', function(e) {
     var that = $('div.sample:visible'),
         // assigns the text of the clicked-link to a variable for comparison purposes
         t = $(this).text();
-
     // checks if it was the 'next' link, and ensures there's a div to show after the currently-shown one
     if (t == 'NEXT' && that.next('div.sample').length > 0) {
         // hides all the div.sample elements
@@ -38,7 +37,7 @@ var Resign = {
                var data ='<form id="Resign_Date"><table>';               
                    data += '<tr><td></td></tr>'
                         +'<tr><br><td><small>Resign Date:</small> </td><td style="font-size:10px;"><input type="text" style="margin-top:10px;" class="datepicker form-control" name="resign_date" id="resign_date" placeholder="Resign Date" ></td></tr>';
-                         +'<tr><td></td></tr>';             
+                        +'<tr><td></td></tr>';             
                 data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_Resign_Date">Save</a><a href="#" class="button" id="cancel">Cancel</a></td></tr>';
                 data+='<input type="hidden" name="member_id" id="resign_date" value="'+id+ '"td></tr>';
 
