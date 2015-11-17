@@ -29,26 +29,7 @@ class Auth extends Component {
 
     }
     
-     /**
-     * Saw Zin Min Tun
-     *forget password
-     
-     */
-    public function getEmail($forgotParams, & $user = null) {
-        $mail = $this->request->getPost('member_mail');
-        //print_r($mail);exit;
-        //exit;
-        // Check if the user exist
-        $email = $mail;
-        
-        $this->db = $this->getDI()->getShared("db");
-      
-        $user = $this->db->query("SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0");
-        $user = $user->fetchArray();     
-       // print_r($user);exit;
-        return $user;
 
-    }
     
      public function getpermit($loginParams) {
       

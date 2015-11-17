@@ -154,6 +154,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $pass = $filter->sanitize($pass, "string");
         $dept = $filter->sanitize($member['dept'], "string");
         $position = $filter->sanitize($member['position'], "string");
+        $lang = 'en';
         $email = $filter->sanitize($member['email'], "email");
         $phno = $filter->sanitize($member['phno'], "int");
         $address = $filter->sanitize($member['address'], "string");
@@ -167,8 +168,8 @@ class CoreMember extends \Library\Core\BaseModel {
         $targetfile = $target_dir . $newfilename;
 
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
-        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
-                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
+        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,lang,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
+                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $lang . "','"  . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
 
@@ -336,7 +337,6 @@ class CoreMember extends \Library\Core\BaseModel {
         $query1 = "select * from core_member where member_id not in
                    (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) and deleted_flag=0 order by created_dt desc ";
         $data1 = $this->db->query($query1);
-
         $res['noleave_name'] = $data1->fetchall();
         return $res;
     }
@@ -351,12 +351,75 @@ class CoreMember extends \Library\Core\BaseModel {
         //select where user most leave taken
         $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=0 group by a.member_id "
+                . "where a.deleted_flag=1 group by a.member_id "
                 . "order by count(*)";
         $data = $this->db->query($query);
        
        $res['leave_name'] = $data->fetchall();
       
         return $res;
+    }
+     /**
+     * Saw Zin Min Tun
+     *forget password
+     
+     */
+    public function findemail($member_mail) {       
+       // print_r($member_mail);exit;
+        //exit;
+        // Check if the user exist
+        $email = $member_mail;
+        
+        $this->db = $this->getDI()->getShared("db");
+      
+        $user = $this->db->query("SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0");
+        $user = $user->fetchAll(); 
+        //print_r($user);exit;
+        return $user;
+
+    }
+   
+     /**
+     * Saw Zin Min Tun
+     *forget password
+     
+     */
+    public function  insertemailandtoken($member_mail,$token) {       
+     //  print_r($member_mail);
+    //  print_r($token);exit;
+        //exit;
+        // Check if the user exist
+        //$email = $member_mail;
+        
+        $this->db = $this->getDI()->getShared("db");      
+     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token) values(' " . $member_mail . " ' ,' " . $token . " ' )");
+       //print_r($user);exit;
+       // $user = $user->fetchAssoc(); 
+        //print_r($user);exit;
+       return $user;
+
+    }
+     /**
+     * Saw Zin Min Tun
+     *forget password
+     
+     */
+    public function  updatepassword($member_mail,$newpassword) {       
+//        print_r($member_mail);
+//        print_r($newpassword);exit;
+//        print_r($token);exit;
+        //exit;
+        // Check if the user exist
+        //$email = $member_mail;
+        $newpassword = sha1($newpassword);
+        //print_r($newpassword);exit;
+        $this->db = $this->getDI()->getShared("db");
+      
+        $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
+       // print_r($user);exit;
+       // $user = $user->fetchArray(); 
+        //print_r($user);exit;
+        return $user;
+
     }
 }

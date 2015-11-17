@@ -33,13 +33,14 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #userlistsearch,#namesearch,#sub,#search,#apply_form_submit,#add_salary_apply,
 #search_salary,#add_user,#edit_edit,#Add_deduct,#Add_ltype,#delete_ltype,#cal_salary,
 #create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,
-#edit_allowance_edit,#edit_attendance_edit,#alladd,#Add_Resign_Date,#edit,#usersearch,#noti_accept{
+#edit_allowance_edit,#edit_attendance_edit,#alladd,#Add_Resign_Date,#edit,#usersearch,#noti_accept,
+#btngo{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
 #apply_cancel,#add_salary_cancel,#displaypopup,#add_dec,#addinguser_close,#edit_close,
 #cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
 #cancel,#save,#btn_logout,#settingimg,#settingborder,#apply_form_cancel,#noti_reject,
-#editsetting,#savesetting,#noleaveview{
+#editsetting,#savesetting,#noleaveview,#btn_cancel{
     border-color:#3c8dbc;color: #3c8dbc;border-radius: 4px;
 }
 
@@ -86,7 +87,8 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
     font-size: 50px;
     color: #3c8dbc;
 }
-.forgot-logo{width: 100%;height: 55px;text-align:center;background: #E60000;}
+.forgot-logo{width: 100%;height: 55px;text-align:center;background: #3c8dbc;}
+/*#E60000*/
 #forgottext{ 
     font-size: 18px;
     color: white;  
@@ -94,7 +96,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 }
 .forgot-box-body{background:#fff;padding:20px;color:#444;color:#666}
 #btngo{
-    background-color:#E60000;
+    background-color:#3c8dbc;
     color: white;
 }
 #imageaddress{
@@ -104,21 +106,47 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
     border-image-outset: 10px;*/
 }
 .backtologin{
-    width: 100%;height: 45px;text-align:left;
+     height: 55px;text-align:left;
      background:#F5F5F5 ;
 }
 #backtologintext{
-    padding: 0px 10px;
-    outline-color: #3c8dbc;
     font-weight: bold;
     color: black;
+    padding: 0px 20px;
 }
+
 #backtologintext:hover{
     color:grey;
 }
+#forgotname{
+    font-weight: bold;
+    margin-left: 15px;
+}
+
 #goright{
     float: right;
     margin-right: 15px;
+}
+#saltsuser{
+    color: #3c8dbc;
+}
+#profileandname{
+    width:30%;
+    float: left;
+}
+#howreset{
+    width:70%;
+    float: right;
+    height: 145px;
+}
+#textmail{
+    margin-left: 14px;
+    color: #3c8dbc;
+}
+#newpass,#compass{
+    width:50%;
+   text-align: right;
+   font-weight: bold;
 }
 .forscroll li{
     list-style-type: none;
