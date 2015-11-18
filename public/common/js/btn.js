@@ -25,17 +25,20 @@
 //};
 
 
-$('.geolocation').ready(function() {
-    geo();
-});
 /**
  * getting user late reason when click checkin
  * @author Su Zin Kyaw<gnext.suzin@gmail.com>
  */
 $(document).ready(function(){
     $('.checkin').on('click',function(){
+$('.geolocation').ready(function() {
+    geo();
+});
+        
        var note = document.getElementById('note').value;
        window.location.href = baseUri + 'dashboard/index/checkin?note='+note;
+       
+       //alert("Successfully Checked In");
 
     });
 });

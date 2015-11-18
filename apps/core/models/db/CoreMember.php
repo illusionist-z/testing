@@ -216,7 +216,7 @@ class CoreMember extends \Library\Core\BaseModel {
             //print_r($sql);exit;
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-            //$final_result[$i]['0']['creator_name']=$noti['creator_name'];
+            $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
            
             
