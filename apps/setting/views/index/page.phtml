@@ -1,73 +1,118 @@
 <?php
-    use Phalcon\Filter;
+
+/**
+ * @author Yan Lin Pai  <> <wizardrider@gmail.com>
+ * @page.html
+ */
 ?>
 
-             <br>
-                                <h3>Page Rule Setting </h3>
-                                
-                                <br>
-                                <input type="button" name="AddPageName" value="Add Page Name"> 
-                                <br>
-                                
-                <table class="listtbladmin listtbl">
-                    
-                        <thead>
-                         <br>
-                                <tr>
-                                <th width="100">Group ID</th>
-                                <th width="">Core Page Name</th>
-                                 <th width="">Group Rule</th>
-                                <th width="">Action</th>
-                                 </tr>
-                        </thead>
-            
-                   <?php 
-                   foreach($core as $datagroup){ ?>
-                                <tr>
-                                        <td><?= $datagroup->permission_group_id ?></td>
-                                        <td><?= $datagroup->permission_code ?></td>
-                                        <td><?= $datagroup->permission_group_code ?></td>
-                                        <td>  
-         <a href="#" onclick="showDialogname.apply(this); return false;" class="btn" type="black" id="<?= $datagroup->permission_code ?>"> Edit </a>
-                                        </td> 
-                                         
-                                </tr>
-                                
-                                <div id="opent<?= $datagroup->permission_code ?>" title="Change Page Rule" style="display: none;">
-                                        Group ID    :
-                                        
-                                        <select type="text" name=id value=>
-                                        <?php
-                                        foreach($coreid as $data){ 
-                                          ?>
-                                        <option value="<?= $data->group_id ?>">
-                                            <?= $data->group_id ?>
-                                        </option>
-                                        <?php
-                                         }
-                                         ?>
-                                        </select>
-                                        <br><br>
-                                        Core Page Name  :
-                                                      <?= $datagroup->permission_code ?> 
-                                        <br><br>
-                                           Group Rule
-                                        <select type="text" name=id value=>
-                                        <?php
-                                        foreach($coreid as $data){ 
-                                          ?>
-                                        <option value="<?= $data->name_of_group ?>">
-                                            <?= $data->name_of_group ?>
-                                        </option>
-                                        <?php
-                                         }
-                                         ?>
-                                        </select>
-                                        
-                                            
-                              </div>
-                                
-                                
-                   <?php }
-                   ?>
-            </table>  
+<a name="Page"></a>
+<br>
+<h3>Change Page Rule  </h3>
+
+<br>
+<a href="#" onclick="addPage.apply(this);
+        return false;" class="btn" type="black" id=""> Add Page Permission  </a>                                                                                                                                           
+<br>
+<div id="addPage" title="Add Page Rule" style="display: none;">
+    <form method="POST" action="AddPageRule">
+        Page Name      :<input type="text" name="permission_code" value="">
+        Group Name      :    <select type="text" name='page_rule_group' id="page_rule">
+                                                    <?php
+                                                    foreach ($coreid as $data) {
+                                                        ?>
+                                                        <option value="<?= $data->group_id."_".$data->name_of_group ?>">
+                                                            <?= $data->name_of_group ?>                                       
+                                                        </option>                                                       
+                                                        <?php
+                                                    }
+                                                    ?>
+                                    </select>
+    </form>
+</div>   
+
+<table class="listtbladmin listtbl">
+
+    <thead>
+    <br>
+    <tr>
+        <th width="90">User ID</th> 
+        <th width="175">Page Name</th>
+
+        <th width="">G Name</th>
+        <th width="">Action</th>
+
+    </tr>
+</thead>
+
+<?php foreach ($coreuser2 as $datauser2) { ?>
+    <tr>   
+        <td><?= $datauser2->idpage ?></td>
+        <td><?= $datauser2->permission_code ?></td>                                       
+        <?php
+        foreach ($coreid as $data) {
+
+            if ($datauser2->page_rule_group == $data->group_id) {
+                ?>
+                <td> 
+
+
+                    <?= $data->name_of_group ?>  
+                    (<?= $datauser2->page_rule_group ?>)
+                </td>
+                <?php
+            }
+            //else{ echo 'Error';}
+        }
+        ?>
+
+
+
+        <td>
+
+            <a href="#" onclick="PageRuleSetting.apply(this);
+                        return false;" class="btn" type="black" id="<?= $datauser2->idpage ?>"> Edit </a>  
+        </td> 
+
+    </tr>
+
+    <div id="pageRule<?= $datauser2->idpage ?>" title="Change User Rule" style="display: none;">
+
+        <br> 
+        Group ID    :
+
+
+        <input type="text" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled>
+        <br> 
+
+        Page Name  : 
+        <input type="text" name="permission_code" value="<?= $datauser2->permission_code ?>" disabled>
+        <br><br> 
+        <form method="POST" action="User2RuleSetting">    
+            Group Rule
+            <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >
+            <input type="hidden" name="permission_code" value="<?= $datauser2->permission_code ?>" >
+
+            <select type="text" name='page_rule_group' value='' id="changeuser">
+                <?php
+                foreach ($coreid as $data) {
+                    ?>
+                    <option value="<?= $data->group_id ?>">
+                        <?= $data->name_of_group ?>  
+                    </option>
+                    <?php
+                }
+                ?>
+            </select>
+        </form>
+
+    </div>
+
+
+
+
+
+    <?php
+}
+?>
+</table>  

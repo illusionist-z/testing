@@ -24,7 +24,31 @@ function showDialog()
 
 }
 
+ /**
+ * @author Yan Lin Pai  <> <wizardrider@gmail.com>
+ * @PageRuleSetting
+ */
+function PageRuleSetting()
+{
+    var dia_page_rule = $(this).attr('id');
+    $("#pageRule" + dia_page_rule).dialog({
+        modal: true,
+        draggable: false,
+        resizable: false,
+        width: 300,
+        height: 350,
+        buttons: {
+            'Save': function () {
+               $("form").submit();
+            },          
+            'Cancel': function () {
+                $(this).dialog('close');
+            }
 
+        }
+
+    });
+}
 
 
 function showDialogname()
@@ -97,4 +121,22 @@ function addGroup()
     });
 }
 
-
+function addPage()
+{
+    // var dia_id = $(this).attr('id'); 
+    $("#addPage").dialog({
+        modal: true,
+        draggable: false,
+        resizable: false,
+        width: 300,
+        height: 300,
+        buttons: {
+            'Save': function () {
+                $('form').submit();
+            },
+            'Cancel': function () {
+                jQuery(this).dialog('close');
+            }
+        }
+    });
+}
