@@ -7,7 +7,7 @@ var Paging = {
     Pager: function() {
         //this.perpage=1,        
         //this.currentpage,
-        //this.pagingcontainer = 'tbody';
+        this.pagingcontainer = 'tbody';
         //get average page number
         this.numPages = function() {
             var numPages = 0;
@@ -24,7 +24,7 @@ var Paging = {
                     ((this.currentpage - 1) * this.perpage) + this.perpage).each(function() {                        
                 html += '<tr>' + $(this).html() + '</tr>';
             });
-            $('tbody').html(html);
+            $(this.pagingcontainer).html(html);
             renderControls(this.currentpage, this.numPages());
         };
         //for pagination index 

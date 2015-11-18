@@ -34,14 +34,13 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setPermission() {
         $aryModules = \Library\Core\Module::get();
+        //setting permission
+        $coremember = new \workManagiment\Auth\Models\Db\CorePermissionRelMember();
+        $coremember = \workManagiment\Auth\Models\Db\CorePermissionRelMember::findByRelMemberId($this->session->user['member_id']);
+        $permission_id = $coremember[0]->rel_permission_group_code;
         $module = $this->router->getModuleName();
-//        echo $this->router->getControllerName();
-//        echo $this->router->getActionName();
-//        echo $module.'<br><br>';
-       // print_r($this->session->auth);exit;
         $ctrname=$this->router->getControllerName();
-        $actname=$this->router->getActionName();
-        
+        $actname=$this->router->getActionName();        
         $chksubmenu="";
         $permission="";
         
@@ -70,17 +69,18 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 //echo "Equal<br>";
                 $permission=1;
                }
-               if($module === $bigmenu){
-                //echo "Equal<br>";
+               if($module === $bigmenu){                
                 $permission=1;
+               }               
+               if($permission_id === 'ADMIN'){
+                   $permission = 1;
                }
 //                else {
 //                    //echo "Not equal";
 //                    $permission_notequal=0;
 //                }
-                             }
-                                  
-               
+               }              
+          
         }
 //        echo $permission;
 //        exit;

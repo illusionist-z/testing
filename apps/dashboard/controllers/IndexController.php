@@ -12,8 +12,7 @@ class IndexController extends  ControllerBase {
         //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
-        $this->permission = $this->setPermission();
-        
+        $this->permission = $this->setPermission();        
     }
  /**
      * 
@@ -87,9 +86,14 @@ class IndexController extends  ControllerBase {
         $Attendances = new \workManagiment\Dashboard\Models\Attendances();
         $numofatt=$Attendances->getattlist($id);
         $numofleaves=$Attendances->gettotalleaves($id);
+        if($this->permission == 1){
         $this->view->setVar("numatt",$numofatt);
         $this->view->setVar("numleaves",$numofleaves);
         $this->view->t = $this->_getTranslation();
+        }
+        else{
+            $this->response->redirect('core/index');
+        }
     }
     /**
      * set location,latitude and longitude to session
