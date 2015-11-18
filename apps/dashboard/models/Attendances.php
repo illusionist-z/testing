@@ -32,7 +32,7 @@ class Attendances extends Model {
           Condition : Already Checked in or not
          * */
         if ($att != NULL) {
-            $status = " Already Checked in ";
+            $status = " Already Checked In ";
         } else {
             $noti_id=rand();
             if($note!=NULL){
@@ -92,6 +92,7 @@ class Attendances extends Model {
 
     /**
      * @author david
+     * @version Saw Zin Min Tun
      * @return array {leave name}
      * @return array {no leave name}
      */
@@ -103,7 +104,7 @@ class Attendances extends Model {
           (select member_id from absent group by member_id order by count(*) DESC) limit 3"; */
         $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=0 group by a.member_id "
+                . "where a.deleted_flag=1 group by a.member_id "
                 . "order by count(*) desc limit 3";
         $data = $this->db->query($query);
         //select where no leave name in current month

@@ -18,6 +18,7 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
+        
         $this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
@@ -33,7 +34,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
         $id=$this->session->user['member_id'];        
-        $this->view->setVar("noti",$noti);
+       
         $name = $this->request->get('namelist');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();

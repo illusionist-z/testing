@@ -18,12 +18,17 @@ class IndexController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
         $this->assets->addCss('apps/salary/css/index_show_salarylist.css');
-        $this->assets->addCss('common/css/dialog.css');        
-        $this->assets->addCss('apps/salary/css/salary.css');
-        $this->assets->addJs('common/js/paging.js');        
+        $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('apps/salary/css/salary.css');        
+        $this->assets->addJs('common/js/paging.js');
+        //$this->assets->addJs('common/js/popup.js');    //popup message
+        //$this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('common/js/export.js');
         //$this->assets->addJs('apps/salary/js/index-allowance.js');
-        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');        
+        //$this->assets->addJs('apps/salary/js/index-salarysetting.js');
+
+        $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         //$this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
@@ -129,7 +134,9 @@ class IndexController extends ControllerBase {
         //print_r($geteachmonthsalary);exit;
         if($this->permission==1){
         $this->view->module_name =  $this->router->getModuleName();
-        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);               
+        $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
+        
+        
         }
         else {
         $this->response->redirect('core/index');
@@ -318,6 +325,19 @@ class IndexController extends ControllerBase {
         echo json_encode($data);
     }
 
+      /**
+     * get translation for allowance text box
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
+    public function gettranslateAction(){
+        $t = $this->_getTranslation();
+         $data['allowance_name'] = $t->_("allowance_name");
+        $data['amount'] = $t->_("amount");
+        $data['enter_allname'] = $t->_("enter_allname");
+        $data['enter_allamount'] = $t->_("enter_allamount");
+       $this->view->disable();
+        echo json_encode($data);
+    }
     /**
      * edit allowance data
      * @author Su Zin Kyaw
@@ -453,7 +473,11 @@ class IndexController extends ControllerBase {
         $Deduction->add_deduction($data);
         $this->view->disable();
     }
-
+    
+    /**
+     * show deduction related with salary calculation
+     * @author Su Zin Kyaw
+     */
     public function show_add_dectAction() {
         $t = $this->_getTranslation();
         $data[1]['deduce_frm'] = $t->_("deduce_frm");
@@ -477,10 +501,13 @@ class IndexController extends ControllerBase {
         $Deduction->delete_deduction($deduce_id);
         $this->view->disable();
     }
-
     
+    /**
+     * Print salary action
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function printsalaryAction() {
-         $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/salary/js/print.js');
         $month=$this->request->get('month');
         $year=$this->request->get('year');
         $member_id=$this->request->get('chk_val');
@@ -500,36 +527,46 @@ class IndexController extends ControllerBase {
         $this->view->getsalarydetails = $getsalarydetail;
     }
     
-    
+    /**
+     * Show salary detail
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia> 
+     */
     public function salarydetailAction() {
         $this->assets->addJs('apps/salary/js/index_salarydetail.js');
         $month=$this->request->get('month');
         $year=$this->request->get('year');
         $member_id=$this->request->get('chk_val');
         $mid=  explode(',', $member_id);
-        //echo count($mid);
+        
         $Salarydetail = new SalaryDetail();
-        for($i=0;$i<count($mid);$i++){
+        for($i=0;$i<=count($mid);$i++){
             echo $mid[$i]."<br>";
             if($mid[$i]!='on'){
             $getsalarydetail[] = $Salarydetail->getpayslip($mid[$i], $month, $year);
                 
             }
         }
-        
-      //print_r($getsalarydetail);exit;
+        //exit;
+        //print_r($getsalarydetail);exit;
+    
         $this->view->getsalarydetails = $getsalarydetail;
         $this->view->year = $year;
         $this->view->month = $month;
     }
-    
+    /**
+     * Save resign date 
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function addresigndateAction(){
         $Salarydetail = new SalaryDetail();
         $data['member_id'] = $this->request->getPost('member_id');
         $data['resign_date'] = $this->request->getPost('resign_date');
         $Salarydetail->addresign($data);
     }
-    
+    /**
+     * Delete salary detail
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function delete_salaryAction() {
         $member_id = $this->request->getPost('id');
         $SalaryMaster=new SalaryMaster();

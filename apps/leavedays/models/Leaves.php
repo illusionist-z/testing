@@ -95,7 +95,6 @@ class Leaves extends \Library\Core\BaseModel {
     public function applyleave($uname, $sdate, $edate, $type, $desc, $creator_id) {
         $filter = new Filter();
         $uname = $filter->sanitize($uname, "string");        
-        //$uname = $filter->sanitize($uname, "string");
         $type = $filter->sanitize($type, "string");
         $desc = $filter->sanitize($desc, "string");
 
@@ -112,7 +111,6 @@ class Leaves extends \Library\Core\BaseModel {
         } else {
             $lastdata = ($list['0']['total_leavedays']);
         }
-
         if (isset($sdate) AND isset($edate) AND isset($desc)) {
             $noti_id = rand();
             $today = date("Y-m-d H:i:s");
@@ -133,6 +131,7 @@ class Leaves extends \Library\Core\BaseModel {
                             . "'" . $edate . "','" . $leave_day . "',"
                             . "'" . $type . "','" . $desc . "',"
                             . "'" . $lastdata . "',0,'" . $noti_id . "',now())");
+                    
                     $result = $this->db->query("INSERT INTO core_notification (noti_creator_id,"
                 . "module_name,noti_id,noti_status) "
                 . "VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
@@ -182,16 +181,15 @@ class Leaves extends \Library\Core\BaseModel {
         $credt = $this->db->query("SELECT * "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchArray();
+        
         if ($created_date['working_year_by_year'] == NULL) {
-            
             $date['startDate'] = $created_date['working_start_dt'];
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_start_dt'])));
         } else {
             $date['startDate'] = $created_date['working_year_by_year'];
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
-           // print_r($date);exit;
+            //print_r($date);exit;
         }
-        //print_r($date);exit;
         return $date;
     }
 
@@ -285,7 +283,7 @@ class Leaves extends \Library\Core\BaseModel {
                 . " core_notification.noti_status=1  "
                 . "WHERE core_notification.noti_id='" . $noti_id . "'");
         $this->db->query("UPDATE core_notification_rel_member "
-                . "set core_notification_rel_member.status=1,module_name='leaves' "
+                . "set core_notification_rel_member.status=1,module_name='leaves',created_time='now()' "
                 . " WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
     }
 
@@ -295,6 +293,7 @@ class Leaves extends \Library\Core\BaseModel {
      * @param type $sdate
      * change leave status to '2'
      * when admin reject leavedays request from user
+     * @author Su Zin Kyaw<gnext.suzin@gmail.com
      */
     public function rejectleave($noti_id) {
         $this->db = $this->getDI()->getShared("db");
@@ -316,7 +315,6 @@ class Leaves extends \Library\Core\BaseModel {
                 ->from('workManagiment\Leavedays\Models\LeavesSetting')
                 ->getQuery()
                 ->execute();
-
         return $row;
     }
 

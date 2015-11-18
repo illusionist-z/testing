@@ -29,7 +29,7 @@
                     <div id="salary_detail_div2">
                         <?= $t->_("department");?> :
                         <span>
-                            <select class="select" data-toggle="select" name="cond[dept]">
+                            <select class="select" data-toggle="select" name="cond[dept]"  id="department">
                                 <option value=""><?= $t->_("department");?></option>
                                 <?php
                                 foreach ($usernames as $username) {
@@ -43,8 +43,8 @@
                     <div id="salary_detail_div3">
                         <?= $t->_("position");?> :
                         <span>
-                            <select class="select" data-toggle="select" name="cond[position]">
-                                <option value=""><?= $t->_("position");?></option>
+                            <select class="select" data-toggle="select" name="cond[position]" id="position">
+                                <option value="" ><?= $t->_("position");?></option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -56,7 +56,8 @@
                     </div>
                     <div id="salary_detail_div4">
                          <?= $t->_("salary_rate");?> :
-                        <select class="select" data-toggle="select" name="cond[salary]">
+                        <select class="select" data-toggle="select" name="cond[salary]" id="salary_rate">
+                          <option value="" ><?= $t->_("salary_rate");?></option>
                             <option>200000~400000</option>
                             <option>400001~700000</option>
                             <option>700001~1000000</option>
@@ -84,7 +85,7 @@
             <table class="listtbl" >
                 <thead>
                     <tr>
-                        <th><INPUT type="checkbox" onchange="checkAll(this)" name="chk[]" /></th>
+                        <th><INPUT type="checkbox" id="sal_check" onchange="checkAll(this)" name="chk[]" /></th>
                         <th><?= $t->_("name");?></th>
                         <th><?= $t->_("department");?></th>
                         <th><center><?= $t->_("basic_salary");?></center></th>

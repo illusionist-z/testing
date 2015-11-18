@@ -11,7 +11,7 @@ $(document).ready(function () {
     // ユーザーのクリックした時の動作。    
        
     
-    $('#sub').click(function () {               
+    $('#sub').on('click',function(){             
         Attendance.monthlylist();
     });
     //monthlylist
@@ -236,7 +236,7 @@ $(document).ready(function () {
     Attendance.init();         
                       
    
-    $('.monthauto').click(function () {
+    $('.monthauto').on('click',function(){
         //alert("aaa");
         Attendance.monthautolist();
     }); 

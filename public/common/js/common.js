@@ -103,12 +103,22 @@ $(document).ready(function() {
     };
 //   
     // ユーザーのクリックした時の動作。
-    $('#btn_logout').click(function() {
-        alert("ログアウトしました。");
+    $('#btn_logout').on('click',function(){
+         $.ajax({
+            
+           url:baseUri+"auth/logout/gettranslate",
+           type: "GET",
+           success:function(res){
+               var result = $.parseJSON(res);
+               var logout=result['logout'];
+               alert(logout);
+           }
+        });
+      
         logout();
     });
 
-    $('#btnLogin').click(function() {
+    $('#btnLogin').on('click',function(){
         var url = "location_session";
         var n = new Date();
 
@@ -134,7 +144,7 @@ $(document).ready(function() {
      * menu toggle function
      */
 
-    $('.sidebar-toggle').click(function(e) {
+    $('.sidebar-toggle').on('click',function(e){
         e.stopPropagation();
         //e.preventDefault();
         //get collapse content selector

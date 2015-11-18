@@ -23,12 +23,13 @@ class Auth extends Component {
         $this->db = $this->getDI()->getShared("db");
       
         $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0");
-        $user = $user->fetchArray();
-        
+        $user = $user->fetchArray();     
         
         return $user;
 
     }
+    
+
     
      public function getpermit($loginParams) {
       

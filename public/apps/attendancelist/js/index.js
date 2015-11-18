@@ -89,12 +89,12 @@ var Attendance = {
                             title : d[1]['edit_att']
                         });
                       $dia.dialog("open");
-                      $('#edit_attendance_close').click(function(e){
+                      $('#edit_attendance_close').on('click',function(e){
                           e.preventDefault();
                           $dia.dialog("close");
                           $('#edit_att_time').empty();
                       });
-                      $("#edit_attendance_edit").click(function(e){
+                      $("#edit_attendance_edit").on('click',function(e){
                           e.preventDefault();
                           Attendance.time_edit_btn(id);                        
                         });             
@@ -269,17 +269,17 @@ var Attendance = {
 $(document).ready(function () {
     Attendance.init('reload');
                       
-    $('#namesearch').click(function () {
+    $('#namesearch').on('click',function(){
         Attendance.todaylist();
     });              
 
-    $('.tags').click(function () {        
+    $('.tags').on('click',function(){     
         $(this).autocomplete({
             source :dict
         })
     });
     
-    $('.monthauto').click(function () {
+    $('.monthauto').on('click',function(){
         $(this).autocomplete({
             source: dict
         });
