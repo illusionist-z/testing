@@ -65,7 +65,23 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         $this->response->redirect('setting/index/index');
         }
-         
+        /**
+         * @author David JP <david.gnext@gmail.com>
+         * @option[] - return array
+         */
+         public function AddPageRuleAction()
+        {
+        $core = new CorePermissionGroup();
+        $option = explode("_",  $this->request->getPost('page_rule_group'));
+        $core->page_rule_group = $option[0];
+        $core->permission_group_code = $option[1];
+        $core->permission_group_name = strtolower($option[1]);
+        $core->permission_code = $this->request->getPost('permission_code');
+        $core->save();
+        $this->view->disable();
+        $this->response->redirect('setting/index/index');
+        }
+        
         public function DelGroupRuleAction()
         {
         $core = new CorePermissionGroupId();

@@ -132,7 +132,7 @@ function addPage()
         height: 300,
         buttons: {
             'Save': function () {
-                $("form").submit();
+                $('form').submit();
             },
             'Cancel': function () {
                 jQuery(this).dialog('close');
