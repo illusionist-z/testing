@@ -109,8 +109,9 @@ class IndexController extends ControllerBase {
         {     
                 $idpage = $this->request->getPost("idpage");
                 $page_rule_group = $this->request->getPost("page_rule_group");
-                $success=$this->db->execute("UPDATE core_permission_group SET page_rule_group=$page_rule_group
-                                                                WHERE idpage=$idpage");
+                $permission_code = $this->request->getPost("permission_code");var_dump($permission_code);
+                $core = new CorePermissionGroup();
+                $success = $core->corepermissionUpdate($idpage,$page_rule_group,$permission_code);  //updating field permission
                 if($success)
                 {
                 $this->view->disable();

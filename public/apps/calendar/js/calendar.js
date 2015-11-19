@@ -5,7 +5,8 @@
  */
 var $ovl, $selectname, dict = [];
 var Calendar = {
-    init: function (json_events) {
+    init: function (json_events) {                
+        
         if (!json_events) {
             $.ajax({
                 url: 'index/calenderauto',
@@ -66,6 +67,8 @@ var Calendar = {
                 //check if dialog is exist
                 if ($('#dialog_create').hasClass('ui-dialog-content')) {
                     $('#sdate_create_event').val(start);
+                    $('#title_create_event').val("");
+                    $('#select_name').val("");
                     $('#edate_create_event').val(end);
                     $('#dialog_create').dialog('open');
                 }
@@ -74,7 +77,7 @@ var Calendar = {
                 }
             },
             eventMouseout: function (calEvent, domEvent) {
-                $('table').remove('.popup');
+                $('table').remove('.popup');                
             },
             eventMouseover: function (event) {
                 var start = event.start.format(), end;
@@ -83,15 +86,15 @@ var Calendar = {
                 } else {
                     end = event.end.format();
                 }
-
+                
                 if ($(this).hasClass('popup')) {
                     deselect($(this));
-                } else {
-                    var str = "<table style='width:300px;height:80px;background:#3c8dbc;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
+                } else {                    
+                    var str = "<table style='width:300px;height:80px;background:#3c8dbc;z-index:9999;position:relative;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
                     str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
                     str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";
-                    $(this).append(str);
-                }
+                    $(this).append(str);         
+            }
             },
             eventClick: function (event) {
                 //check dialog box exist
@@ -99,6 +102,8 @@ var Calendar = {
                 Calendar.Dialog.open(event);
             }
         });
+        
+        $('.fc-today').css("opacity","0.319");
     },
     event: function (val,reload) {
         $.ajax({
@@ -376,13 +381,24 @@ Calendar.Dialog = {
                     }
                 }
                 else {
+                     var selectedvalue = [];                            
                     $('#calendar').remove(), //remove calendar origin
-                            $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'), //replace a new calendar
-                            $('body').load('index');
+                    $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'), //replace a new calendar                            
                     dia.dialog("close");
-                }
-            }
-
+                    if ($(':checkbox:checked').length > 0) {
+                                $(':checkbox:checked').each(function (i) {
+                                    selectedvalue[i] = $(this).val();
+                                });                                            
+                     }
+                    if(selectedvalue != ""){
+                        Calendar.event(selectedvalue,"none");
+                        //Calendar.Dialog.auto();
+                    }
+                    else{
+                        $('body').load('index');
+                    }
+                    }                    
+                }            
         });
     },
     delete: function (id, member, dia) {
@@ -390,12 +406,21 @@ Calendar.Dialog = {
             url: "index/delete",
             data: {data: id},
             async: false,
-            dataType: 'json'
-        }).done(
-                $('#calendar').remove(), //remove calendar origin
-                $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'), //replace a new calendar
-                Calendar.event(member,"none"), dia.dialog("close"),$('.dropdown-toggle').dropdown()
-                );
+            dataType: 'json'                                                         
+        }).done(reload(member,dia));
+    },
+    auto : function (){
+            $('#select_name').click(function () {
+        $(this).autocomplete({
+            source: dict
+        });
+    });
+    //for event calender auto complete username
+    $('#event_uname,#show_name').click(function () {
+        $(this).autocomplete({
+            source: dict
+        });
+    });
     }
 };
 $(document).ready(function () {
@@ -435,8 +460,29 @@ $(document).ready(function () {
 
         var name = document.getElementById('select_name').value;
         //alert(name);
-        Calendar.getmemid(name);
+        //Calendar.getmemid(name);
 
     });
 });
 
+function reload(member,dia){
+    $('#calendar').remove();//remove calendar origin
+                $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'); //replace a new calendar
+                
+                var selectedvalue = [];
+                 if ($(':checkbox:checked').length > 1) {
+                                $(':checkbox:checked').each(function (i) {
+                                    selectedvalue[i] = $(this).val();
+                                });                                            
+                     }
+                    if(selectedvalue != ""){
+                        Calendar.event(selectedvalue,"none");
+                        //Calendar.Dialog.auto();
+                    }
+                    else{
+                        Calendar.event(member,"none")
+                    }
+                 
+               dia.dialog("close");
+               $('.dropdown-toggle').dropdown();
+}
