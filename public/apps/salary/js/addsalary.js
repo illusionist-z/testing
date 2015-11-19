@@ -23,11 +23,10 @@ var AddSalary = {
                                          repair('#add_salary_uname');break;
                                                                
                          case 'bsalary'   :$('#add_salary_bsalary_error').text(cond[i]).css({color:'red'}); 
-                                         break; 
+                                            break; 
                                      
-                         case 'checkall'    :   
-                                                        $('#add_salary_ssc_error').text(cond[i]).css({color:'red'});
-                                                        repair('#add_salary_checkall');break;            
+                         case 'checkall'    :   $('#add_salary_ssc_error').text(cond[i]).css({color:'red'});
+                                                repair('#add_salary_checkall');break;            
                      }
                  }
                 

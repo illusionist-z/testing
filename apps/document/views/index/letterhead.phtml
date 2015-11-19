@@ -5,13 +5,20 @@
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <style>
+         @page
+      {
+        size: 21cm 29.7cm;  /* A4 */
+        margin: 1cm 1cm 1cm 1cm;
+        mso-page-orientation: portrait;
+      }</style>
     </head>
 <!-- Main content -->
 <section class="content">
     <div class="row"><!-- for search form-->
         <div class="col-md-12" ><!--start add user form--->
             <div style="width:100%;">
-                <form action="editinfo" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
+                <form action="editinfo" method="post" width="650px" height="300px"  enctype="multipart/form-data"> 
 
                 <div >
                     <div style="float:right;">
@@ -39,17 +46,10 @@
                         <p>Tel: <?php echo $info['company_phno']?></p></div>
                         </td>
                     </tr>
-                </table> <div id="divId"><input  type="file"  style="margin-left: 20px;"   name="fileToUpload"   id="fileToUpload" style="margin-bottom: 1%;" > </div>
-                
-                    
-                   
-
-                   
-                     
+                </table> 
                   <hr>
-                   
                   </form>
-                 </div> <div id="editinfo" style="width: 29%;display: inline-block;float: right;margin-right: 57%;">
+                 </div> <div id="divId"><input  type="file"  style="margin-left: 20px;"   name="fileToUpload"   id="fileToUpload" style="margin-bottom: 1%;" > </div><div id="editinfo" style="width: 29%;display: inline-block;float: right;margin-right: 57%;">
                             <input style="height: 1%" type="text" class="company_name" id="company_name" name="update[company_name]" value="<?php echo  $info['company_name'];?>"  style="width:350px;">
                             <input style="height: 1%; width: 90%" type="text" class="company_address" id="company_address" name="update[company_address]" value="<?php echo  $info['company_address'];?>"  style="width:350px;">
                             <input style="height: 1%" type="text" class="company_phno" id="company_phno" name="update[company_phno]" value="<?php echo  $info['company_phno'];?>"  style="width:350px;">

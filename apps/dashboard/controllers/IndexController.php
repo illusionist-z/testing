@@ -102,12 +102,15 @@ class IndexController extends  ControllerBase {
     public function location_sessionAction() {
         $lat = $this->request->get('lat');
         $lng = $this->request->get('lng');
+        $add=$this->request->get('location');
         $offset = $this->request->get('offset');
         $this->session->set('location', array(
             'lat' => $lat,
             'lng' => $lng,
+            'location'=>$add,
             'offset' => $offset
-        ));
+        )); 
+        
     }
     
     /**
@@ -120,26 +123,28 @@ class IndexController extends  ControllerBase {
         $note = $this->request->get('note');
         $lat = $this->session->location['lat'];
         $lon = $this->session->location['lng'];
+        $add = $this->session->location['location'];
         $noti_Creatorid=$User->GetAdminstratorId();
         $creator_id=$noti_Creatorid[0]['rel_member_id'];
-        //get user location using lat and log
-          if(0==$lon && 0==$lat){
-               $add="-";
-               
-                }
-                else{
-                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
-                $json = @file_get_contents($url);
-                $data=json_decode($json);
-                if( isset($data->results[5]->formatted_address)){
-                $add= $data->results[5]->formatted_address;
-                }
-                else
-                {
-                   $add="-";
-                }
-                
-                }
+//        //get user location using lat and log
+//          if(0==$lon && 0==$lat){
+//               $add="-";
+//                }
+//                else{
+//                   
+//                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
+//                $json = @file_get_contents($url);
+//                $data=json_decode($json);
+//                print_r($data);exit;
+//                if( isset($data->results[5]->formatted_address)){
+//                $add= $data->results[5]->formatted_address;
+//                }
+//                else
+//                {
+//                   $add="-";echo "c";
+//                }
+//                
+//                }
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add,$creator_id);
         $this->view->disable();

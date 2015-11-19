@@ -24,16 +24,19 @@ else{
 }
 
 function geo() {
+  
+   
     if (navigator.geolocation) {
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
+        var location=geoplugin_city()+","+geoplugin_countryName();
+        
         $.ajax({
-            url: url + "?offset=" + offset,
+            url: url + "?offset=" + offset+"&location="+ location,
             type: 'GET',
             dataType: 'json'
         });
-
         navigator.geolocation.getCurrentPosition(GEOprocess);
     }
 }
@@ -43,8 +46,9 @@ function GEOprocess(position) {
     var url = "location_session";
     var n = new Date();
     var offset = n.getTimezoneOffset();
+    var location=geoplugin_city()+","+geoplugin_countryName();
     $.ajax({
-        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&offset=" + offset,
+        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&offset=" + offset+"&location="+ location,
         type: 'GET',
         dataType: 'json',
         success: function (d) {
