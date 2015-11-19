@@ -20,6 +20,7 @@ var Calendar = {
                         //alert(json_obj[i].full_name);
                         dict.push(json_obj[i].full_name);
                     }
+                    return dict;
                 }
             });
         }
@@ -29,11 +30,10 @@ var Calendar = {
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaWeek,agendaDay'
+                right: 'month,agendaDay'
             },
             buttonText: {
-                today: 'today',
-                month: 'month',
+                today: 'today',                
                 week: 'week',
                 day: 'day'
             },
@@ -409,6 +409,7 @@ Calendar.Dialog = {
             dataType: 'json'                                                         
         }).done(reload(member,dia));
     },
+    
     auto : function (){
             $('#select_name').click(function () {
         $(this).autocomplete({
@@ -438,6 +439,7 @@ $(document).ready(function () {
             alert("You must check at least one");
         }
     });
+    
     $('#shapbott').click(function () {
         Calendar.getmemberevent();
     });
@@ -445,7 +447,7 @@ $(document).ready(function () {
         Calendar.remove_event_member();
     });
     //for calender auto complete username
-    $('#select_name').click(function () {
+    $('#select_name').unbind('click').bind('click',function () {
         $(this).autocomplete({
             source: dict
         });

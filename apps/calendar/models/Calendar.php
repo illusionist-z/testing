@@ -89,10 +89,10 @@ class Calendar extends Model {
         $query=  $this->db->query($delete);        
     }
     
-    public function remove_member($remove_id,$id){          
-        $remove_id = implode($remove_id,",");
-        $query = "update member_event_permission set delete_flag =1 where permit_name ='$remove_id' and member_name = '".$id."'";
-        $this->db->query($query);                             
+    public function remove_member($remove_id,$id){
+        $remove_id = implode("','", $remove_id);
+        $query = "update member_event_permission set delete_flag =1 where permit_name in ('$remove_id') and member_name = '".$id."'";
+        $this->db->query($query);
     }
    /**
     * @author David JP <david.gnext@gmail.com>
