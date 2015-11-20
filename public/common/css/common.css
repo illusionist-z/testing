@@ -661,3 +661,15 @@ hr{
     background-color: white;
     margin-top: -20px;
 }
+
+#emailerror,#noemailerror{
+    border:1px solid red;  
+    background: papayawhip;
+}
+#emailerror label,#noemailerror label,#onefield{
+  color:black;
+  margin-left: 4px;
+}
+#noemailfield{
+    color:black;
+}

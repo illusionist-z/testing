@@ -5,7 +5,11 @@ namespace workManagiment\Auth\Models;
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
 use workManagiment\Auth\Models\Db\CoreMember;
-use workManagiment\Auth\Models\Db\AuthFailedLogins;
+use workManagiment\Auth\Models\Db\AuthFaileModels;
+
+use Phalcon\Mvc\User\Component;
+use Phalcon\DI\FactoryDefault;
+use workManagiment\Auth\Models\Db\CoreMember;dLogins;
 
 class Auth extends Component {
 
@@ -40,7 +44,7 @@ class Auth extends Component {
         $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user = $user->fetchArray();
         
-        $permission = $this->db->query("SELECT rel_permission_group_code FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
+        $permission = $this->db->query("SELECT permission_group_id_user FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
         $permission_name = $permission->fetchArray();
         
         return $permission_name['permission_group_id_user'];

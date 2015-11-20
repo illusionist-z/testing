@@ -22,7 +22,8 @@ class IndexController extends  ControllerBase {
      */
     public function indexAction() {
         //$this->aa();exit;
-        
+         
+      
         foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'user_dashboard') {
@@ -60,7 +61,9 @@ class IndexController extends  ControllerBase {
     $coreid = new  \workManagiment\Dashboard\Models\CorePermissionGroupId();
         foreach($coreid as $data){ 
     
-    if($this->session->page_rule_group==$data->group_id){
+     foreach ($this->session->auth as $key_name => $key_value)  {
+             
+            if ($key_name == 'admin_dashboard') {
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
@@ -69,10 +72,11 @@ class IndexController extends  ControllerBase {
     $this->view->setVar("newnumber",$newmember);
     $this->view->t = $this->_getTranslation();
         }
-        else {
+         if ($key_name == 'user_dashboard')  {
             $this->response->redirect('core/index');
             }  
         }
+    }
     }
     
     /**

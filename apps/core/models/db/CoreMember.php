@@ -367,4 +367,68 @@ class CoreMember extends \Library\Core\BaseModel {
       
         return $res;
     }
+     /**
+     * Saw Zin Min Tun
+     *forget password
+     
+     */
+    public function findemail($member_mail) {       
+       //print_r($member_mail);exit;
+        //exit;
+        // Check if the user exist
+        $email = $member_mail;
+        
+        $this->db = $this->getDI()->getShared("db");
+        $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
+        //print_r($query);exit;
+        $user = $this->db->query($query);
+        $user = $user->fetchAll(); 
+      
+        return $user;
+
+    }
+   
+     /**
+     * Saw Zin Min Tun
+     *forget password
+     
+     */
+    public function  insertemailandtoken($member_mail,$token) {       
+     //  print_r($member_mail);
+    //  print_r($token);exit;
+        //exit;
+        // Check if the user exist
+        //$email = $member_mail;
+        
+        $this->db = $this->getDI()->getShared("db");      
+     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token) values(' " . $member_mail . " ' ,' " . $token . " ' )");
+       //print_r($user);exit;
+       // $user = $user->fetchAssoc(); 
+        //print_r($user);exit;
+       return $user;
+
+    }
+     /**
+     * Saw Zin Min Tun
+     *forget password
+     
+     */
+    public function  updatepassword($member_mail,$newpassword) {       
+//        print_r($member_mail);
+//        print_r($newpassword);exit;
+//        print_r($token);exit;
+        //exit;
+        // Check if the user exist
+        //$email = $member_mail;
+        $newpassword = sha1($newpassword);
+        //print_r($newpassword);exit;
+        $this->db = $this->getDI()->getShared("db");
+      
+        $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
+       // print_r($user);exit;
+       // $user = $user->fetchArray(); 
+        //print_r($user);exit;
+        return $user;
+
+    }
 }
