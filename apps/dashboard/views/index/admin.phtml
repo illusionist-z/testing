@@ -138,7 +138,9 @@
                                                         <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
                                                             <li>
                                                                 People who attend no leave
-                                                                <ul><?php foreach ($nlname as $na) { ?>
+                                                                <ul><?php
+                                                                $count = [];
+                                                                foreach ($nlname as $na) { ?>
                                                                    <li id="noleaveli">
                                                                         <?php
                                                                         if ($na['member_profile'] == null) {
@@ -157,17 +159,39 @@
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
                                                                         <?= $na['full_name'] ?>
                                                                     </li>
-                                                                    <?php } ?>
+                                                                    <?php 
+                                                                         array_push($count, $na['full_name']);
+                                                                            } ?>
                                                                 </ul>
+                                                                <?php 
+                                                                    //echo sizeof($count);
+                                                                        if(sizeof($count) > 3){
+                                                                           // echo $na['full_name']." :::::::";
+                                                                           ?>
+                                                                 <style type="text/css">#noleavelist,hr{
+                                                                                        display:block;
+                                                                                        }</style> 
+                                                                <?php
+                                                                        }else{ ?>
+                                                                                        <style type="text/css">#noleavelist,hr{
+                                                                                        display:none;
+                                                                                        }</style>             
+                                                                <?php
+                                                                          // echo $na['full_name']; 
+                                                                        }
+                                                                ?>
                                                                 <hr>
                                                                 <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelist"><?= $t->_("View All"); ?></a>
 <!--                                                                <a href="../../leavedays/index/noleavelist"><span id="viewallnoleave"><?php echo $t->_("View All"); ?></span></a>-->
                                                             </li>
                                                         </ul>
                                                         <ul class="nav nav-pills nav-stacked">
-                                                           <li>
+                                                            <li>
                                                                 People who take the leave most
-                                                                <ul><?php foreach ($lname as $na) { ?>
+                                                                <ul><?php 
+                                                                $count = [];
+                                                                foreach ($lname as $na) { 
+                                                                   ?>
                                                                         <li id="noleaveli">
                                                                         <?php
                                                                         if ($na['member_profile'] == null) {
@@ -181,13 +205,30 @@
                                                                             }
                                                                         }
                                                                         ?> 
-
-
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
                                                                         <?= $na['full_name'] ?>
                                                                     </li>
-                                                                    <?php } ?>
+                                                                    <?php 
+                                                                    array_push($count, $na['full_name']);
+                                                                            } ?>
                                                                 </ul>
+                                                                  <?php 
+                                                                    //echo sizeof($count);
+                                                                        if(sizeof($count) > 3){
+                                                                           // echo $na['full_name']." :::::::";
+                                                                           ?>
+                                                                 <style type="text/css">#leavemostlist,hr{
+                                                                                        display:block;
+                                                                                        }</style> 
+                                                                <?php
+                                                                        }else{ ?>
+                                                                                        <style type="text/css">#leavemostlist,hr{
+                                                                                        display:none;
+                                                                                        }</style>             
+                                                                <?php
+                                                                          // echo $na['full_name']; 
+                                                                        }
+                                                                ?>
                                                                 <hr>
                                                                 <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlist"><?= $t->_("View All"); ?></a>
                                                             </li>
