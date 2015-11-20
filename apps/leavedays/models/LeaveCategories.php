@@ -17,7 +17,7 @@ class LeaveCategories extends \Library\Core\BaseModel {
 
     public function getleavetype() {
 
-        $sql = "SELECT * FROM leave_categories   order by created_dt desc";
+        $sql = "SELECT * FROM leave_categories  order by created_dt desc";
         $results = $this->db->query($sql);
         $typelist = $results->fetchall();
         return $typelist;

@@ -9,7 +9,9 @@ function showDialog()
         height: 300,
         buttons: {
             'Save': function () {
+                
                 $("form").submit();
+                
             },
             'Delete': function () {
                 Setting.GroupRule.delete(dia_id);
@@ -17,10 +19,36 @@ function showDialog()
             'Cancel': function () {
                 $(this).dialog('close');
             }
+             
         }
     });
 
 
+
+}
+
+
+
+function showDialogname()
+{
+    var dia_id_name = $(this).attr('id');
+    $("#opent" + dia_id_name).dialog({
+        modal: true,
+        draggable: false,
+        resizable: false,
+        width: 300,
+        height: 350,
+        buttons: {
+            'Save': function () {
+                $("form").submit();
+            },
+             'Cancel': function () {
+                $(this).dialog('close');
+            }
+
+        }
+
+    });
 
 }
 
@@ -50,34 +78,6 @@ function PageRuleSetting()
     });
 }
 
-
-function showDialogname()
-{
-    var dia_id_name = $(this).attr('id');
-    $("#opent" + dia_id_name).dialog({
-        modal: true,
-        draggable: false,
-        resizable: false,
-        width: 300,
-        height: 350,
-        buttons: {
-            'Save': function () {
-                jQuery(this).dialog('submit');
-            },
-            'Delete': function () {
-                jQuery(this).dialog('submit');
-            },
-            'Cancel': function () {
-                jQuery(this).dialog('close');
-            }
-
-        }
-
-    });
-
-}
-
-
 function showDialoguser()
 {
     var dia_id_name = $(this).attr('id');
@@ -103,27 +103,29 @@ function showDialoguser()
 }
 function addGroup()
 {
-    // var dia_id = $(this).attr('id'); 
+    
     $("#addGroup").dialog({
         modal: true,
         draggable: false,
         resizable: false,
         width: 300,
-        height: 300,
+        height: 150,
         buttons: {
             'Save': function () {
+               
                 $("form").submit();
             },
             'Cancel': function () {
-                jQuery(this).dialog('close');
+                $(this).dialog('close');
             }
         }
     });
 }
 
+
 function addPage()
 {
-    // var dia_id = $(this).attr('id'); 
+    
     $("#addPage").dialog({
         modal: true,
         draggable: false,
@@ -132,11 +134,13 @@ function addPage()
         height: 300,
         buttons: {
             'Save': function () {
-                $('form').submit();
+               
+                $("form").submit();
             },
             'Cancel': function () {
-                jQuery(this).dialog('close');
+                $(this).dialog('close');
             }
         }
     });
 }
+ 

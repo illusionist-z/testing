@@ -23,7 +23,7 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');  
-        $this->assets->addJs('common/js/paging.js'); 
+        $this->assets->addJs('common/js/paging.js');  
         $this->assets->addJs('apps/setting/js/index.js'); 
         $this->assets->addJs('apps/setting/js/setting.js');  
  }
@@ -44,8 +44,8 @@ class IndexController extends ControllerBase {
         $coreuser2 = new CorePermissionGroup(); 
         $core_groupid=$coreid::find();
         $coremember= $corememberid::find();
-        $core_groupuser2=$coreuser2::find();
-        $core_groupuser=$coreuser->getgroupid();
+        $core_groupuser2=$coreuser2::find();    
+        $core_groupuser=$coreuser->getgroupid();   
         $this->view->coreid = $core_groupid;
         $this->view->coremember = $coremember; 
         $this->view->coreuser = $core_groupuser; 
@@ -65,11 +65,7 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         $this->response->redirect('setting/index/index');
         }
-        /**
-         * @author David JP <david.gnext@gmail.com>
-         * @option[] - return array
-         */
-         public function AddPageRuleAction()
+        public function AddPageRuleAction()
         {
         $core = new CorePermissionGroup();
         $option = explode("_",  $this->request->getPost('page_rule_group'));
@@ -119,7 +115,7 @@ class IndexController extends ControllerBase {
                 else  { echo "Failed!!"; }
         }
         
-          public function UserRuleSettingAction()
+        public function UserRuleSettingAction()
         {                                 
         $core = new CorePermissionRelMember();
         $id = $this->request->getPost('rel_member_id');
@@ -159,4 +155,7 @@ class IndexController extends ControllerBase {
            $this->view->setVar("member", $username);
         }
 
+         
+        
+        
 }

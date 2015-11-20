@@ -3,6 +3,8 @@
 namespace workManagiment\Attendancelist\Controllers;
 
 use workManagiment\Core\Models\Db;
+ 
+use workManagiment\Attendancelist\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase {
 
@@ -95,8 +97,10 @@ class IndexController extends ControllerBase {
         $UserName = $UserList::getinstance()->getusername();
         $month = $this->config->month;
         $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
-        $monthlylist = $Attendances->showattlist();        
-        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
+        $monthlylist = $Attendances->showattlist();       
+        $coreid = new CorePermissionGroupId();
+        foreach($coreid as $data){ 
+        if($this->session->page_rule_group==$data->group_id){
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $UserName);
@@ -105,6 +109,7 @@ class IndexController extends ControllerBase {
         else {
             $this->response->redirect('core/index');
         }  
+        }
     }
      public function attsearchAction() {
             if ($this->request->isAjax() == true) {

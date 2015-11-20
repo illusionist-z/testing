@@ -23,7 +23,7 @@ class LoginController extends ControllerBase {
         $lang = $member->getlang($loginParams); 
         $this->session->set('language',$lang['lang']);
         $member->updatecontract($loginParams);
-        $this->session->set('permission_code', $permission);
+        $this->session->set('page_rule_group', $permission);
         $user = array();
         $this->session->set('user', $result);
         if ($result) {

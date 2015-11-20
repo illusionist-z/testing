@@ -6,9 +6,13 @@ use Phalcon\Mvc\Model;
  * @desc     CorePermissionGroup
  */
  class CorePermissionGroup extends Model
-{ 
-      
- 
+{
+       
+     public $permission_code;
+     public $page_rule_group;
+     public $permission_group_code;
+     public $permission_group_name;
+     
 }
  
  

@@ -1,6 +1,7 @@
 <?php
     use Phalcon\Filter;
-?>
+    
+ ?>
 
 <a name="Group"> </a>
 <div class="row">
@@ -21,7 +22,20 @@
                                           
                 <div class="col-sm-10">
                         <div class=col-md-12">
-                            
+                            <?php
+             foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'admin_dashboard') {
+                //Go to user dashboard
+               echo "<a href='../user/usersetting'> <b><h3>Go To Admin  Profile </h3></b>     </a>";
+            } 
+            if ($key_name == 'user_dashboard') {
+                //Go to admin dashboard
+                 
+                $this->response->redirect('setting/user/usersetting');
+            }
+        }
+    ?>  
                                 <br>
                                 <h3 link="#Group">Group Rule Setting </h3>
                                 
@@ -81,8 +95,8 @@
                                 
                      <?php
                      
-             require_once 'page.phtml';
-                     require_once 'user.phtml';
+                        require_once 'page.phtml';
+                        require_once 'user.phtml';
                      ?>
                         
                                         </div>
