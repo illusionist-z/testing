@@ -8,7 +8,7 @@
         }
     }
 
-</script>
+</script><script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
 <div class="" >
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -28,8 +28,8 @@
         </div><!-- /.row -->
         <div class="row">
             <div class="col-md-12">
-                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/Check-32.png" class="imgstyle"><font style="color:red;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
-                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/absence.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?><a></div>
+                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/user-man-accept-icon.png" class="imgstyle"><font style="color:green;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
+                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/user-man-delete-icon.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?></a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -96,16 +96,16 @@
                                                                 <form id="theForm" name="theForm" method="post" action="">
                                                                     <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/><?= $t->_("late_reason"); ?>
                                                                     <div id="xtraInfo" style="display:none;">
-                                                                        <textarea class="textarea" id="note" placeholder="Write your reason here" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                                        <textarea class="textarea" id="note" placeholder="Write your reason here" maxlength="60" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                                     </div>
                                                                 </form>
 
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="#" class="btn btn-primary btn-sm btn-flat checkin" style="width: 150px"><?= $t->_("checkin"); ?></a>
+                                                                <a href="#" class="btn btn-primary btn-sm btn-flat checkin" onclick="//Content.View.apply(this, ['checkin']);" style="width: 150px;border-radius: 5px;"><?= $t->_("checkin"); ?></a>
                                                             </div><br><br>
                                                             <div class="col-md-6 col-md-offset-4">
-                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;"><?= $t->_("checkout"); ?></a>
+                                                                <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;border-radius: 5px;"><?= $t->_("checkout"); ?></a>
                                                             </div><br><br>
                                                         </div>
 
@@ -139,18 +139,59 @@
                                                             <li>
                                                                 People who attend no leave
                                                                 <ul><?php foreach ($nlname as $na) { ?>
-                                                                    <li><?= $na['member_login_name'] ?></li>
+                                                                    <li id="noleaveli">
+                                                                        <?php
+                                                                        if ($na['member_profile'] == null) {
+                                                                            $img = "profile1.jpg";
+                                                                        } else {
+                                                                            $img = $na['member_profile'];
+                                                                            if(file_exists('./uploads/'.$img)){                                                            
+                                                                                $img=$img;                                                            
+                                                                            }else{  
+                                                                                $img = "profile1.jpg";                                                                 
+                                                                            }
+                                                                        }
+                                                                        ?> 
+
+
+                                                                        <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
+                                                                        <?= $na['full_name'] ?>
+                                                                    </li>
+                                                                   
                                                                     <?php } ?>
                                                                 </ul>
+<!--                                                                <span id="viewallnoleave"><a href="../../leavedays/index/noleavelist"  class="btn btn-primary btn-sm btn-flat" id="checkout"style="border-radius: 5px;"><?= $t->_("View All"); ?></a></span>-->
+                                                                <hr>
+                                                                <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelist"><?= $t->_("View All"); ?></a>
+<!--                                                                <a href="../../leavedays/index/noleavelist"><span id="viewallnoleave"><?php echo $t->_("View All"); ?></span></a>-->
                                                             </li>
                                                         </ul>
                                                         <ul class="nav nav-pills nav-stacked">
                                                             <li>
                                                                 People who take the leave most
                                                                 <ul><?php foreach ($lname as $na) { ?>
-                                                                        <li><?= $na['member_login_name'] ?></li>
+                                                                        <li id="noleaveli">
+                                                                        <?php
+                                                                        if ($na['member_profile'] == null) {
+                                                                            $img = "profile1.jpg";
+                                                                        } else {
+                                                                            $img = $na['member_profile'];
+                                                                            if(file_exists('./uploads/'.$img)){                                                            
+                                                                                $img=$img;                                                            
+                                                                            }else{  
+                                                                                $img = "profile1.jpg";                                                                 
+                                                                            }
+                                                                        }
+                                                                        ?> 
+
+
+                                                                        <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
+                                                                        <?= $na['full_name'] ?>
+                                                                    </li>
                                                                     <?php } ?>
                                                                 </ul>
+                                                                <hr>
+                                                                <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlist"><?= $t->_("View All"); ?></a>
                                                             </li>
                                                         </ul>
                                                     </div><!-- ./chart-responsive -->
@@ -181,8 +222,14 @@
                                                             $img = "profile1.jpg";
                                                         } else {
                                                             $img = $v->member_profile;
-                                                        }                                                   
-                                                        ?>                                                 
+                                                            if(file_exists('./uploads/'.$img)){                                                            
+                                                                $img=$img;                                                            
+                                                            }else{  
+                                                                $img = "profile1.jpg";
+                                                                 
+                                                            }
+                                                        }
+                                                        ?>                                                
                                                         <img src="../../uploads/<?php echo $img; ?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
                                                         <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
                                                         <span class="users-list-date"><?= $v->created_dt; ?></span>

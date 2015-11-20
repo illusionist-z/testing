@@ -11,6 +11,7 @@ $('a.display').on('click', function(e) {
     var that = $('div.sample:visible'),
         // assigns the text of the clicked-link to a variable for comparison purposes
         t = $(this).text();
+        //alert(that.next('div.sample').length);
     // checks if it was the 'next' link, and ensures there's a div to show after the currently-shown one
     if (t == 'NEXT' && that.next('div.sample').length > 0) {
         // hides all the div.sample elements

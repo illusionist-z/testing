@@ -5,6 +5,8 @@ namespace workManagiment\Core\Models\Db;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
 use workManagiment\Core\Models\Db\CoreMember;
+use workManagiment\Core\Models\Db\CorePermissionRelMember;
+use workManagiment\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
@@ -24,17 +26,6 @@ class CoreMember extends \Library\Core\BaseModel {
     public static function getInstance() {
         return new self();
     }
-     public function getgroupid() {
-    $query = "Select member_id,member_login_name,group_id from core_member "
-                . "left join core_permission_rel_member on core_member.member_id=core_permission_rel_member.rel_member_id "
-                . "left join core_permission_group_id on core_permission_group_id.name_of_group = core_permission_rel_member.rel_permission_group_code";        
-    
-    $data = $this->db->query($query);
-    
-    $groupid = $data->fetchall();
-    
-     return $groupid;
-    }      
 
     public function getusername() {
         /* $this->db = $this->getDI()->getShared("db");        
@@ -46,21 +37,24 @@ class CoreMember extends \Library\Core\BaseModel {
         //print_r($row);exit;
         return $row;
     }
-
-    public function username($name) {
-        /* $this->db = $this->getDI()->getShared("db");        
-          $user_name = $this->db->query("SELECT * FROM core_member");
-          $getname = $user_name->fetchall();
-          return $getname; */
+    
+    public function getgroupid() {
+    $query = "Select member_id,member_login_name,group_id from core_member "
+                . "left join core_permission_rel_member on core_member.member_id=core_permission_rel_member.rel_member_id "
+                . "left join core_permission_group_id on core_permission_group_id.name_of_group = core_permission_rel_member.rel_permission_group_code";        
+    
+    $data = $this->db->query($query);
+    
+    $groupid = $data->fetchall();
+    
+     return $groupid;
+    }      
+    
+    public function username($name) {     
         $name = '%' . $name . '%';
         $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE full_name = '$name' AND deleted_flag=0 order by created_dt desc";
-        $row = $this->modelsManager->executeQuery($query);
-        // print_r($name);exit;
-        //print_r($row);exit;
-        foreach ($row as $rs) {
-            // put in bold the written text
-            //$full_name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $rs['full_name']);
-            // add new option
+        $row = $this->modelsManager->executeQuery($query);        
+        foreach ($row as $rs) {            
             echo '<li>' . $rs->full_name . '</li>';
         }
         return $row;
@@ -173,12 +167,13 @@ class CoreMember extends \Library\Core\BaseModel {
         $target_dir = "uploads/";
         $profile = $_FILES["fileToUpload"]["name"];
         //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $newfilename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
+        $Real_pic_name=explode(".", $_FILES["fileToUpload"]["name"]);
+        $newfilename = rand(1, 99999) . '.' . end($Real_pic_name);
         $targetfile = $target_dir . $newfilename;
-        $en= 'en';
+
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
-        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
-                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $en. "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
+        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
+                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
 
@@ -226,7 +221,7 @@ class CoreMember extends \Library\Core\BaseModel {
             //print_r($sql);exit;
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-            $final_result[$i]['0']['creator_name']=$noti['creator_name'];
+            //$final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
            
             
@@ -332,6 +327,10 @@ class CoreMember extends \Library\Core\BaseModel {
         $result = $result->fetchall();
 
         return $result;
+    }
+    
+    public function functionName($param) {
+        
     }
 
 }
