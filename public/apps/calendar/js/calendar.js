@@ -10,14 +10,12 @@ var Calendar = {
         if (!json_events) {
             $.ajax({
                 url: 'index/calenderauto',
-                method: 'GET',
-                //dataType: 'json',
+                method: 'GET',                
                 success: function (data) {
-                    //alert(data);    
+                    
                     var json_obj = $.parseJSON(data);
-                    // alert(json_obj);
-                    for (var i in json_obj) {
-                        //alert(json_obj[i].full_name);
+                    
+                    for (var i in json_obj) {                        
                         dict.push(json_obj[i].full_name);
                     }
                     return dict;
@@ -27,6 +25,7 @@ var Calendar = {
         /* initialize the calendar
          -----------------------------------------------------------------*/
         $('#calendar').fullCalendar({
+            theme : true,
             header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -49,9 +48,9 @@ var Calendar = {
                 var shr = event.start.format("HH:mm:ss");
                 var ehr = event.end.format("HH:mm:ss");
                 //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");  
-                Calendar.Dialog.drag(start, end, event.id, event.title);
+                Calendar.Dialog.drag(start, end, event.id, event.title,event.member_name);
             },
-            eventDrop: function (event) {
+            eventDrop: function (event) {       
                 var start = event.start.format("YYYY-MM-DD"), end;
                 if (event.end == null) {
                     end = event.start.format("YYYY-MM-DD");
@@ -59,7 +58,7 @@ var Calendar = {
                 else {
                     end = event.end.format("YYYY-MM-DD");
                 }
-                Calendar.Dialog.drag(start, end, event.id, event.title);
+                Calendar.Dialog.drag(start, end, event.id, event.title,event.member_name);
             },
             select: function (start, end, allDay) {
                 var start = start.format("YYYY-MM-DD");
@@ -90,11 +89,19 @@ var Calendar = {
                 if ($(this).hasClass('popup')) {
                     deselect($(this));
                 } else {                    
-                    var str = "<table style='width:300px;height:80px;background:#3c8dbc;z-index:9999;position:relative;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
+                    var str = "<table style='width:200px;height:80px;background:#3c8dbc;z-index:9999;position:relative;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
                     str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
                     str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";
-                    $(this).append(str);         
-            }
+                    //popover event message
+                   $(this).attr('data-toggle','popover');
+
+                   $(this).popover({
+                       html : true,
+                       content : str,
+                       trigger : 'hover',
+                       placement : 'bottom'
+                   });   
+                    }
             },
             eventClick: function (event) {
                 //check dialog box exist
@@ -128,34 +135,28 @@ var Calendar = {
                 else {
                     $('#calendar').remove();    //remove calendar origin 
                     $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>');//replace a new calendar
-                    Calendar.init(d);
+                    Calendar.init(d);                    
                 }
+                Calendar.Dialog.auto();
             }
         });
     },
     getmemid: function (name) {
-        //var name = document.getElementById('namelist').value;
-        // alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+        
         var dict = [];
         $.ajax({
             url: 'index/getcalmemberid?uname=' + name,
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
-                //alert(data);    
+                
                 var json_obj = $.parseJSON(data);
-                //alert(json_obj);
+                
                 for (var i in json_obj) {
-                    //alert(json_obj[i].member_id);
-                    // var aa = json_obj[i].member_id;
-                    //alert(aa);
-                    //$('#formemberid').text(json_obj[i].member_id);
-                    // $(".salusername").text(aa);
+                
                     dict.push(json_obj[i].member_id);
                 }
-                //var dict = ["Test User02","Adminstrator"];
-                // alert(dict);
+             
                 loadIcon(dict);
             }
 
@@ -177,18 +178,19 @@ var Calendar = {
                 url: "index/removeEventByname",
                 data: {remove: selectedvalue},
                 type: "POST",
-                success: function () {
-                    // alert(d);
-                    $('body').load('index');
-                }
+                success: function () {                                                    
+                    $('body').load('index',function () {
+                        $('.dropdown-toggle').dropdown();
+                    });
+                }                
             });
         }
         else {
             alert("You must check at least one");
         }
     },
-    /**
-     * @author David 9/16/2015
+    /**      
+     * @author David Jor Hpan <gnext> 9/16/2015
      * @desc    member search adding
      * @returns {json data}
      */
@@ -324,10 +326,9 @@ Calendar.Dialog = {
         });
         $dia.dialog("open");
     },
-    edit: function (id, old_id, dia) {
-        $name = $('#show_name option:selected').attr("name");
+    edit: function (id, old_id, dia) {        
         $.ajax({
-            url: "index/edit/" + id + "/" + $name,
+            url: "index/edit/" + id ,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -345,12 +346,16 @@ Calendar.Dialog = {
         });
     },
     //drag & resize event 
-    drag: function (start, end, id, title) {
+    drag: function (start, end, id, title,name) {
+        
         $.ajax({
-            url: "index/edit",
-            data: {sdate: start, edate: end, id: id, title: title},
+            url: "index/edit/" + id,
+            data: {sdate: start, edate: end,title: title,uname : name},
             async: false,
-            dataType: 'json'
+            dataType: 'json',
+            success : function(){
+                Calendar.Dialog.auto();
+            }
         });
     },
     //create new event
@@ -410,8 +415,8 @@ Calendar.Dialog = {
         }).done(reload(member,dia));
     },
     
-    auto : function (){
-            $('#select_name').click(function () {
+    auto : function (){        
+    $('#select_name').click(function () {
         $(this).autocomplete({
             source: dict
         });
@@ -458,13 +463,13 @@ $(document).ready(function () {
             source: dict
         });
     });
-    $("#create_dialog").mouseenter(function () {
-
-        var name = document.getElementById('select_name').value;
-        //alert(name);
-        //Calendar.getmemid(name);
-
-    });
+//    $("#create_dialog").mouseenter(function () {
+//
+//        var name = document.getElementById('select_name').value;
+//        //alert(name);
+//        //Calendar.getmemid(name);
+//
+//    });
 });
 
 function reload(member,dia){
