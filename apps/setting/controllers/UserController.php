@@ -11,7 +11,6 @@ class UserController extends ControllerBase {
         //$this->assets->addJs('common/js/btn.js');
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
-        $this->view->t = $this->_getTranslation();
     }
 
     public function indexAction() {

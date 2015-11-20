@@ -23,13 +23,12 @@ class Auth extends Component {
         $this->db = $this->getDI()->getShared("db");
       
         $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0");
-        $user = $user->fetchArray();     
+        $user = $user->fetchArray();
+        
         
         return $user;
 
     }
-    
-
     
      public function getpermit($loginParams) {
       
@@ -44,7 +43,7 @@ class Auth extends Component {
         $permission = $this->db->query("SELECT rel_permission_group_code FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
         $permission_name = $permission->fetchArray();
         
-        return $permission_name['rel_permission_group_code'];
+        return $permission_name['permission_group_id_user'];
         
 
     }

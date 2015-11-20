@@ -32,12 +32,12 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * Set Permission
      * @return int
      */
-    public function setPermission() {
+        public function setPermission() {
         $aryModules = \Library\Core\Module::get();
         //setting permission
         $coremember = new \workManagiment\Auth\Models\Db\CorePermissionRelMember();
         $coremember = \workManagiment\Auth\Models\Db\CorePermissionRelMember::findByRelMemberId($this->session->user['member_id']);
-        $permission_id = $coremember[0]->rel_permission_group_code;
+        $permission_id = $coremember[0]->permission_group_id_user;
         $module = $this->router->getModuleName();
         $ctrname=$this->router->getControllerName();
         $actname=$this->router->getActionName();        
@@ -72,7 +72,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                if($module === $bigmenu){                
                 $permission=1;
                }               
-               if($permission_id === 'ADMIN'){
+               if($permission_id === '1'){
                    $permission = 1;
                }
 //                else {

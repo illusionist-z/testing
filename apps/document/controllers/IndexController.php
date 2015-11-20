@@ -1,10 +1,11 @@
 <?php
 
 namespace workManagiment\Document\Controllers;
-use workManagiment\Core\Models\Db;
+ 
 use workManagiment\Document\Models\Document;
 use workManagiment\Document\Models\CompanyInfo;
 use workManagiment\Core\Models\Db\CoreMember;
+use workManagiment\Document\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase
 {
@@ -27,14 +28,17 @@ class IndexController extends ControllerBase
         $code=$this->session->permission_code;
          $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
-        if($code=="ADMIN"){
+        $coreid = new CorePermissionGroupId();
+        foreach($coreid as $data){ 
+       
+        if($code==$data->group_id){
             $noti=$Admin->GetAdminNoti($id);}
         else{
             $id = $this->session->user['member_id'];
             $noti=$Admin->GetUserNoti($id);
         }
         $this->view->setVar("noti",$noti);
-
+         }
     }
 
     
@@ -48,14 +52,16 @@ class IndexController extends ControllerBase
         $result=$SalaryDetail->getssb_info();
         $Companyinfo= new CompanyInfo();
         $cominfo= $Companyinfo->GetCompanyInfo();
-        
-        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
+           $coreid = new CorePermissionGroupId();
+         foreach($coreid as $data){ 
+        if($this->session->page_rule_group==$data->group_id){
         $this->view->salary_info=$result; 
         $this->view->cominfo=$cominfo;
         }
         else {
             $this->response->redirect('core/index');
         }
+         }
     }
     /**
      * tax documentation form
@@ -65,26 +71,30 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/salary/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getsalary_info();
-        
-        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
+           $coreid = new CorePermissionGroupId();
+         foreach($coreid as $data){ 
+         if($this->session->page_rule_group==$data->group_id){
             $this->view->salary_info=$result;
         }
         else {
             $this->response->redirect('core/index');
         }
+          }
     }
     
     public function letterheadAction(){
         $this->assets->addJs('apps/document/js/letterhead.js');
         $Cinfo=new \workManagiment\Document\Models\CompanyInfo();
         $info=$Cinfo->GetCompanyInfo();
-        
-        if($this->permission==1 && $this->session->permission_code=='ADMIN'){
+        $coreid = new CorePermissionGroupId();
+       foreach($coreid as $data){ 
+         if($this->session->page_rule_group==$data->group_id){
             $this->view->setVar("info",$info);
         }
         else {
             $this->response->redirect('core/index');
         }
+       }
     }
     
      /**

@@ -5,12 +5,5 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-class CoreMember extends \Library\Core\BaseModel{
+ 
     
-    public function initialize() {
-        parent::initialize();
-    }
-    
-
-    
-}

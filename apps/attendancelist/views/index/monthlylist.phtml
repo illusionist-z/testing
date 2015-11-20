@@ -15,6 +15,18 @@ if ($offset < 0) {
 $length = count($Month);
 //print_r($Getname);
 //echo $Name.'aa';
+ foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_attlist') {
+                //Go to user dashboard
+             //  echo "<a href='../user/usersetting'> <b><h3>Go To Admin  Profile </h3></b>     </a>";
+            } 
+            if ($key_name == 'show_user_attlist') {
+                //Go to admin dashboard
+                 
+                $this->response->redirect('attendancelist/user/attendancelist');
+            }
+        }
 ?>
 
 <!-- Content Header (Page header) -->

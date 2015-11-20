@@ -53,7 +53,7 @@ class Permission {
             while ($permissions->valid()) {
                 //$robot = $permissions->current();
                 foreach ($permissions as $robot) {
-                $permissionGroups[] = $robot->rel_permission_group_code;
+                $permissionGroups[] = $robot->permission_group_id_user;
                
             }
             }
@@ -90,7 +90,7 @@ class Permission {
             }
             
             $results = Db\CorePermissionGroup::find([
-                        'permission_group_code IN (' . implode(',', $inFields) . ') ',
+                        'page_rule_group IN (' . implode(',', $inFields) . ') ',
                         'bind' => $aryBind
             ]);
             

@@ -16,14 +16,14 @@ use Phalcon\Tag as Tag; ?>
         }
     }
 
-</script><script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+</script>
 <!-- Main content -->
 <section class="content" style="height:auto">
 
     <div class="row">
         <div class="col-md-12"><!--start add user form--->
-            <div class="top-row"><a href="../../attendancelist/user/attendancelist" ><?php echo Tag::image(array('common/img/user-man-accept-icon.png', 'width' => 27)) ?> <font style="color:blue;"><?= $t->_("attendance"); ?> : </font> <?php echo $numatt; ?></a></div>
-            <div class="top-row"><a href="../../leavedays/user/leavelist" ><?php echo Tag::image(array('common/img/user-man-invalid-icon.png', 'width' => 30)) ?> <font style="color:red;"><?= $t->_("leave"); ?> : <?php echo $numleaves; ?></font> </a></div>
+            <div class="top-row"><a href="../../attendancelist/user/attendancelist" ><?php echo Tag::image(array('common/img/att.jpg', 'width' => 27)) ?><font style="color:blue;"><?= $t->_("attendance"); ?>: </font><?php echo $numatt; ?></a></div>
+            <div class="top-row"><a href="../../leavedays/user/leavelist" ><?php echo Tag::image(array('common/img/leave.jpg', 'width' => 30)) ?><font style="color:red;"><?= $t->_("leave"); ?> : </font><?php echo $numleaves; ?></a></div>
             <div id="form_div">
 
                 <div class="left-div-style-box" style="background-color: white; height:450px ; border: 1px solid #ccc; font-size: 20px;">
@@ -42,10 +42,10 @@ use Phalcon\Tag as Tag; ?>
 
                     </div><br><br>
                     <div class="col-md-6 col-md-offset-4">
-                        <a href="#"  class="btn btn-primary btn-sm btn-flat checkin" id="" onclick="//Content.View.apply(this, ['checkin']);" style="width: 150px;border-radius: 5px;"><?= $t->_("checkin"); ?> </a>
+                        <a href="#"  class="btn btn-primary btn-sm btn-flat checkin" id="" style="width: 150px;"><?= $t->_("checkin"); ?> </a>
                     </div><br><br>
                     <div class="col-md-6 col-md-offset-4">
-                        <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;border-radius: 5px;"><?= $t->_("checkout"); ?> </a>
+                        <a href="checkout"  class="btn btn-primary btn-sm btn-flat" id="checkout" style="width: 150px;"><?= $t->_("checkout"); ?> </a>
                     </div><br><br></form>
                 </div>
 

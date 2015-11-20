@@ -74,8 +74,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->permission_code;
-        if ( $name=='ADMIN'){?>
+                                      <?php $name=$this->session->page_rule_group;
+        if ($key_name == 'admin_dashboard'){?>
                                         <div class="pull-left">
                                             <a href="../../setting/index/index" class="btn btn-default btn-flat" id="settingborder"><b>Setting</b></a>
                                         </div>
@@ -114,6 +114,7 @@
                         <li class="header"><b>MAIN NAVIGATION</b></li>
                        <?php      
                         $count=1;
+                      
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
@@ -152,11 +153,11 @@
                                                                                                                          }                                                                                                                              
 
                                                                                                                       if (strpos($key_name, 'user') !== false) {
-                                                                                                                                if($this->session->permission_code=="ADMIN"){
+                                                                                                                                if($key_name == 'admin_dashboard'){
                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
                                                                                                                                 }
                                                                                                                                 else{
-                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                                //echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
                                                                                                                                 }
                                                                                                                         }
                                                                                                                         else {                                                            
@@ -200,7 +201,7 @@
                                                                                                                 $mod = explode(" ", $key_value["link0"]);
                                                                                                             }
                                                                                                             if (strpos($key_name, 'user') !== false) {
-                                                                                                             if($this->session->permission_code=="ADMIN"){
+                                                                                                             if($key_name == 'admin_dashboard'){
                                                                                                               echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
                                                                                                              }
                                                                                                              else{
