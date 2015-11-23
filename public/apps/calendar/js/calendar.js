@@ -93,9 +93,9 @@ var Calendar = {
                         "background":"white",
                         width          : '300px'
                     });
-                    var str = "<table style='width:250px;height:80px;color:yellow;background:#3c8dbc;z-index:9999;position:relative;' class='popup'><thead ><th style='border-right:1px solid #000;'>Event</th><th>Description</th></thead>";
-                    str += "<tr><th style='border-right:1px solid #000;'>Title</th><th>" + event.title + "</th></tr>";
-                    str += "<tr><th style='border-right:1px solid #000;'>Time</th><th>" + start + "  - " + end + "</th></tr></table>";
+                    var str = "<table style='width:250px;height:80px;background:#aaa;z-index:9999;position:relative;border:0;' class='popup'><thead ><th>Event</th><th>--> Description</th></thead>";
+                    str += "<tbody><tr  style='background:#fff;'><td>Title</td><td>--> " + event.title + "</td></tr>";
+                    str += "<tr><td>Time</td><td>--> " + start + "  - " + end + "</td></tr></tbody></table>";
                     //popover event message
                    $(this).attr('data-toggle','popover');
 
@@ -110,8 +110,6 @@ var Calendar = {
             eventClick: function (event) {
                 //check dialog box exist
                 $ovl = $('#dialog');
-                $('.err').text('');
-                $('.err-sdate').text('');
                 Calendar.Dialog.open(event);
             }
         });
@@ -291,10 +289,12 @@ Calendar.Dialog = {
         /**
          * edit ,delete action button
          */
-        $('#submit_edit_event').unbind('click').bind('click', function () {            
+        $('#submit_edit_event').unbind('click').bind('click', function () {
+            $('.err').text('');
+            $('.err-sdate').text('');
             Calendar.Dialog.edit(event.id, $selectname, $ovl);
         });
-        $('#close_create_event').click(function () {            
+        $('#close_create_event').click(function () {
             $ovl.dialog("close");
         });
         $('#del_event').unbind('click').bind('click', function () {
@@ -337,7 +337,7 @@ Calendar.Dialog = {
             async: false,
             dataType: 'json',
             success: function (d) {
-                if (false == d.cond) {                    
+                if (false == d.cond) {
                     $('.err').text(d.res).css("color", "red");
                     $('.err-sdate').text(d.date).css("color", "red");
                 }
