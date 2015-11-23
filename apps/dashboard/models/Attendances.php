@@ -22,7 +22,7 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckintime($id, $note, $add,$creator_id) {
+    public function setcheckintime($id, $note, $lat, $lon, $add,$creator_id) {
         $this->db = $this->getDI()->getShared("db");
         
         $mydate = date("Y-m-d H:i:s");
@@ -42,9 +42,9 @@ class Attendances extends Model {
             . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
             }
             $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
-                    . "att_date,location,notes,noti_id) VALUES ('" . $mydate . "'"
-                    . ",'" . $id . "','" . $today . "'
-                  ,'" . $add . "','" . $note . "','" . $noti_id . "')");
+                    . "att_date,lat,lng,location,notes,noti_id) VALUES ('" . $mydate . "'"
+                    . ",'" . $id . "','" . $today . "','" . $lat . "'"
+                    . ",'" . $lon . "','" . $add . "','" . $note . "','" . $noti_id . "')");
             $status = " Successfully Checked In";
             
         }
@@ -101,13 +101,13 @@ class Attendances extends Model {
         //select where user most leave taken
         /* $query    ="select member_login_name from core_member where member_id in
           (select member_id from absent group by member_id order by count(*) DESC) limit 3"; */
-        $query = "select * from core_member "
+        $query = "select member_login_name from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=1 group by a.member_id "
+                . "where a.deleted_flag=0 group by a.member_id "
                 . "order by count(*) desc limit 3";
         $data = $this->db->query($query);
         //select where no leave name in current month
-        $query1 = "select * from core_member where member_id not in
+        $query1 = "select full_name,member_profile from core_member where member_id not in
                    (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) and deleted_flag=0 order by created_dt desc  limit 3";
         $data1 = $this->db->query($query1);
         $res['leave_name'] = $data->fetchall();

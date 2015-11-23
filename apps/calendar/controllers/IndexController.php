@@ -28,7 +28,7 @@ class IndexController extends ControllerBase
        if($this->session->permission_code=="ADMIN"){
         $noti=$User->GetAdminNoti($id);
        }
-       else{                      
+       else{
         $noti=$User->GetUserNoti($id);     
        }       
         $this->view->setVar("noti",$noti);
@@ -131,8 +131,9 @@ class IndexController extends ControllerBase
      * @category edit event
      * @return   json { error message }
      */
-    public function editAction($id,$member_id) {        
+    public function editAction($id) {
         $this->view->disable();        
+        $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $name = $this->request->get('uname');

@@ -7,6 +7,7 @@ use Phalcon\Mvc\Model;
  * @desc  To create,edit,delete event
  */
 class Calendar extends Model {
+  
      public function initialize() {
         $this->db = $this->getDI()->getShared("db");
     }
@@ -16,12 +17,12 @@ class Calendar extends Model {
      * @desc   Select all data 
      */
     public function fetch($id) {                    
-            $events = array();                        
+            $events = array();        
             if(is_array($id)){
             $member_id = implode($id,"','");
-            $sql ="SELECT * FROM calendar where member_name IN ('$member_id')";           
+            $sql ="SELECT * FROM calendar where member_name IN ('$member_id')";
             }
-            else{                
+            else{
             $sql ="SELECT * FROM calendar where id IN ('$id') or member_name IN ('$id')";
             }
             $query=  $this->db->query($sql);
@@ -122,8 +123,9 @@ class Calendar extends Model {
         }
         return $return;
     }
+    
     public function getalluser($id){
-        $query = "Select member_name,permit_name from member_event_permission where member_name ='".$id."' and delete_flag=0";
+        $query = "Select member_name,permit_name from member_event_permission where member_name ='".$id."' and delete_flag=0";        
         $result = $this->db->query($query);
         $data = $result->fetchall();
         return $data;
