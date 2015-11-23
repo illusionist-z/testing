@@ -5,11 +5,7 @@ namespace workManagiment\Auth\Models;
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
 use workManagiment\Auth\Models\Db\CoreMember;
-use workManagiment\Auth\Models\Db\AuthFaileModels;
-
-use Phalcon\Mvc\User\Component;
-use Phalcon\DI\FactoryDefault;
-use workManagiment\Auth\Models\Db\CoreMember;dLogins;
+use workManagiment\Auth\Models\Db\AuthFailedLogins;
 
 class Auth extends Component {
 

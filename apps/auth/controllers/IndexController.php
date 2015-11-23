@@ -7,28 +7,28 @@ use workManagiment\Core\Models\Db;
 
 class IndexController extends ControllerBase {
 
-    public function initialize() {
+        public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-    }
+        }
 
-    public function indexAction($mode = NULL) {
+        public function indexAction($mode = NULL) {
         $this->view->errorMsg = '';
-    }
+        }
 
     /**
      * When user failed login
      * @param type $mode
      */
-    public function failerAction($mode = 1) {
+        public function failerAction($mode = 1) {
         $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
         $this->view->pick('index/index');
-    }
-    /**
+        }
+        /**
      * When user failed  email  go 
      * @param type $mode
      */
-    public function faileremailAction($mode = 1) {
+        public function faileremailAction($mode = 1) {
         $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
       //  $this->view->pick('index/forgotpassword');
     }

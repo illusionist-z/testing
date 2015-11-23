@@ -9,7 +9,7 @@
     Edit : function (type) {
         $.ajax({
             type: 'GET',
-            url: 'manageuser?data=' + type,
+            url: baseUri+'manageuser/index/manageuser?data=' + type,
             dataType:'json',
             success: function (res) {
                 
@@ -140,7 +140,7 @@
         $form = $('#edit_user');
         $.ajax({
             type:"GET",
-            url :"userdata_edit?data="+id,
+            url : baseUri+"manageuser/index/userdata_edit?data="+id,
             data:$form.serialize(),
             dataType:'json',
             success:function(d){
@@ -211,7 +211,7 @@
     Confirm:function(id){
         $.ajax({
             type:'GET',
-            url:'deleteuser',
+            url:baseUri+'manageuser/index/deleteuser',
             data:{data:id}            
         }).done(function(){
             $('body').load('userlist');

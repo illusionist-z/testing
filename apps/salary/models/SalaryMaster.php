@@ -56,11 +56,12 @@ class SalaryMaster extends Model {
                         (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag)
                         VALUES('" . $dedution[$i] . "','" . $member_id . "', '" 
                         . $creator_id . "',NOW(),0,'00:00:00',0)";
-                $result = $this->modelsManager->executeQuery($sql);
+                //$result = $this->modelsManager->executeQuery($sql);
+                
             }
              $sql="UPDATE salary_member_tax_deduce SET"
                 . " no_of_children='" . $no_of_children. "' WHERE member_id='" . $member_id. "' and deduce_id='children'";
-            //echo $sql;exit;
+            
             $this->db->query($sql);
         } catch (Exception $e) {
             echo $e;

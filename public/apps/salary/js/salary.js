@@ -201,8 +201,8 @@ var Salary = {
         var member_id=document.getElementById('member_id').value;
         $.ajax({
             type:'POST',
+            url : baseUri+"salary/index/delete_salary",
             data: {id: member_id },
-            url : "delete_salary",
             success:function(){
                 
                 d.dialog("close");

@@ -10,6 +10,7 @@ class IndexController extends  ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
@@ -22,8 +23,7 @@ class IndexController extends  ControllerBase {
      */
     public function indexAction() {
         //$this->aa();exit;
-         
-      
+        
         foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'user_dashboard') {
@@ -101,14 +101,16 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function location_sessionAction() {
-        $lat = $this->request->get('lat');
-        $lng = $this->request->get('lng');
+        //$lat = $this->request->get('lat');
+        //$lng = $this->request->get('lng');
+        $add=$this->request->get('location');
         $offset = $this->request->get('offset');
         $this->session->set('location', array(
-            'lat' => $lat,
-            'lng' => $lng,
+            
+            'location'=>$add,
             'offset' => $offset
-        ));
+        )); 
+        
     }
     
     /**
@@ -116,46 +118,34 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
      public function checkinAction() {
+        
          $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
-        $lat = $this->session->location['lat'];
-        $lon = $this->session->location['lng'];
+        //$lat = $this->session->location['lat'];
+        //$lon = $this->session->location['lng'];
+        $add = $this->session->location['location'];
         $noti_Creatorid=$User->GetAdminstratorId();
         $creator_id=$noti_Creatorid[0]['rel_member_id'];
-        //get user location using lat and log
-          if(0==$lon && 0==$lat){
-               $add="-";
-                }
-                else{
-                $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
-                $json = @file_get_contents($url);
-                $data=json_decode($json);
-                if( isset($data->results[5]->formatted_address)){
-                $add= $data->results[5]->formatted_address;
-                }
-                else
-                {
-                   $add="-";
-                }
-                
-                }
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
-        $status=$checkin->setcheckintime($id, $note, $lat, $lon,$add,$creator_id);
-        echo "<script>alert('".$status."');</script>";
-        echo "<script type='text/javascript'>window.location.href='direct';</script>";
+        $status=$checkin->setcheckintime($id, $note,$add,$creator_id);
+        $this->view->disable();
+        echo json_encode($status);
+
      }
-        /**
-        * Check out
-        * @author Su Zin Kyaw <gnext.suzin@gmail.com>
-        */
-        public function checkoutAction() {
+    /**
+     * Check out
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     */
+   public function checkoutAction() {
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckouttime($id);
-        echo "<script>alert('".$status."');</script>";
-        echo "<script type='text/javascript'>window.location.href='direct';</script>";
-        }
+        $this->view->disable();
+        echo json_encode($status);
+        
+
+    }
     
         /**
          * define user or admin

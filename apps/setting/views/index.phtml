@@ -79,7 +79,7 @@
                                       <?php // $name=$this->session->page_rule_group;
                                   foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'show_admin_attlist') {
+            if ($key_name == 'admin_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
                // $this->response->redirect('attendancelist/index/todaylist');
@@ -89,7 +89,7 @@
                                         </div>
                 <?php
                 } 
-                else if($key_name == '')
+                else if($key_name == 'user_dashboard')
                { 
                     ?> 
                       <div class="pull-left">
@@ -143,7 +143,9 @@
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                     } else {
-                                                                                                 echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                 $lkdata=str_replace(' ', '', $key_value[0]);
+                                                                                                
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($lkdata) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                     }
                                                                             }
                                                                                 $i = 0;
