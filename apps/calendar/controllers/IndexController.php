@@ -97,12 +97,13 @@ class IndexController extends ControllerBase
      * @return   json { error message }
      */
     public function createAction() {        
-        $this->view->disable();     
-        $id=$this->request->get('member_id');
+        $this->view->disable();             
         $uname = $this->request->get('uname');
+        $member_id = $this->request->get('member_id');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $title = $this->request->get('title');
+        $coremember = new Db\CoreMember();                
         $creator_id=$this->session->user['member_id'];
         $creator_name=$this->session->user['member_login_name'];
         $res= array();
@@ -120,7 +121,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($creator_name,$creator_id,$id,$sdate, $edate, $title,$uname);
+            $event=$this->calendar->create_event($member_id,$creator_name,$creator_id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
             $res['name']= $uname;
         }

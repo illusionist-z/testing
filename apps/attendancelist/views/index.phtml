@@ -136,7 +136,7 @@
                                        if (count($key_value) > 2) {
                                                                                     echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0]. '</b></span></a>';
                                                                               }
-                                                                      else {                                
+                                                                      else {
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
@@ -145,10 +145,9 @@
                                                                                                 } else {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
-                                                                                    } else {
-                                                                                                 $lkdata=str_replace(' ', '', $key_value[0]);
-                                                                                                
-                                                                                                 echo '<li><a href="' . $baseUri . strtolower($lkdata) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                    } else {                                                                                                 
+                                                                                                  $top = explode(" ", $key_value["link0"]);
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                     }
                                                                             }
                                                                                 $i = 0;
