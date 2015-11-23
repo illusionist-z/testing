@@ -89,9 +89,13 @@ var Calendar = {
                 if ($(this).hasClass('popup')) {
                     deselect($(this));
                 } else {                    
-                    var str = "<table style='width:200px;height:80px;background:#3c8dbc;z-index:9999;position:relative;' border='1px' class='popup'><thead style='background:#fff;color:#000;'><td>Event</td><td>Description</td></thead>";
-                    str += "<tr><td>Title</td><td>" + event.title + "</td></tr>";
-                    str += "<tr><td>Time</td><td>" + start + "  - " + end + "</td></tr></table>";
+                    $('.popover.bottom').css({
+                        "background":"white",
+                        width          : '300px'
+                    });
+                    var str = "<table style='width:250px;height:80px;background:#aaa;z-index:9999;position:relative;border:0;' class='popup'><thead ><th>Event</th><th>--> Description</th></thead>";
+                    str += "<tbody><tr  style='background:#fff;'><td>Title</td><td>--> " + event.title + "</td></tr>";
+                    str += "<tr><td>Time</td><td>--> " + start + "  - " + end + "</td></tr></tbody></table>";
                     //popover event message
                    $(this).attr('data-toggle','popover');
 
@@ -129,7 +133,7 @@ var Calendar = {
                         $('.message').remove();
                     }, 2000);
                     if(reload){
-                        Calendar.init({0:0}); //for calendar blank event
+                        location.reload();
                     }
                 }
                 else {

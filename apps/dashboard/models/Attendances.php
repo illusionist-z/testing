@@ -107,7 +107,7 @@ class Attendances extends Model {
                 . "order by count(*) desc limit 3";
         $data = $this->db->query($query);
         //select where no leave name in current month
-        $query1 = "select member_login_name from core_member where member_id not in
+        $query1 = "select full_name,member_profile from core_member where member_id not in
                    (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) and deleted_flag=0 order by created_dt desc  limit 3";
         $data1 = $this->db->query($query1);
         $res['leave_name'] = $data->fetchall();
