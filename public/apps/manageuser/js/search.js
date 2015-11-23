@@ -35,7 +35,7 @@ var User = {
         var name = document.getElementById('username').value;
         $.ajax({
         type: 'GET',
-        url: "userlist?username="+name,
+        url: "index?username="+name,
         success:function(result){       
           $('body').html(result);
            $('.dropdown-toggle').dropdown();

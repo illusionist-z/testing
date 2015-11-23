@@ -64,7 +64,9 @@
     <table style="background:#F5F5F5;"  >
         <tr>
             <td><label for="member_event"> <?php echo $t->_("search_member"); ?> </label> 
+               
             <input style="margin-top: 10px;" type="text" id="member_event" placeholder="Enter Member Name">
+           
             </td>
             
         </tr>
@@ -108,7 +110,7 @@
 <!--                <option  name="<?= $result->member_id ?>"></option>-->
 <!--        <label for="member_name"><?php echo $t->_("name"); ?></label>-->
                     <input type="text" style="font-size: 13px;width: 100%;margin-top: 10px;" class="input-medium" value="" name="uname" id="show_name" >
-                <span></span>    
+                <span><input type="hidden" value="" id="formemberid" name="member_id" ></span>    
                 </td>
             </tr>
             <tr>

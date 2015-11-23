@@ -146,7 +146,7 @@
             success:function(d){
                 // check valid mail & phone
                 if(true===d.valid){
-                  location.replace('userlist');
+                  location.replace('index');
                     }
                 else{
                   if(false===d.mail){
@@ -214,7 +214,7 @@
             url:baseUri+'manageuser/index/deleteuser',
             data:{data:id}            
         }).done(function(){
-            $('body').load('userlist');
+            $('body').load('index');
         });
     }
 };
