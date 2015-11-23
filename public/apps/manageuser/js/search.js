@@ -17,7 +17,7 @@ var User = {
         $("tbody").show();         
         if(reload){
        $.ajax({
-                url:'usernameautolist',
+                url:baseUri+'manageuser/index/usernameautolist',
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
@@ -54,11 +54,13 @@ $(document).ready(function(){
     $('form').on('click','#userlistsearch',function () {        
         User.search();
     });
-    $('form').on('click','#addinguser',function () {        
+    $('form').on('click','#addinguser',function () {      
+       
         Manage.User.Edit('new');
     });
     $("tbody").on('click','.displaypopup',function () {        
         var type = $(this).attr('id');  
+        
         Manage.User.Edit(type);
     });
      $('.userauto').click(function () {

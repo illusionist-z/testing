@@ -7,7 +7,7 @@
        <!-- inner menu: contains the actual data -->
             <ul class="menu">
                 <li>
-                <?php if($this->session->permission_code=="ADMIN"){?>
+                <?php if($this->session->page_rule_group=="1"){?>
                     
                 <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
                 <img src="<?php echo $baseUri;?>common/img/notid.png"> 

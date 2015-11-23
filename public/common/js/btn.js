@@ -30,15 +30,49 @@
  * @author Su Zin Kyaw<gnext.suzin@gmail.com>
  */
 $(document).ready(function(){
-    $('.checkin').on('click',function(){
-$('.geolocation').ready(function() {
-    geo();
+    var location="-";
+    jQuery(document).ready(function($) {
+         location=geoplugin_city()+","+geoplugin_countryName();
 });
+    $('.checkin').on('click',function(){
+//    $('.geolocation').ready(function() {
+//    geo();
+//});
+    
+        var url = "location_session";
+        var n = new Date();
+        var offset = n.getTimezoneOffset();
         
-       var note = document.getElementById('note').value;
-       window.location.href = baseUri + 'dashboard/index/checkin?note='+note;
-       
-       //alert("Successfully Checked In");
+        $.ajax({
+            url: url + "?offset=" + offset+"&location="+ location,
+            type: 'GET',
+            dataType: 'json'
+        });
+        
+        var note = document.getElementById('note').value;
 
+         $.ajax({
+           type : 'POST',
+           url  : baseUri + 'dashboard/index/checkin?note='+note,
+           data : $('#apply_form').serialize(),
+           success: function(d){
+               msg = JSON.parse(d);
+               alert(msg);
+               window.location.href = baseUri + 'dashboard/index/direct';
+           }
+        });
+       
+    }),
+      $('.checkout').on('click',function(){
+         $.ajax({
+           type : 'POST',
+           url  : baseUri + 'dashboard/index/checkout',
+           success: function(d){
+               msg = JSON.parse(d);
+               alert(msg);
+               window.location.href = baseUri + 'dashboard/index/direct';
+           }
+        });
+       
     });
 });

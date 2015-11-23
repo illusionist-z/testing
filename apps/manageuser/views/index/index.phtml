@@ -1,11 +1,95 @@
-<?php use Phalcon\Tag as Tag; ?>
-<div id="home_header">
-    <div id="logo" class="sprite-image crm-logo"></div>
+<?php
+    use Phalcon\Filter;
+?>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <?= $t->_("userlist"); ?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
+        <li class="active"><?= $t->_("userlist"); ?></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="buttons">
+        <!--<a href="#" class="button add-big">Add User</a>-->	
+        <form>
+<!--        <select class="select" data-toggle="select" name="username" id="username">
+            <option>Name</option>
+               <?php
+                foreach ($username as $name){
+                ?>
+                <option value="<?php echo $name->member_login_name; ?>" >          
+                <?php echo $name->member_login_name; ?></option>
+                <?php
+                }
+                ?>
+
+        </select>-->
+                <input class="userauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
+
+            <input type="submit" onclick="return false;" class="buttonn" value="<?= $t->_("search"); ?>" id="userlistsearch">
+<!--            <input style="color:black;height:30px;" class="addimg" type="button" class="inimg" class="buttonn" id="addinguser" onclick="return false;" value=" Add User">-->
+            <!--<a href="" style="color:black;" class="inimg" onclick="return false;" class="buttonn" id="addinguser">Add User</a>-->
+             <a href="#" onclick="return false;" style="float:right;"  class="button displaypopup" id="addinguser"><?= $t->_("adduser"); ?></a>
+        </form>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+            
+            <table class="listtbl">
+                <thead>
+                    <tr>
+                        <th width="50px">ID</th>
+                        <th width="150px"><?= $t->_("name"); ?></th>
+                        <th width="150px"><?= $t->_("dept"); ?></th>
+                        <th width="150px"><?= $t->_("position"); ?></th>
+                        <th width="150px"><?= $t->_("mail"); ?></th>
+                        <th width="150px"><?= $t->_("phone"); ?></th>
+                        <th width="150px"><?= $t->_("address"); ?></th>                        
+                    </tr>
+
+                </thead>
+                <tbody>                  
+                       <?php 
+                       $filter = new Filter();
+                    $i=1;
+                    foreach ($Result as $result) {                                                
+                    ?>                       
+                    <tr>
+                        <td><?= $i ?></td>
+                        <td><?= $filter->sanitize($result->member_login_name, "string"); ?></td>
+                        <td><?= $filter->sanitize($result->member_dept_name, "string"); ?></td>
+                        <td><?= $filter->sanitize($result->position, "string"); ?></td>
+                        <td><?= $filter->sanitize($result->member_mail, "email"); ?></td>
+                        <td><?= $filter->sanitize($result->member_mobile_tel, "int"); ?></td>
+                        <td><?= $filter->sanitize($result->member_address, "string"); ?>
+<!--                        <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="button displaypopup" id="<?=$result->member_login_name; ?>">Edit</a>-->
+                             <a href="#" onclick="return false;" style="float:right;margin-top: 12px;" class="inedit displaypopup" id="<?=$result->member_login_name; ?>"></a>
+                        </td>
+                    </tr>
+                   <?php
+                    $i++;
+                    }
+                    ?>
+                </tbody>
+                <tfoot style="display:none;"></tfoot>                    
+            </table>
+    </div>
+</section>
+<div id="content"></div>
+<div id="edituser" class="navbar">    
+</div>	
+<div id="confirm" title="Confirm Delete">
     
-<!--    <div id="btn_user" class="header-login-name"><?=$user['name']?></div>
-    <div id="btn_maintenace" class="sprite-image icon-24 icon-24-settings"></div>-->
 </div>
-<div id="main_contents">
-   <?php echo $this->tag->linkTo("singup", "Admin Page!"); ?>
-<!--   <a href="{{ url("singup/1002") }}">Edit</a>-->
-</div>
+
+
+
+
+

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <?php use Phalcon\Tag as Tag; ?>
 <html>
-    <head>
+    <head><style>.ui-dialog-titlebar-close {
+  visibility: hidden;
+}</style>
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini" >
+    <body class="skin-blue sidebar-mini"  onload="display_ct()">
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -30,7 +32,7 @@
 <div id="notificationsBody" class="notifications">
 
 </div>
-                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">View All</span></a></div>
+                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">See All</span></a></div>
                                 </div>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -117,10 +119,14 @@
 
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <aside>
+                        <?php                                        //print_r($this->session->auth); 
+                        
+                        ?>
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
-                       <?php    
+                       <?php
                         $count=1;
+                        
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
@@ -136,7 +142,9 @@
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                     } else {
-                                                                                                 echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                $lkdata=str_replace(' ', '', $key_value[0]);
+                                                                                                
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($lkdata) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                     }
                                                                                 }
                                                                                 $i = 0;
@@ -175,7 +183,7 @@
                                                                                   echo '</ul>';             
                                                                                 $i++; 
                                                                         }    
-                                                       echo '</li>'; 
+                                                       echo '</li>';
                                                        $count++;
                         }
                         ?>
@@ -192,7 +200,7 @@
                                        $top = explode(" ", $key_value["link0"]);
                                         if(strtolower($top[0] . $top[1]) ==$module_name) {
                                                if(count($key_value) >2 ) {
-                                                             echo '<div class="row"><div class="col-sm-2 link" >';
+                                                             echo '<div class="row"><div class="col-sm-2 link">';
                                                              echo '<aside class="sidebar-menu">';
                                                            foreach ($key_value as $name => $value) {
                                                                                 if($j > 1){
