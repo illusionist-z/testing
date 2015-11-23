@@ -373,7 +373,7 @@ class CoreMember extends \Library\Core\BaseModel {
      
      */
     public function findemail($member_mail) {       
-       print_r($member_mail);exit;
+       //print_r($member_mail);exit;
         //exit;
         // Check if the user exist
         $email = $member_mail;

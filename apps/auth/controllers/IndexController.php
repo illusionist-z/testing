@@ -2,17 +2,40 @@
 
 namespace workManagiment\Auth\Controllers;
 use workManagiment\Core\Models\Db\CoreMember;
+use workManagiment\Auth\Models;
 use workManagiment\Core\Models\Db;
 
 class IndexController extends ControllerBase {
 
-    public function initialize() {
+        public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-    }
+        }
 
-    public function indexAction($mode = NULL) {
+        public function indexAction($mode = NULL) {
         $this->view->errorMsg = '';
+        }
+
+    /**
+     * When user failed login
+     * @param type $mode
+     */
+        public function failerAction($mode = 1) {
+        $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
+        $this->view->pick('index/index');
+        }
+        /**
+     * When user failed  email  go 
+     * @param type $mode
+     */
+        public function faileremailAction($mode = 1) {
+        $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
+      //  $this->view->pick('index/forgotpassword');
+    }
+    
+    public function forgotpasswordAction() {
+         $this->assets->addJs('apps/auth/js/forgot.js');      
+       
     }
   public function SaltsForGetAction()
     {
@@ -23,27 +46,6 @@ class IndexController extends ControllerBase {
                $this->view->disable();
               $this->response->redirect('setting/index/index');
          }
-    }
-    /**
-     * When user failed login
-     * @param type $mode
-     */
-    public function failerAction($mode = 1) {
-        $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
-        $this->view->pick('index/index');
-    }
-    /**
-     * When user failed  email  go 
-     * @param type $mode
-     */
-    public function faileremailAction($mode = 1) {
-        $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
-      //  $this->view->pick('index/forgotpassword');
-    }
-    
-    public function forgotpasswordAction() {
-         $this->assets->addJs('apps/auth/js/forgot.js');      
-       
     }
     public function resetyourpasswordAction() {
        // echo 'aa';
@@ -62,7 +64,7 @@ class IndexController extends ControllerBase {
          
          $result = $Admin->findemail($member_mail);
          
-         $token = uniqid(bin2hex(mcrypt_create_iv(45, MCRYPT_DEV_RANDOM)));
+         $token = uniqid(bin2hex(mcrypt_create_iv(10, MCRYPT_DEV_RANDOM)));
          
          $insert  = $Admin->insertemailandtoken($member_mail,$token);
          

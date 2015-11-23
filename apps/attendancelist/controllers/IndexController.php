@@ -1,11 +1,8 @@
 <?php
 
 namespace workManagiment\Attendancelist\Controllers;
-
 use workManagiment\Core\Models\Db;
- 
 use workManagiment\Attendancelist\Models\CorePermissionGroupId;
-
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -99,15 +96,15 @@ class IndexController extends ControllerBase {
         $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
         $monthlylist = $Attendances->showattlist();       
         $coreid = new CorePermissionGroupId();
-        foreach($coreid as $data){ 
-        if($this->session->page_rule_group==$data->group_id){
+        foreach ($this->session->auth as $key_name => $key_value) {
+          if ($key_name == 'show_admin_attlist') {
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $UserName);
         $this->view->offset = $offset;
         }
-        else {
-            $this->response->redirect('core/index');
+        else if($key_name == 'show_user_attlist') {
+            $this->response->redirect('attendancelist/user/attendancelist');
         }  
         }
     }

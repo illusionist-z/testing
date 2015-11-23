@@ -31,9 +31,9 @@
  */
 $(document).ready(function(){
     var location="-";
-    jQuery(document).ready(function($) {
+       jQuery(document).ready(function($) {
          location=geoplugin_city()+","+geoplugin_countryName();
-});
+         });
     $('.checkin').on('click',function(){
 //    $('.geolocation').ready(function() {
 //    geo();
@@ -42,7 +42,8 @@ $(document).ready(function(){
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
-        
+       
+     
         $.ajax({
             url: url + "?offset=" + offset+"&location="+ location,
             type: 'GET',
@@ -52,9 +53,8 @@ $(document).ready(function(){
         var note = document.getElementById('note').value;
 
          $.ajax({
-           type : 'POST',
+           type : 'GET',
            url  : baseUri + 'dashboard/index/checkin?note='+note,
-           data : $('#apply_form').serialize(),
            success: function(d){
                msg = JSON.parse(d);
                alert(msg);
@@ -65,7 +65,7 @@ $(document).ready(function(){
     }),
       $('.checkout').on('click',function(){
          $.ajax({
-           type : 'POST',
+           type : 'GET',
            url  : baseUri + 'dashboard/index/checkout',
            success: function(d){
                msg = JSON.parse(d);

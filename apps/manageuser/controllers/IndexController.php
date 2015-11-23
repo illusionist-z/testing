@@ -25,7 +25,7 @@ class IndexController extends ControllerBase
      * @since  18/7/15
      * @version 3/9/2015 @by David JP
      */
-    public function indexAction() {
+    public function IndexAction() {
         //for paging and edit user
         $User=new Db\CoreMember;
         $id=$this->session->user['member_id'];

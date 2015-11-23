@@ -10,6 +10,7 @@ class IndexController extends  ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
@@ -101,9 +102,12 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function location_sessionAction() {
+        //$lat = $this->request->get('lat');
+        //$lng = $this->request->get('lng');
         $add=$this->request->get('location');
         $offset = $this->request->get('offset');
         $this->session->set('location', array(
+            
             'location'=>$add,
             'offset' => $offset
         )); 
@@ -119,6 +123,8 @@ class IndexController extends  ControllerBase {
          $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
+        //$lat = $this->session->location['lat'];
+        //$lon = $this->session->location['lng'];
         $add = $this->session->location['location'];
         $noti_Creatorid=$User->GetAdminstratorId();
         $creator_id=$noti_Creatorid[0]['rel_member_id'];
