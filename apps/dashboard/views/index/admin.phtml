@@ -1,6 +1,6 @@
 <script type="text/javascript">
     function checkValue() {
-        var linkemail = document.forms["theForm"]["linkemail"].checked;
+        var linkemail = document.forms["theForm"]["linkemail"].checked
         if (linkemail) {
             document.getElementById('xtraInfo').style.display = '';
         } else {
@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <div class="col-lg-3 col-xs-6">
                                         <!-- small box -->
-                                        <div class="small-box bg-aqua" onclick="window.location.href = '../../manageuser/index/userlist'" id="pointer_style1">
+                                        <div class="small-box bg-aqua" onclick="window.location.href = '../../manageuser/index'" id="pointer_style1">
                                             <img src="../../common/img/User-128.png">
                                             <span class="forsize"><?= $t->_("manageuser"); ?></span>
                                         </div>
@@ -138,8 +138,10 @@
                                                         <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
                                                             <li>
                                                                 People who attend no leave
-                                                                <ul><?php foreach ($nlname as $na) { ?>
-                                                                    <li id="noleaveli">
+                                                                <ul><?php
+                                                                $count = [];
+                                                                foreach ($nlname as $na) { ?>
+                                                                   <li id="noleaveli">
                                                                         <?php
                                                                         if ($na['member_profile'] == null) {
                                                                             $img = "profile1.jpg";
@@ -157,10 +159,27 @@
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
                                                                         <?= $na['full_name'] ?>
                                                                     </li>
-                                                                   
-                                                                    <?php } ?>
+                                                                    <?php 
+                                                                         array_push($count, $na['full_name']);
+                                                                            } ?>
                                                                 </ul>
-<!--                                                                <span id="viewallnoleave"><a href="../../leavedays/index/noleavelist"  class="btn btn-primary btn-sm btn-flat" id="checkout"style="border-radius: 5px;"><?= $t->_("View All"); ?></a></span>-->
+                                                                <?php 
+                                                                    //echo sizeof($count);
+                                                                        if(sizeof($count) > 3){
+                                                                           // echo $na['full_name']." :::::::";
+                                                                           ?>
+                                                                 <style type="text/css">#noleavelist,hr{
+                                                                                        display:block;
+                                                                                        }</style> 
+                                                                <?php
+                                                                        }else{ ?>
+                                                                                        <style type="text/css">#noleavelist,hr{
+                                                                                        display:none;
+                                                                                        }</style>             
+                                                                <?php
+                                                                          // echo $na['full_name']; 
+                                                                        }
+                                                                ?>
                                                                 <hr>
                                                                 <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelist"><?= $t->_("View All"); ?></a>
 <!--                                                                <a href="../../leavedays/index/noleavelist"><span id="viewallnoleave"><?php echo $t->_("View All"); ?></span></a>-->
@@ -169,7 +188,10 @@
                                                         <ul class="nav nav-pills nav-stacked">
                                                             <li>
                                                                 People who take the leave most
-                                                                <ul><?php foreach ($lname as $na) { ?>
+                                                                <ul><?php 
+                                                                $count = [];
+                                                                foreach ($lname as $na) { 
+                                                                   ?>
                                                                         <li id="noleaveli">
                                                                         <?php
                                                                         if ($na['member_profile'] == null) {
@@ -183,13 +205,30 @@
                                                                             }
                                                                         }
                                                                         ?> 
-
-
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
                                                                         <?= $na['full_name'] ?>
                                                                     </li>
-                                                                    <?php } ?>
+                                                                    <?php 
+                                                                    array_push($count, $na['full_name']);
+                                                                            } ?>
                                                                 </ul>
+                                                                  <?php 
+                                                                    //echo sizeof($count);
+                                                                        if(sizeof($count) > 3){
+                                                                           // echo $na['full_name']." :::::::";
+                                                                           ?>
+                                                                 <style type="text/css">#leavemostlist,hr{
+                                                                                        display:block;
+                                                                                        }</style> 
+                                                                <?php
+                                                                        }else{ ?>
+                                                                                        <style type="text/css">#leavemostlist,hr{
+                                                                                        display:none;
+                                                                                        }</style>             
+                                                                <?php
+                                                                          // echo $na['full_name']; 
+                                                                        }
+                                                                ?>
                                                                 <hr>
                                                                 <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlist"><?= $t->_("View All"); ?></a>
                                                             </li>
@@ -229,7 +268,7 @@
                                                                  
                                                             }
                                                         }
-                                                        ?>                                                
+                                                        ?>                                                 
                                                         <img src="../../uploads/<?php echo $img; ?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
                                                         <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
                                                         <span class="users-list-date"><?= $v->created_dt; ?></span>
@@ -238,7 +277,7 @@
                                             </ul><!-- /.users-list -->
                                         </div><!-- /.box-body -->
                                         <div class="box-footer text-center">
-                                            <a href="../../manageuser/index/userlist" class="uppercase"><?php echo $t->_("viewallmember"); ?></a>
+                                            <a href="../../manageuser/index" class="uppercase"><?php echo $t->_("viewallmember"); ?></a>
                                         </div><!-- /.box-footer -->
                                     </div><!--/.box -->
 

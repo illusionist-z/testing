@@ -89,7 +89,17 @@ class IndexController extends ControllerBase {
         $core->delete();
         $this->view->disable();        
         }
-
+          /**
+         * @author YanLin Pai <wizardrider@gmail.com>
+         * @DelPageRuleAction
+         */
+         public function DelPageRuleAction()
+        {
+        $core = new CorePermissionGroup();
+        $core = CorePermissionGroup::Find($this->request->getPost('idpage'));
+        $core->delete();
+        $this->view->disable();        
+        }
         public function GroupRuleSettingAction()
         {
         $group_name = $this->request->getPost('name_of_group');

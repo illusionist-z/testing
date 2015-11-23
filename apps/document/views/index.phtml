@@ -83,20 +83,28 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->permission_code;
-        if ( $name=='ADMIN'){?>
-                                        <div class="pull-left">
-                                            <a href="../../setting/index/index" class="btn btn-default btn-flat" id="settingborder"><b>Setting</b></a>
+                                      <?php foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_attlist') {
+                //Go to user dashboard
+                $this->view->disable();
+               // $this->response->redirect('attendancelist/index/todaylist');
+                ?>
+                 <div class="pull-left">
+                                            <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
-            
-        <?php }
-        else
-        {?> 
-            <div class="pull-left">
-                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat" id="settingborder"><b>Setting</b></a>
-                                        </div>
-        <?php }
-        ?>
+                <?php
+                } 
+                else if($key_name == '')
+               { 
+                    ?> 
+                      <div class="pull-left">
+                                                    <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                                </div>
+                <?php }
+                
+                                  }
+                ?>
                                         
                                         <div class="pull-right">
                                             <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>

@@ -17,7 +17,7 @@ var User = {
         $("tbody").show();         
         if(reload){
        $.ajax({
-                url:'usernameautolist',
+                url:baseUri+'manageuser/index/usernameautolist',
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {

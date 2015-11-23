@@ -9,10 +9,8 @@ function showDialog()
         height: 300,
         buttons: {
             'Save': function () {
-                
                 $("form").submit();
-                
-            },
+               },
             'Delete': function () {
                 Setting.GroupRule.delete(dia_id);
             },
@@ -68,7 +66,10 @@ function PageRuleSetting()
         buttons: {
             'Save': function () {
                $("form").submit();
-            },          
+            },
+             'Delete': function () {
+                Setting.PageRule.delete(dia_page_rule);
+            },
             'Cancel': function () {
                 $(this).dialog('close');
             }
@@ -109,11 +110,10 @@ function addGroup()
         draggable: false,
         resizable: false,
         width: 300,
-        height: 150,
+        height: 200,
         buttons: {
             'Save': function () {
-               
-                $("form").submit();
+                   $("form").submit();
             },
             'Cancel': function () {
                 $(this).dialog('close');

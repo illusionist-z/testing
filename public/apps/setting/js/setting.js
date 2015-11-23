@@ -27,6 +27,18 @@ Setting.GroupRule = {
         });
     } 
  };
+ Setting.PageRule = {
+    delete : function(id){
+        $.ajax({
+            url : " DelPageRule",
+            data : {idpage : id},
+            type : "POST",
+            success: function(){
+                location.reload();
+            }
+        });
+    } 
+ };
  Setting.UserRule = {
     update : function(id,groupid,grouptext){
         $.ajax({

@@ -41,7 +41,7 @@ class SalaryMasterController extends ControllerBase
         $data['updater_id'] = 3;
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
-//        print_r($dedution);exit;
+        //print_r($data['member_id']);exit;
         if ($this->request->isPost()) {
              $user = $this->_addsalary;
              $validate = $user->chk_validate($this->request->getPost());
