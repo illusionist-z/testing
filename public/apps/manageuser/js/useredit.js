@@ -39,6 +39,8 @@
                   id = 0;
                     }
                     else{
+                           
+                     
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
                    +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">'+res[1]['name']+'</td><td>'
                    +'<input style="margin-top:10px" type="text" name="username" id="uname" class="col-sm-10" placeholder="'+res[1]['placeholder1']+'"></td></tr>'
@@ -51,11 +53,29 @@
 	           +'<tr><td>'+res[1]['mail']+'</td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="'+res[1]['placeholder8']+'"></td></tr>'
                    +'<tr><td>'+res[1]['pno']+'</td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="'+res[1]['placeholder9']+'"></td></tr>'
                    +'<tr><td>'+res[1]['address']+'</td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="'+res[1]['placeholder10']+'"></textarea></td></tr>'
-                   +'<tr><td><br>'+res[1]['role']+'</td><td><select style="margin-top:10px" class="col-sm-10" data-toggle="select" name="user_role" id="member[user_role]">'
-                   +'<option value="USER,user">User</option><option value="ADMIN,adminstrator">Admin</option></select></td></tr>'
-                   +'<tr><td>'+res[1]['profile']+'</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
+                   +'<tr><td><br>'+res[1]['role']+'</td><td><select style="margin-top:10px" class="col-sm-10 mySelect" data-toggle="select" name="user_role" id="member[user_role]">'
+                   +'</select></td></tr><tr><td>'+res[1]['profile']+'</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
                    +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="Add User"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
-                   +'</tr></table></form>';	
+                   +'</tr></table></form>';
+                    var type="new";
+                    $.ajax({
+                    type:'GET',
+                    url :baseUri+'manageuser/index/getpermit?data=' + type,
+                    success: function(d){
+                    var json_obj = $.parseJSON(d);
+                    var option='';
+                    for (var i in json_obj){
+                      
+                       option += "<option value='"+json_obj[i].name_of_group+","+json_obj[i].group_id+"'>"+json_obj[i].name_of_group+"</option>";
+                        
+                    }
+                    
+                    $('.mySelect').html(option);
+
+                    
+                    }
+                     });
+    
                    title = res[1]['add'];
                    id = 1;
                     }

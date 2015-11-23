@@ -3,6 +3,7 @@
 namespace workManagiment\Manageuser\Controllers;
 use workManagiment\Manageuser\Models\User as User;
 use workManagiment\Core\Models\Db;
+use workManagiment\Dashboard\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase
 {
@@ -148,6 +149,15 @@ class IndexController extends ControllerBase
      */
     public function adduserAction(){
        
+    }
+    
+       public function getpermitAction(){
+     
+        $permission=new CorePermissionGroupId();
+        $result=$permission->getPermitName();
+        echo json_encode($result);
+        
+        $this->view->disable();  
     }
 }
 
