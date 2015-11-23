@@ -35,7 +35,7 @@ var User = {
         var name = document.getElementById('username').value;
         $.ajax({
         type: 'GET',
-        url: "userlist?username="+name,
+        url: "index?username="+name,
         success:function(result){       
           $('body').html(result);
            $('.dropdown-toggle').dropdown();
@@ -54,11 +54,13 @@ $(document).ready(function(){
     $('form').on('click','#userlistsearch',function () {        
         User.search();
     });
-    $('form').on('click','#addinguser',function () {        
+    $('form').on('click','#addinguser',function () {      
+       
         Manage.User.Edit('new');
     });
     $("tbody").on('click','.displaypopup',function () {        
         var type = $(this).attr('id');  
+        
         Manage.User.Edit(type);
     });
      $('.userauto').click(function () {

@@ -53,10 +53,10 @@ class SalaryMaster extends Model {
             for ($i = 0; $i < count($dedution); $i++) {
 
                 $sql = "INSERT INTO workManagiment\Salary\Models\SalaryMemberTaxDeduce 
-                        (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt,deleted_flag)
+                        (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt)
                         VALUES('" . $dedution[$i] . "','" . $member_id . "', '" 
-                        . $creator_id . "',NOW(),0,'00:00:00',0)";
-                //$result = $this->modelsManager->executeQuery($sql);
+                        . $creator_id . "',NOW(),0,'00:00:00')";
+                $result = $this->modelsManager->executeQuery($sql);
                 
             }
              $sql="UPDATE salary_member_tax_deduce SET"
@@ -211,8 +211,8 @@ class SalaryMaster extends Model {
                         'creator_id'=>$creator_id,
                         'pay_date'=>$salary_start_date);
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -423,6 +423,9 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $basic_salary_annual=$basic_salary_annual+$total_allowance;
                 echo 'Basic salary annual with allowance '.$new_allowance;
             }
+            else {
+                $row['total_allowance_amount']=0;
+            }
             $data['basic_salary_annual']=$basic_salary_annual;
             $data['allowance']=$row['total_allowance_amount'];
         } catch (Exception $e) {
@@ -541,7 +544,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         }
        
         $latest_result = round($Result / $salary_year);
-        echo 'Year difference '.$Result.' ////';
+        echo 'Year difference '.$salary_year.' ////';
         if($Result=="")
         {$Result=0;}
         $result['total_tax_annual']=$Result;
@@ -561,7 +564,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $sql = "select ATT .member_id,SUM((case when (ATT.overtime) then ATT.overtime*SA.over_time else 0 end)) as overtime_rate,
                 SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA 
                 on ATT.member_id=SA.member_id where ATT .member_id
-in (select member_id from salary_master) and YEAR(ATT.att_date)='".$year."' and "
+in (select member_id from salary_master where member_id='".$member_id."') and YEAR(ATT.att_date)='".$year."' and "
                     . "MONTH(ATT.att_date)='".$month."' group by ATT .member_id";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
             //echo $sql;exit;

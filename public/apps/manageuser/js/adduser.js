@@ -4,13 +4,13 @@
  * @since 25/8/2015
  * @desc adduser form validation
  */
-   
+  
    UserAdd = {
      Submit : function (){
       
         $.ajax({
             type:'POST',
-            url :'../coremember/saveuser',
+            url :baseUri+'manageuser/coremember/saveuser',
           //data:$("#saveuser").serialize(),
             data :new FormData($("#saveuser")[0]),
             //async: false,
@@ -47,7 +47,7 @@
                 else
                 {
                     alert("User Added Successfully");
-                    location.replace("userlist");
+                    location.replace("index");
                 }    
                 
             }

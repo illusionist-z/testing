@@ -42,7 +42,7 @@ class Auth extends Component {
         
         $permission = $this->db->query("SELECT permission_group_id_user FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
         $permission_name = $permission->fetchArray();
-        
+      // var_dump($permission_name);exit;
         return $permission_name['permission_group_id_user'];
         
 

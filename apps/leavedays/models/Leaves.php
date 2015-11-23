@@ -190,6 +190,7 @@ class Leaves extends \Library\Core\BaseModel {
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
             //print_r($date);exit;
         }
+        //print_r($date);exit;
         return $date;
     }
 
@@ -270,15 +271,16 @@ class Leaves extends \Library\Core\BaseModel {
     public function acceptleave($id, $days, $noti_id) {
         $this->db = $this->getDI()->getShared("db");
         $date = $this->getcontractdata($id);
-
+        $sql="UPDATE leaves set "
+                . "leaves.total_leavedays=total_leavedays+'" . $days . "' "
+                . "WHERE leaves.member_id='" . $id . "'  AND start_date "
+                . "BETWEEN '" . $date['startDate'] . "' AND  '" . $date['endDate'] . "'";
+       // print_r($sql);exit;
         $status = 1;
         $this->db->query("UPDATE leaves set"
                 . " leaves.leave_status='" . $status . "' "
                 . " WHERE leaves.noti_id='" . $noti_id . "'");
-        $this->db->query("UPDATE leaves set "
-                . "leaves.total_leavedays=total_leavedays+'" . $days . "' "
-                . "WHERE leaves.member_id='" . $id . "'  AND start_date "
-                . "BETWEEN '" . $date['startDate'] . "' AND  '" . $date['endDate'] . "'");
+        $this->db->query($sql);
         $this->db->query("UPDATE core_notification set"
                 . " core_notification.noti_status=1  "
                 . "WHERE core_notification.noti_id='" . $noti_id . "'");

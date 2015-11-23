@@ -10,10 +10,11 @@ class IndexController extends  ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        
         //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $this->permission = $this->setPermission();
         $this->view->module_name =  $this->router->getModuleName();
     }
@@ -23,7 +24,8 @@ class IndexController extends  ControllerBase {
      */
     public function indexAction() {
         //$this->aa();exit;
-        
+         
+      
         foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'user_dashboard') {
@@ -96,7 +98,7 @@ class IndexController extends  ControllerBase {
         $this->view->setVar("numleaves",$numofleaves);
         $this->view->t = $this->_getTranslation();
     }
-    /**
+  /**
      * set location,latitude and longitude to session
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */

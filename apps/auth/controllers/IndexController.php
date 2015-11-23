@@ -37,6 +37,16 @@ class IndexController extends ControllerBase {
          $this->assets->addJs('apps/auth/js/forgot.js');      
        
     }
+  public function SaltsForGetAction()
+    {
+        $core = new CoreMember();
+        $login = $this->request->getPost('SaltsForGetInput');
+        $user = Users::findFirstByLogin($login);
+        if ($user) {
+               $this->view->disable();
+              $this->response->redirect('setting/index/index');
+         }
+    }
     public function resetyourpasswordAction() {
        // echo 'aa';
            

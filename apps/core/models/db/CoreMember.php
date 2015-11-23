@@ -170,15 +170,15 @@ class CoreMember extends \Library\Core\BaseModel {
         $Real_pic_name=explode(".", $_FILES["fileToUpload"]["name"]);
         $newfilename = rand(1, 99999) . '.' . end($Real_pic_name);
         $targetfile = $target_dir . $newfilename;
-
+        $lang = "en";
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
-        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
-                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
+        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
+                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
 
         foreach ($us as $value) {
-            $this->db->query("INSERT INTO core_permission_rel_member (rel_member_id,permission_member_group_member_name,rel_permission_group_code,creator_id,created_dt)"
+            $this->db->query("INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())");
         }
     }
@@ -208,7 +208,7 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetAdminNoti($id) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' ";
+        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "'order by created_time desc";
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
         //$notirel=$this->db->query("SELECT * FROM notification_rel_member JOIN core_member ON core_member.member_id=notification_rel_member.member_id WHERE notification_rel_member.status=2 AND notification_rel_member.member_id!= '" . $id . "'");
@@ -221,7 +221,7 @@ class CoreMember extends \Library\Core\BaseModel {
             //print_r($sql);exit;
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-            //$final_result[$i]['0']['creator_name']=$noti['creator_name'];
+            $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
            
             
@@ -242,7 +242,7 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetUserNoti($id) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id . "'";
+        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id ."'order by created_time desc";
         //print_r($sql);exit;
         $UserNoti = $this->db->query($sql);
 

@@ -50,10 +50,12 @@ class IndexController extends ControllerBase
     }
     
     public function notificationAction(){
-        $code=$this->session->permission_code;
-           $Admin=new CoreMember();
-           $id = $this->session->user['member_id'];
-        if($code=="ADMIN"){
+        $code=$this->session->page_rule_group;
+         $Admin=new CoreMember();
+         $id = $this->session->user['member_id'];
+         
+           
+        if($code=="1"){
    
         $noti=$Admin->GetAdminNoti($id);}
         else{
