@@ -53,16 +53,18 @@ class IndexController extends ControllerBase
         $Companyinfo= new CompanyInfo();
         $cominfo= $Companyinfo->GetCompanyInfo();
            $coreid = new CorePermissionGroupId();
-         foreach($coreid as $data){ 
-        if($this->session->page_rule_group==$data->group_id){
+        foreach ($this->session->auth as $key_name => $key_value) {
+         if($key_name == 'show_admin_document'){
+       
         $this->view->salary_info=$result; 
         $this->view->cominfo=$cominfo;
         }
-        else {
+       else if($key_name == 'user_dashboard'){
             $this->response->redirect('core/index');
         }
          }
     }
+  
     /**
      * tax documentation form
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
@@ -72,11 +74,12 @@ class IndexController extends ControllerBase
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getsalary_info();
            $coreid = new CorePermissionGroupId();
-         foreach($coreid as $data){ 
-         if($this->session->page_rule_group==$data->group_id){
+        foreach ($this->session->auth as $key_name => $key_value) {
+         if($key_name == 'show_admin_document'){
+         
             $this->view->salary_info=$result;
         }
-        else {
+          else if($key_name == 'user_dashboard'){
             $this->response->redirect('core/index');
         }
           }
@@ -87,15 +90,16 @@ class IndexController extends ControllerBase
         $Cinfo=new \workManagiment\Document\Models\CompanyInfo();
         $info=$Cinfo->GetCompanyInfo();
         $coreid = new CorePermissionGroupId();
-       foreach($coreid as $data){ 
-         if($this->session->page_rule_group==$data->group_id){
+       foreach ($this->session->auth as $key_name => $key_value) {
+         if($key_name == 'show_admin_document'){
             $this->view->setVar("info",$info);
         }
-        else {
+        else if($key_name == 'user_dashboard'){
             $this->response->redirect('core/index');
         }
        }
-    }
+       }
+    
     
      /**
      * Edit Company Profile
