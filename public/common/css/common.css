@@ -30,6 +30,9 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
     padding: 0px 10px;
     outline-color: #3c8dbc;
 }
+  @media(max-width:767px){
+      .main-sidebar{transform:translate3d(0,0,0);}
+  }
 #userlistsearch,#namesearch,#sub,#search,#apply_form_submit,#add_salary_apply,
 #search_salary,#add_user,#edit_edit,#Add_deduct,#Add_ltype,#delete_ltype,#cal_salary,
 #create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,

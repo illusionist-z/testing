@@ -14,27 +14,14 @@
 
 <!-- Main content -->
 <section class="content">
-    <div class="buttons">
+    <div class="row">
         <!--<a href="#" class="button add-big">Add User</a>-->	
-        <form>
-<!--        <select class="select" data-toggle="select" name="username" id="username">
-            <option>Name</option>
-               <?php
-                foreach ($username as $name){
-                ?>
-                <option value="<?php echo $name->member_login_name; ?>" >          
-                <?php echo $name->member_login_name; ?></option>
-                <?php
-                }
-                ?>
+        <form class="buttons">
+                <input  class="userauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
-        </select>-->
-                <input class="userauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
+                <input type="submit" onclick="return false;" class="buttonn" value="<?= $t->_("search"); ?>" id="userlistsearch">
 
-            <input type="submit" onclick="return false;" class="buttonn" value="<?= $t->_("search"); ?>" id="userlistsearch">
-<!--            <input style="color:black;height:30px;" class="addimg" type="button" class="inimg" class="buttonn" id="addinguser" onclick="return false;" value=" Add User">-->
-            <!--<a href="" style="color:black;" class="inimg" onclick="return false;" class="buttonn" id="addinguser">Add User</a>-->
-             <a href="#" onclick="return false;" style="float:right;"  class="button displaypopup" id="addinguser"><?= $t->_("adduser"); ?></a>
+               <a href="#" onclick="return false;"  class="right button displaypopup" id="addinguser"><?= $t->_("adduser"); ?></a>
         </form>
 
     </div>
@@ -45,13 +32,13 @@
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th width="50px">ID</th>
-                        <th width="150px"><?= $t->_("name"); ?></th>
-                        <th width="150px"><?= $t->_("dept"); ?></th>
-                        <th width="150px"><?= $t->_("position"); ?></th>
-                        <th width="150px"><?= $t->_("mail"); ?></th>
-                        <th width="150px"><?= $t->_("phone"); ?></th>
-                        <th width="150px"><?= $t->_("address"); ?></th>                        
+                        <th>ID</th>
+                        <th><?= $t->_("name"); ?></th>
+                        <th><?= $t->_("dept"); ?></th>
+                        <th ><?= $t->_("position"); ?></th>
+                        <th ><?= $t->_("mail"); ?></th>
+                        <th ><?= $t->_("phone"); ?></th>
+                        <th ><?= $t->_("address"); ?></th>                        
                     </tr>
 
                 </thead>

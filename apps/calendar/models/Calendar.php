@@ -45,10 +45,10 @@ class Calendar extends Model {
      * @author David
      * @version Su Zin Kyaw
      */
-    public function create_event($creator_name,$creator_id,$id,$sdate,$edate,$title,$uname){
+    public function create_event($member_id,$creator_name,$creator_id,$sdate,$edate,$title,$uname){
         $noti_id=rand();
          $this->db = $this->getDI()->getShared("db");
-         $insert ="INSERT INTO calendar (member_name,member_id,title,startdate,enddate,allDay,noti_id) Values ('".$uname."','".$id."','".$title."','".$sdate."','".$edate."','true','" . $noti_id . "')";
+         $insert ="INSERT INTO calendar (member_id,member_name,title,startdate,enddate,allDay,noti_id,creator_id,created_dt) Values ('".$member_id."','".$uname."','".$title."','".$sdate."','".$edate."','true','" . $noti_id . "','".$creator_id."',now())";
          $query=  $this->db->query($insert);
         $admins=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='ADMIN' and core_member.member_id!= '" . $creator_id . "' ");
         $admins=$admins->fetchall();
