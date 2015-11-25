@@ -11,20 +11,24 @@ function checktime(i) {
     }
     return i;
 }
+/**
+ * sidebar menu link height resize()
+ * @author David JP<gnext>
+ */
 function link_height() {
     //for link border right in link page
-var link_width = $(document).outerWidth();
-var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$(".navbar").outerHeight());
-if(link_width>770){
-$(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
-}
-else{  
-    $(".link").css({"height":link_height/5.5+"px","border-right":"1px solid #aaa","background":"#fff"});
-}
+    var link_width = $(document).outerWidth();
+    var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$("#fixedheader").outerHeight());
+    
+    if(link_width>775){
+       $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
+    }
+    else if(link_width > 423){  
+        $(".link").css({"height":link_height/10.5+"px","border-right":"1px solid #aaa","background":"#fff"});
+    }
 }
 
-function geo() {
-  
+function geo() {  
    
     if (navigator.geolocation) {
         var url = "location_session";
@@ -172,10 +176,10 @@ $(document).ready(function() {
     
  $('.datepicker').datepicker(); 
  
-link_height();
-
 });
-
+$(window).load(function(){
+    link_height();
+});
 $(window).resize(function(){
     link_height();
 });

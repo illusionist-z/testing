@@ -12,7 +12,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('apps/calendar/css/calendar.css');        
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
         $this->assets->addJs('apps/calendar/js/moment.min.js');
-        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
+        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
@@ -34,7 +34,7 @@ class IndexController extends ControllerBase
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);
-        $Allname   = $GetMember::getinstance()->getusername();                
+        $Allname   = $GetMember::getinstance()->getusername();
         $this->view->event_name = $permitname;
         $this->view->member_name=$this->session->user['member_login_name'];
         $this->view->uname = $Allname;
@@ -96,7 +96,7 @@ class IndexController extends ControllerBase
      * @category create event
      * @return   json { error message }
      */
-    public function createAction() {        
+    public function createAction() {
         $this->view->disable();             
         $uname = $this->request->get('uname');
         $member_id = $this->request->get('member_id');
