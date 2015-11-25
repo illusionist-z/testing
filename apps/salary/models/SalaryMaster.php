@@ -149,6 +149,7 @@ class SalaryMaster extends Model {
                 //Get the basic salary which the latest pay in salary 
                 $SD = $this->checkBasicsalaryBymember_id('salary_detail',
                         $value['member_id'], $budget_startyear, $budget_endyear_one);
+                
                 //Get the basic salary from salary master
                 $SM = $this->getLatestsalary($value['member_id']);
                 
@@ -161,11 +162,13 @@ class SalaryMaster extends Model {
                 }
                 
                 $Allowanceresult = $this->getAllowances($value['member_id'],$basic_salary_annual,$date_diff,$old_allowance,$SM['status']);
+                print_r($Allowanceresult);
                 $basic_salary_allowance_annual=$Allowanceresult['basic_salary_annual'];
                 
                 //calculating of overtime 
-                $overtime=$this->calculate_overtime($value['member_id'],$salary_starting_date);
-                $overtime_fees=$overtime['overtime_rate'];
+                $overtime_fees=$this->calculate_overtime_annual($value['member_id'],$SD['total_overtime'],$salary_starting_date,$budget_endyear,$date_diff);
+                //$overtime=$this->calculate_overtime($value['member_id'],$salary_starting_date);
+                
                 $basic_salary_allowance_annual=$basic_salary_allowance_annual+$overtime_fees;
                 //check the user who is absent.
                 $absent=  $this->checkAbsent($value['member_id']);
@@ -414,17 +417,21 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
-            if(isset($row['total_allowance_amount']))
+            
+            if($row['total_allowance_amount']!=0)
             {
                 $new_allowance=$row['total_allowance_amount']*$date_diff;
                 $total_allowance=$new_allowance+$old_allowance;
-               
+                //$total_allowance=($row['total_allowance_amount']+$old_allowance)*$date_diff;
                 
                 $basic_salary_annual=$basic_salary_annual+$total_allowance;
-                echo 'Basic salary annual with allowance '.$new_allowance;
+                echo 'Basic salary annual with allowance '.$total_allowance;
             }
             else {
-                $row['total_allowance_amount']=0;
+                $new_allowance=$old_allowance*$date_diff;
+                $total_allowance=$new_allowance+$old_allowance;
+                $basic_salary_annual=$basic_salary_annual+$total_allowance;
+                echo 'Basic salary annual with allowance two '.$total_allowance;
             }
             $data['basic_salary_annual']=$basic_salary_annual;
             $data['allowance']=$row['total_allowance_amount'];
@@ -439,7 +446,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         try {
 
             $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
-                    . ", COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
+                    . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
                     "' order by created_dt desc limit 1";
            //echo $sql.'<br>';exit;
             $result = $this->db->query($sql);
@@ -551,31 +558,63 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $result['tax_result']=$latest_result;
         return $result;
     }
-
     /**
-     * Calaculate for employee
+     * Calculate overtime for annual
+     * @param type $member_id
+     * @param type $old_overtime
+     * @param type $salary_starting_date
+     * @param type $budget_endyear
+     * @param type $date_diff
      * @return type
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function calculate_overtime($member_id,$salary_starting_date) {
+    public function calculate_overtime_annual($member_id,$old_overtime,$salary_starting_date,$budget_endyear,$date_diff) {
         try {
+            $overtime_fees;
             $dating=  explode('-', $salary_starting_date);
             $year=$dating[0];
             $month=$dating[1];
-            $sql = "select ATT .member_id,SUM((case when (ATT.overtime) then ATT.overtime*SA.over_time else 0 end)) as overtime_rate,
-                SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA 
-                on ATT.member_id=SA.member_id where ATT .member_id
-in (select member_id from salary_master where member_id='".$member_id."') and YEAR(ATT.att_date)='".$year."' and "
-                    . "MONTH(ATT.att_date)='".$month."' group by ATT .member_id";
+            $sql = "select *,SUM((case when (ATT.overtime!=0) then ATT.overtime*SM.over_time else 0 end)) as overtime_rate from salary_master as SM join attendances as Att on Att.member_id=SM.member_id"
+                    . " where YEAR(ATT.att_date)='".$year."' and MONTH(ATT.att_date)='".$month."' and ATT.member_id='".$member_id."' group by ATT .member_id";
             //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
             //echo $sql;exit;
             $result = $this->db->query($sql);
             $rows = $result->fetcharray();
-            
+            if(isset($old_overtime))
+                {
+                   $overtime_fees=$rows['overtime_rate']+$old_overtime; 
+                   $overtime_fees=$overtime_fees*$date_diff;
+                }
+                
         } catch (Exception $exc) {
             echo $exc;
         }
-        return $rows;
+        return $overtime_fees;
     }
+    /**
+     * Calaculate for employee
+     * @return type
+     */
+//    public function calculate_overtime($member_id,$salary_starting_date) {
+//        try {
+//            $dating=  explode('-', $salary_starting_date);
+//            $year=$dating[0];
+//            $month=$dating[1];
+//            $sql = "select ATT .member_id,SUM((case when (ATT.overtime!=0) then ATT.overtime*SA.over_time else 0 end)) as overtime_rate,
+//                SA.basic_salary,SA.travel_fee from attendances  as ATT join salary_master as SA 
+//                on ATT.member_id=SA.member_id where ATT .member_id
+//in (select member_id from salary_master where member_id='".$member_id."') and YEAR(ATT.att_date)='".$year."' and "
+//                    . "MONTH(ATT.att_date)='".$month."' group by ATT .member_id";
+//            //$sql = "select taxs_to,taxs_from,taxs_rate from taxs where taxs_rate !=0";
+//            //echo $sql;exit;
+//            $result = $this->db->query($sql);
+//            $rows = $result->fetcharray();
+//            
+//        } catch (Exception $exc) {
+//            echo $exc;
+//        }
+//        return $rows;
+//    }
 
     /**
      * Calculate ssc for employer and employee

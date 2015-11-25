@@ -22,7 +22,7 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckintime($id, $note, $lat, $lon, $add,$creator_id) {
+    public function setcheckintime($id, $note, $add,$creator_id) {
         $this->db = $this->getDI()->getShared("db");
         
         $mydate = date("Y-m-d H:i:s");
@@ -42,9 +42,9 @@ class Attendances extends Model {
             . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
             }
             $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
-                    . "att_date,lat,lng,location,notes,noti_id) VALUES ('" . $mydate . "'"
-                    . ",'" . $id . "','" . $today . "','" . $lat . "'"
-                    . ",'" . $lon . "','" . $add . "','" . $note . "','" . $noti_id . "')");
+                    . "att_date,location,notes,noti_id) VALUES ('" . $mydate . "'"
+                    . ",'" . $id . "','" . $today . "','" . $add . "'"
+                    . ",'" . $note . "','" . $noti_id . "')");
             $status = " Successfully Checked In";
             
         }
@@ -67,8 +67,8 @@ class Attendances extends Model {
             $outtime = $att->checkout_time;
             //check already checkout or not
             if ($outtime != 0) {
-                $status = " Already Checkout";
-                return $status;
+                $status = "Already Checkout";
+               
             } else {
                 $workingHour = strtotime($mydate)-strtotime($att->checkin_time);
                 
@@ -80,14 +80,16 @@ class Attendances extends Model {
                 $this->db->query("UPDATE attendances SET "
                      . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
                     . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
-                $status = " Successfully Checked Out ";
-                return $status;
+                $status = "Successfully Checked Out ";
+                
             }
         } else {
         //check in first
-         $status = " Please Check In First ";
-         return $status;
+         $status = "Please Check In First ";
+         
         }
+       
+        return $status;
     }
 
     /**
