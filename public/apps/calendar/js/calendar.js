@@ -7,7 +7,7 @@ var $ovl, $selectname, dict=[];
 var Calendar = {
     init: function (json_events) { 
         
-        if (!json_events) {            
+        if (!json_events) { 
             $.ajax({
                 url: 'index/calenderauto',
                 method: 'GET',                
@@ -18,6 +18,7 @@ var Calendar = {
                     $.map(json_obj,function(item){
                         dict.push({label : item.full_name,id:item.member_id});
                     });
+                    Calendar.Dialog.auto();
                     return dict;
                 }
             });        
@@ -404,7 +405,9 @@ Calendar.Dialog = {
                         //Calendar.Dialog.auto();
                     }
                     else{
-                        $('body').load('index');
+                        $('body').load('index',function(){
+                               $('.dropdown-toggle').dropdown();
+                        });
                     }
                     }                    
                 }            
@@ -420,9 +423,12 @@ Calendar.Dialog = {
     },
     
     auto : function (){        
-    $('#select_name').click(function () {
+      $('#select_name').unbind('click').bind('click',function () {        
         $(this).autocomplete({
-            source: dict
+            source: dict,
+            select: function (event, ui) {                
+                    $('#event_member_id').val(ui.item.id);      //get selected member id
+                }
         });
     });
     //for event calender auto complete username
@@ -430,7 +436,7 @@ Calendar.Dialog = {
         $(this).autocomplete({
             source: dict
         });
-    });
+    });       
     }
 };
 $(document).ready(function () {
