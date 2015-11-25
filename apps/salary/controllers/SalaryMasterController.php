@@ -31,7 +31,13 @@ class SalaryMasterController extends ControllerBase
         //$data['uname'] = $this->request->get('uname', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
         $data['travel_fee'] = $this->request->get('travelfee', 'int');
+        if(null !==$this->request->get('overtime', 'int'))
+        {
         $data['over_time'] = $this->request->get('overtime', 'int');
+        }
+        else{
+        $data['over_time'] = 0;
+        }
         $data['ssc_emp'] = 2;
         $data['ssc_comp'] = 3;
         $data['salary_start_date'] = date("Y-m-d H:i:s");
@@ -41,7 +47,7 @@ class SalaryMasterController extends ControllerBase
         $data['updater_id'] = 3;
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
-        //print_r($data['member_id']);exit;
+        //print_r($data['over_time']);exit;
         if ($this->request->isPost()) {
              $user = $this->_addsalary;
              $validate = $user->chk_validate($this->request->getPost());
@@ -51,18 +57,17 @@ class SalaryMasterController extends ControllerBase
                    $json[$message->getField()] = $message->getMessage();
                }
                 $json['result'] = "error";
-                
+                //echo json_encode($json);
             }     
         else{
        
         $Salarymaster = new SalaryMaster();
         
         $Salarymaster->savesalarydedution($dedution,$data['no_of_children'], $data['member_id'], $data['creator_id']);
-        $result = $Salarymaster->savesalary($data);
+        $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();
-        $saveallowance = $Allowance->saveallowance($allowance, $data['member_id']);
-
+        $Allowance->saveallowance($allowance, $data['member_id']);
         $json['result'] = "success";
              }
              //print_r($json);

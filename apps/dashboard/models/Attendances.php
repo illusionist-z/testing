@@ -43,7 +43,7 @@ class Attendances extends Model {
             }
             $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
                     . "att_date,location,notes,noti_id) VALUES ('" . $mydate . "'"
-                    . ",'" . $id . "','" . $today . "','" . $lat . "'"
+                    . ",'" . $id . "','" . $today . "','" . $add . "'"
                     . ",'" . $note . "','" . $noti_id . "')");
             $status = " Successfully Checked In";
             
@@ -67,8 +67,8 @@ class Attendances extends Model {
             $outtime = $att->checkout_time;
             //check already checkout or not
             if ($outtime != 0) {
-                $status = " Already Checkout";
-                return $status;
+                $status = "Already Checkout";
+               
             } else {
                 $workingHour = strtotime($mydate)-strtotime($att->checkin_time);
                 
@@ -80,14 +80,16 @@ class Attendances extends Model {
                 $this->db->query("UPDATE attendances SET "
                      . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
                     . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
-                $status = " Successfully Checked Out ";
-                return $status;
+                $status = "Successfully Checked Out ";
+                
             }
         } else {
         //check in first
-         $status = " Please Check In First ";
-         return $status;
+         $status = "Please Check In First ";
+         
         }
+       
+        return $status;
     }
 
     /**
