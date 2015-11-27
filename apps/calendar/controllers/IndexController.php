@@ -12,7 +12,7 @@ class IndexController extends ControllerBase
         $this->assets->addCss('apps/calendar/css/calendar.css');        
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
         $this->assets->addJs('apps/calendar/js/moment.min.js');
-        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');        
+        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
@@ -34,7 +34,7 @@ class IndexController extends ControllerBase
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);
-        $Allname   = $GetMember::getinstance()->getusername();                
+        $Allname   = $GetMember::getinstance()->getusername();
         $this->view->event_name = $permitname;
         $this->view->member_name=$this->session->user['member_login_name'];
         $this->view->uname = $Allname;
@@ -96,13 +96,14 @@ class IndexController extends ControllerBase
      * @category create event
      * @return   json { error message }
      */
-    public function createAction() {        
-        $this->view->disable();     
-        $id=$this->request->get('member_id');
+    public function createAction() {
+        $this->view->disable();             
         $uname = $this->request->get('uname');
+        $member_id = $this->request->get('member_id');
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $title = $this->request->get('title');
+        $coremember = new Db\CoreMember();                
         $creator_id=$this->session->user['member_id'];
         $creator_name=$this->session->user['member_login_name'];
         $res= array();
@@ -120,7 +121,7 @@ class IndexController extends ControllerBase
         }
         else {            
             $res['cond']=TRUE;
-            $event=$this->calendar->create_event($creator_name,$creator_id,$id,$sdate, $edate, $title,$uname);
+            $event=$this->calendar->create_event($member_id,$creator_name,$creator_id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
             $res['name']= $uname;
         }

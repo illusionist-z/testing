@@ -3,11 +3,11 @@
  * @desc dialog box ,event edit box
  * @version 2/9/2015
  */
-var $ovl, $selectname, dict = [];
+var $ovl, $selectname, dict=[];
 var Calendar = {
-    init: function (json_events) {                
+    init: function (json_events) { 
         
-        if (!json_events) {
+        if (!json_events) { 
             $.ajax({
                 url: 'index/calenderauto',
                 method: 'GET',                
@@ -15,12 +15,13 @@ var Calendar = {
                     
                     var json_obj = $.parseJSON(data);
                     
-                    for (var i in json_obj) {                        
-                        dict.push(json_obj[i].full_name);
-                    }
+                    $.map(json_obj,function(item){
+                        dict.push({label : item.full_name,id:item.member_id});
+                    });
+                    Calendar.Dialog.auto();
                     return dict;
                 }
-            });
+            });        
         }
         /* initialize the calendar
          -----------------------------------------------------------------*/
@@ -93,9 +94,9 @@ var Calendar = {
                         "background":"white",
                         width          : '300px'
                     });
-                    var str = "<table style='width:250px;height:80px;background:#aaa;z-index:9999;position:relative;border:0;' class='popup'><thead ><th>Event</th><th>--> Description</th></thead>";
-                    str += "<tbody><tr  style='background:#fff;'><td>Title</td><td>--> " + event.title + "</td></tr>";
-                    str += "<tr><td>Time</td><td>--> " + start + "  - " + end + "</td></tr></tbody></table>";
+                    var str = "<table style='width:250px;height:80px;color:yellow;background:#3c8dbc;z-index:9999;position:relative;' class='popup'><thead ><th style='border-right:1px solid #000;'>Event</th><th>Description</th></thead>";
+                    str += "<tr><th style='border-right:1px solid #000;'>Title</th><th>" + event.title + "</th></tr>";
+                    str += "<tr><th style='border-right:1px solid #000;'>Time</th><th>" + start + "  - " + end + "</th></tr></table>";
                     //popover event message
                    $(this).attr('data-toggle','popover');
 
@@ -110,6 +111,8 @@ var Calendar = {
             eventClick: function (event) {
                 //check dialog box exist
                 $ovl = $('#dialog');
+                $('.err').text('');
+                $('.err-sdate').text('');
                 Calendar.Dialog.open(event);
             }
         });
@@ -289,12 +292,10 @@ Calendar.Dialog = {
         /**
          * edit ,delete action button
          */
-        $('#submit_edit_event').unbind('click').bind('click', function () {
-            $('.err').text('');
-            $('.err-sdate').text('');
+        $('#submit_edit_event').unbind('click').bind('click', function () {            
             Calendar.Dialog.edit(event.id, $selectname, $ovl);
         });
-        $('#close_create_event').click(function () {
+        $('#close_create_event').click(function () {            
             $ovl.dialog("close");
         });
         $('#del_event').unbind('click').bind('click', function () {
@@ -337,7 +338,7 @@ Calendar.Dialog = {
             async: false,
             dataType: 'json',
             success: function (d) {
-                if (false == d.cond) {
+                if (false == d.cond) {                    
                     $('.err').text(d.res).css("color", "red");
                     $('.err-sdate').text(d.date).css("color", "red");
                 }
@@ -404,7 +405,9 @@ Calendar.Dialog = {
                         //Calendar.Dialog.auto();
                     }
                     else{
-                        $('body').load('index');
+                        $('body').load('index',function(){
+                               $('.dropdown-toggle').dropdown();
+                        });
                     }
                     }                    
                 }            
@@ -420,9 +423,12 @@ Calendar.Dialog = {
     },
     
     auto : function (){        
-    $('#select_name').click(function () {
+      $('#select_name').unbind('click').bind('click',function () {        
         $(this).autocomplete({
-            source: dict
+            source: dict,
+            select: function (event, ui) {                
+                    $('#event_member_id').val(ui.item.id);      //get selected member id
+                }
         });
     });
     //for event calender auto complete username
@@ -430,7 +436,7 @@ Calendar.Dialog = {
         $(this).autocomplete({
             source: dict
         });
-    });
+    });       
     }
 };
 $(document).ready(function () {
@@ -456,9 +462,12 @@ $(document).ready(function () {
         Calendar.remove_event_member();
     });
     //for calender auto complete username
-    $('#select_name').unbind('click').bind('click',function () {
+    $('#select_name').unbind('click').bind('click',function () {        
         $(this).autocomplete({
-            source: dict
+            source: dict,
+            select: function (event, ui) {                
+                    $('#event_member_id').val(ui.item.id);      //get selected member id
+                }
         });
     });
     //for event calender auto complete username
@@ -466,7 +475,7 @@ $(document).ready(function () {
         $(this).autocomplete({
             source: dict
         });
-    });
+    });                        
 //    $("#create_dialog").mouseenter(function () {
 //
 //        var name = document.getElementById('select_name').value;

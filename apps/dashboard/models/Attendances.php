@@ -67,8 +67,8 @@ class Attendances extends Model {
             $outtime = $att->checkout_time;
             //check already checkout or not
             if ($outtime != 0) {
-                $status = " Already Checkout";
-                return $status;
+                $status = "Already Checkout";
+               
             } else {
                 $workingHour = strtotime($mydate)-strtotime($att->checkin_time);
                 
@@ -80,14 +80,16 @@ class Attendances extends Model {
                 $this->db->query("UPDATE attendances SET "
                      . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
                     . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
-                $status = " Successfully Checked Out ";
-                return $status;
+                $status = "Successfully Checked Out ";
+                
             }
         } else {
         //check in first
-         $status = " Please Check In First ";
-         return $status;
+         $status = "Please Check In First ";
+         
         }
+       
+        return $status;
     }
 
     /**
@@ -101,7 +103,7 @@ class Attendances extends Model {
         //select where user most leave taken
         /* $query    ="select member_login_name from core_member where member_id in
           (select member_id from absent group by member_id order by count(*) DESC) limit 3"; */
-        $query = "select member_login_name from core_member "
+        $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
                 . "where a.deleted_flag=0 group by a.member_id "
                 . "order by count(*) desc limit 3";

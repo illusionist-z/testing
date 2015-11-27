@@ -44,7 +44,7 @@
                             <td><?php echo $filter->sanitize($salarydetails->core->member_login_name, "string"); ?></td>
                             <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "int")); ?></td>
                             <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee, "int")); ?></td>
-                            <td><?php echo $filter->sanitize($salarydetails->salarymas->over_time, "int").' %' ?></td>
+                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->over_time, "int")); ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_emp, "int").' %' ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_comp, "int").' %' ?></td>
 <!--                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails->salarymas->id; ?>" value="Edit"></td>                            -->

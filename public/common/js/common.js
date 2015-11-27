@@ -11,20 +11,24 @@ function checktime(i) {
     }
     return i;
 }
+/**
+ * sidebar menu link height resize()
+ * @author David JP<gnext>
+ */
 function link_height() {
     //for link border right in link page
-var link_width = $(document).outerWidth();
-var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$(".navbar").outerHeight());
-if(link_width>770){
-$(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
-}
-else{
-    $(".link").css({"height":link_height/5.5+"px","border-right":"1px solid #aaa","background":"#fff"});
-}
+    var link_width = $(document).outerWidth();
+    var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$("#fixedheader").outerHeight());
+    
+    if(link_width>775){
+       $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
+    }
+    else if(link_width > 423){  
+        $(".link").css({"height":link_height/10.5+"px","border-right":"1px solid #aaa","background":"#fff"});
+    }
 }
 
-function geo() {
-  
+function geo() {  
    
     if (navigator.geolocation) {
         var url = "location_session";
@@ -149,48 +153,33 @@ $(document).ready(function() {
      */
 
     $('.sidebar-toggle').on('click',function(e){
-        e.stopPropagation();
-        //e.preventDefault();
+        e.stopPropagation();        
         //get collapse content selector
         var collapse_content_selector = $(this).attr('href');
 
         //make the collapse content to be shown or hide
         var toggle_switch = $(this);
         $(collapse_content_selector).toggle();
-//        if ($(this).css('display') === 'none') {
-        //change the button label to be 'Show'
-        //$('.content-wrapper').css("margin-left","0");
-        //$('.main-footer').css("margin-left","0");
-        //toggle_switch.html('Show');
-//        } else {                                
-//            $('.content-wrapper').css("margin-left","230px");
-//            $('.main-footer').css("margin-left","230px");
-//            $('body').append("<style type='text/css'>@media(max-width:767px){.main-sidebar{transform:translate3d(0,0,0);}}</style>");
-//            //change the button label to be 'Hide'
-//            toggle_switch.html('Hide');
-//        }
-//    });
-//    });     
  
       });
          //toggle off or notification off when click body
-         $('body').click(function (e) {        
-        if (0 === $(e.target).closest('#sidepage').length) {
-            $('#sidepage').fadeOut(200);
-            //$('.collapse-wrapper').css("margin-left","0");
-            //$('.main-footer').css("margin-left","0");
-        }
-        if(0 === $(e.target).closest('#noti').length){
-            $('#notificationContainer').fadeOut(300);            
-        }
+         $('body').click(function (e) {
+                if (0 === $(e.target).closest('#sidepage').length) {
+                    $('#sidepage').fadeOut(200);
+                    //$('.collapse-wrapper').css("margin-left","0");
+                    //$('.main-footer').css("margin-left","0");
+                }
+                if(0 === $(e.target).closest('#noti').length){
+                    $('#notificationContainer').fadeOut(300);            
+                }
     });
     
  $('.datepicker').datepicker(); 
  
-link_height();
-
 });
-
+$(window).load(function(){
+    link_height();
+});
 $(window).resize(function(){
     link_height();
 });

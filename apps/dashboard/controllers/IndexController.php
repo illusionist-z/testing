@@ -144,6 +144,7 @@ class IndexController extends  ControllerBase {
         $id = $this->session->user['member_id'];
         $checkin = new \workManagiment\Dashboard\Models\Attendances();
         $status=$checkin->setcheckouttime($id);
+        
         $this->view->disable();
         echo json_encode($status);
         

@@ -76,8 +76,7 @@ class IndexController extends ControllerBase
             $id = $this->session->user['member_id'];
              $noti=$Admin->GetUserNoti($id);
         }
-        $type='noti';
-        //print_r($noti);exit;
+        $type='noti';        
         $this->view->setVar("noti",$noti);
         $this->view->setVar("type",$type);
          
