@@ -154,10 +154,11 @@ if ($offset < 0) {
                                 //calculate overtime                                               
 
                                 if ($result->attendances->overtime != 0) {
-                                    echo $result['overtime'];
+                                    echo $result->attendances->overtime;
                                 } else {
                                     echo "-";
                                 }
+                                echo " hours";
                                 ?> 
 
                             </td>

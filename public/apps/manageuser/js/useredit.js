@@ -64,9 +64,10 @@
                     success: function(d){
                     var json_obj = $.parseJSON(d);
                     var option='';
+                    var opt='';
                     for (var i in json_obj){
-                      
-                       option += "<option value='"+json_obj[i].name_of_group+","+json_obj[i].group_id+"'>"+json_obj[i].name_of_group+"</option>";
+                       if(json_obj[i].name_of_group=='USER'){ opt="selected"}else{opt=''}
+                       option += "<option value='"+json_obj[i].name_of_group+","+json_obj[i].group_id+"'"+opt+">"+json_obj[i].name_of_group+"</option>";
                         
                     }
                     

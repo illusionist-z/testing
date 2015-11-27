@@ -22,7 +22,7 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckintime($id, $note, $lat, $lon, $add,$creator_id) {
+    public function setcheckintime($id, $note, $add,$creator_id) {
         $this->db = $this->getDI()->getShared("db");
         
         $mydate = date("Y-m-d H:i:s");
@@ -42,9 +42,9 @@ class Attendances extends Model {
             . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
             }
             $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
-                    . "att_date,lat,lng,location,notes,noti_id) VALUES ('" . $mydate . "'"
-                    . ",'" . $id . "','" . $today . "','" . $lat . "'"
-                    . ",'" . $lon . "','" . $add . "','" . $note . "','" . $noti_id . "')");
+                    . "att_date,location,notes,noti_id) VALUES ('" . $mydate . "'"
+                    . ",'" . $id . "','" . $today . "',
+                    '" . $add . "','" . $note . "','" . $noti_id . "')");
             $status = " Successfully Checked In";
             
         }

@@ -38,7 +38,6 @@ $(document).ready(function(){
 //    $('.geolocation').ready(function() {
 //    geo();
 //});
-    
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
@@ -51,11 +50,12 @@ $(document).ready(function(){
         });
         
         var note = document.getElementById('note').value;
-
+        
          $.ajax({
            type : 'GET',
            url  : baseUri + 'dashboard/index/checkin?note='+note,
            success: function(d){
+               //alert(d);
                msg = JSON.parse(d);
                alert(msg);
                window.location.href = baseUri + 'dashboard/index/direct';

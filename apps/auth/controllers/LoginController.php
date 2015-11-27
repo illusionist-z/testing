@@ -34,7 +34,7 @@ class LoginController extends ControllerBase {
             //Set user's permission to session 
             $Permission = $ModelPermission->get($result, $permissions,$lang['lang']);
             
-            //print_r($Permission);exit;
+          //  print_r($Permission);exit;
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');
         } else {

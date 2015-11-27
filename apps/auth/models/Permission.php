@@ -28,7 +28,6 @@ class Permission {
         
         // Get Permission groups
         $permissinGroups = $this->getGroup($id);
-        
         // Get Permissons for user
         if (!$this->getPermissions($permissinGroups, $permissions,$lang)) {
             return FALSE;
