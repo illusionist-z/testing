@@ -172,14 +172,16 @@ class CoreMember extends \Library\Core\BaseModel {
         $targetfile = $target_dir . $newfilename;
         $lang = "en";
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
-        $this->db->query("INSERT INTO core_member (member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
-                . " VALUES(uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
+        $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
+                . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
         $us = $user_name->fetchall();
 
         foreach ($us as $value) {
-            $this->db->query("INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
-                    . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())");
+            $sql="INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
+                    . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())";
+           // print_r($sql);exit;
+            $this->db->query($sql);
         }
     }
 
