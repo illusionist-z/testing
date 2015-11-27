@@ -43,8 +43,8 @@ class Attendances extends Model {
             }
             $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
                     . "att_date,location,notes,noti_id) VALUES ('" . $mydate . "'"
-                    . ",'" . $id . "','" . $today . "','" . $add . "'"
-                    . ",'" . $note . "','" . $noti_id . "')");
+                    . ",'" . $id . "','" . $today . "',
+                    '" . $add . "','" . $note . "','" . $noti_id . "')");
             $status = " Successfully Checked In";
             
         }
