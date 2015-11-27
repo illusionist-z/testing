@@ -137,10 +137,14 @@ class IndexController extends ControllerBase {
         $group_id =  $this->request->getPost('group_id');
         $group_name = $this->request->getPost('group_text');
         $group_name = trim($group_name);
+        $coreuser_update = new CoreMember(); 
         $core = CorePermissionRelMember::findFirstByRelMemberId($id);
+        $coreuser_update = CoreMember::findFirstByMemberId($id);
+        $coreuser_update->user_rule = $group_id;
         $core->permission_group_id_user  = $group_id;        
         $core->permission_member_group_member_name = strtolower($group_name);
-        $core->rel_permission_group_code     =  $group_name;         
+        $core->rel_permission_group_code     =  $group_name; 
+        $coreuser_update->update();
         $core->update();
         $this->view->disable();
         $this->response->redirect('setting/index/index');

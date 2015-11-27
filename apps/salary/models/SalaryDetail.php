@@ -168,8 +168,8 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
 //            echo $sql;
 //            $result = $this->db->query($sql);
 //            $row = $result->fetchall();
-            //print_r($row);
-            //exit;
+//            print_r($row);
+//            exit;
             //print_r("thank");exit;
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarydet.*', 'core.*', 'salarymast.*', 'attend.*'))
@@ -180,6 +180,8 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                     ->where('salarydet.member_id = :member_id:', array('member_id' => $member_id))
                     ->andWhere('MONTH(pay_date) = :month:', array('month' => $month))
                     ->andWhere('YEAR(pay_date) = :year:', array('year' => $year))
+                    ->andWhere('MONTH(attend.att_date) = :month:', array('month' => $month))
+                    ->andWhere('YEAR(attend.att_date) = :year:', array('year' => $year))
                     ->limit(1)
                     ->getQuery()
                     ->execute();
@@ -344,12 +346,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $salary_update_yr=$salary_start_year;
         $salary_update_mth=$salary_start_month;
         $resign=  $this->getResigndate($member_id);
+        $basic_salary='';
         
         if($resign['resign_date']!=null){
             $resigndate=  explode("-", $resign['resign_date']);
             $resignyear=$resigndate[1];
             $resignmonth=$resigndate[0];
-            $bsalaryparday=$SM['basic_salary']/28;
+            $bsalaryparday=$SM['basic_salary']/24;
             $count_attdate=$this->countattdate($resign['resign_date'],$resignyear,$resignmonth,$member_id);
             //print_r($count_attdate);
             $salary=$count_attdate['count_attdate']*$bsalaryparday;
@@ -372,10 +375,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 }
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$old_allowance,$SM['status']);
             $basic_salary=$Allowanceresult['basic_salary_annual'];
-            $basic_salary=$basic_salary+$allowancetoadd;
+           
             //calculating of overtime 
-            $overtime=$Salarymaster->calculate_overtime($member_id,$salary_star_date);
-            $overtime_fees=$overtime['overtime_rate'];
+            $overtime=$Salarymaster->calculate_overtime_annual($member_id,$SD['total_overtime'],$salary_star_date,$budget_endyear,$date_diff);
+            $overtime_fees=$overtime['overtime_annual'];
             $basic_salary=$basic_salary+$overtime_fees;
             
             //check the user who is absent.
@@ -521,6 +524,24 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      } catch (Exception $ex) {
          echo $ex;
      }
+    }
+     /**
+     * Saw Zin Min Tun     
+     */
+    public function findmonthyear($monthyear) {       
+     //  print_r($monthyear);exit;
+        //exit;
+        // Check if the user exist
+        $monthyear = $monthyear;
+       // print_r($monthyear);exit;
+        $this->db = $this->getDI()->getShared("db");
+        $query = "SELECT * FROM salary_detail where month(pay_date) =month(' ".$monthyear ." ')  and year(pay_date) =year(' ".$monthyear ." ')  and deleted_flag=0";
+       // print_r($query);exit;
+        $user = $this->db->query($query);
+        $user = $user->fetchAll(); 
+      
+        return $user;
+
     }
 
 }

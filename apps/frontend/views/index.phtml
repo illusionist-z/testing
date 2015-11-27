@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Test</title>
-    </head>
-    <body>
-        <?php echo $this->getContent(); ?>
-    </body>
-</html>
+<?php
+
+    $var = $this->session->user;
+     if($var){
+         $this->response->redirect('dashboard');
+     }
+     else {
+       $this->response->redirect('auth');
+}
+
+?>
