@@ -76,7 +76,7 @@
                                        <li class="user-footer">
                                       <?php foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'admin_dashboard') {
+            if ($key_name == $this->router->getModuleName()) {
                 //Go to user dashboard
                 $this->view->disable();
               ?>
@@ -86,7 +86,7 @@
                                            
                 <?php
                 } 
-                else if($key_name == 'user_dashboard')
+                else if($key_name === $this->router->getModuleName())
                { 
                     ?> 
                       <div class="pull-left">

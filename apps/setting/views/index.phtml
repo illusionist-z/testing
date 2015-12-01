@@ -79,7 +79,7 @@
                                       <?php // $name=$this->session->page_rule_group;
                                   foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'admin_dashboard') {
+            if ($key_name == $this->router->getModuleName()) {
                 //Go to user dashboard
                 $this->view->disable();
                // $this->response->redirect('attendancelist/index/todaylist');
@@ -89,8 +89,7 @@
                                         </div>
                 <?php
                 } 
-                else if($key_name == 'user_dashboard')
-               { 
+            else if ($key_name === $this->router->getModuleName()){ 
                     ?> 
                       <div class="pull-left">
                                                     <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>

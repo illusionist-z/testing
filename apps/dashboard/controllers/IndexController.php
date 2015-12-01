@@ -29,15 +29,15 @@ class IndexController extends  ControllerBase {
       
         foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'user_dashboard') {
+            if ($key_name == $this->router->getModuleName()) {
                 //Go to user dashboard
                 $this->view->disable();
-                $this->response->redirect('dashboard/index/user');
+                $this->response->redirect('dashboard/index/admin');
             } 
-            if ($key_name == 'admin_dashboard') {
+            else if ($key_name === $this->router->getModuleName()) {
                 //Go to admin dashboard
                 $this->view->disable();
-                $this->response->redirect('dashboard/index/admin');
+                $this->response->redirect('dashboard/index/user');
             }
         }
     }
@@ -62,11 +62,11 @@ class IndexController extends  ControllerBase {
     $leave_name =$CheckLeave->checkleave();
     $status     =$CheckLeave->todayattleave();
     $coreid = new  \workManagiment\Dashboard\Models\CorePermissionGroupId();
-        foreach($coreid as $data){ 
+    foreach($coreid as $data){ 
     
      foreach ($this->session->auth as $key_name => $key_value)  {
              
-            if ($key_name == 'admin_dashboard') {
+            if ($key_name == $this->router->getModuleName()) {
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
@@ -75,7 +75,7 @@ class IndexController extends  ControllerBase {
     $this->view->setVar("newnumber",$newmember);
     $this->view->t = $this->_getTranslation();
         }
-         if ($key_name == 'user_dashboard')  {
+         else if ($key_name === $this->router->getModuleName())  {
             $this->response->redirect('core/index');
             }  
         }
@@ -159,13 +159,13 @@ class IndexController extends  ControllerBase {
         //$name = $this->session->page_rule_group;
          foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'show_admin_attlist') {
+            if ($key_name == $this->router->getModuleName()) {
                 //Go to user dashboard
                 $this->view->disable();
                 $this->response->redirect('attendancelist/index/todaylist');
                  
             } 
-            if ($key_name == 'user_dashboard') {
+            else if ($key_name === $this->router->getModuleName()) {
                 //Go to admin dashboard
                 $this->view->disable();
                 $this->response->redirect('attendancelist/user/attendancelist');
