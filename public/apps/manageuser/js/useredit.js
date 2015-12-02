@@ -73,7 +73,6 @@
                     
                     $('.mySelect').html(option);
 
-                    
                     }
                      });
     
@@ -100,8 +99,7 @@
                         cache : false,
                         width: 'auto',
                        position: ['center', 80],
-                        modal: true,
-                        position:"bottom",
+                        modal: true,                        
                         title: title
                     });                
                     $ovl.html(data);

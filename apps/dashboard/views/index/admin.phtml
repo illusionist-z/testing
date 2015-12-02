@@ -199,12 +199,12 @@
                                                                         } else {
                                                                             $img = $na['member_profile'];
                                                                             if(file_exists('./uploads/'.$img)){                                                            
-                                                                                $img=$img;                                                            
+                                                                                $img=$img;
                                                                             }else{  
-                                                                                $img = "profile1.jpg";                                                                 
+                                                                                $img = "profile1.jpg";
                                                                             }
                                                                         }
-                                                                        ?> 
+                                                                        ?>
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
                                                                         <?= $na['full_name'] ?>
                                                                     </li>
@@ -224,7 +224,7 @@
                                                                         }else{ ?>
                                                                                         <style type="text/css">#leavemostlist,hr{
                                                                                         display:none;
-                                                                                        }</style>             
+                                                                                        }</style>
                                                                 <?php
                                                                           // echo $na['full_name']; 
                                                                         }
