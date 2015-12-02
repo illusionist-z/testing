@@ -9,7 +9,7 @@
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini"  onload="display_ct()">
+    <body class="skin-blue sidebar-mini"  onload="display_ct()" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -74,9 +74,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == $this->router->getModuleName()) {
+                                      <?php 
+            if ($permission == 1) {
                 //Go to user dashboard
                 $this->view->disable();
               ?>
@@ -85,8 +84,9 @@
                                         </div>
                                            
                 <?php
-                } 
-                else if($key_name === $this->router->getModuleName())
+               
+               } 
+                else
                { 
                     ?> 
                       <div class="pull-left">
@@ -94,7 +94,7 @@
                                                 </div>
                 <?php }
                 
-                }
+             
                 ?>
                                         
                                         <div class="pull-right">

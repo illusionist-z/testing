@@ -22,21 +22,8 @@
                                           
                 <div class="col-sm-10">
                         <div class=col-md-12">
-                            <?php
-             foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == $this->router->getModuleName()) {
-                //Go to user dashboard
-               echo "<a href='../user/usersetting'> <b><h3>Go To Admin  Profile </h3></b>     </a>";
-            } 
-            else if ($key_name === $this->router->getModuleName()) {
-                //Go to admin dashboard
-                 
-                $this->response->redirect('setting/user/usersetting');
-            }
-        }
-    ?>  
-                                <br>
+                            <a href="../user/usersetting"> Go To Admin Profile</a>
+                            <br>
                                 <h3 link="#Group">Group Rule Setting </h3>
                                 
                                 <br>
