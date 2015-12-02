@@ -26,6 +26,15 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js'); 
         $this->assets->addJs('apps/setting/js/index.js'); 
         $this->assets->addJs('apps/setting/js/setting.js');  
+        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $Admin = new \workManagiment\Auth\Models\Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        
+       // $this->view->t = $this->_getTranslation();
+        $this->module_name =  $this->router->getModuleName();        
+        $this->permission = $this->setPermission();             
+        $this->view->module_name=$this->module_name;
+        $this->view->permission = $this->permission;
  }
     
     
@@ -36,22 +45,25 @@ class IndexController extends ControllerBase {
         * @desc    $core_groupid = {}
         * @desc    $core_user = {}
         */
-        public function indexAction() {     
-        
-        $coreid = new CorePermissionGroupId(); 
-        $corememberid = new CorePermissionRelMember(); 
-        $coreuser = new CoreMember(); 
-        $coreuser2 = new CorePermissionGroup(); 
-        $core_groupid=$coreid::find();
-        $coremember= $corememberid::find();
-        $core_groupuser2=$coreuser2::find();
-        $core_groupuser=$coreuser->getgroupid();
-        $this->view->coreid = $core_groupid;
-        $this->view->coremember = $coremember; 
-        $this->view->coreuser = $core_groupuser; 
-        $this->view->coreuser2 = $core_groupuser2; 
-
-  }     
+        public function indexAction() { 
+           if($this->permission==1){
+                $coreid = new CorePermissionGroupId(); 
+                $corememberid = new CorePermissionRelMember(); 
+                $coreuser = new CoreMember(); 
+                $coreuser2 = new CorePermissionGroup(); 
+                $core_groupid=$coreid::find();
+                $coremember= $corememberid::find();
+                $core_groupuser2=$coreuser2::find();
+                $core_groupuser=$coreuser->getgroupid();
+                $this->view->coreid = $core_groupid;
+                $this->view->coremember = $coremember; 
+                $this->view->coreuser = $core_groupuser; 
+                $this->view->coreuser2 = $core_groupuser2; 
+           }
+           else {
+                 $this->response->redirect('setting/user/usersetting');
+           }
+        }     
         /**
         * @author Yan Lin Pai <wizardrider@gmail.com>
         * @desc    $core = {}
@@ -61,7 +73,6 @@ class IndexController extends ControllerBase {
         {
         $core = new CorePermissionGroupId();
         $core->save($this->request->getPost());
-        
         $this->view->disable();
         $this->response->redirect('setting/index/index');
         }
@@ -137,10 +148,14 @@ class IndexController extends ControllerBase {
         $group_id =  $this->request->getPost('group_id');
         $group_name = $this->request->getPost('group_text');
         $group_name = trim($group_name);
+        $coreuser_update = new CoreMember(); 
         $core = CorePermissionRelMember::findFirstByRelMemberId($id);
+        $coreuser_update = CoreMember::findFirstByMemberId($id);
+        $coreuser_update->user_rule = $group_id;
         $core->permission_group_id_user  = $group_id;        
         $core->permission_member_group_member_name = strtolower($group_name);
-        $core->rel_permission_group_code     =  $group_name;         
+        $core->rel_permission_group_code     =  $group_name; 
+        $coreuser_update->update();
         $core->update();
         $this->view->disable();
         $this->response->redirect('setting/index/index');

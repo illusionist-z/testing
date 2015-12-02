@@ -540,7 +540,7 @@ class IndexController extends ControllerBase {
         
         $Salarydetail = new SalaryDetail();
         for($i=0;$i<=count($mid);$i++){
-            echo $mid[$i]."<br>";
+            //echo $mid[$i]."<br>";
             if($mid[$i]!='on'){
             $getsalarydetail[] = $Salarydetail->getpayslip($mid[$i], $month, $year);
                 
@@ -593,4 +593,21 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($Username);
     }
+    
+     //for show calculate salary
+    public function checkmonthyearAction() {         
+        $this->assets->addJs('apps/salary/js/salary.js');      
+          $monthyear = $this->request->get('monthyear');   
+         // var_dump($monthyear);
+          $Salarydetail = new SalaryDetail();
+         $result = $Salarydetail->findmonthyear($monthyear);
+                if($result){
+                    $msg="found";
+                }
+               else{
+                   $msg="notfound";
+               }
+                 $this->view->disable();
+                echo json_encode($msg);
+        }
 }

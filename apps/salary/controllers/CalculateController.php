@@ -38,14 +38,14 @@ class CalculateController extends ControllerBase
     $creator_id=$this->session->user['member_id'];
     //calculate the basic salary
     $tax=$Salarymaster->calculate_tax_salary($getbasic_salary,$salary_start_date,$creator_id);
-    //print_r($tax);exit;
+   
     //insert taxs of all staff to salary detail
     $Salarydetail->insert_taxs($tax);
     
     //print_r($overtime);exit;
     //insert overtime and salary information to salary detail
     //$Salarydetail->insert_salarydetail($overtime,$salary_start_date);
-    
+    $Salarymaster->saveBudgetendyr_data($salary_start_date);
     
     //calculate ssc fee of employee and employer
     $ssc=$Salarymaster->sscforCompandEmp();

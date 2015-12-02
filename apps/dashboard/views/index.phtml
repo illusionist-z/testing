@@ -9,7 +9,7 @@
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini"  onload="display_ct()">
+    <body class="skin-blue sidebar-mini"  onload="display_ct()" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -31,7 +31,7 @@
 <div id="notificationsBody" class="notifications">
 
 </div>
-                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">See All</span></a></div>
+                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>notification/index/viewall"><span style="color:white">See All</span></a></div>
                                 </div>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -74,19 +74,19 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'admin_dashboard') {
+                                      <?php 
+            if ($permission == 1) {
                 //Go to user dashboard
                 $this->view->disable();
               ?>
                  <div class="pull-left">
-                                            <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                            <a href="../../setting/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                         </div>
                                            
                 <?php
-                } 
-                else if($key_name == 'user_dashboard')
+               
+               } 
+                else
                { 
                     ?> 
                       <div class="pull-left">
@@ -94,7 +94,7 @@
                                                 </div>
                 <?php }
                 
-                }
+             
                 ?>
                                         
                                         <div class="pull-right">
@@ -131,15 +131,20 @@
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
+                                                                                         if($key_name != 'show_user_notification' ){
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
+                                                                                         }
                                                                                     } else {
+                                                                                        if($key_name != 'show_admin_notification' ){
                                                                                                $top = explode(" ", $key_value["link0"]);                                                                                                
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
-                                                                                    }
+                                                                                        }
+                                                                                                 
+                                                                                        }
                                                                                 }
                                                                                 $i = 0;
                                                                                 //for the sub menu                            
