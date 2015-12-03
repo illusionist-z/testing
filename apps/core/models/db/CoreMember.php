@@ -39,7 +39,7 @@ class CoreMember extends \Library\Core\BaseModel {
     }
     
     public function getgroupid() {
-    $query = "Select member_id,member_login_name,group_id from core_member "
+    $query = "Select member_id,member_login_name,group_id,deleted_flag from core_member "
                 . "left join core_permission_rel_member on core_member.member_id=core_permission_rel_member.rel_member_id "
                 . "left join core_permission_group_id on core_permission_group_id.name_of_group = core_permission_rel_member.rel_permission_group_code";        
     
