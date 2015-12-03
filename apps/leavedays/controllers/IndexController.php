@@ -26,6 +26,7 @@ class IndexController extends ControllerBase {
         $this->view->module_name =  $this->router->getModuleName();
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
+        $this->view->permission = $this->permission;
     }
 
     public function indexAction() {

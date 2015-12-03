@@ -35,7 +35,8 @@
          
         $sum='';
         $deduce='';
-        
+        $total_overtime_hr='';
+        $overtime_pay='';
         foreach($getsalarydetails as $A){
             for($i=0;$i<count($A);$i++){
               
@@ -76,23 +77,23 @@
   </tr>
   <tr>
     <td><?= $t->_("overtime_rate");?></td>
-    <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string");?>" id="txtovertimerate" style="width:50px;" disabled="disabled" class="txtenable txtovertimerate">%</td>
+    <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string");?>" id="txtovertimerate" style="width:50px;" disabled="disabled" class="txtenable txtovertimerate"></td>
     <td></td>
   </tr>
   <tr>
     <td><?= $t->_("overtime_hour");?></td>
-    <td><input type="text" name="txtovertimehour" value="<?php echo $filter->sanitize($A[$i]->attend->overtime , "string");?>hr" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
+    <td><input type="text" name="txtovertimehour" value="<?php $overtime=$filter->sanitize($A[$i]->attend->overtime , "string");
+        $total_overtime_hr=$total_overtime_hr+$overtime;
+        echo $overtime;
+    ?>hr" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
     <td></td>
   </tr>
   <tr>
     <td><?= $t->_("overtime_payment");?></td>
     <td><input type="text" name="txtovertimepay" value="<?php 
-    if($filter->sanitize($A[$i]->attend->overtime , "string")>0){
-        $overtime_pay_perhr=$A[$i]->salarydet->basic_salary*$A[$i]->salarymast->over_time/100;
-        $overtime_payment=$overtime_pay_perhr*$A[$i]->attend->overtime;
-        echo $overtime_payment;
-        $sum+=$overtime_payment;
-    }
+    $overtime_fees= $A[$i]->salarydet->overtime;
+    $overtime_pay= + $overtime_fees;
+    echo $overtime_pay;
     ?>" id="txtovertimepay" disabled="disabled" class=" txtovertimepay txtenable"></td>
     <td></td>
   </tr>

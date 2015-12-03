@@ -222,8 +222,9 @@ var Salary = {
            success:function(){   
                 var data ='<form id="Add_new_deduct"><table>';               
                     data += '<tr><td>Choose pay month to calculate salary <br></td></tr>'
-                       +'<tr><td><input type="text" class="datepicker"  placeholder="Choose pay month" style="height:39px; width: 260px;" id="salary_start"></td></tr>'        
-                    data +='<tr><td><a href="#" class="button" id="cal_salary">Yes</a><a href="#" class="button" id="cancel_deduct">No</a></td></tr>';
+                    +'<tr><td><div style="display:none;" id="error_salary">Please Choose Pay Month!</div><div style="display:none;" id="nexterror_salary">Please choose another pay Month!</div></td></tr>'        
+                       +'<tr><td><input type="text" class="datepicker"  placeholder="Choose pay month" style="height:39px; width: 100%;" id="salary_start"></td></tr>'        
+                    data +='<tr><td><a href="#" class="button" id="cal_salary_month">Yes</a><a href="#" class="button" id="cancel_deduct">No</a></td></tr>';
                     data +='</table></form>';
                Salary.Diaaadd(data);
            }
@@ -248,8 +249,13 @@ var Salary = {
         $ovl.dialog("open");
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-        $('#cal_salary').click(function(){
-            Salary.SaveSalary();
+        $('#cal_salary_month').click(function(){
+            var salary_start = document.getElementById('salary_start').value;                     
+                    if(salary_start == ''){
+                        $('#error_salary').show();
+                    }else{
+                       Salary.SaveSalary(salary_start);
+                    }    
         });  
           
         $('#cancel_deduct').click(function(){
@@ -403,10 +409,31 @@ var Salary = {
         });
          
         },
-        SaveSalary : function (){
-        var salary_start_date=document.getElementById('salary_start').value;
-        window.location.href=baseUri+'salary/calculate?salary_date='+salary_start_date;
-        }
+        SaveSalary: function (d){ 
+           // alert(d);
+           var date = d;
+                $.ajax({
+                         url:'checkmonthyear',
+                         method: 'GET',
+                         data : {monthyear : d},
+                        // dataType: 'json',
+                         success: function(d) {
+                            // alert(d);
+                             data= JSON.parse(d);
+                             if(data==='found'){
+                                // alert("Found!");
+                                 $('#error_salary').hide();
+                              $('#nexterror_salary').show();
+                               //window.location.href=baseUri+'salary/calculate?salary_date='+d;
+                             }
+                             else{
+                                 window.location.href=baseUri+'salary/calculate?salary_date='+date;
+                             }                           
+                                 }
+                                 
+                             });  
+                 
+                 }
         
 };
 

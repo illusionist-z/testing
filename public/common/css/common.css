@@ -37,7 +37,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #search_salary,#add_user,#edit_edit,#Add_deduct,#Add_ltype,#delete_ltype,#cal_salary,
 #create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,
 #edit_allowance_edit,#edit_attendance_edit,#alladd,#Add_Resign_Date,#edit,#usersearch,#noti_accept,
-#btngo{
+#btngo,#cal_salary_month{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
 #apply_cancel,#add_salary_cancel,#displaypopup,#add_dec,#addinguser_close,#edit_close,
@@ -665,9 +665,10 @@ hr{
     margin-top: -20px;
 }
 
-#emailerror,#noemailerror{
+#emailerror,#noemailerror,#error_salary,#nexterror_salary{
     border:1px solid red;  
     background: papayawhip;
+    width:100%;
 }
 #emailerror label,#noemailerror label,#onefield{
   color:black;

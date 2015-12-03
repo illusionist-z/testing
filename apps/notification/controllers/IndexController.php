@@ -8,20 +8,7 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-         foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'show_admin_notification') {
-                //Go to user dashboard
-               $permission="admin";
-                 
-            } 
-            if ($key_name == 'show_user_notification') {
-                //Go to admin dashboard
-                $permission="user";   
-            }
-        }
         
-        $this->view->setVar("permission",$permission);
                //$this->assets->addJs('common/js/notification.js');
 
     }
@@ -86,11 +73,10 @@ class IndexController extends ControllerBase
                $noti=$Admin->GetUserNoti($id); 
             }
         }
-
-        $type='noti';        
+        $type='noti';
+        //print_r($noti);exit;
         $this->view->setVar("noti",$noti);
         $this->view->setVar("type",$type);
-         
     }
     
     public function detailAction(){

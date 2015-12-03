@@ -3,55 +3,72 @@
  * @type Edit ,delete for Setting Module
  * 
  */
-var pager = new Paging.Pager();
-var Setting = {    
-    init  : function () {        
-           tbody = 'table#user_role > tbody';
-            pager.perpage =4;
-            pager.pagingcontainer = tbody;
-            pager.para = $(tbody+" > tr ");
-            pager.showPage(1);
-            $('tbody').show();
+var pager, pager2;
+var Setting = {
+    init: function () {
+        Setting.PageRule.paging();
+        Setting.UserRule.paging();
+        $('tbody').show();
     }
 };
- 
+
 Setting.GroupRule = {
-    delete : function(id){
+    delete: function (id) {
         $.ajax({
-            url : " DelGroupRule",
-            data : {group_id : id},
-            type : "POST",
-            success: function(){
+            url: " DelGroupRule",
+            data: {group_id: id},
+            type: "POST",
+            success: function () {
                 location.reload();
             }
         });
-    } 
- };
- Setting.PageRule = {
-    delete : function(id){
+    }
+};
+Setting.PageRule = {
+    delete: function (id) {
         $.ajax({
-            url : " DelPageRule",
-            data : {idpage : id},
-            type : "POST",
-            success: function(){
+            url: " DelPageRule",
+            data: {idpage: id},
+            type: "POST",
+            success: function () {
                 location.reload();
             }
         });
-    } 
- };
- Setting.UserRule = {
-    update : function(id,groupid,grouptext){
+    },
+    paging: function () {
+        pager = new Paging.MultiPager();
+        tbody = 'table#page_role > tbody';
+        pager.currentpager = 'pager';
+        pager.content = 'table#page_role';
+        pager.perpage = 4;
+        pager.pagingcontainer = tbody;
+        pager.para = $(tbody + " > tr ");
+        pager.showPage(1);
+    }
+};
+Setting.UserRule = {
+    update: function (id, groupid, grouptext) {
         $.ajax({
-            url : 'UserRuleSetting',
-            data : {rel_member_id : id, group_id :groupid,group_text : grouptext},
-            type : "POST",
-            success : function(){
+            url: 'UserRuleSetting',
+            data: {rel_member_id: id, group_id: groupid, group_text: grouptext},
+            type: "POST",
+            success: function () {
                 location.reload();
             }
         });
-    } 
- };
- 
-$(document).ready(function(){
+    },
+    paging: function () {
+        pager2 = new Paging.MultiPager();
+        tbody = 'table#user_role > tbody';//current table
+        pager2.currentpager = 'pager2';        //current pager object
+        pager2.content = 'table#user_role';//current content
+        pager2.perpage = 4;
+        pager2.pagingcontainer = tbody;
+        pager2.para = $(tbody + " > tr ");
+        pager2.showPage(1);
+    }
+};
+
+$(document).ready(function () {
     Setting.init();
 });
