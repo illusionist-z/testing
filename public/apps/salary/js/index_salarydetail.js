@@ -45,10 +45,10 @@ var Resign = {
                    data += '<tr><td></td></tr>'
                         +'<tr><br><td><small>Resign Date:</small> </td><td style="font-size:10px;"><input type="text" style="margin-top:10px;" class="datepicker form-control" name="resign_date" id="resign_date" placeholder="Resign Date" ></td></tr>';
                         +'<tr><td></td></tr>';             
-                data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_Resign_Date">Save</a><a href="#" class="button" id="cancel">Cancel</a></td></tr>';
-                data+='<input type="hidden" name="member_id" id="resign_date" value="'+id+ '"td></tr>';
+                   data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_Resign_Date">Save</a><a href="#" class="button" id="cancel">Cancel</a></td></tr>';
+                   data+='<input type="hidden" name="member_id" id="resign_date" value="'+id+ '"td></tr>';
 
-               data +='</table></form>';
+                   data +='</table></form>';
                 //$( ".datepicker" ).datepicker();
                Resign.Diaadd(data);
            }
