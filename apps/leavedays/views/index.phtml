@@ -9,7 +9,7 @@
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini"  onload="display_ct()" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -90,7 +90,7 @@
                { 
                     ?> 
                       <div class="pull-left">
-                                                    <a href="../../setting/user" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                                    <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
                                                 </div>
                 <?php }
                 
@@ -118,10 +118,14 @@
 
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <aside>
+                        <?php                                        //print_r($this->session->auth); 
+                        
+                        ?>
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
                        <?php
                         $count=1;
+                        
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {

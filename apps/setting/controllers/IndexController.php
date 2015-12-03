@@ -2,6 +2,7 @@
 
 use Phalcon\Config;
 use Phalcon\Mvc\Url as UrlProvider;
+
 namespace workManagiment\Setting\Controllers;
 use workManagiment\Setting\Models\CorePermissionGroup; 
 use workManagiment\Setting\Models\CorePermissionGroupId; 
@@ -61,6 +62,9 @@ class IndexController extends ControllerBase {
                 $this->view->coremember = $coremember; 
                 $this->view->coreuser = $core_groupuser; 
                 $this->view->coreuser2 = $core_groupuser2; 
+                 $id=$this->session->user['member_id'];
+    $noti=$coreuser->GetAdminNoti($id);
+    $this->view->setVar("noti", $noti);
            }
            else {
                  $this->response->redirect('setting/user/usersetting');

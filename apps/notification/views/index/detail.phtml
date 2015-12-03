@@ -39,7 +39,7 @@
 <tr><td></td><td><input type="hidden" value="<?php echo $data['leave_days'];?>"  name="leave_days"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['start_date'];?>"  name="start_date"></td><td></td></td></tr>
 <tr><td></td><td><input type="hidden" value="<?php echo $data['noti_id'];?>"  name="noti_id"></td><td></td></td></tr>
-<tr><td></td><td></td><?php if ($this->session->permission_code=='ADMIN'){ ?><td colspan="2"><br><a href="#" class="button" id="noti_accept" >Accept</a><a href="#" class="button" id="noti_reject" >Reject</a><br><br>
+<tr><td></td><td></td><?php if ($permission=="admin"){ ?><td colspan="2"><br><a href="#" class="button" id="noti_accept" >Accept</a><a href="#" class="button" id="noti_reject" >Reject</a><br><br>
     <?php }else { ?><td colspan="2"><br><a href="#" class="button" id="noti_ok">Back</a>
     </td></tr><?php }?>
     </table>
