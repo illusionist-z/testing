@@ -202,10 +202,19 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 
 .listtbl tbody tr:hover {background-color: #f0fbff;}
 .listtbl tbody tr:last-child td {border: none;}
+
 .listtbl tbody td {border-bottom: 1px solid #ddd;}
+.listtbl tfoot td {
+    border-top : 1px solid #ddd;  
+    padding: 8px 0 0 0 ;
+    }
+                     
+.listtbl tfoot *{
+        padding : 0 0;
+        margin : 0 0 ;
+    }                       
 
 .listtbl td:last-child {
-
     padding-right: 10px;
 }
 

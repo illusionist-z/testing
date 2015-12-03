@@ -38,7 +38,7 @@ Setting.PageRule = {
     paging: function () {
         pager = new Paging.MultiPager();
         tbody = 'table#page_role > tbody';
-        pager.currentpager = 'pager';
+        pager.currentpagerobject = 'pager';
         pager.content = 'table#page_role';
         pager.perpage = 4;
         pager.pagingcontainer = tbody;
@@ -60,7 +60,7 @@ Setting.UserRule = {
     paging: function () {
         pager2 = new Paging.MultiPager();
         tbody = 'table#user_role > tbody';//current table
-        pager2.currentpager = 'pager2';        //current pager object
+        pager2.currentpagerobject = 'pager2';        //current pager object
         pager2.content = 'table#user_role';//current content
         pager2.perpage = 4;
         pager2.pagingcontainer = tbody;

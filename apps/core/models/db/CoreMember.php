@@ -327,11 +327,8 @@ class CoreMember extends \Library\Core\BaseModel {
         $result = $result->fetchall();
 
         return $result;
-    }
-    
-    public function functionName($param) {
-        
-    }
+    }    
+ 
  /**
      * @author david
      * @return array {leave name}

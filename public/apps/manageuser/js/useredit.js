@@ -43,7 +43,8 @@
                      
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
                    +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">'+res[1]['name']+'</td><td>'
-                   +'<input style="margin-top:10px" type="text" name="username" id="uname" class="col-sm-10" placeholder="'+res[1]['placeholder1']+'"></td></tr>'
+                   +'<input style="margin-top:10px" type="text" name="uname" id="uname" class="col-sm-10" placeholder="'+res[1]['placeholder1']+'"></td></tr>'
+                   +'<tr><td></td><td id="existId"></td></tr>'
                    +'<tr><td>'+res[1]['username']+'</td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="'+res[1]['placeholder2']+'"></td></tr>'
                    +'<tr><td>'+res[1]['pass']+'</td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="'+res[1]['placeholder3']+'"></td></tr>'
                    +'<tr><td>'+res[1]['confirm']+'</td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="'+res[1]['placeholder4']+'"></td></tr>'
