@@ -53,6 +53,7 @@
                                          repair('#uname');break;
                                  }
                              }
+                             UserAdd.Clear();
                 }
                 else
                 {
@@ -62,5 +63,8 @@
                 
             }
         });
-     }    
+     },
+     Clear : function () {
+        $('#saveuser input').css("border", "1px solid #ccc").attr("placeholder", "");;  // for error border        
+     }
 };

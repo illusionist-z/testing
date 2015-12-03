@@ -38,7 +38,7 @@ class CorememberController extends ControllerBase {
         if ($this->request->isPost()) {
 
             $user = new AddUser();            
-            $id = $this->request->getPost('username');
+            $id = $this->request->getPost('uname');
             $exist_id = CoreMember::findByMemberLoginName($id);
             if (count($exist_id) > 0) {
                 $json['uname'] = "Name already taken ! Choose Other Please!";
