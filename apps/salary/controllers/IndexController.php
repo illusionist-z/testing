@@ -539,9 +539,9 @@ class IndexController extends ControllerBase {
         $mid=  explode(',', $member_id);
         
         $Salarydetail = new SalaryDetail();
-        for($i=0;$i<=count($mid);$i++){
-            //echo $mid[$i]."<br>";
-            if($mid[$i]!='on'){
+        for($i=0;$i<count($mid);$i++){
+            echo $mid[$i]."<br>";
+            if($mid[$i]!=='on'){
             $getsalarydetail[] = $Salarydetail->getpayslip($mid[$i], $month, $year);
                 
             }
