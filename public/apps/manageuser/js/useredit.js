@@ -43,7 +43,8 @@
                      
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
                    +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">'+res[1]['name']+'</td><td>'
-                   +'<input style="margin-top:10px" type="text" name="username" id="uname" class="col-sm-10" placeholder="'+res[1]['placeholder1']+'"></td></tr>'
+                   +'<input style="margin-top:10px" type="text" name="uname" id="uname" class="col-sm-10" placeholder="'+res[1]['placeholder1']+'"></td></tr>'
+                   +'<tr><td></td><td id="existId"></td></tr>'
                    +'<tr><td>'+res[1]['username']+'</td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="'+res[1]['placeholder2']+'"></td></tr>'
                    +'<tr><td>'+res[1]['pass']+'</td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="'+res[1]['placeholder3']+'"></td></tr>'
                    +'<tr><td>'+res[1]['confirm']+'</td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="'+res[1]['placeholder4']+'"></td></tr>'
@@ -52,8 +53,8 @@
                    +'<tr><td>'+res[1]['pos']+'</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="'+res[1]['placeholder7']+'"></td></tr>'
 	           +'<tr><td>'+res[1]['mail']+'</td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="'+res[1]['placeholder8']+'"></td></tr>'
                    +'<tr><td>'+res[1]['pno']+'</td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="'+res[1]['placeholder9']+'"></td></tr>'
-                   +'<tr><td>'+res[1]['address']+'</td><td><textarea rows="5" name="address" class="col-sm-10" placeholder="'+res[1]['placeholder10']+'"></textarea></td></tr>'
-                   +'<tr><td><br>'+res[1]['role']+'</td><td><select style="margin-top:10px" class="col-sm-10 mySelect" data-toggle="select" name="user_role" id="member[user_role]">'
+                   +'<tr><td>'+res[1]['address']+'</td><td><textarea rows="4" name="address" placeholder="'+res[1]['placeholder10']+'"></textarea></td></tr>'
+                   +'<tr><td><br>'+res[1]['role']+'</td><td><select style="margin-top:10px" class="mySelect" data-toggle="select" name="user_role" id="member[user_role]">'
                    +'</select></td></tr><tr><td>'+res[1]['profile']+'</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
                    +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="Add User"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
                    +'</tr></table></form>';
@@ -73,6 +74,7 @@
                     
                     $('.mySelect').html(option);
 
+                    
                     }
                      });
     
@@ -99,7 +101,8 @@
                         cache : false,
                         width: 'auto',
                        position: ['center', 80],
-                        modal: true,                        
+                        modal: true,
+                        position:"bottom",
                         title: title
                     });                
                     $ovl.html(data);

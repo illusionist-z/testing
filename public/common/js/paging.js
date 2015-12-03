@@ -91,7 +91,7 @@ var Paging = {
                 html += '<tr>' + $(this).html() + '</tr>';
             });
             $(this.pagingcontainer).html(html);
-            renderControls(this.currentpage, this.numPages(),this.content,this.currentpager);
+            renderControls(this.currentpage, this.numPages(),this.content,this.currentpagerobject);
         };
         //for pagination index 
         var renderControls = function(currentPage, numPages,pagingcontainer,id) {
@@ -104,7 +104,7 @@ var Paging = {
               var th_num = $(pagingcontainer+' thead th').length;
             //var pageselect = '<select onchange="pager.showPage(parseInt(this.options[this.selectedIndex].value));return false;">';
             // paging index 
-            if (0 == this.numPages) {                
+            if (0 === this.numPages) {                
                 $(pagingcontainer+' tbody').html("<tr><td colspan=" + th_num + "><center>No data to display</center></td></tr>");
             }
             else {
@@ -128,6 +128,7 @@ var Paging = {
                 }
                 pagingControls += '<li><a href="#" onclick="'+id+'.showPage(' + this.numPages + ');return false;">Last</a></li>';
                 pagingControls += '<li><span class="btn" style="margin-left:20px;"> Page : ' + this.currentPage + ' in ' + this.numPages + '</span></li></ul>';
+                //appending to tfoot div 
                 $(pagingcontainer+" tfoot").html("<tr class='pagingcontent'><td colspan=" + th_num + ">"+pagingControls+"</td></tr>");
             }
         };

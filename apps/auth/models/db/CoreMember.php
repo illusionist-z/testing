@@ -9,8 +9,6 @@ class CoreMember extends \Library\Core\BaseModel{
     
     public function initialize() {
         parent::initialize();
-    }
-    
-
+    }     
     
 }

@@ -90,7 +90,7 @@
                { 
                     ?> 
                       <div class="pull-left">
-                                                    <a href="../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
+                                                    <a href="../setting/user" class="btn btn-default btn-flat"><b>Setting</b></a>
                                                 </div>
                 <?php }
                 
@@ -135,13 +135,13 @@
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                          }
                                                                                     } else {
                                                                                         if($key_name != 'show_admin_notification' ){
                                                                                                $top = explode(" ", $key_value["link0"]);                                                                                                
-                                                                                                 echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index/index"><img src="../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                         }
                                                                                                  
                                                                                         }
