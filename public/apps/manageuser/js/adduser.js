@@ -1,6 +1,5 @@
-/**
- * 
- * @author David 
+/** 
+ * @author David Jaw Hpan<david.gnext@gmail.com>
  * @since 25/8/2015
  * @desc adduser form validation
  */
@@ -12,10 +11,7 @@
             type:'POST',
             url :baseUri+'manageuser/coremember/saveuser',
           //data:$("#saveuser").serialize(),
-          data :new FormData($("#saveuser")[0]),
-            //async: false,
-            //cache: false,
-             
+           data :new FormData($("#saveuser")[0]),           
             processData: false,
             contentType: false,
             success: function(d){
@@ -48,7 +44,7 @@
                 else if(this.cond.result === 'existId'){
                     for(var i in this.cond){                     
                      switch(i){
-                                case 'uname':$("#uname").val("");
+                                case 'uname':$("#uname").css('text-decoration','line-through');
                                         $('#existId').text(this.cond[i]).css({color:"red"});
                                          repair('#uname');break;
                                  }
@@ -64,7 +60,16 @@
             }
         });
      },
+     /**
+      * @desc  Error text Clear action
+      * @returns {json}
+      */
      Clear : function () {
-        $('#saveuser input').css("border", "1px solid #ccc").attr("placeholder", "");;  // for error border        
+        $('#saveuser input').css("border", "1px solid #ccc").attr("placeholder", "");;  // for error border clear
+        $('#uname').focus(function(){
+            $(this).css('text-decoration','none');
+            $('#existId').text('');
+        });
+        
      }
 };
