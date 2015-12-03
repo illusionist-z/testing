@@ -15,10 +15,10 @@ var Setting = {
 Setting.GroupRule = {
     delete: function (id) {
         $.ajax({
-            url: " DelGroupRule",
-            data: {group_id: id},
-            type: "POST",
-            success: function () {
+            url : "index/DelGroupRule",
+            data : {group_id : id},
+            type : "POST",
+            success: function(){
                 location.reload();
             }
         });
@@ -27,10 +27,10 @@ Setting.GroupRule = {
 Setting.PageRule = {
     delete: function (id) {
         $.ajax({
-            url: " DelPageRule",
-            data: {idpage: id},
-            type: "POST",
-            success: function () {
+            url : "index/DelPageRule",
+            data : {idpage : id},
+            type : "POST",
+            success: function(){
                 location.reload();
             }
         });
@@ -49,10 +49,10 @@ Setting.PageRule = {
 Setting.UserRule = {
     update: function (id, groupid, grouptext) {
         $.ajax({
-            url: 'UserRuleSetting',
-            data: {rel_member_id: id, group_id: groupid, group_text: grouptext},
-            type: "POST",
-            success: function () {
+            url : 'index/UserRuleSetting',
+            data : {rel_member_id : id, group_id :groupid,group_text : grouptext},
+            type : "POST",
+            success : function(){
                 location.reload();
             }
         });
