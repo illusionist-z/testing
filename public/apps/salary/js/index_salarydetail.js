@@ -89,9 +89,8 @@ var Resign = {
         
         
         },
-         AddNew : function(d){
+        AddNew : function(d){
         var form=$('#Resign_Date');
-       //alert(form.serialize());
         $.ajax({
             type:'POST',
             data: form.serialize(),
