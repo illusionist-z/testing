@@ -3,7 +3,7 @@
 namespace workManagiment\Setting\Controllers;
 
 use workManagiment\Core\Models\Db;
-
+use workManagiment\Core\Models\Db\CoreMember;
 class UserController extends ControllerBase {
 
     public function initialize() {
@@ -11,20 +11,22 @@ class UserController extends ControllerBase {
         //$this->assets->addJs('common/js/btn.js');
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
+        $this->module_name =  $this->router->getModuleName();        
+        $this->permission = $this->setPermission();             
+        $this->view->module_name=$this->module_name;
+        $this->view->permission = $this->permission;
     }
 
     public function indexAction() {
-        
-    }
-
-    public function usersettingAction() {
-        $User = new Db\CoreMember;
+               $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $User->GetUserNoti($id);
         $this->view->setVar("noti", $noti);
         $user = $User->UserDetail($id);
         $this->view->userdetail = $user;
+        
     }
+ 
 
     /**
      * change profile 

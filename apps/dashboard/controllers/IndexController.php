@@ -123,6 +123,7 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
      public function checkinAction() {
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');

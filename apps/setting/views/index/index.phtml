@@ -22,7 +22,7 @@
                                           
                 <div class="col-sm-10">
                         <div class=col-md-12">
-                            <a href="../user/usersetting"> Go To Admin Profile</a>
+                            <a href="user"> Go To Admin Profile</a>
                             <br>
                                 <h3 link="#Group">Group Rule Setting </h3>
                                 
@@ -32,7 +32,7 @@
                                  
                                  
                                   <div id="addGroup" title="Add Group Rule" style="display: none;">
-                                        <form method="POST" action="AddGroupRule">
+                                        <form method="POST" action="index/AddGroupRule">
                                                   Group Name      :<input type="text" name="name_of_group" value="" >
                                         </form>
                                         </div>            
@@ -66,7 +66,7 @@
                                         </td> 
                                 </tr>                                                                                                   
                                         <div id="open<?= $data->group_id ?>" title="Change Group Rule" style="display: none;">
-                                        <form method="POST" action="GroupRuleSetting">
+                                        <form method="POST" action="index/GroupRuleSetting">
                                                 <input type="hidden" name="group_id" value="<?= $data->group_id ?>" >
                                                 Group ID   :<input type="text" value="<?= $data->group_id ?>" disabled>
                                                 Group Name      :<input type="text" name="name_of_group" value="<?= $data->name_of_group ?>">

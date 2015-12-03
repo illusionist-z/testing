@@ -211,12 +211,11 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 
 /*...........flat button style................*/
 .buttons {
-
     float: right;
+    margin-right: 15px;
     padding-bottom: 10px;
     padding-right: 10px;
     clear: both;
-
 
 }
 a.button {       

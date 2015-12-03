@@ -18,7 +18,7 @@ var Setting = {
 Setting.GroupRule = {
     delete : function(id){
         $.ajax({
-            url : " DelGroupRule",
+            url : "index/DelGroupRule",
             data : {group_id : id},
             type : "POST",
             success: function(){
@@ -30,7 +30,7 @@ Setting.GroupRule = {
  Setting.PageRule = {
     delete : function(id){
         $.ajax({
-            url : " DelPageRule",
+            url : "index/DelPageRule",
             data : {idpage : id},
             type : "POST",
             success: function(){
@@ -42,7 +42,7 @@ Setting.GroupRule = {
  Setting.UserRule = {
     update : function(id,groupid,grouptext){
         $.ajax({
-            url : 'UserRuleSetting',
+            url : 'index/UserRuleSetting',
             data : {rel_member_id : id, group_id :groupid,group_text : grouptext},
             type : "POST",
             success : function(){

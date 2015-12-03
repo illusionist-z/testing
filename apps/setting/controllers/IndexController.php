@@ -7,6 +7,7 @@ use workManagiment\Setting\Models\CorePermissionGroup;
 use workManagiment\Setting\Models\CorePermissionGroupId; 
 use workManagiment\Setting\Models\CorePermissionRelMember; 
 use workManagiment\Core\Models\Db\CoreMember;
+use workManagiment\Core\Models\Db;
 use Phalcon\Http\Response;
  
 
@@ -27,9 +28,10 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/setting/js/index.js'); 
         $this->assets->addJs('apps/setting/js/setting.js');  
         $this->config = \Module_Config::getModuleConfig('leavedays');
-        $Admin = new \workManagiment\Auth\Models\Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        
+//        $Admin = new Db\CoreMember;
+//        $id = $this->session->user['member_id'];
+//        $noti = $Admin->GetAdminNoti($id);
+//        $this->view->setVar("noti", $noti);
        // $this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
@@ -74,7 +76,7 @@ class IndexController extends ControllerBase {
         $core = new CorePermissionGroupId();
         $core->save($this->request->getPost());
         $this->view->disable();
-        $this->response->redirect('setting/index/index');
+        $this->response->redirect('setting/index');
         }
         /**
          * @author David JP <david.gnext@gmail.com>
@@ -90,7 +92,7 @@ class IndexController extends ControllerBase {
         $core->permission_code = $this->request->getPost('permission_code');
         $core->save();
         $this->view->disable();
-        $this->response->redirect('setting/index/index');
+        $this->response->redirect('setting/index');
         }
         
         public function DelGroupRuleAction()
@@ -119,7 +121,7 @@ class IndexController extends ControllerBase {
         $core->name_of_group = strtoupper($group_name);
         $core->update();        
         $this->view->disable();
-        $this->response->redirect('setting/index/index');
+        $this->response->redirect('setting/index');
         }
          /**
         * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -136,7 +138,7 @@ class IndexController extends ControllerBase {
                 if($success)
                 {
                 $this->view->disable();
-                $this->response->redirect('setting/index/index');
+                $this->response->redirect('setting/index');
                 }
                 else  { echo "Failed!!"; }
         }
@@ -158,7 +160,7 @@ class IndexController extends ControllerBase {
         $coreuser_update->update();
         $core->update();
         $this->view->disable();
-        $this->response->redirect('setting/index/index');
+        $this->response->redirect('setting/index');
          }
         /**
         * Shows the view to create a "new" product

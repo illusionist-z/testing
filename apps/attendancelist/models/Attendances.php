@@ -164,7 +164,7 @@ class Attendances extends Model {
     }
     
     public function GetAbsentList(){
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0";
+         $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0 order by created_dt desc";
         $list=$this->db->query($query);
          $absentlist=$list->fetchall();
          return $absentlist;
