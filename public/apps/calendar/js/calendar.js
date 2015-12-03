@@ -205,6 +205,8 @@ var Calendar = {
         });
         $("#member_event_dialog_close").on("click", function () {
             $("#member_event_dialog").dialog("close");
+            $("#member_event_add").attr("disabled", true);
+            $("#member_event").val('');
         });
 
         $("#member_event_dialog").dialog("open");
@@ -467,7 +469,7 @@ $(document).ready(function () {
     $('.disabledevent').click(function () {
         Calendar.remove_event_member();
     });
-    Calendar.Dialog.auto();
+    Calendar.Dialog.auto();    
 });
 
 function reload(member,dia){

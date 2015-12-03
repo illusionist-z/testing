@@ -13,7 +13,7 @@ class AddUser extends Model
     public function validat($data){
         $res = array();
         $validate = new Validation();
-        $validate->add('username',
+        $validate->add('uname',
                 new PresenceOf(
                 array(
                     'message' => 'User Name is required'
