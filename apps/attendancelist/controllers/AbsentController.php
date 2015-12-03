@@ -34,7 +34,7 @@ class AbsentController extends ControllerBase {
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
-        ;
+        
         $this->view->setVar("noti", $noti);
         $AbsentList = new \workManagiment\Attendancelist\Models\Attendances();
         $Result = $AbsentList->GetAbsentList();
