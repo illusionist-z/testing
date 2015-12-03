@@ -23,14 +23,21 @@ class IndexController extends ControllerBase
 
     
    public function indexAction() {
-        $User=new Db\CoreMember;
+        
+        $Admin=new Db\CoreMember;
         $id = $this->session->user['member_id'];
-       if($this->session->permission_code=="ADMIN"){
-        $noti=$User->GetAdminNoti($id);
-       }
-       else{
-        $noti=$User->GetUserNoti($id);     
-       }       
+        foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id); 
+            }
+        } 
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);

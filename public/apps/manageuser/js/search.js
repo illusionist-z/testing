@@ -60,7 +60,7 @@ $(document).ready(function(){
     });
     $("tbody").on('click','.displaypopup',function () {        
         var type = $(this).attr('id');  
-        
+       // alert("aa");
         Manage.User.Edit(type);
     });
      $('.userauto').click(function () {
