@@ -164,12 +164,13 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function getpayslip($member_id, $month, $year) {
         try {
-//            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id where salary_detail.member_id='" . $member_id . "' and MONTH(pay_date)='".$month."' and YEAR(pay_date)='".$year."'";
+//            $sql = "select * from salary_detail join core_member on salary_detail.member_id=core_member.member_id "
+//                    . "join attendances on attendances.member_id=core_member.member_id where salary_detail.member_id='" . $member_id . "' and MONTH(pay_date)='".$month."' and YEAR(pay_date)='".$year."'";
 //            echo $sql;
 //            $result = $this->db->query($sql);
 //            $row = $result->fetchall();
 //            print_r($row);
-//            exit;
+            //exit;
             //print_r("thank");exit;
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarydet.*', 'core.*', 'salarymast.*', 'attend.*'))
@@ -178,10 +179,10 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                     ->join('workManagiment\Salary\Models\SalaryMaster', 'salarymast.member_id = salarydet.member_id', 'salarymast')
                     ->join('workManagiment\Core\Models\Db\Attendances', 'attend.member_id = salarymast.member_id', 'attend')
                     ->where('salarydet.member_id = :member_id:', array('member_id' => $member_id))
-                    ->andWhere('MONTH(pay_date) = :month:', array('month' => $month))
+                    ->andWhere('MONTH(salarydet.pay_date) = :month:', array('month' => $month))
                     ->andWhere('YEAR(pay_date) = :year:', array('year' => $year))
-                    ->andWhere('MONTH(attend.att_date) = :month:', array('month' => $month))
-                    ->andWhere('YEAR(attend.att_date) = :year:', array('year' => $year))
+                    //->andWhere('MONTH(attend.att_date) = :month:', array('month' => $month))
+                    //->andWhere('YEAR(attend.att_date) = :year:', array('year' => $year))
                     ->limit(1)
                     ->getQuery()
                     ->execute();
