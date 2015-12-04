@@ -2,7 +2,7 @@
 
 namespace workManagiment\Dashboard\Controllers;
 use workManagiment\Core\Models\Db;
-use Phalcon\Flash\Direct as FlashDirect;
+//use Phalcon\Flash\Direct as FlashDirect;
 
 class IndexController extends  ControllerBase {
 
