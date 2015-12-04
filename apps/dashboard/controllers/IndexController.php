@@ -12,7 +12,7 @@ class IndexController extends  ControllerBase {
          
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        
+         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         //  $this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
