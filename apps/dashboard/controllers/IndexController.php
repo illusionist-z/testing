@@ -13,14 +13,14 @@ class IndexController extends  ControllerBase {
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
          $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        //  $this->assets->addJs('apps/dashboard/js/index.js');    
+        //$this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new \workManagiment\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
         
-       // $this->view->t = $this->_getTranslation();
+       //$this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
         $this->view->module_name=$this->module_name;
