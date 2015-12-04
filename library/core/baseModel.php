@@ -9,9 +9,14 @@ namespace Library\Core;
  */
 
 Class BaseModel extends \Phalcon\Mvc\Model {
-
-    public function initialize() {
+    public $db;
+    
+    public function initialize(){
         
+    }
+
+    public function onConstruct() {
+        $this->db = $this->getDI()->getShared("db");
     }
 
 }
