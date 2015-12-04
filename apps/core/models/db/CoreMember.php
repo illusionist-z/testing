@@ -48,6 +48,7 @@ class CoreMember extends \Library\Core\BaseModel {
     $groupid = $data->fetchall();
     
      return $groupid;
+ 
     }      
     
     public function username($name) {     
