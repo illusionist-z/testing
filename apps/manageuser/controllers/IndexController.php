@@ -20,12 +20,12 @@ class IndexController extends ControllerBase
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
     }
-    /**
-     * @author David JP <david.gnext@gmail.com>
-     * @desc   Array ,show all user data 
-     * @since  18/7/15
-     * @version 3/9/2015 @by David JP
-     */
+        /**
+        * @author David JP <david.gnext@gmail.com>
+        * @desc   Array ,show all user data 
+        * @since  18/7/15
+        * @version 3/9/2015 @by David JP
+        */
     public function IndexAction() {
         //for paging and edit user
         $User=new Db\CoreMember;
@@ -38,6 +38,16 @@ class IndexController extends ControllerBase
         $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
+        $member_count = new Db\CoreMember();
+        $member_count_number = $member_count->getNumberCount();
+        $this->view->member_count_number = $member_count_number;
+        if($member_count_number->deleted_flag == 200)
+        {
+            echo "200 Not Over";
+        }
+        else {
+             echo "200 Not Over";
+         }
         if($this->permission==1){
         $this->view->modulename = $this->module_name;
         $this->view->setVar('username', $getname);
@@ -124,11 +134,11 @@ class IndexController extends ControllerBase
         $this->user->userdelete($id);
         $this->view->disable();
     }
-    /**     
-     * @type   form data
-     * @desc   update user
-     * @since  20/7/15
-     */
+        /**     
+        * @type   form data
+        * @desc   update user
+        * @since  20/7/15
+        */
     public function userdata_editAction() {        
         $cond = array();
         $cond['id']  =  $this->request->get('data');
@@ -143,14 +153,19 @@ class IndexController extends ControllerBase
         echo json_encode($result);             // send validating data
         $this->view->disable();        
     }
-    /**
-     * ADD NEW USER 
-     * @author Su Zin Kyaw
+         /*
+     * @Count Member Limit
+     * @Inset Buyer Code
+     * @Yan Lin Pai <Yan Lin Pai>
      */
     public function adduserAction(){
-       
+     
+//       $this->view->count = 
     }
-    
+        /**
+        * ADD NEW USER 
+        * @author Su Zin Kyaw
+        */
        public function getpermitAction(){
      
         $permission=new CorePermissionGroupId();

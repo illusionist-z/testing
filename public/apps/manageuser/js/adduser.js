@@ -16,7 +16,6 @@
             contentType: false,
             success: function(d){
                 this.cond = JSON.parse(d);
-                
                 if(this.cond.result === 'error')
                 {
                  for(var i in this.cond){

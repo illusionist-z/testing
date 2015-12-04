@@ -32,7 +32,7 @@ class IndexController extends  ControllerBase {
      */
     public function indexAction() {
         //$this->aa();exit;
-            if ($this->permission==1) {
+         if ($this->permission==1) {
                 $this->view->disable();
                 //Go to user dashboard
                  $this->response->redirect('dashboard/index/admin');
@@ -41,7 +41,6 @@ class IndexController extends  ControllerBase {
                 $this->view->disable();
                 //Go to admin dashboard
                $this->response->redirect('dashboard/index/user');
-                
                 }
              }
     /**

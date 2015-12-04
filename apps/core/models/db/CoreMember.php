@@ -19,14 +19,15 @@ use Phalcon\Filter;
 class CoreMember extends \Library\Core\BaseModel {
 
     public function initialize() {
-        parent::initialize();
+        parent::onConstruct();
         $this->db = $this->getDI()->getShared("db");
     }
 
     public static function getInstance() {
         return new self();
     }
-
+    
+    
     public function getusername() {
         /* $this->db = $this->getDI()->getShared("db");        
           $user_name = $this->db->query("SELECT * FROM core_member");
@@ -36,6 +37,18 @@ class CoreMember extends \Library\Core\BaseModel {
         $row = $this->modelsManager->executeQuery($query);
         //print_r($row);exit;
         return $row;
+    }
+    /*
+     * @Count Member Limit
+     * @Inset Buyer Code
+     * @Yan Lin Pai <Yan Lin Pai>
+     */
+    public function getNumberCount() {
+        $this->db = $this->getDI()->getShared("db");
+        $query = "SELECT COUNT(*) FROM core_member WHERE deleted_flag=0 order by created_dt desc"; 
+        $data = $this->db->query($query);
+        $groupid = $data->fetchall();
+        return $groupid;
     }
     
     public function getgroupid() {
@@ -154,7 +167,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $today = date("Y-m-d H:i:s");
 
         $filter = new Filter();
-        $username = $filter->sanitize($member['username'], "string");
+        $username = $filter->sanitize($member['uname'], "string");
         $full_name = $filter->sanitize($member['full_name'], "string");
 
         $pass = $filter->sanitize($pass, "string");
@@ -175,7 +188,7 @@ class CoreMember extends \Library\Core\BaseModel {
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
         $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
                 . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
-        $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['username'] . "'");
+        $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['uname'] . "'");
         $us = $user_name->fetchall();
 
         foreach ($us as $value) {
