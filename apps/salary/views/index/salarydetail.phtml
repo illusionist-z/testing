@@ -8,9 +8,12 @@
         <div class="col-md-12"><!--start add user form--->
             <div style="width:100%;">
                 <div style="padding: 10px 10px 10px 10px">
-                    <div style="float:left;"><button class="btnEditInfo">EDIT</button>
-                    <button id="btn_savedetail" disabled class="txtenable">Save</button>
-<button id="btn_resign" class="btn_resign" >Resign</button>                    </div>
+                    <div style="float:left;">
+                    <button class="btnEditInfo btn  btn-flat" style="border: 1px solid #3c8dbc">EDIT</button>
+                   
+                    <button id="btn_savedetail" disabled class="txtenable btn  btn-flat" style="border: 1px solid #3c8dbc">Save</button>
+                   
+                    <button id="btn_resign" class="btn_resign btn  btn-flat" style="border: 1px solid #3c8dbc">Resign</button>                    </div>
                     <div style="float:right;">
                     <a href="#" id="display1" class="display preimg"><span class="prehide">PREV</span></a> |
                     <a href="#" id="display" class="display nextimg"><span class="prehide">NEXT</span></a>
@@ -37,6 +40,8 @@
         $deduce='';
         $total_overtime_hr='';
         $overtime_pay='';
+        $countsalary=count($getsalarydetails);
+        
         foreach($getsalarydetails as $A){
             for($i=0;$i<count($A);$i++){
               

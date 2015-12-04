@@ -2,9 +2,9 @@
     use Phalcon\Filter;
 ?>
 
-<a name="User"> </a>
+<a name="User"></a>
                                      <br>
-                                <h3>Change User Rule  </h3>
+                                <h3><kbd>Change User Rule  </kbd></h3>
                                 
                                 <br>
                              
@@ -16,14 +16,16 @@
                                 <tr>                                  
                                 <th width="100">Group ID</th>                                
                                 <th width="175">User Name</th>
-                                 <th width="">Group Name</th>
+                                <th width="">Group Name</th>
                                 <th width="">Action</th>
                                  
                                 </tr>
                         </thead>
                         <tbody style="display:none;">
                    <?php 
-                   foreach($coreuser as $datauser){ ?>
+                   foreach($coreuser as $datauser){ 
+                       if($datauser['deleted_flag'] == 0){
+                       ?>
                                 <tr>                                        
                                         <td><?= $datauser['group_id'] ?></td>
                                         <td><?= $datauser['member_login_name'] ?></td>
@@ -44,8 +46,9 @@
                                         </td>
                                         <?php
                                          }
-                                       
-                                         }
+                                        }
+                                         
+                                         
                                          ?>
                                         
                                         
@@ -56,7 +59,7 @@
                                 </tr>
                                 
                                 <div id="openu<?= $datauser['member_id'] ?>" title="Change User Rule" style="display: none;">
-                                       <form method="POST" action="UserRuleSetting">    
+                                       <form method="POST" action="index/UserRuleSetting">    
                                            <br> 
                                         
                                         User Name  : 
@@ -69,8 +72,10 @@
                                         <?php
                                         foreach($coreid as $data){
                                           ?>
-                                        <option value="<?= $data->group_id ?>">
-                                            <?= $data->name_of_group ?>
+                                        <option value="<?= $data->group_id ?>" <?php if( $datauser['group_id']  == $data->group_id){ ?>selected <?php } ?>>
+                                            
+                                                  <?= $data->name_of_group ?>
+                                            
                                         </option>
                                         <?php
                                          }
@@ -84,10 +89,14 @@
                                 
                                 
                                 
-                   <?php }
-                   ?>
+                   <?php
+                   }
+                   else{
                        
-                                </tbody>
-                                <tfoot></tfoot>
+                   }
+                   
+                                        }
+                   ?></tbody>
+                       <tfoot></tfoot>
             </table>  
                                 
