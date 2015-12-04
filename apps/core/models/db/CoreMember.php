@@ -215,6 +215,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $noti = $AdminNoti->fetchall();
      
         $i=0;
+       // print_r($noti);exit;
         foreach ($noti as $noti) {
             
             $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ";
