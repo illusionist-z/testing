@@ -2,7 +2,7 @@
 
 namespace workManagiment\Dashboard\Controllers;
 use workManagiment\Core\Models\Db;
-use Phalcon\Flash\Direct as FlashDirect;
+//use Phalcon\Flash\Direct as FlashDirect;
 
 class IndexController extends  ControllerBase {
 
@@ -20,7 +20,7 @@ class IndexController extends  ControllerBase {
         $Admin = new \workManagiment\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
         
-       // $this->view->t = $this->_getTranslation();
+       //$this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
         $this->view->module_name=$this->module_name;
@@ -32,7 +32,7 @@ class IndexController extends  ControllerBase {
      */
     public function indexAction() {
         //$this->aa();exit;
-            if ($this->permission==1) {
+         if ($this->permission==1) {
                 $this->view->disable();
                 //Go to user dashboard
                  $this->response->redirect('dashboard/index/admin');
@@ -41,7 +41,6 @@ class IndexController extends  ControllerBase {
                 $this->view->disable();
                 //Go to admin dashboard
                $this->response->redirect('dashboard/index/user');
-                
                 }
              }
     /**

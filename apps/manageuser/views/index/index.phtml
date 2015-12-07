@@ -20,8 +20,23 @@
                 <input  class="userauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
                 <input type="submit" onclick="return false;" class="buttonn" value="<?= $t->_("search"); ?>" id="userlistsearch">
-
-               <a href="#" onclick="return false;"  class="right button displaypopup" id="addinguser"><?= $t->_("adduser"); ?></a>
+                <?php
+//                foreach ($member_count_number as $member){
+//                //echo $member[0];  
+//                if($member[0] <= 5){
+                ?>
+                <a href="#" onclick="return false;"  class="right button displaypopup" id="addinguser"><?= $t->_("adduser"); ?></a>
+                <?php
+//                 }
+//                else{
+                   ?>  
+<!--                    <a href="#" onclick="return false;"  class="button" id=""><?= $t->_("adduser"); ?></a>-->
+        <?php 
+//                }
+//                   
+//                }
+              
+                ?>
         </form>
 
     </div>

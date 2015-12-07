@@ -28,6 +28,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/setting/js/index.js'); 
         $this->assets->addJs('apps/setting/js/setting.js');  
         $this->config = \Module_Config::getModuleConfig('leavedays');
+  
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
         $this->view->module_name=$this->module_name;
@@ -44,24 +45,28 @@ class IndexController extends ControllerBase {
         * @desc    $core_user = {}
         */
         public function indexAction() { 
-               if($this->permission==1){
-               $coreid = new CorePermissionGroupId(); 
-               $corememberid = new CorePermissionRelMember(); 
-               $coreuser = new CoreMember(); 
-               $coreuser2 = new CorePermissionGroup(); 
-               $core_groupid=$coreid::find();
-               $coremember= $corememberid::find();
-               $core_groupuser2=$coreuser2::find();
-               $core_groupuser=$coreuser->getgroupid();
-               $this->view->coreid = $core_groupid;
-               $this->view->coremember = $coremember; 
-               $this->view->coreuser = $core_groupuser; 
-               $this->view->coreuser2 = $core_groupuser2; 
-               }
-                else {
-                $this->response->redirect('setting/user/usersetting');
-                }
-         }     
+           if($this->permission==1){
+                $coreid = new CorePermissionGroupId(); 
+                $corememberid = new CorePermissionRelMember(); 
+                $coreuser = new CoreMember(); 
+                $coreuser2 = new CorePermissionGroup(); 
+                $core_groupid=$coreid::find();
+                $coremember= $corememberid::find();
+                $core_groupuser2=$coreuser2::find();
+                $core_groupuser=$coreuser->getgroupid();
+                $this->view->coreid = $core_groupid;
+                $this->view->coremember = $coremember; 
+                $this->view->coreuser = $core_groupuser; 
+                $this->view->coreuser2 = $core_groupuser2; 
+                $id=$this->session->user['member_id'];
+                $noti=$coreuser->GetAdminNoti($id);
+                $this->view->setVar("noti", $noti);
+           }
+           else {
+               
+                 $this->response->redirect('setting/user/usersetting');
+           }
+        }     
         /**
         * @author Yan Lin Pai <wizardrider@gmail.com>
         * @desc    $core = {}

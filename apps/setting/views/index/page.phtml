@@ -44,7 +44,7 @@
     </form>
 </div>   
 
-<table class="listtbladmin listtbl">
+<table class="listtbladmin listtbl" id="page_role">
 
     <thead>
     <br>
@@ -57,7 +57,7 @@
 
     </tr>
 </thead>
-
+<tbody style="display: none;">
 <?php foreach ($coreuser2 as $datauser2) { ?>
     <tr>   
         <td><?= $datauser2->idpage ?></td>
@@ -124,4 +124,6 @@
     <?php
 }
 ?>
+</tbody>
+<tfoot></tfoot>
 </table>  
