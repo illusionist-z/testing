@@ -28,10 +28,6 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/setting/js/index.js'); 
         $this->assets->addJs('apps/setting/js/setting.js');  
         $this->config = \Module_Config::getModuleConfig('leavedays');
-//        $Admin = new Db\CoreMember;
-//        $id = $this->session->user['member_id'];
-//        $noti = $Admin->GetAdminNoti($id);
-//        $this->view->setVar("noti", $noti);
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
         $this->view->module_name=$this->module_name;
@@ -48,24 +44,24 @@ class IndexController extends ControllerBase {
         * @desc    $core_user = {}
         */
         public function indexAction() { 
-           if($this->permission==1){
-                $coreid = new CorePermissionGroupId(); 
-                $corememberid = new CorePermissionRelMember(); 
-                $coreuser = new CoreMember(); 
-                $coreuser2 = new CorePermissionGroup(); 
-                $core_groupid=$coreid::find();
-                $coremember= $corememberid::find();
-                $core_groupuser2=$coreuser2::find();
-                $core_groupuser=$coreuser->getgroupid();
-                $this->view->coreid = $core_groupid;
-                $this->view->coremember = $coremember; 
-                $this->view->coreuser = $core_groupuser; 
-                $this->view->coreuser2 = $core_groupuser2; 
-           }
-           else {
-                 $this->response->redirect('setting/user/usersetting');
-           }
-        }     
+               if($this->permission==1){
+               $coreid = new CorePermissionGroupId(); 
+               $corememberid = new CorePermissionRelMember(); 
+               $coreuser = new CoreMember(); 
+               $coreuser2 = new CorePermissionGroup(); 
+               $core_groupid=$coreid::find();
+               $coremember= $corememberid::find();
+               $core_groupuser2=$coreuser2::find();
+               $core_groupuser=$coreuser->getgroupid();
+               $this->view->coreid = $core_groupid;
+               $this->view->coremember = $coremember; 
+               $this->view->coreuser = $core_groupuser; 
+               $this->view->coreuser2 = $core_groupuser2; 
+               }
+                else {
+                $this->response->redirect('setting/user/usersetting');
+                }
+         }     
         /**
         * @author Yan Lin Pai <wizardrider@gmail.com>
         * @desc    $core = {}
@@ -84,11 +80,15 @@ class IndexController extends ControllerBase {
          */
          public function AddPageRuleAction()
         {
+        $creator_id = $this->session->user['member_id'];
+        $created_dt = date("Y-m-d H:i:s");
         $core = new CorePermissionGroup();
         $option = explode("_",  $this->request->getPost('page_rule_group'));
         $core->page_rule_group = $option[0];
         $core->permission_group_code = $option[1];
         $core->permission_group_name = strtolower($option[1]);
+        $core->creator_id = $creator_id;
+        $core->created_dt = $created_dt;
         $core->permission_code = $this->request->getPost('permission_code');
         $core->save();
         $this->view->disable();
@@ -162,25 +162,8 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         $this->response->redirect('setting/index');
          }
-        /**
-        * Shows the view to create a "new" product
-        *       
-        * Shows the view to "edit" an existing product
-        */
- 
-        /**
-        * Creates a product based on the data entered in the "new" action
-        */
- 
+        
          
-        /**
-        * Updates a product based on the data entered in the "edit" action
-        */
-        
-        /**
-        * Deletes an existing product
-        */
-        
         public function settingmoduleAction() {
            $UserList = new Db\CoreMember();
            $username = $UserList::getinstance()->getusername();

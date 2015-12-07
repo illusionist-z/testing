@@ -147,13 +147,13 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function addnewuser($member_id, $member) {
        // print_r($member);exit;
-        
+        $this->db = $this->getDI()->getShared("db");
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
 
         $filter = new Filter();
-        $username = $filter->sanitize($member['username'], "string");
+        $username = $filter->sanitize($member['uname'], "string");
         $full_name = $filter->sanitize($member['full_name'], "string");
 
         $pass = $filter->sanitize($pass, "string");
