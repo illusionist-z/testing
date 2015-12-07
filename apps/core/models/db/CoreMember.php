@@ -25,7 +25,8 @@ class CoreMember extends \Library\Core\BaseModel {
     public static function getInstance() {
         return new self();
     }
-
+    
+    
     public function getusername() {
         /* $this->db = $this->getDI()->getShared("db");        
           $user_name = $this->db->query("SELECT * FROM core_member");
@@ -35,6 +36,18 @@ class CoreMember extends \Library\Core\BaseModel {
         $row = $this->modelsManager->executeQuery($query);
         //print_r($row);exit;
         return $row;
+    }
+    /*
+     * @Count Member Limit
+     * @Inset Buyer Code
+     * @Yan Lin Pai <Yan Lin Pai>
+     */
+    public function getNumberCount() {
+        $this->db = $this->getDI()->getShared("db");
+        $query = "SELECT COUNT(*) FROM core_member WHERE deleted_flag=0 order by created_dt desc"; 
+        $data = $this->db->query($query);
+        $groupid = $data->fetchall();
+        return $groupid;
     }
     
     public function getgroupid() {
@@ -47,6 +60,7 @@ class CoreMember extends \Library\Core\BaseModel {
     $groupid = $data->fetchall();
     
      return $groupid;
+ 
     }      
     
     public function username($name) {     

@@ -38,10 +38,11 @@ $(document).ready(function(){
 //    $('.geolocation').ready(function() {
 //    geo();
 //});
+//alert(location);
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
-      //  alert("Location"+location);
+        
         
         $.ajax({
             url: url + "?offset=" + offset+"&location="+ location,

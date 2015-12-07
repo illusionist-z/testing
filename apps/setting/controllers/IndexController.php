@@ -85,11 +85,15 @@ class IndexController extends ControllerBase {
          */
          public function AddPageRuleAction()
         {
+        $creator_id = $this->session->user['member_id'];
+        $created_dt = date("Y-m-d H:i:s");
         $core = new CorePermissionGroup();
         $option = explode("_",  $this->request->getPost('page_rule_group'));
         $core->page_rule_group = $option[0];
         $core->permission_group_code = $option[1];
         $core->permission_group_name = strtolower($option[1]);
+        $core->creator_id = $creator_id;
+        $core->created_dt = $created_dt;
         $core->permission_code = $this->request->getPost('permission_code');
         $core->save();
         $this->view->disable();
@@ -163,25 +167,8 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         $this->response->redirect('setting/index');
          }
-        /**
-        * Shows the view to create a "new" product
-        *       
-        * Shows the view to "edit" an existing product
-        */
- 
-        /**
-        * Creates a product based on the data entered in the "new" action
-        */
- 
+        
          
-        /**
-        * Updates a product based on the data entered in the "edit" action
-        */
-        
-        /**
-        * Deletes an existing product
-        */
-        
         public function settingmoduleAction() {
            $UserList = new Db\CoreMember();
            $username = $UserList::getinstance()->getusername();

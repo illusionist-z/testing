@@ -12,8 +12,8 @@ class IndexController extends  ControllerBase {
          
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        //$this->assets->addJs('apps/dashboard/js/index.js');    
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        //  $this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->config = \Module_Config::getModuleConfig('leavedays');
@@ -32,7 +32,7 @@ class IndexController extends  ControllerBase {
      */
     public function indexAction() {
         //$this->aa();exit;
-            if ($this->permission==1) {
+         if ($this->permission==1) {
                 $this->view->disable();
                 //Go to user dashboard
                  $this->response->redirect('dashboard/index/admin');
@@ -41,7 +41,6 @@ class IndexController extends  ControllerBase {
                 $this->view->disable();
                 //Go to admin dashboard
                $this->response->redirect('dashboard/index/user');
-                
                 }
              }
     /**
@@ -123,7 +122,6 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
      public function checkinAction() {
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
