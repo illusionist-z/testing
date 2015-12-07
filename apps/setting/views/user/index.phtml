@@ -45,7 +45,7 @@ function tz_list() {
                            $img=$result['member_profile'];
                          }
                ?>                                                 
-              <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
+              <img src="<?php echo $baseUri;?>public/uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
         </div>
             <input type="hidden" id="temp_password" name="member[temp_password]" value="<?php echo  $result['member_password'];?>" disabled>
             <input type="hidden" id="temp_file" name="member[temp_file]" value="<?php echo  $result['member_profile'];?>" disabled>

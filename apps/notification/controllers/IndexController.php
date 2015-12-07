@@ -69,19 +69,20 @@ class IndexController extends ControllerBase
     }
     
     public function notificationAction(){
-       
+       //echo "aa";exit;
          $Admin=new CoreMember();
          $id = $this->session->user['member_id'];
          
                 foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'show_admin_notification') {
-                //Go to user dashboard
+               
               $noti=$Admin->GetAdminNoti($id);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
+               //echo"aa";exit;
                $noti=$Admin->GetUserNoti($id); 
             }
         }

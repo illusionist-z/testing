@@ -42,6 +42,14 @@ class UserController extends ControllerBase {
     }
  
 
+    public function usersettingAction() {
+        $User = new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti = $User->GetUserNoti($id);
+        $this->view->setVar("noti", $noti);
+        $user = $User->UserDetail($id);
+        $this->view->userdetail = $user;
+    }
     /**
      * change profile 
      * user setting

@@ -25,8 +25,8 @@ class UserController extends ControllerBase {
         $this->view->t = $this->_getTranslation();
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        //$noti = $User->GetUserNoti($id);
-        //$this->view->setVar("noti", $noti);
+        $noti = $User->GetUserNoti($id);
+        $this->view->setVar("noti", $noti);
     }
 
     public function indexAction() {
