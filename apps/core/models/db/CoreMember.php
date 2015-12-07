@@ -16,11 +16,10 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
-class CoreMember extends \Library\Core\BaseModel {
-
+class CoreMember extends \Library\Core\BaseModel {       
+    
     public function initialize() {
         parent::onConstruct();
-        $this->db = $this->getDI()->getShared("db");
     }
 
     public static function getInstance() {
@@ -160,8 +159,8 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return string
      */
     public function addnewuser($member_id, $member) {
-       // print_r($member);exit;
-        
+       // print_r($member);exit;       
+       
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
@@ -229,6 +228,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $noti = $AdminNoti->fetchall();
      
         $i=0;
+       // print_r($noti);exit;
         foreach ($noti as $noti) {
             
             $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ";
