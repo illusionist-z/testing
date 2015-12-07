@@ -18,11 +18,25 @@ class UserController extends ControllerBase {
     }
 
     public function indexAction() {
-               $User = new Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        $noti = $User->GetUserNoti($id);
-        $this->view->setVar("noti", $noti);
-        $user = $User->UserDetail($id);
+        $Admin=new Db\CoreMember;
+         $id = $this->session->user['member_id'];
+         
+                foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id); 
+            }
+        }
+    
+        $this->view->setVar("noti",$noti);
+        
+        $user = $Admin->UserDetail($id);
         $this->view->userdetail = $user;
         
     }

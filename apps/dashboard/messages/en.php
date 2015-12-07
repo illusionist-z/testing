@@ -1,6 +1,7 @@
 <?php
 $messages = array(
     "dashboard" => "Dashboard",
+    "user_dashboard" => "User Dashboard",
     "attend" => "Staffs Attended",
     "absent" =>"Staffs Absent",
     "manageuser" => "Manage User",

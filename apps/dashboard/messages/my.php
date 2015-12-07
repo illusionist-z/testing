@@ -1,7 +1,8 @@
 <?php
 
 $messages = array(
-    "dashboard" => "ပင္မစာမ်က္ႏွာ",
+     "dashboard" => "ပင္မစာမ်က္ႏွာ",
+     "user_dashboard" => "ပင္မစာမ်က္ႏွာ",
     "attend" => "ရုံးတက္စာရင္း",
     "absent" =>"ရုံးပ်က္စာရင္း",
     "manageuser" => "စီမံခန္႕ခြဲ",

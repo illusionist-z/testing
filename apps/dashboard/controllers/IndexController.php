@@ -2,7 +2,7 @@
 
 namespace workManagiment\Dashboard\Controllers;
 use workManagiment\Core\Models\Db;
-use Phalcon\Flash\Direct as FlashDirect;
+//use Phalcon\Flash\Direct as FlashDirect;
 
 class IndexController extends  ControllerBase {
 
@@ -12,7 +12,7 @@ class IndexController extends  ControllerBase {
          
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         //  $this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
@@ -20,7 +20,7 @@ class IndexController extends  ControllerBase {
         $Admin = new \workManagiment\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
         
-       // $this->view->t = $this->_getTranslation();
+       //$this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
         $this->view->module_name=$this->module_name;
@@ -122,7 +122,6 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
      public function checkinAction() {
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');

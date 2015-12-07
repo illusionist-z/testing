@@ -95,14 +95,14 @@
         if(id === 1){
                         $ovl.dialog({
                         autoOpen: false,
-                         resizable:false,
+                        resizable:false,
                         height: 'auto',
                         async: false,
                         cache : false,
                         width: 'auto',
-                       position: ['center', 80],
+                        position: ['center', 80],
                         modal: true,
-                        position:"bottom",
+                        //position:"bottom",
                         title: title
                     });                
                     $ovl.html(data);
