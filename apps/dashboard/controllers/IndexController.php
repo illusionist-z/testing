@@ -26,11 +26,11 @@ class IndexController extends  ControllerBase {
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
     }           
- /**
-     * 
-     *Check User or Admin 
-     */
-    public function indexAction() {
+    /**
+        * 
+        *Check User or Admin 
+        */
+       public function indexAction() {
         //$this->aa();exit;
          if ($this->permission==1) {
                 $this->view->disable();
@@ -43,12 +43,12 @@ class IndexController extends  ControllerBase {
                $this->response->redirect('dashboard/index/user');
                 }
              }
-    /**
-     * show admin dashboard
-     * @author david
-     * get last created member name
-     * @type array {$gname}
-     */
+        /**
+        * show admin dashboard
+        * @author david
+        * get last created member name
+        * @type array {$gname}
+        */
     public function adminAction() { 
     //echo $this->permission;exit;
     $Admin=new Db\CoreMember;
