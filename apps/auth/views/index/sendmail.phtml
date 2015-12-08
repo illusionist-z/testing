@@ -1,20 +1,5 @@
 <!DOCTYPE html>
-<?php 
-    $to      = $_POST['member_mail'];
-    $subject = 'The subject';
-    $message = 'hello';
-    $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
-        'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
 
-    if(mail($to, $subject, $message, $headers)){
-        echo $to ." : " .$subject." : ".$message." : ".$headers;
-        echo "Mail Sent";
-    }else{
-        echo "Email sending failed";
-    }
-   
-?>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -30,13 +15,19 @@
       </div><!-- /.forgot-logo -->
       <div class="forgot-box-body">
           
-        <form method="post" action="<?=$this->url->getBaseUri();?>auth/index/newpassword" id="form_login">
+        <form method="post" action="#" id="form_login">
 <!--            <label>Don't worry! Just fill in your email and we'll help you reset your password.</label><br><br>-->
              <div class="form-group has-feedback">
                  
                      <label>Please check your email for a message with your code. Your code is 6 numbers long.</label><br>
 <!--                 <input type="email" name="member_mail" id="emailaddress" class="form-control" placeholder="Enter Your Email Address"/>           -->
-              
+                <div id="codeerror" style="display: none;">   
+                        <label>Please fill in at least one field</label><br>
+                        <span id="onefield">Please check your email.</span>
+                </div>
+                <div id="checkcodeerror" style="display: none;">   
+                        <label>No Match Code</label>
+                </div>
                    <input type="text" name="code" id="code" class="form-control" placeholder="######"/>
                
                        <?php
@@ -54,9 +45,6 @@
                                            
                                             
                                         </span>-->
-                                       
-                
-                 
              </div>
           
           <div class="row">  
@@ -65,7 +53,7 @@
                 
                 
                
-                <span id="goright"><button type="submit" id="btngo" class="btn  btn-block btn-flat">Continue</button></span>
+                <span id="goright"><button onclick="return false;" id="btncontinue" class="btn  btn-block btn-flat">Continue</button></span>
             </div><!-- /.col -->
           </div>
         </form>
