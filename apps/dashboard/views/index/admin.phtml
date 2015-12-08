@@ -9,6 +9,17 @@
     }
 
 </script>
+<?php
+foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'user') {
+                //Go to user dashboard
+                $this->view->disable();
+                $this->response->redirect('dashboard/index/user');
+            } 
+            
+        }
+?>
 <div class="" >
     <!-- Content Header (Page header) -->
     <section class="content-header">

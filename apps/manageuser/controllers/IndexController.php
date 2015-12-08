@@ -38,9 +38,10 @@ class IndexController extends ControllerBase
         $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
-        $member_count = new Db\CoreMember();
-        $member_count_number = $member_count->getNumberCount();
-        $this->view->member_count_number = $member_count_number;
+        
+          $member_count = new Db\CoreMember();
+       $member_count_number = $member_count->getNumberCount();
+       $this->view->member_count_number = $member_count_number;
         if($member_count_number->deleted_flag == 200)
         {
             echo "200 Not Over";
@@ -48,6 +49,9 @@ class IndexController extends ControllerBase
         else {
              echo "200 Not Over";
          }
+        
+        
+        
         if($this->permission==1){
         $this->view->modulename = $this->module_name;
         $this->view->setVar('username', $getname);

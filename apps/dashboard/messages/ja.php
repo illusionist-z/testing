@@ -2,6 +2,7 @@
 
 $messages = array(
     "dashboard" => "ホム",
+    "user_dashboard" => "ホム",
     "attend" => "会社院いる",
     "absent" =>"会社院ない",
     "manageuser" => "メンバー管理",
