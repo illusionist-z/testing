@@ -1,9 +1,10 @@
 <?php
 
-namespace workManagiment\Setting\Controllers;
+namespace workManagiment\UserDashboard\Controllers;
 
- 
-class IndexController extends ControllerBase {
+use workManagiment\Core\Models\Db;
+use workManagiment\Core\Models\Db\CoreMember;
+class UserDashboardController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
@@ -17,38 +18,16 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
-        $Admin=new Db\CoreMember;
-         $id = $this->session->user['member_id'];
-         
-                foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'show_admin_notification') {
-                //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
-                 
-            } 
-            if ($key_name == 'show_user_notification') {
-                //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
-            }
-        }
-    
-        $this->view->setVar("noti",$noti);
-        
-        $user = $Admin->UserDetail($id);
-        $this->view->userdetail = $user;
-        
-    }
- 
-
-    public function usersettingAction() {
-        $User = new Db\CoreMember;
+               $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $User->GetUserNoti($id);
         $this->view->setVar("noti", $noti);
         $user = $User->UserDetail($id);
         $this->view->userdetail = $user;
+        
     }
+ 
+
     /**
      * change profile 
      * user setting

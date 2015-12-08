@@ -10,7 +10,7 @@ namespace Library\Core;
 class Logger extends \Phalcon\Logger\Adapter\File {
 
     public function __construct($name, $options = null) {
-        //echo $name;exit;
+      //  echo $name;exit;
         parent::__construct($name, $options);
     }
 

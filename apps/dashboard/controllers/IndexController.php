@@ -157,7 +157,7 @@ class IndexController extends  ControllerBase {
          */
         public function directAction(){
         //$name = $this->session->page_rule_group;
-       if ($this->permission==1) {
+        if ($this->permission==1) {
                 //Go to user dashboard
                 $this->view->disable();
                 $this->response->redirect('attendancelist/index/todaylist');
