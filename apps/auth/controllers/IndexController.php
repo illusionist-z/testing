@@ -10,6 +10,7 @@ class IndexController extends ControllerBase {
         public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+            $this->assets->addJs('apps/auth/js/forgot.js');      
         }
 
         public function indexAction($mode = NULL) {
@@ -34,7 +35,7 @@ class IndexController extends ControllerBase {
     }
     
     public function forgotpasswordAction() {
-         $this->assets->addJs('apps/auth/js/forgot.js');      
+       //  $this->assets->addJs('apps/auth/js/forgot.js');      
        
     }
   public function SaltsForGetAction()
@@ -59,7 +60,7 @@ class IndexController extends ControllerBase {
 //        $ModelAuth->findemail($member_mail);
     }
       public function sendmailAction() {        
-         $member_mail = $this->request->getPost('member_mail');   
+         $member_mail = $this->request->get('email');   
          $Admin=new Db\CoreMember;
          
          $result = $Admin->findemail($member_mail);
@@ -84,26 +85,24 @@ class IndexController extends ControllerBase {
        }
           
     }
-    public function newpasswordAction() {     
-        $member_mail = $this->request->getPost('member_mail'); 
-         $newpassword = $this->request->getPost('newpassword');   
-         $comfirmpassword = $this->request->getPost('comfirmpassword');  
-         
-         $Admin=new Db\CoreMember;
-         $result = $Admin->findemail($member_mail);
-         
-             $this->view->setVar("Result", $result);
-         
-         
-         if($newpassword == $comfirmpassword){
-             
-              $result = $Admin->updatepassword($member_mail,$newpassword);
-         }
-         else{
-             
-         }
-         
-          
+    public function newpasswordAction() {  
+         //$this->assets->addJs('apps/auth/js/forgot.js');   
+//        $newpass = $this->request->get('fnp'); 
+   $member_mail = $this->request->get('email');     
+   $this->view->setvar("member_mail",$member_mail);
+//     
+//         $Admin=new Db\CoreMember;
+//         
+//          $update = $Admin->updatenewpassword($member_mail,$newpass);
+//                if($update){
+//                    //print_r($update);
+//                   $msg="success";
+//               }
+//              else{
+//                  $msg="fail";
+//              }
+//        // $this->view->disable();
+//        echo json_encode($msg);                                                                                                                                                                                               
     }
      public function checkmailAction() {
          
@@ -121,11 +120,83 @@ class IndexController extends ControllerBase {
         echo json_encode($msg);
     }
     
+     public function checkcodeAction() {  
+         $code = $this->request->get('code');    
+         $email = $this->request->get('email');  
+         $Admin=new Db\CoreMember;
+         $result = $Admin->findcode($code,$email);
+        if($result){
+            $msg="success";
+        }
+       else{
+           $msg="fail";
+       }
+         $this->view->disable();
+        echo json_encode($msg);
+    }
+    // for send email 
+       public function sendemailAction() {  
+                $email = $this->request->get('email');
+                $Admin=new Db\CoreMember;
+                $result = $Admin->findsecuritycode($email);
+                if($result){
+                        $to      = $email;
+                        $subject = 'The subject';
+                        $message = $result;
+                        $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
+                            'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
+                            'X-Mailer: PHP/' . phpversion();
+
+                        if(mail($to, $subject, $message, $headers)){
+                            echo $to ." : " .$subject." : ".$message." : ".$headers;
+                            echo "Mail Sent";
+                        }else{
+                            echo "Email sending failed";
+                        }
+                }
+                
+
+
+    }
+//    //for change password 
+//    public function changepasswordAction() {
+//         $newpass = $this->request->get('newpass');    
+//         $email = $this->request->get('email');  
+//         $Admin=new Db\CoreMember;
+//         $result = $Admin->updatenewpassword($newpass,$email);
+//        if($result){
+//            $msg="success";
+//        }
+//       else{
+//           $msg="fail";
+//       }
+//         $this->view->disable();
+//        echo json_encode($msg);
+//    }
     public function resetpasswordAction(){
          $member_mail = $this->request->get('email');   
          $Admin=new Db\CoreMember;
          $result = $Admin->findemail($member_mail);
          $this->view->setVar("Result", $result);
 
+    }
+    
+     public function changepasswordAction() {  
+        $newpass = $this->request->get('fnp'); 
+        $member_mail = $this->request->get('email');  
+       // print_r($member_mail);
+        //print_r($newpass);exit;
+         $Admin=new Db\CoreMember;
+         
+          $update = $Admin->updatenewpassword($member_mail,$newpass);
+                if($update){
+                    //print_r($update);exit;
+                   $msg="success";
+               }
+              else{
+                  $msg="fail";
+              }
+         $this->view->disable();
+        echo json_encode($msg);                                                                                                                                                                                               
     }
 }
