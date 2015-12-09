@@ -28,13 +28,8 @@ class CoreMember extends \Library\Core\BaseModel {
     
     
     public function getusername() {
-        /* $this->db = $this->getDI()->getShared("db");        
-          $user_name = $this->db->query("SELECT * FROM core_member");
-          $getname = $user_name->fetchall();
-          return $getname; */
         $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
-        //print_r($row);exit;
         return $row;
     }
     /*
@@ -419,6 +414,26 @@ class CoreMember extends \Library\Core\BaseModel {
        return $user;
 
     }
+    /**
+     * Saw Zin Min Tun
+     *user enter code check database code
+     
+     */
+    public function findcode($code,$email) {       
+       //print_r($member_mail);exit;
+        //exit;
+        // Check if the user exist
+        
+        
+        $this->db = $this->getDI()->getShared("db");
+        $query = "SELECT * FROM forgot_password where token ='" . $code . "' and check_mail = ' ".$email." ' ";
+        //print_r($query);exit;
+        $user = $this->db->query($query);
+        $user = $user->fetchAll(); 
+      
+        return $user;
+
+    }
      /**
      * Saw Zin Min Tun
      *forget password
@@ -433,6 +448,19 @@ class CoreMember extends \Library\Core\BaseModel {
         //$email = $member_mail;
         $newpassword = sha1($newpassword);
         //print_r($newpassword);exit;
+        $this->db = $this->getDI()->getShared("db");
+      
+        $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
+       // print_r($user);exit;
+       // $user = $user->fetchArray(); 
+        //print_r($user);exit;
+        return $user;
+
+    }
+      public function  updatenewpassword($member_mail,$newpass) {  
+        //  print_r($newpass);
+       $newpassword = sha1($newpass);
+       
         $this->db = $this->getDI()->getShared("db");
       
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");

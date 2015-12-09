@@ -12,7 +12,7 @@ var pager = new Paging.Pager(),dict =[];   //for pagination
 var Attendance = {
         init : function (reload){
             $('tfoot').append($('table.listtbl tbody').html());   //for csv 
-            pager.perpage =3;
+            pager.perpage = 3;
             pager.para = $('table.listtbl tbody > tr');
             pager.showPage(1);
             $('tbody').show();
@@ -25,8 +25,8 @@ var Attendance = {
                // alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                   // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].full_name);
+                 // alert(json_obj[i].member_login_name);
+                dict.push(json_obj[i].member_login_name);
                 }   
                 }                        
               }); 

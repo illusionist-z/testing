@@ -76,7 +76,7 @@
                                        <li class="user-footer">
                                       <?php foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'admin_dashboard') {
+            if ($permission == 1) {
                 //Go to user dashboard
                 $this->view->disable();
               ?>
