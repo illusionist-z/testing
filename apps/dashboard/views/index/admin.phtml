@@ -168,10 +168,10 @@ foreach ($this->session->auth as $key_name => $key_value) {
 
 
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
-                                                                        <?= $na['full_name'] ?>
+                                                                        <?= $na['member_login_name'] ?>
                                                                     </li>
                                                                     <?php 
-                                                                         array_push($count, $na['full_name']);
+                                                                         array_push($count, $na['member_login_name']);
                                                                             } ?>
                                                                 </ul>
                                                                 <?php 
@@ -217,10 +217,10 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                         }
                                                                         ?>
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
-                                                                        <?= $na['full_name'] ?>
+                                                                        <?= $na['member_login_name'] ?>
                                                                     </li>
                                                                     <?php 
-                                                                    array_push($count, $na['full_name']);
+                                                                    array_push($count, $na['member_login_name']);
                                                                             } ?>
                                                                 </ul>
                                                                   <?php 
@@ -252,7 +252,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
 
                                     </div><!-- /.box -->
 
-                                    <!-- USERS LIST -->
+                                   <!-- USERS LIST -->
                                     <div class="box box-danger">
                                         <div class="box-header with-border">
                                             <h3 class="box-title"><?= $t->_("last_member"); ?></h3>
@@ -263,7 +263,9 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                         </div><!-- /.box-header -->
                                         <div class="box-body no-padding">
                                             <ul class="users-list clearfix">
-                                                <?php foreach ($name as $v) { ?>
+                                                <?php
+                                                 $member = [];
+                                                 foreach ($name as $v) { ?>
                                                     <li>
                                                         <!--<img src="../../common/img/.jpg" alt="User Image"/>-->
                                                         <!--<img src="../../uploads/<?php echo $v->member_profile; ?>" class="user-image" alt="User Image"/>-->
@@ -284,8 +286,28 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                         <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
                                                         <span class="users-list-date"><?= $v->created_dt; ?></span>
                                                     </li>                          
-                                                <?php } ?>
+                                                <?php 
+                                                array_push($member, $v->member_login_name);
+                                                            } ?>
                                             </ul><!-- /.users-list -->
+                                            <?php 
+                                               // echo $member[0];
+                                                         //echo sizeof($member);
+                                                                        if(sizeof($member) > 3){
+                                                                           // echo $v->full_name;
+                                                                           ?>
+                                                                 <style type="text/css">.uppercase{
+                                                                                        display:block;
+                                                                                        }</style> 
+                                                                <?php
+                                                                        }else{ ?>
+                                                                                        <style type="text/css">.uppercase{
+                                                                                        display:none;
+                                                                                        }</style>             
+                                                                <?php
+                                                                          // echo $na['full_name']; 
+                                                                        }
+                                                                ?>
                                         </div><!-- /.box-body -->
                                         <div class="box-footer text-center">
                                             <a href="../../manageuser/index" class="uppercase"><?php echo $t->_("viewallmember"); ?></a>

@@ -23,7 +23,7 @@ Leave.init =  function(reload){
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
-                      dict.push(json_obj[i].full_name);
+                      dict.push(json_obj[i].member_login_name);
                       }                  
                 }
                         
