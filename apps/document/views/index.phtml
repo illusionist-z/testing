@@ -77,7 +77,7 @@
                                        <li class="user-footer">
                                       <?php foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'show_admin_attlist') {
+           if ($permission == 1) {
                 //Go to user dashboard
                 $this->view->disable();
                // $this->response->redirect('attendancelist/index/todaylist');
@@ -87,7 +87,7 @@
                                         </div>
                 <?php
                 } 
-                else if($key_name == '')
+                else
                { 
                     ?> 
                       <div class="pull-left">
