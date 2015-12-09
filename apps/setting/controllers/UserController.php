@@ -2,8 +2,9 @@
 
 namespace workManagiment\Setting\Controllers;
 
- 
-class IndexController extends ControllerBase {
+use workManagiment\Core\Models\Db;
+use workManagiment\Core\Models\Db\CoreMember;
+class UserController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
