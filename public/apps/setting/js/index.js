@@ -5,8 +5,8 @@ function showDialog()
         modal: true,
         draggable: false,
         resizable: false,
-        width: 300,
-        height: 300,
+        width: 'auto',
+        height: 'auto',
         buttons: {
             'Save': function () {
                 $("form").submit();
@@ -34,8 +34,8 @@ function showDialogname()
         modal: true,
         draggable: false,
         resizable: false,
-        width: 300,
-        height: 350,
+        width: 'auto',
+        height: 'auto',
         buttons: {
             'Save': function () {
                 $("form").submit();
@@ -61,8 +61,8 @@ function PageRuleSetting()
         modal: true,
         draggable: false,
         resizable: false,
-        width: 300,
-        height: 350,
+        width: 'auto',
+        height: 'auto',
         buttons: {
             'Save': function () {
                $("form").submit();
@@ -86,8 +86,8 @@ function showDialoguser()
         modal: true,
         draggable: false,
         resizable: false,
-        width: 300,
-        height: 350,
+        width: 'auto',
+        height: 'auto',
         buttons: {
             'Save': function () {
                 var group_id = $('#changeuser'+dia_id_name+' option:selected').val();
@@ -109,8 +109,8 @@ function addGroup()
         modal: true,
         draggable: false,
         resizable: false,
-        width: 300,
-        height: 200,
+        width: 'auto',
+        height: 'auto',
         buttons: {
             'Save': function () {
                    $("form").submit();
@@ -130,8 +130,8 @@ function addPage()
         modal: true,
         draggable: false,
         resizable: false,
-        width: 300,
-        height: 300,
+        width: 'auto',
+        height: 'auto',
         buttons: {
             'Save': function () {
                

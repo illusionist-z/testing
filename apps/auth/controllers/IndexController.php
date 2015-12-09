@@ -65,7 +65,7 @@ class IndexController extends ControllerBase {
          
          $result = $Admin->findemail($member_mail);
          
-         $token = uniqid(bin2hex(mcrypt_create_iv(10, MCRYPT_DEV_RANDOM)));
+         $token = uniqid(bin2hex(mcrypt_create_iv(1, MCRYPT_DEV_RANDOM)));
          
          $insert  = $Admin->insertemailandtoken($member_mail,$token);
          

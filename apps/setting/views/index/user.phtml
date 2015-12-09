@@ -4,7 +4,7 @@
 
 <a name="User"></a>
                                      <br>
-                                <h3><kbd>Change User Rule  </kbd></h3>
+                                <h3>Change User Rule </h3>
                                 
                                 <br>
                              
@@ -14,21 +14,20 @@
                         <thead>
                         <br>
                                 <tr>                                  
-                                <th width="100">Group ID</th>                                
-                                <th width="175">User Name</th>
-                                <th width="">Group Name</th>
-                                <th width="">Action</th>
-                                 
+                                <th width="10px" style="text-align:center;">Group ID</th>                                
+                                <th width="200px">User Name</th>
+                                <th width="200px">Group Name</th>
+                                <th width="10px">Action</th>                               
                                 </tr>
                         </thead>
-                        <tbody style="display:none;">
+                        <tbody style="display:none;text-align:center;" >
                    <?php 
                    foreach($coreuser as $datauser){ 
                        if($datauser['deleted_flag'] == 0){
                        ?>
                                 <tr>                                        
                                         <td><?= $datauser['group_id'] ?></td>
-                                        <td><?= $datauser['member_login_name'] ?></td>
+                                        <td style="text-align:left;"><?= $datauser['member_login_name'] ?></td>
                                         
                                         
                                        <?php
@@ -38,7 +37,7 @@
                                                 
                                           
                                         ?>
-                                        <td> 
+                                        <td style="text-align:left;"> 
                                        
                                             
                                         <?=  $data->name_of_group ?>  
@@ -53,22 +52,20 @@
                                         
                                         
                                         <td>        
-            <a href="#" onclick="showDialoguser.apply(this);return false;" class="btn" type="black" id="<?= $datauser['member_id'] ?>"> Edit </a>  
+            <a href="#" onclick="showDialoguser.apply(this);return false;" class="insettingedit" type="black" id="<?= $datauser['member_id'] ?>"> </a>  
                                         </td> 
                                          
                                 </tr>
                                 
                                 <div id="openu<?= $datauser['member_id'] ?>" title="Change User Rule" style="display: none;">
-                                       <form method="POST" action="index/UserRuleSetting">    
-                                           <br> 
-                                        
-                                        User Name  : 
-                                        <input type="text" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" disabled>
+                                       <form method="POST" action="index/UserRuleSetting">   
+                                        User Name   
+                                        <input type="text" style="margin-left:50px;" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" disabled>
                                         <br><br>
                                            Group Rule
                                            
 <!--                                        <input type="hidden" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" >-->
-                                           <select type="text" name='user_rule' value='' id="changeuser<?= $datauser['member_id'] ?>">
+                                           <select type="text" style="margin-left:50px;" name='user_rule' value='' id="changeuser<?= $datauser['member_id'] ?>">
                                         <?php
                                         foreach($coreid as $data){
                                           ?>
