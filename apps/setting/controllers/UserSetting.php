@@ -4,11 +4,11 @@ use Phalcon\Config;
 
 use Phalcon\Mvc\Url as UrlProvider;
 
-namespace workManagiment\Setting\Controllers; 
+namespace salts\Setting\Controllers; 
 
-use workManagiment\Setting\Models\CoreMember;
+use salts\Setting\Models\CoreMember;
  
-use workManagiment\Core\Models\Db;
+use salts\Core\Models\Db;
 
 class UserController extends ControllerBase {
 

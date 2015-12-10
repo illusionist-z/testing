@@ -1,5 +1,5 @@
 <?php
-namespace workManagiment\Attendancelist\Models;
+namespace salts\Attendancelist\Models;
 use Phalcon\Mvc\Model;
 
 /**

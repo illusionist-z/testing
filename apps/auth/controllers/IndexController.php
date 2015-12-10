@@ -1,9 +1,9 @@
 <?php
 
-namespace workManagiment\Auth\Controllers;
-use workManagiment\Core\Models\Db\CoreMember;
-use workManagiment\Auth\Models;
-use workManagiment\Core\Models\Db;
+namespace salts\Auth\Controllers;
+use salts\Core\Models\Db\CoreMember;
+use salts\Auth\Models;
+use salts\Core\Models\Db;
 
 class IndexController extends ControllerBase {
 

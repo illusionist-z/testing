@@ -1,13 +1,16 @@
 <?php
 
-namespace workManagiment\Calendar\Controllers;
-use workManagiment\Core\Models\Db;
+namespace salts\Calendar\Controllers;
+use salts\Core\Models\Db;
+use salts\Core\Models\Db\CoreMember;
+
+
 class IndexController extends ControllerBase
 {
     public $calendar;
     public function initialize() {
         parent::initialize();  
-        $this->calendar = new \workManagiment\Calendar\Models\Calendar();
+        $this->calendar = new \salts\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
         $this->assets->addCss('apps/calendar/css/calendar.css');        
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
@@ -16,9 +19,10 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
-        //$this->module_name =  $this->router->getModuleName();
+         
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
+        $this->view->permission = $this->permission;
     }
 
     

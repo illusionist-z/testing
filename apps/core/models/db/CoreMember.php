@@ -1,12 +1,12 @@
 <?php
 
-namespace workManagiment\Core\Models\Db;
+namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
-use workManagiment\Core\Models\Db\CoreMember;
-use workManagiment\Core\Models\Db\CorePermissionRelMember;
-use workManagiment\Core\Models\Db\CorePermissionGroupId;
+use salts\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db\CorePermissionRelMember;
+use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
@@ -28,7 +28,7 @@ class CoreMember extends \Library\Core\BaseModel {
     
     
     public function getusername() {
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
+        $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         return $row;
     }
@@ -60,7 +60,7 @@ class CoreMember extends \Library\Core\BaseModel {
     
     public function username($name) {     
         $name = '%' . $name . '%';
-        $query = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember WHERE full_name = '$name' AND deleted_flag=0 order by created_dt desc";
+        $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE full_name = '$name' AND deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);        
         foreach ($row as $rs) {            
             echo '<li>' . $rs->full_name . '</li>';
@@ -81,7 +81,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $username = $filter->sanitize($username, "string");
         $getname = $this->modelsManager->createBuilder()
                 ->columns(array('core.*'))
-                ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
+                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                 ->where('core.full_name = :username:', array('username' => $username))
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
@@ -109,7 +109,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return username by last month
      */
     public function getlastname() {
-        $username = "SELECT * FROM workManagiment\Core\Models\Db\CoreMember where deleted_flag=0 order by  created_dt desc limit 4";
+        $username = "SELECT * FROM salts\Core\Models\Db\CoreMember where deleted_flag=0 order by  created_dt desc limit 4";
         $laname = $this->modelsManager->executeQuery($username);
         return $laname;
     }

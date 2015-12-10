@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Dashboard;
+namespace salts\Dashboard;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 

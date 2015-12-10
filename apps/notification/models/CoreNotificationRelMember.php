@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Notification\Models;
+namespace salts\Notification\Models;
 
 
 class CoreNotificationRelMember  extends \Library\Core\BaseModel {

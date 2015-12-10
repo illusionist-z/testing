@@ -12,7 +12,7 @@ $config = new Phalcon\Config(array(
         'modelsDir' => '/../app/models/',
         'libraryDir' => '/../app/library/',
         'viewsDir' => '/../app/views/',
-        'baseUri' => '/workManagiment/'
+        'baseUri' => '/salts/'
     ),
     'models' => array(
         'metadata' => array(

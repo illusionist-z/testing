@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Auth;
+namespace salts\Auth;
 
 use Phalcon\Mvc\ModuleDefinitionInterface;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace workManagiment\Attendancelist\Controllers;
+namespace salts\Attendancelist\Controllers;
 
-use workManagiment\Core\Models\Db;
-use workManagiment\Attendancelist\Models\Attendances;
+use salts\Core\Models\Db;
+use salts\Attendancelist\Models\Attendances;
 
 class SearchController extends ControllerBase {
 

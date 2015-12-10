@@ -1,8 +1,8 @@
 <?php
 
-namespace workManagiment\Auth\Controllers;
+namespace salts\Auth\Controllers;
 
-use workManagiment\Auth\Models;
+use salts\Auth\Models;
 
 class LogoutController extends ControllerBase {
 

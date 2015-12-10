@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Salary\Controllers;
+<?php namespace salts\Salary\Controllers;
 
 // use library
 use Library;

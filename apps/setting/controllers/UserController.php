@@ -1,9 +1,9 @@
 <?php
 
-namespace workManagiment\Setting\Controllers;
+namespace salts\Setting\Controllers;
 
-use workManagiment\Core\Models\Db;
-use workManagiment\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db;
+use salts\Core\Models\Db\CoreMember;
 class UserController extends ControllerBase {
 
     public function initialize() {

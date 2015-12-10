@@ -111,7 +111,7 @@ $(document).ready(function(){
             source : dict
         });
     }); 
-    $("#apply_form_sdate").on('click',function(){
+    $("#apply_form_sdate").on('blur',function(){
        var name = document.getElementById('apply_form_name').value;
       //alert(name);
 		ApplyForm.getmemid(name);

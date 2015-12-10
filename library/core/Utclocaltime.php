@@ -8,7 +8,7 @@ namespace Library\Core;
  * and open the template in the editor.
  */
 
-use workManagiment\Core\Models\Db;
+use salts\Core\Models\Db;
 
 abstract class Utclocaltime extends \Phalcon\Mvc\Controller {
 

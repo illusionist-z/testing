@@ -27,8 +27,8 @@ Class Module implements ModuleDefinitionInterface {
         $loader = new Loader();
 
         $loader->registerNamespaces(array(
-            'workManagiment\\' . $this->_moduleName . '\Controllers' => $this->_moduleDir . '/controllers/',
-            'workManagiment\\' . $this->_moduleName . '\Models' => $this->_moduleDir . '/models/',
+            'salts\\' . $this->_moduleName . '\Controllers' => $this->_moduleDir . '/controllers/',
+            'salts\\' . $this->_moduleName . '\Models' => $this->_moduleDir . '/models/',
             
         ));
 
@@ -64,7 +64,7 @@ Class Module implements ModuleDefinitionInterface {
             $eventsManager->attach('dispatch', new Plugin\Permission($di));
 
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
-            $dispatcher->setDefaultNamespace('workManagiment\\' . $this->_moduleName . '\Controllers');
+            $dispatcher->setDefaultNamespace('salts\\' . $this->_moduleName . '\Controllers');
             $dispatcher->setEventsManager($eventsManager);
             return $dispatcher;
         };

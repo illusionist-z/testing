@@ -1,5 +1,5 @@
 <?php
-namespace workManagiment\Document\Models;
+namespace salts\Document\Models;
 use Phalcon\Mvc\Model;
 /**
  * @author David

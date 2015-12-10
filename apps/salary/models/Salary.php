@@ -1,13 +1,13 @@
 <?php
 
-namespace workManagiment\Salary\Models;
+namespace salts\Salary\Models;
 
 
-//use workManagiment\Salary\Models\SalarySetting;
+//use salts\Salary\Models\SalarySetting;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Mvc\Model;
-use workManagiment\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 

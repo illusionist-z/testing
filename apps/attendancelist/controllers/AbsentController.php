@@ -1,9 +1,9 @@
 <?php
 
-namespace workManagiment\Attendancelist\Controllers;
+namespace salts\Attendancelist\Controllers;
 
-use workManagiment\Attendancelist\Models\Attendances as Attendance;
-use workManagiment\Core\Models\Db;
+use salts\Attendancelist\Models\Attendances as Attendance;
+use salts\Core\Models\Db;
 
 /**
  * @desc     Get absent member 
@@ -36,7 +36,7 @@ class AbsentController extends ControllerBase {
         $noti = $Admin->GetAdminNoti($id);
         
         $this->view->setVar("noti", $noti);
-        $AbsentList = new \workManagiment\Attendancelist\Models\Attendances();
+        $AbsentList = new \salts\Attendancelist\Models\Attendances();
         $Result = $AbsentList->GetAbsentList();
         $this->view->setVar('Result', $Result);
     }

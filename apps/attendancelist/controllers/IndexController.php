@@ -1,8 +1,8 @@
 <?php
 
-namespace workManagiment\Attendancelist\Controllers;
-use workManagiment\Core\Models\Db;
-use workManagiment\Attendancelist\Models\CorePermissionGroupId;
+namespace salts\Attendancelist\Controllers;
+use salts\Core\Models\Db;
+use salts\Attendancelist\Models\CorePermissionGroupId;
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -38,7 +38,7 @@ class IndexController extends ControllerBase {
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();
-        $AttList = new \workManagiment\Attendancelist\Models\Attendances();
+        $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);        
         if($this->permission==1){
         $this->view->attlist=$ResultAttlist;
@@ -52,7 +52,7 @@ class IndexController extends ControllerBase {
     }        
    
     public function editTimedialogAction($id){
-        $Att  = new \workManagiment\Attendancelist\Models\Attendances();
+        $Att  = new \salts\Attendancelist\Models\Attendances();
         $t = $this->_getTranslation();//for translate
         $data = $Att->getAttTime($id);
         $data[1]['attlist'] = $t->_("attendancelist");
@@ -78,7 +78,7 @@ class IndexController extends ControllerBase {
         $offset = $this->session->location['offset'];
         $post = $localtime;
 
-        $Att = new \workManagiment\Attendancelist\Models\Attendances();
+        $Att = new \salts\Attendancelist\Models\Attendances();
         $Att->editAtt($post, $id, $offset);
         $this->response->redirect('attendancelist/index/todaylist');
 //        $this->view->disable();
@@ -93,7 +93,7 @@ class IndexController extends ControllerBase {
         $UserList = new Db\CoreMember();
         $UserName = $UserList::getinstance()->getusername();
         $month = $this->config->month;
-        $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
+        $Attendances = new \salts\Attendancelist\Models\Attendances();
         $monthlylist = $Attendances->showattlist();       
         $coreid = new CorePermissionGroupId();
         foreach ($this->session->auth as $key_name => $key_value) {
@@ -114,7 +114,7 @@ class IndexController extends ControllerBase {
                 $username = $this->request->get('username',"string");
                 $year = $this->request->get('year');
                 
-                $Attendances = new \workManagiment\Attendancelist\Models\Attendances();
+                $Attendances = new \salts\Attendancelist\Models\Attendances();
                 $result = $Attendances->search_attlist($year, $month, $username);
                 $this->view->disable();
                 echo json_encode($result);

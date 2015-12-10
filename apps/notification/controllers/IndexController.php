@@ -1,7 +1,7 @@
 <?php
 
-namespace workManagiment\Notification\Controllers;
-use workManagiment\Core\Models\Db\CoreMember;
+namespace salts\Notification\Controllers;
+use salts\Core\Models\Db\CoreMember;
 
 class IndexController extends ControllerBase
 {
@@ -64,7 +64,7 @@ class IndexController extends ControllerBase
      */
     public function update_notiAction(){
        $noti_id=$this->request->getPost('noti_id');
-       $update=new \workManagiment\Notification\Models\CoreNotificationRelMember();
+       $update=new \salts\Notification\Models\CoreNotificationRelMember();
        $update->updateNoti($noti_id);
     }
     
@@ -116,7 +116,7 @@ class IndexController extends ControllerBase
         $this->view->setVar("type",$type);
         $noti_id= $this->request->get('id');
         $module_name= $this->request->get('mname');
-        $Noti_detail=new \workManagiment\Notification\Models\CoreNotification();
+        $Noti_detail=new \salts\Notification\Models\CoreNotification();
         $Detail_result=$Noti_detail->GetNotiInfo($module_name, $noti_id);
         $this->view->setVar("module_name",$module_name);
         $this->view->setVar("result",$Detail_result);
@@ -131,7 +131,7 @@ class IndexController extends ControllerBase
     public function noticalendarAction(){
         
         $id=$this->request->get('id');
-        $Noti=new \workManagiment\Notification\Models\CoreNotification();
+        $Noti=new \salts\Notification\Models\CoreNotification();
              foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'show_admin_notification') {
@@ -155,7 +155,7 @@ class IndexController extends ControllerBase
      public function notiattendancesAction(){
         
         $id=$this->request->get('id');
-        $Noti=new \workManagiment\Notification\Models\CoreNotification();
+        $Noti=new \salts\Notification\Models\CoreNotification();
         $Noti->attnotification($id);
         $this->response->redirect("attendancelist/index/todaylist");
 

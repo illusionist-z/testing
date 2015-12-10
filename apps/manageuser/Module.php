@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Manageuser;
+namespace salts\Manageuser;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 

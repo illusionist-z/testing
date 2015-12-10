@@ -1,13 +1,13 @@
 <?php
 
-namespace workManagiment\Salary\Models;
+namespace salts\Salary\Models;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-use workManagiment\Salary\Models\SalaryDetail;
-use workManagiment\Core\Models\Db\CoreMember;
+use salts\Salary\Models\SalaryDetail;
+use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
-use workManagiment\Core\Models\Db\Attendances;
+use salts\Core\Models\Db\Attendances;
 
 class SalaryDetail extends Model {
 
@@ -33,7 +33,7 @@ class SalaryDetail extends Model {
 //        return $row;
 
         $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,SUM(income_tax) as income_tax_amount,SUM(allowance_amount) as allowance,SUM(travel_fee) as travel_expense  "
-                . " FROM workManagiment\Salary\Models\SalaryDetail"
+                . " FROM salts\Salary\Models\SalaryDetail"
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";
         $row = $this->modelsManager->executeQuery($query);
@@ -174,10 +174,10 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
             //print_r("thank");exit;
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarydet.*', 'core.*', 'salarymast.*', 'attend.*'))
-                    ->from(array('salarydet' => 'workManagiment\Salary\Models\SalaryDetail'))
-                    ->join('workManagiment\Core\Models\Db\CoreMember', 'core.member_id = salarydet.member_id', 'core')
-                    ->join('workManagiment\Salary\Models\SalaryMaster', 'salarymast.member_id = salarydet.member_id', 'salarymast')
-                    ->join('workManagiment\Core\Models\Db\Attendances', 'attend.member_id = salarymast.member_id', 'attend')
+                    ->from(array('salarydet' => 'salts\Salary\Models\SalaryDetail'))
+                    ->join('salts\Core\Models\Db\CoreMember', 'core.member_id = salarydet.member_id', 'core')
+                    ->join('salts\Salary\Models\SalaryMaster', 'salarymast.member_id = salarydet.member_id', 'salarymast')
+                    ->join('salts\Core\Models\Db\Attendances', 'attend.member_id = salarymast.member_id', 'attend')
                     ->where('salarydet.member_id = :member_id:', array('member_id' => $member_id))
                     ->andWhere('MONTH(salarydet.pay_date) = :month:', array('month' => $month))
                     ->andWhere('YEAR(pay_date) = :year:', array('year' => $year))
@@ -230,8 +230,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarymas.*', 'core.*'))
-                    ->from(array('salarymas' => 'workManagiment\Salary\Models\SalaryMaster'))
-                    ->leftjoin('workManagiment\Core\Models\Db\CoreMember', 'salarymas.member_id = core.member_id', 'core')
+                    ->from(array('salarymas' => 'salts\Salary\Models\SalaryMaster'))
+                    ->leftjoin('salts\Core\Models\Db\CoreMember', 'salarymas.member_id = core.member_id', 'core')
                     ->where('salarymas.deleted_flag=0')
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()

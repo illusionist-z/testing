@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Auth\Controllers;
+<?php namespace salts\Auth\Controllers;
 
 // use library
 use Library;

@@ -16,11 +16,11 @@ try {
         // set namespace for libraries
         'Library\Core' => '../library/core/',
         //set namespace for auth model
-        'workManagiment\Auth\Models' => '../apps/auth/models/',
+        'salts\Auth\Models' => '../apps/auth/models/',
         // set namespace for the core module
-        'workManagiment\Core\Controllers' => '../apps/core/controllers/',
-        'workManagiment\Core\Models' => '../apps/core/models/',
-        'workManagiment\Dashboard\Models' => '../apps/dashboard/models/' 
+        'salts\Core\Controllers' => '../apps/core/controllers/',
+        'salts\Core\Models' => '../apps/core/models/',
+        'salts\Dashboard\Models' => '../apps/dashboard/models/' 
     ));
 
     //register autoloader
