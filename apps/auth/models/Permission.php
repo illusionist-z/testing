@@ -1,6 +1,6 @@
 <?php
-namespace workManagiment\Auth\Models;
-use workManagiment\Auth\Models\Db;
+namespace salts\Auth\Models;
+use salts\Auth\Models\Db;
 use Phalcon\Mvc\Model;
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Salary\Models;
+namespace salts\Salary\Models;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
@@ -42,8 +42,8 @@ class Allowances extends Model {
         
         $row = $this->modelsManager->createBuilder()
                     ->columns('allowance_id,allowance_name,allowance_amount')
-                    ->from('workManagiment\Salary\Models\Allowances')
-                    ->orderBy('workManagiment\Salary\Models\Allowances.created_dt DESC')
+                    ->from('salts\Salary\Models\Allowances')
+                    ->orderBy('salts\Salary\Models\Allowances.created_dt DESC')
                     ->getQuery()
                     ->execute();
         

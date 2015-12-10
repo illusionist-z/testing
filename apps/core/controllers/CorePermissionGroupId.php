@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Core\Controllers;
+namespace salts\Core\Controllers;
  
 use Phalcon\Flash\Direct as FlashDirect;
 class CorePermissionFroupIdAction extends  ControllerBase {

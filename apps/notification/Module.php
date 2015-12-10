@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Notification;
+namespace salts\Notification;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 

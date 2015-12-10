@@ -1,11 +1,11 @@
 <?php
 
-namespace workManagiment\Leavedays\Controllers;
+namespace salts\Leavedays\Controllers;
 
-use workManagiment\Core\Models\Db;
-use workManagiment\Leavedays\Models\Leaves as Leave;
-use workManagiment\Leavedays\Models\LeaveCategories as LeaveCategories;
-use workManagiment\Leavedays\Models\LeavesSetting as LeavesSetting;
+use salts\Core\Models\Db;
+use salts\Leavedays\Models\Leaves as Leave;
+use salts\Leavedays\Models\LeaveCategories as LeaveCategories;
+use salts\Leavedays\Models\LeavesSetting as LeavesSetting;
 
 class IndexController extends ControllerBase {
 

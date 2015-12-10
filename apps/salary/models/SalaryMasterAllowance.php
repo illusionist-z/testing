@@ -1,10 +1,10 @@
 <?php
 
-namespace workManagiment\Salary\Models;
+namespace salts\Salary\Models;
 
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
-use workManagiment\Salary\Models\Allowances;
+use salts\Salary\Models\Allowances;
 
 class SalaryMasterAllowance extends Model {
 

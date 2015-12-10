@@ -1,7 +1,7 @@
 <?php
 
-namespace workManagiment\Dashboard\Controllers;
-use workManagiment\Core\Models\Db;
+namespace salts\Dashboard\Controllers;
+use salts\Core\Models\Db;
 //use Phalcon\Flash\Direct as FlashDirect;
 
 class IndexController extends  ControllerBase {
@@ -16,7 +16,7 @@ class IndexController extends  ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->config = \Module_Config::getModuleConfig('leavedays');
-        $Admin = new \workManagiment\Auth\Models\Db\CoreMember;
+        $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
         
        //$this->view->t = $this->_getTranslation();
@@ -59,10 +59,10 @@ class IndexController extends  ControllerBase {
     $GetName = $CMember::getinstance()->getlastname();
     $newmember = count($GetName);
     //get most leave name
-    $CheckLeave = new \workManagiment\Dashboard\Models\Attendances();
+    $CheckLeave = new \salts\Dashboard\Models\Attendances();
     $leave_name =$CheckLeave->checkleave();
     $status     =$CheckLeave->todayattleave();
-    $coreid = new  \workManagiment\Dashboard\Models\CorePermissionGroupId();
+    $coreid = new  \salts\Dashboard\Models\CorePermissionGroupId();
     if ($this->permission==1) {
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
@@ -93,7 +93,7 @@ class IndexController extends  ControllerBase {
         $id = $this->session->user['member_id'];
         $noti=$User->GetUserNoti($id);
         $this->view->setVar("noti",$noti);
-        $Attendances = new \workManagiment\Dashboard\Models\Attendances();
+        $Attendances = new \salts\Dashboard\Models\Attendances();
         $numofatt=$Attendances->getattlist($id);
         $numofleaves=$Attendances->gettotalleaves($id);
         $this->view->setVar("numatt",$numofatt);
@@ -136,7 +136,7 @@ class IndexController extends  ControllerBase {
         $add = $this->session->location['location'];
         $noti_Creatorid=$User->GetAdminstratorId();
         $creator_id=$noti_Creatorid[0]['rel_member_id'];
-        $checkin = new \workManagiment\Dashboard\Models\Attendances();
+        $checkin = new \salts\Dashboard\Models\Attendances();
         $status=$checkin->setcheckintime($id, $note,$add,$creator_id);
         $this->view->disable();
         echo json_encode($status);
@@ -148,7 +148,7 @@ class IndexController extends  ControllerBase {
      */
    public function checkoutAction() {
         $id = $this->session->user['member_id'];
-        $checkin = new \workManagiment\Dashboard\Models\Attendances();
+        $checkin = new \salts\Dashboard\Models\Attendances();
         $status=$checkin->setcheckouttime($id);
         
         $this->view->disable();

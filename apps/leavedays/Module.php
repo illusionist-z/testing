@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Leavedays;
+namespace salts\Leavedays;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 

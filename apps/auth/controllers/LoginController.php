@@ -1,8 +1,8 @@
 <?php
 
-namespace workManagiment\Auth\Controllers;
-use workManagiment\Core\Models\Db\CoreMember;
-use workManagiment\Auth\Models;
+namespace salts\Auth\Controllers;
+use salts\Core\Models\Db\CoreMember;
+use salts\Auth\Models;
 
 class LoginController extends ControllerBase {
 

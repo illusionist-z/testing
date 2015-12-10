@@ -1,11 +1,11 @@
 <?php
 
-namespace workManagiment\Salary\Models;
+namespace salts\Salary\Models;
 
 use Phalcon\Mvc\Model;
-//use workManagiment\Salary\Models\SalaryMaster as sa;
+//use salts\Salary\Models\SalaryMaster as sa;
 use Phalcon\Mvc\Model\Query;
-use workManagiment\Salary\Models\SalaryMemberTaxDeduce;
+use salts\Salary\Models\SalaryMemberTaxDeduce;
 
 class SalaryMaster extends Model {
 
@@ -52,7 +52,7 @@ class SalaryMaster extends Model {
             
             for ($i = 0; $i < count($dedution); $i++) {
 
-                $sql = "INSERT INTO workManagiment\Salary\Models\SalaryMemberTaxDeduce 
+                $sql = "INSERT INTO salts\Salary\Models\SalaryMemberTaxDeduce 
                         (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt)
                         VALUES('" . $dedution[$i] . "','" . $member_id . "', '" 
                         . $creator_id . "',NOW(),0,'00:00:00')";

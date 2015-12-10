@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Leavedays\Models;
+namespace salts\Leavedays\Models;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

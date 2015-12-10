@@ -1,9 +1,9 @@
 <?php
 
-namespace workManagiment\Manageuser\Controllers;
-use workManagiment\Manageuser\Models\User as User;
-use workManagiment\Core\Models\Db;
-use workManagiment\Dashboard\Models\CorePermissionGroupId;
+namespace salts\Manageuser\Controllers;
+use salts\Manageuser\Models\User as User;
+use salts\Core\Models\Db;
+use salts\Dashboard\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase
 {

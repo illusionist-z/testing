@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Calendar\Controllers;
+<?php namespace salts\Calendar\Controllers;
 
 // use library
 use Library;

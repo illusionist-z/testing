@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Notification\Controllers;
+<?php namespace salts\Notification\Controllers;
 
 // use library
 use Library;

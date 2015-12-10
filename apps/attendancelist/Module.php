@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Attendancelist;
+namespace salts\Attendancelist;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 

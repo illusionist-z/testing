@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Document\Models;
+namespace salts\Document\Models;
 
 
 class CompanyInfo extends \Library\Core\BaseModel {

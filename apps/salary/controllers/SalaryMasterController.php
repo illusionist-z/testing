@@ -1,12 +1,12 @@
 <?php
 
-namespace workManagiment\Salary\Controllers;
+namespace salts\Salary\Controllers;
 
-use workManagiment\Core\Models\Db;
-use workManagiment\Salary\Models\SalaryDetail;
-use workManagiment\Salary\Models\SalaryMaster;
-use workManagiment\Salary\Models\Allowances;
-use workManagiment\Salary\Models\Salary;
+use salts\Core\Models\Db;
+use salts\Salary\Models\SalaryDetail;
+use salts\Salary\Models\SalaryMaster;
+use salts\Salary\Models\Allowances;
+use salts\Salary\Models\Salary;
 
 class SalaryMasterController extends ControllerBase
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace workManagiment\Manageuser\Controllers;
+namespace salts\Manageuser\Controllers;
 
-use workManagiment\Manageuser\Models\User as User;
-use workManagiment\Manageuser\Models\AddUser;
-use workManagiment\Core\Models\Db;
-use workManagiment\Core\Models\Db\CoreMember;
+use salts\Manageuser\Models\User as User;
+use salts\Manageuser\Models\AddUser;
+use salts\Core\Models\Db;
+use salts\Core\Models\Db\CoreMember;
 
 /**
  * @author David

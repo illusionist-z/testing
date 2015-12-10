@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Core;
+namespace salts\Core;
 
 use Phalcon\Mvc\ModuleDefinitionInterface;
 

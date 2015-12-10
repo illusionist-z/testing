@@ -1,13 +1,13 @@
 <?php
 
-namespace workManagiment\Calendar\Controllers;
-use workManagiment\Core\Models\Db;
+namespace salts\Calendar\Controllers;
+use salts\Core\Models\Db;
 class IndexController extends ControllerBase
 {
     public $calendar;
     public function initialize() {
         parent::initialize();  
-        $this->calendar = new \workManagiment\Calendar\Models\Calendar();
+        $this->calendar = new \salts\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
         $this->assets->addCss('apps/calendar/css/calendar.css');        
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  

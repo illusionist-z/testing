@@ -1,15 +1,15 @@
 <?php
 
-namespace workManagiment\Attendancelist\Models;
+namespace salts\Attendancelist\Models;
 use DateTime;
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
-use workManagiment\Core\Models\Db\CoreMember as CoreMember;
-use workManagiment\Attendancelist\Models\Attendances as Attendances;
+use salts\Core\Models\Db\CoreMember as CoreMember;
+use salts\Attendancelist\Models\Attendances as Attendances;
 
          use Phalcon\Filter; 
-//use workManagiment\Auth\Models\Db\CoreMember as corememberresult;
+//use salts\Auth\Models\Db\CoreMember as corememberresult;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -34,8 +34,8 @@ class Attendances extends Model {
         if(isset($name)){
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
-                         ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                         ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                         ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                         ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                          ->where('core.member_login_name = :name:', array('name' => $name))
                          ->andWhere('attendances.att_date = :today:', array('today' => $today))
                          ->andWhere('core.deleted_flag = 0') 
@@ -48,8 +48,8 @@ class Attendances extends Model {
         }else{
             $row =   $this->modelsManager->createBuilder()
                           ->columns(array('core.*', 'attendances.*'))
-                          ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                          ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                          ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                          ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                           ->where('attendances.att_date = :today:', array('today' => $today))
                           ->andWhere('core.deleted_flag = 0')
                           ->orderBy('attendances.checkin_time DESC')
@@ -85,8 +85,8 @@ class Attendances extends Model {
            $end =  date("Y-m-d",strtotime($month));
            $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
-                         ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                         ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                         ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                         ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                          ->where('attendances.att_date >= :start:', array('start' => $start))
                          ->andWhere('attendances.att_date <= :end:', array('end' => $end))
                          ->andWhere('attendances.member_id = :id:', array('id' => $id))
@@ -99,8 +99,8 @@ class Attendances extends Model {
             
             $row =   $this->modelsManager->createBuilder()
                          ->columns(array('core.*', 'attendances.*'))
-                         ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                         ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                         ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                         ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                          ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
                          ->andWhere('attendances.member_id = :id:', array('id' => $id))
                           ->andWhere('core.deleted_flag = 0')
@@ -129,8 +129,8 @@ class Attendances extends Model {
             
             $row = $this->modelsManager->createBuilder()               
                         ->columns(array('core.*', 'attendances.*'))                
-                        ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                        ->join('workManagiment\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
+                        ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                        ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                         ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
                         ->andWhere('core.deleted_flag = 0')
                         ->orderBy('attendances.checkin_time DESC')
