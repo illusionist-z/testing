@@ -368,7 +368,6 @@ class CoreMember extends \Library\Core\BaseModel {
                 . "where a.deleted_flag=1 group by a.member_id "
                 . "order by count(*)";
         $data = $this->db->query($query);
-       
        $res['leave_name'] = $data->fetchall();
       
         return $res;
