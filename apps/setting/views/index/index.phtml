@@ -1,6 +1,5 @@
 <?php
     use Phalcon\Filter;
-    
  ?>
 
 <a name="Group"> </a>
@@ -16,60 +15,64 @@
                                          </div>
                                     
                                           <!-- content-wrapper-content -->
-                                          
-                                                
-                                          
-                                          
+                                         
                 <div class="col-sm-10">
                         <div class=col-md-12">
-                            <a href="user"> Go To Admin Profile</a>
-                            <br>
-                                <h3 link="#Group"><kbd>Group Rule Setting </kbd></h3>
+                            <a href="user"  style="float:right;" id="viewprofile">View Profile</a>
+                            
+                                <h3 link="#Group" >Group Rule Setting </h3>
                                 
-                                <br>
-                                 <a href="#" onclick="addGroup.apply(this); return false;" class="btn" type="black" id=""> Add Group Name  </a>   
+                                 <a href="#" style="float:right;" onclick="addGroup.apply(this); return false;" class="btn addgn" type="black" id=""> Add Group Name  </a>   
                                 
                                  
                                  
                                   <div id="addGroup" title="Add Group Rule" style="display: none;">
                                         <form method="POST" action="index/AddGroupRule">
-                                                  Group Name      :<input type="text" name="name_of_group" value="" >
+                                            <table>
+                                                <tr>
+                                                    <td>Group Name</td>
+                                                    <td><input type="text" style="margin-top:10px;" name="name_of_group" value="" ></td>
+                                                </tr>
+                                            </table>
+                                                 
                                         </form>
                                         </div>            
                                  
                 <br>
                 
                                 
-                <table class="listtbladmin listtbl">
+                <table class="listtbladmin listtbl" >
                     
-                        <thead>
+                        <thead style="text-align:center;">
                          <br>
-                                <tr>
-                                <th width="100">Group ID</th>
-                                <th width="">Group Name</th>
-                                <th width="">Action</th>
-                                 </tr>
+                               
+                                <th width="5px" style="text-align:center;">Group ID</th>
+                                <th width="300px" style="text-align:left;">Group Name</th>
+                                <th width="5px" style="text-align:center;">Action</th>
+                                
                         </thead>
         
-   
+                        <tbody style="text-align:center;">
                         
                         <?php 
                         $filter = new Filter();
                         $i=1;
                                  foreach($coreid as $data){ 
                         ?>
-                                <tr>
+                        <tr>
                                         <td><?= $data->group_id ?></td>
-                                        <td><?= $data->name_of_group ?></td>
+                                        <td style="text-align:left;"><?= $data->name_of_group ?></td>
                                         <td>                                                    
-                                                    <a href="#" onclick="showDialog.apply(this); return false;" class="btn" type="black" id="<?= $data->group_id ?>"> Edit </a>                                                                                                           
+                                            <a href="#" onclick="showDialog.apply(this); return false;" class="insettingedit" type="black" id="<?= $data->group_id ?>">  </a>                                                                                                           
                                         </td> 
                                 </tr>                                                                                                   
                                         <div id="open<?= $data->group_id ?>" title="Change Group Rule" style="display: none;">
                                         <form method="POST" action="index/GroupRuleSetting">
-                                                <input type="hidden" name="group_id" value="<?= $data->group_id ?>" >
-                                                Group ID   :<input type="text" value="<?= $data->group_id ?>" disabled>
-                                                Group Name      :<input type="text" name="name_of_group" value="<?= $data->name_of_group ?>">
+                                            
+                                            <input type="hidden" name="group_id" value="<?= $data->group_id ?>" >
+                                                
+                                            Group ID   <input type="text" style="margin-left: 100px;" value="<?= $data->group_id ?>" disabled><br>
+                                                Group Name      <input type="text" style="margin-left: 72px;" name="name_of_group" value="<?= $data->name_of_group ?>">
                                         </form>
                                         </div>                                                                                                
                                
@@ -77,7 +80,7 @@
                          $i++;
                                                                         }
                         ?>
-                                
+                        </tbody>     
             </table>    
                                 
                      <?php

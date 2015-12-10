@@ -407,7 +407,7 @@ class CoreMember extends \Library\Core\BaseModel {
         //$email = $member_mail;
         
         $this->db = $this->getDI()->getShared("db");      
-     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token) values(' " . $member_mail . " ' ,' " . $token . " ' )");
+     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',curdate() )");
        //print_r($user);exit;
        // $user = $user->fetchAssoc(); 
         //print_r($user);exit;
@@ -426,7 +426,7 @@ class CoreMember extends \Library\Core\BaseModel {
         
         
         $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT * FROM forgot_password where token ='" . $code . "' and check_mail = ' ".$email." ' ";
+        $query = "SELECT * FROM forgot_password where token ='" . $code . "' and check_mail = ' ".$email." ' and curdate = curdate() ";
         //print_r($query);exit;
         $user = $this->db->query($query);
         $user = $user->fetchAll(); 

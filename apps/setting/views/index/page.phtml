@@ -8,16 +8,18 @@
 
 <a name="Page"></a>
 <br>
-<h3><kbd>Change Page Rule </kbd> </h3>
+<h3>Change Page Rule </h3>
 
-<br>
-<a href="#" onclick="addPage.apply(this);
-        return false;" class="btn" type="black" id=""> Add Page Permission  </a>                                                                                                                                           
+<a href="#" style="float:right;" onclick="addPage.apply(this);
+        return false;" class="btn addpp" type="black" id=""> Add Page Permission  </a>                                                                                                                                           
 <br>
 <div id="addPage" title="Add Page Rule" style="display: none;">
     <form method="POST" action="index/AddPageRule">
-        Page Name      :
-                                <input list="browsers" name="permission_code" value="" id="page_rule">
+        <table>
+            <tr>
+                <td> Page Name</td>
+                <td>
+                    <input list="browsers" name="permission_code" value="" id="page_rule">
                                 <datalist id="browsers">
                                   <?php  foreach ($coreuser2 as $datauser2) {
                                       ?>
@@ -27,10 +29,18 @@
                                   }
                                    ?>
                                 </datalist>
- 
-        
-       
-        Group Name      :    <select type="text" name='page_rule_group' id="page_rule">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><br></td>
+            </tr>
+            <tr>
+                <td>
+                    Group Name  
+                </td>
+                <td>
+                                    <select type="text" name='page_rule_group' id="page_rule">
                                                     <?php
                                                     foreach ($coreid as $data) {
                                                         ?>
@@ -41,6 +51,13 @@
                                                     }
                                                     ?>
                                     </select>
+                </td>
+            </tr>
+        </table>
+       
+                                
+ 
+        
     </form>
 </div>   
 
@@ -49,40 +66,36 @@
     <thead>
     <br>
     <tr>
-        <th width="90">User ID</th> 
-        <th width="175">Page Name</th>
-
-        <th width="">G Name</th>
-        <th width="">Action</th>
+        <th width="5px" style="text-align:center;">User ID</th> 
+        <th width="200px">Page Name</th>
+        <th width="250px">G Name</th>
+        <th width="5px" style="text-align:center;">Action</th>
 
     </tr>
 </thead>
-<tbody style="display: none;">
+<tbody style="display: none;text-align:center;">
 <?php foreach ($coreuser2 as $datauser2) { ?>
     <tr>   
-        <td><?= $datauser2->idpage ?></td>
-        <td><?= $datauser2->permission_code ?></td>                                       
+        <td style="text-align:center;"><?= $datauser2->idpage ?></td>
+        <td style="text-align:left;"><?= $datauser2->permission_code ?></td>                                       
         <?php
-        foreach ($coreid as $data) {
+                foreach ($coreid as $data) {
 
-            if ($datauser2->page_rule_group == $data->group_id) {
-                ?>
-                <td> 
-   <?= $data->name_of_group ?>  
-                    (<?= $datauser2->page_rule_group ?>)
-                </td>
-                <?php
+                    if ($datauser2->page_rule_group == $data->group_id) {
+        ?>
+        <td style="text-align:left;"> 
+                <?= $data->name_of_group ?>  
+                                 (<?= $datauser2->page_rule_group ?>)
+        </td>
+         <?php
             }
             //else{ echo 'Error';}
         }
         ?>
-
-
-
         <td>
 
             <a href="#" onclick="PageRuleSetting.apply(this);
-                        return false;" class="btn" type="black" id="<?= $datauser2->idpage ?>"> Edit </a>  
+                        return false;" class="insettingedit" type="black" id="<?= $datauser2->idpage ?>">  </a>  
         </td> 
 
     </tr>
@@ -90,19 +103,17 @@
     <div id="pageRule<?= $datauser2->idpage ?>" title="Change User Rule" style="display: none;">
 
         <br> 
-        Group ID    :
-
-
-        <input type="text" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled>
+        Group ID    
+        <input type="text" style="margin-left:50px;" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled>
         <br> 
         <form method="POST" action="index/User2RuleSetting">    
-        Page Name  : 
-        <input type="text" name="permission_code" value="<?= $datauser2->permission_code ?>">
+        Page Name   
+        <input type="text"  style="margin-left:33px;" name="permission_code" value="<?= $datauser2->permission_code ?>">
         <br><br>         
             Group Rule
             <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >            
             
-            <select type="text" name='page_rule_group' value='' id="changeuser">
+            <select type="text" style="margin-left:33px;" name='page_rule_group' value='' id="changeuser">
                 <?php
                 foreach ($coreid as $data) {
                     ?>
