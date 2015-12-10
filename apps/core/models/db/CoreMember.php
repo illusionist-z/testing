@@ -223,11 +223,11 @@ class CoreMember extends \Library\Core\BaseModel {
         $noti = $AdminNoti->fetchall();
      
         $i=0;
-       // print_r($noti);exit;
+       //print_r($noti);exit;
         foreach ($noti as $noti) {
             
             $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ";
-            //print_r($sql);exit;
+           //print_r($sql);exit;
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
             $final_result[$i]['0']['creator_name']=$noti['creator_name'];
@@ -236,7 +236,7 @@ class CoreMember extends \Library\Core\BaseModel {
             
         }
         
-      // var_dump($final_result);exit;
+      //var_dump($final_result);exit;
         return $final_result;
     }
 
