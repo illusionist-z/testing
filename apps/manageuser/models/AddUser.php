@@ -1,5 +1,5 @@
 <?php
-namespace workManagiment\Manageuser\Models;
+namespace salts\Manageuser\Models;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Validation;

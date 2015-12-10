@@ -1,5 +1,5 @@
 <?php
-namespace workManagiment\Calendar\Models;
+namespace salts\Calendar\Models;
 use Phalcon\Mvc\Model;
 /**
  * @author David

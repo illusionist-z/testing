@@ -1,8 +1,8 @@
 <?php
 
-namespace workManagiment\Attendancelist\Controllers;
+namespace salts\Attendancelist\Controllers;
 
-use workManagiment\Core\Models\Db;
+use salts\Core\Models\Db;
 
 class UserController extends ControllerBase {
 
@@ -41,7 +41,7 @@ class UserController extends ControllerBase {
         $enddate = $this->request->get('enddate');
 
         $id=$this->session->user['member_id'];
-        $AttList = new \workManagiment\Attendancelist\Models\Attendances();
+        $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->getattlist($id, $startdate, $enddate);
         $this->view->attlist = $ResultAttlist;
         $this->view->offset = $offset;

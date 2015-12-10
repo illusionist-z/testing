@@ -8,7 +8,7 @@ namespace Library\Core;
  * and open the template in the editor.
  */
 
-use workManagiment\Core\Models\Db;
+use salts\Core\Models\Db;
 
 abstract class Controller extends \Phalcon\Mvc\Controller {
 
@@ -35,8 +35,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         public function setPermission() {
         $aryModules = \Library\Core\Module::get();
         //setting permission
-        $coremember = new \workManagiment\Auth\Models\Db\CorePermissionRelMember();
-        $coremember = \workManagiment\Auth\Models\Db\CorePermissionRelMember::findByRelMemberId($this->session->user['member_id']);
+        $coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
+        $coremember = \salts\Auth\Models\Db\CorePermissionRelMember::findByRelMemberId($this->session->user['member_id']);
         $permission_id = $coremember[0]->permission_group_id_user;
         $module = $this->router->getModuleName();
         $ctrname=$this->router->getControllerName();

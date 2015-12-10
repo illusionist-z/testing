@@ -2,7 +2,7 @@
 
 use Phalcon\Config;
 
-namespace workManagiment\Leavedays\Controllers;
+namespace salts\Leavedays\Controllers;
 
 class SearchController extends ControllerBase {
 
@@ -16,7 +16,7 @@ class SearchController extends ControllerBase {
         $ltype = $this->request->get('ltype');
         $month = $this->request->get('month');
         $namelist = $this->request->get('namelist');
-        $search_leave = new \workManagiment\Leavedays\Models\Leaves();
+        $search_leave = new \salts\Leavedays\Models\Leaves();
         $result = $search_leave->search($ltype, $month, $namelist);
 
         $this->view->disable();

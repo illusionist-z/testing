@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Leavedays\Models;
+namespace salts\Leavedays\Models;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,7 +18,7 @@ class LeavesSetting extends \Library\Core\BaseModel {
     public function getleavesetting() {
         $row = $this->modelsManager->createBuilder()
                 ->columns('max_leavedays,fine_amount')
-                ->from('workManagiment\Leavedays\Models\LeavesSetting')
+                ->from('salts\Leavedays\Models\LeavesSetting')
                 ->getQuery()
                 ->execute();
 

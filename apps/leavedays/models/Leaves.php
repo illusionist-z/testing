@@ -1,15 +1,15 @@
 <?php
 
-namespace workManagiment\Leavedays\Models;
+namespace salts\Leavedays\Models;
 
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-use workManagiment\Leavedays\Models\LeavesSetting;
+use salts\Leavedays\Models\LeavesSetting;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Date;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
-use workManagiment\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
@@ -36,8 +36,8 @@ class Leaves extends \Library\Core\BaseModel {
     public function getleavelist() {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
-                ->from(array('core' => 'workManagiment\Core\Models\Db\CoreMember'))
-                ->join('workManagiment\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
+                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
                 ->Where('core.deleted_flag = 0')
                 ->orderBy('leaves.date DESC')
                 ->getQuery()
@@ -314,7 +314,7 @@ class Leaves extends \Library\Core\BaseModel {
     public function getleavesetting() {
         $row = $this->modelsManager->createBuilder()
                 ->columns('max_leavedays,fine_amount')
-                ->from('workManagiment\Leavedays\Models\LeavesSetting')
+                ->from('salts\Leavedays\Models\LeavesSetting')
                 ->getQuery()
                 ->execute();
         return $row;

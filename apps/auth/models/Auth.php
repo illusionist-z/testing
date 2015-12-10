@@ -1,11 +1,11 @@
 <?php
 
-namespace workManagiment\Auth\Models;
+namespace salts\Auth\Models;
 
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
-use workManagiment\Auth\Models\Db\CoreMember;
-use workManagiment\Auth\Models\Db\AuthFailedLogins;
+use salts\Auth\Models\Db\CoreMember;
+use salts\Auth\Models\Db\AuthFailedLogins;
 
 class Auth extends Component {
 

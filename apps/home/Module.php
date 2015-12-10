@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Home;
+namespace salts\Home;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 

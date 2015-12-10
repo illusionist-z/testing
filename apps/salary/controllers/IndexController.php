@@ -1,14 +1,14 @@
 <?php
 
-namespace workManagiment\Salary\Controllers;
+namespace salts\Salary\Controllers;
 use Phalcon\Flash\Direct as FlashDirect;
-use workManagiment\Core\Models\Db;
-use workManagiment\Salary\Models\SalaryDetail;
-use workManagiment\Salary\Models\SalaryMaster;
-use workManagiment\Salary\Models\Allowances;
-use workManagiment\Salary\Models\SalaryTaxs;
-use workManagiment\Salary\Models\SalaryTaxsDeduction;
-use workManagiment\Salary\Models\SalaryMemberTaxDeduce;
+use salts\Core\Models\Db;
+use salts\Salary\Models\SalaryDetail;
+use salts\Salary\Models\SalaryMaster;
+use salts\Salary\Models\Allowances;
+use salts\Salary\Models\SalaryTaxs;
+use salts\Salary\Models\SalaryTaxsDeduction;
+use salts\Salary\Models\SalaryMemberTaxDeduce;
 
 
 class IndexController extends ControllerBase {
@@ -227,7 +227,7 @@ class IndexController extends ControllerBase {
         $Taxdeduce=new SalaryMemberTaxDeduce();
         $Taxdeduce->edit_taxByMemberid($check_deduce,$data['no_of_children'],$data['member_id']);
         
-        $SalaryMasterAllowance=new \workManagiment\Salary\Models\SalaryMasterAllowance();
+        $SalaryMasterAllowance=new \salts\Salary\Models\SalaryMasterAllowance();
         $SalaryMasterAllowance->edit_allowanceByMemberid($check_allow,$data['member_id']);
         
         echo json_encode($cond);
@@ -254,7 +254,7 @@ class IndexController extends ControllerBase {
     public function allowanceAction() {
         $this->assets->addJs('apps/salary/js/index-allowance.js');
                
-        $All_List = new \workManagiment\Salary\Models\Allowances();
+        $All_List = new \salts\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         //echo $this->permission;
         if($this->permission==1){
@@ -291,7 +291,7 @@ class IndexController extends ControllerBase {
             }
         if( !empty( $all_name )  )
         {
-        $all = new \workManagiment\Salary\Models\Allowances();
+        $all = new \salts\Salary\Models\Allowances();
         $all->addallowance($all_value, $all_name, $count);
         $this->response->redirect('salary/index/allowance');
         $this->flashSession->success("Allowances are added successfully!");

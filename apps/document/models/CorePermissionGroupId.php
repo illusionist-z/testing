@@ -1,5 +1,5 @@
 <?php
-namespace workManagiment\Document\Models;
+namespace salts\Document\Models;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;

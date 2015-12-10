@@ -1,8 +1,8 @@
 <?php
 
-namespace workManagiment\Core\Controllers;
-use workManagiment\Core\Models\SetLanguage;
-use workManagiment\Auth\Models\Permission;
+namespace salts\Core\Controllers;
+use salts\Core\Models\SetLanguage;
+use salts\Auth\Models\Permission;
 use Library;
 
 class IndexController extends Library\Core\Controller {

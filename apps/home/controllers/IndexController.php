@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Home\Controllers;
+namespace salts\Home\Controllers;
 
 class IndexController extends ControllerBase {
 

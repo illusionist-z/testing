@@ -1,15 +1,15 @@
 <?php
-namespace workManagiment\UserDashboard\Controllers;
+namespace salts\UserDashboard\Controllers;
 use Phalcon\Config;
 use Phalcon\Mvc\Url as UrlProvider;
 
-use workManagiment\Setting\Models\CorePermissionGroup; 
-use workManagiment\Setting\Models\CorePermissionGroupId; 
-use workManagiment\Setting\Models\CorePermissionRelMember; 
-use workManagiment\Core\Models\Db\CoreMember;
-use workManagiment\Core\Models\Db;
+use salts\Setting\Models\CorePermissionGroup; 
+use salts\Setting\Models\CorePermissionGroupId; 
+use salts\Setting\Models\CorePermissionRelMember; 
+use salts\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db;
 use Phalcon\Http\Response;
-use workManagiment\UserDashboard\Controllers\ControllerBase; 
+use salts\UserDashboard\Controllers\ControllerBase; 
 
 
 /**

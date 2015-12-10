@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Dashboard\Controllers;
+<?php namespace salts\Dashboard\Controllers;
 
 // use library
 use Library;

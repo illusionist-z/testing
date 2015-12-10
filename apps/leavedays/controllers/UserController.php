@@ -2,11 +2,11 @@
 
 use Phalcon\Config;
 
-namespace workManagiment\Leavedays\Controllers;
+namespace salts\Leavedays\Controllers;
 
-use workManagiment\Leavedays\Models\Leaves as Leave;
-use workManagiment\Leavedays\Models\LeaveCategories as LeaveCategories;
-use workManagiment\Core\Models\Db;
+use salts\Leavedays\Models\Leaves as Leave;
+use salts\Leavedays\Models\LeaveCategories as LeaveCategories;
+use salts\Core\Models\Db;
 
 class UserController extends ControllerBase {
 

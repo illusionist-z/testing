@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Frontend\Controllers;
+<?php namespace salts\Frontend\Controllers;
 
 use Library;
 

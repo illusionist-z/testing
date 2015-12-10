@@ -1,10 +1,10 @@
 <?php
 
-namespace workManagiment\Dashboard\Models;
+namespace salts\Dashboard\Models;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
-use workManagiment\Dashboard\Models\CorePermissionGroupId;
+use salts\Dashboard\Models\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 

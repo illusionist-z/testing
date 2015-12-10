@@ -8,7 +8,7 @@ $aryModules = \Library\Core\Module::get();
 // Regist modules
 foreach ($aryModules as $module) {
     $regModules[$module] = [
-        'className' => 'workManagiment\\' . $module . '\Module',
+        'className' => 'salts\\' . $module . '\Module',
         'path' => __DIR__ . '/../apps/' . $module . '/Module.php'
     ];
 }

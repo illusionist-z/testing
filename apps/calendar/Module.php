@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Calendar;
+namespace salts\Calendar;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 

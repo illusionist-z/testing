@@ -1,9 +1,9 @@
 <?php
 
-namespace workManagiment\UserDashboard\Controllers;
+namespace salts\UserDashboard\Controllers;
 
-use workManagiment\Core\Models\Db;
-use workManagiment\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db;
+use salts\Core\Models\Db\CoreMember;
 class UserDashboardController extends ControllerBase {
 
     public function initialize() {

@@ -1,11 +1,11 @@
 <?php
 
-namespace workManagiment\Document\Controllers;
+namespace salts\Document\Controllers;
  
-use workManagiment\Document\Models\Document;
-use workManagiment\Document\Models\CompanyInfo;
-use workManagiment\Core\Models\Db\CoreMember;
-use workManagiment\Document\Models\CorePermissionGroupId;
+use salts\Document\Models\Document;
+use salts\Document\Models\CompanyInfo;
+use salts\Core\Models\Db\CoreMember;
+use salts\Document\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase
 {
@@ -88,7 +88,7 @@ class IndexController extends ControllerBase
     
     public function letterheadAction(){
         $this->assets->addJs('apps/document/js/letterhead.js');
-        $Cinfo=new \workManagiment\Document\Models\CompanyInfo();
+        $Cinfo=new \salts\Document\Models\CompanyInfo();
         $info=$Cinfo->GetCompanyInfo();
         $coreid = new CorePermissionGroupId();
        foreach ($this->session->auth as $key_name => $key_value) {
@@ -111,7 +111,7 @@ class IndexController extends ControllerBase
         $target_dir = "uploads/";
         $target_file = $target_dir . $filename;
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-        $Cinfo=new \workManagiment\Document\Models\CompanyInfo();
+        $Cinfo=new \salts\Document\Models\CompanyInfo();
         $updateinfo = $this->request->getPost('update');
         //print_r($updateinfo);exit;
         if($_FILES["fileToUpload"]["name"]==null){

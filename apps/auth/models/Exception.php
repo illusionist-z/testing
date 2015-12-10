@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Auth\Models;
+<?php namespace salts\Auth\Models;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

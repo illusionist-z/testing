@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Core\Models\Db;
+namespace salts\Core\Models\Db;
 
         use Phalcon\Filter; 
 

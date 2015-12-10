@@ -1,4 +1,4 @@
-<?php namespace workManagiment\Attendancelist\Controllers;
+<?php namespace salts\Attendancelist\Controllers;
 
 // use library
 use Library;

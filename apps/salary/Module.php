@@ -1,6 +1,6 @@
 <?php
 
-namespace workManagiment\Salary;
+namespace salts\Salary;
 
 class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
 
