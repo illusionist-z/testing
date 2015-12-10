@@ -126,6 +126,13 @@ class IndexController extends  ControllerBase {
         $note = $this->request->get('note');
         //$lat = $this->session->location['lat'];
         //$lon = $this->session->location['lng'];
+//        $lat = 16.80365066670554;//$.cookie("MyLat");
+//        $lon = 96.14032782249012;
+//       // $url="http://maps.googleapis.com/maps/api/staticmap?latlng=".trim($lat).",".trim($lon)."&sensor=false";
+//         $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
+//                $json = @file_get_contents($url);
+//                $data=json_decode($json);
+//                var_dump($data);exit;
         $add = $this->session->location['location'];
         $noti_Creatorid=$User->GetAdminstratorId();
         $creator_id=$noti_Creatorid[0]['rel_member_id'];

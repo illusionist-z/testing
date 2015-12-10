@@ -8,7 +8,8 @@
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-        <?php $this->assets->outputCss() ?>
+        <?php
+        $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini"  >
           <?php error_reporting(0); ?>                                
@@ -130,22 +131,22 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
-                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                                                                    echo '<li class="treeview"><a href="#"><img src="'.$baseUri.'common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                                                                               }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
                                                                                                 if (isset($top[1])) {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="'.$baseUri.'common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="'.$baseUri.'common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                     } else {
                                                                                                 if($key_name != 'show_admin_notification' ){
                                                                                                  $lkdata=str_replace(' ', '', $key_value[0]);
                                                                                                 
-                                                                                                 echo '<li><a href="' . $baseUri . strtolower($lkdata) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($lkdata) . '/index"><img src="'.$baseUri.'common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                                 
                                                                                            }
@@ -171,14 +172,14 @@
 
                                                                                                                       if (strpos($key_name, 'user') !== false) {
                                                                                                                                 if($this->session->permission_code=="ADMIN"){
-                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
+                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="'.$baseUri.'common/img/li.png" >' . $link_name . '</a></li>';       
                                                                                                                                 }
                                                                                                                                 else{
-                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="'.$baseUri.'common/img/li.png" >' . $link_name . '</a></li>';
                                                                                                                                 }
                                                                                                                         }
                                                                                                                         else {                                                            
-                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="'.$baseUri.'common/img/li.png" >' . $link_name . '</a></li>';
                                                                                                                         }                         
 
                                                                                                      }
@@ -248,7 +249,7 @@
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='".$baseUri."common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='".$baseUri."common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='".$baseUri."common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
        
