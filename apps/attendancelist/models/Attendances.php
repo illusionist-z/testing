@@ -247,7 +247,7 @@ class Attendances extends Model {
               $conditions[] = "attendances.att_date <=  ' " . $end . " ' ";
               }
               if ($username) {
-              $conditions[] = "full_name ='" . $username . "'";
+              $conditions[] = "member_login_name ='" . $username . "'";
               }
                
         return $conditions;

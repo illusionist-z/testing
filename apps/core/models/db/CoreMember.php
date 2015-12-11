@@ -218,7 +218,7 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetAdminNoti($id) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "'  order by created_dt desc";
+        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc";
      ///   echo $sql;exit;
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
@@ -227,7 +227,7 @@ class CoreMember extends \Library\Core\BaseModel {
        //print_r($noti);exit;
         foreach ($noti as $noti) {
             
-            $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' and core_member.deleted_flag=0";
+            $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "'  and core_member.deleted_flag = 0 ";
            //print_r($sql);exit;
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
@@ -238,9 +238,15 @@ class CoreMember extends \Library\Core\BaseModel {
            
             
         }
-        
-      //var_dump($final_result);exit;
-        return $final_result;
+          foreach ($final_result as $result){
+            foreach ($result as $value) {
+                 if(isset($value['module_name'])){
+                     $data[]=$value;
+                 }
+            }
+        }
+      //var_dump($data);exit;
+        return $data;
     }
 
     /**
