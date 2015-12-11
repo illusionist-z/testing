@@ -133,9 +133,15 @@ class Leaves extends \Library\Core\BaseModel {
                             . "'" . $type . "','" . $desc . "',"
                             . "'" . $lastdata . "',0,'" . $noti_id . "',now())");
                     
-                    $result = $this->db->query("INSERT INTO core_notification (noti_creator_id,"
+                    $users=$this->db->query("SELECT * FROM core_member where deleted_flag=0 ");
+        $users=$users->fetchall();
+        foreach ($users as $users) {
+            $this->db->query("INSERT INTO core_notification (noti_creator_id,"
                 . "module_name,noti_id,noti_status) "
-                . "VALUES('" . $creator_id . "','leaves','" . $noti_id . "',0)");
+                . "VALUES('" . $users['member_id'] . "','leaves','" . $noti_id . "',0)");
+        }
+                    
+                     
         $this->db->query("INSERT INTO core_notification_rel_member "
                 . "(member_id,noti_id,status,module_name) "
                 . "VALUES('" . $uname . "','" . $noti_id . "',0,'leaves')");

@@ -1,6 +1,9 @@
 <div class="forscroll">
-<?php  foreach( $noti as $noti){
     
+<?php   foreach( $noti as $noti){
+    
+        
+        if(isset($noti['module_name'])){
         ?>
         <?php switch($noti['module_name']){ case "leaves": {?>
         <li>
@@ -102,6 +105,6 @@
         
 <?php }
         }// end of file for switch
-}// end of file for second for each 
-  // end of file for first for each?>
+    }}// end of file for second for each 
+ // end of file for first for each?>
 </div>
