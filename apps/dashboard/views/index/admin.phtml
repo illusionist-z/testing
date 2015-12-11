@@ -101,7 +101,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
 
 
                                                             <div class="col-md-7 col-md-offset-3">
-                                                                <h1 style="font-size:150%"><?= $t->_("current_time"); ?> :<span id="ct" style="color:red;" ></span> </h1>
+                                                                <h1 style="font-size:150%"><?= $t->_("current_time"); ?> : <span id="ct" style="color:red;" ></span> </h1>
                                                             </div><br><br>
                                                             <div class="col-md-8 col-md-offset-3">
                                                                 <form id="theForm" name="theForm" method="post" action="">
@@ -150,7 +150,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                             <li>
                                                                 People who attend no leave
                                                                 <ul><?php
-                                                                $count = [];
+                                                                $noleave = [];
                                                                 foreach ($nlname as $na) { ?>
                                                                    <li id="noleaveli">
                                                                         <?php
@@ -171,12 +171,12 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                         <?= $na['member_login_name'] ?>
                                                                     </li>
                                                                     <?php 
-                                                                         array_push($count, $na['member_login_name']);
+                                                                         array_push($noleave, $na['member_login_name']);
                                                                             } ?>
                                                                 </ul>
                                                                 <?php 
-                                                                    //echo sizeof($count);
-                                                                        if(sizeof($count) > 3){
+                                                                  //echo sizeof($noleave);
+                                                                        if(sizeof($noleave) > 2){
                                                                            // echo $na['full_name']." :::::::";
                                                                            ?>
                                                                  <style type="text/css">#noleavelist,hr{
@@ -225,7 +225,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                 </ul>
                                                                   <?php 
                                                                     //echo sizeof($count);
-                                                                        if(sizeof($count) > 3){
+                                                                        if(sizeof($count) > 2){
                                                                            // echo $na['full_name']." :::::::";
                                                                            ?>
                                                                  <style type="text/css">#leavemostlist,hr{
@@ -257,7 +257,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                         <div class="box-header with-border">
                                             <h3 class="box-title"><?= $t->_("last_member"); ?></h3>
                                             <div class="box-tools pull-right">
-                                                <span class="label label-danger"><?php echo $newnumber. $t->_("new_member"); ?> </span>
+                                                <span class="label label-danger"><?php echo $newnumber.' '. $t->_("new_member"); ?> </span>
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                             </div>
                                         </div><!-- /.box-header -->
@@ -296,7 +296,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                         if(sizeof($member) > 3){
                                                                            // echo $v->full_name;
                                                                            ?>
-                                                                 <style type="text/css">.uppercase{
+                                                                 <style type="text/css">.uppercase,hr{
                                                                                         display:block;
                                                                                         }</style> 
                                                                 <?php
