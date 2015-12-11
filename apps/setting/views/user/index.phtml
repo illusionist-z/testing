@@ -35,28 +35,14 @@ function tz_list() {
 	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff"><b>Add User Form</b></font></div>
             <?php
 	foreach ($userdetail  as $result) {
-  ?>
-        <form action="changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-<!--        <div ><b>Profile Picture</b>
-             <?php
-                         if($result['member_profile']==null){
-                                                   $img = "profile1.jpg";
-                                                }
-                                                else{
-                                                     $img=$result['member_profile'];
-                                                      if(file_exists('./uploads/'.$img)){                                                            
-                                                           $img=$img;  
-                                                      }else{  
-                                                          $img = "profile1.jpg";    
-                                                      }
-                                                 }
-               ?>                                                 
-              <img src="<?php echo $baseUri;?>public/uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
-        </div>-->
+        ?>
+        <form action="<?php echo $baseUri; ?>setting/user/changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
+      
             <input type="hidden" id="temp_password" name="member[temp_password]" value="<?php echo  $result['member_password'];?>" disabled>
             <input type="hidden" id="temp_file" name="member[temp_file]" value="<?php echo  $result['member_profile'];?>" disabled>
 
 	<table width="650px" height="300px"> 
+            
             <tr>
                 <td><b>Profile Picture</b></td>
                 <td>
@@ -91,7 +77,9 @@ function tz_list() {
         <tr>
 		
 		<td><b>Password </b></td>
-                <td><input style="margin-top: 10px;" type="password" id="password" name="member[password]" value="<?php echo  $result['member_password'];?>" disabled style="width:350px;"></td>
+                <td>
+                    <input style="margin-top: 10px;" type="password" id="password" name="member[password]" value="<?php echo  $result['member_password'];?>" disabled style="width:350px;">
+                </td>
 	</tr>
 	<tr>
 		<td><b>Department </b></td>

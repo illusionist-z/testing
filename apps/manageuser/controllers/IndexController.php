@@ -31,6 +31,7 @@ class IndexController extends ControllerBase
         $User=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$User->GetAdminNoti($id);
+    //    print_r($noti);exit;
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
