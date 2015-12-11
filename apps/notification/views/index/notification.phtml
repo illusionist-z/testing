@@ -13,7 +13,21 @@
                 <?php if($permission=="admin"){?>
                     
                 <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
-                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
+                        <?php
+                                                    if($noti['member_profile']==null){
+                                                    $img = "profile1.jpg";}
+                                                    else{
+                                                        $img=$noti['member_profile'];
+                                                         // $img=$noti['member_profile'];
+                                                                if(file_exists('./uploads/'.$img)){                                                            
+                                                                     $img=$img;                                                            
+                                                                }else{  
+                                                                    $img = "profile1.jpg";                                                                 
+                                                                }
+                                                    }
+                        ?>                                                 
+                         <img src="<?php echo $baseUri;?>uploads/<?php echo  $img;?>"  style="width:15px;height:15px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";
                 }else {?>
                 <span class="foruser">
@@ -36,7 +50,21 @@
                
                     
                 <a href="<?php echo $baseUri;?>notification/index/noticalendar?id=<?php echo $noti['noti_id'];?>" class="calendar" id="<?php echo  $noti['noti_id'];?>">
-                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
+                        <?php
+                                                    if($noti['member_profile']==null){
+                                                    $img = "profile1.jpg";}
+                                                    else{
+                                                        $img=$noti['member_profile'];
+                                                         // $img=$noti['member_profile'];
+                                                                if(file_exists('./uploads/'.$img)){                                                            
+                                                                     $img=$img;                                                            
+                                                                }else{  
+                                                                    $img = "profile1.jpg";                                                                 
+                                                                }
+                                                    }
+                        ?>                                                 
+                         <img src="<?php echo $baseUri;?>uploads/<?php echo  $img;?>"  style="width:15px;height:15px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                 <b><i style="color:red"><?php echo $noti['creator_name'];?></i></b> marked calendar for <i style="color:red"> <?php echo $noti['member_login_name'];?></i><?php echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
                ?></a></span>
                 </li>
@@ -53,7 +81,21 @@
                
                     
                 <a href="<?php echo $baseUri;?>notification/index/notiattendances?id=<?php echo $noti['noti_id'];?>" class="attendances" id="<?php echo  $noti['noti_id'];?>">
-                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
+                        <?php
+                                                    if($noti['member_profile']==null){
+                                                    $img = "profile1.jpg";}
+                                                    else{
+                                                        $img=$noti['member_profile'];
+                                                         // $img=$noti['member_profile'];
+                                                                if(file_exists('./uploads/'.$img)){                                                            
+                                                                     $img=$img;                                                            
+                                                                }else{  
+                                                                    $img = "profile1.jpg";                                                                 
+                                                                }
+                                                    }
+                        ?>                                                 
+                         <img src="<?php echo $baseUri;?>uploads/<?php echo  $img;?>"  style="width:15px;height:15px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                 <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> is Late for   <?php echo $noti['notes']; echo " at <b>".date("d-m-Y", strtotime( $noti['checkin_time']))."</b> ";
                ?></a></span>
                 </li>

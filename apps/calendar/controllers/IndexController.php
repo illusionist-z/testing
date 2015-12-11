@@ -2,6 +2,9 @@
 
 namespace salts\Calendar\Controllers;
 use salts\Core\Models\Db;
+use salts\Core\Models\Db\CoreMember;
+
+
 class IndexController extends ControllerBase
 {
     public $calendar;
@@ -16,9 +19,10 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
-        //$this->module_name =  $this->router->getModuleName();
+         
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
+        $this->view->permission = $this->permission;
     }
 
     

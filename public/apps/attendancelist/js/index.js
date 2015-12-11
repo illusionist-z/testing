@@ -12,7 +12,7 @@ var pager = new Paging.Pager(),dict =[];   //for pagination
 var Attendance = {
         init : function (reload){
             $('tfoot').append($('table.listtbl tbody').html());   //for csv 
-            pager.perpage = 3;
+            pager.perpage = 8;
             pager.para = $('table.listtbl tbody > tr');
             pager.showPage(1);
             $('tbody').show();
@@ -41,7 +41,7 @@ var Attendance = {
                     
                     $('#edit_att_time').empty();
                     var data = d[0]; 
-                    var username = data['full_name'];          //get user name
+                    var username = data['member_login_name'];          //get user name
                     var notes = data['notes'];                      //get  reason note
                     n = new Date();
                     offset = n.getTimezoneOffset();
@@ -245,7 +245,7 @@ var Attendance = {
 
                         var output = "<tr>"
                                 + "<td>" + json_obj[i].att_date + "</td>"
-                                + "<td>" + json_obj[i].full_name + "</td>"
+                                + "<td>" + json_obj[i].member_login_name + "</td>"
                                 + "<td>" + localcheckin + " </td>"
                                 + "<td style='color:red'>" + late + "</td>"
                                 + "<td>" + json_obj[i].notes + "</td>"

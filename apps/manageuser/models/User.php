@@ -50,8 +50,8 @@ class User extends Model {
      * @return type
      * @author david
      */
-    public function useredit($name){
-        $user = Db\CoreMember::findByMemberLoginName($name);
+    public function useredit($id){
+        $user = Db\CoreMember::findByMemberId($id);
         return $user;
     }
     
