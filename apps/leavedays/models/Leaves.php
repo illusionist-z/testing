@@ -63,7 +63,8 @@ class Leaves extends \Library\Core\BaseModel {
                 . "leave_category,leave_description,leave_status,"
                 . "total_leavedays,max_leavedays FROM leaves_setting,"
                 . " leaves JOIN core_member ON "
-                . "leaves.member_id=core_member.member_id ";
+                . "leaves.member_id=core_member.member_id "
+                ."and core_member.deleted_flag = 0 ";
 
         $conditions = array();
 

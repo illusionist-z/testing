@@ -12,14 +12,11 @@ class IndexController extends  ControllerBase {
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        //  $this->assets->addJs('apps/dashboard/js/index.js');    
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
-        
-       //$this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();        
         $this->permission = $this->setPermission();             
         $this->view->module_name=$this->module_name;
@@ -30,7 +27,6 @@ class IndexController extends  ControllerBase {
         *Check User or Admin 
         */
        public function indexAction() {
-        //$this->aa();exit;
          if ($this->permission==1) {
                 $this->view->disable();
                 //Go to user dashboard
@@ -49,7 +45,6 @@ class IndexController extends  ControllerBase {
         * @type array {$gname}
         */
     public function adminAction() { 
-    //echo $this->permission;exit;
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
     $noti=$Admin->GetAdminNoti($id);
@@ -105,8 +100,6 @@ class IndexController extends  ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function location_sessionAction() {
-        //$lat = $this->request->get('lat');
-        //$lng = $this->request->get('lng');
         $add=$this->request->get('location');
         $offset = $this->request->get('offset');
         $this->session->set('location', array(
@@ -124,15 +117,6 @@ class IndexController extends  ControllerBase {
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
-        //$lat = $this->session->location['lat'];
-        //$lon = $this->session->location['lng'];
-//        $lat = 16.80365066670554;//$.cookie("MyLat");
-//        $lon = 96.14032782249012;
-//       // $url="http://maps.googleapis.com/maps/api/staticmap?latlng=".trim($lat).",".trim($lon)."&sensor=false";
-//         $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
-//                $json = @file_get_contents($url);
-//                $data=json_decode($json);
-//                var_dump($data);exit;
         $add = $this->session->location['location'];
         $noti_Creatorid=$User->GetAdminstratorId();
         $creator_id=$noti_Creatorid[0]['rel_member_id'];

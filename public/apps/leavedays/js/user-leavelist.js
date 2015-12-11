@@ -13,7 +13,7 @@ var pager = new Paging.Pager(),User={};   //for pagination
    User.LeaveList = {
         init : function (){
             $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =7;            
+            pager.perpage = 7;            
             pager.para = $('tbody > tr');
             pager.showPage(1);  
             $('tbody').show();
@@ -21,7 +21,16 @@ var pager = new Paging.Pager(),User={};   //for pagination
         search : function(){
             var month = document.getElementById('month').value; 
             var ltype = document.getElementById('ltype').value;  
-            window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'&ltype='+ltype;
+            if(month=="" && ltype==""){
+                        $('tbody').empty();
+                        var output = "<tr>"
+                                       + "<td colspan='9'><center>No data to display</center></td>"                           
+                                       + "</tr>"
+                               $("tbody").append(output);                  
+                }
+            else{
+                        window.location.href = baseUri + 'leavedays/user/leavelist?month='+month+'&ltype='+ltype;
+             }
         }
     };
 $(document).ready(function(){
