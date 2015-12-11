@@ -701,3 +701,16 @@ hr{
 #noemailfield{
     color:black;
 }
+#veiwallnotification{
+    text-align: center; 
+    width:50%;
+    margin:auto;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #3c8dbc;
+    padding-bottom: 10px;
+}
+#noti_title{
+   font-size: 25px;
+   margin-top: 10px;
+}
