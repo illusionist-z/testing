@@ -122,7 +122,7 @@ var AddSalary = {
                
 	});
     
-    $("#bsalary").click(function(){
+    $("#bsalary").on('blur',function(){
        var name = document.getElementById('uname').value;
        //alert(name);
 		AddSalary.getmemid(name);
