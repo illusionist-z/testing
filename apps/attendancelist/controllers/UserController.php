@@ -14,8 +14,21 @@ class UserController extends ControllerBase {
         $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
         $this->view->t  = $this->_getTranslation();
         $User = new Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        $noti = $User->GetUserNoti($id);
+          $id=$this->session->user['member_id'];
+         foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+                //echo "aa";exit;
+              $noti=$User->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+                //echo "bb";exit;
+               $noti=$User->GetUserNoti($id); 
+            }
+        }
         $this->view->setVar("noti", $noti);
     }
 
