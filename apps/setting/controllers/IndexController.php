@@ -4,7 +4,11 @@ use Phalcon\Config;
 use Phalcon\Mvc\Url as UrlProvider;
 namespace salts\Setting\Controllers; 
 use salts\Core\Models\Db\CoreMember;
+use salts\Setting\Models\CorePermissionGroup; 
+use salts\Setting\Models\CorePermissionGroupId; 
+use salts\Setting\Models\CorePermissionRelMember; 
 use salts\Core\Models\Db; 
+
  
 
 
@@ -25,11 +29,11 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/setting/js/setting.js');  
         $this->config = \Module_Config::getModuleConfig('leavedays');
   
-//        $this->module_name =  $this->router->getModuleName();        
-//        $this->permission = $this->setPermission();             
-//        $this->view->module_name=$this->module_name;
-//        $this->view->permission = $this->permission;
-//        
+        $this->module_name =  $this->router->getModuleName();        
+        $this->permission = $this->setPermission();             
+        $this->view->module_name=$this->module_name;
+        $this->view->permission = $this->permission;
+        
         }
     
     
