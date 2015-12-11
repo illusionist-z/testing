@@ -82,7 +82,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $getname = $this->modelsManager->createBuilder()
                 ->columns(array('core.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                ->where('core.full_name = :username:', array('username' => $username))
+                ->where('core.member_login_name = :username:', array('username' => $username))
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
@@ -218,25 +218,28 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetAdminNoti($id) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "'order by created_dt desc";
+        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "'  order by created_dt desc";
+     ///   echo $sql;exit;
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
      
         $i=0;
-       // print_r($noti);exit;
+       //print_r($noti);exit;
         foreach ($noti as $noti) {
             
-            $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ";
-            //print_r($sql);exit;
+            $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' and core_member.deleted_flag=0";
+           //print_r($sql);exit;
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
+         // print_r($final_result);exit;
+         
             $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
            
             
         }
         
-      // var_dump($final_result);exit;
+      //var_dump($final_result);exit;
         return $final_result;
     }
 
@@ -251,7 +254,7 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetUserNoti($id) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id ."'order by created_dt desc";
+        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id ."' order by created_dt desc";
         //print_r($sql);exit;
         $UserNoti = $this->db->query($sql);
 
@@ -349,7 +352,7 @@ class CoreMember extends \Library\Core\BaseModel {
     
         //select where no leave name in current month
         $query1 = "select * from core_member where member_id not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) and deleted_flag=0 order by created_dt desc ";
+                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) and deleted_flag=0 order by created_dt desc";
         $data1 = $this->db->query($query1);
         $res['noleave_name'] = $data1->fetchall();
         return $res;
@@ -365,10 +368,9 @@ class CoreMember extends \Library\Core\BaseModel {
         //select where user most leave taken
         $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=1 group by a.member_id "
+                . "where a.deleted_flag=1  and c.deleted_flag = 0 group by a.member_id "
                 . "order by count(*)";
         $data = $this->db->query($query);
-       
        $res['leave_name'] = $data->fetchall();
       
         return $res;

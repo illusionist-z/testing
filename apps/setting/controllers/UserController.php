@@ -85,7 +85,7 @@ class UserController extends ControllerBase {
             $user = $User->Userdata($id);
             $this->session->set('user', $user);
         }
-        $this->response->redirect('setting/user/usersetting');
+        $this->response->redirect('setting/user');
     }
 
 }

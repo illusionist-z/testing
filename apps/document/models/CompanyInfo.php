@@ -33,7 +33,8 @@ class CompanyInfo extends \Library\Core\BaseModel {
                 . "company_logo='" . $data['company_logo'] . "',"
                 . "company_address='" . $data['company_address'] . "',"
                 . "company_phno='" . $data['company_phno'] . "' WHERE 1";
-        $this->db->query($sql);
+        $this->db->query($sql);       
+
     }
 }
 
