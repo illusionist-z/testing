@@ -14,8 +14,9 @@ class IndexController extends Library\Core\Controller {
          $this->setCommonJsAndCss();
 
     }
-      
-     public function setLanguageAction($language='')
+    
+
+    public function setLanguageAction($language='')
     {
         if($language){
             //set language action

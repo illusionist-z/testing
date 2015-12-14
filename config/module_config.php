@@ -17,7 +17,7 @@ Class Module_Config {
 
         $moduleDirPath = __DIR__ . '/../apps/';
         $phpFileConfig = $moduleDirPath . $_module . '/config/config.php'; //get config dir php
-        $iniFileConfig = $moduleDirPath . $_module . '/config/config.ini';
+        $iniFileConfig = $moduleDirPath . $_module . '/config/123.ini';
 
         if (file_exists($iniFileConfig)) {
             $configIni = new Ini($iniFileConfig, 'config');

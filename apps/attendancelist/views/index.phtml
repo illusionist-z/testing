@@ -85,26 +85,29 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php 
-            if ($permission == 1) {
+                                              
+                                 <?php 
+            foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_setting') {
                 //Go to user dashboard
-                $this->view->disable();
-              ?>
+                
+                ?>
                  <div class="pull-left">
-                     
-                                            <a href="../../setting/index" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                     <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
                                         </div>
-                                           
                 <?php
                
                } 
-                else
-               { 
+                  if ($key_name == 'show_user_setting') {
+               
                     ?> 
                       <div class="pull-left">
-                                                    <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                                    <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
                                                 </div>
-                <?php }
+                <?php 
+                         }
+               }
                 
              
                 ?>
@@ -143,7 +146,7 @@
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
-                                                                                         if($key_name != 'show_user_notification' ){
+                                                                                         if($key_name != 'show_user_notification' && $key_name != 'show_user_setting'){
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
@@ -151,7 +154,7 @@
                                                                                                 }
                                                                                          }
                                                                                     } else {
-                                                                                        if($key_name != 'show_admin_notification' ){
+                                                                                        if($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting'){
                                                                                                $top = explode(" ", $key_value["link0"]);                                                                                                
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                         }

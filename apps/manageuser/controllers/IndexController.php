@@ -16,9 +16,10 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
-        $this->view->module_name =  $this->router->getModuleName();
-        $this->permission = $this->setPermission();
+        $this->module_name =  $this->router->getModuleName();
+        $this->permission = $this->setPermission($this->module_name);
         $this->view->t = $this->_getTranslation();
+        $this->view->module_name = $this->module_name;
     }
         /**
         * @author David JP <david.gnext@gmail.com>
@@ -39,8 +40,7 @@ class IndexController extends ControllerBase
         $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
-        
-          $member_count = new Db\CoreMember();
+        $member_count = new Db\CoreMember();
        $member_count_number = $member_count->getNumberCount();
        $this->view->member_count_number = $member_count_number;
         if($member_count_number->deleted_flag == 200)

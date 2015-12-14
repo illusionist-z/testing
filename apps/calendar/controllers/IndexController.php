@@ -19,7 +19,6 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
-         
         $this->permission = $this->setPermission();
         $this->view->t = $this->_getTranslation();
         $this->view->permission = $this->permission;
@@ -35,8 +34,7 @@ class IndexController extends ControllerBase
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
               $noti=$Admin->GetAdminNoti($id);
-                 
-            } 
+             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                $noti=$Admin->GetUserNoti($id); 

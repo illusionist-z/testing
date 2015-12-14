@@ -14,7 +14,7 @@ class IndexController extends ControllerBase
                 //Go to user dashboard
                $permission="admin";
                  
-            } 
+                } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                 $permission="user";   

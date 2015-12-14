@@ -23,6 +23,7 @@ class UserController extends ControllerBase {
      */
       
         public function usersettingAction() {
+            
         }
         
 }
