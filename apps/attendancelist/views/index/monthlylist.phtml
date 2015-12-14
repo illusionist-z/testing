@@ -87,7 +87,7 @@ $length = count($Month);
                         <tr>
                             <td><?php echo $item->attendances->att_date; ?></td>
 
-                            <td><?php echo $filter->sanitize($item->core->full_name, "string"); ?></td>
+                            <td><?php echo $filter->sanitize($item->core->member_login_name, "string"); ?></td>
                             <td><?php
                                 $checkintime = $item->attendances->checkin_time;
                                 if ($sign == '-') {
