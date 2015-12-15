@@ -8,7 +8,7 @@ use Phalcon\Config\Adapter\Ini;
 //$debug->listen();
 
 try {
-
+    //echo __DIR__ ;
     //Register an autoloader
     $loader = new \Phalcon\Loader();
     //Register some namespaces
