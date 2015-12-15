@@ -1,9 +1,9 @@
 <?php
 
-$messages = array(
-   
+$messages = array(   
    "addsalary_title"       => "Add Salary For Each Member",
    "month"       => "month",
+    "searchusername" => "Search User Name",
    "name"                   => "User Name",
    "basic_salary"         => "Basic Salary",
    "travel_fee"            => "Travel Fees",

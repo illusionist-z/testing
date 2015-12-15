@@ -337,21 +337,21 @@ class Leaves extends \Library\Core\BaseModel {
         $validate = new Validation();
         $validate->add('username', new PresenceOf(
                 array(
-            'message' => 'Username is required'
+            'message' => ' * Username is required'
                 )
         ));
         $validate->add('sdate', new PresenceOf(
                         array(
-                    'message' => 'Start Date is required'
+                    'message' => ' * Start Date is required'
                         )
                 ))
                 ->add('edate', new PresenceOf(
                         array(
-                    'message' => 'End Date is required'
+                    'message' => ' * End Date is required'
         )));
         $validate->add('description', new PresenceOf(
                 array(
-            'message' => "Reason Must be Insert"
+            'message' => " * Reason Must be Insert"
         )));
 
 
@@ -370,16 +370,16 @@ class Leaves extends \Library\Core\BaseModel {
 
         $validate->add('sdate', new PresenceOf(
                         array(
-                    'message' => 'Start Date is required'
+                    'message' => ' * Start Date is required'
                         )
                 ))
                 ->add('edate', new PresenceOf(
                         array(
-                    'message' => 'End Date is required'
+                    'message' => ' * End Date is required'
         )));
         $validate->add('description', new PresenceOf(
                 array(
-            'message' => "Reason Must be Insert"
+            'message' => " * Reason Must be Insert"
         )));
 
 

@@ -24,19 +24,19 @@ class Salary extends \Library\Core\BaseModel {
         $validate->add('uname',
                 new PresenceOf(
                 array(
-                    'message' => 'Username is required'
+                    'message' => ' * Username is required'
                      )
                      ));
         $validate->add('bsalary',
                 new PresenceOf(
                 array(
-                    'message' => 'Basic Salary is required'
+                    'message' => ' * Basic Salary is required'
                      )
                      ))
                 ->add('checkall',
                 new PresenceOf(
                 array(
-                    'message'=> 'Check is required'
+                    'message'=> ' * Check is required'
                 )));                
        
         

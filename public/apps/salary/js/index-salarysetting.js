@@ -115,10 +115,10 @@ var Tax = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 390,
+            height: 'auto',
             async:false,  
             resizable:false,
-            width: 450,
+            width: 'auto',
             modal: true,
             title:"Tax Edit",
             /*show:{
@@ -207,10 +207,11 @@ var Deduction = {
         $ovl.css('background','#F5F5F5');
         $ovl.dialog({
             autoOpen: false,
-            height: 210,
+            height: 'auto',
             async:false,            
-            width: 500,
+            width: 'auto',
             modal: true,
+            resizable:false,
             title:"Deduction Edit"
         });                        
         $ovl.html(d);
@@ -219,8 +220,7 @@ var Deduction = {
             Deduction.BtnEdit($ovl);
         });  
 
-        $('#delete_deduct').click(function(){
-            
+        $('#delete_deduct').click(function(){           
             Deduction.Delete($ovl);
         }); 
         $('#edit_close').click(function(){
@@ -251,10 +251,13 @@ var Deduction = {
 
           $del.dialog({
             autoOpen:false,
-            height:190,
-            width:350,
+            height:'auto',
+            width:'auto',
+            title:'Delete',
+            resizable:false,
             closeText:'',
             modal:true,
+            
             buttons:{
                 Delete:function(){
                     Deduction.Confirm(d);
@@ -294,10 +297,11 @@ var Deduction = {
         $ovl = $('#add_new_dt');
         $ovl.dialog({
             autoOpen: false,
-            height: 240,
+            height: 'auto',
             async:false,            
-            width: 500,
+            width: 'auto',
             modal: true,
+            resizable:false,
             title:"Deduction Add"
         });                        
         $ovl.html(d);
