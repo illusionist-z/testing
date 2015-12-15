@@ -37,7 +37,8 @@ function tz_list() {
 	foreach ($userdetail  as $result) {
         ?>
         <form action="<?php echo $baseUri; ?>setting/user/changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-           <input type="hidden" id="temp_password" name="member[temp_password]" value="<?php echo  $result['member_password'];?>" disabled>
+         
+            <input type="hidden" id="temp_password" name="member[temp_password]" value="<?php echo  $result['member_password'];?>" disabled>
             <input type="hidden" id="temp_file" name="member[temp_file]" value="<?php echo  $result['member_profile'];?>" disabled>
 
 	<table width="650px" height="300px"> 
