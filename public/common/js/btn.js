@@ -38,7 +38,7 @@ $(document).ready(function(){
 //    $('.geolocation').ready(function() {
 //    geo();
 //});
-alert(location);
+//alert(location);
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();

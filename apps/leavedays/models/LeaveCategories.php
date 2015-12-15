@@ -46,7 +46,7 @@ class LeaveCategories extends \Library\Core\BaseModel {
     public function memidapplyleave($uname) {
         
             //$sql = "select salary_master.member_id from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE core_member.full_name ='".$uname."'";
-            $sql = "select * from core_member WHERE full_name ='".$uname."'";
+            $sql = "select * from core_member WHERE member_login_name ='".$uname."'";
            // print_r($sql);exit;
             $result = $this->db->query($sql);
             $row = $result->fetchall();

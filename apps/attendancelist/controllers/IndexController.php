@@ -52,6 +52,7 @@ class IndexController extends ControllerBase {
     }        
    
     public function editTimedialogAction($id){
+        //echo $id;exit;
         $Att  = new \salts\Attendancelist\Models\Attendances();
         $t = $this->_getTranslation();//for translate
         $data = $Att->getAttTime($id);
