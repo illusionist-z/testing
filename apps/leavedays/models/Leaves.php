@@ -80,7 +80,7 @@ class Leaves extends \Library\Core\BaseModel {
 
         $sql = $select;
         if (count($conditions) > 0) {
-            $sql .= " WHERE " . implode(' AND ', $conditions);
+            $sql .= " WHERE " . implode(' AND ', $conditions) ."order by leaves.date desc";
         }
 
         $result = $this->db->query($sql);
@@ -232,7 +232,7 @@ class Leaves extends \Library\Core\BaseModel {
                     . "from core_member left join leaves on "
                     . "core_member.member_id = leaves.member_id "
                     . "where " . $this->setCondition2($mth, $leave_type) . "  "
-                    . "AND leaves.member_id ='" . $id . "'";
+                    . "AND leaves.member_id ='" . $id . "' order by date desc";
         }
         $result = $this->db->query($row);
         $list = $result->fetchall();
@@ -337,21 +337,21 @@ class Leaves extends \Library\Core\BaseModel {
         $validate = new Validation();
         $validate->add('username', new PresenceOf(
                 array(
-            'message' => 'Username is required'
+            'message' => ' * Username is required'
                 )
         ));
         $validate->add('sdate', new PresenceOf(
                         array(
-                    'message' => 'Start Date is required'
+                    'message' => ' * Start Date is required'
                         )
                 ))
                 ->add('edate', new PresenceOf(
                         array(
-                    'message' => 'End Date is required'
+                    'message' => ' * End Date is required'
         )));
         $validate->add('description', new PresenceOf(
                 array(
-            'message' => "Reason Must be Insert"
+            'message' => " * Reason Must be Insert"
         )));
 
 
@@ -370,16 +370,16 @@ class Leaves extends \Library\Core\BaseModel {
 
         $validate->add('sdate', new PresenceOf(
                         array(
-                    'message' => 'Start Date is required'
+                    'message' => ' * Start Date is required'
                         )
                 ))
                 ->add('edate', new PresenceOf(
                         array(
-                    'message' => 'End Date is required'
+                    'message' => ' * End Date is required'
         )));
         $validate->add('description', new PresenceOf(
                 array(
-            'message' => "Reason Must be Insert"
+            'message' => " * Reason Must be Insert"
         )));
 
 
