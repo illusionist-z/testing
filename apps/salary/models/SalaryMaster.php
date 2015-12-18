@@ -201,7 +201,7 @@ class SalaryMaster extends Model {
                 //calculate absent deduce
                 $countabsent=$this->CalculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $value['basic_salary']);
                 $absent_dedution=$countabsent;
-                
+                $basic_salary_allowance_annual = $basic_salary_allowance_annual-$absent_dedution;
                 
                 $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
                     echo "SALARY ".$basic_salary_allowance_annual;
@@ -227,7 +227,7 @@ class SalaryMaster extends Model {
                     echo "The Income tax  is " . $income_tax . '<br>';
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
                     $tax_foreach_month= $taxs['tax_result'];
-//                    print_r($taxs);
+//                  print_r($taxs);
                     if($flg==1){
                         $tax_foreach_month=$taxs['total_tax_annual']-$total_income_tax;
                     }
