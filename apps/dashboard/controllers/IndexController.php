@@ -11,10 +11,10 @@ class IndexController extends  ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
-        $this->assets->addJs('apps/dashboard/js/help.js');
+       
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
