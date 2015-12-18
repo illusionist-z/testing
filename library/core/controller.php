@@ -28,39 +28,31 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
     }
-    /**
-     * Set Permission
-     * @return int
-     */
+        /**
+        * Set Permission
+        * @return int
+        */
         public function setPermission() {
         $aryModules = \Library\Core\Module::get();
         //setting permission
-        $coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
+        //$coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
         $coremember = \salts\Auth\Models\Db\CorePermissionRelMember::findByRelMemberId($this->session->user['member_id']);
+        if($this->session->user['member_id']){
         $permission_id = $coremember[0]->permission_group_id_user;
+        }
+            
         $module = $this->router->getModuleName();
         $ctrname=$this->router->getControllerName();
         $actname=$this->router->getActionName();        
         $chksubmenu="";
-        $permission="";
-        
-        foreach ($this->session->auth as $key_name => $key_value) { 
-            //print_r($key_value).'<br>';
-             $top = explode(" ", $key_value[0]);
-               if (isset($top[1])) 
-                {
-                   $chkmodule= strtolower($top[0] . $top[1]);
-                } else 
-                {
-                 $chkmodule= strtolower($top[0]);
-                }
-                foreach ($key_value as $name => $value) {
-                //echo $value." ".$module."<br>";
+        $permission="";  
+         foreach ($this->session->auth as $name => $value) {
+             
                 $bigmenu=strtolower($value);
+                
                 $submenu = explode(" ", $value); 
                 if(isset($submenu[1])){
                 $chksubmenu = strtolower($submenu[0] . $submenu[1]);
-                //echo "aaaaaa".$chksubmenu.'<br>';
                 }
                 else{
                 $chksubmenu = strtolower($submenu[0]);
@@ -75,13 +67,25 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                if($permission_id === '1'){
                    $permission = 1;
                }
-//                else {
-//                    //echo "Not equal";
-//                    $permission_notequal=0;
+                else {
+                    //echo "Not equal";
+                    $permission_notequal=0;
+                }
+               }
+        
+//        foreach ($this->session->auth as $key_name => $key_value) { 
+//            //print_r($key_value).'<br>';
+//             $top = explode(" ", $key_value[0]);
+//               if (isset($top[1])) 
+//                {
+//                   $chkmodule= strtolower($top[0] . $top[1]);
+//                } else 
+//                {
+//                 $chkmodule= strtolower($top[0]);
 //                }
-               }              
-          
-        }
+//                             
+//          
+//        }
 //        echo $permission;
 //        exit;
         return $permission;

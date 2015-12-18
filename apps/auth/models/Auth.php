@@ -9,6 +9,24 @@ use salts\Auth\Models\Db\AuthFailedLogins;
 
 class Auth extends Component {
 
+    public function initialize() {
+        //parent::initialize();
+        $this->db = $this->getDI()->getShared("db");
+        $this->login_db = $this->getDI()->getShared("login_db");
+    }
+    public function findcomp_db($param) {
+        try{
+        
+        $sql="SELECT * FROM company_tbl where company_id='" . $param['company_id'] . "' and deleted_flag=0";
+        
+        $Result = $this->login_db->query($sql);
+        $Result = $Result->fetchArray();
+        } catch (\Exception $e) {
+            $di = FactoryDefault::getDefault();
+            $di->getShared('logger')->WriteException($e);
+        }
+         return $Result;
+    }
     /**
      * Checks the user credentials
      *
@@ -16,11 +34,11 @@ class Auth extends Component {
      * @return boolan
      */
     public function check($loginParams, & $user = null) {
-      
+        print_r($this->session->db_config);
         // Check if the user exist
         $name = $loginParams['member_login_name'];
         $password = $loginParams['password'];
-        $this->db = $this->getDI()->getShared("db");
+        //$this->db = $this->getDI()->getShared("db");
       
         $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0");
         $user = $user->fetchArray();
@@ -29,6 +47,7 @@ class Auth extends Component {
         return $user;
 
     }
+    
     
      public function getpermit($loginParams) {
       

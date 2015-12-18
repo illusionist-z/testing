@@ -102,9 +102,11 @@ class IndexController extends ControllerBase {
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $UserName);
-        $this->view->offset = $offset;
+        $this->view->setVar("offset", $offset);
+       
         }
         else if($key_name == 'show_user_attlist') {
+            $this->view->setVar("offset", $offset);
             $this->response->redirect('attendancelist/user/attendancelist');
         }  
         }
