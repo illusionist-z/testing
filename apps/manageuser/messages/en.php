@@ -9,6 +9,7 @@ $messages = array(
    "mail"      => "Email",
    "phone"   => "Phone No",
    "address" => "Address",
+   "searchusername" => "Search User Name",
    "adduser" => "Add User",
    "password" => "Password",
    "confirm_pass" => "Confirm Password",

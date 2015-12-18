@@ -108,6 +108,7 @@ class IndexController extends ControllerBase
      */
     public function editinfoAction(){
         $filename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
+        print_r($_FILES["fileToUpload"]["tmp_name"]);
         $target_dir = "uploads/";
         $target_file = $target_dir . $filename;
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);

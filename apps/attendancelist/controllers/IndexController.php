@@ -51,6 +51,7 @@ class IndexController extends ControllerBase {
     }        
    
     public function editTimedialogAction($id){
+        //echo $id;exit;
         $Att  = new \salts\Attendancelist\Models\Attendances();
         $t = $this->_getTranslation();//for translate
         $data = $Att->getAttTime($id);
@@ -98,7 +99,8 @@ class IndexController extends ControllerBase {
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $UserName);
-        $this->view->offset = $offset;
+        $this->view->setVar("offset", $offset);
+       
         }
         else {
             $this->response->redirect('core/index');

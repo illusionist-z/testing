@@ -15,6 +15,10 @@ class LoginController extends ControllerBase {
         $loginParams = $this->request->get();
         $this->view->test = $loginParams;
         $ModelAuth = new Models\Auth();
+        $companyDB=$ModelAuth->findcomp_db($loginParams);
+        //print_r($companyDB);
+        $this->session->set('db_config',$companyDB);
+       
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();

@@ -38,7 +38,7 @@ var Attendance = {
                 type :"GET",   
                 dataType : 'json',
                 success : function(d){  
-                    
+                   // alert("aa");
                     $('#edit_att_time').empty();
                     var data = d[0]; 
                     var username = data['member_login_name'];          //get user name
