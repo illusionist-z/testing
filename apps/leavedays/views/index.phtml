@@ -19,7 +19,12 @@
                              </a>
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">                           
+                        <ul class="nav navbar-nav">   
+                             <li>
+                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="Help" id="help_icon" style="padding-top: 20px;">
+                                               <img src="<?php echo $baseUri?>common/img/help_browser.png">
+                                        </a>
+                               </li>  
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
