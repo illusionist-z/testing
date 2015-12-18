@@ -13,7 +13,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'user') {
                 //Go to user dashboard
                 $this->view->disable();
-                $this->response->redirect('dashboard/index/user');
+                $this->response->redirect('dashboard/user');
             }             
         }
 ?>

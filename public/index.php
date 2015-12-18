@@ -41,7 +41,7 @@ try {
             "dbname" => $config->database->dbname     
         ));
     });
-
+    
     /**
      * Include services
      */

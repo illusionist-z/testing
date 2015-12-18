@@ -26,7 +26,7 @@ class IndexController extends  ControllerBase {
         * 
         *Check User or Admin 
         */
-       public function indexAction() {
+        public function indexAction() {
          if ($this->permission==1) {
                 $this->view->disable();
                 //Go to user dashboard
@@ -35,7 +35,7 @@ class IndexController extends  ControllerBase {
                 else {
                 $this->view->disable();
                 //Go to admin dashboard
-               $this->response->redirect('dashboard/index/user');
+               $this->response->redirect('dashboard/user');
                 }
              }
         /**

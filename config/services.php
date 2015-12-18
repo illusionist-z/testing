@@ -84,12 +84,35 @@ $di->set("logger", function() use ($config) {
     return new \Library\Core\Logger($file_name); // \Phalcon\Logger\Adapter\File($file_name);
 });
 
-//Set database
-$di->set("db", function() use ($config) {
+//Set database before login
+$di->set("login_db", function() use ($config) {
     return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
         "host" => $config->database->host,
         "username" => $config->database->username,
         "password" => $config->database->password,
         "dbname" => $config->database->dbname
     ));
+});
+
+//Set database after login success
+
+//$di->set("db", function() use ($config) {
+//    return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+//        "host" => $config->database->host,
+//        "username" => $config->database->username,
+//        "password" => $config->database->password,
+//        "dbname" => $config->database->dbname
+//    ));
+//});
+
+//print_r($_SESSION['db_config']);
+$di->setShared('db',function() {
+    //$database = (isset($_SESSION['db_config'])) ? $_SESSION['db_config'] : $config->database->database;
+    $database=$_SESSION['db_config'];
+    return new \Phalcon\DB\Adapter\Pdo\Mysql([  'host'        => $database['host'],
+                                                'dbname'      => $database['db_name'],
+                                                'username'    => $database['user_name'],
+                                                'password'    => $database['db_psw'],
+                                                'charset'     => 'utf8'
+                                            ]);
 });
