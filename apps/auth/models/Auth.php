@@ -34,16 +34,17 @@ class Auth extends Component {
      * @return boolan
      */
     public function check($loginParams, & $user = null) {
-        print_r($this->session->db_config);
+        //print_r($this->session->db_config);
         // Check if the user exist
         $name = $loginParams['member_login_name'];
         $password = $loginParams['password'];
         //$this->db = $this->getDI()->getShared("db");
-      
-        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0");
+        $sql="SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0";
+        //echo $sql;
+        $user = $this->db->query($sql);
         $user = $user->fetchArray();
         
-        
+        //print_r($user);exit;
         return $user;
 
     }
