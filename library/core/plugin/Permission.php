@@ -1,5 +1,5 @@
 <?php namespace Library\Core\Plugin;
-
+ob_start();
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -69,3 +69,4 @@ class Permission extends Plugin
         return 'X';
     }
 }
+ob_end();
