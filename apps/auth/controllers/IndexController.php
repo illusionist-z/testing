@@ -29,9 +29,9 @@ class IndexController extends ControllerBase {
      * When user failed  email  go 
      * @param type $mode
      */
-        public function faileremailAction($mode = 1) {
-        $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
-      //  $this->view->pick('index/forgotpassword');
+        public function failerdbAction() {
+        $this->view->errorMsg = 'There is no company Id';
+        $this->view->pick('index/index');
     }
     
     public function forgotpasswordAction() {
