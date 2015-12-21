@@ -7,6 +7,9 @@ use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
+use Phalcon\Http\Response\Cookies;
+use Phalcon\Crypt;
+
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -115,4 +118,19 @@ $di->setShared('db',function() {
                                                 'password'    => $database['db_psw'],
                                                 'charset'     => 'utf8'
                                             ]);
+});
+$di->set('cookies', function () {
+    $cookies = new Cookies();
+
+    $cookies->useEncryption(false);
+
+    return $cookies;
+});
+
+$di->set('crypt', function () {
+    $crypt = new Crypt();
+
+    $crypt->setKey('#1dj8$=dp?.ak//j1V$'); // Use your own key!
+
+    return $crypt;
 });
