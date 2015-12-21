@@ -87,9 +87,7 @@
                                        <li class="user-footer">
                                               
                                  <?php 
-            foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'show_admin_setting') {
+            if($permission==1){
                 //Go to user dashboard
                 
                 ?>
@@ -99,15 +97,15 @@
                 <?php
                
                } 
-                  if ($key_name == 'show_user_setting') {
+                else {
                
                     ?> 
                       <div class="pull-left">
-                                                    <a href="../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                                    <a href="../setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
                                                 </div>
                 <?php 
                          }
-               }
+                
                 
              
                 ?>
@@ -140,9 +138,11 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
+                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
                                                                                     echo '<li class="treeview"><a href="#"><img src="../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
-                                                                              }
-                                                                      else {                                
+                                                                                                } 
+                                                                                 }
+                                                                                else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
@@ -210,7 +210,44 @@
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
                 <?php                           
                                                      
-               
+                 $j=0;
+                          foreach ($this->session->auth as $key_name => $key_value) {                                 
+                                       $top = explode(" ", $key_value["link0"]);
+                                        if(strtolower($top[0] . $top[1]) ==$module_name) {
+                                               if(count($key_value) >2 ) {
+                                                             echo '<div class="row"><div class="col-sm-2 link">';
+                                                             echo '<aside class="sidebar-menu">';
+                                                           foreach ($key_value as $name => $value) {
+                                                                                if($j > 1){
+                                                                                                if($j %2 ==0){
+                                                                                                    $link_name=$value;
+                                                                                                }
+                                                                                                if(is_string($name))
+                                                                                                {
+                                                                                                            if ($v_result = explode(" ", $value)) {
+                                                                                                                //set to link action value
+                                                                                                                $link_val = strtolower($v_result[0] . $v_result[1]);
+                                                                                                                $mod = explode(" ", $key_value["link0"]);
+                                                                                                            }
+                                                                                                            if (strpos($key_name, 'user') !== false) {
+                                                                                                             if($key_name == 'show_admin_user'){
+                                                                                                              echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
+                                                                                                             }
+                                                                                                             else{
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                             }
+                                                                                                         } 
+                                                                                                         else {
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                         }       
+                                                                                               }
+                                                                                        }
+                                                                                   $j++;
+                                                                                }
+                                                                          echo '</aside></div><div class="col-sm-10">';
+                                                                   }
+                                                            }
+                               }              
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();
