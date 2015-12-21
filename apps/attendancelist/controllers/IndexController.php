@@ -30,6 +30,8 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction( ) {
+        $this->act_name =  $this->router->getActionName(); 
+        $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
         $id=$this->session->user['member_id'];        
