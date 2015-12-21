@@ -120,11 +120,13 @@ var Allowance = {
     
 };
 $(document).ready(function () {
+    
          $.ajax({
             
            url:"gettranslate",
            type: "GET",
            success:function(res){
+            //  alert(res);
                var result = $.parseJSON(res);
                var allowance_name=result['allowance_name'];
                var allowance_amount=result['amount'];
@@ -132,8 +134,9 @@ $(document).ready(function () {
                var enter_allamount=result['enter_allamount'];
                var counter = 2;
         var counter1=2;
+        
         $("#addButton").click(function () {
-
+            
             if (counter > 10) {
                 alert("Only 10 textboxes allow");
                 return false;

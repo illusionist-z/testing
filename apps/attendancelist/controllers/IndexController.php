@@ -17,7 +17,7 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
-        $this->act_name =  $this->router->getActionName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();        
@@ -30,7 +30,7 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction( ) {
-        $this->act_name =  $this->router->getActionName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
