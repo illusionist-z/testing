@@ -26,6 +26,7 @@ class IndexController extends ControllerBase {
       
         $this->act_name =  $this->router->getActionName(); 
         $this->permission = $this->setPermission($this->act_name); 
+        $this->view->permission = $this->permission;
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         $Admin=new Db\CoreMember;
@@ -250,7 +251,8 @@ class IndexController extends ControllerBase {
      */
     public function allowanceAction() {
         $this->assets->addJs('apps/salary/js/index-allowance.js');
-               
+                $this->act_name =  $this->router->getActionName(); 
+        $this->permission = $this->setPermission($this->act_name); 
         $All_List = new \salts\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         //echo $this->permission;
@@ -366,6 +368,8 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
+         $this->act_name =  $this->router->getActionName(); 
+        $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
