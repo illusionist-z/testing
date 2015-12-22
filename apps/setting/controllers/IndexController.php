@@ -46,13 +46,14 @@ class IndexController extends ControllerBase {
        public function adminAction() {
        if($this->permission == 1){
                 $coreid = new CorePermissionGroupId(); 
-                $corememberid = new CorePermissionRelMember(); 
+                $corememberid = new CorePermissionRelMember();
                 $coreuser = new CoreMember(); 
-                $coreuser2 = new CorePermissionGroup(); ; 
+                $coreuser2 = new CorePermissionGroup();
                 $core_groupid=$coreid::find();
                 $coremember= $corememberid::find();
                 $core_groupuser2=$coreuser2::find();
                 $core_groupuser=$coreuser->getgroupid();
+                
                 $this->view->coreid = $core_groupid;
                 $this->view->coremember = $coremember; 
                 $this->view->coreuser = $core_groupuser; 
