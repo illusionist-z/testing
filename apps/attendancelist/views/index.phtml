@@ -139,7 +139,7 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
-                                                                                 if($key_name !='show_admin_setting'){
+                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
                                                                                     echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                                                                               }
                                                                                           }
