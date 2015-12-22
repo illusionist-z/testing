@@ -17,10 +17,10 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
-        $this->act_name =  $this->router->getModuleName(); 
-        $this->permission = $this->setPermission($this->act_name); 
+        $this->act_name =  $this->router->getActionName(); 
         $this->view->t = $this->_getTranslation();
-        $this->module_name =  $this->router->getModuleName();        
+        $this->module_name =  $this->router->getModuleName();    
+        $this->permission = $this->setPermission($this->module_name); 
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
     }        
