@@ -15,21 +15,16 @@
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
-                    <a><img src="<?php echo $baseUri?>common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
+                    <a><img src="../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">  
-                             <li>
-                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="Help" id="help_icon" style="padding-top: 20px;">
-                                               <img src="<?php echo $baseUri?>common/img/help_browser.png">
-                                        </a>
-                               </li>  
+                        <ul class="nav navbar-nav">                           
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
-                                    <img src="<?php echo $baseUri?>common/img/noti.png">
+                                    <img src="../common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
                                   <div id="notificationContainer">
@@ -46,19 +41,19 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                    <!-- <img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="user-image" alt="User Image"/>-->
-                                    <?php
-                                                    if($this->session->user['member_profile']==null){
-                                                    $img = "profile1.jpg";}
-                                                    else{
-                                                        $img=$this->session->user['member_profile'];
-                                                         if(file_exists('./uploads/'.$img)){                                                            
-                                                                     $img=$img;                                                            
-                                                                }else{  
-                                                                    $img = "profile1.jpg";                                                                 
-                                                                }
-                                                    }
-                                        ?>                                                 
-                                        <img src="<?php echo $baseUri?>uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                     <?php
+                                                if($noti['member_profile']==null){
+                                                   $img = "profile1.jpg";}
+                                                else{
+                                                     $img=$noti['member_profile'];
+                                                      if(file_exists('./uploads/'.$img)){                                                            
+                                                           $img=$img;                                                            
+                                                      }else{  
+                                                          $img = "profile1.jpg";                                                                 
+                                                      }
+                                                 }
+                                      ?>                                                
+                                        <img src="../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -143,6 +138,11 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
+                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
+                                                                                    echo '<li class="treeview"><a href="#"><img src="../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
+                                                                                                } 
+                                                                                 }
+                                                                                else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
@@ -150,9 +150,16 @@
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                          }
                                                                                     } else {
+                                                                                        if($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting'){
+                                                                                               $top = explode(" ", $key_value["link0"]);                                                                                                
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                        }
+                                                                                                 
+                                                                                        }
                                                                                 }
                                                                                 $i = 0;
                                                                                 //for the sub menu                            
@@ -263,8 +270,3 @@
 
     </body>
 </html>
-                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
-                                                                                    echo '<li class="treeview"><a href="#"><img src="../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
-                                                                                                } 
-                                                                                 }
-                                                                                else {                                
