@@ -24,7 +24,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
       
-        $this->act_name =  $this->router->getActionName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->view->permission = $this->permission;
         $this->setCommonJsAndCss();
@@ -44,7 +44,8 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
-        
+           $this->act_name =  $this->router->getModuleName(); 
+        $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
@@ -87,6 +88,8 @@ class IndexController extends ControllerBase {
      * Add salary form
      */
     public function addsalaryAction() {
+            $this->act_name =  $this->router->getModuleName(); 
+        $this->permission = $this->setPermission($this->act_name); 
         //$this->assets->addJs('apps/salary/js/salarymaster-savesalary.js');
         $this->assets->addJs('apps/salary/js/addsalary.js');
         $userlist = new Db\CoreMember();
@@ -123,9 +126,9 @@ class IndexController extends ControllerBase {
     /**
      * show total salary  of each month
      */
-    public function monthlysalaryAction() {
+    public function monthlysalaryAction() { 
       $this->assets->addJs('apps/salary/js/salary.js');
-        $this->act_name =  $this->router->getActionName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
           var_dump($this->permission);
         $Salarydetail = new SalaryDetail();
@@ -249,9 +252,9 @@ class IndexController extends ControllerBase {
      * show allowance list
      * @author Su Zin kyaw
      */
-    public function allowanceAction() {
+    public function allowanceAction() { 
         $this->assets->addJs('apps/salary/js/index-allowance.js');
-                $this->act_name =  $this->router->getActionName(); 
+          $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $All_List = new \salts\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
@@ -368,7 +371,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function salarysettingAction() {
-         $this->act_name =  $this->router->getActionName(); 
+          $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $Admin=new Db\CoreMember;

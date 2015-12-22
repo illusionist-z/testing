@@ -9,8 +9,8 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-         $this->module_name =  $this->router->getModuleName();        
-        $this->permission = $this->setPermission();             
+          $this->act_name =  $this->router->getModuleName(); 
+         $this->permission = $this->setPermission($this->act_name );        
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
             if($this->permission==1){
@@ -39,6 +39,8 @@ class IndexController extends ControllerBase
      * Show All Notification in one page
      */
     public function viewallAction(){
+          $this->act_name =  $this->router->getModuleName(); 
+         $this->permission = $this->setPermission($this->act_name ); 
         $this->setCommonJsAndCss();
 
         $type=viewall;
