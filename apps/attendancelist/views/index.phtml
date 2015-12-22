@@ -20,12 +20,7 @@
                              </a>
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav"> 
-                             <li>
-                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="Help" id="help_icon" style="padding-top: 20px;">
-                                               <img src="<?php echo $baseUri?>common/img/help_browser.png">
-                                        </a>
-                               </li>  
+                        <ul class="nav navbar-nav">                           
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
@@ -90,26 +85,28 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php 
-            if ($permission == 1) {
+                                              
+                                 <?php 
+           
+            if($permission==1){
                 //Go to user dashboard
-                $this->view->disable();
-              ?>
+                
+                ?>
                  <div class="pull-left">
-                     
-                                            <a href="../../setting/index" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                     <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
                                         </div>
-                                           
                 <?php
                
                } 
-                else
-               { 
+                  else {
+               
                     ?> 
                       <div class="pull-left">
                                                     <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
                                                 </div>
-                <?php }
+                <?php 
+                         }
+                
                 
              
                 ?>
@@ -142,13 +139,15 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
+                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
                                                                                     echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                                                                               }
+                                                                                          }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
-                                                                                         if($key_name != 'show_user_notification' ){
+                                                                                         if($key_name != 'show_user_notification' && $key_name != 'show_user_setting'){
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
@@ -156,7 +155,7 @@
                                                                                                 }
                                                                                          }
                                                                                     } else {
-                                                                                        if($key_name != 'show_admin_notification' ){
+                                                                                        if($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting'){
                                                                                                $top = explode(" ", $key_value["link0"]);                                                                                                
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                         }
@@ -183,12 +182,12 @@
                                                                                                                          }                                                                                                                              
 
                                                                                                                       if (strpos($key_name, 'user') !== false) {
-//                                                                                                                                if($this->session->permission_code=="ADMIN"){
-//                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
-//                                                                                                                                }
-//                                                                                                                                else{
-//                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
-//                                                                                                                                }
+                                                                                                                                if($this->session->permission_code=="ADMIN"){
+                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
+                                                                                                                                }
+                                                                                                                                else{
+                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
+                                                                                                                                }
                                                                                                                         }
                                                                                                                         else {                                                            
                                                                                                                                   echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
@@ -210,7 +209,8 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-                <?php                           
+                <?php     
+                          //start for the left menu for each module
                           $j=0;
                           foreach ($this->session->auth as $key_name => $key_value) {                                 
                                        $top = explode(" ", $key_value["link0"]);
@@ -249,7 +249,7 @@
                                                                    }
                                                             }
                                }                               
-               
+                               //End of the left menu for each module
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();

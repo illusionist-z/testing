@@ -9,7 +9,12 @@
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <?php if($type=="noti") {            
+    <?php 
+    
+//     var_dump($this->session->auth);
+//     exit();
+    
+    if($type=="noti") {            
         ?>
                
                 <section class="content">
@@ -96,7 +101,8 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php $name=$this->session->permission_code;
+                                      <?php 
+                                      $name=$this->session->permission_code;
        if ($permission == 1) {
            ?>
                                         <div class="pull-left">
@@ -140,13 +146,15 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
+                                                                                         if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
                                                                                     echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b> ' . $key_value[0] . '</b></span></a>';
                                                                               }
+                                                                                        }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
-                                                                                              if($key_name != 'show_user_notification' ){
+                                                                                              if($key_name != 'show_user_notification' && $key_name !='show_user_setting'){
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list'.$count.'.png" ><span><b> ' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
@@ -154,7 +162,7 @@
                                                                                                 }
                                                                                               }
                                                                                     } else {
-                                                                                          if($key_name != 'show_admin_notification' ){
+                                                                                          if($key_name != 'show_admin_notification' && $key_name !='show_admin_setting'){
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($key_value["link0"]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                     }
                                                                                     }
@@ -207,7 +215,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
                 <?php                           
-                          $j=0;
+                  $j=0;
                           foreach ($this->session->auth as $key_name => $key_value) {                                 
                                        $top = explode(" ", $key_value["link0"]);
                                         if(strtolower($top[0] . $top[1]) ==$module_name) {
@@ -227,7 +235,7 @@
                                                                                                                 $mod = explode(" ", $key_value["link0"]);
                                                                                                             }
                                                                                                             if (strpos($key_name, 'user') !== false) {
-                                                                                                             if($this->session->permission_code=="ADMIN"){
+                                                                                                             if($key_name == 'show_admin_user'){
                                                                                                               echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
                                                                                                              }
                                                                                                              else{
@@ -244,12 +252,11 @@
                                                                           echo '</aside></div><div class="col-sm-10">';
                                                                    }
                                                             }
-                               }                               
-               
-                                  echo '<section class="content">';
-                                  echo $this->getContent();
-                                  $this->assets->outputJs();
-                                 echo '</section></div></div>';
+                               }              
+                                   echo '<section class="content">';
+                                   echo $this->getContent();
+                                   $this->assets->outputJs();
+                                   echo '</section></div></div>';
                            ?>
             <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
         </div><!-- /.content-wrapper -->

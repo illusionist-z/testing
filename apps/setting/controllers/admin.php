@@ -41,8 +41,8 @@ class UserController extends ControllerBase {
         
     }
  
-  
-    public function usersettingAction() {
+
+    public function adminAction() {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $User->GetUserNoti($id);
@@ -50,7 +50,6 @@ class UserController extends ControllerBase {
         $user = $User->UserDetail($id);
         $this->view->userdetail = $user;
     }
-      
     /**
      * change profile 
      * user setting
@@ -86,7 +85,7 @@ class UserController extends ControllerBase {
             $user = $User->Userdata($id);
             $this->session->set('user', $user);
         }
-        $this->response->redirect('setting/user/usersetting');
+        $this->response->redirect('setting/user');
     }
 
 }

@@ -2,6 +2,8 @@
 
 namespace salts\Dashboard\Controllers;
 use salts\Core\Models\Db;
+use salts\Dashboard\Models\CorePermissionGroup; 
+
 //use Phalcon\Flash\Direct as FlashDirect;
 
 class IndexController extends  ControllerBase {
@@ -19,26 +21,20 @@ class IndexController extends  ControllerBase {
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
         $this->module_name =  $this->router->getModuleName();        
-        $this->permission = $this->setPermission();             
+        $this->permission = $this->setPermission($this->module_name);             
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
-    }           
-    /**
+         }           
+        /**
         * 
         *Check User or Admin 
         */
         public function indexAction() {
-         if ($this->permission==1) {
+               
                 $this->view->disable();
-                //Go to user dashboard
-                 $this->response->redirect('dashboard/index/admin');
-                 }   
-                else {
-                $this->view->disable();
-                //Go to admin dashboard
-               $this->response->redirect('dashboard/user');
-                }
-             }
+                $this->response->redirect('dashboard/index/user');
+                
+        }
         /**
         * show admin dashboard
         * @author david
@@ -46,6 +42,8 @@ class IndexController extends  ControllerBase {
         * @type array {$gname}
         */
     public function adminAction() { 
+        $coreuser2 = new CorePermissionGroup(); 
+        $core_groupuser2=$coreuser2::find();
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
     $noti=$Admin->GetAdminNoti($id);
@@ -59,7 +57,8 @@ class IndexController extends  ControllerBase {
     $leave_name =$CheckLeave->checkleave();
     $status     =$CheckLeave->todayattleave();
     $coreid = new  \salts\Dashboard\Models\CorePermissionGroupId();
-    if ($this->permission==1) {
+    foreach ($this->session->auth as $key_name => $key_value) {             
+                if ($key_name == 'admin_dashboard') {
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
@@ -68,22 +67,22 @@ class IndexController extends  ControllerBase {
     $this->view->setVar("newnumber",$newmember);
     $this->view->t = $this->_getTranslation();         }
       
-       else {
-                //Go to user dashboard
-                $this->view->disable();
-              // 
-                $this->response->redirect('core/index');
-            
-                }   
-    
-}
+       else if ($key_name == 'user_dashboard'){
+                    $this->view->disable();
+                  $this->response->redirect('core/index');
+                }
+                 
+                
+            }
+        }
+
       
     
-    /**
-     * show user dashboard
-     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
-     * 
-     */
+        /**
+        * show user dashboard
+        * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+        * 
+        */
     public function userAction() {
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
@@ -103,7 +102,8 @@ class IndexController extends  ControllerBase {
     public function location_sessionAction() {
         $add=$this->request->get('location');
         $offset = $this->request->get('offset');
-       
+               //echo $offset;exit;
+
         $this->session->set('location', array(
              'location'=>$add,
             'offset' => $offset
@@ -149,18 +149,18 @@ class IndexController extends  ControllerBase {
          */
         public function directAction(){
         //$name = $this->session->page_rule_group;
-        if ($this->permission==1) {
+        foreach ($this->session->auth as $key_name => $key_value) {             
+                if ($key_name == 'admin_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
                 $this->response->redirect('attendancelist/index/todaylist');
                 
             } 
-            else {
-                //Go to admin dashboard
-                $this->view->disable();
-                $this->response->redirect('attendancelist/user/attendancelist');
-                  
-            }
+              else if ($key_name == 'user_dashboard'){
+                    $this->view->disable();
+                  $this->response->redirect('attendancelist/user/attendancelist');
+                }
+                 
         }
   
     

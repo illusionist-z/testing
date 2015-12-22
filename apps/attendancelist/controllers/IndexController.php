@@ -17,10 +17,10 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
-        
+        $this->act_name =  $this->router->getActionName(); 
         $this->view->t = $this->_getTranslation();
-        $this->module_name =  $this->router->getModuleName();        
-        $this->permission = $this->setPermission();             
+        $this->module_name =  $this->router->getModuleName();    
+        $this->permission = $this->setPermission($this->module_name); 
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
     }        
@@ -30,10 +30,11 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction( ) {
+        $this->act_name =  $this->router->getModuleName(); 
+        $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
         $id=$this->session->user['member_id'];        
-       
         $name = $this->request->get('namelist');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
@@ -44,8 +45,8 @@ class IndexController extends ControllerBase {
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;       
-        $this->view->modulename = $this->module_name;        
-    }
+        //$this->view->modulename = $this->module_name;        
+        }
         else {
             $this->response->redirect('core/index');
         }   
@@ -78,7 +79,6 @@ class IndexController extends ControllerBase {
 
         $offset = $this->session->location['offset'];
         $post = $localtime;
-
         $Att = new \salts\Attendancelist\Models\Attendances();
         $Att->editAtt($post, $id, $offset);
         $this->response->redirect('attendancelist/index/todaylist');
@@ -97,19 +97,17 @@ class IndexController extends ControllerBase {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $monthlylist = $Attendances->showattlist();       
         $coreid = new CorePermissionGroupId();
-        foreach ($this->session->auth as $key_name => $key_value) {
-          if ($key_name == 'show_admin_attlist') {
+         if($this->permission==1){
         $this->view->monthlylist = $monthlylist;
         $this->view->setVar("Month", $month);
         $this->view->setVar("Getname", $UserName);
         $this->view->setVar("offset", $offset);
        
         }
-        else if($key_name == 'show_user_attlist') {
-            $this->view->setVar("offset", $offset);
-            $this->response->redirect('attendancelist/user/attendancelist');
+        else {
+            $this->response->redirect('core/index');
         }  
-        }
+       
     }
      public function attsearchAction() {
             if ($this->request->isAjax() == true) {

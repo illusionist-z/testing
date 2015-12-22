@@ -28,9 +28,9 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/setting/js/index.js'); 
         $this->assets->addJs('apps/setting/js/setting.js');  
         $this->config = \Module_Config::getModuleConfig('leavedays');
-  
-        $this->module_name =  $this->router->getModuleName();        
-        $this->permission = $this->setPermission();             
+        $this->module_name =  $this->router->getModuleName();       
+        $this->act_name =  $this->router->getActionName(); 
+        $this->permission = $this->setPermission($this->act_name);       
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
         }
@@ -43,16 +43,17 @@ class IndexController extends ControllerBase {
         * @desc    $core_groupid = {}
         * @desc    $core_user = {}
         */
-        public function indexAction() { 
-           if($this->permission==1){
+       public function adminAction() {
+       if($this->permission == 1){
                 $coreid = new CorePermissionGroupId(); 
-                $corememberid = new CorePermissionRelMember(); 
+                $corememberid = new CorePermissionRelMember();
                 $coreuser = new CoreMember(); 
-                $coreuser2 = new CorePermissionGroup(); 
+                $coreuser2 = new CorePermissionGroup();
                 $core_groupid=$coreid::find();
                 $coremember= $corememberid::find();
                 $core_groupuser2=$coreuser2::find();
                 $core_groupuser=$coreuser->getgroupid();
+                
                 $this->view->coreid = $core_groupid;
                 $this->view->coremember = $coremember; 
                 $this->view->coreuser = $core_groupuser; 
@@ -60,12 +61,13 @@ class IndexController extends ControllerBase {
                 $id=$this->session->user['member_id'];
                 $noti=$coreuser->GetAdminNoti($id);
                 $this->view->setVar("noti", $noti);
-           }
-           else {
-               
-                 $this->response->redirect('setting/user/usersetting');
-           }
-        }     
+            }
+            else{
+                $this->response->redirect('core/index');
+        }
+    }
+      
+        
         /**
         * @author Yan Lin Pai <wizardrider@gmail.com>
         * @desc    $core = {}
@@ -96,7 +98,7 @@ class IndexController extends ControllerBase {
         $core->permission_code = $this->request->getPost('permission_code');
         $core->save();
         $this->view->disable();
-        $this->response->redirect('setting/index');
+        $this->response->redirect('setting/index/admin');
         }
         
         public function DelGroupRuleAction()
@@ -125,7 +127,7 @@ class IndexController extends ControllerBase {
         $core->name_of_group = strtoupper($group_name);
         $core->update();        
         $this->view->disable();
-        $this->response->redirect('setting/index');
+        $this->response->redirect('setting/index/admin');
         }
          /**
         * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -142,7 +144,7 @@ class IndexController extends ControllerBase {
                 if($success)
                 {
                 $this->view->disable();
-                $this->response->redirect('setting/index');
+                $this->response->redirect('setting/index/admin');
                 }
                 else  { echo "Failed!!"; }
         }
@@ -164,7 +166,7 @@ class IndexController extends ControllerBase {
         $coreuser_update->update();
         $core->update();
         $this->view->disable();
-        $this->response->redirect('setting/index');
+        $this->response->redirect('setting/index/admin');
          }
         
          

@@ -32,66 +32,45 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         * Set Permission
         * @return int
         */
-        public function setPermission() {
+   
+            public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
-        //setting permission
-        //$coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
-        $coremember = \salts\Auth\Models\Db\CorePermissionRelMember::findByRelMemberId($this->session->user['member_id']);
-        if($this->session->user['member_id']){
-        $permission_id = $coremember[0]->permission_group_id_user;
+        $allow = array();
+        //setting permission        
+        $coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
+        
+        if(null === $this->session->user['member_id']){
+            return false;
         }
-            
-        $module = $this->router->getModuleName();
-        $ctrname=$this->router->getControllerName();
-        $actname=$this->router->getActionName();        
-        $chksubmenu="";
-        $permission="";  
-         foreach ($this->session->auth as $name => $value) {
-             
-                $bigmenu=strtolower($value);
-                
-                $submenu = explode(" ", $value); 
-                if(isset($submenu[1])){
-                $chksubmenu = strtolower($submenu[0] . $submenu[1]);
-                }
-                else{
-                $chksubmenu = strtolower($submenu[0]);
-                }
-                if($actname === $chksubmenu){
-                //echo "Equal<br>";
-                $permission=1;
-               }
-               if($module === $bigmenu){                
-                $permission=1;
-               }               
-               if($permission_id === '1'){
-                   $permission = 1;
-               }
-                else {
-                    //echo "Not equal";
-                    $permission_notequal=0;
-                }
-               }
-        
-//        foreach ($this->session->auth as $key_name => $key_value) { 
-//            //print_r($key_value).'<br>';
-//             $top = explode(" ", $key_value[0]);
-//               if (isset($top[1])) 
-//                {
-//                   $chkmodule= strtolower($top[0] . $top[1]);
-//                } else 
-//                {
-//                 $chkmodule= strtolower($top[0]);
-//                }
-//                             
-//          
-//        }
-//        echo $permission;
-//        exit;
-        return $permission;
+        {
+        $core = $coremember::findByRelMemberId($this->session->user['member_id']); 
+        $permission = $core[0]->permission_group_id_user;
+        $coreuser2 = new \salts\Auth\Models\Db\CorePermissionGroup();
+        $permission_group = $coreuser2->find();
+        //get permitted action name
        
-        
-       
+        foreach($permission_group as $v){
+        $permission === $v->page_rule_group ?  $allow[] = $v->permission_code :   0;
+        }
+        $permission_name = $this->getPermissionCode($allow);
+        foreach($permission_name as $name){
+            $name = strtolower(str_replace(' ','',$name));
+             $name === $actname ? $permitted = 1 : 0;
+        }
+        return $permitted;
+        }
+    }
+    
+    public function getPermissionCode($code) {
+     $setPermission = array();
+    $corepermission = new \salts\Auth\Models\Db\CorePermission();        
+    foreach($code as $c){
+        $temp = $corepermission::findByPermissionCode($c);
+        foreach($temp as $t){
+            $setPermission[] =$t->permission_name_en;
+        }
+    }
+    return $setPermission;    
     }
     /**
      * Call this func to set json response enabled

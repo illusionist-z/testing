@@ -7,7 +7,8 @@
  */
 class CorePermissionGroup extends \Library\Core\BaseModel{
     
-    public function initialize() {
-        parent::initialize();
-    }
+     public $permission_code;
+     public $page_rule_group;
+     public $permission_group_code;
+     public $permission_group_name;
 }

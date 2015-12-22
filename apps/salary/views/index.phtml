@@ -79,27 +79,24 @@
 
                                     <!-- Menu Footer-->
                                        <li class="user-footer">
-                                      <?php foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'admin_dashboard') {
+                                      <?php 
+                if($permission==1){
                 //Go to user dashboard
-                $this->view->disable();
+           
               ?>
                  <div class="pull-left">
-                                            <a href="../../setting/index" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                            <a href="../../setting/index/admin" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
                                         </div>
                                            
                 <?php
                 } 
-                else if($key_name == 'user_dashboard')
-               { 
+                 else{ 
                     ?> 
                       <div class="pull-left">
                                                     <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
                                                 </div>
                 <?php }
-                
-                }
+            
                 ?>
                                         
                                         <div class="pull-right">
@@ -130,13 +127,15 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
+                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
                                                                                     echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                                                                               }
+                                                                                        }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
-                                                                                         if($key_name != 'show_user_notification' ){
+                                                                                         if($key_name != 'show_user_notification' && $key_name !='show_user_setting'){
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
@@ -144,7 +143,7 @@
                                                                                                 }
                                                                                          }
                                                                                     } else {
-                                                                                        if($key_name != 'show_admin_notification' ){
+                                                                                        if($key_name != 'show_admin_notification' && $key_name !='show_admin_setting'){
                                                                                                $top = explode(" ", $key_value["link0"]);                                                                                                
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                         }
@@ -198,7 +197,8 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-                <?php                           
+                <?php     
+                          //start for the left menu for each module
                           $j=0;
                           foreach ($this->session->auth as $key_name => $key_value) {                                 
                                        $top = explode(" ", $key_value["link0"]);
@@ -237,7 +237,7 @@
                                                                    }
                                                             }
                                }                               
-               
+                               //End of the left menu for each module
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();
