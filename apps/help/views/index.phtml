@@ -211,55 +211,50 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-                <?php                           
-                          $j=0;
-                          foreach ($this->session->auth as $key_name => $key_value) {                                 
-                                       $top = explode(" ", $key_value["link0"]);
-                                        if(strtolower($top[0] . $top[1]) ==$module_name) {
-                                               if(count($key_value) >2 ) {
-                                                             echo '<div class="row"><div class="col-sm-2 link">';
-                                                             echo '<aside class="sidebar-menu">';
-                                                           foreach ($key_value as $name => $value) {
-                                                                                if($j > 1){
-                                                                                                if($j %2 ==0){
-                                                                                                    $link_name=$value;
-                                                                                                }
-                                                                                                if(is_string($name))
-                                                                                                {
-                                                                                                            if ($v_result = explode(" ", $value)) {
-                                                                                                                //set to link action value
-                                                                                                                $link_val = strtolower($v_result[0] . $v_result[1]);
-                                                                                                                $mod = explode(" ", $key_value["link0"]);
-                                                                                                            }
-                                                                                                            if (strpos($key_name, 'user') !== false) {
-                                                                                                             if($this->session->permission_code=="ADMIN"){
-                                                                                                              echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
-                                                                                                             }
-                                                                                                             else{
-                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
-                                                                                                             }
-                                                                                                         } 
-                                                                                                         else {
-                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
-                                                                                                         }       
-                                                                                               }
-                                                                                        }
-                                                                                   $j++;
-                                                                                }
-                                                                          echo '</aside></div><div class="col-sm-10">';
-                                                                   }
-                                                            }
-                               }                               
+        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">            
+             
                
-                                  echo '<section class="content">';
+            <div class="row-fluid">
+<div class="sidebar-menu col-md-2 helpcenter">
+    <img src="../../common/img/app_help (2).png">   
+    <label>Search Help</label>
+    <ul>
+        <li><a href="dashboard" id="" class="allhelpimg" >Dashboard</a></li>
+        <li>
+            <a href="" onclick="return false;" class="allhelpimg tog">Attendance List</a>
+            <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
+                <li><a href="todayattlist">Today Attendance List</a></li>
+                <li><a>Monthly Attendance List</a></li>
+            </ul>
+        </li>       
+        <li><a href="" class="allhelpimg">Manage User</a></li>
+        <li><a href="#" onclick="return false;" class="allhelpimg tog">Leave Days</a>
+             <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
+                <li><a>Apply Leave</a></li>
+                <li><a>Leave Lists</a></li>
+                <li><a>Leave Setting</a></li>
+            </ul>
+        </li>
+        <li><a href="" class="allhelpimg">Calendar</a></li>
+        <li><a href="#" class="allhelpimg tog">Salary</a>
+             <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
+                <li><a>Add Salary</a></li>
+                <li><a>Salary Lists</a></li>
+                <li><a>Monthly Salary Lists</a></li>
+                <li><a>Salary Setting</a></li>
+                <li><a>Allowance</a></li>
+            </ul>
+        </li>        
+        <li><a href="" class="allhelpimg">Document</a></li>   
+    </ul>
+</div>
+                <?php
                                   echo $this->getContent();
-                                  $this->assets->outputJs();
-                                 echo '</section></div></div>';
+                                  $this->assets->outputJs();                               
                            ?>
             <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
         </div><!-- /.content-wrapper -->
-
+        </div>
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">

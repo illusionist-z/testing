@@ -18,7 +18,7 @@ class LoginController extends ControllerBase {
         $this->view->test = $loginParams;
         $ModelAuth = new Models\Auth();
         $companyDB=$ModelAuth->findcomp_db($loginParams);
-        //print_r($companyDB);
+      
         
         if($companyDB)
         {

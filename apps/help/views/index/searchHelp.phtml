@@ -1,204 +1,46 @@
-<div id='helpleft'>
-    <h3>
-<!--        Search Help-->
-        <img src="../../common/img/app_help (2).png">                
-            <?= $t->_("Search Help"); ?>
-    </h3>
-<!--  <br><br><br><br><br><br><br><br><br><br>-->
-    
-</div>
-<div id='helppage'>
-   
-    <ul id="helpcenter">
+<div class="row-fluid">
+    <div class="col-md-10" id="showhelp">
+       <ul id="helpcenter">
         <li>
             <a href="#" ><span id="searchhelpcenter">Welcome to the search help center</span></a>
         </li>        
     </ul>
     <hr>
-    <ul id="helpmenu">
-        <li id='maindashboard'>
-            <a href="" id='dashboard' onclick="return false;">Dashboard</a>
-            <ul id="dashboardmenu" style="display: none;">
-                <li>
-                    <a href="" id="showatt" onclick="return false;">Show Staffs Attended Link</a>
-                            <ul id="showattmenu" style="display: none;">
-                                <li>When you click Staffs Attended Link, Show Staffs Attended Lists.Admin will see staffs attended lists.Admin can edit attendance time of users.</li>
-                            </ul>
-                </li>
-                <li>
-                      <a href="" id="showabsent" onclick="return false;">Show Staffs Absent Link</a>
-                            <ul id="showabsentmenu" style="display: none;">
-                                <li>When you click Staffs Absent Link, Show Staffs Absent Lists.Admin can absent to all user in this day.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showmanage" onclick="return false;">Show Manage User Link</a>
-                            <ul id="showmanagemenu" style="display: none;">
-                                <li>When you click Manage User Link, Show Manage User Lists.Admin can create, search and edit users.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showattlists" onclick="return false;">Show Attendance Lists Link</a>
-                            <ul id="showattlistsmenu" style="display: none;">
-                                <li>When you click Attendance Lists Link, Show Attendance Lists.Admin can edit user informations and user can't edit.If user want to edit,can edit in user setting.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showleave" onclick="return false;">Show Leave Days Link</a>
-                            <ul id="showleavemenu" style="display: none;">
-                                <li>When you click Leave Days Link, Show Leave Days Lists.Admin can known which who apply leave , can search with leave type,month and user name.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showsalary" onclick="return false;">Show Salary Lists Link</a>
-                            <ul id="showsalarymenu" style="display: none;">
-                                <li>When you click Salary Lists Link, Show Salary Lists.Admin can edit of user salary informations.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showcheck" onclick="return false;">Show Check In / Out Link</a>
-                            <ul id="showcheckmenu" style="display: none;">
-                                <li>You can Check In and Out.If users click check in / out button,admin will known today attendance lists.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="shownews" onclick="return false;">Show Latest News</a>
-                            <ul id="shownewsmenu" style="display: none;">
-                                <li>Admin will see which People who attend no leave and People who take the leave most. </li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showmembers" onclick="return false;">Show Latest Members</a>
-                            <ul id="showmembersmenu" style="display: none;">
-                                <li>Admin will see Latest Members in this company.</li>
-                            </ul>
-                </li>
-            </ul>
-        </li>
-        <li id='mainattlists'>
-            <a href="" id="attlists" onclick="return false;">Attendance Lists</a>
-            <ul id="attlistsmenu" style="display: none;">
-                <li>
-                         <a href="" id="showtoday" onclick="return false;">Show Today Lists Link</a>
-                            <ul id="showtodaymenu" style="display: none;">
-                                  <li>When you click Today Lists Link, Show Today Attendance Lists.Admin can edit user informations and user can't edit and can search with user name.If user want to edit,can edit in user setting.</li>
-                            </ul>
-                </li>
-                <li>
-                     <a href="" id="showmonthly" onclick="return false;">Show Monthly Lists Link</a>
-                            <ul id="showmonthlymenu" style="display: none;">
-                                  <li>When you click Monthly Lists Link, Show Monthly Attendance Lists.Monthly Attendance Lists show only this month,you can search another monly.Admin can search who  attendance with date(start and end) and user name.</li>
-                            </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="" id="manage" onclick="return false;">Manage User</a>
-            <ul id="managemenu" style="display: none;">
-                <li>
-                    <a href="" id="showmanageuser" onclick="return false;">Show Manage User Lists Link</a>
-                            <ul id="showmanageusermenu" style="display: none;">
-                                  <li>When you click Manage Users Link, Show Manage Users Lists.Admin can search user informations with user name and can edit of all user informations.Admin can crate New Users Accounts.</li>
-                            </ul>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="" id="leave" onclick="return false;">Leave Days</a>
-            <ul id="leavemenu" style="display: none;">
-                <li>
-                     <a href="" id="showleavelists" onclick="return false;">Show Leave Lists Link</a>
-                            <ul id="showleavelistsmenu" style="display: none;">
-                                  <li>When you click Leave Lists Link, Show Leave Lists.Leave Lists show for only this month but Admin can search who apply leave with leave type,month and  usera name.Users can known they apply leave Accept or Reject.Admin can known Leave Days Left in this YEAR.</li>
-                            </ul>
-                </li>
-                <li>
-                        <a href="" id="showapplyleavelists" onclick="return false;">Show Apply Leave  Link</a>
-                            <ul id="showapplyleavelistsmenu" style="display: none;">
-                                  <li>When you click Apply Leave  Link, Show Apply Leave Form.You can apply leave with Date(start-end),Leave Categories and Description.</li>
-                            </ul>
-                </li>
-                <li>
-                        <a href="" id="showleavesetting" onclick="return false;">Show Leave Setting Link</a>
-                            <ul id="showleavesettingmenu" style="display: none;">
-                                  <li>When you click Leave Setting Link, Show Leave Setting Form.Admin can edit Maximum Leave Days Allowed and  Percentage of Fine On Basic Salary.Admin can Add New Leave Categories and can delete Leave Type.</li>
-                            </ul>
-                </li>                
-            </ul>
-        </li>
-        <li>
-            <a href="" id="calender" onclick="return false;">Calender</a>
-            <ul id="calendermenu" style="display: none;">              
-                        <li>When you click Calender Link,Show Calender Page.You can Add User Event Enable and also delete.You can  choose month.</li>                          
-                        <li>You can Create Event with Title,Users Name and Date(Start-End).You can show your Event.</li> 
-                        <li>Your Event can Edit and  Delete.</li> 
-            </ul>
-        </li>
-        <li>
-            <a href="" id="salary" onclick="return false;">Salary</a>
-             <ul id="salarymenu" style="display: none;">
-                <li>
-                    <a href="" id="showaddsalary" onclick="return false;">Show Add Salary Link</a>
-                            <ul id="showaddsalarymenu" style="display: none;">
-                                  <li>When you click Add Salary Link, Show Add Salary Form.Admin can Add Salary with User Name,Basic Salary,Travel Fees,Overtime(per hr),Deduce for SSC and Allowance.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showsalarylists" onclick="return false;">Show Salary Lists Link</a>
-                            <ul id="showsalarylistsmenu" style="display: none;">
-                                  <li>When you click Salary Lists Link, Show Salary Lists.Admin can edit of users salary informations.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showmonthlysalarylists" onclick="return false;">Show Monthly Salary Lists Link</a>
-                            <ul id="showmonthlysalarylistsmenu" style="display: none;">
-                                  <li>When you click Monthly Salary Lists Link, Show Monthly Salary Lists.Monthly Salary Lists show of each a month.Admin can Calculate Salary.</li>
-                                  <li>When you click of each one month Link, Show calculate salary of all users.Admin can search with Users Name,Department,Position and Salary Rate.</li>
-                                  <li>Admin can show User Details Informations and can change salary and Print.</li>
-                            </ul>
-                </li>                
-                <li>
-                    <a href="" id="showsalarysetting" onclick="return false;">Show Salary Setting Link</a>
-                            <ul id="showsalarysettingmenu" style="display: none;">
-                                  <li>When you click Salary Setting Link, Show Salary Settig.Admin can edit of Tax Setting.</li>
-                                  <li>When you click Deduction Setting Link, Show Deduction Settig.Admin can Add New Deduction and can edit of Deduction Setting.</li>
-                            </ul>
-                </li>    
-                <li>
-                    <a href="" id="showallowance" onclick="return false;">Show Allowance Link</a>
-                            <ul id="showallowancemenu" style="display: none;">
-                                  <li>When you click Allowance Link, Show Allowance Lists.Admin can Add Allowance Name and  Amount.</li>
-                                  <li>Admin can edit Allowance and can delete.</li>
-                            </ul>
-                </li>    
-            </ul>
-        </li>
-        <li>
-            <a href="" id="document" onclick="return false;">Document</a>
-            <ul id="documentmenu" style="display: none;">
-                <li>
-                     <a href="" id="showletter" onclick="return false;">Show Letterhead Link</a>
-                            <ul id="showlettermenu" style="display: none;">
-                                  <li>When you click Letterhead Link, Show Letterhead Form.Admin can edit company name,address,phone number and chage company logo.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showssb" onclick="return false;">Show SSB Document Link</a>
-                            <ul id="showssbmenu" style="display: none;">
-                                  <li>When you click SSB Document Link, Show SSB Document Form.</li>
-                            </ul>
-                </li>
-                <li>
-                    <a href="" id="showtax" onclick="return false;">Show Tax Document Link</a>
-                            <ul id="showtaxmenu" style="display: none;">
-                                  <li>When you click Text Document Link, Show Text Document Form.</li>
-                            </ul>
-                </li> 
-            </ul>
-        </li>        
-    </ul>
-    <hr>
-    <ul id="helpcenterfooter">
-         Search Help
-    </ul>
+    <div class="col-md-12 text-capitalize ">        
+<!--        <img src="../../common/img/dashboard1.png" style="width:100%;height:380px;"> -->
+        <div class=" text-uppercase text-bold">
+            Thanks for using SALTS Application.This application is the management system for offices such as <br><span class="text-light-blue ">Salary,Tax,Attendance Member List</span> ....etc.
+        </div>
+        <div class="col-md-12 thumbnail top-padding">
+            <p class="text-bold title">Explanation</p>
+            <div class="col-md-12 btn-box-tool left-div-style-box">
+                <div class="col-sm-1">
+                        <img src="../../common/img/noti.png" >
+                </div>
+                <div class="col-sm-2">Notification</div>
+                <div class="col-sm-9"> Admin can Accept and Reject with users apply  leave.Users can known of Admin Accept and Reject.</div>
+            </div>
+            <div class="col-md-12 btn-box-tool left-div-style-box">
+                <div class="col-sm-1">
+                    <img src="../../common/img/english.png" width='25px' > <img src="../../common/img/japan.jpg" width='25px'> <img src="../../common/img/myanmar.jpg" width='25px'>
+                </div>
+                <div class="col-sm-2">Change Language</div>
+                <div class="col-sm-9">
+                       Change Language with Japan, English and Myanmar.
+                </div>
+        </div>
+            <div class="col-md-12 btn-box-tool left-div-style-box">
+                <div class="col-sm-1">
+                        <img src="../../common/img/setting.png" width='50px'>
+                </div>
+                <div class="col-sm-2">Setting</div>
+                <div class="col-sm-9">Right side of the page ,click user profile then click left setting button.</div>
+            </div>
+        </div>
+        <div class="col-md-12 linkhover btn-link text-center" style="margin-top: 50px;">         
+                To know how it work of modules,you can learn from left side link documentation.
+        </div>
+        
+    </div>
+</div>
 </div>
