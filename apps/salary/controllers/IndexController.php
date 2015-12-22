@@ -24,7 +24,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
       
-        $this->act_name =  $this->router->getActionName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
@@ -327,6 +327,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function gettranslateAction(){
+        //echo "aa";exit;
         $t = $this->_getTranslation();
          $data['allowance_name'] = $t->_("allowance_name");
         $data['amount'] = $t->_("amount");

@@ -127,14 +127,14 @@ $(document).ready(function() {
     });
 
     $('#btnLogin').on('click',function(){
-        var url = "location_session";
+       // var url = "location_session";
         var n = new Date();
 
 
         var offset = n.getTimezoneOffset();
 
         $.ajax({
-            url: url + "?offset=" + offset,
+            url: baseUri + "dashboard/index/location_session?offset=" + offset,
             type: 'GET',
             dataType: 'json',
             success: function(d) {

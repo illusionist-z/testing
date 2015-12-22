@@ -101,7 +101,8 @@ class IndexController extends  ControllerBase {
     public function location_sessionAction() {
         $add=$this->request->get('location');
         $offset = $this->request->get('offset');
-       
+               //echo $offset;exit;
+
         $this->session->set('location', array(
              'location'=>$add,
             'offset' => $offset
