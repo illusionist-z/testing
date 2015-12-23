@@ -18,13 +18,15 @@ var AddSalary = {
                     //alert(i);
                      switch(i){
                          
-                         case 'uname' : $("#uname").css({border:"1px solid red",color:"red"});
-                                                $('#add_salary_uname_error').text(cond[i]).css({color:'red'});
-                                                repair('#uname');break;                                                               
-                         case 'bsalary'   : $("#bsalary").css({border:"1px solid red",color:"red"});                    
-                                                    $('#add_salary_bsalary_error').text(cond[i]).css({color:'red'});
-                                                    repair('#bsalary');break;                                     
-                         case 'checkall'    : $('#add_salary_ssc_error').text(cond[i]).css({color:'red'});                       
+                         case 'uname' : $("#add_salary_uname").css({border:"1px solid red",color:"red"});
+                                         $('#add_salary_uname_error').text(cond[i]).css({color:'red'});
+                                         repair('#add_salary_uname');break;
+                                                               
+                         case 'bsalary'   :$('#add_salary_bsalary_error').text(cond[i]).css({color:'red'}); 
+                                            break; 
+                                     
+                         case 'checkall'    :   $('#add_salary_ssc_error').text(cond[i]).css({color:'red'});
+                                                repair('#add_salary_checkall');break;            
                      }
                  }
                 
@@ -59,7 +61,7 @@ var AddSalary = {
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].member_login_name);
+                dict.push(json_obj[i].full_name);
                 }
                   //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);
@@ -120,7 +122,7 @@ var AddSalary = {
                
 	});
     
-    $("#bsalary").on('blur',function(){
+    $("#bsalary").click(function(){
        var name = document.getElementById('uname').value;
        //alert(name);
 		AddSalary.getmemid(name);
