@@ -30,14 +30,18 @@ class IndexController extends ControllerBase
         
         $Admin=new Db\CoreMember;
         $id = $this->session->user['member_id'];
-           if($this->permission==1){
+          foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
               $noti=$Admin->GetAdminNoti($id);
-             } 
-            else {
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                $noti=$Admin->GetUserNoti($id); 
             }
+        }
         
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
