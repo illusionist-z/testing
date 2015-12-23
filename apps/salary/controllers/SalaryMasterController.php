@@ -15,7 +15,7 @@ class SalaryMasterController extends ControllerBase
         $this->_addsalary= new Salary;
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
-           $this->act_name =  $this->router->getActionName(); 
+           $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         //$this->assets->addJs('apps/salary/js/addsalary.js');
     }

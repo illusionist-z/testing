@@ -19,9 +19,10 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
-        $this->permission = $this->setPermission();
-        $this->view->t = $this->_getTranslation();
-        $this->view->permission = $this->permission;
+         $this->act_name =  $this->router->getModuleName(); 
+         $this->permission = $this->setPermission($this->act_name ); 
+         $this->view->permission = $this->permission;
+        $this->view->t = $this->_getTranslation(); 
     }
 
     
@@ -29,17 +30,15 @@ class IndexController extends ControllerBase
         
         $Admin=new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'show_admin_notification') {
+           if($this->permission==1){
                 //Go to user dashboard
               $noti=$Admin->GetAdminNoti($id);
              } 
-            if ($key_name == 'show_user_notification') {
+            else {
                 //Go to admin dashboard
                $noti=$Admin->GetUserNoti($id); 
             }
-        } 
+        
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);

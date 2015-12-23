@@ -30,6 +30,7 @@ class IndexController extends ControllerBase
          $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
+         $this->view->permission = $this->permission;
         
 //        $coreid = new CorePermissionGroupId();
 //        foreach($coreid as $data){ 

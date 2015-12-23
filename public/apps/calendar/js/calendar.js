@@ -12,7 +12,7 @@ var Calendar = {
                 url: 'index/calenderauto',
                 method: 'GET',                
                 success: function (data) {
-                    
+                   // alert(data);
                     var json_obj = $.parseJSON(data);
                     
                     $.map(json_obj,function(item){
