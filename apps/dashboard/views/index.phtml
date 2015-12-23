@@ -11,7 +11,7 @@
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -215,7 +215,6 @@
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
                  
                              <?php
-                             
                                                                         echo $this->getContent();
                                                                         $this->assets->outputJs();
                                                         ?>

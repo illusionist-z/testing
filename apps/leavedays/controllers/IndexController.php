@@ -23,10 +23,10 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
         
         $this->view->module_name =  $this->router->getModuleName();
+         $this->view->t = $this->_getTranslation();
          $this->act_name =  $this->router->getModuleName(); 
-        $this->permission = $this->setPermission($this->act_name ); 
-        $this->view->t = $this->_getTranslation();
-        $this->view->permission = $this->permission;
+         $this->permission = $this->setPermission($this->act_name ); 
+         $this->view->permission = $this->permission;
     }
 
     public function indexAction() {
@@ -113,6 +113,8 @@ class IndexController extends ControllerBase {
      * Show Leave data list
      */
     public function leavelistAction(){    
+          $this->act_name =  $this->router->getModuleName(); 
+        $this->permission = $this->setPermission($this->act_name ); 
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
@@ -148,6 +150,9 @@ class IndexController extends ControllerBase {
      * to edit leave categories and max leave day
      */
     public function leavesettingAction(){
+        
+         $this->act_name =  $this->router->getModuleName(); 
+        $this->permission = $this->setPermission($this->act_name ); 
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
