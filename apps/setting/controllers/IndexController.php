@@ -75,6 +75,7 @@ class IndexController extends ControllerBase {
         */
         public function AddGroupRuleAction()
         {
+            //echo "aa";exit;
         $core = new CorePermissionGroupId();
         $core->save($this->request->getPost());
         $this->view->disable();

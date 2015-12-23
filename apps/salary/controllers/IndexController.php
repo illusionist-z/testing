@@ -424,6 +424,7 @@ class IndexController extends ControllerBase {
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $data['taxs_rate'] = $this->request->getPost('taxs_rate');
+        //print_r($data);exit;
         $SalaryTax = new SalaryTaxs();
         $SalaryTax->edit_tax($data);
         $this->view->disable();
