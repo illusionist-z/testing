@@ -50,4 +50,55 @@ class IndexController extends ControllerBase {
    public function todayattlistAction() {
        
     }
+    
+     public function monthlyattlistAction() {
+       
+    }
+    
+     public function manageuserAction() {
+       
+    }
+    
+    public function applyleaveAction() {
+       
+    }
+    
+    public function leavelistsAction() {
+       
+    }
+    
+      public function leavesettingAction() {
+       
+    }
+    
+      public function addsalaryAction() {
+       
+    }
+    
+     public function salarylistsAction() {
+       
+    }
+    public function monthlysallistsAction() {
+       
+    }
+    public function salarysettingAction() {
+       
+    }
+    public function allowanceAction() {
+       
+    }
+    public function calendarAction() {
+        
+    }
+     public function letterheadAction() {
+       
+    }
+    
+     public function ssbdocumentAction() {
+       
+    }
+    
+     public function taxdocumentAction() {
+       
+    }
 }

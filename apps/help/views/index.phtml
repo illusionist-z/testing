@@ -224,34 +224,40 @@
             <a href="" onclick="return false;" class="allhelpimg tog">Attendance List</a>
             <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
                 <li><a href="todayattlist">Today Attendance List</a></li>
-                <li><a>Monthly Attendance List</a></li>
+                <li><a href="monthlyattlist">Monthly Attendance List</a></li>
             </ul>
         </li>       
-        <li><a href="" class="allhelpimg">Manage User</a></li>
+        <li><a href="manageuser" class="allhelpimg">Manage User</a></li>
         <li><a href="#" onclick="return false;" class="allhelpimg tog">Leave Days</a>
              <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                <li><a>Apply Leave</a></li>
-                <li><a>Leave Lists</a></li>
-                <li><a>Leave Setting</a></li>
+                 <li><a href="applyleave">Apply Leave</a></li>
+                 <li><a href="leavelists">Leave Lists</a></li>
+                 <li><a href="leavesetting">Leave Setting</a></li>
             </ul>
         </li>
-        <li><a href="" class="allhelpimg">Calendar</a></li>
+        <li><a href="calendar" class="allhelpimg">Calendar</a></li>
         <li><a href="#" class="allhelpimg tog">Salary</a>
              <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                <li><a>Add Salary</a></li>
-                <li><a>Salary Lists</a></li>
-                <li><a>Monthly Salary Lists</a></li>
-                <li><a>Salary Setting</a></li>
-                <li><a>Allowance</a></li>
+                 <li><a href="addsalary">Add Salary</a></li>
+                 <li><a href="salarylists">Salary Lists</a></li>
+                 <li><a href="monthlysallists">Monthly Salary Lists</a></li>
+                 <li><a href="salarysetting">Salary Setting</a></li>
+                 <li><a href="allowance">Allowance</a></li>
             </ul>
         </li>        
-        <li><a href="" class="allhelpimg">Document</a></li>   
+        <li><a href="#" onclick="return false;" class="allhelpimg tog">Document</a>
+                <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
+                 <li><a href="letterhead">Letter Head</a></li>
+                 <li><a href="ssbdocument">SSB & Tax Document</a></li>
+                 
+            </ul>
+        </li>   
     </ul>
 </div>
                 <?php
                                   echo $this->getContent();
                                   $this->assets->outputJs();                               
-                           ?>
+                ?>
             <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
         </div><!-- /.content-wrapper -->
         </div>

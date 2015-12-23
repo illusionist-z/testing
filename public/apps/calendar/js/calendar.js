@@ -29,7 +29,7 @@ var Calendar = {
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaDay'
+                right: 'month'
             },
             buttonText: {
                 today: 'today',                

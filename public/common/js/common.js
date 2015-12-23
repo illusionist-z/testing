@@ -22,11 +22,9 @@ function link_height() {
     var link_ht = $(window).outerHeight()-($(".main-footer").outerHeight()+$("#fixedheader").outerHeight());
      if(link_width > 983){
            $("#showhelp").css({"height":link_ht+"px","background":"#fff"});
-    }
-    else if(link_width>775){
-       $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
-    }
-  
+           $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
+    }     
+   
     else if(link_width > 423){  
         $(".link").css({"height":link_height/10.5+"px","border-right":"1px solid #aaa","background":"#fff"});
       // $("#showhelp").css({"height":link_ht+"px","background":"#fff"});
