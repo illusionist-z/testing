@@ -77,7 +77,7 @@ class IndexController extends ControllerBase {
         $core = new CorePermissionGroupId();
         $core->save($this->request->getPost());
         $this->view->disable();
-        $this->response->redirect('setting/index');
+        $this->response->redirect('setting/index/admin');
         }
         /**
          * @author David JP <david.gnext@gmail.com>
