@@ -32,17 +32,17 @@ class IndexController extends ControllerBase
         $noti=$Admin->GetAdminNoti($id);
          $this->view->permission = $this->permission;
         
-//        $coreid = new CorePermissionGroupId();
-//        foreach($coreid as $data){ 
-//       
-//        if($code==$data->group_id){
-//            $noti=$Admin->GetAdminNoti($id);}
-//        else{
-//            $id = $this->session->user['member_id'];
-//            $noti=$Admin->GetUserNoti($id);
-//        }
+        $coreid = new CorePermissionGroupId();
+        foreach($coreid as $data){ 
+       
+        if($code==$data->group_id){
+            $noti=$Admin->GetAdminNoti($id);}
+        else{
+            $id = $this->session->user['member_id'];
+            $noti=$Admin->GetUserNoti($id);
+        }
       $this->view->setVar("noti",$noti);
-//         }
+       }
     }
 
     

@@ -20,7 +20,12 @@
                              </a>
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">                           
+                        <ul class="nav navbar-nav"> 
+                             <li>
+                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="Help" id="help_icon" style="padding-top: 20px;">
+                                               <img src="<?php echo $baseUri?>common/img/help_browser.png">
+                                        </a>
+                               </li>  
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
@@ -208,9 +213,47 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-                <?php                           
-                         
-                       
+                <?php     
+                          //start for the left menu for each module
+                          $j=0;
+                          foreach ($this->session->auth as $key_name => $key_value) {                                 
+                                       $top = explode(" ", $key_value["link0"]);
+                                        if(strtolower($top[0] . $top[1]) ==$module_name) {
+                                               if(count($key_value) >2 ) {
+                                                             echo '<div class="row"><div class="col-sm-2 link">';
+                                                             echo '<aside class="sidebar-menu">';
+                                                           foreach ($key_value as $name => $value) {
+                                                                                if($j > 1){
+                                                                                                if($j %2 ==0){
+                                                                                                    $link_name=$value;
+                                                                                                }
+                                                                                                if(is_string($name))
+                                                                                                {
+                                                                                                            if ($v_result = explode(" ", $value)) {
+                                                                                                                //set to link action value
+                                                                                                                $link_val = strtolower($v_result[0] . $v_result[1]);
+                                                                                                                $mod = explode(" ", $key_value["link0"]);
+                                                                                                            }
+                                                                                                            if (strpos($key_name, 'user') !== false) {
+                                                                                                             if($key_name == 'show_admin_user'){
+                                                                                                              echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';       
+                                                                                                             }
+                                                                                                             else{
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                             }
+                                                                                                         } 
+                                                                                                         else {
+                                                                                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
+                                                                                                         }       
+                                                                                               }
+                                                                                        }
+                                                                                   $j++;
+                                                                                }
+                                                                          echo '</aside></div><div class="col-sm-10">';
+                                                                   }
+                                                            }
+                               }                               
+                               //End of the left menu for each module
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();

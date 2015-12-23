@@ -329,7 +329,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $conditions;
     }
 
-    public function updatesalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,$salary_start_month) {
+    public function updatesalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,$salary_start_month,$absent_amount) {
+        
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
@@ -348,6 +349,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $salary_update_mth=$salary_start_month;
         $resign=  $this->getResigndate($member_id);
         $basic_salary='';
+        $SD = $this->getoldsalarydetail($member_id, $salary_update_yr, $salary_update_mth,$budget_endyear_one,$budget_startyear);
         
         if($resign['resign_date']!=null){
             $resigndate=  explode("-", $resign['resign_date']);
@@ -363,35 +365,37 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             
         }
         else{
-            $SD = $this->getoldsalarydetail($member_id, $salary_update_yr, $salary_update_mth);
+            
             $date_diff=$Salarymaster->date_difference($salary_star_date, $budget_endyear);
             $basic_salary=$bsalary*$date_diff;
            
             if(!empty($SD))
                 {
                     $basic_salary=$basic_salary+$SD['total_salary'];
-                    $old_allowance=$SD['total_all_amount'];
+                    $old_allowance=$SD['total_all_amount']+$allowancetoadd;
                     $date_to_calculate=$date_diff+$SD['count_pay'];
                     echo "basic salary in salary detail ".$basic_salary;
                 }
-            $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$old_allowance,$SM['status']);
+            $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$old_allowance,$SM['status'],$SD['total_all_amount'],$SD['count_pay']);
             $basic_salary=$Allowanceresult['basic_salary_annual'];
-           
+            
+            $latest_otpay = $Salarymaster->getlatestOTPay($SM['member_id'], $budget_startyear, $budget_endyear_one);
             //calculating of overtime 
-            $overtime=$Salarymaster->calculate_overtime_annual($member_id,$SD['total_overtime'],$salary_star_date,$budget_endyear,$date_diff);
+            $overtime=$Salarymaster->calculate_overtime_annual($member_id,$SD['total_overtime'],$salary_star_date,$budget_endyear,$date_diff,$SD['count_pay'],$latest_otpay['overtime']);
             $overtime_fees=$overtime['overtime_annual'];
             $basic_salary=$basic_salary+$overtime_fees;
-            
+           
             //check the user who is absent.
             $absent=  $Salarymaster->checkAbsent($member_id);
             //Get the data of leave setting
             $leavesetting=  $Salarymaster->getleavesetting();
             //calculate absent deduce
             $countabsent=$Salarymaster->CalculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $SM['basic_salary']);
-            $absent_dedution=$countabsent;
+            $absent_dedution=$countabsent+$absent_amount;
+            $basic_salary = $basic_salary-$absent_dedution;
             
             $basic_deduction = $basic_salary * (20 / 100);
-                    echo "SALARY ".$basic_salary;
+                    echo "SALARY ".$basic_deduction;
                     
                     //calculate ssc pay amount to deduce
                     if ($SM['basic_salary'] > 300000) {
@@ -418,11 +422,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         
         $final_result[] = array('income_tax' => $taxs['tax_result'],
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
+            'special_allowance' => $allowancetoadd,
             'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
-//        print_r($final_result);
-//        exit;
-        $this->savesalaryeditdata($final_result,$salary_start_year,$salary_start_month);
+        //print_r($final_result);exit;
         
+       $Result=$this->savesalaryeditdata($final_result,$salary_start_year,$salary_start_month);
+      
+        return $Result;
     }
     
     public function savesalaryeditdata($param,$salary_start_year,$salary_start_month) {
@@ -433,19 +439,26 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $basic_salary = $filter->sanitize($param[0]['basic_salary'], "int");
             $member_id = $filter->sanitize($param[0]['member_id'], "string");
             $allowance_amount = $filter->sanitize($param[0]['allowance_amount'], "int");
+            $special_allowance_amount = $filter->sanitize($param[0]['special_allowance'], "int");
             $income_tax = $filter->sanitize($param[0]['income_tax'], "int");
             $absent_deduction = $filter->sanitize($param[0]['absent_dedution'], "int");
-            $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."'  WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $salary_start_year . "' and MONTH(pay_date)='".$salary_start_month."'";
-            //echo $sql;exit;
-            $result = $this->db->query($sql);
-            $row = $result->fetcharray(); 
+            $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."',"
+                    . "special_allowance='".$special_allowance_amount."' WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $salary_start_year . "' and MONTH(pay_date)='".$salary_start_month."'";
+            //echo $sql;
+            //$this->db->query($sql);
+            if($this->db->query($sql)){
+            $result="pass";  
+            }
+             else {
+            $result="fail";
+            }
             }
             
         } catch (Exception $ex) {
             echo $ex;
         }
-
-        return $row;
+        //print_r($row);exit;
+        return $result;
     }
     public function getpaysalary_month($resignmonth,$resignyear,$member_id) {
        
@@ -503,12 +516,15 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
     
-    public function getoldsalarydetail($member_id, $salary_update_yr, $salary_update_mth) {
+    public function getoldsalarydetail($member_id, $salary_update_yr, $salary_update_mth,$budget_endyear_one,$budget_startyear) {
         try {
             
-            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay, SUM(allowance_amount) as total_all_amount from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<'" . $salary_update_mth . "' and YEAR(pay_date)='" . $salary_update_yr . "'";
-
-            //echo $sql.'<br>';exit;
+            $sql = "select SUM((case when (basic_salary) then basic_salary else 0 end))as total_salary,COUNT(pay_date)as count_pay, SUM(allowance_amount) as total_all_amount,"
+                    . "SUM((case when (overtime) then overtime else 0 end)) as total_overtime from salary_detail where member_id='" . $member_id . "' and YEAR(pay_date)<='" . $salary_update_yr . "' and MONTH(pay_date)>'" . $salary_update_mth . "'";
+//            $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
+//                    . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
+//                    "' order by created_dt desc limit 1";
+            //echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
