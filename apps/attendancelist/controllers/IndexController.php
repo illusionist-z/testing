@@ -15,7 +15,18 @@ class IndexController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti = $Admin->GetAdminNoti($id);
+        foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id); 
+            }
+        }
         $this->view->setVar("noti", $noti);
         $this->act_name =  $this->router->getActionName(); 
         $this->view->t = $this->_getTranslation();
@@ -41,6 +52,7 @@ class IndexController extends ControllerBase {
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);        
+       // var_dump($ResultAttlist);exit;
         if($this->permission==1){
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;

@@ -53,15 +53,15 @@ if ($offset < 0) {
                 <thead>
                     <tr>
 
-                        <th width="150px"><?= $t->_("date"); ?></th>
-                        <th width="150px"><?= $t->_("username"); ?></th>
-                        <th width="150px"><?= $t->_("checkin"); ?></th>
-                        <th width="150px"><?= $t->_("late"); ?></th>
-                        <th width="150px"><?= $t->_("latereason"); ?></th>
-                        <th width="150px"><?= $t->_("checkout"); ?></th>
-                        <th width="150px"><?= $t->_("workingtime"); ?></th>
-                        <th width="150px"><?= $t->_("overtime"); ?></th>
-                        <th width="150px"><?= $t->_("location"); ?></th>
+                        <th width="110px" ><?= $t->_("date"); ?></th>
+                        <th ><?= $t->_("username"); ?></th>
+                        <th ><?= $t->_("checkin"); ?></th>
+                        <th ><?= $t->_("late"); ?></th>
+                        <th ><?= $t->_("latereason"); ?></th>
+                        <th ><?= $t->_("checkout"); ?></th>
+                        <th ><?= $t->_("workingtime"); ?></th>
+                        <th ><?= $t->_("overtime"); ?></th>
+                        <th ><?= $t->_("location"); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -163,7 +163,7 @@ if ($offset < 0) {
 
                             </td>
                             <td class="row">
-                                <div class="span3"><?php echo $filter->sanitize($result->attendances->location, "string");?>
+                                <div class="span1"><?php echo $filter->sanitize($result->attendances->location, "string");?>
                                  <a href="#" onclick="return false;"  style="float:right;margin-top:12px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>
                             </td>
                         </tr>

@@ -22,7 +22,22 @@ class IndexController extends ControllerBase
         $this->view->t = $this->_getTranslation();
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
+        $Admin=new Db\CoreMember();
+        $id = $this->session->user['member_id'];
+        foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id); 
+            }
+        }
 
+        $this->view->setVar("noti",$noti);
     }
         /**
         * @author David JP <david.gnext@gmail.com>
@@ -33,10 +48,6 @@ class IndexController extends ControllerBase
     public function IndexAction() {
         //for paging and edit user
         $User=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$User->GetAdminNoti($id);
-    //    print_r($noti);exit;
-        $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
         $this->assets->addJs('apps/manageuser/js/search.js'); 
