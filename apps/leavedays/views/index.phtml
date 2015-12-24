@@ -15,7 +15,7 @@
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
-                    <a><img src="../../common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
+                    <a><img src="<?php echo $baseUri?>common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
                     <!-- Navbar Right Menu -->
@@ -23,13 +23,13 @@
                         <ul class="nav navbar-nav">   
                             <li>
                                     <a href="<?php echo $baseUri?>help/index/searchHelp" target="_blank" class="" title="Help" id="help_icon" style="padding-top: 20px;">
-                                               <img src="../../common/img/help_browser.png">
+                                               <img src="<?php echo $baseUri?>common/img/help_browser.png">
                                         </a>
                                </li>  
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
-                                    <img src="../../common/img/noti.png">
+                                    <img src="<?php echo $baseUri?>common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
                                   <div id="notificationContainer">
@@ -58,7 +58,7 @@
                                                       }
                                                  }
                                       ?>                                                
-                                        <img src="../../uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="<?php echo $baseUri?>uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -79,7 +79,7 @@
                                                       }
                                                  }
                                       ?>                                                
-                                        <img src="../../uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                        <img src="<?php echo $baseUri?>uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <p>
                                             <b><?php echo $this->session->user['member_login_name']; ?></b>
                                            <!-- <small><b>Member since Nov. 2012</b></small>-->
