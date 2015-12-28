@@ -32,7 +32,7 @@
 $(document).ready(function(){
     var location="-";
        jQuery(document).ready(function($) {
-         location=geoplugin_city()+","+geoplugin_countryName();
+         location=geoplugin_city()+geoplugin_countryName();
          });
     $('.checkin').on('click',function(){
 //    $('.geolocation').ready(function() {

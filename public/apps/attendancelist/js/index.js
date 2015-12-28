@@ -114,14 +114,17 @@ var Attendance = {
            window.location.href='editTime/'+id+'/'+localtime;         
        },
        
-        todaylist: function (){                       
+        todaylist: function (){  
+           // $('table.listtbl tbody').empty();
         var name = document.getElementById('namelist').value;        
-        
+         
         $.ajax({
         url: 'todaylist?namelist='+name ,
         type: 'GET',
         success: function (d) {
+            //alert(d);
          $('body').html(d);
+         link_height() ;
          // Attendance.init();
         },
         error: function (d) {

@@ -69,8 +69,7 @@ class IndexController extends ControllerBase
      */
     public function getcalmemberidAction() {
        $data = $this->request->get('uname');
-       //print_r($uname);exit;
-        //$leavetype = new Calender();
+      
         $cond = $this->calendar->memidcal($data);
         echo json_encode($cond);
         $this->view->disable();
