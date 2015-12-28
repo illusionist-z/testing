@@ -26,22 +26,25 @@
                  $.ajax({
                 url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
                 type: 'GET',
-                success: function (d) {                    
-                    var json_obj = $.parseJSON(d);//parse JSON                    
+                success: function (d) {    
+                  
+                    var json_obj = $.parseJSON(d);//parse JSON      
                     var leave_left="";
                     //alert(json_obj);
                     $("tbody").empty();
                     $("tfoot").empty();
                      var  status;
                     for (var i in json_obj)
-                    {
-                        if(json_obj[i].total_leavedays >json_obj[i].max_leavedays){
+                    { var max=json_obj[i].max_leavedays; 
+                      var tl=json_obj[i].total_leavedays;
+                        //alert(tl);
+                        if(max<tl){
 
                                    leave_left= json_obj[i].total_leavedays-json_obj[i].max_leavedays;
                                     status=" Days In Absent";
 
                             }
-                          if(json_obj[i].total_leavedays < json_obj[i].max_leavedays){
+                          else{
                              leave_left=json_obj[i].max_leavedays-json_obj[i].total_leavedays;
                               status=" Left";
                          }

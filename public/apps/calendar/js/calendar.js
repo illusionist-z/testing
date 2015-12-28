@@ -369,6 +369,7 @@ Calendar.Dialog = {
             async: false,
             dataType: "json",
             success: function (d) {
+               
                 if (false == d.cond) {
                     if (d.title) {
                         $("#title_create_event").attr("placeholder", d.title).css("border", "2px solid red");
