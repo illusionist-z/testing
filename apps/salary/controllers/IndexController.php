@@ -140,7 +140,7 @@ class IndexController extends ControllerBase {
       $this->assets->addJs('apps/salary/js/salary.js');
         $this->act_name =  $this->router->getActionName(); 
         $this->permission = $this->setPermission($this->act_name); 
-          var_dump($this->permission);
+          
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
       
