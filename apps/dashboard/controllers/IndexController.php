@@ -19,28 +19,22 @@ class IndexController extends  ControllerBase {
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
         
-       //$this->view->t = $this->_getTranslation();
-        $this->module_name =  $this->router->getModuleName();        
-        $this->permission = $this->setPermission();             
+        $this->view->t = $this->_getTranslation();
+        $this->module_name =  $this->router->getModuleName();
+        //$this->permission = $this->setPermission($this->module_name);
         $this->view->module_name=$this->module_name;
-        $this->view->permission = $this->permission;
+        //$this->view->permission = $this->permission;
     }           
     /**
         * 
         *Check User or Admin 
         */
-       public function indexAction() {
-        //$this->aa();exit;
-         if ($this->permission==1) {
+       public function indexAction() {        
+         
                 $this->view->disable();
                 //Go to user dashboard
-                 $this->response->redirect('dashboard/index/admin');
-                 }   
-                else {
-                $this->view->disable();
-                //Go to admin dashboard
                $this->response->redirect('dashboard/index/user');
-                }
+         
              }
         /**
         * show admin dashboard
@@ -48,7 +42,7 @@ class IndexController extends  ControllerBase {
         * get last created member name
         * @type array {$gname}
         */
-    public function adminAction() { 
+    public function adminAction() {
     //echo $this->permission;exit;
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
@@ -63,14 +57,15 @@ class IndexController extends  ControllerBase {
     $leave_name =$CheckLeave->checkleave();
     $status     =$CheckLeave->todayattleave();
     $coreid = new  \salts\Dashboard\Models\CorePermissionGroupId();
-    if ($this->permission==1) {
+    if ($this->permission== 1) {
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
     $this->view->setVar("lname",$leave_name['leave_name']);
     $this->view->setVar("name",$GetName);
     $this->view->setVar("newnumber",$newmember);
-    $this->view->t = $this->_getTranslation();         }
+    $this->view->t = $this->_getTranslation();
+    }
       
        else {
                 //Go to user dashboard
@@ -91,6 +86,7 @@ class IndexController extends  ControllerBase {
     public function userAction() {
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
+//        if ($this->permission == 1) {
         $noti=$User->GetUserNoti($id);
         $this->view->setVar("noti",$noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
@@ -99,6 +95,11 @@ class IndexController extends  ControllerBase {
         $this->view->setVar("numatt",$numofatt);
         $this->view->setVar("numleaves",$numofleaves);
         $this->view->t = $this->_getTranslation();
+//        }
+//        else{
+//                 $this->view->disable();              
+//                $this->response->redirect('core/index');
+//        }
     }
   /**
      * set location,latitude and longitude to session
@@ -112,7 +113,7 @@ class IndexController extends  ControllerBase {
         $this->session->set('location', array(
              'location'=>$add,
             'offset' => $offset
-        )); 
+        ));
         
     }
     

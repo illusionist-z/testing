@@ -119,10 +119,10 @@ var Attendance = {
         
         $.ajax({
         url: 'todaylist?namelist='+name ,
-        type: 'GET',
+        type: 'GET',        
         success: function (d) {
          $('body').html(d);
-         // Attendance.init();
+         link_height();
         },
         error: function (d) {
             alert('error');

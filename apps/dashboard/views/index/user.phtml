@@ -19,15 +19,15 @@ use Phalcon\Tag as Tag; ?>
 </script>
 
 <?php
-//foreach ($this->session->auth as $key_name => $key_value) {
-//             
-//            if ($key_name == $this->router->getModuleName()) {
-//                //Go to user dashboard
-//                $this->view->disable();
-//                $this->response->redirect('dashboard/index/admin');
-//            }   
-//            
-//        }
+foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == $this->router->getModuleName()) {
+                //Go to user dashboard
+                $this->view->disable();
+                $this->response->redirect('dashboard/index/admin');
+            }   
+            
+        }
 ?>
 
 <!-- Main content -->

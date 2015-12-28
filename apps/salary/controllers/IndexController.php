@@ -30,8 +30,8 @@ class IndexController extends ControllerBase {
 
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
-        //$this->view->module_name =  $this->router->getModuleName();
-        $this->permission = $this->setPermission();
+        $this->action_name =  $this->router->getActionName();
+        $this->permission = $this->setPermission($this->action_name);
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
@@ -51,7 +51,7 @@ class IndexController extends ControllerBase {
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
         //var_dump($getsalarydetail);exit;
-        if($this->permission==1){
+        if($this->permission == 1) {
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->salarydetail = $getsalarydetail;
         
@@ -102,7 +102,7 @@ class IndexController extends ControllerBase {
         $deduce=$TaxDeduction->getdedlist();
         
         $position = $this->salaryconfig->position;
-        if($this->permission==1){
+        if($this->permission == 1){
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("usernames", $user_name);
         $this->view->position = $position;
@@ -132,7 +132,7 @@ class IndexController extends ControllerBase {
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
         //print_r($geteachmonthsalary);exit;
-        if($this->permission==1){
+        if($this->permission== 1){
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
         
@@ -257,7 +257,7 @@ class IndexController extends ControllerBase {
         $All_List = new \salts\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         //echo $this->permission;
-        if($this->permission==1){
+        if($this->permission == 1){
         $this->view->setVar("list", $list); //paginated data
         
         $this->view->module_name =  $this->router->getModuleName();
@@ -379,7 +379,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("result", $list); //paginated data
         $Deduction = new SalaryTaxsDeduction();
         $dlist = $Deduction->getdedlist();
-        if($this->permission==1){
+        if($this->permission== 'salarysetting'){
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("noti",$noti);
         $this->view->setVar("deduction", $dlist);

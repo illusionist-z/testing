@@ -9,7 +9,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('common/js/export.js');        
+        $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/attendancelist/js/index.js');
         $this->config = \Module_Config::getModuleConfig('leavedays');
@@ -17,10 +17,10 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
-        
         $this->view->t = $this->_getTranslation();
-        $this->module_name =  $this->router->getModuleName();        
-        $this->permission = $this->setPermission();             
+        $this->module_name =  $this->router->getModuleName();
+        $this->act_name = $this->router->getActionName();
+        $this->permission = $this->setPermission($this->act_name);
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
     }        
@@ -31,7 +31,7 @@ class IndexController extends ControllerBase {
      */
     public function todaylistAction( ) {
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
-        $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
+        $this->assets->addCss('common/css/jquery-ui-timepicker.css');
         $id=$this->session->user['member_id'];        
        
         $name = $this->request->get('namelist');
@@ -40,7 +40,7 @@ class IndexController extends ControllerBase {
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);        
-        if($this->permission==1){
+        if($this->permission == 1){
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;       

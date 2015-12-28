@@ -16,8 +16,10 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
-        $this->view->module_name =  $this->router->getModuleName();
-        $this->permission = $this->setPermission();
+        $this->module_name =  $this->router->getModuleName();
+        $this->view->module_name = $this->module_name;
+        //$this->act_name =  $this->router->getActionName();
+        $this->permission = $this->setPermission($this->module_name);
         $this->view->t = $this->_getTranslation();
     }
         /**
@@ -52,7 +54,7 @@ class IndexController extends ControllerBase
         
         
         
-        if($this->permission==1){
+        if($this->permission == 1){
         $this->view->modulename = $this->module_name;
         $this->view->setVar('username', $getname);
         $this->view->setVar('Result', $list);

@@ -9,11 +9,11 @@ class IndexController extends ControllerBase
         parent::initialize();  
         $this->calendar = new \salts\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('apps/calendar/css/calendar.css');        
-        $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
+        $this->assets->addCss('apps/calendar/css/calendar.css');
+        $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');
         $this->assets->addJs('apps/calendar/js/moment.min.js');
         $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
-        $this->assets->addJs('apps/calendar/js/calendar.js');   
+        $this->assets->addJs('apps/calendar/js/calendar.js');
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
         //$this->module_name =  $this->router->getModuleName();
@@ -126,7 +126,7 @@ class IndexController extends ControllerBase
             $res['cond']=FALSE;
             $res['date']="End date must be greater than start date";
         }
-        else {            
+        else {
             $res['cond']=TRUE;
             $event=$this->calendar->create_event($member_id,$creator_name,$creator_id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;
