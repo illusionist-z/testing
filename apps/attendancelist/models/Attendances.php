@@ -90,7 +90,8 @@ class Attendances extends Model {
                          ->where('attendances.att_date >= :start:', array('start' => $start))
                          ->andWhere('attendances.att_date <= :end:', array('end' => $end))
                          ->andWhere('attendances.member_id = :id:', array('id' => $id))
-                         ->andWhere('core.deleted_flag = 0')                        
+                         ->andWhere('core.deleted_flag = 0')   
+                         ->orderBy('attendances.att_date DESC')
                          ->getQuery()
                          ->execute();          
                 
@@ -215,7 +216,7 @@ class Attendances extends Model {
          $conditions=$this->setCondition($year, $month, $username);
               $sql = $select;
               if (count($conditions) > 0) {
-              $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0";
+              $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0 order by att_date desc";
               }
              //echo $sql;exit;
               $result = $this->db->query($sql);
@@ -247,7 +248,7 @@ class Attendances extends Model {
               $conditions[] = "attendances.att_date <=  ' " . $end . " ' ";
               }
               if ($username) {
-              $conditions[] = "full_name ='" . $username . "'";
+              $conditions[] = "member_login_name ='" . $username . "'";
               }
                
         return $conditions;

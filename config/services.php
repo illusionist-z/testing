@@ -7,6 +7,9 @@ use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\DI\FactoryDefault;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
+use Phalcon\Http\Response\Cookies;
+use Phalcon\Crypt;
+
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -84,12 +87,50 @@ $di->set("logger", function() use ($config) {
     return new \Library\Core\Logger($file_name); // \Phalcon\Logger\Adapter\File($file_name);
 });
 
-//Set database
-$di->set("db", function() use ($config) {
+//Set database before login
+$di->set("login_db", function() use ($config) {
     return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
         "host" => $config->database->host,
         "username" => $config->database->username,
         "password" => $config->database->password,
         "dbname" => $config->database->dbname
     ));
+});
+
+//Set database after login success
+
+//$di->set("db", function() use ($config) {
+//    return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+//        "host" => $config->database->host,
+//        "username" => $config->database->username,
+//        "password" => $config->database->password,
+//        "dbname" => $config->database->dbname
+//    ));
+//});
+
+//print_r($_SESSION['db_config']);
+$di->setShared('db',function() {
+    //$database = (isset($_SESSION['db_config'])) ? $_SESSION['db_config'] : $config->database->database;
+    $database=$_SESSION['db_config'];
+    return new \Phalcon\DB\Adapter\Pdo\Mysql([  'host'        => $database['host'],
+                                                'dbname'      => $database['db_name'],
+                                                'username'    => $database['user_name'],
+                                                'password'    => $database['db_psw'],
+                                                'charset'     => 'utf8'
+                                            ]);
+});
+$di->set('cookies', function () {
+    $cookies = new Cookies();
+
+    $cookies->useEncryption(false);
+
+    return $cookies;
+});
+
+$di->set('crypt', function () {
+    $crypt = new Crypt();
+
+    $crypt->setKey('#1dj8$=dp?.ak//j1V$'); // Use your own key!
+
+    return $crypt;
 });

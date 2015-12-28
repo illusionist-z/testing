@@ -1,5 +1,4 @@
 <?php namespace salts\Dashboard\Controllers;
-
 // use library
 use Library;
 

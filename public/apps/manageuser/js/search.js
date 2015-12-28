@@ -33,17 +33,27 @@ var User = {
        },
         search: function(){
         var name = document.getElementById('username').value;
-        $.ajax({
-        type: 'GET',
-        url: "index?username="+name,
-        success:function(result){       
-          $('body').html(result);
-           $('.dropdown-toggle').dropdown();
-        },
-        error: function (d) {
-            alert('error');
+        if(name === ''){
+            $('tbody').empty();           
+             var output = "<tr>"
+                                + "<td colspan='9'><center>No data to display</center></td>"                           
+                                 + "</tr>"
+                    $("tbody").append(output);
         }
-        });
+        else{
+              $.ajax({
+                    type: 'GET',
+                    url: "index?username="+name,
+                    success:function(result){       
+                      $('body').html(result);
+                       $('.dropdown-toggle').dropdown();
+                    },
+                    error: function (d) {
+                        alert('error');
+                    }
+                    });
+        }
+      
         }
 };
     

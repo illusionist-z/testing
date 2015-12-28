@@ -9,7 +9,7 @@ var Leave = {},dict=[];
 
 Leave.init =  function(reload){
            $("tfoot").html($('tbody').html()); //for csv           
-            pager.perpage =7;            
+            pager.perpage = 7;            
             pager.para = $('tbody > tr');
             pager.showPage(1);
             $("tbody").show();
@@ -31,6 +31,7 @@ Leave.init =  function(reload){
             }
      };
 Leave.List = function () {
+    Leave.init();
            search_list();  
 };          
     

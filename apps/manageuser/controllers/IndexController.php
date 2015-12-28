@@ -17,10 +17,12 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
         $this->module_name =  $this->router->getModuleName();
-        $this->view->module_name = $this->module_name;
-        //$this->act_name =  $this->router->getActionName();
         $this->permission = $this->setPermission($this->module_name);
+         $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
+        $this->view->module_name = $this->module_name;
+        $this->view->permission = $this->permission;
+
     }
         /**
         * @author David JP <david.gnext@gmail.com>
@@ -33,6 +35,7 @@ class IndexController extends ControllerBase
         $User=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$User->GetAdminNoti($id);
+    //    print_r($noti);exit;
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
@@ -40,8 +43,7 @@ class IndexController extends ControllerBase
         $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
-        
-          $member_count = new Db\CoreMember();
+        $member_count = new Db\CoreMember();
        $member_count_number = $member_count->getNumberCount();
        $this->view->member_count_number = $member_count_number;
         if($member_count_number->deleted_flag == 200)
@@ -54,7 +56,7 @@ class IndexController extends ControllerBase
         
         
         
-        if($this->permission == 1){
+        if($this->permission==1){
         $this->view->modulename = $this->module_name;
         $this->view->setVar('username', $getname);
         $this->view->setVar('Result', $list);

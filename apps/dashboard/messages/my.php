@@ -1,5 +1,4 @@
 <?php
-
 $messages = array(
      "dashboard" => "ပင္မစာမ်က္ႏွာ",
      "user_dashboard" => "ပင္မစာမ်က္ႏွာ",
@@ -22,6 +21,5 @@ $messages = array(
     "latest_news"=> "ေနာက္ဆံုးသတင္းမ်ား",
     "no leave"=> "ခြင္႔မယူေသာလူမ်ား",
     "latest_news" => "ေနာက္ဆံုုးအခ်က္အလက္",
-    "viewallmember" => "မန္ဘာအားလံုုးၾကည္႔ရန္"
-    
+    "viewallmember" => "မန္ဘာအားလံုုးၾကည္႔ရန္"    
 );

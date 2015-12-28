@@ -15,7 +15,15 @@
             var namelist = document.getElementById('namelist').value;
             //window.location.href = baseUri + 'leavedays/search?ltype='+leave_type+'&month='+month+'&namelist='+namelist;
             //  var $form = $('#frm_search');
-            $.ajax({
+                 if(leave_type=="" && month=="" && namelist==""){
+                        $('tbody').empty();
+                        var output = "<tr>"
+                                       + "<td colspan='9'><center>No data to display</center></td>"                           
+                                       + "</tr>"
+                               $("tbody").append(output);                  
+                }
+            else{
+                 $.ajax({
                 url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
                 type: 'GET',
                 success: function (d) {                    
@@ -67,5 +75,7 @@
                     alert('error');
                 }
             });
+            }
+           
         }
 

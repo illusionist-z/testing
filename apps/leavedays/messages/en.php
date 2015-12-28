@@ -6,6 +6,7 @@ $messages = array(
   "month" => "Month",
   "name" => "Name",
   "date" => "Date",
+    "searchusername"=> "Search User Name",
   "start_date" => "Start Date",
   "end_date" => "End Date",
   "leave_day" => "Leave Days",

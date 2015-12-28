@@ -24,22 +24,25 @@ class IndexController extends ControllerBase
         $this->assets->addJs('apps/document/js/FileSaver.js');
         $this->assets->addJs('apps/document/js/FileSaver.min.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
-        $this->permission = $this->setPermission();
+         $this->act_name =  $this->router->getActionName(); 
+        $this->permission = $this->setPermission($this->act_name ); 
         $code=$this->session->permission_code;
          $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
-//        $coreid = new CorePermissionGroupId();
-//        foreach($coreid as $data){ 
-//       
-//        if($code==$data->group_id){
-//            $noti=$Admin->GetAdminNoti($id);}
-//        else{
-//            $id = $this->session->user['member_id'];
-//            $noti=$Admin->GetUserNoti($id);
-//        }
+         $this->view->permission = $this->permission;
+        
+        $coreid = new CorePermissionGroupId();
+        foreach($coreid as $data){ 
+       
+        if($code==$data->group_id){
+            $noti=$Admin->GetAdminNoti($id);}
+        else{
+            $id = $this->session->user['member_id'];
+            $noti=$Admin->GetUserNoti($id);
+        }
       $this->view->setVar("noti",$noti);
-//         }
+       }
     }
 
     
@@ -54,16 +57,16 @@ class IndexController extends ControllerBase
         $Companyinfo= new CompanyInfo();
         $cominfo= $Companyinfo->GetCompanyInfo();
            $coreid = new CorePermissionGroupId();
-        foreach ($this->session->auth as $key_name => $key_value) {
-         if($key_name == 'show_admin_document'){
+       
+         if($this->permission==1){
        
         $this->view->salary_info=$result; 
         $this->view->cominfo=$cominfo;
         }
-       else if($key_name == 'user_dashboard'){
+       else{
             $this->response->redirect('core/index');
         }
-         }
+         
     }
   
     /**
@@ -75,14 +78,13 @@ class IndexController extends ControllerBase
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getsalary_info();
            $coreid = new CorePermissionGroupId();
-        foreach ($this->session->auth as $key_name => $key_value) {
-         if($key_name == 'show_admin_document'){
+       if($this->permission==1){
          
             $this->view->salary_info=$result;
         }
-          else if($key_name == 'user_dashboard'){
+          else {
             $this->response->redirect('core/index');
-        }
+        
           }
     }
     
@@ -91,13 +93,12 @@ class IndexController extends ControllerBase
         $Cinfo=new \salts\Document\Models\CompanyInfo();
         $info=$Cinfo->GetCompanyInfo();
         $coreid = new CorePermissionGroupId();
-       foreach ($this->session->auth as $key_name => $key_value) {
-         if($key_name == 'show_admin_document'){
+       if($this->permission==1){
             $this->view->setVar("info",$info);
         }
-        else if($key_name == 'user_dashboard'){
+        else {
             $this->response->redirect('core/index');
-        }
+    
        }
        }
     
@@ -108,6 +109,7 @@ class IndexController extends ControllerBase
      */
     public function editinfoAction(){
         $filename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
+        print_r($_FILES["fileToUpload"]["tmp_name"]);
         $target_dir = "uploads/";
         $target_file = $target_dir . $filename;
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);

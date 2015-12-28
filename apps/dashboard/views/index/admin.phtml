@@ -7,18 +7,17 @@
             document.getElementById('xtraInfo').style.display = 'none';
         }
     }
-
 </script>
 <?php
-foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'user') {
+
+foreach ($this->session->auth as $key_name => $key_value) {             
+                if ($key_name == 'user_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
-                $this->response->redirect('dashboard/index/user');
-            } 
-            
+                $this->response->redirect('core/index');
+                } 
         }
+        
 ?>
 <div class="" >
     <!-- Content Header (Page header) -->
@@ -31,7 +30,6 @@ foreach ($this->session->auth as $key_name => $key_value) {
             <li class="active"><?= $t->_("dashboard"); ?></li>
         </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
         <!-- Info boxes -->
@@ -39,8 +37,8 @@ foreach ($this->session->auth as $key_name => $key_value) {
         </div><!-- /.row -->
         <div class="row">
             <div class="col-md-12">
-                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/user-man-accept-icon.png" class="imgstyle"><font style="color:green;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
-                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/user-man-delete-icon.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?></a></div>
+                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/user_male_accept.png" class="imgstyle"><font style="color:green;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
+                <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/user_male_delete3.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?></a></div>
                             </div>
                             <div class="col-md-12">
                                 <div style="height:30px"></div>
@@ -101,7 +99,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
 
 
                                                             <div class="col-md-7 col-md-offset-3">
-                                                                <h1 style="font-size:150%"><?= $t->_("current_time"); ?> :<span id="ct" style="color:red;" ></span> </h1>
+                                                                <h1 style="font-size:150%"><?= $t->_("current_time"); ?> : <span id="ct" style="color:red;" ></span> </h1>
                                                             </div><br><br>
                                                             <div class="col-md-8 col-md-offset-3">
                                                                 <form id="theForm" name="theForm" method="post" action="">
@@ -149,35 +147,33 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                         <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
                                                             <li>
                                                                 People who attend no leave
-                                                                <ul><?php
-                                                                $count = [];
-                                                                foreach ($nlname as $na) { ?>
-                                                                   <li id="noleaveli">
+                                                                <ul>
                                                                         <?php
-                                                                        if ($na['member_profile'] == null) {
-                                                                            $img = "profile1.jpg";
-                                                                        } else {
-                                                                            $img = $na['member_profile'];
-                                                                            if(file_exists('./uploads/'.$img)){                                                            
-                                                                                $img=$img;                                                            
-                                                                            }else{  
-                                                                                $img = "profile1.jpg";                                                                 
-                                                                            }
-                                                                        }
-                                                                        ?> 
-
-
+                                                                                $noleave = [];
+                                                                                foreach ($nlname as $na) { 
+                                                                        ?>
+                                                                               <li id="noleaveli">
+                                                                                <?php
+                                                                                    if ($na['member_profile'] == null) {
+                                                                                        $img = "profile1.jpg";
+                                                                                    } else {
+                                                                                        $img = $na['member_profile'];
+                                                                                        if(file_exists('./uploads/'.$img)){                                                            
+                                                                                            $img=$img;                                                            
+                                                                                        }else{  
+                                                                                            $img = "profile1.jpg";                                                                 
+                                                                                        }
+                                                                                    }
+                                                                                 ?>                 
                                                                         <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
                                                                         <?= $na['member_login_name'] ?>
                                                                     </li>
                                                                     <?php 
-                                                                         array_push($count, $na['member_login_name']);
+                                                                         array_push($noleave, $na['member_login_name']);
                                                                             } ?>
                                                                 </ul>
                                                                 <?php 
-                                                                    //echo sizeof($count);
-                                                                        if(sizeof($count) > 3){
-                                                                           // echo $na['full_name']." :::::::";
+                                                                        if(sizeof($noleave) > 2){
                                                                            ?>
                                                                  <style type="text/css">#noleavelist,hr{
                                                                                         display:block;
@@ -188,12 +184,10 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                                         display:none;
                                                                                         }</style>             
                                                                 <?php
-                                                                          // echo $na['full_name']; 
                                                                         }
                                                                 ?>
                                                                 <hr>
                                                                 <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelist"><?= $t->_("View All"); ?></a>
-<!--                                                                <a href="../../leavedays/index/noleavelist"><span id="viewallnoleave"><?php echo $t->_("View All"); ?></span></a>-->
                                                             </li>
                                                         </ul>
                                                         <ul class="nav nav-pills nav-stacked">
@@ -224,9 +218,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                             } ?>
                                                                 </ul>
                                                                   <?php 
-                                                                    //echo sizeof($count);
-                                                                        if(sizeof($count) > 3){
-                                                                           // echo $na['full_name']." :::::::";
+                                                                        if(sizeof($count) > 2){
                                                                            ?>
                                                                  <style type="text/css">#leavemostlist,hr{
                                                                                         display:block;
@@ -237,7 +229,6 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                                         display:none;
                                                                                         }</style>
                                                                 <?php
-                                                                          // echo $na['full_name']; 
                                                                         }
                                                                 ?>
                                                                 <hr>
@@ -257,7 +248,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                         <div class="box-header with-border">
                                             <h3 class="box-title"><?= $t->_("last_member"); ?></h3>
                                             <div class="box-tools pull-right">
-                                                <span class="label label-danger"><?php echo $newnumber. $t->_("new_member"); ?> </span>
+                                                <span class="label label-danger"><?php echo $newnumber.' '. $t->_("new_member"); ?> </span>
                                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                             </div>
                                         </div><!-- /.box-header -->
@@ -267,8 +258,6 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                  $member = [];
                                                  foreach ($name as $v) { ?>
                                                     <li>
-                                                        <!--<img src="../../common/img/.jpg" alt="User Image"/>-->
-                                                        <!--<img src="../../uploads/<?php echo $v->member_profile; ?>" class="user-image" alt="User Image"/>-->
                                                         <?php
                                                         if ($v->member_profile == null) {
                                                             $img = "profile1.jpg";
@@ -277,8 +266,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                             if(file_exists('./uploads/'.$img)){                                                            
                                                                 $img=$img;                                                            
                                                             }else{  
-                                                                $img = "profile1.jpg";
-                                                                 
+                                                                $img = "profile1.jpg";                                                                 
                                                             }
                                                         }
                                                         ?>                                                 
@@ -291,12 +279,9 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                             } ?>
                                             </ul><!-- /.users-list -->
                                             <?php 
-                                               // echo $member[0];
-                                                         //echo sizeof($member);
                                                                         if(sizeof($member) > 3){
-                                                                           // echo $v->full_name;
                                                                            ?>
-                                                                 <style type="text/css">.uppercase{
+                                                                 <style type="text/css">.uppercase,hr{
                                                                                         display:block;
                                                                                         }</style> 
                                                                 <?php
@@ -305,7 +290,6 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                                         display:none;
                                                                                         }</style>             
                                                                 <?php
-                                                                          // echo $na['full_name']; 
                                                                         }
                                                                 ?>
                                         </div><!-- /.box-body -->

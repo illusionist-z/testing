@@ -1,5 +1,4 @@
 <?php
-
 $messages = array(
     "dashboard" => "ホム",
     "user_dashboard" => "ホム",

@@ -1,9 +1,6 @@
 <?php
-
 namespace salts\Dashboard\Models;
-
 use Phalcon\Mvc\Model;
-
 date_default_timezone_set("UTC");
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -67,11 +64,9 @@ class Attendances extends Model {
             $outtime = $att->checkout_time;
             //check already checkout or not
             if ($outtime != 0) {
-                $status = "Already Checkout";
-               
+                $status = "Already Checkout";               
             } else {
-                $workingHour = strtotime($mydate)-strtotime($att->checkin_time);
-                
+                $workingHour = strtotime($mydate)-strtotime($att->checkin_time);                
                 if ($workingHour > 28800) {
                 $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',');
                 } else {
@@ -80,15 +75,12 @@ class Attendances extends Model {
                 $this->db->query("UPDATE attendances SET "
                      . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
                     . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
-                $status = "Successfully Checked Out ";
-                
+                $status = "Successfully Checked Out ";                
             }
         } else {
         //check in first
-         $status = "Please Check In First ";
-         
-        }
-       
+         $status = "Please Check In First ";         
+        }       
         return $status;
     }
 
@@ -96,16 +88,15 @@ class Attendances extends Model {
      * @author david
      * @return array {leave name}
      * @return array {no leave name}
+     * @version saw zin min tun
      */
     public function checkleave() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
-        //select where user most leave taken
-        /* $query    ="select member_login_name from core_member where member_id in
-          (select member_id from absent group by member_id order by count(*) DESC) limit 3"; */
+        //select where user most leave taken        
         $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=0 group by a.member_id "
+                . "where a.deleted_flag=1 and c.deleted_flag = 0 group by a.member_id "
                 . "order by count(*) desc limit 3";
         $data = $this->db->query($query);
         //select where no leave name in current month

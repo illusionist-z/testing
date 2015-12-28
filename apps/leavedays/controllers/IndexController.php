@@ -18,14 +18,13 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/css/style.css');
-        
+        $this->assets->addCss('common/css/css/style.css');        
         $this->assets->addJs('common/js/export.js');        
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
         
         $this->view->module_name =  $this->router->getModuleName();
-        $this->act_name =  $this->router->getActionName();
-        $this->permission = $this->setPermission($this->act_name);
+         $this->act_name =  $this->router->getModuleName(); 
+        $this->permission = $this->setPermission($this->act_name ); 
         $this->view->t = $this->_getTranslation();
         $this->view->permission = $this->permission;
     }
@@ -70,7 +69,7 @@ class IndexController extends ControllerBase {
         
         $name = $userlist::getinstance()->getusername(); 
         
-        if($this->permission== 1){
+        if($this->permission==1){
         $this->view->setVar("name",$name);
         $this->view->setVar("Leavetype", $ltype);
         $this->view->modulename = $this->module_name;
@@ -130,7 +129,7 @@ class IndexController extends ControllerBase {
         $leaves = $this->_leave->getleavelist();
         $max=$this->_leave->getleavesetting();
         $max_leavedays=$max['0']['max_leavedays'];
-          if($this->permission== 1){
+          if($this->permission==1){
         $this->view->max = $max_leavedays;
         $this->view->Getname = $GetUsername;
         $this->view->setVar("Result", $leaves);
@@ -157,7 +156,7 @@ class IndexController extends ControllerBase {
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();
         $setting=$LeaveSetting->getleavesetting();                
-        if($this->permission== 1){
+        if($this->permission==1){
         $this->view->modulename = $this->module_name;
         $this->view->setVar("leave_typelist", $typelist);  
         $this->view->setVar("leave_setting", $setting); 

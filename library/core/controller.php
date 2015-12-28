@@ -28,41 +28,42 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
     }
-    /**
-     * Set Permission
-     * @version David JP<david.gnext@gmail.com>
-     * @return int
-     */
-        public function setPermission($actname) {
+        /**
+        * Set Permission
+        * @return int
+        */
+   
+            public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
-        $allow = array();$permitted = 0;
+        $allow = array();
         //setting permission        
         $coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
-        $core = $coremember::findByRelMemberId($this->session->user['member_id']);
+        
+        if(null === $this->session->user['member_id']){
+            return false;
+        }
+        {
+        $core = $coremember::findByRelMemberId($this->session->user['member_id']); 
         $permission = $core[0]->permission_group_id_user;
         $coreuser2 = new \salts\Auth\Models\Db\CorePermissionGroup();
         $permission_group = $coreuser2->find();
         //get permitted action name
+       
         foreach($permission_group as $v){
-        $permission === $v->page_rule_group ?  $allow[] = $v->permission_code :   $deny = 0;
+        $permission === $v->page_rule_group ?  $allow[] = $v->permission_code :   0;
         }
-        if($allow !== null){
         $permission_name = $this->getPermissionCode($allow);
         foreach($permission_name as $name){
             $name = strtolower(str_replace(' ','',$name));
              $name === $actname ? $permitted = 1 : 0;
         }
-        }
-        else {$permitted = $deny;}
         return $permitted;
+        }
     }
-    /**
-     * @param type $code [] array
-     * @author David JP <david.gnext@gmail.com>
-     */
+    
     public function getPermissionCode($code) {
      $setPermission = array();
-     $corepermission = new \salts\Auth\Models\Db\CorePermission();
+    $corepermission = new \salts\Auth\Models\Db\CorePermission();        
     foreach($code as $c){
         $temp = $corepermission::findByPermissionCode($c);
         foreach($temp as $t){

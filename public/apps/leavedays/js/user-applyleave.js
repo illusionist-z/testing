@@ -25,11 +25,12 @@ var ApplyForm = {
                          case 'description':$("#apply_form_desc").css({border:"1px solid red",color:"red"});                    
                                          $('#apply_form_desc_error').text(cond[i]).css({color:'red'});
                                          repair('#apply_form_desc');break;
-                         case 'sdate'   :$('#apply_form_sdate_error').text(cond[i]).css('color','red'); 
-                                         break;            
-                         case 'edate'    :$("#apply_form_edate").css({border:"none",color:"red"});
+                         case 'sdate'   : $("#apply_form_sdate").css({border:"1px solid red",color:"red"});                    
+                                         $('#apply_form_sdate_error').text(cond[i]).css({color:'red'});
+                                         repair('#apply_form_sdate');break;
+                         case 'edate'    :  $("#apply_form_edate").css({border:"1px solid red",color:"red"});                    
                                          $('#apply_form_edate_error').text(cond[i]).css({color:'red'});
-                                        break;            
+                                         repair('#apply_form_edate');break;
                      }
                  }
                 }

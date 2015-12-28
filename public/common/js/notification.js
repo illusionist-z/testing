@@ -20,31 +20,33 @@ var Noti = {
         });
     },
     Accept: function() {
-        var form = $('#noti_detail');
-         
-
-        $.ajax({
-            type: 'POST',
-            data: form.serialize(),
-            url: baseUri + "leavedays/index/acceptleave",
-            success: function() {
-
-                window.location.href = baseUri + 'dashboard';
-            }
-        });
+        var form = $('#noti_detail');        
+       
+                $.ajax({
+                    type: 'POST',
+                    data: form.serialize(),
+                    url: baseUri + "leavedays/index/acceptleave",
+                    success: function() {
+                        window.location.href = baseUri + 'dashboard';
+                    }
+                });
+        
+        
     },
     Reject: function() {
         var form = $('#noti_detail');
+      
+                $.ajax({
+                    type: 'POST',
+                    data: form.serialize(),
+                    url: baseUri + "leavedays/index/rejectleave",
+                    success: function() {
 
-        $.ajax({
-            type: 'POST',
-            data: form.serialize(),
-            url: baseUri + "leavedays/index/rejectleave",
-            success: function() {
-
-                window.location.href = baseUri + 'dashboard';
-            }
-        });
+                        window.location.href = baseUri + 'dashboard';
+                    }
+                });
+               
+        
     }
 
 

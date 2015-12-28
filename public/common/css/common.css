@@ -383,7 +383,7 @@ a.export {
     background: red;
 }
 .absentcheck{
-     background: url("../img/user-man-delete-icon.png")  0px 0px no-repeat ;   
+     background: url("../img/user_male_delete3.png")  0px 0px no-repeat ;   
      padding: 20px 20px 5px 6px;  
 }
 
@@ -701,3 +701,25 @@ hr{
 #noemailfield{
     color:black;
 }
+#veiwallnotification{
+    text-align: center; 
+    width:50%;
+    margin:auto;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #3c8dbc;
+    padding-bottom: 10px;
+}
+#noti_title{
+   font-size: 25px;
+   margin-top: 10px;
+}
+	#hrstyle {
+		border: 0;
+		border-bottom: dotted 1px #3c8dbc;
+		margin: 1em 0;
+                                margin-top: 10px;
+	}
+       
+ 
+ 

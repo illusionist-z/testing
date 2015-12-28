@@ -2,6 +2,9 @@
 
 namespace salts\Calendar\Controllers;
 use salts\Core\Models\Db;
+use salts\Core\Models\Db\CoreMember;
+
+
 class IndexController extends ControllerBase
 {
     public $calendar;
@@ -9,16 +12,17 @@ class IndexController extends ControllerBase
         parent::initialize();  
         $this->calendar = new \salts\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('apps/calendar/css/calendar.css');
-        $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');
+        $this->assets->addCss('apps/calendar/css/calendar.css');        
+        $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');  
         $this->assets->addJs('apps/calendar/js/moment.min.js');
         $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
-        $this->assets->addJs('apps/calendar/js/calendar.js');
+        $this->assets->addJs('apps/calendar/js/calendar.js');   
         $this->assets->addJs('apps/calendar/js/selectall.js');
         $this->assets->addCss('common/css/css/style.css');
-        //$this->module_name =  $this->router->getModuleName();
-        $this->permission = $this->setPermission();
-        $this->view->t = $this->_getTranslation();
+         $this->act_name =  $this->router->getModuleName(); 
+         $this->permission = $this->setPermission($this->act_name ); 
+         $this->view->permission = $this->permission;
+        $this->view->t = $this->_getTranslation(); 
     }
 
     
@@ -26,7 +30,7 @@ class IndexController extends ControllerBase
         
         $Admin=new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        foreach ($this->session->auth as $key_name => $key_value) {
+          foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
@@ -37,7 +41,8 @@ class IndexController extends ControllerBase
                 //Go to admin dashboard
                $noti=$Admin->GetUserNoti($id); 
             }
-        } 
+        }
+        
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);
@@ -126,7 +131,7 @@ class IndexController extends ControllerBase
             $res['cond']=FALSE;
             $res['date']="End date must be greater than start date";
         }
-        else {
+        else {            
             $res['cond']=TRUE;
             $event=$this->calendar->create_event($member_id,$creator_name,$creator_id,$sdate, $edate, $title,$uname);
             $res['res']=  $event;

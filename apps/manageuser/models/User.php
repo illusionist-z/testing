@@ -50,8 +50,8 @@ class User extends Model {
      * @return type
      * @author david
      */
-    public function useredit($name){
-        $user = Db\CoreMember::findByMemberLoginName($name);
+    public function useredit($id){
+        $user = Db\CoreMember::findByMemberId($id);
         return $user;
     }
     
@@ -93,5 +93,6 @@ class User extends Model {
         $this->db->query("UPDATE core_permission_rel_member SET permission_member_group_is_deleted=1 where rel_member_id ='".$id."'");
         $this->db->query("UPDATE absent SET deleted_flag=1 where member_id ='".$id."'");
         $this->db->query("UPDATE salary_master SET deleted_flag=1 where member_id ='".$id."'");
+       // $this->db->query("DELETE FROM  where rel_member_id ='".$id."'");
     }
 }

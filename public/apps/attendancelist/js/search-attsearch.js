@@ -95,8 +95,7 @@ var Attendance = {
              $('tbody').empty();
            
              var output = "<tr>"
-                            + "<td colspan='9'><center>No data to display</center></td>"
-                           
+                            + "<td colspan='9'><center>No data to display</center></td>"                           
                             + "</tr>"
                     $("tbody").append(output);
                     //Attendance.init();
@@ -195,7 +194,7 @@ var Attendance = {
                       
                     var output = "<tr>"
                             + "<td>" + json_obj[i].att_date + "</td>"
-                            + "<td>" + json_obj[i].full_name + "</td>"
+                            + "<td>" + json_obj[i].member_login_name + "</td>"
                             + "<td>" + localcheckin + " </td>"
                             + "<td style='color:red'>" + late + "</td>"
                             + "<td>" + json_obj[i].notes + "</td>"

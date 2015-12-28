@@ -2,6 +2,8 @@
 
 namespace salts\Dashboard\Controllers;
 use salts\Core\Models\Db;
+use salts\Dashboard\Models\CorePermissionGroup; 
+
 //use Phalcon\Flash\Direct as FlashDirect;
 
 class IndexController extends  ControllerBase {
@@ -11,39 +13,37 @@ class IndexController extends  ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        //  $this->assets->addJs('apps/dashboard/js/index.js');    
+        
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
+       
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
-        
-        $this->view->t = $this->_getTranslation();
-        $this->module_name =  $this->router->getModuleName();
-        //$this->permission = $this->setPermission($this->module_name);
+        $this->module_name =  $this->router->getModuleName();        
+        $this->permission = $this->setPermission($this->module_name);             
         $this->view->module_name=$this->module_name;
-        //$this->view->permission = $this->permission;
-    }           
-    /**
+        $this->view->permission = $this->permission;
+         }           
+        /**
         * 
         *Check User or Admin 
         */
-       public function indexAction() {        
-         
+        public function indexAction() {
+               
                 $this->view->disable();
-                //Go to user dashboard
-               $this->response->redirect('dashboard/index/user');
-         
-             }
+                $this->response->redirect('dashboard/index/user');
+                
+        }
         /**
         * show admin dashboard
         * @author david
         * get last created member name
         * @type array {$gname}
         */
-    public function adminAction() {
-    //echo $this->permission;exit;
+    public function adminAction() { 
+        $coreuser2 = new CorePermissionGroup(); 
+        $core_groupuser2=$coreuser2::find();
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
     $noti=$Admin->GetAdminNoti($id);
@@ -57,36 +57,35 @@ class IndexController extends  ControllerBase {
     $leave_name =$CheckLeave->checkleave();
     $status     =$CheckLeave->todayattleave();
     $coreid = new  \salts\Dashboard\Models\CorePermissionGroupId();
-    if ($this->permission== 1) {
+    foreach ($this->session->auth as $key_name => $key_value) {             
+                if ($key_name == 'admin_dashboard') {
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
     $this->view->setVar("lname",$leave_name['leave_name']);
     $this->view->setVar("name",$GetName);
     $this->view->setVar("newnumber",$newmember);
-    $this->view->t = $this->_getTranslation();
-    }
+    $this->view->t = $this->_getTranslation();         }
       
-       else {
-                //Go to user dashboard
-                $this->view->disable();
-              // 
-                $this->response->redirect('core/index');
-            
-                }   
-    
-}
+       else if ($key_name == 'user_dashboard'){
+                    $this->view->disable();
+                  $this->response->redirect('core/index');
+                }
+                 
+                
+            }
+        }
+
       
     
-    /**
-     * show user dashboard
-     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
-     * 
-     */
+        /**
+        * show user dashboard
+        * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+        * 
+        */
     public function userAction() {
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
-//        if ($this->permission == 1) {
         $noti=$User->GetUserNoti($id);
         $this->view->setVar("noti",$noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
@@ -95,25 +94,20 @@ class IndexController extends  ControllerBase {
         $this->view->setVar("numatt",$numofatt);
         $this->view->setVar("numleaves",$numofleaves);
         $this->view->t = $this->_getTranslation();
-//        }
-//        else{
-//                 $this->view->disable();              
-//                $this->response->redirect('core/index');
-//        }
     }
   /**
      * set location,latitude and longitude to session
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function location_sessionAction() {
-        //$lat = $this->request->get('lat');
-        //$lng = $this->request->get('lng');
         $add=$this->request->get('location');
         $offset = $this->request->get('offset');
+               //echo $offset;exit;
+
         $this->session->set('location', array(
              'location'=>$add,
             'offset' => $offset
-        ));
+        )); 
         
     }
     
@@ -125,15 +119,6 @@ class IndexController extends  ControllerBase {
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
-        //$lat = $this->session->location['lat'];
-        //$lon = $this->session->location['lng'];
-//        $lat = 16.80365066670554;//$.cookie("MyLat");
-//        $lon = 96.14032782249012;
-//       // $url="http://maps.googleapis.com/maps/api/staticmap?latlng=".trim($lat).",".trim($lon)."&sensor=false";
-//         $url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='.trim($lat).','.trim($lon).'&sensor=false';
-//                $json = @file_get_contents($url);
-//                $data=json_decode($json);
-//                var_dump($data);exit;
         $add = $this->session->location['location'];
         $noti_Creatorid=$User->GetAdminstratorId();
         $creator_id=$noti_Creatorid[0]['rel_member_id'];
@@ -164,19 +149,21 @@ class IndexController extends  ControllerBase {
          */
         public function directAction(){
         //$name = $this->session->page_rule_group;
-        if ($this->permission==1) {
+        foreach ($this->session->auth as $key_name => $key_value) {             
+                if ($key_name == 'admin_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
                 $this->response->redirect('attendancelist/index/todaylist');
                 
             } 
-            else {
-                //Go to admin dashboard
-                $this->view->disable();
-                $this->response->redirect('attendancelist/user/attendancelist');
-                  
-            }
+              else if ($key_name == 'user_dashboard'){
+                    $this->view->disable();
+                  $this->response->redirect('attendancelist/user/attendancelist');
+                }
+                 
         }
+  
     
     
+}
 }

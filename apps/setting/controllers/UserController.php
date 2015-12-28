@@ -11,7 +11,8 @@ class UserController extends ControllerBase {
         //$this->assets->addJs('common/js/btn.js');
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
-        $this->module_name =  $this->router->getModuleName();                
+        $this->module_name =  $this->router->getModuleName();        
+        $this->permission = $this->setPermission();             
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
     }
@@ -40,7 +41,7 @@ class UserController extends ControllerBase {
         
     }
  
-
+  
     public function usersettingAction() {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
@@ -49,6 +50,7 @@ class UserController extends ControllerBase {
         $user = $User->UserDetail($id);
         $this->view->userdetail = $user;
     }
+      
     /**
      * change profile 
      * user setting

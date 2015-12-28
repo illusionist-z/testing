@@ -42,7 +42,7 @@ $(document).ready(function(){
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
-        
+        //alert(offset);
         
         $.ajax({
             url: url + "?offset=" + offset+"&location="+ location,
