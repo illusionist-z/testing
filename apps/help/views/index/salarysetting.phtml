@@ -2,7 +2,7 @@
     <div class="col-md-10" id="showhelp">
        <ul id="helpcenter">
         <li>
-            <a href="#" ><span id="searchhelpcenter">Salary Setting help center</span></a>
+            <a href="#" ><span id="searchhelpcenter"><?php echo $t->_("Salary Setting help center"); ?></span></a>
         </li>        
     </ul>
     <hr>
@@ -12,32 +12,34 @@
          <div class="col-md-6">
              <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
                
-                 <li><span class="text-aqua">Tax Setting</span>
+                 <li><span class="text-aqua"><?php echo $t->_("Tax Setting"); ?></span>
                      <ul>
-                         <li><pre>To edit Tax data by adminstrator</pre>
+                         <li><pre><?php echo $t->_("To edit Tax"); ?></pre>
                        </li>
                      </ul>
                 </li>
-                <li><span class="text-aqua">Deduce Setting</span>
+                <li><span class="text-aqua"><?php echo $t->_("Deduce Setting"); ?></span>
                     <ul>
-                        <li><pre>Admin can edit deduce amount of salary.</pre></li> 
+                        <li><pre><?php echo $t->_("Admin can edit deduce"); ?></pre></li> 
                      </ul>
                 </li>
-                <li><span class="text-aqua">New Deduction</span>
+                <li><span class="text-aqua"><?php echo $t->_("New Deduction"); ?></span>
                     <ul>
-                        <li><pre>Admin can add new Deduction Type.</pre></li> 
+                        <li><pre><?php echo $t->_("Admin can add new Deduction Type."); ?></pre></li> 
                      </ul>
                 </li>
-                <li style="list-style-image: url('../../common/img/images1.png');"><span class="text-aqua">Edit</span>                
-                <li><pre>Admin can edit of user informations.</pre></li>
+                <li style="list-style-image: url('../../common/img/images1.png');"><span class="text-aqua"><?php echo $t->_("Edit"); ?></span>    
+                    <ul>
+                            <li><pre><?php echo $t->_("Admin can edit of user informations."); ?></pre></li>
+                    </ul>
             </ol>
         </div>
     <div class="col-md-12 span12 top-padding">
     <div class="col-md-6 ">
-        <a href="monthlyattlist"><< Monthly Salary Lists  </a>
+        <a href="monthlyattlist"><< <?php echo $t->_("Monthly Salary Lists"); ?>  </a>
     </div>
     <div class="col-md-6 text-right">
-        <a href="allowance">Allowance  >></a>
+        <a href="allowance"><?php echo $t->_("Allowance"); ?>  >></a>
     </div>
     </div>
 </div>
