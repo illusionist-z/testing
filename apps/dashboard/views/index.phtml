@@ -6,12 +6,12 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Admin Setting</title>
+        <title>Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -19,15 +19,25 @@
                     <a><img src="<?php echo $baseUri;?>common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
+                    
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">                           
-                            <!-- Notifications: style can be found in dropdown.less -->
+                        
+                        <ul class="nav navbar-nav"> 
+                                <li>
+                                    <a href="<?php echo $baseUri?>help/index/searchHelp" target="_blank" class="" title="Help" id="help_icon" style="padding-top: 20px;">
+                                               <img src="../../common/img/help_browser.png">
+                                        </a>
+                               </li>  
+                          <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
                                 <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
                                     <img src="<?php echo $baseUri;?>common/img/noti.png">
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
+                                 
+                                      
+                                    
                                   <div id="notificationContainer">
                                   <div id="notificationTitle">Notifications</div>
 <div id="notificationsBody" class="notifications">
@@ -57,6 +67,7 @@
                                         <img src="<?php echo $baseUri;?>uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                                 </a>
+                                 
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
@@ -88,7 +99,8 @@
                                        <li class="user-footer">
                                           
                                  <?php 
-            if($permission==1){
+                                      foreach ($this->session->auth as $key_name => $key_value) {                        
+            if($key_name =='admin_dashboard'){
                 //Go to user dashboard
                 
                 ?>
@@ -96,9 +108,9 @@
                      <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
                                         </div>
                 <?php
-               
-               } 
-                 else {
+            }
+             
+                if ($key_name =='user_dashboard')  {
                
                     ?> 
                       <div class="pull-left">
@@ -106,8 +118,9 @@
                                                 </div>
                 <?php 
                          }
+                                      
                
-                
+                  } 
              
                 ?>       
             

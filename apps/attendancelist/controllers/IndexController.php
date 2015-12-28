@@ -20,7 +20,7 @@ class IndexController extends ControllerBase {
         $this->act_name =  $this->router->getActionName(); 
         $this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();    
-        $this->permission = $this->setPermission($this->module_name); 
+        $this->permission = $this->setPermission($this->act_name); 
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
     }        
@@ -30,7 +30,7 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction( ) {
-        $this->act_name =  $this->router->getModuleName(); 
+        $this->act_name =  $this->router->getActionName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
@@ -45,7 +45,7 @@ class IndexController extends ControllerBase {
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;       
-        $this->view->modulename = $this->module_name;        
+        //$this->view->modulename = $this->module_name;        
         }
         else {
             $this->response->redirect('core/index');
