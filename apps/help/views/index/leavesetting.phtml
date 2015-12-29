@@ -2,7 +2,7 @@
     <div class="col-md-10" id="showhelp">
        <ul id="helpcenter">
         <li>
-             <img src="../../common/img/list2.png" ><a href="#" > <span id="searchhelpcenter">Leave Setting help center</span></a>
+             <a href="#" > <span id="searchhelpcenter"><?php echo $t->_("Leave Setting help center"); ?></span></a>
         </li>        
     </ul>
     <hr>
@@ -11,19 +11,19 @@
     </div>
          <div class="col-md-6">
              <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
-                <li>Edit Leave Setting(Admin)
+                 <li><span class="text-aqua"><?php echo $t->_("Edit Leave"); ?></span>
                         <ul>
-                            <li>Admin can edit Maximun leavedays allowed and Percentage of On Basic Salary.</li>
+                            <li><pre><?php echo $t->_("Admin can edit"); ?></pre></li>
                          </ul>
                  </li>
-                <li>Leave Categories
+                 <li><span class="text-aqua"><?php echo $t->_("Leave Categories"); ?></span>
                     <ul>
-                         <li>Admin can Add New Leave Categories. </li>
+                        <li><pre><?php echo $t->_("Admin can Add"); ?></pre></li>
                      </ul>
                 </li>
-                 <li style="list-style-image: url('../../common/img/delete2.png');">Delete
+                <li style="list-style-image: url('../../common/img/delete2.png');"><span class="text-aqua"><?php echo $t->_("Delete"); ?></span>
                      <ul>
-                         <li style="list-style: none;">Admin can delete of Leave Type.</li>
+                         <li><pre><?php echo $t->_("Admin can delete"); ?></pre></li>
                      </ul>
                 </li>
                 
@@ -31,10 +31,10 @@
         </div>
     <div class="col-md-12 top-padding">
     <div class="col-md-6 ">
-        <a href="leavelists"><< Leave Lists </a>
+        <a href="leavelists"><< <?php echo $t->_("Leave Lists"); ?> </a>
     </div>
     <div class="col-md-6 text-right">
-        <a href="calendar">Calendar >></a>
+        <a href="calendar"><?php echo $t->_("Calendar"); ?> >></a>
     </div>
     </div>
 </div>

@@ -5,12 +5,12 @@
   visibility: hidden;
 }</style>
         <meta charset="UTF-8">
-        <title>Attendance System</title>
+        <title>Search Help</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini"  >
+    <body class="skin-blue sidebar-mini" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -219,38 +219,38 @@
             <div class="row-fluid">
 <div class="sidebar-menu col-md-2 helpcenter">
     <img src="../../common/img/app_help (2).png">   
-    <label>Search Help</label>
+    <label><?php echo $t->_("Search Help"); ?></label>
     <ul>
-        <li><a href="dashboard" id="" class="allhelpimg" >Dashboard</a></li>
+        <li><a href="dashboard" id="" class="allhelpimg" ><?php echo $t->_("Dashboard"); ?></a></li>
         <li>
-            <a href="" onclick="return false;" class="allhelpimg tog">Attendance List</a>
+            <a href="" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Attendance List"); ?></a>
             <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                <li><a href="todayattlist">Today Attendance List</a></li>
-                <li><a href="monthlyattlist">Monthly Attendance List</a></li>
+                <li><a href="todayattlist"><?php echo $t->_("Today Attendance List"); ?></a></li>
+                <li><a href="monthlyattlist"><?php echo $t->_("Monthly Attendance List"); ?></a></li>
             </ul>
         </li>       
-        <li><a href="manageuser" class="allhelpimg">Manage User</a></li>
-        <li><a href="#" onclick="return false;" class="allhelpimg tog">Leave Days</a>
+        <li><a href="manageuser" class="allhelpimg"><?php echo $t->_("Manage User"); ?></a></li>
+        <li><a href="#" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Leave Days"); ?></a>
              <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                 <li><a href="applyleave">Apply Leave</a></li>
-                 <li><a href="leavelists">Leave Lists</a></li>
-                 <li><a href="leavesetting">Leave Setting</a></li>
+                 <li><a href="applyleave"><?php echo $t->_("Apply Leave"); ?></a></li>
+                 <li><a href="leavelists"><?php echo $t->_("Leave Lists"); ?></a></li>
+                 <li><a href="leavesetting"><?php echo $t->_("Leave Setting"); ?></a></li>
             </ul>
         </li>
-        <li><a href="calendar" class="allhelpimg">Calendar</a></li>
-        <li><a href="#" class="allhelpimg tog">Salary</a>
+        <li><a href="calendar" class="allhelpimg"><?php echo $t->_("Calendar"); ?></a></li>
+        <li><a href="#" class="allhelpimg tog"><?php echo $t->_("Salary"); ?></a>
              <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                 <li><a href="addsalary">Add Salary</a></li>
-                 <li><a href="salarylists">Salary Lists</a></li>
-                 <li><a href="monthlysallists">Monthly Salary Lists</a></li>
-                 <li><a href="salarysetting">Salary Setting</a></li>
-                 <li><a href="allowance">Allowance</a></li>
+                 <li><a href="addsalary"><?php echo $t->_("Add Salary"); ?></a></li>
+                 <li><a href="salarylists"><?php echo $t->_("Salary Lists"); ?></a></li>
+                 <li><a href="monthlysallists"><?php echo $t->_("Monthly Salary Lists"); ?></a></li>
+                 <li><a href="salarysetting"><?php echo $t->_("Salary Setting"); ?></a></li>
+                 <li><a href="allowance"><?php echo $t->_("Allowance"); ?></a></li> 
             </ul>
         </li>        
-        <li><a href="#" onclick="return false;" class="allhelpimg tog">Document</a>
+        <li><a href="#" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Document"); ?></a>
                 <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                 <li><a href="letterhead">Letter Head</a></li>
-                 <li><a href="ssbdocument">SSB & Tax Document</a></li>
+                 <li><a href="letterhead"><?php echo $t->_("Letter Head"); ?></a></li>
+                 <li><a href="ssbdocument"><?php echo $t->_("SSB & Tax Document"); ?></a></li>
                  
             </ul>
         </li>   

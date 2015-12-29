@@ -2,7 +2,7 @@
     <div class="col-md-10" id="showhelp">
        <ul id="helpcenter">
         <li>
-             <img src="../../common/img/list3.png" > <a href="#" ><span id="searchhelpcenter">Manage User help center</span></a>
+           <a href="#" ><span id="searchhelpcenter"><?php echo $t->_("Manage"); ?></span></a>
         </li>        
     </ul>
     <hr>
@@ -11,21 +11,21 @@
     </div>
          <div class="col-md-6">
              <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
-                <li>Search User Box
+                 <li><span class="text-aqua"><?php echo $t->_("Search"); ?></span>
                     <ul>
-                         <li>Enter the username which you want to search.</li>
+                        <li><pre><?php echo $t->_("Enter the username"); ?></pre></li>
                      </ul>
                 </li>
-                <li>Then select the wanted username from dropdown list ,after that click search button                   
+                <li><?php echo $t->_("Then select the wanted username"); ?>                 
                 </li>
-                <li>Add User(For Admin)
+                <li><span class="text-aqua"><?php echo $t->_("Add User"); ?></span>
                      <ul>
-                         <li>Admin can create new SALTS member.</li>
+                         <li><pre><?php echo $t->_("Admin can create"); ?></pre></li>
                      </ul>
                 </li>
-                <li style="list-style-image: url('../../common/img/images1.png');">Edit
+                <li style="list-style-image: url('../../common/img/images1.png');"><span class="text-aqua"><?php echo $t->_("Edit"); ?></span>
                      <ul>
-                         <li style="list-style: none;">Admin can edit of user informations.</li>
+                         <li><pre><?php echo $t->_("Admin can edit of user informations."); ?></pre></li>
                      </ul>
                 </li>
              
@@ -33,10 +33,10 @@
         </div>
     <div class="col-md-12 top-padding">
     <div class="col-md-6 ">
-        <a href="monthlyattlist"><< Monthly Attendance Lists </a>
+        <a href="monthlyattlist"><< <?php echo $t->_("Monthly Attendance List"); ?> </a>
     </div>
     <div class="col-md-6 text-right">
-        <a href="applyleave">Apply Leave  >></a>
+        <a href="applyleave"><?php echo $t->_("Apply Leave"); ?>  >></a>
     </div>
     </div>
 </div>

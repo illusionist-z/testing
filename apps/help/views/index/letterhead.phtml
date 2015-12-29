@@ -2,7 +2,7 @@
     <div class="col-md-10" id="showhelp">
         <ul id="helpcenter">
             <li>
-                <a href="#" ><span id="searchhelpcenter">Letter Head help center</span></a>
+                <a href="#" ><span id="searchhelpcenter"><?php echo $t->_("Letter Head help center"); ?></span></a>
             </li>        
         </ul>
         <hr>
@@ -11,25 +11,25 @@
         </div>
         <div class="col-md-6">
             <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
-                <li>Edit
+                <li><span class="text-aqua"><?php echo $t->_("Edit"); ?></span>
                     <ul>
-                        <li>To change the company name,address ,phone number and logo on the left side of the page.Then you can click <img src="../../common/img/save.png" > button</li>
+                        <li><?php echo $t->_("To change"); ?><img src="../../common/img/save.png" > <?php echo $t->_("button"); ?></li>
                     </ul>
                 </li> 
-                <li>Export
+                <li><span class="text-aqua"><?php echo $t->_("Export"); ?></span>
                     <ul>
-                        <li>This will output the data of display table as csv.</li>
+                        <li><?php echo $t->_("This will output"); ?></li>
                     </ul>
                 </li>
 
             </ol>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 span12 top-padding">
             <div class="col-md-6 ">
-                <a href="allowance"><< Allowance  </a>
+                <a href="allowance"><< <?php echo $t->_("Allowance"); ?>  </a>
             </div>
             <div class="col-md-6 text-right">
-                <a href="ssbdocument">SSB Document  >></a>
+                <a href="ssbdocument"><?php echo $t->_("SSB & Tax Document"); ?>  >></a>
             </div>
         </div>
     </div>

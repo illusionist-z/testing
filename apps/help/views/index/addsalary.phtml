@@ -2,7 +2,7 @@
     <div class="col-md-10" id="showhelp">
        <ul id="helpcenter">
         <li>
-             <a href="#" ><span id="searchhelpcenter">Add Salary help center</span></a>
+             <a href="#" ><span id="searchhelpcenter"><?php echo $t->_("Add Salary help center"); ?></span></a>
         </li>        
     </ul>
     <hr>
@@ -11,27 +11,27 @@
     </div>
          <div class="col-md-6">
              <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
-                <li>Search User Name
+                 <li><span class="text-aqua"><?php echo $t->_("Search User Name"); ?></span>
                     <ul>
-                         <li>Enter the username which you want to search.</li>
+                        <li><pre><?php echo $t->_("Enter the username"); ?></pre></li>
                      </ul>
                 </li>
-                <li>Enter users basic salary.</li>
-                <li>Enter users Travel Fees.</li>
-                <li>Enter users Overtime(per hr).</li>
-                <li>Deduce for SSC
+                <li><?php echo $t->_("Enter users basic salary."); ?></li>
+                <li><?php echo $t->_("Enter users Travel Fees."); ?></li>
+                <li><?php echo $t->_("Enter users Overtime(per hr)."); ?></li>
+                <li><span class="text-aqua"><?php echo $t->_("Deduce for SSC"); ?></span>
                      <ul>
-                         <li>You must checked Deduce for SSC.</li>
+                         <li><pre><?php echo $t->_("You must checked Deduce for SSC."); ?></pre></li>
                      </ul>
                 </li>
-                 <li>Allowance
+                <li><span class="text-aqua"><?php echo $t->_("Allowance"); ?></span>
                      <ul>
-                         <li>You must checked Allowance.</li>
+                         <li><pre><?php echo $t->_("You must checked Allowance."); ?></pre></li>
                      </ul>
                 </li>
-                <li>Apply button
+                <li><span class="text-aqua"><?php echo $t->_("Apply button"); ?></span>
                      <ul>
-                         <li>Submit your apply form.</li>
+                         <li><pre><?php echo $t->_("Submit"); ?></pre></li>
                      </ul>
                 </li>
                 
@@ -40,10 +40,10 @@
         </div>
     <div class="col-md-12 top-padding">
     <div class="col-md-6 ">
-        <a href="calendar"><< Calendar </a>
+        <a href="calendar"><< <?php echo $t->_("Calendar"); ?> </a>
     </div>
     <div class="col-md-6 text-right">
-        <a href="salarylists">Salary Lists  >></a>
+        <a href="salarylists"><?php echo $t->_("Salary Lists"); ?> >></a>
     </div>
     </div>
 </div>
