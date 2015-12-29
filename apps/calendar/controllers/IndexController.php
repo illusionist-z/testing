@@ -27,7 +27,7 @@ class IndexController extends ControllerBase
 
     
    public function indexAction() {
-        
+         
         $Admin=new Db\CoreMember;
         $id = $this->session->user['member_id'];
           foreach ($this->session->auth as $key_name => $key_value) {
@@ -44,7 +44,6 @@ class IndexController extends ControllerBase
                 
                $noti=$Admin->GetUserNoti($id,1); 
             }
-        }
         
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
@@ -82,6 +81,7 @@ class IndexController extends ControllerBase
         
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
+      
         $data = ($permit_name == $id ? 1 : $this->calendar->add_permit_name($permit_name, $id));                  
         echo json_encode($data);
         $this->view->disable();
@@ -189,4 +189,5 @@ class IndexController extends ControllerBase
     }
      
 }
+
 
