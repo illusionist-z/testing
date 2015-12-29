@@ -218,20 +218,24 @@ class CoreMember extends \Library\Core\BaseModel {
     public function GetAdminNoti($id,$type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc";
-     ///   echo $sql;exit;
+        if($type==0){
+           $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc  ";
+
+        }else{
+             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc limit 10";
+
+        }
+     
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
      
         $i=0;
-      //print_r($noti);exit;
         foreach ($noti as $noti) {
             
             $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' and core_member.deleted_flag=0 ";
-          //print_r($sql);exit;
+            
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-       
          
             $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;

@@ -513,9 +513,7 @@ a.export {
 .forsize{
     font-size: 18px;
 }
-#fixedheader{    
-    width:  100%;    
-}
+
 #fixedleftside{
     position: fixed;
     height:   100%;
