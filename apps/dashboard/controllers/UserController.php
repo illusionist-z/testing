@@ -17,10 +17,20 @@ class UserController extends  ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
-//        $this->module_name =  $this->router->getModuleName();        
-//        $this->permission = $this->setPermission();             
-//        $this->view->module_name=$this->module_name;
-//        $this->view->permission = $this->permission;
+ if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id,0);
+             
+              
+              //$readnoti=$Admin->GetLastNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+                
+               $noti=$Admin->GetUserNoti($id,1); 
+              
+            }
     }           
     /**
         * 
@@ -30,7 +40,18 @@ class UserController extends  ControllerBase {
          
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti=$User->GetUserNoti($id);
+         foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$User->GetAdminNoti($id,0);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$User->GetUserNoti($id,1); 
+            }
+        }
         $this->view->setVar("noti",$noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
         $numofatt=$Attendances->getattlist($id);

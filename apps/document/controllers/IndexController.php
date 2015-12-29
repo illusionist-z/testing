@@ -36,10 +36,10 @@ class IndexController extends ControllerBase
         foreach($coreid as $data){ 
        
         if($code==$data->group_id){
-            $noti=$Admin->GetAdminNoti($id);}
+            $noti=$Admin->GetAdminNoti($id,0);}
         else{
             $id = $this->session->user['member_id'];
-            $noti=$Admin->GetUserNoti($id);
+            $noti=$Admin->GetUserNoti($id,1);
         }
       $this->view->setVar("noti",$noti);
        }

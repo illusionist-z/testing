@@ -23,11 +23,11 @@ class IndexController extends ControllerBase {
 
             if ($key_name == 'show_admin_notification') {
 
-                $this->noti = $Admin->GetAdminNoti($id);
+                $this->noti = $Admin->GetAdminNoti($id,0);
             }
             if ($key_name == 'show_user_notification') {
               
-                $this->noti = $Admin->GetUserNoti($id);
+                $this->noti = $Admin->GetUserNoti($id,1);
             }
         }
         $this->view->setVar("noti", $this->noti);

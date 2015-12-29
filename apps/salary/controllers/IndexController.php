@@ -14,6 +14,7 @@ use salts\Salary\Models\SalaryMemberTaxDeduce;
 class IndexController extends ControllerBase {
 
     public function initialize() {
+        
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
@@ -36,12 +37,12 @@ class IndexController extends ControllerBase {
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
 
@@ -57,6 +58,7 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
+       
            $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('apps/salary/js/salary.js');
@@ -68,6 +70,7 @@ class IndexController extends ControllerBase {
         $this->view->salarydetail = $getsalarydetail;
         }
         else {
+            
         $this->response->redirect('core/index');
         }        
     }

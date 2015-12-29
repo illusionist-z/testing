@@ -28,7 +28,7 @@
                                                  }
                         ?>                                                 
               <img src="<?php echo $baseUri;?>/uploads/<?php echo  $img;?>"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
-                <b><i style="color:black;"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b style='color:red;'>".$noti['leave_days']." </b> day <b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> to <b>".date("d-m-Y", strtotime( $noti['end_date']))."</b>";
+                <b><i style="color:red;"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b style='color:red;'>".$noti['leave_days']." </b> day <b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> to <b>".date("d-m-Y", strtotime( $noti['end_date']))."</b>";
                 }else {?>
                 <span class="foruser">
                     <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
@@ -76,7 +76,80 @@
         
 <?php }
         }// end of file for switch
-}// end of file for second for each 
+}
+foreach( $oldnoti as $noti){
+    
+        ?>
+        <?php switch($noti['module_name']){ case "leaves": {?>
+        <li>
+       <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+                <li>
+                <?php if($permission=="admin"){?>
+                    
+<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
+                      <?php
+                         if($noti['member_profile']==null){
+                                                   $img = "profile1.jpg";
+                                                }
+                                                else{
+                                                     $img=$noti['member_profile'];
+                                                      if(file_exists('./uploads/'.$img)){                                                            
+                                                           $img=$img;  
+                                                      }else{  
+                                                          $img = "profile1.jpg";    
+                                                      }
+                                                 }
+                        ?>                                                 
+              <img src="<?php echo $baseUri;?>/uploads/<?php echo  $img;?>"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
+                <b><i style="color:blue;"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b style='color:red;'>".$noti['leave_days']." </b> day <b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> to <b>".date("d-m-Y", strtotime( $noti['end_date']))."</b>";
+                }else {?>
+                <span class="foruser">
+                    <img src="<?php echo $baseUri;?>common/img/notid.png"> <b>admin</b><?php 
+                    switch($noti['leave_status']){
+                        case "1" : echo " Confirmed";break;
+                        case "2" : echo " Rejected";break;
+                }?> <?php echo "leave days for <b>".date("d-m-Y", strtotime( $noti['start_date']))."</b>";}?></a></span>
+                </li>
+            </ul>
+        </li>
+            
+        <?php break; }// end of file for case "leaves"
+        case "calendar" :{?> 
+        <li>
+       <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+                <li>
+               
+                    
+                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+                <b><i style="color:blue"><?php echo $noti['creator_name'];?></i></b> marked calendar for <i style="color:red"> <?php echo $noti['member_login_name'];?></i><?php echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
+               ?></span>
+                </li>
+            </ul>
+        </li>
+        
+        
+<?php  break;} 
+  case "attendances" :{?> 
+        <li>
+       <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+                <li>               
+                    
+                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+                <b><i style="color:blue"><?php echo $noti['member_login_name'];?></i></b> is Late for   <?php echo $noti['notes']; echo " at <b>".date("d-m-Y", strtotime( $noti['checkin_time']))."</b> ";
+               ?></span>
+                </li>
+            </ul>
+        </li>
+        
+        
+<?php }
+        }// end of file for switch
+}
+//
+//// end of file for second for each 
   // end of file for first for each?>
 </div>
 </div>

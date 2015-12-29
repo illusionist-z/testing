@@ -213,13 +213,16 @@ var Calendar = {
 
         $("#member_event_dialog").dialog("open");
         //add member autocomplete @dialog box
+        
         $("#member_event").autocomplete({
             source: dict,
             minLength: 1,
             select: function (event, ui) {
+                
                 $("#member_event_add").attr("disabled", false);
                 $("#member_event_add").unbind("click").bind("click", function (e) {
                     e.preventDefault();
+                    
                     $.ajax({
                         type: "GET",
                         data: {permit: ui.item.value},

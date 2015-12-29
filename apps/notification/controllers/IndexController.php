@@ -49,16 +49,21 @@ class IndexController extends ControllerBase
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
+              $oldnoti=$Admin->GetAdminNoti($id,1);
+              
+              //$readnoti=$Admin->GetLastNoti($id);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
+               $oldnoti=$Admin->GetUserNoti($id,2);
             }
         }
 
         $this->view->setVar("noti",$noti);
+        $this->view->setVar("oldnoti",$oldnoti);
         $this->view->setVar("type",$type);
     }
     
@@ -81,13 +86,13 @@ class IndexController extends ControllerBase
              
             if ($key_name == 'show_admin_notification') {
                
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                //echo"aa";exit;
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
 
@@ -106,12 +111,12 @@ class IndexController extends ControllerBase
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
       

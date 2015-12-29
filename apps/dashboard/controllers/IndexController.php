@@ -13,7 +13,6 @@ class IndexController extends  ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
        
@@ -48,14 +47,17 @@ class IndexController extends  ControllerBase {
     $id=$this->session->user['member_id'];
     foreach ($this->session->auth as $key_name => $key_value) {
              
-            if ($key_name == 'show_admin_notification') {
+             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
+              
+              //$readnoti=$Admin->GetLastNoti($id);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+                
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
     $this->view->setVar("noti",$noti);
