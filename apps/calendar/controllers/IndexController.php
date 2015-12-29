@@ -34,12 +34,15 @@ class IndexController extends ControllerBase
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
+              
+              //$readnoti=$Admin->GetLastNoti($id);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+                
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
         
@@ -76,6 +79,7 @@ class IndexController extends ControllerBase
     }
     
     public function addmemberAction(){
+        
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
         $data = ($permit_name == $id ? 1 : $this->calendar->add_permit_name($permit_name, $id));                  

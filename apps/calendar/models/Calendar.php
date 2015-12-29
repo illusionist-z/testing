@@ -103,9 +103,11 @@ class Calendar extends Model {
     */
     public function add_permit_name($permit_name,$id) {        
         $query = "Select * from member_event_permission where permit_name ='".$permit_name."' and member_name = '".$id."' ";
+      
         $result = $this->db->query($query);
         if($result->numRows() == 0){                  
             $query1 = "Insert into member_event_permission (member_name,permit_name,delete_flag) Values ('$id','".$permit_name."',0)";
+            
             $this->db->query($query1);            
             $return  = 0;
         }

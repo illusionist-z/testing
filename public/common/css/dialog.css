@@ -2,7 +2,7 @@
 #myPopup,#myPopup_box{
     display: none;
     background: #fbfbfb;
-    //border: 2px solid #cecece;
+    
     z-index: 2;
     position: relative;
     border: 0;

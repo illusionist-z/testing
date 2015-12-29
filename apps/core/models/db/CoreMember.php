@@ -215,10 +215,10 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti($id) {
+    public function GetAdminNoti($id,$type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc";
+        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc";
      ///   echo $sql;exit;
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
@@ -251,19 +251,24 @@ class CoreMember extends \Library\Core\BaseModel {
       //var_dump($data);exit;
         return $data;
     }
+    
+    
 
     /**
      * 
      * @param type $id
+     * @param type $type 
+     * Type 1 for new 
+     * type 0 for old
      * @return type
      * getting accepted and rejected leavedays detail
      * for user notification
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function GetUserNoti($id) {
+    public function GetUserNoti($id,$type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id ."' order by created_dt desc";
+        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='".$type."' AND core_notification_rel_member.member_id= '" . $id ."' order by created_dt desc";
         //print_r($sql);exit;
         $UserNoti = $this->db->query($sql);
 
