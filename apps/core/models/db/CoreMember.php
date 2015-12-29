@@ -207,31 +207,27 @@ class CoreMember extends \Library\Core\BaseModel {
         $user = $user->fetchArray();
         return $user;
     }
-
-    /**
-     * 
-     * @return type
-     * getting pending leavedays detail
-     * for admin notification
-     * @author Su Zin Kyaw
-     */
-    public function GetAdminNoti($id) {
+public function GetAdminNoti($id,$type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc";
-     ///   echo $sql;exit;
+        if($type==0){
+           $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc  ";
+
+        }else{
+             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc limit 10";
+
+        }
+     
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
      
         $i=0;
-      //print_r($noti);exit;
         foreach ($noti as $noti) {
             
             $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' and core_member.deleted_flag=0 ";
-          //print_r($sql);exit;
+            
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-       
          
             $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
@@ -251,19 +247,24 @@ class CoreMember extends \Library\Core\BaseModel {
       //var_dump($data);exit;
         return $data;
     }
+    
+    
 
     /**
      * 
      * @param type $id
+     * @param type $type 
+     * Type 1 for new 
+     * type 0 for old
      * @return type
      * getting accepted and rejected leavedays detail
      * for user notification
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function GetUserNoti($id) {
+    public function GetUserNoti($id,$type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status=1 AND core_notification_rel_member.member_id= '" . $id ."' order by created_dt desc";
+        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='".$type."' AND core_notification_rel_member.member_id= '" . $id ."' order by created_dt desc";
         //print_r($sql);exit;
         $UserNoti = $this->db->query($sql);
 

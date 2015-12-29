@@ -25,7 +25,18 @@ class UserController extends ControllerBase {
         $this->view->t = $this->_getTranslation();
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti = $User->GetUserNoti($id);
+         foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$User->GetAdminNoti($id,0);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$User->GetUserNoti($id,1); 
+            }
+        }
         $this->view->setVar("noti", $noti);
     }
 

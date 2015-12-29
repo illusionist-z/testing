@@ -25,12 +25,12 @@ class UserController extends ControllerBase {
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
     
