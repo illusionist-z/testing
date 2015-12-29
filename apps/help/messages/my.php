@@ -148,69 +148,73 @@ $messages = array(
     /**
      * Add Salary
      */
-    "Add Salary help center"=>"Add Salary help center",
-    "Search User Name"=>"Search User Name",
-    "Enter the username"=>"Enter the username which you want to search.",
-    "Enter users basic salary."=>"Enter users basic salary.",
-    "Enter users Travel Fees."=>"Enter users Travel Fees.",
-    "Enter users Overtime(per hr)."=>"Enter users Overtime(per hr).",
-    "Deduce for SSC"=>"Deduce for SSC",
-    "You must checked Deduce for SSC."=>"You must checked Deduce for SSC.",
-    "You must checked Allowance."=>"You must checked Allowance.",
+    "Add Salary help center"=>"လစာေပးသြင္းရန္လိုအပ္ေသာအကူအညီမ်ား",
+    "Search User Name"=>"အသံုးျပဳသူ၏နာမည္ရွာရန္",
+    "Enter the username"=>"သင္လစာထည့္လိုေသာအသံုးျပဳသူ၏နာမည္ကိုရိုက္ထည့္ပါ",
+    "Enter users basic salary."=>"ထိုအသံုးျပဳသူအတြက္အေျခခံလစာကိုရိုက္ထည့္ပါ",
+    "Enter users Travel Fees."=>"ထိုအသံုးျပဳသူအတြက္ခရီးစရိတ္ကိုရိုက္ထည့္ပါ",
+    "Enter users Overtime(per hr)."=>"ထိုအသံုးျပဳသူ၏အခ်ိန္ပိုနာရီကိုရိုက္ထည့္ပါ",
+    "Deduce for SSC"=>"လူမႈဖူလံုေရးခံစားခြင့္ပမာဏ",
+    "You must checked Deduce for SSC."=>"လူမႈဖူလံုေရးခံစားခြင့္အတြက္ေဘးမွခ်က္ေဘာက္တြင္အမွန္(✓)ျခစ္ပါ",
+    "You must checked Allowance."=>"ေထာက္ပံ့ေၾကးခံစားခြင့္အတြက္ေဘးမွခ်က္ေဘာက္တြင္အမွန္(✓)ျခစ္ပါ",
     
     /**
      * Salary Lists
      */
-    "Salary List help center"=>"Salary List help center",
+    "Salary List help center"=>"လစာစာရင္းအတြက္လိုအပ္ေသာအကူအညီ",
     
     /**
      * Monthly Salary Lists
      */
-    "Monthly Salary Lists help center"=>"(1) Monthly Salary Lists help center",
-    "Calculate Salary"=>"Calculate Salary",
-    "Admin can calculate"=>"Admin can calculate salary for this month.",
-    "Month/Year"=>"Month/Year",
-    "Show details"=>"Show details information,click Month/Year field date.",
+    "Monthly Salary Lists help center"=>"(၁) လအလိုက္လစာစာရင္းအတြက္လိုအပ္ေသာအကူအညီ",
+    "Calculate Salary"=>"လစာတြက္ရန္",
+    "Admin can calculate"=>"အက္မင္မွ ယခုလအတြက္လစာကိုတြက္ခ်က္ႏုိင္သည္။",
+    "Month/Year"=>"လ/ခုႏွစ္",
+    "Show details"=>"လိုခ်င္ေသာလ/ခုႏွစ္ကိုႏွိပ္လိုက္ပါက ထိုလအတြက္အေသးစိတ္အခ်က္အလက္မ်ားကိုျပေပးပါသည္။",
     
     /**
      * Salary Detail
      */
-    "Salary Detail Help Center"=>"(2) Salary Detail Help Center",
-    "Search User Salary"=>"Search User Salary",
-    "To search salary"=>"To search salary detail with ",
-    "username"=>"username,department,position and salary rate",
-    "First check"=>"First check the User names to Print.Then click ",
-    "Details Salary"=>"Details Salary",
-    "To see detail"=>"To see detail salary of user , edit and assign.Check the username first then click ",
-    "button"=>"button.",
+    "Salary Detail Help Center"=>"(၂)
+လအလိုက္လစာစာရင္းအတြက္လိုအပ္ေသာအကူအညီ",
+    "Search User Salary"=>"အသံုးျပဳသူ၏လစာကိုရွာေဇြပါ",
+    "To search salary"=>"အသံုးျပဳသူ၏အမည္၊ဌာန၊ရာထူး၊လစာႏွဳန္းထားတို႕ႏွင့္လစာအေသးစိတ္အခ်က္အလက္မ်ားကိုရွာရန္",
+    "username"=>"",
+    "First check"=>"ပရင့္ထုတ္ရန္အတြက္ ပရင့္ထုတ္လုိေသာအသံုးျပဳသူ၏အမည္ကို အရင္ဆံုး ✓ လုပ္ပါ။ျပီးလွ်င္ ပံုကိုႏွိပ္၍ ပရင့္ထုတ္ပါ။
+ ",
+    "Details Salary"=>"လစာအေသးစိတ္",
+    "To see detail"=>"အသံုးျပဳသူ၏လစာအေသးစိတ္ကိုၾကည့္ရန္/ျပဳျပင္ရန္ႏွင့္ ႏူတ္ထြက္ရန္အတြက္ ထိုအသံုးျပဳသူ၏နာမည္ေဘးတြင္ အရင္ဆံုး ✓ လုပ္ျပီး ပံုေလးကို ",
+    "button"=>" ႏွိပ္ပါ။",
     
     /**
      * Salary Report
      */
-    "Salary Report Help Center"=>"(3) Salary Report Help Center",
-    "To enable edit"=>"To enable edit, click edit button first then modify data.",
+    "Salary Report Help Center"=>"(၃) 
+လအလိုက္လစာစာရင္းအတြက္လိုအပ္ေသာအကူအညီ",
+    "To enable edit"=>"
+ျပဳျပင္ရန္အတြက္ Edit Button ကို အရင္ႏွိပ္ပါ။ျပီးလွ်င္ အခ်က္အလက္မ်ားကို ေျပာင္းလဲႏိူင္ပါျပီ။",
     "Save"=>"Save",
-    "Save modified"=>"Save modified salary report data.",
+    "Save modified"=>"ျပဳျပင္္ခဲ႕ျပီးေသာ လစာမွတ္တမ္းအခ်က္အလက္မ်ားကို သိမ္းဆည္းပါ။",
     "Resign"=>"Resign",
-    "To resign"=>"To resign modified date",
+    "To resign"=>"ႏူတ္ထြက္လိုသည့္ေန႕ရက္ကို ထည့္ပါ။",
     
     /**
      * Salary Setting
      */
-    "Salary Setting help center"=>"Salary Setting help center",
-    "Tax Setting"=>"Tax Setting",
-    "To edit Tax"=>"To edit Tax data by adminstrator.",
-    "Deduce Setting"=>"Deduce Setting",
-    "Admin can edit deduce"=>"Admin can edit deduce amount of salary.",
-    "New Deduction"=>"New Deduction",
-    "Admin can add new Deduction Type."=>"Admin can add new Deduction Type.",
+    "Salary Setting help center"=>"လစာSettingအတြက္ လိုအပ္ေသာအကူအညီ",
+    "Tax Setting"=>"အခြန္ေငြSetting",
+    "To edit Tax"=>"အက္မင္မွ အခြန္ေငြ၏အခ်က္အလက္ပမာဏမ်ားကို ျပဳျပင္ႏူိင္သည္။",
+    "Deduce Setting"=>"လူမႈဖူလံုေရးခံစားခြင့္ Setting",
+    "Admin can edit deduce"=>"အက္မင္မွ လစာ၏လူမႈဖူလံုေရးခံစားခြင့္ပမာဏကို ျပဳျပင္ႏူိင္သည္။",
+    "New Deduction"=>"ခံစားခြင့္အသစ္ထပ္တုိးျခင္း",
+    "Admin can add new Deduction Type."=>"အက္မင္မွ ခံစားခြင့္ပံုစံအသစ္မ်ားကို ထပ္ေပါင္းထည့္ႏိူင္သည္။",
     
     /**
      * Allowance
      */
-    "Allowance help center"=>"Allowance help center",
-    "Add Button"=>"Add Button",
-    "Admin can add Allowance"=>"Admin can add Allowance name and amount.",
+    "Allowance help center"=>"အက်ိဳးခံစားခြင့္အတြက္ လိုအပ္ေသာအကူအညီ",
+    "Add Button"=>"အသစ္ထည့္ေပါင္းရန္",
+    "Admin can add Allowance"=>"အက္မင္သည္ အက်ိဳးခံစားခြင့္အမည္ႏွင့္အက်ိဳးခံစားခြင့္ပမာဏကို ထပ္ထည့္ႏူိင္သည္။",
     
     /**
      * Letter Head
