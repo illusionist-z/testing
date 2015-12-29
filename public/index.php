@@ -16,11 +16,11 @@ try {
         // set namespace for libraries
         'Library\Core' => '../library/core/',
         //set namespace for auth model
-        'salts\Auth\Models' => '../apps/auth/models/',
+        'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
         // set namespace for the core module
-        'salts\Core\Controllers' => '../apps/core/controllers/',
-        'salts\Core\Models' => '../apps/core/models/',
-        'salts\Dashboard\Models' => '../apps/dashboard/models/' 
+        'salts\Core\Controllers' => __DIR__.'/../apps/core/controllers/',
+        'salts\Core\Models' => __DIR__.'/../apps/core/models/',
+        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/' 
     ));
 
     //register autoloader
@@ -53,7 +53,7 @@ try {
     $application = new Application();
 
     /**
-     * Assign the DI
+      Assign the DI
      */
     $application->setDI($di);
 

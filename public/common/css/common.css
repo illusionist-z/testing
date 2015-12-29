@@ -513,10 +513,8 @@ a.export {
 .forsize{
     font-size: 18px;
 }
-#fixedheader{
-    
-    width:  100%;
-    /* background-position:left top(or)right top(or) center top;*/
+#fixedheader{    
+    width:  100%;    
 }
 #fixedleftside{
     position: fixed;
@@ -524,8 +522,7 @@ a.export {
 }
 
 /* for auto complete*/
-.content {
-    
+.content {    
     min-height: 100%;
     min-width: 100%;
 }
