@@ -214,9 +214,8 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-                <?php     
-                          //start for the left menu for each module
-                          $j=0;
+                <?php                           
+                        $j=0;
                           foreach ($this->session->auth as $key_name => $key_value) {                                 
                                        $top = explode(" ", $key_value["link0"]);
                                         if(strtolower($top[0] . $top[1]) ==$module_name) {
@@ -253,8 +252,7 @@
                                                                           echo '</aside></div><div class="col-sm-10">';
                                                                    }
                                                             }
-                               }                               
-                               //End of the left menu for each module
+                               }              
                                   echo '<section class="content">';
                                   echo $this->getContent();
                                   $this->assets->outputJs();
