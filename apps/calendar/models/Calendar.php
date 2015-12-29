@@ -18,6 +18,7 @@ class Calendar extends Model {
      */
     public function fetch($id) {                    
             $events = array();        
+            $d = date("Y-m-d");$today = date("Y-m-d",strtotime($d));
             if(is_array($id)){
             $member_id = implode($id,"','");
             $sql ="SELECT * FROM calendar where member_name IN ('$member_id')";
@@ -27,13 +28,16 @@ class Calendar extends Model {
             }
             $query=  $this->db->query($sql);
             $query->setFetchMode(\Phalcon\Db::FETCH_ASSOC);
-          while ($fetch = $query->fetchArray()) {                      
+            
+          while ($fetch = $query->fetchArray()) {
                 $e = array();
                 $e['id'] = $fetch['id'];
                 $e['member_name'] = $fetch['member_name'];
                 $e['title'] = $fetch['title'];
                 $e['start'] = $fetch['startdate'];
-                $e['end'] = $fetch['enddate'];
+                $s = $fetch['enddate'];
+                $e['end'] = date('Y-m-d H:i:s',strtotime($s.'+1 days'));
+                ($today > date("Y-m-d",strtotime($fetch['enddate']))) ? $e['color'] = '#aaa': $e['color'] = '#3a87ad';
                 $allday = ($fetch['allDay'] == "true") ? true : false;
                 $e['allDay'] = $allday;                
                 array_push($events, $e);

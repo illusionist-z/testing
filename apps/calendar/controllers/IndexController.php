@@ -149,10 +149,11 @@ class IndexController extends ControllerBase
         $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
+        $edate = date('Y-m-d H:i:s',strtotime($edate.'-1 days'));
         $name = $this->request->get('uname');
         $title = $this->request->get('title');        
          $res= array();
-        if ($title == null) {            
+        if ($title == null) {
             $res['cond']=FALSE;
             $res['res']="title not be empty";            
         }
@@ -166,7 +167,7 @@ class IndexController extends ControllerBase
             $res['res']=$edit;
             $res['name']=$name;
         }
-        echo json_encode($res);       
+        echo json_encode($res);
     }
     /**
      * @desc Delete event
