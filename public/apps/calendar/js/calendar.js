@@ -81,8 +81,8 @@ var Calendar = {
                 $('table').remove('.popup');
             },
             eventMouseover: function (event) {
-                var start = event.start.format(), end;
-                if (event.end == null) {
+                var start = event.start.format(),end;
+                if (event.end === null) {
                     end = event.start.format();
                 } else {
                     end = event.end.format();
@@ -292,7 +292,7 @@ Calendar.Dialog = {
          * edit ,delete action button
          */
         $('#submit_edit_event').unbind('click').bind('click', function () {
-            Calendar.Dialog.edit(event.id, $selectname, $ovl);
+            Calendar.Dialog.edit(event, $selectname, $ovl);
         });
         $('#close_create_event').click(function () {
             $ovl.dialog("close");
@@ -332,9 +332,9 @@ Calendar.Dialog = {
         });
         $dia.dialog("open");
     },
-    edit: function (id, old_id, dia) {
+    edit: function (event, old_id, dia) {
         $.ajax({
-            url: "index/edit/" + id,
+            url: "index/edit/" + event.id+"/"+1,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -500,7 +500,7 @@ $(document).ready(function () {
             $('.dropdown-toggle').dropdown();
         }
         /**
-         * @author David 
+         * @author David JP<david.gnext@gmail.com>
          *  Is event expire check
          */
         function IsValidEvent(d) {
@@ -526,8 +526,27 @@ $(document).ready(function () {
         function DateTimeFix(end){
                var day =  new Date(end).getDate() - 1;
                var mth = new Date(end).getMonth() + 1;
+               var year = new Date(end).getFullYear();
+               //for leap year and last day of month
+               if(day === 0){
+                   if(mth === 9 || mth === 4 || mth === 5 || mth === 11) {day = 30;}
+                   else if(mth === 1 || mth === 3 || mth === 6 || mth === 7 || mth === 8|| mth === 10 || mth === 12) {
+                       //last day of december is equalalent to next year first day of January
+                       if(mth === 1){
+                           mth = 12;
+                           year = year -1 ;
+                       }
+                       day = 31;
+                   }
+                   else if(mth === 2 && year % 4 === 0) {
+                       day = 29;
+                   }
+                   else{
+                       day = 28;
+                   }
+               }
                (mth < 10) ?  mth = "0"+mth : mth;
                (day < 10) ?  day  = "0"+day : day;
-               var fix_date  =new Date(end).getFullYear()+"-"+mth+"-"+ day;    //get Vitural date
+               var fix_date  = year+"-"+mth+"-"+ day;    //get Vitural date
                return fix_date;
         }

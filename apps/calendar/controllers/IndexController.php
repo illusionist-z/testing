@@ -144,12 +144,12 @@ class IndexController extends ControllerBase
      * @category edit event
      * @return   json { error message }
      */
-    public function editAction($id) {
+    public function editAction($id,$e) {
         $this->view->disable();        
         $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
-        $edate = date('Y-m-d H:i:s',strtotime($edate.'-1 days'));
+        null === $e ? $edate = date('Y-m-d H:i:s',strtotime($edate.'-1 days')) : $edate;
         $name = $this->request->get('uname');
         $title = $this->request->get('title');        
          $res= array();
