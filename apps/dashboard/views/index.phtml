@@ -99,7 +99,8 @@
                                        <li class="user-footer">
                                           
                                  <?php 
-            if($permission==1){
+                                      foreach ($this->session->auth as $key_name => $key_value) {                        
+            if($key_name =='admin_dashboard'){
                 //Go to user dashboard
                 
                 ?>
@@ -107,9 +108,9 @@
                      <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
                                         </div>
                 <?php
-               
-               } 
-                 else {
+            }
+             
+                if ($key_name =='user_dashboard')  {
                
                     ?> 
                       <div class="pull-left">
@@ -117,8 +118,9 @@
                                                 </div>
                 <?php 
                          }
+                                      
                
-                
+                  } 
              
                 ?>       
             

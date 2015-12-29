@@ -8,9 +8,11 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-         foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'show_admin_notification') {
+          $this->act_name =  $this->router->getModuleName(); 
+         $this->permission = $this->setPermission($this->act_name );        
+        $this->view->module_name=$this->module_name;
+        $this->view->permission = $this->permission;
+            if($this->permission==1){
                 //Go to user dashboard
                $permission="admin";
                  
@@ -19,11 +21,11 @@ class IndexController extends ControllerBase
                 //Go to admin dashboard
                 $permission="user";   
             }
-        }
         
-        $this->view->setVar("permission",$permission);
+        
+         $this->view->setVar("permission",$permission);
                //$this->assets->addJs('common/js/notification.js');
-
+ 
     }
 
     
@@ -36,6 +38,8 @@ class IndexController extends ControllerBase
      * Show All Notification in one page
      */
     public function viewallAction(){
+          $this->act_name =  $this->router->getModuleName(); 
+         $this->permission = $this->setPermission($this->act_name ); 
         $this->setCommonJsAndCss();
 
         $type=viewall;
