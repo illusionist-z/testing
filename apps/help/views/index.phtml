@@ -24,7 +24,7 @@
                         
                         <ul class="nav navbar-nav"> 
                                 <li>
-                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="Help" id="help_icon" style="padding-top: 20px;">
+                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="<?php echo $t->_("Help"); ?>" id="help_icon" style="padding-top: 20px;">
                                                <img src="<?php echo $baseUri?>common/img/help_browser.png">
                                         </a>
                                </li>  
@@ -264,7 +264,7 @@
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                   <?php echo "Change language" ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+                   <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
        
