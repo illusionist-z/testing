@@ -21,7 +21,22 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');        
         $this->assets->addJs('common/js/export.js');        
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
-        
+                $Admin=new Db\CoreMember();
+        $id = $this->session->user['member_id'];
+        foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id); 
+            }
+        }
+
+        $this->view->setVar("noti",$noti);
         $this->view->module_name =  $this->router->getModuleName();
          $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name ); 
@@ -59,10 +74,7 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {  
         $this->assets->addJs('apps/leavedays/js/applyleave.js');    
-        $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);        
+              
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
@@ -113,10 +125,7 @@ class IndexController extends ControllerBase {
      * Show Leave data list
      */
     public function leavelistAction(){    
-        $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
+   
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/search.js');
         $this->assets->addJs('apps/leavedays/js/leavelist.js');
@@ -148,10 +157,7 @@ class IndexController extends ControllerBase {
      * to edit leave categories and max leave day
      */
     public function leavesettingAction(){
-        $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);
+
         $LeaveCategories= new LeaveCategories();
         $LeaveSetting=new LeavesSetting();
         $typelist=$LeaveCategories->getleavetype();

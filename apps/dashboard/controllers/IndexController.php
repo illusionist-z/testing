@@ -13,7 +13,7 @@ class IndexController extends  ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
        
@@ -46,7 +46,18 @@ class IndexController extends  ControllerBase {
         $core_groupuser2=$coreuser2::find();
     $Admin=new Db\CoreMember;
     $id=$this->session->user['member_id'];
-    $noti=$Admin->GetAdminNoti($id);
+    foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id); 
+            }
+        }
     $this->view->setVar("noti",$noti);
     //get last create member
     $CMember = new Db\CoreMember();
@@ -86,7 +97,18 @@ class IndexController extends  ControllerBase {
     public function userAction() {
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti=$User->GetUserNoti($id);
+        foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$User->GetAdminNoti($id);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$User->GetUserNoti($id); 
+            }
+        }
         $this->view->setVar("noti",$noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
         $numofatt=$Attendances->getattlist($id);
