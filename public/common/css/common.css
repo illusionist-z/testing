@@ -513,19 +513,14 @@ a.export {
 .forsize{
     font-size: 18px;
 }
-#fixedheader{
-    //position: fixed;
-    width:  100%;
-    /* background-position:left top(or)right top(or) center top;*/
-}
+
 #fixedleftside{
     position: fixed;
     height:   100%;
 }
 
 /* for auto complete*/
-.content {
-    //padding: 10px;
+.content {    
     min-height: 100%;
     min-width: 100%;
 }
@@ -702,7 +697,7 @@ hr{
     color:black;
 }
 #veiwallnotification{
-    text-align: center; 
+    padding-left: 10px;
     width:50%;
     margin:auto;
     background-color: whitesmoke;

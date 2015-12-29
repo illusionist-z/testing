@@ -135,6 +135,21 @@ $messages = array(
     "SSB & Tax Document"=>"SSB အခြန္ & ၀င္ေငြခြန္",
 
     
+    /**
+     * Search Help
+     */
+    "Welcome"=>"Welcome to the search help center",
+    "Thanks"=>"Thanks for using SALTS Application.This application is the management system for offices such as ",
+    "Salary,Tax"=>"Salary,Tax,Attendance Member List",
+    "etc"=>"....etc.",
+    "Explanation"=>"Explanation",
+    "Notification"=>"Notification",
+    "Admin can"=>"Admin can Accept and Reject with users apply  leave.Users can known of Admin Accept and Reject.",
+    "Change"=>"Change Language",
+    "Change Language"=>"Change Language with Japan, English and Myanmar.",
+    "Setting"=>"Setting",
+    "Right side"=>"Right side of the page ,click user profile then click left setting button.",
+    "To know"=>"To know how it work of modules,you can learn from left side link documentation.",
     
  /**
      * Search Help

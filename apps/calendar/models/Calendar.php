@@ -18,6 +18,7 @@ class Calendar extends Model {
      */
     public function fetch($id) {                    
             $events = array();        
+            $d = date("Y-m-d");$today = date("Y-m-d",strtotime($d));
             if(is_array($id)){
             $member_id = implode($id,"','");
             $sql ="SELECT * FROM calendar where member_name IN ('$member_id')";
@@ -27,13 +28,16 @@ class Calendar extends Model {
             }
             $query=  $this->db->query($sql);
             $query->setFetchMode(\Phalcon\Db::FETCH_ASSOC);
-          while ($fetch = $query->fetchArray()) {                      
+            
+          while ($fetch = $query->fetchArray()) {
                 $e = array();
                 $e['id'] = $fetch['id'];
                 $e['member_name'] = $fetch['member_name'];
                 $e['title'] = $fetch['title'];
                 $e['start'] = $fetch['startdate'];
-                $e['end'] = $fetch['enddate'];
+                $s = $fetch['enddate'];
+                $e['end'] = date('Y-m-d H:i:s',strtotime($s.'+1 days'));
+                ($today > date("Y-m-d",strtotime($fetch['enddate']))) ? $e['color'] = '#aaa': $e['color'] = '#3a87ad';
                 $allday = ($fetch['allDay'] == "true") ? true : false;
                 $e['allDay'] = $allday;                
                 array_push($events, $e);
@@ -50,12 +54,12 @@ class Calendar extends Model {
          $this->db = $this->getDI()->getShared("db");
          $insert ="INSERT INTO calendar (member_id,member_name,title,startdate,enddate,allDay,noti_id,creator_id,created_dt) Values ('".$member_id."','".$uname."','".$title."','".$sdate."','".$edate."','true','" . $noti_id . "','".$creator_id."',now())";
          $query=  $this->db->query($insert);
-        $admins=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id  and core_member.member_id!= '" . $creator_id . "' ");
+        $admins=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_member.member_id != '" . $creator_id . "' ");
         $admins=$admins->fetchall();
         foreach ($admins as $admins) {
         $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_name . "','" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
         }
-        $users=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id  and core_member.member_id!= '" . $creator_id . "' ");
+        $users=$this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id != '" . $creator_id . "' ");
         $users=$users->fetchall();
         //print_r($users);exit;
         foreach ($users as $users) {
@@ -103,9 +107,11 @@ class Calendar extends Model {
     */
     public function add_permit_name($permit_name,$id) {        
         $query = "Select * from member_event_permission where permit_name ='".$permit_name."' and member_name = '".$id."' ";
+      
         $result = $this->db->query($query);
         if($result->numRows() == 0){                  
             $query1 = "Insert into member_event_permission (member_name,permit_name,delete_flag) Values ('$id','".$permit_name."',0)";
+            
             $this->db->query($query1);            
             $return  = 0;
         }

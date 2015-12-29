@@ -35,10 +35,13 @@ class IndexController extends ControllerBase
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
               $noti=$Admin->GetAdminNoti($id,0);
+              
+              //$readnoti=$Admin->GetLastNoti($id);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
+                
                $noti=$Admin->GetUserNoti($id,1); 
             }
         }
@@ -52,7 +55,7 @@ class IndexController extends ControllerBase
         $this->view->uname = $Allname;
         $this->view->modulename = $this->module_name;
     } 
-    
+   }
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
@@ -76,6 +79,7 @@ class IndexController extends ControllerBase
     }
     
     public function addmemberAction(){
+        
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
       

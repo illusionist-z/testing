@@ -14,6 +14,7 @@ use salts\Salary\Models\SalaryMemberTaxDeduce;
 class IndexController extends ControllerBase {
 
     public function initialize() {
+        
         parent::initialize();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Module_Config::getModuleConfig('salary');
@@ -57,17 +58,19 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {
+       
            $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
         //var_dump($getsalarydetail);exit;
-        if($this->permission==1){
+        if($this->permission == 1) {
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->salarydetail = $getsalarydetail;
         }
         else {
+            
         $this->response->redirect('core/index');
         }        
     }
@@ -115,7 +118,7 @@ class IndexController extends ControllerBase {
         $deduce=$TaxDeduction->getdedlist();
         
         $position = $this->salaryconfig->position;
-        if($this->permission==1){
+        if($this->permission == 1){
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("usernames", $user_name);
         $this->view->position = $position;
@@ -272,7 +275,7 @@ class IndexController extends ControllerBase {
         $All_List = new \salts\Salary\Models\Allowances();
         $list = $All_List->showalwlist();
         //echo $this->permission;
-        if($this->permission==1){
+        if($this->permission == 1){
         $this->view->setVar("list", $list); //paginated data
         
         $this->view->module_name =  $this->router->getModuleName();
@@ -397,7 +400,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("result", $list); //paginated data
         $Deduction = new SalaryTaxsDeduction();
         $dlist = $Deduction->getdedlist();
-        if($this->permission==1){
+        if($this->permission== 'salarysetting'){
         $this->view->module_name =  $this->router->getModuleName();
         $this->view->setVar("noti",$noti);
         $this->view->setVar("deduction", $dlist);

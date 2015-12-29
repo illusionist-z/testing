@@ -235,8 +235,7 @@ $(document).ready(function () {
     Attendance.init();         
                       
    
-    $('.monthauto').on('click',function(){
-        //alert("aaa");
+    $('.monthauto').on('click',function(){        
         Attendance.monthautolist();
     }); 
    

@@ -207,7 +207,15 @@ class CoreMember extends \Library\Core\BaseModel {
         $user = $user->fetchArray();
         return $user;
     }
-public function GetAdminNoti($id,$type) {
+
+    /**
+     * 
+     * @return type
+     * getting pending leavedays detail
+     * for admin notification
+     * @author Su Zin Kyaw
+     */
+    public function GetAdminNoti($id,$type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         if($type==0){
