@@ -27,22 +27,19 @@ class IndexController extends ControllerBase
 
     
    public function indexAction() {
-         
+        
         $Admin=new Db\CoreMember;
         $id = $this->session->user['member_id'];
           foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id,0);
-              
-              //$readnoti=$Admin->GetLastNoti($id);
+              $noti=$Admin->GetAdminNoti($id);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-                
-               $noti=$Admin->GetUserNoti($id,1); 
+               $noti=$Admin->GetUserNoti($id); 
             }
         }
         
@@ -55,7 +52,7 @@ class IndexController extends ControllerBase
         $this->view->uname = $Allname;
         $this->view->modulename = $this->module_name;
     } 
-
+    
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
@@ -72,17 +69,16 @@ class IndexController extends ControllerBase
      */
     public function getcalmemberidAction() {
        $data = $this->request->get('uname');
-      
+       //print_r($uname);exit;
+        //$leavetype = new Calender();
         $cond = $this->calendar->memidcal($data);
         echo json_encode($cond);
         $this->view->disable();
     }
     
     public function addmemberAction(){
-        
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
-      
         $data = ($permit_name == $id ? 1 : $this->calendar->add_permit_name($permit_name, $id));                  
         echo json_encode($data);
         $this->view->disable();
@@ -148,15 +144,16 @@ class IndexController extends ControllerBase
      * @category edit event
      * @return   json { error message }
      */
-    public function editAction($id) {
+    public function editAction($id,$e) {
         $this->view->disable();        
         $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
+        null === $e ? $edate = date('Y-m-d H:i:s',strtotime($edate.'-1 days')) : $edate;
         $name = $this->request->get('uname');
         $title = $this->request->get('title');        
          $res= array();
-        if ($title == null) {            
+        if ($title == null) {
             $res['cond']=FALSE;
             $res['res']="title not be empty";            
         }
@@ -170,7 +167,7 @@ class IndexController extends ControllerBase
             $res['res']=$edit;
             $res['name']=$name;
         }
-        echo json_encode($res);       
+        echo json_encode($res);
     }
     /**
      * @desc Delete event
@@ -190,5 +187,4 @@ class IndexController extends ControllerBase
     }
      
 }
-
 
