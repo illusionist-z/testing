@@ -238,6 +238,7 @@ $messages = array(
     "You can choose your Leave Type."=>"ရွာေဖြလိုေသာ ခြင္႔အမ်ိဴးအစား",
     "Month"=>"လ",
     "You can choose Month."=>"ရွာေဖြလိုေသာ လ ",
+    "Leave_name"=>"နာမည္ကို ရုိက္ထည့္ေပးပါရန္။",
     
     /**
      * Leave Setting
