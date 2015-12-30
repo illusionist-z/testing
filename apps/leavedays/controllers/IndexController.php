@@ -191,7 +191,7 @@ class IndexController extends ControllerBase {
         $data[1]['addleavetype'] = $t->_("addleavetype");
         $data[1]['leave_category'] = $t->_("leave_category");
         $data[1]['yes'] = $t->_("yes");
-        $data[1]['no'] = $t->_("cancel");
+        $data[1]['no'] = $t->_("no");
         $data[1]['enterltp'] = $t->_("enterltp");
         $this->view->disable();
         echo json_encode($data);
@@ -207,8 +207,9 @@ class IndexController extends ControllerBase {
         $LeaveCategories = new LeaveCategories();
         $data = $LeaveCategories->getltypedata($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
-        $data[1]['yes'] = $t->_("yes");
-        $data[1]['no'] = $t->_("cancel");
+        $data[1]['del_title'] = $t->_("del_title");
+        $data[1]['del_yes'] = $t->_("del_yes");
+        $data[1]['del_no'] = $t->_("del_no");
         $this->view->disable();
         echo json_encode($data);
     }

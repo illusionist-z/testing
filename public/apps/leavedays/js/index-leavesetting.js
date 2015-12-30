@@ -10,19 +10,18 @@ var Categories = {
                 
                var result = $.parseJSON(res);
                
-              
                var data ='<form id="edit_ltype_table"><table>';               
                    data += '<tr><td></td><td><input type="hidden"  value="'+result[0]['leavetype_id']+ '" name="id" ></td></tr>'
                         +'<tr><td>'+result[1]['delete_confirm']+'"'+result[0]['leavetype_name']+ '"?</td>'
                         +'<tr></tr><br>'
                          +'<tr><td></td></tr>';             
-               data +='<tr><td style="padding-top: 13px;"><a href="#" class="button" id="delete_ltype">'+result[1]['yes']+'</a><a href="#" class="button" id="edit_close">'+result[1]['no']+'</a></td></tr>';
+               data +='<tr><td style="padding-top: 13px;"><a href="#" class="button" id="delete_ltype">'+result[1]['del_yes']+'</a><a href="#" class="button" id="edit_close">'+result[1]['del_no']+'</a></td></tr>';
                data +='</table></form>';
-               Categories.Dia(data);
+               Categories.Dia(data,result[1]['del_title']);
            }
         });
         },
-    Dia : function (d){
+    Dia : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -37,7 +36,7 @@ var Categories = {
             resizable:false,
             width: 'auto',
             modal: true,
-            title:"Delete Leave Categories"
+            title:title
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
@@ -60,8 +59,7 @@ var Categories = {
             url : "delete_ltype",
             success:function(){
                 
-                d.dialog("close");
-                
+                d.dialog("close");             
 
             }
         }).done(function(){
@@ -72,9 +70,9 @@ var Categories = {
       
         $.ajax({
             
-           url:"ltyadd",
+           url:"add_ltype",
            type: "get",
-           success:function(d){      
+           success:function(d){   
               var result = $.parseJSON(d);
                var data ='<form id="Add_new_ltype"><table>';               
                    data += '<tr><td></td></tr>'
@@ -107,13 +105,12 @@ var Categories = {
         $ovl.dialog("open");
         $('#Add_ltype').on('click',function(){
             Categories.AddNew($ovl);
-           
+            location.reload();
         });  
           
         $('#cancel_ltype').on('click',function(){
            $ovl.dialog("close");
-         
-
+            location.reload();
         });       
     },
      AddNew : function(d){

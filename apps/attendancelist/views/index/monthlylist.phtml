@@ -45,16 +45,16 @@ $length = count($Month);
     <div class="buttons">
         <!--        <form action="monthlysearch" method="post">-->
                   
-                    <input type="text" name="year" id="year" class="datepicker"   placeholder="<?= $t->_("startdate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
+                    <input type="text" name="year" id="year" class="datepicker form-control-static"   placeholder="<?= $t->_("startdate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
           
-                    <input type="text" name="month" id="month" class="datepicker"   placeholder="<?= $t->_("enddate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
+                    <input type="text" name="month" id="month" class="datepicker form-control-static"   placeholder="<?= $t->_("enddate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
 
-                    <input type="text" class="monthauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off">
+                    <input type="text" class="monthauto form-control-static" name="username"  id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off">
 
           
-            <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn" id="sub">
+            <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn form-control-static" id="sub">
             <input type="hidden" value='' id='hidden-type' name='ExportType'/>
-            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><b><?php echo $t->_("export"); ?></b></a>
+            <a href="" class="button form-control-static export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><b><?php echo $t->_("export"); ?></b></a>
 
         
     </div>

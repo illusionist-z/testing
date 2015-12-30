@@ -15,6 +15,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/help/js/help.js');
+        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('apps/help/css/help.css');
         $this->view->t = $this->_getTranslation();
         $Admin = new CoreMember();

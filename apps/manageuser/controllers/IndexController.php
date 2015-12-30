@@ -121,6 +121,8 @@ class IndexController extends ControllerBase
             $edit[1]["placeholder8"] = $t->_("placeholder8");
             $edit[1]["placeholder9"] = $t->_("placeholder9");
             $edit[1]["placeholder10"] = $t->_("placeholder10");
+            $edit[1]["placeholder11"] = $t->_("placeholder11");
+             $edit[1]["placeholder12"] = $t->_("placeholder12");
             echo json_encode($edit);
         }
         else{
