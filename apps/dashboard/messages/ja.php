@@ -24,18 +24,19 @@ $messages = array(
     "leave_most"=>"ほとんどの休暇を取る人",
     "viewallmember" => "全てのメンバー",
     
+       
         /**
      * Header
      */
-    "Help"=>"手助け",
-    "Notifications"=>"お知らせ",
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
     "View All"=>"すべて見ます",
-    "Member Since"=>"စတင္ အသံုးျပဳေသာေန႔ရက္",
-    "Setting"=>"သတ္မွတ္ခ်က္မ်ား",
-    "Sign out"=>"ထြက္ခြာ",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
     /**
      * footer
      */
-    "Change_Language"=>"ဘာသာ စကားေျပာင္းရန္",
+    "Change_Language"=>"言語を変えてください",
 );
 

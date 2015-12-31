@@ -45,5 +45,20 @@ $messages = array(
     "Email"     =>  "メール",
     "Phone" => "電話番号",
     "Address" => "住所",
+    
+      
+        /**
+     * Header
+     */
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
+    "View All"=>"すべて見ます",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
+    /**
+     * footer
+     */
+    "Change_Language"=>"言語を変えてください",
 );
 

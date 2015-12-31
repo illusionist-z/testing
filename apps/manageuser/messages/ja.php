@@ -36,7 +36,22 @@ $messages = array(
    "placeholder8" => "メールを入力してください",
    "placeholder9" => "電話番号を入力してください",
    "placeholder10" => "住所を入力してください",
-    "placeholder11" => "ထည့္မည္",
-    "placeholder12" => "မလုပ္ေတာ့ပါ",
+    "placeholder11" => "新規入力",
+    "placeholder12" => "中止",
+    
+      
+        /**
+     * Header
+     */
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
+    "View All"=>"すべて見ます",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
+    /**
+     * footer
+     */
+    "Change_Language"=>"言語を変えてください",
 );
 

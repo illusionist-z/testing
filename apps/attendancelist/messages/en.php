@@ -34,5 +34,10 @@ $messages = array(
     "att_time" => "Attendance Time",
     "note" =>"Reason Note",
     "save" => "Save",
-    "cancel" => "Cancel"
+    "cancel" => "Cancel",
+    
+     /**
+     * footer
+     */
+    "Change_Language"=>"Change Language",
 );

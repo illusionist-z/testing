@@ -23,6 +23,12 @@ $messages = array(
     "no_leave"=>"People who attend no leave",
     "leave_most"=>"People who take the leave most",
     "no_leave" => "People who doesn't take leave",
-    "viewallmember" => "View All Members"    
+    "viewallmember" => "View All Members",
+    
+    
+     /**
+     * footer
+     */
+    "Change_Language"=>"Change Language",
 );
 

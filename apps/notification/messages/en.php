@@ -14,6 +14,12 @@ $messages = array(
     "leaveday" => "Leave Days",
     "leavecategory" => "Leave Category",
     "leavedes" => "Leave Description",
+        
+    
+    /**
+     * footer
+     */
+    "Change_Language"=>"Change Language",
     
 );
 

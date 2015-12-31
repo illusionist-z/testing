@@ -215,22 +215,22 @@ var Salary = {
     calSalary : function (){
         //alert("add");
         
-        $.ajax({
-            
-           url:"",
+        $.ajax({            
+           url:"calSalary",
            type: "POST",
-           success:function(){   
-                var data ='<form id="Add_new_deduct"><table>';               
-                    data += '<tr><td>Choose pay month to calculate salary <br></td></tr>'
+           dataType : "json",
+           success:function(d){               
+                var data ='<form id="Add_new_deduct"><table>'; 
+                    data += '<tr><td>'+d.cal_text+'<br></td></tr>'
                     +'<tr><td><div style="display:none;" id="error_salary">Please Choose Pay Month!</div><div style="display:none;" id="nexterror_salary">Please choose another pay Month!</div></td></tr>'        
-                       +'<tr><td><input type="text" class="datepicker"  placeholder="Choose pay month" style="height:39px; width: 100%;" id="salary_start"></td></tr>'        
-                    data +='<tr><td><a href="#" class="button" id="cal_salary_month">Yes</a><a href="#" class="button" id="cancel_deduct">No</a></td></tr>';
+                       +'<tr><td><input type="text" class="datepicker"  placeholder="'+d.cal_placehd+'" style="height:39px; width: 100%;" id="salary_start"></td></tr>'        
+                    data +='<tr><td><a href="#" class="button" id="cal_salary_month">'+d.cal_yes+'</a><a href="#" class="button" id="cancel_deduct">'+d.cal_no+'</a></td></tr>';
                     data +='</table></form>';
-               Salary.Diaaadd(data);
+               Salary.Diaaadd(data,d.cal_title);
            }
         });
         },
-        Diaaadd : function (d){
+        Diaaadd : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -243,7 +243,7 @@ var Salary = {
             resizable:false,
             width: 'auto',
             modal: true,
-            title:"Calculate Salary"
+            title:title
         });                        
         $ovl.html(d);
         $ovl.dialog("open");

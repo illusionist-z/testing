@@ -144,7 +144,7 @@ class IndexController extends ControllerBase
      * @category edit event
      * @return   json { error message }
      */
-    public function editAction($id,$e) {
+    public function editAction($id,$e = null) {
         $this->view->disable();        
         $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');

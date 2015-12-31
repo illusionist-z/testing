@@ -12,6 +12,7 @@ class IndexController extends ControllerBase
          $this->permission = $this->setPermission($this->act_name );        
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
+        $this->view->t = $this->_getTranslation();
             if($this->permission==1){
                 //Go to user dashboard
                $permission="admin";
@@ -41,7 +42,7 @@ class IndexController extends ControllerBase
           $this->act_name =  $this->router->getModuleName(); 
          $this->permission = $this->setPermission($this->act_name ); 
         $this->setCommonJsAndCss();
-
+        $this->assets->addCss('common/css/css/style.css');
         $type=viewall;
         $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
@@ -104,6 +105,7 @@ class IndexController extends ControllerBase
     
     public function detailAction(){
         $this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/css/style.css');
         $code=$this->session->permission_code;
         $Admin=new CoreMember();
         $id = $this->session->user['member_id'];

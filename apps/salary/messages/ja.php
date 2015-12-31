@@ -76,7 +76,6 @@ $messages = array(
     "enter_allamount"           => "手当金額を記入してください。",
        "deduction_add" => "Deduction Addto",
     "deduction_name" => "Deduction 名前",
-    "deduction_amt"  => "Deduction Amount",
     "taxeditform" => "税金(deduce)の編集",
     "tax_edit" => "税金の編集",
     "deduce_frm" => "deduceフォーム",
@@ -84,7 +83,18 @@ $messages = array(
     "amount" => "金額",
     "wr_deduce_name" => "deduce名を入力してください",
     "wr_deduce_amount" => "金額を入力してください",
+     "calSalary_noti" => "今月給料を計算します",
+    "calSalary_m" => "月を選択し",
+    "cal_title"=>"給与を計算します",
     
+    "add_new"=>"新しい控除を追加",
+    "deduc_name"=>"	Deduction 名前",
+    "deduc_amount"=>"Deduction 量",    
+    "sett_title"=>"新しい控除を追加",
+    "write_name"=>"控除の名前を入力してください",
+    "write_amount"=>"控除額を入力します。",
+    "save"=>"加算",
+    "cancel"=>"中止",
       
         /**
      * Header

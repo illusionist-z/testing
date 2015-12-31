@@ -38,5 +38,20 @@ $messages = array(
     "att_time" => "出勤時間",
     "note" =>"理由",
     "save" => "保存",
-    "cancel" => "中止"
+    "cancel" => "中止",
+    
+      
+        /**
+     * Header
+     */
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
+    "View All"=>"すべて見ます",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
+    /**
+     * footer
+     */
+    "Change_Language"=>"言語を変えてください",
 );
