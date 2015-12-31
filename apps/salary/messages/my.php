@@ -2,12 +2,35 @@
 
 $messages = array(   
     //add salary
+    
    "addsalary_title"       => "လစာေပးၿခင္း(၀န္ထမ္း)",
     "month"       => "လ",
     "name"                  => "နာမည္",
+    "home"=>"မူလစာမ်က္ႏွာ",
+    "searchusername"=>"အမည္ရုိက္ထည့္ေပးပါ",
+    "basic_sal"=>"အေျခခံလစာကိုရုိက္ထည့္ေပးပါ",
+    "travel"=>"ခရီးစရိတ္ကိုရုိက္ထည့္ေပးပါ",
     "basic_salary"        => "အေၿခခံလစာ",
     "travel_fee"           =>  "ခရီးစရိတ္",
-    "overtime"             => "overtimeေၾကး(တစ္နာရီ)",
+    "over"=>"Overtime ေၾကးရုိက္ထည့္ေပးပါ",
+    "cancel"=>"မလုပ္ေတာ့ပါ",
+    "Decut Name"=>"အခြန္မ်ား",
+    "Allow Name"=>"ေထာက္ပံေၾကးမ်ား",
+    "Starting Date"=>"အလုပ္စ၀င္သည့္ေန႔",
+    "Calculate salary"=>"လစာတြက္မည္",
+     "show_salary_detail"=>"လစာမ်ားကိုအေသးစိတ္ၾကည့္ရန္",
+    "username"=>"နာမည္",
+    "enter_name"=>"နာမည္ရုိက္ထည့္ရန္",
+    "department"=>"ဌာန",
+    "choose"=>"ေရြးရန္",
+    "position"=>"ရာထူး",
+    "salary_rate"=>"လစာႏွုန္းထား",
+    "search"=>"ရွာမည္",
+    "Print"=>"Print",
+    "Detail"=>"အေသးစိတ္ၾကည့္ရန္",
+    "Total salary for all user"=>"စုစုေပါင္းအားလံုး",
+    "Add"=>"ထည့္မည္",
+    "overtime"             => "Overtimeေၾကး",
     "deduce_ssc"        => "SSCအခြန္",
     "allowance"          => "ခြင့္ၿပဳစရိတ္",
     "apply"                 => "ေလ်ွာက္မည္",
@@ -61,6 +84,21 @@ $messages = array(
     "deduce_name" => "deduceအမည္",
     "amount" => "ႏႈန္း",
     "wr_deduce_name" => "deduceအမ်ဳိးအစား",
-    "wr_deduce_amount" => "deduceႏႈန္း"
+    "wr_deduce_amount" => "deduceႏႈန္း",
+    
+     
+        /**
+     * Header
+     */
+    "Help"=>"အကူအညီ",
+    "Notifications"=>"အေၾကာင္းၾကားခ်က္မ်ား",
+    "View All"=>"အားလံုးၾကည့္ရန္",
+    "Member Since"=>"စတင္ အသံုးျပဳေသာေန႔ရက္",
+    "Setting"=>"သတ္မွတ္ခ်က္မ်ား",
+    "Sign out"=>"ထြက္ခြာ",
+    /**
+     * footer
+     */
+    "Change_Language"=>"ဘာသာ စကားေျပာင္းရန္",
     
 );

@@ -3,7 +3,12 @@
 $messages = array(   
    "addsalary_title"       => "Add Salary For Each Member",
    "month"       => "month",
+     "home"=>"Home",
     "searchusername" => "Search User Name",
+    "basic_sal"=>"Enter Basic Salary",
+    "travel"=>"Enter Travel Fee",
+    "over"=>"Enter Overtime",
+    "cancel"=>"Cancel",
    "name"                   => "User Name",
    "basic_salary"         => "Basic Salary",
    "travel_fee"            => "Travel Fees",
@@ -59,6 +64,11 @@ $messages = array(
     "deduce_name" => "Deduce Name",
     "amount" => "Amount",
     "wr_deduce_name" => "Write Deduce Name",
-    "wr_deduce_amount" => "Write Deduce Amount"
+    "wr_deduce_amount" => "Write Deduce Amount",
+    
+      /**
+     * footer
+     */
+    "Change_Language"=>"Change Language",
     );
 

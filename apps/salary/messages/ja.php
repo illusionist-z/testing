@@ -5,6 +5,29 @@ $messages = array(
     "addsalary_title"       => "給料新規入力",
     "month"       => "月",
     "name"                    => "名前",
+     "home"=>"ホーム",
+    "searchusername" => "ユーザー名を入力します。",
+    "basic_sal"=>"基本的な給与を入力してください",
+    "travel"=>"旅行費用を入力してください",
+    "over"=>"残業を入力してください",
+    "cancel"=>"キャンセル",
+    
+    "Decut Name"=>"推論する",
+    "Allow Name"=>"手当名",
+    "Starting Date"=>"開始日",
+     "Calculate salary"=>"給与を計算します",
+    "show_salary_detail"=>"給与の詳細を表示",
+    "username"=>"ユーザ名",
+    "enter_name"=>"名前を入力します。",
+    "department"=>"部門",
+    "choose"=>"選択します",
+    "position"=>"立場",
+    "salary_rate"=>"給与レート",
+    "search"=>"サーチ",
+    "Print"=>"プリント",
+    "Detail"=>"細部",
+     "Total salary for all user"=>"合計すべて",
+    "Add"=>"加算",
     "basic_salary"         => "基本の給料",
     "travel_fee"            => "交通費",
     "overtime"               => "残業(1時間)",
@@ -60,5 +83,20 @@ $messages = array(
     "deduce_name" => "deduce名",
     "amount" => "金額",
     "wr_deduce_name" => "deduce名を入力してください",
-    "wr_deduce_amount" => "金額を入力してください"
+    "wr_deduce_amount" => "金額を入力してください",
+    
+      
+        /**
+     * Header
+     */
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
+    "View All"=>"すべて見ます",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
+    /**
+     * footer
+     */
+    "Change_Language"=>"言語を変えてください",
 );

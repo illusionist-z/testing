@@ -212,6 +212,9 @@ class IndexController extends ControllerBase {
        $resultsalary['t']['b_salary'] = $t->_("basic_salary");
        $resultsalary['t']['t_fee'] = $t->_("travel_fee");
        $resultsalary['t']['ot'] = $t->_("overtime");
+       $resultsalary['t']['Decut Name'] = $t->_("Decut Name");
+       $resultsalary['t']['Allow Name'] = $t->_("Allow Name");
+       $resultsalary['t']['Starting Date'] = $t->_("Starting Date");
        $resultsalary['t']['edit_btn'] = $t->_("edit_btn");
        $resultsalary['t']['delete_btn'] = $t->_("delete_btn");
        $resultsalary['t']['cancel_btn'] = $t->_("cancel_btn");

@@ -23,14 +23,14 @@
                     <input type="hidden" name="cond[yr]" value="<?php echo $year;?>" id="year">
                     <div id="salary_detail_div1">
                         <?= $t->_("username");?> :
-                        <input  class="tags"   style="width:100%;margin-top: 1px;"  id="namelist" placeholder="<?php echo $t->_("username"); ?>">
+                        <input  class="tags form-control-static"   style="width:100%;margin-top: 1px;"  id="namelist" placeholder="<?php echo $t->_("enter_name"); ?>">
                         <input type="hidden" value="" id="formemberid" name="cond[mem]">
                     </div>
                     <div id="salary_detail_div2">
                         <?= $t->_("department");?> :
                         <span>
-                            <select class="select" data-toggle="select" name="cond[dept]"  id="department">
-                                <option value=""><?= $t->_("department");?></option>
+                            <select class="select form-control-static" data-toggle="select" name="cond[dept]"  id="department">
+                                <option value=""><?= $t->_("choose");?></option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -43,8 +43,8 @@
                     <div id="salary_detail_div3">
                         <?= $t->_("position");?> :
                         <span>
-                            <select class="select" data-toggle="select" name="cond[position]" id="position">
-                                <option value="" ><?= $t->_("position");?></option>
+                            <select class="select form-control-static" data-toggle="select" name="cond[position]" id="position">
+                                <option value="" ><?= $t->_("choose");?></option>
                                 <?php
                                 foreach ($usernames as $username) {
                                     ?>
@@ -56,8 +56,8 @@
                     </div>
                     <div id="salary_detail_div4">
                          <?= $t->_("salary_rate");?> :
-                        <select class="select" data-toggle="select" name="cond[salary]" id="salary_rate">
-                          <option value="" ><?= $t->_("salary_rate");?></option>
+                        <select class="select form-control-static" data-toggle="select" name="cond[salary]" id="salary_rate">
+                          <option value="" ><?= $t->_("choose");?></option>
                             <option>200000~400000</option>
                             <option>400001~700000</option>
                             <option>700001~1000000</option>
@@ -67,9 +67,9 @@
                 </div>
                 <div class="search-btn-box"><!--search btn-->
                     <div>
-                        <a href="#" class="button" id="search_salary"><?= $t->_("search");?></a>
-                        <a href="#" class="button export"><?= $t->_("export");?></a>
-                        <a href="#" title="Print" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a><br>
+                        <a href="#" class="button form-control-static" id="search_salary"><?= $t->_("search");?></a>
+                        <a href="#" class="button export form-control-static"><?= $t->_("Export");?></a>
+                        <a href="#" title="<?= $t->_("Print");?>" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a><br>
                        
                     </div>
                 </div><!--search btn-->
@@ -134,7 +134,7 @@
                                 <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">
                             </td>
 <!--                            <td><a href="payslip?member_id=<?php echo $getsalarylist['member_id']?> && month=<?php echo $month; ?> && year=<?php echo $year; ?>" class="button">Detail</a></td>-->
-                            <td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></td>
+                            <td><a href="#" class="btn_detail" title="<?= $t->_("Detail");?>" id="detail_img" style="margin-top: 13px;"></a></td>
                         </tr>
                         <?php
                         $i++;
@@ -143,7 +143,7 @@
                     ?>
                            
                     <tr>
-                        <td colspan="11" style="text-align:center; background-color:#3c8dbc; color: #FFFFFF"><b>Total salary for all user</b></td>
+                        <td colspan="11" style="text-align:center; background-color:#3c8dbc; color: #FFFFFF"><b><?= $t->_("Total salary for all user");?></b></td>
                         <td style="background-color:#3c8dbc; color: #FFFFFF"><div class="td-style"><b><?php echo number_format($filter->sanitize($totalresult, "int"));?></b></div></td>
                         <td style="background-color:#3c8dbc;"></td>
                     </tr>

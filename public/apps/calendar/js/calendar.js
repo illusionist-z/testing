@@ -202,7 +202,6 @@ var Calendar = {
             height: 'auto',
             width: 'auto',
             resizable: false,
-            title: "Add Member",
             modal: true
         });
         $("#member_event_dialog_close").on("click", function () {
