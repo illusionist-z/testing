@@ -52,7 +52,7 @@ var Calendar = {
             },
             eventDrop: function (event) {
                 var start = event.start.format("YYYY-MM-DD"), end;
-                if (event.end == null) {
+                if (event.end === null) {
                     end = event.start.format("YYYY-MM-DD");
                 }
                 else {
@@ -514,7 +514,7 @@ $(document).ready(function () {
             var event_date = parseInt(new Date(d.end).getDate());
             var event_month = parseInt(new Date(d.end).getMonth());
             var event_year = parseInt(new Date(d.end).getFullYear());
-            if (today_date > event_date && today_month >= event_month && today_year >= event_year) {
+            if (today_date >= event_date && today_month >= event_month && today_year >= event_year) {
                 d.color = "#aaa";
             }
             else {
