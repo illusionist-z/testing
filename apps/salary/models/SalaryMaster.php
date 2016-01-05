@@ -196,7 +196,7 @@ class SalaryMaster extends Model {
                 $basic_salary_allowance_annual=$basic_salary_allowance_annual+$overtime_fees_annual;
                 
                 //check the user who is absent.
-                $absent=  $this->checkAbsent($value['member_id']);
+                $absent=  $this->checkAbsent($value['member_id'],$budget_startyear,$budget_endyear_one);
                 //Get the data of leave setting
                 $leavesetting=  $this->getleavesetting();
                 //calculate absent deduce
@@ -325,11 +325,11 @@ class SalaryMaster extends Model {
      * @param type $member_id 
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    function checkAbsent($member_id) {
+    function checkAbsent($member_id,$budget_startyear,$budget_endyear_one) {
         try{
             $absent_deduce="";
-            $getStartandEnd=  $this->getStartandEnd_date($member_id);
-            $sql = "select count(date) as countAbsent from absent where member_id='" . $member_id . "' and date>='".$getStartandEnd['startDate']."' and date<='".$getStartandEnd['endDate']."' and deleted_flag=0";
+           
+            $sql = "select count(date) as countAbsent from absent where member_id='" . $member_id . "' and date>='".$budget_startyear."' and date<='".$budget_endyear_one."' and deleted_flag=0";
             
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
@@ -338,30 +338,6 @@ class SalaryMaster extends Model {
             echo $ex;
         }
         return $row;
-    }
-    
-    /**
-     * get start and end date after 1 year
-     * @param type $id
-     * @return type
-     */
-   
-     public function getStartandEnd_date($id){
-        $sql="SELECT DATE(created_dt) as created_dt,DATE(working_year_by_year) as updated_dt FROM core_member WHERE core_member.member_id= '" . $id . "'";
-        //echo $sql;
-        $credt = $this->db->query($sql);
-        $created_date = $credt->fetcharray();
-        //print_r($created_date);
-        if( $created_date['updated_dt']==NULL){
-             $date['startDate']=$created_date['created_dt'];
-             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['created_dt'])));
-        }
-        else{
-             $date['startDate']=$created_date['updated_dt'];
-            $date['endDate']=date('Y-m-d', strtotime("+1 year", strtotime($created_date['updated_dt'])));
-        }
-        
-        return $date;
     }
     
     
