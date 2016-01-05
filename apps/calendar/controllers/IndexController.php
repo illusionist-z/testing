@@ -22,7 +22,7 @@ class IndexController extends ControllerBase
          $this->act_name =  $this->router->getModuleName(); 
          $this->permission = $this->setPermission($this->act_name ); 
          $this->view->permission = $this->permission;
-        $this->view->t = $this->_getTranslation(); 
+      +   $this->view->t = $this->_getTranslation(); 
     }
 
     

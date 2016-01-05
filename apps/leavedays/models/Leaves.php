@@ -118,12 +118,13 @@ class Leaves extends \Library\Core\BaseModel {
             $checkday = date("Y-m-d", strtotime("+7 days"));
             $sdate = date("Y-m-d", strtotime($sdate));
             $edate = date("Y-m-d", strtotime($edate));
+            
             //check before a week
             if ($sdate >= $checkday && $edate >= $checkday) {
                 //check $edate greater than $sdate
                 if (strtotime($sdate) <=strtotime($edate)) {
                     //for calculate leave day
-                    $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;
+                    $leave_day = ((strtotime($edate) - strtotime($sdate)) / 86400)+1;
                     $result = $this->db->query("INSERT INTO leaves (member_id,date,"
                             . "start_date,end_date,leave_days,leave_category,"
                             . "leave_description,total_leavedays,leave_status,"
