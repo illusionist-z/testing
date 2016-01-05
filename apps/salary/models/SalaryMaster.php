@@ -243,7 +243,7 @@ class SalaryMaster extends Model {
                         'basic_examption' => $basic_deduction,
                         'member_id' => $value['member_id'], 
                         'allowance_amount' => $Allowanceresult['allowance'], 
-                        'absent_dedution'=>$absent_dedution,
+                        'absent_dedution'=>  round($absent_dedution),
                         'creator_id'=>$creator_id,
                         'pay_date'=>$salary_start_date);
                     
@@ -285,15 +285,16 @@ class SalaryMaster extends Model {
      */
     public function CalculateLeave($countabsent,$max_leavedays,$fine,$basic_salary) {
         if($countabsent>$max_leavedays){
-        if($fine!="")
+        if($fine!=0)
         {
         $salary_per_day=  $basic_salary*$fine/100;
         $absent_deduce=$salary_per_day*($countabsent-$max_leavedays);
                       
         }
         else{
-        $salary_per_day=$basic_salary/22;
-        $absent_deduce=$salary_per_day*$countabsent;
+//        $salary_per_day=$basic_salary/22;
+//        $absent_deduce=$salary_per_day*$countabsent;
+        $absent_deduce=$basic_salary*(22-($countabsent-$max_leavedays))/22;
                     
             }
         }
