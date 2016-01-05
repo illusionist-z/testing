@@ -2,34 +2,34 @@
     <div class="col-md-10" id="showhelp">
        <ul id="helpcenter">
         <li>
-            <a href="#" ><span id="searchhelpcenter">Salary List help center</span></a>
+            <a href="#" ><span id="searchhelpcenter"><?php echo $t->_("Salary List help center"); ?></span></a>
         </li>        
     </ul>
     <hr>
     <div class="col-md-6">        
-        <img src="../../common/img/salarylists.png" style="width:100%;height:380px;"> 
+        <img src="<?php echo $baseUri?>common/img/salarylists.png" style="width:100%;height:380px;"> 
     </div>
          <div class="col-md-6">
              <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
                
-                <li>Export
+                 <li><span class="text-aqua"><?php echo $t->_("Export"); ?></span>
                      <ul>
-                         <li>This will output the data of display table as csv.</li>
+                         <li><pre><?php echo $t->_("This will output"); ?></pre></li>
                      </ul>
                 </li>
-                 <li style="list-style-image: url('../../common/img/images1.png');">Edit
+                <li style="list-style-image: url('<?php echo $baseUri?>common/img/images1.png');"><span class="text-aqua"><?php echo $t->_("Edit"); ?></span>
                      <ul>
-                         <li style="list-style: none;">Admin can edit of user informations.</li>
+                         <li><pre><?php echo $t->_("Admin can edit of user informations."); ?></pre></li>
                      </ul>
                 </li>
             </ol>
         </div>
-    <div class="col-md-12 top-padding">
-    <div class="col-md-6 ">
-        <a href="addsalary"><< Add Salary  </a>
+    <div class="col-md-12 pad">
+    <div class="col-md-6 col-xs-6">
+        <a href="addsalary"><< <?php echo $t->_("Add Salary"); ?>  </a>
     </div>
     <div class="col-md-6 text-right">
-        <a href="monthlysallist">Monthly Salary Lists  >></a>
+        <a href="monthlysallists"><?php echo $t->_("Monthly Salary Lists"); ?>  >></a>
     </div>
     </div>
 </div>

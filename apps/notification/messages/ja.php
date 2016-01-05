@@ -13,6 +13,22 @@ $messages = array(
     "leaveday" => "休暇",
     "leavecategory" => "休みtype",
     "leavedes" => "理由",
+    "Accept" => "アクセプト",
+    "Reject" => "リジェクト",
     
+        
+        /**
+     * Header
+     */
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
+    "View All"=>"すべて見ます",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
+    /**
+     * footer
+     */
+    "Change_Language"=>"言語を変えてください",
 );
 

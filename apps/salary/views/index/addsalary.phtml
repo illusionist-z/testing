@@ -3,8 +3,8 @@
         <?= $t->_("addsalary_title"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Add Salary</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
+        <li class="active"><?= $t->_("addsalary_title"); ?></li>
     </ol>
 </section>
 <?php
@@ -38,7 +38,7 @@ if(isset($Msg))
                                 ?>
                             </select>
                              <span id="add_salary_uname_error"></span> -->
-                            <input class="salusername" name="uname" id="uname" style="width:34%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
+                            <input type="text" class="salusername" name="uname" id="uname" style="width:34%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
                             <span id="add_salary_uname_error"></span>
                             <input type="hidden" value="" id="formemberid" name="member_id">
                         </span>
@@ -64,18 +64,18 @@ if(isset($Msg))
                     </div>-->
                     <div class="div-bottom">
                         <span class="span-style"><?= $t->_("basic_salary"); ?></span>
-                        <span><input type="text" id="bsalary" value="" placeholder="Basic salary" style="width:34%; height: 20%;" name="bsalary"></span>
+                        <span><input type="text" id="bsalary" value="" placeholder="<?php echo $t->_("basic_sal"); ?>" style="width:34%; height: 20%;" name="bsalary"></span>
                          <span id="add_salary_bsalary_error"></span>
                     </div>
 
                     <div class="div-bottom">
                         <span class="span-style"><?= $t->_("travel_fee"); ?></span>
-                        <span><input type="text" id="travelfee" value="" placeholder="Travel fees" style="width:34%; height: 20%;" name="travelfee"></span>
+                        <span><input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("travel"); ?>" style="width:34%; height: 20%;" name="travelfee"></span>
                     </div>
 
                     <div class="div-bottom">
                         <span class="span-style"><?= $t->_("overtime"); ?></span>
-                        <span><input type="text" id="overtime" value="" style="width:34%; height: 20%;" name="overtime" placeholder="overtime"></span>
+                        <span><input type="text" id="overtime" value="" style="width:34%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>"></span>
                         
                     </div>
                         
@@ -126,7 +126,7 @@ if(isset($Msg))
 <!--                            <a href="#" class="button">Apply</a>-->
                            <input type="submit" value="<?= $t->_("apply"); ?>" onclick="return false;" id="addsalary" class="buttonn">
                             <!--<a href="#" class="button"><b>Cancel</b></a>-->
-                            <input type="reset" id="add_salary_cancel" class="buttonn" value="Cancel">
+                            <input type="reset" id="add_salary_cancel" class="buttonn" value="<?= $t->_("cancel"); ?>">
                         </span>
                     </div>
                 </form>

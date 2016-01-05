@@ -22,7 +22,7 @@ var Attendance = {
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-               // alert(data);    
+              //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                  // alert(json_obj[i].member_login_name);
@@ -114,15 +114,17 @@ var Attendance = {
            window.location.href='editTime/'+id+'/'+localtime;         
        },
        
-        todaylist: function (){                       
+        todaylist: function (){  
+           // $('table.listtbl tbody').empty();
         var name = document.getElementById('namelist').value;        
-        
+         
         $.ajax({
         url: 'todaylist?namelist='+name ,
         type: 'GET',
         success: function (d) {
+            //alert(d);
          $('body').html(d);
-         link_height();
+         link_height() ;
          // Attendance.init();
         },
         error: function (d) {
@@ -132,8 +134,8 @@ var Attendance = {
        },
       monthlylist :function (){
             var yy = $('#year').val(),
-            mm = $('#month').val(),
-            name = $('#username').val();
+             mm = $('#month').val(),
+             name = $('#username').val();
         //set empty
         $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();
         
@@ -294,7 +296,6 @@ $(document).ready(function () {
     });
   
    $('#sub').unbind('click').bind('click',function (e) {
-       
         e.preventDefault();
         Attendance.monthlylist.apply(this);        
     });   

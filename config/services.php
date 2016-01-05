@@ -108,7 +108,7 @@ $di->set("login_db", function() use ($config) {
 //    ));
 //});
 
-//print_r($_SESSION['db_config']);
+
 $di->setShared('db',function() {
     //$database = (isset($_SESSION['db_config'])) ? $_SESSION['db_config'] : $config->database->database;
     $database=$_SESSION['db_config'];

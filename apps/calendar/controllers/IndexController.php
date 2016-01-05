@@ -41,6 +41,7 @@ class IndexController extends ControllerBase
                 //Go to admin dashboard
                $noti=$Admin->GetUserNoti($id); 
             }
+        }
         
         $this->view->setVar("noti",$noti);
         $GetMember=new Db\CoreMember();
@@ -51,7 +52,7 @@ class IndexController extends ControllerBase
         $this->view->uname = $Allname;
         $this->view->modulename = $this->module_name;
     } 
-   }
+    
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
@@ -143,15 +144,16 @@ class IndexController extends ControllerBase
      * @category edit event
      * @return   json { error message }
      */
-    public function editAction($id) {
+    public function editAction($id,$e = null) {
         $this->view->disable();        
         $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
+        null === $e ? $edate = date('Y-m-d H:i:s',strtotime($edate.'-1 days')) : $edate;
         $name = $this->request->get('uname');
         $title = $this->request->get('title');        
          $res= array();
-        if ($title == null) {            
+        if ($title == null) {
             $res['cond']=FALSE;
             $res['res']="title not be empty";            
         }
@@ -165,7 +167,7 @@ class IndexController extends ControllerBase
             $res['res']=$edit;
             $res['name']=$name;
         }
-        echo json_encode($res);       
+        echo json_encode($res);
     }
     /**
      * @desc Delete event
@@ -186,4 +188,3 @@ class IndexController extends ControllerBase
      
 }
 
-        

@@ -25,21 +25,40 @@ $messages = array(
   "save" => "保存",
     "yes" => "はい",
   "cancel" => "Cancelru",
+    "apply"=>"はい",
   "addleavetype" => "休暇タイプ新規入力",
     "deleteleavetype" => "あなたはほんとですか。",
   "addleavetype" => "休暇タイプ新規入力",
-  "deleteleavetype" => "休暇タイプの削除",
+  "deleteleavetype" => "休暇タイプの削除 ",
+    "del_title"=>"休暇タイプの削除",
+  "del_yes" => "はい",
+    "del_no"=>"いいえ",
   "yes" => "はい",
   "cancel" => "いいえ",
   "enterltp" => "休暇タイプを入力してください",
     
-    "People who take no leave" => "休暇を取らない人",
-    "People who take the leave most" =>"ほとんどの休暇を取る人",
-    
+    "no_leave"=>"休暇を取らない人",
+    "leave_most"=>"ほとんどの休暇を取る人",
+    "Working_st"=>"Working Start Date",
      "Department"     => "部門",
     "Position" => "立場",
     "Email"     =>  "メール",
     "Phone" => "電話番号",
     "Address" => "住所",
+    
+      
+        /**
+     * Header
+     */
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
+    "View All"=>"すべて見ます",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
+    /**
+     * footer
+     */
+    "Change_Language"=>"言語を変えてください",
 );
 

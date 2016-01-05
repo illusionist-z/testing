@@ -8,9 +8,12 @@ class IndexController extends ControllerBase
     
     public function initialize() {
         parent::initialize();
-         foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'show_admin_notification') {
+          $this->act_name =  $this->router->getModuleName(); 
+         $this->permission = $this->setPermission($this->act_name );        
+        $this->view->module_name=$this->module_name;
+        $this->view->permission = $this->permission;
+        $this->view->t = $this->_getTranslation();
+            if($this->permission==1){
                 //Go to user dashboard
                $permission="admin";
                  
@@ -19,11 +22,11 @@ class IndexController extends ControllerBase
                 //Go to admin dashboard
                 $permission="user";   
             }
-        }
         
-        $this->view->setVar("permission",$permission);
+        
+         $this->view->setVar("permission",$permission);
                //$this->assets->addJs('common/js/notification.js');
-
+ 
     }
 
     
@@ -39,7 +42,7 @@ class IndexController extends ControllerBase
           $this->act_name =  $this->router->getModuleName(); 
          $this->permission = $this->setPermission($this->act_name ); 
         $this->setCommonJsAndCss();
-
+        $this->assets->addCss('common/css/css/style.css');
         $type=viewall;
         $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
@@ -47,16 +50,21 @@ class IndexController extends ControllerBase
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
+              $oldnoti=$Admin->GetAdminNoti($id,1);
+              
+              //$readnoti=$Admin->GetLastNoti($id);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
+               $oldnoti=$Admin->GetUserNoti($id,2);
             }
         }
 
         $this->view->setVar("noti",$noti);
+        $this->view->setVar("oldnoti",$oldnoti);
         $this->view->setVar("type",$type);
     }
     
@@ -79,13 +87,13 @@ class IndexController extends ControllerBase
              
             if ($key_name == 'show_admin_notification') {
                
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                //echo"aa";exit;
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
 
@@ -97,6 +105,7 @@ class IndexController extends ControllerBase
     
     public function detailAction(){
         $this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/css/style.css');
         $code=$this->session->permission_code;
         $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
@@ -104,12 +113,12 @@ class IndexController extends ControllerBase
              
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$Admin->GetAdminNoti($id);
+              $noti=$Admin->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$Admin->GetUserNoti($id); 
+               $noti=$Admin->GetUserNoti($id,1); 
             }
         }
       

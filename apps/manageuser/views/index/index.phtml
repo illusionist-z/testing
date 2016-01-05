@@ -16,11 +16,12 @@
 <section class="content">
     <div class="row">	
         <form class="buttons">
-                <input  class="userauto" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
+            <input  type="text" class="userauto form-control-static" name="username" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
-                <input type="submit" onclick="return false;" class="buttonn" value="<?= $t->_("search"); ?>" id="userlistsearch">
+            <input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= $t->_("search"); ?>" id="userlistsearch" style="margin-top: -10px;">
              
-                <a href="#" onclick="return false;"  class="right button displaypopup" id="addinguser"><?= $t->_("adduser"); ?></a>              
+               
+            <a href="#" onclick="return false;"  class="right button displaypopup form-control-static" id="addinguser"><?= $t->_("adduser"); ?></a>              
      
         </form>
 

@@ -146,9 +146,9 @@ $(document).ready(function () {
                     .attr("id", 'TextBoxDiv' + counter);
 
             newTextBoxDiv.after().html('' + allowance_name+' '+counter + ' :  ' +
-                    ' <input style="margin-top:10px;" type="text" name="textbox' + counter +
+                    ' <input style="margin-top:10px;" type="text" class="form-control-static" name="textbox' + counter +
                     '" id="textbox' + counter + '" value="" placeholder="'+enter_allname+'"> ' + allowance_amount+' '+counter + ' : ' +
-                    ' <input style="margin-top:10px;" type="text" name="txt' + counter +
+                    ' <input style="margin-top:10px;" type="text" class="form-control-static" name="txt' + counter +
                     '" id="txt' + counter + '" value=""  placeholder="'+enter_allamount+'">');
 
             newTextBoxDiv.appendTo("#TextBoxesGroup");

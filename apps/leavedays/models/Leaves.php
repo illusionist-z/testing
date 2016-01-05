@@ -122,7 +122,7 @@ class Leaves extends \Library\Core\BaseModel {
             //check before a week
             if ($sdate >= $checkday && $edate >= $checkday) {
                 //check $edate greater than $sdate
-                if (strtotime($sdate) <= strtotime($edate)) {
+                if (strtotime($sdate) <=strtotime($edate)) {
                     //for calculate leave day
                     $leave_day = ((strtotime($edate) - strtotime($sdate)) / 86400)+1;
                     $result = $this->db->query("INSERT INTO leaves (member_id,date,"

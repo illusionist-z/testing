@@ -21,12 +21,27 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');        
         $this->assets->addJs('common/js/export.js');        
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');    
-        
+                $Admin=new Db\CoreMember();
+        $id = $this->session->user['member_id'];
+        foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id,0);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id,1); 
+            }
+        }
+
+        $this->view->setVar("noti",$noti);
         $this->view->module_name =  $this->router->getModuleName();
+         $this->view->t = $this->_getTranslation();
          $this->act_name =  $this->router->getModuleName(); 
-        $this->permission = $this->setPermission($this->act_name ); 
-        $this->view->t = $this->_getTranslation();
-        $this->view->permission = $this->permission;
+         $this->permission = $this->setPermission($this->act_name ); 
+         $this->view->permission = $this->permission;
     }
 
     public function indexAction() {
@@ -59,10 +74,7 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {  
         $this->assets->addJs('apps/leavedays/js/applyleave.js');    
-        $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
-        $this->view->setVar("noti",$noti);        
+              
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
@@ -179,7 +191,7 @@ class IndexController extends ControllerBase {
         $data[1]['addleavetype'] = $t->_("addleavetype");
         $data[1]['leave_category'] = $t->_("leave_category");
         $data[1]['yes'] = $t->_("yes");
-        $data[1]['no'] = $t->_("cancel");
+        $data[1]['no'] = $t->_("no");
         $data[1]['enterltp'] = $t->_("enterltp");
         $this->view->disable();
         echo json_encode($data);
@@ -195,8 +207,9 @@ class IndexController extends ControllerBase {
         $LeaveCategories = new LeaveCategories();
         $data = $LeaveCategories->getltypedata($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
-        $data[1]['yes'] = $t->_("yes");
-        $data[1]['no'] = $t->_("cancel");
+        $data[1]['del_title'] = $t->_("del_title");
+        $data[1]['del_yes'] = $t->_("del_yes");
+        $data[1]['del_no'] = $t->_("del_no");
         $this->view->disable();
         echo json_encode($data);
     }

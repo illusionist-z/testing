@@ -5,12 +5,12 @@
   visibility: hidden;
 }</style>
         <meta charset="UTF-8">
-        <title>Attendance System</title>
+        <title>Search Help</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini"  >
+    <body class="skin-blue sidebar-mini" >
           <?php error_reporting(0); ?>                                
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
@@ -24,7 +24,7 @@
                         
                         <ul class="nav navbar-nav"> 
                                 <li>
-                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="Help" id="help_icon" style="padding-top: 20px;">
+                                    <a href="<?php echo $baseUri?>help/index/searchHelp" class="" title="<?php echo $t->_("Help"); ?>" id="help_icon" style="padding-top: 20px;">
                                                <img src="<?php echo $baseUri?>common/img/help_browser.png">
                                         </a>
                                </li>  
@@ -38,11 +38,11 @@
                                       
                                     
                                   <div id="notificationContainer">
-                                  <div id="notificationTitle">Notifications</div>
+                                  <div id="notificationTitle"><?php echo $t->_("Notification"); ?></div>
 <div id="notificationsBody" class="notifications">
 
 </div>
-                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>notification/index/viewall"><span style="color:white">View All</span></a></div>
+                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>notification/index/viewall"><span style="color:white"><?php echo $t->_("View All"); ?></span></a></div>
                                 </div>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -83,7 +83,7 @@
                                         <img src="<?php echo $baseUri?>uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <p>
                                             <b><?php echo $this->session->user['member_login_name']; ?></b>
-                                            <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
+                                            <small><b><?php echo $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
                                         </p>
                                     </li>
 
@@ -96,7 +96,7 @@
                // $this->response->redirect('attendancelist/index/todaylist');
                 ?>
                  <div class="pull-left">
-                     <a href="../../setting/index" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
+                     <a href="../../setting/index" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                         </div>
                 <?php
                
@@ -105,7 +105,7 @@
                { 
                     ?> 
                       <div class="pull-left">
-                                                    <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                                    <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                                 </div>
                 <?php }
                 
@@ -113,7 +113,7 @@
                 ?>
                                         
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
+                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b><?php echo $t->_("Sign out"); ?></b></a>
 
                                         </div>
                                     </li>
@@ -144,13 +144,15 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                                                                                 //the outer main menu                            
                                        if (count($key_value) > 2) {
+                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
                                                                                     echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
                                                                               }
+                                                                                    }
                                                                       else {                                
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                           //var_dump($top);
-                                                                                         if($key_name != 'show_user_notification' ){
+                                                                                         if($key_name != 'show_user_notification' && $key_name != 'show_user_setting' ){
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
@@ -217,38 +219,38 @@
             <div class="row-fluid">
 <div class="sidebar-menu col-md-2 helpcenter">
     <img src="../../common/img/app_help (2).png">   
-    <label>Search Help</label>
+    <label><?php echo $t->_("Search Help"); ?></label>
     <ul>
-        <li><a href="dashboard" id="" class="allhelpimg" >Dashboard</a></li>
+        <li><a href="dashboard" id="" class="allhelpimg" ><?php echo $t->_("Dashboard"); ?></a></li>
         <li>
-            <a href="" onclick="return false;" class="allhelpimg tog">Attendance List</a>
+            <a href="" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Attendance List"); ?></a>
             <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                <li><a href="todayattlist">Today Attendance List</a></li>
-                <li><a href="monthlyattlist">Monthly Attendance List</a></li>
+                <li><a href="todayattlist"><?php echo $t->_("Today Attendance List"); ?></a></li>
+                <li><a href="monthlyattlist"><?php echo $t->_("Monthly Attendance List"); ?></a></li>
             </ul>
         </li>       
-        <li><a href="manageuser" class="allhelpimg">Manage User</a></li>
-        <li><a href="#" onclick="return false;" class="allhelpimg tog">Leave Days</a>
+        <li><a href="manageuser" class="allhelpimg"><?php echo $t->_("Manage User"); ?></a></li>
+        <li><a href="#" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Leave Days"); ?></a>
              <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                 <li><a href="applyleave">Apply Leave</a></li>
-                 <li><a href="leavelists">Leave Lists</a></li>
-                 <li><a href="leavesetting">Leave Setting</a></li>
+                 <li><a href="applyleave"><?php echo $t->_("Apply Leave"); ?></a></li>
+                 <li><a href="leavelists"><?php echo $t->_("Leave Lists"); ?></a></li>
+                 <li><a href="leavesetting"><?php echo $t->_("Leave Setting"); ?></a></li>
             </ul>
         </li>
-        <li><a href="calendar" class="allhelpimg">Calendar</a></li>
-        <li><a href="#" class="allhelpimg tog">Salary</a>
+        <li><a href="calendar" class="allhelpimg"><?php echo $t->_("Calendar"); ?></a></li>
+        <li><a href="#" class="allhelpimg tog"><?php echo $t->_("Salary"); ?></a>
              <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                 <li><a href="addsalary">Add Salary</a></li>
-                 <li><a href="salarylists">Salary Lists</a></li>
-                 <li><a href="monthlysallists">Monthly Salary Lists</a></li>
-                 <li><a href="salarysetting">Salary Setting</a></li>
-                 <li><a href="allowance">Allowance</a></li>
+                 <li><a href="addsalary"><?php echo $t->_("Add Salary"); ?></a></li>
+                 <li><a href="salarylists"><?php echo $t->_("Salary Lists"); ?></a></li>
+                 <li><a href="monthlysallists"><?php echo $t->_("Monthly Salary Lists"); ?></a></li>
+                 <li><a href="salarysetting"><?php echo $t->_("Salary Setting"); ?></a></li>
+                 <li><a href="allowance"><?php echo $t->_("Allowance"); ?></a></li> 
             </ul>
         </li>        
-        <li><a href="#" onclick="return false;" class="allhelpimg tog">Document</a>
+        <li><a href="#" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Document"); ?></a>
                 <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                 <li><a href="letterhead">Letter Head</a></li>
-                 <li><a href="ssbdocument">SSB & Tax Document</a></li>
+                 <li><a href="letterhead"><?php echo $t->_("Letter Head"); ?></a></li>
+                 <li><a href="ssbdocument"><?php echo $t->_("SSB & Tax Document"); ?></a></li>
                  
             </ul>
         </li>   
@@ -264,7 +266,7 @@
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                   <?php echo "Change language" ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+                   <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
        

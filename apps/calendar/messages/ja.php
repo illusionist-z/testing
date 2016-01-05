@@ -4,8 +4,11 @@ $messages = array(
 "calendar"  => "カレーダー",
 "event_enable" => "Hito Event Enablru",
 "show_event"  => "sareru evento",
- "create_event" => "createo eventot",
- "edit_event"   => "Edito evento",
+    "add_mem"=>"新しいメンバーを追加します",
+     "edit_event"=>"編集イベント",
+"create_event"=>"イベントの作成",
+    "write_title"=>"書き込みのタイトル",
+    "enter_name"=>"名前を入力します。",
  "title"            => "titeru",
     "name"         => "名前",
     "start_d"       => "はじめ日",
@@ -28,5 +31,20 @@ $messages = array(
 "edit"   => "編集",
 "delete"   => "削除する",
 "create"   => "作成",
-"cancel"   => "中止"
+"cancel"   => "中止",
+    
+      
+        /**
+     * Header
+     */
+    "Help"=>"助けて",
+    "Notifications"=>"通知",
+    "View All"=>"すべて見ます",
+    "Member Since"=>"メンバー以来",
+    "Setting"=>"設定",
+    "Sign out"=>"サインアウト",
+    /**
+     * footer
+     */
+    "Change_Language"=>"言語を変えてください",
 );

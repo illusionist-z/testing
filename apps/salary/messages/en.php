@@ -3,7 +3,12 @@
 $messages = array(   
    "addsalary_title"       => "Add Salary For Each Member",
    "month"       => "month",
+     "home"=>"Home",
     "searchusername" => "Search User Name",
+    "basic_sal"=>"Enter Basic Salary",
+    "travel"=>"Enter Travel Fee",
+    "over"=>"Enter Overtime",
+    "cancel"=>"Cancel",
    "name"                   => "User Name",
    "basic_salary"         => "Basic Salary",
    "travel_fee"            => "Travel Fees",
@@ -16,7 +21,7 @@ $messages = array(
    "salary_list"          => "Salary Lists",
    "no"                    => "No" ,
     "monthly_salary_list" => "Monthly Salary List",
-    "salary"                => "Salary",
+    "salary"                => "Salary Setting",
     "mth/yr"               => "Month/Year",
     "income"             => "Personal Income",
     "tax_total"           => "Tax Total",
@@ -59,6 +64,26 @@ $messages = array(
     "deduce_name" => "Deduce Name",
     "amount" => "Amount",
     "wr_deduce_name" => "Write Deduce Name",
-    "wr_deduce_amount" => "Write Deduce Amount"
+    "wr_deduce_amount" => "Write Deduce Amount",
+    "calSalary_noti" => "Choose Payment to Calculate Salary",
+    "calSalary_m" => "Choose Pay Month",
+    "cal_title"=>"Calculate Salary",
+    
+    "taxeditform"=>"Edit Deduction Setting",
+    "deduction_name"=>"Deduction Name",
+    
+    "add_new"=>"Add New Deduction",
+    "deduc_name"=>"Deduction Name",
+    "deduc_amount"=>"Deduction Amount",    
+    "sett_title"=>"Add New Deduction",
+    "write_name"=>"Enter Deduction Name",
+    "write_amount"=>"Enter Deduction Amount",
+    "save"=>"Add",
+    "cancel"=>"Cancel",
+    
+      /**
+     * footer 
+     */
+    "Change_Language"=>"Change Language",
     );
 

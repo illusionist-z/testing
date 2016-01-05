@@ -2,35 +2,35 @@
     <div class="col-md-10" id="showhelp">
        <ul id="helpcenter">
         <li>
-             <img src="../../common/img/list3.png" > <a href="#" ><span id="searchhelpcenter">Apply Leave help center</span></a>
+             <a href="#" ><span id="searchhelpcenter"><?php echo $t->_("Apply Leave help center"); ?></span></a>
         </li>        
     </ul>
     <hr>
     <div class="col-md-6">        
-        <img src="../../common/img/applyleave.png" style="width:100%;height:380px;"> 
+        <img src="<?php echo $baseUri?>common/img/applyleave.png" style="width:100%;height:380px;"> 
     </div>
          <div class="col-md-6">
              <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
-                <li>Search User Box
+                 <li><span class="text-aqua"><?php echo $t->_("Apply_leave"); ?></span>
                     <ul>
-                         <li>Enter the username which you want to search.</li>
+                        <li><pre><?php echo $t->_("Apply_leave_name"); ?></pre></li>
                      </ul>
                 </li>
-                <li>Select Start Date </li>
-                <li>Select End Date </li>
-                <li>Leave Categories
+                <li><?php echo $t->_("Start Date"); ?> </li>
+                <li><?php echo $t->_("End Date"); ?></li>
+                <li><span class="text-aqua"><?php echo $t->_("Leave Categories"); ?></span>
                      <ul>
-                         <li>You must choose leave categories.</li>
+                         <li><pre><?php echo $t->_("You must choose"); ?></pre></li>
                      </ul>
                 </li>
-                 <li>Leave Description
+                <li><span class="text-aqua"><?php echo $t->_("Leave Description"); ?></span>
                      <ul>
-                         <li>You must enter leave description.</li>
+                         <li><pre><?php echo $t->_("You must enter"); ?></pre></li>
                      </ul>
                 </li>
-                <li>Apply button
+                <li><span class="text-aqua"><?php echo $t->_("Apply button"); ?></span>
                      <ul>
-                         <li>Submit your apply form.</li>
+                         <li><pre><?php echo $t->_("Submit"); ?></pre></li>
                      </ul>
                 </li>
                 
@@ -39,10 +39,10 @@
         </div>
     <div class="col-md-12 top-padding">
     <div class="col-md-6 ">
-        <a href="manageuser"><< Manage User Lists </a>
+        <a href="manageuser"><< <?php echo $t->_("Manage User"); ?> </a>
     </div>
     <div class="col-md-6 text-right">
-        <a href="leavelists">Leave Lists  >></a>
+        <a href="leavelists"><?php echo $t->_("Leave Lists"); ?>  >></a>
     </div>
     </div>
 </div>

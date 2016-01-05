@@ -105,7 +105,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                 <form id="theForm" name="theForm" method="post" action="">
                                                                     <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/><?= $t->_("late_reason"); ?>
                                                                     <div id="xtraInfo" style="display:none;">
-                                                                        <textarea class="textarea" id="note" placeholder="Write your reason here" maxlength="60" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                                        <textarea class="textarea" id="note" placeholder="<?= $t->_("Write"); ?>" maxlength="60" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                                                                     </div>
                                                                 </form>
 
@@ -146,7 +146,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                     <div class="chart-responsive">
                                                         <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
                                                             <li>
-                                                                People who attend no leave
+                                                                <?= $t->_("no_leave"); ?>
                                                                 <ul>
                                                                         <?php
                                                                                 $noleave = [];
@@ -192,7 +192,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                         </ul>
                                                         <ul class="nav nav-pills nav-stacked">
                                                             <li>
-                                                                People who take the leave most
+                                                                <?= $t->_("leave_most"); ?>
                                                                 <ul><?php 
                                                                 $count = [];
                                                                 foreach ($lname as $na) { 
@@ -294,7 +294,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                                 ?>
                                         </div><!-- /.box-body -->
                                         <div class="box-footer text-center">
-                                            <a href="../../manageuser/index" class="uppercase"><?php echo $t->_("viewallmember"); ?></a>
+                                            <a href="../../manageuser/index" class="uppercase"><?php echo $t->_("View All"); ?></a>
                                         </div><!-- /.box-footer -->
                                     </div><!--/.box -->
 
