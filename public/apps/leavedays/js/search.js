@@ -32,18 +32,18 @@
                     //alert(json_obj);
                     $("tbody").empty();
                     $("tfoot").empty();
-                     var  status;
+                     var  status='';
                     for (var i in json_obj)
                     {
-                        if(json_obj[i].total_leavedays <=json_obj[i].max_leavedays){
+                        if(json_obj[i].total_leavedays >json_obj[i].max_leavedays){
 
                                    leave_left= json_obj[i].total_leavedays-json_obj[i].max_leavedays;
-                                    status=" Days In Absent";
+                                    status=" Absent";
 
                             }
-                          if(json_obj[i].total_leavedays > json_obj[i].max_leavedays){
+                          if(json_obj[i].total_leavedays < json_obj[i].max_leavedays){
                              leave_left=json_obj[i].max_leavedays-json_obj[i].total_leavedays;
-                              status=" Left";
+                              
                          }
                          var leave_status;
                          if(json_obj[i].leave_status==='0'){

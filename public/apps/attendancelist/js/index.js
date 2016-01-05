@@ -122,6 +122,7 @@ var Attendance = {
         type: 'GET',
         success: function (d) {
          $('body').html(d);
+         link_height();
          // Attendance.init();
         },
         error: function (d) {
@@ -131,8 +132,8 @@ var Attendance = {
        },
       monthlylist :function (){
             var yy = $('#year').val(),
-             mm = $('#month').val(),
-             name = $('#username').val();
+            mm = $('#month').val(),
+            name = $('#username').val();
         //set empty
         $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();
         
@@ -293,6 +294,7 @@ $(document).ready(function () {
     });
   
    $('#sub').unbind('click').bind('click',function (e) {
+       
         e.preventDefault();
         Attendance.monthlylist.apply(this);        
     });   

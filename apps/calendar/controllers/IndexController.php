@@ -51,7 +51,7 @@ class IndexController extends ControllerBase
         $this->view->uname = $Allname;
         $this->view->modulename = $this->module_name;
     } 
-    
+   }
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
@@ -186,4 +186,4 @@ class IndexController extends ControllerBase
      
 }
 
-        }
+        
