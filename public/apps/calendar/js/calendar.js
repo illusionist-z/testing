@@ -513,7 +513,10 @@ $(document).ready(function () {
             var event_date = parseInt(new Date(d.end).getDate());
             var event_month = parseInt(new Date(d.end).getMonth());
             var event_year = parseInt(new Date(d.end).getFullYear());
-            if (today_date > event_date && today_month >= event_month && today_year >= event_year) {
+            if(today_year === event_year && today_month >= event_month && today_date >= event_date){
+                d.color = "#aaa";
+            }
+            else if ((today_date >= event_date || today_date < event_date) && (today_month >= event_month || today_month < event_month) && today_year > event_year ) {
                 d.color = "#aaa";
             }
             else {

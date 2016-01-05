@@ -153,6 +153,7 @@ $(document).ready(function () {
 
             newTextBoxDiv.appendTo("#TextBoxesGroup");
             counter++;
+            link_height();
         });
 
         $("#removeButton").click(function () {
