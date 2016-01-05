@@ -93,19 +93,19 @@ var Tax = {
                //edit dialog box
                var data ='<form id="edit_tax_table" width="250px" height="200px"><table width="400px" height="270px" style="font-size:13px;"  align="center" >';               
                    data += '<br><tr><td> <small>ID </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['id']+ '" name="id"></td></tr>'
-                        +'<tr><td> <small>'+result.t['tax_from']+' </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td></tr>'
-                        +'<tr><td> <small>'+result.t['tax_to']+'  </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_to']+ ' name="taxs_to" ></td></tr>'
-                        +'<tr><td> <small>'+result.t['tax_rate']+'  </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_rate']+ ' name="taxs_rate"></td></tr>'
-                        +'<tr><td> <small>SSC emp</small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_emp']+ ' name="ssc_emp"></td>'
-                        +'<tr><td> <small>SSC comp</small></td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp"></td></tr>'
+                        +'<tr><td> <small>Taxs From </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td></tr>'
+                        +'<tr><td> <small>Taxs To </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_to']+ ' name="taxs_to" ></td></tr>'
+                        +'<tr><td> <small>Taxs Rate </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_rate']+ ' name="taxs_rate"></td></tr>'
+                        +'<tr><td> <small>SSC emp </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_emp']+ ' name="ssc_emp"></td>'
+                        +'<tr><td> <small>SSC comp </small></td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['ssc_comp']+ ' name="ssc_comp"></td></tr>'
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3" ><a href="#" class="button" id="edit_tax" style="margin-top:10px;">'+result.t['save']+' </a><a href="#" class="button" id="edit_close" >'+result.t['cancel']+' </a></td></tr>';
+               data +='<tr><td></td><td colspan="3" ><a href="#" class="button" id="edit_tax" style="margin-top:10px;">Save</a><a href="#" class="button" id="edit_close" >Cancel</a></td></tr>';
                data +='</table></form>';
-               Tax.Dia(data,result.t['tax_edit']);
+               Tax.Dia(data);
            }
         });
         },
-    Dia : function (d,title){
+    Dia : function (d){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -120,7 +120,7 @@ var Tax = {
             resizable:false,
             width: 'auto',
             modal: true,
-            title:title
+            title:"Tax Edit",
             /*show:{
                 effect:"explode",//effect:"blind",
 		duration:200
@@ -181,22 +181,23 @@ var Deduction = {
            type: "GET",
            success:function(res){
                
+               
                var result = $.parseJSON(res);
              
                
                var data ='<form id="edit_deduct_table"><table style="font-size:13px;">';               
                    data += '<tr><td></td><td><input type="hidden" value="'+result[0]['deduce_id']+ '" name="id" ></td></tr>'
-                        +'<tr><td><small>'+result.t['edit_deduct_name']+' </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
-                        +'<tr><td><small>'+result.t['edit_deduct_amount']+'</small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
+                        +'<tr><td><small>Deduction Name </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['deduce_name']+ ' name="deduce_name"></td></tr>'
+                        +'<tr><td><small>Deduction Amount </small></td><td><input style="margin-top:10px;font-size:12px;" type="text" value='+result[0]['amount']+ ' name="amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_deduct">'+result.t['save']+'</a><a href="#" class="button" id="delete_deduct">'+result.t['delete']+'</a><a href="#" class="button" id="edit_close">'+result.t['cancel']+'</a></td></tr>';
+               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_deduct">Save</a><a href="#" class="button" id="delete_deduct">Delete</a><a href="#" class="button" id="edit_close">Cancel</a></td></tr>';
                data +='</table></form>';
-               Deduction.Dia(data,result.t['edit_deduct_title']);
+               Deduction.Dia(data);
            }
         });
         },
-    Dia : function (d,title){
+    Dia : function (d){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -211,7 +212,7 @@ var Deduction = {
             width: 'auto',
             modal: true,
             resizable:false,
-            title:title
+            title:"Deduction Edit"
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
@@ -288,7 +289,7 @@ var Deduction = {
            location.reload();
         });
     },
-       Diaadd : function (d,title){
+       Diaadd : function (d){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -301,7 +302,7 @@ var Deduction = {
             width: 'auto',
             modal: true,
             resizable:false,
-            title:title
+            title:"Deduction Add"
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
@@ -338,20 +339,20 @@ var Deduction = {
         //alert("add");
         $.ajax({
             
-           url:"salSetting",
+           url:"",
            type: "POST",
-           dataType : "json",
-           success:function(d){   
+           success:function(){          
+             
                
                var data ='<form id="Add_new_deduct"><table>';               
                    data += '<tr><td></td></tr>'
-                        +'<tr><br><td><small>'+d.deduc_name+'</small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder=" '+d.write_name+' "></td></tr>'
-                        +'<tr><td><small>'+d.deduc_amount+'</small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder=" '+d.write_amount+' "></td></tr>'
+                        +'<tr><br><td><small>Deduction Name</small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>'
+                        +'<tr><td><small>Deduction Amount</small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>'
                         
                          +'<tr><td></td></tr>';             
-               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct">'+d.save+'</a><a href="#" class="button" id="cancel_deduct">'+d.cancel+'</a></td></tr>';
+               data +='<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';
                data +='</table></form>';
-               Deduction.Diaadd(data,d.sett_title);
+               Deduction.Diaadd(data);
            }
         });
         },
