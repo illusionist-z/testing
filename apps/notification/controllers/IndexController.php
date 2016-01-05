@@ -2,27 +2,24 @@
 
 namespace salts\Notification\Controllers;
 use salts\Core\Models\Db\CoreMember;
- 
 
 class IndexController extends ControllerBase
 {
     
     public function initialize() {
         parent::initialize();
-          $this->act_name =  $this->router->getModuleName(); 
-         $this->permission = $this->setPermission($this->act_name );        
-        $this->view->module_name=$this->module_name;
-        $this->view->permission = $this->permission;
-            if($this->permission==1){
+         foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
                $permission="admin";
                  
             } 
-            else {
+            if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                 $permission="user";   
             }
-         
+        }
         
         $this->view->setVar("permission",$permission);
                //$this->assets->addJs('common/js/notification.js');
@@ -46,16 +43,18 @@ class IndexController extends ControllerBase
         $type=viewall;
         $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
-             if($this->permission==1){
+        foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
               $noti=$Admin->GetAdminNoti($id);
                  
             } 
-           else {
+            if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                $noti=$Admin->GetUserNoti($id); 
             }
-         
+        }
 
         $this->view->setVar("noti",$noti);
         $this->view->setVar("type",$type);
@@ -76,17 +75,19 @@ class IndexController extends ControllerBase
          $Admin=new CoreMember();
          $id = $this->session->user['member_id'];
          
-               if($this->permission==1){
+                foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
                
               $noti=$Admin->GetAdminNoti($id);
                  
             } 
-            else {
+            if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                //echo"aa";exit;
                $noti=$Admin->GetUserNoti($id); 
             }
-         
+        }
 
         $type='noti';        
         $this->view->setVar("noti",$noti);
@@ -99,16 +100,18 @@ class IndexController extends ControllerBase
         $code=$this->session->permission_code;
         $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
-               if($this->permission==1)  {
+             foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
               $noti=$Admin->GetAdminNoti($id);
                  
             } 
-            else {
+            if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                $noti=$Admin->GetUserNoti($id); 
             }
-        
+        }
       
         $this->view->setVar("noti",$noti);
         $type="detail";
@@ -131,17 +134,18 @@ class IndexController extends ControllerBase
         
         $id=$this->request->get('id');
         $Noti=new \salts\Notification\Models\CoreNotification();
+             foreach ($this->session->auth as $key_name => $key_value) {
              
-               if($this->permission==1){
+            if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
             $Noti->calendarnotification($id);                 
             } 
-           else {
+            if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
                $member_id=$this->session->user['member_id'];
             $Noti->usercalendarnotification($id,$member_id);
             }
-        
+        }
 //        if($this->session->permission_code=='ADMIN'){
 //        }
 //        else{

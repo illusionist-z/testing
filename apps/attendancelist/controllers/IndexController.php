@@ -45,7 +45,7 @@ class IndexController extends ControllerBase {
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
         $this->view->uname = $Username;       
-        $this->view->modulename = $this->module_name;        
+        //$this->view->modulename = $this->module_name;        
         }
         else {
             $this->response->redirect('core/index');

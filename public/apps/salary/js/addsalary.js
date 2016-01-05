@@ -1,13 +1,13 @@
 var AddSalary = {
     Submit : function (){
-        //alert($('#add_salary').serialize());
+                //alert($('#add_salary').serialize());
         $.ajax({
            type : 'POST',
            url  : baseUri+'salary/salarymaster/savesalary',
            data : $('#add_salary').serialize(),
-           success: function(d){ 
+           success: function(d){  //alert(d);
                cond = JSON.parse(d);
-             
+            
                 if(cond.result === 'error')
                 { 
                  $('#add_salary_bsalary').css('border','black');$('#add_salary_ssc').css('border','black');

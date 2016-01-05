@@ -18,14 +18,15 @@ class Auth extends Component {
         try{
         
         $sql="SELECT * FROM company_tbl where company_id='" . $param['company_id'] . "' and deleted_flag=0";
-        
+       
         $Result = $this->login_db->query($sql);
         $Result = $Result->fetchArray();
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
         }
-         return $Result;
+        
+        return $Result;
     }
     /**
      * Checks the user credentials

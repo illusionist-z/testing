@@ -21,6 +21,8 @@ class IndexController extends ControllerBase
          $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
         $this->view->module_name = $this->module_name;
+        $this->view->permission = $this->permission;
+
     }
         /**
         * @author David JP <david.gnext@gmail.com>

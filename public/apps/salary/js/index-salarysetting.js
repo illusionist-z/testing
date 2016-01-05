@@ -86,7 +86,8 @@ var Tax = {
             
            url:"taxdia?id="+d,
            type: "GET",
-           success:function(res){       
+           success:function(res){
+               
                
                var result = $.parseJSON(res);
                //edit dialog box
@@ -145,7 +146,7 @@ var Tax = {
     //edit data
     BtnEdit : function(d){
         var form=$('#edit_tax_table');
-        
+       // alert( form.serialize());
         $.ajax({
             type:'POST',
             data: form.serialize(),

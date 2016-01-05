@@ -19,12 +19,15 @@ function link_height() {
     //for link border right in link page
     var link_width = $(document).outerWidth();
     var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$("#fixedheader").outerHeight());
-    
-    if(link_width>775){
-       $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
-    }
+    var link_ht = $(window).outerHeight()-($(".main-footer").outerHeight()+$("#fixedheader").outerHeight());
+     if(link_width > 983){
+           $("#showhelp").css({"height":link_ht+"px","background":"#fff"});
+           $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
+    }     
+   
     else if(link_width > 423){  
         $(".link").css({"height":link_height/10.5+"px","border-right":"1px solid #aaa","background":"#fff"});
+      // $("#showhelp").css({"height":link_ht+"px","background":"#fff"});
     }
 }
 
@@ -127,14 +130,14 @@ $(document).ready(function() {
     });
 
     $('#btnLogin').on('click',function(){
-        var url = "location_session";
+       // var url = "location_session";
         var n = new Date();
 
 
         var offset = n.getTimezoneOffset();
 
         $.ajax({
-            url: url + "?offset=" + offset,
+            url: baseUri + "dashboard/index/location_session?offset=" + offset,
             type: 'GET',
             dataType: 'json',
             success: function(d) {
