@@ -32,7 +32,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
-
+        
         foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'show_admin_notification') {

@@ -4,8 +4,7 @@ namespace salts\Salary\Models;
 
 use Phalcon\Mvc\Model;
 //use salts\Salary\Models\SalaryMaster as sa;
-use Phalcon\Mvc\Model\Query;
-use salts\Salary\Models\SalaryMemberTaxDeduce;
+
 
 class SalaryMaster extends Model {
 
