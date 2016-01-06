@@ -1,14 +1,9 @@
 <?php
 
 namespace salts\Attendancelist\Models;
-use DateTime;
+
 use Phalcon\Mvc\Model;
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
-use salts\Core\Models\Db\CoreMember as CoreMember;
-use salts\Attendancelist\Models\Attendances as Attendances;
-
-         use Phalcon\Filter; 
 //use salts\Auth\Models\Db\CoreMember as corememberresult;
 /*
  * To change this license header, choose License Headers in Project Properties.

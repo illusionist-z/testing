@@ -112,11 +112,6 @@ $(document).ready(function(){
       e.preventDefault();
       ApplyForm.Submit();
    });
-    $('#apply_form_submit').on('click',function(e){
-      e.preventDefault();
-      ApplyForm.Submit();
-   });
-   
    $('#apply_form_name').on('click',function(){     
         $(this).autocomplete({
             source : dict

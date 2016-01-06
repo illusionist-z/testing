@@ -59,7 +59,7 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {
        
-           $this->act_name =  $this->router->getModuleName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
