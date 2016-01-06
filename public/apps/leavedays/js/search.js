@@ -33,7 +33,7 @@
                     //alert(json_obj);
                     $("tbody").empty();
                     $("tfoot").empty();
-                     var  status;
+                     var  status='';
                     for (var i in json_obj)
                     { var max=parseInt(json_obj[i].max_leavedays);
                       var tl=parseInt(json_obj[i].total_leavedays);
@@ -41,7 +41,7 @@
                         if(max<tl){
 
                                    leave_left= json_obj[i].total_leavedays-json_obj[i].max_leavedays;
-                                    status=" Days In Absent";
+                                    status=" Absent";
 
                             }
                           else{

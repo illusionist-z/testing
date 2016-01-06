@@ -73,10 +73,7 @@ class CoreMember extends \Library\Core\BaseModel {
      */
 
     public function getoneusername($username) {
-        /* $this->db = $this->getDI()->getShared("db");
-          $user_name = $this->db->query("SELECT * FROM core_member where member_login_name ='".$username."'");
-          $getname = $user_name->fetchall();
-          return $getname; */
+        
         $filter = new Filter();
         $username = $filter->sanitize($username, "string");
         $getname = $this->modelsManager->createBuilder()
@@ -86,16 +83,21 @@ class CoreMember extends \Library\Core\BaseModel {
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
-        //print_r($row);exit;
-        /*  foreach($row as $rows) {
-          echo $rows->member_login_name;
-          // echo $rows->attendances->att_date;
-          }
-          exit; */
+     
 
         return $getname;
     }
 
+     public function getusernamebyid($id){
+        
+            $sql = "select * from core_member WHERE member_id ='".$id."'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+           $name=$row[0]['member_login_name'];
+           
+        return $name;
+  
+    }
     public function searchuser($search) {
         $filter = new Filter();
         $search = $filter->sanitize($search, "string");
@@ -136,7 +138,7 @@ class CoreMember extends \Library\Core\BaseModel {
         } else {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year'])));
         }
-        if ($end_date <= $today) {
+        if ($end_date >= $today) {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
     }

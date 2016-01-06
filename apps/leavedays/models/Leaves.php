@@ -92,8 +92,11 @@ class Leaves extends \Library\Core\BaseModel {
      * Get today attendance list
      * @return type
      * @author David JP <david.gnext@gmail.com>
+     * @version Su Zin Kyaw< suzinkyaw.gnext@gmail.com>
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc, $creator_id) {
+        $cm=new CoreMember();
+        $name= $cm->getusernamebyid($creator_id);
         $filter = new Filter();
         $uname = $filter->sanitize($uname, "string");        
         $type = $filter->sanitize($type, "string");
@@ -116,14 +119,30 @@ class Leaves extends \Library\Core\BaseModel {
             $noti_id = rand();
             $today = date("Y-m-d H:i:s");
             $checkday = date("Y-m-d", strtotime("+7 days"));
-            $sdate = date("Y-m-d", strtotime($sdate));
-            $edate = date("Y-m-d", strtotime($edate));
-            //check before a week
-            if ($sdate >= $checkday && $edate >= $checkday) {
+            $ssdate = date("Y-m-d", strtotime($sdate));
+            $eedate = date("Y-m-d", strtotime($edate));
+             $sdate = date("Y-m-d H:i:s", strtotime($sdate));
+            $edate = date("Y-m-d H:i:s", strtotime($edate));
+            $sH= explode(" ", $sdate);
+            $eH=explode(" ", $edate);
+          
+            if ($ssdate >= $checkday && $eedate >= $checkday) {
                 //check $edate greater than $sdate
-                if (strtotime($sdate) <=strtotime($edate)) {
+                if (strtotime($ssdate) <=strtotime($eedate)) {
                     //for calculate leave day
-                    $leave_day = (strtotime($edate) - strtotime($sdate)) / 86400;
+                $leave_day =((strtotime($eedate) - strtotime($ssdate)) / 86400)+1;
+               
+                if($sH[1]=="12:00:00"){
+                $leave_days=(int)$leave_day;
+                $leave_day=$leave_days-0.5;
+          
+            }
+            if($eH[1]=="12:00:00"){
+                $leave_days=(int)$leave_days;
+                $leave_day=$leave_day-0.5;
+            }
+                 
+                   
                     $result = $this->db->query("INSERT INTO leaves (member_id,date,"
                             . "start_date,end_date,leave_days,leave_category,"
                             . "leave_description,total_leavedays,leave_status,"
@@ -136,15 +155,15 @@ class Leaves extends \Library\Core\BaseModel {
                     $users=$this->db->query("SELECT * FROM core_member where deleted_flag=0 ");
         $users=$users->fetchall();
         foreach ($users as $users) {
-            $this->db->query("INSERT INTO core_notification (noti_creator_id,"
+            $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,"
                 . "module_name,noti_id,noti_status) "
-                . "VALUES('" . $users['member_id'] . "','leaves','" . $noti_id . "',0)");
+                . "VALUES('" . $name . "','" . $users['member_id'] . "','leaves','" . $noti_id . "',0)");
         }
                     
                      
         $this->db->query("INSERT INTO core_notification_rel_member "
-                . "(member_id,noti_id,status,module_name) "
-                . "VALUES('" . $uname . "','" . $noti_id . "',0,'leaves')");
+                . "(creator_name,member_id,noti_id,status,module_name) "
+                . "VALUES('" . $name . "','" . $uname . "','" . $noti_id . "',0,'leaves')");
                     $cond['success'] = "Your Leave Applied Successfully!";
                 } else {
                     $cond['error'] = "End date must be greater than Start date";

@@ -203,6 +203,9 @@ class IndexController extends ControllerBase {
        $resultsalary['t']['b_salary'] = $t->_("basic_salary");
        $resultsalary['t']['t_fee'] = $t->_("travel_fee");
        $resultsalary['t']['ot'] = $t->_("overtime");
+       $resultsalary['t']['Decut Name'] = $t->_("Decut Name");
+       $resultsalary['t']['Allow Name'] = $t->_("Allow Name");
+       $resultsalary['t']['Starting Date'] = $t->_("Starting Date");
        $resultsalary['t']['edit_btn'] = $t->_("edit_btn");
        $resultsalary['t']['delete_btn'] = $t->_("delete_btn");
        $resultsalary['t']['cancel_btn'] = $t->_("cancel_btn");
@@ -241,7 +244,28 @@ class IndexController extends ControllerBase {
         echo json_encode($cond);
         $this->view->disable();
     }
-
+     public function salSettingAction(){
+        $t = $this->_getTranslation();
+        $sett['deduc_name'] = $t->_('deduc_name');
+        $sett['deduc_amount'] = $t->_('deduc_amount');
+        $sett['sett_title'] = $t->_('sett_title');
+        $sett['write_name'] = $t->_('write_name');
+        $sett['write_amount'] = $t->_('write_amount');
+        $sett['save'] = $t->_('save');
+        $sett['cancel'] = $t->_('cancel');
+        echo json_encode($sett);
+        $this->view->disable();
+    }
+    public function calSalaryAction(){
+        $t = $this->_getTranslation();
+        $tras['cal_title'] = $t->_('cal_title');
+        $tras['cal_text'] = $t->_('calSalary_noti');
+        $tras['cal_placehd'] = $t->_('calSalary_m');
+        $tras['cal_yes'] = $t->_('save_btn');
+        $tras['cal_no'] = $t->_('cancel');
+        echo json_encode($tras);
+        $this->view->disable();
+    }
      /**
      * 
      * get member_id salary Dialog Box
@@ -407,14 +431,14 @@ class IndexController extends ControllerBase {
         $t = $this->_getTranslation();
         $tax = new SalaryTaxs();
         $data = $tax->gettaxdata($id);
-        $data[1]['tax_edit'] = $t->_("tax_edit");
-        $data[1]['tax_from'] = $t->_("tax_from");
-        $data[1]['tax_to'] = $t->_("tax_to");
-        $data[1]['tax_rate'] = $t->_("tax_rate");
-        $data[1]['ssc_emp'] = $t->_("ssc_emp");
-        $data[1]['ssc_comp'] = $t->_("ssc_comp");
-        $data[1]['save'] = $t->_("save_btn");
-        $data[1]['cancel'] = $t->_("cancel_btn");
+        $data['t']['tax_edit'] = $t->_("tax_edit");
+        $data['t']['tax_from'] = $t->_("tax_from");
+        $data['t']['tax_to'] = $t->_("tax_to");
+        $data['t']['tax_rate'] = $t->_("tax_rate");
+        $data['t']['ssc_emp'] = $t->_("ssc_emp");
+        $data['t']['ssc_comp'] = $t->_("ssc_comp");
+        $data['t']['save'] = $t->_("edit_btn");
+        $data['t']['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }
@@ -445,12 +469,12 @@ class IndexController extends ControllerBase {
         $t = $this->_getTranslation();
         $Deduction = new SalaryTaxsDeduction();
         $data = $Deduction->getdectdata($id);
-        $data[1]['deduct_name'] = $t->_("deduction_name");
-        $data[1]['taxeditform'] = $t->_("taxeditform");
-        $data[1]['deduct_amt'] = $t->_("deduction_amt");
-        $data[1]['save'] = $t->_("save_btn");
-        $data[1]['delete'] = $t->_("delete_btn");
-        $data[1]['cancel'] = $t->_("cancel_btn");
+        $data['t']['edit_deduct_title'] = $t->_("taxeditform");
+        $data['t']['edit_deduct_name'] = $t->_("deduction_name");
+        $data['t']['edit_deduct_amount'] = $t->_("deduction_amt");      
+        $data['t']['save'] = $t->_("save_btn");
+        $data['t']['delete'] = $t->_("delete_btn");
+        $data['t']['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
     }

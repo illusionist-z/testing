@@ -424,7 +424,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
             'special_allowance' => $allowancetoadd,
             'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
-        //print_r($final_result);exit;
+        print_r($final_result);exit;
         
        $Result=$this->savesalaryeditdata($final_result,$salary_start_year,$salary_start_month);
       

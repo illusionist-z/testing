@@ -20,11 +20,11 @@
             <form id='TextBoxesGroup' action='saveallowance'>
                 <div id="TextBoxDiv1">
          
-                    <?= $t->_("allowance_name");?> 1 :  <input style="margin-top:10px;" type='text' id='textbox1' name='textbox1' placeholder="<?= $t->_("enter_allname");?>" >
-                    <?= $t->_("amount");?> 1 : <input style="margin-top:10px;" type='text' id='txt1' name='txt1' placeholder="<?= $t->_("enter_allamount");?>">
-                    <input type='button' value='+' id='addButton'>
-                    <input type='button' value='-' id='removeButton'>
-                    <input type='submit' class="buttonn" value='Add' id='alladd'>
+                    <?= $t->_("allowance_name");?> 1 :  <input style="margin-top:10px;" type='text' class="form-control-static" id='textbox1' name='textbox1' placeholder="<?= $t->_("enter_allname");?>" >
+                    <?= $t->_("amount");?> 1 : <input style="margin-top:10px;" type='text' id='txt1' class="form-control-static" name='txt1' placeholder="<?= $t->_("enter_allamount");?>">
+                    <input type='button' class="form-control-static" value='+' id='addButton'>
+                    <input type='button' class="form-control-static" value='-' id='removeButton'>
+                    <input type='submit' class="buttonn form-control-static" value='<?= $t->_("Add"); ?>' id='alladd'>
 
                 </div>
             </form>

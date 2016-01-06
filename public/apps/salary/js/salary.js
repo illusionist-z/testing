@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage =3;            
+        pager.perpage = 8;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -27,7 +27,7 @@ var Salary = {
                         +'<tr><td></td><td><b>'+result.t['b_salary']+' </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['t_fee']+'</b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:55px;height:40px;"></td></tr>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:100px;height:40px;"></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['ot']+'</b></td>'
                         +'<td id="overmsg"><input style="width:50px;margin-top:10px;" type="text" value="'+result.data[0]['over_time']+'" name="overtime" id="overerr"> %</td></tr>'
                         +'<tr><td></td><td>SSC Emp </td>'
@@ -35,7 +35,7 @@ var Salary = {
                         +'<tr><td></td><td><b>SSC Comp </b></td>'
                         +'<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>';
                        
-                data += '<tr><td></td><td>Decut Name </td><td colspan="4" style="font-size:12px;">';
+                data += '<tr><td></td><td> '+result.t['Decut Name']+' </td><td colspan="4" style="font-size:12px;">';
                 for(var j in result.dedution){
                 var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
                if(Salary.Check('children',result.permit_dedution)!='checked'){
@@ -50,13 +50,13 @@ var Salary = {
                 
                 data +='<br></td></tr>';
                
-                    data += '<tr><td></td><td>Allow Name </td><td colspan="4" style="font-size:12px;">';
+                    data += '<tr><td></td><td> '+result.t['Allow Name']+' </td><td colspan="4" style="font-size:12px;">';
                 for(var i in result.allowance){
                 var cond=Salary.Check(result.allowance[i]['allowance_name'],result.permit_allowance);
                 data +=' <input type="checkbox" name="check_allow[]" value="'+result.allowance[i]["allowance_id"]+'" '+ (cond!=='undefined'?cond:"") +'> '+ result.allowance[i]["allowance_name"] +'<br>';
                 }
                 //data +='<input type="hidden" value= " '+result.data[0]['salary_start_date']+ ' " name="work_sdate" id="work_sdate"></td></tr>';
-                  data += '<tr><td></td><td>Starting Date </td><td><input style="margin-top:10px;" class="datepicker" type="text" value='+result.data[0]['salary_start_date']+' name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
+                  data += '<tr><td></td><td>'+result.t['Starting Date']+'  </td><td><input style="margin-top:10px;" class="datepicker" type="text" value='+result.data[0]['salary_start_date']+' name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value='+result.data[0]['id']+ ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
              
                 data +='<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >'+result.t['edit_btn']+'</a><a href="#" class="button" id="edit_delete" >'+result.t['delete_btn']+'</a><a href="#" class="button" id="edit_close" >'+result.t['cancel_btn']+'</a></td></tr>';
@@ -215,22 +215,22 @@ var Salary = {
     calSalary : function (){
         //alert("add");
         
-        $.ajax({
-            
-           url:"",
+        $.ajax({            
+           url:"calSalary",
            type: "POST",
-           success:function(){   
-                var data ='<form id="Add_new_deduct"><table>';               
-                    data += '<tr><td>Choose pay month to calculate salary <br></td></tr>'
+           dataType : "json",
+           success:function(d){               
+                var data ='<form id="Add_new_deduct"><table>'; 
+                    data += '<tr><td>'+d.cal_text+'<br></td></tr>'
                     +'<tr><td><div style="display:none;" id="error_salary">Please Choose Pay Month!</div><div style="display:none;" id="nexterror_salary">Please choose another pay Month!</div></td></tr>'        
-                       +'<tr><td><input type="text" class="datepicker"  placeholder="Choose pay month" style="height:39px; width: 100%;" id="salary_start"></td></tr>'        
-                    data +='<tr><td><a href="#" class="button" id="cal_salary_month">Yes</a><a href="#" class="button" id="cancel_deduct">No</a></td></tr>';
+                       +'<tr><td><input type="text" class="datepicker"  placeholder="'+d.cal_placehd+'" style="height:39px; width: 100%;" id="salary_start"></td></tr>'        
+                    data +='<tr><td><a href="#" class="button" id="cal_salary_month">'+d.cal_yes+'</a><a href="#" class="button" id="cancel_deduct">'+d.cal_no+'</a></td></tr>';
                     data +='</table></form>';
-               Salary.Diaaadd(data);
+               Salary.Diaaadd(data,d.cal_title);
            }
         });
         },
-        Diaaadd : function (d){
+        Diaaadd : function (d,title){
         if(!this.isOvl){
             this.isOvl=true;
         }
@@ -243,7 +243,7 @@ var Salary = {
             resizable:false,
             width: 'auto',
             modal: true,
-            title:"Calculate Salary"
+            title:title
         });                        
         $ovl.html(d);
         $ovl.dialog("open");
@@ -284,7 +284,7 @@ var Salary = {
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].member_login_name);
+                dict.push(json_obj[i].full_name);
                 }
                   //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);

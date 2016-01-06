@@ -16,6 +16,7 @@ class IndexController extends ControllerBase
         $this->setCommonJsAndCss();
         
         $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('apps/document/css/index_ssbdocument.css');
         $this->assets->addJs('apps/document/js/FileSaver.js');
         $this->assets->addJs('apps/document/js/FileSaver.min.js');

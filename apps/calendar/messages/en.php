@@ -4,8 +4,11 @@ $messages = array (
    "calendar"  => "Calendar",
    "event_enable" => "User Event Enable",
    "show_event"   => "Show Event",
-   "create_event" => "Create Event",
-    "edit_event"  => "Edit Event",
+    "add_mem"=>"Add New Members",
+     "edit_event"=>"Edit Event",
+"create_event"=>"Create Event",
+    "write_title"=>"Write Title",
+    "enter_name"=>"Enter user name",
     "title"            => "Title",
     "name"         => "Name",
     "start_d"       => "Start Date",
@@ -26,6 +29,11 @@ $messages = array (
    "edit"   => "Edit",
    "delete"   => "Delete",
    "create"   => "Create",
-   "cancel"   => "Cancel"
+   "cancel"   => "Cancel",
+    
+    /**
+     * footer
+     */
+    "Change_Language"=>"Change Language",
 );
 

@@ -26,6 +26,12 @@ $messages = array (
    "edit"   => "Edit",
    "delete"   => "Delete",
    "create"   => "Create",
-   "cancel"   => "Cancel"
+   "cancel"   => "Cancel",
+    
+    
+     /**
+     * footer
+     */
+    "Change_Language"=>"Change Language",
 );
 
