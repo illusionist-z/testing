@@ -108,10 +108,7 @@ $(document).ready(function(){
                             maskInput : true,                                                                                                         
                            timeFormat: "HH:mm:ss"}).focus();                             
                      }); 
-    $('#apply_form_submit').on('click',function(e){
-      e.preventDefault();
-      ApplyForm.Submit();
-   });
+
     $('#apply_form_submit').on('click',function(e){
       e.preventDefault();
       ApplyForm.Submit();

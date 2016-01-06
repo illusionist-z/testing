@@ -142,7 +142,7 @@ class Leaves extends \Library\Core\BaseModel {
                 $leave_day=$leave_day-0.5;
             }
                  
-                   ;//echo $leave_day,"aa";exit;
+               
                     $result = $this->db->query("INSERT INTO leaves (member_id,date,"
                             . "start_date,end_date,leave_days,leave_category,"
                             . "leave_description,total_leavedays,leave_status,"

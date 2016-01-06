@@ -18,8 +18,6 @@ class LoginController extends ControllerBase {
         $this->view->test = $loginParams;
         $ModelAuth = new Models\Auth();
         $companyDB=$ModelAuth->findcomp_db($loginParams);
-        //print_r($companyDB);
-        
         if($companyDB)
         {
         $this->session->set('db_config',$companyDB);
@@ -38,17 +36,14 @@ class LoginController extends ControllerBase {
             $permissions = [];
             //Set user's permission to session 
             $Permission = $ModelPermission->get($result, $permissions,$lang['lang']);
-           //  print_r($Permission);exit;
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');
         } 
         else {
-            
             $this->response->redirect('auth/index/failer');
         }
         }
         else {
-            
             $this->response->redirect('auth/index/failerdb');
         }
         

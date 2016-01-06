@@ -1,24 +1,9 @@
 <?php
 
 namespace salts\Attendancelist\Models;
-use DateTime;
 use Phalcon\Mvc\Model;
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-
-use salts\Core\Models\Db\CoreMember as CoreMember;
-use salts\Attendancelist\Models\Attendances as Attendances;
-
-         use Phalcon\Filter; 
-//use salts\Auth\Models\Db\CoreMember as corememberresult;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 class Attendances extends Model {
     public function initialize() {
-        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
     
@@ -67,7 +52,6 @@ class Attendances extends Model {
      */
     public function getusername() {        
         $user_name = $this->db->query("SELECT * FROM core_member");
-        //print_r($user_name);exit;
         $getname = $user_name->fetchall();
         return $getname;
     }
@@ -160,7 +144,6 @@ class Attendances extends Model {
         else {
             $message = "Already Exist";
         }
-        // print_r($message);exit;       
         return $message;
     }
     
@@ -175,14 +158,10 @@ class Attendances extends Model {
        
         $data = $this->db->query($query);
         $result = $data->fetchall();
-        // print_r($result);exit;
         return $result;
     }
     public function editAtt($data,$id,$offset) {
-        //print_r($data);exit;
-        
         $localtime=$this->LocalToUTC($data,$offset);
-        //echo $localtime;
         $query = "update attendances set checkin_time='".$localtime."' where id='".$id."'";
         $this->db->query($query);
     }
@@ -190,16 +169,12 @@ class Attendances extends Model {
     public function LocalToUTC($data,$offset){
         
         if ($offset<0){
-           //$sign='-';
            $value=$offset;
            $localtime = date("Y-m-d H:i:s",strtotime($value." minutes",strtotime($data)));
-           
         }
         else{
            $value=$offset;
            $localtime = date("Y-m-d H:i:s",strtotime($value." minutes",strtotime($data)));
-  
-           
         } 
         return $localtime;
         
@@ -215,7 +190,6 @@ class Attendances extends Model {
               if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0 order by att_date desc";
               }
-             //echo $sql;exit;
               $result = $this->db->query($sql);
               $row = $result->fetchall();
               

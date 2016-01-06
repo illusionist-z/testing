@@ -156,12 +156,9 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return string
      */
     public function addnewuser($member_id, $member) {
-       // print_r($member);exit;       
-       
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
-
         $filter = new Filter();
         $username = $filter->sanitize($member['uname'], "string");
         $full_name = $filter->sanitize($member['full_name'], "string");
@@ -176,7 +173,6 @@ class CoreMember extends \Library\Core\BaseModel {
         //uploading file
         $target_dir = "uploads/";
         $profile = $_FILES["fileToUpload"]["name"];
-        //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $Real_pic_name=explode(".", $_FILES["fileToUpload"]["name"]);
         $newfilename = rand(1, 99999) . '.' . end($Real_pic_name);
         $targetfile = $target_dir . $newfilename;
@@ -245,7 +241,6 @@ class CoreMember extends \Library\Core\BaseModel {
             
         }
         
-        //print_r($final_result);exit;
        $data=array();
         foreach ($final_result as $result){
             foreach ($result as $value) {
@@ -254,7 +249,6 @@ class CoreMember extends \Library\Core\BaseModel {
                  }
             }
         }
-      //var_dump($data);exit;
         return $data;
     }
     
@@ -275,7 +269,6 @@ class CoreMember extends \Library\Core\BaseModel {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='".$type."' AND core_notification_rel_member.member_id= '" . $id ."' order by created_dt desc";
-        //print_r($sql);exit;
         $UserNoti = $this->db->query($sql);
 
         $noti = $UserNoti->fetchall();
@@ -295,7 +288,6 @@ class CoreMember extends \Library\Core\BaseModel {
                  }
             }
         }
-      //var_dump($data);exit;
         return $data;
     }
 
@@ -332,7 +324,6 @@ class CoreMember extends \Library\Core\BaseModel {
                     . " ,core_member.member_mail='" . $data['email'] . "' , core_member.member_mobile_tel='" . $data['phno'] . "' "
                     . " ,core_member.member_address='" . $data['add'] . "' , core_member.member_password='" . sha1($data['password']) . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "'";
             $this->db->query($changeprofile);
-            //echo $changeprofile;exit;
         }
         return $filename;
     }
