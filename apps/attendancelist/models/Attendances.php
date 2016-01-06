@@ -158,7 +158,7 @@ class Attendances extends Model {
             $message = "Adding is successfully";
         } 
         else {
-            $message = "Already Exit";
+            $message = "Already Exist";
         }
         // print_r($message);exit;       
         return $message;
@@ -198,10 +198,7 @@ class Attendances extends Model {
         else{
            $value=$offset;
            $localtime = date("Y-m-d H:i:s",strtotime($value." minutes",strtotime($data)));
-           //$sign='+';
-//           $localtime = new DateTime($data);
-//           $localtime->add(new DateInterval('PT' . $value . 'M'));
-//           $localtime=$localtime->format('y-m-d H:i:s');echo '+';
+  
            
         } 
         return $localtime;

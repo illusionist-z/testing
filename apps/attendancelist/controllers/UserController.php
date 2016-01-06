@@ -19,15 +19,9 @@ class UserController extends ControllerBase {
          foreach ($this->session->auth as $key_name => $key_value) {
              
              if ($key_name == 'show_admin_notification') {
-                //Go to user dashboard
               $noti=$User->GetAdminNoti($id,0);
-              
-              //$readnoti=$Admin->GetLastNoti($id);
-                 
             } 
             if ($key_name == 'show_user_notification') {
-                //Go to admin dashboard
-                
                $noti=$User->GetUserNoti($id,1); 
             }
         }
