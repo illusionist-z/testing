@@ -28,7 +28,7 @@
                                                  }
                         ?>                                                 
               <img src="<?php echo $baseUri;?>/uploads/<?php echo  $img;?>"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
-                <b><i style="color:red;"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b style='color:red;'>".$noti['leave_days']." </b> day <b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> to <b>".date("d-m-Y", strtotime( $noti['end_date']))."</b>";
+                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> created by ". $noti['creator_name'];
                 }else {?>
                 <span class="foruser">
                     <a href="<?php echo $baseUri;?>notification/index/detail?id=<?php echo $noti['noti_id'];?>&mname=<?php echo $noti['module_name'];?>" class="" id="<?php echo  $noti['member_id']; echo","; echo $noti['start_date'];?>">
@@ -102,7 +102,7 @@ foreach( $oldnoti as $noti){
                                                  }
                         ?>                                                 
               <img src="<?php echo $baseUri;?>/uploads/<?php echo  $img;?>"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
-                <b><i style="color:blue;"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b style='color:red;'>".$noti['leave_days']." </b> day <b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> to <b>".date("d-m-Y", strtotime( $noti['end_date']))."</b>";
+                <b><i style="color:red"><?php echo $noti['member_login_name'];?></i></b> apply  leave for <?php echo "<b>".date("d-m-Y", strtotime( $noti['start_date']))."</b> created by ". $noti['creator_name'];
                 }else {?>
                 <span class="foruser">
                     <img src="<?php echo $baseUri;?>common/img/notid.png"> <b>admin</b><?php 

@@ -138,7 +138,7 @@ class CoreMember extends \Library\Core\BaseModel {
         } else {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year'])));
         }
-        if ($end_date <= $today) {
+        if ($end_date >= $today) {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
     }
