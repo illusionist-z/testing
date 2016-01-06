@@ -132,13 +132,14 @@ class CoreMember extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user1 = $user->fetchall();
-        $today = date("Y-m-d H:i:s");
+        $today = date("Y-m-d");
         if ($user1['0']['working_year_by_year'] == NULL) {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_start_dt'])));
         } else {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year'])));
         }
-        if ($end_date >= $today) {
+
+        if (strtotime($user1['0']['working_year_by_year']) <=strtotime($today)) {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
     }
@@ -178,6 +179,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $targetfile = $target_dir . $newfilename;
         $lang = "en";
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
+
         $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
                 . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['uname'] . "'");
