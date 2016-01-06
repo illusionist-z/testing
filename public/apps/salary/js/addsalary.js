@@ -43,7 +43,7 @@ var AddSalary = {
                     window.location.href = baseUri + 'salary/index/salarylist';
                     }
                 else if(cond.result === 'Inserted'){
-                    alert("This Record has been "+cond.result);
+                    alert("This Record is already "+cond.result);
                     window.location.href = baseUri + 'salary/index/salarylist';
                 }
                
