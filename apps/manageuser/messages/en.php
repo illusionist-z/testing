@@ -10,6 +10,7 @@ $messages = array(
    "phone"   => "Phone No",
    "address" => "Address",
    "searchusername" => "Search User Name",
+    "search" => "Search",
    "adduser" => "Add User",
    "password" => "Password",
    "confirm_pass" => "Confirm Password",
@@ -31,6 +32,13 @@ $messages = array(
    "placeholder7" => "Enter position",
    "placeholder8" => "Enter Email",
    "placeholder9" => "Enter Phone no",
-   "placeholder10" => "Enter Address"
+   "placeholder10" => "Enter Address",    
+    "placeholder11" => "Add User",
+    "placeholder12" => "Cancel",
+    
+     /**
+     * footer
+     */
+    "Change_Language"=>"Change Language",
 );
 

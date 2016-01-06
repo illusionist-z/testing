@@ -38,7 +38,7 @@
                                       
                                     
                                   <div id="notificationContainer">
-                                  <div id="notificationTitle">Notifications</div>
+                                  <div id="notificationTitle"><?php echo $t->_("Notification"); ?></div>
 <div id="notificationsBody" class="notifications">
 
 </div>
@@ -83,7 +83,7 @@
                                         <img src="<?php echo $baseUri?>uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <p>
                                             <b><?php echo $this->session->user['member_login_name']; ?></b>
-                                            <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
+                                            <small><b><?php echo $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
                                         </p>
                                     </li>
 
@@ -96,7 +96,7 @@
                // $this->response->redirect('attendancelist/index/todaylist');
                 ?>
                  <div class="pull-left">
-                     <a href="../../setting/index" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
+                     <a href="../../setting/index" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                         </div>
                 <?php
                
@@ -105,7 +105,7 @@
                { 
                     ?> 
                       <div class="pull-left">
-                                                    <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                                    <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                                 </div>
                 <?php }
                 
@@ -113,7 +113,7 @@
                 ?>
                                         
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
+                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b><?php echo $t->_("Sign out"); ?></b></a>
 
                                         </div>
                                     </li>

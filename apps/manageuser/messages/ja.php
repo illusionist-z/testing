@@ -35,6 +35,8 @@ $messages = array(
    "placeholder7" => "立場を入力してくだいさい",
    "placeholder8" => "メールを入力してください",
    "placeholder9" => "電話番号を入力してください",
-   "placeholder10" => "住所を入力してください"
+   "placeholder10" => "住所を入力してください",
+    "placeholder11" => "ထည့္မည္",
+    "placeholder12" => "မလုပ္ေတာ့ပါ",
 );
 

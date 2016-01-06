@@ -22,7 +22,7 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">             
                              <li>
-                                    <a href="<?php echo $baseUri?>help/index/searchHelp" target="_blank" class="" title="Help" id="help_icon" style="padding-top: 20px;">
+                                    <a href="<?php echo $baseUri?>help/index/searchHelp" target="_blank" class="" title="<?php echo $t->_("Help"); ?>" id="help_icon" style="padding-top: 20px;">
                                                <img src="<?php echo $baseUri?>common/img/help_browser.png">
                                         </a>
                                </li>  
@@ -33,11 +33,11 @@
                                     <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
                                 </a>
                                   <div id="notificationContainer">
-                                  <div id="notificationTitle">Notifications</div>
+                                  <div id="notificationTitle"><?php echo $t->_("Notifications"); ?></div>
 <div id="notificationsBody" class="notifications">
 
 </div>
-                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white">View All</span></a></div>
+                                  <div id="notificationFooter"><a href="<?php echo $baseUri?>/notification/index/viewall"><span style="color:white"><?php echo $t->_("View All"); ?></span></a></div>
                                 </div>
                             </li>
                             <!-- Tasks: style can be found in dropdown.less -->
@@ -84,7 +84,7 @@
                                             <b><?php echo $this->session->user['member_login_name']; ?></b>
                                            <!-- <small><b>Member since Nov. 2012</b></small>-->
                                             <!--<small><b>Member since <?php echo "<i style='color:black'> \" ".$this->session->user['created_dt']." \"</i>";?></b></small>-->
-                                            <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
+                                            <small><b><?php echo $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
                                         </p>
                                     </li>
 
@@ -98,7 +98,7 @@
                 
                 ?>
                  <div class="pull-left">
-                     <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
+                     <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                         </div>
                 <?php
                
@@ -107,7 +107,7 @@
                
                     ?> 
                       <div class="pull-left">
-                                                    <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                                    <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                                 </div>
                 <?php 
                          }
@@ -117,7 +117,7 @@
                 ?>
                                         
                                         <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
+                                            <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b><?php echo $t->_("Sign out"); ?></b></a>
 
                                         </div>
                                     </li>
@@ -264,7 +264,7 @@
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                   <?php echo "Change language" ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+                  <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
        
