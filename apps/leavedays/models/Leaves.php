@@ -13,11 +13,6 @@ use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 class Leaves extends \Library\Core\BaseModel {
 
@@ -142,8 +137,8 @@ class Leaves extends \Library\Core\BaseModel {
                 $leave_day=$leave_day-0.5;
             }
                  
-                   
-                    $result = $this->db->query("INSERT INTO leaves (member_id,date,"
+               
+                    $this->db->query("INSERT INTO leaves (member_id,date,"
                             . "start_date,end_date,leave_days,leave_category,"
                             . "leave_description,total_leavedays,leave_status,"
                             . "noti_id,created_dt) VALUES('" . $uname . "',"

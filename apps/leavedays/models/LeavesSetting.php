@@ -25,9 +25,9 @@ class LeavesSetting extends \Library\Core\BaseModel {
         return $row;
     }
 
-    public function editleavesetting($max_leavedays, $fine_amount) {
+    public function editleavesetting($max_leavedays) {
         try {
-            $sql = "Update leaves_setting SET max_leavedays ='" . $max_leavedays . "',fine_amount ='" . $fine_amount . "' ";
+            $sql = "Update leaves_setting SET max_leavedays ='" . $max_leavedays . "' ";
             $this->db->query($sql);
         } catch (Exception $ex) {
             echo $ex;
