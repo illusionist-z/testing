@@ -73,10 +73,7 @@ class CoreMember extends \Library\Core\BaseModel {
      */
 
     public function getoneusername($username) {
-        /* $this->db = $this->getDI()->getShared("db");
-          $user_name = $this->db->query("SELECT * FROM core_member where member_login_name ='".$username."'");
-          $getname = $user_name->fetchall();
-          return $getname; */
+        
         $filter = new Filter();
         $username = $filter->sanitize($username, "string");
         $getname = $this->modelsManager->createBuilder()
@@ -86,16 +83,21 @@ class CoreMember extends \Library\Core\BaseModel {
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
-        //print_r($row);exit;
-        /*  foreach($row as $rows) {
-          echo $rows->member_login_name;
-          // echo $rows->attendances->att_date;
-          }
-          exit; */
+     
 
         return $getname;
     }
 
+     public function getusernamebyid($id){
+        
+            $sql = "select * from core_member WHERE member_id ='".$id."'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+           $name=$row[0]['member_login_name'];
+           
+        return $name;
+  
+    }
     public function searchuser($search) {
         $filter = new Filter();
         $search = $filter->sanitize($search, "string");
