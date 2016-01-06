@@ -146,7 +146,6 @@ $(document).ready(function () {
        $('.editsetting').on('click',function(){
         
         document.getElementById('max_leavedays').disabled=false;
-        document.getElementById('fine_amount').disabled=false;
         document.getElementById('savesetting').disabled=false;
     });
 });
