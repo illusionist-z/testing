@@ -11,7 +11,7 @@ var pager = new Paging.Pager(),dict = [];   //for pagination
 var User = {
         init  : function(reload) {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage =6;            
+        pager.perpage =15;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();         
