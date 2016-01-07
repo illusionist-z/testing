@@ -16,6 +16,7 @@ class AbsentController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->view->t = $this->_getTranslation();
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/attendancelist/js/absent.js');
         $this->assets->addCss('common/css/css/style.css');
     }
