@@ -5,85 +5,57 @@
  * @desc {dialog} for edit user profile
  */
     var Manage = {};
-    Manage.User = {
+    Manage.Company = {
     Edit : function (type) {
-        alert(type);
-        $.ajax({
-            type: 'GET',
-            url: baseUri+'manageuser/index/manageuser?data=' + type,
-            dataType:'json',
-            success: function (res) {
-                
-                var html,title,id;
-                if( res[0] !== 'new' ){
-                 html = '<form id="edit_user" width="250px" height="200px"><table width="420px" height="100px" align="center" style="font-size:13px;">'
-                    +'<br><tr><td>'+res[1]['id']+' </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_id +'" name="id" id="edit_user_id" disabled></td><td></td></tr>'
-		    +'<tr><td>'+res[1]['name']+' </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_login_name +'" name="name" id="edit_user_name"></td></tr>'
-                    +'<tr><td>'+res[1]['w_start_dt']+'</td>'
-                    +'<td><input style="margin-top:10px;" class="datepicker" type="text" value="'+ res[0].working_start_dt+'" name="work_sdate" id="edit_work_sdate"></td></tr>'
-                    +'<tr><td>'+res[1]['dept']+'</td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_dept_name +'" name="dept" id="edit_user_dept"></td><td></td></tr>'
-		    +'<tr><td>'+res[1]['pos']+'</td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].position +'" name="position" id="edit_user_pos"></td></tr>'
-                    +'<tr><td>'+res[1]['mail']+' </td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mail +'" name="email" id="edit_user_email" ></td><td></td></tr>'
-		    +'<tr><td>'+res[1]['pno']+'</td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
-                    +'<tr><td>'+res[1]['address']+' </td>'
-                    +'<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="50" name="address" style="color:black">'+ res[0].member_address +'</textarea></td></tr>'
-		    +'<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">'+res[1]['btn_edit']+'</a><a href="#" class="button" id="edit_delete">'+res[1]['btn_delete']+'</a><a href="#" class="button" id="edit_close">'+res[1]['btn_cancel']+'</a></td>'
-                    +'</tr></table></form>'; 
-                  title = res[1]['edit'];
+        
+        if(type=="edit"){
+       
+                 html = '<form id="saveuser" method="post" enctype="multipart/form-data">'
+                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">Company ID</td><td>'
+                   +'<input style="margin-top:10px" type="text" name="uname" id="uname" value="com1" class="col-sm-10" placeholder="Write Company ID"></td></tr>'
+                   +'<tr><td></td><td id="existId"></td></tr>'
+                   +'<tr><td>Company Name</td><td><input style="margin-top:10px" value="gnext"  type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Wirte Company Name"></td></tr>'
+                   +'<tr><td>Starting Date</td><td><input style="margin-top:10px" type="text" value="2016-01-01"name="password" class="datepicker col-sm-10" id="pass" placeholder="Write Company Starting Date"></td></tr>'
+                   +'<tr><td>Email</td><td><input style="margin-top:10px" type="text" name="" value="gnext@mail.com" class=" col-sm-10" id="pass" placeholder="Write Email "></td></tr>'
+                   +'<tr><td>Phone Number</td><td><input style="margin-top:10px" type="text" name="" value="35366373" class=" col-sm-10" id="pass" placeholder="Write Phone Number "></td></tr>'
+                   +'<tr><td>Database Name</td><td><input style="margin-top:10px" type="text" name="" value="attsys_db" class=" col-sm-10" id="pass" placeholder="Write Database Name "></td></tr>'
+                   +'<tr><td>DB UserName</td><td><input style="margin-top:10px" type="text" name="" class=" col-sm-10" value="root" id="pass" placeholder="Write Database Username "></td></tr>'
+                   +'<tr><td>DB Password</td><td><input style="margin-top:10px" type="text" name="" class=" col-sm-10" value="root" id="pass" placeholder="Write Database Password"</td></tr>'
+                   +'<tr><td>Host</td><td><input style="margin-top:10px" type="text" name="" class=" col-sm-10" id="pass" value="localhost" placeholder="Write Host Name "></td></tr>'
+                   +'<tr><td>User Limit</td><td><input style="margin-top:10px" type="text" name="" class=" col-sm-10" id="pass" value="400" placeholder="Write User Limit "></td></tr>'
+                   +'<tr><td>Module Flag</td><td><input style="margin-top:10px" type="text" name="" class=" col-sm-10" id="pass" value=" "placeholder="Module Flag "></td></tr>'
+                   +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="Add Company"> <input style="margin-top:10px" type="reset" class="buttonn" id="edit_close" value="Cancel"></td>'
+                   +'</tr></table></form>'; 
+                  title ="Edit Company  ";
                   id = 0;
                     }
                     else{
                            
                      
                  html ='<form id="saveuser" method="post" enctype="multipart/form-data">'
-                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">'+res[1]['name']+'</td><td>'
-                   +'<input style="margin-top:10px" type="text" name="uname" id="uname" class="col-sm-10" placeholder="'+res[1]['placeholder1']+'"></td></tr>'
+                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">Company ID</td><td>'
+                   +'<input style="margin-top:10px" type="text" name="uname" id="uname" class="col-sm-10" placeholder="Write Company ID"></td></tr>'
                    +'<tr><td></td><td id="existId"></td></tr>'
-                   +'<tr><td>'+res[1]['username']+'</td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="'+res[1]['placeholder2']+'"></td></tr>'
-                   +'<tr><td>'+res[1]['pass']+'</td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="'+res[1]['placeholder3']+'"></td></tr>'
-                   +'<tr><td>'+res[1]['confirm']+'</td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="'+res[1]['placeholder4']+'"></td></tr>'
-	           +'<tr><td>'+res[1]['w_start_dt']+'</td><td><input style="margin-top:10px" type="text" name="work_sdate" id="work_sdate" class="col-sm-10 datepicker" placeholder="'+res[1]['placeholder5']+'"></td></tr>'
-                   +'<tr><td>'+res[1]['dept']+'</td><td><input style="margin-top:10px" type="text" name="dept" id="dept" class="col-sm-10" placeholder="'+res[1]['placeholder6']+'"></td></tr>'
-                   +'<tr><td>'+res[1]['pos']+'</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="'+res[1]['placeholder7']+'"></td></tr>'
-	           +'<tr><td>'+res[1]['mail']+'</td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="'+res[1]['placeholder8']+'"></td></tr>'
-                   +'<tr><td>'+res[1]['pno']+'</td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="'+res[1]['placeholder9']+'"></td></tr>'
-                   +'<tr><td>'+res[1]['address']+'</td><td><textarea rows="4" style="width:255px;"  name="address" placeholder="'+res[1]['placeholder10']+'"></textarea></td></tr>'
-                   +'<tr><td><br>'+res[1]['role']+'</td><td><select style="margin-top:10px" class="mySelect" data-toggle="select" name="user_role" id="member[user_role]">'
-                   +'</select></td></tr><tr><td>'+res[1]['profile']+'</td><td><input style="margin-top:10px" type="file" name="fileToUpload" id="fileToUpload"></td></tr>'
-                   +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="'+res[1]['placeholder11']+'"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="'+res[1]['placeholder12']+'"></td>'
+                   +'<tr><td>Company Name</td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Wirte Company Name"></td></tr>'
+                   +'<tr><td>Starting Date</td><td><input style="margin-top:10px" type="text" name="password" class="datepicker col-sm-10" id="pass" placeholder="Write Company Starting Date"></td></tr>'
+                   +'<tr><td>Email</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Write Email "></td></tr>'
+                   +'<tr><td>Phone Number</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Write Phone Number "></td></tr>'
+                   +'<tr><td>Database Name</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Write Database Name "></td></tr>'
+                   +'<tr><td>DB UserName</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Write Database Username "></td></tr>'
+                   +'<tr><td>DB Password</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Write Database Password"</td></tr>'
+                   +'<tr><td>Host</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Write Host Name "></td></tr>'
+                   +'<tr><td>User Limit</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Write User Limit "></td></tr>'
+                   +'<tr><td>Module Flag</td><td><input style="margin-top:10px" type="text" name="password" class=" col-sm-10" id="pass" placeholder="Module Flag "></td></tr>'
+                   +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="Add Company"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
                    +'</tr></table></form>';
-                    var type="new";
-                    $.ajax({
-                    type:'GET',
-                    url :baseUri+'manageuser/index/getpermit?data=' + type,
-                    success: function(d){
-                    var json_obj = $.parseJSON(d);
-                    var option='';
-                    var opt='';
-                    for (var i in json_obj){
-                       if(json_obj[i].name_of_group=='USER'){ opt="selected"}else{opt=''}
-                       option += "<option value='"+json_obj[i].name_of_group+","+json_obj[i].group_id+"'"+opt+">"+json_obj[i].name_of_group+"</option>";
-                        
-                    }
-                    
-                    $('.mySelect').html(option);
-
-                    
-                    }
-                     });
+                
     
-                   title = res[1]['add'];
+                   title = "Add New Company";
                    id = 1;
                     }
-            Manage.User.Dialog(html,title,id);
-            }            
-        });
+            Manage.Company.Dialog(html,title,id);
+                      
+        
     },
     Dialog: function (data,title,id) {
         if(!this.isOvl){
@@ -241,4 +213,22 @@
         });
     }
 };
+
+
+    
+$(document).ready(function(){                 
+$('.addnewcom').click(function () {
+    type="new";
+        Manage.Company.Edit(type);
+    }); 
+    
+ $('.editnewcom').click(function () {
+    type="edit";
+ 
+        Manage.Company.Edit(type);
+    }); 
+  
+       
+});
+
 

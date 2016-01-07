@@ -1,0 +1,50 @@
+<section class="content-header">
+    <h1>
+        <?= "Edit Company"; ?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
+         <li class="active"><?="Edit Company"; ?></li>
+    </ol>
+</section>
+
+
+
+        <!-- Main content -->
+        <section class="content">
+         
+         <div class="row">
+	 <div class="col-md-12"><!--start add user form--->
+        
+	<div id="form_div">
+	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Add New Company Form</font></div>
+        
+        <form id="saveuser" method="post" enctype="multipart/form-data">
+                   <table class="row-fluid" style="font-size:13px;"><tr><td class="" style="width:20%">Company ID</td><td>
+                   <input style="margin-top:10px ; width:50%" type="text" name="uname" id="uname" value="com1" class="col-sm-10" placeholder="Write Company ID"></td></tr>
+                  <tr><td></td><td id="existId"></td></tr>
+                  <tr><td>Company Name</td><td><input style="margin-top:10px ; width:50%" value="gnext"  type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="Wirte Company Name"></td></tr>
+                  <tr><td>Starting Date</td><td><input style="margin-top:10px ; width:50%" type="text" value="2016-01-01"name="password" class="datepicker col-sm-10" id="pass" placeholder="Write Company Starting Date"></td></tr>
+                  <tr><td>Email</td><td><input style="margin-top:10px ; width:50%" type="text" name="" value="gnext@mail.com" class=" col-sm-10" id="pass" placeholder="Write Email "></td></tr>
+                  <tr><td>Phone Number</td><td><input style="margin-top:10px ; width:50%" type="text" name="" value="35366373" class=" col-sm-10" id="pass" placeholder="Write Phone Number "></td></tr>
+                  <tr><td>Database Name</td><td><input style="margin-top:10px ; width:50%" type="text" name="" value="attsys_db" class=" col-sm-10" id="pass" placeholder="Write Database Name "></td></tr>
+                  <tr><td>DB UserName</td><td><input style="margin-top:10px ; width:50%" type="text" name="" class=" col-sm-10" value="root" id="pass" placeholder="Write Database Username "></td></tr>
+                  <tr><td>DB Password</td><td><input style="margin-top:10px ; width:50%" type="password" name="" class=" col-sm-10" value="root" id="pass" placeholder="Write Database Password"</td></tr>
+                  <tr><td>Host</td><td><input style="margin-top:10px ; width:50%" type="text" name="" class=" col-sm-10" id="pass" value="localhost" placeholder="Write Host Name "></td></tr>
+                  <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="" class=" col-sm-10" id="pass" value="400" placeholder="Write User Limit "></td></tr>
+                  <tr><td>Module Flag</td><td><input type="checkbox"   id="checkall1" value="" style="margin-bottom: 5px" checked>Dashboard <br>
+                          <input type="checkbox"   id="checkall1" value="" style="margin-bottom: 5px" checked>Attendance<br>
+                          <input type="checkbox"   id="checkall1" value="" style="margin-bottom: 5px" >Leave Days<br>
+                          <input type="checkbox"   id="checkall1" value="" style="margin-bottom: 5px" >Manage User<br>
+                          <input type="checkbox"   id="checkall1" value="" style="margin-bottom: 5px">Document<br>
+                         <input type="checkbox"   id="checkall1" value="" style="margin-bottom: 5px">Salary</td></tr>
+                  <tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="Edit Company"> <input style="margin-top:10px" type="reset" class="buttonn" id="edit_close" value="Cancel"></td>
+                  </tr></table></form>
+	
+</form>
+			</div>
+          </div><!--end add user form--->
+          </div><!-- /.row -->
+		  
+        </section><!-- /.content -->
+    

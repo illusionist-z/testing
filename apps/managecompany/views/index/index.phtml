@@ -1,0 +1,78 @@
+<?php
+    use Phalcon\Filter;
+?>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <?= "Company List"; ?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
+        <li class="active"><?="Company List"; ?></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">	
+        <form class="buttons">
+            <input  type="text" class="userauto form-control-static" name="username" id="username" placeholder="<?= "Search Company Name"; ?>" autocomplete="off">
+
+            <input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= "Search"; ?>" id="userlistsearch" style="margin-top: -10px;">
+             
+               
+            <a href="<?php echo $baseUri?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
+     
+        </form>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+            
+            <table class="listtbl">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th><?="Company  ID"; ?></th>
+                        <th><?="Company Name";?></th>
+                        <th ><?= "Starting date"; ?></th>
+                        <th ><?= "Email"; ?></th>
+                        <th ><?= "Phone no"; ?></th>
+                        <th ><?= "dbname"; ?></th> 
+                        <th ><?= "host"; ?></th>
+                        <th ><?= "user limit"; ?></th>
+                        <th ><?= "module flag"; ?></th>        
+                        <th></th>
+                    </tr>
+
+                </thead>
+                <tbody>                  
+                <td>1</td>
+                <td>com1</td>
+                <td>gnext</td>
+                <td>2016-01-01</td>
+                <td>gnext@mail.com</td>
+                <td>35366373</td>
+                <td>attsys_db</td>
+               
+                <td>localhost</td>
+                <td>400</td>
+                <td>Dashboard, Attendance</td>
+                <td>  <a href="<?php echo $baseUri?>managecompany/index/editcompany"  style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td>
+                </tbody>
+                <tfoot style="display:none;"></tfoot>                    
+            </table>
+    </div>
+</section>
+<div id="content"></div>
+<div id="edituser" class="navbar">    
+</div>	
+<div id="confirm" title="Confirm Delete">
+    
+</div>
+
+
+
+
+
