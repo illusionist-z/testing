@@ -291,8 +291,14 @@ $(document).ready(function () {
     
     $('.monthauto').on('click',function(){
         $(this).autocomplete({
-            source: dict
-        });
+                        source: function( request, response ) {
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                        response( $.grep( dict, function( item ){                 
+                        return matcher.test( item);
+                         }) );
+                 },
+                        minLength :1
+                 });
     });
     
     $('.listtbl').on("click",".displaypopup",function(e){
