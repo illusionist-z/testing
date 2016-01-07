@@ -15,7 +15,7 @@ class SalaryMasterController extends ControllerBase
         $this->_addsalary= new Salary;
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
-           $this->act_name =  $this->router->getModuleName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         //$this->assets->addJs('apps/salary/js/addsalary.js');
     }
@@ -64,13 +64,20 @@ class SalaryMasterController extends ControllerBase
         else{
        
         $Salarymaster = new SalaryMaster();
-        
+        //check the member id has been inserted
+        $Check_salarymaster=$Salarymaster->getLatestsalary($data['member_id']);
+        if(empty($Check_salarymaster)){
         $Salarymaster->savesalarydedution($dedution,$data['no_of_children'], $data['member_id'], $data['creator_id']);
         $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();
         $Allowance->saveallowance($allowance, $data['member_id']);
         $json['result'] = "success";
+        }
+        else{
+        $json['result'] = "Inserted";
+        }
+        
              }
              //print_r($json);
         echo json_encode($json);

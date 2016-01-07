@@ -20,9 +20,7 @@
         
         <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
             <table style="margin-left: 30px;" >
-                <tr>
-                    <td style="opacity: 0;">$nbsp;</td>
-                </tr>
+          
 	<tr>
             
             <td width="200px"><?= $t->_("name"); ?></td>
@@ -37,7 +35,7 @@
                     }
                     ?> </select> 
                     <span id="apply_form_name_error"></span>-->
-                    <input type="text" class="applyauto form-control" data-toggle="select" name="username" style="height:39px; width: 260px;" id="apply_form_name" placeholder="<?php echo $t->_("searchusername"); ?>" autocomplete="off">
+                    <input class="applyauto" data-toggle="select" name="username" style="width:260px;" id="apply_form_name" placeholder="<?php echo $t->_("searchusername"); ?>" autocomplete="off">
                      <span id="apply_form_username_error"></span>
                      <input type="hidden" value="" id="formemberid" name="member_id" >
 		</td>                
@@ -46,7 +44,7 @@
 		
 		<td><?= $t->_("start_date"); ?></td>
                 <td style="height:40px;">
-                    <input type="text" class="datepicker form-control" name="sdate" id="apply_form_sdate" placeholder="<?= $t->_("start_date"); ?>" style="height:39px; width: 260px;">
+                    <input type="text" class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
                     <span id="apply_form_sdate_error"></span>
                 </td>                
 	</tr>
@@ -54,7 +52,7 @@
 	<tr>
 		<td><?= $t->_("end_date"); ?> </td>
                 <td style="height:40px;">
-                    <input type="text" class="datepicker form-control" name="edate" id="apply_form_edate" placeholder="<?= $t->_("end_date"); ?>" style="height:39px; width: 260px;">
+                    <input type="text" class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
                     <span id="apply_form_edate_error"></span>                
                 </td>
                 
@@ -63,28 +61,27 @@
           
 		<td><?= $t->_("leave_category"); ?></td>
                 <td style="height:40px;">
-                    <select class="select form-control-static" data-toggle="select" name="leavetype">
-                        <option value=""><?= $t->_("leave_type"); ?></option>
+                    <select class="select" data-toggle="select" name="leavetype">
                     <?php
                     foreach ($Leavetype as $data) {
                     ?>
                          <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name']; ?></option>
                     <?php
                     }
-                    ?> </select>    <br>
+                    ?> </select>    
                 </td>
 	</tr>
 	<tr>
 		<td><?= $t->_("leave_desc"); ?></td>
                 <td >
-                    <textarea name="description" id="apply_form_desc" style="width:260px;" rows="5" cols="30"  placeholder="<?= $t->_("write_desc"); ?>"></textarea>
+                    <textarea name="description" id="apply_form_desc" style="width:260px;" rows="5" cols="30"  placeholder="Write Description"></textarea>
                     <span id="apply_form_desc_error"></span>
                </td>
 	</tr>
         
 	<tr>
 		<td></td>		
-                <td><br><input type="submit" value="<?= $t->_("apply"); ?>" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" id="apply_cancel" class="buttonn" value="<?= $t->_("cancel"); ?>"></td>
+                <td><br><input type="submit" value="Apply" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" id="apply_cancel" class="buttonn" value="Cancel"></td>
 		<td></td>
 	</tr>
 	</table>

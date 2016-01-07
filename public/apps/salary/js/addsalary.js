@@ -42,7 +42,11 @@ var AddSalary = {
                     alert(cond.result);
                     window.location.href = baseUri + 'salary/index/salarylist';
                     }
-                
+                else if(cond.result === 'Inserted'){
+                    alert("This Record is already "+cond.result);
+                    window.location.href = baseUri + 'salary/index/salarylist';
+                }
+               
            }
         });
     },

@@ -52,7 +52,7 @@ var Calendar = {
             },
             eventDrop: function (event) {
                 var start = event.start.format("YYYY-MM-DD"), end;
-                if (event.end == null) {
+                if (event.end === null) {
                     end = event.start.format("YYYY-MM-DD");
                 }
                 else {

@@ -73,10 +73,7 @@ class CoreMember extends \Library\Core\BaseModel {
      */
 
     public function getoneusername($username) {
-        /* $this->db = $this->getDI()->getShared("db");
-          $user_name = $this->db->query("SELECT * FROM core_member where member_login_name ='".$username."'");
-          $getname = $user_name->fetchall();
-          return $getname; */
+        
         $filter = new Filter();
         $username = $filter->sanitize($username, "string");
         $getname = $this->modelsManager->createBuilder()
@@ -86,16 +83,21 @@ class CoreMember extends \Library\Core\BaseModel {
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
-        //print_r($row);exit;
-        /*  foreach($row as $rows) {
-          echo $rows->member_login_name;
-          // echo $rows->attendances->att_date;
-          }
-          exit; */
+     
 
         return $getname;
     }
 
+     public function getusernamebyid($id){
+        
+            $sql = "select * from core_member WHERE member_id ='".$id."'";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+           $name=$row[0]['member_login_name'];
+           
+        return $name;
+  
+    }
     public function searchuser($search) {
         $filter = new Filter();
         $search = $filter->sanitize($search, "string");
@@ -130,13 +132,14 @@ class CoreMember extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user1 = $user->fetchall();
-        $today = date("Y-m-d H:i:s");
+        $today = date("Y-m-d");
         if ($user1['0']['working_year_by_year'] == NULL) {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_start_dt'])));
         } else {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year'])));
         }
-        if ($end_date <= $today) {
+
+        if (strtotime($user1['0']['working_year_by_year']) <=strtotime($today)) {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
     }
@@ -154,12 +157,9 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return string
      */
     public function addnewuser($member_id, $member) {
-       // print_r($member);exit;       
-       
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
-
         $filter = new Filter();
         $username = $filter->sanitize($member['uname'], "string");
         $full_name = $filter->sanitize($member['full_name'], "string");
@@ -174,12 +174,12 @@ class CoreMember extends \Library\Core\BaseModel {
         //uploading file
         $target_dir = "uploads/";
         $profile = $_FILES["fileToUpload"]["name"];
-        //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
         $Real_pic_name=explode(".", $_FILES["fileToUpload"]["name"]);
         $newfilename = rand(1, 99999) . '.' . end($Real_pic_name);
         $targetfile = $target_dir . $newfilename;
         $lang = "en";
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
+
         $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
                 . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address. "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['uname'] . "'");
@@ -219,10 +219,10 @@ class CoreMember extends \Library\Core\BaseModel {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         if($type==0){
-           $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc  ";
+           $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc  ";
 
         }else{
-             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt desc limit 10";
+             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc limit 10";
 
         }
      
@@ -243,7 +243,6 @@ class CoreMember extends \Library\Core\BaseModel {
             
         }
         
-        //print_r($final_result);exit;
        $data=array();
         foreach ($final_result as $result){
             foreach ($result as $value) {
@@ -252,7 +251,6 @@ class CoreMember extends \Library\Core\BaseModel {
                  }
             }
         }
-      //var_dump($data);exit;
         return $data;
     }
     
@@ -273,7 +271,6 @@ class CoreMember extends \Library\Core\BaseModel {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='".$type."' AND core_notification_rel_member.member_id= '" . $id ."' order by created_dt desc";
-        //print_r($sql);exit;
         $UserNoti = $this->db->query($sql);
 
         $noti = $UserNoti->fetchall();
@@ -293,7 +290,6 @@ class CoreMember extends \Library\Core\BaseModel {
                  }
             }
         }
-      //var_dump($data);exit;
         return $data;
     }
 
@@ -330,7 +326,6 @@ class CoreMember extends \Library\Core\BaseModel {
                     . " ,core_member.member_mail='" . $data['email'] . "' , core_member.member_mobile_tel='" . $data['phno'] . "' "
                     . " ,core_member.member_address='" . $data['add'] . "' , core_member.member_password='" . sha1($data['password']) . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "'";
             $this->db->query($changeprofile);
-            //echo $changeprofile;exit;
         }
         return $filename;
     }

@@ -61,7 +61,7 @@ class IndexController extends ControllerBase {
      */
     public function getapplymemberidAction() {
        $data = $this->request->get('username');
-       //print_r($uname);exit;
+   
         $leavetype = new LeaveCategories();
         $cond = $leavetype->memidapplyleave($data);
         echo json_encode($cond);
@@ -74,7 +74,8 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {  
         $this->assets->addJs('apps/leavedays/js/applyleave.js');    
-              
+                $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
+        $this->assets->addCss('common/css/jquery-ui-timepicker.css');      
         $leavetype = new LeaveCategories();
         $ltype=$leavetype->getleavetype();
         $userlist=new Db\CoreMember();
@@ -191,7 +192,7 @@ class IndexController extends ControllerBase {
         $data[1]['addleavetype'] = $t->_("addleavetype");
         $data[1]['leave_category'] = $t->_("leave_category");
         $data[1]['yes'] = $t->_("yes");
-        $data[1]['no'] = $t->_("no");
+        $data[1]['no'] = $t->_("cancel");
         $data[1]['enterltp'] = $t->_("enterltp");
         $this->view->disable();
         echo json_encode($data);
@@ -207,9 +208,8 @@ class IndexController extends ControllerBase {
         $LeaveCategories = new LeaveCategories();
         $data = $LeaveCategories->getltypedata($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
-        $data[1]['del_title'] = $t->_("del_title");
-        $data[1]['del_yes'] = $t->_("del_yes");
-        $data[1]['del_no'] = $t->_("del_no");
+        $data[1]['yes'] = $t->_("yes");
+        $data[1]['no'] = $t->_("cancel");
         $this->view->disable();
         echo json_encode($data);
     }
@@ -239,9 +239,8 @@ class IndexController extends ControllerBase {
      */
     public function editleavesettingAction() {
         $max_leavedays = $this->request->getPost('max_leavedays');
-        $fine_amount = $this->request->getPost('fine_amount');
         $LeaveSetting = new LeavesSetting();
-        $LeaveSetting->editleavesetting($max_leavedays, $fine_amount);
+        $LeaveSetting->editleavesetting($max_leavedays);
         $this->response->redirect('leavedays/index/leavesetting');
     }
     /**

@@ -28,26 +28,22 @@ class UserController extends ControllerBase {
  foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'show_admin_notification') {
-                //Go to user dashboard
               $noti=$User->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
-                //Go to admin dashboard
                $noti=$User->GetUserNoti($id,1); 
             }
         }        $this->view->setVar("noti", $noti);
     }
 
     public function indexAction() {
-
-        //$this->assets->addCss('common/css/home/home.css');        
         $user = $this->session->get('user');
-        //$this->response->redirect('applyleave');        
     }
 
     public function applyleaveAction() {               
-        //echo "test";exit;
+           $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
+        $this->assets->addCss('common/css/jquery-ui-timepicker.css');      
         $User = new Db\CoreMember;
         $admin_id = $User->GetAdminstratorId();
         $creator_id = $admin_id[0]['rel_member_id'];
