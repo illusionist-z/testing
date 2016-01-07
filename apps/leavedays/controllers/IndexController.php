@@ -239,9 +239,8 @@ class IndexController extends ControllerBase {
      */
     public function editleavesettingAction() {
         $max_leavedays = $this->request->getPost('max_leavedays');
-        $fine_amount = $this->request->getPost('fine_amount');
         $LeaveSetting = new LeavesSetting();
-        $LeaveSetting->editleavesetting($max_leavedays, $fine_amount);
+        $LeaveSetting->editleavesetting($max_leavedays);
         $this->response->redirect('leavedays/index/leavesetting');
     }
     /**
