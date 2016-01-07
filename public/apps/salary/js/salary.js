@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 8;            
+        pager.perpage = 10;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -217,7 +217,7 @@ var Salary = {
         
         $.ajax({            
            url:"calSalary",
-           type: "POST",
+           type: "GET",
            dataType : "json",
            success:function(d){               
                 var data ='<form id="Add_new_deduct"><table>'; 
