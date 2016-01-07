@@ -35,7 +35,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
    
             public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
-        $allow = array();
+        $allow = array();$permitted = 0;
         //setting permission        
         $coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
         

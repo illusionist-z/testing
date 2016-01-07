@@ -15,7 +15,7 @@ class IndexController extends  ControllerBase {
         $this->assets->addJs('common/js/btn.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
-       
+         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];

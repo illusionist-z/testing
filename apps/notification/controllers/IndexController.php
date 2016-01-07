@@ -13,15 +13,17 @@ class IndexController extends ControllerBase
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
-            if($this->permission==1){
-                //Go to user dashboard
-               $permission="admin";
+              foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                $permission="admin";
                  
             } 
             if ($key_name == 'show_user_notification') {
-                //Go to admin dashboard
-                $permission="user";   
+             $permission="user";   
             }
+        }
+          
         
         
          $this->view->setVar("permission",$permission);
@@ -84,7 +86,7 @@ class IndexController extends ControllerBase
          $id = $this->session->user['member_id'];
          
                 foreach ($this->session->auth as $key_name => $key_value) {
-             
+            
             if ($key_name == 'show_admin_notification') {
                
               $noti=$Admin->GetAdminNoti($id,0);
@@ -92,7 +94,7 @@ class IndexController extends ControllerBase
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               //echo"aa";exit;
+              
                $noti=$Admin->GetUserNoti($id,1); 
             }
         }

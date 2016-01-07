@@ -27,7 +27,6 @@ class AbsentController extends ControllerBase {
         $message = $Attendance->absent($id);
         echo json_encode($message);
         $this->view->disable();
-        //$this->response->redirect('attendancelist/absent/absentlist');
     }
 
     public function absentlistAction() {

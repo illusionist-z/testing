@@ -64,13 +64,20 @@ class SalaryMasterController extends ControllerBase
         else{
        
         $Salarymaster = new SalaryMaster();
-        
+        //check the member id has been inserted
+        $Check_salarymaster=$Salarymaster->getLatestsalary($data['member_id']);
+        if(empty($Check_salarymaster)){
         $Salarymaster->savesalarydedution($dedution,$data['no_of_children'], $data['member_id'], $data['creator_id']);
         $Salarymaster->savesalary($data);
 
         $Allowance = new Allowances();
         $Allowance->saveallowance($allowance, $data['member_id']);
         $json['result'] = "success";
+        }
+        else{
+        $json['result'] = "Inserted";
+        }
+        
              }
              //print_r($json);
         echo json_encode($json);

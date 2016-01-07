@@ -102,7 +102,8 @@ var Attendance = {
                          $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",                                                                                           
                             showTimezone :false,
                             maskInput : true,                                                                                                         
-                           timeFormat: "HH:mm:ss"}).focus();                             
+                           timeFormat: "HH:mm:ss"}).focus();
+                       $('#ui-datepicker-div').css('z-index',9999);         //dialog box apperances
                      });                       
                }
       });        
@@ -276,7 +277,7 @@ $(document).ready(function () {
         Attendance.todaylist();
     });              
 
-    $('.tags').on('click',function(){     
+    $('.tags').on('click',function(){
         $(this).autocomplete({
             source :dict
         })
