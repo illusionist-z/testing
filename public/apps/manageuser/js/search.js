@@ -74,7 +74,7 @@ $(document).ready(function(){
         Manage.User.Edit(type);
     });
      $('.userauto').click(function () {
-            $(this).autocomplete({
+                $(this).autocomplete({
             source: function( request, response ) {
                var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
              response( $.grep( dict, function( item ){                 
@@ -82,7 +82,7 @@ $(document).ready(function(){
              }) );
             },
              minLength :1
-        });      
+        });
     }); 
        
 });
