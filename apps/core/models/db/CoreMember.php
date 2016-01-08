@@ -350,6 +350,13 @@ class CoreMember extends \Library\Core\BaseModel {
         $getname = $user_name->fetchall();
         return $getname;
     }
+        //for auto complete function
+    public function findusername($username) {
+        $this->db = $this->getDI()->getShared("db");
+        $user_name = $this->db->query("Select * from core_member where member_login_name like ' ".$username."%' and deleted_flag=0");
+        $getname = $user_name->fetchall();
+        return $getname;
+    }
 
   
 

@@ -26,16 +26,7 @@
             <td width="200px"><?= $t->_("name"); ?></td>
            
             <td style="height:40px;" >
-<!--                    <select class="select" data-toggle="select" name="username" id="apply_form_name">                
-                    <?php
-                    foreach ($name as $user) {
-                     ?>
-                    <option value="<?php echo $user->member_id; ?>" ><?php echo $user->member_login_name; ?></option>
-                    <?php
-                    }
-                    ?> </select> 
-                    <span id="apply_form_name_error"></span>-->
-                    <input class="applyauto" data-toggle="select" name="username" style="width:260px;" id="apply_form_name" placeholder="<?php echo $t->_("searchusername"); ?>" autocomplete="off">
+                    <input class="applyauto form-control" data-toggle="select" name="username" style="height:39px; width: 260px;" id="apply_form_name" placeholder="<?php echo $t->_("searchusername"); ?>" ><br>
                      <span id="apply_form_username_error"></span>
                      <input type="hidden" value="" id="formemberid" name="member_id" >
 		</td>                

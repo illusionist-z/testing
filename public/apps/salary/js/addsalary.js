@@ -65,7 +65,7 @@ var AddSalary = {
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].full_name);
+                dict.push(json_obj[i].member_login_name);
                 }
                   //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);
@@ -73,10 +73,16 @@ var AddSalary = {
                         
                     });
                      function loadIcon(dict) {
-                       //alert(dict);
-                        $('.salusername').autocomplete({
-              source: dict
-            });
+                       //alert(dict);                    
+             $('.salusername').autocomplete({
+                        source: function( request, response ) {
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                        response( $.grep( dict, function( item ){                 
+                        return matcher.test( item);
+                         }) );
+                 },
+                        minLength :1
+                 });
        // ... do whatever you need to do with icon here
    } 
        },

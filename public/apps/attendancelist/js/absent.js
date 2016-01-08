@@ -1,4 +1,13 @@
+var pager = new Paging.Pager();
 var Absent = {
+    //paging effect
+    init: function () {
+        $('tfoot').append($('table.listtbl tbody').html());   //for csv 
+        pager.perpage = 4;
+        pager.para = $('table.listtbl tbody > tr');
+        pager.showPage(1);
+        $('tbody').show();
+    },
     Search: function (id) {
         //alert($('#add_salary').serialize());
         $.ajax({
@@ -12,8 +21,9 @@ var Absent = {
     }
 }
 $(document).ready(function () {
-
-    $('.absentcheck').on('click',function(e){
+    Absent.init();
+    
+    $('.absentcheck').on('click', function (e) {
         e.preventDefault();
         var id = $(this).attr('id');
         Absent.Search(id);
