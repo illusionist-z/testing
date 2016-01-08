@@ -8,7 +8,7 @@ use salts\Core\Models\Db\CoreMember;
 
 class IndexController extends ControllerBase {
 
-    public $noti;
+
 
     public function initialize() {
         parent::initialize();
@@ -30,6 +30,10 @@ class IndexController extends ControllerBase {
     
     public function editcompanyAction(){
         
+    }
+    
+    public function addnewAction(){
+        print_r($this->request->get('com'));exit;
     }
 
     
