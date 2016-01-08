@@ -111,13 +111,17 @@ $di->set("login_db", function() use ($config) {
 
 $di->setShared('db',function() {
     //$database = (isset($_SESSION['db_config'])) ? $_SESSION['db_config'] : $config->database->database;
-    $database=$_SESSION['db_config'];
+    if ($database=$_SESSION['db_config']){
     return new \Phalcon\DB\Adapter\Pdo\Mysql([  'host'        => $database['host'],
                                                 'dbname'      => $database['db_name'],
                                                 'username'    => $database['user_name'],
                                                 'password'    => $database['db_psw'],
                                                 'charset'     => 'utf8'
                                             ]);
+    }
+    else {
+            header('Location:http://localhost/salts/');
+    }
 });
 $di->set('cookies', function () {
     $cookies = new Cookies();

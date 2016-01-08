@@ -1,5 +1,6 @@
 <?php
     use Phalcon\Filter;
+;
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -45,21 +46,29 @@
                         <th ><?= "module flag"; ?></th>        
                         <th></th>
                     </tr>
-
+                    
                 </thead>
-                <tbody>                  
-                <td>1</td>
-                <td>com1</td>
-                <td>gnext</td>
-                <td>2016-01-01</td>
-                <td>gnext@mail.com</td>
-                <td>35366373</td>
-                <td>attsys_db</td>
+                <tbody>              <?php 
+                    $i=1;
+                    foreach ($result as $result) {                                                
+                        ?>    <tr>                   
+                <td><?php echo $i;?></td>
+                <td><?php echo $result['company_id'];?></td>
+                <td><?php echo $result['company_name'];?></td>
+                <td><?php echo $result['starting_date'];?></td>
+                <td><?php echo $result['email'];?></td>
+                <td><?php echo $result['phone_no'];?></td>
+                <td><?php echo $result['db_name'];?></td>
+            <td><?php echo $result['host'];?></td>
+                <td><?php echo $result['user_limit'];?></td>
+                
+                <td><?php print_r($result['module'])  ?></td>
+                <td>  <a href="<?php echo $baseUri?>managecompany/index/editcompany?id=<?php echo $result['company_id'];?>" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td></tr>
+                   <?php
+                    $i++;
+                    }
+                    ?>            
                
-                <td>localhost</td>
-                <td>400</td>
-                <td>Dashboard, Attendance</td>
-                <td>  <a href="<?php echo $baseUri?>managecompany/index/editcompany"  style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td>
                 </tbody>
                 <tfoot style="display:none;"></tfoot>                    
             </table>

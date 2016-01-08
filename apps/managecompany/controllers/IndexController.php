@@ -1,8 +1,7 @@
 <?php
 
 namespace salts\Managecompany\Controllers;
-
-use salts\Core\Models\Db\CoreMember;
+use salts\Managecompany\Models\CompanyTbl;
 
 //use Phalcon\Flash\Direct as FlashDirect;
 
@@ -21,7 +20,11 @@ class IndexController extends ControllerBase {
     }
     
     public function indexAction(){
-        
+       $company=new \salts\Managecompany\Models\CompanyTbl();
+     $result=  $company->getallcom();
+       $this->view->result=$result;
+       
+
     }
     
     public function addcompanyAction(){
@@ -29,12 +32,28 @@ class IndexController extends ControllerBase {
     }
     
     public function editcompanyAction(){
-        
+         $id=$this->request->get('id');
+         $company=new \salts\Managecompany\Models\CompanyTbl();
+        $result=$company->findDatabyId($id);
+        $this->view->result=$result;
     }
     
     public function addnewAction(){
-        print_r($this->request->get('com'));exit;
+        $com=$this->request->get('com');
+        $check=$this->request->get('check');
+        $company=new \salts\Managecompany\Models\CompanyTbl();
+        $company->addnew($com,$check);
+        $this->response->redirect("managecompany/index");
+
     }
+    
+    public function updatecompanyAction(){
+          $com=$this->request->get('com');
+        $company=new \salts\Managecompany\Models\CompanyTbl();
+        $company->updatecom($com);
+                $this->response->redirect("managecompany/index");
+    }
+   
 
     
 }
