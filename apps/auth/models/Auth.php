@@ -36,11 +36,17 @@ class Auth extends Component {
      */
     public function check($loginParams, & $user = null) {
         //print_r($this->session->db_config);
-        // Check if the user exist
         $name = $loginParams['member_login_name'];
         $password = $loginParams['password'];
+        $database=$_SESSION['db_config'];
+        if($database['db_name']=='company_db'){
+           $sql="SELECT * FROM user_tbl where login_name='" . $name . "' and password='" . sha1($password) . "' and deleted_flag=0";
+        }
+        else{
+        // Check if the user exist
         //$this->db = $this->getDI()->getShared("db");
         $sql="SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0";
+        }
         //echo $sql;
         $user = $this->db->query($sql);
         $user = $user->fetchArray();
@@ -52,8 +58,6 @@ class Auth extends Component {
     
     
      public function getpermit($loginParams) {
-      
-        
         $name = $loginParams['member_login_name'];
         $password = $loginParams['password'];
         $this->db = $this->getDI()->getShared("db");

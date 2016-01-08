@@ -21,7 +21,7 @@
             <input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= "Search"; ?>" id="userlistsearch" style="margin-top: -10px;">
              
                
-            <a href="#" onclick="return false;"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
+            <a href="<?php echo $baseUri;?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
      
         </form>
 
@@ -61,8 +61,8 @@
                 <td>root</td>
                 <td>localhost</td>
                 <td>400</td>
-                <td></td>
-                <td>  <a href="#" onclick="return false;" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td>
+                <td>Dashboard, Attendance</td>
+                <td>  <a href="<?php echo $baseUri;?>managecompany/index/editcompany"  style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td>
                 </tbody>
                 <tfoot style="display:none;"></tfoot>                    
             </table>
