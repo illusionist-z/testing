@@ -25,16 +25,14 @@ class LoginController extends ControllerBase {
         $this->session->set('db_config',$dbinfo);
         $result = $ModelAuth->check($loginParams, $user);
         if ($result) {
-            echo "aaa";
             $this->response->redirect('managecompany');
         } 
             }
         else{
-        echo "bb";
         $this->view->test = $loginParams;
         
         $companyDB=$ModelAuth->findcomp_db($loginParams);
-       
+        $companyDB=1;
         if($companyDB)
         {
         $this->session->set('db_config',$companyDB);
@@ -61,6 +59,7 @@ class LoginController extends ControllerBase {
         }
         }
         else {
+           $this->session->set('db_config',$companyDB);
            $this->response->redirect('auth/index/failer');
         }
         }
