@@ -35,6 +35,8 @@ class IndexController extends ControllerBase {
          $id=$this->request->get('id');
          $company=new \salts\Managecompany\Models\CompanyTbl();
         $result=$company->findDatabyId($id);
+        $module=$company->findModulebyId($id);
+       $this->view->module=$module;
         $this->view->result=$result;
     }
     
@@ -49,9 +51,11 @@ class IndexController extends ControllerBase {
     
     public function updatecompanyAction(){
           $com=$this->request->get('com');
+          $check=$this->request->get('check');
+          
         $company=new \salts\Managecompany\Models\CompanyTbl();
-        $company->updatecom($com);
-                $this->response->redirect("managecompany/index");
+        $company->updatecom($com,$check);
+        $this->response->redirect("managecompany/index");
     }
    
 

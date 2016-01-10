@@ -57,8 +57,13 @@ class CompanyTbl extends \Library\Core\BaseModel {
 //  var_dump($final_result);exit;
         return $final_result;
     }
-    
-    public function updatecom($com){ 
+    public function findModulebyId($id){
+          $result=$this->db->query( "select module_id from enable_module where enable_module.company_id='".$id."' ");
+          
+        $final_result=$result->fetchAll();
+        return $final_result;
+    }
+    public function updatecom($com,$check){ 
           $date=date("Y-m-d H:i:s");
          $sdate=date("Y-m-d",strtotime($com['sdate']));
          
@@ -68,6 +73,12 @@ class CompanyTbl extends \Library\Core\BaseModel {
             . "user_limit= '".$com['limit']."',starting_date= '".$sdate."',"
             . "updated_dt= '".$date."' where company_tbl.company_id= '".$com['id']."'  ";
         $this->db->query( $sql);
+        $this->db->query( "delete  from enable_module where enable_module.company_id='".$com['id']."' ");
+          for($i=0;$i<count($check);$i++)
+            {
+            $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $com['id'] . "','" . $check[$i] . "')";
+             $this->db->query($sql);   
+            }
 
     }
    
