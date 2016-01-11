@@ -150,7 +150,6 @@ class IndexController extends  ControllerBase {
         $status=$checkin->setcheckintime($id, $note,$add,$creator_id);
         $this->view->disable();
         echo json_encode($status);
-
      }
     /**
      * Check out
