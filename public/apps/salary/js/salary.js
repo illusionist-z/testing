@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 8;            
+        pager.perpage = 10;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -217,7 +217,7 @@ var Salary = {
         
         $.ajax({            
            url:"calSalary",
-           type: "POST",
+           type: "GET",
            dataType : "json",
            success:function(d){               
                 var data ='<form id="Add_new_deduct"><table>'; 
@@ -284,7 +284,7 @@ var Salary = {
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].full_name);
+                dict.push(json_obj[i].member_login_name);
                 }
                   //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);
@@ -293,9 +293,15 @@ var Salary = {
                     });
                      function loadIcon(dict) {
                        //alert(dict);
-                        $('.tags').autocomplete({
-              source: dict
-            });
+                      $('.tags').autocomplete({
+                        source: function( request, response ) {
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                        response( $.grep( dict, function( item ){                 
+                        return matcher.test( item);
+                         }) );
+                 },
+                        minLength :1
+                 });
        // ... do whatever you need to do with icon here
    }
     

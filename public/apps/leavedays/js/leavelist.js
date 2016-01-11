@@ -45,9 +45,15 @@ $(document).ready(function(){
         Leave.List();
     }); 
    $('.userauto').on('click',function(){
-        $(this).autocomplete({
-            source : dict
-        });
+         $(this).autocomplete({
+                        source: function( request, response ) {
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                        response( $.grep( dict, function( item ){                 
+                        return matcher.test( item);
+                         }) );
+                 },
+                        minLength :1
+                 });
     }); 
     
 });

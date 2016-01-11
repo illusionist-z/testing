@@ -28,12 +28,13 @@ class Permission extends Plugin
     {
         // Use memory For ACL(Access Controll List)
         $acl = new Acl\Adapter\Memory();
-        
+        $modname=$this->router->getModuleName();
         // Default action is deny access
         $acl->setDefaultAction(Acl::DENY);
         if( 
             NULL === $this->session->get('auth')
             &&  $dispatcher->getModuleName() !== 'auth'
+            && $modname !== 'managecompany'
         ){  
             $this->response->redirect('auth');
             return;

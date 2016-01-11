@@ -279,6 +279,8 @@ class IndexController extends ControllerBase {
      * @desc   No Leave Action
      */
     public function noleavelistAction() {  
+      $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/leavedays/js/leavepaging.js');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
@@ -286,7 +288,6 @@ class IndexController extends ControllerBase {
     
         $Result = $Admin->checkleave();
      
-        $this->assets->addJs('apps/leavedays/js/noleavelist.js');
        $this->view->setVar("Result",$Result);
         
        
@@ -297,6 +298,8 @@ class IndexController extends ControllerBase {
      * @desc  Leave Most Action
      */
     public function leavemostAction() {  
+       $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/leavedays/js/leavepaging.js');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
         $noti=$Admin->GetAdminNoti($id);
@@ -304,7 +307,6 @@ class IndexController extends ControllerBase {
     
         $Result = $Admin->leavemost();
      
-        $this->assets->addJs('apps/leavedays/js/noleavelist.js');
        $this->view->setVar("Result",$Result);
         
        

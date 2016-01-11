@@ -3,7 +3,7 @@ $(document).ready(function(){
             $(".tog").click(function(){ 
                 // $("#attlistsmenu,#managemenu,#leavemenu,#salarymenu,#documentmenu,#calendermenu").hide();
                 var parent=$(this).closest('li').find('.togshow');            
-                $('.helpcenter li .togshow').not(parent).slideUp();  	
+                $('.helpcenter li .togshow').not(parent).slideUp();
                  parent.slideToggle("fast");
                 
 //                $("#maindashboard").css("background","gray");

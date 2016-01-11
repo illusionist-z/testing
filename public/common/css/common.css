@@ -66,10 +66,10 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
     
 }
 #compayimg{
-    background-image: url("../img/company1.png");
+    background-image: url("../img/company5.png");
     background-repeat: no-repeat;    
     text-indent: 20px;
-   margin-left: -15px;
+   margin-left: -13px;
     
 }
 #unameopt,#singinopt{
@@ -627,7 +627,7 @@ a.export {
 float:left;
 }*/
 .span-style{
-    width:150px; display: inline-block;
+    width:200px; display: inline-block;
 }
 
 .div-bottom{

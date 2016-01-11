@@ -20,19 +20,24 @@ class LoginController extends ControllerBase {
         $dbinfo['host']='localhost';
         $dbinfo['db_name']='company_db';
         $dbinfo['user_name']='root';
-        $dbinfo['db_psw']='';
+        $dbinfo['db_psw']='root';
         
         $this->session->set('db_config',$dbinfo);
         $result = $ModelAuth->check($loginParams, $user);
         if ($result) {
+           
             $this->response->redirect('managecompany');
-        } 
+        }
+        else {
+           
+           $this->response->redirect('auth/index/failersuperuser');
+        }
             }
         else{
         $this->view->test = $loginParams;
         
         $companyDB=$ModelAuth->findcomp_db($loginParams);
-        
+       
         if($companyDB)
         {
         $this->session->set('db_config',$companyDB);
@@ -59,7 +64,7 @@ class LoginController extends ControllerBase {
         }
         }
         else {
-           $this->session->set('db_config',$companyDB);
+           
            $this->response->redirect('auth/index/failer');
         }
         }

@@ -22,7 +22,7 @@ class IndexController extends ControllerBase {
      * When user failed login
      * @param type $mode
      */
-        public function failerAction($mode = 1) {
+    public function failerAction($mode = 1) {
         $this->view->errorMsg = 'company id or user name or password wrong';
         $this->view->pick('index/index');
         }
@@ -30,10 +30,11 @@ class IndexController extends ControllerBase {
      * When user failed  email  go 
      * @param type $mode
      */
-//        public function failerdbAction() {
-//        $this->view->errorMsg = 'There is no company Id';
-//        $this->view->pick('index/index');
-//    }
+    public function failersuperuserAction() {
+        $this->view->errorMsg = 'user name or password wrong';
+        $this->view->mode=1;
+        $this->view->pick('index/index');
+    }
     
     public function forgotpasswordAction() {
        //  $this->assets->addJs('apps/auth/js/forgot.js');      

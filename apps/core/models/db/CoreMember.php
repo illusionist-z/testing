@@ -350,9 +350,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $getname = $user_name->fetchall();
         return $getname;
     }
-
-  
-
+    
     public function GetAdminstratorId() {
         $this->db = $this->getDI()->getShared("db");
         $result = $this->db->query("SELECT rel_member_id FROM core_permission_rel_member JOIN core_member ON core_member.member_id=core_permission_rel_member.rel_member_id WHERE core_permission_rel_member.rel_permission_group_code='ADMIN' ");

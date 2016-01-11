@@ -15,7 +15,7 @@ class SalaryMasterController extends ControllerBase
         $this->_addsalary= new Salary;
         $this->config = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
-           $this->act_name =  $this->router->getModuleName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         //$this->assets->addJs('apps/salary/js/addsalary.js');
     }
@@ -32,7 +32,8 @@ class SalaryMasterController extends ControllerBase
         $data['member_id'] = $this->request->get('member_id', 'string');
         //$data['uname'] = $this->request->get('uname', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
-        $data['travel_fee'] = $this->request->get('travelfee', 'int');
+        $data['travel_fee_perday'] = $this->request->get('travelfee_perday', 'int');
+        $data['travel_fee_permonth'] = $this->request->get('travelfee_permonth', 'int');
         if(null !==$this->request->get('overtime', 'int'))
         {
         $data['over_time'] = $this->request->get('overtime', 'int');
