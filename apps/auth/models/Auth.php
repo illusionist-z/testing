@@ -4,7 +4,6 @@ namespace salts\Auth\Models;
 
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
-use salts\Auth\Models\Db\CoreMember;
 use salts\Auth\Models\Db\AuthFailedLogins;
 
 class Auth extends Component {

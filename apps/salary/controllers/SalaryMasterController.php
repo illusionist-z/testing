@@ -32,7 +32,8 @@ class SalaryMasterController extends ControllerBase
         $data['member_id'] = $this->request->get('member_id', 'string');
         //$data['uname'] = $this->request->get('uname', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
-        $data['travel_fee'] = $this->request->get('travelfee', 'int');
+        $data['travel_fee_perday'] = $this->request->get('travelfee_perday', 'int');
+        $data['travel_fee_permonth'] = $this->request->get('travelfee_permonth', 'int');
         if(null !==$this->request->get('overtime', 'int'))
         {
         $data['over_time'] = $this->request->get('overtime', 'int');

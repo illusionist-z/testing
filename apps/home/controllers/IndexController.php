@@ -17,5 +17,6 @@ class IndexController extends ControllerBase {
 
         $this->view->user = $user;
     }   
+    
 
 }
