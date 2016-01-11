@@ -69,20 +69,23 @@ if(isset($Msg))
                     </div>
 
                     <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("travel_fee"); ?></span>
-                        <span><input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("travel"); ?>" style="width:34%; height: 20%;" name="travelfee"></span>
+                        <span class="span-style"><?= $t->_("travel_fee_perday"); ?></span>
+                        <span><input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("travelperday"); ?>" style="width:34%; height: 20%;" name="travelfee_perday"></span>
+                    </div>
+                    <div class="div-bottom">
+                        <span class="span-style"><?= $t->_("travel_fee_permonth"); ?></span>
+                        <span><input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("travelpermonth"); ?>" style="width:34%; height: 20%;" name="travelfee_permonth"></span>
                     </div>
 
                     <div class="div-bottom">
                         <span class="span-style"><?= $t->_("overtime"); ?></span>
                         <span><input type="text" id="overtime" value="" style="width:34%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>"></span>
-                        
                     </div>
                         
                            
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 15%;"><?= $t->_("deduce_ssc"); ?></div>
-                        <div style="margin-left: 15%;width: 150px;" id="aa">
+                        <div style="float: left; width: 20%;"><?= $t->_("deduce_ssc"); ?></div>
+                        <div style="margin-left: 20%;width: 150px;">
                             <?php
                             //print_r($getall_allowance);
                             $i=1;
@@ -108,8 +111,8 @@ if(isset($Msg))
                        
 
                     <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 15%;"><?= $t->_("allowance"); ?></div>
-                       <div style="margin-left: 15%;">
+                        <div style="float: left; width: 20%;"><?= $t->_("allowance"); ?></div>
+                       <div style="margin-left: 20%;">
                             <?php
                             //print_r($getall_allowance);
                             

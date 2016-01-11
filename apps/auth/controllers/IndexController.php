@@ -2,7 +2,6 @@
 
 namespace salts\Auth\Controllers;
 use salts\Core\Models\Db\CoreMember;
-use salts\Auth\Models;
 use salts\Core\Models\Db;
 
 class IndexController extends ControllerBase {
@@ -23,16 +22,17 @@ class IndexController extends ControllerBase {
      * When user failed login
      * @param type $mode
      */
-        public function failerAction($mode = 1) {
-        $this->view->errorMsg = 'IDもしくはパスワードが正しくありません。';
+    public function failerAction($mode = 1) {
+        $this->view->errorMsg = 'company id or user name or password wrong';
         $this->view->pick('index/index');
         }
         /**
      * When user failed  email  go 
      * @param type $mode
      */
-        public function failerdbAction() {
-        $this->view->errorMsg = 'There is no company Id';
+    public function failersuperuserAction() {
+        $this->view->errorMsg = 'user name or password wrong';
+        $this->view->mode=1;
         $this->view->pick('index/index');
     }
     

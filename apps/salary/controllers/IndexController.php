@@ -1,7 +1,6 @@
 <?php
 
 namespace salts\Salary\Controllers;
-use Phalcon\Flash\Direct as FlashDirect;
 use salts\Core\Models\Db;
 use salts\Salary\Models\SalaryDetail;
 use salts\Salary\Models\SalaryMaster;

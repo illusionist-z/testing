@@ -1,31 +1,44 @@
 <?php
-    use Phalcon\Filter;
+use Phalcon\Filter;
 ?>
-
-<section class="content-header" style="height:auto;">
+<!-- Content Header (Page header) -->
+<section class="content-header" id="showleavelist"">
     <h1>
         <?= $t->_("salary_list"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
+       <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
         <li class="active"><?= $t->_("salary_list"); ?></li><br>
-        <a href="" class="button export" style="float:right;" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a>        
     </ol>
 </section>
-<br>
+
 <!-- Main content -->
 <section class="content">
-    
+    <div class="buttons">
+        <form id="frm_search" onsubmit="return false;">
+            <select class="select  form-control-static" data-toggle="select" name="ltype" id="ltype" style="width:250px">
+                <option value="">Choose travel fees</option>
+                <option value="1">Travel fees per day</option>
+                <option value="2">Travel fees per month</option>
+            </select>
+            <input type="submit" class="buttonn  form-control-static" value="<?= $t->_("search"); ?>" id="search">
+            <!--       <a href="#" class="button" id="search">Search</a>-->
+            <a href="" class="button export" style="float:right;" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a>  
+        </form>
+    </div>
+
     <div class="row">
+        <div class="row">
         <div class="col-md-12"><!--start table content--->
 
-            <table class="listtbl salarylist" style="margin-top:10px;">
+            <table class="listtbl">
                 <thead>
                     <tr>
                         <th><?= $t->_("no"); ?></th>
                         <th><?= $t->_("name"); ?></th>
                         <th><?= $t->_("basic_salary"); ?></th>
-                        <th><?= $t->_("travel_fee"); ?></th>
+                        <th><?= $t->_("travel_fee_perday"); ?></th>
+                        <th><?= $t->_("travel_fee_permonth"); ?></th>
                         <th><?= $t->_("overtime"); ?></th>
                         <th>SSC_Emp</th>
                         <th>SSC_Comp</th>
@@ -43,7 +56,20 @@
                             <td><?php echo $i; ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->core->member_login_name, "string"); ?></td>
                             <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "int")); ?></td>
-                            <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee, "int")); ?></td>
+                            <td>
+                            <?php 
+                            if(isset($salarydetails->salarymas->travel_fee_perday)){
+                            echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee_perday, "int")); 
+                            }
+                            ?>
+                            </td>
+                            <td>
+                                <?php 
+                                if(isset($salarydetails->salarymas->travel_fee_permonth)){
+                                echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee_permonth, "int")); 
+                                }
+                                ?>
+                            </td>
                             <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->over_time, "int")); ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_emp, "int").' %' ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_comp, "int").' %' ?></td>
@@ -62,11 +88,8 @@
                 <tfoot style="display:none;"></tfoot>
             </table>      
         </div><!--end table content--->
-        <div id="content"></div>
+       
     </div><!-- /.row -->
-    <div id="content"></div>
-</section><!-- /.content -->
-<div id="edit_salary_dia"></div>
-<div id="confirm" class="navbar"></div>
-
-
+   <div id="content"></div>
+</section>
+ 

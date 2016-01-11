@@ -14,10 +14,30 @@ class LoginController extends ControllerBase {
     public function indexAction() {
         
         $loginParams = $this->request->get();
-        
-        $this->view->test = $loginParams;
         $ModelAuth = new Models\Auth();
+        if(!isset($loginParams['company_id']))
+            {
+        $dbinfo['host']='localhost';
+        $dbinfo['db_name']='company_db';
+        $dbinfo['user_name']='root';
+        $dbinfo['db_psw']='root';
+        
+        $this->session->set('db_config',$dbinfo);
+        $result = $ModelAuth->check($loginParams, $user);
+        if ($result) {
+           
+            $this->response->redirect('managecompany');
+        }
+        else {
+           
+           $this->response->redirect('auth/index/failersuperuser');
+        }
+            }
+        else{
+        $this->view->test = $loginParams;
+        
         $companyDB=$ModelAuth->findcomp_db($loginParams);
+       
         if($companyDB)
         {
         $this->session->set('db_config',$companyDB);
@@ -44,9 +64,10 @@ class LoginController extends ControllerBase {
         }
         }
         else {
-            $this->response->redirect('auth/index/failerdb');
+           
+           $this->response->redirect('auth/index/failer');
         }
-        
+        }
        // When user's login succeed , move to dashboad
     }
     

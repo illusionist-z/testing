@@ -17,7 +17,7 @@ $length = count($Month);
 <section class="content">
     <div class="buttons">
         <form id="frm_search" onsubmit="return false;">
-            <select class="select" data-toggle="select" name="ltype" id="ltype">
+            <select class="select  form-control-static" data-toggle="select" name="ltype" id="ltype">
                 <option value=""><?= $t->_("leave_type"); ?></option>
                 <?php
                 foreach ($Leavetype as $result) {
@@ -29,7 +29,7 @@ $length = count($Month);
                 ?>
 
             </select>
-            <select class="select" data-toggle="select" name="month" id="month">
+            <select class="select form-control-static" data-toggle="select" name="month" id="month">
                 <option value=""><?= $t->_("month"); ?></option>
                 <?php
                 for ($i = 1; $i <= $length; $i++) {
@@ -60,17 +60,17 @@ $length = count($Month);
 
 
             </select>-->
-            <input class="userauto" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
+            <input class="userauto form-control-static" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
-            <input type="submit" class="buttonn" value="<?= $t->_("search"); ?>" id="search">
+            <input type="submit" class="buttonn  form-control-static" value="<?= $t->_("search"); ?>" id="search">
             <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);"><?= $t->_("export"); ?></a>
+            <a href="#" class="button export " onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);"><?= $t->_("export"); ?></a>
         </form>
     </div>
 
     <div class="row">
         <div class="col-md-12"><!--start table content--->
-            <table class="listtbl leavelist">
+            <table class="listtbl">
                 <thead>
                     <tr>
                         <th width="150px"><?= $t->_("date"); ?></th>

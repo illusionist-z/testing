@@ -12,7 +12,7 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
-        <?=$errorMsg?>
+        <p style="color: red"><?=$errorMsg?></p>
         
         <form method="post" action="<?=$this->url->getBaseUri();?>auth/login" id="form_login">
 <!--          <div class="form-group has-feedback">
