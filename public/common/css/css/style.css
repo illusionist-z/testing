@@ -22,7 +22,7 @@ height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
 .ui-accordion-header-icon{position:absolute;left:.5em;top:50%;margin-top:-8px}
 .ui-accordion .ui-accordion-content{padding:1em 2.2em;border-top:0;overflow:auto}
 @media (min-height : 190px){
-.ui-autocomplete{position:absolute;background: white;max-height: 30%; top:0;left:0;cursor:default;overflow-x:hidden;overflow-y: scroll;}
+.ui-autocomplete{position:absolute;background: white;max-height: 30%;overflow: auto; top:0;left:0;cursor:default;}
 }
 .ui-button{display:inline-block;position:relative;padding:0;line-height:normal;margin-right:.1em;cursor:pointer;vertical-align:middle;text-align:center;overflow:visible}
 .ui-button,.ui-button:link,.ui-button:visited,.ui-button:hover,
