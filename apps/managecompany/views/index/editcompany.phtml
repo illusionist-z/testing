@@ -33,27 +33,27 @@
                   <tr><td>DB Password</td><td><input style="margin-top:10px ; width:50%" type="password" name="com[dbpsw]" class=" col-sm-10" value="<?php echo $result['db_psw'] ?>" id="pass" placeholder="Write Database Password"</td></tr>
                   <tr><td>Host</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[host]" class=" col-sm-10" id="pass" value="<?php echo $result['host'] ?>" placeholder="Write Host Name "></td></tr>
                   <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[limit]" class=" col-sm-10" id="pass" value="<?php echo $result['user_limit'] ?>" placeholder="Write User Limit "></td></tr>
-                  <tr><td>Module Flag</td><td><?php foreach ($module as $value) { ?>
+                  <tr><td>Module Flag</td><td><?php?>
                       
-                  <input type="checkbox" name="check[]"  id="checkall1" value="Dashboard" style="margin-bottom: 5px" <?php if($value['module_id']=='Dashboard'){echo "checked";}}?>>Dashboard <br>
-                   <?php foreach ($module as $value) {?>
+                  <input type="checkbox" name="check[]"  id="checkall1" value="Dashboard" style="margin-bottom: 5px" <?php  foreach ($module as $value) {  if($value['module_id']=='Dashboard'){echo "checked";}}?>>Dashboard <br>
+                   <?php?>
                       
-                  <input type="checkbox"  name="check[]"  id="checkall1" value="Attendance" style="margin-bottom: 5px" <?php if($value['module_id']=='Attendance'){echo "checked";}}?>>Attendance <br>
-                  <?php foreach ($module as $value) {?>
+                  <input type="checkbox"  name="check[]"  id="checkall1" value="Attendance" style="margin-bottom: 5px" <?php  foreach ($module as $value) {if($value['module_id']=='Attendance'){echo "checked";}}?>>Attendance <br>
+                  <?php?>
                       
-                  <input type="checkbox"  name="check[]" id="checkall1" value="Leave Days" style="margin-bottom: 5px" <?php if($value['module_id']=='Leave Days'){echo "checked";}}?>>Leave Days <br>
-                  <?php foreach ($module as $value) {?>
+                  <input type="checkbox"  name="check[]" id="checkall1" value="Leave Days" style="margin-bottom: 5px" <?php foreach ($module as $value) { if($value['module_id']=='Leave Days'){echo "checked";}}?>>Leave Days <br>
+                  <?php ?>
                       
-                  <input type="checkbox" name="check[]"  id="checkall1" value="Manage User" style="margin-bottom: 5px" <?php if($value['module_id']=='Manage User'){echo "checked";}}?>>Manage User <br>
-                  <?php foreach ($module as $value) {?>
+                  <input type="checkbox" name="check[]"  id="checkall1" value="Manage User" style="margin-bottom: 5px" <?php foreach ($module as $value) {if($value['module_id']=='Manage User'){echo "checked";}}?>>Manage User <br>
+                  <?php ?>
                       
-                  <input type="checkbox" name="check[]"  id="checkall1" value="Document " style="margin-bottom: 5px" <?php if($value['module_id']=='Document'){echo "checked";}}?>>Document <br>
-                  <?php foreach ($module as $value) {?>
+                  <input type="checkbox" name="check[]"  id="checkall1" value="Document " style="margin-bottom: 5px" <?php foreach ($module as $value) { if($value['module_id']=='Document'){echo "checked";}}?>>Document <br>
+                  <?php ?>
                       
-                  <input type="checkbox" name="check[]"  id="checkall1" value="Salary" style="margin-bottom: 5px" <?php if($value['module_id']=='Salary'){echo "checked";}}?>>Salary <br>
-                   <?php foreach ($module as $value) {?>
+                  <input type="checkbox" name="check[]"  id="checkall1" value="Salary" style="margin-bottom: 5px" <?php foreach ($module as $value) {if($value['module_id']=='Salary'){echo "checked";}}?>>Salary <br>
+                   <?php ?>
                       
-                  <input type="checkbox" name="check[]"   id="checkall1" value="Calendar" style="margin-bottom: 5px" <?php if($value['module_id']=='Calendar'){echo "checked";}}?>>Calendar <br>
+                  <input type="checkbox" name="check[]"   id="checkall1" value="Calendar" style="margin-bottom: 5px" <?php foreach ($module as $value) { if($value['module_id']=='Calendar'){echo "checked";}} ?>>Calendar <br>
                   <tr><td></td><td ><input style="margin-top:10px" type="submit" class="buttonn submit_useradd" id="add_user" value="Edit Company"> <input style="margin-top:10px" type="reset" class="buttonn" id="edit_close" value="Cancel"></td>
                   </tr></table></form>
 	

@@ -43,7 +43,7 @@
                         <th ><?= "dbname"; ?></th> 
                         <th ><?= "host"; ?></th>
                         <th ><?= "user limit"; ?></th>
-                        <th ><?= "module flag"; ?></th>        
+                   
                         <th></th>
                     </tr>
                     
@@ -62,7 +62,7 @@
             <td><?php echo $result['host'];?></td>
                 <td><?php echo $result['user_limit'];?></td>
                 
-                <td><?php print_r($result['module'])  ?></td>
+           
                 <td>  <a href="<?php echo $baseUri?>managecompany/index/editcompany?id=<?php echo $result['company_id'];?>" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td></tr>
                    <?php
                     $i++;
