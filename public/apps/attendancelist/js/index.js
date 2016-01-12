@@ -12,7 +12,7 @@ var pager = new Paging.Pager(),dict =[];   //for pagination
 var Attendance = {
         init : function (reload){
             $('tfoot').append($('table.listtbl tbody').html());   //for csv 
-            pager.perpage = 8;
+            pager.perpage = 10;
             pager.para = $('table.listtbl tbody > tr');
             pager.showPage(1);
             $('tbody').show();

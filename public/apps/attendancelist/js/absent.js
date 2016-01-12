@@ -19,7 +19,7 @@ var Absent = {
             }
         });
     }
-}
+};
 $(document).ready(function () {
     Absent.init();
     
