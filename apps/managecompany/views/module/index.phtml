@@ -1,0 +1,79 @@
+<?php
+    use Phalcon\Filter;
+;
+?>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <?= "Module List"; ?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
+        <li class="active"><?="Module List"; ?></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">	
+        <form class="buttons" action="<?php echo $baseUri ?>managecompany/module/index">
+            <input  type="text" class="userauto form-control-static" name="modulelistsearch" id="username" placeholder="<?= "Search module Name"; ?>" autocomplete="off">
+
+            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="" style="margin-top: -10px;">
+             
+               
+            <a href="#"  class="addnewmodule right button  form-control-static" id="addinguser"><?= "Add New Module"; ?></a>              
+     
+        </form>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+            
+            <table class="listtbl">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th><?="Module  ID"; ?></th>
+                        <th><?="Module Name";?></th>
+                        
+                        <th ><?= ""; ?></th>
+                   
+                      
+                    </tr>
+                    
+                </thead>
+                <tbody>              <?php 
+                    $i=1;
+                    foreach ($result as $result) {      
+                        
+                        ?>    <tr>                   
+                <td><?php echo $i;?></td>
+                <td><?php echo $result['module_id'];?></td>
+                <td><?php echo $result['module_name'];?></td>
+                
+                
+           
+                <td>  <a href="#" style="margin-top: 12px;" class="inedit editnewmodule" id="<?php echo $result['module_id'] ?>"></a></td></tr>
+                   <?php
+                    $i++;
+                    }
+                    ?>            
+               
+                </tbody>
+                <tfoot style="display:none;"></tfoot>                    
+            </table>
+    </div>
+</section>
+<div id="content"></div>
+<div id="edituser" class="navbar">    
+</div>	
+<div id="confirm" title="Confirm Delete">
+    
+</div>
+
+
+
+
+

@@ -12,7 +12,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->view->t = $this->_getTranslation();
+         $this->view->t = $this->_getTranslation();
         $this->assets->addJs('apps/managecompany/js/index.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
@@ -23,12 +23,18 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function indexAction(){
+        $comid=$this->request->get('comlistsearch');
        $company=new \salts\Managecompany\Models\CompanyTbl();
        $result=  $company->getallcom();
+       if(isset($comid)){
+           $result=  $company->findCombyId($comid);
+       }
        $this->view->result=$result;
        
 
     }
+    
+  
     /**
      * show addcompany page
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>

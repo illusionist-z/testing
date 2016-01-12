@@ -16,10 +16,10 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">	
-        <form class="buttons">
-            <input  type="text" class="userauto form-control-static" name="username" id="username" placeholder="<?= "Search Company Name"; ?>" autocomplete="off">
+        <form class="buttons" action="<?php echo $baseUri ?>managecompany/index/index">
+            <input  type="text" class="userauto form-control-static" name="comlistsearch" id="username" placeholder="<?= "Search Company Name"; ?>" autocomplete="off">
 
-            <input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= "Search"; ?>" id="userlistsearch" style="margin-top: -10px;">
+            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="" style="margin-top: -10px;">
              
                
             <a href="<?php echo $baseUri?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              

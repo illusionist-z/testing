@@ -49,7 +49,7 @@ $messages = array(
     "Click Manage Users"=>"Click Manage Users Link Icon,You can Manage,edit and modify User Lists.",
     "Attendance List"=>"出勤リスト",
     "Click Attendance Link"=>"Click Attendance Link Icon, You can review your Today and Monthly Attendance Lists.",
-    "Leave Days"=>"Leave Days",
+    "Leave Days"=>"休み",
     "Click Leave Days Link"=>"Click Leave Days Link Icon, You can do your Apply Leave Day and can review your Leave Lists and Admin can  change Leave Setting.",
     "Salary(Only For Admin)"=>"Salary(Only For Admin)",
     "Click Salary Link"=>"Click Salary Link Icon,Admin can calculate salary of all SALTS members.",
@@ -98,47 +98,51 @@ $messages = array(
     /**
      * Apply Leave
      */
+      "LStart Date"=>"休暇の開始日を選択する。",
+    "LEnd Date"=>"休暇の終了日を選択する。",
     "Apply Leave help center"=>"Apply Leave help center",
-    "Leave Categories"=>"Leave Categories",
-    "You must choose"=>"You must choose leave categories.",
-    "Leave Description"=>"Leave Description",
-    "You must enter"=>"You must enter leave description.",
-    "Apply button"=>"Apply button",
-    "Submit"=>"Submit your apply form.",
+    "Leave Categories"=>"休暇種別",
+    "You must choose"=>"休暇の種別をドロップダウンリストから選択する。",
+    "Leave Description"=>"休暇理由",
+    "You must enter"=>"休暇の理由を入力する",
+    "Apply button"=>"申請",
+    "Submit"=>"申請ボタンをクリックで、休暇の申請を行います。",
     
     /**
      * Leave Lists
      */
     "Leave Lists help center"=>"Leave Lists help center",
-    "Leave Type"=>"Leave Type",
-    "You can choose your Leave Type."=>"You can choose your Leave Type.",
-    "Month"=>"Month",
-    "You can choose Month."=>"You can choose Month.",
-    
+    "Leave Type"=>"種別",
+    "You can choose your Leave Type."=>"検索したい休暇の種別を選択します。",
+    "Month"=>"月",
+    "You can choose Month."=>"検索したい月を選択します。",
+    "Leave_name"=>"検索したいメンバー名を入力すると、下部に候補が表示されるので、選択します。",
+    "Apply_leave"=>"名前検索ボックス",
+    "Apply_leave_name"=>"検索したいメンバーの名前を入力すると、下部に候補が表示されるので、メンバー名を選択する。",
     /**
      * Leave Setting
      */
     "Leave Setting help center"=>"Leave Setting help center",
-    "Edit Leave"=>"Edit Leave Setting(Admin)",
-    "Admin can edit"=>"Admin can edit Maximun leavedays allowed and Percentage of On Basic Salary.",
-    "Admin can Add"=>"Admin can Add New Leave Categories.",
+    "Edit Leave"=>"編集",
+    "Admin can edit"=>"管理者は、編集ボタンをクリックして、休暇の最大日数を編集出来ます。",
+    "Admin can Add"=>"管理者は、保存ボタンをクリックして、編集結果を保存出来ます。",
     "Delete"=>"Delete",
-    "Admin can delete"=>"Admin can delete of Leave Type.",
+    "Admin can delete"=>"管理者は、ボタンをクリックで休暇の種別を削除出来ます。s",
     
     /**
      * calendar
      */
     "Calendar help center"=>"Calendar help center",
-    "Create Event"=>"Create Event",
-    "To create event"=>"To create event, you can click anywhere from the calendar date.",
-    "Then create dialog box"=>"Then create dialog box appear,insert all fields to create event.",
-    "Show Selected Event"=>"Show Selected Event",
-    "To see someone"=>"To see someone event schedule, check member name under ",
-    "User Event Enable"=>"User Event Enable",
-    "box. Then click "=>"box. Then click ",
-    "Show Event"=>"Show Event ",
-    "Button"=>"Button",
-    "Member Event Schedule"=>"Member Event Schedule",
+    "Create Event"=>"イベント作成",
+    "To create event"=>"イベントを作成するには、カレンダー日付のどこかをクリックします。",
+    "Then create dialog box"=>"クリックすると、イベントを作成するダイアログボックスが表示されます。",
+    "Show Selected Event"=>"イベント表示",
+    "To see someone"=>"誰かのイベントを見るには、イベントを表示したいメンバー名の前にあるチェックボックスをチェックします。",
+    "User Event Enable"=>"",
+    "box. Then click "=>"",
+    "Show Event"=>"",
+    "Button"=>"",
+    "Member Event Schedule"=>"メンバーイベント",
     "Edit and Delete"=>"Edit   : Can edit schedule by dragging,
        resizing and click event .                                     Delete : To delete event,click the event that you want 
        to delete , edit  dialog box is appeared ,click
@@ -152,14 +156,16 @@ $messages = array(
      * Add Salary
      */
     "Add Salary help center"=>"Add Salary help center",
-    "Search User Name"=>"Search User Name",
-    "Enter the username"=>"Enter the username which you want to search.",
-    "Enter users basic salary."=>"Enter users basic salary.",
-    "Enter users Travel Fees."=>"Enter users Travel Fees.",
-    "Enter users Overtime(per hr)."=>"Enter users Overtime(per hr).",
-    "Deduce for SSC"=>"Deduce for SSC",
-    "You must checked Deduce for SSC."=>"You must checked Deduce for SSC.",
-    "You must checked Allowance."=>"You must checked Allowance.",
+    "Search User Name"=>"メンバー名を探す",
+    "Enter the username"=>"メンバーの名前を入力すると、候補が下部に表示されます。クリックして選択します。",
+    "Enter users basic salary."=>"基本給を入力してください。",
+    "Enter users Travel Fees."=>"交通費を入力してください。",
+    "Enter users Overtime(per hr)."=>"1時間あたりの残業代を入力してください。",
+    "Deduce for SSC"=>"SSC",
+    "You must checked Deduce for SSC."=>"該当するSSCにチェックを入れてください。",
+    "You must checked Allowance."=>"該当する手当にチェックを入れてください。",
+    "Salary_submit"=>"登録ボタンをクリックで登録完了します。",
+    "Salary_button"=>"登録",
     
     /**
      * Salary Lists
@@ -170,10 +176,10 @@ $messages = array(
      * Monthly Salary Lists
      */
     "Monthly Salary Lists help center"=>"(1) Monthly Salary Lists help center",
-    "Calculate Salary"=>"Calculate Salary",
-    "Admin can calculate"=>"Admin can calculate salary for this month.",
-    "Month/Year"=>"Month/Year",
-    "Show details"=>"Show details information,click Month/Year field date.",
+    "Calculate Salary"=>"給与計算",
+    "Admin can calculate"=>"管理者は、今月の給料を計算できます。.",
+    "Month/Year"=>"月／年",
+    "Show details"=>"クリックで、年ごと、月ごとの詳細を確認できます。",
     
     /**
      * Salary Detail
@@ -201,33 +207,35 @@ $messages = array(
      * Salary Setting
      */
     "Salary Setting help center"=>"Salary Setting help center",
-    "Tax Setting"=>"Tax Setting",
-    "To edit Tax"=>"To edit Tax data by adminstrator.",
-    "Deduce Setting"=>"Deduce Setting",
-    "Admin can edit deduce"=>"Admin can edit deduce amount of salary.",
-    "New Deduction"=>"New Deduction",
-    "Admin can add new Deduction Type."=>"Admin can add new Deduction Type.",
+    "Tax Setting"=>"税金設定",
+    "To edit Tax"=>"税金を編集します。",
+    "Deduce Setting"=>"控除設定",
+    "Tax_edit"=>"ボタンをクリックで税金を編集します。",
+    "Admin can edit deduce"=>"管理者は、控除の設定ができます。",
+    "New Deduction"=>"新しい控除を追加",
+    "Admin can add new Deduction Type."=>"管理者は、新しい控除を追加できます。",
     
     /**
      * Allowance
      */
     "Allowance help center"=>"Allowance help center",
-    "Add Button"=>"Add Button",
-    "Admin can add Allowance"=>"Admin can add Allowance name and amount.",
-    
+    "Add Button"=>"追加ボタン",
+    "Admin can add Allowance"=>"管理者は、ボタンをクリックで手当を追加できます。",
+    "Allowance_edit"=>"ボタンをクリックで、手当の編集ができます。",
     /**
      * Letter Head
      */
     "Letter Head help center"=>"Letter Head help center",
-    "To change"=>"To change the company name,address ,phone number and logo on the left side of the page.Then you can click  ",
+    "To change"=>"レターヘッドの内容を変更するには、編集ボタンをクリックして変更し、保存ボタンをクリックします  ",
+    "save_button"=>"",
     
     /**
      * SSB and Tax Document
      */
     "SSB & Tax Document help center"=>"SSB & Tax Document help center",
-    "SSB and Tax Document Printing"=>"SSB and Tax Document Printing",
-    "Print"=>"Print",
-    "Print SSB & Tax"=>"Print SSB & Tax Document details table.",
+    "SSB and Tax Document Printing"=>"SSB&税金用紙の印刷",
+    "Print"=>"印刷",
+    "Print SSB & Tax"=>"SSB用紙と税金用紙を印刷します。",
 );
 
     

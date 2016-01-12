@@ -56,6 +56,13 @@ class CompanyTbl extends \Library\Core\BaseModel {
         $final_result = $result->fetchArray();
         return $final_result;
     }
+    
+       public function findCombyId($id) {
+        $result = $this->db->query("select * from company_tbl where company_tbl.company_id='" . $id . "' ");
+
+        $final_result = $result->fetchall();
+        return $final_result;
+    }
 
     public function findModulebyId($id) {
         $result = $this->db->query("select module_id from enable_module where enable_module.company_id='" . $id . "' ");
