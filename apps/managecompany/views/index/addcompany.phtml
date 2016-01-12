@@ -36,13 +36,11 @@
                   <tr><td>DB Password</td><td><input style="margin-top:10px ; width:50%" type="password" name="com[dbpsw]" class=" col-sm-10" id="pass" placeholder="Write Database Password"</td></tr>
                   <tr><td>Host</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[host]" class=" col-sm-10" id="pass" placeholder="Write Host Name "></td></tr>
                   <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[limit]" class=" col-sm-10" id="pass" placeholder="Write User Limit "></td></tr>
-                  <tr><td>Module Flag</td><td><input type="checkbox" name="check[]"  id="checkall1" value="Dashboard" style="margin-bottom: 5px">Dashboard <br>
-                          <input type="checkbox"   name="check[]" id="checkall1" value="Attendance" style="margin-bottom: 5px">Attendance<br>
-                          <input type="checkbox" name="check[]"  id="" value="Leave Days" style="margin-bottom: 5px">Leave Days<br>
-                          <input type="checkbox"  name="check[]" id="checkall1" value="Manage User" style="margin-bottom: 5px">Manage User<br>
-                          <input type="checkbox" name="check[]"  id="checkall1" value="Document" style="margin-bottom: 5px">Document<br>
-                          <input type="checkbox" name="check[]"  id="checkall1" value="Calendar" style="margin-bottom: 5px">Calendar<br>
-                         <input type="checkbox" name="check[]"  id="checkall1" value="Salary" style="margin-bottom: 5px">Salary</td></tr>
+                  <tr><td>Module Flag</td><td>
+                          <?php foreach ($module_list as $value) {?>
+                                 <input type="checkbox" name="check[]"  id="checkall1" value="<?php echo $value['module_id'];?>" style="margin-bottom: 5px"><?php echo $value['module_name']?> 
+                           <?php }?> 
+                         </td></tr>
                   <tr><td></td><td ><input style="margin-top:10px" type="submit" class="buttonn submit_useradd" id="add_user" value="Add Company"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>
                   </tr></table></form>
 	

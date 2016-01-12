@@ -13,7 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->view->t = $this->_getTranslation();
-        $this->assets->addJs('apps/managecompany/js/multiple.js');
+        $this->assets->addJs('apps/managecompany/js/index.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         
@@ -34,7 +34,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function addcompanyAction(){
-        
+       $coremodule=new \salts\Managecompany\Models\CoreModule();
+       $module_list=$coremodule->getallmodule();
+       $this->view->module_list=$module_list;
     }
     /**
      * show company detail to edit
@@ -45,6 +47,9 @@ class IndexController extends ControllerBase {
         $company=new \salts\Managecompany\Models\CompanyTbl();
         $result=$company->findDatabyId($id);
         $module=$company->findModulebyId($id);
+         $coremodule=new \salts\Managecompany\Models\CoreModule();
+       $module_list=$coremodule->getallmodule();
+       $this->view->module_list=$module_list;
         $this->view->module=$module;
         $this->view->result=$result;
     }
@@ -55,6 +60,7 @@ class IndexController extends ControllerBase {
     public function addnewAction(){
         $com=$this->request->get('com');
         $check=$this->request->get('check');
+        
         $company=new \salts\Managecompany\Models\CompanyTbl();
         $company->addnew($com,$check);
         $this->response->redirect("managecompany/index");
@@ -72,6 +78,16 @@ class IndexController extends ControllerBase {
         $this->response->redirect("managecompany/index");
     }
    
+public function confirmAction(){
+     $pass = $this->request->get('pass');
+     $message="Invalid";
+     if($this->session->user['password']==sha1($pass)){
+         $message="success";
+     }
+     
+          echo json_encode($message);
+        $this->view->disable();
+}
 
     
 }

@@ -13,6 +13,7 @@ class IndexController extends ControllerBase {
         }
 
         public function indexAction($mode = NULL) {
+            
         $mode=$this->request->get('mode');
         $this->view->errorMsg = '';
         $this->view->mode = $mode;

@@ -19,6 +19,7 @@ $messages = array(
     "note"      => "Reason Note",
     "latereason"=> "Reason Of Late",    
     "search" => "Search",
+    
     "export" => "Export",
     "searchusername" => "Search User Name",
     "startdate" => "Start Date",

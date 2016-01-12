@@ -1,12 +1,12 @@
 <?php
 $messages = array(
-    "dashboard" => "ホム",
-    "user_dashboard" => "ホム",
-    "attend" => "会社院いる",
-    "absent" =>"会社院ない",
+    "dashboard" => "ホーム",
+    "user_dashboard" => "ホーム",
+    "attend" => "メンバー出勤中",
+    "absent" =>"メンバー欠勤中",
     "manageuser" => "メンバー管理",
     "attendancelist" => "出勤リスト",
-    "leaveday" => "休み日",
+    "leaveday" => "休暇",
     "salary" => "給料",
     "current_time" => "今の時間",
     "late_reason" =>  "遅れの理由.",
@@ -15,22 +15,22 @@ $messages = array(
     "new_member" => "新入社員",
     "attendance"    => "出勤",
     "leave"          => "休み",
-    "checkin"       => "チェックイン",
-    "checkout"     => "チェックウト",
+    "checkin"       => "出勤",
+    "checkout"     => "退勤",
     "home"       => "ホーム",
-    "checkinout"=> "チェックイン/ウト",
+    "checkinout"=> "出勤/退勤",
     "latest_news" => "最新ニュース",
-    "no_leave"=>"去る取らない人々",
-    "leave_most"=>"ほとんどの休暇を取る人",
+    "no_leave"=>"休暇を取らない人",
+    "leave_most"=>"休暇を取る人",
     "viewallmember" => "全てのメンバー",
     
        
         /**
      * Header
      */
-    "Help"=>"助けて",
+    "Help"=>"ヘルプ",
     "Notifications"=>"通知",
-    "View All"=>"すべて見ます",
+    "View All"=>"すべて見る",
     "Member Since"=>"メンバー以来",
     "Setting"=>"設定",
     "Sign out"=>"サインアウト",

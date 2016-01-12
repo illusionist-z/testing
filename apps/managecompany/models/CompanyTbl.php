@@ -19,12 +19,14 @@ class CompanyTbl extends \Library\Core\BaseModel {
     public function addnew($data, $check) {
 
         $date = date("Y-m-d H:i:s");
+        $sdate = date("Y-m-d", strtotime($data['sdate']));
+        
         $sql = "INSERT INTO `company_tbl`(`company_id`, `company_name`, `email`, `phone_no`, "
                 . "`db_name`, `user_name`, `db_psw`, `host`, `user_limit`, `starting_date`, "
                 . "`created_dt`) VALUES "
                 . "('" . $data['id'] . "','" . $data['name'] . "','" . $data['email'] . "','" . $data['phno'] . "'"
                 . ",'" . $data['db'] . "','" . $data['dbun'] . "','" . $data['dbpsw'] . "','" . $data['host'] . "',"
-                . "'" . $data['limit'] . "','" . $data['sdate'] . "','" . $date . "')";
+                . "'" . $data['limit'] . "','" . $sdate . "','" . $date . "')";
         $this->db->query($sql);
         for ($i = 0; $i < count($check); $i++) {
             $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $data['id'] . "','" . $check[$i] . "')";
@@ -45,6 +47,8 @@ class CompanyTbl extends \Library\Core\BaseModel {
 //        }
         return $final_result;
     }
+    
+    
 
     public function findDatabyId($id) {
         $result = $this->db->query("select * from company_tbl where company_tbl.company_id='" . $id . "' ");

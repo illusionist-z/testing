@@ -41,7 +41,7 @@
                                                       }
                                                  }
                                       ?>                                                
-                                    <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
+                                    <span class="hidden-xs"><?php echo $this->session->user['login_name']; ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
@@ -63,7 +63,7 @@
                                       ?>                                                
                                         <img src="<?php echo $baseUri?>uploads/<?php echo  $img;?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <p>
-                                            <b><?php echo $this->session->user['member_login_name']; ?></b>
+                                            <b><?php echo $this->session->user['login_name']; ?></b>
                                            <!-- <small><b>Member since Nov. 2012</b></small>-->
                                             <!--<small><b>Member since <?php echo "<i style='color:black'> \" ".$this->session->user['created_dt']." \"</i>";?></b></small>-->
                                             <small><b><?= $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>".date("M - Y", strtotime( $this->session->user['created_dt']))."</b>";?></small>
@@ -74,24 +74,8 @@
                                        <li class="user-footer">
                                               
                                  <?php 
-         if($permission==1){
-                //Go to user dashboard
-                
-                ?>
-                 <div class="pull-left">
-                     <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
-                                        </div>
-                <?php
-               
-               } 
-                  else {
-               
-                    ?> 
-                      <div class="pull-left">
-                                                    <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
-                                                </div>
-                <?php 
-                         }
+   
+              
                
                 
              
