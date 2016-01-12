@@ -23,5 +23,12 @@ class SearchController extends ControllerBase
         $this->view->disable();
         echo json_encode($search_result);
     }
+    /**
+     * Search travel fees whether per day or per month
+     */
+    public function searchTravelfeesAction() {
+        $travel_fees=  $this->request->get('travel_fees');
+        $Salarydetail=new SalaryDetail();
+    }
 }
 

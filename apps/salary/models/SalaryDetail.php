@@ -32,7 +32,11 @@ class SalaryDetail extends Model {
 //        //print_r($row);exit;
 //        return $row;
 
-        $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,SUM(income_tax) as income_tax_amount,SUM(allowance_amount) as allowance,SUM(travel_fee) as travel_expense  "
+        $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
+                . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
+                . "SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,"
+                . "SUM(income_tax) as income_tax_amount,SUM(allowance_amount) as allowance,"
+                . "SUM(travel_fee) as travel_expense  "
                 . " FROM salts\Salary\Models\SalaryDetail"
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";
@@ -289,7 +293,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         try {
             //print_r($cond);
            $select = "SELECT *, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total  FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
-            $conditions = $this->setCondition($cond);
+           $conditions = $this->setCondition($cond);
 
             $sql = $select;
             if (count($conditions) > 0) {

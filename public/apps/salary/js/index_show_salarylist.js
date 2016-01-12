@@ -63,7 +63,7 @@ $(function () {
      });
      
      //click the detail button for detail of salary
-     $('.btn_detail').click(function () {
+     $('.btn_detail').click(function () { 
      var month = document.getElementById('month').value;
      var year = document.getElementById('year').value;
      var chkbox = document.getElementsByName('chk[]');
