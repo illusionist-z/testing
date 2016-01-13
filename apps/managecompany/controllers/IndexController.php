@@ -84,16 +84,31 @@ class IndexController extends ControllerBase {
         $this->response->redirect("managecompany/index");
     }
    
-public function confirmAction(){
-     $pass = $this->request->get('pass');
-     $message="Invalid";
-     if($this->session->user['password']==sha1($pass)){
-         $message="success";
-     }
-     
-          echo json_encode($message);
-        $this->view->disable();
-}
+    /**
+     *  @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     *  Confirm Login User Password to see selected company db pass
+     */
+    public function confirmAction(){
+         $pass = $this->request->get('pass');
+         $message="Invalid";
+         if($this->session->user['password']==sha1($pass)){
+             $message="success";
+         }
+
+              echo json_encode($message);
+            $this->view->disable();
+    }
+    
+    /**
+     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     * Delete Selected Company By Id
+     */
+    public function deletecompanyAction(){
+        $id = $this->request->get('id');
+        $company=new \salts\Managecompany\Models\CompanyTbl();
+        $company->deleteCompanyById($id);
+        $this->response->redirect("index");
+    }
 
     
 }

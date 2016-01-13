@@ -3,6 +3,8 @@
 $(document).ready(function(){
   document.getElementById('confirm').style.display = 'none';
 
+
+
  $('.show_pass').on('click',function(){
        document.getElementById('confirm').style.display = '';
     });

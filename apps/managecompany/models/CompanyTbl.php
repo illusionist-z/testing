@@ -35,7 +35,7 @@ class CompanyTbl extends \Library\Core\BaseModel {
     }
 
     public function getallcom() {
-        $result = $this->db->query("select * from company_tbl ");
+        $result = $this->db->query("select * from company_tbl where deleted_flag=0");
 
         $final_result = $result->fetchall();
         $i = 0;
@@ -87,5 +87,10 @@ class CompanyTbl extends \Library\Core\BaseModel {
             $this->db->query($sql);
         }
     }
-
+    
+    public function deleteCompanyById($id)
+    {
+        $sql="UPDATE `company_tbl` SET `deleted_flag`=1 WHERE `company_id` = '" . $id . "' ";
+        $this->db->query($sql);
+    }
 }

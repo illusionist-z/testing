@@ -42,7 +42,7 @@
                    +'<input style="margin-top:10px" type="text" name="mid" id="uname" value="'+ result['module_id'] +'" class="col-sm-10" placeholder="Write Module ID" disabled></td></tr>'
                    +'<tr><td></td><td id="existId"></td></tr>'
                    +'<tr><td>Company Name</td><td><input style="margin-top:10px" value="'+ result['module_name'] +'"  type="text" name="mname" class="col-sm-10" id="full_name" placeholder="Wirte Module Name"></td></tr>'
-                   +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="edit_module" value="Edit"> <input style="margin-top:10px" type="reset" class="buttonn" id="edit_close" value="Cancel"></td>'
+                   +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="edit_module" value="Edit"><input style="margin-top:10px" type="submit" class="buttonn" id="delete" value="Delete"> <input style="margin-top:10px" type="reset" class="buttonn" id="edit_close" value="Cancel"></td>'
                    +'</tr></table></form>'; 
                   title ="Edit Module  ";
                   id = 0;
@@ -112,9 +112,9 @@
                         this.isOvl=false;                  
                     });
                     // user delete button
-                    $('#edit_delete').on('click',function(e){
+                    $('#delete').on('click',function(e){
                         e.preventDefault();
-                        Manage.User.Delete($('#edit_user_id').val());
+                        Manage.Module.Delete($('#edit_id').val());
                     });
                     $('.datepicker').on('click',function(e){
                           e.preventDefault();                                                    
@@ -170,7 +170,7 @@
             
             buttons:{
                 Yes:function(){
-                   Manage.User.Confirm(d);                    
+                   Manage.Module.Confirm(d);                    
                 },
                 No:function(){
                     $(this).dialog("close");
@@ -188,11 +188,13 @@
      */
     Confirm:function(id){
         $.ajax({
-            type:'GET',
-            url:baseUri+'manageuser/index/deleteuser',
-            data:{data:id}            
-        }).done(function(){
-            $('body').load('index');
+            type:"GET",
+            url : baseUri+"managecompany/module/deletemodule?id="+id,
+     
+           
+            success:function(d){
+               location.reload();
+            }
         });
     }
 };
