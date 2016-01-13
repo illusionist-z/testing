@@ -1,9 +1,34 @@
 
 
 $(document).ready(function(){
+      dict= [];
+             $.ajax({
+                url:'managecompany/index/getcomname',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                  
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                 // alert(json_obj[i].member_login_name);
+                dict.push(json_obj[i].company_id);
+                }   
+                }                        
+              }); 
+         
   document.getElementById('confirm').style.display = 'none';
 
-
+ $('#com_name').on('click',function(){
+        $(this).autocomplete({
+            source: function( request, response ) {
+               var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+             response( $.grep( dict, function( item ){                 
+                 return matcher.test( item);
+             }) );
+            },
+             minLength :1
+        });
+    });
 
  $('.show_pass').on('click',function(){
        document.getElementById('confirm').style.display = '';

@@ -34,6 +34,12 @@ class IndexController extends ControllerBase {
 
     }
     
+    public function getcomnameAction(){
+        $company=new \salts\Managecompany\Models\CompanyTbl();
+       $result=  $company->getallcom();
+       echo json_encode($result);
+       $this->view->disable();
+    }
   
     /**
      * show addcompany page

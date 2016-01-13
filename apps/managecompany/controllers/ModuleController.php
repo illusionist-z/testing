@@ -33,6 +33,13 @@ class ModuleController extends ControllerBase {
         $this->view->result=$result;
     }
     
+    public function getmodulenameAction(){
+         $Obj = new \salts\Managecompany\Models\CoreModule();
+         $result = $Obj->getallmodule();
+         echo json_encode($result);
+         $this->view->disable();
+    }
+    
     /**
      *  @author Su Zin Kyaw <gnext.suzin@gmail.com>
      *  Add new module 
