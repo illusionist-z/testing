@@ -416,38 +416,7 @@ var Salary = {
                         
                  });
        },
-        getmemid: function (name){                       
-        //var name = document.getElementById('namelist').value;
-           // alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
-         var dict = [];
-       $.ajax({
-                url:'getmemberid?uname='+name,
-                method: 'GET',
-                //dataType: 'json',
-                success: function(data) {
-                //alert(data);    
-                var json_obj = $.parseJSON(data);
-                for (var i in json_obj){
-                    //alert(json_obj[i].member_id);
-               // var aa = json_obj[i].member_id;
-                //alert(aa);
-                //$('#formemberid').text(json_obj[i].member_id);
-               // $(".salusername").text(aa);
-                dict.push(json_obj[i].member_id);
-                }
-                  //var dict = ["Test User02","Adminstrator"];
-                  //alert(dict);
-                 loadIcon(dict);
-                        }
-                        
-                    });
-                     function loadIcon(dict) {
-                      // alert(dict);
-                        $('#formemberid').val(dict);
-                     }
-                     
-       },
+        
     search : function () { 
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
