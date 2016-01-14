@@ -305,6 +305,18 @@ var Salary = {
    }
     
        },
+       search_salarylist: function (){
+           var $form = $('#frm_search').serialize();
+           $.ajax({
+                url:baseUri + 'salary/search/searchTravelfees?' + $form,
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);   
+                        }
+                        
+                 });
+       },
         getmemid: function (name){                       
         //var name = document.getElementById('namelist').value;
            // alert("aaa");
@@ -337,7 +349,7 @@ var Salary = {
                      }
                      
        },
-    search : function () {
+    search : function () { 
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
@@ -448,7 +460,7 @@ $(document).ready(function () {
     $('#search_salary').click(function () {
         Salary.search();
     });
-    $("body").on("click",".displaypopup",function () {
+    $("body").on("click",".displaypopup",function () { 
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
@@ -467,6 +479,9 @@ $(document).ready(function () {
     $("#search_salary").mouseenter(function(){
        var name = document.getElementById('namelist').value;
 		Salary.getmemid(name);      
+	});
+    $(".search-trtype").click(function(){
+	Salary.search_salarylist();       
 	});
 });
 

@@ -69,14 +69,19 @@ if(isset($Msg))
                     </div>
 
                     <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("travel_fee_perday"); ?></span>
-                        <span><input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("travelperday"); ?>" style="width:34%; height: 20%;" name="travelfee_perday"></span>
+                        <div class="span-style"><?= $t->_("travel_fee_perday"); ?></div>
+                        
+                        <div style="width:350px; margin-left: 170px">
+                            <div style="padding-bottom: 10px;">
+                            Choose travel fees type:
+                            <input type='radio' name='radTravel' value='1' id="radtravel1"/>Per day
+                            <input type='radio' name='radTravel' value='2' id="radtravel2"/>Per month
+                            
+                            </div> 
+                            <div>
+                                <input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("travelperday"); ?>" style="width:97%; height: 20%;" name="travelfees" disabled/>
+                            </div>
                     </div>
-                    <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("travel_fee_permonth"); ?></span>
-                        <span><input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("travelpermonth"); ?>" style="width:34%; height: 20%;" name="travelfee_permonth"></span>
-                    </div>
-
                     <div class="div-bottom">
                         <span class="span-style"><?= $t->_("overtime"); ?></span>
                         <span><input type="text" id="overtime" value="" style="width:34%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>"></span>
@@ -149,5 +154,17 @@ if(isset($Msg))
             document.getElementById('No_of_children').style.display = 'none';
         }
     }
+//for checking radio button
+document.getElementById('radtravel1').onchange = displayTextBox;
+document.getElementById('radtravel2').onchange = displayTextBox;
 
+var textBox = document.getElementById('travelfee');
+
+function displayTextBox(evt){
+    if(evt.target.value=="1" || evt.target.value=="2"){
+        textBox.disabled = false;
+    }else{
+        textBox.disabled = true;
+    }
+}
 </script>

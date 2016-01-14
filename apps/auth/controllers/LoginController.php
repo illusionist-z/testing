@@ -26,7 +26,7 @@ class LoginController extends ControllerBase {
         $result = $ModelAuth->check($loginParams, $user);
          $this->session->set('user', $result);
         if ($result) {
-           
+            $this->session->set('user', $result);
             $this->response->redirect('managecompany');
         }
         else {

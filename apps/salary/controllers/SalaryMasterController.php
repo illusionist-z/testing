@@ -25,6 +25,7 @@ class SalaryMasterController extends ControllerBase
      * @author zinmon
      */
     public function savesalaryAction() {
+        $chkTravelfees=$this->request->get('radTravel');
         $data['no_of_children']=$this->request->get('no_of_children', 'int');
         $dedution = $this->request->get('checkall');
         $allowance = $this->request->get('check_allow');
@@ -32,8 +33,15 @@ class SalaryMasterController extends ControllerBase
         $data['member_id'] = $this->request->get('member_id', 'string');
         //$data['uname'] = $this->request->get('uname', 'string');
         $data['basic_salary'] = $this->request->get('bsalary', 'int');
-        $data['travel_fee_perday'] = $this->request->get('travelfee_perday', 'int');
-        $data['travel_fee_permonth'] = $this->request->get('travelfee_permonth', 'int');
+        if($chkTravelfees==1){
+            $data['travel_fee_perday'] = $this->request->get('travelfees', 'int');
+            $data['travel_fee_permonth'] = 0;
+        }
+        if($chkTravelfees==2){
+            $data['travel_fee_perday'] = 0;
+            $data['travel_fee_permonth'] = $this->request->get('travelfees', 'int');
+        }
+        
         if(null !==$this->request->get('overtime', 'int'))
         {
         $data['over_time'] = $this->request->get('overtime', 'int');
@@ -50,7 +58,7 @@ class SalaryMasterController extends ControllerBase
         $data['updater_id'] = 3;
         $data['updated_dt'] = '00:00:00';
         $data['deleted_flag'] = 0;
-        //print_r($data['over_time']);exit;
+        //print_r($data);exit;
         if ($this->request->isPost()) {
              $user = $this->_addsalary;
              $validate = $user->chk_validate($this->request->getPost());
