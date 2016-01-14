@@ -132,6 +132,7 @@ class IndexController extends ControllerBase {
                 
                 $Attendances = new \salts\Attendancelist\Models\Attendances();
                 $result = $Attendances->search_attlist($year, $month, $username);
+              
                 $this->view->disable();
                 echo json_encode($result);
             }        

@@ -18,7 +18,7 @@ var Salary = {
            url:"editsalary?id="+d,
            type: "GET",
           success:function(res){
-              
+             
                var result = $.parseJSON(res);
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>'+result.t['name']+'</b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
@@ -354,6 +354,7 @@ var Salary = {
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
     //window.location.href = baseUri + 'salary/search?'+$form;
+     
     $.ajax({
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
@@ -362,6 +363,13 @@ var Salary = {
             $('tbody').empty();
             $('tfoot').empty();
             var totalsal = 0;
+            if(json_obj[0].member_id== null){
+                var output = "<tr>"
+                    + "<td colspan='13'><center>No data to display</center></td>"
+                    + "</tr>";
+                $("tbody").append(output);
+            }
+            else{
             for (var i in json_obj)
             {   
                 var aa = parseInt(json_obj[i].total);
@@ -386,9 +394,9 @@ var Salary = {
                         + "</tr>"
                         
                 $("tbody").append(output);
+                Salary.init;
                 
-                
-            }
+            }}
             var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
                         +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
