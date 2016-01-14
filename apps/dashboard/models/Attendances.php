@@ -1,6 +1,9 @@
 <?php
+
 namespace salts\Dashboard\Models;
+
 use Phalcon\Mvc\Model;
+
 date_default_timezone_set("UTC");
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -9,6 +12,7 @@ date_default_timezone_set("UTC");
  */
 
 class Attendances extends Model {
+
     /**
      * set check in time when user click 'checkin'button
      * @param type $id
@@ -19,31 +23,41 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckintime($id, $note, $add,$creator_id) {
+    public function setcheckintime($id, $note, $add, $creator_id) {
         $this->db = $this->getDI()->getShared("db");
-        
+
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
-        $att = Attendances::findFirst("att_date = '$today' AND member_id='$id'");
+        $att = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 1");
         /**
           Condition : Already Checked in or not
          * */
-        if ($att != NULL) {
-            $status = " Already Checked in ";
-        } else {
-            $noti_id=rand();
-            if($note!=NULL){
-               
-                $this->db->query("INSERT INTO core_notification (noti_creator_id,"
-            . "module_name,noti_id,noti_status) "
-            . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
+        if ($att === FALSE) {
+            //$status = " Already Checked in ";
+            $noti_id = rand();
+            $att_today = Attendances::findFirst("att_date = '$today' AND member_id ='$id' AND status = 0");
+            if ($att_today === FALSE) {
+                $att_leave = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 2");
+                if ($att_leave === FALSE) {
+                    $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
+                            . "att_date,location,notes,noti_id,status) VALUES ('" . $mydate . "'"
+                            . ",'" . $id . "','" . $today . "',
+                    '" . $add . "','" . $note . "','" . $noti_id . "',0)");
+                } else {
+                    $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
+                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $noti_id . "',status = 0 where att_date ='" . $today . "' AND member_id ='" . $id . "'");
+                }
+                if ($note != NULL) {
+                    $this->db->query("INSERT INTO core_notification (noti_creator_id,"
+                            . "module_name,noti_id,noti_status) "
+                            . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
+                }
+                $status = " Successfully Checked In";
+            } else {
+                $status = "You have already check in";
             }
-            $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
-                    . "att_date,location,notes,noti_id) VALUES ('" . $mydate . "'"
-                    . ",'" . $id . "','" . $today . "',
-                    '" . $add . "','" . $note . "','" . $noti_id . "')");
-            $status = " Successfully Checked In";
-            
+        } else {
+            $status = "You have apply Leave for Today";
         }
         return $status;
     }
@@ -64,23 +78,23 @@ class Attendances extends Model {
             $outtime = $att->checkout_time;
             //check already checkout or not
             if ($outtime != 0) {
-                $status = "Already Checkout";               
+                $status = "Already Checkout";
             } else {
-                $workingHour = strtotime($mydate)-strtotime($att->checkin_time);                
+                $workingHour = strtotime($mydate) - strtotime($att->checkin_time);
                 if ($workingHour > 28800) {
-                $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',');
+                    $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',');
                 } else {
-                 $ovt = 0;
+                    $ovt = 0;
                 }
                 $this->db->query("UPDATE attendances SET "
-                     . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
-                    . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
-                $status = "Successfully Checked Out ";                
+                        . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
+                        . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
+                $status = "Successfully Checked Out ";
             }
         } else {
-        //check in first
-         $status = "Please Check In First ";         
-        }       
+            //check in first
+            $status = "Please Check In First ";
+        }
         return $status;
     }
 
@@ -94,14 +108,13 @@ class Attendances extends Model {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken        
-        $query = "select * from core_member "
-                . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=1 and c.deleted_flag = 0 group by a.member_id "
-                . "order by count(*) desc limit 3";
+        $query = "select * from core_member where member_id in "
+                 ."(select member_id from attendances where status = 1 group by member_id having count(member_id) > 0) "
+                . "order by created_dt desc limit 3";
         $data = $this->db->query($query);
         //select where no leave name in current month
-        $query1 = "select * from core_member where member_id not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) and deleted_flag=0 order by created_dt desc  limit 3";
+        $query1 = "select * from core_member where member_id in
+                   (select member_id from attendances where att_date >(NOW()-INTERVAL 2 MONTH) and status=0) order by created_dt desc limit 3";
         $data1 = $this->db->query($query1);
         $res['leave_name'] = $data->fetchall();
         $res['noleave_name'] = $data1->fetchall();
@@ -117,7 +130,7 @@ class Attendances extends Model {
         $today = date('Y-m-d');
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
-        $query = "select count(*) as att from attendances where att_date='$today'";
+        $query = "select count(*) as att from attendances where att_date='$today' and status =0";
         $query = $this->db->query($query);
         $data = $query->fetchall();
         $result['att'] = $data[0]['att'];

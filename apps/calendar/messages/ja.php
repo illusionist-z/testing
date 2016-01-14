@@ -1,7 +1,7 @@
 <?php
 
 $messages = array(
-"calendar"  => "カレーダー",
+"calendar"  => "カレンダー",
 "event_enable" => "Hito Event Enablru",
 "show_event"  => "sareru evento",
     "add_mem"=>"新しいメンバーを追加します",
@@ -17,9 +17,9 @@ $messages = array(
     "cancel_btn" => "けさ",
       "edit_btn"    => "Edito",
     "delete_btn" => "kensasu",
-"event_enable" => "ユザーのイベント",
+"event_enable" => "メンバーのイベント",
 "show_event"  => "イベントを表示する",
-"chkevent"   => "ユザーのイベントをチェックしてください。",
+"chkevent"   => "イベントを表示したいメンバーをチェックしてください",
 "home"   => "ホーム",
 "search_member"   => "メンバー検索",
 "add_member"   => "メンバー入力",

@@ -1,0 +1,64 @@
+<section class="content-header">
+    <h1>
+        <?php echo "Monthly Atten chart (".date('Y')."/".date('m').")"  ?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i><?php echo "Home" ?></a></li>
+        <li class="active"><?php echo "Monthly Atten Chart" ?></li>
+    </ol>
+</section>
+<section class="content"> 
+    <div class="row">
+        <div class="col-sm-12 table-responsive"><!--start table content--->
+            <table class="listtbl attlist attchart">
+                <thead>
+                        <th><?= "Name" ?></th>
+                        <?php                        
+                        for($i = 1; $i <=  date('t'); $i++){
+                            echo "<th>Day ".$i."</th>";
+                        }
+                        ?>                    
+                </thead>
+                <tbody style="display: none;">
+                    <?php                    
+                    foreach($data as $result){
+                        $j = array();
+                        $day = explode(",",$result['day']);
+                        $status = explode(",",$result['status']);
+                        echo "<tr>";
+                        echo "<td>".$result['member_login_name']."</td>";
+                        for($i=1; $i <= date('t');$i++){
+                            //get under today date
+                            if($i <= date('d')){
+                            foreach($day as $k=>$v){
+                            if($i == $v) { $j[$v] = $v;$j[$v][$v] = $status[$k];}
+                            }
+                            if(array_key_exists($i, $j)){
+                            if($i == $j[$i]){
+                                  $j[$i][$i] == 0 ? $class= 'leave0' : ($j[$i][$i] == 1 ? $class="leave1": $class = "leave2");
+                                echo "<td class='$class'></td>";
+                            }
+                            }
+                            else{
+                                echo "<td class='unleave'></td>";
+                            }
+                            }
+                            //get above today date
+                            else{
+                                echo "<td class='unleave'></td>";
+                            }
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>                
+            </table>
+        </div>
+    </div>
+</section>
+<div id="content"></div>
+<div class="attchart">
+<div class="col-md-12"><div class="col-sm-1 leave0 btn"></div> Attendance Person</div>
+<div class="col-md-12"><div class="col-sm-1 leave1 btn"></div> Absent Person(Applied Leave)</div>
+<div class="col-md-12"><div class="col-sm-1 leave2 btn"></div> Absent Person(No apply leave)</div>
+</div>

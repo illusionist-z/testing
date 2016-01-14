@@ -24,21 +24,21 @@ use Phalcon\Filter;
 <body onload="init()">
 
     <ul id="tabs">
-        <li><a class="selected" href="#about"><?= $t->_("tax"); ?> Setting</a></li>
-        <li><a class="" href="#advantages">Deduction Setting </a></li>
+        <li><a class="selected" href="#about"><?= $t->_("tax"); ?> </a></li>
+        <li><a class="" href="#advantages"><?= $t->_("deduction"); ?> </a></li>
 
     </ul>
     <form action="" method="post">
         <div class="tabContent" id="about"><!-- start Basic salary setting--->
-            <table class="listtbl">
+            <table class="listtbl salarylist">
                 <thead>
                     <tr>
                         <th width="120px">ID</th>
                         <th><?= $t->_("tax_from"); ?></th>
                         <th><?= $t->_("tax_to"); ?></th>
                         <th><?= $t->_("tax_rate"); ?></th>
-                        <th>SSC emp</th>
-                        <th>SSC comp</th>
+                        <th><?= $t->_("SSC_Emp"); ?></th>
+                        <th><?= $t->_("SSC_Comp"); ?></th>
 
 
                         <th width="50px"></th>
@@ -76,11 +76,11 @@ use Phalcon\Filter;
                   <input type="button" class="addbtn add" onclick="return false;" value="Add New Deduction">
                               
                </div>-->
-            <table class="listtbl">
+            <table class="listtbl salarylist">
                 <thead>
                     <tr>
                         <th width="120px">ID</th>
-                        <th>Deduction <?= $t->_("name"); ?> </th>
+                        <th> <?= $t->_("deduc_name"); ?> </th>
                         <th><?= $t->_("deduction_amt"); ?></th>
 
 

@@ -136,6 +136,15 @@ class IndexController extends ControllerBase {
                 echo json_encode($result);
             }        
     }
+    /**
+     * @author David JP <david.gnext@gmail.com>
+     * monthly attendance table show
+     */
+    public function attendancechartAction() {
+        $Attendances = new \salts\Attendancelist\Models\Attendances();
+        $data = $Attendances->current_attlist();
+        $this->view->data = $data;
+    }
 
     public function autolistAction() {
         $UserList = new Db\CoreMember();
