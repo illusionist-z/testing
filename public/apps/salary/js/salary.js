@@ -20,7 +20,7 @@ var Salary = {
           success:function(res){
               
                var result = $.parseJSON(res);
-              // alert(result.no_of_children);
+               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>'+result.t['name']+'</b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
@@ -461,7 +461,7 @@ $(document).ready(function () {
     $('#search_salary').click(function () {
         Salary.search();
     });
-    $("body").on("click",".displaypopup",function () {
+    $("body").on("click",".displaypopup",function () { 
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
