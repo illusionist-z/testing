@@ -297,11 +297,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
             $sql = $select;
             if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "'";
+                $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "' group by core_member.member_id";
             }
-            //echo $sql;exit;
+            
             $result = $this->db->query($sql);
             $row = $result->fetchall();
+            
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -587,7 +588,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             if($param['user_id'] !== ""){
                 $select .= " WHERE salary_master.member_id='" . $param["user_id"] . "'";
             }
-            //echo $sql;exit;
+            //echo $select;exit;
             $result = $this->db->query($select);
             $row = $result->fetchall();
             
