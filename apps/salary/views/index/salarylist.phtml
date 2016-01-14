@@ -16,8 +16,9 @@ use Phalcon\Filter;
 <section class="content">
     <div class="buttons">
         <form id="frm_search" onsubmit="return false;">
-            <select class="select  form-control-static" data-toggle="select" name="travel_fees" id="ltype" style="width:250px">
-                <option value="">Choose travel fees</option>
+            <input type="text" class="monthauto form-control-static username" name="username"  id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off">
+            <input type="text" value="" id="formemberid" name="user_id">
+            <select class="select  form-control-static" data-toggle="select" name="travel_fees" id="ltype" style="width:250px; height: 37px;">
                 <option value="1">Travel fees per day</option>
                 <option value="2">Travel fees per month</option>
             </select>
@@ -37,8 +38,8 @@ use Phalcon\Filter;
                         <th><?= $t->_("no"); ?></th>
                         <th><?= $t->_("name"); ?></th>
                         <th><?= $t->_("basic_salary"); ?></th>
-                        <th><?= $t->_("travel_fee_perday"); ?></th>
-                        <th><?= $t->_("travel_fee_permonth"); ?></th>
+                        <th id="th_travelfees"><?= $t->_("travel_fee_perday"); ?></th>
+<!--                        <th><?= $t->_("travel_fee_permonth"); ?></th>-->
                         <th><?= $t->_("overtime"); ?></th>
                         <th><?= $t->_("SSC_Emp"); ?></th>
                         <th><?= $t->_("SSC_Comp"); ?></th>
@@ -46,7 +47,7 @@ use Phalcon\Filter;
                     </tr>
 
                 </thead>
-                <tbody style="display:none;">
+                <tbody style="display:none;" id="salary_list">
                     <?php
                     $filter = new Filter();
                     $i = 1;
@@ -63,19 +64,19 @@ use Phalcon\Filter;
                             }
                             ?>
                             </td>
-                            <td>
+<!--                            <td>
                                 <?php 
                                 if(isset($salarydetails->salarymas->travel_fee_permonth)){
                                 echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee_permonth, "int")); 
                                 }
                                 ?>
-                            </td>
+                            </td>-->
                             <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->over_time, "int")); ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_emp, "int").' %' ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->salarymas->ssc_comp, "int").' %' ?></td>
 <!--                            <td><input type="button" class="btn btn-default displaypopup" onclick="return false;" id="<?= $salarydetails->salarymas->id; ?>" value="Edit"></td>                            -->
                             <td>
-                                <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="inedit displaypopup" id="<?= $salarydetails->salarymas->id; ?>"></a>
+                                <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="inedit displaypopup" id="<?= $salarydetails->salarymas->member_id; ?>"></a>
                             </td>
                         </tr>
                         <?php
