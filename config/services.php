@@ -120,7 +120,7 @@ $di->setShared('db',function() {
                                             ]);
     }
     else {
-            header('Location:http://localhost:8080/salts');
+            header('Location:http://localhost/salts/');
     }
 });
 $di->set('cookies', function () {

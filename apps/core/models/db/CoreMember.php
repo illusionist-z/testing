@@ -219,16 +219,23 @@ class CoreMember extends \Library\Core\BaseModel {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         if($type==0){
+            
            $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc  ";
 
-        }else{
+        }
+        else if($type==2){
+          
+              $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc  limit 10";
+
+        }
+        else{
              $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc limit 10";
 
         }
      
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
-     
+ 
         $i=0;
         foreach ($noti as $noti) {
             
@@ -261,7 +268,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @param type $id
      * @param type $type 
      * Type 1 for new 
-     * type 0 for old
+     * type 2 for old
      * @return type
      * getting accepted and rejected leavedays detail
      * for user notification

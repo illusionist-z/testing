@@ -5,6 +5,7 @@ namespace salts\Salary\Controllers;
 use salts\Core\Models\Db;
 use salts\Salary\Models\SalaryDetail;
 use salts\Salary\Models\SalaryMaster;
+use salts\Attendancelist\Models\Attendances;
 class CalculateController extends ControllerBase
 {
     
@@ -29,7 +30,10 @@ class CalculateController extends ControllerBase
      
     $Salarydetail=new SalaryDetail();
     $Salarymaster=new SalaryMaster();
-    $getbasic_salary=$Salarymaster->getbasicsalary();
+    $Attendance= new Attendances();
+    $countattday = $Attendance->getCountattday($salary_start_date);
+    
+    $getbasic_salary=$Salarymaster->getbasicsalary($countattday);
     //print_r($getbasic_salary);exit;
     //calculate overtime by attendances and salary master
     //$overtime=$Salarymaster->calculate_overtime();

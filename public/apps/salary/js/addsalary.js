@@ -55,7 +55,7 @@ var AddSalary = {
         //var name = document.getElementById('namelist').value;
             //alert("aaa");
         //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
-         var dict = [];
+       var dict = [];
        $.ajax({
                 url:'salaryusername',
                 method: 'GET',

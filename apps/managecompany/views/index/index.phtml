@@ -1,5 +1,6 @@
 <?php
     use Phalcon\Filter;
+;
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -15,13 +16,13 @@
 <!-- Main content -->
 <section class="content">
     <div class="row">	
-        <form class="buttons">
-            <input  type="text" class="userauto form-control-static" name="username" id="username" placeholder="<?= "Search Company Name"; ?>" autocomplete="off">
+        <form class="buttons" action="<?php echo $baseUri ?>managecompany/index/index">
+            <input  type="text" class="userauto form-control-static" name="comlistsearch" id="com_name" placeholder="<?= "Search Company ID"; ?>" autocomplete="off">
 
-            <input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= "Search"; ?>" id="userlistsearch" style="margin-top: -10px;">
+            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="" style="margin-top: -10px;">
              
                
-            <a href="<?php echo $baseUri;?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
+            <a href="<?php echo $baseUri?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
      
         </form>
 
@@ -40,29 +41,34 @@
                         <th ><?= "Email"; ?></th>
                         <th ><?= "Phone no"; ?></th>
                         <th ><?= "dbname"; ?></th> 
-                        <th><?= "db username"; ?></th>
-                        <th ><?= "db password"; ?></th>
                         <th ><?= "host"; ?></th>
                         <th ><?= "user limit"; ?></th>
-                        <th ><?= "module flag"; ?></th>        
+                   
                         <th></th>
                     </tr>
-
+                    
                 </thead>
-                <tbody>                  
-                <td>1</td>
-                <td>com1</td>
-                <td>gnext</td>
-                <td>2016-01-01</td>
-                <td>gnext@mail.com</td>
-                <td>35366373</td>
-                <td>attsys_db</td>
-                <td>root</td> 
-                <td>root</td>
-                <td>localhost</td>
-                <td>400</td>
-                <td>Dashboard, Attendance</td>
-                <td>  <a href="<?php echo $baseUri;?>managecompany/index/editcompany"  style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td>
+                <tbody>              <?php 
+                    $i=1;
+                    foreach ($result as $result) {                                                
+                        ?>    <tr>                   
+                <td><?php echo $i;?></td>
+                <td><?php echo $result['company_id'];?></td>
+                <td><?php echo $result['company_name'];?></td>
+                <td><?php echo $result['starting_date'];?></td>
+                <td><?php echo $result['email'];?></td>
+                <td><?php echo $result['phone_no'];?></td>
+                <td><?php echo $result['db_name'];?></td>
+            <td><?php echo $result['host'];?></td>
+                <td><?php echo $result['user_limit'];?></td>
+                
+           
+                <td>  <a href="<?php echo $baseUri?>managecompany/index/editcompany?id=<?php echo $result['company_id'];?>" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td></tr>
+                   <?php
+                    $i++;
+                    }
+                    ?>            
+               
                 </tbody>
                 <tfoot style="display:none;"></tfoot>                    
             </table>

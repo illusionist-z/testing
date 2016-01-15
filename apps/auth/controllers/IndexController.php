@@ -9,10 +9,11 @@ class IndexController extends ControllerBase {
         public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-            $this->assets->addJs('apps/auth/js/forgot.js');                  
+            $this->assets->addJs('apps/auth/js/forgot.js');      
         }
 
         public function indexAction($mode = NULL) {
+            
         $mode=$this->request->get('mode');
         $this->view->errorMsg = '';
         $this->view->mode = $mode;

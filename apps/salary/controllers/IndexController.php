@@ -166,10 +166,8 @@ class IndexController extends ControllerBase {
         $year = $this->request->get('year');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getpayslip($member_id, $month, $year);
-        //print_r($getsalarydetail);exit;
 
         $getallowance = $Salarydetail->getallowanceBymember_id($member_id);
-        //print_r($getallowance);exit;
         
         $this->view->getsalarydetails = $getsalarydetail;
         $this->view->getallowance = $getallowance;

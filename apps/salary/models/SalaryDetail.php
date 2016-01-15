@@ -32,7 +32,11 @@ class SalaryDetail extends Model {
 //        //print_r($row);exit;
 //        return $row;
 
-        $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,SUM(income_tax) as income_tax_amount,SUM(allowance_amount) as allowance,SUM(travel_fee) as travel_expense  "
+        $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
+                . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
+                . "SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,"
+                . "SUM(income_tax) as income_tax_amount,SUM(allowance_amount) as allowance,"
+                . "SUM(travel_fee) as travel_expense  "
                 . " FROM salts\Salary\Models\SalaryDetail"
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";
@@ -289,15 +293,16 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         try {
             //print_r($cond);
            $select = "SELECT *, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total  FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
-            $conditions = $this->setCondition($cond);
+           $conditions = $this->setCondition($cond);
 
             $sql = $select;
             if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "'";
+                $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "' group by core_member.member_id";
             }
-            //echo $sql;exit;
+           
             $result = $this->db->query($sql);
             $row = $result->fetchall();
+            
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -306,6 +311,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
 
     public function setCondition($cond) {
+      
         $salary = explode('~', $cond['salary']);
 
         $conditions = array();
@@ -424,7 +430,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
             'special_allowance' => $allowancetoadd,
             'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
-        print_r($final_result);exit;
+       
         
        $Result=$this->savesalaryeditdata($final_result,$salary_start_year,$salary_start_month);
       
@@ -486,7 +492,15 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
         return $row;
     }
-    
+    /**
+     * 
+     * @param type $resigndate
+     * @param type $resignyear
+     * @param type $resignmonth
+     * @param type $member_id
+     * @return type
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function countattdate($resigndate,$resignyear,$resignmonth,$member_id) {
         try {
             $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'";
@@ -559,6 +573,29 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
       
         return $user;
 
+    }
+    
+    public function searchSList($param) {
+        try{
+            if($param['travel_fees'] == 1){
+            $field="travel_fee_perday";
+            }
+            if($param['travel_fees'] == 2){
+            $field="travel_fee_permonth";
+            }
+            $select = "SELECT salary_master.member_id,member_login_name,basic_salary,".$field.",over_time,ssc_emp,ssc_comp FROM salary_master"
+                    . " join core_member on salary_master.member_id=core_member.member_id";
+            if($param['user_id'] !== ""){
+                $select .= " WHERE salary_master.member_id='" . $param["user_id"] . "'";
+            }
+            //echo $select;exit;
+            $result = $this->db->query($select);
+            $row = $result->fetchall();
+            
+        } catch (Exception $ex) {
+         echo $ex;
+        }
+        return $row;
     }
 
 }

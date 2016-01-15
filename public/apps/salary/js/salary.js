@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 10;
+        pager.perpage = 10;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -20,7 +20,7 @@ var Salary = {
           success:function(res){
               
                var result = $.parseJSON(res);
-              // alert(result.no_of_children);
+               
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>'+result.t['name']+'</b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
@@ -29,7 +29,7 @@ var Salary = {
                         +'<tr><td></td><td><b>'+result.t['t_fee']+'</b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:100px;height:40px;"></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['ot']+'</b></td>'
-                        +'<td id="overmsg"><input style="width:50px;margin-top:10px;" type="text" value="'+result.data[0]['over_time']+'" name="overtime" id="overerr"> %</td></tr>'
+                        +'<td id="overmsg"><input style="width:100px;margin-top:10px;" type="text" value="'+result.data[0]['over_time']+'" name="overtime" id="overerr"></td></tr>'
                         +'<tr><td></td><td>SSC Emp </td>'
                         +'<td id="empmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_emp']+' name="ssc_emp" id="emperr"> %</td><td style="width:55px;height:40px;"></td></tr>'
                         +'<tr><td></td><td><b>SSC Comp </b></td>'
@@ -122,6 +122,73 @@ var Salary = {
             $ovl.dialog("close");
         });
     },
+     salnameautolist: function (){                       
+        //var name = document.getElementById('namelist').value;
+            //alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+       var dict = [];
+       $.ajax({
+                url:'salaryusername',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                   // alert(json_obj[i].full_name);
+                dict.push(json_obj[i].member_login_name);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                       //alert(dict);                    
+             $('.username').autocomplete({
+                        source: function( request, response ) {
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                        response( $.grep( dict, function( item ){                 
+                        return matcher.test( item);
+                         }) );
+                 },
+                        minLength :1
+                 });
+       // ... do whatever you need to do with icon here
+   } 
+       },
+    getmemid: function (name){                       
+        //var name = document.getElementById('namelist').value;
+           // alert("aaa");
+        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+         var dict = [];
+       $.ajax({
+                url:'getmemberid?uname='+name,
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                //alert(data);    
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                    //alert(json_obj[i].member_id);
+               // var aa = json_obj[i].member_id;
+                //alert(aa);
+                //$('#formemberid').text(json_obj[i].member_id);
+               // $(".salusername").text(aa);
+                dict.push(json_obj[i].member_id);
+                }
+                  //var dict = ["Test User02","Adminstrator"];
+                  //alert(dict);
+                 loadIcon(dict);
+                        }
+                        
+                    });
+                     function loadIcon(dict) {
+                      // alert(dict);
+                        $('#formemberid').val(dict);
+                     }
+                     
+       },
     BtnEdit : function(val){
         var form=$('#edit_salary');
         $.ajax({
@@ -306,39 +373,51 @@ var Salary = {
    }
     
        },
-        getmemid: function (name){                       
-        //var name = document.getElementById('namelist').value;
-           // alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
-         var dict = [];
-       $.ajax({
-                url:'getmemberid?uname='+name,
+       //searcch salary list by travel fees and user name
+       search_salarylist: function (){
+           var $form = $('#frm_search').serialize();
+           $.ajax({
+                url:baseUri + 'salary/search/searchTravelfees?' + $form,
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-                //alert(data);    
-                var json_obj = $.parseJSON(data);
-                for (var i in json_obj){
-                    //alert(json_obj[i].member_id);
-               // var aa = json_obj[i].member_id;
-                //alert(aa);
-                //$('#formemberid').text(json_obj[i].member_id);
-               // $(".salusername").text(aa);
-                dict.push(json_obj[i].member_id);
-                }
-                  //var dict = ["Test User02","Adminstrator"];
-                  //alert(dict);
-                 loadIcon(dict);
+               var json_obj = $.parseJSON(data);//parse JSON 
+               $('tbody').empty(),$('#th_travelfees').empty();
+               
+               var j=1;
+               var travelfees;
+               var travelfee_header;
+                    for (var i in json_obj)
+                    { 
+                        if(json_obj[i].travel_fee_perday)
+                        {
+                           var travelfees=json_obj[i].travel_fee_perday;
+                           var travelfee_header='Travel fees (per day)';
                         }
+                        else{
+                            var travelfees=json_obj[i].travel_fee_permonth;
+                            var travelfee_header='Travel fees (per month)';
+                        }
+                        var output = "<tr>"
+                                + "<td>" +j+ "</td>"
+                                + "<td>" + json_obj[i].member_login_name + "</td>"
+                                + "<td>" + json_obj[i].basic_salary + " </td>"
+                                + "<td>" + travelfees + "</td>"
+                                + "<td>" + json_obj[i].over_time + "</td>"
+                                + "<td>" + json_obj[i].ssc_emp + "</td>"
+                                + "<td>" + json_obj[i].ssc_comp + "</td>"
+                                + "<td><a href='#' onclick='return false;' style='float:right;margin-top: 5px;' class='inedit displaypopup' id='"+json_obj[i].member_id+"'></a></td>"
+                                + "</tr>";
+                        $("tbody").append(output);
+                        j++;
+                    }
+                    $("#th_travelfees").append(travelfee_header);
+                 }
                         
-                    });
-                     function loadIcon(dict) {
-                      // alert(dict);
-                        $('#formemberid').val(dict);
-                     }
-                     
+                 });
        },
-    search : function () {
+        
+    search : function () { 
     var $form = $('#search_frm').serialize();
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
@@ -347,8 +426,19 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-             var json_obj = $.parseJSON(d);//parse JSON
-            $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();
+           $('tbody').empty();
+            $('tfoot').empty();
+        if (d.length==2) {
+            
+            var output = "<tr>"
+                    + "<td colspan='13'><center>No data to display</center></td>"
+                    + "</tr>";
+            $("tbody").append(output);
+        }
+        else{
+             var json_obj = $.parseJSON(d);//parse JSON            
+            $('tbody').empty();
+            $('tfoot').empty();
             var totalsal = 0;
             for (var i in json_obj)
             {   
@@ -372,17 +462,22 @@ var Salary = {
                         + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
                         
                         + "</tr>"
-                        
-                $("tbody").append(output);
-                
-                
-            }
-            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
+                        +'<tr style="background-color:#3c8dbc; color:#ffffff;">'
                         +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
                         +'<td></td>'
                         +'</tr>'
-            $("tbody").append(html);
+                        
+                $("tbody").append(output);
+                
+                
+            }}
+//            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
+//                        +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
+//                        +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
+//                        +'<td></td>'
+//                        +'</tr>'
+           // $("tbody").append(html);
             //click event for detail after search
             $('.btn_detail').click(function () {
             var month = document.getElementById('month').value;
@@ -452,6 +547,11 @@ $(document).ready(function () {
         var id = $(this).attr('id');
         Salary.Edit(id);
     });
+    //for auto complete into user name textbox
+    $(".username").click(function(){
+		Salary.salnameautolist();
+               
+	});
     
 //isplay popup to calculate monthly salary
     $("#displaypopup").click(function(){
@@ -464,10 +564,23 @@ $(document).ready(function () {
     $('.tags').click(function () {
         Salary.autolist();
     });
-//    $("#search_salary").mouseenter(function(){
-//       var name = document.getElementById('namelist').value;
-//		Salary.getmemid(name);      
-//	});
+    $("#search_salary").mouseenter(function(){
+       var name = document.getElementById('namelist').value;
+		Salary.getmemid(name);      
+	});
+    $(".search-trtype").click(function(){
+	Salary.search_salarylist();       
+	});
+    //get member_id 
+    $("#username").blur(function(){
+        
+       var name = document.getElementById('username').value;
+       //alert(name);
+		Salary.getmemid(name);
+               
+	});
+   
+    
 });
 
 
