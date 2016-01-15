@@ -426,6 +426,16 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
+           $('tbody').empty();
+            $('tfoot').empty();
+        if (d.length==2) {
+            
+            var output = "<tr>"
+                    + "<td colspan='13'><center>No data to display</center></td>"
+                    + "</tr>";
+            $("tbody").append(output);
+        }
+        else{
              var json_obj = $.parseJSON(d);//parse JSON            
             $('tbody').empty();
             $('tfoot').empty();
@@ -452,17 +462,22 @@ var Salary = {
                         + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
                         
                         + "</tr>"
-                        
-                $("tbody").append(output);
-                
-                
-            }
-            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
+                        +'<tr style="background-color:#3c8dbc; color:#ffffff;">'
                         +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
                         +'<td></td>'
                         +'</tr>'
-            $("tbody").append(html);
+                        
+                $("tbody").append(output);
+                
+                
+            }}
+//            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
+//                        +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
+//                        +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
+//                        +'<td></td>'
+//                        +'</tr>'
+           // $("tbody").append(html);
             //click event for detail after search
             $('.btn_detail').click(function () {
             var month = document.getElementById('month').value;
