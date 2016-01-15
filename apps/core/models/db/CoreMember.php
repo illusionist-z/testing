@@ -130,7 +130,7 @@ class CoreMember extends \Library\Core\BaseModel {
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $filter->sanitize($loginParams['password'], "string");
         $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("SELECT * from core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+        $user = $this->db->query("SELECT * from core_member where member_login_name='" . mysql_real_escape_string($name) . "' and member_password='" . sha1($password) . "'");
         $user1 = $user->fetchall();
         $today = date("Y-m-d");
         if ($user1['0']['working_year_by_year'] == NULL) {
@@ -144,7 +144,7 @@ class CoreMember extends \Library\Core\BaseModel {
         }
     }
    public function getlang($member){        
-     $query = "Select lang from core_member where member_login_name ='".$member['member_login_name']."'";
+     $query = "Select lang from core_member where member_login_name ='".mysql_real_escape_string($member['member_login_name'])."'";
         $result = $this->db->query($query);
         $lang=$result->fetch();
         return $lang;        

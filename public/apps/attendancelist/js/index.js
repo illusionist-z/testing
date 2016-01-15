@@ -135,12 +135,10 @@ var Attendance = {
       monthlylist :function (){
             var yy = $('#year').val(),
              mm = $('#month').val(),
-             name = $('#username').val();
+             name = $('#username').val();         
         //set empty
-        $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();
-        
-        if ("" === yy && "" === mm && "" === name) {
-           
+        $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();        
+        if ("" === yy && "" === mm && ( "" === name ||  !isValid(name))) {
             var output = "<tr>"
                     + "<td colspan='9'><center>No datafsfaf to display</center></td>"
                     + "</tr>";

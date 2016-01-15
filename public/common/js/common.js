@@ -11,6 +11,10 @@ function checktime(i) {
     }
     return i;
 }
+//for special character string
+function isValid(str){
+ return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+}
 /**
  * sidebar menu link height resize()
  * @author David JP<gnext>
@@ -57,22 +61,19 @@ function GEOprocess(position) {
     $.ajax({
         url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&offset=" + offset+"&location="+ location,
         type: 'GET',
-        dataType: 'json',
-        success: function (d) {
-        },
-        error: function(d) {
-
-        }
+        dataType: 'json'    
     });
 }
 ///**
-// * @4:00pm check absent member
+// * @4:00pm{optional time} check absent member
 // * @author David JP <david.gnext@gmail.com>
 // */
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
-    if (h ===9) {
+    var m = x.getMinutes();
+    var s  = x.getSeconds();
+    if (h === 12 ) {
         $.ajax({
             url: baseUri + "attendancelist/absent/addAbsent",
             type: 'GET',
@@ -80,6 +81,9 @@ function getAbsentMember() {
             }
         });
     }
+//    setTimeout(function(){
+//        getAbsentMember();
+//    },1000);
 }
 /*
  * @author David
@@ -146,7 +150,7 @@ $(document).ready(function() {
             error: function(d) {
 
             }
-        });
+        });        
     });
   
     /**

@@ -6,6 +6,7 @@ use Phalcon;
 use Phalcon\Loader;
 use Phalcon\Mvc\ModuleDefinitionInterface;
 use Phalcon\Mvc\View;
+use Library\Core\Plugin\Permission;
 
 //use Phalcon\Config\Adapter\Ini;
 
@@ -61,7 +62,7 @@ Class Module implements ModuleDefinitionInterface {
             //Set Plugin
             $eventsManager = $di->getShared('eventsManager');
             //Set Permission plugin
-            $eventsManager->attach('dispatch', new Plugin\Permission($di));
+            $eventsManager->attach('dispatch', new Permission($di));
 
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setDefaultNamespace('salts\\' . $this->_moduleName . '\Controllers');

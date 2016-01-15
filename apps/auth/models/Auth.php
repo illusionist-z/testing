@@ -5,7 +5,7 @@ namespace salts\Auth\Models;
 use Phalcon\Mvc\User\Component;
 use Phalcon\DI\FactoryDefault;
 use salts\Auth\Models\Db\AuthFailedLogins;
-
+use Phalcon\Filter;
 class Auth extends Component {
 
     public function initialize() {
@@ -35,22 +35,22 @@ class Auth extends Component {
      */
     public function check($loginParams, & $user = null) {
         //print_r($this->session->db_config);
-        $name = $loginParams['member_login_name'];
+        $filter = new Filter();
+        $name = $filter->sanitize($loginParams['member_login_name'],"string");
         $password = $loginParams['password'];
         $database=$_SESSION['db_config'];
         if($database['db_name']=='company_db'){
-           $sql="SELECT * FROM user_tbl where login_name='" . $name . "' and password='" . sha1($password) . "' and deleted_flag=0";
+           $sql="SELECT * FROM user_tbl where login_name='" . mysql_real_escape_string($name) . "' and password='" . sha1($password) . "' and deleted_flag=0";
         }
-        else{
+        else{         
         // Check if the user exist
         //$this->db = $this->getDI()->getShared("db");
-        $sql="SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0";
+        $sql="SELECT * FROM core_member where member_login_name= '".mysql_real_escape_string($name)."' and member_password='" . sha1($password) . "' and deleted_flag=0";
         }
         //echo $sql;
         $user = $this->db->query($sql);
-        $user = $user->fetchArray();
-        
-        //print_r($user);exit;
+        $user = $user->fetchArray();        
+        //var_dump($user);exit;
         return $user;
 
     }
@@ -61,7 +61,7 @@ class Auth extends Component {
         $password = $loginParams['password'];
         $this->db = $this->getDI()->getShared("db");
       
-        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . mysql_real_escape_string($name) . "' and member_password='" . sha1($password) . "'");
         $user = $user->fetchArray();
         
         $permission = $this->db->query("SELECT permission_group_id_user FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
