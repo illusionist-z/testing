@@ -14,7 +14,7 @@ try {
     //Register some namespaces
     $loader->registerNamespaces(array(
         // set namespace for libraries
-        'Library\Core' => '../library/core/',
+        'Library\Core' => __DIR__.'/../library/core/',
         //set namespace for auth model
         'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
         // set namespace for the core module
