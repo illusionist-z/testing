@@ -15,7 +15,7 @@ var Categories = {
                         +'<tr><td>'+result[1]['delete_confirm']+'"'+result[0]['leavetype_name']+ '"?</td>'
                         +'<tr></tr><br>'
                          +'<tr><td></td></tr>';             
-               data +='<tr><td style="padding-top: 13px;"><a href="#" class="button" id="delete_ltype">'+result[1]['del_yes']+'</a><a href="#" class="button" id="edit_close">'+result[1]['del_no']+'</a></td></tr>';
+               data +='<tr><td style="padding-top: 13px;"><a href="#" class="button" id="delete_ltype">'+result[1]['yes']+'</a><a href="#" class="button" id="edit_close">'+result[1]['no']+'</a></td></tr>';
                data +='</table></form>';
                Categories.Dia(data,result[1]['del_title']);
            }

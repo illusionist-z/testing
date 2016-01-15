@@ -140,8 +140,9 @@ var Attendance = {
         $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();
         
         if ("" === yy && "" === mm && "" === name) {
+           
             var output = "<tr>"
-                    + "<td colspan='9'><center>No data to display</center></td>"
+                    + "<td colspan='9'><center>No datafsfaf to display</center></td>"
                     + "</tr>";
             $("tbody").append(output);
         }
@@ -152,6 +153,7 @@ var Attendance = {
                 data: {month: mm, username: name, year: yy},      
                 cache : false,
                 success: function (d) {
+                    
                     var json_obj = $.parseJSON(d);//parse JSON                               
                     for (var i in json_obj)
                     {
