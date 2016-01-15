@@ -110,7 +110,7 @@ class IndexController extends ControllerBase {
         $UserName = $UserList::getinstance()->getusername();
         $month = $this->config->month;
         $Attendances = new \salts\Attendancelist\Models\Attendances();
-        $monthlylist = $Attendances->showattlist();       
+        $monthlylist = $Attendances->showattlist();
         $coreid = new CorePermissionGroupId();
          if($this->permission==1){
         $this->view->monthlylist = $monthlylist;
@@ -128,8 +128,7 @@ class IndexController extends ControllerBase {
             if ($this->request->isAjax() == true) {
                 $month = $this->request->get('month');
                 $username = $this->request->get('username',"string");
-                $year = $this->request->get('year');
-                
+                $year = $this->request->get('year');                
                 $Attendances = new \salts\Attendancelist\Models\Attendances();
                 $result = $Attendances->search_attlist($year, $month, $username);
                 $this->view->disable();

@@ -36,6 +36,7 @@ class Attendances extends Model {
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('attendances.att_date = :today:', array('today' => $today))
                     ->andWhere('core.deleted_flag = 0')
+                    ->andWhere('attendances.status=0')
                     ->orderBy('attendances.checkin_time DESC')
                     ->getQuery()
                     ->execute();

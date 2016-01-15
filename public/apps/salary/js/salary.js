@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 10;            
+        pager.perpage = 10;
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -347,9 +347,8 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-             var json_obj = $.parseJSON(d);//parse JSON            
-            $('tbody').empty();
-            $('tfoot').empty();
+             var json_obj = $.parseJSON(d);//parse JSON
+            $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();
             var totalsal = 0;
             for (var i in json_obj)
             {   
@@ -465,10 +464,10 @@ $(document).ready(function () {
     $('.tags').click(function () {
         Salary.autolist();
     });
-    $("#search_salary").mouseenter(function(){
-       var name = document.getElementById('namelist').value;
-		Salary.getmemid(name);      
-	});
+//    $("#search_salary").mouseenter(function(){
+//       var name = document.getElementById('namelist').value;
+//		Salary.getmemid(name);      
+//	});
 });
 
 

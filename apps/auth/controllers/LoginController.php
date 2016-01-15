@@ -46,12 +46,12 @@ class LoginController extends ControllerBase {
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();
         $lang = $member->getlang($loginParams); 
-        $this->session->set('language',$lang['lang']);
-        $member->updatecontract($loginParams);
+        $this->session->set('language',$lang['lang']);        
         $this->session->set('page_rule_group', $permission);
         $user = array();
         $this->session->set('user', $result);
         if ($result) {
+            $member->updatecontract($loginParams);
             $ModelPermission = new Models\Permission();
             $permissions = [];
             //Set user's permission to session 

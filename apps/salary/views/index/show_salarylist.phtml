@@ -116,14 +116,14 @@
                             <td><input type="checkbox" class='case' name='chk[]' value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td><?php echo $filter->sanitize($getsalarylist['full_name'] , "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'] , "string") ?></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['allowance_amount'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_emp'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['basic_salary'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['overtime'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo$filter->sanitize($getsalarylist['travel_fee'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['allowance_amount'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['absent_dedution'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['income_tax'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['ssc_comp'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['ssc_emp'], "int"); ?></div></td>
                             
                             <td><div class="td-style"><?php 
                             $totalresult+=$getsalarylist['total'];
@@ -153,3 +153,4 @@
     </div><!-- /.row -->
 
 </section><!-- /.content -->
+<div id="content"></div>
