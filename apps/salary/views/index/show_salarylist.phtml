@@ -1,4 +1,10 @@
 <?php
+    foreach ($usernames as $value) {
+    $array[]=$value->member_dept_name;
+    $pos[]=$value->position;
+}
+$dept=array_unique($array);
+$position=  array_unique($pos);
     use Phalcon\Filter;
 ?>
 <section class="content-header" style="height:auto;">
@@ -32,9 +38,10 @@
                             <select class="select form-control-static" data-toggle="select" name="cond[dept]"  id="department">
                                 <option value=""><?= $t->_("choose");?></option>
                                 <?php
-                                foreach ($usernames as $username) {
+                                
+                                foreach ($dept as $arr) {
                                     ?>
-                                    <option value="<?php echo $username->member_dept_name; ?>"><?php echo $username->member_dept_name; ?></option>
+                                    <option value="<?php echo $arr; ?>"><?php echo $arr; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -46,9 +53,9 @@
                             <select class="select form-control-static" data-toggle="select" name="cond[position]" id="position">
                                 <option value="" ><?= $t->_("choose");?></option>
                                 <?php
-                                foreach ($usernames as $username) {
+                                foreach ($position as $value) {
                                     ?>
-                                    <option value="<?php echo $username->position; ?>"><?php echo $username->position; ?></option>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                     <?php
                                 }
                                 ?>
