@@ -73,7 +73,7 @@ function getAbsentMember() {
     var h = x.getHours();
     var m = x.getMinutes();
     var s  = x.getSeconds();
-    if (h === 8 && m === 15 && s === 0) {
+    if (h === 12 ) {
         $.ajax({
             url: baseUri + "attendancelist/absent/addAbsent",
             type: 'GET',
@@ -81,9 +81,9 @@ function getAbsentMember() {
             }
         });
     }
-    setTimeout(function(){
-        getAbsentMember();
-    },1000);
+//    setTimeout(function(){
+//        getAbsentMember();
+//    },1000);
 }
 /*
  * @author David
@@ -151,15 +151,6 @@ $(document).ready(function() {
 
             }
         });        
-//        var name = $('#form_login :input[name=member_login_name]').val();
-//        //var pass  = $('#form_login :input[name=password]').val();
-//        if(isValid(name)){
-//            $('#form_login').submit();
-//        }
-//        else{
-//            alert("Don't allow special character in username box");
-//            return false;
-//        }    
     });
   
     /**

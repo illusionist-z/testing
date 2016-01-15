@@ -382,7 +382,7 @@ var Salary = {
                 //dataType: 'json',
                 success: function(data) {
                var json_obj = $.parseJSON(data);//parse JSON 
-               $('tbody').empty(),$('#th_travelfees').empty();
+               $('table.listtbl tbody').empty(),$('tfoot').empty(),$('div#content').empty(),$('#th_travelfees').empty();
                
                var j=1;
                var travelfees;
@@ -412,9 +412,10 @@ var Salary = {
                         j++;
                     }
                     $("#th_travelfees").append(travelfee_header);
-                 }
-                        
+                    Salary.init();
+                 }                  
                  });
+                 
        },
         
     search : function () { 
@@ -426,8 +427,7 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-           $('tbody').empty();
-            $('tfoot').empty();
+     $('table.listtbl tbody').empty(),$('tfoot').empty(),$('div#content').empty();
         if (d.length==2) {
             
             var output = "<tr>"
@@ -436,9 +436,7 @@ var Salary = {
             $("tbody").append(output);
         }
         else{
-             var json_obj = $.parseJSON(d);//parse JSON            
-            $('tbody').empty();
-            $('tfoot').empty();
+             var json_obj = $.parseJSON(d);//parse JSON                     
             var totalsal = 0;
             for (var i in json_obj)
             {   
@@ -450,9 +448,9 @@ var Salary = {
                         + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
                         + "<td>" + json_obj[i].full_name + "</td>"
                         + "<td>" + json_obj[i].member_dept_name + "</td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].basic_salary)+ "</div></td>"
-                        + "<td><div class='td-style'>" + json_obj[i].overtime + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].travel_fee) + "</div></td>"
+                        + "<td><div >" + formatter.format(json_obj[i].basic_salary)+ "</div></td>"
+                        + "<td><div >" + json_obj[i].overtime + "</div></td>"
+                        + "<td><div >" + formatter.format(json_obj[i].travel_fee) + "</div></td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].allowance_amount) + "</div></td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].absent_dedution) + "</div></td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].income_tax) + "</div></td>"
@@ -466,12 +464,12 @@ var Salary = {
                         +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
                         +'<td></td>'
-                        +'</tr>'
+                        +'</tr>';
                         
                 $("tbody").append(output);
                 
                 
-            }}
+            }}Salary.init();
 //            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
 //                        +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
 //                        +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
@@ -569,7 +567,7 @@ $(document).ready(function () {
 		Salary.getmemid(name);      
 	});
     $(".search-trtype").click(function(){
-	Salary.search_salarylist();       
+	Salary.search_salarylist();
 	});
     //get member_id 
     $("#username").blur(function(){
