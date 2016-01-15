@@ -461,23 +461,17 @@ var Salary = {
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].total) + "</div></td>"
                         + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
                         
-                        + "</tr>"
-                        +'<tr style="background-color:#3c8dbc; color:#ffffff;">'
+                      
+                $("tbody").append(output);
+                
+                
+            }
+            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
                         +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
                         +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
                         +'<td></td>'
                         +'</tr>'
-                        
-                $("tbody").append(output);
-                
-                
-            }}
-//            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
-//                        +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
-//                        +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
-//                        +'<td></td>'
-//                        +'</tr>'
-           // $("tbody").append(html);
+            $("tbody").append(html);}
             //click event for detail after search
             $('.btn_detail').click(function () {
             var month = document.getElementById('month').value;
