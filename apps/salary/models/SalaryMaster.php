@@ -718,7 +718,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      */
     public function editsalary($member_id) {
         try {
-            $sql = "select * from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE salary_master.id ='".$member_id."'";
+            $sql = "select * from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE salary_master.member_id ='".$member_id."'";
+            
             $result = $this->db->query($sql);
             $row = $result->fetchall();
         } catch (Exception $e) {

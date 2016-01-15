@@ -297,11 +297,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
             $sql = $select;
             if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "'";
+                $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "' group by core_member.member_id";
             }
            
             $result = $this->db->query($sql);
             $row = $result->fetchall();
+            
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -310,6 +311,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
 
     public function setCondition($cond) {
+      
         $salary = explode('~', $cond['salary']);
 
         $conditions = array();
@@ -428,7 +430,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
             'special_allowance' => $allowancetoadd,
             'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
-        print_r($final_result);exit;
+       
         
        $Result=$this->savesalaryeditdata($final_result,$salary_start_year,$salary_start_month);
       
@@ -490,7 +492,15 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
         return $row;
     }
-    
+    /**
+     * 
+     * @param type $resigndate
+     * @param type $resignyear
+     * @param type $resignmonth
+     * @param type $member_id
+     * @return type
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
     public function countattdate($resigndate,$resignyear,$resignmonth,$member_id) {
         try {
             $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'";
@@ -563,6 +573,29 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
       
         return $user;
 
+    }
+    
+    public function searchSList($param) {
+        try{
+            if($param['travel_fees'] == 1){
+            $field="travel_fee_perday";
+            }
+            if($param['travel_fees'] == 2){
+            $field="travel_fee_permonth";
+            }
+            $select = "SELECT salary_master.member_id,member_login_name,basic_salary,".$field.",over_time,ssc_emp,ssc_comp FROM salary_master"
+                    . " join core_member on salary_master.member_id=core_member.member_id";
+            if($param['user_id'] !== ""){
+                $select .= " WHERE salary_master.member_id='" . $param["user_id"] . "'";
+            }
+            //echo $select;exit;
+            $result = $this->db->query($select);
+            $row = $result->fetchall();
+            
+        } catch (Exception $ex) {
+         echo $ex;
+        }
+        return $row;
     }
 
 }
