@@ -382,7 +382,7 @@ var Salary = {
                 //dataType: 'json',
                 success: function(data) {
                var json_obj = $.parseJSON(data);//parse JSON 
-               $('tbody').empty(),$('#th_travelfees').empty();
+               $('table.listtbl tbody').empty(),$('tfoot').empty(),$('div #content').empty(),$('#th_travelfees').empty();
                
                var j=1;
                var travelfees;
@@ -412,6 +412,7 @@ var Salary = {
                         j++;
                     }
                     $("#th_travelfees").append(travelfee_header);
+                    Salary.init();
                  }
                         
                  });
