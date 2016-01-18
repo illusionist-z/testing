@@ -1,8 +1,18 @@
+var pager = new Paging.Pager(),dict =[];   //for pagination
 
-
-$(document).ready(function(){
-      dict= [];
-             $.ajax({
+/*
+ * show today list by return json array
+ * @version 24/8/2015 David
+ */
+var ManageCompany = {
+        init : function (reload){
+            $('tfoot').append($('table.listtbl tbody').html());   //for csv 
+            pager.perpage = 3;
+            pager.para = $('table.listtbl tbody > tr');
+            pager.showPage(1);
+            $('tbody').show();
+            if(reload){
+               $.ajax({
                 url:'managecompany/index/getcomname',
                 method: 'GET',
                 //dataType: 'json',
@@ -12,10 +22,16 @@ $(document).ready(function(){
                 for (var i in json_obj){
                  // alert(json_obj[i].member_login_name);
                 dict.push(json_obj[i].company_id);
-                }   
+                }
                 }                        
               }); 
-         
+          }
+        }
+    };
+
+$(document).ready(function(){              
+    ManageCompany.init(1);
+    
   document.getElementById('confirm').style.display = 'none';
 
  $('#com_name').on('click',function(){
