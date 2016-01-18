@@ -139,7 +139,7 @@ class CoreMember extends \Library\Core\BaseModel {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year'])));
         }
 
-        if (strtotime($user1['0']['working_year_by_year']) <=strtotime($today)) {
+        if (strtotime($end_date) <=strtotime($today)) {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
     }
@@ -237,6 +237,7 @@ class CoreMember extends \Library\Core\BaseModel {
      
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
+       
  
         $i=0;
         foreach ($noti as $noti) {
@@ -251,7 +252,7 @@ class CoreMember extends \Library\Core\BaseModel {
            
             
         }
-        
+         
        $data=array();
         foreach ($final_result as $result){
             foreach ($result as $value) {
@@ -260,6 +261,7 @@ class CoreMember extends \Library\Core\BaseModel {
                  }
             }
         }
+        //print_r($data);exit;
         return $data;
     }
     
@@ -442,6 +444,26 @@ class CoreMember extends \Library\Core\BaseModel {
         //print_r($user);exit;
        return $user;
 
+    }
+    /*
+     * User Fix 
+     * tokenpush
+     * timeflag
+     * @author Yan Lin Pai <wizardrider@gmail.com>
+     *     
+     */
+
+    public function tokenpush($member_id, $tokenpush) {
+        $this->db = $this->getDI()->getShared("db");
+        $member_log = $this->db->query("INSERT INTO member_log(token,member_id) values(' " . $member_id . " ' ,' " . $tokenpush . " ' )");
+        
+        return $member_log;
+    }
+    public function timeflag($member_id, $formtdate) {
+        $this->db = $this->getDI()->getShared("db");
+        $member_flag = $this->db->query("UPDATE core_member set timeflag = '" . $formtdate . "' WHERE member_login_name ='" . $member_id . "' ");
+        
+        return $member_flag;
     }
     /**
      * Saw Zin Min Tun

@@ -13,7 +13,6 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
          $this->view->t = $this->_getTranslation();
-         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/managecompany/js/index.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
@@ -71,12 +70,31 @@ class IndexController extends ControllerBase {
      * Add new company 
      */
     public function addnewAction(){
-        $com=$this->request->get('com');
-        $check=$this->request->get('check');
+        if ($this->request->isPost()) {
+            $company=new \salts\Managecompany\Models\CompanyTbl();
+             $validate = $company->validation($this->request->getPost());
+             
+            if(count($validate)){
+               foreach ($validate as $message){
+                   $json[$message->getField()] = $message->getMessage();
+               }
+               $json['result'] = "error";
+                echo json_encode($json);
+                $this->view->disable();
+                  }     
+            else{
+             $com=$this->request->getPost();
         
-        $company=new \salts\Managecompany\Models\CompanyTbl();
-        $company->addnew($com,$check);
-        $this->response->redirect("managecompany/index");
+       
+        
+        
+        $error=$company->addnew($com);
+         $this->view->disable();
+            echo json_encode($error);
+           
+             }
+        }
+       
 
     }
     /**
@@ -114,7 +132,7 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $company=new \salts\Managecompany\Models\CompanyTbl();
         $company->deleteCompanyById($id);
-        $this->response->redirect("index");
+        $this->response->redirect("managecompany/index");
     }
 
     

@@ -14,6 +14,26 @@ var ManageCompany = {
             if(reload){
                $.ajax({
                 url:'managecompany/index/getcomname',
+                     }
+                 }
+                }
+                else{
+                    alert("Add Successfully");
+                    location.reload("managecompany/index")
+                }
+           }
+        });
+    }
+};
+
+$(document).ready(function(){
+     $('#add_com').on('click',function(e){
+      AddCom.Submit();
+   });
+    
+      dict= [];
+             $.ajax({
+                url:baseUri+'managecompany/index/getcomname',
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {

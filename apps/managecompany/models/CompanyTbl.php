@@ -2,6 +2,8 @@
 
 namespace salts\Managecompany\Models;
 use Phalcon\Mvc\Model;
+use Phalcon\Validation;
+use Phalcon\Validation\Validator\PresenceOf;
 
 class CompanyTbl extends \Library\Core\BaseModel {
 
@@ -16,22 +18,24 @@ class CompanyTbl extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * Add New Company to company_tbl table
      */
-    public function addnew($data, $check) {
+    public function addnew($data) {
 
         $date = date("Y-m-d H:i:s");
-        $sdate = date("Y-m-d", strtotime($data['sdate']));
-        
+        $sdate = date("Y-m-d", strtotime($data['com_sdate']));
+      
         $sql = "INSERT INTO `company_tbl`(`company_id`, `company_name`, `email`, `phone_no`, "
                 . "`db_name`, `user_name`, `db_psw`, `host`, `user_limit`, `starting_date`, "
                 . "`created_dt`) VALUES "
-                . "('" . $data['id'] . "','" . $data['name'] . "','" . $data['email'] . "','" . $data['phno'] . "'"
-                . ",'" . $data['db'] . "','" . $data['dbun'] . "','" . $data['dbpsw'] . "','" . $data['host'] . "',"
-                . "'" . $data['limit'] . "','" . $sdate . "','" . $date . "')";
+                . "('" . $data['comid'] . "','" . $data['com_name'] . "','" . $data['com_email'] . "','" . $data['com_phno'] . "'"
+                . ",'" . $data['com_db'] . "','" . $data['com_dbun'] . "','" . $data['com_dbpsw'] . "','" . $data['com_host'] . "',"
+                . "'" . $data['com_limit'] . "','" . $sdate . "','" . $date . "')";
         $this->db->query($sql);
-        for ($i = 0; $i < count($check); $i++) {
-            $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $data['id'] . "','" . $check[$i] . "')";
+        for ($i = 0; $i < count($data['check']); $i++) {
+            $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $data['comid'] . "','" . $data['check'][$i] . "')";
             $this->db->query($sql);
         }
+        $message="success";
+        return $message;
     }
 
     public function getallcom() {
@@ -92,5 +96,68 @@ class CompanyTbl extends \Library\Core\BaseModel {
     {
         $sql="UPDATE `company_tbl` SET `deleted_flag`=1 WHERE `company_id` = '" . $id . "' ";
         $this->db->query($sql);
+    }
+    
+      public function validation($data) {
+        $res = array();
+        $validate = new Validation();
+        $validate->add('comid', new PresenceOf(
+                array(
+            'message' => ' * ID is required'
+                )
+        ));
+         $validate->add('com_name', new PresenceOf(
+                array(
+            'message' => ' * Company Name is required'
+                )
+        ));
+          $validate->add('com_sdate', new PresenceOf(
+                array(
+            'message' => ' * Starting date is required'
+                )
+        ));
+           $validate->add('com_email', new PresenceOf(
+                array(
+            'message' => ' * email is required'
+                )
+        ));
+            $validate->add('com_phno', new PresenceOf(
+                array(
+            'message' => ' * Phone number is required'
+                )
+        ));
+             $validate->add('com_db', new PresenceOf(
+                array(
+            'message' => ' * Database is required'
+                )
+        ));
+              $validate->add('com_dbun', new PresenceOf(
+                array(
+            'message' => ' * db username is required'
+                )
+        ));
+               $validate->add('com_dbpsw', new PresenceOf(
+                array(
+            'message' => ' * db password is required'
+                )
+        ));
+                $validate->add('com_host', new PresenceOf(
+                array(
+            'message' => ' * DB host is required'
+                )
+        ));
+                 $validate->add('com_limit', new PresenceOf(
+                array(
+            'message' => ' * User Limit is required'
+                )
+        ));
+
+        $messages = $validate->validate($data);
+        if (count($messages)) {
+            foreach ($messages as $message) {
+                $res[] = $message;
+            }
+        }
+        return $res;
     }
 }

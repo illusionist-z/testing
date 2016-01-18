@@ -97,16 +97,7 @@ $di->set("login_db", function() use ($config) {
     ));
 });
 
-//Set database after login success
 
-//$di->set("db", function() use ($config) {
-//    return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
-//        "host" => $config->database->host,
-//        "username" => $config->database->username,
-//        "password" => $config->database->password,
-//        "dbname" => $config->database->dbname
-//    ));
-//});
 
 
 $di->setShared('db',function() {
@@ -120,7 +111,8 @@ $di->setShared('db',function() {
                                             ]);
     }
     else {
-            header('Location:http://localhost/salts/');
+         // $localhost = ($this->request->getServer('HTTP_HOST'));    
+            header("Location:http://localhost/salts/");
     }
 });
 $di->set('cookies', function () {

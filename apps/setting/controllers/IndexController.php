@@ -30,7 +30,8 @@ class IndexController extends ControllerBase {
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $this->module_name =  $this->router->getModuleName();       
         $this->act_name =  $this->router->getActionName(); 
-        $this->permission = $this->setPermission($this->module_name);
+        $this->permission = $this->setPermission($this->act_name);
+       // echo $this->permission;exit;
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
         }
