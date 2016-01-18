@@ -40,12 +40,12 @@ class Auth extends Component {
         $password = $loginParams['password'];
         $database=$_SESSION['db_config'];
         if($database['db_name']=='company_db'){
-           $sql="SELECT * FROM user_tbl where login_name='" . mysql_real_escape_string($name) . "' and password='" . sha1($password) . "' and deleted_flag=0";
+           $sql="SELECT * FROM user_tbl where login_name='" . $name . "' and password='" . sha1($password) . "' and deleted_flag=0";
         }
         else{         
         // Check if the user exist
         //$this->db = $this->getDI()->getShared("db");
-        $sql="SELECT * FROM core_member where member_login_name= '".mysql_real_escape_string($name)."' and member_password='" . sha1($password) . "' and deleted_flag=0";
+        $sql="SELECT * FROM core_member where member_login_name= '".$name."' and member_password='" . sha1($password) . "' and deleted_flag=0";
         }
         //echo $sql;
         $user = $this->db->query($sql);
@@ -61,7 +61,7 @@ class Auth extends Component {
         $password = $loginParams['password'];
         $this->db = $this->getDI()->getShared("db");
       
-        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . mysql_real_escape_string($name) . "' and member_password='" . sha1($password) . "'");
+        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user = $user->fetchArray();
         
         $permission = $this->db->query("SELECT permission_group_id_user FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
