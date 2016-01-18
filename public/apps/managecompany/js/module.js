@@ -4,7 +4,32 @@
  * @author David
  * @desc {dialog} for edit user profile
  */
-    var Manage = {};
+    var pager = new Paging.Pager(),dict =[];   //for pagination
+
+var Manage = {
+        init : function (reload){
+            $('tfoot').append($('table.listtbl tbody').html());   //for csv 
+            pager.perpage = 10;
+            pager.para = $('table.listtbl tbody > tr');
+            pager.showPage(1);
+            $('tbody').show();
+            if(reload){
+             $.ajax({
+                url:'module/getmodulename',
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
+                
+                var json_obj = $.parseJSON(data);
+                for (var i in json_obj){
+                 // alert(json_obj[i].member_login_name);
+                dict.push(json_obj[i].module_id);
+                }   
+                }                        
+              }); 
+          }
+        }
+    };
     Manage.Module = {
     Edit : function (type) {
         
@@ -202,23 +227,10 @@
 
     
 $(document).ready(function(){      
-         dict= [];
-             $.ajax({
-                url:'module/getmodulename',
-                method: 'GET',
-                //dataType: 'json',
-                success: function(data) {
-                
-                var json_obj = $.parseJSON(data);
-                for (var i in json_obj){
-                 // alert(json_obj[i].member_login_name);
-                dict.push(json_obj[i].module_id);
-                }   
-                }                        
-              }); 
+    Manage.init(1);
          
   document.getElementById('confirm').style.display = 'none';
-
+ 
  $('#msearch').on('click',function(){
         $(this).autocomplete({
                       source: function( request, response ) {                                       

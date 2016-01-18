@@ -73,7 +73,7 @@ function getAbsentMember() {
     var h = x.getHours();
     var m = x.getMinutes();
     var s  = x.getSeconds();
-    if (h === 12 ) {
+    if (h === 8 && m === 5 && s === 0 ) {
         $.ajax({
             url: baseUri + "attendancelist/absent/addAbsent",
             type: 'GET',
@@ -81,9 +81,9 @@ function getAbsentMember() {
             }
         });
     }
-//    setTimeout(function(){
-//        getAbsentMember();
-//    },1000);
+    setTimeout(function(){
+        getAbsentMember();
+    },1000);
 }
 /*
  * @author David

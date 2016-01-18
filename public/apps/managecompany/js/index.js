@@ -1,3 +1,5 @@
+var pager = new Paging.Pager(),dict =[];   //for pagination
+
 var AddCom = {
     Submit : function (){
         $.ajax({
@@ -5,7 +7,7 @@ var AddCom = {
            url  : 'addnew',
            data : $('#apply_form').serialize(),
            success: function(d){
-              
+
                cond = JSON.parse(d);
              
                  if(cond.result === 'error')
@@ -44,26 +46,21 @@ var AddCom = {
                                         repair('#com_host');break;
                         case 'com_limit':$("#com_limit").css({border:"1px solid red",color:"red"});
                                         $('#com_limit_error').text(cond[i]).css({color:'red'});
-                                        repair('#com_limit');break;
-
-                     }
-                 }
-                }
-                else{
-                    alert("Add Successfully");
-                    location.reload("managecompany/index")
-                }
-           }
-        });
-    }
-};
-
-$(document).ready(function(){
-     $('#add_com').on('click',function(e){
-      AddCom.Submit();
-   });
-    
-      dict= [];
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                };
+var ManageCompany = {
+        init : function (reload){
+            $('tfoot').append($('table.listtbl tbody').html());   //for csv 
+            pager.perpage = 3;
+            pager.para = $('table.listtbl tbody > tr');
+            pager.showPage(1);
+            $('tbody').show();
+            if(reload){
              $.ajax({
                 url:baseUri+'managecompany/index/getcomname',
                 method: 'GET',
@@ -74,10 +71,20 @@ $(document).ready(function(){
                 for (var i in json_obj){
                  // alert(json_obj[i].member_login_name);
                 dict.push(json_obj[i].company_id);
-                }   
+                }
                 }                        
               }); 
-         
+          }
+        }
+        };    
+ 
+$(document).ready(function(){              
+    ManageCompany.init(1);
+    
+    $('#add_com').on('click',function(e){
+      AddCom.Submit();
+   });
+    
   document.getElementById('confirm').style.display = 'none';
 
  $('#com_name').on('click',function(){
