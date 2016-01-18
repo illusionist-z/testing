@@ -22,7 +22,7 @@ class LoginController extends ControllerBase {
         $dbinfo['host']='localhost';
         $dbinfo['db_name']='company_db';
         $dbinfo['user_name']='root';
-        $dbinfo['db_psw']='';
+        $dbinfo['db_psw']='root';
         
         $this->session->set('db_config',$dbinfo);
         $result = $ModelAuth->check($loginParams, $user);
@@ -58,7 +58,7 @@ class LoginController extends ControllerBase {
         
         date_default_timezone_set('Asia/Rangoon');
         $core = new CoreMember();
-        $tokenpush = uniqid(bin2hex(mcrypt_create_iv(50, MCRYPT_DEV_RANDOM)));
+         $tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
         $core->token = $tokenpush;
         $member_id = $this->request->getPost('member_login_name');
         $insert  = $core->tokenpush($tokenpush,$member_id);

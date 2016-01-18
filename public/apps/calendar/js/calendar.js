@@ -346,7 +346,7 @@ Calendar.Dialog = {
                     $('.err-sdate').text(d.date).css("color", "red");
                 }
                 else {
-                    Calendar.event(old_id);
+                    reload(old_id,dia);                    
                     $('.dropdown-toggle').dropdown();
                     dia.dialog("close");
                 }

@@ -139,72 +139,48 @@
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
                        <?php
-                        $count=1;
-                        
+                       $count=1;
                         foreach ($this->session->auth as $key_name => $key_value) {                            
-                                                                                //the outer main menu                            
-                                       if (count($key_value) > 2) {
-                                                                                 if($key_name !='show_admin_setting' && $key_name !='show_user_setting'){
-                                                                                    echo '<li class="treeview"><a href="#"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a>';
-                                                                              }
-                                                                                    }
-                                                                      else {                                
+                       
                                                                                     $top = explode(" ", $key_value["link0"]);
+                                                                                    $top_link = explode(" ", $key_value["link1"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
-                                                                                          //var_dump($top);
-                                                                                         if($key_name != 'show_user_notification' && $key_name != 'show_user_setting' ){
+                                                                                         if($key_name != 'show_user_notification' && $key_name != 'show_user_setting'){
+                                                                                               if (count($key_value) > 2) {
+                                                                                                 if (isset($top_link[1])) {
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top_link[0] . $top_link[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                } else {
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                }
+                                                                                          }
+                                                                                          else{
                                                                                                 if (isset($top[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
-                                                                                         }
+                                                                                          }
+                                                                                         }                                                                                          
                                                                                     } else {
-                                                                                        if($key_name != 'show_admin_notification' ){
-                                                                                               $top = explode(" ", $key_value["link0"]);                                                                                                
+                                                                                        if($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting'){
+                                                                                               if (count($key_value) > 2) {
+                                                                                                 if (isset($top_link[1])) {
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                } else {
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]). '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                }
+                                                                                               }
+                                                                                                else{
+                                                                                                 if (isset($top[1])) {
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                }
+                                                                                                else{
+                                                                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                }
                                                                                         }
                                                                                                  
                                                                                         }
-                                                                                }
-                                                                                $i = 0;
-                                                                                //for the sub menu                            
-                                                                                foreach ($key_value as $name => $value)
-                                                                                 {
-                                                                                    echo '<ul class="treeview-menu">';                                                                                 
-
-                                                                                                if($i > 1){
-                                                                                                    if($i %2==0){
-                                                                                                               $link_name = $value;                                  
-                                                                                                         }   
-
-                                                                                                if (is_string($name))
-                                                                                                    {                                                               
-                                                                                                                        if ($v_result = explode(" ", $value)) {                                       
-                                                                                                                             //set to link action value
-                                                                                                                             $link_val = strtolower($v_result[0] . $v_result[1]);   
-                                                                                                                             $mod = explode(" ", $key_value["link0"]);
-                                                                                                                         }                                                                                                                              
-
-                                                                                                                      if (strpos($key_name, 'user') !== false) {
-                                                                                                                                if($this->session->permission_code=="ADMIN"){
-                                                                                                                                 echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';       
-                                                                                                                                }
-                                                                                                                                else{
-                                                                                                                                echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
-                                                                                                                                }
-                                                                                                                        }
-                                                                                                                        else {                                                            
-                                                                                                                                  echo ' <li><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '"> <img src="../../common/img/li.png" >' . $link_name . '</a></li>';
-                                                                                                                        }                         
-
-                                                                                                     }
-                                                                                               }
-                                                                                  echo '</ul>';             
-                                                                                $i++; 
-                                                                        }    
-                                                       echo '</li>';
-                                                       $count++;
+                        }
                         }
                         ?>
                     </ul>
