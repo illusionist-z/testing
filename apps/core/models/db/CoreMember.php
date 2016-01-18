@@ -443,6 +443,26 @@ class CoreMember extends \Library\Core\BaseModel {
        return $user;
 
     }
+    /*
+     * User Fix 
+     * tokenpush
+     * timeflag
+     * @author Yan Lin Pai <wizardrider@gmail.com>
+     *     
+     */
+
+    public function tokenpush($member_id, $tokenpush) {
+        $this->db = $this->getDI()->getShared("db");
+        $member_log = $this->db->query("INSERT INTO member_log(token,member_id) values(' " . $member_id . " ' ,' " . $tokenpush . " ' )");
+        
+        return $member_log;
+    }
+    public function timeflag($member_id, $formtdate) {
+        $this->db = $this->getDI()->getShared("db");
+        $member_flag = $this->db->query("UPDATE core_member set timeflag = '" . $formtdate . "' WHERE member_login_name ='" . $member_id . "' ");
+        
+        return $member_flag;
+    }
     /**
      * Saw Zin Min Tun
      *user enter code check database code
