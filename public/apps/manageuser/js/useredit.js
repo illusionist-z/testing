@@ -7,7 +7,7 @@
     var Manage = {};
     Manage.User = {
     Edit : function (type) {
-        alert(type);
+        
         $.ajax({
             type: 'GET',
             url: baseUri+'manageuser/index/manageuser?data=' + type,

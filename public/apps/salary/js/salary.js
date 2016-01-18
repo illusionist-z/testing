@@ -26,8 +26,10 @@ var Salary = {
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['b_salary']+' </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
-                        +'<tr><td></td><td><b>'+result.t['t_fee']+'</b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee']+ ' name="travelfee" id="travelerr"></td><td style="width:100px;height:40px;"></td></tr>'
+                        +'<tr><td></td><td><b>'+result.t['t_fee']+'per day</b></td>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee_perday']+ ' name="travelfee_perday" id=""></td><td style="width:100px;height:40px;"></td></tr>'
+                        +'<tr><td></td><td><b>'+result.t['t_fee']+'per month</b></td>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee_permonth']+ ' name="travelfee_permonth" id=""></td><td style="width:100px;height:40px;"></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['ot']+'</b></td>'
                         +'<td id="overmsg"><input style="width:100px;margin-top:10px;" type="text" value="'+result.data[0]['over_time']+'" name="overtime" id="overerr"></td></tr>'
                         +'<tr><td></td><td>SSC Emp </td>'
@@ -100,19 +102,12 @@ var Salary = {
              
             modal: true,
             title: title,
-            
-            /*show:{
-                effect:"explode",//effect:"blind",
-		duration:200
-	    },
-            hide:{
-		effect:"explode",
-		duration:200
-	    }*/
+          
         }).parent('.ui-dialog').css('zIndex',1030);
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
+           
             Salary.BtnEdit($ovl);
         });
         $('#edit_delete').click(function () {
@@ -123,28 +118,20 @@ var Salary = {
         });
     },
      salnameautolist: function (){                       
-        //var name = document.getElementById('namelist').value;
-            //alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+
        var dict = [];
        $.ajax({
                 url:'salaryusername',
-                method: 'GET',
-                //dataType: 'json',
                 success: function(data) {
-                //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                   // alert(json_obj[i].full_name);
                 dict.push(json_obj[i].member_login_name);
                 }
-                  //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);
                         }
                         
                     });
                      function loadIcon(dict) {
-                       //alert(dict);                    
              $('.username').autocomplete({
                         source: function( request, response ) {
                         var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
@@ -158,9 +145,6 @@ var Salary = {
    } 
        },
     getmemid: function (name){                       
-        //var name = document.getElementById('namelist').value;
-           // alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
          var dict = [];
        $.ajax({
                 url:'getmemberid?uname='+name,
@@ -170,21 +154,14 @@ var Salary = {
                 //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                    //alert(json_obj[i].member_id);
-               // var aa = json_obj[i].member_id;
-                //alert(aa);
-                //$('#formemberid').text(json_obj[i].member_id);
-               // $(".salusername").text(aa);
                 dict.push(json_obj[i].member_id);
                 }
-                  //var dict = ["Test User02","Adminstrator"];
-                  //alert(dict);
+              
                  loadIcon(dict);
                         }
                         
                     });
                      function loadIcon(dict) {
-                      // alert(dict);
                         $('#formemberid').val(dict);
                      }
                      
@@ -197,7 +174,7 @@ var Salary = {
             dataType:'json',
             url : "btnedit",
             success:function(d){
-                //if true success funcion then reload page
+            
                 if(true === d.valid)                      
                 {
                     val.dialog("close");
@@ -280,7 +257,6 @@ var Salary = {
         });
     },
     calSalary : function (){
-        //alert("add");
         
         $.ajax({            
            url:"calSalary",
@@ -338,9 +314,7 @@ var Salary = {
     },
     
     autolist: function (){                       
-        //var name = document.getElementById('namelist').value;
-          //  alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
+       
          var dict = [];
        $.ajax({
                 url:'autolist',
@@ -350,16 +324,13 @@ var Salary = {
                
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                   // alert(json_obj[i].full_name);
                 dict.push(json_obj[i].member_login_name);
                 }
-                  //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);
                         }
                         
                     });
                      function loadIcon(dict) {
-                       //alert(dict);
                       $('.tags').autocomplete({
                         source: function( request, response ) {
                         var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
@@ -494,7 +465,6 @@ var Salary = {
             alert("please check aleast one!");
             location.reload();
             }
-         //window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
 
             });
         },
@@ -506,7 +476,6 @@ var Salary = {
          
         },
         SaveSalary: function (d){ 
-           // alert(d);
            var date = d;
                 $.ajax({
                          url:'checkmonthyear',
