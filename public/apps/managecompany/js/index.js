@@ -1,9 +1,58 @@
 var pager = new Paging.Pager(),dict =[];   //for pagination
 
-/*
- * show today list by return json array
- * @version 24/8/2015 David
- */
+var AddCom = {
+    Submit : function (){
+        $.ajax({
+           type : 'POST',
+           url  : 'addnew',
+           data : $('#apply_form').serialize(),
+           success: function(d){
+
+               cond = JSON.parse(d);
+             
+                 if(cond.result === 'error')
+                { 
+                $('#apply_form_sdate').css('border','black');$('#apply_form_edate').css('border','black');
+                 $('#com_id_error').empty();$('#apply_form_desc_error').empty();$('#apply_form_sdate_error').empty();$("#apply_form_edate_error").empty();
+                 for(var i in cond){
+                   
+                     switch(i){
+                         case 'comid':$("#comid").css({border:"1px solid red",color:"red"});
+                                         $('#com_id_error').text(cond[i]).css({color:'red'});
+                                         repair('#comid');break;
+                         case 'com_name':$("#com_name").css({border:"1px solid red",color:"red"});
+                                         $('#com_name_error').text(cond[i]).css({color:'red'});
+                                         repair('#com_name');break;
+                        case 'com_sdate':$("#com_sdate").css({border:"1px solid red",color:"red"});
+                                        $('#com_sdate_error').text(cond[i]).css({color:'red'});
+                                        repair('#com_sdate');break;
+                        case 'com_email':$("#com_email").css({border:"1px solid red",color:"red"});
+                                        $('#com_email_error').text(cond[i]).css({color:'red'});
+                                        repair('#com_email');break;
+                        case 'com_phno':$("#com_phno").css({border:"1px solid red",color:"red"});
+                                        $('#com_phno_error').text(cond[i]).css({color:'red'});
+                                        repair('#com_phno');break;
+                        case 'com_db':$("#com_db").css({border:"1px solid red",color:"red"});
+                                        $('#com_db_error').text(cond[i]).css({color:'red'});
+                                        repair('#com_db');break;
+                        case 'com_dbun':$("#com_dbun").css({border:"1px solid red",color:"red"});
+                                        $('#com_dbun_error').text(cond[i]).css({color:'red'});
+                                        repair('#com_dbun');break;
+                        case 'com_dbpsw':$("#com_dbpsw").css({border:"1px solid red",color:"red"});
+                                        $('#com_dbpsw_error').text(cond[i]).css({color:'red'});
+                                        repair('#com_dbpsw');break;
+                        case 'com_host':$("#com_host").css({border:"1px solid red",color:"red"});
+                                        $('#com_host_error').text(cond[i]).css({color:'red'});
+                                        repair('#com_host');break;
+                        case 'com_limit':$("#com_limit").css({border:"1px solid red",color:"red"});
+                                        $('#com_limit_error').text(cond[i]).css({color:'red'});
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
+                };
 var ManageCompany = {
         init : function (reload){
             $('tfoot').append($('table.listtbl tbody').html());   //for csv 
@@ -12,26 +61,6 @@ var ManageCompany = {
             pager.showPage(1);
             $('tbody').show();
             if(reload){
-               $.ajax({
-                url:'managecompany/index/getcomname',
-                     }
-                 }
-                }
-                else{
-                    alert("Add Successfully");
-                    location.reload("managecompany/index")
-                }
-           }
-        });
-    }
-};
-
-$(document).ready(function(){
-     $('#add_com').on('click',function(e){
-      AddCom.Submit();
-   });
-    
-      dict= [];
              $.ajax({
                 url:baseUri+'managecompany/index/getcomname',
                 method: 'GET',
@@ -47,10 +76,14 @@ $(document).ready(function(){
               }); 
           }
         }
-    };
-
+        };    
+ 
 $(document).ready(function(){              
     ManageCompany.init(1);
+    
+    $('#add_com').on('click',function(e){
+      AddCom.Submit();
+   });
     
   document.getElementById('confirm').style.display = 'none';
 
