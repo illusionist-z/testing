@@ -750,7 +750,14 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * Salary Edit action
      */
     public function btnedit($data) {
-        
+       if($data['radio']==1){
+           $travel= "travel_fee_perday";
+           $empty="travel_fee_permonth";
+       }
+       else{
+           $travel="travel_fee_permonth";
+           $empty="travel_fee_perday";
+       }
         $res = array();
         $res['baseerr'] = filter_var($data['basesalary'], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/^([\d])/'))) ? true : false;
 
@@ -765,10 +772,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         if ($res['baseerr'] &&  $res['overtimerr'] && $res['sscemp'] && $res['ssccomp']) {
             try {
                 $sql = "Update salary_master SET basic_salary ='" . $data['basesalary'] . 
-                        "',travel_fee_perday='" . $data['travelfee_perday'] . "',travel_fee_permonth ='" . $data['travelfee_permonth'] . "',over_time ='" . $data['overtime'] . 
+                        "', $travel ='" . $data['travelfee'] . "',$empty = 0,over_time ='" . $data['overtime'] . 
                         "',ssc_emp ='" . $data['ssc_emp'] . "',ssc_comp ='" . $data['ssc_comp'] . 
                         "',updated_dt=NOW(), salary_start_date ='".$data['start_date']."' Where id='" . $data['id'] . "'";
-                
+               
                 $this->db->query($sql);
                 
                 $res['valid'] = true;

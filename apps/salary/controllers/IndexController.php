@@ -221,7 +221,8 @@ class IndexController extends ControllerBase {
         $data['member_id'] = $this->request->getPost('member_id');
         $data['uname'] = $this->request->getPost('uname');
         $data['basesalary'] = $this->request->getPost('basesalary');
-        $data['travelfee_perday'] = $this->request->getPost('travelfee_perday');
+        $data['travelfee'] = $this->request->getPost('travelfee');
+        $data['radio']=$this->request->getPost('radTravel');
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
