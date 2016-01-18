@@ -44,8 +44,8 @@ class LoginController extends ControllerBase {
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();
-        $lang = $member->getlang($loginParams); 
-        $this->session->set('language',$lang['lang']);        
+        $lang = $member->getlang($loginParams);
+        $this->session->set('language',$lang['lang']);
         $this->session->set('page_rule_group', $permission);
         $user = array();
         $this->session->set('user', $result);
