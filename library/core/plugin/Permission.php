@@ -1,4 +1,4 @@
-<?php 
+<?php namespace Library\Core\Plugin;
  
 /* 
  * To change this license header, choose License Headers in Project Properties.

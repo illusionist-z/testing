@@ -15,7 +15,7 @@ try {
     $loader->registerDirs(array(
         // set namespace for libraries
         'Library\Core' => __DIR__.'/../library/core/',
-        __DIR__.'/../library/core/plugin/',
+       
         //set namespace for auth model
         'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
         // set namespace for the core module

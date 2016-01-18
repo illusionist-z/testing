@@ -427,8 +427,7 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-           $('tbody').empty();
-            $('tfoot').empty();
+           $('table.listtbl tbody').empty(),$('tfoot').empty(),$('div #content').empty();
         if (d.length==2) {
             
             var output = "<tr>"
@@ -438,8 +437,7 @@ var Salary = {
         }
         else{
              var json_obj = $.parseJSON(d);//parse JSON            
-            $('tbody').empty();
-            $('tfoot').empty();
+           
             var totalsal = 0;
             for (var i in json_obj)
             {   
@@ -451,6 +449,7 @@ var Salary = {
                         + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
                         + "<td>" + json_obj[i].full_name + "</td>"
                         + "<td>" + json_obj[i].member_dept_name + "</td>"
+                        + "<td>" + json_obj[i].position + "</td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].basic_salary)+ "</div></td>"
                         + "<td><div class='td-style'>" + json_obj[i].overtime + "</div></td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].travel_fee) + "</div></td>"
@@ -469,12 +468,13 @@ var Salary = {
             }
        
           
-            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
-                        +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
-                        +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
-                        +'<td></td>'
+            var html='<tr>'
+                        +'<td colspan="12" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
+                        +'<td style ="background-color:#3c8dbc; color:#ffffff;"><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
+                        +'<td style ="background-color:#3c8dbc; color:#ffffff;"></td>'
                         +'</tr>'
             $("tbody").append(html);}
+            Salary.init();
             //click event for detail after search
             $('.btn_detail').click(function () {
             var month = document.getElementById('month').value;

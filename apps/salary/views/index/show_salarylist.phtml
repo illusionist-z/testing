@@ -95,6 +95,7 @@ $position=  array_unique($pos);
                         <th><INPUT type="checkbox" id="sal_check" onchange="checkAll(this)" name="chk[]" /></th>
                         <th><?= $t->_("name");?></th>
                         <th><?= $t->_("department");?></th>
+                        <th><?= $t->_("position");?></th>
                         <th><center><?= $t->_("basic_salary");?></center></th>
                         <th><center><?= $t->_("overtime");?></center></th>
                         <th><center><?= $t->_("travel_fee");?></center></th>
@@ -123,6 +124,7 @@ $position=  array_unique($pos);
                             <td><input type="checkbox" class='case' name='chk[]' value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td><?php echo $filter->sanitize($getsalarylist['full_name'] , "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'] , "string") ?></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['position'] , "string") ?></td>
                             <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['basic_salary'], "int"); ?></div></td>
                             <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['overtime'], "int"); ?></div></td>
                             <td><div class="td-style"><?php echo$filter->sanitize($getsalarylist['travel_fee'], "int"); ?></div></td>
