@@ -14,10 +14,11 @@ class IndexController extends ControllerBase {
 
         public function indexAction($mode = NULL) {
 
-
+        $localhost = ($this->request->getServer('HTTP_HOST'));
+ 
         if (isset($_SESSION['startTime']) != null) {
             $this->view->pick('salts/auth/index/failer');
-            $page = "http://localhost/salts/auth/index/failer";
+            $page = "http://".$localhost."/salts/auth/index/failer";
             $sec = "1";
             header("Refresh: $sec; url=$page");
         } elseif (isset($_SESSION['startTime']) == null) {
@@ -100,9 +101,9 @@ class IndexController extends ControllerBase {
 
                     $_SESSION['expire'] = $_SESSION['startTime'];
                     $rout_time = $nowtime - $_SESSION['expire'];
-
+                     $localhost = ($this->request->getServer('HTTP_HOST'));
                     //  $this->view->pick('salts/auth/index/faileruser');
-                    $page = "http://localhost/salts/auth/index/faileruser";
+                    $page = "http://".$localhost."/salts/auth/index/faileruser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
@@ -115,9 +116,9 @@ class IndexController extends ControllerBase {
                     $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
                     // checking the time now when home page starts
                     $rout_time = $nowtime - $_SESSION['expire'];
-
+                     $localhost = ($this->request->getServer('HTTP_HOST'));    
                     //$this->view->pick('salts/auth/index/failer');
-                    $page = "http://localhost/salts/auth/index/faileruser";
+                    $page = "http://".$localhost."/salts/auth/index/faileruser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
@@ -163,9 +164,9 @@ class IndexController extends ControllerBase {
                 $_SESSION['expire'] = $_SESSION['startTime'];
 
                 $rout_time = $nowtime - $_SESSION['expire'];
-
+                  $localhost = ($this->request->getServer('HTTP_HOST'));   
                 //  $this->view->pick('salts/auth/index/faileruser');
-                $page = "http://localhost/salts/auth/index/faileruser";
+                $page = "http://".$localhost."/salts/auth/index/faileruser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
@@ -178,9 +179,9 @@ class IndexController extends ControllerBase {
                 $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
                 // checking the time now when home page starts
                 $rout_time = $nowtime - $_SESSION['expire'];
-
+                $localhost = ($this->request->getServer('HTTP_HOST'));      
                 //$this->view->pick('salts/auth/index/failer');
-                $page = "http://localhost/salts/auth/index/faileruser";
+                $page = "http://".$localhost."/salts/auth/index/faileruser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
