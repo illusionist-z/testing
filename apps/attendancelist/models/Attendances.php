@@ -14,33 +14,29 @@ class Attendances extends Model {
      */
     public function gettodaylist($name) {        
         $today = date("Y:m:d");
-        
-        
-        if(isset($name)){
-           $row =   $this->modelsManager->createBuilder()
-                         ->columns(array('core.*', 'attendances.*'))
-                         ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                         ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
-                         ->where('core.member_login_name = :name:', array('name' => $name))
-                         ->andWhere('attendances.att_date = :today:', array('today' => $today))
-                         ->andWhere('core.deleted_flag = 0') 
-                         ->getQuery()
-                         ->execute();          
-         
-           
-           
-                    
-        }else{
-            $row =   $this->modelsManager->createBuilder()
-                          ->columns(array('core.*', 'attendances.*'))
-                          ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                          ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
-                          ->where('attendances.att_date = :today:', array('today' => $today))
-                          ->andWhere('core.deleted_flag = 0')
-                          ->orderBy('attendances.checkin_time DESC')
-                          ->getQuery()
-                          ->execute(); 
-            
+
+
+        if (isset($name)) {
+            $row = $this->modelsManager->createBuilder()
+                    ->columns(array('core.*', 'attendances.*'))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                    ->where('core.member_login_name = :name:', array('name' => $name))
+                    ->andWhere('attendances.att_date = :today:', array('today' => $today))
+                    ->andWhere('core.deleted_flag = 0')
+                    ->getQuery()
+                    ->execute();
+        } else {
+            $row = $this->modelsManager->createBuilder()
+                    ->columns(array('core.*', 'attendances.*'))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                    ->where('attendances.att_date = :today:', array('today' => $today))
+                    ->andWhere('core.deleted_flag = 0')
+                    ->andWhere('attendances.status=0')
+                    ->orderBy('attendances.checkin_time DESC')
+                    ->getQuery()
+                    ->execute();
         }
         return $row;
     }
@@ -131,17 +127,45 @@ class Attendances extends Model {
      * @author David
      * @param  $v[0] = member_id
      */
-      public function absent($id) {
-        $sql = "Select member_id,date from absent where member_id='" . $id . "' and date=CURRENT_DATE";
+    public function absent() {
+        //get today absent list
+        $sql = "Select member_id from core_member where member_id NOT IN (select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0 order by created_dt desc";
+        //$sql = "Select * from attendances where member_id='" . $id . "' and att_date = CURRENT_DATE";
         $absentlist = $this->db->query($sql);
         $finalresult = $absentlist->fetchall();
-        
-        if ($finalresult == null) {
-            $insert = "Insert into absent (member_id,date,deleted_flag) VALUES ('" . $id . "',CURRENT_DATE,1)";
+        if ($finalresult != null) {
+            $string = "";
+            //get absent member id
+            foreach ($finalresult as $v) {
+                $string .= "'" . $v['member_id'] . "',";
+            }
+            $insert_string = substr_replace($string, "", -1);
+            //get absent applied leave id
+            $checkleave = "SELECT member_id  FROM leaves where member_id IN ($insert_string) and CURRENT_DATE in (start_date,end_date)";
+            $checkleave = $this->db->query($checkleave);
+            $checkresult = $checkleave->fetchall();
+            $insert = "Insert into attendances (member_id,att_date,status) VALUES ";
+            //insert absent with apply leave
+            if (count($checkresult) > 0) {
+                   foreach ($checkresult as $v) {
+                       foreach($finalresult as $k){
+                           if($k['member_id'] != $v['member_id']){
+                                $insert .= "('". $k['member_id'] . "',CURRENT_DATE,2),";
+                           }
+                       }
+                    $insert .= "('". $v['member_id'] . "',CURRENT_DATE,1),";
+                }
+            }
+            //insert absent with no apply leave
+            else {
+             foreach($finalresult as $v){
+                $insert .= "('".$v['member_id']."',CURRENT_DATE,2),";
+                }
+            }
+            $insert = substr_replace($insert,";", -1);
             $this->db->query($insert);
             $message = "Adding is successfully";
-        } 
-        else {
+        } else {
             $message = "Already Exist";
         }
         return $message;
@@ -153,6 +177,7 @@ class Attendances extends Model {
          $absentlist=$list->fetchall();
          return $absentlist;
     }
+    
     public function getAttTime($id) {
         $query = "select * from core_member JOIN attendances On core_member.member_id = attendances.member_id Where attendances.id ='".$id."' ";
        
@@ -160,6 +185,7 @@ class Attendances extends Model {
         $result = $data->fetchall();
         return $result;
     }
+    
     public function editAtt($data,$id,$offset) {
         $localtime=$this->LocalToUTC($data,$offset);
         $query = "update attendances set checkin_time='".$localtime."' where id='".$id."'";
@@ -199,6 +225,17 @@ class Attendances extends Model {
         return $row;
     }
     
+    public function current_attlist() {
+        try {
+            $select = "Select group_concat(DAY(att_date)) as day,attendances.member_id,group_concat(status) as status,member_login_name from attendances JOIN core_member ON attendances.member_id = core_member.member_id where MONTH(CURRENT_DATE) = MONTH(attendances.att_date) group by core_member.member_id desc";
+            $data = $this->db->query($select);
+            $result = $data->fetchall();
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        return $result;
+    }
+
     /**
      * Set Condition
      * @param type $year
