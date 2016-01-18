@@ -21,7 +21,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('apps/salary/css/salary.css');        
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');      
-        $this->act_name =  $this->router->getActionName(); 
+        $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
         $this->setCommonJsAndCss();
@@ -140,8 +140,8 @@ class IndexController extends ControllerBase {
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
       
-           $this->view->module_name =  $this->router->getModuleName();
-          if($this->permission == 1){
+           $this->view->module_name =  $this->router->getModuleName();                      
+          if($this->permission === 1){
                   
         $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
         }
@@ -216,22 +216,24 @@ class IndexController extends ControllerBase {
      * @return true|false
      */
     public function btneditAction() {
+        
         $data['id'] = $this->request->getPost('id');
         $data['member_id'] = $this->request->getPost('member_id');
         $data['uname'] = $this->request->getPost('uname');
         $data['basesalary'] = $this->request->getPost('basesalary');
-        $data['travelfee'] = $this->request->getPost('travelfee');
+        $data['travelfee_perday'] = $this->request->getPost('travelfee_perday');
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $data['start_date'] = $this->request->getPost('work_sdate');
         $data['no_of_children']=$this->request->getPost('no_of_children');
+        $data['travelfee_permonth']=$this->request->getPost('travelfee_permonth');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce= $this->request->getPost('check_list');
-        //print_r($data['start_date']);exit;
+    
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
-        
+       
         $Taxdeduce=new SalaryMemberTaxDeduce();
         $Taxdeduce->edit_taxByMemberid($check_deduce,$data['no_of_children'],$data['member_id']);
         

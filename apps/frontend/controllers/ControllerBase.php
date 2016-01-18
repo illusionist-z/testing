@@ -1,8 +1,7 @@
 <?php namespace salts\Frontend\Controllers;
 
-use Library;
 
-class ControllerBase extends Library\Core\Controller
+class ControllerBase extends \Library\Core\Controller
 {
     /**
      * temp 

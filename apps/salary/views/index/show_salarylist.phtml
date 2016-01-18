@@ -1,4 +1,10 @@
 <?php
+    foreach ($usernames as $value) {
+    $array[]=$value->member_dept_name;
+    $pos[]=$value->position;
+}
+$dept=array_unique($array);
+$position=  array_unique($pos);
     use Phalcon\Filter;
 ?>
 <section class="content-header" style="height:auto;">
@@ -32,9 +38,10 @@
                             <select class="select form-control-static" data-toggle="select" name="cond[dept]"  id="department">
                                 <option value=""><?= $t->_("choose");?></option>
                                 <?php
-                                foreach ($usernames as $username) {
+                                
+                                foreach ($dept as $arr) {
                                     ?>
-                                    <option value="<?php echo $username->member_dept_name; ?>"><?php echo $username->member_dept_name; ?></option>
+                                    <option value="<?php echo $arr; ?>"><?php echo $arr; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -46,9 +53,9 @@
                             <select class="select form-control-static" data-toggle="select" name="cond[position]" id="position">
                                 <option value="" ><?= $t->_("choose");?></option>
                                 <?php
-                                foreach ($usernames as $username) {
+                                foreach ($position as $value) {
                                     ?>
-                                    <option value="<?php echo $username->position; ?>"><?php echo $username->position; ?></option>
+                                    <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
                                     <?php
                                 }
                                 ?>
@@ -88,6 +95,7 @@
                         <th><INPUT type="checkbox" id="sal_check" onchange="checkAll(this)" name="chk[]" /></th>
                         <th><?= $t->_("name");?></th>
                         <th><?= $t->_("department");?></th>
+                        <th><?= $t->_("position");?></th>
                         <th><center><?= $t->_("basic_salary");?></center></th>
                         <th><center><?= $t->_("overtime");?></center></th>
                         <th><center><?= $t->_("travel_fee");?></center></th>
@@ -116,14 +124,15 @@
                             <td><input type="checkbox" class='case' name='chk[]' value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td><?php echo $filter->sanitize($getsalarylist['full_name'] , "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'] , "string") ?></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['allowance_amount'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_emp'], "int")); ?></div></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['position'] , "string") ?></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['basic_salary'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['overtime'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo$filter->sanitize($getsalarylist['travel_fee'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['allowance_amount'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['absent_dedution'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['income_tax'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['ssc_comp'], "int"); ?></div></td>
+                            <td><div class="td-style"><?php echo $filter->sanitize($getsalarylist['ssc_emp'], "int"); ?></div></td>
                             
                             <td><div class="td-style"><?php 
                             $totalresult+=$getsalarylist['total'];
@@ -153,3 +162,4 @@
     </div><!-- /.row -->
 <div id="content"></div>
 </section><!-- /.content -->
+<div id="content"></div>
