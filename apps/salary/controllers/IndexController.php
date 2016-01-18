@@ -216,22 +216,24 @@ class IndexController extends ControllerBase {
      * @return true|false
      */
     public function btneditAction() {
+        
         $data['id'] = $this->request->getPost('id');
         $data['member_id'] = $this->request->getPost('member_id');
         $data['uname'] = $this->request->getPost('uname');
         $data['basesalary'] = $this->request->getPost('basesalary');
-        $data['travelfee'] = $this->request->getPost('travelfee');
+        $data['travelfee_perday'] = $this->request->getPost('travelfee_perday');
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
         $data['start_date'] = $this->request->getPost('work_sdate');
         $data['no_of_children']=$this->request->getPost('no_of_children');
+        $data['travelfee_permonth']=$this->request->getPost('travelfee_permonth');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce= $this->request->getPost('check_list');
-        //print_r($data['start_date']);exit;
+    
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->btnedit($data);
-        
+       
         $Taxdeduce=new SalaryMemberTaxDeduce();
         $Taxdeduce->edit_taxByMemberid($check_deduce,$data['no_of_children'],$data['member_id']);
         
