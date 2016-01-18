@@ -111,8 +111,8 @@ $di->setShared('db',function() {
                                             ]);
     }
     else {
-          $localhost = ($this->request->getServer('HTTP_HOST'));    
-            header("Location:http://".$localhost."/salts/");
+         // $localhost = ($this->request->getServer('HTTP_HOST'));    
+            header("Location:http://localhost/salts/");
     }
 });
 $di->set('cookies', function () {

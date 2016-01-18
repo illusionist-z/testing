@@ -13,7 +13,10 @@ class IndexController extends ControllerBase {
         }
 
         public function indexAction($mode = NULL) {
-
+            
+//              $tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
+//              var_dump($tokenpush);
+//              exit();
         $localhost = ($this->request->getServer('HTTP_HOST'));
  
         if (isset($_SESSION['startTime']) != null) {
@@ -36,10 +39,10 @@ class IndexController extends ControllerBase {
       public function failerAction($mode = 1) {
 
         /*
-         * User failerAction 
-         * @author Yan Lin Pai <wizardrider@gmail.com>
-         *     
-         */
+        * User failerAction 
+        * @author Yan Lin Pai <wizardrider@gmail.com>
+        *     
+        */
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
@@ -196,7 +199,7 @@ class IndexController extends ControllerBase {
      */
     public function failersuperuserAction() {
         $this->view->errorMsg = 'user name or password wrong';
-        $this->view->mode=1;
+        //$this->view->mode=1;
         $this->view->pick('index/index');
     }
     
