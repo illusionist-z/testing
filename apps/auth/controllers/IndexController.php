@@ -13,20 +13,182 @@ class IndexController extends ControllerBase {
         }
 
         public function indexAction($mode = NULL) {
-            
-        $mode=$this->request->get('mode');
-        $this->view->errorMsg = '';
-        $this->view->mode = $mode;
+
+
+        if (isset($_SESSION['startTime']) != null) {
+            $this->view->pick('salts/auth/index/failer');
+            $page = "http://localhost/salts/auth/index/failer";
+            $sec = "1";
+            header("Refresh: $sec; url=$page");
+        } elseif (isset($_SESSION['startTime']) == null) {
+
+            $mode = $this->request->get('mode');
+            $this->view->errorMsg = '';
+            $this->view->mode = $mode;
         }
+    }
 
     /**
      * When user failed login
      * @param type $mode
      */
-    public function failerAction($mode = 1) {
-        $this->view->errorMsg = 'company id or user name or password wrong';
-        $this->view->pick('index/index');
+      public function failerAction($mode = 1) {
+
+        /*
+         * User failerAction 
+         * @author Yan Lin Pai <wizardrider@gmail.com>
+         *     
+         */
+        date_default_timezone_set('Asia/Rangoon');
+        if (!isset($_SESSION["attempts"]))
+            $_SESSION["attempts"] = 0;
+
+        if ($_SESSION["attempts"] < 1) {
+
+            if ($this->session) {
+                 
+                $member_name = $this->session->tokenpush;
+                $chack_user2 = new CoreMember();
+                $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
+
+                $member_id = $this->request->getPost('member_login_name');
+
+                if (count($chack_user2) != 0) {
+
+                    $member_name = $this->session->tokenpush;
+
+                    $core_fai = new CoreMember();
+                    $core_fai = CoreMember::findFirstByMemberLoginName($member_name);
+
+                    $core_fai = $core_fai->timeflag;
+                    $timestamp = (date("Y-m-d j:i:s"));
+
+                    if ($core_fai >= $timestamp) {
+
+                        $this->view->errorMsg = "You've Login To Next. 30 Minutes";
+                        $this->view->pick('index/index');
+                        session_destroy();
+                        // Login To Next. 30 Minutes
+                    } elseif ($core_fai <= $timestamp) {
+                        $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
+                        $this->view->errorMsg = "company id or user name or password wrong";
+                        $this->view->pick('index/index');
+                    }
+                } elseif (count($chack_user2) == 0) {
+
+                    $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
+                    $this->view->errorMsg = 'company id or user name or password wrong';
+                    $this->view->pick('index/index');
+                }
+                // echo "You failed to log-in, try again";
+            }
+        } else {
+            $member_name = $this->session->tokenpush;
+            $chack_user = new CoreMember();
+            $chack_user = $chack_user::findByMemberLoginName($member_name);
+
+
+            if (count($chack_user) == 0) {
+                $timestamp = (date("Y-m-d j:i:s"));
+                $date = strtotime($timestamp);
+
+                if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
+
+                    $_SESSION['startTime'] = date("Y-m-d j:i:s", strtotime("+30 minutes", $date));
+                    $startTime = $_SESSION['startTime'];
+                    $nowtime = (date("Y-m-d j:i:s"));
+
+                    $_SESSION['expire'] = $_SESSION['startTime'];
+                    $rout_time = $nowtime - $_SESSION['expire'];
+
+                    //  $this->view->pick('salts/auth/index/faileruser');
+                    $page = "http://localhost/salts/auth/index/faileruser";
+                    $sec = "1";
+                    header("Refresh: $sec; url=$page");
+                    if ($nowtime > $_SESSION['expire']) {
+                        session_destroy();
+                        echo "Your session has expired ! ";
+                        //$this->response->redirect('auth');    
+                    }
+                } else if (isset($_SESSION['startTime']) != null && count($chack_user) == 0) {
+                    $nowtime = (date("Y-m-d j:i:s"));
+                    $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
+                    // checking the time now when home page starts
+                    $rout_time = $nowtime - $_SESSION['expire'];
+
+                    //$this->view->pick('salts/auth/index/failer');
+                    $page = "http://localhost/salts/auth/index/faileruser";
+                    $sec = "1";
+                    header("Refresh: $sec; url=$page");
+                    if ($nowtime > $_SESSION['expire']) {
+                        session_destroy();
+                        echo " ";
+                    }
+                }
+            }
+            // User Not Has
+            elseif (count($chack_user) != 0) {
+                $member_name = $this->session->tokenpush;
+                $chack = new CoreMember();
+                date_default_timezone_set('Asia/Rangoon');
+                $timestamp = (date("Y-m-d j:i:s"));
+                $date = strtotime($timestamp);
+                $formtdate = date("Y-m-d j:i:s", strtotime("+30 minutes", $date));
+                $insert = $chack->timeflag($member_name, $formtdate);
+                $this->view->errorMsg = 'Your Account Has 30 MIN Block';
+                $this->view->pick('index/index');
+                session_destroy();
+            }
         }
+    }
+
+    
+    
+    public function faileruserAction() {
+        //Count For Not User Has
+        date_default_timezone_set('Asia/Rangoon');
+        $member_name = $this->session->tokenpush;
+        $chack_user = new CoreMember();
+        $chack_user = $chack_user::findByMemberLoginName($member_name);
+        if (count($chack_user) == 0) {
+            $timestamp = (date("Y-m-d h:i:s"));
+            $date = strtotime($timestamp);
+
+            if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
+
+                $_SESSION['startTime'] = date("Y-m-d j:i:s", strtotime("+30 minutes", $date));
+                $startTime = $_SESSION['startTime'];
+                $nowtime = (date("Y-m-d h:i:s"));
+
+                $_SESSION['expire'] = $_SESSION['startTime'];
+
+                $rout_time = $nowtime - $_SESSION['expire'];
+
+                //  $this->view->pick('salts/auth/index/faileruser');
+                $page = "http://localhost/salts/auth/index/faileruser";
+                $sec = "10";
+                header("Refresh: $sec; url=$page");
+                if ($nowtime > $_SESSION['expire']) {
+                    session_destroy();
+                    echo "Your session has expired ! ";
+                    //$this->response->redirect('auth');    
+                }
+            } else if (isset($_SESSION['startTime']) != null && count($chack_user) == 0) {
+                $nowtime = (date("Y-m-d j:i:s"));
+                $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
+                // checking the time now when home page starts
+                $rout_time = $nowtime - $_SESSION['expire'];
+
+                //$this->view->pick('salts/auth/index/failer');
+                $page = "http://localhost/salts/auth/index/faileruser";
+                $sec = "10";
+                header("Refresh: $sec; url=$page");
+                if ($nowtime > $_SESSION['expire']) {
+                    session_destroy();
+                }
+            }
+        }
+    }
         /**
      * When user failed  email  go 
      * @param type $mode
