@@ -143,7 +143,7 @@
                         foreach ($this->session->auth as $key_name => $key_value) {                            
                        
                                                                                     $top = explode(" ", $key_value["link0"]);
-                                                                                    $top_link = explode(" ", $key_value[1]);
+                                                                                    $top_link = explode(" ", $key_value["link1"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
                                                                                          if($key_name != 'show_user_notification' && $key_name != 'show_user_setting'){
                                                                                                if (count($key_value) > 2) {
@@ -167,11 +167,11 @@
                                                                                                  if (isset($top_link[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 } else {
-                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]). '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                                }
                                                                                                 else{
-                                                                                                 if (isset($top_link[1])) {
+                                                                                                 if (isset($top[1])) {
                                                                                                  echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                                 else{
