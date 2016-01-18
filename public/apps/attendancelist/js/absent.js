@@ -3,7 +3,7 @@ var Absent = {
     //paging effect
     init: function () {
         $('tfoot').append($('table.listtbl tbody').html());   //for csv 
-        pager.perpage = 4;
+        pager.perpage = 10 ;
         pager.para = $('table.listtbl tbody > tr');
         pager.showPage(1);
         $('tbody').show();
