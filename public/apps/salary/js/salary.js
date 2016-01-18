@@ -7,9 +7,9 @@ var pager = new Paging.Pager();   //for pagination
 var Salary = {
     isOvl: false,
     init  : function() {
-        $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 10;            
-        pager.para = $('tbody > tr');
+        $("tfoot").html($('table.listtbl tbody').html()); //for csv
+        pager.perpage = 10;
+        pager.para = $('table.listtbl tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
         },
@@ -408,7 +408,7 @@ var Salary = {
                                 + "<td>" + json_obj[i].ssc_comp + "</td>"
                                 + "<td><a href='#' onclick='return false;' style='float:right;margin-top: 5px;' class='inedit displaypopup' id='"+json_obj[i].member_id+"'></a></td>"
                                 + "</tr>";
-                        $("tbody").append(output);
+                        $("table.listtbl tbody").append(output);
                         j++;
                     }
                     $("#th_travelfees").append(travelfee_header);
@@ -427,13 +427,13 @@ var Salary = {
         url: baseUri + 'salary/search?' + $form,
         type: 'GET',
         success: function (d) {
-     $('table.listtbl tbody').empty(),$('tfoot').empty(),$('div#content').empty();
+       $('table.listtbl tbody').empty(),$('tfoot').empty(),$('div#content').empty();
         if (d.length==2) {
             
             var output = "<tr>"
                     + "<td colspan='13'><center>No data to display</center></td>"
                     + "</tr>";
-            $("tbody").append(output);
+            $("table.listtbl tbody").append(output);
         }
         else{
              var json_obj = $.parseJSON(d);//parse JSON                     
@@ -466,17 +466,11 @@ var Salary = {
                         +'<td></td>'
                         +'</tr>';
                         
-                $("tbody").append(output);
+                $("table.listtbl tbody").append(output);
                 
                 
-            }}Salary.init();
-//            var html='<tr style="background-color:#3c8dbc; color:#ffffff;">'
-//                        +'<td colspan="11" style="text-align:center;"><b>Total salary for all user</b></td>'
-//                        +'<td><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
-//                        +'<td></td>'
-//                        +'</tr>'
-           // $("tbody").append(html);
-            //click event for detail after search
+            }}
+        Salary.init();
             $('.btn_detail').click(function () {
             var month = document.getElementById('month').value;
             var year = document.getElementById('year').value;

@@ -40,8 +40,7 @@ class LoginController extends ControllerBase {
        
         if($companyDB)
         {
-        $this->session->set('db_config',$companyDB);
-       
+        $this->session->set('db_config',$companyDB);       
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();
