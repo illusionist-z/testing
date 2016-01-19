@@ -18,18 +18,28 @@ var Salary = {
            url:"editsalary?id="+d,
            type: "GET",
           success:function(res){
-              
+               var travel_fee;
+               var check1,check2;
                var result = $.parseJSON(res);
-               
+               if(result.data[0]['travel_fee_permonth']!=0){
+                    travel_fee=result.data[0]['travel_fee_permonth'];
+                    check2="checked";
+               }
+               else{
+                    travel_fee=result.data[0]['travel_fee_perday'];
+                    check1="checked";
+               }
+              
                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>'+result.t['name']+'</b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['b_salary']+' </b></td>'
                         +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['basic_salary']+ ' name="basesalary" id="baseerr"></td></tr>'
-                        +'<tr><td></td><td><b>'+result.t['t_fee']+'per day</b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee_perday']+ ' name="travelfee_perday" id=""></td><td style="width:100px;height:40px;"></td></tr>'
-                        +'<tr><td></td><td><b>'+result.t['t_fee']+'per month</b></td>'
-                        +'<td><input style="margin-top:10px;" type="text" value='+result.data[0]['travel_fee_permonth']+ ' name="travelfee_permonth" id=""></td><td style="width:100px;height:40px;"></td></tr>'
+                        
+                        +'<tr><td></td><td><b>'+result.t['t_fee']+' type </b></td>'
+                        +'<td><input type="radio" name="radTravel" value="1"'+check1+'>per day <input type="radio" name="radTravel" value="2" '+check2+' >Per Month</td><td style="width:100px;height:40px;"></td></tr>'
+                        +'<tr><td></td><td><b>'+result.t['t_fee']+'</b></td>'
+                        +'<td><input style="margin-top:10px;" type="text" value='+travel_fee+ ' name="travelfee" id=""></td><td style="width:100px;height:40px;"></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['ot']+'</b></td>'
                         +'<td id="overmsg"><input style="width:100px;margin-top:10px;" type="text" value="'+result.data[0]['over_time']+'" name="overtime" id="overerr"></td></tr>'
                         +'<tr><td></td><td>SSC Emp </td>'
@@ -133,14 +143,13 @@ var Salary = {
                     });
                      function loadIcon(dict) {
              $('.username').autocomplete({
-                              source: function( request, response ) {                                       
-                            var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" ); 
-                            var result = $.grep( dict, function( item ){                 
-                                       return matcher.test( item);
-                                      });
-                                response(result.slice(0, 10));
-                         },
-                          minLength :1
+                        source: function( request, response ) {
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                        response( $.grep( dict, function( item ){                 
+                        return matcher.test( item);
+                         }) );
+                 },
+                        minLength :1
                  });
        // ... do whatever you need to do with icon here
    } 
@@ -169,6 +178,7 @@ var Salary = {
        },
     BtnEdit : function(val){
         var form=$('#edit_salary');
+       
         $.ajax({
             type: 'POST',
             data: form.serialize(),
@@ -333,15 +343,14 @@ var Salary = {
                     });
                      function loadIcon(dict) {
                       $('.tags').autocomplete({
-                                       source: function( request, response ) {                                       
-                            var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" ); 
-                            var result = $.grep( dict, function( item ){                 
-                                       return matcher.test( item);
-                                      });
-                                response(result.slice(0, 10));
-                         },
-                          minLength :1
-                        });
+                        source: function( request, response ) {
+                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+                        response( $.grep( dict, function( item ){                 
+                        return matcher.test( item);
+                         }) );
+                 },
+                        minLength :1
+                 });
        // ... do whatever you need to do with icon here
    }
     
@@ -404,7 +413,7 @@ var Salary = {
         if (d.length==2) {
             
             var output = "<tr>"
-                    + "<td colspan='13'><center>No data to display</center></td>"
+                    + "<td colspan='14'><center>No data to display</center></td>"
                     + "</tr>";
             $("tbody").append(output);
         }
@@ -508,7 +517,7 @@ var Salary = {
 $(document).ready(function () {
     Salary.init();
     var popupStatus = 0;
-    $('#search_salary').click(function () {
+    $('#search_salary').click(function () { 
         Salary.search();
     });
     $("body").on("click",".displaypopup",function () {

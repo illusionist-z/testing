@@ -108,7 +108,7 @@ class IndexController extends ControllerBase {
                   }     
             else{
             $creator_id=$this->session->user['member_id'];
-            $uname =$this->session->user['member_id'];
+            $uname =  $this->request->getPost('member_id');
             $sdate = $this->request->getPost('sdate');
             $edate = $this->request->getPost('edate');
             $type = $this->request->getPost('leavetype');

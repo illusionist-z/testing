@@ -68,6 +68,7 @@ function GEOprocess(position) {
 // * @4:00pm{optional time} check absent member
 // * @author David JP <david.gnext@gmail.com>
 // */
+var done = true;
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
@@ -78,6 +79,7 @@ function getAbsentMember() {
             url: baseUri + "attendancelist/absent/addAbsent",
             type: 'GET',
             success: function() {
+                done = false;
             }
         });
     }
