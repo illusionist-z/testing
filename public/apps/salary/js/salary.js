@@ -517,7 +517,7 @@ var Salary = {
 $(document).ready(function () {
     Salary.init();
     var popupStatus = 0;
-    $('#search_salary').click(function () {
+    $('#search_salary').click(function () { 
         Salary.search();
     });
     $("body").on("click",".displaypopup",function () {

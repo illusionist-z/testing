@@ -298,13 +298,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
            print_r($conditions);exit;
             $sql = $select;
             if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "' group by core_member.member_id";
+              $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "' group by core_member.member_id";
             }
             else{
               $sql .= " WHERE   MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "' group by core_member.member_id";
 
             }
-          
             $result = $this->db->query($sql);
             $row = $result->fetchall();
             
@@ -590,10 +589,11 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             }
             $select = "SELECT salary_master.member_id,member_login_name,basic_salary,".$field.",over_time,ssc_emp,ssc_comp FROM salary_master"
                     . " join core_member on salary_master.member_id=core_member.member_id";
+            $select .= " WHERE ".$field." <> 0";
             if($param['user_id'] !== ""){
-                $select .= " WHERE salary_master.member_id='" . $param["user_id"] . "'";
+                $select .= " and salary_master.member_id='" . $param["user_id"] . "'";
             }
-            //echo $select;exit;
+            
             $result = $this->db->query($select);
             $row = $result->fetchall();
             
