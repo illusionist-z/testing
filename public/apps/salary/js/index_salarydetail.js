@@ -134,7 +134,6 @@ for (var i = 0; i < cells.length; i++) {
     });
 
     $("#btn_savedetail").click(function () {
-
        var member_id_arr=document.getElementsByClassName("member_id");//document.getElementById('member_id').value; 
        var b_salary_arr=document.getElementsByClassName('txtbsalary');
        var overtime_rate_arr=document.getElementsByClassName('txtovertimerate');
@@ -153,6 +152,7 @@ for (var i = 0; i < cells.length; i++) {
        {
         specific_duty_allowance=0;
         }
+        
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
        $.ajax({
             type:'get',
