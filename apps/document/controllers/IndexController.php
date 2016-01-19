@@ -30,20 +30,20 @@ class IndexController extends ControllerBase
         $code=$this->session->permission_code;
          $Admin=new CoreMember();
         $id = $this->session->user['member_id'];
-      
+        $this->view->module_name = $this->router->getModuleName();
          $this->view->permission = $this->permission;
         
-        $coreid = new CorePermissionGroupId();
-        foreach($coreid as $data){ 
+//        $coreid = new CorePermissionGroupId();
+//        foreach($coreid as $data){ 
+//       
+//        if($code==$data->group_id){
+//            $noti=$Admin->GetAdminNoti($id,0);}
+//        else{
+//            $id = $this->session->user['member_id'];
+//            $noti=$Admin->GetUserNoti($id,1);
+//        }
+//      $this->view->setVar("noti",$noti);
        
-        if($code==$data->group_id){
-            $noti=$Admin->GetAdminNoti($id,0);}
-        else{
-            $id = $this->session->user['member_id'];
-            $noti=$Admin->GetUserNoti($id,1);
-        }
-      $this->view->setVar("noti",$noti);
-       }
     }
 
     
