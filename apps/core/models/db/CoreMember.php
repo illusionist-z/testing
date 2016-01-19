@@ -397,7 +397,7 @@ class CoreMember extends \Library\Core\BaseModel {
                 . "as c join absent as a on c.member_id=a.member_id "
                 . "where a.deleted_flag=1  and c.deleted_flag = 0 group by a.member_id "
                 . "order by count(*)";
-        $data = $this->db->query($query);
+       $data = $this->db->query($query);
        $res['leave_name'] = $data->fetchall();
       
         return $res;
@@ -451,9 +451,9 @@ class CoreMember extends \Library\Core\BaseModel {
      *     
      */
 
-    public function tokenpush($member_id, $tokenpush) {
+    public function tokenpush($member_id, $tokenpush, $block_id) {
         $this->db = $this->getDI()->getShared("db");
-        $member_log = $this->db->query("INSERT INTO member_log(token,member_id) values(' " . $member_id . " ' ,' " . $tokenpush . " ' )");
+        $member_log = $this->db->query("INSERT INTO member_log(token,member_id,yes_no) values(' " . $member_id . " ' ,' " . $tokenpush . " ',' " . $block_id . " ' )");
         
         return $member_log;
     }
@@ -463,6 +463,16 @@ class CoreMember extends \Library\Core\BaseModel {
         
         return $member_flag;
     }
+    public function countday($member_id,$time_office,$formtdate){
+         $this->db = $this->getDI()->getShared("db");
+         $member_day_count = "SELECT COUNT(*) FROM member_log WHERE member_id = ' ".$member_id."' AND nowtime BETWEEN '".$time_office."' AND '".$formtdate."' AND yes_no = '0' ";
+         $user_day = $this->db->query($member_day_count);
+         $user_day = $user_day->fetchAll(); 
+         return $user_day;
+        
+    }
+
+
     /**
      * Saw Zin Min Tun
      *user enter code check database code

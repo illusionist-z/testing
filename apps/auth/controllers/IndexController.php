@@ -13,10 +13,7 @@ class IndexController extends ControllerBase {
         }
 
         public function indexAction($mode = NULL) {
-            
-//              $tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
-//              var_dump($tokenpush);
-//              exit();
+          
         $localhost = ($this->request->getServer('HTTP_HOST'));
  
         if (isset($_SESSION['startTime']) != null) {
@@ -37,7 +34,9 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
       public function failerAction($mode = 1) {
-
+        
+         
+         
         /*
         * User failerAction 
         * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -51,10 +50,10 @@ class IndexController extends ControllerBase {
 
             if ($this->session) {
                  
+                 
                 $member_name = $this->session->tokenpush;
                 $chack_user2 = new CoreMember();
                 $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
-
                 $member_id = $this->request->getPost('member_login_name');
 
                 if (count($chack_user2) != 0) {
@@ -65,7 +64,7 @@ class IndexController extends ControllerBase {
                     $core_fai = CoreMember::findFirstByMemberLoginName($member_name);
 
                     $core_fai = $core_fai->timeflag;
-                    $timestamp = (date("Y-m-d j:i:s"));
+                    $timestamp = (date("Y-m-d H:i:s"));
 
                     if ($core_fai >= $timestamp) {
 
@@ -74,6 +73,8 @@ class IndexController extends ControllerBase {
                         session_destroy();
                         // Login To Next. 30 Minutes
                     } elseif ($core_fai <= $timestamp) {
+                        
+                        
                         $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
                         $this->view->errorMsg = "company id or user name or password wrong";
                         $this->view->pick('index/index');
@@ -93,14 +94,14 @@ class IndexController extends ControllerBase {
 
 
             if (count($chack_user) == 0) {
-                $timestamp = (date("Y-m-d j:i:s"));
+                $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
 
                 if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
 
-                    $_SESSION['startTime'] = date("Y-m-d j:i:s", strtotime("+30 minutes", $date));
+                    $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
                     $startTime = $_SESSION['startTime'];
-                    $nowtime = (date("Y-m-d j:i:s"));
+                    $nowtime = (date("Y-m-d H:i:s"));
 
                     $_SESSION['expire'] = $_SESSION['startTime'];
                     $rout_time = $nowtime - $_SESSION['expire'];
@@ -115,7 +116,7 @@ class IndexController extends ControllerBase {
                         //$this->response->redirect('auth');    
                     }
                 } else if (isset($_SESSION['startTime']) != null && count($chack_user) == 0) {
-                    $nowtime = (date("Y-m-d j:i:s"));
+                    $nowtime = (date("Y-m-d H:i:s"));
                     $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
                     // checking the time now when home page starts
                     $rout_time = $nowtime - $_SESSION['expire'];
@@ -135,9 +136,9 @@ class IndexController extends ControllerBase {
                 $member_name = $this->session->tokenpush;
                 $chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
-                $timestamp = (date("Y-m-d j:i:s"));
+                $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
-                $formtdate = date("Y-m-d j:i:s", strtotime("+30 minutes", $date));
+                $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
                 $insert = $chack->timeflag($member_name, $formtdate);
                 $this->view->errorMsg = 'Your Account Has 30 MIN Block';
                 $this->view->pick('index/index');
@@ -149,20 +150,28 @@ class IndexController extends ControllerBase {
     
     
     public function faileruserAction() {
+        
+        
+      
+        
+        
+        
+        
+        
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
         $chack_user = new CoreMember();
         $chack_user = $chack_user::findByMemberLoginName($member_name);
         if (count($chack_user) == 0) {
-            $timestamp = (date("Y-m-d h:i:s"));
+            $timestamp = (date("Y-m-d H:i:s"));
             $date = strtotime($timestamp);
 
             if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
 
-                $_SESSION['startTime'] = date("Y-m-d j:i:s", strtotime("+30 minutes", $date));
+                $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
                 $startTime = $_SESSION['startTime'];
-                $nowtime = (date("Y-m-d h:i:s"));
+                $nowtime = (date("Y-m-d H:i:s"));
 
                 $_SESSION['expire'] = $_SESSION['startTime'];
 
@@ -178,7 +187,7 @@ class IndexController extends ControllerBase {
                     //$this->response->redirect('auth');    
                 }
             } else if (isset($_SESSION['startTime']) != null && count($chack_user) == 0) {
-                $nowtime = (date("Y-m-d j:i:s"));
+                $nowtime = (date("Y-m-d H:i:s"));
                 $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
                 // checking the time now when home page starts
                 $rout_time = $nowtime - $_SESSION['expire'];
