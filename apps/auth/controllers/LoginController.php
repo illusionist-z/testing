@@ -21,7 +21,7 @@ class LoginController extends ControllerBase {
             {
         $dbinfo['host']='localhost';
         $dbinfo['db_name']='company_db';
-        $dbinfo['user_name']='root';
+        $dbinfo['user_name']='';
         $dbinfo['db_psw']='root';
         
         $this->session->set('db_config',$dbinfo);
