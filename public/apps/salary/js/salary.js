@@ -458,7 +458,7 @@ var Salary = {
             $("tbody").append(html);}
             Salary.init();
             //click event for detail after search
-            $('.btn_detail').click(function () {
+            $('.btn_detail').click(function () { 
             var month = document.getElementById('month').value;
             var year = document.getElementById('year').value;
             var chkbox = document.getElementsByName('chk[]');
