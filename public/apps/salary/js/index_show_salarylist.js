@@ -15,7 +15,14 @@ $(function () {
             chk.push(chkbox[i].value);
         }
     }
-         window.location.href = baseUri + 'salary/index/printsalary?chk_val='+chk+'&month='+month+'&year='+year;
+    if(chk!=""){
+        window.location.href = baseUri + 'salary/index/printsalary?chk_val='+chk+'&month='+month+'&year='+year;
+    }
+    if(chk=="" || chk=="on"){
+        alert("please check aleast one!");
+        location.reload();
+    }
+         
 //         $.ajax({
 //             url: baseUri + 'salary/index/printsalary',
 //             type: 'get',
@@ -72,15 +79,15 @@ $(function () {
     for (var i=0, n=chkbox .length;i<n;i++) {
         if (chkbox [i].checked) 
         {
-            
             chk.push(chkbox[i].value);
         }
        
     }
+    
     if(chk!=""){
         window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
     }
-    else{
+    if(chk=="" || chk=="on"){
         alert("please check aleast one!");
         location.reload();
     }
