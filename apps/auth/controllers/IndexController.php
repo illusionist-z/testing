@@ -49,8 +49,7 @@ class IndexController extends ControllerBase {
         if ($_SESSION["attempts"] < 1) {
 
             if ($this->session) {
-                 
-                 
+                                  
                 $member_name = $this->session->tokenpush;
                 $chack_user2 = new CoreMember();
                 $chack_user2 = $chack_user2::findByMemberLoginName($member_name);

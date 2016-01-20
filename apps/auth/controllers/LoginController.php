@@ -97,13 +97,12 @@ class LoginController extends ControllerBase {
             $Permission = $ModelPermission->get($result, $permissions,$lang['lang']);
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');
-           
+            unset($_SESSION['attempts']);
            }
            else {
                $this->response->redirect('auth/index/failer');  
            }
              
-           
             }
     
           }
