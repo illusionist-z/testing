@@ -74,7 +74,7 @@ function getAbsentMember() {
     var h = x.getHours();
     var m = x.getMinutes();
     var s  = x.getSeconds();
-    if (h === 8 && m === 5 && s === 0 ) {
+    if (h === 14 ) {
         $.ajax({
             url: baseUri + "attendancelist/absent/addAbsent",
             type: 'GET',
