@@ -794,12 +794,14 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $overtimerate
      * @param type $member_id
      */
-    public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
+    public function updatesalarydetail($bsalary,$overtimerate,$member_id,$overtime_hr) {
         try {
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
                 //echo $sql;
                 $this->db->query($sql);
-               // print_r($sql);exit;
+                $sqlupdate = "Update attendances SET overtime ='" . $overtime_hr . "' Where member_id='" . $member_id . "'";
+                //echo $sql;
+                $this->db->query($sqlupdate);
                 //$res['valid'] = true;
 //                $salarybymember_id=$this->getbsalarybyMember_id($member_id);
 //                $latersalarydetail=  $this->getOldSalarydetail($member_id);

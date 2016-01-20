@@ -98,7 +98,7 @@ class SalaryMasterController extends ControllerBase
     public function editsalarydetailAction($bsalary,$overtimerate,$allowance,$member_id,$absent,$year,$month,$overtime_hr) {
         
         $Salarymaster = new SalaryMaster();
-        $Salarymaster->updatesalarydetail($bsalary,$overtimerate,$member_id);
+        $Salarymaster->updatesalarydetail($bsalary,$overtimerate,$member_id,$overtime_hr);
         $Salarydetail=new SalaryDetail();
         $resultsalary=$Salarydetail->updatesalarydetail($bsalary,$allowance,$member_id,$year,$month,$absent,$overtime_hr,$overtimerate);
         $this->view->disable();
