@@ -57,18 +57,17 @@ use Phalcon\Filter;
                             <td><?php echo $i; ?></td>
                             <td><?php echo $filter->sanitize($salarydetails->core->member_login_name, "string"); ?></td>
                             <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "int")); ?></td>
-                            <td>
-                            <?php 
+                            <td><?php
                             if(isset($salarydetails->salarymas->travel_fee_perday)){
-                            echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee_perday, "int")); 
+                            echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee_perday, "int"));
                             }
                             ?>
                             </td>
 <!--                            <td>
                                 <?php 
-                                if(isset($salarydetails->salarymas->travel_fee_permonth)){
-                                echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee_permonth, "int")); 
-                                }
+//                                if(isset($salarydetails->salarymas->travel_fee_permonth)){
+//                                echo number_format($filter->sanitize($salarydetails->salarymas->travel_fee_permonth, "int")); 
+//                                }
                                 ?>
                             </td>-->
                             <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->over_time, "int")); ?></td>
