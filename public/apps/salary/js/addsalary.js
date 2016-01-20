@@ -50,7 +50,34 @@ var AddSalary = {
            }
         });
     },
-    
+    /**
+     * import csv data to sql
+     * @returns {status}
+     */
+    importcsv : function() {
+        $.ajax({
+            url : 'csvimport',
+            method : "POST",
+            dataType : "json",
+            data : new FormData($("#csvimport")[0]),
+            processData: false,
+            contentType: false,
+            success : function(d) {
+                if(d[0]){
+                $('#file_err').text(d).css({"color":"orange","font-size":"14px"}).show();
+                }
+                else if(d[1]){
+                $('#file_err').text(d[1]).css({"color":"red","font-size":"14px"}).show();
+                }
+                else{
+                $('#file_err').text(d[2]).css({"color":"green","font-size":"14px"}).show();   
+                }
+                $('#file_select').click(function(){
+                    $('#file_err').hide();
+                });
+            }
+        });
+    },
      salnameautolist: function (){                       
         //var name = document.getElementById('namelist').value;
             //alert("aaa");
@@ -139,4 +166,14 @@ var AddSalary = {
 		AddSalary.getmemid(name);
                
 	});
+        
+      $('#csvtosql').click(function(e){
+          e.preventDefault();
+          AddSalary.importcsv();
+      });
+      $('#addsal_type1').click(function(e){
+          link_height();
+      });
+    
+
    });

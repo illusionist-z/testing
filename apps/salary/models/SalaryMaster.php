@@ -32,10 +32,10 @@ class SalaryMaster extends Model {
 //                    echo $message;
 //                }
 //            } else {
-//                echo "Great, a new robot was saved successfully!";
+//              echo "Great, a new robot was saved successfully!";
 //            }
         } catch (Exception $e) {
-            echo $e;
+           echo $e;
         }
 
         

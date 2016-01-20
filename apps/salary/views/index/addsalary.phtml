@@ -8,142 +8,116 @@
     </ol>
 </section>
 <?php
-if(isset($Msg))
-{
+if (isset($Msg)) {
     echo "<script>alert($Msg);</script>";
 }
 ?>
 <!-- Main content -->
 <section class="content">
-       <div class="row">
+    <div class="row">
         <div class="col-md-12"><!--start table content--->
-            <div id="form_div">
-                <div style="height:30px; background-color:#dd4b39; padding:5px 0 5px 15px;"><font color="#fffff">Add Salary Form</font></div>
-                <div class="left-div-style-box">
+            <div id="form_div" class="row">
+                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;" class="col-sm-12"><font color="#fffff">Add Salary Form</font></div>
+                <div class="col-md-12"  style="text-align: center;padding-bottom: 10px;border-bottom: 1px solid #d1d2d2; ">
+                    <h4>Choose add salary type</h4>
+                    <input type='radio' name='radTravel' value='1' id="addsal_type1" onclick="checkRadio()" />For each one
+                    <input type='radio' name='radTravel' value='2' id="addsal_type2" onclick="checkRadio()"/>For csv files
+                </div>
+                <div class="left-div-style-box col-sm-8" style="display: none;" id="radsal_type1">
                     <form action="#" method="post" id="add_salary">
-                    <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("name"); ?></span>
-                        <span>
-<!--                            <select style="width:34%;" name="uname" id="uname">
-                                <option value="">Name</option>
-                                <?php
-                                foreach ($usernames as $username) {
-                                    ?>
-                                    <option value="<?php echo $username->member_id; ?>"
-                                    <?php //echo(isset($Uname) && ($Uname == $result['member_login_name']) ? ' selected="selected"' : ''); ?>        
-                                            ><?php echo $username->member_login_name; ?></option>
+                        <div class="div-bottom col-md-12">
+                            <span class="col-xs-offset-0 span-style"><?= $t->_("name"); ?></span>
+                            <span class="col-xs-8">
+                                <input type="text" class="salusername" name="uname" id="uname" style="width:34%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
+                                <span id="add_salary_uname_error"></span>
+                                <input type="hidden" value="" id="formemberid" name="member_id">
+                            </span>                                          
+                        </div>
 
-                                    <?php
-                                }
-                                ?>
-                            </select>
-                             <span id="add_salary_uname_error"></span> -->
-                            <input type="text" class="salusername" name="uname" id="uname" style="width:34%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
-                            <span id="add_salary_uname_error"></span>
-                            <input type="hidden" value="" id="formemberid" name="member_id">
-                        </span>
-                       
-                    </div>
-                        
-<!--                    <div class="div-bottom">
-                        <span class="span-style">Position </span>
-                        <span>
-                            <select style="width:34%;" name="position" id="position">
-                                <option value="">Select Position</option>
-                                <?php
-                                for($i=1;$i<count($position);$i++){
-                                ?>
-                                <option value="<?php echo $position[$i];?>"><?php echo $position[$i];?></option>
-                                <?php
-                                }
-                                ?>
-                                
-                                       
-                            </select>
-                        </span>
-                    </div>-->
-                    <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("basic_salary"); ?></span>
-                        <span><input type="text" id="bsalary" value="" placeholder="<?php echo $t->_("basic_sal"); ?>" style="width:34%; height: 20%;" name="bsalary"></span>
-                         <span id="add_salary_bsalary_error"></span>
-                    </div>
+                        <div class="div-bottom col-md-12">
+                            <span class="span-style col-xs-offset-0"><?= $t->_("basic_salary"); ?></span>
+                            <span class="col-xs-8"><input type="text" id="bsalary" value="" placeholder="<?php echo $t->_("basic_sal"); ?>" style="width:34%; height: 20%;" name="bsalary">
+                                <span  id="add_salary_bsalary_error"></span>
+                            </span>
 
-                    <div class="div-bottom">
-                        <div class="span-style"><?= $t->_("travel fees"); ?></div>
-                        
-                        <div style="width:350px; margin-left: 170px">
-                            <div style="padding-bottom: 10px;">
-                            Choose travel fees type:
-                            <input type='radio' name='radTravel' value='1' id="radtravel1"/>Per day
-                            <input type='radio' name='radTravel' value='2' id="radtravel2"/>Per month
-                            
-                            </div> 
-                            <div style="margin-left: 45px;width:98%;">
-                                <input type="text" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:97%; height: 20%;" name="travelfees" disabled/>
+                        </div>
+
+                        <div class="div-bottom col-md-12">
+                            <div class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("travel fees"); ?></div>                        
+                            <div style="" class="col-xs-8">
+                                <div style="padding-bottom: 10px;">
+                                    Choose travel fees type:
+                                    <input type='radio' name='radTravel' value='1' id="radtravel1"/>Per day
+                                    <input type='radio' name='radTravel' value='2' id="radtravel2"/>Per month
+                                </div> 
+                                <div style="" >
+                                    <input type="text"class="col-xs-2" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:34%; height: 20%;" name="travelfees" disabled/>
+                                </div>
                             </div>
-                    </div>
-                    <div class="div-bottom">
-                        <span class="span-style"><?= $t->_("overtime"); ?></span>
-                        <span><input type="text" id="overtime" value="" style="width:34%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>"></span>
-                    </div>
-                        
-                           
-                    <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 20%;"><?= $t->_("deduce_ssc"); ?></div>
-                        <div style="margin-left: 20%;width: 150px;">
-                            <?php
-                            //print_r($getall_allowance);
-                            $i=1;
-                            foreach ($getall_deduce as $getall_deduces) {
-                                echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall'.$i.'" value="'.$getall_deduces['deduce_id'].'"> '.  $getall_deduces['deduce_name']."<br>";
-                                $i++;
-                                if($i==3){
-                                     echo "<div id='No_of_children' style='display:none;'>
+                        </div>
+                        <div class="div-bottom col-md-12">
+                            <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("overtime"); ?></span>
+                            <span class="col-xs-8">
+                                <input type="text" id="overtime" value="" style="width:34%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>">
+                            </span>
+                        </div>
+
+                        <div style="line-height: 30px;" class="col-md-12">
+                            <div class="span-style col-xs-offset-0"><?= $t->_("deduce_ssc"); ?></div>
+                            <div class="col-xs-8">
+                                <?php
+                                //print_r($getall_allowance);
+                                $i = 1;
+                                foreach ($getall_deduce as $getall_deduces) {
+                                    echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall' . $i . '" value="' . $getall_deduces['deduce_id'] . '"> ' . $getall_deduces['deduce_name'] . "<br>";
+                                    $i++;
+                                    if ($i == 3) {
+                                        echo "<div id='No_of_children' style='display:none;'>
                                 <input type='text'  name='no_of_children' id='no_of_children' placeholder='number of children'>
                             </div>";
+                                    }
                                 }
-                               
-                            }
-                            ?>                            
-                        </div>
-                        <div id="clear"></div>
-                        <div style="margin-left: 40%;float: right;margin-top: -100px;margin-right: 500px; width: 150px;">
-                            <span id="add_salary_ssc_error"></span>
-                        </div>
-                    </div>
-                       
-                                           
-                       
+                                ?>                                      
+                            </div>        
+                            <div  style="float: right;margin-right: 150px;margin-top: -100px;" id="add_salary_ssc_error"></div>
+                            </div>                       
 
-                    <div style="padding-left: 20px;padding-bottom: 10px;line-height: 30px;">
-                        <div style="float: left; width: 20%;"><?= $t->_("allowance"); ?></div>
-                       <div style="margin-left: 20%;">
-                            <?php
-                            //print_r($getall_allowance);
-                            
-                            foreach ($getall_allowance as $getall_allowances) {
-                                echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="'.$getall_allowances['allowance_id'].'"> '. $getall_allowances['allowance_name']."<br>";
-                            }
-                            ?>
-                           
+                        <div style="line-height: 30px;" class="col-md-12">
+                            <div class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("allowance"); ?></div>
+                            <div class="col-xs-8">
+<?php
+//print_r($getall_allowance);
+
+foreach ($getall_allowance as $getall_allowances) {
+    echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="' . $getall_allowances['allowance_id'] . '"> ' . $getall_allowances['allowance_name'] . "<br>";
+}
+?>
+
+                            </div>
                         </div>
-                    </div>
-                        <div class="div-bottom" style="clear: both;">
-                        <span class="span-style"></span>
-                        <span>
-<!--                            <a href="#" class="button">Apply</a>-->
-                           <input type="submit" value="<?= $t->_("apply"); ?>" onclick="return false;" id="addsalary" class="buttonn">
-                            <!--<a href="#" class="button"><b>Cancel</b></a>-->
-                            <input type="reset" id="add_salary_cancel" class="buttonn" value="<?= $t->_("cancel"); ?>">
-                        </span>
-                    </div>
-                </form>
+                        <div class="div-bottom" style="clear: both;padding-top: 2%;">
+
+                            <span class="col-xs-offset-4">
+                                <!--                            <a href="#" class="button">Apply</a>-->
+                                <input type="submit" value="<?= $t->_("apply"); ?>" onclick="return false;" id="addsalary" class="buttonn">
+                                <!--<a href="#" class="button"><b>Cancel</b></a>-->
+                                <input type="reset" id="add_salary_cancel" class="buttonn" value="<?= $t->_("cancel"); ?>">
+                            </span>
+                        </div>
+                    </form>
+                </div>  
+                <div class="col-sm-4" style="display: none;" id="radsal_type2">
+                    <h4>Add Salary By CSV file or Excel file</h4>
+                    <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
+                     <input type="file" name="file" id="file_select">
+                     <button type="submit" onclick="return false;" class="buttonn" id="csvtosql">Add</button>
+                    <span id="file_err" class="col-xs-12 btn btn-file" style="display:none;"></span>
+                    </form>
                 </div>
-
-            </div>  
-        </div><!--end table content--->
-    </div><!-- /.row -->
-    <div id="content"></div>
+            </div><!--end table content--->
+        </div><!-- /.row -->
+    </div>
+        <div id="content"></div>
 </section><!-- /.content -->
 <script type="text/javascript">
     function checkValue() {
@@ -155,22 +129,34 @@ if(isset($Msg))
         }
     }
 //for checking radio button
-document.getElementById('radtravel1').onchange = displayTextBox;
-document.getElementById('radtravel2').onchange = displayTextBox;
+    document.getElementById('radtravel1').onchange = displayTextBox;
+    document.getElementById('radtravel2').onchange = displayTextBox;
 
-var textBox = document.getElementById('travelfee');
+    var textBox = document.getElementById('travelfee');
 
-function displayTextBox(evt){
-    if(evt.target.value=="1"){
-        textBox.disabled = false;
-        $('#travelfee').attr("placeholder","Enter Trave fees per day");
+    function displayTextBox(evt) {
+        if (evt.target.value == "1") {
+            textBox.disabled = false;
+            $('#travelfee').attr("placeholder", "Enter Trave fees per day");
+        }
+        else if (evt.target.value == "2") {
+            textBox.disabled = false;
+            $('#travelfee').attr("placeholder", "Enter Trave fees per month");
+        }
+        else {
+            textBox.disabled = true;
+        }
     }
-    else if(evt.target.value=="2"){
-        textBox.disabled = false;
-        $('#travelfee').attr("placeholder","Enter Trave fees per month");
+    
+     function checkRadio() {
+        if(document.getElementById('addsal_type1').checked) {
+            $("#radsal_type1").show();
+            $("#radsal_type2").hide();
+        }
+        else if(document.getElementById('addsal_type2').checked){
+            $("#radsal_type2").show();
+            $("#radsal_type1").hide();
+        }
     }
-    else{
-        textBox.disabled = true;
-    }
-}
+     
 </script>
