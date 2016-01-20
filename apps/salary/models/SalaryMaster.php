@@ -335,9 +335,10 @@ class SalaryMaster extends Model {
     function checkAbsent($member_id,$budget_startyear,$budget_endyear_one) {
         try{
             $absent_deduce="";
-           
-            $sql = "select count(date) as countAbsent from absent where member_id='" . $member_id . "' and date>='".$budget_startyear."' and date<='".$budget_endyear_one."' and deleted_flag=0";
             
+            $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
+                    . "and att_date>='".$budget_startyear."' and att_date<='".$budget_endyear_one."' and deleted_flag=0 and status=2";
+            //echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         }
@@ -793,12 +794,14 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $overtimerate
      * @param type $member_id
      */
-    public function updatesalarydetail($bsalary,$overtimerate,$member_id) {
+    public function updatesalarydetail($bsalary,$overtimerate,$member_id,$overtime_hr) {
         try {
                 $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate  . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
                 //echo $sql;
                 $this->db->query($sql);
-               // print_r($sql);exit;
+                $sqlupdate = "Update attendances SET overtime ='" . $overtime_hr . "' Where member_id='" . $member_id . "'";
+                //echo $sql;
+                $this->db->query($sqlupdate);
                 //$res['valid'] = true;
 //                $salarybymember_id=$this->getbsalarybyMember_id($member_id);
 //                $latersalarydetail=  $this->getOldSalarydetail($member_id);
