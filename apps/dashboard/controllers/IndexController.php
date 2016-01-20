@@ -100,15 +100,15 @@ class IndexController extends  ControllerBase {
         $User=new Db\CoreMember;
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-             
+             echo $key_name;
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-              $noti=$User->GetAdminNoti($id);
+              $noti=$User->GetAdminNoti($id,0);
                  
             } 
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-               $noti=$User->GetUserNoti($id); 
+               $noti=$User->GetUserNoti($id,1); 
             }
         }
         $this->view->setVar("noti",$noti);
@@ -174,13 +174,14 @@ class IndexController extends  ControllerBase {
         public function directAction(){
         //$name = $this->session->page_rule_group;
         foreach ($this->session->auth as $key_name => $key_value) {
+            
                 if ($key_name == 'admin_dashboard') {
                 //Go to user dashboard
                 $this->view->disable();
                 $this->response->redirect('attendancelist/index/todaylist');
                 
             } 
-              else if ($key_name == 'show_user_dashboard'){
+              else if ($key_name == 'user_dashboard'){
                     $this->view->disable();
                   $this->response->redirect('attendancelist/user/attendancelist');
                 }

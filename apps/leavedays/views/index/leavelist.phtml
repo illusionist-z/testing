@@ -1,6 +1,7 @@
 <?php
 use Phalcon\Tag as Tag;
 $length = count($Month);
+
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header" id="showleavelist"">
@@ -90,7 +91,7 @@ $length = count($Month);
                    //print_r($Result);
                     $days=0;
                     foreach ($Result as $item) {
-                       // print_r($item);exit;
+                       
                         ?>
                         <tr>
                             <td><?php  $dt=  explode(" ",$item->leaves->date);
@@ -126,13 +127,17 @@ $length = count($Month);
                         };
                                 ?></td>
                             <td><font color="red"><?php
+                            $absent_day = 0;
+                         if(isset($absent[$item->core->member_login_name])){
+                             $absent_day= $absent[$item->core->member_login_name];
+                         }      
                     if($item->leaves->total_leavedays >=$max){
-                            echo ($item->leaves->total_leavedays-$max);
+                            echo (($item->leaves->total_leavedays+$absent_day)-$max);
                             echo " Days  in absent";
                     }
                     else{
                                 
-                    echo $max-($item->leaves->total_leavedays);}
+                    echo $max-($item->leaves->total_leavedays+$absent_day);}
                         
                                 ?></font></td>
                         </tr>

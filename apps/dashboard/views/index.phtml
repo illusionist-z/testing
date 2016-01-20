@@ -16,7 +16,7 @@
         <header class="main-header">
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
-                    <a><img src="<?php echo $baseUri;?>common/img/menu.png"  class="sidebar-toggle" href="#sidepage" role="button">
+                    <a><img src="<?php echo $baseUri;?>common/img/menu.png"  style="height: 54px"class="sidebar-toggle" href="#sidepage" role="button">
                              <span class="sr-only">Toggle navigation</span>
                              </a>
                     
@@ -183,10 +183,10 @@
                                                                                                }
                                                                                                 else{
                                                                                                  if (isset($top[1])) {
-                                                                                                 echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                 echo '<li><a href="' . $baseUri . strtolower($top[0].$top[1]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                                 else{
-                                                                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                         }
                                                                                                  

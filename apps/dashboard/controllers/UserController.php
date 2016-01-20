@@ -56,6 +56,7 @@ class UserController extends  ControllerBase {
         $Attendances = new \salts\Dashboard\Models\Attendances();
         $numofatt=$Attendances->getattlist($id);
         $numofleaves=$Attendances->gettotalleaves($id);
+        
         $this->view->setVar("numatt",$numofatt);
         $this->view->setVar("numleaves",$numofleaves);
         $this->view->t = $this->_getTranslation();

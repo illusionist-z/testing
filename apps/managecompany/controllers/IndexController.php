@@ -13,7 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->view->t = $this->_getTranslation();
-        $this->assets->addJs('common/js/paging.js');
+       // $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/managecompany/js/index.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
@@ -24,6 +24,8 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function indexAction(){
+          $this->assets->addJs('common/js/paging.js');
+          $this->assets->addJs('apps/managecompany/js/paging.js');
         $comid=$this->request->get('comlistsearch');
        $company=new \salts\Managecompany\Models\CompanyTbl();
        $result=  $company->getallcom();
