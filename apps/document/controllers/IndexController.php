@@ -52,7 +52,7 @@ class IndexController extends ControllerBase
      * @author zinmon
      */
     public function ssbdocumentAction() {
-        $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/document/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getssb_info();
         $Companyinfo= new CompanyInfo();
@@ -75,7 +75,7 @@ class IndexController extends ControllerBase
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function taxdocumentAction() {
-        $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/document/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getsalary_info();
            $coreid = new CorePermissionGroupId();
