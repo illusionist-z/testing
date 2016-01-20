@@ -53,10 +53,10 @@ var ApplyForm = {
 $(document).ready(function(){
      $('.datetimepicker').on('click',function(e){
                           e.preventDefault();                                                    
-                         $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                         $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",
                             showTimezone :false,
-                            maskInput : true,                                                                                                         
-                           timeFormat: "HH:mm:ss"}).focus();                             
+                            maskInput : true
+                           }).focus();
                      }); 
                      
     $('#apply_form_submit').on('click',function(){
