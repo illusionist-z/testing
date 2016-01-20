@@ -17,8 +17,13 @@ if (isset($Msg)) {
     <div class="row">
         <div class="col-md-12"><!--start table content--->
             <div id="form_div" class="row">
-                <div style="height:30px; background-color:#dd4b39; padding:5px 0 5px 15px;" class="col-sm-12"><font color="#fffff">Add Salary Form</font></div>
-                <div class="left-div-style-box col-sm-8" style="border-right:1px solid #d1d2d2;">
+                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;" class="col-sm-12"><font color="#fffff">Add Salary Form</font></div>
+                <div class="col-md-12"  style="text-align: center;padding-bottom: 10px;border-bottom: 1px solid #d1d2d2; ">
+                    <h4>Choose add salary type</h4>
+                    <input type='radio' name='radTravel' value='1' id="addsal_type1" onclick="checkRadio()" />For each one
+                    <input type='radio' name='radTravel' value='2' id="addsal_type2" onclick="checkRadio()"/>For csv files
+                </div>
+                <div class="left-div-style-box col-sm-8" style="display: none;" id="radsal_type1">
                     <form action="#" method="post" id="add_salary">
                         <div class="div-bottom col-md-12">
                             <span class="col-xs-offset-0 span-style"><?= $t->_("name"); ?></span>
@@ -92,7 +97,7 @@ foreach ($getall_allowance as $getall_allowances) {
                         </div>
                         <div class="div-bottom" style="clear: both;padding-top: 2%;">
 
-                            <span class="col-xs-offset-3">
+                            <span class="col-xs-offset-4">
                                 <!--                            <a href="#" class="button">Apply</a>-->
                                 <input type="submit" value="<?= $t->_("apply"); ?>" onclick="return false;" id="addsalary" class="buttonn">
                                 <!--<a href="#" class="button"><b>Cancel</b></a>-->
@@ -101,11 +106,11 @@ foreach ($getall_allowance as $getall_allowances) {
                         </div>
                     </form>
                 </div>  
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="display: none;" id="radsal_type2">
                     <h4>Add Salary By CSV file or Excel file</h4>
                     <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
                      <input type="file" name="file" id="file_select">
-                    <button type="submit" onclick="return false;" id="csvtosql">Save</button>
+                     <button type="submit" onclick="return false;" class="buttonn" id="csvtosql">Add</button>
                     <span id="file_err" class="col-xs-12 btn btn-file" style="display:none;"></span>
                     </form>
                 </div>
@@ -142,4 +147,16 @@ foreach ($getall_allowance as $getall_allowances) {
             textBox.disabled = true;
         }
     }
+    
+     function checkRadio() {
+        if(document.getElementById('addsal_type1').checked) {
+            $("#radsal_type1").show();
+            $("#radsal_type2").hide();
+        }
+        else if(document.getElementById('addsal_type2').checked){
+            $("#radsal_type2").show();
+            $("#radsal_type1").hide();
+        }
+    }
+     
 </script>

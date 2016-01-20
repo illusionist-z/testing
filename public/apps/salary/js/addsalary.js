@@ -64,10 +64,13 @@ var AddSalary = {
             contentType: false,
             success : function(d) {
                 if(d[0]){
-                $('#file_err').text(d).css({"color":"red","font-size":"14px"}).show();
+                $('#file_err').text(d).css({"color":"orange","font-size":"14px"}).show();
+                }
+                else if(d[1]){
+                $('#file_err').text(d[1]).css({"color":"red","font-size":"14px"}).show();
                 }
                 else{
-                $('#file_err').text(d[1]).css({"color":"green","font-size":"14px"}).show();
+                $('#file_err').text(d[2]).css({"color":"green","font-size":"14px"}).show();   
                 }
                 $('#file_select').click(function(){
                     $('#file_err').hide();
@@ -168,4 +171,9 @@ var AddSalary = {
           e.preventDefault();
           AddSalary.importcsv();
       });
+      $('#addsal_type1').click(function(e){
+          link_height();
+      });
+    
+
    });
