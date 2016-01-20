@@ -93,7 +93,7 @@ class Leaves extends \Library\Core\BaseModel {
         $cm=new CoreMember();
         $name= $cm->getusernamebyid($creator_id);
         $filter = new Filter();
-        $uname = $filter->sanitize($uname, "string");        
+        $uname = $filter->sanitize($uname, "string");
         $type = $filter->sanitize($type, "string");
         $desc = $filter->sanitize($desc, "string");
 

@@ -8,7 +8,7 @@ use salts\Salary\Models\Allowances;
 use salts\Salary\Models\SalaryTaxs;
 use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
-
+use Phalcon\Filter;
 
 class IndexController extends ControllerBase {
 
@@ -221,7 +221,8 @@ class IndexController extends ControllerBase {
         $data['member_id'] = $this->request->getPost('member_id');
         $data['uname'] = $this->request->getPost('uname');
         $data['basesalary'] = $this->request->getPost('basesalary');
-        $data['travelfee_perday'] = $this->request->getPost('travelfee_perday');
+        $data['travelfee'] = $this->request->getPost('travelfee');
+        $data['radio']=$this->request->getPost('radTravel');
         $data['overtime'] = $this->request->getPost('overtime');
         $data['ssc_emp'] = $this->request->getPost('ssc_emp');
         $data['ssc_comp'] = $this->request->getPost('ssc_comp');
@@ -641,5 +642,49 @@ class IndexController extends ControllerBase {
                }
                  $this->view->disable();
                 echo json_encode($msg);
+        }
+        /**
+         * @author David Jaw Hpan
+         * import csv data to sql
+         * @19/1/16
+         */
+        public function csvimportAction() {    
+            $filter = new Filter();
+            $status = array();
+            if($this->request->isAjax()){
+            $ext = explode(".",$_FILES['file']['name']);
+            if(end($ext) != "csv"){
+                $status[0] = "Invalid file format . (CSV only allowed)";
+                echo json_encode($status);
+            }
+            else{
+            $file = fopen($_FILES['file']['tmp_name'], "r");
+            $count = 0;
+            $sal = new SalaryMaster();
+           while(($data = fgetcsv($file, 10000, ",")) !== FALSE){
+               $count++;
+               if($count > 1){
+                   $da= array();
+                   $da['id']=$filter->sanitize($data[0],"string");
+                   $da['member_id']= $filter->sanitize($data[1],"string");
+                   $da['status']= 0;
+                   $da['basic_salary']=$filter->sanitize($data[2],"int");
+                   $da['travel_fee_perday']=$filter->sanitize($data[3],"int");
+                   $da['over_time']=$filter->sanitize($data[4],"int");                   
+                   $da['ssc_emp'] =$filter->sanitize($data[5],"int");
+                   $da['ssc_comp']=$filter->sanitize($data[6],"int");
+                   $da['creator_id']=$this->session->user['member_id'];
+                   $da['updater_id']=$this->session->user['member_id'];
+                   $da['updated_dt']=date("Y-m-d H:m:s");                   
+                   $sal->savesalary($da);
+               }
+           }
+            $status[1] = "Successfully Imported your data csv";
+            echo json_encode($status);
+             fclose($file);            
+        }
+         $this->view->disable();
+            }      
+            
         }
 }

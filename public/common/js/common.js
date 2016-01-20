@@ -68,22 +68,24 @@ function GEOprocess(position) {
 // * @4:00pm{optional time} check absent member
 // * @author David JP <david.gnext@gmail.com>
 // */
+var done = true;
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
     var m = x.getMinutes();
     var s  = x.getSeconds();
-    if (h === 12 ) {
+    if (h === 8 && m === 5 && s === 0 ) {
         $.ajax({
             url: baseUri + "attendancelist/absent/addAbsent",
             type: 'GET',
             success: function() {
+                done = false;
             }
         });
     }
-//    setTimeout(function(){
-//        getAbsentMember();
-//    },1000);
+    setTimeout(function(){
+        getAbsentMember();
+    },1000);
 }
 /*
  * @author David

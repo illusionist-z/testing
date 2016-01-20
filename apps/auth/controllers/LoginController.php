@@ -21,12 +21,12 @@ class LoginController extends ControllerBase {
             {
         $dbinfo['host']='localhost';
         $dbinfo['db_name']='company_db';
-        $dbinfo['user_name']='root';
+        $dbinfo['user_name']='';
         $dbinfo['db_psw']='root';
         
         $this->session->set('db_config',$dbinfo);
         $result = $ModelAuth->check($loginParams, $user);
-        
+        $this->session->set('user', $result);
         // Data Base Chack
         if ($result) {
             $this->response->redirect('managecompany');
@@ -57,26 +57,13 @@ class LoginController extends ControllerBase {
         $this->session->set('user', $result);
         
         date_default_timezone_set('Asia/Rangoon');
-        $member_session = $this->session->user['member_id'];
-        if($member_session != null){
-            
-        $block_id = 0;    
         $core = new CoreMember();
-        $tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
+        //$tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
         $core->token = $tokenpush;
         $member_id = $this->request->getPost('member_login_name');
-        $insert  = $core->tokenpush($tokenpush,$member_id,$block_id);
-        }
-        elseif($member_session == null){
-        $block_id = 1;    
-        $core = new CoreMember();
-        $tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
-        $core->token = $tokenpush;
-        $member_id = $this->request->getPost('member_login_name');
-        $insert  = $core->tokenpush($tokenpush,$member_id,$block_id);
-        }
+        $insert  = $core->tokenpush($tokenpush,$member_id);
          
-        $timestamp = (date("Y-m-d H:i:s"));    
+        $timestamp = (date("Y-m-d j:i:s"));    
         $member_id = $this->request->getPost('member_login_name');
          // Type Error Chack 5 Time 
         $this->session->set('tokenpush',$member_id);
@@ -86,14 +73,12 @@ class LoginController extends ControllerBase {
         $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
         
         if (count($chack_user2) != 0) {
-        date_default_timezone_set('Asia/Rangoon');
+        
           $core2 =new CoreMember();      
           $core2 =  CoreMember::findFirstByMemberLoginName($this->request->getPost('member_login_name'));
           //var_dump($core2);exit;
           $core2 = $core2->timeflag;
-          
-           $timestamp = date("Y-m-d H:i:s"); 
-             
+           $timestamp = (date("Y-m-d j:i:s")); 
           if ($core2 >= $timestamp){
            $this->view->errorMsg = "You've Login To Next. 30 Minutes"; 
             // Push Into Database Mamber Log

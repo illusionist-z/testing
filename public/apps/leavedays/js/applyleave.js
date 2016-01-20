@@ -66,9 +66,6 @@ var ApplyForm = {
         });
     },  
        getmemid: function (name){                       
-        //var name = document.getElementById('namelist').value;
-           // alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
          var dict = [];
        $.ajax({
                 url:'getapplymemberid?username='+name,
@@ -78,11 +75,7 @@ var ApplyForm = {
                 //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                    //alert(json_obj[i].member_id);
-               // var aa = json_obj[i].member_id;
-                //alert(aa);
-                //$('#formemberid').text(json_obj[i].member_id);
-               // $(".salusername").text(aa);
+                    
                 dict.push(json_obj[i].member_id);
                 }
                   //var dict = ["Test User02","Adminstrator"];
@@ -91,8 +84,7 @@ var ApplyForm = {
                         }
                         
                     });
-                     function loadIcon(dict) {
-                      // alert(dict);
+                     function loadIcon(dict) {                      
                         $('#formemberid').val(dict);
                      }
                      
@@ -113,21 +105,26 @@ $(document).ready(function(){
       ApplyForm.Submit();
    });
    $('#apply_form_name').on('click',function(){     
-         $(this).autocomplete({
-                        source: function( request, response ) {
-                        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
-                        response( $.grep( dict, function( item ){                 
-                        return matcher.test( item);
-                         }) );
-                 },
-                        minLength :1
-                 });
+//                $(this).autocomplete({
+//                        source: function( request, response ) {               
+//                                var results = $.ui.autocomplete.filter(dict, request.term);
+//                                   response(results.slice(0, 10));  
+//                        }
+//                });
+ $(this).autocomplete({
+            source: function( request, response ) {                                       
+               var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" ); 
+               var result = $.grep( dict, function( item ){                 
+                          return matcher.test( item);
+                         });
+                   response(result.slice(0, 10));
+            },
+             minLength :1
+        });
     }); 
     $("#apply_form_sdate").on('blur',function(){
-       var name = document.getElementById('apply_form_name').value;
-      //alert(name);
-		ApplyForm.getmemid(name);
-               
+       var name = document.getElementById('apply_form_name').value;      
+		ApplyForm.getmemid(name);               
 	});
 });
 

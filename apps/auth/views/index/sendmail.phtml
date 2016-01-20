@@ -35,7 +35,7 @@
                       foreach ($Result as $result) {
                 ?>      
                     We sent your code to : <br>              
-                      <span id="textmail">  <img src="../../common/img/message-16.png">  <?php echo $result ['member_mail']; ?>    </span>
+                      <span id="textmail">  <img src="<?php echo $baseUri;?>common/img/message.png">  <?php echo $result ['member_mail']; ?>    </span>
                       <input type="hidden" name="member_mail" id="emailaddress" class="form-control"  value="<?php echo $result ['member_mail']; ?>" />  
                      
                <?php 
