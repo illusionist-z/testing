@@ -24,6 +24,7 @@ class Attendances extends Model {
                     ->where('core.member_login_name = :name:', array('name' => $name))
                     ->andWhere('attendances.att_date = :today:', array('today' => $today))
                     ->andWhere('core.deleted_flag = 0')
+                    ->andWhere('attendances.status = 0')
                     ->getQuery()
                     ->execute();
         } else {
@@ -114,6 +115,7 @@ class Attendances extends Model {
                         ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                         ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
                         ->andWhere('core.deleted_flag = 0')
+                        ->andWhere('attendances.status = 0')
                         ->orderBy('attendances.checkin_time DESC')
                         ->getQuery()
                         ->execute();           
@@ -215,7 +217,7 @@ class Attendances extends Model {
          $conditions=$this->setCondition($year, $month, $username);
               $sql = $select;
               if (count($conditions) > 0) {
-              $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0 order by att_date desc";
+              $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0 and attendances.status=0 order by att_date desc";
               }
               $result = $this->db->query($sql);
               $row = $result->fetchall();
