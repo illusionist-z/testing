@@ -130,7 +130,7 @@ class IndexController extends ControllerBase {
         $this->permission = $this->setPermission($this->act_name ); 
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id);
+        $noti=$Admin->GetAdminNoti($id,0);
         $this->view->setVar("noti",$noti);
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/search.js');

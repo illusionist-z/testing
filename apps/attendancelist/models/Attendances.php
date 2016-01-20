@@ -154,6 +154,7 @@ class Attendances extends Model {
                            }
                        }
                     $insert .= "('". $v['member_id'] . "',CURRENT_DATE,1),";
+                    
                 }
             }
             //insert absent with no apply leave
@@ -280,4 +281,22 @@ class Attendances extends Model {
         }
         return $result;
         }
+        
+        
+          public function getcontractdata($id) {
+        $credt = $this->db->query("SELECT * "
+                . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
+        $created_date = $credt->fetchArray();
+        
+        if ($created_date['working_year_by_year'] == NULL) {
+            $date['startDate'] = $created_date['working_start_dt'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_start_dt'])));
+        } else {
+            $date['startDate'] = $created_date['working_year_by_year'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
+            //print_r($date);exit;
+        }
+        //print_r($date);exit;
+        return $date;
+    }
 }
