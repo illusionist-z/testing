@@ -18,12 +18,7 @@ if (isset($Msg)) {
         <div class="col-md-12"><!--start table content--->
             <div id="form_div" class="row">
                 <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;" class="col-sm-12"><font color="#fffff">Add Salary Form</font></div>
-                <div class="col-md-12"  style="text-align: center;padding-bottom: 10px;border-bottom: 1px solid #d1d2d2; ">
-                    <h4>Choose add salary type</h4>
-                    <input type='radio' name='radTravel' value='1' id="addsal_type1" onclick="checkRadio()" />For each one
-                    <input type='radio' name='radTravel' value='2' id="addsal_type2" onclick="checkRadio()"/>For csv files
-                </div>
-                <div class="left-div-style-box col-sm-8" style="display: none;" id="radsal_type1">
+                <div class="left-div-style-box col-sm-8" >
                     <form action="#" method="post" id="add_salary">
                         <div class="div-bottom col-md-12">
                             <span class="col-xs-offset-0 span-style"><?= $t->_("name"); ?></span>
@@ -105,15 +100,18 @@ foreach ($getall_allowance as $getall_allowances) {
                             </span>
                         </div>
                     </form>
-                </div>  
-                <div class="col-sm-4" style="display: none;" id="radsal_type2">
-                    <h4>Add Salary By CSV file or Excel file</h4>
+                </div>
+                <div class="col-md-4 dropdown"  style="text-align: center;padding-bottom: 10px; ">                    
+                    <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown">Add Salary By CSV file </h4>
+                    <h4 class="btn btn-primary" title="Download Sample CSV" id="csv_download"><img src="../../common/img/download1.png"></h4>
+                    <div class="col-sm-12 dropdown-menu"  id="radsal_type">                   
                     <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
-                     <input type="file" name="file" id="file_select">
-                     <button type="submit" onclick="return false;" class="buttonn" id="csvtosql">Add</button>
-                    <span id="file_err" class="col-xs-12 btn btn-file" style="display:none;"></span>
+                        <input type="file" name="file" id="file_select" class="col-xs-6 col-xs-offset-0">
+                     <button type="submit" onclick="return false;" class="col-xs-3 col-xs-offset-4 btn btn-primary" id="csvtosql">Add</button>
+                     <span id="file_err" class="col-xs-12 btn btn-file" style="display:none;"></span>
                     </form>
                 </div>
+                </div>                               
             </div><!--end table content--->
         </div><!-- /.row -->
     </div>
@@ -146,17 +144,6 @@ foreach ($getall_allowance as $getall_allowances) {
         else {
             textBox.disabled = true;
         }
-    }
-    
-     function checkRadio() {
-        if(document.getElementById('addsal_type1').checked) {
-            $("#radsal_type1").show();
-            $("#radsal_type2").hide();
-        }
-        else if(document.getElementById('addsal_type2').checked){
-            $("#radsal_type2").show();
-            $("#radsal_type1").hide();
-        }
-    }
+    } 
      
 </script>
