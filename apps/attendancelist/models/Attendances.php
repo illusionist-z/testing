@@ -24,6 +24,7 @@ class Attendances extends Model {
                     ->where('core.member_login_name = :name:', array('name' => $name))
                     ->andWhere('attendances.att_date = :today:', array('today' => $today))
                     ->andWhere('core.deleted_flag = 0')
+                    ->andWhere('attendances.status = 0')
                     ->getQuery()
                     ->execute();
         } else {
@@ -114,6 +115,7 @@ class Attendances extends Model {
                         ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                         ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
                         ->andWhere('core.deleted_flag = 0')
+                        ->andWhere('attendances.status = 0')
                         ->orderBy('attendances.checkin_time DESC')
                         ->getQuery()
                         ->execute();           
@@ -154,6 +156,7 @@ class Attendances extends Model {
                            }
                        }
                     $insert .= "('". $v['member_id'] . "',CURRENT_DATE,1),";
+                    
                 }
             }
             //insert absent with no apply leave
@@ -214,7 +217,7 @@ class Attendances extends Model {
          $conditions=$this->setCondition($year, $month, $username);
               $sql = $select;
               if (count($conditions) > 0) {
-              $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0 order by att_date desc";
+              $sql .= " WHERE " . implode(' AND ', $conditions)." AND core_member.deleted_flag = 0 and attendances.status=0 order by att_date desc";
               }
               $result = $this->db->query($sql);
               $row = $result->fetchall();
@@ -280,4 +283,22 @@ class Attendances extends Model {
         }
         return $result;
         }
+        
+        
+          public function getcontractdata($id) {
+        $credt = $this->db->query("SELECT * "
+                . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
+        $created_date = $credt->fetchArray();
+        
+        if ($created_date['working_year_by_year'] == NULL) {
+            $date['startDate'] = $created_date['working_start_dt'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_start_dt'])));
+        } else {
+            $date['startDate'] = $created_date['working_year_by_year'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
+            //print_r($date);exit;
+        }
+        //print_r($date);exit;
+        return $date;
+    }
 }

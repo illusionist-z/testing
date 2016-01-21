@@ -653,10 +653,16 @@ class IndexController extends ControllerBase {
             $status = array();
             if($this->request->isAjax()){
             $ext = explode(".",$_FILES['file']['name']);
-            if(end($ext) != "csv"){
-                $status[0] = "Invalid file format . (CSV only allowed)";
+             if(end($ext) == "xls" || end($ext) == "xlsx"){
+                  $status[0] = "Covert excel file to csv !!";    
                 echo json_encode($status);
             }
+            
+            else if(end($ext) != "csv"){
+                $status[1] = "Invalid file format . (CSV only allowed)";               
+                echo json_encode($status);
+            }
+            
             else{
             $file = fopen($_FILES['file']['tmp_name'], "r");
             $count = 0;
@@ -679,7 +685,7 @@ class IndexController extends ControllerBase {
                    $sal->savesalary($da);
                }
            }
-            $status[1] = "Successfully Imported your data csv";
+            $status[2] = "Successfully Imported your data csv";
             echo json_encode($status);
              fclose($file);            
         }

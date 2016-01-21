@@ -1,4 +1,4 @@
-var pager = new Paging.Pager(),dict =[];   //for pagination
+//var pager = new Paging.Pager(),dict =[];   //for pagination
 
 var AddCom = {
     Submit : function (){
@@ -79,7 +79,7 @@ var ManageCompany = {
         };    
  
 $(document).ready(function(){              
-    ManageCompany.init(1);
+    
     
     $('#add_com').on('click',function(e){
       AddCom.Submit();
