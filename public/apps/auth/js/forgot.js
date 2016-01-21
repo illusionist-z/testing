@@ -1,12 +1,12 @@
 var forgot  = {
     
-     checkmail: function (email){
+     checkmail: function (email){ 
        $.ajax({
                 url:'checkmail',
                 method: 'GET',
                 data:{email:email},
                // dataType: 'json',
-                success: function(d) {
+                success: function(d) {                   
                     data= JSON.parse(d);
                     if(data==='success'){
                        // alert(data);
@@ -73,9 +73,6 @@ var forgot  = {
      //for check box
      $("#show").click(function(){
        var show = document.getElementById('show');
-                
-                
-                        
        if(show.checked){
                         var fnp = document.getElementById('forgotnewpassword').value;
                         var fcp = document.getElementById('forgotcomfirmpassword').value;
@@ -123,7 +120,7 @@ var forgot  = {
             });
             
             //for btnemail of resetpassword
-            $("#btnemail").click(function(){
+            $("#btnemail").click(function(){          
                var email=document.getElementById('emailaddress').value;
                window.location.href = baseUri + 'auth/index/sendmail?email='+email;
             });

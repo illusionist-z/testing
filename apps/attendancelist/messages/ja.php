@@ -40,7 +40,12 @@ $messages = array(
     "save" => "保存",
     "cancel" => "中止",
     
-      
+       
+    "month_att_chart"=>"Monthly Attendance Chart",
+    "att_person"=>" Attendance Person",
+    "absent_leave_person"=>" Absent Person(Applied Leave)",
+    "absent_noleave_person"=>" Absent Person(No apply leave)",
+    
         /**
      * Header
      */
