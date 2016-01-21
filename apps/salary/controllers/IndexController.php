@@ -660,20 +660,20 @@ class IndexController extends ControllerBase {
                     if (count($data) === 1) {
                         while (($data = fgetcsv($file, 10000, ",")) !== FALSE) {
                             $count++;
-                            if ($count > 1) {
-                                $da = array();
-                                $da['id'] = $filter->sanitize($data[0], "string");
-                                $da['member_id'] = $filter->sanitize($data[1], "string");
-                                $da['status'] = 0;
-                                $da['basic_salary'] = $filter->sanitize($data[3], "int");
-                                $da['travel_fee_perday'] = $filter->sanitize($data[4], "int");
-                                $da['over_time'] = $filter->sanitize($data[6], "int");
-                                $da['ssc_emp'] = $filter->sanitize($data[7], "int");
-                                $da['ssc_comp'] = $filter->sanitize($data[8], "int");
-                                $da['creator_id'] = $this->session->user['member_id'];
-                                $da['updater_id'] = $this->session->user['member_id'];
-                                $da['updated_dt'] = date("Y-m-d H:m:s");
-                                $return = $sal->savesalary($da);
+                          if ($count > 1) {
+                        $da = array();
+                        $da['id'] = $filter->sanitize($data[0], "string");
+                        $da['member_id'] = $filter->sanitize($data[1], "string");
+                        $da['status'] = 0;
+                        $da['basic_salary'] = $filter->sanitize(isset($data[3])?$data[3]:"", "int");
+                        $da['travel_fee_perday'] = $filter->sanitize(isset($data[4])?$data[4]:"", "int");
+                        $da['over_time'] = $filter->sanitize(isset($data[6])?$data[6]:"", "int");
+                        $da['ssc_emp'] = $filter->sanitize(isset($data[7])?$data[7]:"", "int");
+                        $da['ssc_comp'] = $filter->sanitize(isset($data[8])?$data[8]:"", "int");
+                        $da['creator_id'] = $this->session->user['member_id'];
+                        $da['updater_id'] = $this->session->user['member_id'];
+                        $da['updated_dt'] = date("Y-m-d H:m:s");
+                       $return = $sal->savesalary($da);
                             }
                         }
                     }
@@ -684,25 +684,30 @@ class IndexController extends ControllerBase {
                         $da['id'] = $filter->sanitize($data[0], "string");
                         $da['member_id'] = $filter->sanitize($data[1], "string");
                         $da['status'] = 0;
-                        $da['basic_salary'] = $filter->sanitize($data[3], "int");
-                        $da['travel_fee_perday'] = $filter->sanitize($data[4], "int");
-                        $da['over_time'] = $filter->sanitize($data[6], "int");
-                        $da['ssc_emp'] = $filter->sanitize($data[7], "int");
-                        $da['ssc_comp'] = $filter->sanitize($data[8], "int");
+                        $da['basic_salary'] = $filter->sanitize(isset($data[3])?$data[3]:"", "int");
+                        $da['travel_fee_perday'] = $filter->sanitize(isset($data[4])?$data[4]:"", "int");
+                        $da['over_time'] = $filter->sanitize(isset($data[6])?$data[6]:"", "int");
+                        $da['ssc_emp'] = $filter->sanitize(isset($data[7])?$data[7]:"", "int");
+                        $da['ssc_comp'] = $filter->sanitize(isset($data[8])?$data[8]:"", "int");
                         $da['creator_id'] = $this->session->user['member_id'];
                         $da['updater_id'] = $this->session->user['member_id'];
                         $da['updated_dt'] = date("Y-m-d H:m:s");
                        $return = $sal->savesalary($da);
-                    }                                       
+                    }
                 }
                 }
                 $temp = "";
-                foreach ($return as $v) {
-                    if (gettype($v) === "object") {
-                        $temp .= $v->getMessage() . " ,";
-                    } else {
-                        $temp .= $v . " ,";
-                    }
+                if(!isset($return)){
+                        $temp = "Insert all field data please ,";
+                }
+                else{                                   
+                        foreach ($return as $v) {
+                            if (gettype($v) === "object") {
+                                $temp .= $v->getMessage() . " ,";
+                            } else {
+                                $temp .= $v . " ,";
+                            }
+                        }
                 }
                 $temp = substr_replace($temp, "", -1);
                 $status[2] = $temp;
@@ -727,11 +732,9 @@ class IndexController extends ControllerBase {
         ob_start();
         $output = fopen('php://output', 'w');
 
-// output the column headings                
-        $core = $this->getDI()->getShared('db');
-        $query = "show columns from salary_master";
-        $header = $core->query($query);
-        $h = $header->fetchall();
+     // output the column headings                
+        $core = new SalaryMaster();
+        $h = $core->getSalMasterField();
         foreach ($h as $j => $v) {
             //for adding member name row
             if ($j === 2) {
@@ -742,10 +745,11 @@ class IndexController extends ControllerBase {
         }
         fputcsv($output, $head);
         $core = new Db\CoreMember();
-        $rows = $core::find();
+        $rows = $core->findUserAddSalary();
         $n = 1;
+        //insert member id and name 
         foreach ($rows as $row) {
-            fputcsv($output, array($n, $row->member_id, $row->member_login_name));
+            fputcsv($output, array($n, $row['member_id'], $row['member_login_name']));
             $n++;
         }
         fclose($output);

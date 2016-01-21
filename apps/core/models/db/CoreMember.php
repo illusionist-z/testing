@@ -414,7 +414,7 @@ class CoreMember extends \Library\Core\BaseModel {
      *forget password
      
      */
-    public function findemail($member_mail) {       
+    public function findemail($member_mail) {
        //print_r($member_mail);exit;
         //exit;
         // Check if the user exist
@@ -535,5 +535,12 @@ class CoreMember extends \Library\Core\BaseModel {
         //print_r($user);exit;
         return $user;
 
+    }
+    
+    public function findUserAddSalary() {
+        $query = "Select * from core_member where member_id not in ( select member_id from salary_master)";
+        $data = $this->db->query($query);
+        $rows = $data->fetchall();
+        return $rows;
     }
 }

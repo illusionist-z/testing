@@ -1,6 +1,6 @@
 var forgot  = {
     
-     checkmail: function (email){ 
+     checkmail: function (email){
        $.ajax({
                 url:'checkmail',
                 method: 'GET',
@@ -123,7 +123,7 @@ var forgot  = {
             });
             
             //for btnemail of resetpassword
-            $("#btnemail").click(function(){          
+            $("#btnemail").click(function(){
                var email=document.getElementById('emailaddress').value;
                window.location.href = baseUri + 'auth/index/sendmail?email='+email;
             });
