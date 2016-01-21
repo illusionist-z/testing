@@ -1,10 +1,10 @@
 <section class="content-header">
     <h1>
-        <?php echo "Monthly Atten chart (".date('Y')."/".date('m').")"  ?>
+        <?php echo $t->_("month_att_chart")." (".date('Y')."/".date('m').")"  ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i><?php echo "Home" ?></a></li>
-        <li class="active"><?php echo "Monthly Atten Chart" ?></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i><?php echo $t->_("home") ?></a></li>
+        <li class="active"><?php echo $t->_("month_att_chart"); ?></li>
     </ol>
 </section>
 <section class="content"> 
@@ -12,7 +12,7 @@
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
                 <thead>
-                        <th><?= "Name" ?></th>
+                        <th><?= $t->_("username"); ?></th>
                         <?php                        
                         for($i = 1; $i <=  date('t'); $i++){
                             echo "<th>Day ".$i."</th>";
@@ -58,7 +58,7 @@
 </section>
 <div id="content"></div>
 <div class="attchart">
-<div class="col-md-12"><div class="col-sm-1 leave0 btn"></div> Attendance Person</div>
-<div class="col-md-12"><div class="col-sm-1 leave1 btn"></div> Absent Person(Applied Leave)</div>
-<div class="col-md-12"><div class="col-sm-1 leave2 btn"></div> Absent Person(No apply leave)</div>
+<div class="col-md-12"><div class="col-sm-1 leave0 btn"></div> <?php echo $t->_("att_person"); ?>  </div>
+<div class="col-md-12"><div class="col-sm-1 leave1 btn"></div> <?php echo $t->_("absent_leave_person"); ?>  </div>
+<div class="col-md-12"><div class="col-sm-1 leave2 btn"></div> <?php echo $t->_("absent_noleave_person"); ?> </div>
 </div>

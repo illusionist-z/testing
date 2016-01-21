@@ -286,7 +286,7 @@ class IndexController extends ControllerBase {
          
         $this->assets->addJs('apps/auth/js/forgot.js');      
           $member_mail = $this->request->get('email');   
-         $Admin=new Db\CoreMember;
+         $Admin = new CoreMember();
          $result = $Admin->findemail($member_mail);
         if($result){
             $msg="success";

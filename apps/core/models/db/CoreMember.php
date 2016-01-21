@@ -443,7 +443,7 @@ class CoreMember extends \Library\Core\BaseModel {
         //$email = $member_mail;
         
         $this->db = $this->getDI()->getShared("db");      
-     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',curdate() )");
+     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values('" . $member_mail . "' ,'" . $token . "',now() )");
        //print_r($user);exit;
        // $user = $user->fetchAssoc(); 
         //print_r($user);exit;
