@@ -453,9 +453,9 @@ class CoreMember extends \Library\Core\BaseModel {
      *     
      */
 
-    public function tokenpush($member_id, $tokenpush, $block_id) {
+    public function tokenpush($member_id, $tokenpush) {
         $this->db = $this->getDI()->getShared("db");
-        $member_log = $this->db->query("INSERT INTO member_log(token,member_id,yes_no) values(' " . $member_id . " ' ,' " . $tokenpush . " ',' " . $block_id . " ' )");
+        $member_log = $this->db->query("INSERT INTO member_log(token,member_id) values(' " . $member_id . " ' ,' " . $tokenpush . " ' )");
         
         return $member_log;
     }
