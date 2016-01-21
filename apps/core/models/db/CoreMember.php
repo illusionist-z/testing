@@ -460,7 +460,7 @@ class CoreMember extends \Library\Core\BaseModel {
 
     public function tokenpush($member_id, $tokenpush) {
         $this->db = $this->getDI()->getShared("db");
-        $member_log = $this->db->query("INSERT INTO member_log(token,member_id) values(' " . $member_id . " ' ,' " . $tokenpush . " ' )");
+        $member_log = $this->db->query("INSERT INTO member_log(token,member_id) values(' " . $member_id . " ' ,' " . $tokenpush . "  ' )");
         
         return $member_log;
     }

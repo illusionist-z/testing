@@ -29,6 +29,7 @@ class SalaryMasterController extends ControllerBase
         $data['no_of_children']=$this->request->get('no_of_children', 'int');
         $dedution = $this->request->get('checkall');
         $allowance = $this->request->get('check_allow');
+        
         $data['id'] = uniqid();
         $data['member_id'] = $this->request->get('member_id', 'string');
         //$data['uname'] = $this->request->get('uname', 'string');
@@ -51,7 +52,11 @@ class SalaryMasterController extends ControllerBase
         }
         $data['ssc_emp'] = 2;
         $data['ssc_comp'] = 3;
-        $data['salary_start_date'] = date("Y-m-d H:i:s");
+        $sdate=$this->request->get('s_sdate');
+        $data['salary_start_date'] = date("Y-m-d", strtotime($sdate));
+       $byear= date("Y", strtotime($sdate))+1;
+       
+       $data['salary_end_date']=$byear."-03-31";
         $data['allowance_id'] = 0;
         $data['creator_id'] = $this->session->user['member_id'];
         $data['created_dt'] = date("Y-m-d H:i:s");

@@ -13,7 +13,8 @@ class IndexController extends ControllerBase {
         }
 
         public function indexAction($mode = NULL) {
-          
+            
+       
         $localhost = ($this->request->getServer('HTTP_HOST'));
  
         if (isset($_SESSION['startTime']) != null) {
@@ -35,8 +36,7 @@ class IndexController extends ControllerBase {
      */
       public function failerAction($mode = 1) {
         
-         
-         
+          
         /*
         * User failerAction 
         * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -49,8 +49,7 @@ class IndexController extends ControllerBase {
         if ($_SESSION["attempts"] < 1) {
 
             if ($this->session) {
-                 
-                 
+                                  
                 $member_name = $this->session->tokenpush;
                 $chack_user2 = new CoreMember();
                 $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
@@ -150,14 +149,7 @@ class IndexController extends ControllerBase {
     
     
     public function faileruserAction() {
-        
-        
-      
-        
-        
-        
-        
-        
+          
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
