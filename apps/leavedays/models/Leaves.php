@@ -28,18 +28,60 @@ class Leaves extends \Library\Core\BaseModel {
      * @param type $username
      * @return type
      */
+     
     public function getleavelist() {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                 ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
+                //->join('salts\Attendancelist\Models\Attendances', 'core.member_id = Attendances.member_id', 'Attendances')
                 ->Where('core.deleted_flag = 0')
+                //->AndWhere('Attendances.status = 2')
                 ->orderBy('leaves.date DESC')
                 ->getQuery()
                 ->execute();
+                //->count();
+  
+//        foreach ($row as $value) {
+//          
+//            $result = $this->db->query("select * from attendances where attendances.member_id='".$value->core->member_id."'"
+//                    . "and attendances.status=2");
+//            $data=$result->fetchall();
+//            $absent[$value->core->member_id]=count($data);
+//            
+//            //echo $absent;
+//            
+//        }
+       
+     
         return $row;
     }
-
+    
+    public function getabsent(){
+          $row = $this->modelsManager->createBuilder()
+                ->columns(array('core.*', 'leaves.*'))
+                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
+                //->join('salts\Attendancelist\Models\Attendances', 'core.member_id = Attendances.member_id', 'Attendances')
+                ->Where('core.deleted_flag = 0')
+                //->AndWhere('Attendances.status = 2')
+                ->orderBy('leaves.date DESC')
+                ->getQuery()
+                ->execute();
+                //->count();
+  
+        foreach ($row as $value) {
+          
+            $result = $this->db->query("select * from attendances where attendances.member_id='".$value->core->member_id."'"
+                    . "and attendances.status=2");
+            $data=$result->fetchall();
+            $absent[$value->core->member_id]=count($data);
+            
+            //echo $absent;
+            
+        }
+        return $absent;
+    }
     /**
      * Search for leave list
      * @param type $ltype

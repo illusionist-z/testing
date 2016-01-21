@@ -33,16 +33,20 @@ class IndexController extends ControllerBase
         $this->view->module_name = $this->router->getModuleName();
          $this->view->permission = $this->permission;
         
-//        $coreid = new CorePermissionGroupId();
-//        foreach($coreid as $data){ 
-//       
-//        if($code==$data->group_id){
-//            $noti=$Admin->GetAdminNoti($id,0);}
-//        else{
-//            $id = $this->session->user['member_id'];
-//            $noti=$Admin->GetUserNoti($id,1);
-//        }
-//      $this->view->setVar("noti",$noti);
+   foreach ($this->session->auth as $key_name => $key_value) {
+             
+            if ($key_name == 'show_admin_notification') {
+                //Go to user dashboard
+              $noti=$Admin->GetAdminNoti($id,0);
+                 
+            } 
+            if ($key_name == 'show_user_notification') {
+                //Go to admin dashboard
+               $noti=$Admin->GetUserNoti($id,1); 
+            }
+        }
+
+      $this->view->setVar("noti",$noti);
        
     }
 
