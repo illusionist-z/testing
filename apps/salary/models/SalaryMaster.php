@@ -20,20 +20,19 @@ class SalaryMaster extends Model {
      */
     public function savesalary($data) {
         try {
-            
+            $return = array();
 //            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time,created_dt) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "',NOW())";
 //            $result = $this->db->query($sql);
-            $SalaryMaster = new SalaryMaster();
-            $SalaryMaster->save($data);
+            $SalaryMaster = new SalaryMaster();           
            
-//            if ($SalaryMaster->save($data) == false) {
-//                echo "Umh, We can't store robots right now ";
-//                foreach ($SalaryMaster->getMessages() as $message) {
-//                    echo $message;
-//                }
-//            } else {
-//              echo "Great, a new robot was saved successfully!";
-//            }
+            if ($SalaryMaster->save($data) == false) {               
+                foreach ($SalaryMaster->getMessages() as $message) {
+                    $return[] = $message;
+                }                
+            } else {
+              $return [] =  "Data was saved successfully!";
+            }
+            return $return;
         } catch (Exception $e) {
            echo $e;
         }

@@ -20,26 +20,26 @@
         
         <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
             <table width="700px" height="300px" style="margin-left: 30px;"> 
-               <tr>		
-		<td><?= $t->_("start_date"); ?> </td>
-                <td style="height:40px;">
+               <tr>
+                   <td class="col-md-4"><?= $t->_("start_date"); ?> </td>
+                   <td style="height:40px;" class="col-md-4">
                     <input type="text" class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
-                    <span id="apply_form_sdate_error"></span>
-                </td>                
+                    
+                </td>
+                <td class="col-md-4"><span id="apply_form_sdate_error"></span></td>
 	</tr>
         
-	<tr>
-		<td><?= $t->_("end_date"); ?></td>
-                <td style="height:40px;">
-                    <input type="text" class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
-                    <span id="apply_form_edate_error"></span>                
+        <tr>
+            <td class="col-md-2"><?= $t->_("end_date"); ?></td>
+            <td style="height:40px;" class="col-md-4">
+                    <input type="text" class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">                               
                 </td>
-                
+             <td class="col-md-4"><span id="apply_form_edate_error"></span></td>
         </tr>
         <tr>
           
-		<td><?= $t->_("leave_category"); ?></td>
-                <td style="height:40px;">
+            <td class="col-md-4"><?= $t->_("leave_category"); ?></td>
+            <td style="height:40px;" class="col-md-4">
                     <select class="select" data-toggle="select" name="leavetype">
                     <?php
                     foreach ($Leavetype as $data) {
@@ -51,11 +51,11 @@
                 </td>
 	</tr>
 	<tr>
-		<td><?= $t->_("leave_desc"); ?></td>
-                <td style="height:40px;">
-                    <textarea name="description" id="apply_form_desc"  rows="5"  style="width:260px;"  placeholder="Write Description"></textarea>
-                    <span id="apply_form_desc_error"></span>
+            <td class="col-md-4"><?= $t->_("leave_desc"); ?></td>
+            <td style="height:40px;" class="col-md-4">
+                    <textarea name="description" id="apply_form_desc"  rows="5"  style="width:260px;"  placeholder="Write Description"></textarea>                    
                </td>
+               <td class="col-md-4"><span id="apply_form_desc_error"></span></td>
 	</tr>
         
 	<tr>
