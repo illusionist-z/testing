@@ -12,8 +12,7 @@ class LoginController extends ControllerBase {
     }
 
     public function indexAction() {
-        
-        
+                
         $loginParams = $this->request->get();
         $ModelAuth = new Models\Auth();
        
@@ -46,6 +45,25 @@ class LoginController extends ControllerBase {
            
         //User Chack    
         $this->session->set('db_config',$companyDB);
+        
+        //Module Chack
+        $module = new Models\Auth();
+        //$permission_module = $this->session->db_config;
+        $module_id = $this->session->db_config['company_id'];
+        //$module_id = $this->request->getPost('company_id'); 
+        $company_module = $module->find_module($module_id);
+//        /$company_module = $company_module->module_id;
+        $this->session->set('module',$company_module);
+        
+        
+        
+             //var_dump($module_id_set);
+       
+      
+        
+        
+        
+        
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();
@@ -97,7 +115,7 @@ class LoginController extends ControllerBase {
             $Permission = $ModelPermission->get($result, $permissions,$lang['lang']);
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');
-            unset($_SESSION['attempts']);
+            session_destroy(($_SESSION['attempts']));
            }
            else {
                $this->response->redirect('auth/index/failer');  

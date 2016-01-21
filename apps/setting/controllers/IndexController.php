@@ -34,6 +34,9 @@ class IndexController extends ControllerBase {
        // echo $this->permission;exit;
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
+         $moduleIdCallCore =new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
         }
     
     

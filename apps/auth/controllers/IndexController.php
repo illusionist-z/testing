@@ -281,6 +281,7 @@ class IndexController extends ControllerBase {
          $Admin=new Db\CoreMember;
          $result = $Admin->findemail($member_mail);
         if($result){
+            
             $msg="success";
         }
        else{

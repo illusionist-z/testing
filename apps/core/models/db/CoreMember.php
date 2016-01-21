@@ -26,8 +26,32 @@ class CoreMember extends \Library\Core\BaseModel {
         return new self();
     }
     
-    
-    public function getusername() {
+    public function ModuleIdSetPermission($v,$m) {
+          
+         //// Module ID Filter Start
+        $module_id_set = $m;
+        foreach ($module_id_set as $module_name){
+           //var_dump($module_name['module_id']);
+            
+            if ( $module_name['module_id'] == $v ){
+                
+              $var_id = 1;
+            }
+          
+        }
+         //// Module ID Filter End
+        if (isset($var_id)){
+           $module_id_return = 1;
+        }
+        else{
+            $module_id_return = 0;
+        }
+        return $module_id_return;
+        
+        
+    }
+
+        public function getusername() {
         $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         return $row;

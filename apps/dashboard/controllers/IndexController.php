@@ -23,16 +23,29 @@ class IndexController extends  ControllerBase {
         $this->permission = $this->setPermission($this->module_name);             
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
+        
+         //// Module ID Filter Start By (1,0)
+        $moduleIdCallCore =new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
+         
+        //// Module ID Filter Start By (Module Name)
+        $this->module_name_view =  $this->router->getModuleName();   
+        $this->view->module_name_view = $this->module_name_view;
+        $this->module_id_set = $this->session->module;
+        $this->view->module_id_set = $this->module_id_set;
          }           
         /**
         * 
         *Check User or Admin 
         */
         public function indexAction() {
-               
-                $this->view->disable();
+             
+            
+            $this->view->disable();
                 $this->response->redirect('dashboard/index/user');
-                
+           
+                 
         }
         /**
         * show admin dashboard
@@ -41,11 +54,16 @@ class IndexController extends  ControllerBase {
         * @type array {$gname}
         */
     public function adminAction() { 
+        
+       
+        
+        //exit();
+        
         $coreuser2 = new CorePermissionGroup(); 
         $core_groupuser2=$coreuser2::find();
-    $Admin=new Db\CoreMember;
-    $id=$this->session->user['member_id'];
-    foreach ($this->session->auth as $key_name => $key_value) {
+        $Admin=new Db\CoreMember;
+        $id=$this->session->user['member_id'];
+        foreach ($this->session->auth as $key_name => $key_value) {
              
              if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
@@ -87,8 +105,11 @@ class IndexController extends  ControllerBase {
                  
                 
             }
-        }
-
+            
+    }
+        
+       
+        
       
     
         /**

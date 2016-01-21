@@ -27,6 +27,16 @@ class Auth extends Component {
         
         return $Result;
     }
+    public function find_module($company_module) {
+                
+        
+        $sql="SELECT * FROM enable_module where company_id='".$company_module."' ";
+       
+        $Result = $this->login_db->query($sql);
+        $Result = $Result->fetchAll();
+                
+        return $Result;
+    }
     /**
      * Checks the user credentials
      *

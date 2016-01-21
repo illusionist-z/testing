@@ -32,7 +32,9 @@ class IndexController extends ControllerBase
         $id = $this->session->user['member_id'];
         $this->view->module_name = $this->router->getModuleName();
          $this->view->permission = $this->permission;
-        
+        $moduleIdCallCore =new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
    foreach ($this->session->auth as $key_name => $key_value) {
              
             if ($key_name == 'show_admin_notification') {
@@ -56,6 +58,14 @@ class IndexController extends ControllerBase
      * @author zinmon
      */
     public function ssbdocumentAction() {
+        
+       $moduleIdCallCore =new Db\CoreMember();
+       $moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+       
+        
+       if ($this->moduleIdCall == 1)
+       {
+
         $this->assets->addJs('apps/document/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getssb_info();
@@ -71,6 +81,11 @@ class IndexController extends ControllerBase
        else{
             $this->response->redirect('core/index');
         }
+        
+          }
+       else {
+            $this->response->redirect('core/index');
+       }
          
     }
   
@@ -79,6 +94,15 @@ class IndexController extends ControllerBase
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function taxdocumentAction() {
+        
+         $moduleIdCallCore =new Db\CoreMember();
+       $moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+       
+       var_dump($moduleIdCall);
+       
+       if ($moduleIdCall == 1)
+       {
+            
         $this->assets->addJs('apps/document/js/print.js');
         $SalaryDetail= new Document();
         $result=$SalaryDetail->getsalary_info();
@@ -91,9 +115,19 @@ class IndexController extends ControllerBase
             $this->response->redirect('core/index');
         
           }
+          
+            }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }
     
     public function letterheadAction(){
+      
+           if ($this->moduleIdCall == 1)
+       {
+            
         $this->assets->addJs('apps/document/js/letterhead.js');
         $Cinfo=new \salts\Document\Models\CompanyInfo();
         $info=$Cinfo->GetCompanyInfo();
@@ -105,7 +139,12 @@ class IndexController extends ControllerBase
             $this->response->redirect('core/index');
     
        }
+            }
+       else {
+            $this->response->redirect('core/index');
        }
+       
+    }
     
     
      /**

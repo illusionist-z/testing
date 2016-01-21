@@ -23,11 +23,20 @@
             $this->permission = $this->setPermission($this->act_name ); 
             $this->view->permission = $this->permission;
             $this->view->t = $this->_getTranslation(); 
+            
+        $moduleIdCallCore =new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
         }
 
 
        public function indexAction() {
+           
+          
+       if ($this->moduleIdCall == 1)
+       {
 
+           
             $Admin=new Db\CoreMember;
             $id = $this->session->user['member_id'];
               foreach ($this->session->auth as $key_name => $key_value) {
@@ -51,6 +60,12 @@
             $this->view->member_name=$this->session->user['member_login_name'];
             $this->view->uname = $Allname;
             $this->view->modulename = $this->module_name;
+            
+                   }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
         } 
 
         //calender auto complete  for username

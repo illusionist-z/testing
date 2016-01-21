@@ -44,6 +44,9 @@ class IndexController extends ControllerBase {
 
         $this->view->setVar("noti",$noti);
         $this->view->t = $this->_getTranslation();
+         $moduleIdCallCore =new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
     }
 
     public function indexAction() {
@@ -54,7 +57,11 @@ class IndexController extends ControllerBase {
      * Show salary list after adding salary of each staff
      */
     public function salarylistAction() {     
-           
+         
+       if ($this->moduleIdCall == 1)
+       {
+            
+            
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
@@ -67,6 +74,12 @@ class IndexController extends ControllerBase {
             
         $this->response->redirect('core/index');
         }        
+        
+         }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }
 
     /**
@@ -74,6 +87,10 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function show_salarylistAction() {
+      
+       if ($this->moduleIdCall == 1)
+       {
+            
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
         
@@ -91,6 +108,10 @@ class IndexController extends ControllerBase {
         $this->view->setVar("getsalarylists", $getsalarylist);
         $this->view->setVar("allowancenames", $allowancename);
         $this->view->module_name = $this->router->getModuleName();
+        }
+       else {
+            $this->response->redirect('core/index');
+       }
        
     }
 
@@ -400,7 +421,11 @@ class IndexController extends ControllerBase {
      * dispaly salary setting
      * @author Su Zin Kyaw
      */
-    public function salarysettingAction() {           
+    public function salarysettingAction() {  
+       
+       if ($this->moduleIdCall == 1)
+       {
+            
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $Admin=new Db\CoreMember;
         $id=$this->session->user['member_id'];
@@ -420,6 +445,11 @@ class IndexController extends ControllerBase {
         else {
         $this->response->redirect('core/index');
         }
+          }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }
 
     /**
