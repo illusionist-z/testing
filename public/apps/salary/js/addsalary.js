@@ -1,6 +1,6 @@
 var AddSalary = {
     Submit : function (){
-              
+                //alert($('#add_salary').serialize());
         $.ajax({
            type : 'POST',
            url  : baseUri+'salary/salarymaster/savesalary',
@@ -77,6 +77,16 @@ var AddSalary = {
                 });
             }
         });
+    },
+    downloadcsv : function () {
+        document.location.href = "downloadcsv";
+//        $.ajax({
+//            url : 'downloadcsv',
+//            method : 'GET',
+//            success : function(){
+//                //var csv = 'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(d);                       
+//                            }            
+//        });
     },
      salnameautolist: function (){                       
         //var name = document.getElementById('namelist').value;
@@ -171,9 +181,15 @@ var AddSalary = {
           e.preventDefault();
           AddSalary.importcsv();
       });
-      $('#addsal_type1').click(function(e){
-          link_height();
-      });
     
+    $('#csv_download').click(function(e){
+        AddSalary.downloadcsv();
+//        AddSalary.downloadcsv(function(d){
+//            $(this).attr({
+//            'download': "da.csv",
+//            'href': d
+//        });
+//        });
+    });    
 
    });
