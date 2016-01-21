@@ -58,10 +58,10 @@ class LoginController extends ControllerBase {
         
         date_default_timezone_set('Asia/Rangoon');
         $core = new CoreMember();
-       $tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
-        $core->token = $tokenpush;
+        //$tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
+        //$core->token = $tokenpush;
         $member_id = $this->request->getPost('member_login_name');
-        $insert  = $core->tokenpush($tokenpush,$member_id);
+        //$insert  = $core->tokenpush($tokenpush,$member_id);
          
         $timestamp = (date("Y-m-d j:i:s"));    
         $member_id = $this->request->getPost('member_login_name');
