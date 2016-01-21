@@ -227,29 +227,30 @@ class CoreMember extends \Library\Core\BaseModel {
         }
         else if($type==2){
           
-              $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status=0 AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc  limit 10";
+           $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='0' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc   ";
 
         }
         else{
              $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='".$type."' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc limit 10";
 
         }
-     
+      
         $AdminNoti = $this->db->query($sql);
         $noti = $AdminNoti->fetchall();
-       
+    
  
         $i=0;
         foreach ($noti as $noti) {
             
             $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' and core_member.deleted_flag=0 ";
-            
+           
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
          
             $final_result[$i]['0']['creator_name']=$noti['creator_name'];
             $i++;
            
+            
             
         }
          
@@ -261,7 +262,11 @@ class CoreMember extends \Library\Core\BaseModel {
                  }
             }
         }
-        //print_r($data);exit;
+        if($type==2){
+              $data = array_slice($data, 0,10);
+        }
+    
+      
         return $data;
     }
     

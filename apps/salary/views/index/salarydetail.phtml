@@ -90,7 +90,7 @@
     <td><input type="text" name="txtovertimehour" value="<?php $overtime=$filter->sanitize($A[$i]->attend->overtime , "string");
         $total_overtime_hr=$total_overtime_hr+$overtime;
         echo $overtime;
-    ?>hr" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
+    ?>" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
     <td></td>
   </tr>
   <tr>
@@ -114,7 +114,7 @@
   </tr>
   <tr>
   <td colspan="2"><?= $t->_("deduce_for_absent");?></td>
-  <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->absent_dedution , "string"); $deduce+=$A[$i]->salarydet->absent_dedution;?>" id="txtallowance" disabled="disabled" class="txtenable"></td>
+  <td><input type="text" name="txtabsent" value="<?php echo $filter->sanitize($A[$i]->salarydet->absent_dedution , "string"); $deduce+=$A[$i]->salarydet->absent_dedution;?>" id="txtallowance" disabled="disabled" class="txtenable txtabsent"></td>
   <td></td>                   
   </tr>
   <tr>
