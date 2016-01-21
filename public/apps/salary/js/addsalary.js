@@ -1,6 +1,6 @@
 var AddSalary = {
     Submit : function (){
-                //alert($('#add_salary').serialize());
+              
         $.ajax({
            type : 'POST',
            url  : baseUri+'salary/salarymaster/savesalary',

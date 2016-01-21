@@ -1,3 +1,4 @@
+
 <section class="content-header" style="height:auto;">
     <h1>
         <?= $t->_("addsalary_title"); ?>
@@ -23,7 +24,7 @@ if (isset($Msg)) {
                     <input type='radio' name='radTravel' value='1' id="addsal_type1" onclick="checkRadio()" />For each one
                     <input type='radio' name='radTravel' value='2' id="addsal_type2" onclick="checkRadio()"/>For csv files
                 </div>
-                <div class="left-div-style-box col-sm-8" style="display: none;" id="radsal_type1">
+                <div class="left-div-style-box col-md-10" style="display: none;width: 117%" id="radsal_type1">
                     <form action="#" method="post" id="add_salary">
                         <div class="div-bottom col-md-12">
                             <span class="col-xs-offset-0 span-style"><?= $t->_("name"); ?></span>
@@ -69,7 +70,7 @@ if (isset($Msg)) {
                                 //print_r($getall_allowance);
                                 $i = 1;
                                 foreach ($getall_deduce as $getall_deduces) {
-                                    echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall' . $i . '" value="' . $getall_deduces['deduce_id'] . '"> ' . $getall_deduces['deduce_name'] . "<br>";
+                                    echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall' . $i . '" value="' . $getall_deduces['deduce_id'] . '"> ' . $getall_deduces['deduce_name'] ;
                                     $i++;
                                     if ($i == 3) {
                                         echo "<div id='No_of_children' style='display:none;'>
@@ -79,9 +80,9 @@ if (isset($Msg)) {
                                 }
                                 ?>                                      
                             </div>        
-                            <div  style="float: right;margin-right: 150px;margin-top: -100px;" id="add_salary_ssc_error"></div>
+                            <div style="float: right;margin-right: 386px;margin-top: -30px;" id="add_salary_ssc_error"></div>
                             </div>                       
-
+                        
                         <div style="line-height: 30px;" class="col-md-12">
                             <div class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("allowance"); ?></div>
                             <div class="col-xs-8">
@@ -89,11 +90,17 @@ if (isset($Msg)) {
 //print_r($getall_allowance);
 
 foreach ($getall_allowance as $getall_allowances) {
-    echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="' . $getall_allowances['allowance_id'] . '"> ' . $getall_allowances['allowance_name'] . "<br>";
+    echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="' . $getall_allowances['allowance_id'] . '"> ' . $getall_allowances['allowance_name'] ;
 }
-?>
+?><br>
 
                             </div>
+                        </div>
+                        <div class="div-bottom col-md-12">
+                            <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("sa_sdate"); ?></span>
+                            <span class="col-xs-8">
+                                <input type="text" id="s_sdate" value="" style="width:34%; height: 20%;" class="datepicker" name="s_sdate" placeholder="Enter Salary Start Date">
+                            </span>
                         </div>
                         <div class="div-bottom" style="clear: both;padding-top: 2%;">
 
@@ -120,6 +127,7 @@ foreach ($getall_allowance as $getall_allowances) {
         <div id="content"></div>
 </section><!-- /.content -->
 <script type="text/javascript">
+      
     function checkValue() {
         var linkemail = document.forms["add_salary"]["checkall2"].checked
         if (linkemail) {

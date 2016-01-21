@@ -43,9 +43,11 @@ class LoginController extends ControllerBase {
        // Data Base Hase
         if($companyDB)
         {
+          
            
         //User Chack    
         $this->session->set('db_config',$companyDB);
+       // print_r($this->session->db_config);exit;
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();
