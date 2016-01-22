@@ -570,6 +570,4 @@ class CoreMember extends \Library\Core\BaseModel {
 
     }
 }
-        //  print_r($newpass);
-       $newpassword = sha1($newpass);
-        $this->db = $this->getDI()->getShared("db");
+       
