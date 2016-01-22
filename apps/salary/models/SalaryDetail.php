@@ -295,7 +295,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
            
            $select = "SELECT *, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total  FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
            $conditions = $this->setCondition($cond);
-         
             $sql = $select;
             if (count($conditions) > 0) {
               $sql .= " WHERE " . implode(' AND ', $conditions) . " and MONTH(pay_date)='" . $cond["mth"] . "' and YEAR(pay_date)='" . $cond["yr"] . "' group by core_member.member_id";
@@ -339,7 +338,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $conditions;
     }
 
-    public function updatesalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,$salary_start_month,$absent_amount) {
+    public function updatesalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,
+            $salary_start_month,$absent_amount,$overtime_hr,$overtimerate) {
         
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
@@ -378,25 +378,28 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             
             $date_diff=$Salarymaster->date_difference($salary_star_date, $budget_endyear);
             $basic_salary=$bsalary*$date_diff;
-           
+            echo $basic_salary;
             if(!empty($SD))
                 {
                     $basic_salary=$basic_salary+$SD['total_salary'];
                     $old_allowance=$SD['total_all_amount']+$allowancetoadd;
                     $date_to_calculate=$date_diff+$SD['count_pay'];
-                    echo "basic salary in salary detail ".$basic_salary;
+                    echo "basic salary in salary detail ".$SD['total_salary'];
                 }
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$old_allowance,$SM['status'],$SD['total_all_amount'],$SD['count_pay']);
             $basic_salary=$Allowanceresult['basic_salary_annual'];
             
-            $latest_otpay = $Salarymaster->getlatestOTPay($SM['member_id'], $budget_startyear, $budget_endyear_one);
-            //calculating of overtime 
-            $overtime=$Salarymaster->calculate_overtime_annual($member_id,$SD['total_overtime'],$salary_star_date,$budget_endyear,$date_diff,$SD['count_pay'],$latest_otpay['overtime']);
-            $overtime_fees=$overtime['overtime_annual'];
-            $basic_salary=$basic_salary+$overtime_fees;
-           
+//            $latest_otpay = $Salarymaster->getlatestOTPay($SM['member_id'], $budget_startyear, $budget_endyear_one);
+//            //calculating of overtime 
+//            $overtime=$Salarymaster->calculate_overtime_annual($member_id,$SD['total_overtime'],$salary_star_date,$budget_endyear,$date_diff,$SD['count_pay'],$latest_otpay['overtime']);
+//            $overtime_fees=$overtime['overtime_annual'];
+//            $basic_salary=$basic_salary+$overtime_fees;
+            $ot_fees=$overtimerate*$overtime_hr;
+            $basic_salary = $basic_salary+$ot_fees;
+            
             //check the user who is absent.
-            $absent=  $Salarymaster->checkAbsent($member_id);
+            $absent=  $Salarymaster->checkAbsent($member_id,$budget_startyear,$budget_endyear_one);
+            
             //Get the data of leave setting
             $leavesetting=  $Salarymaster->getleavesetting();
             //calculate absent deduce
@@ -432,10 +435,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         
         $final_result[] = array('income_tax' => $taxs['tax_result'],
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
-            'special_allowance' => $allowancetoadd,
+            'special_allowance' => $allowancetoadd,'overtime' => $ot_fees,
             'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
        
-        
+        //print_r($final_result);exit;
        $Result=$this->savesalaryeditdata($final_result,$salary_start_year,$salary_start_month);
       
         return $Result;
@@ -450,11 +453,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $member_id = $filter->sanitize($param[0]['member_id'], "string");
             $allowance_amount = $filter->sanitize($param[0]['allowance_amount'], "int");
             $special_allowance_amount = $filter->sanitize($param[0]['special_allowance'], "int");
+            $otFees = $filter->sanitize($param[0]['overtime'], "int");
             $income_tax = $filter->sanitize($param[0]['income_tax'], "int");
             $absent_deduction = $filter->sanitize($param[0]['absent_dedution'], "int");
             $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."',"
-                    . "special_allowance='".$special_allowance_amount."' WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $salary_start_year . "' and MONTH(pay_date)='".$salary_start_month."'";
-            //echo $sql;
+                    . "special_allowance='".$special_allowance_amount."', overtime ='".$otFees."' WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $salary_start_year . "' and MONTH(pay_date)='".$salary_start_month."'";
+            //echo $sql;exit;
             //$this->db->query($sql);
             if($this->db->query($sql)){
             $result="pass";  

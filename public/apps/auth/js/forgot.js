@@ -6,7 +6,7 @@ var forgot  = {
                 method: 'GET',
                 data:{email:email},
                // dataType: 'json',
-                success: function(d) {
+                success: function(d) {                   
                     data= JSON.parse(d);
                     if(data==='success'){
                        // alert(data);
@@ -73,9 +73,6 @@ var forgot  = {
      //for check box
      $("#show").click(function(){
        var show = document.getElementById('show');
-                
-                
-                        
        if(show.checked){
                         var fnp = document.getElementById('forgotnewpassword').value;
                         var fcp = document.getElementById('forgotcomfirmpassword').value;
