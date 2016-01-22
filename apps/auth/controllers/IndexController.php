@@ -229,7 +229,7 @@ class IndexController extends ControllerBase {
 //        $ModelAuth->findemail($member_mail);
     }
       public function sendmailAction() {        
-         $member_mail = $this->request->get('email');   
+         $member_mail = $this->request->get('email');
          $Admin=new Db\CoreMember;
          
          $result = $Admin->findemail($member_mail);
@@ -271,12 +271,11 @@ class IndexController extends ControllerBase {
 //        echo json_encode($msg);                                                                                                                                                                                               
     }
      public function checkmailAction() {
-         
-        $this->assets->addJs('apps/auth/js/forgot.js');      
           $member_mail = $this->request->get('email');   
          $Admin = new CoreMember();
          $result = $Admin->findemail($member_mail);
         if($result){
+            
             $msg="success";
         }
        else{

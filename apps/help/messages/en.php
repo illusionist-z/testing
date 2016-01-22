@@ -72,7 +72,7 @@ $messages = array(
     "Export"=>"Export",
     "This will"=>"This will output the data of display table as csv.",
     "Editatttime"=>"Edit Attendance time(Admin)",
-    "Admin can edit"=>"Admin can edit your attendance time if necessary.",
+    "Admin"=>"Admin can edit your attendance time if necessary.",
     
     /**
      * Monthly Attendance Lists
