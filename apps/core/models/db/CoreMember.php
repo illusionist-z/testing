@@ -56,6 +56,16 @@ class CoreMember extends \Library\Core\BaseModel {
         $row = $this->modelsManager->executeQuery($query);
         return $row;
     }
+    
+     public function module_permission() {
+        $this->db = $this->getDI()->getShared("db");
+        $query = "Select permission_code,permission_name_en,permission_name_$lang from core_permission where permission_code ='$code'";
+        //echo $query;exit;
+        $data = $this->db->query($query);
+        $result = $data->fetchall();
+        return $result;
+    }
+   
     /*
      * @Count Member Limit
      * @Inset Buyer Code
@@ -449,6 +459,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $user;
 
     }
+    
    
      /**
      * Saw Zin Min Tun
