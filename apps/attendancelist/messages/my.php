@@ -36,6 +36,12 @@ $messages = array(
     "save" => "သိမ္းရန္",
     "cancel" => "Cancel",
     
+    
+    
+    "month_att_chart"=>"လစဥ္တက္ေရာက္သူမ်ားစာရင္း(ဇယား)",
+    "att_person"=>"ရုံးတက္ေသာသူ",
+    "absent_leave_person"=>" ခြင့္တင္ျပီးရုံးပ်က္ေသာသူ",
+    "absent_noleave_person"=>"ခြင့္မတင္ပဲရုံးပ်က္ေသာသူ",
         /**
      * Header
      */
