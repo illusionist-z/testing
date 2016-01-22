@@ -64,19 +64,22 @@ var AddSalary = {
             contentType: false,
             success : function(d) {
                 if(d[0]){
-                $('#file_err').text(d).css({"color":"orange","font-size":"14px"}).show();
+                $('#file_err').text(d).css({"background":"black","color":"orange","font-size":"14px"}).show();
                 }
                 else if(d[1]){
                 $('#file_err').text(d[1]).css({"color":"red","font-size":"14px"}).show();
                 }
                 else{
-                $('#file_err').text(d[2]).css({"color":"green","font-size":"14px"}).show();   
+                $('#file_err').text(d[2]).css({"background":"#e6e6e6","color":"green","font-size":"14px","text-align":"center"}).show();   
                 }
                 $('#file_select').click(function(){
                     $('#file_err').hide();
                 });
             }
         });
+    },
+    downloadcsv : function () {
+        document.location.href = "downloadcsv";
     },
      salnameautolist: function (){                       
         //var name = document.getElementById('namelist').value;
@@ -171,9 +174,15 @@ var AddSalary = {
           e.preventDefault();
           AddSalary.importcsv();
       });
-      $('#addsal_type1').click(function(e){
-          link_height();
-      });
     
-
+    $('#csv_download').click(function(e){
+        AddSalary.downloadcsv();
+    });
+    //for clear csv box
+    $('#csv_file').click(function(){
+        if($('#radsal_type').css('display') === 'none'){
+        $('#file_err').hide();
+        $('#file_select').val('');
+    }
+    });   
    });

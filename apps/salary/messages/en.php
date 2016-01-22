@@ -84,7 +84,7 @@ $messages = array(
     "write_amount"=>"Enter Deduction Amount",
     "save"=>"Add",
     "cancel"=>"Cancel",
-    
+    "sa_sdate"=>"Salary Start Date",
       /**
      * footer 
      */
