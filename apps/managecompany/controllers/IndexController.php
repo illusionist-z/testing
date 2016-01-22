@@ -1,7 +1,8 @@
 <?php
 
 namespace salts\Managecompany\Controllers;
-use salts\Managecompany\Models\CompanyTbl;
+
+use salts\Auth\Models\Db\CoreMember;
 
 //use Phalcon\Flash\Direct as FlashDirect;
 
@@ -17,19 +18,19 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/managecompany/js/index.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
-//        $moduleIdCallCore =new Db\CoreMember();
-//        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
-//        $this->view->moduleIdCall = $this->moduleIdCall;
+        $moduleIdCallCore =new CoreMember();
+        
     }
     /**
      * show manage company page
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function indexAction(){
-           
-       $this->assets->addJs('common/js/paging.js');
-       $this->assets->addJs('apps/managecompany/js/paging.js');
-       $comid=$this->request->get('comlistsearch');
+        
+      
+          $this->assets->addJs('common/js/paging.js');
+          $this->assets->addJs('apps/managecompany/js/paging.js');
+        $comid=$this->request->get('comlistsearch');
        $company=new \salts\Managecompany\Models\CompanyTbl();
        $result=  $company->getallcom();
        if(isset($comid)){
@@ -37,7 +38,6 @@ class IndexController extends ControllerBase {
        }
        $this->view->result=$result;
        
-        
 
     }
     
@@ -111,6 +111,7 @@ class IndexController extends ControllerBase {
     public function updatecompanyAction(){
         $com=$this->request->get('com');
         $check=$this->request->get('check');
+        
         $company=new \salts\Managecompany\Models\CompanyTbl();
         $company->updatecom($com,$check);
         $this->response->redirect("managecompany/index");
@@ -144,3 +145,4 @@ class IndexController extends ControllerBase {
 
     
 }
+      

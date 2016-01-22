@@ -185,11 +185,12 @@ var Salary = {
             dataType:'json',
             url : "btnedit",
             success:function(d){
-            
+           
                 if(true === d.valid)                      
                 {
                     val.dialog("close");
-                    $('body').load("salarylist");
+                    
+                    $('body').load("salarylist"); link_height() ;
                 }
                 //if fail , show error data
                 else{

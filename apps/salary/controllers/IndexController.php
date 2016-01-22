@@ -25,6 +25,7 @@ class IndexController extends ControllerBase {
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
+        $this->module_name =  $this->router->getModuleName(); 
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         $Admin = new Db\CoreMember;
