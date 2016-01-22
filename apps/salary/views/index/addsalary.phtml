@@ -60,19 +60,24 @@ if (isset($Msg)) {
                         <div style="line-height: 30px;" class="col-md-12">
                             <div class="span-style col-xs-offset-0"><?= $t->_("deduce_ssc"); ?></div>
                             <div class="col-xs-8">
-                                <?php
+                                    <?php
                                 //print_r($getall_allowance);
-                                $i = 1;
+                                $i = 1;$j=0;
                                 foreach ($getall_deduce as $getall_deduces) {
-                                    echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall' . $i . '" value="' . $getall_deduces['deduce_id'] . '"> ' . $getall_deduces['deduce_name'] . "<br>";
+                                    echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall' . $i . '" value="' . $getall_deduces['deduce_id'] . '"> ' . $getall_deduces['deduce_name'] ;
                                     $i++;
+                                    $j++;
+                                    if($j==3){
+                                        echo '<br>';
+                                        $j=0;
+                                    }
                                     if ($i == 3) {
                                         echo "<div id='No_of_children' style='display:none;'>
                                 <input type='text'  name='no_of_children' id='no_of_children' placeholder='number of children'>
                             </div>";
                                     }
                                 }
-                                ?>                                      
+                                ?>                                     
                             </div>        
                             <div  style="float: right;margin-right: 150px;margin-top: -100px;" id="add_salary_ssc_error"></div>
                             </div>                       
@@ -82,13 +87,25 @@ if (isset($Msg)) {
                             <div class="col-xs-8">
 <?php
 //print_r($getall_allowance);
-
+$i=0;
 foreach ($getall_allowance as $getall_allowances) {
-    echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="' . $getall_allowances['allowance_id'] . '"> ' . $getall_allowances['allowance_name'] . "<br>";
+    echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="' . $getall_allowances['allowance_id'] . '"> ' . $getall_allowances['allowance_name'] ;
+    
+    $i++;
+    if($i==2){
+        echo '<br>';
+        $i=0;
+    }
 }
-?>
+?><br>
 
                             </div>
+                        </div>
+                        <div class="div-bottom col-md-12">
+                            <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("sa_sdate"); ?></span>
+                            <span class="col-xs-8">
+                                <input type="text" id="s_sdate" value="" style="width:50%; height: 20%;" class="datepicker" name="s_sdate" placeholder="Enter Salary Start Date">
+                            </span>
                         </div>
                         <div class="div-bottom" style="clear: both;padding-top: 2%;">
 
