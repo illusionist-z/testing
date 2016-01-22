@@ -37,13 +37,23 @@ class IndexController extends ControllerBase {
         $this->permission = $this->setPermission($this->module_name); 
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
-    }        
+        $moduleIdCallCore =new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
+    }
+    
+    
+    
     
     
     /**
      * show today attendance list
      */
     public function todaylistAction( ) {
+       
+       if ($this->moduleIdCall == 1)
+       {
+            
         $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name); 
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
@@ -65,6 +75,12 @@ class IndexController extends ControllerBase {
         else {
             $this->response->redirect('core/index');
         }   
+        
+         }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }        
    
     public function editTimedialogAction($id){
@@ -104,7 +120,13 @@ class IndexController extends ControllerBase {
      * show monthly attendancelist
      * 
      */
-    public function monthlylistAction() {        
+    public function monthlylistAction() {    
+         
+         
+       if ($this->moduleIdCall == 1)
+       {
+
+        
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
         $UserName = $UserList::getinstance()->getusername();
@@ -122,8 +144,17 @@ class IndexController extends ControllerBase {
         else {
             $this->response->redirect('core/index');
         }  
+        
+        
+        
+           }
+       else {
+            $this->response->redirect('core/index');
+       }
        
     }
+    
+    
      public function attsearchAction() {
             if ($this->request->isAjax() == true) {
                 $month = $this->request->get('month');

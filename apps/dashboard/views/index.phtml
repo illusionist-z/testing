@@ -3,6 +3,25 @@
 <?php use Phalcon\Tag as Tag; ?>
 
  
+
+
+<?php 
+
+/* Var Output Place
+ * 
+ */
+//var_dump($moduleIdCall);
+//  
+// 
+// foreach ($module_id_set as $module_name_view){
+//            $module_name_view  = $module_name_view['module_id'];
+//          
+//            var_dump($module_name_view);
+//          
+//        }
+//        exit();
+?>
+ 
 <html>
     <head>
         <meta charset="UTF-8">
@@ -27,7 +46,7 @@
                                 <li>
                                     <a href="<?php echo $baseUri?>help/index/searchHelp" target="_blank" class="" title="<?php echo $t->_("Help"); ?>" id="help_icon" style="padding-top: 20px;">
                                                <img src="<?php echo $baseUri?>common/img/help_browser.png">
-                                        </a>
+                                    </a>
                                </li>  
                           <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
@@ -151,11 +170,16 @@
                         <li class="header"><b>MAIN NAVIGATION</b></li>
                         <?php  
                        $count=1;
-                        foreach ($this->session->auth as $key_name => $key_value) {                            
-                       
+                        foreach ($this->session->auth as $key_name => $key_value) {
+                            
+                           
                                                                                     $top = explode(" ", $key_value["link0"]);
                                                                                     $top_link = explode(" ", $key_value["link1"]);
                                                                                     if (strpos($key_name, 'user') !== false) {
+       
+       if ($moduleIdCall == 1)
+       {
+           
                                                                                          if($key_name != 'show_user_notification' && $key_name != 'show_user_setting'){
                                                                                                if (count($key_value) > 2) {
                                                                                                  if (isset($top_link[1])) {
@@ -171,9 +195,12 @@
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                                                                 }
                                                                                           }
-                                                                                         }                                                                                          
+                                                                                         }
+        }    
                                                                                     } else {
                                                                                         if($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting'){
+                                                                                             if ($moduleIdCall == 1)
+       {
                                                                                                if (count($key_value) > 2) {
                                                                                                  if (isset($top_link[1])) {
                                                                                                     echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img src="../../common/img/list'.$count.'.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
@@ -191,7 +218,9 @@
                                                                                         }
                                                                                                  
                                                                                         }
+                                                                                        }
                         }
+      
                         $count++;
                         }
                         ?>

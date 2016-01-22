@@ -25,7 +25,7 @@ class SalaryMaster extends Model {
 //            $result = $this->db->query($sql);
             $SalaryMaster = new SalaryMaster();           
            
-            if ($SalaryMaster->save($data) == false) {               
+            if ($SalaryMaster->save($data) == false) {         
                 foreach ($SalaryMaster->getMessages() as $message) {
                     $return[] = $message;
                 }                
@@ -840,5 +840,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             echo $exc->getTraceAsString();
         }
         return $row;
+        }
+        
+        public function getSalMasterField () {
+        $query = "show columns from salary_master";
+        $row = $this->db->query($query);
+        $data = $row->fetchall();
+        return $data;
         }
 }

@@ -12,8 +12,7 @@ class LoginController extends ControllerBase {
     }
 
     public function indexAction() {
-        
-        
+                
         $loginParams = $this->request->get();
         $ModelAuth = new Models\Auth();
        
@@ -22,7 +21,7 @@ class LoginController extends ControllerBase {
         $dbinfo['host']='localhost';
         $dbinfo['db_name']='company_db';
         $dbinfo['user_name']='root';
-        $dbinfo['db_psw']='root';
+        $dbinfo['db_psw']='';
         
         $this->session->set('db_config',$dbinfo);
         $result = $ModelAuth->check($loginParams, $user);
@@ -46,6 +45,25 @@ class LoginController extends ControllerBase {
            
         //User Chack    
         $this->session->set('db_config',$companyDB);
+        
+        //Module Chack
+        $module = new Models\Auth();
+        //$permission_module = $this->session->db_config;
+        $module_id = $this->session->db_config['company_id'];
+        //$module_id = $this->request->getPost('company_id'); 
+        $company_module = $module->find_module($module_id);
+//        /$company_module = $company_module->module_id;
+        $this->session->set('module',$company_module);
+        
+        
+        
+             //var_dump($module_id_set);
+       
+      
+        
+        
+        
+        
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
         $member=new CoreMember();
@@ -58,12 +76,14 @@ class LoginController extends ControllerBase {
         
         date_default_timezone_set('Asia/Rangoon');
         $core = new CoreMember();
-        //$tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
-        //$core->token = $tokenpush;
+        $tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
+        $user_ip = $this->request->getPost('local');
+        $user_ip_public = $this->request->getPost('public');
+        $core->token = $tokenpush;
         $member_id = $this->request->getPost('member_login_name');
-        //$insert  = $core->tokenpush($tokenpush,$member_id);
+        $insert  = $core->tokenpush($tokenpush,$member_id,$user_ip);
          
-        $timestamp = (date("Y-m-d j:i:s"));    
+        $timestamp = (date("Y-m-d H:i:s"));    
         $member_id = $this->request->getPost('member_login_name');
          // Type Error Chack 5 Time 
         $this->session->set('tokenpush',$member_id);
@@ -78,7 +98,8 @@ class LoginController extends ControllerBase {
           $core2 =  CoreMember::findFirstByMemberLoginName($this->request->getPost('member_login_name'));
           //var_dump($core2);exit;
           $core2 = $core2->timeflag;
-           $timestamp = (date("Y-m-d j:i:s")); 
+           
+           $timestamp = (date("Y-m-d H:i:s")); 
           if ($core2 >= $timestamp){
            $this->view->errorMsg = "You've Login To Next. 30 Minutes"; 
             // Push Into Database Mamber Log
@@ -94,13 +115,12 @@ class LoginController extends ControllerBase {
             $Permission = $ModelPermission->get($result, $permissions,$lang['lang']);
             $this->session->set('auth', $Permission);
             $this->response->redirect('home');
-           
+            session_destroy(($_SESSION['attempts']));
            }
            else {
                $this->response->redirect('auth/index/failer');  
            }
              
-           
             }
     
           }
