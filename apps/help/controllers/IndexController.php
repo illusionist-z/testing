@@ -55,7 +55,9 @@ class IndexController extends ControllerBase {
      public function monthlyattlistAction() {
        
     }
-    
+     public function monthlyattchartAction() {
+       
+    }
      public function manageuserAction() {
        
     }

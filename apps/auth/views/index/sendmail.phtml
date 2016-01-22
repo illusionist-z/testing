@@ -22,11 +22,11 @@
                      <label>Please check your email for a message with your code. Your code is 6 numbers long.</label><br>
 <!--                 <input type="email" name="member_mail" id="emailaddress" class="form-control" placeholder="Enter Your Email Address"/>           -->
                 <div id="codeerror" style="display: none;">   
-                        <label>Please fill in at least one field</label><br>
-                        <span id="onefield">Please check your email.</span>
+                        <label>Please fill in at least one field</label>
                 </div>
                 <div id="checkcodeerror" style="display: none;">   
-                        <label>No Match Code</label>
+                        <label>No Match Code</label><br>
+                        <span id="onefield">Please check your email.</span>
                 </div>
                      <br>
                    <input type="text" name="code" id="code" class="form-control" placeholder="######"/>
@@ -34,7 +34,7 @@
                        <?php
                       foreach ($Result as $result) {
                 ?>      
-                    We sent your code to : <br>              
+                    We sent your code to :               
                       <span id="textmail">  <img src="<?php echo $baseUri;?>common/img/message.png">  <?php echo $result ['member_mail']; ?>    </span>
                       <input type="hidden" name="member_mail" id="emailaddress" class="form-control"  value="<?php echo $result ['member_mail']; ?>" />  
                      

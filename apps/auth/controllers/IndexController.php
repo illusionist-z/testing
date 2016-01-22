@@ -219,8 +219,7 @@ class IndexController extends ControllerBase {
          }
     }
     public function resetyourpasswordAction() {
-       // echo 'aa';
-           
+       // echo 'aa';           
         //echo $member_mail;exit;
 //        $UserList = new Db\CoreMember();
 //        $Username = $UserList::getinstance()->getusername();
@@ -235,9 +234,6 @@ class IndexController extends ControllerBase {
          
          $result = $Admin->findemail($member_mail);
          
-         $token = uniqid(bin2hex(mcrypt_create_iv(1, MCRYPT_DEV_RANDOM)));
-         
-         $insert  = $Admin->insertemailandtoken($member_mail,$token);
          
         if($result){
           //print_r($result);exit;
@@ -295,14 +291,14 @@ class IndexController extends ControllerBase {
          $email = $this->request->get('email');  
          $Admin=new Db\CoreMember;
          $result = $Admin->findcode($code,$email);
-        if($result){
-            $msg="success";
-        }
-       else{
-           $msg="fail";
-       }
+//        if($result){
+//            $msg="success";
+//        }
+//       else{
+//           $msg="fail";
+//       }
          $this->view->disable();
-        echo json_encode($msg);
+        echo json_encode($result);
     }
     // for send email 
        public function sendemailAction() {  
@@ -368,5 +364,32 @@ class IndexController extends ControllerBase {
               }
          $this->view->disable();
         echo json_encode($msg);                                                                                                                                                                                               
+    }
+      public function sendtomailAction() {  
+        $getemail = $this->request->get('email');
+        $Admin=new Db\CoreMember;
+        
+         $token = uniqid(bin2hex(mcrypt_create_iv(1,MCRYPT_DEV_RANDOM)));         
+         $Admin->insertemailandtoken($getemail,$token);
+         
+        $result = $Admin->checkyourmail($getemail);
+       // print_r($result);exit;
+                        $to      = $getemail;
+                        $subject = 'The subject';
+                        $message = $result;
+                        $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
+                            'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
+                            'X-Mailer: PHP/' . phpversion();
+
+                        if(mail($to, $subject, $message, $headers)){
+//                            echo $to ." : " .$subject." : ".$message." : ".$headers;
+//                            echo "Mail Sent";
+                            $msg = "success";
+                        }else{
+//                            echo "Email sending failed";
+                            $msg = "fail";
+                        }
+                 $this->view->disable();
+                echo json_encode($msg);      
     }
 }

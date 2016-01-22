@@ -6,8 +6,10 @@ var forgot  = {
                 method: 'GET',
                 data:{email:email},
                // dataType: 'json',
-                success: function(d) {                   
+                success: function(d) {   
+                    
                     data= JSON.parse(d);
+                    
                     if(data==='success'){
                        // alert(data);
                             window.location.href = baseUri + 'auth/index/resetpassword?email='+email;
@@ -22,6 +24,23 @@ var forgot  = {
                        
                     });
        },
+       sendemail:function(email){
+          //alert(email); 
+          $.ajax({
+              url:'sendtomail',
+              method:'GET',
+              data:{email:email},
+              success:function(d){
+                  //alert(d);
+                  data = JSON.parse(d);
+                  if(data === 'success'){
+                      window.location.href = baseUri + 'auth/index/sendmail?email='+email;
+                  } else{
+                        alert("Please check your connection,Try again");
+                  }
+              }
+          });
+       },
        
        checkcode: function (code,email){ 
        $.ajax({
@@ -30,7 +49,7 @@ var forgot  = {
                 data:{code:code,email:email},
                // dataType: 'json',
                 success: function(c) {
-                   // alert(d);
+                   // alert(c);
                     data= JSON.parse(c);
                     if(data==='success'){
                        window.location.href = baseUri + 'auth/index/newpassword?email='+email;
@@ -112,7 +131,8 @@ var forgot  = {
                 var email = document.getElementById('emailaddress').value;
                var code = document.getElementById('code').value;
                if(code == ''){
-                   $('#codeerror').show();
+                   $('#codeerror').show();                   
+                   $('#checkcodeerror').hide();
                }
                else{
                     forgot.checkcode(code,email);
@@ -122,7 +142,8 @@ var forgot  = {
             //for btnemail of resetpassword
             $("#btnemail").click(function(){          
                var email=document.getElementById('emailaddress').value;
-               window.location.href = baseUri + 'auth/index/sendmail?email='+email;
+               forgot.sendemail(email);
+               //window.location.href = baseUri + 'auth/index/sendmail?email='+email;
             });
             
         //for check new password of new password

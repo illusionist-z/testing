@@ -4,6 +4,7 @@
 $messages = array(
     "todayattendancelist"      => "出勤リスト（本日）",
     "monthlylist" =>"出勤リスト（月次））",   
+    "Monthly Attendance Chart"=>"Monthly Attenance Chart",
     "home"     => "ホーム",
     "hi-name" => "Bonjour %name%",
     "song"    => "La chanson est %song%",
