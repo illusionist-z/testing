@@ -46,6 +46,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("noti", $noti);
         $this->view->t = $this->_getTranslation();
          $moduleIdCallCore =new Db\CoreMember();
+        $this->module_name = $this->router->getModuleName();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
     }
@@ -59,6 +60,11 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {     
          
+//        
+//        var_dump( $this->act_name);
+//        
+//        exit();
+        
        if ($this->moduleIdCall == 1)
        {
             

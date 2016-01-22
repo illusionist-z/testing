@@ -51,6 +51,7 @@ class IndexController extends ControllerBase {
      */
     public function todaylistAction( ) {
        
+        
        if ($this->moduleIdCall == 1)
        {
             

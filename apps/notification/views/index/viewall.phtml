@@ -120,9 +120,22 @@ foreach( $oldnoti as $noti){
        <!-- inner menu: contains the actual data -->
             <ul class="menu">
                 <li>
-               
+                <?php
+                         if($noti['member_profile']==null){
+                                                   $img = "profile1.jpg";
+                                                }
+                                                else{
+                                                     $img=$noti['member_profile'];
+                                                      if(file_exists('./uploads/'.$img)){                                                            
+                                                           $img=$img;  
+                                                      }else{  
+                                                          $img = "profile1.jpg";    
+                                                      }
+                                                 }
+                        ?>                                                 
+              <img src="<?php echo $baseUri;?>/uploads/<?php echo  $img;?>"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
                     
-                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
                 <b><i ><?php echo $noti['creator_name'];?></i></b> marked calendar for <i style="color:red"> <?php echo $noti['member_login_name'];?></i><?php echo " at <b>".date("d-m-Y", strtotime( $noti['startdate']))."</b> ";
                ?></span>
                 </li>
@@ -136,8 +149,21 @@ foreach( $oldnoti as $noti){
        <!-- inner menu: contains the actual data -->
             <ul class="menu">
                 <li>               
-                    
-                <img src="<?php echo $baseUri;?>common/img/notid.png"> 
+                     <?php
+                         if($noti['member_profile']==null){
+                                                   $img = "profile1.jpg";
+                                                }
+                                                else{
+                                                     $img=$noti['member_profile'];
+                                                      if(file_exists('./uploads/'.$img)){                                                            
+                                                           $img=$img;  
+                                                      }else{  
+                                                          $img = "profile1.jpg";    
+                                                      }
+                                                 }
+                        ?>                                                 
+              <img src="<?php echo $baseUri;?>/uploads/<?php echo  $img;?>"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
+<!--                <img src="<?php echo $baseUri;?>common/img/notid.png"> -->
                 <b><i><?php echo $noti['member_login_name'];?></i></b> is Late for   <?php echo $noti['notes']; echo " at <b>".date("d-m-Y", strtotime( $noti['checkin_time']))."</b> ";
                ?></span>
                 </li>

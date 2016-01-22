@@ -38,7 +38,6 @@ class IndexController extends ControllerBase {
        }
        $this->view->result=$result;
        
-      
 
     }
     
@@ -146,3 +145,4 @@ class IndexController extends ControllerBase {
 
     
 }
+      
