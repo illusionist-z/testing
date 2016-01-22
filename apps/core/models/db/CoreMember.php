@@ -468,7 +468,7 @@ class CoreMember extends \Library\Core\BaseModel {
      */
     public function  insertemailandtoken($member_mail,$token) {    
         $this->db = $this->getDI()->getShared("db");      
-     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',curdate() )");
+     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
        
        return $user;
 
@@ -570,6 +570,4 @@ class CoreMember extends \Library\Core\BaseModel {
 
     }
 }
-        //  print_r($newpass);
-       $newpassword = sha1($newpass);
-        $this->db = $this->getDI()->getShared("db");
+       
