@@ -159,29 +159,9 @@ class SalaryMaster extends Model {
                     $basic_salary_annual=$basic_salary_annual+$SD['total_basic_salary'];
                     $old_allowance=$SD['total_all_amount'];
                     $date_to_calculate=$date_diff+$SD['count_pay'];
-                    echo "basic salary in salary detail ".$basic_salary_annual;
+                    echo "basic salary in salary detail ".$SD['total_basic_salary'];
                 }
-//                  if(03==$working_start_date[1] || 03==$salary_starting_month)
-//               {
-//                   $detail_data=$this->getsalarydetail_oneyear($budget_startyear,$budget_endyear_one,$value[0]['member_id']);
-//                   //print_r($detail_data);
-//                   $basic_salary_annual =$detail_data['total_bsalary']+$value[0]['basic_salary'];
-////                   $total_deduce=$detail_data['total_absent_dedution']+$detail_data['total_ssc_emp'];
-//                   echo "BASIC SALARY ".$detail_data['total_bsalary'];
-//                   
-//                   if ($value[0]['basic_salary'] > 300000) {
-//                        $emp_ssc = $detail_data['total_ssc_emp']+6000;
-//                    } else {
-//                        $emp_ssc = $detail_data['total_ssc_emp']+($value[0]['basic_salary']*2/100);
-//                        
-//                    }
-//                   $total_income_tax=$detail_data['total_income_tax'];
-//                   //$date_to_calculate=1;
-//                   $date_diff=1;
-//                   $date_to_calculate=1;
-//                   //$basic_deduction=$basic_salary_allowance_annual * (20 / 100);
-//                   $flg=1;
-//               }
+               
                 echo "OLD ALLOWANCE".$old_allowance.'<br>';
                 $Allowanceresult = $this->getAllowances($value[0]['member_id'],$basic_salary_annual,$date_diff,$old_allowance,$SM['status'],$SD['allowance_amount'],$SD['count_pay']);
                
@@ -248,14 +228,57 @@ class SalaryMaster extends Model {
                         'creator_id'=>$creator_id,
                         'pay_date'=>$salary_start_date);
                 }
+                   if(03==$working_start_date[1] || 03==$salary_starting_month)
+               {
+                      $latestDate =  $this->getLatestDate($value[0]['member_id']);
+                      
+                      $ayear= date("Y", strtotime($latestDate['salary_start_date']))+1;
+                      $bdg_startyear = $ayear.'-04-01';
+                      $byear= date("Y", strtotime($latestDate['salary_end_date']))+1;
+                      $bdg_endyear=$byear.'-03-31';
+                      //echo $bdg_startyear.' '.$bdg_endyear;
+                      $this->EditSalarymaster($value[0]['member_id'],$bdg_startyear,$bdg_endyear);
+
+               }
             }
-            print_r($final_result);
-            exit;
+//            print_r($final_result);
+//            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
         }
         return $final_result;
+    }
+    
+    public function EditSalarymaster($member_id,$bdg_startyear,$bdg_endyear) {
+         try {
+            //$this->db = $this->getDI()->getShared("db");
+            $sql = "update salary_master set salary_start_date='".$bdg_startyear."', salary_end_date='".$bdg_endyear."' where member_id='".$member_id."'";
+            //echo $sql;exit;
+            $this->db->query($sql);
+            
+        } catch (Exception $e) {
+            echo $e;
+        }
+        
+    }
+    /**
+     * get latest date of salary master
+     * @param type $member_id
+     * @return type
+     */
+    public function getLatestDate($member_id) {
+         try {
+            //$this->db = $this->getDI()->getShared("db");
+            $sql = "select salary_start_date,salary_end_date from salary_master "
+                    . "where member_id='".$member_id."' order by updated_dt limit 1";
+            //echo $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
     }
     /**
      * get detail amount for the whole year (Budget end year)
