@@ -108,14 +108,20 @@ class Attendances extends Model {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken        
-        $query = "select * from core_member where member_id in "
-                 ."(select member_id from attendances where status = 1  group by member_id having count(member_id) > 0) "
-                . "order by created_dt desc limit 3";
-       //var_dump($query);exit;
+//        $query = "select * from core_member where member_id in "
+//                 ."(select member_id from attendances where status = 1  group by member_id having count(member_id) > 0) "
+//                . "order by created_dt desc limit 3";
+        $query = "select * from core_member "
+                . "as c join absent as a on c.member_id=a.member_id "
+                . "where  c.deleted_flag = 0  and a.deleted_flag = 0 group by a.member_id "
+                . "order by count(*) desc limit 3";
+      // var_dump($query);exit;
         $data = $this->db->query($query);
         //select where no leave name in current month
-        $query1 = "select * from core_member where member_id in
-                   (select member_id from attendances where att_date >(NOW()-INTERVAL 2 MONTH) and status=0) order by created_dt desc limit 3";
+//        $query1 = "select * from core_member where member_id in
+//                   (select member_id from attendances where att_date >(NOW()-INTERVAL 2 MONTH) and status=0) order by created_dt desc limit 3";
+         $query1 = "select * from core_member where member_id not in
+                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0 ) and deleted_flag=0 order by created_dt desc  limit 3";
         $data1 = $this->db->query($query1);
         $res['leave_name'] = $data->fetchall();
         $res['noleave_name'] = $data1->fetchall();

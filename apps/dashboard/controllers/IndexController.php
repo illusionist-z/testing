@@ -63,7 +63,7 @@ class IndexController extends  ControllerBase {
 //            var_dump($module_name_view);
 //          
 //        }
-        //exit();
+//        exit();
         
         $coreuser2 = new CorePermissionGroup(); 
         $core_groupuser2=$coreuser2::find();
