@@ -150,6 +150,22 @@ class Attendances extends Model {
         return $result;
     }
 
+    public function userattleave($id) {
+        $currentmth = date('m');
+        $result = array();        
+        $this->db = $this->getDI()->getShared("db");
+        //today attendance list
+        $query = "select count(*) as att from attendances where member_id ='$id' and status = 0 and MONTH(att_date) = '$currentmth' ";
+        $query = $this->db->query($query);
+        $data = $query->fetchall();
+        $result['att'] = $data[0]['att'];
+        //today leave list
+        $query1 = "select count(*) as absent from leaves where member_id = '$id' and MONTH(start_date) =  '$currentmth'";
+        $query1 = $this->db->query($query1);
+        $data1 = $query1->fetchall();
+        $result['absent'] = $data1[0]['absent'];
+        return $result;
+    }
     /**
      * 
      * @param type $id

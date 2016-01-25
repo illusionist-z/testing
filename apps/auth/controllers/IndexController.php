@@ -34,9 +34,7 @@ class IndexController extends ControllerBase {
      * When user failed login
      * @param type $mode
      */
-      public function failerAction($mode = 1) {
-        
-          
+    public function failerAction($mode = 1) {
         /*
         * User failerAction 
         * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -46,7 +44,7 @@ class IndexController extends ControllerBase {
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
 
-        if ($_SESSION["attempts"] < 1) {
+        if ($_SESSION["attempts"] < 4) {
 
             if ($this->session) {
                                   
@@ -58,10 +56,8 @@ class IndexController extends ControllerBase {
                 if (count($chack_user2) != 0) {
 
                     $member_name = $this->session->tokenpush;
-
                     $core_fai = new CoreMember();
                     $core_fai = CoreMember::findFirstByMemberLoginName($member_name);
-
                     $core_fai = $core_fai->timeflag;
                     $timestamp = (date("Y-m-d H:i:s"));
 
@@ -73,8 +69,7 @@ class IndexController extends ControllerBase {
                         // Login To Next. 30 Minutes
                     } elseif ($core_fai <= $timestamp) {
                         
-                        
-                        $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
+                         $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
                         $this->view->errorMsg = "company id or user name or password wrong";
                         $this->view->pick('index/index');
                     }
@@ -105,7 +100,7 @@ class IndexController extends ControllerBase {
                     $_SESSION['expire'] = $_SESSION['startTime'];
                     $rout_time = $nowtime - $_SESSION['expire'];
                      $localhost = ($this->request->getServer('HTTP_HOST'));
-                    //  $this->view->pick('salts/auth/index/faileruser');
+                     
                     $page = "http://".$localhost."/salts/auth/index/faileruser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
@@ -120,7 +115,7 @@ class IndexController extends ControllerBase {
                     // checking the time now when home page starts
                     $rout_time = $nowtime - $_SESSION['expire'];
                      $localhost = ($this->request->getServer('HTTP_HOST'));    
-                    //$this->view->pick('salts/auth/index/failer');
+                     
                     $page = "http://".$localhost."/salts/auth/index/faileruser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");

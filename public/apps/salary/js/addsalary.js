@@ -80,6 +80,12 @@ var AddSalary = {
     },
     downloadcsv : function () {
         document.location.href = "downloadcsv";
+//        $.ajax({
+//            url : "downloadcsv",
+//            success : function(d){
+//                console.log(d);
+//            }
+//        });
     },
      salnameautolist: function (){                       
         //var name = document.getElementById('namelist').value;
