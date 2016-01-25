@@ -31,12 +31,7 @@
 
 
        public function indexAction() {
-           
-          
-       if ($this->moduleIdCall == 1)
-       {
-
-           
+      
             $Admin=new Db\CoreMember;
             $id = $this->session->user['member_id'];
               foreach ($this->session->auth as $key_name => $key_value) {
@@ -61,11 +56,7 @@
             $this->view->uname = $Allname;
             $this->view->modulename = $this->module_name;
             
-                   }
-       else {
-            $this->response->redirect('core/index');
-       }
-       
+        
         } 
 
         //calender auto complete  for username
