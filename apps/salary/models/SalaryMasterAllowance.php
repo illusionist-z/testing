@@ -65,4 +65,12 @@ class SalaryMasterAllowance extends Model {
         }
         //return $result;
     }
+    
+    public function getallowId($d) {
+        $this->db = $this->getDI()->getShared("db");                
+        $sql = "Select allowance_id from allowances where allowance_name = '".$d[2]["allowance_name"]."'";
+        $data = $this->db->query($sql);
+       $rows = $data->fetchall();
+       return $rows;
+      }
 }

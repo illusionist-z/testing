@@ -287,7 +287,7 @@ class Leaves extends \Library\Core\BaseModel {
                     . "leave_description,total_leavedays "
                     . "from core_member left join leaves on "
                     . "core_member.member_id = leaves.member_id "
-                    . "where " . $this->setCondition2($mth, $leave_type) . "  "
+                    . "where " . $this->setCondition2($mth, $leave_type)
                     . "AND leaves.member_id ='" . $id . "' order by date desc";
         }
         $result = $this->db->query($row);
