@@ -60,35 +60,35 @@ class Salary extends \Library\Core\BaseModel {
                 if($k === 0 ){
                     if(array_key_exists($v["Field"], $getField)){
                         if($n === 0){
-                            $header[] = strtoupper($v["Field"])."(don't edit)";
+                            $header[] = strtoupper($v["Field"])."(X)";
                         }
                         else if($n === 1){
-                            $header[] = "MEMBER_NAME(don't edit)";
-                            $header[] = "FULL_NAME(don't edit)";
-                            $header[] = strtoupper($v["Field"])."(only Interger allow)";
+                            $header[] = "MEMBER_NAME(X)";
+                            $header[] = "FULL_NAME(X)";
+                            $header[] = strtoupper($v["Field"])."(INT)";
                         }                        
                         else if($n === 7){
-                            $header[] = strtoupper($v["Field"])."(Y-M-D[1993-04-09])";
+                            $header[] = strtoupper($v["Field"])."(Y-M-D)";
                         }
                         else{
-                            $header[] = strtoupper($v["Field"])."(only Interger allow)";
+                            $header[] = strtoupper($v["Field"])."(INT)";
                         }                        
                         $n++;
-                    }                   
+                    }
                 }
                 else if ($k === 1){
                     if($num === 1){
                     $header[] = strtoupper($v['deduce_id'])."(No of children[0,1,...])";
                     }
                     else{
-                    $header[] = strtoupper($v['deduce_id'])."(insert only 1 if allow)";
+                    $header[] = strtoupper($v['deduce_id'])."(1/0)";
                     }
                     $num++;
                 }
                 else {
-                    $header[] = strtoupper($v['allowance_name'])."(insert only 1 if allow)";
+                    $header[] = strtoupper($v['allowance_name'])."(1/0) ";
                 }
-            }            
+            }
         }
         return $header;
      }

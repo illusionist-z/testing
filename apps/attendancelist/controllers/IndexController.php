@@ -65,7 +65,7 @@ class IndexController extends ControllerBase {
         $UserList = new Db\CoreMember();
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \salts\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->gettodaylist($name);        
+        $ResultAttlist = $AttList->gettodaylist($name);
        // var_dump($ResultAttlist);exit;
         if($this->permission==1){
         $this->view->attlist=$ResultAttlist;

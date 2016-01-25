@@ -633,8 +633,7 @@ class IndexController extends ControllerBase {
      * import csv data to sql
      * @19/1/16
      */
-    public function csvimportAction() {
-        $filter = new Filter();
+    public function csvimportAction() {        
         $status = array();
         if ($this->request->isAjax()) {
             //check file exist   
@@ -656,78 +655,41 @@ class IndexController extends ControllerBase {
                 $file = fopen($_FILES['file']['tmp_name'], "r");
                 $count = 0;
                 $sal = new SalaryMaster();
-                while (($data = fgetcsv($file, 10000, "\t")) !== FALSE) {
+                while (($data = fgetcsv($file, 10000, "\t")) !== FALSE) {                  
+                    $data['member_id'] = $this->session->user['member_id'];
                     if (count($data) === 1) {
                         while (($data = fgetcsv($file, 10000, ",")) !== FALSE) {
                             $count++;
-                          if ($count > 1) {
-                        $da = array();
-                        //salary master table
-                        $da[0]['member_id'] = $filter->sanitize(isset($data[0])?$data[0]:"", "string");
-                        $da[0]['basic_salary'] = $filter->sanitize(isset($data[3])?$data[3]:"", "string");
-                        $da[0]['travel_fee_perday'] = $filter->sanitize(isset($data[4])?$data[4]:"", "string");
-                        $da[0]['travel_fee_permonth'] = $filter->sanitize(isset($data[5])?$data[5]:"", "string");
-                        $da[0]['over_time'] = $filter->sanitize(isset($data[6])?$data[6]:"", "int");
-                        $da[0]['ssc_emp'] = $filter->sanitize(isset($data[7])?$data[7]:"", "int");
-                        $da[0]['ssc_comp'] = $filter->sanitize(isset($data[8])?$data[8]:"", "int");
-                        $da[0]['salary_start_date'] = $filter->sanitize(isset($data[9])?$data[9]:"", "date");
-                        $da[0]['salary_end_date'] = "";
-                        $da[0]['creator_id'] = $this->session->user['member_id'];
-                        //$da[0]['updater_id'] = $this->session->user['member_id'];
-                        $da[0]['updated_dt'] = date("Y-m-d H:m:s");
-                        //deduce table
-                        $da[1]['spouse'] = $filter->sanitize(isset($data[10])?$data[10]:"", "string");
-                        $da[1]['children'] = $filter->sanitize(isset($data[11])?$data[11]:"", "string");
-                        $da[1]['stay_father'] = $filter->sanitize(isset($data[12])?$data[12]:"", "int");
-                        $da[1]['stay_mother'] = $filter->sanitize(isset($data[13])?$data[13]:"", "int");
-                        $da[1]['life_insurance'] = $filter->sanitize(isset($data[14])?$data[14]:"", "int");
-                        $da[1]['creator_id'] = $this->session->user['member_id'];
-                        $da[1]['updated_dt'] = date("Y-m-d H:m:s");
-                        //allowance table
-                        $da[2]['taxi'] = $filter->sanitize(isset($data[15])?$data[15]:"", "int");
-                        $da[2]['service'] = $filter->sanitize(isset($data[16])?$data[16]:"", "int");
-                        $da[2]['customer_allowance'] = $filter->sanitize(isset($data[17])?$data[17]:"", "int");
-                        
-                        
-                       $return = $sal->savesalary($da);
+                            if ($count > 1) {                          
+                                $return = $sal->importsalary($data);
                             }
                         }
-                    }
-                    else{
-                    $count++;
-                    if ($count > 1) {
-                        $da = array();
-                        $da['member_id'] = $filter->sanitize(isset($data[0])?$data[0]:"", "string");
-                        $da['member_name'] = $filter->sanitize(isset($data[1])?$data[1]:"", "string");
-                        $da['status'] = 0;
-                        $da['basic_salary'] = $filter->sanitize(isset($data[3])?$data[3]:"", "int");
-                        $da['travel_fee_perday'] = $filter->sanitize(isset($data[4])?$data[4]:"", "int");
-                        $da['over_time'] = $filter->sanitize(isset($data[6])?$data[6]:"", "int");
-                        $da['ssc_emp'] = $filter->sanitize(isset($data[7])?$data[7]:"", "int");
-                        $da['ssc_comp'] = $filter->sanitize(isset($data[8])?$data[8]:"", "int");
-                        $da['creator_id'] = $this->session->user['member_id'];
-                        $da['updater_id'] = $this->session->user['member_id'];
-                        $da['updated_dt'] = date("Y-m-d H:m:s");
-                       $return = $sal->savesalary($da);
-                    }
-                }
-                }
-                $temp = "";
-                if(!isset($return)){
-                        $temp = "Insert all field data please ,";
-                }
-                else{                                   
-                        foreach ($return as $v) {
-                            if (gettype($v) === "object") {
-                                $temp .= $v->getMessage() . " ,";
-                            } else {
-                                $temp .= $v . " ,";
-                            }
+                    } else {
+                        $count++;
+                        if ($count > 1) {
+                                $return = $sal->importsalary($data);
                         }
+                    }
                 }
+                $temp = "";$err_txt = "";
+                if (!isset($return)) {
+                    $temp = "Insert all field data please ,";
+                } else {                    
+                    foreach ($return as $v) {
+                        if (gettype($v) === "object") {
+                            $temp .= $v->getMessage() . " ,";
+                        } else {
+                            $err_txt .= $v . " ,";
+                        }
+                    }
+                }
+               if(strlen($temp) > 0){
                 $temp = substr_replace($temp, "", -1);
+               }
+               else{
+                $temp = substr_replace($err_txt, "", -1);
+               }
                 $status[2] = $temp;
-
                 echo json_encode($status);
                 fclose($file);
             }
@@ -737,10 +699,9 @@ class IndexController extends ControllerBase {
 
     public function downloadcsvAction() {
         $this->view->disable();
-        $file_name = "salary_data_" . date('Ymd') . ".csv";        
-        header("Content-type: applicaton/csv");        
-        header("Content-Transfer-Encoding: binary");
-        header('Pragma: no-cache');                
+        $file_name = "salary_data_" . date('Ymd') . ".csv";
+        header("Content-type: applicaton/csv");
+        header("Content-Transfer-Encoding: binary");        
         header("Content-Type: application/force-download");
         header("Content-Type: application/download");
         header("Content-Disposition: attachment; filename=\"$file_name\"");
@@ -750,18 +711,21 @@ class IndexController extends ControllerBase {
         ob_start();
         $output = fopen('php://output', 'w');
 
-     // output the column headings                
+        // output the column headings
         $core = new SalaryMaster();
         $salary = new \salts\Salary\Models\Salary();
         $all = $core->getSalMasterField();
         $header = $salary->getHeader($all);
         fputcsv($output, $header);
         $core = new Db\CoreMember();
-        $rows = $core->findUserAddSalary();
-        //fputcsv($output,array("INSERT DATA FORMAT :: (X)=> Dont edit  ,(INT)=> insert only interger number,(1/0)=> insert 1 if allow or insert 0 if disallow,(n/0)=> insert number of children or 0 if no children"));//rows for example
+        $rows = $core->findUserAddSalary();        
+        //rows for example
+        fputcsv($output,array("THIS LINE IS EXAMPLE INSERT DATA FORMAT :: {(X) = Dont edit}, {(INT) = insert only interger number},"
+            . "{(1/0) = insert 1 if allow or insert 0 if disallow},{(n/0) = insert number of children or 0 if no children},"
+            . "{(Y-M-D) = 1993-04-04} @Warn::Don't delete this row"));
         //insert member id and name 
         foreach ($rows as $row) {
-            fputcsv($output, array($row['member_id'], $row['member_login_name'],$row['full_name']));
+            fputcsv($output, array($row['member_id'], $row['member_login_name'], $row['full_name']));
         }
         fclose($output);
         exit;
