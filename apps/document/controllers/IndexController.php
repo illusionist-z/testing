@@ -124,7 +124,7 @@ class IndexController extends ControllerBase
      */
     public function letterheadAction(){
       
-        $moduleIdCallCore =new Db\CoreMember();
+       $moduleIdCallCore =new Db\CoreMember();
        $this->view->module_name = $this->router->getModuleName();
        $moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
        
