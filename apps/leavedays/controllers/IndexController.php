@@ -42,6 +42,10 @@ class IndexController extends ControllerBase {
          $this->act_name =  $this->router->getModuleName(); 
          $this->permission = $this->setPermission($this->act_name ); 
          $this->view->permission = $this->permission;
+         $moduleIdCallCore =new Db\CoreMember();
+         $this->module_name =  $this->router->getModuleName(); 
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
     }
 
     public function indexAction() {
@@ -49,12 +53,21 @@ class IndexController extends ControllerBase {
     }
 
     public function autolistAction() {
+        
+       
+       if ($this->moduleIdCall == 1)
+       {
         //echo json_encode($result);
         $UserList = new Db\CoreMember();
         $Username = $UserList->autousername();
         //print_r($UserList);exit;
         $this->view->disable();
         echo json_encode($Username);
+          }
+       else {
+            $this->response->redirect('core/index');
+       }
+        
     }
     /**
      * get member id
@@ -73,6 +86,10 @@ class IndexController extends ControllerBase {
      * @desc   Apply Leave Action
      */
     public function applyleaveAction() {  
+        
+          
+       if ($this->moduleIdCall == 1)
+       {
         $this->assets->addJs('apps/leavedays/js/applyleave.js');    
                 $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');      
@@ -90,7 +107,10 @@ class IndexController extends ControllerBase {
         else {
             $this->response->redirect('core/index');
         }     
-        
+          }
+       else {
+            $this->response->redirect('core/index');
+       }
     }
     
     public function checkapplyAction() {
@@ -125,7 +145,12 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-    public function leavelistAction(){    
+    public function leavelistAction(){  
+        
+          
+       if ($this->moduleIdCall == 1)
+       {
+            
           $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name ); 
         $Admin=new Db\CoreMember;
@@ -157,6 +182,11 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
          
+           }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }
     
     /**
@@ -166,6 +196,10 @@ class IndexController extends ControllerBase {
      */
     public function leavesettingAction(){
         
+        
+       if ($this->moduleIdCall == 1)
+       {
+            
          $this->act_name =  $this->router->getModuleName(); 
         $this->permission = $this->setPermission($this->act_name ); 
         $Admin=new Db\CoreMember;
@@ -184,6 +218,10 @@ class IndexController extends ControllerBase {
         else {
             $this->response->redirect('core/index');
         }
+          }
+       else {
+            $this->response->redirect('core/index');
+       }
     }
     /**
      * adding leave categories dialog box

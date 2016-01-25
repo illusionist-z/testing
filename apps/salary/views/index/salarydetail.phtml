@@ -88,7 +88,7 @@
   <tr>
     <td><?= $t->_("overtime_hour");?></td>
     <td><input type="text" name="txtovertimehour" value="<?php $overtime=$filter->sanitize($A[$i]->attend->overtime , "string");
-        $total_overtime_hr=$total_overtime_hr+$overtime;
+        //$total_overtime_hr=$total_overtime_hr+$overtime;
         echo $overtime;
     ?>" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
     <td></td>
@@ -96,9 +96,9 @@
   <tr>
     <td><?= $t->_("overtime_payment");?></td>
     <td><input type="text" name="txtovertimepay" value="<?php 
-    $overtime_fees= $A[$i]->salarydet->overtime;
-    $overtime_pay= + $overtime_fees;
-    echo $overtime_pay;
+    $overtime_fees= $A[$i]->salarymast->over_time*$overtime;
+    $sum = $sum + $overtime_fees;
+    echo $overtime_fees;
     ?>" id="txtovertimepay" disabled="disabled" class=" txtovertimepay txtenable"></td>
     <td></td>
   </tr>

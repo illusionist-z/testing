@@ -9,6 +9,7 @@ $messages = array(
     "Attendance List"=>"တက္ေရာက္စာရင္း",
     "Today Attendance List"=>"ယေန႕စာရင္း",
     "Monthly Attendance List"=>"လစဥ္စာရင္း",
+    "Monthly Attendance Chart"=>"လစဥ္စာရင္း(ဇယား)",
     "Manage User"=>"စီမံခန္႕ခြဲ",
     "Leave Days"=>"ခြင့္ရက္",
     "Apply Leave"=>"ခြင္႔တင္ရန္",
@@ -80,6 +81,17 @@ $messages = array(
     "Start Date"=>"ရွာေဖြလိုေသာ Date ရဲ႕အစ ကို ေရြးေပးရန္။",
     "End Date"=>"ရွာေဖြလိုေသာ Date ရဲ႕အဆံုး ကို ေရြးေပးရန္။",
 
+    /**
+     * Monthly Attenance Chart
+     */
+    "Admin can show"=>"Admin can show who attendance , leave and no leave of all member.Monthly Attendance Chart show with green,yellow and red colors.",
+    "Colors"=>"Colors",
+    "Green"=>"Green",
+    "att_person"=>"Attendance Person",
+    "Yellow"=>"Yellow",
+    "absent_leave_person"=>"Absent Person(Apply Leave)",
+    "Red"=>"Red",
+    "absent_noleave_person"=>"Absent Person(No Apply Leave)",
     
     /**
      * Manage User

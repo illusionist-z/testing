@@ -26,12 +26,46 @@ class CoreMember extends \Library\Core\BaseModel {
         return new self();
     }
     
-    
-    public function getusername() {
+    public function ModuleIdSetPermission($v,$m) {
+          
+         //// Module ID Filter Start
+        $module_id_set = $m;
+        foreach ($module_id_set as $module_name){
+           //var_dump($module_name['module_id']);
+            
+            if ( $module_name['module_id'] == $v ){
+                
+              $var_id = 1;
+            }
+          
+        }
+         //// Module ID Filter End
+        if (isset($var_id)){
+           $module_id_return = 1;
+        }
+        else{
+            $module_id_return = 0;
+        }
+        return $module_id_return;
+        
+        
+    }
+
+        public function getusername() {
         $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         return $row;
     }
+    
+     public function module_permission() {
+        $this->db = $this->getDI()->getShared("db");
+        $query = "Select permission_code,permission_name_en,permission_name_$lang from core_permission where permission_code ='$code'";
+        //echo $query;exit;
+        $data = $this->db->query($query);
+        $result = $data->fetchall();
+        return $result;
+    }
+   
     /*
      * @Count Member Limit
      * @Inset Buyer Code
@@ -414,39 +448,28 @@ class CoreMember extends \Library\Core\BaseModel {
      *forget password
      
      */
-    public function findemail($member_mail) {
-       //print_r($member_mail);exit;
-        //exit;
-        // Check if the user exist
-        $email = $member_mail;
+    public function findemail($member_mail) {       
         
+        $email = $member_mail;
         $this->db = $this->getDI()->getShared("db");
         $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
-        //print_r($query);exit;
         $user = $this->db->query($query);
-        $user = $user->fetchAll(); 
+        $users = $user->fetchAll(); 
       
-        return $user;
+        return $users;
 
     }
+    
    
      /**
      * Saw Zin Min Tun
      *forget password
      
      */
-    public function  insertemailandtoken($member_mail,$token) {       
-     //  print_r($member_mail);
-    //  print_r($token);exit;
-        //exit;
-        // Check if the user exist
-        //$email = $member_mail;
-        
+    public function  insertemailandtoken($member_mail,$token) {    
         $this->db = $this->getDI()->getShared("db");      
-     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',curdate() )");
-       //print_r($user);exit;
-       // $user = $user->fetchAssoc(); 
-        //print_r($user);exit;
+     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
+       
        return $user;
 
     }
@@ -458,9 +481,9 @@ class CoreMember extends \Library\Core\BaseModel {
      *     
      */
 
-    public function tokenpush($member_id, $tokenpush, $block_id) {
+    public function tokenpush($member_id, $tokenpush, $user_ip) {
         $this->db = $this->getDI()->getShared("db");
-        $member_log = $this->db->query("INSERT INTO member_log(token,member_id,yes_no) values(' " . $member_id . " ' ,' " . $tokenpush . " ',' " . $block_id . " ' )");
+        $member_log = $this->db->query("INSERT INTO member_log(token,member_id,ip_address) values(' " . $member_id . " ' ,' " . $tokenpush . " ',' " . $user_ip . " ' )");
         
         return $member_log;
     }
@@ -470,14 +493,14 @@ class CoreMember extends \Library\Core\BaseModel {
         
         return $member_flag;
     }
-    public function countday($member_id,$time_office,$formtdate){
-         $this->db = $this->getDI()->getShared("db");
-         $member_day_count = "SELECT COUNT(*) FROM member_log WHERE member_id = ' ".$member_id."' AND nowtime BETWEEN '".$time_office."' AND '".$formtdate."' AND yes_no = '0' ";
-         $user_day = $this->db->query($member_day_count);
-         $user_day = $user_day->fetchAll(); 
-         return $user_day;
-        
-    }
+//    public function countday($member_id,$time_office,$formtdate){
+//         $this->db = $this->getDI()->getShared("db");
+//         $member_day_count = "SELECT COUNT(*) FROM member_log WHERE member_id = ' ".$member_id."' AND nowtime BETWEEN '".$time_office."' AND '".$formtdate."' AND yes_no = '0' ";
+//         $user_day = $this->db->query($member_day_count);
+//         $user_day = $user_day->fetchAll(); 
+//         return $user_day;
+//        
+//    }
 
 
     /**
@@ -490,14 +513,25 @@ class CoreMember extends \Library\Core\BaseModel {
         //exit;
         // Check if the user exist
         
-        
+        //SELECT * FROM forgot_password where  check_mail = 'AA@gmail.com' and token = (select token from forgot_password  order by curdate desc limit 1)
         $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT * FROM forgot_password where token ='" . $code . "' and check_mail = ' ".$email." ' and curdate = curdate() ";
-        //print_r($query);exit;
+        
+        $query = "SELECT token FROM forgot_password where  check_mail = '".$email."'  order by curdate desc limit 1  ";
+      //  print_r($query);exit;
+       
         $user = $this->db->query($query);
-        $user = $user->fetchAll(); 
-      
-        return $user;
+        $user = $user->fetchArray(); 
+//       print_r($user['token']);
+//        print_r($code);exit;
+        
+         if($user['token'] == $code){
+             $msg="success";
+             return $msg;
+         }else{
+             $msg="fail";
+              return $msg;
+         }
+       
 
     }
      /**
@@ -506,41 +540,34 @@ class CoreMember extends \Library\Core\BaseModel {
      
      */
     public function  updatepassword($member_mail,$newpassword) {       
-//        print_r($member_mail);
-//        print_r($newpassword);exit;
-//        print_r($token);exit;
-        //exit;
-        // Check if the user exist
-        //$email = $member_mail;
+    // Check if the user exist
+     
         $newpassword = sha1($newpassword);
-        //print_r($newpassword);exit;
         $this->db = $this->getDI()->getShared("db");
-      
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-       // print_r($user);exit;
-       // $user = $user->fetchArray(); 
-        //print_r($user);exit;
+      
         return $user;
 
     }
       public function  updatenewpassword($member_mail,$newpass) {  
-        //  print_r($newpass);
-       $newpassword = sha1($newpass);
-       
-        $this->db = $this->getDI()->getShared("db");
       
+        $newpassword = sha1($newpass);
+        $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-       // print_r($user);exit;
-       // $user = $user->fetchArray(); 
-        //print_r($user);exit;
-        return $user;
+         return $user;
 
     }
-    
-    public function findUserAddSalary() {
-        $query = "Select * from core_member where member_id not in ( select member_id from salary_master)";
-        $data = $this->db->query($query);
-        $rows = $data->fetchall();
-        return $rows;
+    public function  checkyourmail($getmail) {  
+        $this->db = $this->getDI()->getShared("db");
+        
+        $query = "SELECT token FROM forgot_password where  check_mail = '".$getmail."'  order by curdate desc limit 1  ";
+      //  print_r($query);exit;
+       
+        $user = $this->db->query($query);
+        $user = $user->fetchArray(); 
+        //print_r($user['token']);exit;
+        return $user['token'] ;
+
     }
 }
+       

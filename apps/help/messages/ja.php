@@ -1,3 +1,4 @@
+
 <?php
 $messages = array(
     /**
@@ -73,7 +74,7 @@ $messages = array(
     "Export"=>"エクスポート",
     "This will"=>"This will output the data of display table as csv.",
     "Editatttime"=>"Edit Attendance time(Admin)",
-    "Admin can edit"=>"Admin can edit your attendance time if necessary.",
+    "Admin"=>"Admin can edit your attendance time if necessary.",
     
     /**
      * Monthly Attendance Lists
@@ -85,6 +86,19 @@ $messages = array(
     "Enter the username"=>"Enter the username which you want to search.",
     "Then select the wanted username"=>"検索ボタンをクリックすると、検索候補の名前が下部に表示されます。表示された名前をクリックすると検索ボックスに名前がセットされます。検索ボタンをクリックすると検索実行されます。",
     "This will output"=>"エクスポートボタンをクリックすると、表示されているデータをcsv形式で出力します。",
+    
+     /**
+     * Monthly Attenance Chart
+     */
+    "Admin can show"=>"Admin can show who attendance , leave and no leave of all member.Monthly Attendance Chart show with green,yellow and red colors.",
+    "Colors"=>"Colors",
+    "Green"=>"Green",
+    "att_person"=>"Attendance Person",
+    "Yellow"=>"Yellow",
+    "absent_leave_person"=>"Absent Person(Apply Leave)",
+    "Red"=>"Red",
+    "absent_noleave_person"=>"Absent Person(No Apply Leave)",
+    
     
     /**
      * Manage User
