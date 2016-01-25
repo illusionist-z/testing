@@ -413,6 +413,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return array {leave name}
      * @return array {no leave name}
+   * @version saw zin min tun
      */
     public function checkleave() {
         $res = array();
@@ -420,7 +421,7 @@ class CoreMember extends \Library\Core\BaseModel {
     
         //select where no leave name in current month
         $query1 = "select * from core_member where member_id not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH)) and deleted_flag=0 order by created_dt desc";
+                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0) and deleted_flag=0 order by created_dt desc";
         $data1 = $this->db->query($query1);
         $res['noleave_name'] = $data1->fetchall();
         return $res;
@@ -429,6 +430,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return array {leave name}
      * @return array {no leave name}
+     * @version saw zin min tun
      */ 
     public function leavemost() {
         $res = array();
@@ -436,7 +438,7 @@ class CoreMember extends \Library\Core\BaseModel {
         //select where user most leave taken
         $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=1  and c.deleted_flag = 0 group by a.member_id "
+                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
                 . "order by count(*)";
        $data = $this->db->query($query);
        $res['leave_name'] = $data->fetchall();
