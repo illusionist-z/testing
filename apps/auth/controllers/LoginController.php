@@ -47,15 +47,10 @@ class LoginController extends ControllerBase {
         $this->session->set('db_config',$companyDB);
         
         //Module Chack
-        $module = new Models\Auth();
-        //$permission_module = $this->session->db_config;
-        $module_id = $this->session->db_config['company_id'];
-        //$module_id = $this->request->getPost('company_id'); 
-        $company_module = $module->find_module($module_id);
-//        /$company_module = $company_module->module_id;
-        $this->session->set('module',$company_module);
-             //var_dump($module_id_set);
-        
+        $module = new Models\Auth(); 
+        $module_id = $this->session->db_config['company_id']; 
+        $company_module = $module->find_module($module_id); 
+        $this->session->set('module',$company_module);  
         
         $result = $ModelAuth->check($loginParams, $user);
         $permission=$ModelAuth->getpermit($loginParams);
