@@ -120,6 +120,7 @@ $(document).ready(function () {
             showTimezone: false,
             maskInput: true,
             timeFormat: "HH:mm:ss"}).focus();
+        $('#ui-datepicker-div').css("z-index","9999");
     });
     $('#apply_form_submit').on('click', function (e) {
         e.preventDefault();
