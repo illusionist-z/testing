@@ -711,7 +711,7 @@ class IndexController extends ControllerBase {
                         $da['creator_id'] = $this->session->user['member_id'];
                         $da['updater_id'] = $this->session->user['member_id'];
                         $da['updated_dt'] = date("Y-m-d H:m:s");
-                       $return = $sal->savesalary($da);
+                        $return = $sal->savesalary($da);
                             }
                         }
                     }
@@ -730,7 +730,7 @@ class IndexController extends ControllerBase {
                         $da['creator_id'] = $this->session->user['member_id'];
                         $da['updater_id'] = $this->session->user['member_id'];
                         $da['updated_dt'] = date("Y-m-d H:m:s");
-                       $return = $sal->savesalary($da);
+                        $return = $sal->savesalary($da);
                     }
                 }
                 }
