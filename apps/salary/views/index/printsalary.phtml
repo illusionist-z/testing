@@ -16,12 +16,11 @@ use Phalcon\Filter;
 
                     <?php
                     $filter = new Filter();
-
-                    $sum = '';
-                    $deduce = '';
                     $j = 0;
                     foreach ($getsalarydetails as $A) {
                         $j++;
+                        $sum = 0;
+                        $deduce = 0;
                         for ($i = 0; $i < count($A); $i++) {
                             ?>
                             <div style="padding: 0 10px 10px 10px" class="sample"  id="printable">
@@ -50,19 +49,17 @@ use Phalcon\Filter;
                                         <td rowspan="5" style="border-bottom-color: #ecf0f5"></td>
                                         <td>Basic Salary</td>
                                         <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->basic_salary, "string"));
-                    $sum+=$A[$i]->salarydet->basic_salary; ?></td>
+                    $sum = $sum+$A[$i]->salarydet->basic_salary;?></td>
                                         <td></td>
                                         </tr>
                                         <tr>
                                             <td>Overtime Rate</td>
-                                            <td><?php echo $filter->sanitize($A[$i]->salarymast->over_time, "string");
-                    $sum+=$A[$i]->salarymast->over_time; ?>%</td>
+                                            <td><?php echo $filter->sanitize($A[$i]->salarymast->over_time, "string");?></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>Overtime Hour</td>
-                                            <td><?php echo $filter->sanitize($A[$i]->attend->overtime, "string");
-                    $sum+=$A[$i]->attend->overtime; ?>hr</td>
+                                            <td><?php echo $filter->sanitize($A[$i]->attend->overtime, "string");?>hr</td>
                                             <td></td>
                                         </tr>
                                         <tr>
@@ -70,10 +67,10 @@ use Phalcon\Filter;
                                             <td>
                                                 <?php
                                                 if ($filter->sanitize($A[$i]->attend->overtime, "string") > 0) {
-                                                    $overtime_pay_perhr = $A[$i]->salarydet->basic_salary * $A[$i]->salarymast->over_time / 100;
+                                                    $overtime_pay_perhr = $A[$i]->attend->overtime*$A[$i]->salarymast->over_time;
                                                     $overtime_payment = $overtime_pay_perhr * $A[$i]->attend->overtime;
-                                                    echo $overtime_payment;
-                                                    $sum+=$overtime_payment;
+                                                    echo $overtime_pay_perhr;
+                                                    $sum = $sum+$overtime_pay_perhr;
                                                 }
                                                 ?>
                                             </td>
@@ -87,6 +84,12 @@ use Phalcon\Filter;
                                         <tr>
                                             <td colspan="2">Gross Salary</td>
                                             <td><?php echo number_format($sum); ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">Deduce for absent</td>
+                                            <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->absent_dedution, "string"));
+                                                $deduce+=$A[$i]->salarydet->absent_dedution; ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>

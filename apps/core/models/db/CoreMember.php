@@ -454,9 +454,9 @@ class CoreMember extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
         $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
         $user = $this->db->query($query);
-        $user = $user->fetchAll(); 
+        $users = $user->fetchAll(); 
       
-        return $user;
+        return $users;
 
     }
     
@@ -466,11 +466,9 @@ class CoreMember extends \Library\Core\BaseModel {
      *forget password
      
      */
-    public function  insertemailandtoken($member_mail,$token) {       
-    
-        
+    public function  insertemailandtoken($member_mail,$token) {    
         $this->db = $this->getDI()->getShared("db");      
-     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',curdate() )");
+     $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
        
        return $user;
 
@@ -511,15 +509,29 @@ class CoreMember extends \Library\Core\BaseModel {
      
      */
     public function findcode($code,$email) {       
-       // Check if the user exist
-         
+       //print_r($member_mail);exit;
+        //exit;
+        // Check if the user exist
+        
+        //SELECT * FROM forgot_password where  check_mail = 'AA@gmail.com' and token = (select token from forgot_password  order by curdate desc limit 1)
         $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT * FROM forgot_password where token ='" . $code . "' and check_mail = ' ".$email." ' and curdate = curdate() ";
-        //print_r($query);exit;
+        
+        $query = "SELECT token FROM forgot_password where  check_mail = '".$email."'  order by curdate desc limit 1  ";
+      //  print_r($query);exit;
+       
         $user = $this->db->query($query);
-        $user = $user->fetchAll(); 
-      
-        return $user;
+        $user = $user->fetchArray(); 
+//       print_r($user['token']);
+//        print_r($code);exit;
+        
+         if($user['token'] == $code){
+             $msg="success";
+             return $msg;
+         }else{
+             $msg="fail";
+              return $msg;
+         }
+       
 
     }
      /**
@@ -545,4 +557,17 @@ class CoreMember extends \Library\Core\BaseModel {
          return $user;
 
     }
+    public function  checkyourmail($getmail) {  
+        $this->db = $this->getDI()->getShared("db");
+        
+        $query = "SELECT token FROM forgot_password where  check_mail = '".$getmail."'  order by curdate desc limit 1  ";
+      //  print_r($query);exit;
+       
+        $user = $this->db->query($query);
+        $user = $user->fetchArray(); 
+        //print_r($user['token']);exit;
+        return $user['token'] ;
+
+    }
 }
+       
