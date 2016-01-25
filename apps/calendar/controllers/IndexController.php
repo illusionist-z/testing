@@ -25,6 +25,7 @@
             $this->view->t = $this->_getTranslation(); 
             
         $moduleIdCallCore =new Db\CoreMember();
+        $this->module_name = $this->router->getModuleName();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
         }
@@ -33,8 +34,8 @@
        public function indexAction() {
            
           
-       if ($this->moduleIdCall == 1)
-       {
+//       if ($this->moduleIdCall == 1)
+//       {
 
            
             $Admin=new Db\CoreMember;
@@ -61,10 +62,10 @@
             $this->view->uname = $Allname;
             $this->view->modulename = $this->module_name;
             
-                   }
-       else {
-            $this->response->redirect('core/index');
-       }
+//                   }
+//       else {
+//            $this->response->redirect('core/index');
+//       }
        
         } 
 
