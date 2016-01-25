@@ -85,6 +85,18 @@ $messages = array(
     "Then select the wanted username"=>"Then select the wanted username from dropdown list ,after that click search button.",
     "This will output"=>"This will output the data of display table as csv.",
     
+     /**
+     * Monthly Attenance Chart
+     */
+    "Admin can show"=>"Admin can show who attendance , leave and no leave of all member.Monthly Attendance Chart show with green,yellow and red colors.",
+    "Colors"=>"Colors",
+    "Green"=>"Green",
+    "att_person"=>"Attendance Person",
+    "Yellow"=>"Yellow",
+    "absent_leave_person"=>"Absent Person(Apply Leave)",
+    "Red"=>"Red",
+    "absent_noleave_person"=>"Absent Person(No Apply Leave)",
+    
     /**
      * Manage User
      */

@@ -54,14 +54,7 @@ class LoginController extends ControllerBase {
         $company_module = $module->find_module($module_id);
 //        /$company_module = $company_module->module_id;
         $this->session->set('module',$company_module);
-        
-        
-        
              //var_dump($module_id_set);
-       
-      
-        
-        
         
         
         $result = $ModelAuth->check($loginParams, $user);

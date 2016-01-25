@@ -55,9 +55,16 @@ class IndexController extends  ControllerBase {
         */
     public function adminAction() { 
         
-       
-        
-        //exit();
+//        var_dump($this->session->auth);
+//        
+//        
+//         foreach ($this->view->module_id_set as $module_name_view){
+//            $module_name_view  = $module_name_view['module_id'];
+//          
+//            var_dump($module_name_view);
+//          
+//        }
+//        exit();
         
         $coreuser2 = new CorePermissionGroup(); 
         $core_groupuser2=$coreuser2::find();
