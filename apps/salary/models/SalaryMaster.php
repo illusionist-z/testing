@@ -825,9 +825,14 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         }
         
         public function getSalMasterField () {
-        $query = "show columns from salary_master";
-        $row = $this->db->query($query);
-        $data = $row->fetchall();
+        $data = array();
+        $query0 = "show columns from salary_master";
+        $query1 = "select deduce_id from salary_taxs_deduction";
+        $query2 = "select allowance_name from allowances";
+        for ($i = 0; $i<3 ;$i++){
+        ${"row$i"} = $this->db->query(${"query$i"});
+        $data[] = ${"row$i"}->fetchall();
+        }        
         return $data;
         }
 }
