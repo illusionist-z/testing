@@ -32,7 +32,7 @@ class IndexController extends ControllerBase
         $id = $this->session->user['member_id'];
         $this->view->module_name = $this->router->getModuleName();
          $this->view->permission = $this->permission;
-        $moduleIdCallCore =new Db\CoreMember();
+        $moduleIdCallCore =new CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
    foreach ($this->session->auth as $key_name => $key_value) {
