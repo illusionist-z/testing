@@ -135,20 +135,24 @@ class SalaryMaster extends Model {
                     //calculate date difference between starting date and budget end year
                     $date_diff = $this->date_difference($salary_start_date, $budget_endyear);
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
+                    
+                            
                     $date_to_calculate = $date_diff;
-
+                    echo "".$basic_salary_annual .'<br>';
+                    echo "DateDifferent".$date_diff .'<br>';
                     echo $value[0]['basic_salary'] . '<br>';
-                    echo "salary starting date " . $budget_endyear . '<br>';
+                    echo "salary starting date " . $salary_starting_date . '<br>';
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
-                    //print_r($SD);
+                    print_r($SD);
                     //Get the basic salary from salary master
                     $SM = $this->getLatestsalary($value[0]['member_id']);
 
                     //get the latest
                     $latest_otpay = $this->getlatestOTPay($value[0]['member_id'], $budget_startyear, $budget_endyear);
-
+                    
                     if (!empty($SD)) {
+                        
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
                         $date_to_calculate = $date_diff + $SD['count_pay'];
@@ -232,8 +236,8 @@ class SalaryMaster extends Model {
                     }
                 }
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
