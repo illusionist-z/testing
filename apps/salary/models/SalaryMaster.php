@@ -54,10 +54,12 @@ class SalaryMaster extends Model {
             $da[0]['over_time'] = $filter->sanitize(isset($data[6]) ? $data[6] : "", "int");
             $da[0]['ssc_emp'] = $filter->sanitize(isset($data[7]) ? $data[7] : "", "int");
             $da[0]['ssc_comp'] = $filter->sanitize(isset($data[8]) ? $data[8] : "", "int");
-            $sdate = isset($data[9]) ? $data[9] : "";
+            $sdate = isset($data[9]) ? $data[9] : 0;
+            if(0 !== $sdate){//salary start date format is exist ->get end date
             $da[0]['salary_start_date'] = date("Y-m-d",strtotime($sdate));
             $addyear= date("Y", strtotime($sdate))+1;
-            $da[0]['salary_end_date']=$addyear."-03-31";            
+            $da[0]['salary_end_date']=$addyear."-03-31";
+            }
             $da[0]['creator_id'] = $data['member_id'];
             $da[0]['updater_id'] = $data['member_id'];
             $da[0]['updated_dt'] = date("Y-m-d H:m:s");
