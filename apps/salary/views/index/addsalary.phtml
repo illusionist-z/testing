@@ -23,7 +23,7 @@ if (isset($Msg)) {
                         <div class="div-bottom col-md-12">
                             <span class="col-xs-offset-0 span-style"><?= $t->_("name"); ?></span>
                             <span class="col-xs-8">
-                                <input type="text" class="salusername" name="uname" id="uname" style="width:45%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
+                                <input type="text" class="salusername" name="uname" id="uname" style="width:38%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
                                 <span id="add_salary_uname_error"></span>
                                 <input type="hidden" value="" id="formemberid" name="member_id">
                             </span>                                          
@@ -31,7 +31,7 @@ if (isset($Msg)) {
 
                         <div class="div-bottom col-md-12">
                             <span class="span-style col-xs-offset-0"><?= $t->_("basic_salary"); ?></span>
-                            <span class="col-xs-8"><input type="text" id="bsalary" value="" placeholder="<?php echo $t->_("basic_sal"); ?>" style="width:45%; height: 20%;" name="bsalary">
+                            <span class="col-xs-8"><input type="text" id="bsalary" value="" placeholder="<?php echo $t->_("basic_sal"); ?>" style="width:38%; height: 20%;" name="bsalary">
                                 <span  id="add_salary_bsalary_error"></span>
                             </span>
 
@@ -46,40 +46,35 @@ if (isset($Msg)) {
                                     <input type='radio' name='radTravel' value='2' id="radtravel2"/>Per month
                                 </div> 
                                 <div style="" >
-                                    <input type="text"class="col-xs-2" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:45%; height: 20%;" name="travelfees" disabled/>
+                                    <input type="text"class="col-xs-2" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:38%; height: 20%;" name="travelfees" disabled/>
                                 </div>
                             </div>
                         </div>
                         <div class="div-bottom col-md-12">
                             <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("overtime"); ?></span>
                             <span class="col-xs-8">
-                                <input type="text" id="overtime" value="" style="width:45%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>">
+                                <input type="text" id="overtime" value="" style="width:38%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>">
                             </span>
                         </div>
 
                         <div style="line-height: 30px;" class="col-md-12">
                             <div class="span-style col-xs-offset-0"><?= $t->_("deduce_ssc"); ?></div>
                             <div class="col-xs-8">
-                                    <?php
+                                <?php
                                 //print_r($getall_allowance);
-                                $i = 1;$j=0;
+                                $i = 1;
                                 foreach ($getall_deduce as $getall_deduces) {
-                                    echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall' . $i . '" value="' . $getall_deduces['deduce_id'] . '"> ' . $getall_deduces['deduce_name'] ;
+                                    echo '<input type="checkbox" name="checkall[]" onClick="return checkValue(this)" id="checkall' . $i . '" value="' . $getall_deduces['deduce_id'] . '"> ' . $getall_deduces['deduce_name'] . "<br>";
                                     $i++;
-                                    $j++;
-                                    if($j==3){
-                                        echo '<br>';
-                                        $j=0;
-                                    }
                                     if ($i == 3) {
                                         echo "<div id='No_of_children' style='display:none;'>
                                 <input type='text'  name='no_of_children' id='no_of_children' placeholder='number of children'>
                             </div>";
                                     }
                                 }
-                                ?>                                     
+                                ?>                                      
                             </div>        
-                            <div  style="float: right;margin-right: 50px;margin-top: -50px;" id="add_salary_ssc_error"></div>
+                            <div  style="float: right;margin-right: 150px;margin-top: -100px;" id="add_salary_ssc_error"></div>
                             </div>                       
 
                         <div style="line-height: 30px;" class="col-md-12">
@@ -87,25 +82,13 @@ if (isset($Msg)) {
                             <div class="col-xs-8">
 <?php
 //print_r($getall_allowance);
-$i=0;
+
 foreach ($getall_allowance as $getall_allowances) {
-    echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="' . $getall_allowances['allowance_id'] . '"> ' . $getall_allowances['allowance_name'] ;
-    
-    $i++;
-    if($i==2){
-        echo '<br>';
-        $i=0;
-    }
+    echo '<input type="checkbox" name="check_allow[]" id="check_allow[]" value="' . $getall_allowances['allowance_id'] . '"> ' . $getall_allowances['allowance_name'] . "<br>";
 }
-?><br>
+?>
 
                             </div>
-                        </div>
-                        <div class="div-bottom col-md-12">
-                            <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("sa_sdate"); ?></span>
-                            <span class="col-xs-8">
-                                <input type="text" id="s_sdate" value="" style="width:45%; height: 20%;" class="datepicker" name="s_sdate" placeholder="Enter Salary Start Date">
-                            </span>
                         </div>
                         <div class="div-bottom" style="clear: both;padding-top: 2%;">
 
@@ -120,7 +103,7 @@ foreach ($getall_allowance as $getall_allowances) {
                 </div>
                 <div class="col-md-4 dropdown"  style="text-align: center;padding-bottom: 10px; ">                    
                     <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
-                    <h4 class="btn btn-primary" title="Download Sample CSV" id="csv_download"><img src="../../common/img/download1.png"></h4>
+                    <h4 class="btn btn-primary" title="Download Sample CSV(we recommend to open in microsoft excel)" id="csv_download"><img src="../../common/img/download1.png"></h4>
                     <div class="col-sm-12 dropdown-menu"  id="radsal_type">                   
                     <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
                      <input type="file" name="file" id="file_select" class="col-xs-6 col-xs-offset-0">
@@ -134,9 +117,7 @@ foreach ($getall_allowance as $getall_allowances) {
     </div>
         <div id="content"></div>
 </section><!-- /.content -->
-
 <script type="text/javascript">
-      
     function checkValue() {
         var linkemail = document.forms["add_salary"]["checkall2"].checked
         if (linkemail) {
