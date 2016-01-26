@@ -38,10 +38,10 @@ var Manage = {
                            
                    
                  html ='<form id="savemodule" method="post" >'
-                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">Company ID</td><td>'
+                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">Module ID</td><td>'
                    +'<input style="margin-top:10px" type="text" name="mid" id="uname" class="col-sm-10" placeholder="Write Module ID"></td></tr>'
                    +'<tr><td></td><td id="existId"></td></tr>'
-                   +'<tr><td>Company Name</td><td><input style="margin-top:10px" type="text" name="mname" class="col-sm-10" id="full_name" placeholder="Wirte Module Name"></td></tr>'
+                   +'<tr><td>Module Name</td><td><input style="margin-top:10px" type="text" name="mname" class="col-sm-10" id="full_name" placeholder="Wirte Module Name"></td></tr>'
                    +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="Add"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>'
                    +'</tr></table></form>';
                 
@@ -62,11 +62,11 @@ var Manage = {
                   
               html = '<form id="savemodule" method="post" enctype="multipart/form-data">'
               +'<input type="hidden" id="edit_id" value="'+ result['module_id'] +'"> '
-                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">Company ID</td><td>'
+                   +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">Module ID</td><td>'
                    
                    +'<input style="margin-top:10px" type="text" name="mid" id="uname" value="'+ result['module_id'] +'" class="col-sm-10" placeholder="Write Module ID" disabled></td></tr>'
                    +'<tr><td></td><td id="existId"></td></tr>'
-                   +'<tr><td>Company Name</td><td><input style="margin-top:10px" value="'+ result['module_name'] +'"  type="text" name="mname" class="col-sm-10" id="full_name" placeholder="Wirte Module Name"></td></tr>'
+                   +'<tr><td>Module Name</td><td><input style="margin-top:10px" value="'+ result['module_name'] +'"  type="text" name="mname" class="col-sm-10" id="full_name" placeholder="Wirte Module Name"></td></tr>'
                    +'<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="edit_module" value="Edit"><input style="margin-top:10px" type="submit" class="buttonn" id="delete" value="Delete"> <input style="margin-top:10px" type="reset" class="buttonn" id="edit_close" value="Cancel"></td>'
                    +'</tr></table></form>'; 
                   title ="Edit Module  ";
