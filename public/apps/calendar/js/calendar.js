@@ -450,8 +450,15 @@ Calendar.Dialog = {
         //for event calender auto complete username
         $('#event_uname,#show_name').unbind('focus').bind('focus', function () {
             $(this).autocomplete({
-                source: dict
-            });
+                 source: function( request, response ) {                                       
+                    var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" ); 
+                    var result = $.grep( dict, function( item ){                 
+                               return matcher.test( item);
+                              });
+                        response(result.slice(0, 10));
+                 },
+                  minLength :1
+        });
         });
     }
 };
