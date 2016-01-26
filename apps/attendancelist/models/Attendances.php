@@ -85,7 +85,7 @@ class Attendances extends Model {
                          ->join('salts\Attendancelist\Models\Attendances','core.member_id = attendances.member_id','attendances')
                          ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
                          ->andWhere('attendances.member_id = :id:', array('id' => $id))
-                          ->andWhere('core.deleted_flag = 0')
+                          ->andWhere('core.deleted_flag = 0 and attendances.status = 0')
                          ->orderBy('attendances.att_date DESC')
                          ->getQuery()
                          ->execute();           

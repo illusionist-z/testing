@@ -29,9 +29,8 @@ class IndexController extends  ControllerBase {
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
          
-        //// Module ID Filter Start By (Module Name)
-        $this->module_name_view =  $this->router->getModuleName();   
-        $this->view->module_name_view = $this->module_name_view;
+        //// Module ID Filter Start By (Module Name)        
+        $this->view->module_name_view = $this->module_name;
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
          }           
@@ -141,7 +140,7 @@ class IndexController extends  ControllerBase {
         }
         $this->view->setVar("noti",$noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
-        $att_status=$Attendances->todayattleave();
+        $att_status=$Attendances->userattleave($id);
         //$numofleaves=$Attendances->gettotalleaves($id);
         $this->view->setVar("numatt",$att_status['att']);
         $this->view->setVar("numleaves",$att_status['absent']);
