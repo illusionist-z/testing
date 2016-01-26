@@ -73,7 +73,6 @@
         public function calenderautoAction() {
             $UserList = new Db\CoreMember();
             $Username = $UserList->autousername();
-            //print_r($Username);exit;
             $this->view->disable();
             echo json_encode($Username);
         }
