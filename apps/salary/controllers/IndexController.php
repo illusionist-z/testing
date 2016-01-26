@@ -660,13 +660,13 @@ class IndexController extends ControllerBase {
                     if (count($data) === 1) {
                         while (($data = fgetcsv($file, 10000, ",")) !== FALSE) {
                             $count++;
-                            if ($count > 1) {                          
+                            if ($count > 2) {                          
                                 $return = $sal->importsalary($data);
                             }
                         }
                     } else {
                         $count++;
-                        if ($count > 1) {
+                        if ($count > 2) {
                                 $return = $sal->importsalary($data);
                         }
                     }
@@ -720,7 +720,7 @@ class IndexController extends ControllerBase {
         $core = new Db\CoreMember();
         $rows = $core->findUserAddSalary();        
         //rows for example
-        fputcsv($output,array("THIS LINE IS EXAMPLE INSERT DATA FORMAT :: {(X) = Dont edit}, {(INT) = insert only interger number},"
+        fputcsv($output,array("THIS LINE IS EXAMPLE INSERT DATA FORMAT (see above column right sign):: {(X) = Dont edit}, {(INT) = insert only interger number},"
             . "{(1/0) = insert 1 if allow or insert 0 if disallow},{(n/0) = insert number of children or 0 if no children},"
             . "{(Y-M-D) = 1993-04-04} @Warn::Don't delete this row"));
         //insert member id and name 
