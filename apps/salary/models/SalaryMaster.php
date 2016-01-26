@@ -175,7 +175,7 @@ class SalaryMaster extends Model {
                 $overtime_fees=$OTResult['overtime'];
                 
                 $basic_salary_allowance_annual=$basic_salary_allowance_annual+$overtime_fees_annual;
-                
+                echo "salary with ot ".$basic_salary_allowance_annual;
                 //check the user who is absent.
                 $absent=  $this->checkAbsent($value[0]['member_id'],$budget_startyear,$budget_endyear);
                 //Get the data of leave setting
@@ -184,9 +184,9 @@ class SalaryMaster extends Model {
                 $countabsent=$this->CalculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $value[0]['basic_salary']);
                 $absent_dedution=$countabsent;
                 $basic_salary_allowance_annual = $basic_salary_allowance_annual-$absent_dedution;
-                
+                echo  "After deduce absent ".$basic_salary_allowance_annual;
                 $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
-                    echo "SALARY ///".$basic_salary_allowance_annual;
+                    echo "SALARY ///".$basic_deduction;
                     if($flg != 1){
                     //calculate ssc pay amount to deduce
                     if ($value[0]['basic_salary'] > 300000) {
@@ -201,12 +201,12 @@ class SalaryMaster extends Model {
                     $deduce_amount = $this->getreduce($value[0]['member_id']);
                     //print_r($deduce_amount).'<br>';
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    echo "Total deduction is ".$basic_deduction;
+                    echo "Total deduction is ".$total_deduce;
                     
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
-                    echo "The Income tax  is " . $income_tax . '<br>';
+                    echo "The Income tax  is " . round($income_tax) . '<br>';
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
                     $tax_foreach_month= $taxs['tax_result'];
 //                  print_r($taxs);
@@ -217,11 +217,11 @@ class SalaryMaster extends Model {
                     
                     $final_result[] = array('basic_salary' => $value[0]['basic_salary'],
                         'income_tax' => $tax_foreach_month,
-                        'total_annual_income' => $taxs['total_tax_annual'],
+                        'total_annual_income' => round($taxs['total_tax_annual']),
                         'travel_fee' => $value[0]['travel_fee'],
                         'overtime' => round($overtime_fees),
                         'basic_salary_annual' => $basic_salary_annual,
-                        'basic_examption' => $basic_deduction,
+                        'basic_examption' => round($basic_deduction),
                         'member_id' => $value[0]['member_id'], 
                         'allowance_amount' => $Allowanceresult['allowance'], 
                         'absent_dedution'=>  round($absent_dedution),
@@ -241,8 +241,8 @@ class SalaryMaster extends Model {
 
                }
             }
-//            print_r($final_result);
-//            exit;
+            print_r($final_result);
+            exit;
             //print_r($deduce_amount);exit;
         } catch (Exception $exc) {
             echo $exc;
@@ -319,7 +319,7 @@ class SalaryMaster extends Model {
 //        $salary_per_day=$basic_salary/22;
 //        $absent_deduce=$salary_per_day*$countabsent;
         $absent_deduce=$basic_salary*(22-($countabsent-$max_leavedays))/22;
-                    
+        echo  "Deduce for absent  ". $absent_deduce;         
             }
         }
         else{
@@ -660,7 +660,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 {
                    $overtime=$ot_fees*$date_diff; 
                    $overtime_fees=$overtime+$old_overtime;
-                   echo ">>>>>".$old_overtime;
+                   echo ">>>>>".$overtime_fees;
                 }
             else{
                     $ot_fees=0;
