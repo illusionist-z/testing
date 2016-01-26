@@ -3,6 +3,7 @@
 namespace salts\Salary\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Filter;
 
 //use salts\Salary\Models\SalaryMaster as sa;
 
@@ -21,24 +22,109 @@ class SalaryMaster extends Model {
      */
     public function savesalary($data) {
         try {
-            $return = array();
-//            $sql = "INSERT INTO salary_master (id,member_id,position,basic_salary,travel_fee,over_time,created_dt) VALUES(uuid(),'" . $data['member_id'] . "','".$data['position']. "','". $data['basic_salary'] . "','" . $data['travelfee'] . "','" . $data['overtime'] . "',NOW())";
-//            $result = $this->db->query($sql);
-            $SalaryMaster = new SalaryMaster();
-
-            if ($SalaryMaster->save($data) == false) {
+            
+            if ($SalaryMaster->save($data[0]) == false) {
                 foreach ($SalaryMaster->getMessages() as $message) {
                     $return[] = $message;
                 }
             } else {
-                $return [] = "Data was saved successfully!";
+                $return [0] = "Data was saved successfully!";
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
+      /**
+     * import salary to salary master,allowance and salary_member_tax_deduce
+     * @return $msg []
+     * @author David JP <david.gnext@gmail.com>
+     */
+      public function importsalary($data) {
+        try {
+            $SalaryMaster = new SalaryMaster();
+            $all = $SalaryMaster->getSalMasterField();
+            $filter = new Filter();
+            $return = array();
+            $da = array();
+            //salary master table
+            $da[0]['member_id'] = $filter->sanitize(isset($data[0]) ? $data[0] : "", "string");
+            $da[0]['basic_salary'] = $filter->sanitize(isset($data[3]) ? $data[3] : "", "string");
+            $da[0]['travel_fee_perday'] = $filter->sanitize(isset($data[4]) ? $data[4] : "", "string");
+            $da[0]['travel_fee_permonth'] = $filter->sanitize(isset($data[5]) ? $data[5] : "", "string");
+            $da[0]['over_time'] = $filter->sanitize(isset($data[6]) ? $data[6] : "", "int");
+            $da[0]['ssc_emp'] = $filter->sanitize(isset($data[7]) ? $data[7] : "", "int");
+            $da[0]['ssc_comp'] = $filter->sanitize(isset($data[8]) ? $data[8] : "", "int");
+            $sdate = isset($data[9]) ? $data[9] : 0;
+            if(0 !== $sdate){//salary start date format is exist ->get end date
+            $da[0]['salary_start_date'] = date("Y-m-d",strtotime($sdate));
+            $addyear= date("Y", strtotime($sdate))+1;
+            $da[0]['salary_end_date']=$addyear."-03-31";
+            }
+            $da[0]['creator_id'] = $data['member_id'];
+            $da[0]['updater_id'] = $data['member_id'];
+            $da[0]['updated_dt'] = date("Y-m-d H:m:s");
+            if ($SalaryMaster->save($da[0]) == false) {
+                foreach ($SalaryMaster->getMessages() as $message) {
+                    $return[] = $message;
+                }
+            } else {
+                $return [0] = "Data was saved successfully!";
+            }
+            //deduce table
+            $num = 10;
+            foreach ($all as $k => $v) {
+                if ($k === 1) {
+                    foreach ($v as $col) {
+                        if ($col["deduce_id"] == "children") {
+                            $da[$k]["deduce_id"] = isset($data[$num]) ? (is_numeric($data[$num]) ? $col["deduce_id"] : 0) : 0;
+                            $da[$k]["no_of_children"] = isset($data[$num]) ? (is_numeric($data[$num]) ? $data[$num] : 0) : 0;
+                        } else {
+                            $da[$k]["deduce_id"] = isset($data[$num]) ? ($data[$num] === 1 ? $col["deduce_id"] : 0) : 0;
+                        }
+                        if (0 !== $da[$k]["deduce_id"]) {
+                            $da[$k]['member_id'] = $filter->sanitize(isset($data[0]) ? $data[0] : "", "string");
+                            $da[$k]['creator_id'] = $data['member_id'];
+                            $da[$k]['updater_id'] = $data['member_id'];
+                            $da[$k]['updated_dt'] = date("Y-m-d H:m:s");
+                            $deduce = new SalaryMemberTaxDeduce();
+                            if ($deduce->save($da[$k]) == false) {
+                                foreach ($deduce->getMessages() as $message) {
+                                    $return[] = $message;
+                                }
+                            } else {
+                                $return[0] = "Data was saved successfully!";
+                            }
+                        }
+                        $num++;
+                    }
+                }
+                //Allowance Table
+                else if ($k === 2) {
+                    foreach ($v as $col) {
+                        $da[$k]["allowance_name"] = isset($data[$num]) ? ($data[$num] === 1 ? $col["allowance_name"] : 0) : 0;
+                        $num++;
+                    }
+                    if (0 !== $da[$k]["allowance_name"]) {
+                        $allowance = new SalaryMasterAllowance();
+                        $all_id = $allowance->getallowId($da);
+                            foreach ($all_id as $v) {
+                                $v['member_id'] = $filter->sanitize(isset($data[0]) ? $data[0] : "", "string");
+                                if ($allowance->save($v) == false) {
+                                    foreach ($allowance->getMessages() as $message) {
+                                        $return[] = $message;
+                                    }
+                                } else {
+                                    $return[0] = "Data was saved successfully!";
+                                }
+                            }
+                    }
+                }
             }
             return $return;
         } catch (Exception $e) {
             echo $e;
         }
     }
-
     /**
      * Save salary dedution amount to core_member_tax_deduce
      * @param type $dedution
@@ -135,24 +221,20 @@ class SalaryMaster extends Model {
                     //calculate date difference between starting date and budget end year
                     $date_diff = $this->date_difference($salary_start_date, $budget_endyear);
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
-                    
-                            
                     $date_to_calculate = $date_diff;
-                    echo "".$basic_salary_annual .'<br>';
-                    echo "DateDifferent".$date_diff .'<br>';
+
                     echo $value[0]['basic_salary'] . '<br>';
-                    echo "salary starting date " . $salary_starting_date . '<br>';
+                    echo "salary starting date " . $budget_endyear . '<br>';
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
-                    print_r($SD);
+                    //print_r($SD);
                     //Get the basic salary from salary master
                     $SM = $this->getLatestsalary($value[0]['member_id']);
 
                     //get the latest
                     $latest_otpay = $this->getlatestOTPay($value[0]['member_id'], $budget_startyear, $budget_endyear);
-                    
+
                     if (!empty($SD)) {
-                        
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
                         $date_to_calculate = $date_diff + $SD['count_pay'];
@@ -172,7 +254,7 @@ class SalaryMaster extends Model {
                     $overtime_fees = $OTResult['overtime'];
 
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual + $overtime_fees_annual;
-                    echo "salary with ot " . $basic_salary_allowance_annual;
+
                     //check the user who is absent.
                     $absent = $this->checkAbsent($value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the data of leave setting
@@ -181,9 +263,9 @@ class SalaryMaster extends Model {
                     $countabsent = $this->CalculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $value[0]['basic_salary']);
                     $absent_dedution = $countabsent;
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
-                    echo "After deduce absent " . $basic_salary_allowance_annual;
+
                     $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
-                    echo "SALARY ///" . $basic_deduction;
+                    echo "SALARY ///" . $basic_salary_allowance_annual;
                     if ($flg != 1) {
                         //calculate ssc pay amount to deduce
                         if ($value[0]['basic_salary'] > 300000) {
@@ -198,7 +280,7 @@ class SalaryMaster extends Model {
                     $deduce_amount = $this->getreduce($value[0]['member_id']);
                     //print_r($deduce_amount).'<br>';
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    echo "Total deduction is " . $total_deduce;
+                    echo "Total deduction is " . $basic_deduction;
 
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
@@ -227,13 +309,12 @@ class SalaryMaster extends Model {
                     if (03 == $working_start_date[1] || 03 == $salary_starting_month) {
                         $latestDate = $this->getLatestDate($value[0]['member_id']);
 
-                        $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
-                        $bdg_startyear = $ayear . '-04-01';
-                        $byear = date("Y", strtotime($latestDate['salary_end_date'])) + 1;
-                        $bdg_endyear = $byear . '-03-31';
-                        //echo $bdg_startyear.' '.$bdg_endyear;
-                        $this->EditSalarymaster($value[0]['member_id'], $bdg_startyear, $bdg_endyear);
-                    }
+                    $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
+                    $bdg_startyear = $ayear . '-04-01';
+                    $byear = date("Y", strtotime($latestDate['salary_end_date'])) + 1;
+                    $bdg_endyear = $byear . '-03-31';
+                    //echo $bdg_startyear.' '.$bdg_endyear;
+                    $this->EditSalarymaster($value[0]['member_id'], $bdg_startyear, $bdg_endyear);
                 }
             }
             print_r($final_result);
@@ -647,7 +728,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             if ($ot_fees != 0) {
                 $overtime = $ot_fees * $date_diff;
                 $overtime_fees = $overtime + $old_overtime;
-                echo ">>>>>" . $overtime_fees;
+                echo ">>>>>" . $old_overtime;
             } else {
                 $ot_fees = 0;
                 //$overtime=$ot*$date_diff; 
@@ -830,9 +911,15 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
 
     public function getSalMasterField() {
-        $query = "show columns from salary_master";
-        $row = $this->db->query($query);
-        $data = $row->fetchall();
+        $this->db = $this->getDI()->getShared("db");
+        $data = array();
+        $query0 = "show columns from salary_master";
+        $query1 = "select deduce_id from salary_taxs_deduction";
+        $query2 = "select allowance_name from allowances";
+        for ($i = 0; $i < 3; $i++) {
+            ${"row$i"} = $this->db->query(${"query$i"});
+            $data[] = ${"row$i"}->fetchall();
+        }
         return $data;
     }
 
