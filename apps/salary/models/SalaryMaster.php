@@ -186,7 +186,7 @@ class SalaryMaster extends Model {
                 $basic_salary_allowance_annual = $basic_salary_allowance_annual-$absent_dedution;
                 echo  "After deduce absent ".$basic_salary_allowance_annual;
                 $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
-                    echo "SALARY ///".$basic_deduction;
+                    echo "SALARY ///".round($basic_salary_allowance_annual);
                     if($flg != 1){
                     //calculate ssc pay amount to deduce
                     if ($value[0]['basic_salary'] > 300000) {
@@ -201,7 +201,7 @@ class SalaryMaster extends Model {
                     $deduce_amount = $this->getreduce($value[0]['member_id']);
                     //print_r($deduce_amount).'<br>';
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    echo "Total deduction is ".$total_deduce;
+                    echo "Total deduction is ".round($basic_deduction);
                     
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
@@ -213,7 +213,6 @@ class SalaryMaster extends Model {
                     if($flg==1){
                        
                         $tax_foreach_month=$taxs['total_tax_annual']-$total_income_tax;
-                        echo "RRRRRRR";
                     }
                     
                     $final_result[] = array('basic_salary' => $value[0]['basic_salary'],
@@ -228,21 +227,19 @@ class SalaryMaster extends Model {
                         'absent_dedution'=>  round($absent_dedution),
                         'creator_id'=>$creator_id,
                         'pay_date'=>$salary_start_date);
-                    
-                        if(03==$working_start_date[1] || 03==$salary_starting_month)
-               {
-                      $latestDate =  $this->getLatestDate($value[0]['member_id']);
-                      
-                      $ayear= date("Y", strtotime($latestDate['salary_start_date']))+1;
-                      $bdg_startyear = $ayear.'-04-01';
-                      $byear= date("Y", strtotime($latestDate['salary_end_date']))+1;
-                      $bdg_endyear=$byear.'-03-31';
-                      //echo $bdg_startyear.' '.$bdg_endyear;
-                      $this->EditSalarymaster($value[0]['member_id'],$bdg_startyear,$bdg_endyear);
-
-               }
                 }
-
+//                   if(03==$working_start_date[1] || 03==$salary_starting_month)
+//               {
+//                      $latestDate =  $this->getLatestDate($value[0]['member_id']);
+//                      
+//                      $ayear= date("Y", strtotime($latestDate['salary_start_date']))+1;
+//                      $bdg_startyear = $ayear.'-04-01';
+//                      $byear= date("Y", strtotime($latestDate['salary_end_date']))+1;
+//                      $bdg_endyear=$byear.'-03-31';
+//                      //echo $bdg_startyear.' '.$bdg_endyear;
+//                      $this->EditSalarymaster($value[0]['member_id'],$bdg_startyear,$bdg_endyear);
+//
+//               }
             }
             print_r($final_result);
             exit;
