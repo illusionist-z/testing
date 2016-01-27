@@ -25,6 +25,7 @@ class IndexController extends ControllerBase {
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
+        $this->module_name =  $this->router->getModuleName(); 
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         $Admin = new Db\CoreMember;
@@ -44,6 +45,10 @@ class IndexController extends ControllerBase {
 
         $this->view->setVar("noti", $noti);
         $this->view->t = $this->_getTranslation();
+         $moduleIdCallCore =new Db\CoreMember();
+        $this->module_name = $this->router->getModuleName();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
     }
 
     public function indexAction() {
@@ -53,8 +58,17 @@ class IndexController extends ControllerBase {
     /**
      * Show salary list after adding salary of each staff
      */
-    public function salarylistAction() {
-
+    public function salarylistAction() {     
+         
+//        
+//        var_dump( $this->act_name);
+//        
+//        exit();
+        
+       if ($this->moduleIdCall == 1)
+       {
+            
+            
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
         $getsalarydetail = $Salarydetail->getsalarydetail();
@@ -66,6 +80,12 @@ class IndexController extends ControllerBase {
 
             $this->response->redirect('core/index');
         }
+          
+         }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }
 
     /**
@@ -73,6 +93,10 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function show_salarylistAction() {
+      
+       if ($this->moduleIdCall == 1)
+       {
+            
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
 
@@ -90,7 +114,11 @@ class IndexController extends ControllerBase {
         $this->view->setVar("getsalarylists", $getsalarylist);
         $this->view->setVar("allowancenames", $allowancename);
         $this->view->module_name = $this->router->getModuleName();
-      
+        }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }
 
     /**
@@ -391,7 +419,11 @@ class IndexController extends ControllerBase {
      * dispaly salary setting
      * @author Su Zin Kyaw
      */
-    public function salarysettingAction() {
+    public function salarysettingAction() {  
+       
+       if ($this->moduleIdCall == 1)
+       {
+            
         $this->assets->addJs('apps/salary/js/index-salarysetting.js');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
@@ -409,6 +441,11 @@ class IndexController extends ControllerBase {
         } else {
             $this->response->redirect('core/index');
         }
+          }
+       else {
+            $this->response->redirect('core/index');
+       }
+       
     }
 
     /**
@@ -637,7 +674,7 @@ class IndexController extends ControllerBase {
      * import csv data to sql
      * @19/1/16
      */
-    public function csvimportAction() {        
+    public function csvimportAction() {
         $status = array();
         if ($this->request->isAjax()) {
             //check file exist   
@@ -659,33 +696,33 @@ class IndexController extends ControllerBase {
                 $file = fopen($_FILES['file']['tmp_name'], "r");
                 $count = 0;
                 $sal = new SalaryMaster();
-                while (($data = fgetcsv($file, 10000, "\t")) !== FALSE) {                  
+                while (($data = fgetcsv($file, 10000, "\t")) !== FALSE) {
                     $data['member_id'] = $this->session->user['member_id'];
                     if (count($data) === 1) {
                         while (($data = fgetcsv($file, 10000, ",")) !== FALSE) {
                             $count++;
-                            if ($count > 1) {                          
+                            if ($count > 2) {                          
                                 $return = $sal->importsalary($data);
                             }
                         }
                     } else {
                         $count++;
-                        if ($count > 1) {
+                        if ($count > 2) {
                                 $return = $sal->importsalary($data);
                         }
                     }
                 }
                 $temp = "";$err_txt = "";
                 if (!isset($return)) {
-                    $temp = "Insert all field data please ,";
+                        $temp = "Insert all field data please ,";
                 } else {                    
-                    foreach ($return as $v) {
-                        if (gettype($v) === "object") {
-                            $temp .= $v->getMessage() . " ,";
-                        } else {
+                        foreach ($return as $v) {
+                            if (gettype($v) === "object") {
+                                $temp .= $v->getMessage() . " ,";
+                            } else {
                             $err_txt .= $v . " ,";
+                            }
                         }
-                    }
                 }
                if(strlen($temp) > 0){
                 $temp = substr_replace($temp, "", -1);
@@ -710,12 +747,12 @@ class IndexController extends ControllerBase {
         header("Content-Type: application/download");
         header("Content-Disposition: attachment; filename=\"$file_name\"");
         header('Content-Encoding: UTF-8');
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM        
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM
 // create a file pointer connected to the output stream
         ob_start();
         $output = fopen('php://output', 'w');
 
-        // output the column headings
+     // output the column headings                
         $core = new SalaryMaster();
         $salary = new \salts\Salary\Models\Salary();
         $all = $core->getSalMasterField();
@@ -724,7 +761,7 @@ class IndexController extends ControllerBase {
         $core = new Db\CoreMember();
         $rows = $core->findUserAddSalary();        
         //rows for example
-        fputcsv($output,array("THIS LINE IS EXAMPLE INSERT DATA FORMAT :: {(X) = Dont edit}, {(INT) = insert only interger number},"
+        fputcsv($output,array("THIS LINE IS EXAMPLE INSERT DATA FORMAT (see above column right sign):: {(X) = Dont edit}, {(INT) = insert only interger number},"
             . "{(1/0) = insert 1 if allow or insert 0 if disallow},{(n/0) = insert number of children or 0 if no children},"
             . "{(Y-M-D) = 1993-04-04} @Warn::Don't delete this row"));
         //insert member id and name 

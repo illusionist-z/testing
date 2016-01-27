@@ -21,7 +21,7 @@ class LoginController extends ControllerBase {
         $dbinfo['host']='localhost';
         $dbinfo['db_name']='company_db';
         $dbinfo['user_name']='root';
-        $dbinfo['db_psw']='root';
+        $dbinfo['db_psw']='';
         
         $this->session->set('db_config',$dbinfo);
         $result = $ModelAuth->check($loginParams, $user);
