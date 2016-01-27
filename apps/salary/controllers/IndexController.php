@@ -738,7 +738,7 @@ class IndexController extends ControllerBase {
     public function downloadcsvAction() {
         $this->view->disable();
         $file_name = "salary_data_" . date('Ymd') . ".csv";
-        header("Content-type: applicaton/csv");
+        header("Content-type: application/csv");
         header("Content-Transfer-Encoding: binary");        
         header("Content-Type: application/force-download");
         header("Content-Type: application/download");
