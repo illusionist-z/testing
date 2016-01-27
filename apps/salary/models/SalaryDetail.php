@@ -607,4 +607,28 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
 
+       /**
+     * Saw Zin Min Tun     
+     */
+    public function addmemberid($member_id,$paydate) {    
+        $this->db = $this->getDI()->getShared("db");
+         foreach ($member_id as $result) { 
+                 $query = "UPDATE salary_detail SET  print_id = 1 where member_id ='" . $result . "' and pay_date='" . $paydate . "'";
+              $output =   $this->db->query($query);
+        }
+        return $output;       
+    }
+    
+       /**
+     * Saw Zin Min Tun     
+     */
+    public function colorprint() {   
+        $this->db = $this->getDI()->getShared("db");
+        $query = "SELECT * FROM salary_detail where print_id = 1 and deleted_flag=0";
+      // print_r($query);exit;
+        $user = $this->db->query($query);
+        $users = $user->fetchAll(); 
+        //var_dump($users);exit;
+        return $users;
+    }
 }

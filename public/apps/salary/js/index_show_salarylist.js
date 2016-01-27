@@ -18,6 +18,7 @@ $(function () {
     if(chk!=""){
         window.location.href = baseUri + 'salary/index/printsalary?chk_val='+chk+'&month='+month+'&year='+year;
     }
+
     if(chk=="" || chk=="on"){
         alert("please check aleast one!");
         location.reload();
@@ -30,7 +31,10 @@ $(function () {
 //
 //         });
      });
+       
+
      
+  
      
      
     $('#btn_tax_form').click(function () {  

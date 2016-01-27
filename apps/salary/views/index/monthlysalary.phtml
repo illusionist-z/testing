@@ -42,7 +42,7 @@
                     foreach ($geteachmonthsalarys as $geteachmonthsalary) {
                         ?>
                         <tr>
-                            <td width="50px"><a href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
+                            <td width="50px"><a  href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['salary_total'], "int")); ?></div></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['allowance'], "int")); ?></div></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['travel_expense'], "int")); ?></div></td>
