@@ -775,5 +775,21 @@ class IndexController extends ControllerBase {
         fclose($output);
         exit;
     }
-
+    
+     public function memberidforprintAction() {
+        $this->assets->addJs('apps/salary/js/print.js');
+        $member_id = $this->request->get('member_id');
+         $paydate= $this->request->get('paydate');
+         
+        $Salarydetail = new SalaryDetail();
+        $result = $Salarydetail->addmemberid($member_id,$paydate);
+        
+        if ($result) {
+            $msg = "success";
+        } else {
+            $msg = "nosuccess";
+        }
+        $this->view->disable();
+        echo json_encode($msg);
+    }
 }

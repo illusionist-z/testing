@@ -681,7 +681,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         catch (Exception $e) {
             echo $e;
         }
-
+  }
        /**
      * Saw Zin Min Tun     
      */
