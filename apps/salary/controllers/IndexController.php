@@ -757,7 +757,7 @@ class IndexController extends ControllerBase {
         $salary = new \salts\Salary\Models\Salary();
         $all = $core->getSalMasterField();
         $header = $salary->getHeader($all);
-        fputcsv($output, $header);
+        fputcsv($output, $header,";");
         $core = new Db\CoreMember();
         $rows = $core->findUserAddSalary();        
         //rows for example
@@ -766,7 +766,7 @@ class IndexController extends ControllerBase {
             . "{(Y-M-D) = 1993-04-04} @Warn::Don't delete this row"));
         //insert member id and name 
         foreach ($rows as $row) {
-            fputcsv($output, array($row['member_id'], $row['member_login_name'], $row['full_name']));
+            fputcsv($output, array($row['member_id'], $row['member_login_name'], $row['full_name']),";");
         }
         fclose($output);
         exit;
