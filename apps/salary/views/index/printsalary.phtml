@@ -17,15 +17,19 @@ use Phalcon\Filter;
                     <?php
                     $filter = new Filter();
                     $j = 0;
+                    //$arr= array();
                     foreach ($getsalarydetails as $A) {
                         $j++;
                         $sum = 0;
                         $deduce = 0;
                         for ($i = 0; $i < count($A); $i++) {
+                           // array_push($arr,$A[$i]->core->member_id);
+                            
                             ?>
                             <div style="padding: 0 10px 10px 10px" class="sample"  id="printable">
                                 <h3><center>G-Next Official Salary Report</center></h3>
-
+                                <input type="text" class="print_id" value="<?php echo $A[$i]->core->member_id; ?>">
+                                <input type="text" id="paydate" value="<?php echo $A[$i]->salarydet->pay_date; ?>">
                                 <div>
                                     <div style="width: 10%; float: left;">Name</div>
                                     <div><?php echo $filter->sanitize($A[$i]->core->member_login_name, "string"); ?></div>

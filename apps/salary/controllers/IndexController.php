@@ -34,11 +34,11 @@ class IndexController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
-                
+                //Go to user dashboard
                 $noti = $Admin->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                
+                //Go to admin dashboard
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
@@ -105,7 +105,7 @@ class IndexController extends ControllerBase {
         $Salarydetail = new SalaryDetail();
         $getsalarylist = $Salarydetail->salarylist($month, $year);
         //print_r($getsalarylist);exit;
-
+          
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getusername();
         $this->view->setVar("month", $month);
@@ -583,7 +583,10 @@ class IndexController extends ControllerBase {
         //print_r($getsalarydetail);exit;
         $this->view->setVar("getsalarydetails", $getsalarydetail);
         //$this->view->getsalarydetails = $getsalarydetail;
+       //sendchk($getsalarydetail);
+        //  $this->view->disable();
     }
+   
 
     /**
      * Show salary detail
@@ -769,4 +772,36 @@ class IndexController extends ControllerBase {
         exit;
     }
 
+ 
+    public function memberidforprintAction() {
+        $this->assets->addJs('apps/salary/js/print.js');
+        $member_id = $this->request->get('member_id');
+         $paydate= $this->request->get('paydate');
+         
+        $Salarydetail = new SalaryDetail();
+        $result = $Salarydetail->addmemberid($member_id,$paydate);
+        
+        if ($result) {
+            $msg = "success";
+        } else {
+            $msg = "nosuccess";
+        }
+        $this->view->disable();
+        echo json_encode($msg);
+    }
+    
+//     public function forcolorprintAction() {
+//        $this->assets->addJs('apps/salary/js/salary.js');
+//        $Salarydetail = new SalaryDetail();
+//        $result = $Salarydetail->colorprint();     
+//        var_dump($result);exit;
+////        if ($result) {f
+////            $msg = "1";
+////        } else {
+////            $msg = "0";
+////        }
+//        $this->view->disable();
+//        echo json_encode($result);
+//    }
+    
 }

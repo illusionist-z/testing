@@ -412,11 +412,11 @@ var Salary = {
         success: function (d) {
            $('table.listtbl tbody').empty(),$('tfoot').empty(),$('div #content').empty();
         if (d.length==2) {
-            
             var output = "<tr>"
-                    + "<td colspan='14'><center>No data to display</center></td>"
+                    + "<td colspan='15'><center>No data to display</center></td>"
                     + "</tr>";
             $("tbody").append(output);
+            
         }
         else{
              var json_obj = $.parseJSON(d);//parse JSON            
@@ -424,25 +424,33 @@ var Salary = {
             var totalsal = 0;
             for (var i in json_obj)
             {   
+                var style = '';
+                 var a= ' - ';
+                        if(json_obj[i].print_id==1){
+                            var a="printed";
+                           var style="style='background: #E2E2E2'";
+                        }
+                        
                 var aa = parseInt(json_obj[i].total);
                 totalsal =totalsal + aa ;
                 var formatter = new Intl.NumberFormat(); //Create our number formatter.
                  
                     var output = "<tr>"
-                        + "<td><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
-                        + "<td>" + json_obj[i].full_name + "</td>"
-                        + "<td>" + json_obj[i].member_dept_name + "</td>"
-                        + "<td>" + json_obj[i].position + "</td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].basic_salary)+ "</div></td>"
-                        + "<td><div class='td-style'>" + json_obj[i].overtime + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].travel_fee) + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].allowance_amount) + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].absent_dedution) + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].income_tax) + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_comp) + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
-                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].total) + "</div></td>"
-                        + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
+                        + "<td "+style+"><input type='checkbox' class='case' name='chk[]' value="+json_obj[i].member_id+" ></td>"
+                        + "<td "+style+">" + json_obj[i].member_login_name + "</td>"
+                        + "<td "+style+">" + json_obj[i].member_dept_name + "</td>"
+                        + "<td "+style+">" + json_obj[i].position + "</td>"
+                        + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].basic_salary)+ "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + json_obj[i].overtime + "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].travel_fee) + "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].allowance_amount) + "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].absent_dedution) + "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].income_tax) + "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].ssc_comp) + "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
+                        + "<td "+style+"><div class='td-style'>" + "<font color='red'>"+a + "</font></div></td>"
+                         + "<td "+style+"><div class='td-style'>" + formatter.format(json_obj[i].total) + "</div></td>"
+                        + '<td '+style+'><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
                      
                         
                 $("tbody").append(output);
@@ -452,7 +460,7 @@ var Salary = {
        
           
             var html='<tr>'
-                        +'<td colspan="12" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
+                        +'<td colspan="13" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
                         +'<td style ="background-color:#3c8dbc; color:#ffffff;"><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
                         +'<td style ="background-color:#3c8dbc; color:#ffffff;"></td>'
                         +'</tr>'
@@ -557,8 +565,6 @@ $(document).ready(function () {
 		Salary.getmemid(name);
                
 	});
-   
-    
 });
 
 
