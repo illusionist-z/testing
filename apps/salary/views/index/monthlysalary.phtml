@@ -14,7 +14,17 @@
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        
+                    <span class="dropdown">
+                    <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
+                    <h4 class="btn btn-primary csv_download" title="Download Sample CSV(we recommend to open in excel)" id="2"><img src="../../common/img/download1.png"></h4>
+                    <div class="dropdown-menu"  id="radsal_type" style="margin-top: 20px;">
+                            <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
+                                    <input type="file" name="file" id="file_select" class="col-xs-6 col-xs-offset-0">
+                                    <button type="submit" onclick="return false;" class="col-xs-3 col-xs-offset-4 btn btn-primary csvtosql" id="2">Add</button>
+                                    <span id="file_err" class="col-xs-12" style="display:none;"></span>
+                            </form>
+                     </div>
+                    </span>
         <a href="#" class="button add-big" id="displaypopup"><?= $t->_("Calculate salary"); ?></a>
         <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);">Export</a>
     </div>
