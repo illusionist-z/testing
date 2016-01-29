@@ -84,6 +84,7 @@ class IndexController extends  ControllerBase {
                $noti=$Admin->GetUserNoti($id,1); 
             }
         }
+        
     $this->view->setVar("noti",$noti);
     //get last create member
     $CMember = new Db\CoreMember();
@@ -94,8 +95,10 @@ class IndexController extends  ControllerBase {
     $leave_name =$CheckLeave->checkleave();
     $status     =$CheckLeave->todayattleave();
     $coreid = new  \salts\Dashboard\Models\CorePermissionGroupId();
-    foreach ($this->session->auth as $key_name => $key_value) {             
+    foreach ($this->session->auth as $key_name => $key_value) {     
+        
                 if ($key_name == 'admin_dashboard') {
+                   
     $this->view->setVar("attname",$status['att']);
     $this->view->setVar("absent",$status['absent']);
     $this->view->setVar("nlname",$leave_name['noleave_name']);  //get current month no taken leave name
@@ -105,6 +108,7 @@ class IndexController extends  ControllerBase {
     $this->view->t = $this->_getTranslation();         }
       
        else if ($key_name == 'user_dashboard'){
+            
                     $this->view->disable();
                   $this->response->redirect('core/index');
                 }
