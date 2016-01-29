@@ -29,7 +29,7 @@ class IndexController extends ControllerBase {
         $this->act_name =  $this->router->getActionName(); 
         $this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();    
-        $this->permission = $this->setPermission($this->module_name); 
+        $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
         $moduleIdCallCore =new Db\CoreMember();
@@ -47,7 +47,7 @@ class IndexController extends ControllerBase {
     public function todaylistAction( ) {
        
         
-       if ($this->moduleIdCall == 1)
+       if ($this->moduleIdCall == 0)
        {
             
         $this->act_name =  $this->router->getModuleName(); 
