@@ -84,14 +84,14 @@ $messages = array(
     /**
      * Monthly Attenance Chart
      */
-    "Admin can show"=>"Admin can show who attendance , leave and no leave of all member.Monthly Attendance Chart show with green,yellow and red colors.",
-    "Colors"=>"Colors",
-    "Green"=>"Green",
-    "att_person"=>"Attendance Person",
-    "Yellow"=>"Yellow",
-    "absent_leave_person"=>"Absent Person(Apply Leave)",
-    "Red"=>"Red",
-    "absent_noleave_person"=>"Absent Person(No Apply Leave)",
+    "Admin can show"=>"ဒီလအတြင္း ရုံးတက္မွန္ေသာသူ ၊ ခြင့္တင္ျပီးရုံးပ်က္ေသာသူ မ်ားႏွင့္ ခြင့္မတင္ပဲရုံးပ်က္ေသာသူမ်ားစားရင္းမ်ားကို အေရာင္မ်ားႏွင့္ ခြဲျခားေဖာ္ျပထားပါသည္။",
+    "Colors"=>"အေရာင္မ်ားႏွင့္ ေဖာ္ျပထားသည္",
+    "Green"=>"",
+    "att_person"=>"ဒီေန႕တက္ေရာက္ေသာသူမ်ားကို အစိမ္းေရာင္ႏွင့္ ေဖာ္ျပသည္။",
+    "Yellow"=>"",
+    "absent_leave_person"=>"ခြင့္တင္ျပီးရုံးပ်က္ေသာသူမ်ားကို အ၀ါေရာင္ႏွင့္ ေဖာ္ျပသည္။",
+    "Red"=>"",
+    "absent_noleave_person"=>"ခြင့္မတင္ပဲရုံးပ်က္ေသာသူမ်ားကို အနီေရာင္ႏွင့္ ေဖာ္ျပသည္။",
     
     /**
      * Manage User
@@ -169,7 +169,11 @@ $messages = array(
     "Enter users basic salary."=>"ထိုအသံုးျပဳသူအတြက္အေျခခံလစာကိုရိုက္ထည့္ပါ။",
     "Enter users Travel Fees."=>"ထိုအသံုးျပဳသူအတြက္ခရီးစရိတ္ကိုရိုက္ထည့္ပါ။",
     "Enter users Overtime(per hr)."=>"ထိုအသံုးျပဳသူ၏အခ်ိန္ပိုလုပ္အားခ(တစ္နာရီလုပ္အားခ)ကိုရိုက္ထည့္ပါ။",
-    "Deduce for SSC"=>"လူမႈဖူလံုေရးခံစားခြင့္ပမာဏ",
+    "Deduce for SSC"=>"လူမႈဖူလံုေရးခံစားခြင့္ပမာဏ",    
+    "sal_start_date"=>"လစာေပးမည့္ရက္ကိုေရြးေပးပါ",
+    "Salary_apply"=>"အထက္ပါအခ်က္အလက္မ်ားကိုၿဖည့္ျပီး Apply Button ကိုနိပ္ေပးပါရန္",
+    "download_csv"=>"CSV Files ကို Download ယူရန္။download လုပ္ယူၿပီးတစ္ေၿကာင္းထဲေပၚေနပါကExcel ကိုအရင္ဖြင့္ပါ။ၿပီးလွ်င္Data tab ထဲက'Form Text' ကိုေရြးပါ။ၿပီးလွ်င္downlaod fileကိုေရြးေပးပါ။ၿပီးလွ်င္'Next'ကိုေရြးၿပီး  Delimeters ထဲကေအာက္ကပံုနဲ႕အဆင္ေၿပတဲ့ဟာကိုေရြးေပးလိုက္ပါ။",
+    "apply_with_csv"=>"CSV Files ႏွင့္ လစာေပးရန္",
     
     /**
      * Salary Lists

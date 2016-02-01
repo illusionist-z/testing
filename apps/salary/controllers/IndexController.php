@@ -64,10 +64,10 @@ class IndexController extends ControllerBase {
 //        var_dump( $this->act_name);
 //        
 //        exit();
-        
-       if ($this->moduleIdCall == 1)
-       {
-            
+//        
+//       if ($this->moduleIdCall == 1)
+//       {
+//            
             
         $this->assets->addJs('apps/salary/js/salary.js');
         $Salarydetail = new SalaryDetail();
@@ -81,10 +81,10 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
           
-         }
-       else {
-            $this->response->redirect('core/index');
-       }
+//         }
+//       else {
+//            $this->response->redirect('core/index');
+//       }
        
     }
 
@@ -94,8 +94,7 @@ class IndexController extends ControllerBase {
      */
     public function show_salarylistAction() {
       
-       if ($this->moduleIdCall == 1)
-       {
+      
             
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
@@ -114,10 +113,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("getsalarylists", $getsalarylist);
         $this->view->setVar("allowancenames", $allowancename);
         $this->view->module_name = $this->router->getModuleName();
-        }
-       else {
-            $this->response->redirect('core/index');
-       }
+      
        
     }
 
