@@ -18,15 +18,10 @@ class IndexController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
              
              if ($key_name == 'show_admin_notification') {
-                //Go to user dashboard
+                
               $noti=$Admin->GetAdminNoti($id,0);
-              
-              //$readnoti=$Admin->GetLastNoti($id);
-                 
             } 
             if ($key_name == 'show_user_notification') {
-                //Go to admin dashboard
-                
                $noti=$Admin->GetUserNoti($id,1); 
             }
         }
@@ -34,7 +29,7 @@ class IndexController extends ControllerBase {
         $this->act_name =  $this->router->getActionName(); 
         $this->view->t = $this->_getTranslation();
         $this->module_name =  $this->router->getModuleName();    
-        $this->permission = $this->setPermission($this->module_name); 
+        $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
         $moduleIdCallCore =new Db\CoreMember();
@@ -52,7 +47,7 @@ class IndexController extends ControllerBase {
     public function todaylistAction( ) {
        
         
-       if ($this->moduleIdCall == 1)
+       if ($this->moduleIdCall == 0)
        {
             
         $this->act_name =  $this->router->getModuleName(); 
@@ -66,7 +61,6 @@ class IndexController extends ControllerBase {
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);
-       // var_dump($ResultAttlist);exit;
         if($this->permission==1){
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
@@ -85,7 +79,6 @@ class IndexController extends ControllerBase {
     }        
    
     public function editTimedialogAction($id){
-        //echo $id;exit;
         $Att  = new \salts\Attendancelist\Models\Attendances();
         $t = $this->_getTranslation();//for translate
         $data = $Att->getAttTime($id);

@@ -555,8 +555,10 @@ class CoreMember extends \Library\Core\BaseModel {
         return $user['token'];
     }
 
-    public function findUserAddSalary() {
-        $query = "Select * from core_member where member_id not in ( select member_id from salary_master)";
+    public function findUserAddSalary($id) {
+        $cond1 = "Select * from core_member where member_id not in ( select member_id from salary_master)";
+        $cond2 = "Select * from core_member where member_id in ( select member_id from salary_master)";
+        (1 == $id) ? $query = $cond1 : $query = $cond2;        
         $data = $this->db->query($query);
         $rows = $data->fetchall();
         return $rows;

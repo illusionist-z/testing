@@ -17,7 +17,7 @@ use Phalcon\Tag as Tag; ?>
 <?php
 foreach ($this->session->auth as $key_name => $key_value) {             
                 if ($key_name == 'admin_dashboard') {
-                //Go to user dashboard
+                
                 $this->view->disable();
                 $this->response->redirect('dashboard/index/admin');
                 } 

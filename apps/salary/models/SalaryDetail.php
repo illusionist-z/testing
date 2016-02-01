@@ -606,7 +606,82 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         }
         return $row;
     }
-
+    /**
+     * @author David JP <david.gnext@gmail.com>
+     * @since 1/27/2016
+     * @desc Salary Detail calculate by csv 
+     */
+    public function getSalaryDetailField(){
+         $query = "show columns from salary_detail";
+         $data = $this->db->query($query);
+         $rows = $data->fetchall();    
+         return $rows;
+    }
+    
+    public function getHeader($param) {
+        $n = 0;$header = array();
+        $getField = ["member_id"=>0,"basic_salary"=>1,"basic_salary_annual"=>2,"travel_fee"=>3,
+            "overtime"=>4,"allowance_amount"=>5,"ssc_comp"=>6,"ssc_emp"=>7,"absent_dedution"=>8,
+            "income_tax"=>9,"total_annual_income"=>10,"basic_examption"=>11,"pay_date"=>12];
+        foreach ($param as $v){
+            if(array_key_exists($v['Field'],$getField)){
+                    if($n === 0){
+                            $header[] = strtoupper($v["Field"])."(X)";
+                        }
+                        else if($n === 1){
+                            $header[] = "MEMBER_NAME(X)";
+                            $header[] = "FULL_NAME(X)";
+                            $header[] = strtoupper($v["Field"])."(INT)";
+                        }                        
+                        else if($n === 12){
+                            $header[] = strtoupper($v["Field"])."(Y-M-D)";
+                        }
+                        else{
+                            $header[] = strtoupper($v["Field"])."(INT)";
+                        }                        
+                         $n++;
+                    }                   
+            }
+            return $header;
+    }
+    
+    public function importsalary($data){
+        try {        
+        $salDetail = new SalaryDetail();
+        $filter = new Filter();
+        $da    = array();
+        $return = array();
+        $da["id"] = uniqid();
+        $da['member_id'] = $filter->sanitize(isset($data[0]) ? $data[0] : "", "string");
+        $da['basic_salary'] = $filter->sanitize(isset($data[3]) ? $data[3] : "", "int");
+        $da["basic_salary_annual"] = $filter->sanitize(isset($data[4])?$data[4]:"","int");
+        $da["travel_fee"] = $filter->sanitize(isset($data[5]) ? $data[5] : "", "int");
+        $da["overtime"] = $filter->sanitize(isset($data[6]) ? $data[6] : "", "int");
+        $da["allowance_amount"] = $filter->sanitize(isset($data[7]) ? $data[7] : "", "int");
+        $da["ssc_comp"] = $filter->sanitize(isset($data[8]) ? $data[8] : "", "int");
+        $da["ssc_emp"] = $filter->sanitize(isset($data[9]) ? $data[9] : "", "int");
+        $da["absent_dedution"] = $filter->sanitize(isset($data[10]) ? $data[10] : "", "int");
+        $da["income_tax"] = $filter->sanitize(isset($data[11]) ? $data[11] : "", "int");
+        $da["total_annual_income"] = $filter->sanitize(isset($data[12]) ? $data[12] : "", "int");
+        $da["basic_examption"] = $filter->sanitize(isset($data[13]) ? $data[13] : "", "int");
+        $paydate = isset($data[14]) ? $data[14] : 0;
+        (0 !== $paydate) ? $da['pay_date'] = date("Y-m-d",strtotime($paydate)) : $da['pay_date'] = null;
+        $da["creator_id"] = $data["member_id"];
+        $da['updated_dt'] = date("Y-m-d H:m:s");
+        $da['created_dt'] = date("Y-m-d H:m:s");
+             if ($salDetail->save($da) == false) {
+                foreach ($salDetail->getMessages() as $message) {
+                    $return[] = $message;
+                }
+            } else {
+                $return [0] = "Data was saved successfully!";
+            }
+            return $return;
+        }
+        catch (Exception $e) {
+            echo $e;
+        }
+  }
        /**
      * Saw Zin Min Tun     
      */

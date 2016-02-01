@@ -8,6 +8,7 @@ class IndexController extends ControllerBase {
 
         public function initialize() {
         parent::initialize();
+            
         $this->setCommonJsAndCss();
             $this->assets->addJs('apps/auth/js/forgot.js');      
         }
