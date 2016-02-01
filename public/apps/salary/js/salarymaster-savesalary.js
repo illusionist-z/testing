@@ -5,13 +5,11 @@
  */
 var Salary = {
     Submit : function (){
-       // alert($('#add_salary').serialize());
         $.ajax({
            type : 'POST',
            url  : '../salarymaster/savesalary',
            data : $('#add_salary').serialize(),
            success: function(d){
-              //alert("aa");
                cond = JSON.parse(d);
                 alert(cond.success);
 
@@ -51,10 +49,8 @@ var Salary = {
         });
     }
 };
-$(document).ready(function(){
-   
-    $('#savesalary').on('click',function(){
-      
+$(document).ready(function(){   
+    $('#savesalary').on('click',function(){      
       Salary.Submit();
    });
 });

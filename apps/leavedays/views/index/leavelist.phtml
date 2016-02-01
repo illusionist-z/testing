@@ -1,12 +1,13 @@
 <?php
-use Phalcon\Tag as Tag;
-$length = count($Month);
 
+use Phalcon\Tag as Tag;
+
+$length = count($Month);
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header" id="showleavelist"">
     <h1>
-        <?= $t->_("leave_list"); ?>
+<?= $t->_("leave_list"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?> </a></li>
@@ -23,7 +24,7 @@ $length = count($Month);
                 <?php
                 foreach ($Leavetype as $result) {
                     ?>
-                <option value="<?php echo $result['leavetype_name']; ?>"><?php echo $result['leavetype_name']; ?></option>
+                    <option value="<?php echo $result['leavetype_name']; ?>"><?php echo $result['leavetype_name']; ?></option>
 
                     <?php
                 }
@@ -38,8 +39,7 @@ $length = count($Month);
                     <option value="<?php
                     if ($i < 10) {
                         echo '0' . $i;
-                    }
-                    else {
+                    } else {
                         echo $i;
                     }
                     ?>"><?php echo $Month[$i]; ?></option>
@@ -48,24 +48,10 @@ $length = count($Month);
                         ?>
 
             </select>
-<!--            <select class="select" data-toggle="select" name="namelist" id="namelist">
-                <option value="">User Name</option>
-                <?php
-                foreach ($Getname as $result) {
-                    ?>
-                <option value="<?php echo $result->member_login_name; ?>"><?php echo $result->member_login_name; ?></option>
-
-                    <?php
-                }
-                ?>
-
-
-            </select>-->
             <input class="userauto form-control-static" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
             <input type="submit" class="buttonn  form-control-static" value="<?= $t->_("search"); ?>" id="search">
-            <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export " onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);"><?= $t->_("export"); ?></a>
+            <a href="#" class="button export " onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><?= $t->_("export"); ?></a>
         </form>
     </div>
 
@@ -81,29 +67,30 @@ $length = count($Month);
                         <th width="150px"><?= $t->_("leave_day"); ?></th>
                         <th width="150px"><?= $t->_("leave_category"); ?></th>
                         <th width="150px"><?= $t->_("leave_desc"); ?></th>
-                        <th width="150px"><?= $t->_("leave_status");?></th>
+                        <th width="150px"><?= $t->_("leave_status"); ?></th>
                         <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
 
                 </thead>
                 <tbody>
                     <?php
-                   //print_r($Result);
-                    $days=0;
+                    //print_r($Result);
+                    $days = 0;
                     foreach ($Result as $item) {
-                       
                         ?>
                         <tr>
-                            <td><?php  $dt=  explode(" ",$item->leaves->date);
-                                echo $dt[0];
-                                ?></td>                            
+                            <td><?php
+                    $dt = explode(" ", $item->leaves->date);
+                    echo $dt[0];
+                        ?></td>                            
                             <td><?php echo $item->core->member_login_name; ?></td>
-                            <td><?php $start_date= explode(" ", $item->leaves->start_date); 
-                                      echo $start_date[0];
+                            <td><?php
+                                $start_date = explode(" ", $item->leaves->start_date);
+                                echo $start_date[0];
                                 ?></td>                            
-                            <td><?php $end_date= explode(" ", $item->leaves->end_date); 
-                                      echo $end_date[0];
-                                
+                            <td><?php
+                                $end_date = explode(" ", $item->leaves->end_date);
+                                echo $end_date[0];
                                 ?></td>
                             <td><?php
                                 echo $item->leaves->leave_days;
@@ -116,29 +103,29 @@ $length = count($Month);
                             <td><?php
                                 echo $item->leaves->leave_description;
                                 ?></td>
-                             
+
                             <td><?php
-                                
-                        switch($item->leaves->leave_status){
-                            case "0" : echo "Pending" ; break;
-                            case "1" : echo "Confirmed";break;
-                            case "2" : echo "Rejected";break;
-                               
-                        };
+                                switch ($item->leaves->leave_status) {
+                                    case "0" : echo "Pending";
+                                        break;
+                                    case "1" : echo "Confirmed";
+                                        break;
+                                    case "2" : echo "Rejected";
+                                        break;
+                                };
                                 ?></td>
                             <td><font color="red"><?php
-                            $absent_day = 0;
-                         if(isset($absent[$item->core->member_login_name])){
-                             $absent_day= $absent[$item->core->member_login_name];
-                         }      
-                    if($item->leaves->total_leavedays >=$max){
-                            echo (($item->leaves->total_leavedays+$absent_day)-$max);
-                            echo " Days  in absent";
-                    }
-                    else{
-                                
-                    echo $max-($item->leaves->total_leavedays+$absent_day);}
-                        
+                                $absent_day = 0;
+                                if (isset($absent[$item->core->member_login_name])) {
+                                    $absent_day = $absent[$item->core->member_login_name];
+                                }
+                                if ($item->leaves->total_leavedays >= $max) {
+                                    echo (($item->leaves->total_leavedays + $absent_day) - $max);
+                                    echo " Days  in absent";
+                                } else {
+
+                                    echo $max - ($item->leaves->total_leavedays + $absent_day);
+                                }
                                 ?></font></td>
                         </tr>
                         </tr>
@@ -149,7 +136,7 @@ $length = count($Month);
                 </tbody>
                 <tfoot style="display:none;"></tfoot>
             </table> 
-          
+
         </div><!--end table content--->
     </div><!-- /.row -->
     <div id="content"></div>

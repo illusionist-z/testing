@@ -1,137 +1,138 @@
 <?php
+
 /**
  * return user selected timezone for changing timezone
  * @return string
  * @author Su Zin Kyaw
  */
 function tz_list() {
-  $zones_array = array();
-  $timestamp = time();
-  foreach(timezone_identifiers_list() as $key => $zone) {
-    date_default_timezone_set($zone);
-    $zones_array[$key]['zone'] = $zone;
-    $zones_array[$key]['diff_from_GMT'] = 'UTC/GMT ' . date('P', $timestamp);
-  }
-  return $zones_array;
+    $zones_array = array();
+    $timestamp = time();
+    foreach (timezone_identifiers_list() as $key => $zone) {
+        date_default_timezone_set($zone);
+        $zones_array[$key]['zone'] = $zone;
+        $zones_array[$key]['diff_from_GMT'] = 'UTC/GMT ' . date('P', $timestamp);
+    }
+    return $zones_array;
 }
-
-         
 ?>
- 
-        <section class="content-header">
-          <h1>
-            <b>Profile</b>   
-     
-          </h1>
-          
-        </section>
 
-        <!-- Main content -->
-        <section class="content">
-         
-         <div class="row">
-	 <div class="col-md-12"><!--start add user form--->
-	<div id="form_div">
-	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff"><b>Add User Form</b></font></div>
-            <?php
-	foreach ($userdetail  as $result) {
-        ?>
-        <form action="<?php echo $baseUri; ?>setting/user/changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
-         
-            <input type="hidden" id="temp_password" name="member[temp_password]" value="<?php echo  $result['member_password'];?>" disabled>
-            <input type="hidden" id="temp_file" name="member[temp_file]" value="<?php echo  $result['member_profile'];?>" disabled>
+<section class="content-header">
+    <h1>
+        <b>Profile</b>   
 
-	<table width="650px" height="300px"> 
-            
-            <tr>
-                <td><b>Profile Picture</b></td>
-                <td>
-                     <?php
-                         if($result['member_profile']==null){
-                                                   $img = "profile1.jpg";
-                                                }
-                                                else{
-                                                     $img=$result['member_profile'];
-                                                      if(file_exists('./uploads/'.$img)){                                                            
-                                                           $img=$img;  
-                                                      }else{  
-                                                          $img = "profile1.jpg";    
-                                                      }
-                                                 }
-               ?>                                                 
-              <img src="<?php echo $baseUri;?>/uploads/<?php echo  $img;?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
-                </td>
-            </tr>
-            <tr>
-                <td name="pp"></td>
-                <td ><input style="margin-top: 10px;" type="file"   name="fileToUpload"   id="fileToUpload" disabled="true" style="padding-bottom: 39px"> 
-            </tr>
-	<tr>
-            
-            <td ><b>User Name </b></td>
-           
-		<td>
-		<input style="margin-top: 10px;" type="text" class="username" id="username" name="member[username]" value="<?php echo  $result['member_login_name'];?>" disabled style="width:350px;">
-		</td>
-        </tr>
-        <tr>
-		
-		<td><b>Password </b></td>
-                <td>
-                    <input style="margin-top: 10px;" type="password" id="password" name="member[password]" value="<?php echo  $result['member_password'];?>" disabled style="width:350px;">
-                </td>
-	</tr>
-	<tr>
-		<td><b>Department </b></td>
-		<td><input style="margin-top: 10px;" type="text" name="member[dept]" id="dept" value="<?php echo  $result['member_dept_name'];?>" disabled style="width:350px;"></td>
-        </tr>
-        <tr>
-          
-		<td><b>Position	</b></td>
-		<td><input style="margin-top: 10px;" type="text" name="member[position]" id="position" value="<?php echo  $result['position'];?>" disabled style="width:350px;"></td>
-	</tr>
-	<tr>
-		<td><b>Email </b></td>
-		<td><input style="margin-top: 10px;" type="email" name="member[email]" id="email" value="<?php echo  $result['member_mail'];?>" disabled style="width:350px;">
-               </td>
-	</tr>
-        <tr>
-		<td><b>Phone no</b></td>
-		<td><input style="margin-top: 10px;" type="text" id="phno" name= "member[phno]" value="<?php echo  $result['member_mobile_tel'];?>" disabled style="width:350px;"></td>
-	</tr>
-       
-	<tr>
-		<td><b>Address </b></td>
-		<td colspan="4"><textarea style="width:350px;" rows="5" id="add" name="member[add]" cols="50" readonly><?php echo  $result['member_address'];?></textarea ></td>
-	</tr><?php 
-        
-                                                      }
-        ?>
-        <tr>
-            <td><b>Time Zone </b> </td>
-            <td><select style= "width:350px;  margin-top: 9px; margin-bottom: 9px;" name="timezone" id="timezone" disabled>
-            <option value="0">Please, select timezone</option>
-            <?php foreach(tz_list() as $t) { ?>
-            <option value="<?php print $t['diff_from_GMT'];echo " ";echo $t['zone'] ?>">
-            <?php print $t['diff_from_GMT'] . ' - ' . $t['zone'] ?>
-            </option>
-             <?php } ?>
-            </select></td>
-        </tr>
-	<tr>
-		<td></td>
-		
-                <td><input type="submit" id="save" class="buttonn" value="Save" disabled><input type="button" id="edit" class="buttonn" value="Edit"></td>
-		<td></td>
-	</tr>
-	</table>
-	
-</form>
-			</div>
-          </div><!--end add user form--->
-          </div><!-- /.row -->
-		  
-        </section><!-- /.content -->
-        
+    </h1>
 
-  
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12"><!--start add user form--->
+            <div id="form_div">
+                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff"><b>Add User Form</b></font></div>
+                <?php
+                foreach ($userdetail as $result) {
+                    ?>
+                    <form action="<?php echo $baseUri; ?>setting/user/changeprofile" method="post" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
+
+                        <input type="hidden" id="temp_password" name="member[temp_password]" value="<?php echo $result['member_password']; ?>" disabled>
+                        <input type="hidden" id="temp_file" name="member[temp_file]" value="<?php echo $result['member_profile']; ?>" disabled>
+
+                        <table width="650px" height="300px"> 
+
+                            <tr>
+                                <td><b>Profile Picture</b></td>
+                                <td>
+                                    <?php
+                                    if ($result['member_profile'] == null) {
+                                        $img = "profile1.jpg";
+                                    } else {
+                                        $img = $result['member_profile'];
+                                        if (file_exists('./uploads/' . $img)) {
+                                            $img = $img;
+                                        } else {
+                                            $img = "profile1.jpg";
+                                        }
+                                    }
+                                    ?>                                                 
+                                    <img src="<?php echo $baseUri; ?>/uploads/<?php echo $img; ?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td name="pp"></td>
+                                <td ><input style="margin-top: 10px;" type="file"   name="fileToUpload"   id="fileToUpload" disabled="true" style="padding-bottom: 39px"> 
+                            </tr>
+                            <tr>
+
+                                <td ><b>User Name </b></td>
+
+                                <td>
+                                    <input style="margin-top: 10px;" type="text" class="username" id="username" name="member[username]" value="<?php echo $result['member_login_name']; ?>" disabled style="width:350px;">
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td><b>Password </b></td>
+                                <td>
+                                    <input style="margin-top: 10px;" type="password" id="password" name="member[password]" value="<?php echo $result['member_password']; ?>" disabled style="width:350px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Department </b></td>
+                                <td><input style="margin-top: 10px;" type="text" name="member[dept]" id="dept" value="<?php echo $result['member_dept_name']; ?>" disabled style="width:350px;"></td>
+                            </tr>
+                            <tr>
+
+                                <td><b>Position	</b></td>
+                                <td><input style="margin-top: 10px;" type="text" name="member[position]" id="position" value="<?php echo $result['position']; ?>" disabled style="width:350px;"></td>
+                            </tr>
+                            <tr>
+                                <td><b>Email </b></td>
+                                <td><input style="margin-top: 10px;" type="email" name="member[email]" id="email" value="<?php echo $result['member_mail']; ?>" disabled style="width:350px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><b>Phone no</b></td>
+                                <td><input style="margin-top: 10px;" type="text" id="phno" name= "member[phno]" value="<?php echo $result['member_mobile_tel']; ?>" disabled style="width:350px;"></td>
+                            </tr>
+
+                            <tr>
+                                <td><b>Address </b></td>
+                                <td colspan="4"><textarea style="width:350px;" rows="5" id="add" name="member[add]" cols="50" readonly><?php echo $result['member_address']; ?></textarea ></td>
+                            </tr><?php
+                        }
+                        ?>
+                        <tr>
+                            <td><b>Time Zone </b> </td>
+                            <td><select style= "width:350px;  margin-top: 9px; margin-bottom: 9px;" name="timezone" id="timezone" disabled>
+                                    <option value="0">Please, select timezone</option>
+                                    <?php foreach (tz_list() as $t) { ?>
+                                        <option value="<?php
+                                        print $t['diff_from_GMT'];
+                                        echo " ";
+                                        echo $t['zone']
+                                        ?>">
+                                                    <?php print $t['diff_from_GMT'] . ' - ' . $t['zone'] ?>
+                                        </option>
+                                    <?php } ?>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+
+                            <td><input type="submit" id="save" class="buttonn" value="Save" disabled><input type="button" id="edit" class="buttonn" value="Edit"></td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+        </div><!--end add user form--->
+    </div><!-- /.row -->
+
+</section><!-- /.content -->
+
+
+
