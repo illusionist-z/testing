@@ -179,7 +179,10 @@ $messages = array(
     "You must checked Deduce for SSC."=>"該当するSSCにチェックを入れてください。",
     "You must checked Allowance."=>"該当する手当にチェックを入れてください。",
     "Salary_submit"=>"登録ボタンをクリックで登録完了します。",
-    "Salary_button"=>"登録",
+    "sal_start_date"=>"Choose Salary Start Date",
+    "Salary_apply"=>"登録",
+    "download_csv"=>"Can you Download(CSV Files) and you can insert users salary details.",
+    "apply_with_csv"=>"Can you Add Salary By CSV files",
     
     /**
      * Salary Lists

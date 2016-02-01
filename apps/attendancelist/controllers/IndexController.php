@@ -18,15 +18,10 @@ class IndexController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
              
              if ($key_name == 'show_admin_notification') {
-                //Go to user dashboard
+                
               $noti=$Admin->GetAdminNoti($id,0);
-              
-              //$readnoti=$Admin->GetLastNoti($id);
-                 
             } 
             if ($key_name == 'show_user_notification') {
-                //Go to admin dashboard
-                
                $noti=$Admin->GetUserNoti($id,1); 
             }
         }
@@ -66,7 +61,6 @@ class IndexController extends ControllerBase {
         $Username = $UserList::getinstance()->getusername();
         $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);
-       // var_dump($ResultAttlist);exit;
         if($this->permission==1){
         $this->view->attlist=$ResultAttlist;
         $this->view->offset= $offset;
@@ -85,7 +79,6 @@ class IndexController extends ControllerBase {
     }        
    
     public function editTimedialogAction($id){
-        //echo $id;exit;
         $Att  = new \salts\Attendancelist\Models\Attendances();
         $t = $this->_getTranslation();//for translate
         $data = $Att->getAttTime($id);
