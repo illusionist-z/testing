@@ -82,6 +82,13 @@ class Leaves extends \Library\Core\BaseModel {
         }
         return $absent;
     }
+    
+    public function getabsentbyId($id){
+        $result = $this->db->query("select * from attendances where attendances.member_id = '".$id."' and attendances.status=2");
+        $data = count($result->fetchall());
+        return $data;
+                
+    }
     /**
      * Search for leave list
      * @param type $ltype

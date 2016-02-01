@@ -6,7 +6,7 @@ namespace salts\Salary\Models;
 //use salts\Salary\Models\SalarySetting;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Mvc\Model;
+//use Phalcon\Mvc\Model;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
@@ -49,12 +49,18 @@ class Salary extends \Library\Core\BaseModel {
                               }
         return $ress;
      }
-
+     /**
+      * @desc Output selected header
+      * @param type []
+      * @return []
+      * @since 25/1/2016
+      */
+     
      public function getHeader($param) {
          $header = array();$n = 0;$num= 0;
          //get want field name
-         $getField = array("member_id"=>0,"basic_salary"=>1,"travel_fee_perday"=>2,
-             "travel_fee_permonth"=>3,"over_time"=>4,"ssc_emp"=>5,"ssc_comp"=>6,"salary_start_date"=>7);
+         $getField = ["member_id"=>0,"basic_salary"=>1,"travel_fee_perday"=>2,
+             "travel_fee_permonth"=>3,"over_time"=>4,"ssc_emp"=>5,"ssc_comp"=>6,"salary_start_date"=>7];
             foreach ($param as $k=>$j) {
             foreach($j as $v){
                 if($k === 0 ){
@@ -78,7 +84,7 @@ class Salary extends \Library\Core\BaseModel {
                 }
                 else if ($k === 1){
                     if($num === 1){
-                    $header[] = strtoupper($v['deduce_id'])."(No of children[0,1,...])";
+                    $header[] = strtoupper($v['deduce_id'])."(No of children[0/1/...])";
                     }
                     else{
                     $header[] = strtoupper($v['deduce_id'])."(1/0)";
