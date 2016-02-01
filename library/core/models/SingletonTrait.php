@@ -14,10 +14,6 @@ trait SingletonTrait
      * @var this Singleton instance
      */
     private static $instance;
- 
-    private function __construct() {
-        
-    }
     
     /**
      * Retrieve singleton instance

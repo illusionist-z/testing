@@ -98,21 +98,21 @@ $di->set("login_db", function() use ($config) {
 });
 
 
-
-
 $di->setShared('db',function() {
-    //$database = (isset($_SESSION['db_config'])) ? $_SESSION['db_config'] : $config->database->database;
-    if ($database=$_SESSION['db_config']){
-    return new \Phalcon\DB\Adapter\Pdo\Mysql([  'host'        => $database['host'],
-                                                'dbname'      => $database['db_name'],
-                                                'username'    => $database['user_name'],
-                                                'password'    => $database['db_psw'],
-                                                'charset'     => 'utf8'
-                                            ]);
+    $database = isset($_SESSION['db_config']) ? $_SESSION['db_config'] : FALSE;
+    
+    if ($database){
+        return new \Phalcon\DB\Adapter\Pdo\Mysql([
+            'host'        => $database['host'],
+            'dbname'      => $database['db_name'],
+            'username'    => $database['user_name'],
+            'password'    => $database['db_psw'],
+            'charset'     => 'utf8']);
     }
     else {
-         // $localhost = ($this->request->getServer('HTTP_HOST'));    
-            header("Location:http://localhost/salts/");
+//          $localhost = $this->request->getServer('HTTP_HOST');
+          echo $localhost;exit();
+//          header("Location:http://localhost/salts/");
     }
 });
 $di->set('cookies', function () {
