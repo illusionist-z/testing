@@ -31,10 +31,10 @@
                             //get under today date
                             if($i <= date('d')){
                             foreach($day as $k=>$v){
-                            if($i == $v) { $j[$v] = $v;$j[$v][$v] = $status[$k];}
+                            if($i == $v) { $j[$v+1]=$v;$j[$v] = array();$j[$v][$v] = $status[$k];}
                             }
                             if(array_key_exists($i, $j)){
-                            if($i == $j[$i]){
+                            if($i == $j[$i+1]){
                                   $j[$i][$i] == 0 ? $class= 'leave0' : ($j[$i][$i] == 1 ? $class="leave1": $class = "leave2");
                                 echo "<td class='$class'></td>";
                             }
