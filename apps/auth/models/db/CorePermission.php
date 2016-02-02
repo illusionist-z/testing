@@ -13,12 +13,12 @@ class CorePermission extends \Library\Core\BaseModel{
     }
     
     /**
- * @author David JP <david.gnext@gmail.com>
- * @desc   Translate language
- * @param type $permission_code
- * @param type $lang
- * @return type array
- */
+     * @author David JP <david.gnext@gmail.com>
+     * @desc   Translate language
+     * @param type $permission_code
+     * @param type $lang
+     * @return type array
+     */
     public function moduleLang ($code,$lang) {
         $this->db = $this->getDI()->getShared("db");
         $query = "Select permission_code,permission_name_en,permission_name_$lang from core_permission where permission_code ='$code'";
