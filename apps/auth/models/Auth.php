@@ -7,25 +7,32 @@ use Phalcon\DI\FactoryDefault;
 use salts\Auth\Models\Db\AuthFailedLogins;
 use Phalcon\Filter;
 class Auth extends Component {
-
+    
     public function initialize() {
         //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
         $this->login_db = $this->getDI()->getShared("login_db");
     }
+    
+    /**
+     * Find company_db
+     * @param type $param
+     * @return type
+     */
     public function findcomp_db($param) {
         try{
-        
-        $sql="SELECT * FROM company_tbl where company_id='". $param['company_id'] ."' and deleted_flag=0";
-       
-        $Result = $this->login_db->query($sql);
-        $Result = $Result->fetchArray();
+            
+            $sql = "SELECT * FROM company_tbl where company_id=? and deleted_flag=0";
+            
+            $rs = $this->getDI()->getShared("login_db")
+                    ->query($sql, array($param['company_id']));
+            $row = $rs->fetchArray();
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
         }
         
-        return $Result;
+        return $row;
     }
     public function find_module($company_module) {
                 
@@ -48,16 +55,16 @@ class Auth extends Component {
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'],"string");
         $password = $loginParams['password'];
-        $database=$_SESSION['db_config'];
+        $database = $_SESSION['db_config'];
         if($database['db_name']=='company_db'){
-           $sql="SELECT * FROM user_tbl where login_name='" .$name. "' and password='".sha1($password)."' and deleted_flag=0";
+            $sql="SELECT * FROM user_tbl where login_name='" .$name. "' and password='".sha1($password)."' and deleted_flag=0";
         }
-        else{                 
-        $sql="SELECT * FROM core_member where member_login_name= '".$name."' and member_password='".sha1($password)."' and deleted_flag=0";
+        else{
+            $sql="SELECT * FROM core_member where member_login_name= '".$name."' and member_password='".sha1($password)."' and deleted_flag=0";
         }
         //echo $sql;
         $user = $this->db->query($sql);
-        $user = $user->fetchArray();        
+        $user = $user->fetchArray();
         return $user;
 
     }

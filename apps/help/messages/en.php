@@ -166,11 +166,20 @@ $messages = array(
     "Search User Name"=>"Search User Name",
     "Enter the username"=>"Enter the username which you want to search.",
     "Enter users basic salary."=>"Enter users basic salary.",
-    "Enter users Travel Fees."=>"Enter users Travel Fees.",
+    "Enter users Travel Fees."=>"Can you Choose Travel Fees two type(Per Day and Per Month).Enter Travel Fees.",
     "Enter users Overtime(per hr)."=>"Enter users Overtime(per hr).",
     "Deduce for SSC"=>"Deduce for SSC",
     "You must checked Deduce for SSC."=>"You must checked Deduce for SSC.",
     "You must checked Allowance."=>"You must checked Allowance.",
+    "sal_start_date"=>"Choose Salary Start Date",
+    "Salary_apply"=>"Submit your Salary apply form.",
+    "download_csv"=>"Can you Download(CSV Files) and you can insert users salary details.
+After downloaded,we would like to
+1. Open Excel
+2. Go to 'Data' tab
+3. Select 'From Text' (third option from left) and select the .CSV file you want to import.
+4. Click 'Next' on the pop-up window.You should select your appropriate delimeters seeing into columns below already!",
+    "apply_with_csv"=>"Can you Add Salary By CSV files",
     
     /**
      * Salary Lists
@@ -239,4 +248,6 @@ $messages = array(
     "SSB and Tax Document Printing"=>"SSB and Tax Document Printing",
     "Print"=>"Print",
     "Print SSB & Tax"=>"Print SSB & Tax Document details table.",
+    
+    "Change_Language"=>"Change Language",
 );
