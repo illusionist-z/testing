@@ -19,8 +19,8 @@ class SalaryMaster extends Model {
      */
     public function savesalary($data) {
         try {
-
-            if ($SalaryMaster->save($data[0]) == false) {
+            $SalaryMaster = new SalaryMaster();
+            if ($SalaryMaster->save($data) == false) {
                 foreach ($SalaryMaster->getMessages() as $message) {
                     $return[] = $message;
                 }

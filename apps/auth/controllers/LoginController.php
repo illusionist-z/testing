@@ -2,7 +2,7 @@
 
 namespace salts\Auth\Controllers;
 
-use salts\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db;
 use salts\Auth\Models;
 
 class LoginController extends ControllerBase {
@@ -12,75 +12,85 @@ class LoginController extends ControllerBase {
         $this->setCommonJsAndCss();
     }
 
+    /**
+     * Index Action
+     */
     public function indexAction() {
 
-        $loginParams = $this->request->get();
+        $login_params = $this->request->get();
         $ModelAuth = new Models\Auth();
-
-        if (!isset($loginParams['company_id'])) {
+        
+        // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
+        if (!isset($login_params['company_id'])) {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
             $dbinfo['db_psw'] = '';
 
             $this->session->set('db_config', $dbinfo);
-            $result = $ModelAuth->check($loginParams, $user);
+            $result = $ModelAuth->check($login_params, $user);
             $this->session->set('user', $result);
             // Data Base Chack
             if ($result) {
                 $this->response->redirect('managecompany');
             } else {
-
                 $this->response->redirect('auth/index/failersuperuser');
             }
+            
         } else {
 
-            $this->view->test = $loginParams;
-            $companyDB = $ModelAuth->findcomp_db($loginParams);
+            $this->view->test = $login_params;
+            $companyDB = $ModelAuth->findcomp_db($login_params);
             // Data Base Hase
             if ($companyDB) {
-
-                //User Chack    
+                // User Chack    
                 $this->session->set('db_config', $companyDB);
 
-                //Module Chack
+                // Module Chack
                 $module = new Models\Auth();
                 $module_id = $this->session->db_config['company_id'];
                 $company_module = $module->find_module($module_id);
                 $this->session->set('module', $company_module);
 
-                $result = $ModelAuth->check($loginParams, $user);
-                $permission = $ModelAuth->getpermit($loginParams);
-                $member = new CoreMember();
-                $lang = $member->getlang($loginParams);
+                $result = $ModelAuth->check($login_params, $user);
+                $permission = $ModelAuth->getpermit($login_params);
+                
+                $Member = Db\CoreMember::getInstance();
+//                $member = new Db\CoreMember();
+                $lang = $Member->getlang($login_params);
                 $this->session->set('language', $lang['lang']);
-                $member->updatecontract($loginParams);
+                $Member->updatecontract($login_params);
                 $this->session->set('page_rule_group', $permission);
                 $user = array();
                 $this->session->set('user', $result);
 
                 date_default_timezone_set('Asia/Rangoon');
-                $core = new CoreMember();
+
+                // TODO: ここのオブジェクトを分けている理由を確認 [Kohei Iwasa]
+//                $core = new Db\CoreMember();
                 //$tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
                 $user_ip = $this->request->getPost('local');
+                
+                // TODO: 削除？ [Kohei Iwasa]
                 $user_ip_public = $this->request->getPost('public');
+                
                 $core->token = $tokenpush;
                 $member_id = $this->request->getPost('member_login_name');
-                $insert = $core->tokenpush($tokenpush, $member_id, $user_ip);
+                $insert = $Member->tokenpush($tokenpush, $member_id, $user_ip);
 
-                $timestamp = (date("Y-m-d H:i:s"));
-                $member_id = $this->request->getPost('member_login_name');
+                $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
                 $this->session->set('tokenpush', $member_id);
 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new CoreMember();
-                $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
+//                $chack_user2 = new Db\CoreMember();
+                $chack_user2 = $Member::findByMemberLoginName($member_name);
 
                 if (count($chack_user2) != 0) {
 
-                    $core2 = new CoreMember();
-                    $core2 = CoreMember::findFirstByMemberLoginName($this->request->getPost('member_login_name')); 
+//                    $core2 = new Db\CoreMember();
+                    $core2 = $Member::findFirstByMemberLoginName($this->request->getPost('member_login_name'));
+                    //var_dump($core2);exit;
                     $core2 = $core2->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));

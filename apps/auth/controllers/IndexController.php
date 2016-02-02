@@ -1,5 +1,4 @@
 <?php
-
 namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
@@ -9,14 +8,16 @@ class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-
+            
         $this->setCommonJsAndCss();
-        $this->assets->addJs('apps/auth/js/forgot.js');
+        $this->assets->addJs('apps/auth/js/forgot.js');      
     }
 
+    /**
+     * Index Action
+     * @param type $mode
+     */
     public function indexAction($mode = NULL) {
-
-
         $localhost = ($this->request->getServer('HTTP_HOST'));
 
         if (isset($_SESSION['startTime']) != null) {
@@ -51,7 +52,7 @@ class IndexController extends ControllerBase {
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new CoreMember();
+                $chack_user2 = new \CoreMember();
                 $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 

@@ -18,22 +18,21 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         $this->config = \Module_Config::getModuleConfig('leavedays');
-        $Admin = new \salts\Auth\Models\Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        $this->module_name = $this->router->getModuleName();
-        $this->permission = $this->setPermission($this->module_name);
-        $this->view->module_name = $this->module_name;
+
+        $this->module_name = $this->router->getModuleName();        
+        $this->permission = $this->setPermission($this->module_name);             
+        $this->view->module_name=$this->module_name;
         $this->view->permission = $this->permission;
-
-        //// Module ID Filter Start By (1,0)
+        
+        // Module ID Filter Start By (1,0)
         $moduleIdCallCore = new Db\CoreMember();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-
-        //// Module ID Filter Start By (Module Name)        
         $this->view->module_name_view = $this->module_name;
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
+         
+        // Module ID Filter Start By (Module Name)        
     }
 
     /**
