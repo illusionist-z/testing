@@ -74,9 +74,9 @@ class LoginController extends ControllerBase {
                 // TODO: 削除？ [Kohei Iwasa]
                 $user_ip_public = $this->request->getPost('public');
                 
-                $core->token = $tokenpush;
+               // $core->token = $tokenpush;
                 $member_id = $this->request->getPost('member_login_name');
-                $insert = $Member->tokenpush($tokenpush, $member_id, $user_ip);
+              //  $insert = $Member->tokenpush($tokenpush, $member_id, $user_ip);
 
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
@@ -85,7 +85,7 @@ class LoginController extends ControllerBase {
                 $member_name = $this->session->tokenpush;
 //                $chack_user2 = new Db\CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
-
+               
                 if (count($chack_user2) != 0) {
 
 //                    $core2 = new Db\CoreMember();
