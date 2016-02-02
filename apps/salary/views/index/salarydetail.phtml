@@ -1,6 +1,6 @@
 <?php
-    use Phalcon\Filter;
-    
+
+use Phalcon\Filter;
 ?>
 <!-- Main content -->
 <section class="content">
@@ -9,166 +9,160 @@
             <div style="width:100%;">
                 <div style="padding: 10px 10px 10px 10px">
                     <div style="float:left;">
-                    <button class="btnEditInfo btn  btn-flat" style="border: 1px solid #3c8dbc">EDIT</button>
-                   
-                    <button id="btn_savedetail" disabled class="txtenable btn  btn-flat" style="border: 1px solid #3c8dbc">Save</button>
-                   
-                    <button id="btn_resign" class="btn_resign btn  btn-flat" style="border: 1px solid #3c8dbc">Resign</button>                    </div>
+                        <button class="btnEditInfo btn  btn-flat" style="border: 1px solid #3c8dbc">EDIT</button>
+
+                        <button id="btn_savedetail" disabled class="txtenable btn  btn-flat" style="border: 1px solid #3c8dbc">Save</button>
+
+                        <button id="btn_resign" class="btn_resign btn  btn-flat" style="border: 1px solid #3c8dbc">Resign</button>                    </div>
                     <div style="float:right;">
-                    <a href="#" id="display1" class="display preimg"><span class="prehide">PREV</span></a> |
-                    <a href="#" id="display" class="display nextimg"><span class="prehide">NEXT</span></a>
+                        <a href="#" id="display1" class="display preimg"><span class="prehide">PREV</span></a> |
+                        <a href="#" id="display" class="display nextimg"><span class="prehide">NEXT</span></a>
                     </div>
                 </div>
                 <div style="clear:both;" >
+
                     <?php
-//                    for ($x = 1; $x <= 3; $x++) {
-//    echo '<div class="sample">div'.$x.'</div>';
-//} 
-//                    ?>
-<!--                <div class="sample">div1</div>
-                <div clas
+                    $filter = new Filter();
+
+                    $sum = '';
+                    $deduce = '';
+                    $total_overtime_hr = '';
+                    $overtime_pay = '';
+                    $countsalary = count($getsalarydetails);
+
+                    foreach ($getsalarydetails as $A) {
+                        for ($i = 0; $i < count($A); $i++) {
+                            ?>
+                            <div style="padding: 0 10px 10px 10px" class="sample">
+                                <h3><center>G-Next Official Salary Report</center></h3>
+                                <?php //echo $A[$i]->core->member_id;?>
+                                <div>
+                                    <div style="width: 10%; float: left;"><?= $t->_("name"); ?></div>
+                                    <div><?php echo $filter->sanitize($A[$i]->core->full_name, "string"); ?>
+                                        <input type="hidden" value="<?php echo $A[$i]->core->member_id; ?>" id="member_id" class="member_id" name="member_id">
+                                        <input type="hidden" value="<?php echo $year; ?>" id="year" name="year">
+                                        <input type="hidden" value="<?php echo $month; ?>" id="month" name="month">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div style="width: 10%; float: left;"><?= $t->_("month"); ?></div>
+                                    <div><?php echo date("M - Y", strtotime($A[$i]->salarydet->pay_date)); ?></div>
+                                </div>
+                                <div>
+                                    <table border="1px solid gray" style="width:100%" class="detail-tbl">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2"><?= $t->_("item"); ?></th>
+                                                <th><?= $t->_("amount"); ?></th>
+                                                <th width="200px"></th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        <td rowspan="5" style="border-bottom-color: #ecf0f5"></td>
+                                        <td><?= $t->_("bsalary"); ?></td>
+                                        <td><input type="text" name="txtbsalary" value="<?php echo $filter->sanitize($A[$i]->salarydet->basic_salary, "string");
+                        $sum+=$A[$i]->salarydet->basic_salary;
+                                ?>" id="txtbsalary" disabled="disabled" class="txtenable txtbsalary"></td>
+                                        <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><?= $t->_("overtime_rate"); ?></td>
+                                            <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time, "string"); ?>" id="txtovertimerate" style="width:50px;" disabled="disabled" class="txtenable txtovertimerate"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><?= $t->_("overtime_hour"); ?></td>
+                                            <td><input type="text" name="txtovertimehour" value="<?php
+                                                $overtime = $filter->sanitize($A[$i]->attend->overtime, "string");
+                                                //$total_overtime_hr=$total_overtime_hr+$overtime;
+                                                echo $overtime;
+                                                ?>" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><?= $t->_("overtime_payment"); ?></td>
+                                            <td><input type="text" name="txtovertimepay" value="<?php
+                                                $overtime_fees = $A[$i]->salarymast->over_time * $overtime;
+                                                $sum = $sum + $overtime_fees;
+                                                echo $overtime_fees;
+                                                ?>" id="txtovertimepay" disabled="disabled" class=" txtovertimepay txtenable"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><?= $t->_("allowance_for_specific"); ?></td>
+                                            <td><input type="text" name="txtallowance" value="" id="txtallowance" disabled="disabled" class=" txtallowance txtenable"></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><?= $t->_("gross_salary"); ?></td>
+                                            <td><?php echo $sum; ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><?= $t->_("deduce_for_absent"); ?></td>
+                                            <td><input type="text" name="txtabsent" value="<?php echo $filter->sanitize($A[$i]->salarydet->absent_dedution, "string");
+                                                $deduce+=$A[$i]->salarydet->absent_dedution;
+                                                ?>" id="txtallowance" disabled="disabled" class="txtenable txtabsent"></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><?= $t->_("personal_income"); ?></td>
+                                            <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->income_tax, "string");
+                                               $deduce+=$A[$i]->salarydet->income_tax;
+                                               ?>" id="income_tax" disabled="disabled"></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><?= $t->_("ssb_employee"); ?></td>
+                                            <td><input type="text" name="txtssb" value="<?php echo $filter->sanitize($A[$i]->salarydet->ssc_emp, "string");
+                                               $deduce+=$A[$i]->salarydet->ssc_emp;
+                                               ?>" id="txtssb" disabled="disabled"></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><?= $t->_("subtotal"); ?></td>
+                                            <td><?php echo number_format($deduce); ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><?= $t->_("rounded_up"); ?></td>
+                                            <td>
+        <?php
+        $sub_total = $sum - $deduce;
+        echo number_format($sub_total);
+        ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><?= $t->_("commute_fee"); ?></td>
+                                            <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->travel_fee, "string")); ?></td>
+                                            <td></td>                   
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" height="50px"><?= $t->_("grand_total"); ?></td>
+                                            <td>
+        <?php
+        $grand_total = $sub_total + $A[$i]->salarydet->travel_fee;
+        echo number_format($grand_total);
+        ?>
+                                            </td>
+                                            <td></td>                   
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        $sum = 0;
+                        $deduce = 0;
+                    }
+                    ?>
+
                 </div>
-
-        </div>
-        </dis="sample">div2</div>
-                <div class="sample">div3</div>-->
-<?php 
-        
-         $filter = new Filter(); 
-         
-        $sum='';
-        $deduce='';
-        $total_overtime_hr='';
-        $overtime_pay='';
-        $countsalary=count($getsalarydetails);
-        
-        foreach($getsalarydetails as $A){
-            for($i=0;$i<count($A);$i++){
-              
-                
-          
-?>
-<div style="padding: 0 10px 10px 10px" class="sample">
-    <h3><center>G-Next Official Salary Report</center></h3>
-    <?php   //echo $A[$i]->core->member_id;?>
-<div>
-    <div style="width: 10%; float: left;"><?= $t->_("name");?></div>
-    <div><?php echo $filter->sanitize($A[$i]->core->full_name , "string"); ?>
-        <input type="hidden" value="<?php echo $A[$i]->core->member_id;?>" id="member_id" class="member_id" name="member_id">
-        <input type="hidden" value="<?php echo $year;?>" id="year" name="year">
-        <input type="hidden" value="<?php echo $month;?>" id="month" name="month">
-    </div>
-</div>
-<div>
-    <div style="width: 10%; float: left;"><?= $t->_("month");?></div>
-    <div><?php echo date("M - Y", strtotime( $A[$i]->salarydet->pay_date));?></div>
-</div>
-<div>
-    <table border="1px solid gray" style="width:100%" class="detail-tbl">
-                <thead>
-                    <tr>
-                        <th colspan="2"><?= $t->_("item");?></th>
-                        <th><?= $t->_("amount");?></th>
-                        <th width="200px"></th>
-                        
-                    </tr>
-
-                </thead>
-                <tbody>
-                <td rowspan="5" style="border-bottom-color: #ecf0f5"></td>
-    <td><?= $t->_("bsalary");?></td>
-    <td><input type="text" name="txtbsalary" value="<?php echo $filter->sanitize($A[$i]->salarydet->basic_salary , "string"); $sum+=$A[$i]->salarydet->basic_salary;?>" id="txtbsalary" disabled="disabled" class="txtenable txtbsalary"></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><?= $t->_("overtime_rate");?></td>
-    <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time , "string");?>" id="txtovertimerate" style="width:50px;" disabled="disabled" class="txtenable txtovertimerate"></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><?= $t->_("overtime_hour");?></td>
-    <td><input type="text" name="txtovertimehour" value="<?php $overtime=$filter->sanitize($A[$i]->attend->overtime , "string");
-        //$total_overtime_hr=$total_overtime_hr+$overtime;
-        echo $overtime;
-    ?>" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><?= $t->_("overtime_payment");?></td>
-    <td><input type="text" name="txtovertimepay" value="<?php 
-    $overtime_fees= $A[$i]->salarymast->over_time*$overtime;
-    $sum = $sum + $overtime_fees;
-    echo $overtime_fees;
-    ?>" id="txtovertimepay" disabled="disabled" class=" txtovertimepay txtenable"></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><?= $t->_("allowance_for_specific");?></td>
-    <td><input type="text" name="txtallowance" value="" id="txtallowance" disabled="disabled" class=" txtallowance txtenable"></td>
-    <td></td>
-  </tr>
-  <tr>
-      <td colspan="2"><?= $t->_("gross_salary");?></td>
-  <td><?php echo $sum; ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2"><?= $t->_("deduce_for_absent");?></td>
-  <td><input type="text" name="txtabsent" value="<?php echo $filter->sanitize($A[$i]->salarydet->absent_dedution , "string"); $deduce+=$A[$i]->salarydet->absent_dedution;?>" id="txtallowance" disabled="disabled" class="txtenable txtabsent"></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2"><?= $t->_("personal_income");?></td>
-  <td><input type="text" name="txtincome" value="<?php echo $filter->sanitize($A[$i]->salarydet->income_tax , "string"); $deduce+=$A[$i]->salarydet->income_tax;?>" id="income_tax" disabled="disabled"></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2"><?= $t->_("ssb_employee");?></td>
-  <td><input type="text" name="txtssb" value="<?php echo $filter->sanitize($A[$i]->salarydet->ssc_emp , "string"); $deduce+=$A[$i]->salarydet->ssc_emp; ?>" id="txtssb" disabled="disabled"></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2"><?= $t->_("subtotal");?></td>
-  <td><?php echo number_format($deduce); ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2"><?= $t->_("rounded_up");?></td>
-  <td>
-  <?php 
-  $sub_total=$sum-$deduce;
-  echo number_format($sub_total);
-  ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2"><?= $t->_("commute_fee");?></td>
-  <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->travel_fee , "string")); ?></td>
-  <td></td>                   
-  </tr>
-  <tr>
-  <td colspan="2" height="50px"><?= $t->_("grand_total");?></td>
-  <td>
-      <?php
-      $grand_total=$sub_total+$A[$i]->salarydet->travel_fee;
-      echo number_format($grand_total);
-      ?>
-  </td>
-  <td></td>                   
-  </tr>
-</tbody>
-</table>
-    </div>
-                </div>
-<?php
-  }
-  $sum=0;
-  $deduce=0;
-        }
-?>
-
-</div>
-        </div>
+            </div>
         </div>
     </div>
     <div id="resign" class="navbar"></div>

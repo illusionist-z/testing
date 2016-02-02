@@ -16,20 +16,18 @@ var User = {
         pager.showPage(1);  
         $("tbody").show();         
         if(reload){
-       $.ajax({
-                url:baseUri+'manageuser/index/usernameautolist',
-                method: 'GET',
-                //dataType: 'json',
-                success: function(data) {
-                //alert(data);    
-                var json_obj = $.parseJSON(data);
-                for (var i in json_obj){
-                   // alert(json_obj[i].full_name);
-                dict.push(json_obj[i].member_login_name);
-                }                  
-                        }                        
-                    });     
-                }
+                $.ajax({
+                         url:baseUri+'manageuser/index/usernameautolist',
+                         method: 'GET',
+                         //dataType: 'json',
+                         success: function(data) {
+                             var json_obj = $.parseJSON(data);
+                             for (var i in json_obj){
+                                  dict.push(json_obj[i].member_login_name);
+                             }                  
+                         }                        
+                 });     
+        }
        },
         search: function(){
         var name = document.getElementById('username').value;
@@ -71,7 +69,6 @@ $(document).ready(function(){
     });
     $("tbody").on('click','.displaypopup',function () {        
         var type = $(this).attr('id');  
-       // alert("aa");
         Manage.User.Edit(type);
     });
      $('.userauto').click(function () {

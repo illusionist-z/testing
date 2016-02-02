@@ -1,5 +1,6 @@
 <?php
-    use Phalcon\Filter;
+
+use Phalcon\Filter;
 ?>
 <section class="content-header" style="height:auto;">
     <h1>
@@ -14,17 +15,17 @@
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-                    <span class="dropdown">
-                    <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
-                    <h4 class="btn btn-primary csv_download" title="Download Sample CSV(we recommend to open in excel)" id="2"><img src="../../common/img/download1.png"></h4>
-                    <div class="dropdown-menu"  id="radsal_type" style="margin-top: 20px;">
-                            <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
-                                    <input type="file" name="file" id="file_select" class="col-xs-6 col-xs-offset-0">
-                                    <button type="submit" onclick="return false;" class="col-xs-3 col-xs-offset-4 btn btn-primary csvtosql" id="2">Add</button>
-                                    <span id="file_err" class="col-xs-12" style="display:none;"></span>
-                            </form>
-                     </div>
-                    </span>
+        <span class="dropdown">
+            <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
+            <h4 class="btn btn-primary csv_download" title="Download Sample CSV(we recommend to open in excel)" id="2"><img src="../../common/img/download1.png"></h4>
+            <div class="dropdown-menu"  id="radsal_type" style="margin-top: 20px;">
+                <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
+                    <input type="file" name="file" id="file_select" class="col-xs-6 col-xs-offset-0">
+                    <button type="submit" onclick="return false;" class="col-xs-3 col-xs-offset-4 btn btn-primary csvtosql" id="2">Add</button>
+                    <span id="file_err" class="col-xs-12" style="display:none;"></span>
+                </form>
+            </div>
+        </span>
         <a href="#" class="button add-big" id="displaypopup"><?= $t->_("Calculate salary"); ?></a>
         <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);">Export</a>
     </div>
@@ -35,15 +36,15 @@
                 <thead>
                     <tr>
                         <th><center><?= $t->_("mth/yr"); ?></center></th>
-                        <th><center><?= $t->_("salary"); ?></center></th>
-                        <th><center><?= $t->_("allowance"); ?></center></th>
-                        <th><center><?= $t->_("travel_fee"); ?></center></th>
-                        <th><center><?= $t->_("income"); ?></center></th>
-                        <th><center>SSC Employer</center></th>
-                        <th><center>SSC Employee</center></th>
-                        <th><center><?= $t->_("tax_total"); ?></center></th>
-                        <th><center><?= $t->_("total"); ?></center></th>
-                    </tr>
+                <th><center><?= $t->_("salary"); ?></center></th>
+                <th><center><?= $t->_("allowance"); ?></center></th>
+                <th><center><?= $t->_("travel_fee"); ?></center></th>
+                <th><center><?= $t->_("income"); ?></center></th>
+                <th><center>SSC Employer</center></th>
+                <th><center>SSC Employee</center></th>
+                <th><center><?= $t->_("tax_total"); ?></center></th>
+                <th><center><?= $t->_("total"); ?></center></th>
+                </tr>
 
                 </thead>
                 <tbody style="display:none;">
@@ -52,7 +53,7 @@
                     foreach ($geteachmonthsalarys as $geteachmonthsalary) {
                         ?>
                         <tr>
-                            <td width="50px"><a  href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt']?> && year=<?php echo $geteachmonthsalary['Yr']?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
+                            <td width="50px"><a  href="show_salarylist?month=<?php echo $geteachmonthsalary['Mt'] ?> && year=<?php echo $geteachmonthsalary['Yr'] ?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['salary_total'], "int")); ?></div></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['allowance'], "int")); ?></div></td>
                             <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['travel_expense'], "int")); ?></div></td>
@@ -73,23 +74,15 @@
         </div><!--end table content--->        
     </div><!-- /.row -->
     <div id="content"></div>
-    <!-- calculate salary--><div id="edit_dect_dia" class="navbar"></div><div id="add_new_dt" class="navbar"></div>
-<!--    <div id="myPopup" style="display:none;" title=""><a id="popupClose"></a><h1>Add confirm</h1>
+    <!-- calculate salary-->
+    <div id="edit_dect_dia" class="navbar"></div><div id="add_new_dt" class="navbar"></div>
+
     <div>Do you want to new pay list for this month  
         <?php
         $today = date("Y-m-d"); // 2012-01-30
         $next_month = date("m/Y", strtotime("$today +1 month"));
         echo $next_month . "?";
         ?>
-    </div>
-    <div style="height:auto;"></div>
-    <a href="../calculate" class="button">Yes</a><a href="#" class="button" id="btn_close">No</a>
-    </div>	
-</section> /.content 
-<script>
-$('#btn_close').click(function(){
-    document.getElementById('myPopup').style.display = 'none';;
-});
-</script>-->
+       
 
 

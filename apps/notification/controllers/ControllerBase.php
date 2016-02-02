@@ -1,9 +1,10 @@
-<?php namespace salts\Notification\Controllers;
+<?php
+
+namespace salts\Notification\Controllers;
 
 // use library
 use Library;
 
-class ControllerBase extends Library\Core\Controller
-{
+class ControllerBase extends Library\Core\Controller {
     
 }

@@ -30,9 +30,9 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
     padding: 0px 10px;
     outline-color: #3c8dbc;
 }
-  @media(max-width:767px){
-      .main-sidebar{transform:translate3d(0,0,0);}
-  }
+@media(max-width:767px){
+    .main-sidebar{transform:translate3d(0,0,0);}
+}
 #userlistsearch,#namesearch,#sub,#search,#apply_form_submit,#add_salary_apply,
 #search_salary,#add_user,#edit_edit,#Add_deduct,#Add_ltype,#delete_ltype,#cal_salary,
 #create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,
@@ -62,28 +62,28 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
     background-image: url("../img/user.png");
     background-repeat: no-repeat;    
     text-indent: 20px;
-   margin-left: -20px;
-    
+    margin-left: -20px;
+
 }
 #compayimg{
     background-image: url("../img/company1.png");
     background-repeat: no-repeat;    
     text-indent: 20px;
-   margin-left: -15px;
-    
+    margin-left: -15px;
+
 }
 #unameopt,#singinopt{
     opacity: 0;
 }
 
 #passimg{
-   background: url("../img/lock2.png")  8px 2px no-repeat;  
-   margin-left: -20px;
+    background: url("../img/lock2.png")  8px 2px no-repeat;  
+    margin-left: -20px;
 }
 #signinimg{
-     background: url("../img/Deep_Login_in (1).png")  0px 1px no-repeat;    
-     padding: 0px 10px 5px 5px;
-     float: right;
+    background: url("../img/Deep_Login_in (1).png")  0px 1px no-repeat;    
+    padding: 0px 10px 5px 5px;
+    float: right;
 }
 #noleavecic{
     border-radius: 50%;
@@ -118,12 +118,12 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #imageaddress{
     background:#F5F5F5 url("../img/5Fm069k.png") no-repeat 4px 4px;
     padding:0px 10px;
-/*    border-image-source: url("../img/english.png");
-    border-image-outset: 10px;*/
+    /*    border-image-source: url("../img/english.png");
+        border-image-outset: 10px;*/
 }
 .backtologin{
-     height: 55px;text-align:left;
-     background:#F5F5F5 ;
+    height: 55px;text-align:left;
+    background:#F5F5F5 ;
 }
 #backtologintext{
     font-weight: bold;
@@ -161,8 +161,8 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 }
 #newpass,#compass{
     width:50%;
-   text-align: right;
-   font-weight: bold;
+    text-align: right;
+    font-weight: bold;
 }
 .forscroll li{
     list-style-type: none;
@@ -232,12 +232,12 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 .listtbl tfoot td {
     border-top : 1px solid #ddd;  
     padding: 8px 0 0 0 ;
-    }
-                     
+}
+
 .listtbl tfoot *{
-        padding : 0 0;
-        margin : 0 0 ;
-    }                       
+    padding : 0 0;
+    margin : 0 0 ;
+}                       
 
 .listtbl td:last-child {
     padding-right: 10px;
@@ -374,20 +374,20 @@ a.export {
 }
 #printimg{
     background: url("../img/print7.png")  1px 1px no-repeat ;   
-   padding: 10px 10px 7px 20px; 
+    padding: 10px 10px 7px 20px; 
 }
 .printimg{
     background: url("../img/print7.png")  1px 1px no-repeat ;   
-   padding: 1px 1px 2px 18px; 
-  
+    padding: 1px 1px 2px 18px; 
+
 }
 .printimg{
     background: url("../img/print7.png")  1px 1px no-repeat ;   
-   padding: 1px 1px 2px 18px;   
+    padding: 1px 1px 2px 18px;   
 }
 #detail_img{
-     background: url("../img/detail2.png")  1px 1px no-repeat ;   
-     padding: 13px 10px 2px 6px;      
+    background: url("../img/detail2.png")  1px 1px no-repeat ;   
+    padding: 13px 10px 2px 6px;      
 }
 .preimg{
     background: url("../img/pre1.png")  10px 0px no-repeat  ;      
@@ -402,8 +402,8 @@ a.export {
     background: red;
 }
 .absentcheck{
-     background: url("../img/user_male_delete3.png")  0px 0px no-repeat ;   
-     padding: 20px 20px 5px 6px;  
+    background: url("../img/user_male_delete3.png")  0px 0px no-repeat ;   
+    padding: 20px 20px 5px 6px;  
 }
 
 .addbtnn{
@@ -500,15 +500,15 @@ a.export {
     overflow-x: hidden;
     width: 100%;
     height: 100%;
-   
-    
+
+
 }
 
 .forscroll{   
     min-height: 100%;
     min-width: 100%;
-   
-    
+
+
 }
 /*.forscroll:hover{
     overflow: auto;
@@ -680,17 +680,17 @@ float:left;
     text-indent: 10%;
 }
 #noneli{
-   text-indent: 10%;
-   background-color: whitesmoke;
-   width: 800px;
-   height: 100%;
-   margin: auto;
-   border: 3px double #d2d6de;  
+    text-indent: 10%;
+    background-color: whitesmoke;
+    width: 800px;
+    height: 100%;
+    margin: auto;
+    border: 3px double #d2d6de;  
 }
 
 #viewallnoleave{
-   margin-left: 35%;
-   
+    margin-left: 35%;
+
 }
 hr{
     margin-top: 5px;
@@ -709,8 +709,8 @@ hr{
     text-align: center;
 }
 #emailerror label,#noemailerror label,#onefield{
-  color:black;
-  margin-left: 4px;
+    color:black;
+    margin-left: 4px;
 }
 #noemailfield{
     color:black;
@@ -725,28 +725,28 @@ hr{
     padding-bottom: 10px;
 }
 #noti_title{
-   font-size: 25px;
-   margin-top: 10px;
+    font-size: 25px;
+    margin-top: 10px;
 }
-	#hrstyle {
-		border: 0;
-		border-bottom: dotted 1px #3c8dbc;
-		margin: 1em 0;
-                                margin-top: 10px;
-	}
-        .leave0{
-            background: green;
-        }        
-        .leave1{
-            background: yellow;
-        }
-        .leave2{
-            background: red;
-        }
-        .unleave{
-            background: #fbf9ee;
-        }
+#hrstyle {
+    border: 0;
+    border-bottom: dotted 1px #3c8dbc;
+    margin: 1em 0;
+    margin-top: 10px;
+}
+.leave0{
+    background: green;
+}        
+.leave1{
+    background: yellow;
+}
+.leave2{
+    background: red;
+}
+.unleave{
+    background: #fbf9ee;
+}
 /*        #print_color{
             background: red;
         }*/
- 
+

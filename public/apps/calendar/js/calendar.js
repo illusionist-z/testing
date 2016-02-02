@@ -12,7 +12,7 @@ var Calendar = {
                 url: 'index/calenderauto',
                 method: 'GET',
                 success: function (data) {
-             
+
                     var json_obj = $.parseJSON(data);
 
                     $.map(json_obj, function (item) {
@@ -74,14 +74,14 @@ var Calendar = {
                     $('#dialog_create').dialog('open');
                 }
                 else {
-                    Calendar.Dialog.new(start,d_end);
+                    Calendar.Dialog.new(start, d_end);
                 }
             },
             eventMouseout: function (calEvent, domEvent) {
                 $('table').remove('.popup');
             },
             eventMouseover: function (event) {
-                var start = event.start.format(),end;
+                var start = event.start.format(), end;
                 if (event.end === null) {
                     end = event.start.format();
                 } else {
@@ -94,7 +94,7 @@ var Calendar = {
                     $('.popover.bottom').css({
                         "background": "white",
                         width: '300px'
-                    });                    
+                    });
                     var d_end = DateTimeFix(end);
                     var str = "<table style='width:250px;height:80px;color:yellow;background:#3c8dbc;z-index:9999;position:relative;' class='popup'><thead ><th style='border-right:1px solid #000;'>Event</th><th>Description</th></thead>";
                     str += "<tr><th style='border-right:1px solid #000;'>Title</th><th>" + event.title + "</th></tr>";
@@ -212,16 +212,16 @@ var Calendar = {
 
         $("#member_event_dialog").dialog("open");
         //add member autocomplete @dialog box
-        
+
         $("#member_event").autocomplete({
             source: dict,
             minLength: 1,
             select: function (event, ui) {
-                
+
                 $("#member_event_add").attr("disabled", false);
                 $("#member_event_add").unbind("click").bind("click", function (e) {
                     e.preventDefault();
-                    
+
                     $.ajax({
                         type: "GET",
                         data: {permit: ui.item.value},
@@ -336,7 +336,7 @@ Calendar.Dialog = {
     },
     edit: function (event, old_id, dia) {
         $.ajax({
-            url: "index/edit/" + event.id+"/"+1,
+            url: "index/edit/" + event.id + "/" + 1,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -346,7 +346,7 @@ Calendar.Dialog = {
                     $('.err-sdate').text(d.date).css("color", "red");
                 }
                 else {
-                    reload(old_id,dia);                    
+                    reload(old_id, dia);
                     $('.dropdown-toggle').dropdown();
                     dia.dialog("close");
                 }
@@ -450,15 +450,15 @@ Calendar.Dialog = {
         //for event calender auto complete username
         $('#event_uname,#show_name').unbind('focus').bind('focus', function () {
             $(this).autocomplete({
-                 source: function( request, response ) {                                       
-                    var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" ); 
-                    var result = $.grep( dict, function( item ){                 
-                               return matcher.test( item);
-                              });
-                        response(result.slice(0, 10));
-                 },
-                  minLength :1
-        });
+                source: function (request, response) {
+                    var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+                    var result = $.grep(dict, function (item) {
+                        return matcher.test(item);
+                    });
+                    response(result.slice(0, 10));
+                },
+                minLength: 1
+            });
         });
     }
 };
@@ -487,78 +487,80 @@ $(document).ready(function () {
     Calendar.Dialog.auto();
 });
 
-        function reload(member, dia) {
-            $('#calendar').remove();//remove calendar origin
-            $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'); //replace a new calendar
+function reload(member, dia) {
+    $('#calendar').remove();//remove calendar origin
+    $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'); //replace a new calendar
 
-            var selectedvalue = [];
-            if ($(':checkbox:checked').length > 1) {
-                $(':checkbox:checked').each(function (i) {
-                    selectedvalue[i] = $(this).val();
-                });
-            }
-            if (selectedvalue != "") {
-                Calendar.event(selectedvalue, "none");
-                //Calendar.Dialog.auto();
-            }
-            else {
-                Calendar.event(member, "none")
-            }
+    var selectedvalue = [];
+    if ($(':checkbox:checked').length > 1) {
+        $(':checkbox:checked').each(function (i) {
+            selectedvalue[i] = $(this).val();
+        });
+    }
+    if (selectedvalue != "") {
+        Calendar.event(selectedvalue, "none");
+        //Calendar.Dialog.auto();
+    }
+    else {
+        Calendar.event(member, "none")
+    }
 
-            dia.dialog("close");
-            $('.dropdown-toggle').dropdown();
+    dia.dialog("close");
+    $('.dropdown-toggle').dropdown();
+}
+/**
+ * @author David JP<david.gnext@gmail.com>
+ *  Is event expire check
+ */
+function IsValidEvent(d) {
+    var today = new Date();
+    var today_date = parseInt(today.getDate());
+    var today_month = parseInt(today.getMonth());
+    var today_year = parseInt(today.getFullYear());
+    var event_date = parseInt(new Date(d.end).getDate());
+    var event_month = parseInt(new Date(d.end).getMonth());
+    var event_year = parseInt(new Date(d.end).getFullYear());
+    if (today_year === event_year && today_month >= event_month && today_date >= event_date) {
+        d.color = "#aaa";
+    }
+    else if ((today_date >= event_date || today_date < event_date) && (today_month >= event_month || today_month < event_month) && today_year > event_year) {
+        d.color = "#aaa";
+    }
+    else {
+        d.color = "#3a87ad";
+    }
+    return true;
+}
+/**
+ * @author David JP<david.gnext@gmail.com>
+ * @returns {date} to fullcalendar schedule view
+ */
+function DateTimeFix(end) {
+    var day = new Date(end).getDate() - 1;
+    var mth = new Date(end).getMonth() + 1;
+    var year = new Date(end).getFullYear();
+    //for leap year and last day of month
+    if (day === 0) {
+        if (mth === 9 || mth === 4 || mth === 5 || mth === 11) {
+            day = 30;
         }
-        /**
-         * @author David JP<david.gnext@gmail.com>
-         *  Is event expire check
-         */
-        function IsValidEvent(d) {
-            var today = new Date();
-            var today_date = parseInt(today.getDate());
-            var today_month = parseInt(today.getMonth());
-            var today_year = parseInt(today.getFullYear());
-            var event_date = parseInt(new Date(d.end).getDate());
-            var event_month = parseInt(new Date(d.end).getMonth());
-            var event_year = parseInt(new Date(d.end).getFullYear());
-            if(today_year === event_year && today_month >= event_month && today_date >= event_date){
-                d.color = "#aaa";
+        else if (mth === 1 || mth === 3 || mth === 6 || mth === 7 || mth === 8 || mth === 10 || mth === 12) {
+            //last day of december is equalalent to next year first day of January
+            if (mth === 1) {
+                mth = 12;
+                year = year - 1;
             }
-            else if ((today_date >= event_date || today_date < event_date) && (today_month >= event_month || today_month < event_month) && today_year > event_year ) {
-                d.color = "#aaa";
-            }
-            else {
-                d.color = "#3a87ad";
-            }
-            return true;
+            day = 31;
         }
-        /**
-         * @author David JP<david.gnext@gmail.com>
-         * @returns {date} to fullcalendar schedule view
-         */
-        function DateTimeFix(end){
-               var day =  new Date(end).getDate() - 1;
-               var mth = new Date(end).getMonth() + 1;
-               var year = new Date(end).getFullYear();
-               //for leap year and last day of month
-               if(day === 0){
-                   if(mth === 9 || mth === 4 || mth === 5 || mth === 11) {day = 30;}
-                   else if(mth === 1 || mth === 3 || mth === 6 || mth === 7 || mth === 8|| mth === 10 || mth === 12) {
-                       //last day of december is equalalent to next year first day of January
-                       if(mth === 1){
-                           mth = 12;
-                           year = year -1 ;
-                       }
-                       day = 31;
-                   }
-                   else if(mth === 2 && year % 4 === 0) {
-                       day = 29;
-                   }
-                   else{
-                       day = 28;
-                   }
-               }
-               (mth < 10) ?  mth = "0"+mth : mth;
-               (day < 10) ?  day  = "0"+day : day;
-               var fix_date  = year+"-"+mth+"-"+ day;    //get Vitural date
-               return fix_date;
+        else if (mth === 2 && year % 4 === 0) {
+            day = 29;
         }
+        else {
+            day = 28;
+        }
+    }
+    (mth < 10) ? mth = "0" + mth : mth;
+    (day < 10) ? day = "0" + day : day;
+    var fix_date = year + "-" + mth + "-" + day;    //get Vitural date
+    return fix_date;
+}

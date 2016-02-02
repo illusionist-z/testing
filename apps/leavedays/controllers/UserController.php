@@ -18,32 +18,31 @@ class UserController extends ControllerBase {
         parent::getmodulename();
         $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
-        $this->setCommonJsAndCss();        
+        $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/css/style.css');
         $this->view->t = $this->_getTranslation();
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
- foreach ($this->session->auth as $key_name => $key_value) {
-             
+        foreach ($this->session->auth as $key_name => $key_value) {
+
             if ($key_name == 'show_admin_notification') {
-              $noti=$User->GetAdminNoti($id,0);
-                 
-            } 
-            if ($key_name == 'show_user_notification') {
-               $noti=$User->GetUserNoti($id,1); 
+                $noti = $User->GetAdminNoti($id, 0);
             }
-        }        $this->view->setVar("noti", $noti);
+            if ($key_name == 'show_user_notification') {
+                $noti = $User->GetUserNoti($id, 1);
+            }
+        } $this->view->setVar("noti", $noti);
     }
 
     public function indexAction() {
         $user = $this->session->get('user');
     }
 
-    public function applyleaveAction() {               
-           $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
-        $this->assets->addCss('common/css/jquery-ui-timepicker.css');      
+    public function applyleaveAction() {
+        $this->assets->addJs('common/js/jquery-ui-timepicker.js');
+        $this->assets->addCss('common/css/jquery-ui-timepicker.css');
         $User = new Db\CoreMember;
         $admin_id = $User->GetAdminstratorId();
         $creator_id = $admin_id[0]['rel_member_id'];
@@ -65,7 +64,7 @@ class UserController extends ControllerBase {
                     $json[$message->getField()] = $message->getMessage();
                 }
                 $json['result'] = "error";
-                
+
                 echo json_encode($json);
                 $this->view->disable();
             } else {
@@ -104,10 +103,10 @@ class UserController extends ControllerBase {
         $leave_type = $this->request->get('ltype');
         $mth = $this->request->get('month');
         $leavelist = $this->_leave->getuserleavelist($leave_type, $mth, $id);
-        
-        $absentdays= $this->_leave->getabsentbyId($id);
+
+        $absentdays = $this->_leave->getabsentbyId($id);
         $this->view->setVar("Result", $leavelist);
-        $this->view->setVar("absentdays",$absentdays);
+        $this->view->setVar("absentdays", $absentdays);
         //get maximum leaves days
         $max = $this->_leave->getleavesetting();
         $max_leavedays = $max['0']['max_leavedays'];

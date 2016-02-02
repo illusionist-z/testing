@@ -1,5 +1,7 @@
 <?php
-    use Phalcon\Filter;
+
+use Phalcon\Filter;
+
 ;
 ?>
 <!-- Content Header (Page header) -->
@@ -9,7 +11,7 @@
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
-        <li class="active"><?="Company List"; ?></li>
+        <li class="active"><?= "Company List"; ?></li>
     </ol>
 </section>
 
@@ -18,67 +20,59 @@
     <div class="row">	
         <form class="buttons" action="<?php echo $baseUri ?>managecompany/index/index">
             <input  type="text" class="userauto form-control-static" name="comlistsearch" id="com_name" placeholder="<?= "Search Company ID"; ?>" autocomplete="off">
-
             <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="" style="margin-top: -10px;">
-             
-               
-            <a href="<?php echo $baseUri?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
-     
+            <a href="<?php echo $baseUri ?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
         </form>
-
     </div>
 
     <div class="row">
         <div class="col-md-12"><!--start table content--->
-            
+
             <table class="listtbl">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th><?="Company  ID"; ?></th>
-                        <th><?="Company Name";?></th>
+                        <th><?= "Company  ID"; ?></th>
+                        <th><?= "Company Name"; ?></th>
                         <th ><?= "Starting date"; ?></th>
                         <th ><?= "Email"; ?></th>
                         <th ><?= "Phone no"; ?></th>
                         <th ><?= "dbname"; ?></th> 
                         <th ><?= "host"; ?></th>
                         <th ><?= "user limit"; ?></th>
-                   
                         <th></th>
                     </tr>
-                    
+
                 </thead>
-                <tbody>              <?php 
-                    $i=1;
+                <tbody>              <?php
+                    $i = 1;
                     foreach ($result as $result) {
                         ?>    <tr>
-                <td><?php echo $i;?></td>
-                <td><?php echo $result['company_id'];?></td>
-                <td><?php echo $result['company_name'];?></td>
-                <td><?php echo $result['starting_date'];?></td>
-                <td><?php echo $result['email'];?></td>
-                <td><?php echo $result['phone_no'];?></td>
-                <td><?php echo $result['db_name'];?></td>
-            <td><?php echo $result['host'];?></td>
-                <td><?php echo $result['user_limit'];?></td>
-                
-           
-                <td>  <a href="<?php echo $baseUri?>managecompany/index/editcompany?id=<?php echo $result['company_id'];?>" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td></tr>
-                   <?php
-                    $i++;
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $result['company_id']; ?></td>
+                            <td><?php echo $result['company_name']; ?></td>
+                            <td><?php echo $result['starting_date']; ?></td>
+                            <td><?php echo $result['email']; ?></td>
+                            <td><?php echo $result['phone_no']; ?></td>
+                            <td><?php echo $result['db_name']; ?></td>
+                            <td><?php echo $result['host']; ?></td>
+                            <td><?php echo $result['user_limit']; ?></td>
+                            <td>  <a href="<?php echo $baseUri ?>managecompany/index/editcompany?id=<?php echo $result['company_id']; ?>" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td></tr>
+                        <?php
+                        $i++;
                     }
                     ?>            
-               
+
                 </tbody>
                 <tfoot style="display:none;"></tfoot>                    
             </table>
-    </div>
+        </div>
 </section>
 <div id="content"></div>
 <div id="edituser" class="navbar">    
 </div>	
 <div id="confirm" title="Confirm Delete">
-    
+
 </div>
 
 

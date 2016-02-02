@@ -123,7 +123,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
             require $langDir . '/' . $prefix . $this->lang . '.php';
         } else {
             // fallback to some default
-            require $langDir . '/' . $prefix . "ja.php";
+            require $langDir . '/' . $prefix . "jp.php";
         }
 
         //Return a translation object
