@@ -97,7 +97,7 @@ var AddSalary = {
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-                //alert(data);    
+                alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
@@ -133,14 +133,10 @@ var AddSalary = {
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-                //alert(data);    
+                   
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                    //alert(json_obj[i].member_id);
-               // var aa = json_obj[i].member_id;
-                //alert(aa);
-                //$('#formemberid').text(json_obj[i].member_id);
-               // $(".salusername").text(aa);
+          
                 dict.push(json_obj[i].member_id);
                 }
                   //var dict = ["Test User02","Adminstrator"];
@@ -169,7 +165,7 @@ var AddSalary = {
                
 	});
     
-    $("#bsalary").click(function(){
+    $("#bsalary").blur(function(){
        var name = document.getElementById('uname').value;
        //alert(name);
 		AddSalary.getmemid(name);
