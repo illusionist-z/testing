@@ -160,6 +160,7 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
+    }
 
     /**
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
