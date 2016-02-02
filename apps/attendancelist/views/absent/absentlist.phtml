@@ -38,18 +38,17 @@ use Phalcon\Filter;
                     $filter = new Filter();
                     $i = 1;
                     $count = count($Result);
-                    if($count === 0){
+                    if ($count === 0) {
                         ?>
-                         <tr>
-                             <td colspan="8" ><center>No data to display</center></td>
-                         </tr>
-                            <?php
-                    }
-                    else{
+                        <tr>
+                            <td colspan="8" ><center>No data to display</center></td>
+                    </tr>
+                    <?php
+                } else {
                     foreach ($Result as $result) {
                         ?>                       
                         <tr>
-                            <td><?= $i ;?></td>
+                            <td><?= $i; ?></td>
                             <td><?= $filter->sanitize($result['member_login_name'], "string"); ?></td>
                             <td><?= $filter->sanitize($result['member_dept_name'], "string"); ?></td>
                             <td><?= $filter->sanitize($result['position'], "string"); ?></td>
@@ -58,15 +57,14 @@ use Phalcon\Filter;
                             <td><?= $filter->sanitize($result['member_address'], "string"); ?>
                             </td>
                             <td>
-<!--                                 <button onclick="return false;" class="absentcheck buttonn" id="<?php echo $result['member_id'] ?>">Absent</button>-->
                                 <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="absentcheck" title="Absent" id="<?php echo $result['member_id'] ?>" ></a>
                             </td>   
                         </tr>
                         <?php
                         $i++;
                     }
-                    }
-                    ?>
+                }
+                ?>
                 </tbody>
                 <tfoot style="display:none;"></tfoot>                    
             </table>

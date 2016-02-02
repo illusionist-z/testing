@@ -1,6 +1,6 @@
 if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
-    (function($) {
-        $.fn.wordExport = function(fileName) {
+    (function ($) {
+        $.fn.wordExport = function (fileName) {
             fileName = typeof fileName !== 'undefined' ? fileName : "Letter Head";
             var static = {
                 mhtml: {
@@ -16,7 +16,7 @@ if (typeof jQuery !== "undefined" && typeof saveAs !== "undefined") {
             var markup = $(this).clone();
 
             // Remove hidden elements from the output
-            markup.each(function() {
+            markup.each(function () {
                 var self = $(this);
                 if (self.is(':hidden'))
                     self.remove();

@@ -1,55 +1,57 @@
-
 <section class="content-header">
     <h1>
         <?= "Edit Company"; ?>
     </h1>
     <h5>
-        <a href="<?php echo $baseUri;?>managecompany">Back to company List</a>
+        <a href="<?php echo $baseUri; ?>managecompany">Back to company List</a>
     </h5>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
-         <li class="active"><?="Edit Company"; ?></li>
+        <li class="active"><?= "Edit Company"; ?></li>
     </ol>
 </section>
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <div class="col-md-12"><!--start add user form--->
+
+            <div id="form_div">
+                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Add New Company Form</font></div>
+
+                <form action="<?php echo $baseUri ?>managecompany/index/updatecompany" method="post" enctype="multipart/form-data">
+                    <input style="margin-top:10px ; width:50%" type="hidden" name="com[id]" id="" value="<?php echo $result['company_id'] ?>" class="col-sm-10" placeholder="Write Company ID" >
+                    <table class="row-fluid" style="font-size:13px;"><tr><td class="" style="width:20%">Company ID</td><td>
+                                <input style="margin-top:10px ; width:50%" type="text" name="" id="" value="<?php echo $result['company_id'] ?>" class="col-sm-10" placeholder="Write Company ID" disabled="true"></td></tr>
+                        <tr><td></td><td id="existId"></td></tr>
+                        <tr><td>Company Name</td><td><input style="margin-top:10px ; width:50%" value="<?php echo $result['company_name'] ?>"  type="text" name="com[name]" class="col-sm-10" id="full_name" placeholder="Wirte Company Name"></td></tr>
+                        <tr><td>Starting Date</td><td><input style="margin-top:10px ; width:50%" type="text" value="<?php echo $result['starting_date'] ?>"name="com[sdate]" class="datepicker col-sm-10" id="pass" placeholder="Write Company Starting Date"></td></tr>
+                        <tr><td>Email</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[email]" value="<?php echo $result['email'] ?>" class=" col-sm-10" id="pass" placeholder="Write Email "></td></tr>
+                        <tr><td>Phone Number</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[phno]" value="<?php echo $result['phone_no'] ?>" class=" col-sm-10" id="pass" placeholder="Write Phone Number "></td></tr>
+                        <tr><td>Database Name</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[db]" value="<?php echo $result['db_name'] ?>" class=" col-sm-10" id="pass" placeholder="Write Database Name "></td></tr>
+                        <tr><td>DB UserName</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[dbun]" class=" col-sm-10" value="<?php echo $result['user_name'] ?>" id="pass" placeholder="Write Database Username "></td></tr>
+                        <tr><td>DB Password</td><td><input style="margin-top:10px ; width:50%" type="password" name="com[dbpsw]" class=" col-sm-10" value="<?php echo $result['db_psw'] ?>" id="dbpass" placeholder="Write Database Password"><input style="margin-top:10px" type="button" class="buttonn show_pass" id="add_user" value="Show"></td></tr>
+                        <tr  id="confirm" ><td>Enter Your Password :</td><td><input type="password" name="userpass" id="userpass"><input style="margin-top:-8px" type="button" class="button continue" id="add_user" value="Continue"></td></tr>
+                        <tr><td>Host</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[host]" class=" col-sm-10" id="pass" value="<?php echo $result['host'] ?>" placeholder="Write Host Name "></td></tr>
+                        <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[limit]" class=" col-sm-10" id="pass" value="<?php echo $result['user_limit'] ?>" placeholder="Write User Limit "></td></tr>
+                        <tr><td>Module Flag</td><td>
+                                <?php foreach ($module_list as $value) { ?>
+                                    <input type="checkbox" name="check[]"  id="checkall1" value="<?php echo $value['module_id']; ?>" style="margin-bottom: 5px" <?php
+                                    foreach ($module as $data) {
+                                        if ($value['module_id'] == $data['module_id']) {
+                                            echo "checked";
+                                        }
+                                    }
+                                    ?>><?php echo $value['module_name'] ?> 
+<?php } ?> 
 
 
+                        <tr><td></td><td ><input type="submit" class="buttonn submit_useradd" id="add_user" value="Save"> <a href="<?php echo $baseUri ?>managecompany/index/deletecompany?id=<?php echo $result['company_id']; ?>"  class="buttonn submit_useradd" id="add_user"><?= "Delete"; ?></a>     <input  type="reset" class="buttonn" id="edit_close" value="Cancel"></td>
+                        </tr></table></form>
 
-        <!-- Main content -->
-        <section class="content">
-         
-         <div class="row">
-	 <div class="col-md-12"><!--start add user form--->
-        
-	<div id="form_div">
-	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Add New Company Form</font></div>
-        
-        <form action="<?php echo $baseUri?>managecompany/index/updatecompany" method="post" enctype="multipart/form-data">
-            <input style="margin-top:10px ; width:50%" type="hidden" name="com[id]" id="" value="<?php echo $result['company_id']?>" class="col-sm-10" placeholder="Write Company ID" >
-                   <table class="row-fluid" style="font-size:13px;"><tr><td class="" style="width:20%">Company ID</td><td>
-                               <input style="margin-top:10px ; width:50%" type="text" name="" id="" value="<?php echo $result['company_id']?>" class="col-sm-10" placeholder="Write Company ID" disabled="true"></td></tr>
-                  <tr><td></td><td id="existId"></td></tr>
-                  <tr><td>Company Name</td><td><input style="margin-top:10px ; width:50%" value="<?php echo $result['company_name'] ?>"  type="text" name="com[name]" class="col-sm-10" id="full_name" placeholder="Wirte Company Name"></td></tr>
-                  <tr><td>Starting Date</td><td><input style="margin-top:10px ; width:50%" type="text" value="<?php echo $result['starting_date'] ?>"name="com[sdate]" class="datepicker col-sm-10" id="pass" placeholder="Write Company Starting Date"></td></tr>
-                  <tr><td>Email</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[email]" value="<?php echo $result['email'] ?>" class=" col-sm-10" id="pass" placeholder="Write Email "></td></tr>
-                  <tr><td>Phone Number</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[phno]" value="<?php echo $result['phone_no'] ?>" class=" col-sm-10" id="pass" placeholder="Write Phone Number "></td></tr>
-                  <tr><td>Database Name</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[db]" value="<?php echo $result['db_name'] ?>" class=" col-sm-10" id="pass" placeholder="Write Database Name "></td></tr>
-                  <tr><td>DB UserName</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[dbun]" class=" col-sm-10" value="<?php echo $result['user_name'] ?>" id="pass" placeholder="Write Database Username "></td></tr>
-                  <tr><td>DB Password</td><td><input style="margin-top:10px ; width:50%" type="password" name="com[dbpsw]" class=" col-sm-10" value="<?php echo $result['db_psw'] ?>" id="dbpass" placeholder="Write Database Password"><input style="margin-top:10px" type="button" class="buttonn show_pass" id="add_user" value="Show"></td></tr>
-                  <tr  id="confirm" ><td>Enter Your Password :</td><td><input type="password" name="userpass" id="userpass"><input style="margin-top:-8px" type="button" class="button continue" id="add_user" value="Continue"></td></tr>
-                  <tr><td>Host</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[host]" class=" col-sm-10" id="pass" value="<?php echo $result['host'] ?>" placeholder="Write Host Name "></td></tr>
-                  <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[limit]" class=" col-sm-10" id="pass" value="<?php echo $result['user_limit'] ?>" placeholder="Write User Limit "></td></tr>
-                  <tr><td>Module Flag</td><td>
-                            <?php foreach ($module_list as $value) {?>
-                                 <input type="checkbox" name="check[]"  id="checkall1" value="<?php echo $value['module_id'];?>" style="margin-bottom: 5px" <?php  foreach ($module as $data) {  if($value['module_id']== $data['module_id']){echo "checked";}}?>><?php echo $value['module_name']?> 
-                           <?php }?> 
-                      
-                  
-                  <tr><td></td><td ><input type="submit" class="buttonn submit_useradd" id="add_user" value="Save"> <a href="<?php echo $baseUri?>managecompany/index/deletecompany?id=<?php echo $result['company_id']; ?>"  class="buttonn submit_useradd" id="add_user"><?= "Delete"; ?></a>     <input  type="reset" class="buttonn" id="edit_close" value="Cancel"></td>
-                  </tr></table></form>
-	
-	</div>
-          </div><!--end add user form--->
-          </div><!-- /.row -->
-		  
-        </section><!-- /.content -->
-    
+            </div>
+        </div><!--end add user form--->
+    </div><!-- /.row -->
+
+</section><!-- /.content -->
+

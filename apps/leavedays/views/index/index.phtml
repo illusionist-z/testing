@@ -1,11 +1,13 @@
-<?php use Phalcon\Tag as Tag; ?>
+<?php
+
+use Phalcon\Tag as Tag; ?>
 <div id="home_header">
     <div id="logo" class="sprite-image crm-logo"></div>
-    
-<!--    <div id="btn_user" class="header-login-name"><?=$user['name']?></div>
-    <div id="btn_maintenace" class="sprite-image icon-24 icon-24-settings"></div>-->
+
+<!--    <div id="btn_user" class="header-login-name"><?= $user['name'] ?></div>
+<div id="btn_maintenace" class="sprite-image icon-24 icon-24-settings"></div>-->
 </div>
 <div id="main_contents">
-   <?php echo $this->tag->linkTo("singup", "Admin Page!"); ?>
-<!--   <a href="{{ url("singup/1002") }}">Edit</a>-->
+<?php echo $this->tag->linkTo("singup", "Admin Page!"); ?>
+    <!--   <a href="{{ url("singup/1002") }}">Edit</a>-->
 </div>

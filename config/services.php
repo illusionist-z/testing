@@ -111,7 +111,7 @@ $di->setShared('db',function() {
     }
     else {
 //          $localhost = $this->request->getServer('HTTP_HOST');
-          echo $localhost;exit();
+         // echo $localhost;
 //          header("Location:http://localhost/salts/");
     }
 });

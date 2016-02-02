@@ -12,13 +12,12 @@ class LogoutController extends ControllerBase {
         $this->session->destroy();
         $this->response->redirect('index/index');
     }
-    
-    public function gettranslateAction(){
+
+    public function gettranslateAction() {
         $t = $this->_getTranslation();
         $data['logout'] = $t->_("logout");
-       $this->view->disable();
+        $this->view->disable();
         echo json_encode($data);
-
     }
 
 }

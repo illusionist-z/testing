@@ -23,20 +23,9 @@ $(function () {
         alert("please check aleast one!");
         location.reload();
     }
-         
-//         $.ajax({
-//             url: baseUri + 'salary/index/printsalary',
-//             type: 'get',
-//             data : {chk_val:chk},
-//
-//         });
+     
      });
        
-
-     
-  
-     
-     
     $('#btn_tax_form').click(function () {  
     var month = document.getElementById('month').value;
     var year = document.getElementById('year').value;
@@ -50,12 +39,6 @@ $(function () {
     }
     
          window.location.href = baseUri + 'salary/index/printtaxform?chk_val='+chk+'&month='+month+'&year='+year;
-//         $.ajax({
-//             url: baseUri + 'salary/index/printsalary',
-//             type: 'get',
-//             data : {chk_val:chk},
-//
-//         });
      });
      $('#btn_tax').click(function () {  
     var month = document.getElementById('month').value;
@@ -95,15 +78,7 @@ $(function () {
         alert("please check aleast one!");
         location.reload();
     }
-         //window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
-//         $.ajax({
-//             url: baseUri + 'salary/index/salarydetail',
-//             type: 'get',
-//             data : {chk_val:chk},
-////             success: function (data) {
-////                 alert("success");
-////             }
-//         });
+         
      });
  });
 function checkAll(ele) {

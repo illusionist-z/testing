@@ -19,11 +19,11 @@
 }
 
 .ssb-right{
-  width:26%;
-  float: right;
+    width:26%;
+    float: right;
 }
 @media print{
-  body *{ visibility: hidden; }
-  .printable *{ visibility: visible;}
-  #side {display:none;}
+    body *{ visibility: hidden; }
+    .printable *{ visibility: visible;}
+    #side {display:none;}
 }

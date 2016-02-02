@@ -16,10 +16,10 @@ try {
         'Library\Core' => __DIR__.'/../library/core/',
        
         //set namespace for auth model
-//        'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
-//        // set namespace for the core module
-//        'salts\Core\Controllers' => __DIR__.'/../apps/core/controllers/',
-//        'salts\Core\Models' => __DIR__.'/../apps/core/models/',
+        //'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
+        // set namespace for the core module
+        //'salts\Core\Controllers' => __DIR__.'/../apps/core/controllers/',
+        'salts\Core\Models' => __DIR__.'/../apps/core/models/',
 //        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
 //        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
     ))->register();
@@ -30,13 +30,13 @@ try {
         // set namespace for the core module
         'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => '../apps/core/models/',
-        'salts\Auth\Controllers' => '../apps/auth/controllers/',
-        'salts\Auth\Models' => '../apps/auth/models/',
-        //set namespace for auth model
+//        'salts\Auth\Controllers' => '../apps/auth/controllers/',
+//        'salts\Auth\Models' => '../apps/auth/models/',
+//        //set namespace for auth model
 //        'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
 //        // set namespace for the core module
 //        'salts\Core\Controllers' => __DIR__.'/../apps/core/controllers/',
-//        'salts\Core\Models' => __DIR__.'/../apps/core/models/',
+        'salts\Core\Models' => __DIR__.'/../apps/core/models/',
 //        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
 //        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
     ));
@@ -74,9 +74,10 @@ try {
 
     // Include modules
     require __DIR__ . '/../config/modules.php';
-    
-    // Module config
-    require __DIR__ . '/../config/module_config.php';
+    /**
+     * Module config 
+     */
+    require __DIR__ . '/../library/core/module_config.php';
     echo $application->handle()->getContent();
 } catch (Phalcon\Exception $e) {
     $logString = $e->getMessage() . " [{$e->getFile()}({$e->getLine()})]" . PHP_EOL

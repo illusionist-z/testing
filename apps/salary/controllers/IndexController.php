@@ -129,7 +129,7 @@ class IndexController extends ControllerBase {
         $TaxDeduction = new SalaryTaxsDeduction();
         $deduce = $TaxDeduction->getdedlist();
 
-        $position = $this->salaryconfig->position;
+        $position = $this->salaryconfig['position'];
         if ($this->permission == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $this->view->setVar("usernames", $user_name);

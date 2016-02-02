@@ -9,15 +9,13 @@
     }
 </script>
 <?php
+foreach ($this->session->auth as $key_name => $key_value) {
+    if ($key_name == 'user_dashboard') {
 
-foreach ($this->session->auth as $key_name => $key_value) {             
-                if ($key_name == 'user_dashboard') {
-                
-                $this->view->disable();
-                $this->response->redirect('core/index');
-                } 
-        }
-        
+        $this->view->disable();
+        $this->response->redirect('core/index');
+    }
+}
 ?>
 <div class="" >
     <!-- Content Header (Page header) -->
@@ -39,268 +37,272 @@ foreach ($this->session->auth as $key_name => $key_value) {
             <div class="col-md-12">
                 <div class="top-row"><a href="<?= $baseUri ?>attendancelist/index/todaylist"><img src="../../common/img/user_male_accept.png" class="imgstyle"><font style="color:green;"><?= $attname ?> </font><?= $t->_("attend"); ?></a></div>
                 <div class="top-row"><a href="<?= $baseUri ?>attendancelist/absent/absentlist"><img src="../../common/img/user_male_delete3.png" class="imgstyle"><font style="color:red;"><?= $absent ?></font> <?= $t->_("absent"); ?></a></div>
-                            </div>
-                            <div class="col-md-12">
-                                <div style="height:30px"></div>
-                                <!-- Small boxes (Stat box) -->
-                                <div class="row">
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-aqua" onclick="window.location.href = '../../manageuser/index/index'" id="pointer_style1">
-                                            <img src="../../common/img/User-128.png">
-                                            <span class="forsize"><?= $t->_("manageuser"); ?></span>
-                                        </div>
-                                    </div><!-- ./col -->
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-green" onclick="window.location.href = '../../attendancelist/index/todaylist'" id="pointer_style2">
-                                            <img src="../../common/img/View-List-128.png" ">
-                                            <span class="forsize"><?= $t->_("attendancelist"); ?></span>
-                                        </div>
-                                    </div><!-- ./col -->
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-yellow" onclick="window.location.href = '../../leavedays/index/leavelist'" id="pointer_style3">
-                                            <img src="../../common/img/Calendar-Date-02-128.png">
-                                            <span class="forsize"><?= $t->_("leaveday"); ?></span>
-                                        </div>
-                                    </div><!-- ./col -->
-                                    <div class="col-lg-3 col-xs-6">
-                                        <!-- small box -->
-                                        <div class="small-box bg-red" onclick="window.location.href = '../../salary/index/salarylist'" id="pointer_style3">
-                                            <img src="../../common/img/Dollar-128.png">
-                                            <span class="forsize"><?= $t->_("salary"); ?></span>
-                                        </div>
-                                    </div><!-- ./col -->
-                                </div><!-- /.row -->
+            </div>
+            <div class="col-md-12">
+                <div style="height:30px"></div>
+                <!-- Small boxes (Stat box) -->
+                <div class="row">
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-aqua" onclick="window.location.href = '../../manageuser/index/index'" id="pointer_style1">
+                            <img src="../../common/img/User-128.png">
+                            <span class="forsize"><?= $t->_("manageuser"); ?></span>
+                        </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green" onclick="window.location.href = '../../attendancelist/index/todaylist'" id="pointer_style2">
+                            <img src="../../common/img/View-List-128.png" ">
+                            <span class="forsize"><?= $t->_("attendancelist"); ?></span>
+                        </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-yellow" onclick="window.location.href = '../../leavedays/index/leavelist'" id="pointer_style3">
+                            <img src="../../common/img/Calendar-Date-02-128.png">
+                            <span class="forsize"><?= $t->_("leaveday"); ?></span>
+                        </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-red" onclick="window.location.href = '../../salary/index/salarylist'" id="pointer_style3">
+                            <img src="../../common/img/Dollar-128.png">
+                            <span class="forsize"><?= $t->_("salary"); ?></span>
+                        </div>
+                    </div><!-- ./col -->
+                </div><!-- /.row -->
 
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        <div style="height:30px;"></div>
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+                <!-- MAP & BOX PANE -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><?= $t->_("checkinout"); ?></h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-5">
+                                <div id="form_div">
+
+                                    <div class="left_div_style_box" style="background-color: white; height:450px ; border: 1px solid #ccc; font-size: 20px;">
+
+                                        <div class="col-md-7 col-md-offset-3">
+                                            <h1 style="font-size:150%"><?= $t->_("current_time"); ?> : <span id="ct" style="color:red;" ></span> </h1>
+                                        </div><br><br>
+                                        <div class="col-md-8 col-md-offset-3">
+                                            <form id="theForm" name="theForm" method="post" action="">
+                                                <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/><?= $t->_("late_reason"); ?>
+                                                <div id="xtraInfo" style="display:none;">
+                                                    <textarea class="textarea" id="note" placeholder="<?= $t->_("Write"); ?>" maxlength="60" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                </div>
+                                            </form>
+
+                                        </div><br><br>
+                                        <div class="col-md-6 col-md-offset-4">
+                                            <a href="#" class="btn btn-primary btn-sm btn-flat checkin" onclick="//Content.View.apply(this, ['checkin']);" style="width: 150px;border-radius: 5px;"><?= $t->_("checkin"); ?></a>
+                                        </div><br><br>
+                                        <div class="col-md-6 col-md-offset-4">
+                                            <a href="#"  class="btn btn-primary btn-sm btn-flat checkout" id="checkout" style="width: 150px;border-radius: 5px;"><?= $t->_("checkout"); ?></a>
+                                        </div><br><br>
+                                    </div>
+
+                                </div>
                             </div><!-- /.col -->
-                            </div><!-- /.row -->
-                            <div style="height:30px;"></div>
-                            <!-- Main row -->
-                            <div class="row">
-                                <!-- Left col -->
-                                <div class="col-md-8">
-                                    <!-- MAP & BOX PANE -->
-                                    <div class="box box-success">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"><?= $t->_("checkinout"); ?></h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
-                                            </div>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body no-padding">
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-5">
-                                                    <div id="form_div">
+                        </div><!-- /.row -->
 
-                                                        <div class="left_div_style_box" style="background-color: white; height:450px ; border: 1px solid #ccc; font-size: 20px;">
+                    </div><!-- /.box-body -->
 
-                                                            <div class="col-md-7 col-md-offset-3">
-                                                                <h1 style="font-size:150%"><?= $t->_("current_time"); ?> : <span id="ct" style="color:red;" ></span> </h1>
-                                                            </div><br><br>
-                                                            <div class="col-md-8 col-md-offset-3">
-                                                                <form id="theForm" name="theForm" method="post" action="">
-                                                                    <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)"/><?= $t->_("late_reason"); ?>
-                                                                    <div id="xtraInfo" style="display:none;">
-                                                                        <textarea class="textarea" id="note" placeholder="<?= $t->_("Write"); ?>" maxlength="60" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                                                                    </div>
-                                                                </form>
+                </div><!-- /.box -->
 
-                                                            </div><br><br>
-                                                            <div class="col-md-6 col-md-offset-4">
-                                                                <a href="#" class="btn btn-primary btn-sm btn-flat checkin" onclick="//Content.View.apply(this, ['checkin']);" style="width: 150px;border-radius: 5px;"><?= $t->_("checkin"); ?></a>
-                                                            </div><br><br>
-                                                            <div class="col-md-6 col-md-offset-4">
-                                                                <a href="#"  class="btn btn-primary btn-sm btn-flat checkout" id="checkout" style="width: 150px;border-radius: 5px;"><?= $t->_("checkout"); ?></a>
-                                                            </div><br><br>
-                                                        </div>
+            </div><!-- /.col -->
 
-                                                    </div>
-                                                </div><!-- /.col -->
-
-                                            </div><!-- /.row -->
-
-                                        </div><!-- /.box-body -->
-
-                                    </div><!-- /.box -->
-
-                                </div><!-- /.col -->
-
-                                <div class="col-md-4">
+            <div class="col-md-4">
 
 
-                                    <div class="box box-default">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"><?= $t->_("latest_news"); ?></h3>
-                                            <div class="box-tools pull-right">
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><?= $t->_("latest_news"); ?></h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 
-                                            </div>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="chart-responsive">
-                                                        <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
-                                                            <li>
-                                                                <?= $t->_("no_leave"); ?>
-                                                                <ul>
-                                                                        <?php
-                                                                                $noleave = [];
-                                                                                foreach ($nlname as $na) { 
-                                                                        ?>
-                                                                               <li id="noleaveli">
-                                                                                <?php
-                                                                                    if ($na['member_profile'] == null) {
-                                                                                        $img = "profile1.jpg";
-                                                                                    } else {
-                                                                                        $img = $na['member_profile'];
-                                                                                        if(file_exists('./uploads/'.$img)){                                                            
-                                                                                            $img=$img;                                                            
-                                                                                        }else{  
-                                                                                            $img = "profile1.jpg";                                                                 
-                                                                                        }
-                                                                                    }
-                                                                                 ?>                 
-                                                                        <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
-                                                                        <?= $na['member_login_name'] ?>
-                                                                    </li>
-                                                                    <?php 
-                                                                         array_push($noleave, $na['member_login_name']);
-                                                                            } ?>
-                                                                </ul>
-                                                                <?php 
-                                                                        if(sizeof($noleave) > 2){
-                                                                           ?>
-                                                                 <style type="text/css">#noleavelist,hr{
-                                                                                        display:block;
-                                                                                        }</style> 
-                                                                <?php
-                                                                        }else{ ?>
-                                                                                        <style type="text/css">#noleavelist,hr{
-                                                                                        display:none;
-                                                                                        }</style>             
-                                                                <?php
-                                                                        }
-                                                                ?>
-                                                                <hr>
-                                                                <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelist"><?= $t->_("View All"); ?></a>
-                                                            </li>
-                                                        </ul>
-                                                        <ul class="nav nav-pills nav-stacked">
-                                                            <li>
-                                                                <?= $t->_("leave_most"); ?>
-                                                                <ul><?php 
-                                                                $count = [];
-                                                                foreach ($lname as $na) { 
-                                                                   ?>
-                                                                        <li id="noleaveli">
-                                                                        <?php
-                                                                        if ($na['member_profile'] == null) {
-                                                                            $img = "profile1.jpg";
-                                                                        } else {
-                                                                            $img = $na['member_profile'];
-                                                                            if(file_exists('./uploads/'.$img)){                                                            
-                                                                                $img=$img;
-                                                                            }else{  
-                                                                                $img = "profile1.jpg";
-                                                                            }
-                                                                        }
-                                                                        ?>
-                                                                        <img src="../../uploads/<?php echo $img;?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
-                                                                        <?= $na['member_login_name'] ?>
-                                                                    </li>
-                                                                    <?php 
-                                                                    array_push($count, $na['member_login_name']);
-                                                                            } ?>
-                                                                </ul>
-                                                                  <?php 
-                                                                        if(sizeof($count) > 2){
-                                                                           ?>
-                                                                 <style type="text/css">#leavemostlist,hr{
-                                                                                        display:block;
-                                                                                        }</style> 
-                                                                <?php
-                                                                        }else{ ?>
-                                                                                        <style type="text/css">#leavemostlist,hr{
-                                                                                        display:none;
-                                                                                        }</style>
-                                                                <?php
-                                                                        }
-                                                                ?>
-                                                                <hr>
-                                                                <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlist"><?= $t->_("View All"); ?></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div><!-- ./chart-responsive -->
-                                                </div><!-- /.col -->
-
-                                            </div><!-- /.row -->
-                                        </div><!-- /.box-body -->
-
-                                    </div><!-- /.box -->
-
-                                   <!-- USERS LIST -->
-                                    <div class="box box-danger">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title"><?= $t->_("last_member"); ?></h3>
-                                            <div class="box-tools pull-right">
-                                                <span class="label label-danger"><?php echo $newnumber.' '. $t->_("new_member"); ?> </span>
-                                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                            </div>
-                                        </div><!-- /.box-header -->
-                                        <div class="box-body no-padding">
-                                            <ul class="users-list clearfix">
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="chart-responsive">
+                                    <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
+                                        <li>
+                                            <?= $t->_("no_leave"); ?>
+                                            <ul>
                                                 <?php
-                                                 $member = [];
-                                                 foreach ($name as $v) { ?>
-                                                    <li>
+                                                $noleave = [];
+                                                foreach ($nlname as $na) {
+                                                    ?>
+                                                    <li id="noleaveli">
                                                         <?php
-                                                        if ($v->member_profile == null) {
+                                                        if ($na['member_profile'] == null) {
                                                             $img = "profile1.jpg";
                                                         } else {
-                                                            $img = $v->member_profile;
-                                                            if(file_exists('./uploads/'.$img)){                                                            
-                                                                $img=$img;                                                            
-                                                            }else{  
-                                                                $img = "profile1.jpg";                                                                 
+                                                            $img = $na['member_profile'];
+                                                            if (file_exists('./uploads/' . $img)) {
+                                                                $img = $img;
+                                                            } else {
+                                                                $img = "profile1.jpg";
                                                             }
                                                         }
-                                                        ?>                                                 
-                                                        <img src="../../uploads/<?php echo $img; ?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
-                                                        <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
-                                                        <span class="users-list-date"><?= $v->created_dt; ?></span>
-                                                    </li>                          
-                                                <?php 
-                                                array_push($member, $v->member_login_name);
-                                                            } ?>
-                                            </ul><!-- /.users-list -->
-                                            <?php 
-                                                                        if(sizeof($member) > 3){
-                                                                           ?>
-                                                                 <style type="text/css">.uppercase,hr{
-                                                                                        display:block;
-                                                                                        }</style> 
-                                                                <?php
-                                                                        }else{ ?>
-                                                                                        <style type="text/css">.uppercase{
-                                                                                        display:none;
-                                                                                        }</style>             
-                                                                <?php
-                                                                        }
-                                                                ?>
-                                        </div><!-- /.box-body -->
-                                        <div class="box-footer text-center">
-                                            <a href="../../manageuser/index" class="uppercase"><?php echo $t->_("View All"); ?></a>
-                                        </div><!-- /.box-footer -->
-                                    </div><!--/.box -->
+                                                        ?>                 
+                                                        <img src="../../uploads/<?php echo $img; ?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
+                                                        <?= $na['member_login_name'] ?>
+                                                    </li>
+                                                    <?php
+                                                    array_push($noleave, $na['member_login_name']);
+                                                }
+                                                ?>
+                                            </ul>
+                                            <?php
+                                            if (sizeof($noleave) > 2) {
+                                                ?>
+                                                <style type="text/css">#noleavelist,hr{
+                                                        display:block;
+                                                    }</style> 
+                                                <?php } else {
+                                                    ?>
+                                                <style type="text/css">#noleavelist,hr{
+                                                        display:none;
+                                                    }</style>             
+                                                    <?php
+                                                }
+                                                ?>
+                                            <hr>
+                                            <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelist"><?= $t->_("View All"); ?></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li>
+                                            <?= $t->_("leave_most"); ?>
+                                            <ul><?php
+                                                $count = [];
+                                                foreach ($lname as $na) {
+                                                    ?>
+                                                    <li id="noleaveli">
+                                                        <?php
+                                                        if ($na['member_profile'] == null) {
+                                                            $img = "profile1.jpg";
+                                                        } else {
+                                                            $img = $na['member_profile'];
+                                                            if (file_exists('./uploads/' . $img)) {
+                                                                $img = $img;
+                                                            } else {
+                                                                $img = "profile1.jpg";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <img src="../../uploads/<?php echo $img; ?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
+                                                        <?= $na['member_login_name'] ?>
+                                                    </li>
+                                                    <?php
+                                                    array_push($count, $na['member_login_name']);
+                                                }
+                                                ?>
+                                            </ul>
+                                            <?php
+                                            if (sizeof($count) > 2) {
+                                                ?>
+                                                <style type="text/css">#leavemostlist,hr{
+                                                        display:block;
+                                                    }</style> 
+                                                <?php } else {
+                                                    ?>
+                                                <style type="text/css">#leavemostlist,hr{
+                                                        display:none;
+                                                    }</style>
+                                                    <?php
+                                                }
+                                                ?>
+                                            <hr>
+                                            <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlist"><?= $t->_("View All"); ?></a>
+                                        </li>
+                                    </ul>
+                                </div><!-- ./chart-responsive -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+                    </div><!-- /.box-body -->
+
+                </div><!-- /.box -->
+
+                <!-- USERS LIST -->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title"><?= $t->_("last_member"); ?></h3>
+                        <div class="box-tools pull-right">
+                            <span class="label label-danger"><?php echo $newnumber . ' ' . $t->_("new_member"); ?> </span>
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div><!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <ul class="users-list clearfix">
+                            <?php
+                            $member = [];
+                            foreach ($name as $v) {
+                                ?>
+                                <li>
+                                    <?php
+                                    if ($v->member_profile == null) {
+                                        $img = "profile1.jpg";
+                                    } else {
+                                        $img = $v->member_profile;
+                                        if (file_exists('./uploads/' . $img)) {
+                                            $img = $img;
+                                        } else {
+                                            $img = "profile1.jpg";
+                                        }
+                                    }
+                                    ?>                                                 
+                                    <img src="../../uploads/<?php echo $img; ?>" style="box-shadow: 2px 3px 2px #428bca;width:200px;height:65px;"  class="user-image" alt="User Image"/>
+                                    <a class="users-list-name" href="#"><?= $v->member_login_name; ?></a>
+                                    <span class="users-list-date"><?= $v->created_dt; ?></span>
+                                </li>                          
+                                <?php
+                                array_push($member, $v->member_login_name);
+                            }
+                            ?>
+                        </ul><!-- /.users-list -->
+                        <?php
+                        if (sizeof($member) > 3) {
+                            ?>
+                            <style type="text/css">.uppercase,hr{
+                                    display:block;
+                                }</style> 
+                            <?php } else {
+                                ?>
+                            <style type="text/css">.uppercase{
+                                    display:none;
+                                }</style>             
+                                <?php
+                            }
+                            ?>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer text-center">
+                        <a href="../../manageuser/index" class="uppercase"><?php echo $t->_("View All"); ?></a>
+                    </div><!-- /.box-footer -->
+                </div><!--/.box -->
 
 
-                                </div><!-- /.col -->
+            </div><!-- /.col -->
 
-                            </div><!-- /.row -->
+        </div><!-- /.row -->
 
-                            </section><!-- /.content -->
-                            </div>
+    </section><!-- /.content -->
+</div>

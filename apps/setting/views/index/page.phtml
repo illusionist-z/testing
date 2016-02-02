@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
  * @page.html
@@ -20,15 +19,15 @@
                 <td> Page Name</td>
                 <td>
                     <input list="browsers" name="permission_code" value="" id="page_rule">
-                                <datalist id="browsers">
-                                  <?php  foreach ($coreuser2 as $datauser2) {
-                                      ?>
-                                  
-                                  <option value="<?= $datauser2->permission_code ?>">
-                                    <?php
-                                  }
-                                   ?>
-                                </datalist>
+                    <datalist id="browsers">
+                        <?php foreach ($coreuser2 as $datauser2) {
+                            ?>
+
+                            <option value="<?= $datauser2->permission_code ?>">
+                                <?php
+                            }
+                            ?>
+                    </datalist>
                 </td>
             </tr>
             <tr>
@@ -40,24 +39,24 @@
                     Group Name  
                 </td>
                 <td>
-                                    <select type="text" name='page_rule_group' id="page_rule">
-                                                    <?php
-                                                    foreach ($coreid as $data) {
-                                                        ?>
-                                                        <option value="<?= $data->group_id."_".$data->name_of_group ?>" >
-                                                            <?= $data->name_of_group ?>                                       
-                                                        </option>                                                       
-                                                        <?php
-                                                    }
-                                                    ?>
-                                    </select>
+                    <select type="text" name='page_rule_group' id="page_rule">
+                        <?php
+                        foreach ($coreid as $data) {
+                            ?>
+                            <option value="<?= $data->group_id . "_" . $data->name_of_group ?>" >
+                                <?= $data->name_of_group ?>                                       
+                            </option>                                                       
+                            <?php
+                        }
+                        ?>
+                    </select>
                 </td>
             </tr>
         </table>
-       
-                                
- 
-        
+
+
+
+
     </form>
 </div>   
 
@@ -74,31 +73,31 @@
     </tr>
 </thead>
 <tbody style="display: none;text-align:center;">
-<?php foreach ($coreuser2 as $datauser2) { ?>
-    <tr>   
-        <td style="text-align:center;"><?= $datauser2->idpage ?></td>
-        <td style="text-align:left;"><?= $datauser2->permission_code ?></td>                                       
-        <?php
-                foreach ($coreid as $data) {
+    <?php foreach ($coreuser2 as $datauser2) { ?>
+        <tr>   
+            <td style="text-align:center;"><?= $datauser2->idpage ?></td>
+            <td style="text-align:left;"><?= $datauser2->permission_code ?></td>                                       
+            <?php
+            foreach ($coreid as $data) {
 
-                    if ($datauser2->page_rule_group == $data->group_id) {
-        ?>
-        <td style="text-align:left;"> 
-                <?= $data->name_of_group ?>  
-                                 (<?= $datauser2->page_rule_group ?>)
-        </td>
-         <?php
+                if ($datauser2->page_rule_group == $data->group_id) {
+                    ?>
+                    <td style="text-align:left;"> 
+                        <?= $data->name_of_group ?>  
+                        (<?= $datauser2->page_rule_group ?>)
+                    </td>
+                    <?php
+                }
+                //else{ echo 'Error';}
             }
-            //else{ echo 'Error';}
-        }
-        ?>
-        <td>
+            ?>
+            <td>
 
-            <a href="#" onclick="PageRuleSetting.apply(this);
+                <a href="#" onclick="PageRuleSetting.apply(this);
                         return false;" class="insettingedit" type="black" id="<?= $datauser2->idpage ?>">  </a>  
-        </td> 
+            </td> 
 
-    </tr>
+        </tr>
 
     <div id="pageRule<?= $datauser2->idpage ?>" title="Change User Rule" style="display: none;">
 
@@ -107,17 +106,17 @@
         <input type="text" style="margin-left:50px;" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled>
         <br> 
         <form method="POST" action="User2RuleSetting">    
-        Page Name   
-        <input type="text"  style="margin-left:33px;" name="permission_code" value="<?= $datauser2->permission_code ?>">
-        <br><br>         
+            Page Name   
+            <input type="text"  style="margin-left:33px;" name="permission_code" value="<?= $datauser2->permission_code ?>">
+            <br><br>         
             Group Rule
             <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >            
-            
+
             <select type="text" style="margin-left:33px;" name='page_rule_group' value='' id="changeuser">
                 <?php
                 foreach ($coreid as $data) {
                     ?>
-                    <option value="<?= $data->group_id ?>" <?php if( $datauser2->page_rule_group  == $data->group_id){ ?>selected <?php } ?>>
+                    <option value="<?= $data->group_id ?>" <?php if ($datauser2->page_rule_group == $data->group_id) { ?>selected <?php } ?>>
                         <?= $data->name_of_group ?>  
                     </option>
                     <?php
@@ -127,9 +126,6 @@
         </form>
 
     </div>
-
-
-
 
 
     <?php

@@ -26,7 +26,7 @@ class Auth extends Component {
             
             $rs = $this->getDI()->getShared("login_db")
                     ->query($sql, array($param['company_id']));
-            $row = $rs->fetchArray();
+            $row = $rs->fetchArray();var_dump($row);exit;
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
