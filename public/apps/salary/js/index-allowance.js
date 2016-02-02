@@ -12,7 +12,6 @@ var Allowance = {
             type: "GET",
             success: function (res) {
                 var result = $.parseJSON(res);
-
                 var data = '<form id="edit_all" width="250px" height="200px"><table width="450px" height="150px"   align="center" style="font-size:13px;" >';
                 data += '<br><tr><td >' + result[1]['allowance_name'] + '</td><td><input style="margin-top:10px;font-size:13px;" type="text" value="' + result[0]['allowance_name'] + '" name="name"></td></tr>'
                         + '<tr><td >' + result[1]['allowance_amt'] + '</b></td><td><input style="margin-top:10px;font-size:13px;" type="text" value=' + result[0]['allowance_amount'] + ' name="allowance_amount"></td></tr>'
@@ -39,14 +38,6 @@ var Allowance = {
             width: 'auto',
             modal: true,
             title: title,
-            /* show:{
-             effect:"explode",//effect:"blind",
-             duration:200
-             },
-             hide:{
-             effect:"explode",
-             duration:200
-             }*/
         });
         $ovl.html(d);
         $ovl.dialog("open");
@@ -67,7 +58,6 @@ var Allowance = {
             data: form.serialize(),
             url: "edit_data",
             success: function () {
-
                 d.dialog("close");
             }
         }).done(function () {
@@ -106,7 +96,6 @@ var Allowance = {
             data: form.serialize(),
             url: "delete_data",
             success: function () {
-
                 d.dialog("close");
             }
         }).done(function () {
@@ -122,7 +111,6 @@ $(document).ready(function () {
         url: "gettranslate",
         type: "GET",
         success: function (res) {
-            //  alert(res);
             var result = $.parseJSON(res);
             var allowance_name = result['allowance_name'];
             var allowance_amount = result['amount'];
@@ -132,7 +120,6 @@ $(document).ready(function () {
             var counter1 = 2;
 
             $("#addButton").click(function () {
-
                 if (counter > 10) {
                     alert("Only 10 textboxes allow");
                     return false;

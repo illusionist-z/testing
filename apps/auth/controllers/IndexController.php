@@ -1,4 +1,5 @@
 <?php
+
 namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
@@ -8,9 +9,9 @@ class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-            
+
         $this->setCommonJsAndCss();
-        $this->assets->addJs('apps/auth/js/forgot.js');      
+        $this->assets->addJs('apps/auth/js/forgot.js');
     }
 
     /**
@@ -19,10 +20,10 @@ class IndexController extends ControllerBase {
      */
     public function indexAction($mode = NULL) {
         $localhost = ($this->request->getServer('HTTP_HOST'));
- 
+
         if (isset($_SESSION['startTime']) != null) {
             $this->view->pick('salts/auth/index/failer');
-            $page = "http://".$localhost."/salts/auth/index/failer";
+            $page = "http://" . $localhost . "/salts/auth/index/failer";
             $sec = "1";
             header("Refresh: $sec; url=$page");
         } elseif (isset($_SESSION['startTime']) == null) {
@@ -39,10 +40,10 @@ class IndexController extends ControllerBase {
      */
     public function failerAction($mode = 1) {
         /*
-        * User failerAction 
-        * @author Yan Lin Pai <wizardrider@gmail.com>
-        *     
-        */
+         * User failerAction 
+         * @author Yan Lin Pai <wizardrider@gmail.com>
+         *     
+         */
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
@@ -50,7 +51,7 @@ class IndexController extends ControllerBase {
         if ($_SESSION["attempts"] < 4) {
 
             if ($this->session) {
-                                  
+
                 $member_name = $this->session->tokenpush;
                 $chack_user2 = new \CoreMember();
                 $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
@@ -71,8 +72,8 @@ class IndexController extends ControllerBase {
                         session_destroy();
                         // Login To Next. 30 Minutes
                     } elseif ($core_fai <= $timestamp) {
-                        
-                         $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
+
+                        $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
                         $this->view->errorMsg = "company id or user name or password wrong";
                         $this->view->pick('index/index');
                     }
@@ -82,7 +83,6 @@ class IndexController extends ControllerBase {
                     $this->view->errorMsg = 'company id or user name or password wrong';
                     $this->view->pick('index/index');
                 }
-                // echo "You failed to log-in, try again";
             }
         } else {
             $member_name = $this->session->tokenpush;
@@ -102,24 +102,23 @@ class IndexController extends ControllerBase {
 
                     $_SESSION['expire'] = $_SESSION['startTime'];
                     $rout_time = $nowtime - $_SESSION['expire'];
-                     $localhost = ($this->request->getServer('HTTP_HOST'));
-                     
-                    $page = "http://".$localhost."/salts/auth/index/faileruser";
+                    $localhost = ($this->request->getServer('HTTP_HOST'));
+
+                    $page = "http://" . $localhost . "/salts/auth/index/faileruser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
                         session_destroy();
                         echo "Your session has expired ! ";
-                        //$this->response->redirect('auth');    
                     }
                 } else if (isset($_SESSION['startTime']) != null && count($chack_user) == 0) {
                     $nowtime = (date("Y-m-d H:i:s"));
                     $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
                     // checking the time now when home page starts
                     $rout_time = $nowtime - $_SESSION['expire'];
-                     $localhost = ($this->request->getServer('HTTP_HOST'));    
-                     
-                    $page = "http://".$localhost."/salts/auth/index/faileruser";
+                    $localhost = ($this->request->getServer('HTTP_HOST'));
+
+                    $page = "http://" . $localhost . "/salts/auth/index/faileruser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
@@ -144,10 +143,8 @@ class IndexController extends ControllerBase {
         }
     }
 
-    
-    
     public function faileruserAction() {
-          
+
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
@@ -166,24 +163,21 @@ class IndexController extends ControllerBase {
                 $_SESSION['expire'] = $_SESSION['startTime'];
 
                 $rout_time = $nowtime - $_SESSION['expire'];
-                  $localhost = ($this->request->getServer('HTTP_HOST'));   
-                //  $this->view->pick('salts/auth/index/faileruser');
-                $page = "http://".$localhost."/salts/auth/index/faileruser";
+                $localhost = ($this->request->getServer('HTTP_HOST'));
+                $page = "http://" . $localhost . "/salts/auth/index/faileruser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
                     echo "Your session has expired ! ";
-                    //$this->response->redirect('auth');    
                 }
             } else if (isset($_SESSION['startTime']) != null && count($chack_user) == 0) {
                 $nowtime = (date("Y-m-d H:i:s"));
                 $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
                 // checking the time now when home page starts
                 $rout_time = $nowtime - $_SESSION['expire'];
-                $localhost = ($this->request->getServer('HTTP_HOST'));      
-                //$this->view->pick('salts/auth/index/failer');
-                $page = "http://".$localhost."/salts/auth/index/faileruser";
+                $localhost = ($this->request->getServer('HTTP_HOST'));
+                $page = "http://" . $localhost . "/salts/auth/index/faileruser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
@@ -192,7 +186,8 @@ class IndexController extends ControllerBase {
             }
         }
     }
-        /**
+
+    /**
      * When user failed  email  go 
      * @param type $mode
      */
@@ -201,192 +196,136 @@ class IndexController extends ControllerBase {
         //$this->view->mode=1;
         $this->view->pick('index/index');
     }
-    
+
     public function forgotpasswordAction() {
-       //  $this->assets->addJs('apps/auth/js/forgot.js');      
-       
+        
     }
-  public function SaltsForGetAction()
-    {
+
+    public function SaltsForGetAction() {
         $core = new CoreMember();
         $login = $this->request->getPost('SaltsForGetInput');
         $user = Users::findFirstByLogin($login);
         if ($user) {
-               $this->view->disable();
-              $this->response->redirect('setting/index/index');
-         }
+            $this->view->disable();
+            $this->response->redirect('setting/index/index');
+        }
     }
+
     public function resetyourpasswordAction() {
-       // echo 'aa';           
-        //echo $member_mail;exit;
-//        $UserList = new Db\CoreMember();
-//        $Username = $UserList::getinstance()->getusername();
-//       //print_r($member_mail);exit;
-//      // echo $member_mail;exit;
-//         $ModelAuth = new Models\Auth();
-//        $ModelAuth->findemail($member_mail);
+        
     }
-      public function sendmailAction() {        
-         $member_mail = $this->request->get('email');
-         $Admin=new Db\CoreMember;
-         
-         $result = $Admin->findemail($member_mail);
-         
-         
-        if($result){
-          //print_r($result);exit;
+
+    public function sendmailAction() {
+        $member_mail = $this->request->get('email');
+        $Admin = new Db\CoreMember;
+
+        $result = $Admin->findemail($member_mail);
+
+        if ($result) {
             $this->view->setVar("Result", $result);
-           // sendmail($result);
-//            $token = uniqid(bin2hex(mcrypt_create_iv(45, MCRYPT_DEV_RANDOM)));
-//            print_r($token);exit;
-             //$this->view->email = $result;       
-             //$this->response->redirect('auth/index/resetyourpassword');
+        } else {
+            echo 'Error';
         }
-       else{
-           echo 'Error';
-          //  print_r($user);exit;
-         //  $this->response->redirect('auth/index/faileremail');
-       }
-          
     }
-    public function newpasswordAction() {  
-         //$this->assets->addJs('apps/auth/js/forgot.js');   
-//        $newpass = $this->request->get('fnp'); 
-   $member_mail = $this->request->get('email');     
-   $this->view->setvar("member_mail",$member_mail);
-//     
-//         $Admin=new Db\CoreMember;
-//         
-//          $update = $Admin->updatenewpassword($member_mail,$newpass);
-//                if($update){
-//                    //print_r($update);
-//                   $msg="success";
-//               }
-//              else{
-//                  $msg="fail";
-//              }
-//        // $this->view->disable();
-//        echo json_encode($msg);                                                                                                                                                                                               
+
+    public function newpasswordAction() {
+        $member_mail = $this->request->get('email');
+        $this->view->setvar("member_mail", $member_mail);
     }
-     public function checkmailAction() {
-          $member_mail = $this->request->get('email');   
-         $Admin = new CoreMember();
-         $result = $Admin->findemail($member_mail);
-        if($result){
-            
-            $msg="success";
+
+    public function checkmailAction() {
+        $member_mail = $this->request->get('email');
+        $Admin = new CoreMember();
+        $result = $Admin->findemail($member_mail);
+        if ($result) {
+
+            $msg = "success";
+        } else {
+            $msg = "fail";
         }
-       else{
-           $msg="fail";
-       }
-         $this->view->disable();
+        $this->view->disable();
         echo json_encode($msg);
     }
-    
-     public function checkcodeAction() {  
-         $code = $this->request->get('code');    
-         $email = $this->request->get('email');  
-         $Admin=new Db\CoreMember;
-         $result = $Admin->findcode($code,$email);
-//        if($result){
-//            $msg="success";
-//        }
-//       else{
-//           $msg="fail";
-//       }
-         $this->view->disable();
+
+    public function checkcodeAction() {
+        $code = $this->request->get('code');
+        $email = $this->request->get('email');
+        $Admin = new Db\CoreMember;
+        $result = $Admin->findcode($code, $email);
+        $this->view->disable();
         echo json_encode($result);
     }
+
     // for send email 
-       public function sendemailAction() {  
-                $email = $this->request->get('email');
-                $Admin=new Db\CoreMember;
-                $result = $Admin->findsecuritycode($email);
-                if($result){
-                        $to      = $email;
-                        $subject = 'The subject';
-                        $message = $result;
-                        $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
-                            'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
-                            'X-Mailer: PHP/' . phpversion();
+    public function sendemailAction() {
+        $email = $this->request->get('email');
+        $Admin = new Db\CoreMember;
+        $result = $Admin->findsecuritycode($email);
+        if ($result) {
+            $to = $email;
+            $subject = 'The subject';
+            $message = $result;
+            $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
+                    'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
 
-                        if(mail($to, $subject, $message, $headers)){
-                            echo $to ." : " .$subject." : ".$message." : ".$headers;
-                            echo "Mail Sent";
-                        }else{
-                            echo "Email sending failed";
-                        }
-                }
-                
-
-
+            if (mail($to, $subject, $message, $headers)) {
+                echo $to . " : " . $subject . " : " . $message . " : " . $headers;
+                echo "Mail Sent";
+            } else {
+                echo "Email sending failed";
+            }
+        }
     }
-//    //for change password 
-//    public function changepasswordAction() {
-//         $newpass = $this->request->get('newpass');    
-//         $email = $this->request->get('email');  
-//         $Admin=new Db\CoreMember;
-//         $result = $Admin->updatenewpassword($newpass,$email);
-//        if($result){
-//            $msg="success";
-//        }
-//       else{
-//           $msg="fail";
-//       }
-//         $this->view->disable();
-//        echo json_encode($msg);
-//    }
-    public function resetpasswordAction(){
-         $member_mail = $this->request->get('email');   
-         $Admin=new Db\CoreMember;
-         $result = $Admin->findemail($member_mail);
-         $this->view->setVar("Result", $result);
 
+    public function resetpasswordAction() {
+        $member_mail = $this->request->get('email');
+        $Admin = new Db\CoreMember;
+        $result = $Admin->findemail($member_mail);
+        $this->view->setVar("Result", $result);
     }
-    
-     public function changepasswordAction() {  
-        $newpass = $this->request->get('fnp'); 
-        $member_mail = $this->request->get('email');  
-       // print_r($member_mail);
-        //print_r($newpass);exit;
-         $Admin=new Db\CoreMember;
-         
-          $update = $Admin->updatenewpassword($member_mail,$newpass);
-                if($update){
-                    //print_r($update);exit;
-                   $msg="success";
-               }
-              else{
-                  $msg="fail";
-              }
-         $this->view->disable();
-        echo json_encode($msg);                                                                                                                                                                                               
+
+    public function changepasswordAction() {
+        $newpass = $this->request->get('fnp');
+        $member_mail = $this->request->get('email');
+
+        $Admin = new Db\CoreMember;
+
+        $update = $Admin->updatenewpassword($member_mail, $newpass);
+        if ($update) {
+            $msg = "success";
+        } else {
+            $msg = "fail";
+        }
+        $this->view->disable();
+        echo json_encode($msg);
     }
-      public function sendtomailAction() {  
+
+    public function sendtomailAction() {
         $getemail = $this->request->get('email');
-        $Admin=new Db\CoreMember;
-        
-         $token = uniqid(bin2hex(mcrypt_create_iv(1,MCRYPT_DEV_RANDOM)));         
-         $Admin->insertemailandtoken($getemail,$token);
-         
-        $result = $Admin->checkyourmail($getemail);
-       // print_r($result);exit;
-                        $to      = $getemail;
-                        $subject = 'The subject';
-                        $message = $result;
-                        $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
-                            'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
-                            'X-Mailer: PHP/' . phpversion();
+        $Admin = new Db\CoreMember;
 
-                        if(mail($to, $subject, $message, $headers)){
+        $token = uniqid(bin2hex(mcrypt_create_iv(1, MCRYPT_DEV_RANDOM)));
+        $Admin->insertemailandtoken($getemail, $token);
+
+        $result = $Admin->checkyourmail($getemail);
+        $to = $getemail;
+        $subject = 'The subject';
+        $message = $result;
+        $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
+                'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+
+        if (mail($to, $subject, $message, $headers)) {
 //                            echo $to ." : " .$subject." : ".$message." : ".$headers;
 //                            echo "Mail Sent";
-                            $msg = "success";
-                        }else{
+            $msg = "success";
+        } else {
 //                            echo "Email sending failed";
-                            $msg = "fail";
-                        }
-                 $this->view->disable();
-                echo json_encode($msg);      
+            $msg = "fail";
+        }
+        $this->view->disable();
+        echo json_encode($msg);
     }
+
 }

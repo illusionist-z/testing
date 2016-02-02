@@ -24,13 +24,10 @@ class IndexController extends ControllerBase {
         $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
-
                 $noti = $Admin->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
@@ -52,8 +49,6 @@ class IndexController extends ControllerBase {
     }
 
     public function autolistAction() {
-
-
         if ($this->moduleIdCall == 1) {
             $UserList = new Db\CoreMember();
             $Username = $UserList->autousername();
@@ -69,7 +64,6 @@ class IndexController extends ControllerBase {
      */
     public function getapplymemberidAction() {
         $data = $this->request->get('username');
-
         $leavetype = new LeaveCategories();
         $cond = $leavetype->memidapplyleave($data);
         echo json_encode($cond);
@@ -82,8 +76,6 @@ class IndexController extends ControllerBase {
      * @desc   Apply Leave Action
      */
     public function applyleaveAction() {
-
-
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/leavedays/js/applyleave.js');
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
@@ -91,9 +83,7 @@ class IndexController extends ControllerBase {
             $leavetype = new LeaveCategories();
             $ltype = $leavetype->getleavetype();
             $userlist = new Db\CoreMember();
-
             $name = $userlist::getinstance()->getusername();
-
             if ($this->permission == 1) {
                 $this->view->setVar("name", $name);
                 $this->view->setVar("Leavetype", $ltype);
@@ -136,10 +126,7 @@ class IndexController extends ControllerBase {
      * Show Leave data list
      */
     public function leavelistAction() {
-
-
         if ($this->moduleIdCall == 0) {
-
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
@@ -180,10 +167,7 @@ class IndexController extends ControllerBase {
      * to edit leave categories and max leave day
      */
     public function leavesettingAction() {
-
-
         if ($this->moduleIdCall == 1) {
-
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
@@ -314,9 +298,7 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
-
         $Result = $Admin->checkleave();
-
         $this->view->setVar("Result", $Result);
     }
 
@@ -332,9 +314,7 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
-
         $Result = $Admin->leavemost();
-
         $this->view->setVar("Result", $Result);
     }
 

@@ -26,7 +26,6 @@ class UserController extends ControllerBase {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
                 $noti = $User->GetAdminNoti($id, 0);
             }
@@ -55,16 +54,13 @@ class UserController extends ControllerBase {
         $this->view->setVar("name", $name);
         $this->view->setVar("Leavetype", $ltype);
         if ($this->request->isPost()) {
-
             $user = $this->_leave;
             $validate = $user->uservalidation($this->request->getPost());
             if (count($validate)) {
-
                 foreach ($validate as $message) {
                     $json[$message->getField()] = $message->getMessage();
                 }
                 $json['result'] = "error";
-
                 echo json_encode($json);
                 $this->view->disable();
             } else {
@@ -74,7 +70,6 @@ class UserController extends ControllerBase {
                 $type = $this->request->getPost('leavetype');
                 $desc = $this->request->getPost('description');
                 $error = $this->_leave->applyleave($uname, $sdate, $edate, $type, $desc, $creator_id);
-
                 echo json_encode($error);
                 $this->view->disable();
             }
@@ -91,8 +86,6 @@ class UserController extends ControllerBase {
         $this->assets->addJs('apps/leavedays/js/user-leavelist.js');
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        //$noti = $User->GetUserNoti($id);
-        //$this->view->setVar("noti", $noti);
         //month
         $month = $this->config->month;
         $leavetype = new LeaveCategories();

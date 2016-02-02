@@ -7,7 +7,7 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header" id="showleavelist"">
     <h1>
-<?= $t->_("leave_list"); ?>
+        <?= $t->_("leave_list"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?> </a></li>
@@ -80,9 +80,9 @@ $length = count($Month);
                         ?>
                         <tr>
                             <td><?php
-                    $dt = explode(" ", $item->leaves->date);
-                    echo $dt[0];
-                        ?></td>                            
+                                $dt = explode(" ", $item->leaves->date);
+                                echo $dt[0];
+                                ?></td>                            
                             <td><?php echo $item->core->member_login_name; ?></td>
                             <td><?php
                                 $start_date = explode(" ", $item->leaves->start_date);

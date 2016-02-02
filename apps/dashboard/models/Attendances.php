@@ -108,18 +108,12 @@ class Attendances extends Model {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken        
-//        $query = "select * from core_member where member_id in "
-//                 ."(select member_id from attendances where status = 1  group by member_id having count(member_id) > 0) "
-//                . "order by created_dt desc limit 3";
         $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
                 . "where  c.deleted_flag = 0  and a.deleted_flag = 0 group by a.member_id "
                 . "order by count(*) desc limit 3";
-        // var_dump($query);exit;
         $data = $this->db->query($query);
         //select where no leave name in current month
-//        $query1 = "select * from core_member where member_id in
-//                   (select member_id from attendances where att_date >(NOW()-INTERVAL 2 MONTH) and status=0) order by created_dt desc limit 3";
         $query1 = "select * from core_member where member_id not in
                    (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0 ) and deleted_flag=0 order by created_dt desc  limit 3";
         $data1 = $this->db->query($query1);
@@ -176,14 +170,12 @@ class Attendances extends Model {
     public function getattlist($id) {
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
-
         $row = "Select att_date,member_login_name,checkin_time,checkout_time,"
                 . "lat,lng,overtime,location from core_member left join "
                 . "attendances on core_member.member_id = attendances.member_id "
                 . "where MONTH(attendances.att_date) ='" . $currentmth . "' "
                 . "AND attendances.member_id ='" . $id . "' "
                 . "order by attendances.att_date DESC ";
-
         $result = $this->db->query($row);
         $list = $result->fetchall();
         return count($list);

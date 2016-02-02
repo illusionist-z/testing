@@ -21,7 +21,6 @@ class CompanyTbl extends \Library\Core\BaseModel {
      * Add New Company to company_tbl table
      */
     public function addnew($data) {
-
         $date = date("Y-m-d H:i:s");
         $sdate = date("Y-m-d", strtotime($data['com_sdate']));
 
@@ -42,7 +41,6 @@ class CompanyTbl extends \Library\Core\BaseModel {
 
     public function getallcom() {
         $result = $this->db->query("select * from company_tbl where deleted_flag=0");
-
         $final_result = $result->fetchall();
         $i = 0;
         return $final_result;

@@ -60,14 +60,7 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {
 
-//        
-//        var_dump( $this->act_name);
-//        
-//        exit();
-
         if ($this->moduleIdCall == 1) {
-
-
             $this->assets->addJs('apps/salary/js/salary.js');
             $Salarydetail = new SalaryDetail();
             $getsalarydetail = $Salarydetail->getsalarydetail();
@@ -90,7 +83,6 @@ class IndexController extends ControllerBase {
     public function show_salarylistAction() {
 
         if ($this->moduleIdCall == 1) {
-
             $this->assets->addJs('apps/salary/js/salary.js');
             $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
 
@@ -123,7 +115,6 @@ class IndexController extends ControllerBase {
         $Allowance = new Allowances();
         $getall_allowance = $Allowance->getall_allowances();
 
-
         $TaxDeduction = new SalaryTaxsDeduction();
         $deduce = $TaxDeduction->getdedlist();
 
@@ -154,13 +145,11 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/salary/js/addsalary.js');
         $Salarydetail = new SalaryDetail();
         $geteachmonthsalary = $Salarydetail->geteachmonthsalary();
-
         $this->view->module_name = $this->router->getModuleName();
         if ($this->permission === 1) {
-
             $this->view->setVar("geteachmonthsalarys", $geteachmonthsalary);
         } else {
-            //$this->response->redirect('core/index');
+            
         }
     }
 
@@ -172,7 +161,6 @@ class IndexController extends ControllerBase {
 
         $member_id = $this->request->get('member_id');
         $month = $this->request->get('month');
-        //$Mth = '';
         if ($month < 10) {
             $month = '0' . $month;
         }
@@ -290,7 +278,6 @@ class IndexController extends ControllerBase {
      */
     public function getmemberidAction() {
         $data = $this->request->get('uname');
-        //print_r($uname);exit;
         $Salarydetail = new SalaryMaster();
         $cond = $Salarydetail->memidsalary($data);
         echo json_encode($cond);
@@ -308,7 +295,6 @@ class IndexController extends ControllerBase {
 
         if ($this->permission == 1) {
             $this->view->setVar("list", $list); //paginated data
-
             $this->view->module_name = $this->router->getModuleName();
         } else {
             $this->response->redirect('core/index');
@@ -325,7 +311,6 @@ class IndexController extends ControllerBase {
             $all_value['"' . $x . '"'] = $this->request->get('txt' . $x);
             if (!isset($all_name['"' . $x . '"'])) {
                 $count = $x;
-
                 break; //getting the number of textboxes
             }
         }
@@ -370,7 +355,6 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function gettranslateAction() {
-        //echo "aa";exit;
         $t = $this->_getTranslation();
         $data['allowance_name'] = $t->_("allowance_name");
         $data['amount'] = $t->_("amount");
@@ -385,7 +369,6 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function edit_dataAction() {
-
         $data['id'] = $this->request->getPost('id');
         $data['name'] = $this->request->getPost('name');
         $data['allowance_amount'] = $this->request->getPost('allowance_amount');
@@ -400,7 +383,6 @@ class IndexController extends ControllerBase {
      */
     public function delete_dataAction() {
         $id = $this->request->getPost('id');
-
         $all = new Allowances();
         $all->delete_allowance($id);
         $this->view->disable();
@@ -413,7 +395,6 @@ class IndexController extends ControllerBase {
     public function salarysettingAction() {
 
         if ($this->moduleIdCall == 1) {
-
             $this->assets->addJs('apps/salary/js/index-salarysetting.js');
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];

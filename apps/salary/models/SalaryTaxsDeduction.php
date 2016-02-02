@@ -8,13 +8,11 @@ use Phalcon\Mvc\Model;
 class SalaryTaxsDeduction extends Model {
 
     public function initialize() {
-        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
 
     public function getdedlist() {
         try {
-
             $data = $this->db->query("SELECT * FROM salary_taxs_deduction ");
             $result = $data->fetchall();
         } catch (Exception $exc) {
@@ -30,7 +28,6 @@ class SalaryTaxsDeduction extends Model {
         } catch (Exception $exc) {
             echo $exc;
         }
-
         return $result;
     }
 
