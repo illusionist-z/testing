@@ -160,7 +160,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/search.js');
         $this->assets->addJs('apps/leavedays/js/leavelist.js');
-        $month = $this->config->month;
+        $month = $this->config['month'];
         $leavetype = new LeaveCategories();
         $ltype = $leavetype->getleavetype();
         $this->view->setVar("Leavetype", $ltype);

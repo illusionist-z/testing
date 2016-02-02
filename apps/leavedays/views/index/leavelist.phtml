@@ -32,8 +32,9 @@ $length = count($Month);
             </select>
             <select class="select form-control-static" data-toggle="select" name="month" id="month">
                 <option value=""><?= $t->_("month"); ?></option>
-                <?php
-                for ($i = 1; $i <= $length; $i++) {
+                <?php                
+                $i = 1;
+                foreach ($Month as $v) {
                     ?>
                     <option value="<?php
                     if ($i < 10) {
@@ -42,8 +43,9 @@ $length = count($Month);
                     else {
                         echo $i;
                     }
-                    ?>"><?php echo $Month[$i]; ?></option>
+                    ?>"><?php echo $v; ?></option>
                             <?php
+                            $i++;
                         }
                         ?>
 

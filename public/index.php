@@ -81,7 +81,7 @@ try {
     /**
      * Module config 
      */
-    require __DIR__ . '/../config/module_config.php';
+    require __DIR__ . '/../library/core/module_config.php';
     echo $application->handle()->getContent();
 } catch (Phalcon\Exception $e) {
     $logString = $e->getMessage() . " [{$e->getFile()}({$e->getLine()})]" . PHP_EOL
