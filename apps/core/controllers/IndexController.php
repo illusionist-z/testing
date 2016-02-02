@@ -1,6 +1,7 @@
 <?php
 
 namespace salts\Core\Controllers;
+
 use salts\Core\Models\SetLanguage;
 use salts\Auth\Models\Permission;
 use Library;
@@ -10,23 +11,21 @@ class IndexController extends Library\Core\Controller {
     public function initialize() {
         parent::initialize();
     }
-    public function  indexAction(){
-         $this->setCommonJsAndCss();
 
+    public function indexAction() {
+        $this->setCommonJsAndCss();
     }
-    
 
-    public function setLanguageAction($language='')
-    {
-        if($language){
+    public function setLanguageAction($language = '') {
+        if ($language) {
             //set language action
             $member = $this->session->user['member_id'];
             $Lang = SetLanguage::getInstance()->settinglanguage($language, $member);
             //get module language action
             $permission = [];
-            $Permission = Permission::getInstance()->get($this->session->user,$permission,$language);
+            $Permission = Permission::getInstance()->get($this->session->user, $permission, $language);
             $this->session->set('auth', $Permission);
-            }
+        }
         //Change the language, reload translations if needed        
         $this->session->set('language', $language);
 

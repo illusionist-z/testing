@@ -8,6 +8,7 @@ namespace Library\Core;
  * and open the template in the editor.
  */
 
+use salts\Core\Models;
 use salts\Core\Models\Db;
 
 abstract class Controller extends \Phalcon\Mvc\Controller {
@@ -28,50 +29,57 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
     }
-        /**
-        * Set Permission
-        * @return int
-        */
-   
-            public function setPermission($actname) {
-        $aryModules = \Library\Core\Module::get();
-        $allow = array();$permitted = 0;
-        //setting permission        
-        $coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
-        
-        if(null === $this->session->user['member_id']){
+
+    /**
+     * Set Permission
+     * @param type $actname
+     * @return int|boolean
+     */
+    public function setPermission($actname) {
+        if (NULL === $this->session->user['member_id']) {
             return false;
         }
-        {
-        $core = $coremember::findByRelMemberId($this->session->user['member_id']); 
+
+        $allow = array();
+        $permitted = 0;
+        //setting permission        
+        $CoreMember = Models\CorePermissionRelMember::getInstance();
+
+        $core = $CoreMember::findByRelMemberId($this->session->user['member_id']);
         $permission = $core[0]->permission_group_id_user;
-        $coreuser2 = new \salts\Auth\Models\Db\CorePermissionGroup();
-        $permission_group = $coreuser2->find();
+
+        $CorePermissionGroup = Models\CorePermissionGroup::getInstance();
+        $permission_group = $CorePermissionGroup->find();
         //get permitted action name
-       
-        foreach($permission_group as $v){
-        $permission === $v->page_rule_group ?  $allow[] = $v->permission_code :   0;
+
+        foreach ($permission_group as $v) {
+            $permission === $v->page_rule_group ? $allow[] = $v->permission_code : 0;
         }
         $permission_name = $this->getPermissionCode($allow);
-        foreach($permission_name as $name){
-            $name = strtolower(str_replace(' ','',$name));
-             $name === $actname ? $permitted = 1 : 0;
+        foreach ($permission_name as $name) {
+            $name = strtolower(str_replace(' ', '', $name));
+            $name === $actname ? $permitted = 1 : 0;
         }
         return $permitted;
-        }
     }
-    
+
+    /**
+     * Get permission code
+     * @param type $code
+     * @return typeå
+     */
     public function getPermissionCode($code) {
-     $setPermission = array();
-    $corepermission = new \salts\Auth\Models\Db\CorePermission();        
-    foreach($code as $c){
-        $temp = $corepermission::findByPermissionCode($c);
-        foreach($temp as $t){
-            $setPermission[] =$t->permission_name_en;
+        $setPermission = array();
+        $corepermission = Models\CorePermission::getInstance();
+        foreach ($code as $c) {
+            $temp = $corepermission::findByPermissionCode($c);
+            foreach ($temp as $t) {
+                $setPermission[] = $t->permission_name_en;
+            }
         }
+        return $setPermission;
     }
-    return $setPermission;    
-    }
+
     /**
      * Call this func to set json response enabled
      * @param type $content
@@ -143,8 +151,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 ->addJs('common/js/jquery-ui.js')
                 ->addJs('common/js/notification.js');
     }
-    
-       public function setNotificationJsAndCss() {
+
+    public function setNotificationJsAndCss() {
 
         $this->assets
                 //->addJs('common/js/jquery.min.js')
@@ -152,8 +160,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 //->addJs('common/js/jQuery-2.1.4.min.js')
                 //->addJs('common/js/bootstrap.min.js')
                 //->addJs('common/js/app.min.js')
-               ->addJs('common/js/jquery-ui.js');
-                //->addJs('common/js/notification.js');
+                ->addJs('common/js/jquery-ui.js');
+        //->addJs('common/js/notification.js');
     }
 
     /**

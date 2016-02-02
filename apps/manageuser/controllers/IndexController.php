@@ -1,13 +1,15 @@
 <?php
 
 namespace salts\Manageuser\Controllers;
+
 use salts\Manageuser\Models\User as User;
 use salts\Core\Models\Db;
 use salts\Dashboard\Models\CorePermissionGroupId;
 
-class IndexController extends ControllerBase
-{
+class IndexController extends ControllerBase {
+
     public $user;
+
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
@@ -16,70 +18,68 @@ class IndexController extends ControllerBase
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/manageuser/js/adduser.js');
         $this->assets->addCss('apps/manageuser/css/manageuser.css');
-        $this->module_name =  $this->router->getModuleName();
+        $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
-         $this->view->permission = $this->permission;
+        $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
-        $Admin=new Db\CoreMember();
+        $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-             
+
             if ($key_name == 'show_admin_notification') {
-                
-              $noti=$Admin->GetAdminNoti($id,0);
-                 
-            } 
+
+                $noti = $Admin->GetAdminNoti($id, 0);
+            }
             if ($key_name == 'show_user_notification') {
-                
-               $noti=$Admin->GetUserNoti($id,1); 
+
+                $noti = $Admin->GetUserNoti($id, 1);
             }
         }
 
-        $moduleIdCallCore =new Db\CoreMember();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name,$this->session->module);
+        $moduleIdCallCore = new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-        $this->view->setVar("noti",$noti);
+        $this->view->setVar("noti", $noti);
     }
-        /**
-        * @author David JP <david.gnext@gmail.com>
-        * @desc   Array ,show all user data 
-        * @since  18/7/15
-        * @version 3/9/2015 @by David JP
-        */
+
+    /**
+     * @author David JP <david.gnext@gmail.com>
+     * @desc   Array ,show all user data 
+     * @since  18/7/15
+     * @version 3/9/2015 @by David JP
+     */
     public function IndexAction() {
         //for paging and edit user
-        $User=new Db\CoreMember;
+        $User = new Db\CoreMember;
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
-        $this->assets->addJs('apps/manageuser/js/search.js'); 
+        $this->assets->addJs('apps/manageuser/js/search.js');
         $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
         $member_count = new Db\CoreMember();
-       $member_count_number = $member_count->getNumberCount();
-       $this->view->member_count_number = $member_count_number;
-           
-        if($this->permission==1){
-        $this->view->modulename = $this->module_name;
-        $this->view->setVar('username', $getname);
-        $this->view->setVar('Result', $list);
-        }
-        else {
+        $member_count_number = $member_count->getNumberCount();
+        $this->view->member_count_number = $member_count_number;
+
+        if ($this->permission == 1) {
+            $this->view->modulename = $this->module_name;
+            $this->view->setVar('username', $getname);
+            $this->view->setVar('Result', $list);
+        } else {
             $this->response->redirect('core/index');
         }
-    } 
-     //for monthly list autocomplete
+    }
+
+    //for monthly list autocomplete
     public function usernameautolistAction() {
-        //echo json_encode($result);
-         $UserList=new Db\CoreMember();
-        $Username = $UserList->autousername(); 
-        //print_r($UserList);exit;
-        $this->view->disable();    
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->autousername();
+        $this->view->disable();
         echo json_encode($Username);
-    } 
-   
+    }
+
     /**
      * @get data for user id
      * @return type [new || edit]
@@ -90,7 +90,7 @@ class IndexController extends ControllerBase
         $type = $this->request->get('data');
         $t = $this->_getTranslation();
         $edit = array();
-        if($type == 'new'){
+        if ($type == 'new') {
             $edit[0] = $type;
             $edit[1]["add"] = $t->_("adduser");
             $edit[1]["name"] = $t->_("name");
@@ -116,15 +116,14 @@ class IndexController extends ControllerBase
             $edit[1]["placeholder9"] = $t->_("placeholder9");
             $edit[1]["placeholder10"] = $t->_("placeholder10");
             $edit[1]["placeholder11"] = $t->_("placeholder11");
-             $edit[1]["placeholder12"] = $t->_("placeholder12");
+            $edit[1]["placeholder12"] = $t->_("placeholder12");
             echo json_encode($edit);
-        }
-        else{
-        $res = $this->user->useredit($type);
+        } else {
+            $res = $this->user->useredit($type);
             $edit[0] = $res[0];
             $edit[1]["edit"] = $t->_("edit_user");
             $edit[1]["id"] = $t->_("id");
-            $edit[1]["name"] = $t->_("name");            
+            $edit[1]["name"] = $t->_("name");
             $edit[1]["dept"] = $t->_("dept");
             $edit[1]["pos"] = $t->_("position");
             $edit[1]["mail"] = $t->_("mail");
@@ -134,60 +133,65 @@ class IndexController extends ControllerBase
             $edit[1]["btn_edit"] = $t->_("btn_edit");
             $edit[1]["btn_delete"] = $t->_("btn_delete");
             $edit[1]["btn_cancel"] = $t->_("btn_cancel");
-        echo json_encode($edit);
+            echo json_encode($edit);
         }
         $this->view->disable();
-    }  
+    }
+
     /**
      * @author David
      * @type   data id
      * @desc   Delete user by id
      * @since  20/7/15
      */
-    public function deleteuserAction(){
-        $id = $this->request->get('data');                
+    public function deleteuserAction() {
+        $id = $this->request->get('data');
         $this->user->userdelete($id);
         $this->view->disable();
     }
-        /**     
-        * @type   form data
-        * @desc   update user
-        * @since  20/7/15
-        */
-    public function userdata_editAction() {        
+
+    /**
+     * @type   form data
+     * @desc   update user
+     * @since  20/7/15
+     */
+    public function userdata_editAction() {
         $cond = array();
-        $cond['id']  =  $this->request->get('data');
-        $cond['name']=$this->request->get('name');
-        $cond['dept']=$this->request->get('dept');
-        $cond['position']=$this->request->get('position');
-        $cond['email']=$this->request->get('email');
-        $cond['pno']=$this->request->get('pno');
-        $cond['address']=$this->request->get('address');
-        $cond['work_sdate']=$this->request->get('work_sdate');
-        $result=$this->user->editbycond($cond);        
+        $cond['id'] = $this->request->get('data');
+        $cond['name'] = $this->request->get('name');
+        $cond['dept'] = $this->request->get('dept');
+        $cond['position'] = $this->request->get('position');
+        $cond['email'] = $this->request->get('email');
+        $cond['pno'] = $this->request->get('pno');
+        $cond['address'] = $this->request->get('address');
+        $cond['work_sdate'] = $this->request->get('work_sdate');
+        $result = $this->user->editbycond($cond);
         echo json_encode($result);             // send validating data
-        $this->view->disable();        
+        $this->view->disable();
     }
-         /*
+
+    /*
      * @Count Member Limit
      * @Inset Buyer Code
      * @Yan Lin Pai <Yan Lin Pai>
      */
-    public function adduserAction(){
-     
+
+    public function adduserAction() {
+
 //       $this->view->count = 
     }
-        /**
-        * ADD NEW USER 
-        * @author Su Zin Kyaw
-        */
-       public function getpermitAction(){
-     
-        $permission=new CorePermissionGroupId();
-        $result=$permission->getPermitName();
-        echo json_encode($result);
-        
-        $this->view->disable();  
-    }
-}
 
+    /**
+     * ADD NEW USER 
+     * @author Su Zin Kyaw
+     */
+    public function getpermitAction() {
+
+        $permission = new CorePermissionGroupId();
+        $result = $permission->getPermitName();
+        echo json_encode($result);
+
+        $this->view->disable();
+    }
+
+}

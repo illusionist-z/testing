@@ -24,11 +24,11 @@ class IndexController extends ControllerBase {
 
             if ($key_name == 'show_admin_notification') {
 
-                $this->noti = $Admin->GetAdminNoti($id,0);
+                $this->noti = $Admin->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-              
-                $this->noti = $Admin->GetUserNoti($id,1);
+
+                $this->noti = $Admin->GetUserNoti($id, 1);
             }
         }
         $this->view->setVar("noti", $this->noti);
@@ -40,68 +40,74 @@ class IndexController extends ControllerBase {
      */
     public function searchHelpAction() {
         //echo "aa";exit;
-
-        
     }
 
     public function dashboardAction() {
-       
+        
     }
-    
-   public function todayattlistAction() {
-       
+
+    public function todayattlistAction() {
+        
     }
-    
-     public function monthlyattlistAction() {
-       
+
+    public function monthlyattlistAction() {
+        
     }
-     public function monthlyattchartAction() {
-       
+
+    public function monthlyattchartAction() {
+        
     }
-     public function manageuserAction() {
-       
+
+    public function manageuserAction() {
+        
     }
-    
+
     public function applyleaveAction() {
-       
+        
     }
-    
+
     public function leavelistsAction() {
-       
+        
     }
-    
-      public function leavesettingAction() {
-       
+
+    public function leavesettingAction() {
+        
     }
-    
-      public function addsalaryAction() {
-       
+
+    public function addsalaryAction() {
+        
     }
-    
-     public function salarylistsAction() {
-       
+
+    public function salarylistsAction() {
+        
     }
+
     public function monthlysallistsAction() {
-       
+        
     }
+
     public function salarysettingAction() {
-       
+        
     }
+
     public function allowanceAction() {
-       
+        
     }
+
     public function calendarAction() {
         
     }
-     public function letterheadAction() {
-       
+
+    public function letterheadAction() {
+        
     }
-    
-     public function ssbdocumentAction() {
-       
+
+    public function ssbdocumentAction() {
+        
     }
-    
-     public function taxdocumentAction() {
-       
+
+    public function taxdocumentAction() {
+        
     }
+
 }

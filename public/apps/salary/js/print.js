@@ -8,13 +8,9 @@ $(document).ready(function () {
         var paydate=document.getElementById('paydate').value;
 
         for (var i =0; i < printid.length ; i++){
-              // alert(printid[i].value);
-               //var member_id = printid[i].value;
                  member_id.push(printid[i].value);
         }
        
-    // alert(member_id);
-       // window.print();    
         
           $.ajax({
                 url:'memberidforprint',
@@ -24,9 +20,7 @@ $(document).ready(function () {
                 success: function(d) {  
                     data= JSON.parse(d);
                 if(data === "success"){
-                    //alert("success");
-                    window.print();    
-                    
+                    window.print();                        
                 }
                 else{
                     alert("no success");

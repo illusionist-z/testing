@@ -9,58 +9,58 @@ and open the template in the editor.
 */
 
 /*start for Help*/
- #helpmenu{
-     width:20%;
-     float: left;
- }
- #helpmenu li{
-     list-style: none;
-     line-height: 40px;
- }
- #helpmenu li a:hover{
-     text-decoration: underline;
- }
- .allhelpimg{
-     background: url("../../../common/img/list-add.png") 1px 0px no-repeat;
-     padding: 1px 1px 16px 25px;
- }
- #showhelp{
-     background: white;    
+#helpmenu{
+    width:20%;
+    float: left;
+}
+#helpmenu li{
+    list-style: none;
+    line-height: 40px;
+}
+#helpmenu li a:hover{
+    text-decoration: underline;
+}
+.allhelpimg{
+    background: url("../../../common/img/list-add.png") 1px 0px no-repeat;
+    padding: 1px 1px 16px 25px;
+}
+#showhelp{
+    background: white;    
 
- }
-  .helpcenter a{
-            display: block;
-            margin-bottom: 6px;
-            margin-top : 6px;            
-        }
- .helpcenter li{           
-            list-style: none;                       
- }
- 
- #showimg{
+}
+.helpcenter a{
+    display: block;
+    margin-bottom: 6px;
+    margin-top : 6px;            
+}
+.helpcenter li{           
+    list-style: none;                       
+}
+
+#showimg{
     text-align: center;
 }
 
- #helpcenter{
-            display: block;
-        }
-        #helpcenter li{
-            line-height: 50px;
-            list-style: none;
-            margin-top: 10px;
-            font-size: 25px;
-        }         
- /*end for Help*/
- .linknavi{
-     padding: 1%;
-     padding-left: 3.5%;
-     padding-bottom: 2%;
-     left : 70%;
-     top : 0;
-     background: #aaa;
-     width: 10%;
- }
+#helpcenter{
+    display: block;
+}
+#helpcenter li{
+    line-height: 50px;
+    list-style: none;
+    margin-top: 10px;
+    font-size: 25px;
+}         
+/*end for Help*/
+.linknavi{
+    padding: 1%;
+    padding-left: 3.5%;
+    padding-bottom: 2%;
+    left : 70%;
+    top : 0;
+    background: #aaa;
+    width: 10%;
+}
 
- .btn-color{
-     background: #0081c2 !important;
- }
+.btn-color{
+    background: #0081c2 !important;
+}

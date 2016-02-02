@@ -22,11 +22,7 @@ class IndexController extends ControllerBase {
                 $permission = "user";
             }
         }
-
-
-       
         $this->view->setVar("permission", $permission);
-        //$this->assets->addJs('common/js/notification.js');
     }
 
     public function indexAction() {
@@ -88,7 +84,6 @@ class IndexController extends ControllerBase {
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
-        //print_r($noti);exit;
         $type = 'noti';
         $this->view->setVar("noti", $noti);
         $this->view->setVar("type", $type);

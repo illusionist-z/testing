@@ -1,12 +1,5 @@
 <?php
-//$timezone_identifiers = DateTimeZone::listIdentifiers();
-//$length = count($timezone_identifiers);echo $length;
-//for ($i=0; $i < $length; $i++) {
-//    echo "$timezone_identifiers[$i]<br>";
-//}exit;
-
 $length = count($Month);
-
 ?>
 
 <!-- Content Header (Page header) -->
@@ -25,17 +18,17 @@ $length = count($Month);
     <div class="buttons">
         <form id="frm_search">
             <select class="select" data-toggle="select" name="ltype" id="ltype">
-                
+
                 <option value=""><?= $t->_("leave_type"); ?></option>
                 <?php
-                foreach ($Leavetype as $data){
-                ?>
-                <option value="<?php echo $data['leavetype_name']; ?>"
-               
-                ><?php  echo $data['leavetype_name'] ?></option>
-                <?php
-                }
-                ?>
+                foreach ($Leavetype as $data) {
+                    ?>
+                    <option value="<?php echo $data['leavetype_name']; ?>"
+
+                            ><?php echo $data['leavetype_name'] ?></option>
+                            <?php
+                        }
+                        ?>
 
             </select>
             <select class="select" data-toggle="select" name="month" id="month">
@@ -46,22 +39,20 @@ $length = count($Month);
                     <option value="<?php
                     if ($i < 10) {
                         echo '0' . $i;
-                    }
-                    else {
+                    } else {
                         echo $i;
                     }
                     ?>"
-                    <?php echo(isset($Mth)&&($Mth==$i)?' selected="selected"':'');?>
-                    ><?php echo $Month[$i]; ?></option>
+                            <?php echo(isset($Mth) && ($Mth == $i) ? ' selected="selected"' : ''); ?>
+                            ><?php echo $Month[$i]; ?></option>
                             <?php
                         }
                         ?>
 
             </select>
-           
+
             <b><input type="submit" onclick="return false;" class="buttonn" value="Search" id="usersearch"></b>
-            <!--       <a href="#" class="button" id="search">Search</a>-->
-            <a href="#" class="button export" onclick="Export.Export.apply(this,[$('table.listtbl'),'Leave_List.csv']);"><b>Export</b></a>
+            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><b>Export</b></a>
         </form>
     </div>
 
@@ -84,25 +75,25 @@ $length = count($Month);
                 </thead>
                 <tbody style="display: none;">
                     <?php
-                    //print_r($Result);
                     foreach ($Result as $item) {
                         ?>
                         <tr>
-                            <td><?php  $dt=  explode(" ",date($item['date']));
+                            <td><?php
+                                $dt = explode(" ", date($item['date']));
                                 echo $dt[0];
                                 ?></td>
 
                             <td><?php echo $item['member_login_name']; ?></td>
-                            <td><?php $start_date= explode(" ", $item['start_date']); 
-                                      echo $start_date[0];
+                            <td><?php
+                                $start_date = explode(" ", $item['start_date']);
+                                echo $start_date[0];
                                 ?></td>
-                            <td><?php $end_date= explode(" ", $item['end_date']); 
-                                      echo $end_date[0];
-                                
+                            <td><?php
+                                $end_date = explode(" ", $item['end_date']);
+                                echo $end_date[0];
                                 ?></td>
                             <td><?php
                                 echo $item['leave_days'];
-                                
                                 ?></td>
                             <td><?php
                                 echo $item['leave_category'];
@@ -110,29 +101,29 @@ $length = count($Month);
                             <td><?php
                                 echo $item['leave_description'];
                                 ?></td>
-                           
+
                             <td><?php
-                                
-                        switch($item['leave_status']){
-                            case "0" : echo "Pending" ; break;
-                            case "1" : echo "Confirmed";break;
-                            case "2" : echo "Rejected";break;
-                               
-                        };
+                                switch ($item['leave_status']) {
+                                    case "0" : echo "Pending";
+                                        break;
+                                    case "1" : echo "Confirmed";
+                                        break;
+                                    case "2" : echo "Rejected";
+                                        break;
+                                };
                                 ?></td>
                             <td><font color="red"><?php
-                                
-                            if($item['total_leavedays']>$max){
-                            
-                            echo ($item['total_leavedays']+$absentdays)-$max;
-                            echo " Days are in absent";
-                    }
-                    else{
-                                
-                    echo $max-($item['total_leavedays']+$absentdays);}                        
+                                if ($item['total_leavedays'] > $max) {
+
+                                    echo ($item['total_leavedays'] + $absentdays) - $max;
+                                    echo " Days are in absent";
+                                } else {
+
+                                    echo $max - ($item['total_leavedays'] + $absentdays);
+                                }
                                 ?></font></td>
                         </tr>
-                            <?php
+                        <?php
                     }
                     ?>
 

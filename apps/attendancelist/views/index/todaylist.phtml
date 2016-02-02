@@ -1,7 +1,7 @@
 <?php
 
 use Phalcon\Filter;
-//echo $offset;exit;
+
 //calculate the user time offset
 if ($offset < 0) {
     $sign = '-';
@@ -28,33 +28,19 @@ if ($offset < 0) {
 <section class="content">  
     <div class="buttons">
         <form onsubmit="return false;" method="post">
-<!--            <select class="select" data-toggle="select" name="namelist" id="namelist">
-                <option value="">Name</option>
-            <?php
-            foreach ($uname as $result) {
-                ?>
-                        <option><?php echo $result->member_login_name; ?></option>
-
-                <?php
-            }
-            ?>
-            </select>-->
             <input type="text" class="tags form-control-static" name="namelist" style="margin-top: 9px;"  id="namelist" placeholder="<?php echo $t->_("searchusername"); ?>">
             <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="namesearch">
-            <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="#" class="button export  " onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><?php echo $t->_("export"); ?></a>
-            
         </form>
     </div>
 
     <div class="row">
         <div class="col-md-12"><!--start table content--->
-        
-<?php $this->flashSession->output() ?>
+
+            <?php $this->flashSession->output() ?>
             <table class="listtbl attlist">
                 <thead>
                     <tr>
-
                         <th width="110px" ><?= $t->_("date"); ?></th>
                         <th ><?= $t->_("username"); ?></th>
                         <th ><?= $t->_("checkin"); ?></th>
@@ -70,7 +56,7 @@ if ($offset < 0) {
                 <tbody>
                     <?php
                     $filter = new Filter();
-                    
+
                     foreach ($attlist as $result) {
                         ?>
                         <tr>                    
@@ -103,20 +89,17 @@ if ($offset < 0) {
                                     $start = strtotime($office_start_time);
                                     $end = strtotime($time);
                                     $late = $end - $start;
-                                    
-                                        echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
-                                   
+
+                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
                                 } else {
                                     echo "-";
                                 }
                                 ?>
                             </td>
-                              <td><?php
-                                
-                                    if ($result->attendances->notes != '') {
-                                        echo "<font color='red'>" .  $result->attendances->notes . " </font>";
-                                    }
-                                
+                            <td><?php
+                                if ($result->attendances->notes != '') {
+                                    echo "<font color='red'>" . $result->attendances->notes . " </font>";
+                                }
                                 ?>
                             </td>
                             <td>
@@ -135,7 +118,7 @@ if ($offset < 0) {
                                     }
                                 }
                                 ?></td>
-                            
+
                             <td>
                                 <?php
                                 //calculate working time
@@ -161,21 +144,20 @@ if ($offset < 0) {
                                 } else {
                                     echo "-";
                                 }
-                                
                                 ?> 
 
                             </td>
                             <td class="row">
-                                <div class="span1"><?php echo $filter->sanitize($result->attendances->location, "string");?>
+                                <div class="span1"><?php echo $filter->sanitize($result->attendances->location, "string"); ?>
                             </td>
                             <td>
-                                   <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>
+                                <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>
 
                             </td>
                         </tr>
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
                 </tbody>
                 <tfoot style="display:none;"></tfoot>
             </table>      

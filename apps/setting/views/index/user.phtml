@@ -1,99 +1,94 @@
 <?php
-    use Phalcon\Filter;
+
+use Phalcon\Filter;
 ?>
 
 <a name="User"></a>
-                                     <br>
-                                <h3>Change User Rule </h3>
-                                
-                                <br>
-                             
-                                
-                                <table class="listtbladmin listtbl" id="user_role">
-                        
-                        <thead>
-                        <br>
-                                <tr>                                  
-                                <th width="10px" style="text-align:center;">Group ID</th>                                
-                                <th width="200px">User Name</th>
-                                <th width="200px">Group Name</th>
-                                <th width="10px">Action</th>                               
-                                </tr>
-                        </thead>
-                        <tbody style="display:none;text-align:center;" >
-                   <?php 
-                   foreach($coreuser as $datauser){ 
-                       if($datauser['deleted_flag'] == 0){
-                       ?>
-                                <tr>                                        
-                                        <td><?= $datauser['group_id'] ?></td>
-                                        <td style="text-align:left;"><?= $datauser['member_login_name'] ?></td>
-                                        
-                                        
-                                       <?php
-                                        foreach($coreid as $data){ 
-                                            
-                                            if( $datauser['group_id']  == $data->group_id){
-                                                
-                                          
-                                        ?>
-                                        <td style="text-align:left;"> 
-                                       
-                                            
-                                        <?=  $data->name_of_group ?>  
-                                        (<?=  $datauser['group_id']  ?>)
-                                        </td>
-                                        <?php
-                                         }
-                                        }
-                                         
-                                         
-                                         ?>
-                                        
-                                        
-                                        <td>        
-            <a href="#" onclick="showDialoguser.apply(this);return false;" class="insettingedit" type="black" id="<?= $datauser['member_id'] ?>"> </a>  
-                                        </td> 
-                                         
-                                </tr>
-                                
-                                <div id="openu<?= $datauser['member_id'] ?>" title="Change User Rule" style="display: none;">
-                                       <form method="POST" action="UserRuleSetting">   
-                                        User Name   
-                                        <input type="text" style="margin-left:50px;" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" disabled>
-                                        <br><br>
-                                           Group Rule
-                                           
-<!--                                        <input type="hidden" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" >-->
-                                           <select type="text" style="margin-left:50px;" name='user_rule' value='' id="changeuser<?= $datauser['member_id'] ?>">
-                                        <?php
-                                        foreach($coreid as $data){
-                                          ?>
-                                        <option value="<?= $data->group_id ?>" <?php if( $datauser['group_id']  == $data->group_id){ ?>selected <?php } ?>>
-                                            
-                                                  <?= $data->name_of_group ?>
-                                            
-                                        </option>
-                                        <?php
-                                         }
-                                         ?>
-                                        </select>
-                                        </form>
-                                            
-                              </div>
-                                
-                                
-                                
-                                
-                                
-                   <?php
-                   }
-                   else{
-                       
-                   }
-                   
-                                        }
-                   ?></tbody>
-                       <tfoot></tfoot>
-            </table>  
-                                
+<br>
+<h3>Change User Rule </h3>
+
+<br>
+
+
+<table class="listtbladmin listtbl" id="user_role">
+
+    <thead>
+    <br>
+    <tr>                                  
+        <th width="10px" style="text-align:center;">Group ID</th>                                
+        <th width="200px">User Name</th>
+        <th width="200px">Group Name</th>
+        <th width="10px">Action</th>                               
+    </tr>
+</thead>
+<tbody style="display:none;text-align:center;" >
+    <?php
+    foreach ($coreuser as $datauser) {
+        if ($datauser['deleted_flag'] == 0) {
+            ?>
+            <tr>                                        
+                <td><?= $datauser['group_id'] ?></td>
+                <td style="text-align:left;"><?= $datauser['member_login_name'] ?></td>
+
+
+                <?php
+                foreach ($coreid as $data) {
+
+                    if ($datauser['group_id'] == $data->group_id) {
+                        ?>
+                        <td style="text-align:left;"> 
+
+
+                            <?= $data->name_of_group ?>  
+                            (<?= $datauser['group_id'] ?>)
+                        </td>
+                        <?php
+                    }
+                }
+                ?>
+
+
+                <td>        
+                    <a href="#" onclick="showDialoguser.apply(this);
+                            return false;" class="insettingedit" type="black" id="<?= $datauser['member_id'] ?>"> </a>  
+                </td> 
+
+            </tr>
+
+        <div id="openu<?= $datauser['member_id'] ?>" title="Change User Rule" style="display: none;">
+            <form method="POST" action="UserRuleSetting">   
+                User Name   
+                <input type="text" style="margin-left:50px;" name="member_login_name" value="<?= $datauser['member_login_name'] ?>" disabled>
+                <br><br>
+                Group Rule
+
+                <select type="text" style="margin-left:50px;" name='user_rule' value='' id="changeuser<?= $datauser['member_id'] ?>">
+                    <?php
+                    foreach ($coreid as $data) {
+                        ?>
+                        <option value="<?= $data->group_id ?>" <?php if ($datauser['group_id'] == $data->group_id) { ?>selected <?php } ?>>
+
+                            <?= $data->name_of_group ?>
+
+                        </option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </form>
+
+        </div>
+
+
+
+
+
+        <?php
+    } else {
+        
+    }
+}
+?></tbody>
+<tfoot></tfoot>
+</table>  
+
