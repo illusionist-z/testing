@@ -49,6 +49,8 @@ class IndexController extends ControllerBase {
     }
 
     public function autolistAction() {
+
+
         if ($this->moduleIdCall == 1) {
             $UserList = new Db\CoreMember();
             $Username = $UserList->autousername();
@@ -83,7 +85,9 @@ class IndexController extends ControllerBase {
             $leavetype = new LeaveCategories();
             $ltype = $leavetype->getleavetype();
             $userlist = new Db\CoreMember();
+
             $name = $userlist::getinstance()->getusername();
+
             if ($this->permission == 1) {
                 $this->view->setVar("name", $name);
                 $this->view->setVar("Leavetype", $ltype);
@@ -126,7 +130,10 @@ class IndexController extends ControllerBase {
      * Show Leave data list
      */
     public function leavelistAction() {
+
+
         if ($this->moduleIdCall == 0) {
+
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
@@ -160,7 +167,6 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
-    }
 
     /**
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
@@ -168,7 +174,10 @@ class IndexController extends ControllerBase {
      * to edit leave categories and max leave day
      */
     public function leavesettingAction() {
+
+
         if ($this->moduleIdCall == 1) {
+
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
@@ -299,7 +308,9 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
+
         $Result = $Admin->checkleave();
+
         $this->view->setVar("Result", $Result);
     }
 
@@ -315,7 +326,9 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
+
         $Result = $Admin->leavemost();
+
         $this->view->setVar("Result", $Result);
     }
 
