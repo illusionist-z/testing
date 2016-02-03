@@ -8,11 +8,12 @@ namespace salts\Core\Models;
  * and open the template in the editor.
  */
 
-class CoreMember extends \Library\Core\BaseModel {
+class CoreMember extends \Library\Core\Models\Base {
 
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
     
+    // Table name
     protected $_name = 'core_member';
 
     public function onConstruct() {
