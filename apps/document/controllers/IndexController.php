@@ -58,7 +58,6 @@ class IndexController extends ControllerBase {
      */
     public function ssbdocumentAction() {
 
-
         if ($this->moduleIdCall == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/print.js');
@@ -69,7 +68,6 @@ class IndexController extends ControllerBase {
             $coreid = new CorePermissionGroupId();
 
             if ($this->permission == 1) {
-
                 $this->view->salary_info = $result;
                 $this->view->cominfo = $cominfo;
             } else {
@@ -91,13 +89,11 @@ class IndexController extends ControllerBase {
         $moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
 
         if ($moduleIdCall == 1) {
-
             $this->assets->addJs('apps/document/js/print.js');
             $SalaryDetail = new Document();
             $result = $SalaryDetail->getsalary_info();
             $coreid = new CorePermissionGroupId();
             if ($this->permission == 1) {
-
                 $this->view->salary_info = $result;
             } else {
                 $this->response->redirect('core/index');
@@ -117,7 +113,6 @@ class IndexController extends ControllerBase {
         $moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
 
         if ($this->moduleIdCall == 1) {
-
             $this->assets->addJs('apps/document/js/letterhead.js');
             $Cinfo = new \salts\Document\Models\CompanyInfo();
             $info = $Cinfo->GetCompanyInfo();

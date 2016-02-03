@@ -27,13 +27,10 @@ class IndexController extends ControllerBase {
         $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
-
                 $noti = $Admin->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
@@ -177,8 +174,7 @@ class IndexController extends ControllerBase {
      */
 
     public function adduserAction() {
-
-//       $this->view->count = 
+        
     }
 
     /**
@@ -186,11 +182,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function getpermitAction() {
-
         $permission = new CorePermissionGroupId();
         $result = $permission->getPermitName();
         echo json_encode($result);
-
         $this->view->disable();
     }
 

@@ -25,8 +25,6 @@ class ModuleController extends ControllerBase {
         if (isset($id)) {
             $result = $Obj->search($id);
         }
-
-
         $this->view->result = $result;
     }
 

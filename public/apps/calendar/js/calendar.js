@@ -47,7 +47,6 @@ var Calendar = {
                 var end = event.end.format("YYYY-MM-DD");
                 var shr = event.start.format("HH:mm:ss");
                 var ehr = event.end.format("HH:mm:ss");
-                //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");  
                 Calendar.Dialog.drag(start, end, event.id, event.title, event.member_name, event);
             },
             eventDrop: function (event) {
@@ -158,9 +157,7 @@ var Calendar = {
             method: 'GET',
             async: false,
             success: function (data) {
-
                 var json_obj = $.parseJSON(data);
-
                 for (var i in json_obj) {
                     id.push(json_obj[i].member_id);
                 }
@@ -174,7 +171,6 @@ var Calendar = {
         if ($(':checkbox:checked').length > 0) {
             $(':checkbox:checked').each(function (i) {
                 selectedvalue[i] = $(this).val();
-                //alert(selectedvalue[i]);
             });
             $.ajax({
                 url: "index/removeEventByname",
@@ -217,11 +213,9 @@ var Calendar = {
             source: dict,
             minLength: 1,
             select: function (event, ui) {
-
                 $("#member_event_add").attr("disabled", false);
                 $("#member_event_add").unbind("click").bind("click", function (e) {
                     e.preventDefault();
-
                     $.ajax({
                         type: "GET",
                         data: {permit: ui.item.value},
@@ -398,8 +392,6 @@ Calendar.Dialog = {
                 }
                 else {
                     var selectedvalue = [];
-//                    $('#calendar').remove(), //remove calendar origin
-//                    $('.box-body').html('<div id="calendar" class="bg-info" style="width:100%;height:130%;"></div>'), //replace a new calendar                            
                     dia.dialog("close");
                     if ($(':checkbox:checked').length > 0) {
                         $(':checkbox:checked').each(function (i) {

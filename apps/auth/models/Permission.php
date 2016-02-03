@@ -48,7 +48,6 @@ class Permission {
             $permissionGroups = [];
 
             while ($permissions->valid()) {
-                //$robot = $permissions->current();
                 foreach ($permissions as $robot) {
                     $permissionGroups[] = $robot->permission_group_id_user;
                 }
@@ -95,14 +94,12 @@ class Permission {
                 //get language module foreach               
                 $permissions = $permis->moduleLang($row->permission_code, $lang);
                 if ($permissions) {
-//                    $per_result[$row->permission_code][] = $row->permission_name;
                     $i = 0;
                     foreach ($permissions as $res) {
                         $per_result[$res['permission_code']][] = $res[2];             //get translate menu text
                         $per_result[$res['permission_code']]['link' . $i] = $res[1];    //get link text
                         $i++;
                     }
-                    //$results->next()
                 }
             }
         } catch (\Exception $e) {

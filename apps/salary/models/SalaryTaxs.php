@@ -8,7 +8,6 @@ use Phalcon\Mvc\Model;
 class SalaryTaxs extends Model {
 
     public function initialize() {
-        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
 

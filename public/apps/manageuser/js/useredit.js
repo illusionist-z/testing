@@ -7,13 +7,11 @@
 var Manage = {};
 Manage.User = {
     Edit: function (type) {
-
         $.ajax({
             type: 'GET',
             url: baseUri + 'manageuser/index/manageuser?data=' + type,
             dataType: 'json',
             success: function (res) {
-
                 var html, title, id;
                 if (res[0] !== 'new') {
                     html = '<form id="edit_user" width="250px" height="200px"><table width="420px" height="100px" align="center" style="font-size:13px;">'
@@ -39,8 +37,6 @@ Manage.User = {
                     id = 0;
                 }
                 else {
-
-
                     html = '<form id="saveuser" method="post" enctype="multipart/form-data">'
                             + '<table class="row-fluid" style="font-size:13px;"><tr><td class="">' + res[1]['name'] + '</td><td>'
                             + '<input style="margin-top:10px" type="text" name="uname" id="uname" class="col-sm-10" placeholder="' + res[1]['placeholder1'] + '"></td></tr>'
@@ -75,10 +71,7 @@ Manage.User = {
                                 option += "<option value='" + json_obj[i].name_of_group + "," + json_obj[i].group_id + "'" + opt + ">" + json_obj[i].name_of_group + "</option>";
 
                             }
-
                             $('.mySelect').html(option);
-
-
                         }
                     });
 
@@ -106,7 +99,6 @@ Manage.User = {
                 width: 'auto',
                 position: ['center', 80],
                 modal: true,
-                //position:"bottom",
                 title: title
             });
             $ovl.html(data);

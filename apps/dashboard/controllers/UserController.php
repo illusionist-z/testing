@@ -23,8 +23,6 @@ class UserController extends ControllerBase {
             $noti = $Admin->GetAdminNoti($id, 0);
         }
         if ($key_name == 'show_user_notification') {
-
-
             $noti = $Admin->GetUserNoti($id, 1);
         }
     }
@@ -38,13 +36,10 @@ class UserController extends ControllerBase {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
-
                 $noti = $User->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-
                 $noti = $User->GetUserNoti($id, 1);
             }
         }
@@ -52,7 +47,6 @@ class UserController extends ControllerBase {
         $Attendances = new \salts\Dashboard\Models\Attendances();
         $numofatt = $Attendances->getattlist($id);
         $numofleaves = $Attendances->gettotalleaves($id);
-
         $this->view->setVar("numatt", $numofatt);
         $this->view->setVar("numleaves", $numofleaves);
         $this->view->t = $this->_getTranslation();

@@ -22,7 +22,6 @@ class Allowances extends Model {
      * Adding Allowances to allowance table
      */
     public function addallowance($all_value, $all_name, $count) {
-
         $created_date = date("Y-m-d H:i:s");
         $this->db = $this->getDI()->getShared("db");
         for ($x = 1; $x < $count; $x++) {
@@ -36,7 +35,6 @@ class Allowances extends Model {
      * @return type
      */
     public function showalwlist() {
-
         $row = $this->modelsManager->createBuilder()
                 ->columns('allowance_id,allowance_name,allowance_amount')
                 ->from('salts\Salary\Models\Allowances')

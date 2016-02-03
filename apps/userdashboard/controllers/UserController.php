@@ -49,7 +49,6 @@ class UserController {
     }
 
     public function userdashboardAction() {
-        //$this->response->redirect('setting/user/usersetting');
     }
 
 }
