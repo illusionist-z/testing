@@ -17,6 +17,7 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
+include_once '/var/www/html/salts/library/core/BaseModel.php';
 class CoreMember extends \Library\Core\BaseModel {
 
     // Use trait for singleton

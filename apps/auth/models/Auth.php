@@ -24,7 +24,7 @@ class Auth extends Component {
             $sql = "SELECT * FROM company_tbl where company_id=? and deleted_flag=0";
             $rs = $this->getDI()->getShared("login_db")
                     ->query($sql, array($param['company_id']));
-            $row = $rs->fetchArray();
+            $row = $rs->fetchArray();var_dump($row);exit;
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);

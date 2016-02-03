@@ -4,12 +4,11 @@ namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
-
+ include_once '/var/www/html/salts/apps/auth/models/db/CoreMember.php';
 class IndexController extends ControllerBase {
-
+ 
     public function initialize() {
         parent::initialize();
-
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/auth/js/forgot.js');
     }
@@ -19,8 +18,18 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function indexAction($mode = NULL) {
-        $localhost = ($this->request->getServer('HTTP_HOST'));
-
+        
+         $localhost = ($this->request->getServer('HTTP_HOST'));
+         $id_auth_filter =$this->session->auth;
+          
+         if(isset($id_auth_filter) != null){
+             
+             $this->response->redirect('dashboard/index');
+             
+         }
+       
+        elseif (isset($id_auth_filter) == null){
+            
         if (isset($_SESSION['startTime']) != null) {
             $this->view->pick('salts/auth/index/failer');
             $page = "http://" . $localhost . "/salts/auth/index/failer";
@@ -32,6 +41,7 @@ class IndexController extends ControllerBase {
             $this->view->errorMsg = '';
             $this->view->mode = $mode;
         }
+            }
     }
 
     /**
@@ -39,6 +49,7 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function failerAction($mode = 1) {
+        
         /*
          * User failerAction 
          * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -60,7 +71,7 @@ class IndexController extends ControllerBase {
                 if (count($chack_user2) != 0) {
 
                     $member_name = $this->session->tokenpush;
-                    $core_fai = new CoreMember();
+                    $core_fai = new Db\CoreMember();
                     $core_fai = CoreMember::findFirstByMemberLoginName($member_name);
                     $core_fai = $core_fai->timeflag;
                     $timestamp = (date("Y-m-d H:i:s"));
@@ -103,8 +114,6 @@ class IndexController extends ControllerBase {
                     $_SESSION['expire'] = $_SESSION['startTime'];
                     $rout_time = $nowtime - $_SESSION['expire'];
                     $localhost = ($this->request->getServer('HTTP_HOST'));
-
-                    $page = "http://" . $localhost . "/salts/auth/index/faileruser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
@@ -128,7 +137,7 @@ class IndexController extends ControllerBase {
                 }
             }
             // User Not Has
-            elseif (count($chack_user) != 0) {
+            elseif (count($chack_user) != 0) {  
                 $member_name = $this->session->tokenpush;
                 $chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
@@ -329,3 +338,5 @@ class IndexController extends ControllerBase {
     }
 
 }
+                     
+                    $page = "http://".$localhost."/salts/auth/index/faileruser";

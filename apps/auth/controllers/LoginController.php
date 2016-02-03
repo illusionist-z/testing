@@ -17,15 +17,16 @@ class LoginController extends ControllerBase {
      */
     public function indexAction() {
 
+        
         $login_params = $this->request->get();
         $ModelAuth = new Models\Auth();
-
+       
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = '';
+            $dbinfo['db_psw'] = 'root';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->check($login_params, $user);
@@ -40,6 +41,7 @@ class LoginController extends ControllerBase {
 
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findcomp_db($login_params);
+            
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
