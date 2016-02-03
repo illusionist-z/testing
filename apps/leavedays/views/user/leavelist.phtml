@@ -23,12 +23,10 @@ $length = count($Month);
                 <?php
                 foreach ($Leavetype as $data) {
                     ?>
-                    <option value="<?php echo $data['leavetype_name']; ?>"
-
-                            ><?php echo $data['leavetype_name'] ?></option>
-                            <?php
-                        }
-                        ?>
+                    <option value="<?php echo $data['leavetype_name']; ?>"><?php echo $data['leavetype_name'] ?></option>
+                    <?php
+                }
+                ?>
 
             </select>
             <select class="select" data-toggle="select" name="month" id="month">
@@ -71,7 +69,6 @@ $length = count($Month);
                         <th width="150px"><?= $t->_("leave_status"); ?></th>
                         <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
-
                 </thead>
                 <tbody style="display: none;">
                     <?php

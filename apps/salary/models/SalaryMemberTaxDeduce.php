@@ -8,7 +8,6 @@ use Phalcon\Mvc\Model;
 class SalaryMemberTaxDeduce extends Model {
 
     public function initialize() {
-        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
 
@@ -37,7 +36,6 @@ class SalaryMemberTaxDeduce extends Model {
                 $delete = "DELETE FROM salary_member_tax_deduce WHERE member_id='" . $member_id . "'";
                 $query = $this->db->query($delete);
                 for ($i = 0; $i < count($deduce); $i++) {
-
                     try {
                         $sql = "INSERT INTO salary_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('" . $deduce[$i] . "','" . $member_id . "','" . $creartor_id . "',NOW())";
                         $result = $this->db->query($sql);
@@ -48,7 +46,6 @@ class SalaryMemberTaxDeduce extends Model {
             } else {
                 for ($i = 0; $i < count($deduce); $i++) {
                     $sql = "INSERT INTO salary_member_tax_deduce (deduce_id,member_id,creator_id,created_dt) VALUES('" . $deduce[$i] . "','" . $member_id . "','" . $creartor_id . "',NOW())";
-
                     $result = $this->db->query($sql);
                 }
             }

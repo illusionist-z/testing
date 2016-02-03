@@ -24,13 +24,10 @@ class IndexController extends ControllerBase {
         $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
-
                 $noti = $Admin->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
@@ -69,7 +66,6 @@ class IndexController extends ControllerBase {
      */
     public function getapplymemberidAction() {
         $data = $this->request->get('username');
-
         $leavetype = new LeaveCategories();
         $cond = $leavetype->memidapplyleave($data);
         echo json_encode($cond);
@@ -82,8 +78,6 @@ class IndexController extends ControllerBase {
      * @desc   Apply Leave Action
      */
     public function applyleaveAction() {
-
-
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/leavedays/js/applyleave.js');
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
@@ -135,43 +129,43 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-    public function leavelistAction(){  
-        
-          
-       if ($this->moduleIdCall == 1)
-       {
-            
-          $this->act_name =  $this->router->getModuleName(); 
-        $this->permission = $this->setPermission($this->act_name ); 
-        $Admin=new Db\CoreMember;
-        $id=$this->session->user['member_id'];
-        $noti=$Admin->GetAdminNoti($id,0);
-        $this->view->setVar("noti",$noti);
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/leavedays/js/search.js');
-        $this->assets->addJs('apps/leavedays/js/leavelist.js');
-        $month = $this->config['month'];
-        $leavetype = new LeaveCategories();
-        $ltype = $leavetype->getleavetype();
-        $this->view->setVar("Leavetype", $ltype);
-        $UserList = new Db\CoreMember();
-        $GetUsername = $UserList::getinstance()->getusername();
-        $leaves = $this->_leave->getleavelist();
-        $absent = $this->_leave->getabsent();
-        $max=$this->_leave->getleavesetting();
-        $max_leavedays=$max['0']['max_leavedays'];
-          if($this->permission==1){
-        $this->view->max = $max_leavedays;
-        $this->view->Getname = $GetUsername;
-        $this->view->setVar("Result", $leaves);
-        $this->view->setVar("absent",$absent);
-        $this->view->setVar("Month", $month);
-        $this->view->modulename = $this->module_name;
-        }
-        else {
+    public function leavelistAction() {
+
+
+        if ($this->moduleIdCall == 0) {
+
+            $this->act_name = $this->router->getModuleName();
+            $this->permission = $this->setPermission($this->act_name);
+            $Admin = new Db\CoreMember;
+            $id = $this->session->user['member_id'];
+            $noti = $Admin->GetAdminNoti($id, 0);
+            $this->view->setVar("noti", $noti);
+            $this->assets->addJs('common/js/paging.js');
+            $this->assets->addJs('apps/leavedays/js/search.js');
+            $this->assets->addJs('apps/leavedays/js/leavelist.js');
+            $month = $this->config->month;
+            $leavetype = new LeaveCategories();
+            $ltype = $leavetype->getleavetype();
+            $this->view->setVar("Leavetype", $ltype);
+            $UserList = new Db\CoreMember();
+            $GetUsername = $UserList::getinstance()->getusername();
+            $leaves = $this->_leave->getleavelist();
+            $absent = $this->_leave->getabsent();
+            $max = $this->_leave->getleavesetting();
+            $max_leavedays = $max['0']['max_leavedays'];
+            if ($this->permission == 1) {
+                $this->view->max = $max_leavedays;
+                $this->view->Getname = $GetUsername;
+                $this->view->setVar("Result", $leaves);
+                $this->view->setVar("absent", $absent);
+                $this->view->setVar("Month", $month);
+                $this->view->modulename = $this->module_name;
+            } else {
+                $this->response->redirect('core/index');
+            }
+        } else {
             $this->response->redirect('core/index');
         }
-    }
     }
 
     /**

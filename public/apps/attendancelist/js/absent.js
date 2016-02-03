@@ -9,13 +9,11 @@ var Absent = {
         $('tbody').show();
     },
     Search: function (id) {
-        //alert($('#add_salary').serialize());
         $.ajax({
             type: 'GET',
             url: baseUri + 'attendancelist/absent/addAbsent?id=' + id,
             success: function (d) {
                 alert(d);
-                //cond = JSON.parse(); 
             }
         });
     }

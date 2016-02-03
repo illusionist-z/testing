@@ -37,7 +37,6 @@ class LoginController extends ControllerBase {
             } else {
                 $this->response->redirect('auth/index/failersuperuser');
             }
-            
         } else {
 
             $this->view->test = $login_params;
@@ -56,9 +55,8 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getpermit($login_params);
-                
+
                 $Member = Db\CoreMember::getInstance();
-//                $member = new Db\CoreMember();
                 $lang = $Member->getlang($login_params);
                 $this->session->set('language', $lang['lang']);
                 $Member->updatecontract($login_params);
@@ -69,10 +67,8 @@ class LoginController extends ControllerBase {
                 date_default_timezone_set('Asia/Rangoon');
 
                 // TODO: ここのオブジェクトを分けている理由を確認 [Kohei Iwasa]
-//                $core = new Db\CoreMember();
-                //$tokenpush = uniqid(bin2hex(mcrypt_create_iv(18, MCRYPT_DEV_RANDOM)));
                 $user_ip = $this->request->getPost('local');
-                
+
                 // TODO: 削除？ [Kohei Iwasa]
                 $user_ip_public = $this->request->getPost('public');
                 
@@ -92,7 +88,6 @@ class LoginController extends ControllerBase {
 
 //                    $core2 = new Db\CoreMember();
                     $core2 = $Member::findFirstByMemberLoginName($this->request->getPost('member_login_name'));
-                    //var_dump($core2);exit;
                     $core2 = $core2->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));

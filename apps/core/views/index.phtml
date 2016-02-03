@@ -87,23 +87,21 @@ use Phalcon\Tag as Tag; ?>
                                     foreach ($this->session->auth as $key_name => $key_value) {
 
                                         if ($key_name == 'show_admin_attlist') {
-
                                             $this->view->disable();
-                                            // $this->response->redirect('attendancelist/index/todaylist');
                                             ?>
                                             <div class="pull-left">
                                                 <a href="../../setting/index/index" class="btn btn-default btn-flat"><b>Setting</b></a>
                                             </div>
-        <?php
-    } else if ($key_name == '') {
-        ?> 
+                                            <?php
+                                        } else if ($key_name == '') {
+                                            ?> 
                                             <div class="pull-left">
                                                 <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"><b>Setting</b></a>
                                             </div>
-        <?php
-    }
-}
-?>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
 
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
@@ -126,8 +124,7 @@ use Phalcon\Tag as Tag; ?>
 
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <aside>
-                        <?php //print_r($this->session->auth); 
-                        ?>
+                   
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
                         <?php
@@ -140,7 +137,6 @@ use Phalcon\Tag as Tag; ?>
                             } else {
                                 $top = explode(" ", $key_value["link0"]);
                                 if (strpos($key_name, 'user') !== false) {
-                                    //var_dump($top);
                                     if (isset($top[1])) {
                                         echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                     } else {
@@ -244,7 +240,7 @@ use Phalcon\Tag as Tag; ?>
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-<?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+                <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
 

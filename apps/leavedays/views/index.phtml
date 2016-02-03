@@ -60,19 +60,18 @@ use Phalcon\Tag as Tag;
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-
-                                <?php
-                                if ($noti['member_profile'] == null) {
+                              <?php
+                                if ($this->session->user['member_profile'] == null) {
                                     $img = "profile1.jpg";
                                 } else {
-                                    $img = $noti['member_profile'];
+                                    $img = $this->session->user['member_profile'];
                                     if (file_exists('./uploads/' . $img)) {
                                         $img = $img;
                                     } else {
                                         $img = "profile1.jpg";
                                     }
                                 }
-                                ?>                                                
+                                ?>                                                 
                                 <img src="<?php echo $baseUri ?>uploads/<?php echo $img; ?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                 <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                             </a>
@@ -81,17 +80,17 @@ use Phalcon\Tag as Tag;
                                 <li class="user-header">
 
                                     <?php
-                                    if ($noti['member_profile'] == null) {
-                                        $img = "profile1.jpg";
+                                if ($this->session->user['member_profile'] == null) {
+                                    $img = "profile1.jpg";
+                                } else {
+                                    $img = $this->session->user['member_profile'];
+                                    if (file_exists('./uploads/' . $img)) {
+                                        $img = $img;
                                     } else {
-                                        $img = $noti['member_profile'];
-                                        if (file_exists('./uploads/' . $img)) {
-                                            $img = $img;
-                                        } else {
-                                            $img = "profile1.jpg";
-                                        }
+                                        $img = "profile1.jpg";
                                     }
-                                    ?>                                                
+                                }
+                                ?>                                              
                                     <img src="<?php echo $baseUri ?>uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <p>
                                         <b><?php echo $this->session->user['member_login_name']; ?></b>                                      

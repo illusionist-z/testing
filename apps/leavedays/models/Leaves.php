@@ -317,7 +317,6 @@ class Leaves extends \Library\Core\BaseModel {
                 . "leaves.total_leavedays=total_leavedays+'" . $days . "' "
                 . "WHERE leaves.member_id='" . $id . "'  AND start_date "
                 . "BETWEEN '" . $date['startDate'] . "' AND  '" . $date['endDate'] . "'";
-        // print_r($sql);exit;
         $status = 1;
         $this->db->query("UPDATE leaves set"
                 . " leaves.leave_status='" . $status . "' "

@@ -2,37 +2,18 @@
 
 <?php
 
-use Phalcon\Tag as Tag; ?>
-
-
-
-
-<?php
-/* Var Output Place
- * 
- */
-//var_dump($moduleIdCall);
-//  
-// 
-// foreach ($module_id_set as $module_name_view){
-//            $module_name_view  = $module_name_view['module_id'];
-//          
-//            var_dump($module_name_view);
-//          
-//        }
-//        exit();
+use Phalcon\Tag as Tag;
 ?>
-
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-<?php $this->assets->outputCss() ?>
+        <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini" onload="display_ct()">
-<?php error_reporting(0); ?>                                
+        <?php error_reporting(0); ?>                                
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
@@ -51,17 +32,21 @@ use Phalcon\Tag as Tag; ?>
                         </li>  
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu" >
-                            <a href="#" class="<?php if (count($noti) == 0) {
-    echo "nonoti";
-} else {
-    echo "noti";
-} ?>" id="noti" style="padding-top: 20px;">
+                            <a href="#" class="<?php
+                            if (count($noti) == 0) {
+                                echo "nonoti";
+                            } else {
+                                echo "noti";
+                            }
+                            ?>" id="noti" style="padding-top: 20px;">
                                 <img src="<?php echo $baseUri; ?>common/img/noti.png">
-                                <span class="label label-warning"><?php if (count($noti) == 0) {
-    
-} else {
-    echo count($noti);
-} ?></span>
+                                <span class="label label-warning"><?php
+                                    if (count($noti) == 0) {
+                                        
+                                    } else {
+                                        echo count($noti);
+                                    }
+                                    ?></span>
                             </a>
 
 
@@ -79,7 +64,6 @@ use Phalcon\Tag as Tag; ?>
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                               <!-- <img src="../../uploads/<?php echo $this->session->user['member_profile']; ?>" class="user-image" alt="User Image"/>-->
                                 <?php
                                 if ($this->session->user['member_profile'] == null) {
                                     $img = "profile1.jpg";
@@ -99,9 +83,6 @@ use Phalcon\Tag as Tag; ?>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <!--<img src="../../common/img/profile.png" class="img-circle" alt="User Image" />-->
-
- <!--<img src="../../uploads/<?php echo $this->session->user['member_profile']; ?>" class="img-circle">-->
                                     <?php
                                     if ($this->session->user['member_profile'] == null) {
                                         $img = "profile1.jpg";
@@ -117,8 +98,6 @@ use Phalcon\Tag as Tag; ?>
                                     <img src="<?php echo $baseUri; ?>uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <p>
                                         <b><?php echo $this->session->user['member_login_name']; ?></b>
-                                       <!-- <small><b>Member since Nov. 2012</b></small>-->
-                                        <!--<small><b>Member since <?php echo "<i style='color:black'> \" " . $this->session->user['created_dt'] . " \"</i>"; ?></b></small>-->
                                         <small><b><?php echo $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>" . date("M - Y", strtotime($this->session->user['created_dt'])) . "</b>"; ?></small>
                                     </p>
                                 </li>
@@ -129,7 +108,6 @@ use Phalcon\Tag as Tag; ?>
                                     <?php
                                     foreach ($this->session->auth as $key_name => $key_value) {
                                         if ($key_name == 'admin_dashboard') {
-                                            
                                             ?>
                                             <div class="pull-left">
                                                 <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
@@ -142,11 +120,11 @@ use Phalcon\Tag as Tag; ?>
                                             <div class="pull-left">
                                                 <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                             </div>
-        <?php
-    }
-}
-?>       
- 
+                                            <?php
+                                        }
+                                    }
+                                    ?>       
+
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b><?php echo $t->_("Sign out"); ?></b></a>
 
@@ -178,10 +156,6 @@ use Phalcon\Tag as Tag; ?>
                             $top = explode(" ", $key_value["link0"]);
                             $top_link = explode(" ", $key_value["link1"]);
                             if (strpos($key_name, 'user') !== false) {
-
-                                // if ($moduleIdCall == 1)
-                                //{
-
                                 if ($key_name != 'show_user_notification' && $key_name != 'show_user_setting') {
                                     if (count($key_value) > 2) {
                                         if (isset($top_link[1])) {
@@ -197,7 +171,6 @@ use Phalcon\Tag as Tag; ?>
                                         }
                                     }
                                 }
-                                //}    
                             } else {
                                 if ($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting') {
 
@@ -237,7 +210,7 @@ use Phalcon\Tag as Tag; ?>
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src=' " . $baseUri . "common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src=' " . $baseUri . "common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src=' " . $baseUri . "common/img/myanmar.jpg' width='25px'>") ?>
+                <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src=' " . $baseUri . "common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src=' " . $baseUri . "common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src=' " . $baseUri . "common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
 

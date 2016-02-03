@@ -118,7 +118,6 @@ var Attendance = {
         window.location.href = 'editTime/' + id + '/' + localtime;
     },
     todaylist: function () {
-        // $('table.listtbl tbody').empty();
         var name = document.getElementById('namelist').value;
 
         $.ajax({
@@ -127,7 +126,6 @@ var Attendance = {
             success: function (d) {
                 $('body').html(d);
                 link_height();
-                // Attendance.init();
             },
             error: function (d) {
                 alert('error');
