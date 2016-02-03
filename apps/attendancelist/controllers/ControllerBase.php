@@ -1,9 +1,10 @@
-<?php namespace salts\Attendancelist\Controllers;
+<?php
+
+namespace salts\Attendancelist\Controllers;
 
 // use library
 use Library;
 
-class ControllerBase extends Library\Core\Controller
-{
-
+class ControllerBase extends Library\Core\Controller {
+    
 }

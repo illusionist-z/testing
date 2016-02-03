@@ -7,7 +7,6 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-       
     }
 
     public function indexAction($mode = NULL) {
@@ -16,7 +15,6 @@ class IndexController extends ControllerBase {
         $user = $this->session->get('user');
 
         $this->view->user = $user;
-    }   
-    
+    }
 
 }

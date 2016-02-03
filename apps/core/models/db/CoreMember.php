@@ -17,7 +17,7 @@ use Phalcon\Filter;
  */
 
 class CoreMember extends \Library\Core\BaseModel {
-    
+
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
 
@@ -30,10 +30,7 @@ class CoreMember extends \Library\Core\BaseModel {
         //// Module ID Filter Start
         $module_id_set = $m;
         foreach ($module_id_set as $module_name) {
-            //var_dump($module_name['module_id']);
-
             if ($module_name['module_id'] == $v) {
-
                 $var_id = 1;
             }
         }
@@ -55,7 +52,6 @@ class CoreMember extends \Library\Core\BaseModel {
     public function module_permission() {
         $this->db = $this->getDI()->getShared("db");
         $query = "Select permission_code,permission_name_en,permission_name_$lang from core_permission where permission_code ='$code'";
-        //echo $query;exit;
         $data = $this->db->query($query);
         $result = $data->fetchall();
         return $result;
@@ -218,7 +214,6 @@ class CoreMember extends \Library\Core\BaseModel {
         foreach ($us as $value) {
             $sql = "INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())";
-            // print_r($sql);exit;
             $this->db->query($sql);
         }
     }
@@ -397,7 +392,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return array {leave name}
      * @return array {no leave name}
-   * @version saw zin min tun
+     * @version saw zin min tun
      */
     public function checkleave() {
         $res = array();
@@ -416,7 +411,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return array {leave name}
      * @return array {no leave name}
      * @version saw zin min tun
-     */ 
+     */
     public function leavemost() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
@@ -481,34 +476,16 @@ class CoreMember extends \Library\Core\BaseModel {
         return $member_flag;
     }
 
-//    public function countday($member_id,$time_office,$formtdate){
-//         $this->db = $this->getDI()->getShared("db");
-//         $member_day_count = "SELECT COUNT(*) FROM member_log WHERE member_id = ' ".$member_id."' AND nowtime BETWEEN '".$time_office."' AND '".$formtdate."' AND yes_no = '0' ";
-//         $user_day = $this->db->query($member_day_count);
-//         $user_day = $user_day->fetchAll(); 
-//         return $user_day;
-//        
-//    }
-
     /**
      * Saw Zin Min Tun
      * user enter code check database code
-
      */
     public function findcode($code, $email) {
-        //print_r($member_mail);exit;
-        //exit;
-        // Check if the user exist
-        //SELECT * FROM forgot_password where  check_mail = 'AA@gmail.com' and token = (select token from forgot_password  order by curdate desc limit 1)
+
         $this->db = $this->getDI()->getShared("db");
-
         $query = "SELECT token FROM forgot_password where  check_mail = '" . $email . "'  order by curdate desc limit 1  ";
-        //  print_r($query);exit;
-
         $user = $this->db->query($query);
         $user = $user->fetchArray();
-//       print_r($user['token']);
-//        print_r($code);exit;
 
         if ($user['token'] == $code) {
             $msg = "success";
@@ -522,20 +499,16 @@ class CoreMember extends \Library\Core\BaseModel {
     /**
      * Saw Zin Min Tun
      * forget password
-
      */
     public function updatepassword($member_mail, $newpassword) {
         // Check if the user exist
-
         $newpassword = sha1($newpassword);
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-
         return $user;
     }
 
     public function updatenewpassword($member_mail, $newpass) {
-
         $newpassword = sha1($newpass);
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
@@ -544,20 +517,16 @@ class CoreMember extends \Library\Core\BaseModel {
 
     public function checkyourmail($getmail) {
         $this->db = $this->getDI()->getShared("db");
-
         $query = "SELECT token FROM forgot_password where  check_mail = '" . $getmail . "'  order by curdate desc limit 1  ";
-        //  print_r($query);exit;
-
         $user = $this->db->query($query);
         $user = $user->fetchArray();
-        //print_r($user['token']);exit;
         return $user['token'];
     }
 
     public function findUserAddSalary($id) {
         $cond1 = "Select * from core_member where member_id not in ( select member_id from salary_master)";
         $cond2 = "Select * from core_member where member_id in ( select member_id from salary_master)";
-        (1 == $id) ? $query = $cond1 : $query = $cond2;        
+        (1 == $id) ? $query = $cond1 : $query = $cond2;
         $data = $this->db->query($query);
         $rows = $data->fetchall();
         return $rows;

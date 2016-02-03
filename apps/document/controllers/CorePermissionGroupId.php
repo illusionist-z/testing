@@ -21,7 +21,4 @@ class CorePermissionGroupId extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
     }
 
-  
-      
-
 }

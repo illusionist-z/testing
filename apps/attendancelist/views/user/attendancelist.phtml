@@ -34,7 +34,6 @@ if ($offset < 0) {
             <input type="text" name="year" id="startdate" class="datepicker"  placeholder="Start Date" style="margin-top: 10px;height:28px; width: 100px;">          
             <input type="text" name="month" id="enddate"  class="datepicker"   placeholder="End Date" style="margin-top: 10px;height:28px; width: 100px;">
             <input type="submit" class="buttonn" value="Search" id="search">
-            <!--       <a href="#" class="button" id="search">Search</a>-->
             <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'attendance_list.csv']);">Export</a>
         </form>
     </div><!--Button-->
@@ -59,7 +58,6 @@ if ($offset < 0) {
                 $filter = new Filter();
 
                 foreach ($attlist as $result) {
-                    //print_r($result);exit;
                     ?>
                     <tr>
                         <td><?php echo $result->attendances->att_date; ?></td>
@@ -91,7 +89,6 @@ if ($offset < 0) {
                                 $start = strtotime($office_start_time);
                                 $end = strtotime($time);
                                 $late = $end - $start;
-
                                 echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
                             } else {
                                 echo "-";

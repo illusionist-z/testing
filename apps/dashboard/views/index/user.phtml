@@ -2,6 +2,7 @@
  @author Su Zin Kyaw
  @since  2015/11 /06-->
 <?php
+
 use Phalcon\Tag as Tag; ?>
 <script type="text/javascript">
     function checkValue() {
@@ -15,15 +16,13 @@ use Phalcon\Tag as Tag; ?>
 </script>
 
 <?php
-foreach ($this->session->auth as $key_name => $key_value) {             
-                if ($key_name == 'admin_dashboard') {
-                
-                $this->view->disable();
-                $this->response->redirect('dashboard/index/admin');
-              } 
-              
-                 
-        }
+foreach ($this->session->auth as $key_name => $key_value) {
+    if ($key_name == 'admin_dashboard') {
+
+        $this->view->disable();
+        $this->response->redirect('dashboard/index/admin');
+    }
+}
 ?>
 
 <!-- Main content -->

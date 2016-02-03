@@ -25,6 +25,7 @@ try {
         'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => '../apps/core/models/',
         
+
     ));
 
     // register autoloader
@@ -60,9 +61,10 @@ try {
 
     // Include modules
     require __DIR__ . '/../config/modules.php';
-    
-    // Module config
-    require __DIR__ . '/../config/module_config.php';
+    /**
+     * Module config 
+     */
+    require __DIR__ . '/../library/core/module_config.php';
     echo $application->handle()->getContent();
 } catch (Phalcon\Exception $e) {
     $logString = $e->getMessage() . " [{$e->getFile()}({$e->getLine()})]" . PHP_EOL

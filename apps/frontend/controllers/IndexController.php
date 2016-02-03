@@ -1,14 +1,15 @@
-<?php namespace salts\Frontend\Controllers;
+<?php
 
-class IndexController extends ControllerBase
-{
+namespace salts\Frontend\Controllers;
 
-    public function indexAction()
-    {
+class IndexController extends ControllerBase {
+
+    public function indexAction() {
         echo 'front';
     }
-   public function testAction(){
-       echo 'test';
-   }
-}
 
+    public function testAction() {
+        echo 'test';
+    }
+
+}

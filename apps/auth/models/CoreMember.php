@@ -1,4 +1,6 @@
-<?php namespace salts\Auth\Models\Db;
+<?php
+
+namespace salts\Auth\Models\Db;
 
 /* 
  * To change this license header, choose License Headers in Project Properties.

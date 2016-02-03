@@ -21,15 +21,15 @@ class SearchController extends ControllerBase {
      * 
      */
     public function attsearchAction() {
-            if ($this->request->isAjax() == true) {
-                $month = $this->request->get('month');
-                $username = $this->request->get('username',"string");
-                $year = $this->request->get('year');
-                $Attendances = new Attendances();
-                $result = $Attendances->search_attlist($year, $month, $username);
-                $this->view->disable();
-                echo json_encode($result);
-            }        
+        if ($this->request->isAjax() == true) {
+            $month = $this->request->get('month');
+            $username = $this->request->get('username', "string");
+            $year = $this->request->get('year');
+            $Attendances = new Attendances();
+            $result = $Attendances->search_attlist($year, $month, $username);
+            $this->view->disable();
+            echo json_encode($result);
+        }
     }
 
 }

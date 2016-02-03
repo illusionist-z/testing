@@ -10,13 +10,12 @@ use Phalcon\Tag as Tag; ?>
 <div id="main_contents">
     <?php // echo $this->tag->linkTo("attendance/index/todaylist", "Sign Up Here!"); ?>
     <?php
-
     foreach ($this->session->auth as $key_name => $key_value) {
-     
-          $this->response->redirect('dashboard');
-      
-     
-     
+
+        $this->response->redirect('dashboard');
+
+
+
 //        foreach ($key_value as $name => $value) {
 ////            print "Key = " . $name . " Value = " . $value . "<BR>";exit;
 //            if ($name == 0) {
@@ -26,7 +25,7 @@ use Phalcon\Tag as Tag; ?>
 //                print "Key = " . $name . " Value = " . $value . "<BR>";
 //            }
 //        }
-       
+
         foreach ($key_value as $name => $value) {
             //print "Key = " . $name . " Value = " . $value . "<BR>";
             if ($name == 0) {
