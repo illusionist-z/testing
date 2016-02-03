@@ -27,8 +27,10 @@ Class Module implements ModuleDefinitionInterface {
         $loader = new Loader();
 
         $loader->registerNamespaces(array(
-            'salts\\' . $this->_moduleName . '\Controllers' => $this->_moduleDir . '/controllers/',
-            'salts\\' . $this->_moduleName . '\Models' => $this->_moduleDir . '/models/',
+            'salts\\' . $this->_moduleName . '\Controllers' 
+                => strtolower($this->_moduleDir) . '/controllers/',
+            'salts\\' . $this->_moduleName . '\Models' 
+                => strtolower($this->_moduleDir) . '/models/',
             
         ));
 
@@ -61,7 +63,6 @@ Class Module implements ModuleDefinitionInterface {
             //Set Plugin
             $eventsManager = $di->getShared('eventsManager');
             //Set Permission plugin
-            include_once '/var/www/html/salts/library/core/plugin/permission.php';
             $eventsManager->attach('dispatch', new \Library\Core\Plugin\Permission($di));
 
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
@@ -96,13 +97,11 @@ Class Module implements ModuleDefinitionInterface {
         $aryModules = '';
 
         if ($aryModules === '') {
-            //print_r(array_diff(scandir('apps'),[".",".."]));exit;
             $aryModules = array_diff(scandir('../apps'), [".", ".."]);
-            // print_r($aryModules);exit;
+
             // Store it in the cache
             $cache->save($cacheKey, $aryModules);
         }
-        //print_r($aryModules);exit;
         return $aryModules;
     }
 
