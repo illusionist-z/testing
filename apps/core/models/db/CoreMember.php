@@ -91,6 +91,7 @@ class CoreMember extends \Library\Core\BaseModel {
         foreach ($row as $rs) {
             echo '<li>' . $rs->full_name . '</li>';
         }
+        $this->find($rs);
         return $row;
     }
 
