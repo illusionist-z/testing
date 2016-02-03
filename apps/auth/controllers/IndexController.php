@@ -53,7 +53,7 @@ class IndexController extends ControllerBase {
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new \CoreMember();
+                $chack_user2 = new Db\CoreMember();
                 $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 

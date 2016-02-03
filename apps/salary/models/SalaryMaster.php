@@ -20,8 +20,11 @@ class SalaryMaster extends Model {
      * @author zinmon
      */
     public function savesalary($data) {
+      
+     $return = array();
+         $SalaryMaster = new SalaryMaster();    
         try {
-            $SalaryMaster = new SalaryMaster();
+            
             if ($SalaryMaster->save($data) == false) {
                 foreach ($SalaryMaster->getMessages() as $message) {
                     $return[] = $message;
@@ -32,6 +35,7 @@ class SalaryMaster extends Model {
         } catch (Exception $e) {
             echo $e;
         }
+    
     }
 
     /**

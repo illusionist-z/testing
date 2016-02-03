@@ -4,7 +4,6 @@ var forgot = {
             url: 'checkmail',
             method: 'GET',
             data: {email: email},
-            // dataType: 'json',
             success: function (d) {
                 data = JSON.parse(d);
                 if (data === 'success') {

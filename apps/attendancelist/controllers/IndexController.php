@@ -42,34 +42,30 @@ class IndexController extends ControllerBase {
     /**
      * show today attendance list
      */
-    public function todaylistAction() {
-
-
-        if ($this->moduleIdCall == 0) {
-
-            $this->act_name = $this->router->getModuleName();
-            $this->permission = $this->setPermission($this->act_name);
-            $this->assets->addJs('common/js/jquery-ui-timepicker.js');
-            $this->assets->addCss('common/css/jquery-ui-timepicker.css');
-            $id = $this->session->user['member_id'];
-            $name = $this->request->get('namelist');
-            $offset = $this->session->location['offset'];
-            $UserList = new Db\CoreMember();
-            $Username = $UserList::getinstance()->getusername();
-            $AttList = new \salts\Attendancelist\Models\Attendances();
-            $ResultAttlist = $AttList->gettodaylist($name);
-            if ($this->permission == 1) {
-                $this->view->attlist = $ResultAttlist;
-                $this->view->offset = $offset;
-                $this->view->uname = $Username;
-                //$this->view->modulename = $this->module_name;        
-            } else {
-                $this->response->redirect('core/index');
-            }
-        } else {
-            $this->response->redirect('core/index');
+    public function todaylistAction( ) {
+       
+        
+       if ($this->moduleIdCall == 1)
+       {
+            
+        $this->act_name =  $this->router->getModuleName(); 
+        $this->permission = $this->setPermission($this->act_name); 
+        $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
+        $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
+        $id=$this->session->user['member_id'];        
+        $name = $this->request->get('namelist');
+        $offset = $this->session->location['offset'];
+        $UserList = new Db\CoreMember();
+        $Username = $UserList::getinstance()->getusername();
+        $AttList = new \salts\Attendancelist\Models\Attendances();
+        $ResultAttlist = $AttList->gettodaylist($name);
+        if($this->permission==1){
+        $this->view->attlist=$ResultAttlist;
+        $this->view->offset= $offset;
+        $this->view->uname = $Username;       
+        //$this->view->modulename = $this->module_name;        
         }
-    }
+    }}
 
     public function editTimedialogAction($id) {
         $Att = new \salts\Attendancelist\Models\Attendances();

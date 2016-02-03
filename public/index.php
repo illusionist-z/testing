@@ -8,8 +8,7 @@ use Phalcon\Config\Adapter\Ini;
 //$debug->listen();
 
 try {
-   // echo __DIR__ ;exit;
-    //Register an autoloader
+
     $loader = new \Phalcon\Loader();
     //Register some namespaces
     $loader->registerDirs(array(
@@ -24,8 +23,12 @@ try {
         // set namespace for the core module
         'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => '../apps/core/models/',
-        
-
+        'salts\Auth\Controllers' => '../apps/auth/controllers/',
+        'salts\Auth\Models' => '../apps/auth/models/',
+       
+      
+        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
+        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
     ));
 
     // register autoloader
