@@ -65,7 +65,7 @@ class IndexController extends ControllerBase {
         $this->view->uname = $Username;       
         //$this->view->modulename = $this->module_name;        
         }
-    }
+    }}
 
     public function editTimedialogAction($id) {
         $Att = new \salts\Attendancelist\Models\Attendances();

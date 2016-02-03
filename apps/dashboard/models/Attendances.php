@@ -17,9 +17,8 @@ class Attendances extends Model {
      * set check in time when user click 'checkin'button
      * @param type $id
      * @param type $note
-     * @param type $lat
-     * @param type $lon
      * @param type $add
+     * @param type $creator_id
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
