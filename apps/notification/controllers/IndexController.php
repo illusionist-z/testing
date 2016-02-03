@@ -14,7 +14,6 @@ class IndexController extends ControllerBase {
         $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
                 $permission = "admin";
             }
@@ -42,7 +41,6 @@ class IndexController extends ControllerBase {
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
                 $noti = $Admin->GetAdminNoti($id, 0);
                 $oldnoti = $Admin->GetAdminNoti($id, 1);
@@ -74,13 +72,10 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
 
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
-
                 $noti = $Admin->GetAdminNoti($id, 2);
             }
             if ($key_name == 'show_user_notification') {
-
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
@@ -96,7 +91,6 @@ class IndexController extends ControllerBase {
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
                 $noti = $Admin->GetAdminNoti($id, 0);
             }
@@ -126,7 +120,6 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $Noti = new \salts\Notification\Models\CoreNotification();
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
                 $Noti->calendarnotification($id);
             }
@@ -140,7 +133,6 @@ class IndexController extends ControllerBase {
     }
 
     public function notiattendancesAction() {
-
         $id = $this->request->get('id');
         $Noti = new \salts\Notification\Models\CoreNotification();
         $Noti->attnotification($id);

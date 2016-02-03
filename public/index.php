@@ -15,13 +15,6 @@ try {
         // set namespace for libraries
         'Library\Core' => __DIR__.'/../library/core/',
        
-        //set namespace for auth model
-        //'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
-        // set namespace for the core module
-        //'salts\Core\Controllers' => __DIR__.'/../apps/core/controllers/',
-        'salts\Core\Models' => __DIR__.'/../apps/core/models/',
-//        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
-//        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
     ))->register();
     $loader->registerNamespaces(array(
         // set namespace for libraries
@@ -30,15 +23,12 @@ try {
         // set namespace for the core module
         'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => '../apps/core/models/',
-//        'salts\Auth\Controllers' => '../apps/auth/controllers/',
-//        'salts\Auth\Models' => '../apps/auth/models/',
-//        //set namespace for auth model
-//        'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
-//        // set namespace for the core module
-//        'salts\Core\Controllers' => __DIR__.'/../apps/core/controllers/',
-        'salts\Core\Models' => __DIR__.'/../apps/core/models/',
-//        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
-//        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
+        'salts\Auth\Controllers' => '../apps/auth/controllers/',
+        'salts\Auth\Models' => '../apps/auth/models/',
+       
+      
+        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
+        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
     ));
 
     // register autoloader

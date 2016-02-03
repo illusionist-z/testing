@@ -30,11 +30,8 @@ class User extends Model {
     }
 
     public function alluserlist() {
-
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE deleted_flag=0");
-
-
         $user = $user->fetchall();
         return $user;
     }
@@ -89,7 +86,6 @@ class User extends Model {
         $this->db->query("UPDATE core_permission_rel_member SET permission_member_group_is_deleted=1 where rel_member_id ='" . $id . "'");
         $this->db->query("UPDATE absent SET deleted_flag=1 where member_id ='" . $id . "'");
         $this->db->query("UPDATE salary_master SET deleted_flag=1 where member_id ='" . $id . "'");
-        // $this->db->query("DELETE FROM  where rel_member_id ='".$id."'");
     }
 
 }

@@ -18,7 +18,7 @@ use Phalcon\Filter;
 
 include_once '/var/www/html/salts/library/core/BaseModel.php';
 class CoreMember extends \Library\Core\BaseModel {
-    
+
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
 

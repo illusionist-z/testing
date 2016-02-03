@@ -57,7 +57,7 @@ class AddUser extends Model {
                 ->add('phno', new Regex(array(
                     'message' => 'The telephone is required',
                     'pattern' => '/[0-9]+/'
-                )));
+        )));
 
         $messages = $validate->validate($data);
         if (count($messages)) {

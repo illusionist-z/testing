@@ -4,11 +4,8 @@ var forgot = {
             url: 'checkmail',
             method: 'GET',
             data: {email: email},
-            // dataType: 'json',
             success: function (d) {
-
                 data = JSON.parse(d);
-
                 if (data === 'success') {
                     window.location.href = baseUri + 'auth/index/resetpassword?email=' + email;
                 } else {
