@@ -1,8 +1,8 @@
 <?php
 
 $messages = array(
-    "userlist" => "メンバー一覧", 
-    "name"   => "メンバー名",
+    "userlist" => "メンバリスト", 
+    "name"   => "メンバ名",
     "home"   => "ホーム",
     "dept"     => "部門",
     "position" => "職責",
