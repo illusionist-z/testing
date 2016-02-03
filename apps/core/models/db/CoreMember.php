@@ -17,7 +17,7 @@ use Phalcon\Filter;
  */
 
 class CoreMember extends \Library\Core\BaseModel {
-    
+
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
 

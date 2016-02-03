@@ -78,36 +78,23 @@ var AddSalary = {
     },
     downloadcsv: function (id) {
         document.location.href = "downloadcsv/" + id;
-//        $.ajax({
-//            url : "downloadcsv/"+id,
-//            success : function(d){
-//                console.log(d);
-//            }
-//        });
     },
     salnameautolist: function () {
-        //var name = document.getElementById('namelist').value;
-        //alert("aaa");
-        //url = baseUri + 'attendancelist/index/'+link+'?namelist='+name;
         var dict = [];
         $.ajax({
             url: 'salaryusername',
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
-                //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
-                    // alert(json_obj[i].full_name);
                     dict.push(json_obj[i].member_login_name);
                 }
-                //var dict = ["Test User02","Adminstrator"];
                 loadIcon(dict);
             }
 
         });
         function loadIcon(dict) {
-            //alert(dict);                    
             $('.salusername').autocomplete({
                 source: function (request, response) {
                     var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
@@ -126,9 +113,7 @@ var AddSalary = {
         $.ajax({
             url: 'getmemberid?uname=' + name,
             method: 'GET',
-            //dataType: 'json',
             success: function (data) {
-             //   alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
                     dict.push(json_obj[i].member_id);
@@ -140,7 +125,6 @@ var AddSalary = {
         function loadIcon(dict) {
             $('#formemberid').val(dict);
         }
-
     }
 };
 

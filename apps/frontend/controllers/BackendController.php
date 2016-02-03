@@ -1,12 +1,11 @@
-<?php namespace salts\Frontend\Controllers;
+<?php
 
-class BackendController extends ControllerBase
-{
+namespace salts\Frontend\Controllers;
 
-    public function indexAction()
-    {
+class BackendController extends ControllerBase {
+
+    public function indexAction() {
         $this->response->redirect('auth/index?mode=1');
     }
-  
-}
 
+}

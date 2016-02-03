@@ -12,7 +12,6 @@ use salts\Core\Models\Db\Attendances;
 class SalaryDetail extends Model {
 
     public function initialize() {
-        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
 
@@ -127,7 +126,6 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 $sql = "UPDATE salary_detail SET ssc_comp ='" . $ssc_comp . "',ssc_emp='" . $ssc_emp . "'  WHERE member_id ='" . $rows['member_id'] . "' ";
                 $result = $this->db->query($sql);
             }
-            //exit;
         } catch (Exception $e) {
             echo $e;
         }
@@ -227,7 +225,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     public function seacrhsalary($cond) {
 
         try {
-
             $select = "SELECT *, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total  FROM core_member JOIN salary_detail ON core_member.member_id=salary_detail.member_id ";
             $conditions = $this->setCondition($cond);
             $sql = $select;
@@ -398,7 +395,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         } catch (Exception $ex) {
             echo $ex;
         }
-
         return $row;
     }
 
@@ -410,7 +406,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         } catch (Exception $ex) {
             echo $ex;
         }
-
         return $row;
     }
 
@@ -437,31 +432,25 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function getoldsalary($budget_startmonth, $member_id, $salary_update_yr, $salary_update_mth) {
         try {
-
             $salary_update_mth = $salary_update_mth - 1;
             $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<='" . $salary_update_mth . "' and YEAR(pay_date)='" . $salary_update_yr . "' and MONTH(pay_date)>='" . $budget_startmonth . "'";
-
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
             echo $ex;
         }
-
         return $row;
     }
 
     public function getoldsalarydetail($member_id, $salary_update_yr, $salary_update_mth, $budget_endyear_one, $budget_startyear) {
         try {
-
             $sql = "select SUM((case when (basic_salary) then basic_salary else 0 end))as total_salary,COUNT(pay_date)as count_pay, SUM(allowance_amount) as total_all_amount,"
                     . "SUM((case when (overtime) then overtime else 0 end)) as total_overtime from salary_detail where member_id='" . $member_id . "' and YEAR(pay_date)<='" . $salary_update_yr . "' and MONTH(pay_date)>'" . $salary_update_mth . "'";
-
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
             echo $ex;
         }
-
         return $row;
     }
 
@@ -501,7 +490,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             if ($param['user_id'] !== "") {
                 $select .= " and salary_master.member_id='" . $param["user_id"] . "'";
             }
-
             $result = $this->db->query($select);
             $row = $result->fetchall();
         } catch (Exception $ex) {

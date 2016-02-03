@@ -24,7 +24,6 @@ class IndexController extends ControllerBase {
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
-
         $moduleIdCallCore = new Db\CoreMember();
         $this->module_name = $this->router->getModuleName();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);

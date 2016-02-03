@@ -13,7 +13,7 @@ use Phalcon\Tag as Tag; ?>
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini" >
-<?php error_reporting(0); ?>                                
+        <?php error_reporting(0); ?>                                
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
@@ -32,17 +32,21 @@ use Phalcon\Tag as Tag; ?>
                         </li>  
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu" >
-                            <a href="#" class="<?php if (count($noti) == 0) {
-    echo "nonoti";
-} else {
-    echo "noti";
-} ?>" id="noti" style="padding-top: 20px;">
+                            <a href="#" class="<?php
+                            if (count($noti) == 0) {
+                                echo "nonoti";
+                            } else {
+                                echo "noti";
+                            }
+                            ?>" id="noti" style="padding-top: 20px;">
                                 <img src="../../common/img/noti.png">
-                                <span class="label label-warning"><?php if (count($noti) == 0) {
-    
-} else {
-    echo count($noti);
-} ?></span>
+                                <span class="label label-warning"><?php
+                                    if (count($noti) == 0) {
+                                        
+                                    } else {
+                                        echo count($noti);
+                                    }
+                                    ?></span>
                             </a>
 
 
@@ -114,8 +118,8 @@ use Phalcon\Tag as Tag; ?>
                                         <div class="pull-left">
                                             <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                         </div>
-<?php }
-?>
+                                    <?php }
+                                    ?>
 
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b><?php echo $t->_("Sign out"); ?></b></a>
@@ -138,8 +142,8 @@ use Phalcon\Tag as Tag; ?>
 
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <aside>
-                        <?php //print_r($this->session->auth); 
-                        ?>
+                    <?php //print_r($this->session->auth); 
+                    ?>
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
                         <?php

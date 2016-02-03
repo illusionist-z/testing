@@ -9,7 +9,6 @@ var tabLinks = new Array();
 var contentDivs = new Array();
 
 function init() {
-
     // Grab the tab links and content divs from the page
     var tabListItems = document.getElementById('tabs').childNodes;
     for (var i = 0; i < tabListItems.length; i++) {
@@ -91,8 +90,6 @@ var Tax = {
             url: "taxdia?id=" + d,
             type: "GET",
             success: function (res) {
-
-
                 var result = $.parseJSON(res);
                 //edit dialog box
                 var data = '<form id="edit_tax_table" width="250px" height="200px"><table width="400px" height="270px" style="font-size:13px;"  align="center" >';
@@ -125,20 +122,11 @@ var Tax = {
             width: 'auto',
             modal: true,
             title: "Tax Edit",
-            /*show:{
-             effect:"explode",//effect:"blind",
-             duration:200
-             },
-             hide:{
-             effect:"explode",
-             duration:200
-             }*/
         });
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_tax').click(function () {
             Tax.BtnEdit($ovl);
-
         });
 
         $('#edit_close').click(function () {
@@ -150,15 +138,12 @@ var Tax = {
     //edit data
     BtnEdit: function (d) {
         var form = $('#edit_tax_table');
-        // alert( form.serialize());
         $.ajax({
             type: 'POST',
             data: form.serialize(),
             url: "edit_tax",
             success: function () {
-
                 d.dialog("close");
-
             }
         }).done(function () {
             location.reload();
@@ -178,15 +163,11 @@ var Tax = {
 var Deduction = {
     isOvl: false,
     Edit: function (d) {
-
         $.ajax({
             url: "dectdia?id=" + d,
             type: "GET",
             success: function (res) {
-
-
                 var result = $.parseJSON(res);
-
 
                 var data = '<form id="edit_deduct_table"><table style="font-size:13px;">';
                 data += '<tr><td></td><td><input type="hidden" value="' + result[0]['deduce_id'] + '" name="id" ></td></tr>'
@@ -234,16 +215,12 @@ var Deduction = {
     },
     BtnEdit: function (d) {
         var form = $('#edit_deduct_table');
-        //alert(form.serialize());
         $.ajax({
             type: 'POST',
             data: form.serialize(),
             url: "edit_deduct",
             success: function () {
-
                 d.dialog("close");
-
-
             }
         }).done(function () {
             location.reload();
@@ -282,10 +259,7 @@ var Deduction = {
             data: form.serialize(),
             url: "delete_deduct",
             success: function () {
-
                 d.dialog("close");
-
-
             }
         }).done(function () {
             location.reload();
@@ -328,28 +302,22 @@ var Deduction = {
             data: form.serialize(),
             url: "add_dect",
             success: function () {
-
                 d.dialog("close");
-
-
             }
         }).done(function () {
             location.reload();
         });
     },
     Add: function () {
-        //alert("add");
         $.ajax({
             url: "",
             type: "POST",
             success: function () {
 
-
                 var data = '<form id="Add_new_deduct"><table>';
                 data += '<tr><td></td></tr>'
                         + '<tr><br><td><small>Deduction Name</small> </td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="deduce_name" placeholder="Write Deduction Name"></td></tr>'
                         + '<tr><td><small>Deduction Amount</small></td><td style="font-size:10px;"><input style="margin-top:10px;" type="text" value="" name="amount" placeholder="Write Deduction Amount"></td></tr>'
-
                         + '<tr><td></td></tr>';
                 data += '<tr><td></td><td colspan="3"><br><a href="#" class="button" id="Add_deduct">Save</a><a href="#" class="button" id="cancel_deduct">Cancel</a></td></tr>';
                 data += '</table></form>';

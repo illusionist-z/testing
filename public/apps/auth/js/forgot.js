@@ -5,9 +5,7 @@ var forgot = {
             method: 'GET',
             data: {email: email},
             success: function (d) {
-               
                 data = JSON.parse(d);
-
                 if (data === 'success') {
                     window.location.href = baseUri + 'auth/index/resetpassword?email=' + email;
                 } else {

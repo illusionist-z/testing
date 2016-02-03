@@ -35,7 +35,6 @@ var Salary = {
                         + '<td><input style="margin-top:10px;" type="text" value= " ' + result.data[0]['member_login_name'] + ' " name="uname" disabled></td><td ></td></tr>'
                         + '<tr><td></td><td><b>' + result.t['b_salary'] + ' </b></td>'
                         + '<td><input style="margin-top:10px;" type="text" value=' + result.data[0]['basic_salary'] + ' name="basesalary" id="baseerr"></td></tr>'
-
                         + '<tr><td></td><td><b>' + result.t['t_fee'] + ' type </b></td>'
                         + '<td><input type="radio" name="radTravel" value="1"' + check1 + '>per day <input type="radio" name="radTravel" value="2" ' + check2 + ' >Per Month</td><td style="width:100px;height:40px;"></td></tr>'
                         + '<tr><td></td><td><b>' + result.t['t_fee'] + '</b></td>'
@@ -68,10 +67,8 @@ var Salary = {
                     var cond = Salary.Check(result.allowance[i]['allowance_name'], result.permit_allowance);
                     data += ' <input type="checkbox" name="check_allow[]" value="' + result.allowance[i]["allowance_id"] + '" ' + (cond !== 'undefined' ? cond : "") + '> ' + result.allowance[i]["allowance_name"] + '<br>';
                 }
-                //data +='<input type="hidden" value= " '+result.data[0]['salary_start_date']+ ' " name="work_sdate" id="work_sdate"></td></tr>';
                 data += '<tr><td></td><td>' + result.t['Starting Date'] + '  </td><td><input style="margin-top:10px;" class="datepicker" type="text" value=' + result.data[0]['salary_start_date'] + ' name="work_sdate" id="work_sdate" placeholder="choose start date"></td></tr>';
                 data += '<tr><td></td><td><input type="hidden" value=' + result.data[0]['id'] + ' name="id"></td><td style="width:55px;height:40px;"></td></tr>';
-
                 data += '<tr><td></td><td></td><td colspan="3"><a href="#" class="button" id="edit_salary_edit" >' + result.t['edit_btn'] + '</a><a href="#" class="button" id="edit_delete" >' + result.t['delete_btn'] + '</a><a href="#" class="button" id="edit_close" >' + result.t['cancel_btn'] + '</a></td></tr>';
                 data += '</table></form>';
                 Salary.Dia(data, result.t['title']);
@@ -118,7 +115,6 @@ var Salary = {
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
-
             Salary.BtnEdit($ovl);
         });
         $('#edit_delete').click(function () {
@@ -129,7 +125,6 @@ var Salary = {
         });
     },
     salnameautolist: function () {
-
         var dict = [];
         $.ajax({
             url: 'salaryusername',
@@ -160,7 +155,6 @@ var Salary = {
         $.ajax({
             url: 'getmemberid?uname=' + name,
             method: 'GET',
-            //dataType: 'json',
             success: function (data) {
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
@@ -184,11 +178,9 @@ var Salary = {
             dataType: 'json',
             url: "btnedit",
             success: function (d) {
-
                 if (true === d.valid)
                 {
                     val.dialog("close");
-
                     $('body').load("salarylist");
                     link_height();
                 }
@@ -266,7 +258,6 @@ var Salary = {
                 d.dialog("close");
             }
         }).done(function () {
-            //$('body').load('salarylist');
             location.reload();
         });
     },
@@ -291,7 +282,6 @@ var Salary = {
         if (!this.isOvl) {
             this.isOvl = true;
         }
-
         $ovl = $('#add_new_dt');
         $ovl.dialog({
             autoOpen: false,
@@ -327,14 +317,11 @@ var Salary = {
         });
     },
     autolist: function () {
-
         var dict = [];
         $.ajax({
             url: 'autolist',
             method: 'GET',
-            //dataType: 'json',
             success: function (data) {
-
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
                     dict.push(json_obj[i].member_login_name);
@@ -363,7 +350,6 @@ var Salary = {
         $.ajax({
             url: baseUri + 'salary/search/searchTravelfees?' + $form,
             method: 'GET',
-            //dataType: 'json',
             success: function (data) {
                 var json_obj = $.parseJSON(data);//parse JSON 
                 $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div #content').empty(), $('#th_travelfees').empty();
@@ -405,7 +391,6 @@ var Salary = {
         var $form = $('#search_frm').serialize();
         var year = document.getElementById('year').value;
         var month = document.getElementById('month').value;
-        //window.location.href = baseUri + 'salary/search?'+$form;
         $.ajax({
             url: baseUri + 'salary/search?' + $form,
             type: 'GET',
@@ -503,15 +488,11 @@ var Salary = {
             url: 'checkmonthyear',
             method: 'GET',
             data: {monthyear: d},
-            // dataType: 'json',
             success: function (d) {
-                // alert(d);
                 data = JSON.parse(d);
                 if (data === 'found') {
-                    // alert("Found!");
                     $('#error_salary').hide();
                     $('#nexterror_salary').show();
-                    //window.location.href=baseUri+'salary/calculate?salary_date='+d;
                 }
                 else {
                     window.location.href = baseUri + 'salary/calculate?salary_date=' + date;

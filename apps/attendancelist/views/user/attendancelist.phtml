@@ -89,7 +89,6 @@ if ($offset < 0) {
                                 $start = strtotime($office_start_time);
                                 $end = strtotime($time);
                                 $late = $end - $start;
-
                                 echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
                             } else {
                                 echo "-";
