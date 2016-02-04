@@ -61,6 +61,7 @@ Class Module implements ModuleDefinitionInterface {
             //Set Plugin
             $eventsManager = $di->getShared('eventsManager');
             //Set Permission plugin
+            //include_once '/var/www/html/salts/library/core/plugin/permission.php';
             $eventsManager->attach('dispatch', new \Library\Core\Plugin\Permission($di));
 
             $dispatcher = new \Phalcon\Mvc\Dispatcher();

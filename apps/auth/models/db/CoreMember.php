@@ -9,7 +9,8 @@ use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
-
+//include_once '/var/www/html/salts/library/core/BaseModel.php';
+//include_once '/var/www/html/salts/library/core/models/SingletonTrait.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

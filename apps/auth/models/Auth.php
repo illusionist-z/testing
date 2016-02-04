@@ -36,7 +36,7 @@ class Auth extends Component {
         //print_r($row);exit;
         return $row;
     }
-
+    
     public function find_module($company_module) {
         $sql = "SELECT * FROM enable_module where company_id='" . $company_module . "' ";
         $Result = $this->login_db->query($sql);
