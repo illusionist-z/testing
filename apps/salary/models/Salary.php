@@ -15,7 +15,7 @@ class Salary extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    public function chk_validate($data) {
+    public function chkValidate($data) {
 
         $ress = array();
         $validate = new Validation();

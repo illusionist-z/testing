@@ -130,7 +130,7 @@ Manage.Module = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "module/add_module",
+            url: "module/addmodule",
             success: function () {
                 d.dialog("close");
             }

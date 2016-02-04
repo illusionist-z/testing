@@ -87,7 +87,6 @@ class IndexController extends ControllerBase {
     public function detailAction() {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
-        $code = $this->session->permission_code;
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
@@ -105,7 +104,7 @@ class IndexController extends ControllerBase {
         $Noti_id = $this->request->get('id');
         $module_name = $this->request->get('mname');
         $Noti_detail = new \salts\Notification\Models\CoreNotification();
-        $Detail_result = $Noti_detail->GetNotiInfo($module_name, $Noti_id);
+        $Detail_result = $Noti_detail->getNotiInfo($module_name, $Noti_id);
         $this->view->setVar("module_name", $module_name);
         $this->view->setVar("result", $Detail_result);
         $this->view->t = $this->_getTranslation();
@@ -121,11 +120,11 @@ class IndexController extends ControllerBase {
         $Noti = new \salts\Notification\Models\CoreNotification();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $Noti->calendarnotification($id);
+                $Noti->calendarNotification($id);
             }
             if ($key_name == 'show_user_notification') {
                 $member_id = $this->session->user['member_id'];
-                $Noti->usercalendarnotification($id, $member_id);
+                $Noti->usercalendarNotification($id, $member_id);
             }
         }
 
@@ -135,7 +134,7 @@ class IndexController extends ControllerBase {
     public function notiattendancesAction() {
         $id = $this->request->get('id');
         $Noti = new \salts\Notification\Models\CoreNotification();
-        $Noti->attnotification($id);
+        $Noti->attNotification($id);
         $this->response->redirect("attendancelist/index/todaylist");
     }
 

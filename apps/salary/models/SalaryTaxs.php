@@ -11,7 +11,7 @@ class SalaryTaxs extends Model {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    public function gettaxlist() {
+    public function getTaxlist() {
         try {
             $data = $this->db->query("SELECT * FROM salary_taxs ");
             $result = $data->fetchall();
@@ -21,7 +21,7 @@ class SalaryTaxs extends Model {
         return $result;
     }
 
-    public function gettaxdata($id) {
+    public function getTaxdata($id) {
         try {
             $data = $this->db->query("SELECT * FROM salary_taxs WHERE id='" . $id . "'");
             $result = $data->fetchall();
@@ -31,7 +31,7 @@ class SalaryTaxs extends Model {
         return $result;
     }
 
-    public function edit_tax($data) {
+    public function editTax($data) {
         try {
             $to = $data['taxs_from'] - 1;
             $data['taxs_diff'] = $data['taxs_to'] - $to;

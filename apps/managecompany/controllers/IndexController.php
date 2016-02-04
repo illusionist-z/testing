@@ -15,7 +15,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/managecompany/js/index.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
-        $moduleIdCallCore = new CoreMember();
+      //  $moduleIdCallCore = new CoreMember();
     }
 
     /**
@@ -27,18 +27,18 @@ class IndexController extends ControllerBase {
 
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/managecompany/js/paging.js');
-        $comid = $this->request->get('comlistsearch');
-        $company = new \salts\Managecompany\Models\CompanyTbl();
-        $result = $company->getallcom();
-        if (isset($comid)) {
-            $result = $company->findCombyId($comid);
+        $com_id = $this->request->get('comlistsearch');
+        $Company = new \salts\Managecompany\Models\CompanyTbl();
+        $result = $Company->getAllcom();
+        if (isset($com_id)) {
+            $result = $Company->findCombyId($com_id);
         }
         $this->view->result = $result;
     }
 
     public function getcomnameAction() {
-        $company = new \salts\Managecompany\Models\CompanyTbl();
-        $result = $company->getallcom();
+        $Company = new \salts\Managecompany\Models\CompanyTbl();
+        $result = $Company->getAllcom();
         echo json_encode($result);
         $this->view->disable();
     }
@@ -48,8 +48,8 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function addcompanyAction() {
-        $coremodule = new \salts\Managecompany\Models\CoreModule();
-        $module_list = $coremodule->getallmodule();
+        $CoreModule = new \salts\Managecompany\Models\CoreModule();
+        $module_list = $CoreModule->getAllmodule();
         $this->view->module_list = $module_list;
     }
 
@@ -59,11 +59,11 @@ class IndexController extends ControllerBase {
      */
     public function editcompanyAction() {
         $id = $this->request->get('id');
-        $company = new \salts\Managecompany\Models\CompanyTbl();
-        $result = $company->findDatabyId($id);
-        $module = $company->findModulebyId($id);
-        $coremodule = new \salts\Managecompany\Models\CoreModule();
-        $module_list = $coremodule->getallmodule();
+        $Company = new \salts\Managecompany\Models\CompanyTbl();
+        $result = $Company->findDatabyId($id);
+        $module = $Company->findModulebyId($id);
+        $CoreModule = new \salts\Managecompany\Models\CoreModule();
+        $module_list = $CoreModule->getAllmodule();
         $this->view->module_list = $module_list;
         $this->view->module = $module;
         $this->view->result = $result;
@@ -75,8 +75,8 @@ class IndexController extends ControllerBase {
      */
     public function addnewAction() {
         if ($this->request->isPost()) {
-            $company = new \salts\Managecompany\Models\CompanyTbl();
-            $validate = $company->validation($this->request->getPost());
+            $Company = new \salts\Managecompany\Models\CompanyTbl();
+            $validate = $Company->validation($this->request->getPost());
 
             if (count($validate)) {
                 foreach ($validate as $message) {
@@ -91,7 +91,7 @@ class IndexController extends ControllerBase {
 
 
 
-                $error = $company->addnew($com);
+                $error = $Company->addNew($com);
                 $this->view->disable();
                 echo json_encode($error);
             }
@@ -106,8 +106,8 @@ class IndexController extends ControllerBase {
         $com = $this->request->get('com');
         $check = $this->request->get('check');
 
-        $company = new \salts\Managecompany\Models\CompanyTbl();
-        $company->updatecom($com, $check);
+        $Company = new \salts\Managecompany\Models\CompanyTbl();
+        $Company->updateCom($com, $check);
         $this->response->redirect("managecompany/index");
     }
 
@@ -132,8 +132,8 @@ class IndexController extends ControllerBase {
      */
     public function deletecompanyAction() {
         $id = $this->request->get('id');
-        $company = new \salts\Managecompany\Models\CompanyTbl();
-        $company->deleteCompanyById($id);
+        $Company = new \salts\Managecompany\Models\CompanyTbl();
+        $Company->deleteCompanyById($id);
         $this->response->redirect("managecompany/index");
     }
 

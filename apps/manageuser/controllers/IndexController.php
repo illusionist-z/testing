@@ -72,7 +72,7 @@ class IndexController extends ControllerBase {
     //for monthly list autocomplete
     public function usernameautolistAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autousername();
+        $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }

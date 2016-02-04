@@ -11,7 +11,7 @@ class SalaryTaxsDeduction extends Model {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    public function getdedlist() {
+    public function getDeducelist() {
         try {
             $data = $this->db->query("SELECT * FROM salary_taxs_deduction ");
             $result = $data->fetchall();
@@ -31,7 +31,7 @@ class SalaryTaxsDeduction extends Model {
         return $result;
     }
 
-    public function edit_deduction($data) {
+    public function editDeduction($data) {
         try {
             $sql = "Update salary_taxs_deduction SET deduce_name ='" . $data['deduce_name'] . "',amount ='" . $data['amount'] . "'  Where salary_taxs_deduction.deduce_id='" . $data['id'] . "'";
             $this->db->query($sql);
@@ -40,7 +40,7 @@ class SalaryTaxsDeduction extends Model {
         }
     }
 
-    public function add_deduction($data) {
+    public function addDeduction($data) {
         try {
             $this->db->query("INSERT INTO salary_taxs_deduction (deduce_id,deduce_name,amount) VALUES (uuid(),'" . $data['deduce_name'] . "','" . $data['amount'] . "')");
         } catch (Exception $exc) {
@@ -48,7 +48,7 @@ class SalaryTaxsDeduction extends Model {
         }
     }
 
-    public function delete_deduction($deduce_id) {
+    public function deleteDeduction($deduce_id) {
         try {
             $this->db->query("DELETE FROM  salary_taxs_deduction WHERE deduce_id='" . $deduce_id . "'");
         } catch (Exception $exc) {

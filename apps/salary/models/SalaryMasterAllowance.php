@@ -12,7 +12,7 @@ class SalaryMasterAllowance extends Model {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    public function getallowanceBymember_id($member_id) {
+    public function getAllowanceByMemberid($member_id) {
         try {
             $data = $this->db->query("SELECT DISTINCT allowance_id from salary_master_allowance where member_id='" . $member_id . "'");
             $result = $data->fetcharray();
@@ -28,9 +28,9 @@ class SalaryMasterAllowance extends Model {
      * @param type $member_id
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function edit_allowanceByMemberid($allowance, $member_id) {
+    public function editAllowanceByMemberid($allowance, $member_id) {
         try {
-            $count = $this->getallowanceBymember_id($member_id);
+            $count = $this->getAllowanceByMemberid($member_id);
             $creartor_id = "admin";
             if (!empty($count)) {
                 $delete = "DELETE FROM salary_master_allowance WHERE member_id='" . $member_id . "'";

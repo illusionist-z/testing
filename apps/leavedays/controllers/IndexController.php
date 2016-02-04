@@ -53,7 +53,7 @@ class IndexController extends ControllerBase {
 
         if ($this->moduleIdCall == 1) {
             $UserList = new Db\CoreMember();
-            $Username = $UserList->autousername();
+            $Username = $UserList->autoUsername();
             $this->view->disable();
             echo json_encode($Username);
         } else {
@@ -291,7 +291,7 @@ class IndexController extends ControllerBase {
      */
     public function applyautolistAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->applyautousername();
+        $Username = $UserList->applyautoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }
