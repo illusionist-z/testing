@@ -153,7 +153,7 @@ for (var i = 0; i < cells.length; i++) {
        {
         specific_duty_allowance=0;
         }
-        
+        alert(specific_duty_allowance);
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
        $.ajax({
             type:'get',
@@ -162,8 +162,8 @@ for (var i = 0; i < cells.length; i++) {
                     +overtime_rate+'/'+specific_duty_allowance+'/'+member_id+'/'
                     +absent+'/'+year+'/'+month+'/'+overtime_hr,
             success:function(){
-                alert("Data has been updated");
-                window.location.reload();
+             alert("Data has been updated");
+              window.location.reload();
             }
         })
 //        
