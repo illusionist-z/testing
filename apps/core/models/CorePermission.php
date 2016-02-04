@@ -9,7 +9,7 @@ namespace salts\Core\Models;
  * and open the template in the editor.
  */
 
-class CorePermission extends \Library\Core\BaseModel {
+class CorePermission extends \Library\Core\Models\Base {
 
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;

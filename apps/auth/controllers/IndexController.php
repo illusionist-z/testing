@@ -4,7 +4,7 @@ namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
-// include_once '/var/www/html/salts/apps/auth/models/db/CoreMember.php';
+
 class IndexController extends ControllerBase {
  
     public function initialize() {
@@ -127,7 +127,7 @@ class IndexController extends ControllerBase {
                     $rout_time = $nowtime - $_SESSION['expire'];
                     $localhost = ($this->request->getServer('HTTP_HOST'));
 
-                    $page = "http://" . $localhost . "/salts/auth/index/faileruser";
+                    $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
@@ -173,7 +173,7 @@ class IndexController extends ControllerBase {
 
                 $rout_time = $nowtime - $_SESSION['expire'];
                 $localhost = ($this->request->getServer('HTTP_HOST'));
-                $page = "http://" . $localhost . "/salts/auth/index/faileruser";
+                $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
@@ -186,7 +186,7 @@ class IndexController extends ControllerBase {
                 // checking the time now when home page starts
                 $rout_time = $nowtime - $_SESSION['expire'];
                 $localhost = ($this->request->getServer('HTTP_HOST'));
-                $page = "http://" . $localhost . "/salts/auth/index/faileruser";
+                $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
@@ -338,5 +338,3 @@ class IndexController extends ControllerBase {
     }
 
 }
-                     
-                 //   $page = "http://".$localhost."/salts/auth/index/faileruser";

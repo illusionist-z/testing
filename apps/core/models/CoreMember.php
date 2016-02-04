@@ -8,13 +8,16 @@ namespace salts\Core\Models;
  * and open the template in the editor.
  */
 
-class CorePermissionRelMember extends \Library\Core\Models\Base {
+class CoreMember extends \Library\Core\Models\Base {
 
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
+    
+    // Table name
+    protected $_name = 'core_member';
 
-    public function initialize() {
-        parent::initialize();
+    public function onConstruct() {
+        parent::onConstruct();
     }
-
+    
 }

@@ -41,7 +41,7 @@ class IndexController extends ControllerBase {
     /**
      * @author David JP <david.gnext@gmail.com>
      * @desc    $core_group = {}
-     * @Cover  Yan Lin Pai <wizardrider@gmail.com>
+     * @Version  Yan Lin Pai <wizardrider@gmail.com>
      * @desc    $core_groupid = {}
      * @desc    $core_user = {}
      */
