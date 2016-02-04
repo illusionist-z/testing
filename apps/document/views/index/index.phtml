@@ -1,4 +1,10 @@
+<?php
+
+use Phalcon\Tag as Tag;
+?>
+
 <!-- Content Wrapper. Contains page content -->
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
@@ -21,19 +27,6 @@
                     <a href="#" onclick="return false;" style="float:right;"  class="dateminusimg disabledevent" ></a>
                 </span>
             </h2>            
-
-            <form id ="frm1">             
-
-                <ul id="left-scroll">
-                    <li class="addbtnn col-sm-12">                  
-                        <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>"  ><span class="col-sm-6"><?php echo " " . $member_name; ?></span>                  
-                    </li>
-                    <?php foreach ($event_name as $eventname) { ?>                
-
-                        <li class="col-sm-12 addbtnn">                    
-                            <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " " . $eventname['permit_name']; ?></span>
-                        </li>
-
 
                     <?php } ?>                    
                 </ul>                  
@@ -120,5 +113,18 @@
 
 
 
+
+
+            <form id ="frm1">             
+
+                <ul id="left-scroll">
+                    <li class="addbtnn col-sm-12">                  
+                        <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>"  ><span class="col-sm-6"><?php echo " " . $member_name; ?></span>                  
+                    </li>
+                    <?php foreach ($event_name as $eventname) { ?>                
+
+                        <li class="col-sm-12 addbtnn">                    
+                            <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " " . $eventname['permit_name']; ?></span>
+                        </li>
 
 

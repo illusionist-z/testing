@@ -13,6 +13,4 @@ class Attendances extends \Library\Core\BaseModel {
         return new self();
     }
 
-    
-
 }

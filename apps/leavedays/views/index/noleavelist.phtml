@@ -1,9 +1,6 @@
 <?php
 
 use Phalcon\Tag as Tag;
-
-//print_r(count($leave_result));
-
 ?>
 
 <!-- Content Header (Page header) -->
@@ -20,7 +17,7 @@ use Phalcon\Tag as Tag;
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        
+
     </div>
 
     <div class="row">
@@ -28,7 +25,6 @@ use Phalcon\Tag as Tag;
             <table class="listtbl">
                 <thead>
                     <tr>
-<!--                        <th width="150px"><?= $t->_("Working Start Date"); ?></th>-->
                         <th width="150px"><?= $t->_("name"); ?></th>
                         <th width="150px"><?= $t->_("Department"); ?></th>
                         <th width="150px"><?= $t->_("Position"); ?></th>
@@ -39,38 +35,39 @@ use Phalcon\Tag as Tag;
 
                 </thead>
                 <tbody>
-                    <?php foreach($Result as $item){    
-                            foreach ($item as $item ) {
-                      ?>
-                    <tr>
-<!--                        <td> 
-                                <?php  echo $item['working_start_dt'];?>
-                        </td>-->
-                        <td> 
-                                <?php  echo $item['member_login_name'];?>
-                        </td>
-                        <td> 
-                                <?php  echo $item['member_dept_name'];?>
-                        </td>
-                        <td> 
-                                <?php  echo $item['position'];?>
-                        </td>
-                         <td> 
-                                <?php  echo $item['member_mail'];?>
-                        </td>
-                        <td> 
-                                <?php  echo $item['member_mobile_tel'];?>
-                        </td>
-                        <td> 
-                                <?php  echo $item['member_address'];?>
-                        </td>
-                    </tr>
-                <?php } }?>
+                    <?php
+                    foreach ($Result as $item) {
+                        foreach ($item as $item) {
+                            ?>
+                            <tr>
+                                <td> 
+                                    <?php echo $item['member_login_name']; ?>
+                                </td>
+                                <td> 
+                                    <?php echo $item['member_dept_name']; ?>
+                                </td>
+                                <td> 
+                                    <?php echo $item['position']; ?>
+                                </td>
+                                <td> 
+                                    <?php echo $item['member_mail']; ?>
+                                </td>
+                                <td> 
+                                    <?php echo $item['member_mobile_tel']; ?>
+                                </td>
+                                <td> 
+                                    <?php echo $item['member_address']; ?>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    ?>
 
                 </tbody>
                 <tfoot style="display:none;"></tfoot>
             </table> 
-          
+
         </div><!--end table content--->
     </div><!-- /.row -->
     <div id="content"></div>

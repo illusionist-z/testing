@@ -130,7 +130,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                         . $rows['absent_dedution'] . "','" . $rows['income_tax'] . "','".$rows['pay_date']."',NOW(),'"
                         .$rows['basic_salary_annual']."','".$rows['total_annual_income']."','".$rows['basic_examption']."','".$rows['travel_fee']."','".$rows['overtime']."','".$rows['creator_id']."')";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
-                
+                //echo $sql.'<br>';
                 $result = $this->db->query($sql);
             }
             //exit;
@@ -190,7 +190,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                     ->limit(1)
                     ->getQuery()
                     ->execute();
-          //  print_r($row);exit;
+            //print_r($row);exit;
             /* foreach($row as $rows) {
               echo $rows->core->member_login_name;
               echo $rows->attendances->att_date;
@@ -340,7 +340,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function updatesalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,
             $salary_start_month,$absent_amount,$overtime_hr,$overtimerate) {
-     
+        
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
@@ -423,12 +423,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     //print_r($deduce_amount).'<br>';
                     
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                 //   echo "Total deduction is ".$total_deduce;
+                    echo "Total deduction is ".$total_deduce;
                     
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary - $total_deduce;
 
-                  //  echo "The Income tax  is " . $income_tax . '<br>';
+                    echo "The Income tax  is " . $income_tax . '<br>';
                     $taxs = $Salarymaster->deducerate($income_tax, $date_to_calculate);
                     //print_r($taxs);
         }
@@ -438,7 +438,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             'special_allowance' => $allowancetoadd,'overtime' => $ot_fees,
             'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
        
-       
+        //print_r($final_result);exit;
        $Result=$this->savesalaryeditdata($final_result,$salary_start_year,$salary_start_month);
       
         return $Result;
@@ -458,7 +458,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $absent_deduction = $filter->sanitize($param[0]['absent_dedution'], "int");
             $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."',"
                     . "special_allowance='".$special_allowance_amount."', overtime ='".$otFees."' WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $salary_start_year . "' and MONTH(pay_date)='".$salary_start_month."'";
-           
+            //echo $sql;exit;
             //$this->db->query($sql);
             if($this->db->query($sql)){
             $result="pass";  

@@ -2,71 +2,65 @@
     <h1>
         <?= "Add New Company"; ?>
     </h1>
-      <h5>
-        <a href="<?php echo $baseUri;?>managecompany">Back to company List</a>
+    <h5>
+        <a href="<?php echo $baseUri; ?>managecompany">Back to company List</a>
     </h5>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
-        <li class="active"><?="Add New Company"; ?></li>
+        <li class="active"><?= "Add New Company"; ?></li>
     </ol>
 </section>
+<!-- Main content -->
+<section class="content">
 
+    <div class="row">
+        <div class="col-md-12"><!--start add user form--->
 
- 
-<!--  <input id="tags" size="50">-->
+            <div id="form_div">
+                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Add New Company Form</font></div>
 
+                <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" > 
 
-        <!-- Main content -->
-        <section class="content">
-         
-         <div class="row">
-	 <div class="col-md-12"><!--start add user form--->
-        
-	<div id="form_div">
-	<div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Add New Company Form</font></div>
-        
-        <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" > 
-            
-                   <table class="row-fluid" style="font-size:13px;"><tr><td class="">Company ID</td><td>
-                   <input style="margin-top:10px ; width:50%" type="text" name="comid" id="comid" class="col-sm-10" placeholder="Write Company ID"><span id="com_id_error"></span></td>
-                       </tr>
-               <tr><td></td><td id="existId"></td></tr>
-                   <tr><td style="width:20%">Company Name</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_name" class="col-sm-10" id="com_name" placeholder="Wirte Company Name">
-                       <span id="com_name_error"></span></td></tr>
-                  <tr><td>Starting Date</td><td><input style="margin-top:10px; width:50%" type="text" name="com_sdate" class="datepicker col-sm-10" id="com_sdate" placeholder="Write Company Starting Date">
-                    <span id="com_sdate_error"></span>  </td>
-                  </tr>
-                  <tr><td>Email</td>
-                  <td><input style="margin-top:10px ; width:50%" type="email" name="com_email" class=" col-sm-10" id="com_email" placeholder="Write Email ">
-                  <span id="com_email_error"></span></td></tr>
-                  <tr><td>Phone Number</td>
-                  <td><input style="margin-top:10px ; width:50%" type="text" name="com_phno" class=" col-sm-10" id="com_phno" placeholder="Write Phone Number ">
-                  <span id="com_phno_error"></span></td></tr>
-                  <tr><td>Database Name</td>
-                      <td><input style="margin-top:10px ; width:50%" type="text" name="com_db" class=" col-sm-10" id="com_db" placeholder="Write Database Name ">
-                      <span id="com_db_error"></span></td></tr>
-                  <tr><td>DB UserName</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_dbun" class=" col-sm-10" id="com_dbun" placeholder="Write Database Username ">
-                      <span id="com_dbun_error"></span></td></tr>
-                  <tr><td>DB Password</td><td><input style="margin-top:10px ; width:50%" type="password" name="com_dbpsw" class=" col-sm-10" id="com_dbpsw" placeholder="Write Database Password"
-                      <span id="com_dbpsw_error"></span></td></tr>
-                                    <tr  id="confirm" ><td>Enter Your Password :</td><td><input type="password" name="userpass" id="userpass"><input style="margin-top:-8px" type="button" class="button continue" id="add_user" value="Continue"></td></tr>
+                    <table class="row-fluid" style="font-size:13px;"><tr><td class="">Company ID</td><td>
+                                <input style="margin-top:10px ; width:50%" type="text" name="comid" id="comid" class="col-sm-10" placeholder="Write Company ID"><span id="com_id_error"></span></td>
+                        </tr>
+                        <tr><td></td><td id="existId"></td></tr>
+                        <tr><td style="width:20%">Company Name</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_name" class="col-sm-10" id="com_name" placeholder="Wirte Company Name">
+                                <span id="com_name_error"></span></td></tr>
+                        <tr><td>Starting Date</td><td><input style="margin-top:10px; width:50%" type="text" name="com_sdate" class="datepicker col-sm-10" id="com_sdate" placeholder="Write Company Starting Date">
+                                <span id="com_sdate_error"></span>  </td>
+                        </tr>
+                        <tr><td>Email</td>
+                            <td><input style="margin-top:10px ; width:50%" type="email" name="com_email" class=" col-sm-10" id="com_email" placeholder="Write Email ">
+                                <span id="com_email_error"></span></td></tr>
+                        <tr><td>Phone Number</td>
+                            <td><input style="margin-top:10px ; width:50%" type="text" name="com_phno" class=" col-sm-10" id="com_phno" placeholder="Write Phone Number ">
+                                <span id="com_phno_error"></span></td></tr>
+                        <tr><td>Database Name</td>
+                            <td><input style="margin-top:10px ; width:50%" type="text" name="com_db" class=" col-sm-10" id="com_db" placeholder="Write Database Name ">
+                                <span id="com_db_error"></span></td></tr>
+                        <tr><td>DB UserName</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_dbun" class=" col-sm-10" id="com_dbun" placeholder="Write Database Username ">
+                                <span id="com_dbun_error"></span></td></tr>
+                        <tr><td>DB Password</td><td><input style="margin-top:10px ; width:50%" type="password" name="com_dbpsw" class=" col-sm-10" id="com_dbpsw" placeholder="Write Database Password"
+                                                           <span id="com_dbpsw_error"></span></td></tr>
+                        <tr  id="confirm" ><td>Enter Your Password :</td><td><input type="password" name="userpass" id="userpass"><input style="margin-top:-8px" type="button" class="button continue" id="add_user" value="Continue"></td></tr>
 
-                  <tr><td>Host</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_host" class=" col-sm-10" id="com_host" placeholder="Write Host Name ">
-                      <span id="com_host_error"></span></td></tr>
-                  <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_limit" class=" col-sm-10" id="com_limit" placeholder="Write User Limit ">
-                      <span id="com_limit_error"></span></td></tr>
-                  <tr><td>Module Flag</td><td>
-                          <?php foreach ($module_list as $value) {?>
-                                 <input type="checkbox" name="check[]"  id="checkall1" value="<?php echo $value['module_id'];?>" style="margin-bottom: 5px"><?php echo $value['module_name']?> 
-                           <?php }?> 
-                         </td></tr>
-                  <tr><td></td><td ><input style="margin-top:10px" type="submit" value="Save" class="buttonn" onclick="return false;" name="submit" id="add_com"><input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>
-                  </tr></table></form>
-	
-</form>
-			</div>
-          </div><!--end add user form--->
-          </div><!-- /.row -->
-		  
-        </section><!-- /.content -->
-    
+                        <tr><td>Host</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_host" class=" col-sm-10" id="com_host" placeholder="Write Host Name ">
+                                <span id="com_host_error"></span></td></tr>
+                        <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="com_limit" class=" col-sm-10" id="com_limit" placeholder="Write User Limit ">
+                                <span id="com_limit_error"></span></td></tr>
+                        <tr><td>Module Flag</td><td>
+                                <?php foreach ($module_list as $value) { ?>
+                                    <input type="checkbox" name="check[]"  id="checkall1" value="<?php echo $value['module_id']; ?>" style="margin-bottom: 5px"><?php echo $value['module_name'] ?> 
+                                <?php } ?> 
+                            </td></tr>
+                        <tr><td></td><td ><input style="margin-top:10px" type="submit" value="Save" class="buttonn" onclick="return false;" name="submit" id="add_com"><input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="Cancel"></td>
+                        </tr></table></form>
+
+                </form>
+            </div>
+        </div><!--end add user form--->
+    </div><!-- /.row -->
+
+</section><!-- /.content -->
+

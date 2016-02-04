@@ -8,6 +8,7 @@ $(document).ready(function () {
         document.getElementById('save').disabled = false;
         document.getElementById('divId').style.display = '';
         document.getElementById('word-export').disabled;
+
     });
 
     jQuery(document).ready(function ($) {

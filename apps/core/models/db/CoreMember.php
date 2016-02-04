@@ -1,22 +1,29 @@
 <?php
 
 namespace salts\Core\Models\Db;
+
+use Phalcon\Mvc\Model;
+use Phalcon\Mvc\Model\Query; 
+use salts\Core\Models\Db\CorePermissionRelMember;
+use salts\Core\Models\Db\CorePermissionGroupId;
+use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
 /*
+ * TODO: delete [Kohei Iwasa]
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-class CoreMember extends \Library\Core\BaseModel {
+//  include_once '/var/www/html/salts/library/core/BaseModel.php';
+class CoreMember extends \Library\Core\Models\Base {
+
+    // Use trait for singleton
+    use \Library\Core\Models\SingletonTrait;
 
     public function initialize() {
         parent::onConstruct();
-    }
-
-    public static function getInstance() {
-        return new self();
     }
 
     public function moduleIdSetPermission($v, $m) {
@@ -79,6 +86,7 @@ class CoreMember extends \Library\Core\BaseModel {
         foreach ($row as $rs) {
             echo '<li>' . $rs->full_name . '</li>';
         }
+        $this->find($rs);
         return $row;
     }
 
@@ -456,34 +464,16 @@ class CoreMember extends \Library\Core\BaseModel {
         return $member_flag;
     }
 
-//    public function countday($member_id,$time_office,$formtdate){
-//         $this->db = $this->getDI()->getShared("db");
-//         $member_day_count = "SELECT COUNT(*) FROM member_log WHERE member_id = ' ".$member_id."' AND nowtime BETWEEN '".$time_office."' AND '".$formtdate."' AND yes_no = '0' ";
-//         $user_day = $this->db->query($member_day_count);
-//         $user_day = $user_day->fetchAll(); 
-//         return $user_day;
-//        
-//    }
-
     /**
      * Saw Zin Min Tun
      * user enter code check database code
-
      */
     public function findcode($code, $email) {
-        //print_r($member_mail);exit;
-        //exit;
-        // Check if the user exist
-        //SELECT * FROM forgot_password where  check_mail = 'AA@gmail.com' and token = (select token from forgot_password  order by curdate desc limit 1)
+
         $this->db = $this->getDI()->getShared("db");
-
         $query = "SELECT token FROM forgot_password where  check_mail = '" . $email . "'  order by curdate desc limit 1  ";
-        //  print_r($query);exit;
-
         $user = $this->db->query($query);
         $user = $user->fetchArray();
-//       print_r($user['token']);
-//        print_r($code);exit;
 
         if ($user['token'] == $code) {
             $msg = "success";
@@ -497,20 +487,16 @@ class CoreMember extends \Library\Core\BaseModel {
     /**
      * Saw Zin Min Tun
      * forget password
-
      */
     public function updatepassword($member_mail, $newpassword) {
         // Check if the user exist
-
         $newpassword = sha1($newpassword);
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-
         return $user;
     }
 
     public function updatenewpassword($member_mail, $newpass) {
-
         $newpassword = sha1($newpass);
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
@@ -519,13 +505,9 @@ class CoreMember extends \Library\Core\BaseModel {
 
     public function checkyourmail($getmail) {
         $this->db = $this->getDI()->getShared("db");
-
         $query = "SELECT token FROM forgot_password where  check_mail = '" . $getmail . "'  order by curdate desc limit 1  ";
-        //  print_r($query);exit;
-
         $user = $this->db->query($query);
         $user = $user->fetchArray();
-        //print_r($user['token']);exit;
         return $user['token'];
     }
 

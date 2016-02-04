@@ -1,11 +1,9 @@
 <?php
 
-    $var = $this->session->user;
-     if($var){
-         $this->response->redirect('dashboard');
-     }
-     else {
-       $this->response->redirect('auth');
+$var = $this->session->user;
+if ($var) {
+    $this->response->redirect('dashboard');
+} else {
+    $this->response->redirect('auth');
 }
-
 ?>

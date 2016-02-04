@@ -13,7 +13,7 @@ use Phalcon\Filter;
 </style>
 <section class="content-header" style="height:auto;">
     <h1>
-<?= $t->_("salary"); ?> 
+        <?= $t->_("salary"); ?> 
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>  <?= $t->_("home"); ?></a></li>
@@ -39,8 +39,6 @@ use Phalcon\Filter;
                         <th><?= $t->_("tax_rate"); ?></th>
                         <th><?= $t->_("SSC_Emp"); ?></th>
                         <th><?= $t->_("SSC_Comp"); ?></th>
-
-
                         <th width="50px"></th>
                     </tr>
 
@@ -55,10 +53,7 @@ use Phalcon\Filter;
                             <td><?php echo number_format($filter->sanitize($list['taxs_to'], "int")); ?></td>
                             <td id='tbl-no'><?php echo number_format($filter->sanitize($list['taxs_rate'], "int")); ?></td>
                             <td id='tbl-no'><?php echo number_format($filter->sanitize($list['ssc_emp'], "int")); ?></td>
-                            <td id='tbl-no'><?php echo number_format($filter->sanitize($list['ssc_comp'], "int")); ?></td>
-
-
-    <!--					<td id='tbl-no'><input type="button" class="btn btn-default taxpopup" onclick="return false;" id="<?= $list['taxpopup'] ?>" value="Edit"></td>-->
+                            <td id='tbl-no'><?php echo number_format($filter->sanitize($list['ssc_comp'], "int")); ?></td>            
                             <td id='tbl-no'>
                                 <a href="#" onclick="return false;" style="float:right;" class="inedit taxpopup" id="<?= $list['id'] ?>"></a>
                             </td>
@@ -72,20 +67,13 @@ use Phalcon\Filter;
 
         </div><!-- start Basic salary setting-->
         <div class="tabContent hide" id="advantages"><!-- start allowance setting-->
-            <!-- <div class="buttons">
-                  <input type="button" class="addbtn add" onclick="return false;" value="Add New Deduction">
-                              
-               </div>-->
             <table class="listtbl salarylist">
                 <thead>
                     <tr>
                         <th width="120px">ID</th>
                         <th> <?= $t->_("deduc_name"); ?> </th>
                         <th><?= $t->_("deduction_amt"); ?></th>
-
-
-<!--			<th width="50px"><input style="color:black;height: 50px;"  id="inimg" type="button" class="addbtn add" onclick="return false;" value=" Add New Deduction"></th>-->
-                         <th > 
+                        <th > 
                             <a href="#" onclick="return false;" id="add_dec" style="float:right;"  class="button add" ><?= $t->_("add_new"); ?></a>
                         </th>
                     </tr>
@@ -100,10 +88,6 @@ use Phalcon\Filter;
                             <td><?php echo $n; ?></td>
                             <td><?php echo $filter->sanitize($list['deduce_name'], "string"); ?></td>
                             <td><?php echo number_format($filter->sanitize($list['amount'], "int")); ?></td>
-
-
-
-    <!--					<td id='tbl-no'><input style="float:right;" type="button" class="btn btn-default dedtpopup" onclick="return false;" id="<?= $list['deduce_id'] ?>" value="Edit"></td>-->
                             <td id='tbl-no'>
                                 <a href="#" onclick="return false;" style="float:right;" class="inedit dedtpopup" id="<?= $list['deduce_id'] ?>"></a>
                             </td>
@@ -130,8 +114,5 @@ use Phalcon\Filter;
         <div id="confirm" class="navbar"></div>
 
     </form>
-
-
-
 
 </body>

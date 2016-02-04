@@ -1,4 +1,3 @@
-
 <section class="content-header" style="height:auto;margin-top: 5px;">
     <h1>
         <?= $t->_("leavesetting"); ?>
@@ -8,75 +7,64 @@
         <li class="active"><?= $t->_("leavesetting"); ?></li>
     </ol>
 </section>
-
 <br>
 <div class="search-box">
-            <form name="setting" id="search_frm" method="post" action="editleavesetting">
-                <div id="Menu">
-                    <?php foreach($leave_setting as $data){?>
-                    <div id="leave_setting_div1"><?= $t->_("max_leavedays"); ?>: 
-                        <span>
-                            <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; height: 26px; margin-top: 8px;" disabled> Days
-                        </span>
-                    </div>
-                  
-                    <div id="leave_setting_div3">
-                        <span>
-                            <input type="button" class="btn btn-default editsetting" onclick="return false;" id="editsetting" value="<?= $t->_("edit"); ?>">
-                            <input type="submit" class="btn btn-default savesetting" id="savesetting" value="<?= $t->_("save"); ?>" disabled>
-                        </span>
-                    </div>
-                       
-                    <?php }?>
+    <form name="setting" id="search_frm" method="post" action="editleavesetting">
+        <div id="Menu">
+            <?php foreach ($leave_setting as $data) { ?>
+                <div id="leave_setting_div1"><?= $t->_("max_leavedays"); ?>: 
+                    <span>
+                        <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; height: 26px; margin-top: 8px;" disabled> Days
+                    </span>
                 </div>
-               <!--search btn-->
-            </form>
+
+                <div id="leave_setting_div3">
+                    <span>
+                        <input type="button" class="btn btn-default editsetting" onclick="return false;" id="editsetting" value="<?= $t->_("edit"); ?>">
+                        <input type="submit" class="btn btn-default savesetting" id="savesetting" value="<?= $t->_("save"); ?>" disabled>
+                    </span>
+                </div>
+
+            <?php } ?>
+        </div>
+        <!--search btn-->
+    </form>
 </div><br>
 <div class="buttons">
-<!--            <input type="button" class="addbtn add" onclick="return false;" value="Add New Leave Categories">-->
-			
     <a href="#" class="button add" id="addinguser"><?= $t->_("addleavetype"); ?></a>		
-	 </div>
+</div>
 <form action="" method="post">
-    
-       
-      <table class="listtbl">
-  <thead>
-    <tr>
-			<th width="120px">ID</th>
-			<th><?= $t->_("leave_type"); ?></th>
-			
-			
-			
-			<th width="50px"></th>
-	</tr>
-	
-  </thead>
-  <tbody>
-      <?php $n=0;foreach($leave_typelist as $result){$n++;?>
-      
-        <tr>
-			<td width="120px"><?php echo $n;?></td>
-			<td><?php echo $result['leavetype_name'];?> </td>
-			
-			
-                        <td width="50px"> <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="indelete ltypepopup" id="<?php echo $result['leavetype_id'];?>"></a></td>
-<!--			<td width="50px"><input type="button" class="btn btn-default ltypepopup" onclick="return false;" id="<?php echo $result['leavetype_id'];?>" value="Delete"></td>-->
-	</tr>
-      <?php } ?>
-  </tbody>
-      </table></form>
-        <div id="edit_ltype_dia" class="navbar"></div>
-        <div id="add_new_ltype" class="navbar" style="display:none;" title="<?= $t->_('addleavetype'); ?>">
-                 <form id="Add_new_ltype"><table>
-                        <tr><td></td></tr><tr><td><?= $t->_("leave_type"); ?>:</td><td><input type="text" value="" name="ltype_name" placeholder="Enter Leave type"></td>                       
-                        <tr><td></td></tr>
-                        <tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype"><?= $t->_("save"); ?></a><a href="#" class="button" id="cancel_ltype"><?= $t->_("cancel"); ?></a></td></tr>
-                </table></form>
-        </div>
-        
-   
 
-  
+    <table class="listtbl">
+        <thead>
+            <tr>
+                <th width="120px">ID</th>
+                <th><?= $t->_("leave_type"); ?></th>
+                <th width="50px"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $n = 0;
+            foreach ($leave_typelist as $result) {
+                $n++;
+                ?>
+
+                <tr>
+                    <td width="120px"><?php echo $n; ?></td>
+                    <td><?php echo $result['leavetype_name']; ?> </td>
+                    <td width="50px"> <a href="#" onclick="return false;" style="float:right;margin-top: 5px;" class="indelete ltypepopup" id="<?php echo $result['leavetype_id']; ?>"></a></td>   
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table></form>
+<div id="edit_ltype_dia" class="navbar"></div>
+<div id="add_new_ltype" class="navbar" style="display:none;" title="<?= $t->_('addleavetype'); ?>">
+    <form id="Add_new_ltype"><table>
+            <tr><td></td></tr><tr><td><?= $t->_("leave_type"); ?>:</td><td><input type="text" value="" name="ltype_name" placeholder="Enter Leave type"></td>                       
+            <tr><td></td></tr>
+            <tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype"><?= $t->_("save"); ?></a><a href="#" class="button" id="cancel_ltype"><?= $t->_("cancel"); ?></a></td></tr>
+        </table></form>
+</div>
 
 </body>
