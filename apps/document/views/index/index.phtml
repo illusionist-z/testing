@@ -20,22 +20,14 @@ use Phalcon\Tag as Tag;
     <div class="row">
 
         <div class="col-md-3">
-            <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">            
-                    <?php echo $t->_("event_enable"); ?>              
+            <h2 class="col-sm-12 label label-primary"><span style="line-height: 25px;font-size: 15px;">               
+
+                    <?php echo $t->_("event_enable"); ?>                                         
                     <a href="#" onclick="return false;"   style="margin-left: 80px;"  class="dateimg checkall" id="shapbott"></a>
                     <a href="#" onclick="return false;" style="float:right;"  class="dateminusimg disabledevent" ></a>
                 </span>
             </h2>            
 
-            <form id ="frm1">          
-                <ul id="left-scroll">
-                    <li class="addbtnn col-sm-12">                  
-                        <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>"  ><span class="col-sm-6"><?php echo " " . $member_name; ?></span>                  
-                    </li>
-                    <?php foreach ($event_name as $eventname) { ?>               
-                        <li class="col-sm-12 addbtnn">                    
-                            <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " " . $eventname['permit_name']; ?></span>
-                        </li>
                     <?php } ?>                    
                 </ul>                  
             </form>
@@ -121,5 +113,18 @@ use Phalcon\Tag as Tag;
 
 
 
+
+
+            <form id ="frm1">             
+
+                <ul id="left-scroll">
+                    <li class="addbtnn col-sm-12">                  
+                        <input  type="checkbox" class="case col-sm-6 col-xs-offset-0" name='checkbox[]' value="<?= $member_name ?>"  ><span class="col-sm-6"><?php echo " " . $member_name; ?></span>                  
+                    </li>
+                    <?php foreach ($event_name as $eventname) { ?>                
+
+                        <li class="col-sm-12 addbtnn">                    
+                            <input  type="checkbox"  name='checkbox[]'  value="<?= $eventname['permit_name'] ?>" class="col-sm-6 col-xs-offset-0"><span class="col-sm-6"><?php echo " " . $eventname['permit_name']; ?></span>
+                        </li>
 
 

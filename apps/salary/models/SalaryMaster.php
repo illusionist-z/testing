@@ -212,7 +212,7 @@ class SalaryMaster extends Model {
                     $date_to_calculate = $date_diff;
 
                     echo $value[0]['basic_salary'] . '<br>';
-                    echo "salary starting date " . $budget_endyear . '<br>';
+                    echo "salary starting date " . $salary_start_date . '<br>';
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the basic salary from salary master
@@ -271,6 +271,7 @@ class SalaryMaster extends Model {
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
                     echo "The Income tax  is " . $income_tax . '<br>';
+                   
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
                     $tax_foreach_month = $taxs['tax_result'];
                     if ($flg == 1) {
@@ -521,10 +522,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $allowance_master = $row['total_allowance_amount'];
             if (isset($allowance_master) || $allowance_master != 0) {
                 $new_allowance = $allowance_master * $date_diff;
+                
                 $total_allowance = $new_allowance + $old_allowance;
                 echo "NEW all  " . $new_allowance;
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
                 echo 'Basic salary annual with allowance ' . $basic_salary_annual;
+                
             } else {
                 $allowance_master = 0;
                 $new_allowance = $all_amount * $date_diff;
@@ -579,6 +582,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $sql = "select * from salary_taxs where taxs_from<" . $income_tax . " and taxs_rate !=0";
             $result = $this->db->query($sql);
             $rows = $result->fetchall();
+           
             $taxsrate_data = array();
             foreach ($rows as $element) {
                 $taxsrate_data[] = $element['taxs_diff'] . ' ' . $element['taxs_rate'];

@@ -2,7 +2,8 @@
 
 namespace salts\Document\Controllers;
 
-// use library
+namespace salts\Document\Controllers;
+
 use Library;
 
 class ControllerBase extends Library\Core\Controller {

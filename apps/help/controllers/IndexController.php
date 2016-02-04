@@ -2,10 +2,7 @@
 
 namespace salts\Help\Controllers;
 
-use salts\Core\Models\Db;
 use salts\Core\Models\Db\CoreMember;
-
-//use Phalcon\Flash\Direct as FlashDirect;
 
 class IndexController extends ControllerBase {
 

@@ -22,7 +22,7 @@ try {
         
         // set namespace for the core module
 //        'salts\Core\Controllers' => '../apps/core/controllers/',
-//        'salts\Core\Models' => '../apps/core/models/',
+        'salts\Core\Models' => '../apps/core/models/',
 //        'salts\Auth\Controllers' => '../apps/auth/controllers/',
 //        'salts\Auth\Models' => '../apps/auth/models/',
 //       

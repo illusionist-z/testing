@@ -4,7 +4,6 @@ namespace salts\Manageuser\Controllers;
 
 use salts\Manageuser\Models\User as User;
 use salts\Manageuser\Models\AddUser;
-use salts\Core\Models\Db;
 use salts\Core\Models\Db\CoreMember;
 
 /**
@@ -22,7 +21,6 @@ class CorememberController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-
         $this->assets->addJs('apps/manageuser/js/search.js');
     }
 
