@@ -1,10 +1,9 @@
 <?php
 
 namespace salts\Auth\Controllers;
-
-use salts\Core\Models\Db;
 use salts\Auth\Models;
-
+use salts\Auth\Models\Permission;
+use salts\Core\Models\Db\CoreMember;
 class LoginController extends ControllerBase {
 
     public function initialize() {
@@ -55,8 +54,8 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getpermit($login_params);
-
-                $Member = Db\CoreMember::getInstance();
+                $Member = new CoreMember();
+                $ll = $Member::getInstance();
                 $lang = $Member->getlang($login_params);
                 $this->session->set('language', $lang['lang']);
                 $Member->updatecontract($login_params);

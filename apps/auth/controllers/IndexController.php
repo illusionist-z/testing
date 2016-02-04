@@ -4,7 +4,7 @@ namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
- include_once '/var/www/html/salts/apps/auth/models/db/CoreMember.php';
+// include_once '/var/www/html/salts/apps/auth/models/db/CoreMember.php';
 class IndexController extends ControllerBase {
  
     public function initialize() {
