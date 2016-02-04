@@ -1,46 +1,58 @@
-<?php  foreach ($result as $data) {
-  if ($module_name=='leaves'){
-      $leave_stt=$data['leave_status'];   
- ?>
-<form id="noti_detail" width="10px" height="300px" >
-   <fieldset>
-       <legend>
-           <?php
-                                if($data['member_profile']==null){
-                                     $img = "profile1.jpg";}
-                                  else{
-                                       $img=$data['member_profile'];                                       
-                                       if(file_exists('./uploads/'.$img)){                                                            
-                                             $img=$img;                                                            
-                                        }else{  
-                                            $img = "profile1.jpg";                                                                 
-                                        }
-                                   }
-                        ?>                                                 
-                        <img src="<?php echo $baseUri;?>uploads/<?php echo  $img;?>"  class="img-circle" style="margin-left: 350px;box-shadow: 0px 0px 5px #3c8dbc;" width="100px" alt="Image"/>
-       </legend>
-      
-       <table width="500px" height="290px" style="margin-left: 400px;background-color: whitesmoke;border-radius: 20px;box-shadow: 0px 0px 5px #3c8dbc;" > 
-           <tr><td></td><td><br><b>User Name </b></td><td><span style="color:black"> <br><input style="margin-top: 10px;" type="text" value="<?php echo $data['member_login_name'];?>" disabled> </span><b style="font-size:13px;"></b></td><td ></td></tr>
-           <tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['start_date'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
-           <tr><td></td><td><b>End Date </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['end_date'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
-  <tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php if($leave_stt==0){echo 'pending';}else if($leave_stt==1){echo 'Confirmed';}else{echo 'Rejected';}?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_days'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b>Leave Category </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_category'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_description'];?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
-<tr><td></td><td><input type="hidden" value="<?php echo $data['member_id'];?>"  name="id"></td><td></td></td></tr>
-<tr><td></td><td><input type="hidden" value="<?php echo $data['end_date'];?>"  name="end_date"></td><td></td></td></tr>
-<tr><td></td><td><input type="hidden" value="<?php echo $data['leave_days'];?>"  name="leave_days"></td><td></td></td></tr>
-<tr><td></td><td><input type="hidden" value="<?php echo $data['start_date'];?>"  name="start_date"></td><td></td></td></tr>
-<tr><td></td><td><input type="hidden" value="<?php echo $data['noti_id'];?>"  name="noti_id"></td><td></td></td></tr>
-<tr><td></td><td></td><?php if ($permission=="admin"){ ?><td colspan="2"><br><a href="#" class="button" id="noti_accept" >Accept</a><a href="#" class="button" id="noti_reject" >Reject</a><br><br>
-    <?php }else { ?><td colspan="2"><br><a href="#" class="button" id="noti_ok">Back</a>
-    </td></tr><?php }?>
-    </table>
-        
-   </div>
-    </div>   
-   </fieldset></form>
+<?php
+foreach ($result as $data) {
+    if ($module_name == 'leaves') {
+        $leave_stt = $data['leave_status'];
+        ?>
+        <form id="noti_detail" width="10px" height="300px" >
+            <fieldset>
+                <legend>
+                    <?php
+                    if ($data['member_profile'] == null) {
+                        $img = "profile1.jpg";
+                    } else {
+                        $img = $data['member_profile'];
+                        if (file_exists('./uploads/' . $img)) {
+                            $img = $img;
+                        } else {
+                            $img = "profile1.jpg";
+                        }
+                    }
+                    ?>                                                 
+                    <img src="<?php echo $baseUri; ?>uploads/<?php echo $img; ?>"  class="img-circle" style="margin-left: 350px;box-shadow: 0px 0px 5px #3c8dbc;" width="100px" alt="Image"/>
+                </legend>
 
-        <?php }}?>  
+                <table width="500px" height="290px" style="margin-left: 400px;background-color: whitesmoke;border-radius: 20px;box-shadow: 0px 0px 5px #3c8dbc;" > 
+                    <tr><td></td><td><br><b>User Name </b></td><td><span style="color:black"> <br><input style="margin-top: 10px;" type="text" value="<?php echo $data['member_login_name']; ?>" disabled> </span><b style="font-size:13px;"></b></td><td ></td></tr>
+                    <tr><td></td><td><b>Start Date </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['start_date']; ?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+                    <tr><td></td><td><b>End Date </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['end_date']; ?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+                    <tr><td></td><td><b>Leave Status </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php
+                                if ($leave_stt == 0) {
+                                    echo 'pending';
+                                } else if ($leave_stt == 1) {
+                                    echo 'Confirmed';
+                                } else {
+                                    echo 'Rejected';
+                                }
+                                ?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+                    <tr><td></td><td><b>Leave Days </b> </td><td><span style="color:black"><input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_days']; ?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+                    <tr><td></td><td><b>Leave Category </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_category']; ?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+                    <tr><td></td><td><b>Leave Description </b> </td><td><span style="color:black"> <input style="margin-top: 10px;" type="text" value="<?php echo $data['leave_description']; ?>" disabled> </span><b style="font-size:13px;"></b></td></tr>
+                    <tr><td></td><td><input type="hidden" value="<?php echo $data['member_id']; ?>"  name="id"></td><td></td></td></tr>
+                    <tr><td></td><td><input type="hidden" value="<?php echo $data['end_date']; ?>"  name="end_date"></td><td></td></td></tr>
+                    <tr><td></td><td><input type="hidden" value="<?php echo $data['leave_days']; ?>"  name="leave_days"></td><td></td></td></tr>
+                    <tr><td></td><td><input type="hidden" value="<?php echo $data['start_date']; ?>"  name="start_date"></td><td></td></td></tr>
+                    <tr><td></td><td><input type="hidden" value="<?php echo $data['noti_id']; ?>"  name="noti_id"></td><td></td></td></tr>
+                    <tr><td></td><td></td><?php if ($permission == "admin") { ?><td colspan="2"><br><a href="#" class="button" id="noti_accept" >Accept</a><a href="#" class="button" id="noti_reject" >Reject</a><br><br>
+                        <?php } else { ?><td colspan="2"><br><a href="#" class="button" id="noti_ok">Back</a>
+                            </td></tr><?php } ?>
+                </table>
+
+                </div>
+                </div>   
+            </fieldset></form>
+
+        <?php
+    }
+}
+?>  
 

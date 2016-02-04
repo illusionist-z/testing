@@ -1,16 +1,13 @@
 <div class="row">
     <div class="col-sm-3">        
         <ul class="nav nav-pills nav-stacked">
-        <?php 
-              
-        echo "<li class='active'><a href='' onclick='return false;'>Select Permission under</a></li>";
-        foreach ($member as $name){            
-            if($name['member_login_name']=='test02'||$name['member_login_name']=='admin')
-             echo "<li><a href='#'>".$name['member_login_name']."</a></li>";
-        
-        }
-        
-        ?>                  
+            <?php
+            echo "<li class='active'><a href='' onclick='return false;'>Select Permission under</a></li>";
+            foreach ($member as $name) {
+                if ($name['member_login_name'] == 'test02' || $name['member_login_name'] == 'admin')
+                    echo "<li><a href='#'>" . $name['member_login_name'] . "</a></li>";
+            }
+            ?>                  
         </ul>
     </div>
     <div class="col-sm-8">

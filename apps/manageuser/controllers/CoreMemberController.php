@@ -32,15 +32,12 @@ class CorememberController extends ControllerBase {
      * @version 26/8/2015 David
      * 
      */
-      
-          
-          
     public function saveuserAction() {
         $json = array();
         //form validation init
         if ($this->request->isPost()) {
 
-            $user = new AddUser();            
+            $user = new AddUser();
             $id = $this->request->getPost('uname');
             $exist_id = CoreMember::findByMemberLoginName($id);
             if (count($exist_id) > 0) {

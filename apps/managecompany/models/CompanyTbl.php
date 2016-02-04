@@ -1,6 +1,7 @@
 <?php
 
 namespace salts\Managecompany\Models;
+
 use Phalcon\Mvc\Model;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
@@ -11,6 +12,7 @@ class CompanyTbl extends \Library\Core\BaseModel {
         //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
+
     /**
      * 
      * @param type $data
@@ -19,10 +21,9 @@ class CompanyTbl extends \Library\Core\BaseModel {
      * Add New Company to company_tbl table
      */
     public function addnew($data) {
-
         $date = date("Y-m-d H:i:s");
         $sdate = date("Y-m-d", strtotime($data['com_sdate']));
-        
+
         $sql = "INSERT INTO `company_tbl`(`company_id`, `company_name`, `email`, `phone_no`, "
                 . "`db_name`, `user_name`, `db_psw`, `host`, `user_limit`, `starting_date`, "
                 . "`created_dt`) VALUES "
@@ -34,43 +35,31 @@ class CompanyTbl extends \Library\Core\BaseModel {
             $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $data['comid'] . "','" . $data['check'][$i] . "')";
             $this->db->query($sql);
         }
-        $message="success";
+        $message = "success";
         return $message;
     }
 
     public function getallcom() {
         $result = $this->db->query("select * from company_tbl where deleted_flag=0");
-
         $final_result = $result->fetchall();
         $i = 0;
-//        foreach ($final_result as $value) {
-//            $result = $this->db->query("select module_id from enable_module where company_id='" . $value['company_id'] . "' ");
-//            $module = $result->fetchall();
-//            $final_result[$i]['module'] = "aa";
-//            $i++;
-//        }
         return $final_result;
     }
-    
-    
 
     public function findDatabyId($id) {
         $result = $this->db->query("select * from company_tbl where company_tbl.company_id='" . $id . "' ");
-
         $final_result = $result->fetchArray();
         return $final_result;
     }
-    
-       public function findCombyId($id) {
-        $result = $this->db->query("select * from company_tbl where company_tbl.company_id='" . $id . "' ");
 
+    public function findCombyId($id) {
+        $result = $this->db->query("select * from company_tbl where company_tbl.company_id='" . $id . "' ");
         $final_result = $result->fetchall();
         return $final_result;
     }
 
     public function findModulebyId($id) {
         $result = $this->db->query("select module_id from enable_module where enable_module.company_id='" . $id . "' ");
-
         $final_result = $result->fetchAll();
         return $final_result;
     }
@@ -91,14 +80,13 @@ class CompanyTbl extends \Library\Core\BaseModel {
             $this->db->query($sql);
         }
     }
-    
-    public function deleteCompanyById($id)
-    {
-        $sql="UPDATE `company_tbl` SET `deleted_flag`=1 WHERE `company_id` = '" . $id . "' ";
+
+    public function deleteCompanyById($id) {
+        $sql = "UPDATE `company_tbl` SET `deleted_flag`=1 WHERE `company_id` = '" . $id . "' ";
         $this->db->query($sql);
     }
-    
-      public function validation($data) {
+
+    public function validation($data) {
         $res = array();
         $validate = new Validation();
         $validate->add('comid', new PresenceOf(
@@ -106,47 +94,47 @@ class CompanyTbl extends \Library\Core\BaseModel {
             'message' => ' * ID is required'
                 )
         ));
-         $validate->add('com_name', new PresenceOf(
+        $validate->add('com_name', new PresenceOf(
                 array(
             'message' => ' * Company Name is required'
                 )
         ));
-          $validate->add('com_sdate', new PresenceOf(
+        $validate->add('com_sdate', new PresenceOf(
                 array(
             'message' => ' * Starting date is required'
                 )
         ));
-           $validate->add('com_email', new PresenceOf(
+        $validate->add('com_email', new PresenceOf(
                 array(
             'message' => ' * email is required'
                 )
         ));
-            $validate->add('com_phno', new PresenceOf(
+        $validate->add('com_phno', new PresenceOf(
                 array(
             'message' => ' * Phone number is required'
                 )
         ));
-             $validate->add('com_db', new PresenceOf(
+        $validate->add('com_db', new PresenceOf(
                 array(
             'message' => ' * Database is required'
                 )
         ));
-              $validate->add('com_dbun', new PresenceOf(
+        $validate->add('com_dbun', new PresenceOf(
                 array(
             'message' => ' * db username is required'
                 )
         ));
-               $validate->add('com_dbpsw', new PresenceOf(
+        $validate->add('com_dbpsw', new PresenceOf(
                 array(
             'message' => ' * db password is required'
                 )
         ));
-                $validate->add('com_host', new PresenceOf(
+        $validate->add('com_host', new PresenceOf(
                 array(
             'message' => ' * DB host is required'
                 )
         ));
-                 $validate->add('com_limit', new PresenceOf(
+        $validate->add('com_limit', new PresenceOf(
                 array(
             'message' => ' * User Limit is required'
                 )
@@ -160,4 +148,5 @@ class CompanyTbl extends \Library\Core\BaseModel {
         }
         return $res;
     }
+
 }
