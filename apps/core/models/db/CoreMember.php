@@ -3,8 +3,7 @@
 namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
-use salts\Core\Models\Db\CoreMember;
+use Phalcon\Mvc\Model\Query; 
 use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
@@ -16,7 +15,7 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
-include_once '/var/www/html/salts/library/core/BaseModel.php';
+//  include_once '/var/www/html/salts/library/core/BaseModel.php';
 class CoreMember extends \Library\Core\BaseModel {
 
     // Use trait for singleton
