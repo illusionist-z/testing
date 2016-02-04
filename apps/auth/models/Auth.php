@@ -32,7 +32,7 @@ class Auth extends Component {
 //        return $row;
 //    }
 
-       public function findcomp_db($param) {
+       public function findCompDb($param) {
         try{
         
         $sql="SELECT * FROM company_tbl where company_id='". $param['company_id'] ."' and deleted_flag=0";
@@ -47,7 +47,7 @@ class Auth extends Component {
         return $Result;
     }
     
-    public function find_module($company_module) {
+    public function findModule($company_module) {
         $sql = "SELECT * FROM enable_module where company_id='" . $company_module . "' ";
         $Result = $this->login_db->query($sql);
         $Result = $Result->fetchAll();
@@ -60,7 +60,7 @@ class Auth extends Component {
      * @param array $loginParams
      * @return boolan
      */
-    public function check($loginParams, & $user = null) {
+    public function Check($loginParams, & $user = null) {
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $loginParams['password'];
@@ -75,7 +75,7 @@ class Auth extends Component {
         return $user;
     }
 
-    public function getpermit($loginParams) {
+    public function getPermit($loginParams) {
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $loginParams['password'];

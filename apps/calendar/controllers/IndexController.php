@@ -48,7 +48,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("noti", $noti);
         $GetMember = new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);
-        $Allname = $GetMember::getinstance()->getusername();
+        $Allname = $GetMember::getinstance()->getUserName();
         $this->view->event_name = $permitname;
         $this->view->member_name = $this->session->user['member_login_name'];
         $this->view->uname = $Allname;

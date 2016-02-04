@@ -53,7 +53,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
         $this->assets->addJs('apps/manageuser/js/search.js');
-        $getname = $User::getinstance()->getusername();
+        $getname = $User::getinstance()->getUserName();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
         $member_count = new Db\CoreMember();

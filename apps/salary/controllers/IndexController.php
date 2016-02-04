@@ -92,7 +92,7 @@ class IndexController extends ControllerBase {
             $getsalarylist = $Salarydetail->salarylist($month, $year);
 
             $userlist = new Db\CoreMember();
-            $user_name = $userlist::getinstance()->getusername();
+            $user_name = $userlist::getinstance()->getUserName();
             $this->view->setVar("month", $month);
             $this->view->setVar("year", $year);
             $this->view->setVar("usernames", $user_name);
@@ -111,7 +111,7 @@ class IndexController extends ControllerBase {
 
         $this->assets->addJs('apps/salary/js/addsalary.js');
         $userlist = new Db\CoreMember();
-        $user_name = $userlist::getinstance()->getusername();
+        $user_name = $userlist::getinstance()->getUserName();
         $Allowance = new Allowances();
         $getall_allowance = $Allowance->getall_allowances();
 

@@ -44,7 +44,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $module_id_return;
     }
 
-    public function getusername() {
+    public function getUserName() {
         $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         return $row;
@@ -111,7 +111,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $getname;
     }
 
-    public function getusernamebyid($id) {
+    public function getUserNameById($id) {
 
         $sql = "select * from core_member WHERE member_id ='" . $id . "'";
         $result = $this->db->query($sql);
@@ -121,7 +121,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $name;
     }
 
-    public function searchuser($search) {
+    public function searchUser($search) {
         $filter = new Filter();
         $search = $filter->sanitize($search, "string");
         $searchname = $this->db->query("select member_login_name from core_member where member_login_name like '%$search%' ");
@@ -133,7 +133,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return username by last month
      */
-    public function getlastname() {
+    public function getLastName() {
         $username = "SELECT * FROM salts\Core\Models\Db\CoreMember where deleted_flag=0 order by  created_dt desc limit 4";
         $laname = $this->modelsManager->executeQuery($username);
         return $laname;
@@ -145,7 +145,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * updating core member updated_dt after one year
      */
-    public function updatecontract($loginParams) {
+    public function updateContract($loginParams) {
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $filter->sanitize($loginParams['password'], "string");
@@ -164,7 +164,7 @@ class CoreMember extends \Library\Core\BaseModel {
         }
     }
 
-    public function getlang($member) {
+    public function getLang($member) {
         $filter = new Filter();
         $name = $filter->sanitize($member['member_login_name'], "string");
         $query = "Select lang from core_member where member_login_name ='" . $name . "'";
@@ -180,7 +180,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @param type $filename
      * @return string
      */
-    public function addnewuser($member_id, $member) {
+    public function addNewUser($member_id, $member) {
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
@@ -216,7 +216,7 @@ class CoreMember extends \Library\Core\BaseModel {
         }
     }
 
-    public function UserDetail($id) {
+    public function userDetail($id) {
 
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
@@ -224,7 +224,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $user;
     }
 
-    public function Userdata($id) {
+    public function userData($id) {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
         $user = $user->fetchArray();
@@ -460,14 +460,14 @@ class CoreMember extends \Library\Core\BaseModel {
      *     
      */
 
-    public function tokenpush($member_id, $tokenpush, $user_ip) {
+    public function tokenPush($member_id, $tokenpush, $user_ip) {
         $this->db = $this->getDI()->getShared("db");
         $member_log = $this->db->query("INSERT INTO member_log(token,member_id,ip_address) values(' " . $member_id . " ' ,' " . $tokenpush . " ',' " . $user_ip . " ' )");
 
         return $member_log;
     }
 
-    public function timeflag($member_id, $formtdate) {
+    public function timeFlag($member_id, $formtdate) {
         $this->db = $this->getDI()->getShared("db");
         $member_flag = $this->db->query("UPDATE core_member set timeflag = '" . $formtdate . "' WHERE member_login_name ='" . $member_id . "' ");
 
@@ -513,7 +513,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $user;
     }
 
-    public function checkyourmail($getmail) {
+    public function checkYourMail($getmail) {
         $this->db = $this->getDI()->getShared("db");
         $query = "SELECT token FROM forgot_password where  check_mail = '" . $getmail . "'  order by curdate desc limit 1  ";
         $user = $this->db->query($query);

@@ -50,7 +50,7 @@ class UserController extends ControllerBase {
         $leavetype = new LeaveCategories();
         $ltype = $leavetype->getleavetype();
         $userlist = new Db\CoreMember();
-        $name = $userlist::getinstance()->getusername();
+        $name = $userlist::getinstance()->getUserName();
         $this->view->setVar("name", $name);
         $this->view->setVar("Leavetype", $ltype);
         if ($this->request->isPost()) {

@@ -67,7 +67,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("noti", $noti);
         //get last create member
         $CMember = new Db\CoreMember();
-        $GetName = $CMember::getinstance()->getlastname();
+        $GetName = $CMember::getinstance()->getLastName();
         $newmember = count($GetName);
         //get most leave name
         $CheckLeave = new \salts\Dashboard\Models\Attendances();

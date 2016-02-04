@@ -139,7 +139,7 @@ class IndexController extends ControllerBase {
         $permission_code = $this->request->getPost("permission_code");
         var_dump($permission_code);
         $core = new CorePermissionGroup();
-        $success = $core->corepermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
+        $success = $core->corePermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
         if ($success) {
             $this->view->disable();
             $this->response->redirect('setting/index/admin');
@@ -167,9 +167,9 @@ class IndexController extends ControllerBase {
         $this->response->redirect('setting/index/admin');
     }
 
-    public function settingmoduleAction() {
+    public function SettingModuleAction() {
         $UserList = new Db\CoreMember();
-        $username = $UserList::getinstance()->getusername();
+        $username = $UserList::getinstance()->getUserName();
         $this->view->setVar("member", $username);
     }
 

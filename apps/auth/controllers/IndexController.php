@@ -64,8 +64,8 @@ class IndexController extends ControllerBase {
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new Db\CoreMember();
-                $chack_user2 = $chack_user2::findByMemberLoginName($member_name);
+                $ChackUser = new Db\CoreMember();
+                $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 
                 if (count($chack_user2) != 0) {
@@ -97,8 +97,8 @@ class IndexController extends ControllerBase {
             }
         } else {
             $member_name = $this->session->tokenpush;
-            $chack_user = new CoreMember();
-            $chack_user = $chack_user::findByMemberLoginName($member_name);
+            $ChackUser = new CoreMember();
+            $chack_user = $ChackUser::findByMemberLoginName($member_name);
 
 
             if (count($chack_user) == 0) {
@@ -139,12 +139,12 @@ class IndexController extends ControllerBase {
             // User Not Has
             elseif (count($chack_user) != 0) {  
                 $member_name = $this->session->tokenpush;
-                $chack = new CoreMember();
+                $Chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
                 $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
-                $insert = $chack->timeflag($member_name, $formtdate);
+                $insert = $Chack->timeFlag($member_name, $formtdate);
                 $this->view->errorMsg = 'Your Account Has 30 MIN Block';
                 $this->view->pick('index/index');
                 session_destroy();
@@ -152,13 +152,13 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function faileruserAction() {
+    public function failerUserAction() {
 
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
-        $chack_user = new CoreMember();
-        $chack_user = $chack_user::findByMemberLoginName($member_name);
+        $ChackUser = new CoreMember();
+        $chack_user = $ChackUser::findByMemberLoginName($member_name);
         if (count($chack_user) == 0) {
             $timestamp = (date("Y-m-d H:i:s"));
             $date = strtotime($timestamp);
@@ -206,12 +206,12 @@ class IndexController extends ControllerBase {
         $this->view->pick('index/index');
     }
 
-    public function forgotpasswordAction() {
+    public function forGotPasswordAction() {
         
     }
 
-    public function SaltsForGetAction() {
-        $core = new CoreMember();
+    public function saltsForGetAction() {
+        $Core = new CoreMember();
         $login = $this->request->getPost('SaltsForGetInput');
         $user = Users::findFirstByLogin($login);
         if ($user) {
@@ -220,15 +220,15 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function resetyourpasswordAction() {
+    public function resetYourPasswordAction() {
         
     }
 
-    public function sendmailAction() {
+    public function sendMailAction() {
         $member_mail = $this->request->get('email');
         $Admin = new Db\CoreMember;
 
-        $result = $Admin->findemail($member_mail);
+        $result = $Admin->findEmail($member_mail);
 
         if ($result) {
             $this->view->setVar("Result", $result);
@@ -237,15 +237,15 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function newpasswordAction() {
+    public function newPasswordAction() {
         $member_mail = $this->request->get('email');
         $this->view->setvar("member_mail", $member_mail);
     }
 
-    public function checkmailAction() {
+    public function checkMailAction() {
         $member_mail = $this->request->get('email');
         $Admin = new CoreMember();
-        $result = $Admin->findemail($member_mail);
+        $result = $Admin->findEmail($member_mail);
         if ($result) {
 
             $msg = "success";
@@ -256,20 +256,20 @@ class IndexController extends ControllerBase {
         echo json_encode($msg);
     }
 
-    public function checkcodeAction() {
+    public function checkCodeAction() {
         $code = $this->request->get('code');
         $email = $this->request->get('email');
         $Admin = new Db\CoreMember;
-        $result = $Admin->findcode($code, $email);
+        $result = $Admin->findCode($code, $email);
         $this->view->disable();
         echo json_encode($result);
     }
 
     // for send email 
-    public function sendemailAction() {
+    public function sendEmailAction() {
         $email = $this->request->get('email');
         $Admin = new Db\CoreMember;
-        $result = $Admin->findsecuritycode($email);
+        $result = $Admin->findSecurityCode($email);
         if ($result) {
             $to = $email;
             $subject = 'The subject';
@@ -287,20 +287,20 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function resetpasswordAction() {
+    public function resetPasswordAction() {
         $member_mail = $this->request->get('email');
         $Admin = new Db\CoreMember;
-        $result = $Admin->findemail($member_mail);
+        $result = $Admin->findEmail($member_mail);
         $this->view->setVar("Result", $result);
     }
 
-    public function changepasswordAction() {
+    public function changePasswordAction() {
         $newpass = $this->request->get('fnp');
         $member_mail = $this->request->get('email');
 
         $Admin = new Db\CoreMember;
 
-        $update = $Admin->updatenewpassword($member_mail, $newpass);
+        $update = $Admin->updateNewPassword($member_mail, $newpass);
         if ($update) {
             $msg = "success";
         } else {
@@ -310,14 +310,14 @@ class IndexController extends ControllerBase {
         echo json_encode($msg);
     }
 
-    public function sendtomailAction() {
+    public function sendToMailAction() {
         $getemail = $this->request->get('email');
         $Admin = new Db\CoreMember;
 
         $token = uniqid(bin2hex(mcrypt_create_iv(1, MCRYPT_DEV_RANDOM)));
-        $Admin->insertemailandtoken($getemail, $token);
+        $Admin->insertEmailAndToken($getemail, $token);
 
-        $result = $Admin->checkyourmail($getemail);
+        $result = $Admin->checkYourMail($getemail);
         $to = $getemail;
         $subject = 'The subject';
         $message = $result;
@@ -339,4 +339,4 @@ class IndexController extends ControllerBase {
 
 }
                      
-                    $page = "http://".$localhost."/salts/auth/index/faileruser";
+                 //   $page = "http://".$localhost."/salts/auth/index/faileruser";

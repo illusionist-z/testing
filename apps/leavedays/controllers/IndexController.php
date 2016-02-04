@@ -86,7 +86,7 @@ class IndexController extends ControllerBase {
             $ltype = $leavetype->getleavetype();
             $userlist = new Db\CoreMember();
 
-            $name = $userlist::getinstance()->getusername();
+            $name = $userlist::getinstance()->getUserName();
 
             if ($this->permission == 1) {
                 $this->view->setVar("name", $name);
@@ -148,7 +148,7 @@ class IndexController extends ControllerBase {
             $ltype = $leavetype->getleavetype();
             $this->view->setVar("Leavetype", $ltype);
             $UserList = new Db\CoreMember();
-            $GetUsername = $UserList::getinstance()->getusername();
+            $GetUsername = $UserList::getinstance()->getUserName();
             $leaves = $this->_leave->getleavelist();
             $absent = $this->_leave->getabsent();
             $max = $this->_leave->getleavesetting();

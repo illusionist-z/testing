@@ -56,7 +56,7 @@ class IndexController extends ControllerBase {
         $name = $this->request->get('namelist');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
-        $Username = $UserList::getinstance()->getusername();
+        $Username = $UserList::getinstance()->getUserName();
         $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);
         if($this->permission==1){
@@ -107,7 +107,7 @@ class IndexController extends ControllerBase {
         if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
             $UserList = new Db\CoreMember();
-            $UserName = $UserList::getinstance()->getusername();
+            $UserName = $UserList::getinstance()->getUserName();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthlylist = $Attendances->showattlist();

@@ -166,7 +166,7 @@ class Attendances extends Model {
      * @return type
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function getattlist($id) {
+    public function getAttList($id) {
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
         $row = "Select att_date,member_login_name,checkin_time,checkout_time,"

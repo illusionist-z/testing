@@ -115,7 +115,7 @@ class Leaves extends \Library\Core\BaseModel {
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc, $creator_id) {
         $cm = new CoreMember();
-        $name = $cm->getusernamebyid($creator_id);
+        $name = $cm->getUserNameById($creator_id);
         $filter = new Filter();
         $uname = $filter->sanitize($uname, "string");
         $type = $filter->sanitize($type, "string");
