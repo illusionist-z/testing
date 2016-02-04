@@ -9,8 +9,8 @@ class CoreNotification extends \Library\Core\BaseModel {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    public function GetNotiInfo($module_name, $noti_id) {
-        $result = $this->db->query("SELECT  * FROM " . $module_name . " JOIN core_member ON core_member.member_id=" . $module_name . ".member_id WHERE " . $module_name . ".noti_id='" . $noti_id . "' ");
+    public function GetNotiInfo($module_name, $Noti_id) {
+        $result = $this->db->query("SELECT  * FROM " . $module_name . " JOIN core_member ON core_member.member_id=" . $module_name . ".member_id WHERE " . $module_name . ".noti_id='" . $Noti_id . "' ");
         $final_result = $result->fetchall();
         return $final_result;
     }

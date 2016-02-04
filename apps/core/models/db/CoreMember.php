@@ -16,7 +16,7 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
-include_once '/var/www/html/salts/library/core/BaseModel.php';
+
 class CoreMember extends \Library\Core\BaseModel {
 
     // Use trait for singleton
@@ -241,7 +241,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti($id, $type) {
+    public function getAdminNoti($id, $type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         if ($type == 0) {
@@ -255,18 +255,18 @@ class CoreMember extends \Library\Core\BaseModel {
         }
 
         $AdminNoti = $this->db->query($sql);
-        $noti = $AdminNoti->fetchall();
+        $Noti = $AdminNoti->fetchall();
 
 
         $i = 0;
-        foreach ($noti as $noti) {
+        foreach ($Noti as $Noti) {
 
-            $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' and core_member.deleted_flag=0 ";
+            $sql = "SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' and core_member.deleted_flag=0 ";
 
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
 
-            $final_result[$i]['0']['creator_name'] = $noti['creator_name'];
+            $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
         }
 
@@ -297,19 +297,19 @@ class CoreMember extends \Library\Core\BaseModel {
      * for user notification
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function GetUserNoti($id, $type) {
+    public function getUserNoti($id, $type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
         $UserNoti = $this->db->query($sql);
 
-        $noti = $UserNoti->fetchall();
+        $Noti = $UserNoti->fetchall();
         $i = 0;
-        foreach ($noti as $noti) {
+        foreach ($Noti as $Noti) {
 
-            $result = $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
+            $result = $this->db->query("SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' ");
             $final_result[] = $result->fetchall();
-            $final_result[$i]['0']['creator_name'] = $noti['creator_name'];
+            $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
         }
         $data = array();

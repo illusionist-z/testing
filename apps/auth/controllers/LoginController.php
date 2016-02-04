@@ -19,6 +19,7 @@ class LoginController extends ControllerBase {
 
         
         $login_params = $this->request->get();
+      
         $ModelAuth = new Models\Auth();
        
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
@@ -38,10 +39,10 @@ class LoginController extends ControllerBase {
                 $this->response->redirect('auth/index/failersuperuser');
             }
         } else {
-
-            $this->view->test = $login_params;
-            $companyDB = $ModelAuth->findcomp_db($login_params);
             
+            $this->view->test = $login_params;
+         
+            $companyDB = $ModelAuth->findcomp_db($login_params);
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
@@ -55,7 +56,7 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getpermit($login_params);
-
+              
                 $Member = Db\CoreMember::getInstance();
                 $lang = $Member->getlang($login_params);
                 $this->session->set('language', $lang['lang']);

@@ -33,7 +33,7 @@ class Attendances extends Model {
          * */
         if ($att === FALSE) {
             //$status = " Already Checked in ";
-            $noti_id = rand();
+            $Noti_id = rand();
             $att_today = Attendances::findFirst("att_date = '$today' AND member_id ='$id' AND status = 0");
             if ($att_today === FALSE) {
                 $att_leave = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 2");
@@ -41,15 +41,15 @@ class Attendances extends Model {
                     $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
                             . "att_date,location,notes,noti_id,status) VALUES ('" . $mydate . "'"
                             . ",'" . $id . "','" . $today . "',
-                    '" . $add . "','" . $note . "','" . $noti_id . "',0)");
+                    '" . $add . "','" . $note . "','" . $Noti_id . "',0)");
                 } else {
                     $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
-                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $noti_id . "',status = 0 where att_date ='" . $today . "' AND member_id ='" . $id . "'");
+                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = 0 where att_date ='" . $today . "' AND member_id ='" . $id . "'");
                 }
                 if ($note != NULL) {
                     $this->db->query("INSERT INTO core_notification (noti_creator_id,"
                             . "module_name,noti_id,noti_status) "
-                            . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
+                            . "VALUES('" . $creator_id . "','attendances','" . $Noti_id . "',0)");
                 }
                 $status = " Successfully Checked In";
             } else {

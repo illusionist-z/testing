@@ -35,15 +35,15 @@ class IndexController extends ControllerBase {
 
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
                 //Go to admin dashboard
-                $noti = $Admin->GetUserNoti($id, 1);
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
 
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
         $this->view->t = $this->_getTranslation();
         $moduleIdCallCore = new Db\CoreMember();
         $this->module_name = $this->router->getModuleName();
@@ -398,7 +398,7 @@ class IndexController extends ControllerBase {
             $this->assets->addJs('apps/salary/js/index-salarysetting.js');
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
-            $noti = $Admin->GetAdminNoti($id);
+            $Noti = $Admin->getAdminNoti($id);
 
             $Tax = new SalaryTaxs();
             $list = $Tax->gettaxlist();
@@ -407,7 +407,7 @@ class IndexController extends ControllerBase {
             $dlist = $Deduction->getdedlist();
             if ($this->permission === 1) {
                 $this->view->module_name = $this->router->getModuleName();
-                $this->view->setVar("noti", $noti);
+                $this->view->setVar("noti", $Noti);
                 $this->view->setVar("deduction", $dlist);
             } else {
                 $this->response->redirect('core/index');

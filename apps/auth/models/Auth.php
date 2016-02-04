@@ -20,16 +20,20 @@ class Auth extends Component {
      * @return type
      */
     public function findcomp_db($param) {
+       
         try {
-            $sql = "SELECT * FROM company_tbl where company_id=? and deleted_flag=0";
-            $rs = $this->getDI()->getShared("login_db")
-                    ->query($sql, array($param['company_id']));
-            $row = $rs->fetchArray();var_dump($row);exit;
+            $sql = "SELECT * FROM company_tbl where company_id='".$param['company_id']."' and deleted_flag=0";
+            
+//            $rs = $this->getDI()->getShared("login_db")
+//                    ->query($sql, array($param['company_id']));
+            $rs=$this->login_db->query($sql);
+            
+            $row = $rs->fetchArray();
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
         }
-
+        //print_r($row);exit;
         return $row;
     }
 
@@ -69,7 +73,7 @@ class Auth extends Component {
 
         $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         $user = $user->fetchArray();
-
+        
         $permission = $this->db->query("SELECT permission_group_id_user FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
         $permission_name = $permission->fetchArray();
         return $permission_name['permission_group_id_user'];

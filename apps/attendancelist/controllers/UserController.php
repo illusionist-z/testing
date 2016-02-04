@@ -19,13 +19,13 @@ class UserController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
-                $noti = $User->GetAdminNoti($id, 0);
+                $Noti = $User->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $User->GetUserNoti($id, 1);
+                $Noti = $User->getUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
     }
 
     public function indexAction() {
