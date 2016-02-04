@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init  : function() {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 10;            
+        pager.perpage = 20;            
         pager.para = $('tbody > tr');
         pager.showPage(1);  
         $("tbody").show();
@@ -465,9 +465,10 @@ var Salary = {
                         +'<td style ="background-color:#3c8dbc; color:#ffffff;"></td>'
                         +'</tr>'
             $("tbody").append(html);}
-            Salary.init();
+          Salary.init();
             //click event for detail after search
             $('.btn_detail').click(function () { 
+                alert("salary");
             var month = document.getElementById('month').value;
             var year = document.getElementById('year').value;
             var chkbox = document.getElementsByName('chk[]');

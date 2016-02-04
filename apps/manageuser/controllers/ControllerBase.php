@@ -1,9 +1,9 @@
-<?php namespace salts\Manageuser\Controllers;
+<?php
 
-// use library
+namespace salts\Manageuser\Controllers;
+
 use Library;
 
-class ControllerBase extends Library\Core\Controller
-{
+class ControllerBase extends Library\Core\Controller {
     
 }

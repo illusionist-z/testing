@@ -175,7 +175,7 @@ class Attendances extends Model {
     }
     
     public function GetAbsentList(){
-         $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE) AND deleted_flag=0 order by created_dt desc";
+         $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE and status = 0) AND deleted_flag=0 order by created_dt desc";
          $list=$this->db->query($query);
          $absentlist=$list->fetchall();
          return $absentlist;
@@ -275,7 +275,7 @@ class Attendances extends Model {
             $dt=  explode('-', $salary_start_date);
             $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
                     . " where YEAR(att_date)='".$dt[0]."' and MONTH(att_date)='".$dt[1]."' group by core_member.member_id";
-            //echo $query.'<br>';
+            //echo $query.'<br>';exit
             $data = $this->db->query($query);
             $result = $data->fetchall();
         } catch (Exception $exc) {

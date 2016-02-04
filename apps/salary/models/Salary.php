@@ -32,12 +32,8 @@ class Salary extends \Library\Core\BaseModel {
                 array(
                     'message' => ' * Basic Salary is required'
                      )
-                     ))
-                ->add('checkall',
-                new PresenceOf(
-                array(
-                    'message'=> ' * Check is required'
-                )));                
+                     ));
+                                
        
         
         

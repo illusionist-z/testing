@@ -4,7 +4,6 @@ namespace salts\Manageuser\Controllers;
 
 use salts\Manageuser\Models\User as User;
 use salts\Manageuser\Models\AddUser;
-use salts\Core\Models\Db;
 use salts\Core\Models\Db\CoreMember;
 
 /**
@@ -22,7 +21,6 @@ class CorememberController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-
         $this->assets->addJs('apps/manageuser/js/search.js');
     }
 
@@ -32,15 +30,12 @@ class CorememberController extends ControllerBase {
      * @version 26/8/2015 David
      * 
      */
-      
-          
-          
     public function saveuserAction() {
         $json = array();
         //form validation init
         if ($this->request->isPost()) {
 
-            $user = new AddUser();            
+            $user = new AddUser();
             $id = $this->request->getPost('uname');
             $exist_id = CoreMember::findByMemberLoginName($id);
             if (count($exist_id) > 0) {

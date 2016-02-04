@@ -1,48 +1,44 @@
-<?php
-    use Phalcon\Filter;
-?>
 <!-- Main content -->
 <section class="content">
     <div class="row"><!-- for search form-->
-        
         <div class="col-md-12"><!--start add user form--->
             <span style="float: right;"><a href="#" title="Print" class="print" id="printimg"></a></span>
             <div class="printable">
-            <div>
-            G-Next Co.,Ltd.<br>
-            <u>For the Month of June 15</u>
-            </div>
-            <br>
-            <table border="1px;" class="tbl-tax">
-                <thead>
-                <tr>
-                    <td rowspan="3">
-                        Sr No.
-                    </td>
-                    <td rowspan="3">
-                        Name
-                    </td>
-                    <td rowspan="3">
-                        Starting Date
-                    </td>
-                    <td rowspan="3">
-                        Basic Pay<br>
-                        (MMK)
-                    </td>
-                    <td rowspan="3">
-                        Total Annual<br>
-                        Income<br>
-                        (MMK)
-                    </td>
-                    
-                    <td rowspan="3">
-                        Marriage<br>
-                        [Y/N]
-                    </td>
-                    <td colspan="6">
+                <div>
+                    G-Next Co.,Ltd.<br>
+                    <u>For the Month of June 15</u>
+                </div>
+                <br>
+                <table border="1px;" class="tbl-tax">
+                    <thead>
+                        <tr>
+                            <td rowspan="3">
+                                Sr No.
+                            </td>
+                            <td rowspan="3">
+                                Name
+                            </td>
+                            <td rowspan="3">
+                                Starting Date
+                            </td>
+                            <td rowspan="3">
+                                Basic Pay<br>
+                                (MMK)
+                            </td>
+                            <td rowspan="3">
+                                Total Annual<br>
+                                Income<br>
+                                (MMK)
+                            </td>
+
+                            <td rowspan="3">
+                                Marriage<br>
+                                [Y/N]
+                            </td>
+                            <td colspan="6">
                     <center>Tax Allowance</center>
                     </td>
-                    
+
                     <td rowspan="3">Taxable<br>
                         Income
                     </td>
@@ -50,165 +46,160 @@
                         Tax for<br>
                         June 15
                     </td>
-                </tr>
-                <tr>
-                    
-                   
-                    <td>
-                        20%
-                    </td>
-                    
-                    <td>
-                        <?php echo number_format("1000000");?>
-                    </td>
-                    <td>
-                       <?php echo number_format("500000");?>
-                    </td>
-                    <td>
-                       <?php echo number_format("1000000");?>
-                    </td>
-                    <td>
-                        <?php echo number_format("1000000");?>
-                    </td>
-                    <td>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Basic<br>
-                        Examption
-                    </td>
-                    
-                    <td>
-                        Spouse
-                    </td>
-                    <td>
-                        Child
-                    </td>
-                    <td>
-                        Staying with<br>
-                        Father
-                    </td>
-                    <td>
-                        Staying with<br>
-                        Mother
-                    </td>
-                    <td>
-                        SSB
-                    </td>
-                </tr>
-                
-                </thead>
-                <tbody>
-                    <?php 
-                    $i=1;
-                    $total="";
-                    if(!empty($salary_info)){
-                    foreach ($salary_info as $salary_infos) {
-                    ?>
-                    
+                    </tr>
                     <tr>
-                        <td><?php echo $i;?></td>
-                        <td><?php echo $salary_infos['member_login_name']; ?></td>
-                        <td><?php echo $salary_infos['working_start_dt']; ?></td>
-                        <td><?php echo $salary_infos['basic_salary']; ?></td>
+
+
                         <td>
-                            <?php 
-                            echo $salary_infos['basic_salary_annual'];
-                            ?>
+                            20%
+                        </td>
+
+                        <td>
+                            <?php echo number_format("1000000"); ?>
                         </td>
                         <td>
-                            <?php
-                            echo $salary_infos['rs_status'];
-                            ?>
+                            <?php echo number_format("500000"); ?>
                         </td>
                         <td>
-                            <?php
-                            echo number_format($salary_infos['basic_examption']);
-                            ?>
+                            <?php echo number_format("1000000"); ?>
                         </td>
                         <td>
-                            <?php
-                            $deduce_name=$salary_infos['deduce_name'];
-                            if($deduce_name=='spouse')
-                            {
-                                echo number_format($salary_infos['amount']);
-                            }
-                            ?> 
+                            <?php echo number_format("1000000"); ?>
                         </td>
                         <td>
-                            <?php
-                            $deduce_name=$salary_infos['deduce_name'];
-                            if($deduce_name=='children')
-                            {
-                                echo number_format($salary_infos['amount']);
-                            }
-                            ?> 
-                        </td>
-                        <td>
-                         <?php
-                            $deduce_name=$salary_infos['deduce_name'];
-                            if($deduce_name=='stay_with_father')
-                            {
-                                echo number_format($salary_infos['amount']);
-                            }
-                         ?>   
-                        </td>
-                        <td>
-                            <?php
-                            $deduce_name=$salary_infos['deduce_name'];
-                            if($deduce_name=='stay_wiith_mother')
-                            {
-                                echo number_format($salary_infos['amount']);
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $ssc_emp_res=$salary_infos['ssc_emp'];
-                            $ssc_emp_annual=$ssc_emp_res*12;
-                            echo number_format($ssc_emp_annual);
-                            ?>
-                        </td>
-                        <td>
-                            <?php 
-                            echo number_format($salary_infos['total_annual_income']);
-                            ?>
-                        </td>
-                        <td>
-                            <?php 
-                            $total=$total+$salary_infos['income_tax'];
-                            echo number_format($salary_infos['income_tax']);
-                            ?>
+
                         </td>
                     </tr>
-                   <?php
-                   $i++;
-                    }
-                    
-                    ?>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><?php echo number_format($total);?></td>
+                        <td>
+                            Basic<br>
+                            Examption
+                        </td>
+
+                        <td>
+                            Spouse
+                        </td>
+                        <td>
+                            Child
+                        </td>
+                        <td>
+                            Staying with<br>
+                            Father
+                        </td>
+                        <td>
+                            Staying with<br>
+                            Mother
+                        </td>
+                        <td>
+                            SSB
+                        </td>
                     </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
+
+                    </thead>
+                    <tbody>
+                        <?php
+                        $i = 1;
+                        $total = "";
+                        if (!empty($salary_info)) {
+                            foreach ($salary_info as $salary_infos) {
+                                ?>
+
+                                <tr>
+                                    <td><?php echo $i; ?></td>
+                                    <td><?php echo $salary_infos['member_login_name']; ?></td>
+                                    <td><?php echo $salary_infos['working_start_dt']; ?></td>
+                                    <td><?php echo $salary_infos['basic_salary']; ?></td>
+                                    <td>
+                                        <?php
+                                        echo $salary_infos['basic_salary_annual'];
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo $salary_infos['rs_status'];
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo number_format($salary_infos['basic_examption']);
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $deduce_name = $salary_infos['deduce_name'];
+                                        if ($deduce_name == 'spouse') {
+                                            echo number_format($salary_infos['amount']);
+                                        }
+                                        ?> 
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $deduce_name = $salary_infos['deduce_name'];
+                                        if ($deduce_name == 'children') {
+                                            echo number_format($salary_infos['amount']);
+                                        }
+                                        ?> 
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $deduce_name = $salary_infos['deduce_name'];
+                                        if ($deduce_name == 'stay_with_father') {
+                                            echo number_format($salary_infos['amount']);
+                                        }
+                                        ?>   
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $deduce_name = $salary_infos['deduce_name'];
+                                        if ($deduce_name == 'stay_wiith_mother') {
+                                            echo number_format($salary_infos['amount']);
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $ssc_emp_res = $salary_infos['ssc_emp'];
+                                        $ssc_emp_annual = $ssc_emp_res * 12;
+                                        echo number_format($ssc_emp_annual);
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        echo number_format($salary_infos['total_annual_income']);
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        $total = $total + $salary_infos['income_tax'];
+                                        echo number_format($salary_infos['income_tax']);
+                                        ?>
+                                    </td>
+                                </tr>
+                                <?php
+                                $i++;
+                            }
+                            ?>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><?php echo number_format($total); ?></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

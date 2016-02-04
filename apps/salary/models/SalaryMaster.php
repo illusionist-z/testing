@@ -21,9 +21,12 @@ class SalaryMaster extends Model {
      * @author zinmon
      */
     public function savesalary($data) {
+       
+        $return= array();
+        $SalaryMaster= new SalaryMaster();
         try {
             
-            if ($SalaryMaster->save($data[0]) == false) {
+            if ($SalaryMaster->save($data) == false) {
                 foreach ($SalaryMaster->getMessages() as $message) {
                     $return[] = $message;
                 }
@@ -224,7 +227,7 @@ class SalaryMaster extends Model {
                     $date_to_calculate = $date_diff;
 
                     echo $value[0]['basic_salary'] . '<br>';
-                    echo "salary starting date " . $budget_endyear . '<br>';
+                    echo "salary starting date " . $salary_start_date . '<br>';
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //print_r($SD);
@@ -261,6 +264,7 @@ class SalaryMaster extends Model {
                     $leavesetting = $this->getleavesetting();
                     //calculate absent deduce
                     $countabsent = $this->CalculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $value[0]['basic_salary']);
+                 echo "bb";   print_r($absent);echo "aa";
                     $absent_dedution = $countabsent;
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
@@ -286,6 +290,7 @@ class SalaryMaster extends Model {
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
                     echo "The Income tax  is " . $income_tax . '<br>';
+                   
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
                     $tax_foreach_month = $taxs['tax_result'];
 //                  print_r($taxs);
@@ -427,7 +432,8 @@ class SalaryMaster extends Model {
 
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
                     . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and status=2";
-            //echo $sql;
+            echo '@@@@@@'.$budget_startyear.'@@@@@';
+            echo $sql;echo"sql";
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
@@ -566,11 +572,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             if (isset($allowance_master) || $allowance_master != 0) {
 
                 $new_allowance = $allowance_master * $date_diff;
+                
                 $total_allowance = $new_allowance + $old_allowance;
                 //$total_allowance=($row['total_allowance_amount']+$old_allowance)*$date_diff;
                 echo "NEW all  " . $new_allowance;
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
                 echo 'Basic salary annual with allowance ' . $basic_salary_annual;
+                
             } else {
                 $allowance_master = 0;
                 $new_allowance = $all_amount * $date_diff;
@@ -633,13 +641,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
             $result = $this->db->query($sql);
             $rows = $result->fetchall();
-            //print_r($rows);
+           
             $taxsrate_data = array();
             foreach ($rows as $element) {
 
                 $taxsrate_data[] = $element['taxs_diff'] . ' ' . $element['taxs_rate'];
             }
-            //print_r($taxsrate_data);
+            
             $rows = $this->calculate_deducerate($taxsrate_data, $income_tax, $salary_year);
             //print_r($rows);
             //exit;
@@ -821,7 +829,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     public function memidsalary($uname) {
 
         //$sql = "select salary_master.member_id from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE core_member.full_name ='".$uname."'";
-        $sql = "select * from core_member WHERE full_name ='" . $uname . "'";
+        $sql = "select * from core_member WHERE member_login_name ='" . $uname . "'";
         //print_r($sql);exit;
         $result = $this->db->query($sql);
         $row = $result->fetchall();

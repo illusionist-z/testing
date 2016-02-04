@@ -75,6 +75,7 @@ $(function () {
      
      //click the detail button for detail of salary
      $('.btn_detail').click(function () { 
+         //alert("show_salarylist");
      var month = document.getElementById('month').value;
      var year = document.getElementById('year').value;
      var chkbox = document.getElementsByName('chk[]');

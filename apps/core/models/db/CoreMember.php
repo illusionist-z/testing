@@ -1,13 +1,6 @@
 <?php
 
 namespace salts\Core\Models\Db;
-
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
-use salts\Core\Models\Db\CoreMember;
-use salts\Core\Models\Db\CorePermissionRelMember;
-use salts\Core\Models\Db\CorePermissionGroupId;
-use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
 /*
@@ -26,15 +19,11 @@ class CoreMember extends \Library\Core\BaseModel {
         return new self();
     }
 
-    public function ModuleIdSetPermission($v, $m) {
-
+    public function moduleIdSetPermission($v, $m) {
         //// Module ID Filter Start
         $module_id_set = $m;
         foreach ($module_id_set as $module_name) {
-            //var_dump($module_name['module_id']);
-
             if ($module_name['module_id'] == $v) {
-
                 $var_id = 1;
             }
         }
@@ -56,7 +45,6 @@ class CoreMember extends \Library\Core\BaseModel {
     public function module_permission() {
         $this->db = $this->getDI()->getShared("db");
         $query = "Select permission_code,permission_name_en,permission_name_$lang from core_permission where permission_code ='$code'";
-        //echo $query;exit;
         $data = $this->db->query($query);
         $result = $data->fetchall();
         return $result;
@@ -67,25 +55,21 @@ class CoreMember extends \Library\Core\BaseModel {
      * @Inset Buyer Code
      * @Yan Lin Pai <Yan Lin Pai>
      */
-
     public function getNumberCount() {
         $this->db = $this->getDI()->getShared("db");
         $query = "SELECT COUNT(*) FROM core_member WHERE deleted_flag=0 order by created_dt desc";
         $data = $this->db->query($query);
-        $groupid = $data->fetchall();
-        return $groupid;
+        $group_id = $data->fetchall();
+        return $group_id;
     }
 
     public function getgroupid() {
         $query = "Select member_id,member_login_name,group_id,core_member.deleted_flag from core_member "
                 . "left join core_permission_rel_member on core_member.member_id=core_permission_rel_member.rel_member_id "
                 . "left join core_permission_group_id on core_permission_group_id.name_of_group = core_permission_rel_member.rel_permission_group_code";
-
         $data = $this->db->query($query);
-
-        $groupid = $data->fetchall();
-
-        return $groupid;
+        $group_id = $data->fetchall();
+        return $group_id;
     }
 
     public function username($name) {
@@ -101,7 +85,6 @@ class CoreMember extends \Library\Core\BaseModel {
     /*
      * user list search with name in user list
      */
-
     public function getoneusername($username) {
 
         $filter = new Filter();
@@ -113,18 +96,14 @@ class CoreMember extends \Library\Core\BaseModel {
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
-
-
         return $getname;
     }
 
     public function getusernamebyid($id) {
-
         $sql = "select * from core_member WHERE member_id ='" . $id . "'";
         $result = $this->db->query($sql);
         $row = $result->fetchall();
         $name = $row[0]['member_login_name'];
-
         return $name;
     }
 
@@ -165,7 +144,6 @@ class CoreMember extends \Library\Core\BaseModel {
         } else {
             $end_date = date('Y-m-d', strtotime("+1 year", strtotime($user1['0']['working_year_by_year'])));
         }
-
         if (strtotime($end_date) <= strtotime($today)) {
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
@@ -219,24 +197,22 @@ class CoreMember extends \Library\Core\BaseModel {
         foreach ($us as $value) {
             $sql = "INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())";
-            // print_r($sql);exit;
             $this->db->query($sql);
         }
     }
 
     public function UserDetail($id) {
-
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
-        $user = $user->fetchall();
-        return $user;
+        $result = $user->fetchall();
+        return $result;
     }
 
     public function Userdata($id) {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
-        $user = $user->fetchArray();
-        return $user;
+        $result = $user->fetchArray();
+        return $result;
     }
 
     /**
@@ -246,14 +222,12 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti($id, $type) {
+    public function getAdminNoti($id, $type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         if ($type == 0) {
-
             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='" . $type . "' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc  ";
         } else if ($type == 2) {
-
             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='0' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc   ";
         } else {
             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='" . $type . "' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc limit 10";
@@ -398,7 +372,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return array {leave name}
      * @return array {no leave name}
-   * @version saw zin min tun
+     * @version saw zin min tun
      */
     public function checkleave() {
         $res = array();
@@ -417,7 +391,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return array {leave name}
      * @return array {no leave name}
      * @version saw zin min tun
-     */ 
+     */
     public function leavemost() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
@@ -558,7 +532,7 @@ class CoreMember extends \Library\Core\BaseModel {
     public function findUserAddSalary($id) {
         $cond1 = "Select * from core_member where member_id not in ( select member_id from salary_master)";
         $cond2 = "Select * from core_member where member_id in ( select member_id from salary_master)";
-        (1 == $id) ? $query = $cond1 : $query = $cond2;        
+        (1 == $id) ? $query = $cond1 : $query = $cond2;
         $data = $this->db->query($query);
         $rows = $data->fetchall();
         return $rows;
