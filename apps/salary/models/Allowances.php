@@ -21,7 +21,7 @@ class Allowances extends Model {
      * @param type $count
      * Adding Allowances to allowance table
      */
-    public function addallowance($all_value, $all_name, $count) {
+    public function addAllowance($all_value, $all_name, $count) {
         $created_date = date("Y-m-d H:i:s");
         $this->db = $this->getDI()->getShared("db");
         for ($x = 1; $x < $count; $x++) {
@@ -34,7 +34,7 @@ class Allowances extends Model {
      * @author Su Zin Kyaw
      * @return type
      */
-    public function showalwlist() {
+    public function showAlwlist() {
         $row = $this->modelsManager->createBuilder()
                 ->columns('allowance_id,allowance_name,allowance_amount')
                 ->from('salts\Salary\Models\Allowances')
@@ -50,7 +50,7 @@ class Allowances extends Model {
      * update edited data to allowances table
      * @author Su Zin Kyaw
      */
-    public function edit_allowance($data) {
+    public function editAllowance($data) {
         try {
             $filter = new Filter();
             $name = $filter->sanitize($data['name'], "string");
@@ -68,7 +68,7 @@ class Allowances extends Model {
      * delete allowance data
      * @author Su Zin Kyaw
      */
-    public function delete_allowance($id) {
+    public function deleteAllowance($id) {
         try {
             $sql = "Delete From allowances  Where allowances.allowance_id='" . $id . "'";
             $this->db->query($sql);
@@ -77,7 +77,7 @@ class Allowances extends Model {
         }
     }
 
-    public function getall_allowances() {
+    public function getAllallowances() {
         try {
             $sql = "select * from allowances";
             $result = $this->db->query($sql);
@@ -96,7 +96,7 @@ class Allowances extends Model {
      * @return type
      * @author zin mon
      */
-    public function saveallowance($allowance, $member_id) {
+    public function saveAllowance($allowance, $member_id) {
         try {
             for ($i = 0; $i < count($allowance); $i++) {
                 $sql = "INSERT INTO salary_master_allowance (allowance_id,member_id) VALUES('" . $allowance[$i] . "','" . $member_id . "')";
@@ -107,7 +107,7 @@ class Allowances extends Model {
         }
     }
 
-    public function editall($allid) {
+    public function editAll($allid) {
         try {
             $sql = "select * from allowances where allowances.allowance_id ='" . $allid . "'";
             $result = $this->db->query($sql);

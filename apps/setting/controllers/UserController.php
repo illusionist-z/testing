@@ -25,15 +25,15 @@ class UserController extends ControllerBase {
 
             if ($key_name == 'show_admin_notification') {
 
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
 
-                $noti = $Admin->GetUserNoti($id, 1);
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
 
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
 
         $user = $Admin->userDetail($id);
         $this->view->userDetail = $user;
@@ -42,10 +42,10 @@ class UserController extends ControllerBase {
     public function usersettingAction() {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti = $User->GetUserNoti($id);
-        $this->view->setVar("noti", $noti);
-        $user = $User->userDetail($id);
-        $this->view->userDetail = $user;
+        $Noti = $User->getUserNoti($id);
+        $this->view->setVar("noti", $Noti);
+        $user = $User->UserDetail($id);
+        $this->view->userdetail = $user;
     }
 
     /**

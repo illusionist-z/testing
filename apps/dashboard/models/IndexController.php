@@ -58,13 +58,13 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $Admin->GetUserNoti($id, 1);
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
         //get last create member
         $CMember = new Db\CoreMember();
         $GetName = $CMember::getinstance()->getLastName();
@@ -101,13 +101,13 @@ class IndexController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
             echo $key_name;
             if ($key_name == 'show_admin_notification') {
-                $noti = $User->GetAdminNoti($id, 0);
+                $Noti = $User->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $User->GetUserNoti($id, 1);
+                $Noti = $User->getUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
         $att_status = $Attendances->userattleave($id);
         $this->view->setVar("numatt", $att_status['att']);
@@ -137,8 +137,8 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
         $add = $this->session->location['location'];
-        $noti_Creatorid = $User->GetAdminstratorId();
-        $creator_id = $noti_Creatorid[0]['rel_member_id'];
+        $Noti_Creatorid = $User->GetAdminstratorId();
+        $creator_id = $Noti_Creatorid[0]['rel_member_id'];
         $checkin = new \salts\Dashboard\Models\Attendances();
         $status = $checkin->setcheckintime($id, $note, $add, $creator_id);
         $this->view->disable();

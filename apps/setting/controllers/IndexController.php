@@ -61,8 +61,8 @@ class IndexController extends ControllerBase {
             $this->view->coreuser = $core_groupuser;
             $this->view->coreuser2 = $core_groupuser2;
             $id = $this->session->user['member_id'];
-            $noti = $coreuser->GetAdminNoti($id, 0);
-            $this->view->setVar("noti", $noti);
+            $Noti = $coreuser->getAdminNoti($id, 0);
+            $this->view->setVar("noti", $Noti);
         } else {
             $this->response->redirect('core/index');
         }

@@ -141,7 +141,7 @@ var Tax = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "edit_tax",
+            url: "edittax",
             success: function () {
                 d.dialog("close");
             }
@@ -218,7 +218,7 @@ var Deduction = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "edit_deduct",
+            url: "editDeduct",
             success: function () {
                 d.dialog("close");
             }
@@ -257,7 +257,7 @@ var Deduction = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "delete_deduct",
+            url: "deleteDeduct",
             success: function () {
                 d.dialog("close");
             }
@@ -300,7 +300,7 @@ var Deduction = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "add_dect",
+            url: "addDect",
             success: function () {
                 d.dialog("close");
             }

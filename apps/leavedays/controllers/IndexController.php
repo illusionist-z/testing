@@ -25,14 +25,14 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $Admin->GetUserNoti($id, 1);
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
 
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
         $this->view->module_name = $this->router->getModuleName();
         $this->view->t = $this->_getTranslation();
         $this->act_name = $this->router->getModuleName();
@@ -53,7 +53,7 @@ class IndexController extends ControllerBase {
 
         if ($this->moduleIdCall == 1) {
             $UserList = new Db\CoreMember();
-            $Username = $UserList->autousername();
+            $Username = $UserList->autoUsername();
             $this->view->disable();
             echo json_encode($Username);
         } else {
@@ -138,8 +138,8 @@ class IndexController extends ControllerBase {
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
-            $noti = $Admin->GetAdminNoti($id, 0);
-            $this->view->setVar("noti", $noti);
+            $Noti = $Admin->getAdminNoti($id, 0);
+            $this->view->setVar("noti", $Noti);
             $this->assets->addJs('common/js/paging.js');
             $this->assets->addJs('apps/leavedays/js/search.js');
             $this->assets->addJs('apps/leavedays/js/leavelist.js');
@@ -182,8 +182,8 @@ class IndexController extends ControllerBase {
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
-            $noti = $Admin->GetAdminNoti($id);
-            $this->view->setVar("noti", $noti);
+            $Noti = $Admin->getAdminNoti($id);
+            $this->view->setVar("noti", $Noti);
             $LeaveCategories = new LeaveCategories();
             $LeaveSetting = new LeavesSetting();
             $typelist = $LeaveCategories->getleavetype();
@@ -271,9 +271,9 @@ class IndexController extends ControllerBase {
     public function acceptleaveAction() {
         $id = $this->request->get('id');
         $days = $this->request->getPost('leave_days');
-        $noti_id = $this->request->getPost('noti_id');
+        $Noti_id = $this->request->getPost('noti_id');
 
-        $this->_leave->acceptleave($id, $days, $noti_id);
+        $this->_leave->acceptleave($id, $days, $Noti_id);
     }
 
     /**
@@ -281,8 +281,8 @@ class IndexController extends ControllerBase {
      * Admin rejecting the leave request
      */
     public function rejectleaveAction() {
-        $noti_id = $this->request->getPost('noti_id');
-        $this->_leave->rejectleave($noti_id);
+        $Noti_id = $this->request->getPost('noti_id');
+        $this->_leave->rejectleave($Noti_id);
     }
 
     /**
@@ -291,7 +291,7 @@ class IndexController extends ControllerBase {
      */
     public function applyautolistAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->applyautousername();
+        $Username = $UserList->applyautoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }
@@ -306,8 +306,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/leavedays/js/leavepaging.js');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("noti", $noti);
+        $Noti = $Admin->getAdminNoti($id);
+        $this->view->setVar("noti", $Noti);
 
         $Result = $Admin->checkleave();
 
@@ -324,8 +324,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/leavedays/js/leavepaging.js');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("noti", $noti);
+        $Noti = $Admin->getAdminNoti($id);
+        $this->view->setVar("noti", $Noti);
 
         $Result = $Admin->leavemost();
 

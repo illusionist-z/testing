@@ -62,7 +62,7 @@ class SalaryMasterController extends ControllerBase {
         $data['deleted_flag'] = 0;
         if ($this->request->isPost()) {
             $user = $this->_addsalary;
-            $validate = $user->chk_validate($this->request->getPost());
+            $validate = $user->chkValidate($this->request->getPost());
 
             if (count($validate)) {
                 foreach ($validate as $message) {
@@ -71,15 +71,15 @@ class SalaryMasterController extends ControllerBase {
                 $json['result'] = "error";
             } else {
 
-                $Salarymaster = new SalaryMaster();
+                $SalaryMaster = new SalaryMaster();
                 //check the member id has been inserted
-                $Check_salarymaster = $Salarymaster->getLatestsalary($data['member_id']);
+                $Check_salarymaster = $SalaryMaster->getLatestsalary($data['member_id']);
                 if (empty($Check_salarymaster)) {
-                    $Salarymaster->savesalarydedution($dedution, $data['no_of_children'], $data['member_id'], $data['creator_id']);
-                    $Salarymaster->savesalary($data);
+                    $SalaryMaster->saveSalaryDedution($dedution, $data['no_of_children'], $data['member_id'], $data['creator_id']);
+                    $SalaryMaster->savesalary($data);
 
                     $Allowance = new Allowances();
-                    $Allowance->saveallowance($allowance, $data['member_id']);
+                    $Allowance->saveAllowance($allowance, $data['member_id']);
                     $json['result'] = "success";
                 } else {
                     $json['result'] = "Inserted";
@@ -91,10 +91,10 @@ class SalaryMasterController extends ControllerBase {
     }
 
     public function editsalarydetailAction($bsalary, $overtimerate, $allowance, $member_id, $absent, $year, $month, $overtime_hr) {
-        $Salarymaster = new SalaryMaster();
-        $Salarymaster->updatesalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
+        $SalaryMaster = new SalaryMaster();
+        $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
         $Salarydetail = new SalaryDetail();
-        $resultsalary = $Salarydetail->updatesalarydetail($bsalary, $allowance, $member_id, $year, $month, $absent, $overtime_hr, $overtimerate);
+        $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, $month, $absent, $overtime_hr, $overtimerate);
         $this->view->disable();
         echo json_encode($resultsalary);
     }

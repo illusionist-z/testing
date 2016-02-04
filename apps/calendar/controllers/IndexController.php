@@ -37,15 +37,15 @@ class IndexController extends ControllerBase {
 
             if ($key_name == 'show_admin_notification') {
 
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
 
-                $noti = $Admin->GetUserNoti($id, 1);
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
 
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
         $GetMember = new Db\CoreMember();
         $permitname = $this->calendar->getalluser($id);
         $Allname = $GetMember::getinstance()->getUserName();
@@ -58,7 +58,7 @@ class IndexController extends ControllerBase {
     //calender auto complete  for username
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autousername();
+        $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }

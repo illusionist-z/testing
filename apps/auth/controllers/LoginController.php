@@ -18,6 +18,7 @@ class LoginController extends ControllerBase {
 
         
         $login_params = $this->request->get();
+      
         $ModelAuth = new Models\Auth();
        
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
@@ -41,6 +42,9 @@ class LoginController extends ControllerBase {
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
             
+            $this->view->test = $login_params;
+         
+            $companyDB = $ModelAuth->findcomp_db($login_params);
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    

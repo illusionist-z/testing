@@ -2,12 +2,9 @@
 
 namespace salts\Document\Models;
 
-use Phalcon\Mvc\Model;
-
 class CompanyInfo extends \Library\Core\BaseModel {
 
     public function initialize() {
-        //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
     }
 
@@ -16,8 +13,7 @@ class CompanyInfo extends \Library\Core\BaseModel {
      * Using For LetterHead
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-
-    public function GetCompanyInfo() {
+    public function getCompanyInfo() {
         $sql = "SELECT * from company_info";
         $result = $this->db->query($sql);
         $final_result = $result->fetcharray();
@@ -30,7 +26,7 @@ class CompanyInfo extends \Library\Core\BaseModel {
      * Update Company Info
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function EditCompanyInfo($data) {
+    public function editCompanyInfo($data) {
         $sql = "UPDATE company_info SET"
                 . " company_name='" . $data['company_name'] . "',"
                 . "company_logo='" . $data['company_logo'] . "',"

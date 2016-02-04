@@ -56,7 +56,7 @@ var Allowance = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "edit_data",
+            url: "editdata",
             success: function () {
                 d.dialog("close");
             }
@@ -94,7 +94,7 @@ var Allowance = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "delete_data",
+            url: "deletedata",
             success: function () {
                 d.dialog("close");
             }
