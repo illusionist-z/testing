@@ -28,17 +28,17 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $Admin->GetUserNoti($id, 1);
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
 
         $moduleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
     }
 
     /**
@@ -53,7 +53,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
         $this->assets->addJs('apps/manageuser/js/search.js');
-        $getname = $User::getinstance()->getusername();
+        $getname = $User::getinstance()->getUserName();
         $username = $this->request->get('username');
         $list = $this->user->userlist($username);
         $member_count = new Db\CoreMember();
@@ -72,7 +72,7 @@ class IndexController extends ControllerBase {
     //for monthly list autocomplete
     public function usernameautolistAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autousername();
+        $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }

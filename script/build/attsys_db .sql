@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
@@ -16979,7 +16979,7 @@ CREATE TABLE IF NOT EXISTS `core_notification` (
   `module_name` varchar(30) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `noti_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `noti_status` tinyint(4) NOT NULL,
-  `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_time` datetime NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -17003,7 +17003,7 @@ CREATE TABLE IF NOT EXISTS `core_notification_rel_member` (
   `noti_id` varchar(36) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `module_name` varchar(11) NOT NULL,
-  `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_time` datetime NOT NULL 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
