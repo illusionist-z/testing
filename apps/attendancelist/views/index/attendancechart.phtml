@@ -21,13 +21,13 @@
                 </thead>
                 <tbody style="display: none;">
                     <?php
-                    foreach ($data as $result) {
-                        $j = array();
+                    foreach ($data as $result) {                        
                         $day = explode(",", $result['day']);
                         $status = explode(",", $result['status']);
                         echo "<tr>";
                         echo "<td>" . $result['member_login_name'] . "</td>";
                         for ($i = 1; $i <= date('t'); $i++) {
+                            $j = array();
                             //get under today date
                             if ($i <= date('d')) {
                                 foreach ($day as $k => $v) {

@@ -45,10 +45,10 @@ class UserController extends ControllerBase {
         }
         $this->view->setVar("noti", $noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
-        $numofatt = $Attendances->getattlist($id);
-        $numofleaves = $Attendances->gettotalleaves($id);
-        $this->view->setVar("numatt", $numofatt);
-        $this->view->setVar("numleaves", $numofleaves);
+        $num_of_att = $Attendances->getAttList($id);
+        $num_of_leaves = $Attendances->getTotalLeaves($id);
+        $this->view->setVar("numatt", $num_of_att);
+        $this->view->setVar("numleaves", $num_of_leaves);
         $this->view->t = $this->_getTranslation();
     }
 

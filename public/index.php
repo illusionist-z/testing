@@ -3,7 +3,7 @@
 use Phalcon\Mvc\Application;
 use Phalcon\Config\Adapter\Ini;
 
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 //$debug = new \Phalcon\Debug();
 //$debug->listen();
 

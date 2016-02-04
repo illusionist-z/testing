@@ -53,9 +53,9 @@ class IndexController extends ControllerBase {
 
         if ($this->moduleIdCall == 1) {
             $UserList = new Db\CoreMember();
-            $Username = $UserList->autousername();
+            $username = $UserList->autoUsername();
             $this->view->disable();
-            echo json_encode($Username);
+            echo json_encode($username);
         } else {
             $this->response->redirect('core/index');
         }
@@ -66,8 +66,8 @@ class IndexController extends ControllerBase {
      */
     public function getapplymemberidAction() {
         $data = $this->request->get('username');
-        $leavetype = new LeaveCategories();
-        $cond = $leavetype->memidapplyleave($data);
+        $LeaveType = new LeaveCategories();
+        $cond = $LeaveType->memberIdApplyLeave($data);
         echo json_encode($cond);
         $this->view->disable();
     }
@@ -82,11 +82,11 @@ class IndexController extends ControllerBase {
             $this->assets->addJs('apps/leavedays/js/applyleave.js');
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
             $this->assets->addCss('common/css/jquery-ui-timepicker.css');
-            $leavetype = new LeaveCategories();
-            $ltype = $leavetype->getleavetype();
-            $userlist = new Db\CoreMember();
+            $LeaveType = new LeaveCategories();
+            $ltype = $LeaveType->getLeaveType();
+            $UserList = new Db\CoreMember();
 
-            $name = $userlist::getinstance()->getusername();
+            $name = $UserList::getinstance()->getusername();
 
             if ($this->permission == 1) {
                 $this->view->setVar("name", $name);
@@ -119,7 +119,7 @@ class IndexController extends ControllerBase {
                 $edate = $this->request->getPost('edate');
                 $type = $this->request->getPost('leavetype');
                 $desc = $this->request->getPost('description');
-                $error = $this->_leave->applyleave($uname, $sdate, $edate, $type, $desc, $creator_id);
+                $error = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
                 echo json_encode($error);
                 $this->view->disable();
             }
@@ -144,14 +144,14 @@ class IndexController extends ControllerBase {
             $this->assets->addJs('apps/leavedays/js/search.js');
             $this->assets->addJs('apps/leavedays/js/leavelist.js');
             $month = $this->config->month;
-            $leavetype = new LeaveCategories();
-            $ltype = $leavetype->getleavetype();
+            $LeaveType = new LeaveCategories();
+            $ltype = $LeaveType->getLeaveType();
             $this->view->setVar("Leavetype", $ltype);
             $UserList = new Db\CoreMember();
             $GetUsername = $UserList::getinstance()->getusername();
-            $leaves = $this->_leave->getleavelist();
-            $absent = $this->_leave->getabsent();
-            $max = $this->_leave->getleavesetting();
+            $leaves = $this->_leave->getLeaveList();
+            $absent = $this->_leave->getAbsent();
+            $max = $this->_leave->getLeaveSetting();
             $max_leavedays = $max['0']['max_leavedays'];
             if ($this->permission == 1) {
                 $this->view->max = $max_leavedays;
@@ -186,8 +186,8 @@ class IndexController extends ControllerBase {
             $this->view->setVar("noti", $noti);
             $LeaveCategories = new LeaveCategories();
             $LeaveSetting = new LeavesSetting();
-            $typelist = $LeaveCategories->getleavetype();
-            $setting = $LeaveSetting->getleavesetting();
+            $typelist = $LeaveCategories->getLeaveType();
+            $setting = $LeaveSetting->getLeaveSetting();
             if ($this->permission == 1) {
                 $this->view->modulename = $this->module_name;
                 $this->view->setVar("leave_typelist", $typelist);
@@ -223,7 +223,7 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
-        $data = $LeaveCategories->getltypedata($id);
+        $data = $LeaveCategories->getListTypeData($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
         $data[1]['yes'] = $t->_("yes");
         $data[1]['no'] = $t->_("cancel");
@@ -235,10 +235,10 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * Deleting leave categories in leave setting
      */
-    public function delete_ltypeAction() {
+    public function deleteListTypeAction() {
         $leavetype_id = $this->request->getPost('id');
         $LeaveCategories = new LeaveCategories();
-        $LeaveCategories->delete_categories($leavetype_id);
+        $LeaveCategories->deleteCategories($leavetype_id);
         $this->view->disable();
     }
 
@@ -246,10 +246,10 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * Adding new leave categories in leave setting
      */
-    public function add_ltypeAction() {
+    public function addListTypeAction() {
         $leavetype_name = $this->request->getPost('ltype_name');
         $LeaveCategories = new LeaveCategories();
-        $LeaveCategories->add_newcategories($leavetype_name);
+        $LeaveCategories->addNewCategories($leavetype_name);
     }
 
     /**
@@ -260,7 +260,7 @@ class IndexController extends ControllerBase {
     public function editleavesettingAction() {
         $max_leavedays = $this->request->getPost('max_leavedays');
         $LeaveSetting = new LeavesSetting();
-        $LeaveSetting->editleavesetting($max_leavedays);
+        $LeaveSetting->editLeaveSetting($max_leavedays);
         $this->response->redirect('leavedays/index/leavesetting');
     }
 
@@ -273,7 +273,7 @@ class IndexController extends ControllerBase {
         $days = $this->request->getPost('leave_days');
         $noti_id = $this->request->getPost('noti_id');
 
-        $this->_leave->acceptleave($id, $days, $noti_id);
+        $this->_leave->acceptLeave($id, $days, $noti_id);
     }
 
     /**
@@ -282,7 +282,7 @@ class IndexController extends ControllerBase {
      */
     public function rejectleaveAction() {
         $noti_id = $this->request->getPost('noti_id');
-        $this->_leave->rejectleave($noti_id);
+        $this->_leave->rejectLeave($noti_id);
     }
 
     /**
@@ -309,7 +309,7 @@ class IndexController extends ControllerBase {
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
 
-        $Result = $Admin->checkleave();
+        $Result = $Admin->checkLeave();
 
         $this->view->setVar("Result", $Result);
     }
@@ -327,7 +327,7 @@ class IndexController extends ControllerBase {
         $noti = $Admin->GetAdminNoti($id);
         $this->view->setVar("noti", $noti);
 
-        $Result = $Admin->leavemost();
+        $Result = $Admin->leaveMost();
 
         $this->view->setVar("Result", $Result);
     }

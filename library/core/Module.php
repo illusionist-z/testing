@@ -60,9 +60,8 @@ Class Module implements ModuleDefinitionInterface {
         $di['dispatcher'] = function() use ($di) {
             //Set Plugin
             $eventsManager = $di->getShared('eventsManager');
-            //Set Permission plugin
-            include_once '/var/www/html/salts/library/core/plugin/permission.php';
-            $eventsManager->attach('dispatch', new \Library\Core\Plugin\Permission($di));
+            //Set Permission plugin            
+            $eventsManager->attach('dispatch', new Plugin\Permission($di));
 
             $dispatcher = new \Phalcon\Mvc\Dispatcher();
             $dispatcher->setDefaultNamespace('salts\\' . $this->_moduleName . '\Controllers');

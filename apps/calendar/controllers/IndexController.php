@@ -7,11 +7,11 @@ use salts\Core\Models\Db\CoreMember;
 
 class IndexController extends ControllerBase {
 
-    public $calendar;
+    public $Calendar;
 
     public function initialize() {
         parent::initialize();
-        $this->calendar = new \salts\Calendar\Models\Calendar();
+        $this->Calendar = new \salts\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
         $this->assets->addCss('apps/calendar/css/calendar.css');
         $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');
@@ -47,11 +47,11 @@ class IndexController extends ControllerBase {
 
         $this->view->setVar("noti", $noti);
         $GetMember = new Db\CoreMember();
-        $permitname = $this->calendar->getalluser($id);
-        $Allname = $GetMember::getinstance()->getusername();
-        $this->view->event_name = $permitname;
+        $permit_name = $this->Calendar->getalluser($id);
+        $AllName = $GetMember::getinstance()->getusername();
+        $this->view->event_name = $permit_name;
         $this->view->member_name = $this->session->user['member_login_name'];
-        $this->view->uname = $Allname;
+        $this->view->uname = $AllName;
         $this->view->modulename = $this->module_name;
     }
 
@@ -70,7 +70,7 @@ class IndexController extends ControllerBase {
      */
     public function getcalmemberidAction() {
         $data = $this->request->get('uname');
-        $cond = $this->calendar->memidcal($data);
+        $cond = $this->Calendar->memIdCal($data);
         echo json_encode($cond);
         $this->view->disable();
     }
@@ -78,7 +78,7 @@ class IndexController extends ControllerBase {
     public function addmemberAction() {
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
-        $data = ($permit_name == $id ? 1 : $this->calendar->add_permit_name($permit_name, $id));
+        $data = ($permit_name == $id ? 1 : $this->Calendar->addPermitName($permit_name, $id));
         echo json_encode($data);
         $this->view->disable();
     }
@@ -86,7 +86,7 @@ class IndexController extends ControllerBase {
     public function removeEventBynameAction() {
         $remove = $this->request->getPost('remove');
         $id = $this->session->user['member_id'];
-        $data = $this->calendar->remove_member($remove, $id);
+        $data = $this->Calendar->removeMember($remove, $id);
         echo json_encode($data);
         $this->view->disable();
     }
@@ -99,7 +99,7 @@ class IndexController extends ControllerBase {
     public function showdataAction() {
         $id = $this->request->get('event_id');
         $this->view->disable();
-        $events = $this->calendar->fetch($id);
+        $events = $this->Calendar->fetch($id);
         echo json_encode($events);
     }
 
@@ -115,7 +115,7 @@ class IndexController extends ControllerBase {
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
         $title = $this->request->get('title');
-        $coremember = new Db\CoreMember();
+        //$coremember = new Db\CoreMember();
         $creator_id = $this->session->user['member_id'];
         $creator_name = $this->session->user['member_login_name'];
         $res = array();
@@ -130,7 +130,7 @@ class IndexController extends ControllerBase {
             $res['date'] = "End date must be greater than start date";
         } else {
             $res['cond'] = TRUE;
-            $event = $this->calendar->create_event($member_id, $creator_name, $creator_id, $sdate, $edate, $title, $uname);
+            $event = $this->Calendar->createEvent($member_id, $creator_name, $creator_id, $sdate, $edate, $title, $uname);
             $res['res'] = $event;
             $res['name'] = $uname;
         }
@@ -159,7 +159,7 @@ class IndexController extends ControllerBase {
             $res['date'] = "End date must be greater than start date";
         } else {
             $res['cond'] = TRUE;
-            $edit = $this->calendar->edit_event($name, $sdate, $edate, $title, $id, $member_id);
+            $edit = $this->Calendar->editEvent($name, $sdate, $edate, $title, $id, $member_id);
             $res['res'] = $edit;
             $res['name'] = $name;
         }
@@ -174,13 +174,13 @@ class IndexController extends ControllerBase {
     public function deleteAction() {
         $this->view->disable();
         $id = $this->request->get('data');
-        $this->calendar->delete_event($id);
+        $this->Calendar->deleteEvent($id);
     }
 
     public function getidAction() {
         $this->view->disable();
         $id = $this->request->get('id');
-        $result = $this->calendar->getid_name($id);
+        $result = $this->Calendar->getIdName($id);
         echo json_encode($result);
     }
 

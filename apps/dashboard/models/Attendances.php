@@ -22,7 +22,7 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckintime($id, $note, $add, $creator_id) {
+    public function setCheckInTime($id, $note, $add, $creator_id) {
         $this->db = $this->getDI()->getShared("db");
 
         $mydate = date("Y-m-d H:i:s");
@@ -67,7 +67,7 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckouttime($id) {
+    public function setCheckOutTime($id) {
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $this->db = $this->getDI()->getShared("db");
@@ -103,7 +103,7 @@ class Attendances extends Model {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function checkleave() {
+    public function checkLeave() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken        
@@ -125,7 +125,7 @@ class Attendances extends Model {
      * @desc today attandance & leave list
      * @author David
      */
-    public function todayattleave() {
+    public function todayAttLeave() {
         $result = array();
         $today = date('Y-m-d');
         $this->db = $this->getDI()->getShared("db");
@@ -143,7 +143,7 @@ class Attendances extends Model {
         return $result;
     }
 
-    public function userattleave($id) {
+    public function userAttLeave($id) {
         $currentmth = date('m');
         $result = array();
         $this->db = $this->getDI()->getShared("db");
@@ -166,7 +166,7 @@ class Attendances extends Model {
      * @return type
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function getattlist($id) {
+    public function getAttList($id) {
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
         $row = "Select att_date,member_login_name,checkin_time,checkout_time,"
@@ -180,7 +180,7 @@ class Attendances extends Model {
         return count($list);
     }
 
-    public function gettotalleaves($id) {
+    public function getTotalLeaves($id) {
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
         $row = "Select * from core_member left join leaves "

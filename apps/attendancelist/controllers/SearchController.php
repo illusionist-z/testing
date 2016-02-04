@@ -26,7 +26,7 @@ class SearchController extends ControllerBase {
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
             $Attendances = new Attendances();
-            $result = $Attendances->search_attlist($year, $month, $username);
+            $result = $Attendances->searchAttList($year, $month, $username);
             $this->view->disable();
             echo json_encode($result);
         }

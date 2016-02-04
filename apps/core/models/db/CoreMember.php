@@ -16,7 +16,7 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
-include_once '/var/www/html/salts/library/core/BaseModel.php';
+
 class CoreMember extends \Library\Core\BaseModel {
 
     // Use trait for singleton
@@ -44,7 +44,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $module_id_return;
     }
 
-    public function getusername() {
+    public function getUserName() {
         $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         return $row;
@@ -114,7 +114,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $getname;
     }
 
-    public function getusernamebyid($id) {
+    public function getUsernameById($id) {
 
         $sql = "select * from core_member WHERE member_id ='" . $id . "'";
         $result = $this->db->query($sql);
@@ -374,7 +374,7 @@ class CoreMember extends \Library\Core\BaseModel {
     }
 
     //for auto complete function
-    public function autousername() {
+    public function autoUsername() {
         $this->db = $this->getDI()->getShared("db");
         $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
         $getname = $user_name->fetchall();
@@ -395,7 +395,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function checkleave() {
+    public function checkLeave() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
 
@@ -413,7 +413,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function leavemost() {
+    public function leaveMost() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken

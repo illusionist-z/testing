@@ -24,8 +24,8 @@ class IndexController extends ControllerBase {
         $this->view->permission = $this->permission;
 
         // Module ID Filter Start By (1,0)
-        $moduleIdCallCore = new Db\CoreMember();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        $ModuleIdCallCore = new Db\CoreMember();
+        $this->moduleIdCall = $ModuleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
 
         // Module ID Filter Start By (Module Name)        
@@ -50,8 +50,8 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {
-        $coreuser2 = new CorePermissionGroup();
-        $core_groupuser2 = $coreuser2::find();
+        $CoreUser = new CorePermissionGroup();
+        $core_groupuser2 = $CoreUser::find();
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
@@ -67,21 +67,21 @@ class IndexController extends ControllerBase {
         $this->view->setVar("noti", $noti);
         //get last create member
         $CMember = new Db\CoreMember();
-        $GetName = $CMember::getinstance()->getlastname();
-        $newmember = count($GetName);
+        $Get_Name = $CMember::getinstance()->getlastname();
+        $new_member = count($Get_Name);
         //get most leave name
         $CheckLeave = new \salts\Dashboard\Models\Attendances();
-        $leave_name = $CheckLeave->checkleave();
-        $status = $CheckLeave->todayattleave();
-        $coreid = new \salts\Dashboard\Models\CorePermissionGroupId();
+        $leave_name = $CheckLeave->checkLeave();
+        $status = $CheckLeave->todayAttLeave();
+        //$coreid = new \salts\Dashboard\Models\CorePermissionGroupId();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'admin_dashboard') {
                 $this->view->setVar("attname", $status['att']);
                 $this->view->setVar("absent", $status['absent']);
                 $this->view->setVar("nlname", $leave_name['noleave_name']);  //get current month no taken leave name
                 $this->view->setVar("lname", $leave_name['leave_name']);
-                $this->view->setVar("name", $GetName);
-                $this->view->setVar("newnumber", $newmember);
+                $this->view->setVar("name", $Get_Name);
+                $this->view->setVar("newnumber", $new_member);
                 $this->view->t = $this->_getTranslation();
             } else if ($key_name == 'user_dashboard') {
                 $this->view->disable();
@@ -109,7 +109,7 @@ class IndexController extends ControllerBase {
         }
         $this->view->setVar("noti", $noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
-        $att_status = $Attendances->userattleave($id);
+        $att_status = $Attendances->userAttLeave($id);
         $this->view->setVar("numatt", $att_status['att']);
         $this->view->setVar("numleaves", $att_status['absent']);
         $this->view->t = $this->_getTranslation();
@@ -139,8 +139,8 @@ class IndexController extends ControllerBase {
         $add = $this->session->location['location'];
         $noti_Creatorid = $User->GetAdminstratorId();
         $creator_id = $noti_Creatorid[0]['rel_member_id'];
-        $checkin = new \salts\Dashboard\Models\Attendances();
-        $status = $checkin->setcheckintime($id, $note, $add, $creator_id);
+        $CheckIn = new \salts\Dashboard\Models\Attendances();
+        $status = $CheckIn->setCheckInTime($id, $note, $add, $creator_id);
         $this->view->disable();
         echo json_encode($status);
     }
@@ -151,8 +151,8 @@ class IndexController extends ControllerBase {
      */
     public function checkoutAction() {
         $id = $this->session->user['member_id'];
-        $checkin = new \salts\Dashboard\Models\Attendances();
-        $status = $checkin->setcheckouttime($id);
+        $CheckOut = new \salts\Dashboard\Models\Attendances();
+        $status = $CheckOut->setCheckOutTime($id);
         $this->view->disable();
         echo json_encode($status);
     }

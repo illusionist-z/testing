@@ -47,15 +47,15 @@ class UserController extends ControllerBase {
         $creator_id = $admin_id[0]['rel_member_id'];
         $id = $this->session->user['member_id'];
         $this->assets->addJs('apps/leavedays/js/user-applyleave.js');
-        $leavetype = new LeaveCategories();
-        $ltype = $leavetype->getleavetype();
+        $LeaveType = new LeaveCategories();
+        $ltype = $LeaveType->getLeaveType();
         $userlist = new Db\CoreMember();
         $name = $userlist::getinstance()->getusername();
         $this->view->setVar("name", $name);
         $this->view->setVar("Leavetype", $ltype);
         if ($this->request->isPost()) {
             $user = $this->_leave;
-            $validate = $user->uservalidation($this->request->getPost());
+            $validate = $user->userValidation($this->request->getPost());
             if (count($validate)) {
                 foreach ($validate as $message) {
                     $json[$message->getField()] = $message->getMessage();
@@ -69,7 +69,7 @@ class UserController extends ControllerBase {
                 $edate = $this->request->getPost('edate');
                 $type = $this->request->getPost('leavetype');
                 $desc = $this->request->getPost('description');
-                $error = $this->_leave->applyleave($uname, $sdate, $edate, $type, $desc, $creator_id);
+                $error = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
                 echo json_encode($error);
                 $this->view->disable();
             }
@@ -88,20 +88,20 @@ class UserController extends ControllerBase {
         $id = $this->session->user['member_id'];
         //month
         $month = $this->config->month;
-        $leavetype = new LeaveCategories();
-        $ltype = $leavetype->getleavetype();
+        $LeaveType = new LeaveCategories();
+        $ltype = $LeaveType->getLeaveType();
         $this->view->setVar("Leavetype", $ltype);
 
         //variable for search result
         $leave_type = $this->request->get('ltype');
         $mth = $this->request->get('month');
-        $leavelist = $this->_leave->getuserleavelist($leave_type, $mth, $id);
+        $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id);
 
-        $absentdays = $this->_leave->getabsentbyId($id);
-        $this->view->setVar("Result", $leavelist);
-        $this->view->setVar("absentdays", $absentdays);
+        $absent_days = $this->_leave->getAbsentById($id);
+        $this->view->setVar("Result", $leave_list);
+        $this->view->setVar("absentdays", $absent_days);
         //get maximum leaves days
-        $max = $this->_leave->getleavesetting();
+        $max = $this->_leave->getLeaveSetting();
         $max_leavedays = $max['0']['max_leavedays'];
         $this->view->setVar("Month", $month);
 

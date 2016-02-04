@@ -19,12 +19,12 @@ class Auth extends Component {
      * @param type $param
      * @return type
      */
-    public function findcomp_db($param) {
+    public function findCompDb($param) {
         try {
             $sql = "SELECT * FROM company_tbl where company_id=? and deleted_flag=0";
             $rs = $this->getDI()->getShared("login_db")
                     ->query($sql, array($param['company_id']));
-            $row = $rs->fetchArray();var_dump($row);exit;
+            $row = $rs->fetchArray();
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
@@ -33,7 +33,7 @@ class Auth extends Component {
         return $row;
     }
 
-    public function find_module($company_module) {
+    public function findModule($company_module) {
         $sql = "SELECT * FROM enable_module where company_id='" . $company_module . "' ";
         $Result = $this->login_db->query($sql);
         $Result = $Result->fetchAll();
@@ -61,7 +61,7 @@ class Auth extends Component {
         return $user;
     }
 
-    public function getpermit($loginParams) {
+    public function getPermit($loginParams) {
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $loginParams['password'];
