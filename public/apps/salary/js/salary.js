@@ -8,7 +8,7 @@ var Salary = {
     isOvl: false,
     init: function () {
         $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 10;
+        pager.perpage = 20;            
         pager.para = $('tbody > tr');
         pager.showPage(1);
         $("tbody").show();
