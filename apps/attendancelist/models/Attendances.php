@@ -50,7 +50,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function getusername() {
+    public function getUserName() {
         $user_name = $this->db->query("SELECT * FROM core_member");
         $getname = $user_name->fetchall();
         return $getname;
@@ -61,7 +61,7 @@ class Attendances extends Model {
      * @author Su Zin Kyaw
      * for user
      */
-    public function getattlist($id, $year, $month) {
+    public function getAttList($id, $year, $month) {
         $currentmth = date('m');
 
 

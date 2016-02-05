@@ -31,10 +31,10 @@ use Phalcon\Tag as Tag; ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
 
                                 <?php
-                                if ($noti['member_profile'] == null) {
+                                if ($Noti['member_profile'] == null) {
                                     $img = "profile1.jpg";
                                 } else {
-                                    $img = $noti['member_profile'];
+                                    $img = $Noti['member_profile'];
                                     if (file_exists('./uploads/' . $img)) {
                                         $img = $img;
                                     } else {
@@ -48,10 +48,10 @@ use Phalcon\Tag as Tag; ?>
                                 <!-- User image -->
                                 <li class="user-header">                                
                                     <?php
-                                    if ($noti['member_profile'] == null) {
+                                    if ($Noti['member_profile'] == null) {
                                         $img = "profile1.jpg";
                                     } else {
-                                        $img = $noti['member_profile'];
+                                        $img = $Noti['member_profile'];
                                         if (file_exists('./uploads/' . $img)) {
                                             $img = $img;
                                         } else {

@@ -20,8 +20,8 @@ class UserDashboardController extends ControllerBase {
     public function indexAction() {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-        $noti = $User->GetUserNoti($id, 1);
-        $this->view->setVar("noti", $noti);
+        $Noti = $User->getUserNoti($id, 1);
+        $this->view->setVar("noti", $Noti);
         $user = $User->UserDetail($id);
         $this->view->userdetail = $user;
     }
@@ -58,7 +58,7 @@ class UserDashboardController extends ControllerBase {
 
             $User = new Db\CoreMember;
             $profile_pic = $User->updatedata($updatedata, $id);
-            $user = $User->Userdata($id);
+            $user = $User->serData($id);
             $this->session->set('user', $user);
         }
         $this->response->redirect('setting/user/usersetting');

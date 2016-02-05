@@ -31,7 +31,7 @@ use Phalcon\Tag as Tag; ?>
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu" >
                             <a href="#" class="<?php
-                            if (count($noti) == 0) {
+                            if (count($Noti) == 0) {
                                 echo "nonoti";
                             } else {
                                 echo "noti";
@@ -39,10 +39,10 @@ use Phalcon\Tag as Tag; ?>
                             ?>" id="noti" style="padding-top: 20px;">
                                 <img src="<?php echo $baseUri ?>common/img/noti.png">
                                 <span class="label label-warning"><?php
-                                    if (count($noti) == 0) {
+                                    if (count($Noti) == 0) {
                                         
                                     } else {
-                                        echo count($noti);
+                                        echo count($Noti);
                                     }
                                     ?></span>
                             </a>

@@ -20,7 +20,7 @@ class CompanyTbl extends \Library\Core\BaseModel {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * Add New Company to company_tbl table
      */
-    public function addnew($data) {
+    public function addNew($data) {
         $date = date("Y-m-d H:i:s");
         $sdate = date("Y-m-d", strtotime($data['com_sdate']));
 
@@ -39,7 +39,7 @@ class CompanyTbl extends \Library\Core\BaseModel {
         return $message;
     }
 
-    public function getallcom() {
+    public function getAllcom() {
         $result = $this->db->query("select * from company_tbl where deleted_flag=0");
         $final_result = $result->fetchall();
         $i = 0;
@@ -64,7 +64,7 @@ class CompanyTbl extends \Library\Core\BaseModel {
         return $final_result;
     }
 
-    public function updatecom($com, $check) {
+    public function updateCom($com, $check) {
         $date = date("Y-m-d H:i:s");
         $sdate = date("Y-m-d", strtotime($com['sdate']));
 
