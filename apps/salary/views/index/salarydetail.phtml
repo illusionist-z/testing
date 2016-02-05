@@ -97,14 +97,14 @@
     <td><?= $t->_("overtime_payment");?></td>
     <td><input type="text" name="txtovertimepay" value="<?php 
     $overtime_fees= $A[$i]->salarymast->over_time*$overtime;
-    $sum = $sum + $overtime_fees;
+    $sum = $sum + $overtime_fees+$A[$i]->salarydet->special_allowance;
     echo $overtime_fees;
     ?>" id="txtovertimepay" disabled="disabled" class=" txtovertimepay txtenable"></td>
     <td></td>
   </tr>
   <tr>
     <td><?= $t->_("allowance_for_specific");?></td>
-    <td><input type="text" name="txtallowance" value="" id="txtallowance" disabled="disabled" class=" txtallowance txtenable"></td>
+    <td><input type="text" name="txtallowance" value="<?php echo $filter->sanitize($A[$i]->salarydet->special_allowance , "string")?>" id="txtallowance" disabled="disabled" class=" txtallowance txtenable"></td>
     <td></td>
   </tr>
   <tr>
