@@ -13,20 +13,15 @@ if ($offset < 0) {
 }
 
 $length = count($Month);
-//print_r($Getname);
-//echo $Name.'aa';
- foreach ($this->session->auth as $key_name => $key_value) {
-             
-            if ($key_name == 'show_admin_attlist') {
-                
-             //  echo "<a href='../user/usersetting'> <b><h3>Go To Admin  Profile </h3></b>     </a>";
-            } 
-            if ($key_name == 'show_user_attlist') {
-                
-                 
-                $this->response->redirect('attendancelist/user/attendancelist');
-            }
-        }
+foreach ($this->session->auth as $key_name => $key_value) {
+
+    if ($key_name == 'show_admin_attlist') {
+        //  echo "<a href='../user/usersetting'> <b><h3>Go To Admin  Profile </h3></b>     </a>";
+    }
+    if ($key_name == 'show_user_attlist') {
+        $this->response->redirect('attendancelist/user/attendancelist');
+    }
+}
 ?>
 
 <!-- Content Header (Page header) -->
@@ -43,24 +38,23 @@ $length = count($Month);
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <!--        <form action="monthlysearch" method="post">-->
-                  
-                    <input type="text" name="year" id="year" class="datepicker form-control-static"   placeholder="<?= $t->_("startdate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
-          
-                    <input type="text" name="month" id="month" class="datepicker form-control-static"   placeholder="<?= $t->_("enddate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
 
-                    <input type="text" class="monthauto form-control-static" name="username"  id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off">
+        <input type="text" name="year" id="year" class="datepicker form-control-static"   placeholder="<?= $t->_("startdate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
 
-          
-            <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn form-control-static" id="sub">
-            <input type="hidden" value='' id='hidden-type' name='ExportType'/>
-            <a href="" class="button  export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><b><?php echo $t->_("export"); ?></b></a>
+        <input type="text" name="month" id="month" class="datepicker form-control-static"   placeholder="<?= $t->_("enddate"); ?>" style="margin-top: 9px;height:25px; width: 100px;">
 
-        
+        <input type="text" class="monthauto form-control-static" name="username"  id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off">
+
+
+        <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn form-control-static" id="sub">
+        <input type="hidden" value='' id='hidden-type' name='ExportType'/>
+        <a href="" class="button  export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><b><?php echo $t->_("export"); ?></b></a>
+
+
     </div>
 
     <div class="row">
-<?php //$this->partial('attendance/showlist');   ?>
+        <?php //$this->partial('attendance/showlist');   ?>
         <div class="col-md-12"><!--start table content--->
             <table class="listtbl attlist">
                 <thead>
@@ -110,18 +104,15 @@ $length = count($Month);
                                     $start = strtotime($office_start_time);
                                     $end = strtotime($time);
                                     $late = $end - $start;
-                                    echo "<font color='red'>" . gmdate("H:i:s", $late)." </font>";
-                                 
+                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
                                 }
                                 ?>
                             </td>
-                            
-                             <td><?php
-                                
-                                    if ($item->attendances->notes != '') {
-                                        echo "<font color='red'>" .  $item->attendances->notes . " </font>";
-                                    }
-                                
+
+                            <td><?php
+                                if ($item->attendances->notes != '') {
+                                    echo "<font color='red'>" . $item->attendances->notes . " </font>";
+                                }
                                 ?>
                             </td>
                             <td><?php
@@ -163,20 +154,18 @@ $length = count($Month);
                                 ?>
                             </td>
                             <td><?php
-                            //calculate overtime
-                            if ($item->attendances->overtime != 0) {
-                                echo $item->attendances->overtime;
-                            } else {
-                                echo "-";
-                            }
-
-
+                                //calculate overtime
+                                if ($item->attendances->overtime != 0) {
+                                    echo $item->attendances->overtime;
+                                } else {
+                                    echo "-";
+                                }
                                 ?></td>
                             <td><?php echo $filter->sanitize($item->attendances->location, "string") ?></td>
                         </tr>
-    <?php
-}
-?>
+                        <?php
+                    }
+                    ?>
                 </tbody>
                 <tfoot style="display: none;"></tfoot>
             </table>      

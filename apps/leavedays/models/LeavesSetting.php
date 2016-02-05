@@ -21,7 +21,6 @@ class LeavesSetting extends \Library\Core\BaseModel {
                 ->from('salts\Leavedays\Models\LeavesSetting')
                 ->getQuery()
                 ->execute();
-
         return $row;
     }
 

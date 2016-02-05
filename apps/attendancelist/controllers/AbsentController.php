@@ -11,7 +11,9 @@ use salts\Core\Models\Db;
  * @since    30/7/15
  */
 class AbsentController extends ControllerBase {
+
     public $id;
+
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
@@ -22,18 +24,18 @@ class AbsentController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
     }
 
-      public function addAbsentAction() {
+    public function addAbsentAction() {
 
-        $Attendance = new Attendance();        
+        $Attendance = new Attendance();
         $message = $Attendance->absent();
         echo json_encode($message);
         $this->view->disable();
     }
 
     public function absentlistAction() {
-        $Admin = new Db\CoreMember;        
-        $noti = $Admin->GetAdminNoti($this->id);        
-        $this->view->setVar("noti", $noti);
+        $Admin = new Db\CoreMember;
+        $Noti = $Admin->getAdminNoti($this->id);
+        $this->view->setVar("noti", $Noti);
         $AbsentList = new \salts\Attendancelist\Models\Attendances();
         $Result = $AbsentList->GetAbsentList();
         $this->view->setVar('Result', $Result);

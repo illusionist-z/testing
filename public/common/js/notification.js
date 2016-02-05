@@ -12,7 +12,7 @@ var Noti = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: baseUri + "notification/index/update_noti",
+            url: baseUri + "notification/index/updateNoti",
             success: function() {
                 window.location.href = baseUri + 'dashboard';
 

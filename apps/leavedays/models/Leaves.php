@@ -13,7 +13,6 @@ use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
-
 class Leaves extends \Library\Core\BaseModel {
 
     public function initialize() {
@@ -28,67 +27,43 @@ class Leaves extends \Library\Core\BaseModel {
      * @param type $username
      * @return type
      */
-     
     public function getleavelist() {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                 ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
-                //->join('salts\Attendancelist\Models\Attendances', 'core.member_id = Attendances.member_id', 'Attendances')
                 ->Where('core.deleted_flag = 0')
-                //->AndWhere('Attendances.status = 2')
                 ->orderBy('leaves.date DESC')
                 ->getQuery()
                 ->execute();
-                //->count();
-  
-//        foreach ($row as $value) {
-//          
-//            $result = $this->db->query("select * from attendances where attendances.member_id='".$value->core->member_id."'"
-//                    . "and attendances.status=2");
-//            $data=$result->fetchall();
-//            $absent[$value->core->member_id]=count($data);
-//            
-//            //echo $absent;
-//            
-//        }
-       
-     
         return $row;
     }
-    
-    public function getabsent(){
-          $row = $this->modelsManager->createBuilder()
+
+    public function getabsent() {
+        $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                 ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
-                //->join('salts\Attendancelist\Models\Attendances', 'core.member_id = Attendances.member_id', 'Attendances')
                 ->Where('core.deleted_flag = 0')
-                //->AndWhere('Attendances.status = 2')
                 ->orderBy('leaves.date DESC')
                 ->getQuery()
                 ->execute();
-                //->count();
-  
         foreach ($row as $value) {
-          
-            $result = $this->db->query("select * from attendances where attendances.member_id='".$value->core->member_id."'"
+
+            $result = $this->db->query("select * from attendances where attendances.member_id='" . $value->core->member_id . "'"
                     . "and attendances.status=2");
-            $data=$result->fetchall();
-            $absent[$value->core->member_id]=count($data);
-            
-            //echo $absent;
-            
+            $data = $result->fetchall();
+            $absent[$value->core->member_id] = count($data);
         }
         return $absent;
     }
-    
-    public function getabsentbyId($id){
-        $result = $this->db->query("select * from attendances where attendances.member_id = '".$id."' and attendances.status=2");
+
+    public function getabsentbyId($id) {
+        $result = $this->db->query("select * from attendances where attendances.member_id = '" . $id . "' and attendances.status=2");
         $data = count($result->fetchall());
         return $data;
-                
     }
+
     /**
      * Search for leave list
      * @param type $ltype
@@ -108,7 +83,7 @@ class Leaves extends \Library\Core\BaseModel {
                 . "total_leavedays,max_leavedays FROM leaves_setting,"
                 . " leaves JOIN core_member ON "
                 . "leaves.member_id=core_member.member_id "
-                ."and core_member.deleted_flag = 0 ";
+                . "and core_member.deleted_flag = 0 ";
 
         $conditions = array();
 
@@ -124,7 +99,7 @@ class Leaves extends \Library\Core\BaseModel {
 
         $sql = $select;
         if (count($conditions) > 0) {
-            $sql .= " WHERE " . implode(' AND ', $conditions) ."order by leaves.date desc";
+            $sql .= " WHERE " . implode(' AND ', $conditions) . "order by leaves.date desc";
         }
 
         $result = $this->db->query($sql);
@@ -139,8 +114,8 @@ class Leaves extends \Library\Core\BaseModel {
      * @version Su Zin Kyaw< suzinkyaw.gnext@gmail.com>
      */
     public function applyleave($uname, $sdate, $edate, $type, $desc, $creator_id) {
-        $cm=new CoreMember();
-        $name= $cm->getusernamebyid($creator_id);
+        $cm = new CoreMember();
+        $name = $cm->getUserNameById($creator_id);
         $filter = new Filter();
         $uname = $filter->sanitize($uname, "string");
         $type = $filter->sanitize($type, "string");
@@ -160,33 +135,32 @@ class Leaves extends \Library\Core\BaseModel {
             $lastdata = ($list['0']['total_leavedays']);
         }
         if (isset($sdate) AND isset($edate) AND isset($desc)) {
-            $noti_id = rand();
+            $Noti_id = rand();
             $today = date("Y-m-d H:i:s");
             $checkday = date("Y-m-d", strtotime("+7 days"));
             $ssdate = date("Y-m-d", strtotime($sdate));
             $eedate = date("Y-m-d", strtotime($edate));
-             $sdate = date("Y-m-d H:i:s", strtotime($sdate));
+            $sdate = date("Y-m-d H:i:s", strtotime($sdate));
             $edate = date("Y-m-d H:i:s", strtotime($edate));
-            $sH= explode(" ", $sdate);
-            $eH=explode(" ", $edate);
-          
+            $sH = explode(" ", $sdate);
+            $eH = explode(" ", $edate);
+
             if ($ssdate >= $checkday && $eedate >= $checkday) {
                 //check $edate greater than $sdate
-                if (strtotime($ssdate) <=strtotime($eedate)) {
+                if (strtotime($ssdate) <= strtotime($eedate)) {
                     //for calculate leave day
-                $leave_day =((strtotime($eedate) - strtotime($ssdate)) / 86400)+1;
-               
-                if($sH[1]=="12:00:00"){
-                $leave_days=(int)$leave_day;
-                $leave_day=$leave_days-0.5;
-          
-            }
-            if($eH[1]=="12:00:00"){
-                $leave_days=(int)$leave_days;
-                $leave_day=$leave_day-0.5;
-            }
-                 
-               
+                    $leave_day = ((strtotime($eedate) - strtotime($ssdate)) / 86400) + 1;
+
+                    if ($sH[1] == "12:00:00") {
+                        $leave_days = (int) $leave_day;
+                        $leave_day = $leave_days - 0.5;
+                    }
+                    if ($eH[1] == "12:00:00") {
+                        $leave_days = (int) $leave_days;
+                        $leave_day = $leave_day - 0.5;
+                    }
+
+
                     $this->db->query("INSERT INTO leaves (member_id,date,"
                             . "start_date,end_date,leave_days,leave_category,"
                             . "leave_description,total_leavedays,leave_status,"
@@ -194,20 +168,20 @@ class Leaves extends \Library\Core\BaseModel {
                             . "'" . $today . "','" . $sdate . "',"
                             . "'" . $edate . "','" . $leave_day . "',"
                             . "'" . $type . "','" . $desc . "',"
-                            . "'" . $lastdata . "',0,'" . $noti_id . "',now())");
-                    
-                    $users=$this->db->query("SELECT * FROM core_member where deleted_flag=0 ");
-        $users=$users->fetchall();
-        foreach ($users as $users) {
-            $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,"
-                . "module_name,noti_id,noti_status) "
-                . "VALUES('" . $name . "','" . $users['member_id'] . "','leaves','" . $noti_id . "',0)");
-        }
-                    
-                     
-        $this->db->query("INSERT INTO core_notification_rel_member "
-                . "(creator_name,member_id,noti_id,status,module_name) "
-                . "VALUES('" . $name . "','" . $uname . "','" . $noti_id . "',0,'leaves')");
+                            . "'" . $lastdata . "',0,'" . $Noti_id . "',now())");
+
+                    $users = $this->db->query("SELECT * FROM core_member where deleted_flag=0 ");
+                    $users = $users->fetchall();
+                    foreach ($users as $users) {
+                        $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,"
+                                . "module_name,noti_id,noti_status) "
+                                . "VALUES('" . $name . "','" . $users['member_id'] . "','leaves','" . $Noti_id . "',0)");
+                    }
+
+
+                    $this->db->query("INSERT INTO core_notification_rel_member "
+                            . "(creator_name,member_id,noti_id,status,module_name) "
+                            . "VALUES('" . $name . "','" . $uname . "','" . $Noti_id . "',0,'leaves')");
                     $cond['success'] = "Your Leave Applied Successfully!";
                 } else {
                     $cond['error'] = "End date must be greater than Start date";
@@ -215,7 +189,7 @@ class Leaves extends \Library\Core\BaseModel {
             } else {
                 $cond['error'] = "Apply Leave Before a week ";
             }
-        }        
+        }
 
         return $cond;
     }
@@ -251,16 +225,14 @@ class Leaves extends \Library\Core\BaseModel {
         $credt = $this->db->query("SELECT * "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchArray();
-        
+
         if ($created_date['working_year_by_year'] == NULL) {
             $date['startDate'] = $created_date['working_start_dt'];
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_start_dt'])));
         } else {
             $date['startDate'] = $created_date['working_year_by_year'];
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
-            //print_r($date);exit;
         }
-        //print_r($date);exit;
         return $date;
     }
 
@@ -338,25 +310,24 @@ class Leaves extends \Library\Core\BaseModel {
      * when admin accept leavedays request from user
      * @author Su Zin kyaw
      */
-    public function acceptleave($id, $days, $noti_id) {
+    public function acceptleave($id, $days, $Noti_id) {
         $this->db = $this->getDI()->getShared("db");
         $date = $this->getcontractdata($id);
-        $sql="UPDATE leaves set "
+        $sql = "UPDATE leaves set "
                 . "leaves.total_leavedays=total_leavedays+'" . $days . "' "
                 . "WHERE leaves.member_id='" . $id . "'  AND start_date "
                 . "BETWEEN '" . $date['startDate'] . "' AND  '" . $date['endDate'] . "'";
-       // print_r($sql);exit;
         $status = 1;
         $this->db->query("UPDATE leaves set"
                 . " leaves.leave_status='" . $status . "' "
-                . " WHERE leaves.noti_id='" . $noti_id . "'");
+                . " WHERE leaves.noti_id='" . $Noti_id . "'");
         $this->db->query($sql);
         $this->db->query("UPDATE core_notification set"
                 . " core_notification.noti_status=1  "
-                . "WHERE core_notification.noti_id='" . $noti_id . "'");
+                . "WHERE core_notification.noti_id='" . $Noti_id . "'");
         $this->db->query("UPDATE core_notification_rel_member "
                 . "set core_notification_rel_member.status=1,module_name='leaves',created_time='now()' "
-                . " WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
+                . " WHERE core_notification_rel_member.noti_id='" . $Noti_id . "'");
     }
 
     /**
@@ -367,16 +338,16 @@ class Leaves extends \Library\Core\BaseModel {
      * when admin reject leavedays request from user
      * @author Su Zin Kyaw<gnext.suzin@gmail.com
      */
-    public function rejectleave($noti_id) {
+    public function rejectleave($Noti_id) {
         $this->db = $this->getDI()->getShared("db");
         $sql = "UPDATE leaves set leaves.leave_status=2 "
-                . "WHERE leaves.noti_id='" . $noti_id . "'";
+                . "WHERE leaves.noti_id='" . $Noti_id . "'";
         $this->db->query("UPDATE core_notification "
                 . "set core_notification.noti_status=1  "
-                . "WHERE core_notification.noti_id='" . $noti_id . "'");
+                . "WHERE core_notification.noti_id='" . $Noti_id . "'");
         $this->db->query("UPDATE core_notification_rel_member set "
                 . "core_notification_rel_member.status=1,module_name='leaves'"
-                . "  WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
+                . "  WHERE core_notification_rel_member.noti_id='" . $Noti_id . "'");
 
         $this->db->query($sql);
     }

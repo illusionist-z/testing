@@ -9,23 +9,23 @@ class UserController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-         $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
-        $this->view->t  = $this->_getTranslation();
+        $this->view->t = $this->_getTranslation();
         $User = new Db\CoreMember;
-          $id=$this->session->user['member_id'];
-         foreach ($this->session->auth as $key_name => $key_value) {
-             
-             if ($key_name == 'show_admin_notification') {
-              $noti=$User->GetAdminNoti($id,0);
-            } 
+        $id = $this->session->user['member_id'];
+        foreach ($this->session->auth as $key_name => $key_value) {
+
+            if ($key_name == 'show_admin_notification') {
+                $Noti = $User->getAdminNoti($id, 0);
+            }
             if ($key_name == 'show_user_notification') {
-               $noti=$User->GetUserNoti($id,1); 
+                $Noti = $User->getUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
     }
 
     public function indexAction() {
@@ -38,7 +38,7 @@ class UserController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function attendancelistAction() {
-        
+
         if (isset($this->session->tzoffset)) {
             $offset = $this->session->tzoffset['offset'];
             $timezone = $this->session->tzoffset['timezone'];
@@ -49,9 +49,9 @@ class UserController extends ControllerBase {
         $startdate = $this->request->get('startdate');
         $enddate = $this->request->get('enddate');
 
-        $id=$this->session->user['member_id'];
+        $id = $this->session->user['member_id'];
         $AttList = new \salts\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->getattlist($id, $startdate, $enddate);
+        $ResultAttlist = $AttList->getAttList($id, $startdate, $enddate);
         $this->view->attlist = $ResultAttlist;
         $this->view->offset = $offset;
     }

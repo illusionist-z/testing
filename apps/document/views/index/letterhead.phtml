@@ -1,64 +1,52 @@
-<?php
-
-?>
- <head>
-        <meta charset="UTF-8">
-        <title>Attendance System</title>
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <style>
-         @page
-      {
-        size: 21cm 29.7cm;  /* A4 */
-        margin: 1cm 1cm 1cm 1cm;
-        mso-page-orientation: portrait;
-      }</style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance System</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <style>
+        @page
+        {
+            size: 21cm 29.7cm;  /* A4 */
+            margin: 1cm 1cm 1cm 1cm;
+            mso-page-orientation: portrait;
+        }</style>
+</head>
 <!-- Main content -->
 <section class="content">
     <div class="row"><!-- for search form-->
         <div class="col-md-12" ><!--start add user form--->
             <div style="width:100%;">
                 <form action="editinfo" method="post" width="650px" height="300px"  enctype="multipart/form-data"> 
-
-                <div >
-                    <div style="float:right;">
-                         <a href="#"  id="edit" class="button print">Edit</a>
-                         <input type="submit" id="save" disabled value ="save" class="buttonn">
-                        <a href="#" id="word-export" class="button export">Export</a>
-                        
-
-                    </div>
-                </div>
-                <br>
-                <div style="clear:both;" id="letterhead">
-                <table>
-                    <tr>
-                        <td style="width:100px">
-                            
-                   
-                            <img src="<?php echo $baseUri ?>public/uploads/<?php echo $info['company_logo']?>"  style="width:100px; height:90px" />
-                            <input type="file" id="my_file" style="display: none;" />
-                        </td>
-                        <td style=" width: 1000px;">
-                             <div id="document" style="width: 36%;display: inline-block;float: right;margin-right: 62%;">
-                        <h4><?php echo $info['company_name']?></h4>
-                        <p><?php echo $info['company_address']?></p>
-                        <p>Tel: <?php echo $info['company_phno']?></p></div>
-                        </td>
-                    </tr>
-                </table> 
-                  <hr>
-                 </div> <div id="divId"><input  type="file"  style="margin-left: 20px;"   name="fileToUpload"   id="fileToUpload" style="margin-bottom: 1%;" > </div></form><div id="editinfo" style="width: 29%;display: inline-block;float: right;margin-right: 57%;">
-                            <input style="height: 1%" type="text" class="company_name" id="company_name" name="update[company_name]" value="<?php echo  $info['company_name'];?>"  style="width:350px;">
-                            <input style="height: 1%; width: 90%" type="text" class="company_address" id="company_address" name="update[company_address]" value="<?php echo  $info['company_address'];?>"  style="width:350px;">
-                            <input style="height: 1%" type="text" class="company_phno" id="company_phno" name="update[company_phno]" value="<?php echo  $info['company_phno'];?>"  style="width:350px;">
-                            <input style="height: 1%" type="hidden" class="temp_logo" id="temp_logo" name="update[temp_logo]" value="<?php echo  $info['company_logo'];?>"  style="width:350px;">
-
+                    <div >
+                        <div style="float:right;">
+                            <a href="#"  id="edit" class="button print">Edit</a>
+                            <input type="submit" id="save" disabled value ="save" class="buttonn">
+                            <a href="#" id="word-export" class="button export">Export</a>
                         </div>
-                                  
-
+                    </div>
+                    <br>
+                    <div style="clear:both;" id="letterhead">
+                        <table>
+                            <tr>
+                                <td style="width:100px">
+                                    <img src="<?php echo $baseUri ?>public/uploads/<?php echo $info['company_logo'] ?>"  style="width:100px; height:90px" />
+                                    <input type="file" id="my_file" style="display: none;" />
+                                </td>
+                                <td style=" width: 1000px;">
+                                    <div id="document" style="width: 36%;display: inline-block;float: right;margin-right: 62%;">
+                                        <h4><?php echo $info['company_name'] ?></h4>
+                                        <p><?php echo $info['company_address'] ?></p>
+                                        <p>Tel: <?php echo $info['company_phno'] ?></p></div>
+                                </td>
+                            </tr>
+                        </table> 
+                        <hr>
+                    </div> <div id="divId"><input  type="file"  style="margin-left: 20px;"   name="fileToUpload"   id="fileToUpload" style="margin-bottom: 1%;" > </div></form><div id="editinfo" style="width: 29%;display: inline-block;float: right;margin-right: 57%;">
+                    <input style="height: 1%" type="text" class="company_name" id="company_name" name="update[company_name]" value="<?php echo $info['company_name']; ?>"  style="width:350px;">
+                    <input style="height: 1%; width: 90%" type="text" class="company_address" id="company_address" name="update[company_address]" value="<?php echo $info['company_address']; ?>"  style="width:350px;">
+                    <input style="height: 1%" type="text" class="company_phno" id="company_phno" name="update[company_phno]" value="<?php echo $info['company_phno']; ?>"  style="width:350px;">
+                    <input style="height: 1%" type="hidden" class="temp_logo" id="temp_logo" name="update[temp_logo]" value="<?php echo $info['company_logo']; ?>"  style="width:350px;">
+                </div>
             </div>
-           
         </div>
     </div>
 </section>

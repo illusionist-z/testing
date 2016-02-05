@@ -3,8 +3,7 @@
 namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
-use salts\Core\Models\Db\CoreMember;
+use Phalcon\Mvc\Model\Query; 
 use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
@@ -16,14 +15,14 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
+//  include_once '/var/www/html/salts/library/core/BaseModel.php';
 class CoreMember extends \Library\Core\BaseModel {
+
+    // Use trait for singleton
+    use \Library\Core\Models\SingletonTrait;
 
     public function initialize() {
         parent::onConstruct();
-    }
-
-    public static function getInstance() {
-        return new self();
     }
 
     public function ModuleIdSetPermission($v, $m) {
@@ -31,10 +30,7 @@ class CoreMember extends \Library\Core\BaseModel {
         //// Module ID Filter Start
         $module_id_set = $m;
         foreach ($module_id_set as $module_name) {
-            //var_dump($module_name['module_id']);
-
             if ($module_name['module_id'] == $v) {
-
                 $var_id = 1;
             }
         }
@@ -47,7 +43,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $module_id_return;
     }
 
-    public function getusername() {
+    public function getUserName() {
         $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
         return $row;
@@ -56,7 +52,6 @@ class CoreMember extends \Library\Core\BaseModel {
     public function module_permission() {
         $this->db = $this->getDI()->getShared("db");
         $query = "Select permission_code,permission_name_en,permission_name_$lang from core_permission where permission_code ='$code'";
-        //echo $query;exit;
         $data = $this->db->query($query);
         $result = $data->fetchall();
         return $result;
@@ -118,7 +113,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $getname;
     }
 
-    public function getusernamebyid($id) {
+    public function getUserNameById($id) {
 
         $sql = "select * from core_member WHERE member_id ='" . $id . "'";
         $result = $this->db->query($sql);
@@ -128,7 +123,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $name;
     }
 
-    public function searchuser($search) {
+    public function searchUser($search) {
         $filter = new Filter();
         $search = $filter->sanitize($search, "string");
         $searchname = $this->db->query("select member_login_name from core_member where member_login_name like '%$search%' ");
@@ -140,7 +135,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return username by last month
      */
-    public function getlastname() {
+    public function getLastName() {
         $username = "SELECT * FROM salts\Core\Models\Db\CoreMember where deleted_flag=0 order by  created_dt desc limit 4";
         $laname = $this->modelsManager->executeQuery($username);
         return $laname;
@@ -171,7 +166,7 @@ class CoreMember extends \Library\Core\BaseModel {
         }
     }
 
-    public function getlang($member) {
+    public function getLang($member) {
         $filter = new Filter();
         $name = $filter->sanitize($member['member_login_name'], "string");
         $query = "Select lang from core_member where member_login_name ='" . $name . "'";
@@ -187,7 +182,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @param type $filename
      * @return string
      */
-    public function addnewuser($member_id, $member) {
+    public function addNewUser($member_id, $member) {
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");
@@ -219,12 +214,11 @@ class CoreMember extends \Library\Core\BaseModel {
         foreach ($us as $value) {
             $sql = "INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())";
-            // print_r($sql);exit;
             $this->db->query($sql);
         }
     }
 
-    public function UserDetail($id) {
+    public function userDetail($id) {
 
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
@@ -232,7 +226,7 @@ class CoreMember extends \Library\Core\BaseModel {
         return $user;
     }
 
-    public function Userdata($id) {
+    public function userData($id) {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
         $user = $user->fetchArray();
@@ -246,7 +240,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * for admin notification
      * @author Su Zin Kyaw
      */
-    public function GetAdminNoti($id, $type) {
+    public function getAdminNoti($id, $type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         if ($type == 0) {
@@ -260,18 +254,18 @@ class CoreMember extends \Library\Core\BaseModel {
         }
 
         $AdminNoti = $this->db->query($sql);
-        $noti = $AdminNoti->fetchall();
+        $Noti = $AdminNoti->fetchall();
 
 
         $i = 0;
-        foreach ($noti as $noti) {
+        foreach ($Noti as $Noti) {
 
-            $sql = "SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' and core_member.deleted_flag=0 ";
+            $sql = "SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' and core_member.deleted_flag=0 ";
 
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
 
-            $final_result[$i]['0']['creator_name'] = $noti['creator_name'];
+            $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
         }
 
@@ -302,19 +296,19 @@ class CoreMember extends \Library\Core\BaseModel {
      * for user notification
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function GetUserNoti($id, $type) {
+    public function getUserNoti($id, $type) {
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
         $UserNoti = $this->db->query($sql);
 
-        $noti = $UserNoti->fetchall();
+        $Noti = $UserNoti->fetchall();
         $i = 0;
-        foreach ($noti as $noti) {
+        foreach ($Noti as $Noti) {
 
-            $result = $this->db->query("SELECT  * FROM " . $noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $noti['module_name'] . ".member_id WHERE " . $noti['module_name'] . ".noti_id='" . $noti['noti_id'] . "' ");
+            $result = $this->db->query("SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' ");
             $final_result[] = $result->fetchall();
-            $final_result[$i]['0']['creator_name'] = $noti['creator_name'];
+            $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
         }
         $data = array();
@@ -379,7 +373,7 @@ class CoreMember extends \Library\Core\BaseModel {
     }
 
     //for auto complete function
-    public function autousername() {
+    public function autoUsername() {
         $this->db = $this->getDI()->getShared("db");
         $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
         $getname = $user_name->fetchall();
@@ -398,9 +392,9 @@ class CoreMember extends \Library\Core\BaseModel {
      * @author david
      * @return array {leave name}
      * @return array {no leave name}
-   * @version saw zin min tun
+     * @version saw zin min tun
      */
-    public function checkleave() {
+    public function checkLeave() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
 
@@ -417,8 +411,8 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return array {leave name}
      * @return array {no leave name}
      * @version saw zin min tun
-     */ 
-    public function leavemost() {
+     */
+    public function leaveMost() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken
@@ -437,7 +431,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * forget password
 
      */
-    public function findemail($member_mail) {
+    public function findEmail($member_mail) {
 
         $email = $member_mail;
         $this->db = $this->getDI()->getShared("db");
@@ -453,7 +447,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * forget password
 
      */
-    public function insertemailandtoken($member_mail, $token) {
+    public function insertEmailAndToken($member_mail, $token) {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
 
@@ -468,48 +462,30 @@ class CoreMember extends \Library\Core\BaseModel {
      *     
      */
 
-    public function tokenpush($member_id, $tokenpush, $user_ip) {
+    public function tokenPush($member_id, $tokenpush, $user_ip) {
         $this->db = $this->getDI()->getShared("db");
         $member_log = $this->db->query("INSERT INTO member_log(token,member_id,ip_address) values(' " . $member_id . " ' ,' " . $tokenpush . " ',' " . $user_ip . " ' )");
 
         return $member_log;
     }
 
-    public function timeflag($member_id, $formtdate) {
+    public function timeFlag($member_id, $formtdate) {
         $this->db = $this->getDI()->getShared("db");
         $member_flag = $this->db->query("UPDATE core_member set timeflag = '" . $formtdate . "' WHERE member_login_name ='" . $member_id . "' ");
 
         return $member_flag;
     }
 
-//    public function countday($member_id,$time_office,$formtdate){
-//         $this->db = $this->getDI()->getShared("db");
-//         $member_day_count = "SELECT COUNT(*) FROM member_log WHERE member_id = ' ".$member_id."' AND nowtime BETWEEN '".$time_office."' AND '".$formtdate."' AND yes_no = '0' ";
-//         $user_day = $this->db->query($member_day_count);
-//         $user_day = $user_day->fetchAll(); 
-//         return $user_day;
-//        
-//    }
-
     /**
      * Saw Zin Min Tun
      * user enter code check database code
-
      */
-    public function findcode($code, $email) {
-        //print_r($member_mail);exit;
-        //exit;
-        // Check if the user exist
-        //SELECT * FROM forgot_password where  check_mail = 'AA@gmail.com' and token = (select token from forgot_password  order by curdate desc limit 1)
+    public function findCode($code, $email) {
+
         $this->db = $this->getDI()->getShared("db");
-
         $query = "SELECT token FROM forgot_password where  check_mail = '" . $email . "'  order by curdate desc limit 1  ";
-        //  print_r($query);exit;
-
         $user = $this->db->query($query);
         $user = $user->fetchArray();
-//       print_r($user['token']);
-//        print_r($code);exit;
 
         if ($user['token'] == $code) {
             $msg = "success";
@@ -523,42 +499,34 @@ class CoreMember extends \Library\Core\BaseModel {
     /**
      * Saw Zin Min Tun
      * forget password
-
      */
-    public function updatepassword($member_mail, $newpassword) {
+    public function updatePassword($member_mail, $newpassword) {
         // Check if the user exist
-
         $newpassword = sha1($newpassword);
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-
         return $user;
     }
 
-    public function updatenewpassword($member_mail, $newpass) {
-
+    public function updateNewPassword($member_mail, $newpass) {
         $newpassword = sha1($newpass);
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
         return $user;
     }
 
-    public function checkyourmail($getmail) {
+    public function checkYourMail($getmail) {
         $this->db = $this->getDI()->getShared("db");
-
         $query = "SELECT token FROM forgot_password where  check_mail = '" . $getmail . "'  order by curdate desc limit 1  ";
-        //  print_r($query);exit;
-
         $user = $this->db->query($query);
         $user = $user->fetchArray();
-        //print_r($user['token']);exit;
         return $user['token'];
     }
 
     public function findUserAddSalary($id) {
         $cond1 = "Select * from core_member where member_id not in ( select member_id from salary_master)";
         $cond2 = "Select * from core_member where member_id in ( select member_id from salary_master)";
-        (1 == $id) ? $query = $cond1 : $query = $cond2;        
+        (1 == $id) ? $query = $cond1 : $query = $cond2;
         $data = $this->db->query($query);
         $rows = $data->fetchall();
         return $rows;

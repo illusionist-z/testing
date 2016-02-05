@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>
-        <?php echo $t->_("month_att_chart")." (".date('Y')."/".date('m').")"  ?>
+        <?php echo $t->_("month_att_chart") . " (" . date('Y') . "/" . date('m') . ")" ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i><?php echo $t->_("home") ?></a></li>
@@ -12,39 +12,42 @@
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
                 <thead>
-                        <th><?= $t->_("username"); ?></th>
-                        <?php                        
-                        for($i = 1; $i <=  date('t'); $i++){
-                            echo "<th>Day ".$i."</th>";
-                        }
-                        ?>                    
+                <th><?= $t->_("username"); ?></th>
+                <?php
+                for ($i = 1; $i <= date('t'); $i++) {
+                    echo "<th>Day " . $i . "</th>";
+                }
+                ?>                    
                 </thead>
                 <tbody style="display: none;">
-                    <?php                    
-                    foreach($data as $result){
+                    <?php
+                    foreach ($data as $result) {
                         $j = array();
-                        $day = explode(",",$result['day']);
-                        $status = explode(",",$result['status']);
+                        $day = explode(",", $result['day']);
+                        $status = explode(",", $result['status']);
                         echo "<tr>";
-                        echo "<td>".$result['member_login_name']."</td>";
-                        for($i=1; $i <= date('t');$i++){
+                        echo "<td>" . $result['member_login_name'] . "</td>";
+                        for ($i = 1; $i <= date('t'); $i++) {
                             //get under today date
-                            if($i <= date('d')){
-                            foreach($day as $k=>$v){
-                            if($i == $v) { $j[$v] = $v;$j[$v][$v] = $status[$k];}
-                            }
-                            if(array_key_exists($i, $j)){
-                            if($i == $j[$i]){
-                                  $j[$i][$i] == 0 ? $class= 'leave0' : ($j[$i][$i] == 1 ? $class="leave1": $class = "leave2");
-                                echo "<td class='$class'></td>";
-                            }
-                            }
-                            else{
-                                echo "<td class='unleave'></td>";
-                            }
+                            if ($i <= date('d')) {
+                                foreach ($day as $k => $v) {
+                                    if ($i == $v) {
+                                        $j[$v + 1] = $v;
+                                        $j[$v] = array();
+                                        $j[$v][$v] = $status[$k];
+                                    }
+                                }
+                                if (array_key_exists($i, $j)) {
+                                    if ($i == $j[$i + 1]) {
+                                        $j[$i][$i] == 0 ? $class = 'leave0' : ($j[$i][$i] == 1 ? $class = "leave1" : $class = "leave2");
+                                        echo "<td class='$class'></td>";
+                                    }
+                                } else {
+                                    echo "<td class='unleave'></td>";
+                                }
                             }
                             //get above today date
-                            else{
+                            else {
                                 echo "<td class='unleave'></td>";
                             }
                         }
@@ -58,7 +61,7 @@
 </section>
 <div id="content"></div>
 <div class="attchart">
-<div class="col-md-12"><div class="col-sm-1 leave0 btn"></div> <?php echo $t->_("att_person"); ?>  </div>
-<div class="col-md-12"><div class="col-sm-1 leave1 btn"></div> <?php echo $t->_("absent_leave_person"); ?>  </div>
-<div class="col-md-12"><div class="col-sm-1 leave2 btn"></div> <?php echo $t->_("absent_noleave_person"); ?> </div>
+    <div class="col-md-12"><div class="col-sm-1 leave0 btn"></div> <?php echo $t->_("att_person"); ?>  </div>
+    <div class="col-md-12"><div class="col-sm-1 leave1 btn"></div> <?php echo $t->_("absent_leave_person"); ?>  </div>
+    <div class="col-md-12"><div class="col-sm-1 leave2 btn"></div> <?php echo $t->_("absent_noleave_person"); ?> </div>
 </div>

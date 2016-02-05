@@ -45,9 +45,9 @@
                                </li>  
                             <!-- Notifications: style can be found in dropdown.less -->
                               <li class="dropdown notifications-menu" >
-                                <a href="#" class="<?php if(count($noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
+                                <a href="#" class="<?php if(count($Noti)==0){echo "nonoti";}else{echo "noti";}?>" id="noti" style="padding-top: 20px;">
                                      <img src="<?php echo $baseUri?>common/img/noti.png">
-                                    <span class="label label-warning"><?php if(count($noti)==0){ }else{echo count($noti);}?></span>
+                                    <span class="label label-warning"><?php if(count($Noti)==0){ }else{echo count($Noti);}?></span>
                                 </a>
                                   <div id="notificationContainer">
                                   <div id="notificationTitle"><?= $t->_("Notifications"); ?></div>
@@ -64,10 +64,10 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                    <!-- <img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="user-image" alt="User Image"/>-->
                                      <?php
-                                                if($noti['member_profile']==null){
+                                                if($Noti['member_profile']==null){
                                                    $img = "profile1.jpg";}
                                                 else{
-                                                     $img=$noti['member_profile'];
+                                                     $img=$Noti['member_profile'];
                                                       if(file_exists('./uploads/'.$img)){                                                            
                                                            $img=$img;                                                            
                                                       }else{  
@@ -84,10 +84,10 @@
                                        
                                         <!--<img src="../../uploads/<?php echo  $this->session->user['member_profile'];?>" class="img-circle">-->
                                          <?php
-                                                if($noti['member_profile']==null){
+                                                if($Noti['member_profile']==null){
                                                    $img = "profile1.jpg";}
                                                 else{
-                                                     $img=$noti['member_profile'];
+                                                     $img=$Noti['member_profile'];
                                                       if(file_exists('./uploads/'.$img)){                                                            
                                                            $img=$img;                                                            
                                                       }else{  
@@ -258,7 +258,7 @@
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                   <?= $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/ja", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/my", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+                   <?= $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
        

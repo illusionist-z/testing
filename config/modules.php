@@ -4,8 +4,6 @@
  * Register application modules
  */
 $aryModules = \Library\Core\Module::get();
-//print_r($aryModules);exit;
-// Regist modules
 foreach ($aryModules as $module) {
     $regModules[$module] = [
         'className' => 'salts\\' . $module . '\Module',
@@ -13,4 +11,3 @@ foreach ($aryModules as $module) {
     ];
 }
 $application->registerModules($regModules);
-

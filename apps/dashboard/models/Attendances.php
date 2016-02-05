@@ -17,9 +17,8 @@ class Attendances extends Model {
      * set check in time when user click 'checkin'button
      * @param type $id
      * @param type $note
-     * @param type $lat
-     * @param type $lon
      * @param type $add
+     * @param type $creator_id
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
@@ -34,7 +33,7 @@ class Attendances extends Model {
          * */
         if ($att === FALSE) {
             //$status = " Already Checked in ";
-            $noti_id = rand();
+            $Noti_id = rand();
             $att_today = Attendances::findFirst("att_date = '$today' AND member_id ='$id' AND status = 0");
             if ($att_today === FALSE) {
                 $att_leave = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 2");
@@ -42,15 +41,15 @@ class Attendances extends Model {
                     $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
                             . "att_date,location,notes,noti_id,status) VALUES ('" . $mydate . "'"
                             . ",'" . $id . "','" . $today . "',
-                    '" . $add . "','" . $note . "','" . $noti_id . "',0)");
+                    '" . $add . "','" . $note . "','" . $Noti_id . "',0)");
                 } else {
                     $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
-                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $noti_id . "',status = 0 where att_date ='" . $today . "' AND member_id ='" . $id . "'");
+                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = 0 where att_date ='" . $today . "' AND member_id ='" . $id . "'");
                 }
                 if ($note != NULL) {
                     $this->db->query("INSERT INTO core_notification (noti_creator_id,"
                             . "module_name,noti_id,noti_status) "
-                            . "VALUES('" . $creator_id . "','attendances','" . $noti_id . "',0)");
+                            . "VALUES('" . $creator_id . "','attendances','" . $Noti_id . "',0)");
                 }
                 $status = " Successfully Checked In";
             } else {
@@ -108,19 +107,13 @@ class Attendances extends Model {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken        
-//        $query = "select * from core_member where member_id in "
-//                 ."(select member_id from attendances where status = 1  group by member_id having count(member_id) > 0) "
-//                . "order by created_dt desc limit 3";
         $query = "select * from core_member "
                 . "as c join absent as a on c.member_id=a.member_id "
                 . "where  c.deleted_flag = 0  and a.deleted_flag = 0 group by a.member_id "
                 . "order by count(*) desc limit 3";
-      // var_dump($query);exit;
         $data = $this->db->query($query);
         //select where no leave name in current month
-//        $query1 = "select * from core_member where member_id in
-//                   (select member_id from attendances where att_date >(NOW()-INTERVAL 2 MONTH) and status=0) order by created_dt desc limit 3";
-         $query1 = "select * from core_member where member_id not in
+        $query1 = "select * from core_member where member_id not in
                    (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0 ) and deleted_flag=0 order by created_dt desc  limit 3";
         $data1 = $this->db->query($query1);
         $res['leave_name'] = $data->fetchall();
@@ -152,7 +145,7 @@ class Attendances extends Model {
 
     public function userattleave($id) {
         $currentmth = date('m');
-        $result = array();        
+        $result = array();
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
         $query = "select count(*) as att from attendances where member_id ='$id' and status = 0 and MONTH(att_date) = '$currentmth' ";
@@ -166,23 +159,22 @@ class Attendances extends Model {
         $result['absent'] = $data1[0]['absent'];
         return $result;
     }
+
     /**
      * 
      * @param type $id
      * @return type
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function getattlist($id) {
+    public function getAttList($id) {
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
-
         $row = "Select att_date,member_login_name,checkin_time,checkout_time,"
                 . "lat,lng,overtime,location from core_member left join "
                 . "attendances on core_member.member_id = attendances.member_id "
                 . "where MONTH(attendances.att_date) ='" . $currentmth . "' "
                 . "AND attendances.member_id ='" . $id . "' "
                 . "order by attendances.att_date DESC ";
-
         $result = $this->db->query($row);
         $list = $result->fetchall();
         return count($list);
