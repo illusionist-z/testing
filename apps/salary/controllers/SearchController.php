@@ -16,9 +16,9 @@ class SearchController extends ControllerBase {
 
     public function indexAction() {
         if ($this->request->isAjax() == true) {
-            $Salarydetail = new SalaryDetail();
+            $SalaryDetail = new SalaryDetail();
             $cond = $this->request->get('cond', array());
-            $search_result = $Salarydetail->seacrhsalary($cond);
+            $search_result = $SalaryDetail->searchSalary($cond);
             $this->view->disable();
             echo json_encode($search_result);
         }
@@ -29,8 +29,8 @@ class SearchController extends ControllerBase {
      */
     public function searchTravelfeesAction() {
         $data = $this->request->get();
-        $Salarydetail = new SalaryDetail();
-        $search_result = $Salarydetail->searchSList($data);
+        $SalaryDetail = new SalaryDetail();
+        $search_result = $SalaryDetail->searchSList($data);
         $this->view->disable();
         echo json_encode($search_result);
     }

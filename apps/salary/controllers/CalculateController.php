@@ -24,27 +24,27 @@ class CalculateController extends ControllerBase {
         $basic_salary_ssc = $this->config->salary['basic_salary_ssc'];
         $deduce = $this->config->salary['deduce'];
         $overrate = $this->config->salary['overrate'];
-        $Salarydetail = new SalaryDetail();
+        $SalaryDetail = new SalaryDetail();
         $Salarymaster = new SalaryMaster();
         $Attendance = new Attendances();
         $countattday = $Attendance->getCountattday($salary_start_date);
 
-        $getbasic_salary = $Salarymaster->getbasicsalary($countattday);
+        $getbasic_salary = $Salarymaster->getBasicsalary($countattday);
         //calculate overtime by attendances and salary master
-        // $getcomp_startdate=$Salarydetail->getComp_startdate();
+        // $getcomp_startdate=$SalaryDetail->getCompStartdate();
         $creator_id = $this->session->user['member_id'];
         //calculate the basic salary
-        $tax = $Salarymaster->calculate_tax_salary($getbasic_salary, $salary_start_date, $creator_id);
+        $tax = $Salarymaster->calculateTaxSalary($getbasic_salary, $salary_start_date, $creator_id);
 
         //insert taxs of all staff to salary detail
-        $Salarydetail->insert_taxs($tax);
+        $SalaryDetail->insertTaxs($tax);
 
         //insert overtime and salary information to salary detail
         //calculate ssc fee of employee and employer
         $ssc = $Salarymaster->sscforCompandEmp();
 
         //insert ssc of all staffs to salary detail
-        $Salarydetail->insert_ssc($ssc);
+        $SalaryDetail->insertSsc($ssc);
 
         $this->response->redirect('salary/index/monthlysalary');
     }

@@ -70,4 +70,3 @@ class Permission extends Plugin
         return 'X';
     }
 }
- 

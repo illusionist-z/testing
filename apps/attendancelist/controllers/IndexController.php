@@ -21,13 +21,13 @@ class IndexController extends ControllerBase {
 
             if ($key_name == 'show_admin_notification') {
 
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $Admin->GetUserNoti($id, 1);
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("noti", $Noti);
         $this->act_name = $this->router->getActionName();
         $this->view->t = $this->_getTranslation();
         $this->module_name = $this->router->getModuleName();
@@ -56,7 +56,7 @@ class IndexController extends ControllerBase {
         $name = $this->request->get('namelist');
         $offset = $this->session->location['offset'];
         $UserList = new Db\CoreMember();
-        $Username = $UserList::getinstance()->getusername();
+        $Username = $UserList::getinstance()->getUserName();
         $AttList = new \salts\Attendancelist\Models\Attendances();
         $ResultAttlist = $AttList->gettodaylist($name);
         if($this->permission==1){
@@ -107,7 +107,7 @@ class IndexController extends ControllerBase {
         if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
             $UserList = new Db\CoreMember();
-            $UserName = $UserList::getinstance()->getusername();
+            $UserName = $UserList::getinstance()->getUserName();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthlylist = $Attendances->showattlist();
@@ -150,7 +150,7 @@ class IndexController extends ControllerBase {
 
     public function autolistAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autousername();
+        $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }

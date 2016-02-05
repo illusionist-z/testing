@@ -38,13 +38,16 @@ class IndexController extends ControllerBase {
         $this->view->moduleIdCall = $this->moduleIdCall;
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $noti = $Admin->getAdminNoti($id, 0);
+
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $Admin->getUserNoti($id, 1);
+
+                $Noti = $Admin->getUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+
+        $this->view->setVar("noti", $Noti);
     }
 
     /**

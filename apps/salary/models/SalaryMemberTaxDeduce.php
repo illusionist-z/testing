@@ -11,7 +11,7 @@ class SalaryMemberTaxDeduce extends Model {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    public function getdeduceBymember_id($member_id) {
+    public function getDeduceBymemberid($member_id) {
         try {
             $data = $this->db->query("SELECT deduce_id from salary_member_tax_deduce where member_id='" . $member_id . "'");
             $result = $data->fetchall();
@@ -28,9 +28,9 @@ class SalaryMemberTaxDeduce extends Model {
      * @return type
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function edit_taxByMemberid($deduce, $no_of_children, $member_id) {
+    public function editTaxByMemberid($deduce, $no_of_children, $member_id) {
         try {
-            $count = $this->getdeduceBymember_id($member_id);
+            $count = $this->getDeduceBymemberid($member_id);
             $creartor_id = "admin";
             if (!empty($count)) {
                 $delete = "DELETE FROM salary_member_tax_deduce WHERE member_id='" . $member_id . "'";
@@ -57,7 +57,7 @@ class SalaryMemberTaxDeduce extends Model {
         }
     }
 
-    public function getnoofchildrenBymember_id($member_id) {
+    public function getNoOfChildrenBymemberid($member_id) {
         try {
             $sql = "SELECT no_of_children from salary_member_tax_deduce where member_id='" . $member_id . "' and deduce_id='children'";
             $data = $this->db->query($sql);
