@@ -182,7 +182,7 @@ $(document).ready(function() {
                     $('#notificationContainer').fadeOut(300);            
                 }
     });
-    
+    //geo();
  $('.datepicker').datepicker(); 
  
 });

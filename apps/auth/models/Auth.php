@@ -19,7 +19,7 @@ class Auth extends Component {
      * @param type $param
      * @return type
      */
-    public function findcomp_db($param) {
+    public function findCompDb($param) {
        
         try {
             $sql = "SELECT * FROM company_tbl where company_id='".$param['company_id']."' and deleted_flag=0";

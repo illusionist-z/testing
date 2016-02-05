@@ -54,7 +54,7 @@ class IndexController extends ControllerBase {
             $UserList = new \salts\Core\Models\Db\CoreMember();
             $Username = $UserList->getUserName();
             $AttList = new \salts\Attendancelist\Models\Attendances();
-            $Result_Attlist = $AttList->getTodayList($name);            
+            $Result_Attlist = $AttList->getTodayList($name);
             if ($this->permission == 1) {
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;

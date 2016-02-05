@@ -27,7 +27,7 @@ class Attendances extends Model {
                     ->where('core.member_login_name = :name:', array('name' => $name))
                     ->andWhere('attendances.att_date = :today:', array('today' => $today))
                     ->andWhere('core.deleted_flag = 0')
-                    ->andWhere('attendances.status = 0')
+                    ->andWhere('attendances.status = 0 OR attendances.status = 3')
                     ->getQuery()
                     ->execute();
         } else {
@@ -37,7 +37,7 @@ class Attendances extends Model {
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('attendances.att_date = :today:', array('today' => $today))
                     ->andWhere('core.deleted_flag = 0')
-                    ->andWhere('attendances.status=0')
+                    ->andWhere('attendances.status = 0 OR attendances.status = 3')
                     ->orderBy('attendances.checkin_time DESC')
                     ->getQuery()
                     ->execute();
@@ -168,7 +168,8 @@ class Attendances extends Model {
     }
 
     public function GetAbsentList() {
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE and status = 0) AND deleted_flag=0 order by created_dt desc";
+        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances "
+                . "where att_date = CURRENT_DATE and (status = 0 or status = 3)) AND deleted_flag=0 order by created_dt desc";
         $list = $this->db->query($query);
         $absentlist = $list->fetchall();
         return $absentlist;

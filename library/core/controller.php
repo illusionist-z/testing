@@ -8,7 +8,7 @@ namespace Library\Core;
  * and open the template in the editor.
  */
 
-use workManagiment\Core\Models\Db;
+use salts\Core\Models\Db;
 
 abstract class Controller extends \Phalcon\Mvc\Controller {
 
@@ -32,12 +32,12 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         * Set Permission
         * @return int
         */
-
-      public function setPermission($actname) {
+   
+            public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
         $allow = array();$permitted = 0;
         //setting permission        
-        $coremember = new \salts\Auth\Models\Db\CorePermissionRelMember();
+        $coremember = new \salts\Core\Models\CorePermissionRelMember();
         
         if(null === $this->session->user['member_id']){
             return false;
@@ -45,7 +45,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         {
         $core = $coremember::findByRelMemberId($this->session->user['member_id']); 
         $permission = $core[0]->permission_group_id_user;
-        $coreuser2 = new \salts\Auth\Models\Db\CorePermissionGroup();
+        $coreuser2 = new \salts\Core\Models\CorePermissionGroup();
         $permission_group = $coreuser2->find();
         //get permitted action name
        
@@ -63,7 +63,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     
     public function getPermissionCode($code) {
      $setPermission = array();
-    $corepermission = new \salts\Auth\Models\Db\CorePermission();        
+    $corepermission = new \salts\Core\Models\CorePermission();        
     foreach($code as $c){
         $temp = $corepermission::findByPermissionCode($c);
         foreach($temp as $t){
@@ -89,9 +89,9 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * @param \Phalcon\Mvc\Dispatcher $dispatcher
      */
     public function beforeExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
-        // set module
-        if (isset($this->session->get('user')['lang'])) {
-            $this->lang = $this->session->get('user')['lang'];
+        // set module        
+        if ($this->session->get('language')) {
+            $this->lang = $this->session->get('language');
         } else {
             $this->lang = $this->request->getBestLanguage();
         }
@@ -105,7 +105,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     protected function _getTranslation($prefix = '') {
         // Check if we have a translation file for that lang
-        $langDir = __DIR__ . "/../../apps/{$this->moduleName}/messages";
+        $langDir = __DIR__ . "/../../apps/{$this->moduleName}/lang";
         if ('' !== $prefix) {
             $prefix .= '-';
         }
@@ -129,17 +129,31 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setCommonJsAndCss() {
         $this->assets->addCss('common/css/bootstrap/bootstrap.min.css')
-                ->addCss('common/css/common.css')
                 ->addCss('common/css/bootstrap.min.css')
-                //->addCss('common/css/AdminLTE.min.css')
+                ->addCss('common/css/common.css')
+                ->addCss('common/css/jquery-ui.css')
                 ->addCss('common/css/skins.min.css');
 
-        $this->assets->addJs('common/js/jQuery-2.1.4.min.js')
+
+        $this->assets->addJs('common/js/jquery.min.js')
                 ->addJs('common/js/common.js')
+                //->addJs('common/js/btn.js')
+                ->addJs('common/js/bootstrap.min.js')
                 ->addJs('common/js/app.min.js')
                 ->addJs('common/js/jquery-ui.js')
-                ->addJs('common/js/notification.js')
-                ->addJs('common/js/bootstrap.min.js');
+                ->addJs('common/js/notification.js');
+    }
+    
+       public function setNotificationJsAndCss() {
+
+        $this->assets
+                //->addJs('common/js/jquery.min.js')
+                //->addJs('common/js/common.js')
+                //->addJs('common/js/jQuery-2.1.4.min.js')
+                //->addJs('common/js/bootstrap.min.js')
+                //->addJs('common/js/app.min.js')
+               ->addJs('common/js/jquery-ui.js');
+                //->addJs('common/js/notification.js');
     }
 
     /**

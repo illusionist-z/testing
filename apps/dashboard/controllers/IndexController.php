@@ -137,10 +137,11 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
         $add = $this->session->location['location'];
+        $offset = $this->session->location['offset'];
         $noti_Creatorid = $User->GetAdminstratorId();
         $creator_id = $noti_Creatorid[0]['rel_member_id'];
         $CheckIn = new \salts\Dashboard\Models\Attendances();
-        $status = $CheckIn->setCheckInTime($id, $note, $add, $creator_id);
+        $status = $CheckIn->setCheckInTime($id, $note, $add, $creator_id,$offset);
         $this->view->disable();
         echo json_encode($status);
     }
@@ -151,8 +152,9 @@ class IndexController extends ControllerBase {
      */
     public function checkoutAction() {
         $id = $this->session->user['member_id'];
+        $offset = $this->session->location['offset'];
         $CheckOut = new \salts\Dashboard\Models\Attendances();
-        $status = $CheckOut->setCheckOutTime($id);
+        $status = $CheckOut->setCheckOutTime($id,$offset);
         $this->view->disable();
         echo json_encode($status);
     }

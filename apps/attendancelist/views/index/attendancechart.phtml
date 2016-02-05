@@ -39,7 +39,7 @@
                                 }
                                 if (array_key_exists($i, $j)) {
                                     if ($i == $j[$i + 1]) {
-                                        $j[$i][$i] == 0 ? $class = 'leave0' : ($j[$i][$i] == 1 ? $class = "leave1" : $class = "leave2");
+                                        $j[$i][$i] == 0 ? $class = 'leave0' : ($j[$i][$i] == 1 ? $class = "leave1" : ($j[$i][$i] == 2 ? $class = "leave2" : $class = "leave3"));
                                         echo "<td class='$class'></td>";
                                     }
                                 } else {

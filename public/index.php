@@ -24,14 +24,14 @@ try {
 //        'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => '../apps/core/models/',
 //        'salts\Auth\Controllers' => '../apps/auth/controllers/',
-//        'salts\Auth\Models' => '../apps/auth/models/',
+        'salts\Auth\Models' => '../apps/auth/models/',
     ));
 
     // register autoloader
     $loader->register();
 
     // get config
-    $config = new Ini(__DIR__ . '/../config/config.ini');
+    $config = new Ini(__DIR__ . '/../config/org/config.ini');
 
     // Create a DI
     $di = new \Phalcon\DI\FactoryDefault();

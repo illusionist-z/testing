@@ -44,7 +44,7 @@ class LoginController extends ControllerBase {
             
             $this->view->test = $login_params;
          
-            $companyDB = $ModelAuth->findcomp_db($login_params);
+            $companyDB = $ModelAuth->findCompDb($login_params);
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
@@ -86,12 +86,10 @@ class LoginController extends ControllerBase {
                 $member_name = $this->session->tokenpush;
 //                $chack_user2 = new Db\CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
-               
                 if (count($chack_user2) != 0) {
-
-//                    $core2 = new Db\CoreMember();
-                    $core2 = $Member::findFirstByMemberLoginName($this->request->getPost('member_login_name'));
-                    $core2 = $core2->timeflag;
+                    
+//                    $core2 = new Db\CoreMember(); 
+                    $core2 = $chack_user2[0]->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));
                     if ($core2 >= $timestamp) {

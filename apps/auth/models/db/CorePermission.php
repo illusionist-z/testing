@@ -9,7 +9,7 @@ namespace salts\Auth\Models\Db;
  * and open the template in the editor.
  */
 
-class CorePermission extends \Library\Core\BaseModel {
+class CorePermission extends \Library\Core\Models\Base {
 
     public function initialize() {
         parent::initialize();
