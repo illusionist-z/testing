@@ -132,7 +132,7 @@ class IndexController extends ControllerBase {
     public function leavelistAction() {
 
 
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
 
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);

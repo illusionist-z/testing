@@ -97,7 +97,7 @@ class IndexController extends ControllerBase {
             $this->view->setVar("year", $year);
             $this->view->setVar("usernames", $user_name);
             $this->view->setVar("getsalarylists", $get_salary_list);
-            $this->view->setVar("allowancenames", $allowancename);
+            //$this->view->setVar("allowancenames", $allowancename);
             $this->view->module_name = $this->router->getModuleName();
         } else {
             $this->response->redirect('core/index');

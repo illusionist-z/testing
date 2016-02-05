@@ -244,8 +244,10 @@ class SalaryMaster extends Model {
                     $absent = $this->checkAbsent($value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the data of leave setting
                     $leavesetting = $this->getleavesetting();
+                    $thismonth_leave= $this->getLeave($salary_start_date,$value[0]['member_id']);
+                   
                     //calculate absent deduce
-                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $value[0]['basic_salary']);
+                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $thismonth_leave['countAbsent'], $value[0]['basic_salary']);
                     $absent_dedution = $countabsent;
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
@@ -304,6 +306,7 @@ class SalaryMaster extends Model {
         } catch (Exception $exc) {
             echo $exc;
         }
+       //print_r($final_result);exit;
         return $final_result;
     }
 
@@ -358,15 +361,19 @@ class SalaryMaster extends Model {
      * @param type $basic_salary
      * @return int
      */
-    public function calculateLeave($countabsent, $max_leavedays, $fine, $basic_salary) {
+    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary) {
+        
         if ($countabsent > $max_leavedays) {
-            if ($fine != 0) {
-                $salary_per_day = $basic_salary * $fine / 100;
-                $absent_deduce = $salary_per_day * ($countabsent - $max_leavedays);
-                
-            } else {
-                $absent_deduce = $basic_salary * (22 - ($countabsent - $max_leavedays)) / 22;
+            $overleave = $countabsent - $max_leavedays;
+            if($overleave < $thismonth_leave){
+                $thismonth_over = $overleave;
             }
+            else{
+                 $thismonth_over = $thismonth_leave;
+            }
+            
+           $absent_deduce = ($basic_salary  / 22)* ($thismonth_over );
+            
         } else {
             $absent_deduce = 0;
         }
@@ -386,6 +393,24 @@ class SalaryMaster extends Model {
         }
         return $row;
     }
+    
+    function getLeave($month,$member_id){
+         $date = explode('-', $month);
+      
+       
+           try {
+            
+            $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
+                    . "and YEAR(att_date) =  '".$date['0']."' and MONTH(att_date)= '".$date['1']."' and deleted_flag=0 and status!=0";
+            
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        
+        return $row;
+    }
 
     /**
      * check whether absent or not
@@ -396,7 +421,7 @@ class SalaryMaster extends Model {
         try {
             $absent_deduce = "";
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
-                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and status=2";
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and status!=0";
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
