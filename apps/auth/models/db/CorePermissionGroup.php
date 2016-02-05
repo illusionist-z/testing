@@ -9,7 +9,7 @@ namespace salts\Auth\Models\Db;
  * and open the template in the editor.
  */
 
-class CorePermissionGroup extends \Library\Core\Models\Base {
+class CorePermissionGroup extends  \Library\Core\Models\Base {
 
     public $permission_code;
     public $page_rule_group;

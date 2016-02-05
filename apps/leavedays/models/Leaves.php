@@ -8,7 +8,7 @@ use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
-class Leaves extends \Library\Core\BaseModel {
+class Leaves extends \Library\Core\Models\Base {
 
     public function initialize() {
         parent::initialize();
