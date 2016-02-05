@@ -19,7 +19,7 @@ class Document extends Model {
      * get salary information for tax
      * @return type
      */
-    public function getsalary_info() {
+    public function getSalaryInfo() {
         try {
             $month = date("m");
             $sql = "select * from core_member join (select member_id,deduce_name,amount from salary_taxs_deduction as STD "
@@ -37,7 +37,7 @@ class Document extends Model {
      * get salary detail to show in ssb tax form
      * @return type
      */
-    public function getssb_info() {
+    public function getSsbInfo() {
         try {
             $month = date("m");
             $sql = "SELECT * FROM salary_detail JOIN core_member ON salary_detail.member_id=core_member.member_id "

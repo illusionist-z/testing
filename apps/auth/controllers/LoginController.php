@@ -18,6 +18,7 @@ class LoginController extends ControllerBase {
 
         
         $login_params = $this->request->get();
+      
         $ModelAuth = new Models\Auth();
        
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
@@ -28,7 +29,7 @@ class LoginController extends ControllerBase {
             $dbinfo['db_psw'] = 'root';
 
             $this->session->set('db_config', $dbinfo);
-            $result = $ModelAuth->check($login_params, $user);
+            $result = $ModelAuth->Check($login_params, $user);
             $this->session->set('user', $result);
             // Data Base Chack
             if ($result) {
@@ -39,8 +40,11 @@ class LoginController extends ControllerBase {
         } else {
 
             $this->view->test = $login_params;
-            $companyDB = $ModelAuth->findcomp_db($login_params);
+            $companyDB = $ModelAuth->findCompDb($login_params);
             
+            $this->view->test = $login_params;
+         
+            $companyDB = $ModelAuth->findcomp_db($login_params);
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
@@ -49,16 +53,16 @@ class LoginController extends ControllerBase {
                 // Module Chack
                 $module = new Models\Auth();
                 $module_id = $this->session->db_config['company_id'];
-                $company_module = $module->find_module($module_id);
+                $company_module = $module->findModule($module_id);
                 $this->session->set('module', $company_module);
 
                 $result = $ModelAuth->check($login_params, $user);
-                $permission = $ModelAuth->getpermit($login_params);
+                $permission = $ModelAuth->getPermit($login_params);
                 $Member = new CoreMember();
                 $ll = $Member::getInstance();
-                $lang = $Member->getlang($login_params);
+                $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
-                $Member->updatecontract($login_params);
+                $Member->updateContract($login_params);
                 $this->session->set('page_rule_group', $permission);
                 $user = array();
                 $this->session->set('user', $result);

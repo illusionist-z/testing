@@ -25,10 +25,6 @@ try {
         'salts\Core\Models' => '../apps/core/models/',
 //        'salts\Auth\Controllers' => '../apps/auth/controllers/',
 //        'salts\Auth\Models' => '../apps/auth/models/',
-//       
-//      
-//        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
-//        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
     ));
 
     // register autoloader

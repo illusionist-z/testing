@@ -21,7 +21,7 @@ class ModuleController extends ControllerBase {
     public function indexAction() {
         $id = $this->request->get("msearch");
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $result = $Obj->getallmodule();
+        $result = $Obj->getAllmodule();
         if (isset($id)) {
             $result = $Obj->search($id);
         }
@@ -30,7 +30,7 @@ class ModuleController extends ControllerBase {
 
     public function getmodulenameAction() {
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $result = $Obj->getallmodule();
+        $result = $Obj->getAllmodule();
         echo json_encode($result);
         $this->view->disable();
     }
@@ -39,11 +39,11 @@ class ModuleController extends ControllerBase {
      *  @author Su Zin Kyaw <gnext.suzin@gmail.com>
      *  Add new module 
      */
-    public function add_moduleAction() {
+    public function addmoduleAction() {
         $data['mid'] = $this->request->getPost('mid');
         $data['mname'] = $this->request->getPost('mname');
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $Obj->addnewmodule($data);
+        $Obj->adNewmodule($data);
     }
 
     /**
@@ -66,7 +66,7 @@ class ModuleController extends ControllerBase {
         $id = $this->request->get('id');
         $mname = $this->request->get('mname');
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $Obj->UpdateModuleById($id, $mname);
+        $Obj->updateModuleById($id, $mname);
     }
 
     /**
@@ -76,7 +76,7 @@ class ModuleController extends ControllerBase {
     public function deletemoduleAction() {
         $id = $this->request->get('id');
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $Obj->DeleteModuleById($id);
+        $Obj->deleteModuleById($id);
     }
 
 }

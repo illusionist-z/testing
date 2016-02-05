@@ -3,9 +3,6 @@
 namespace salts\Document\Models;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
-use Phalcon\Mvc\Controller;
-use Phalcon\Filter;
 
 /**
  * @author Yan Lin Pai

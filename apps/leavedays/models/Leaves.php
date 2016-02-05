@@ -130,7 +130,7 @@ class Leaves extends \Library\Core\BaseModel {
             $lastdata = ($list['0']['total_leavedays']);
         }
         if (isset($sdate) AND isset($edate) AND isset($desc)) {
-            $noti_id = rand();
+            $Noti_id = rand();
             $today = date("Y-m-d H:i:s");
             $checkday = date("Y-m-d", strtotime("+7 days"));
             $ssdate = date("Y-m-d", strtotime($sdate));
@@ -163,20 +163,20 @@ class Leaves extends \Library\Core\BaseModel {
                             . "'" . $today . "','" . $sdate . "',"
                             . "'" . $edate . "','" . $leave_day . "',"
                             . "'" . $type . "','" . $desc . "',"
-                            . "'" . $lastdata . "',0,'" . $noti_id . "',now())");
+                            . "'" . $lastdata . "',0,'" . $Noti_id . "',now())");
 
                     $users = $this->db->query("SELECT * FROM core_member where deleted_flag=0 ");
                     $users = $users->fetchall();
                     foreach ($users as $users) {
                         $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,"
                                 . "module_name,noti_id,noti_status) "
-                                . "VALUES('" . $name . "','" . $users['member_id'] . "','leaves','" . $noti_id . "',0)");
+                                . "VALUES('" . $name . "','" . $users['member_id'] . "','leaves','" . $Noti_id . "',0)");
                     }
 
 
                     $this->db->query("INSERT INTO core_notification_rel_member "
                             . "(creator_name,member_id,noti_id,status,module_name) "
-                            . "VALUES('" . $name . "','" . $uname . "','" . $noti_id . "',0,'leaves')");
+                            . "VALUES('" . $name . "','" . $uname . "','" . $Noti_id . "',0,'leaves')");
                     $cond['success'] = "Your Leave Applied Successfully!";
                 } else {
                     $cond['error'] = "End date must be greater than Start date";
@@ -315,14 +315,14 @@ class Leaves extends \Library\Core\BaseModel {
         $status = 1;
         $this->db->query("UPDATE leaves set"
                 . " leaves.leave_status='" . $status . "' "
-                . " WHERE leaves.noti_id='" . $noti_id . "'");
+                . " WHERE leaves.noti_id='" . $Noti_id . "'");
         $this->db->query($sql);
         $this->db->query("UPDATE core_notification set"
                 . " core_notification.noti_status=1  "
-                . "WHERE core_notification.noti_id='" . $noti_id . "'");
+                . "WHERE core_notification.noti_id='" . $Noti_id . "'");
         $this->db->query("UPDATE core_notification_rel_member "
                 . "set core_notification_rel_member.status=1,module_name='leaves',created_time='now()' "
-                . " WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
+                . " WHERE core_notification_rel_member.noti_id='" . $Noti_id . "'");
     }
 
     /**
@@ -336,13 +336,13 @@ class Leaves extends \Library\Core\BaseModel {
     public function rejectLeave($noti_id) {
         $this->db = $this->getDI()->getShared("db");
         $sql = "UPDATE leaves set leaves.leave_status=2 "
-                . "WHERE leaves.noti_id='" . $noti_id . "'";
+                . "WHERE leaves.noti_id='" . $Noti_id . "'";
         $this->db->query("UPDATE core_notification "
                 . "set core_notification.noti_status=1  "
-                . "WHERE core_notification.noti_id='" . $noti_id . "'");
+                . "WHERE core_notification.noti_id='" . $Noti_id . "'");
         $this->db->query("UPDATE core_notification_rel_member set "
                 . "core_notification_rel_member.status=1,module_name='leaves'"
-                . "  WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
+                . "  WHERE core_notification_rel_member.noti_id='" . $Noti_id . "'");
 
         $this->db->query($sql);
     }

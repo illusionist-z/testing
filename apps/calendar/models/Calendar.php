@@ -57,17 +57,17 @@ class Calendar extends Model {
     public function createEvent($member_id, $creator_name, $creator_id, $sdate, $edate, $title, $uname) {
         $noti_id = rand();
         $this->db = $this->getDI()->getShared("db");
-        $insert = "INSERT INTO calendar (member_id,member_name,title,startdate,enddate,allDay,noti_id,creator_id,created_dt) Values ('" . $member_id . "','" . $uname . "','" . $title . "','" . $sdate . "','" . $edate . "','true','" . $noti_id . "','" . $creator_id . "',now())";
+        $insert = "INSERT INTO calendar (member_id,member_name,title,startdate,enddate,allDay,noti_id,creator_id,created_dt) Values ('" . $member_id . "','" . $uname . "','" . $title . "','" . $sdate . "','" . $edate . "','true','" . $Noti_id . "','" . $creator_id . "',now())";
         $query = $this->db->query($insert);
         $admins = $this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_member.member_id != '" . $creator_id . "' ");
         $admins = $admins->fetchall();
         foreach ($admins as $admins) {
-            $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_name . "','" . $admins['member_id'] . "','calendar','" . $noti_id . "',0)");
+            $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_name . "','" . $admins['member_id'] . "','calendar','" . $Noti_id . "',0)");
         }
         $users = $this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id != '" . $creator_id . "' ");
         $users = $users->fetchall();
         foreach ($users as $users) {
-            $this->db->query("INSERT INTO core_notification_rel_member (creator_name,member_id,noti_id,status,module_name) VALUES('" . $creator_name . "','" . $users['member_id'] . "','" . $noti_id . "',1,'calendar')");
+            $this->db->query("INSERT INTO core_notification_rel_member (creator_name,member_id,noti_id,status,module_name) VALUES('" . $creator_name . "','" . $users['member_id'] . "','" . $Noti_id . "',1,'calendar')");
         }
         return $query;
     }

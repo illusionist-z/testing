@@ -22,7 +22,7 @@ class User extends Model {
      */
     public function userList($username) {
         if ($username == null) {
-            $user = Db\CoreMember::getusername();
+            $user = Db\CoreMember::getUserName();
         } else {
             $user = Db\CoreMember::getoneusername($username);
         }

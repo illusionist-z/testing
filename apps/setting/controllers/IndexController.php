@@ -41,7 +41,7 @@ class IndexController extends ControllerBase {
     /**
      * @author David JP <david.gnext@gmail.com>
      * @desc    $core_group = {}
-     * @Cover  Yan Lin Pai <wizardrider@gmail.com>
+     * @Version  Yan Lin Pai <wizardrider@gmail.com>
      * @desc    $core_groupid = {}
      * @desc    $core_user = {}
      */
@@ -61,8 +61,8 @@ class IndexController extends ControllerBase {
             $this->view->coreuser = $core_groupuser;
             $this->view->coreuser2 = $core_groupuser2;
             $id = $this->session->user['member_id'];
-            $noti = $coreuser->GetAdminNoti($id, 0);
-            $this->view->setVar("noti", $noti);
+            $Noti = $coreuser->getAdminNoti($id, 0);
+            $this->view->setVar("noti", $Noti);
         } else {
             $this->response->redirect('core/index');
         }
@@ -139,7 +139,7 @@ class IndexController extends ControllerBase {
         $permission_code = $this->request->getPost("permission_code");
         var_dump($permission_code);
         $core = new CorePermissionGroup();
-        $success = $core->corepermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
+        $success = $core->corePermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
         if ($success) {
             $this->view->disable();
             $this->response->redirect('setting/index/admin');
@@ -167,9 +167,9 @@ class IndexController extends ControllerBase {
         $this->response->redirect('setting/index/admin');
     }
 
-    public function settingmoduleAction() {
+    public function SettingModuleAction() {
         $UserList = new Db\CoreMember();
-        $username = $UserList::getinstance()->getusername();
+        $username = $UserList::getinstance()->getUserName();
         $this->view->setVar("member", $username);
     }
 
