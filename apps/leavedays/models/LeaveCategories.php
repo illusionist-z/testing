@@ -8,7 +8,7 @@ namespace salts\Leavedays\Models;
  * and open the template in the editor.
  */
 
-class LeaveCategories extends \Library\Core\BaseModel {
+class LeaveCategories extends \Library\Core\Models\Base {
 
     public function initialize() {
         parent::initialize();
