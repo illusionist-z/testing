@@ -19,21 +19,35 @@ class Auth extends Component {
      * @param type $param
      * @return type
      */
-    public function findCompDb($param) {
-        try {
-            $sql = "SELECT * FROM company_tbl where company_id=? and deleted_flag=0";
-            $rs = $this->getDI()->getShared("login_db")
-                    ->query($sql, array($param['company_id']));
-            $row = $rs->fetchArray();
+//    public function findcomp_db($param) {
+//        try {
+//            $sql = "SELECT * FROM company_tbl where company_id=? and deleted_flag=0";
+//            $rs = $this->getDI()->getShared("login_db")->query($sql, array($param['company_id']));
+//            $row = $rs->fetchArray(); 
+//        } catch (\Exception $e) {
+//            $di = FactoryDefault::getDefault();
+//            $di->getShared('logger')->WriteException($e);
+//        }
+//
+//        return $row;
+//    }
+
+       public function findcomp_db($param) {
+        try{
+        
+        $sql="SELECT * FROM company_tbl where company_id='". $param['company_id'] ."' and deleted_flag=0";
+       
+        $Result = $this->login_db->query($sql);
+        $Result = $Result->fetchArray();
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
         }
-
-        return $row;
+        
+        return $Result;
     }
-
-    public function findModule($company_module) {
+    
+    public function find_module($company_module) {
         $sql = "SELECT * FROM enable_module where company_id='" . $company_module . "' ";
         $Result = $this->login_db->query($sql);
         $Result = $Result->fetchAll();
@@ -61,7 +75,7 @@ class Auth extends Component {
         return $user;
     }
 
-    public function getPermit($loginParams) {
+    public function getpermit($loginParams) {
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $loginParams['password'];

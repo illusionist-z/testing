@@ -21,14 +21,14 @@ try {
         'Library\Core' => __DIR__.'/../library/core/',
         
         // set namespace for the core module
-        'salts\Core\Controllers' => '../apps/core/controllers/',
+//        'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => '../apps/core/models/',
-        'salts\Auth\Controllers' => '../apps/auth/controllers/',
-        'salts\Auth\Models' => '../apps/auth/models/',
-       
-      
-        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
-        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
+//        'salts\Auth\Controllers' => '../apps/auth/controllers/',
+//        'salts\Auth\Models' => '../apps/auth/models/',
+//       
+//      
+//        'salts\Dashboard\Models' => __DIR__.'/../apps/dashboard/models/',
+//        'salts\Attendancelist\Models' => __DIR__.'/../apps/attendancelist/models/'
     ));
 
     // register autoloader

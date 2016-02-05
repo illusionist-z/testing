@@ -338,5 +338,3 @@ class IndexController extends ControllerBase {
     }
 
 }
-                     
-                    $page = "http://".$localhost."/salts/auth/index/faileruser";

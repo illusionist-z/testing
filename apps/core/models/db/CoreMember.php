@@ -3,21 +3,21 @@
 namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
-use salts\Core\Models\Db\CoreMember;
+use Phalcon\Mvc\Model\Query; 
 use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
 /*
+ * TODO: delete [Kohei Iwasa]
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-
-class CoreMember extends \Library\Core\BaseModel {
+//  include_once '/var/www/html/salts/library/core/BaseModel.php';
+class CoreMember extends \Library\Core\Models\Base {
 
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
@@ -91,6 +91,7 @@ class CoreMember extends \Library\Core\BaseModel {
         foreach ($row as $rs) {
             echo '<li>' . $rs->full_name . '</li>';
         }
+        $this->find($rs);
         return $row;
     }
 
