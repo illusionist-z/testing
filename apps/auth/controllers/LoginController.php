@@ -26,7 +26,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = 'root';
+            $dbinfo['db_psw'] = '';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
@@ -44,7 +44,7 @@ class LoginController extends ControllerBase {
             
             $this->view->test = $login_params;
          
-            $companyDB = $ModelAuth->findCompDb($login_params);
+            //$companyDB = $ModelAuth->findcomp_db($login_params);
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
