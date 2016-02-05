@@ -180,7 +180,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @param type $filename
      * @return string
      */
-    public function addnewuser($member_id, $member) {
+    public function addNewUser($member_id, $member) {
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
         $today = date("Y-m-d H:i:s");

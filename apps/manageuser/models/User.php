@@ -20,7 +20,7 @@ class User extends Model {
      * @author david
      * 
      */
-    public function userlist($username) {
+    public function userList($username) {
         if ($username == null) {
             $user = Db\CoreMember::getusername();
         } else {
@@ -48,7 +48,7 @@ class User extends Model {
      * @return type
      * @author david
      */
-    public function useredit($id) {
+    public function userEdit($id) {
         $user = Db\CoreMember::findByMemberId($id);
         return $user;
     }
@@ -60,7 +60,7 @@ class User extends Model {
      * @return true or false
      * @param type $cond {array}
      */
-    public function editbycond($cond) {
+    public function editByCond($cond) {
         $res = array();
         $res['mail'] = filter_var($cond['email'], FILTER_VALIDATE_EMAIL) ? true : false;    //check valid mail
         $res['pno'] = filter_var($cond['pno'], FILTER_VALIDATE_REGEXP, //check valid phone no
@@ -79,7 +79,7 @@ class User extends Model {
         return $res;
     }
 
-    public function userdelete($id) {
+    public function userDelete($id) {
         $this->db = $this->getDI()->getShared("db");
         $query = "UPDATE core_member SET deleted_flag=1 where member_id ='" . $id . "'";
         $this->db->query($query);

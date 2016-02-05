@@ -14,7 +14,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/attendancelist/js/index.js');
-        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {

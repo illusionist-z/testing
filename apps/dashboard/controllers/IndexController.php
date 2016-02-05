@@ -17,7 +17,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name = $this->module_name;

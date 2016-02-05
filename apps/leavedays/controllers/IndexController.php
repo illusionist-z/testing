@@ -13,7 +13,7 @@ class IndexController extends ControllerBase {
     public $config;
 
     public function initialize() {
-        $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         parent::initialize();
         $this->setCommonJsAndCss();

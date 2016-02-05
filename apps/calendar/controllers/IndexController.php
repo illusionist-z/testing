@@ -77,7 +77,7 @@ class IndexController extends ControllerBase {
 
     public function addmemberAction() {
         $permit_name = $this->request->get("permit");
-        $id = $this->session->user['member_id'];
+        $id = $this->session->user['member_login_name'];
         $data = ($permit_name == $id ? 1 : $this->Calendar->addPermitName($permit_name, $id));
         echo json_encode($data);
         $this->view->disable();
