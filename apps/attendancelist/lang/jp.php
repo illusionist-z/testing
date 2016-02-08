@@ -45,19 +45,5 @@ $messages = array(
     "month_att_chart"=>"Monthly Attendance Chart",
     "att_person"=>" Attendance Person",
     "absent_leave_person"=>" Absent Person(Applied Leave)",
-    "absent_noleave_person"=>" Absent Person(No apply leave)",
-    
-        /**
-     * Header
-     */
-    "Help"=>"助けて",
-    "Notifications"=>"通知",
-    "View All"=>"すべて見ます",
-    "Member Since"=>"メンバー以来",
-    "Setting"=>"設定",
-    "Sign out"=>"サインアウト",
-    /**
-     * footer
-     */
-    "Change_Language"=>"言語を変えてください",
+    "absent_noleave_person"=>" Absent Person(No apply leave)"    
 );

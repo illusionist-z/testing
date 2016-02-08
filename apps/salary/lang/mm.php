@@ -96,21 +96,5 @@ $messages = array(
     "write_name"=>"Deduction အမ်ိဳးအစားရုိက္ထည့္ရန္",
     "write_amount"=>"Deduction ႏွုန္းမ်ားရုိက္တည့္ရန္",
     "save"=>"ထည့္မည္",
-    "cancel"=>"မလုပ္ေတာ့ပါ",
-    
-     
-        /**
-     * Header
-     */
-    "Help"=>"အကူအညီ",
-    "Notifications"=>"အေၾကာင္းၾကားခ်က္မ်ား",
-    "View All"=>"အားလံုးၾကည့္ရန္",
-    "Member Since"=>"စတင္ အသံုးျပဳေသာေန႔ရက္",
-    "Setting"=>"သတ္မွတ္ခ်က္မ်ား",
-    "Sign out"=>"ထြက္ခြာ",
-    /**
-     * footer
-     */
-    "Change_Language"=>"ဘာသာ စကားေျပာင္းရန္",
-    
+    "cancel"=>"မလုပ္ေတာ့ပါ"
 );
