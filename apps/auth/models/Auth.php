@@ -23,7 +23,7 @@ class Auth extends Component {
        
         try {
             $sql = "SELECT * FROM company_tbl where company_id='".$param['company_id']."' and deleted_flag=0";
-            
+            //print_r($sql);
 //            $rs = $this->getDI()->getShared("login_db")
 //                    ->query($sql, array($param['company_id']));
             $rs=$this->login_db->query($sql);
@@ -33,7 +33,7 @@ class Auth extends Component {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
         }
-        //print_r($row);exit;
+       //print_r($row);exit;
         return $row;
     }
     
@@ -51,6 +51,7 @@ class Auth extends Component {
      * @return boolan
      */
     public function Check($loginParams, & $user = null) {
+       
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $loginParams['password'];

@@ -26,7 +26,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = 'root';
+            $dbinfo['db_psw'] = '';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
@@ -38,7 +38,7 @@ class LoginController extends ControllerBase {
                 $this->response->redirect('auth/index/failersuperuser');
             }
         } else {
-
+            
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
             
@@ -48,6 +48,7 @@ class LoginController extends ControllerBase {
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
+                
                 $this->session->set('db_config', $companyDB);
 
                 // Module Chack
@@ -66,8 +67,7 @@ class LoginController extends ControllerBase {
                 $this->session->set('page_rule_group', $permission);
                 $user = array();
                 $this->session->set('user', $result);
-
-                date_default_timezone_set('Asia/Rangoon');
+          date_default_timezone_set('Asia/Rangoon');
 
                 // TODO: ここのオブジェクトを分けている理由を確認 [Kohei Iwasa]
                 $user_ip = $this->request->getPost('local');
@@ -116,7 +116,7 @@ class LoginController extends ControllerBase {
                     $this->response->redirect('auth/index/failer');
                 }
             } else {
-
+                
                 $this->response->redirect('auth/index/failer');
             }
             // When user's login succeed , move to dashboad

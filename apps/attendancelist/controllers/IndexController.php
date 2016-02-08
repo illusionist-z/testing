@@ -27,7 +27,7 @@ class IndexController extends ControllerBase {
                 $noti = $CoreMember->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
         $this->act_name = $this->router->getActionName();
         $this->view->t = $this->_getTranslation();
         $this->module_name = $this->router->getModuleName();

@@ -31,8 +31,8 @@ class IndexController extends ControllerBase {
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
-
-        $this->view->setVar("noti", $noti);
+        //print_r($noti);exit;
+        $this->view->setVar("Noti", $noti);
         $this->view->module_name = $this->router->getModuleName();
         $this->view->t = $this->_getTranslation();
         $this->act_name = $this->router->getModuleName();
@@ -132,7 +132,7 @@ class IndexController extends ControllerBase {
     public function leavelistAction() {
 
 
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
 
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
@@ -183,7 +183,7 @@ class IndexController extends ControllerBase {
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
             $noti = $Admin->GetAdminNoti($id);
-            $this->view->setVar("noti", $noti);
+            $this->view->setVar("Noti", $noti);
             $LeaveCategories = new LeaveCategories();
             $LeaveSetting = new LeavesSetting();
             $typelist = $LeaveCategories->getLeaveType();
@@ -307,7 +307,7 @@ class IndexController extends ControllerBase {
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
 
         $Result = $Admin->checkLeave();
 
@@ -325,7 +325,7 @@ class IndexController extends ControllerBase {
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
 
         $Result = $Admin->leaveMost();
 

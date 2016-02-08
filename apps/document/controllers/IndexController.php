@@ -47,7 +47,7 @@ class IndexController extends ControllerBase {
             }
         }
 
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $Noti);
     }
 
     /**
