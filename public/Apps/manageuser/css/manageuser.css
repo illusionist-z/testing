@@ -1,0 +1,8 @@
+/* 
+    Created on : Sep 2, 2015, 3:14:21 PM
+    Author     : David JP <david.gnext@gmail.com>
+*/
+.adduser-table::-webkit-input-placeholder{
+    color: red;
+}
+.ui-front { z-index: 99000 !important ;}
