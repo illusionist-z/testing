@@ -69,7 +69,7 @@ class LoginController extends ControllerBase {
                 $user = array();
                 $this->session->set('user', $result);
                 date_default_timezone_set('Asia/Rangoon');
-
+                
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
                 $this->session->set('tokenpush', $member_id);
