@@ -27,17 +27,10 @@
                         </div>
                         <br>
                         <input type="text" name="code" id="code" class="form-control" placeholder="######"/>
-
-                        <?php
-                        foreach ($Result as $result) {
-                            ?>      
+                     
                             We sent your code to :               
-                            <span id="textmail">  <img src="<?php echo $baseUri; ?>common/img/message.png">  <?php echo $result ['member_mail']; ?>    </span>
-                            <input type="hidden" name="member_mail" id="emailaddress" class="form-control"  value="<?php echo $result ['member_mail']; ?>" />  
-
-                            <?php
-                        }
-                        ?>
+                            <span id="textmail">  <img src="<?php echo $baseUri; ?>common/img/message.png">  <?php echo $Result->member_mail; ?>    </span>
+                            <input type="hidden" name="member_mail" id="emailaddress" class="form-control"  value="<?php echo $Result->member_mail; ?>" />  
 
                     </div>
 
