@@ -3,6 +3,7 @@
 namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
+//use salts\Auth\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 use Phalcon\Filter;
 
@@ -12,9 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/auth/js/forgot.js');
-
-
-//        $Filter->sanitize( );
+        $this->assets->addCss('common/css/css/style.css');
     }
 
     /**
@@ -226,9 +225,10 @@ class IndexController extends ControllerBase {
     }
 
     public function sendMailAction() {
-        $member_mail = $this->request->get('email');
-        $Admin = new Db\CoreMember;
-        $result = $Admin->findEmail($member_mail);
+        $filter = new Filter();
+        $member_mail = $filter->sanitize($this->request->get('email'),"string");
+        $Admin = new \salts\Auth\Models\CoreMember();
+        $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
             $this->view->setVar("Result", $result);
         } else {
@@ -242,11 +242,11 @@ class IndexController extends ControllerBase {
     }
 
     public function checkMailAction() {
-        $member_mail = $this->request->get('email');
-        $Admin = new CoreMember();
-        $result = $Admin->findEmail($member_mail);
+        $filter = new Filter();
+        $member_mail = $filter->sanitize($this->request->get('email'), "string");
+        $Admin = new \salts\Auth\Models\CoreMember();
+        $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
-
             $msg = "success";
         } else {
             $msg = "fail";
@@ -259,9 +259,7 @@ class IndexController extends ControllerBase {
         $filter = new Filter();
         $code = $this->request->get('code');
         $email = $filter->sanitize($this->request->get('email'), "string");
-        //  $Admin = new Db\CoreMember;
-        //$result = $Admin->findCode($code, $email);
-        $FindCode = new \salts\Auth\Models\ForgotPassword();
+        $FindCode = new \salts\Auth\Models\CoreForgotPassword();
         $result = $FindCode::find(
                         array(
                             "check_mail = '$email'",
@@ -282,10 +280,22 @@ class IndexController extends ControllerBase {
     }
 
     public function resetPasswordAction() {
-        $member_mail = $this->request->get('email');
-        $Admin = new Db\CoreMember;
-        $result = $Admin->findEmail($member_mail);
-        $this->view->setVar("Result", $result);
+        $filter = new Filter();
+        $member_mail = $filter->sanitize($this->request->get('email'),'string');
+        $Admin = new \salts\Auth\Models\CoreMember();
+        $result = $Admin::find(
+                        array(
+                            "member_mail = '$member_mail'",
+                            "deleted_flag = 0"
+                        )
+        );
+        $data = [];
+        foreach ($result as $value) {
+            $data[] = $value->member_profile;
+            $data[] = $value->member_mail;
+            $data[] = $value->member_login_name;
+        }
+        $this->view->setVar("Result", $data);
     }
 
     public function changePasswordAction() {
@@ -300,14 +310,9 @@ class IndexController extends ControllerBase {
                         )
         );
         foreach ($result as $value) {
-            //$name = $value->member_password;
             $value->member_password = sha1($newpass);
             $value->update();
         }
-
-        // $core->member_password = sha1($newpass);
-
-
         if ($value) {
             $msg = "success";
         } else {
@@ -320,15 +325,11 @@ class IndexController extends ControllerBase {
     public function sendToMailAction() {
         $filter = new Filter();
         $getemail = $filter->sanitize($this->request->get('email'), 'string');
-        //  $Admin = new CoreMember();
-        $Insert = new \salts\Auth\Models\ForgotPassword();
+        $Insert = new \salts\Auth\Models\CoreForgotPassword();
         $token = uniqid(bin2hex(mcrypt_create_iv(1, MCRYPT_DEV_RANDOM)));
-        // $Admin->insertEmailAndToken($getemail, $token);
         $Insert->check_mail = $getemail;
         $Insert->token = $token;
         $Insert->save();
-        // $result = $Admin->checkYourMail($getemail);
-        //   $Find = $Insert::findFirstByCheckMail($getemail);
         $Find = $Insert::find(array(
                     "check_mail = '$getemail'",
                     "order" => "curdate DESC",

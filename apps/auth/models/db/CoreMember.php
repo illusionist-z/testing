@@ -1,6 +1,7 @@
 <?php
 
 namespace salts\Core\Models\Db;
+//namespace salts\Auth\Models\Db;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
@@ -17,7 +18,7 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
-class CoreMember extends \Library\Core\BaseModel {
+class CoreMember extends \Library\Core\Models\Base {
     
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
