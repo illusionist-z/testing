@@ -294,13 +294,15 @@ class CoreMember extends \Library\Core\BaseModel {
      * for user notification
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function getUserNoti($id, $type) {
+    public function GetUserNoti($id, $type) {
+        echo "aa";exit;
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
         $UserNoti = $this->db->query($sql);
 
         $Noti = $UserNoti->fetchall();
+        print_r($Noti);echo "aa";
         $i = 0;
         foreach ($Noti as $Noti) {
 
@@ -317,6 +319,7 @@ class CoreMember extends \Library\Core\BaseModel {
                 }
             }
         }
+        exit;
         return $data;
     }
 

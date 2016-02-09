@@ -33,7 +33,19 @@ class Leaves extends \Library\Core\Models\Base {
                 ->execute();
         return $row;
     }
-
+      public function getNotiInfo($module_name, $Noti_id) {
+            $row = $this->modelsManager->createBuilder()
+                    ->columns(array('core.*', 'leaves.*'))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
+                    ->Where('leaves.noti_id = :Noti_id:', array('Noti_id' => $Noti_id))
+                    
+                    ->getQuery()
+                    ->execute();
+            
+         return $row;
+        
+    }
     public function getAbsent() {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
@@ -315,14 +327,14 @@ class Leaves extends \Library\Core\Models\Base {
         $status = 1;
         $this->db->query("UPDATE leaves set"
                 . " leaves.leave_status='" . $status . "' "
-                . " WHERE leaves.noti_id='" . $Noti_id . "'");
+                . " WHERE leaves.noti_id='" . $noti_id . "'");
         $this->db->query($sql);
         $this->db->query("UPDATE core_notification set"
                 . " core_notification.noti_status=1  "
-                . "WHERE core_notification.noti_id='" . $Noti_id . "'");
+                . "WHERE core_notification.noti_id='" . $noti_id . "'");
         $this->db->query("UPDATE core_notification_rel_member "
                 . "set core_notification_rel_member.status=1,module_name='leaves',created_time='now()' "
-                . " WHERE core_notification_rel_member.noti_id='" . $Noti_id . "'");
+                . " WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
     }
 
     /**

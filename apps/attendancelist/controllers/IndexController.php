@@ -17,6 +17,7 @@ class IndexController extends ControllerBase {
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
+       
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
@@ -24,14 +25,17 @@ class IndexController extends ControllerBase {
                 $noti = $CoreMember->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
+                
                 $noti = $CoreMember->GetUserNoti($id, 1);
+               
             }
         }
+        
         $this->view->setVar("Noti", $noti);
         $this->act_name = $this->router->getActionName();
         $this->view->t = $this->_getTranslation();
         $this->module_name = $this->router->getModuleName();
-        //$this->permission = $this->setPermission($this->module_name);
+        $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name = $this->module_name;
         //$this->view->permission = $this->permission;        
         $this->moduleIdCall = $CoreMember->ModuleIdSetPermission($this->module_name, $this->session->module);
@@ -42,8 +46,8 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction() {
-        
-        if ($this->moduleIdCall == 0) {
+       
+        if ($this->moduleIdCall == 1) {
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
@@ -55,6 +59,7 @@ class IndexController extends ControllerBase {
             $Username = $UserList->getUserName();
             $AttList = new \salts\Attendancelist\Models\Attendances();
             $Result_Attlist = $AttList->getTodayList($name);
+//            print_r($Result_Attlist);exit;
             if ($this->permission == 1) {
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;
@@ -101,14 +106,16 @@ class IndexController extends ControllerBase {
      * 
      */
     public function monthlylistAction() {
+        //print_r($this->moduleIdCall);exit;
         if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
-            $UserList = new Db\CoreMember();
-            $UserName = $UserList::getinstance()->getusername();
+            $UserList = new \salts\Attendancelist\Models\Attendances();
+            $UserName = $UserList->getusername();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthly_list = $Attendances->showAttList();
             //$coreid = new CorePermissionGroupId();
+         
             if ($this->permission == 1) {
                 $this->view->monthlylist = $monthly_list;
                 $this->view->setVar("Month", $month);
