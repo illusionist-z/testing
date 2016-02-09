@@ -15,8 +15,8 @@ class SearchController extends ControllerBase {
         $ltype = $this->request->get('ltype');
         $month = $this->request->get('month');
         $namelist = $this->request->get('namelist');
-        $search_leave = new \salts\Leavedays\Models\Leaves();
-        $result = $search_leave->search($ltype, $month, $namelist);
+        $SearchLeave = new \salts\Leavedays\Models\Leaves();
+        $result = $SearchLeave->search($ltype, $month, $namelist);
         $this->view->disable();
         echo json_encode($result);
     }

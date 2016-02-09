@@ -2,13 +2,8 @@
 
 namespace salts\Leavedays\Models;
 
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-use salts\Leavedays\Models\LeavesSetting;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Validation\Validator\Date;
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
@@ -27,7 +22,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @param type $username
      * @return type
      */
-    public function getleavelist() {
+    public function getLeaveList() {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
@@ -39,7 +34,7 @@ class Leaves extends \Library\Core\Models\Base {
         return $row;
     }
 
-    public function getabsent() {
+    public function getAbsent() {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
@@ -58,7 +53,7 @@ class Leaves extends \Library\Core\Models\Base {
         return $absent;
     }
 
-    public function getabsentbyId($id) {
+    public function getAbsentById($id) {
         $result = $this->db->query("select * from attendances where attendances.member_id = '" . $id . "' and attendances.status=2");
         $data = count($result->fetchall());
         return $data;
@@ -113,9 +108,9 @@ class Leaves extends \Library\Core\Models\Base {
      * @author David JP <david.gnext@gmail.com>
      * @version Su Zin Kyaw< suzinkyaw.gnext@gmail.com>
      */
-    public function applyleave($uname, $sdate, $edate, $type, $desc, $creator_id) {
-        $cm = new CoreMember();
-        $name = $cm->getUserNameById($creator_id);
+    public function applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id) {
+        $CoreMember = new CoreMember();
+        $name = $CoreMember->getUsernameById($creator_id);
         $filter = new Filter();
         $uname = $filter->sanitize($uname, "string");
         $type = $filter->sanitize($type, "string");
@@ -123,7 +118,7 @@ class Leaves extends \Library\Core\Models\Base {
 
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
-        $date = $this->getcontractdata($uname);
+        $date = $this->getContractData($uname);
 
         $ldata = $this->db->query("SELECT total_leavedays FROM leaves  "
                 . "WHERE leaves.member_id= '" . $uname . "' ORDER BY date DESC LIMIT 1 ");
@@ -221,7 +216,7 @@ class Leaves extends \Library\Core\Models\Base {
      * get start date and end date 
      * @author Su Zin Kyaw
      */
-    public function getcontractdata($id) {
+    public function getContractData($id) {
         $credt = $this->db->query("SELECT * "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchArray();
@@ -244,7 +239,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @return type
      * @author Su Zin Kyaw
      */
-    public function getuserleavelist($leave_type, $mth, $id) {
+    public function getUserLeaveList($leave_type, $mth, $id) {
         //select leave list
         $filter = new Filter();
         $leave_type = $filter->sanitize($leave_type, "string");
@@ -310,9 +305,9 @@ class Leaves extends \Library\Core\Models\Base {
      * when admin accept leavedays request from user
      * @author Su Zin kyaw
      */
-    public function acceptleave($id, $days, $Noti_id) {
+    public function acceptLeave($id, $days, $noti_id) {
         $this->db = $this->getDI()->getShared("db");
-        $date = $this->getcontractdata($id);
+        $date = $this->getContractData($id);
         $sql = "UPDATE leaves set "
                 . "leaves.total_leavedays=total_leavedays+'" . $days . "' "
                 . "WHERE leaves.member_id='" . $id . "'  AND start_date "
@@ -338,7 +333,7 @@ class Leaves extends \Library\Core\Models\Base {
      * when admin reject leavedays request from user
      * @author Su Zin Kyaw<gnext.suzin@gmail.com
      */
-    public function rejectleave($Noti_id) {
+    public function rejectLeave($noti_id) {
         $this->db = $this->getDI()->getShared("db");
         $sql = "UPDATE leaves set leaves.leave_status=2 "
                 . "WHERE leaves.noti_id='" . $Noti_id . "'";
@@ -352,7 +347,7 @@ class Leaves extends \Library\Core\Models\Base {
         $this->db->query($sql);
     }
 
-    public function getleavesetting() {
+    public function getLeaveSetting() {
         $row = $this->modelsManager->createBuilder()
                 ->columns('max_leavedays,fine_amount')
                 ->from('salts\Leavedays\Models\LeavesSetting')
@@ -398,7 +393,7 @@ class Leaves extends \Library\Core\Models\Base {
         return $res;
     }
 
-    public function uservalidation($data) {
+    public function userValidation($data) {
         $res = array();
         $validate = new Validation();
 

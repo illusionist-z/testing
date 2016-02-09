@@ -15,7 +15,7 @@ class LeavesSetting extends \Library\Core\Models\Base {
         $this->db = $this->getDI()->getShared("db");
     }
 
-    public function getleavesetting() {
+    public function getLeaveSetting() {
         $row = $this->modelsManager->createBuilder()
                 ->columns('max_leavedays,fine_amount')
                 ->from('salts\Leavedays\Models\LeavesSetting')
@@ -24,7 +24,7 @@ class LeavesSetting extends \Library\Core\Models\Base {
         return $row;
     }
 
-    public function editleavesetting($max_leavedays) {
+    public function editLeaveSetting($max_leavedays) {
         try {
             $sql = "Update leaves_setting SET max_leavedays ='" . $max_leavedays . "' ";
             $this->db->query($sql);

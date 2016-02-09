@@ -53,13 +53,13 @@ if ($offset < 0) {
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="display:none;">
                     <?php
                     $filter = new Filter();
 
                     foreach ($attlist as $result) {
                         ?>
-                        <tr>                    
+                        <tr>
                             <td><?php
                                 $date = date('Y-m-d');
                                 echo $date;

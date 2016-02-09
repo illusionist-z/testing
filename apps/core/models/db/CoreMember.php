@@ -113,7 +113,7 @@ class CoreMember extends \Library\Core\Models\Base {
         return $getname;
     }
 
-    public function getUserNameById($id) {
+    public function getUsernameById($id) {
 
         $sql = "select * from core_member WHERE member_id ='" . $id . "'";
         $result = $this->db->query($sql);

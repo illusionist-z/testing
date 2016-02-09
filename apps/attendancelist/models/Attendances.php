@@ -15,7 +15,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function gettodaylist($name) {
+    public function getTodayList($name) {
         $today = date("Y:m:d");
 
 
@@ -27,7 +27,7 @@ class Attendances extends Model {
                     ->where('core.member_login_name = :name:', array('name' => $name))
                     ->andWhere('attendances.att_date = :today:', array('today' => $today))
                     ->andWhere('core.deleted_flag = 0')
-                    ->andWhere('attendances.status = 0')
+                    ->andWhere('attendances.status = 0 OR attendances.status = 3')
                     ->getQuery()
                     ->execute();
         } else {
@@ -37,7 +37,7 @@ class Attendances extends Model {
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('attendances.att_date = :today:', array('today' => $today))
                     ->andWhere('core.deleted_flag = 0')
-                    ->andWhere('attendances.status=0')
+                    ->andWhere('attendances.status = 0 OR attendances.status = 3')
                     ->orderBy('attendances.checkin_time DESC')
                     ->getQuery()
                     ->execute();
@@ -50,7 +50,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function getUserName() {
+    public function getUsername() {
         $user_name = $this->db->query("SELECT * FROM core_member");
         $getname = $user_name->fetchall();
         return $getname;
@@ -102,7 +102,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function showattlist() {
+    public function showAttList() {
         //search monthly list data
         $year = date('Y');
         $month = date('m');
@@ -168,7 +168,8 @@ class Attendances extends Model {
     }
 
     public function GetAbsentList() {
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances where att_date = CURRENT_DATE and status = 0) AND deleted_flag=0 order by created_dt desc";
+        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances "
+                . "where att_date = CURRENT_DATE and (status = 0 or status = 3)) AND deleted_flag=0 order by created_dt desc";
         $list = $this->db->query($query);
         $absentlist = $list->fetchall();
         return $absentlist;
@@ -198,7 +199,7 @@ class Attendances extends Model {
         return $localtime;
     }
 
-    public function search_attlist($year, $month, $username) {
+    public function searchAttList($year, $month, $username) {
 
         try {
             $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id=attendances.member_id ";
@@ -215,7 +216,7 @@ class Attendances extends Model {
         return $row;
     }
 
-    public function current_attlist() {
+    public function currentAttList() {
         try {
             $select = "Select group_concat(DAY(att_date)) as day,attendances.member_id,group_concat(status) as status,member_login_name from attendances JOIN core_member ON attendances.member_id = core_member.member_id where MONTH(CURRENT_DATE) = MONTH(attendances.att_date) group by core_member.member_id desc";
             $data = $this->db->query($select);
@@ -270,7 +271,7 @@ class Attendances extends Model {
         return $result;
     }
 
-    public function getcontractdata($id) {
+    public function getContractData($id) {
         $credt = $this->db->query("SELECT * "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchArray();

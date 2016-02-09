@@ -17,15 +17,15 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
 
         // Module ID Filter Start By (1,0)
-        $moduleIdCallCore = new Db\CoreMember();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        $ModuleIdCallCore = new Db\CoreMember();
+        $this->moduleIdCall = $ModuleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
 
         // Module ID Filter Start By (Module Name)        
@@ -50,38 +50,38 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {
-        $coreuser2 = new CorePermissionGroup();
-        $core_groupuser2 = $coreuser2::find();
+        $CoreUser = new CorePermissionGroup();
+        $core_groupuser2 = $CoreUser::find();
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
-                $Noti = $Admin->getAdminNoti($id, 0);
+                $noti = $Admin->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $Noti = $Admin->getUserNoti($id, 1);
+                $noti = $Admin->GetUserNoti($id, 1);
             }
         }
 
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("noti", $noti);
         //get last create member
         $CMember = new Db\CoreMember();
-        $GetName = $CMember::getinstance()->getLastName();
-        $newmember = count($GetName);
+        $Get_Name = $CMember::getinstance()->getlastname();
+        $new_member = count($Get_Name);
         //get most leave name
         $CheckLeave = new \salts\Dashboard\Models\Attendances();
-        $leave_name = $CheckLeave->checkleave();
-        $status = $CheckLeave->todayattleave();
-        $coreid = new \salts\Dashboard\Models\CorePermissionGroupId();
+        $leave_name = $CheckLeave->checkLeave();
+        $status = $CheckLeave->todayAttLeave();
+        //$coreid = new \salts\Dashboard\Models\CorePermissionGroupId();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'admin_dashboard') {
                 $this->view->setVar("attname", $status['att']);
                 $this->view->setVar("absent", $status['absent']);
                 $this->view->setVar("nlname", $leave_name['noleave_name']);  //get current month no taken leave name
                 $this->view->setVar("lname", $leave_name['leave_name']);
-                $this->view->setVar("name", $GetName);
-                $this->view->setVar("newnumber", $newmember);
+                $this->view->setVar("name", $Get_Name);
+                $this->view->setVar("newnumber", $new_member);
                 $this->view->t = $this->_getTranslation();
             } else if ($key_name == 'user_dashboard') {
                 $this->view->disable();
@@ -101,15 +101,15 @@ class IndexController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
             echo $key_name;
             if ($key_name == 'show_admin_notification') {
-                $Noti = $User->getAdminNoti($id, 0);
+                $noti = $User->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $Noti = $User->getUserNoti($id, 1);
+                $noti = $User->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("noti", $noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
-        $att_status = $Attendances->userattleave($id);
+        $att_status = $Attendances->userAttLeave($id);
         $this->view->setVar("numatt", $att_status['att']);
         $this->view->setVar("numleaves", $att_status['absent']);
         $this->view->t = $this->_getTranslation();
@@ -137,10 +137,11 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $note = $this->request->get('note');
         $add = $this->session->location['location'];
-        $Noti_Creatorid = $User->GetAdminstratorId();
-        $creator_id = $Noti_Creatorid[0]['rel_member_id'];
-        $checkin = new \salts\Dashboard\Models\Attendances();
-        $status = $checkin->setcheckintime($id, $note, $add, $creator_id);
+        $offset = $this->session->location['offset'];
+        $noti_Creatorid = $User->GetAdminstratorId();
+        $creator_id = $noti_Creatorid[0]['rel_member_id'];
+        $CheckIn = new \salts\Dashboard\Models\Attendances();
+        $status = $CheckIn->setCheckInTime($id, $note, $add, $creator_id,$offset);
         $this->view->disable();
         echo json_encode($status);
     }
@@ -151,8 +152,9 @@ class IndexController extends ControllerBase {
      */
     public function checkoutAction() {
         $id = $this->session->user['member_id'];
-        $checkin = new \salts\Dashboard\Models\Attendances();
-        $status = $checkin->setcheckouttime($id);
+        $offset = $this->session->location['offset'];
+        $CheckOut = new \salts\Dashboard\Models\Attendances();
+        $status = $CheckOut->setCheckOutTime($id,$offset);
         $this->view->disable();
         echo json_encode($status);
     }

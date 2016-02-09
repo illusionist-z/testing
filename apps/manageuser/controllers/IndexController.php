@@ -28,17 +28,17 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $Noti = $Admin->getAdminNoti($id, 0);
+                $noti = $Admin->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $Noti = $Admin->getUserNoti($id, 1);
+                $noti = $Admin->GetUserNoti($id, 1);
             }
         }
 
-        $moduleIdCallCore = new Db\CoreMember();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        $ModuleIdCallCore = new Db\CoreMember();
+        $this->moduleIdCall = $ModuleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("noti", $noti);
     }
 
     /**
@@ -53,9 +53,9 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
         $this->assets->addJs('apps/manageuser/js/search.js');
-        $getname = $User::getinstance()->getUserName();
+        $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
-        $list = $this->user->userlist($username);
+        $list = $this->user->userList($username);
         $member_count = new Db\CoreMember();
         $member_count_number = $member_count->getNumberCount();
         $this->view->member_count_number = $member_count_number;
@@ -72,7 +72,7 @@ class IndexController extends ControllerBase {
     //for monthly list autocomplete
     public function usernameautolistAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autoUsername();
+        $Username = $UserList->autousername();
         $this->view->disable();
         echo json_encode($Username);
     }
@@ -116,7 +116,7 @@ class IndexController extends ControllerBase {
             $edit[1]["placeholder12"] = $t->_("placeholder12");
             echo json_encode($edit);
         } else {
-            $res = $this->user->useredit($type);
+            $res = $this->user->userEdit($type);
             $edit[0] = $res[0];
             $edit[1]["edit"] = $t->_("edit_user");
             $edit[1]["id"] = $t->_("id");
@@ -143,7 +143,7 @@ class IndexController extends ControllerBase {
      */
     public function deleteuserAction() {
         $id = $this->request->get('data');
-        $this->user->userdelete($id);
+        $this->user->userDelete($id);
         $this->view->disable();
     }
 
@@ -162,7 +162,7 @@ class IndexController extends ControllerBase {
         $cond['pno'] = $this->request->get('pno');
         $cond['address'] = $this->request->get('address');
         $cond['work_sdate'] = $this->request->get('work_sdate');
-        $result = $this->user->editbycond($cond);
+        $result = $this->user->editByCond($cond);
         echo json_encode($result);             // send validating data
         $this->view->disable();
     }
@@ -182,8 +182,8 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function getpermitAction() {
-        $permission = new CorePermissionGroupId();
-        $result = $permission->getPermitName();
+        $Permission = new CorePermissionGroupId();
+        $result = $Permission->getPermitName();
         echo json_encode($result);
         $this->view->disable();
     }

@@ -3,7 +3,7 @@
 use Phalcon\Mvc\Application;
 use Phalcon\Config\Adapter\Ini;
 
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 //$debug = new \Phalcon\Debug();
 //$debug->listen();
 
@@ -24,14 +24,14 @@ try {
 //        'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => '../apps/core/models/',
 //        'salts\Auth\Controllers' => '../apps/auth/controllers/',
-//        'salts\Auth\Models' => '../apps/auth/models/',
+    
     ));
 
     // register autoloader
     $loader->register();
 
     // get config
-    $config = new Ini(__DIR__ . '/../config/config.ini');
+    $config = new Ini(__DIR__ . '/../config/org/config.ini');
 
     // Create a DI
     $di = new \Phalcon\DI\FactoryDefault();
@@ -63,7 +63,7 @@ try {
     /**
      * Module config 
      */
-    require __DIR__ . '/../library/core/module_config.php';
+    require __DIR__ . '/../library/core/models/Config.php';
     echo $application->handle()->getContent();
 } catch (Phalcon\Exception $e) {
     $logString = $e->getMessage() . " [{$e->getFile()}({$e->getLine()})]" . PHP_EOL

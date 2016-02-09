@@ -53,7 +53,7 @@ var Categories = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "delete_ltype",
+            url: "deleteListType",
             success: function () {
 
                 d.dialog("close");
@@ -66,7 +66,7 @@ var Categories = {
     Add: function () {
 
         $.ajax({
-            url: "add_ltype",
+            url: "addListType",
             type: "get",
             success: function (d) {
                 var result = $.parseJSON(d);
@@ -114,7 +114,7 @@ var Categories = {
         $.ajax({
             type: 'POST',
             data: form.serialize(),
-            url: "add_ltype",
+            url: "addListType",
             success: function () {
                 d.dialog("close");
             }

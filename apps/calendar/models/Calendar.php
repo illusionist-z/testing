@@ -54,8 +54,8 @@ class Calendar extends Model {
      * @author David
      * @version Su Zin Kyaw
      */
-    public function create_event($member_id, $creator_name, $creator_id, $sdate, $edate, $title, $uname) {
-        $Noti_id = rand();
+    public function createEvent($member_id, $creator_name, $creator_id, $sdate, $edate, $title, $uname) {
+        $noti_id = rand();
         $this->db = $this->getDI()->getShared("db");
         $insert = "INSERT INTO calendar (member_id,member_name,title,startdate,enddate,allDay,noti_id,creator_id,created_dt) Values ('" . $member_id . "','" . $uname . "','" . $title . "','" . $sdate . "','" . $edate . "','true','" . $Noti_id . "','" . $creator_id . "',now())";
         $query = $this->db->query($insert);
@@ -76,14 +76,14 @@ class Calendar extends Model {
      * @desc   edit event
      * @author David
      */
-    public function edit_event($name, $sdate, $edate, $title, $id, $member_id) {
+    public function editEvent($name, $sdate, $edate, $title, $id, $member_id) {
         $this->db = $this->getDI()->getShared("db");
         $update = "UPDATE calendar SET member_name ='" . $name . "',title ='" . mysql_real_escape_string($title) . "',startdate='" . $sdate . "',enddate='" . $edate . "',member_id ='" . $member_id . "' WHERE id='" . $id . "'";
         $query = $this->db->query($update);
         return $query;
     }
 
-    public function getid_name($id) {
+    public function getIdName($id) {
         $this->db = $this->getDI()->getShared("db");
         $getname = "Select member_name from calendar where id='" . $id . "'";
         $query = $this->db->query($getname);
@@ -95,13 +95,13 @@ class Calendar extends Model {
      * @since 27/7/15
      * @author David
      */
-    public function delete_event($id) {
+    public function deleteEvent($id) {
         $this->db = $this->getDI()->getShared("db");
         $delete = "DELETE FROM calendar WHERE id='" . $id . "'";
         $query = $this->db->query($delete);
     }
 
-    public function remove_member($remove_id, $id) {
+    public function removeMember($remove_id, $id) {
         $remove_id = implode("','", $remove_id);
         $query = "update member_event_permission set delete_flag =1 where permit_name in ('$remove_id') and member_name = '" . $id . "'";
         $this->db->query($query);
@@ -113,7 +113,7 @@ class Calendar extends Model {
      * @param type $id    
      * @desc    event permit action
      */
-    public function add_permit_name($permit_name, $id) {
+    public function addPermitName($permit_name, $id) {
         $query = "Select * from member_event_permission where permit_name ='" . $permit_name . "' and member_name = '" . $id . "' ";
 
         $result = $this->db->query($query);
@@ -148,7 +148,7 @@ class Calendar extends Model {
      *  type get $member_id
      * @author Saw Zin Min Tun
      */
-    public function memidcal($uname) {
+    public function memIdCal($uname) {
         $sql = "select * from core_member WHERE full_name ='" . $uname . "'";
         $result = $this->db->query($sql);
         $row = $result->fetchall();

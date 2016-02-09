@@ -392,7 +392,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function checkleave() {
+    public function checkLeave() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
 
@@ -410,7 +410,7 @@ class CoreMember extends \Library\Core\BaseModel {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function leavemost() {
+    public function leaveMost() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken
