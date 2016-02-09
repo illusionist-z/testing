@@ -7,6 +7,7 @@
 var Leave = {}, dict = [];
 
 Leave.init = function (reload) {
+    $('tbody#salary_list').find("tr").length > 0  ? "" : Leave.Msgdisplay();
     if (reload) {
         $.ajax({
             url: 'autolist',
@@ -21,6 +22,10 @@ Leave.init = function (reload) {
 
         });
     }
+};
+Leave.Msgdisplay = function () {
+      var th_length = $(".listtbl thead th").length;
+         $(".listtbl tbody").append("<td colspan="+th_length+"><center>No data to display</center></td>");
 };
 Leave.List = function () {
     Leave.init();

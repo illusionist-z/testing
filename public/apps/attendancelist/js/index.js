@@ -10,8 +10,9 @@ var dict = [];   //for autocomplete
  * @version 24/8/2015 David
  */
 var Attendance = {
-    init: function (reload) {
-        if (reload) {
+    init: function (reload) {    
+        $('.listtbl tbody').find("tr").length > 0  ? "" : Attendance.Msgdisplay();
+            if (reload) {
             $.ajax({
                 url: 'autolist',
                 method: 'GET',
@@ -24,6 +25,10 @@ var Attendance = {
                 }
             });
         }
+    },
+    Msgdisplay : function () {
+           var th_length = $(".listtbl thead th").length;
+         $(".listtbl tbody").append("<td colspan="+th_length+"><center>No data to display</center></td>");
     },
     time_edit: function (id) {
         $.ajax({

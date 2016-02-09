@@ -144,8 +144,9 @@ class IndexController extends ControllerBase {
     public function monthlysalaryAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/addsalary.js');
+        $currentPage = $this->request->get("page");
         $SalaryDetail = new SalaryDetail();
-        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary();
+        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
         $this->view->module_name = $this->router->getModuleName();
         if ($this->permission === 1) {
             $this->view->setVar("geteachmonthsalarys", $get_eachmonth_salary);
