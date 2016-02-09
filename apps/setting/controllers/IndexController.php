@@ -11,6 +11,7 @@ use salts\Setting\Models\CorePermissionRelMember;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 use Phalcon\Http\Response;
+use Phalcon\Filter;
 
 /**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
@@ -30,12 +31,15 @@ class IndexController extends ControllerBase {
         $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getActionName();
         $this->permission = $this->setPermission($this->act_name);
-
+                                    
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
+        
+        $filter = new Filter();
+        
     }
 
     /**
@@ -55,7 +59,6 @@ class IndexController extends ControllerBase {
             $coremember = $corememberid::find();
             $core_groupuser2 = $coreuser2::find();
             $core_groupuser = $coreuser->getgroupid();
-
             $this->view->coreid = $core_groupid;
             $this->view->coremember = $coremember;
             $this->view->coreuser = $core_groupuser;
@@ -85,7 +88,9 @@ class IndexController extends ControllerBase {
      * @option[] - return array
      */
     public function AddPageRuleAction() {
-        $creator_id = $this->session->user['member_id'];
+         
+        $filter = new Filter();
+        $creator_id = $filter->sanitize($this->session->user['member_id'],'string');;
         $created_dt = date("Y-m-d H:i:s");
         $core = new CorePermissionGroup();
         $option = explode("_", $this->request->getPost('page_rule_group'));
@@ -119,7 +124,9 @@ class IndexController extends ControllerBase {
     }
 
     public function GroupRuleSettingAction() {
-        $group_name = $this->request->getPost('name_of_group');
+         
+        $filter = new Filter();
+        $group_name = $filter->sanitize($this->request->getPost('name_of_group'),'string');
         $core = new CorePermissionGroupId();
         $core = CorePermissionGroupId::FindFirst('group_id =' . $this->request->getPost('group_id'));
         $core->name_of_group = strtoupper($group_name);
@@ -133,14 +140,21 @@ class IndexController extends ControllerBase {
      * @desc    $core = {}
      * @public function 4 set
      */
+    
     public function User2RuleSettingAction() {
+         
+        $filter = new Filter();
         $idpage = $this->request->getPost("idpage");
-        $page_rule_group = $this->request->getPost("page_rule_group");
+        $page_rule_group = $filter->sanitize($this->request->getPost("page_rule_group"),'string');
         $permission_code = $this->request->getPost("permission_code");
-        var_dump($permission_code);
         $core = new CorePermissionGroup();
-        $success = $core->corePermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
-        if ($success) {
+        $core = CorePermissionGroup::FindFist($idpage);
+        $core->idpage = $idpage;
+        $core->page_rule_group = $page_rule_group;
+        $core->permission_code = $permission_code;
+        $update = $core->update();
+        //$success = $core->corePermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
+        if ($update) {
             $this->view->disable();
             $this->response->redirect('setting/index/admin');
         } else {

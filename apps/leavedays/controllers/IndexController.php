@@ -31,8 +31,7 @@ class IndexController extends ControllerBase {
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
-
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
         $this->view->module_name = $this->router->getModuleName();
         $this->view->t = $this->_getTranslation();
         $this->act_name = $this->router->getModuleName();
@@ -43,7 +42,10 @@ class IndexController extends ControllerBase {
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
     }
-
+    
+    
+  
+    
     public function indexAction() {
         
     }
@@ -132,7 +134,7 @@ class IndexController extends ControllerBase {
     public function leavelistAction() {
 
 
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
 
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
@@ -184,7 +186,7 @@ class IndexController extends ControllerBase {
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
             $noti = $Admin->GetAdminNoti($id);
-            $this->view->setVar("noti", $noti);
+            $this->view->setVar("Noti", $noti);
             $LeaveCategories = new LeaveCategories();
             $LeaveSetting = new LeavesSetting();
             $typelist = $LeaveCategories->getLeaveType();
@@ -273,7 +275,7 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $days = $this->request->getPost('leave_days');
         $noti_id = $this->request->getPost('noti_id');
-
+       
         $this->_leave->acceptLeave($id, $days, $noti_id);
     }
 
@@ -308,7 +310,7 @@ class IndexController extends ControllerBase {
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
 
         $Result = $Admin->checkLeave();
 
@@ -326,11 +328,38 @@ class IndexController extends ControllerBase {
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
 
         $Result = $Admin->leaveMost();
 
         $this->view->setVar("Result", $Result);
+    }
+    
+       public function detailAction() {
+        $this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/css/style.css');
+        $Admin = new Db\CoreMember();
+        $id = $this->session->user['member_id'];
+        foreach ($this->session->auth as $key_name => $key_value) {
+            if ($key_name == 'show_admin_notification') {
+                $Noti = $Admin->getAdminNoti($id, 0);
+            }
+            if ($key_name == 'show_user_notification') {
+                $Noti = $Admin->getUserNoti($id, 1);
+            }
+        }
+
+        $this->view->setVar("Noti", $Noti);
+        $type = "detail";
+        $this->view->setVar("type", $type);
+        $Noti_id = $this->request->get('id');
+        $module_name = $this->request->get('mname');
+       
+        $Noti_detail = new Leave();;
+        $Detail_result = $Noti_detail->getNotiInfo($module_name, $Noti_id);
+        $this->view->setVar("module_name", $module_name);
+        $this->view->setVar("result", $Detail_result);
+        $this->view->t = $this->_getTranslation();
     }
 
 }

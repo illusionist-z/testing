@@ -10,6 +10,7 @@ use Phalcon\Config\Adapter\Ini as Ini;
  * @since 21/7/15
  * @author David
  */
+
 Class Config {
     
     protected static $config = array();
