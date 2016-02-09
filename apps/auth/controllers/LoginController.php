@@ -2,8 +2,10 @@
 
 namespace salts\Auth\Controllers;
 use salts\Auth\Models;
-use salts\Auth\Models\Permission;
+use salts\Auth\Models\Permission; 
 use salts\Core\Models\Db\CoreMember;
+use Phalcon\Filter;
+
 class LoginController extends ControllerBase {
 
     public function initialize() {
@@ -16,7 +18,7 @@ class LoginController extends ControllerBase {
      */
     public function indexAction() {
 
-        
+        $filter = new Filter();
 
         $login_params = $this->request->get();
       
@@ -72,14 +74,15 @@ class LoginController extends ControllerBase {
 
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
+                $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
                 $this->session->set('tokenpush', $member_id);
                 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new Db\CoreMember();
+                $chack_user2 = new CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
-                if (0 === count($chack_user2)) {
+                if (0 != count($chack_user2)) {
                     
-                $core2 = new Db\CoreMember(); 
+                $core2 = new CoreMember(); 
                     $core2 = $chack_user2[0]->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));

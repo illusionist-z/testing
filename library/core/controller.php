@@ -9,10 +9,12 @@ namespace Library\Core;
  */
 
 use salts\Core\Models\Db;
+use salts\Auth\Models\Db\CorePermissionRelMember;
 
 abstract class Controller extends \Phalcon\Mvc\Controller {
 
-    public $moduleName;    
+    public $moduleName;
+
     /**
      * use language
      * 
@@ -36,7 +38,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $aryModules = \Library\Core\Module::get();
         $allow = array();$permitted = 0;
         //setting permission        
-        $coremember = new \salts\Core\Models\CorePermissionRelMember();
+        $coremember = new \salts\Core\Models\CorePermissionRelMember;
         
         if(null === $this->session->user['member_id']){
             return false;
@@ -102,30 +104,24 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * @param type $prefix
      * @return \Phalcon\Translate\Adapter\NativeArray
      */
-    protected function _getTranslation($prefix = '') {        
+    protected function _getTranslation($prefix = '') {
         // Check if we have a translation file for that lang
-        $langDir = __DIR__ . "/../../apps/{$this->moduleName}/lang";
-        $common_lang = __DIR__."/../../library/core/lang";
+        $langDir = __DIR__ . "/../../library\core\lang";
         if ('' !== $prefix) {
             $prefix .= '-';
-        }        
+        }
+
         // 
         if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
             require $langDir . '/' . $prefix . $this->lang . '.php';
-            $msg1 = $messages;
-            require $common_lang . '/' . $prefix . $this->lang . '.php';
-            $message = array_merge($msg1,$messages);
         } else {
             // fallback to some default
             require $langDir . '/' . $prefix . "jp.php";
-            $msg1 = $messages;
-            require $common_lang . '/' . $prefix . "jp.php";
-            $message = array_merge($msg1,$messages);
         }
-        
+
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
-            "content" => $message
+            "content" => $messages
         ));
     }
 

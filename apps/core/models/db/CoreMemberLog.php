@@ -2,8 +2,9 @@
 
 namespace salts\Core\Models\Db;
 
+use Phalcon\Mvc\Model;
 /**
- * @author Yan Lin Paia<wizardrider@gmail.com>
+ * @author Yan Lin Pai<wizardrider@gmail.com>
  * 
  *
  * 
