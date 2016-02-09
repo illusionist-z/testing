@@ -45,12 +45,13 @@ class IndexController extends ControllerBase {
         }
     }
 
-    /**
+       /**
      * When user failed login
      * @param type $mode
      */
     public function failerAction($mode = 1) {
-
+         
+        $filter = new Filter();
         /*
          * User failerAction 
          * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -61,7 +62,7 @@ class IndexController extends ControllerBase {
             $_SESSION["attempts"] = 0;
 
         if ($_SESSION["attempts"] < 4) {
-
+            
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
@@ -145,7 +146,15 @@ class IndexController extends ControllerBase {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
                 $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
-                $insert = $Chack->timeFlag($member_name, $formtdate);
+                
+                $member_name = $filter->sanitize($this->request->getPost('member_login_name'));
+                $member_name_find = CoreMember::FindFirstByMemberLoginName($member_name);
+                $member_id = $member_name_find->member_id;
+                $flag       = $member_name_find->timeflag ;
+                
+                $member_name_find->update();
+                
+                //$insert = $Chack->timeFlag($member_name, $formtdate);
                 $this->view->errorMsg = 'Your Account Has 30 MIN Block';
                 $this->view->pick('index/index');
                 session_destroy();

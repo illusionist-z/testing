@@ -1,9 +1,8 @@
 <?php
 
 namespace salts\Notification\Controllers;
-
 use salts\Notification\Models\CoreNotificationRelMember;
-
+use Phalcon\Filter;
 use salts\Notification\Models\CoreNotification;
 use salts\Core\Models\Db\CoreMember;
 
@@ -151,6 +150,7 @@ class IndexController extends ControllerBase {
         $core = CoreNotification::findFirst('noti_id =' . $this->request->get('id'));
         $core->noti_status = '1';
         $core->update();
+        $this->response->redirect('attendancelist/index/todaylist');
     }
 
 }
