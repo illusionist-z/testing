@@ -2,21 +2,35 @@
 
 namespace salts\Core\Models;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+use Phalcon\Mvc\Model;
+
+/**
+ * @author Yan Lin Pai <> <wizardrider@gmail.com> 
  */
+class CoreMember extends Model {
 
-class CoreMember extends \Library\Core\Models\Base {
+    public $member_id;
+    public $user_rule_member_id;
+    public $member_login_name;
+    public $full_name;
+    public $member_dept_name;
+    public $member_mobile_tel;
+    public $member_mail;
+    public $position;
+    public $user_rule;
+    public $lang;
+    public $member_address;
+    public $member_profille;
+    public $rank_code;
+    public $member_is_change;
+    public $working_start_dt;
+    public $working_year_by_year;
+    public $rs_status;
+    public $timeflag;
+    public $creator_id;
+    public $created_dt;
+    public $updater_id;
+    public $updated_dt;
+    public $deleted_flag;
 
-    // Use trait for singleton
-    use \Library\Core\Models\SingletonTrait;
-    
-    // Table name
-    protected $_name = 'core_member';
-
-    public function onConstruct() {       
-        parent::onConstruct();
-    }
 }

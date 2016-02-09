@@ -17,5 +17,6 @@ class CorePermissionGroup extends Model {
     public $idpage;
     public $page_rule_group;
     public $permission_code;
+    
 
 }
