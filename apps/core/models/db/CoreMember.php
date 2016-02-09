@@ -3,7 +3,7 @@
 namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query; 
+use Phalcon\Mvc\Model\Query;
 use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
@@ -432,25 +432,21 @@ class CoreMember extends \Library\Core\Models\Base {
 
      */
     public function findEmail($member_mail) {
-
         $email = $member_mail;
         $this->db = $this->getDI()->getShared("db");
         $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
         $user = $this->db->query($query);
         $users = $user->fetchAll();
-
         return $users;
     }
 
     /**
      * Saw Zin Min Tun
      * forget password
-
      */
     public function insertEmailAndToken($member_mail, $token) {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
-
         return $user;
     }
 
