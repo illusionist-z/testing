@@ -55,6 +55,23 @@ class IndexController extends ControllerBase {
          * @author Yan Lin Pai <wizardrider@gmail.com>
          *     
          */
+        $filter = new Filter();
+
+        // TODO: ここのオブジェクトを分けている理由を確認 [Kohei Iwasa]
+        $user_ip = $filter->sanitize($this->request->getPost('local'));
+
+        // TODO: 削除？ [Kohei Iwasa]
+        $user_ip_public = $filter->sanitize($this->request->getPost('public'));
+
+        $core->token = $tokenpush;
+        // Login Error Database Log
+        $member_id = $filter->sanitize($this->request->getPost('member_login_name'));
+        //$insert = $Member->tokenpush($member_id, $user_ip);
+        
+        $core_member_log = new Db\CoreMemberLog();
+        $core = save('member_id =' .$member_id,'ip_address = '.$user_ip,'mac = '.$user_ip_public);
+      
+         
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
