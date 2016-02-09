@@ -66,10 +66,10 @@ class IndexController extends ControllerBase {
         $core->token = $tokenpush;
         // Login Error Database Log
         $member_id = $this->request->getPost('member_login_name');
-        $insert = $Member->tokenpush($member_id, $user_ip);
+        //$insert = $Member->tokenpush($member_id, $user_ip);
 
         $core_member_log = new Db\CoreMemberLog();
-
+        
         //
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
