@@ -48,15 +48,14 @@ class IndexController extends ControllerBase {
        /**
      * When user failed login
      * @param type $mode
+     * User failerAction 
+     * @author Yan Lin Pai <wizardrider@gmail.com>
+     *     
      */
     public function failerAction($mode = 1) {
          
         $filter = new Filter();
-        /*
-         * User failerAction 
-         * @author Yan Lin Pai <wizardrider@gmail.com>
-         *     
-         */
+        
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
