@@ -56,28 +56,28 @@ class IndexController extends ControllerBase {
          *     
          */
         $filter = new Filter();
-
-        // TODO: ここのオブジェクトを分けている理由を確認 [Kohei Iwasa]
-        $user_ip = $filter->sanitize($this->request->getPost('local'));
-
-        // TODO: 削除？ [Kohei Iwasa]
-        $user_ip_public = $filter->sanitize($this->request->getPost('public'));
-
-        $core->token = $tokenpush;
-        // Login Error Database Log
-        $member_id = $filter->sanitize($this->request->getPost('member_login_name'));
-        //$insert = $Member->tokenpush($member_id, $user_ip);
-
-        $core_member_log = new Db\CoreMemberLog();
-        $core = save('member_id =' . $member_id, 'ip_address = ' . $user_ip, 'mac = ' . $user_ip_public);
-
-
+        
         date_default_timezone_set('Asia/Rangoon');
+        
         if (!isset($_SESSION["attempts"]))
+            
             $_SESSION["attempts"] = 0;
 
-        if ($_SESSION["attempts"] < 4) {
-
+        if (4 > $_SESSION["attempts"]) {
+        
+        // Login Error Database Log start
+            
+        $user_ip = $filter->sanitize($this->request->getPost('local'),'string');
+        $user_ip_public = $filter->sanitize($this->request->getPost('public'),'string');
+        $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
+        $core_member_log = new Db\CoreMemberLog();
+        $core_member_log->member_id = $member_id;
+        $core_member_log->ip_address = $user_ip;
+        $core_member_log->mac = $user_ip_public;
+        $core_member_log->save();
+        
+        // Login Error Database Log end
+        
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
@@ -85,7 +85,7 @@ class IndexController extends ControllerBase {
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 
-                if (count($chack_user2) != 0) {
+                if (0 === count($chack_user2)) {
 
                     $member_name = $this->session->tokenpush;
                     $core_fai = new Db\CoreMember();
@@ -105,7 +105,7 @@ class IndexController extends ControllerBase {
                         $this->view->errorMsg = "company id or user name or password wrong";
                         $this->view->pick('index/index');
                     }
-                } elseif (count($chack_user2) == 0) {
+                } elseif (0 == count($chack_user2)) {
 
                     $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
                     $this->view->errorMsg = 'company id or user name or password wrong';
@@ -113,15 +113,16 @@ class IndexController extends ControllerBase {
                 }
             }
         } else {
+            
             $member_name = $this->session->tokenpush;
             $ChackUser = new CoreMember();
             $chack_user = $ChackUser::findByMemberLoginName($member_name);
+            
 
-
-            if (count($chack_user) == 0) {
+            if (0 == count($chack_user)) {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
-
+                
                 if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
 
                     $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
@@ -154,7 +155,7 @@ class IndexController extends ControllerBase {
                 }
             }
             // User Not Has
-            elseif (count($chack_user) != 0) {
+            elseif (0 === count($chack_user)) {
                 $member_name = $this->session->tokenpush;
                 $Chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
@@ -176,7 +177,7 @@ class IndexController extends ControllerBase {
         $member_name = $this->session->tokenpush;
         $ChackUser = new CoreMember();
         $chack_user = $ChackUser::findByMemberLoginName($member_name);
-        if (count($chack_user) == 0) {
+        if (0 == count($chack_user)) {
             $timestamp = (date("Y-m-d H:i:s"));
             $date = strtotime($timestamp);
 
