@@ -44,7 +44,8 @@ class IndexController extends ControllerBase {
                 $Noti = $Admin->getUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $Noti);
+
+        $this->view->setVar("Noti", $Noti);
     }
 
     /**

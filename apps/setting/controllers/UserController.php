@@ -33,7 +33,7 @@ class UserController extends ControllerBase {
             }
         }
 
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $Noti);
 
         $user = $Admin->userDetail($id);
         $this->view->userDetail = $user;
@@ -43,7 +43,7 @@ class UserController extends ControllerBase {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $Noti = $User->getUserNoti($id);
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $Noti);
         $user = $User->UserDetail($id);
         $this->view->userdetail = $user;
     }

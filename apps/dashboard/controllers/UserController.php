@@ -43,7 +43,7 @@ class UserController extends ControllerBase {
                 $noti = $User->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
         $num_of_att = $Attendances->getAttList($id);
         $num_of_leaves = $Attendances->getTotalLeaves($id);

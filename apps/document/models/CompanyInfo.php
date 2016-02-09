@@ -2,7 +2,7 @@
 
 namespace salts\Document\Models;
 
-class CompanyInfo extends \Library\Core\BaseModel {
+class CompanyInfo extends \Library\Core\Models\Base {
 
     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
