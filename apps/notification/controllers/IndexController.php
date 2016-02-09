@@ -1,9 +1,9 @@
 <?php
 
 namespace salts\Notification\Controllers;
+
 use salts\Notification\Models\CoreNotificationRelMember;
-use salts\Leavedays\Models\Leaves;
-use salts\Attendancelist\Models\Attendances;
+
 use salts\Notification\Models\CoreNotification;
 use salts\Core\Models\Db\CoreMember;
 
@@ -13,7 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
-     //   $this->view->v = $this->module_name;
+        //   $this->view->v = $this->module_name;
         $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
         foreach ($this->session->auth as $key_name => $key_value) {
@@ -64,31 +64,28 @@ class IndexController extends ControllerBase {
      * when user seen noti and click ok update data
      */
     public function updateNotiAction() {
-        
-       $core = new CoreNotificationRelMember();
-       $core = CoreNotificationRelMember::findFirst('noti_id =' . $this->request->getPost('noti_id'));
-       $core->status = '2';
-        $core->update();
 
-        
+        $core = new CoreNotificationRelMember();
+        $core = CoreNotificationRelMember::findFirst('noti_id =' . $this->request->getPost('noti_id'));
+        $core->status = '2';
+        $core->update();
     }
 
     public function notificationAction() {
-      
+
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
-        
+
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-              
+
                 $Noti = $Admin->getAdminNoti($id, 2);
-                
             }
             if ($key_name == 'show_user_notification') {
                 $Noti = $Admin->getUserNoti($id, 1);
             }
         }
-        
+
         $type = 'noti';
         $this->view->setVar("Noti", $Noti);
         $this->view->setVar("type", $type);
@@ -113,10 +110,10 @@ class IndexController extends ControllerBase {
         $this->view->setVar("type", $type);
         $Noti_id = $this->request->get('id');
         $module_name = 'leaves';
-       
+
         $Noti_detail = new \salts\Notification\Models\CoreNotification();
         $Detail_result = $Noti_detail->getNotiInfo($Noti_id);
-    
+
         $this->view->setVar("module_name", $module_name);
         $this->view->setVar("result", $Detail_result);
         $this->view->t = $this->_getTranslation();
@@ -133,16 +130,15 @@ class IndexController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
                 $Noti = CoreNotification::findFirst('noti_id =' . $id);
-                $Noti->noti_status='1';
+                $Noti->noti_status = '1';
                 $Noti->update();
-               
             }
             if ($key_name == 'show_user_notification') {
-                   $member_id = $this->session->user['member_id'];
-                 $Noti = CoreNotification::findFirst("noti_id = '" . $id . "' AND created_at =  '" . $member_id . "'");
-                $Noti->noti_status='2';
+                $member_id = $this->session->user['member_id'];
+                $Noti = CoreNotification::findFirst("noti_id = '" . $id . "' AND created_at =  '" . $member_id . "'");
+                $Noti->noti_status = '2';
                 $Noti->update();
-               
+
                 $Noti->usercalendarNotification($id, $member_id);
             }
         }
@@ -155,8 +151,6 @@ class IndexController extends ControllerBase {
         $core = CoreNotification::findFirst('noti_id =' . $this->request->get('id'));
         $core->noti_status = '1';
         $core->update();
-       
-   
     }
 
 }
