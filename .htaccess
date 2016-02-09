@@ -3,11 +3,7 @@ AddDefaultCharset UTF-8
 	RewriteEngine on
 	RewriteRule  ^$ public/    [L]
 	RewriteRule  (.*) public/$1 [L]
-CheckSpelling Off
-CheckCaseOnly off
+
 </IfModule>
 	
-<IfModule mod_speling.c>
-CheckSpelling on
-CheckCaseOnly on
-</IfModule>
+
