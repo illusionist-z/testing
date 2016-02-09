@@ -97,19 +97,5 @@ $messages = array(
     "write_name"=>"控除の名前を入力してください",
     "write_amount"=>"控除額を入力します。",
     "save"=>"加算",
-    "cancel"=>"中止",
-      
-        /**
-     * Header
-     */
-    "Help"=>"助けて",
-    "Notifications"=>"通知",
-    "View All"=>"すべて見ます",
-    "Member Since"=>"メンバー以来",
-    "Setting"=>"設定",
-    "Sign out"=>"サインアウト",
-    /**
-     * footer
-     */
-    "Change_Language"=>"言語を変えてください",
+    "cancel"=>"中止"
 );

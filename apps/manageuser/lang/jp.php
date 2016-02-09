@@ -38,20 +38,6 @@ $messages = array(
     "placeholder10" => "住所を入力してください",
     "placeholder11" => "新規入力",
     "placeholder12" => "キャンセル",
-    
-      
-        /**
-     * Header
-     */
-    "Help"=>"ヘルプ",
-    "Notifications"=>"通知",
-    "View All"=>"すべて",
-    "Member Since"=>"メンバー以来",
-    "Setting" => "設定",
-    "Sign out" =>"サインアウト",
-    /**
-     * footer
-     */
-    "Change_Language"=>"言語選択",
+   
 );
 

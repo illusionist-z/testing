@@ -3,7 +3,7 @@
 namespace salts\Core\Controllers;
 
 use salts\Core\Models\SetLanguage;
-use salts\Auth\Models\Permission;
+use salts\Core\Models\Permission;
 use Library;
 
 class IndexController extends Library\Core\Controller {

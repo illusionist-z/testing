@@ -22,21 +22,6 @@ $messages = array(
     "latest_news" => "最新ニュース",
     "no_leave"=>"休暇を取らない人",
     "leave_most"=>"休暇を取る人",
-    "viewallmember" => "全てのメンバー",
-    
-       
-        /**
-     * Header
-     */
-    "Help"=>"ヘルプ",
-    "Notifications"=>"通知",
-    "View All"=>"すべて見る",
-    "Member Since"=>"メンバー以来",
-    "Setting"=>"設定",
-    "Sign out"=>"サインアウト",
-    /**
-     * footer
-     */
-    "Change_Language"=>"言語を変えてください",
+    "viewallmember" => "全てのメンバー"               
 );
 

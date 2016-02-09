@@ -76,6 +76,7 @@ class IndexController extends ControllerBase {
     public function AddGroupRuleAction() {
         $core = new CorePermissionGroupId();
         $core->save($this->request->getPost());
+        
         $this->view->disable();
         $this->response->redirect('setting/index/admin');
     }

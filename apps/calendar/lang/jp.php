@@ -31,20 +31,5 @@ $messages = array(
 "edit"   => "編集",
 "delete"   => "削除する",
 "create"   => "作成",
-"cancel"   => "中止",
-    
-      
-        /**
-     * Header
-     */
-    "Help"=>"助けて",
-    "Notifications"=>"通知",
-    "View All"=>"すべて見ます",
-    "Member Since"=>"メンバー以来",
-    "Setting"=>"設定",
-    "Sign out"=>"サインアウト",
-    /**
-     * footer
-     */
-    "Change_Language"=>"言語を変えてください",
+"cancel"   => "中止"
 );
