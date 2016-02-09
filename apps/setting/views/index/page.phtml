@@ -72,8 +72,8 @@
 
     </tr>
 </thead>
-<tbody style="display: none;text-align:center;">
-    <?php foreach ($coreuser2 as $datauser2) { ?>
+<tbody style="text-align:center;">
+    <?php foreach ($coreuser2->items as $datauser2) { ?>
         <tr>   
             <td style="text-align:center;"><?= $datauser2->idpage ?></td>
             <td style="text-align:left;"><?= $datauser2->permission_code ?></td>                                       
@@ -97,39 +97,30 @@
             </td> 
 
         </tr>
-
-    <div id="pageRule<?= $datauser2->idpage ?>" title="Change User Rule" style="display: none;">
-
-        <br> 
-        Group ID    
-        <input type="text" style="margin-left:50px;" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled>
-        <br> 
-        <form method="POST" action="User2RuleSetting">    
-            Page Name   
-            <input type="text"  style="margin-left:33px;" name="permission_code" value="<?= $datauser2->permission_code ?>">
-            <br><br>         
-            Group Rule
-            <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >            
-
-            <select type="text" style="margin-left:33px;" name='page_rule_group' value='' id="changeuser">
-                <?php
-                foreach ($coreid as $data) {
-                    ?>
-                    <option value="<?= $data->group_id ?>" <?php if ($datauser2->page_rule_group == $data->group_id) { ?>selected <?php } ?>>
-                        <?= $data->name_of_group ?>  
-                    </option>
-                    <?php
-                }
-                ?>
-            </select>
-        </form>
-
-    </div>
-
-
     <?php
 }
-?>
+?>        
 </tbody>
-<tfoot></tfoot>
+<tfoot>
+    <tr>
+        <td colspan="4">
+    <ul class="pagination" style="margin-left:15px;">
+        <?php
+        if ($coreuser2->last === 1) {
+            
+        } else {
+            ?>
+            <li><a href="admin">First</a></li>
+            <li><a href="admin?page=<?= $coreuser2->before; ?>">Previous</a></li>
+            <li><a href="admin?page=<?= $coreuser2->next; ?>">Next</a></li>
+            <li><a href="admin?page=<?= $coreuser2->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $coreuser2->current, " of ", $coreuser2->total_pages; ?></span></li>
+            <?php
+        }
+        ?>
+    </ul>
+        </td>
+    </tr>
+</tfoot>
+    
 </table>  

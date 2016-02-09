@@ -4,6 +4,7 @@ namespace salts\Core\Models;
 
 use salts\Core\Models;
 use Phalcon\Mvc\Model;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -106,6 +107,20 @@ class Permission {
             throw $e;
         }
         return $per_result;
+    }
+
+    public function pagination($row,$currentPage) {
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 3,
+            "page" => $currentPage
+                )
+        );
+
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;
     }
 
 }

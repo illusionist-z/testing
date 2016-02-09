@@ -4,15 +4,10 @@
  * @LeaveList
  */
 
-this.pager = new Paging.Pager();
 var Leave = {},dict=[];
 
 Leave.init =  function(reload){
-           $("tfoot").html($('tbody').html()); //for csv           
-            pager.perpage = 7;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);
-            $("tbody").show();
+      $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay();
             if(reload){
               $.ajax({
                 url:'autolist',
