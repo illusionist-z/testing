@@ -62,7 +62,7 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
-                $Member = new CoreMember();
+                $Member = new \salts\Core\Models\Db\CoreMember();
                 $ll = $Member::getInstance();
                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
@@ -78,11 +78,12 @@ class LoginController extends ControllerBase {
                 $this->session->set('tokenpush', $member_id);
                 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new Db\CoreMember();
-                $chack_user2 = $Member::findByMemberLoginName($member_name);
-                if (0 === count($chack_user2)) {
+                $chack_user2 = new CoreMember();
+                $chack_user2 = CoreMember::findByMemberLoginName($member_name);
+                var_dump(count($chack_user2)); 
+                if (0 !== count($chack_user2)) {
                     
-                $core2 = new Db\CoreMember(); 
+                $core2 = new CoreMember(); 
                     $core2 = $chack_user2[0]->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));
@@ -109,6 +110,7 @@ class LoginController extends ControllerBase {
 
                     $this->response->redirect('auth/index/failer');
                 }
+                
             } else {
                 
                 $this->response->redirect('auth/index/failer');

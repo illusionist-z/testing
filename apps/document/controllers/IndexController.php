@@ -130,6 +130,11 @@ class IndexController extends ControllerBase {
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         $ComInfo = new CompanyInfo();
         $update_info = $this->request->getPost('update');
+        if ($_FILES["fileToUpload"]["name"] == null) {
+            $update_info['company_logo'] = $update_info['temp_logo'];
+        } else {
+            $update_info['company_logo'] = $file_name;
+        }
         $ComInfo->editCompanyInfo($update_info);
         $this->response->redirect("document/index/letterhead");
     }
