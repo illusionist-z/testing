@@ -1,6 +1,6 @@
 <?php
 
-namespace salts\Auth\Models\Db;
+namespace salts\Core\Models\Db;
 
 /**
  * @author Yan Lin Paia<wizardrider@gmail.com>
@@ -9,11 +9,11 @@ namespace salts\Auth\Models\Db;
  * 
  **/
 
-class CorePermissionGroup extends  \Library\Core\Models\Base {
+class CoreMemberLog extends Model {
 
-    public $permission_code;
-    public $page_rule_group;
-    public $permission_group_code;
-    public $permission_group_name;
+    public $token;
+    public $member_id;
+    public $ip_address;
+    public $mac;
 
 }
