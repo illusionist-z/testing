@@ -2,7 +2,7 @@
 
 namespace salts\Auth\Controllers;
 use salts\Auth\Models;
-use salts\Auth\Models\Permission;
+use salts\Auth\Models\Permission; 
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 
@@ -62,7 +62,7 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
-                $Member = new CoreMember();
+                //$Member = new CoreMember();
                 $ll = $Member::getInstance();
                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
