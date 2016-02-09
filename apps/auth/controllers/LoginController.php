@@ -62,7 +62,7 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
-                //$Member = new CoreMember();
+                $Member = new CoreMember();
                 $ll = $Member::getInstance();
                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
@@ -78,7 +78,7 @@ class LoginController extends ControllerBase {
                 $this->session->set('tokenpush', $member_id);
                 
                 $member_name = $this->session->tokenpush;
-              //  $chack_user2 = new CoreMember();
+                $chack_user2 = new CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
                 if (0 != count($chack_user2)) {
                     
