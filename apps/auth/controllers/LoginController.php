@@ -78,9 +78,9 @@ class LoginController extends ControllerBase {
                 $this->session->set('tokenpush', $member_id);
                 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new CoreMember();
+              //  $chack_user2 = new CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
-                if (0 === count($chack_user2)) {
+                if (0 != count($chack_user2)) {
                     
                 $core2 = new CoreMember(); 
                     $core2 = $chack_user2[0]->timeflag;

@@ -85,7 +85,7 @@ class IndexController extends ControllerBase {
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 
-                if (0 === count($chack_user2)) {
+                if (0 != count($chack_user2)) {
 
                     $member_name = $this->session->tokenpush;
                     $core_fai = new Db\CoreMember();
@@ -155,7 +155,7 @@ class IndexController extends ControllerBase {
                 }
             }
             // User Not Has
-            elseif (0 === count($chack_user)) {
+            elseif (0 != count($chack_user)) {
                 $member_name = $this->session->tokenpush;
                 $Chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
@@ -244,7 +244,7 @@ class IndexController extends ControllerBase {
 
     public function sendMailAction() {
         $filter = new Filter();
-        $member_mail = $filter->sanitize($this->request->get('email'),"string");
+        $member_mail = $filter->sanitize($this->request->get('email'), "string");
         $Admin = new \salts\Auth\Models\CoreMember();
         $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
@@ -299,7 +299,7 @@ class IndexController extends ControllerBase {
 
     public function resetPasswordAction() {
         $filter = new Filter();
-        $member_mail = $filter->sanitize($this->request->get('email'),'string');
+        $member_mail = $filter->sanitize($this->request->get('email'), 'string');
         $Admin = new \salts\Auth\Models\CoreMember();
         $result = $Admin::find(
                         array(
