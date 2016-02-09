@@ -42,7 +42,7 @@ use Phalcon\Filter;
                     <?php
                     $filter = new Filter();
                     $i = 1;
-                    foreach ($Result as $result) {
+                    foreach ($Result->items as $result) {
                         ?>                       
                         <tr>
                             <td><?= $i ?></td>
@@ -59,13 +59,28 @@ use Phalcon\Filter;
                         $i++;
                     }
                     ?>
-                </tbody>
-                <tfoot style="display:none;"></tfoot>                    
+                </tbody>                            
             </table>
         </div>
     </div>
 </section>
-<div id="content"></div>
+<div id="content">
+      <ul class="pagination" style="margin-left:15px;">
+        <?php
+        if ($Result->last === 1) {
+            
+        } else {
+            ?>
+            <li><a href="index">First</a></li>
+            <li><a href="index?page=<?= $Result->before; ?>">Previous</a></li>
+            <li><a href="index?page=<?= $Result->next; ?>">Next</a></li>
+            <li><a href="index?page=<?= $Result->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?></span></li>
+            <?php
+        }
+        ?>
+    </ul>
+</div>
 <div id="edituser" class="navbar">    
 </div>	
 <div id="confirm" title="Confirm Delete">   

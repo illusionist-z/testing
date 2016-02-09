@@ -53,11 +53,11 @@ if ($offset < 0) {
                         <th></th>
                     </tr>
                 </thead>
-                <tbody style="display:none;">
+                <tbody>
                     <?php
                     $filter = new Filter();
 
-                    foreach ($attlist as $result) {
+                    foreach ($attlist->items as $result) {
                         ?>
                         <tr>
                             <td><?php
@@ -158,13 +158,28 @@ if ($offset < 0) {
                         <?php
                     }
                     ?>
-                </tbody>
-                <tfoot style="display:none;"></tfoot>
+                </tbody>                
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
 </section>
-<div id="content"></div>  
+<div id="content">
+    <ul class="pagination" style="margin-left:15px;">
+        <?php
+        if ($attlist->last === 1) {
+            
+        } else {
+            ?>
+            <li><a href="todaylist">First</a></li>
+            <li><a href="todaylist?page=<?= $attlist->before; ?>">Previous</a></li>
+            <li><a href="todaylist?page=<?= $attlist->next; ?>">Next</a></li>
+            <li><a href="todaylist?page=<?= $attlist->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></span></li>
+            <?php
+        }
+        ?>
+    </ul>
+</div>  
 <div id="edit_att_time"></div>
 
 

@@ -20,9 +20,9 @@ class User extends Model {
      * @author david
      * 
      */
-    public function userList($username) {
+    public function userList($username,$currentPage) {
         if ($username == null) {
-            $user = Db\CoreMember::getUserName();
+            $user = Db\CoreMember::getUserName($currentPage);
         } else {
             $user = Db\CoreMember::getoneusername($username);
         }
