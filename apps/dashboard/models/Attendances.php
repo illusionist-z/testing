@@ -3,7 +3,6 @@
 namespace salts\Dashboard\Models;
 
 use Phalcon\Mvc\Model;
-
 date_default_timezone_set("UTC");
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,10 +21,10 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckintime($id, $note, $add, $creator_id) {
+    public function setCheckInTime($id, $note, $add, $creator_id,$offset) {
         $this->db = $this->getDI()->getShared("db");
-
         $mydate = date("Y-m-d H:i:s");
+        
         $today = date("Y:m:d");
         $att = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 1");
         /**
@@ -34,17 +33,19 @@ class Attendances extends Model {
         if ($att === FALSE) {
             //$status = " Already Checked in ";
             $Noti_id = rand();
-            $att_today = Attendances::findFirst("att_date = '$today' AND member_id ='$id' AND status = 0");
+            $att_today = Attendances::findFirst("att_date = '$today' AND member_id ='$id' AND (status = 0 OR status = 3)");
             if ($att_today === FALSE) {
                 $att_leave = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 2");
+                $hour = \salts\Core\Models\Db\Attendances::getInstance()->UTCToLocal($mydate, $offset);
+                $hour = date("H",strtotime($hour));
                 if ($att_leave === FALSE) {
                     $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
                             . "att_date,location,notes,noti_id,status) VALUES ('" . $mydate . "'"
                             . ",'" . $id . "','" . $today . "',
-                    '" . $add . "','" . $note . "','" . $Noti_id . "',0)");
+                    '" . $add . "','" . $note . "','" . $Noti_id . "',".($hour > 12 ? 3 : 0 ).")");
                 } else {
                     $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
-                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = 0 where att_date ='" . $today . "' AND member_id ='" . $id . "'");
+                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = ".($hour > 12 ? 3 : 0)." where att_date ='" . $today . "' AND member_id ='" . $id . "'");
                 }
                 if ($note != NULL) {
                     $this->db->query("INSERT INTO core_notification (noti_creator_id,"
@@ -67,7 +68,7 @@ class Attendances extends Model {
      * @return string
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function setcheckouttime($id) {
+    public function setCheckOutTime($id,$offset) {
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $this->db = $this->getDI()->getShared("db");
@@ -84,6 +85,12 @@ class Attendances extends Model {
                     $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',');
                 } else {
                     $ovt = 0;
+                }
+                $hour = \salts\Core\Models\Db\Attendances::getInstance()->UTCToLocal($mydate, $offset);
+                $hour = date("H",strtotime($hour));
+                if($hour < 12){
+                      $this->db->query("UPDATE attendances set status = 3 where att_date ='" . $today .
+                              "' AND member_id ='" . $id . "'");
                 }
                 $this->db->query("UPDATE attendances SET "
                         . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
@@ -103,7 +110,7 @@ class Attendances extends Model {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function checkleave() {
+    public function checkLeave() {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken        
@@ -125,12 +132,12 @@ class Attendances extends Model {
      * @desc today attandance & leave list
      * @author David
      */
-    public function todayattleave() {
+    public function todayAttLeave() {
         $result = array();
         $today = date('Y-m-d');
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
-        $query = "select count(*) as att from attendances where att_date='$today' and status =0";
+        $query = "select count(*) as att from attendances where att_date='$today' and status =0 or status = 3";
         $query = $this->db->query($query);
         $data = $query->fetchall();
         $result['att'] = $data[0]['att'];
@@ -143,12 +150,12 @@ class Attendances extends Model {
         return $result;
     }
 
-    public function userattleave($id) {
+    public function userAttLeave($id) {
         $currentmth = date('m');
         $result = array();
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
-        $query = "select count(*) as att from attendances where member_id ='$id' and status = 0 and MONTH(att_date) = '$currentmth' ";
+        $query = "select count(*) as att from attendances where member_id ='$id' and (status = 0 or status = 3)and MONTH(att_date) = '$currentmth' ";
         $query = $this->db->query($query);
         $data = $query->fetchall();
         $result['att'] = $data[0]['att'];
@@ -180,7 +187,7 @@ class Attendances extends Model {
         return count($list);
     }
 
-    public function gettotalleaves($id) {
+    public function getTotalLeaves($id) {
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
         $row = "Select * from core_member left join leaves "

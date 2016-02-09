@@ -2,7 +2,7 @@
 
 namespace salts\Attendancelist\Controllers;
 
-use salts\Core\Models\Db;
+//use salts\Core\Models\Db;
 use salts\Attendancelist\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase {
@@ -14,58 +14,60 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/attendancelist/js/index.js');
-        $this->config = \Module_Config::getModuleConfig('leavedays');
-        $Admin = new Db\CoreMember;
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+        $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
+       
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
 
-                $Noti = $Admin->getAdminNoti($id, 0);
+                $noti = $CoreMember->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $Noti = $Admin->getUserNoti($id, 1);
+                
+                $noti = $CoreMember->GetUserNoti($id, 1);
+               
             }
         }
-        $this->view->setVar("noti", $Noti);
+        
+        $this->view->setVar("Noti", $noti);
         $this->act_name = $this->router->getActionName();
         $this->view->t = $this->_getTranslation();
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name = $this->module_name;
-        $this->view->permission = $this->permission;
-        $moduleIdCallCore = new Db\CoreMember();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        //$this->view->permission = $this->permission;        
+        $this->moduleIdCall = $CoreMember->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
     }
 
     /**
      * show today attendance list
      */
-    public function todaylistAction( ) {
+    public function todaylistAction() {
        
-        
-       if ($this->moduleIdCall == 1)
-       {
-            
-        $this->act_name =  $this->router->getModuleName(); 
-        $this->permission = $this->setPermission($this->act_name); 
-        $this->assets->addJs('common/js/jquery-ui-timepicker.js');        
-        $this->assets->addCss('common/css/jquery-ui-timepicker.css');        
-        $id=$this->session->user['member_id'];        
-        $name = $this->request->get('namelist');
-        $offset = $this->session->location['offset'];
-        $UserList = new Db\CoreMember();
-        $Username = $UserList::getinstance()->getUserName();
-        $AttList = new \salts\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->gettodaylist($name);
-        if($this->permission==1){
-        $this->view->attlist=$ResultAttlist;
-        $this->view->offset= $offset;
-        $this->view->uname = $Username;       
-        //$this->view->modulename = $this->module_name;        
+        if ($this->moduleIdCall == 1) {
+            $this->act_name = $this->router->getModuleName();
+            $this->permission = $this->setPermission($this->act_name);
+            $this->assets->addJs('common/js/jquery-ui-timepicker.js');
+            $this->assets->addCss('common/css/jquery-ui-timepicker.css');
+            $id = $this->session->user['member_id'];
+            $name = $this->request->get('namelist');
+            $offset = $this->session->location['offset'];
+            $UserList = new \salts\Core\Models\Db\CoreMember();
+            $Username = $UserList->getUserName();
+            $AttList = new \salts\Attendancelist\Models\Attendances();
+            $Result_Attlist = $AttList->getTodayList($name);
+//            print_r($Result_Attlist);exit;
+            if ($this->permission == 1) {
+                $this->view->attlist = $Result_Attlist;
+                $this->view->offset = $offset;
+                $this->view->uname = $Username;
+                $this->view->modulename = $this->module_name;
+            }
         }
-    }}
+    }
 
     public function editTimedialogAction($id) {
         $Att = new \salts\Attendancelist\Models\Attendances();
@@ -104,16 +106,18 @@ class IndexController extends ControllerBase {
      * 
      */
     public function monthlylistAction() {
+        //print_r($this->moduleIdCall);exit;
         if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
-            $UserList = new Db\CoreMember();
-            $UserName = $UserList::getinstance()->getUserName();
+            $UserList = new \salts\Attendancelist\Models\Attendances();
+            $UserName = $UserList->getusername();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $monthlylist = $Attendances->showattlist();
-            $coreid = new CorePermissionGroupId();
+            $monthly_list = $Attendances->showAttList();
+            //$coreid = new CorePermissionGroupId();
+         
             if ($this->permission == 1) {
-                $this->view->monthlylist = $monthlylist;
+                $this->view->monthlylist = $monthly_list;
                 $this->view->setVar("Month", $month);
                 $this->view->setVar("Getname", $UserName);
                 $this->view->setVar("offset", $offset);
@@ -131,7 +135,7 @@ class IndexController extends ControllerBase {
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $result = $Attendances->search_attlist($year, $month, $username);
+            $result = $Attendances->searchAttList($year, $month, $username);
 
             $this->view->disable();
             echo json_encode($result);
@@ -144,7 +148,7 @@ class IndexController extends ControllerBase {
      */
     public function attendancechartAction() {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
-        $data = $Attendances->current_attlist();
+        $data = $Attendances->currentAttList();
         $this->view->data = $data;
     }
 

@@ -20,10 +20,10 @@ class UserController extends ControllerBase {
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];
         if ($key_name == 'show_admin_notification') {
-            $Noti = $Admin->getAdminNoti($id, 0);
+            $noti = $Admin->GetAdminNoti($id, 0);
         }
         if ($key_name == 'show_user_notification') {
-            $Noti = $Admin->getUserNoti($id, 1);
+            $noti = $Admin->GetUserNoti($id, 1);
         }
     }
 
@@ -37,18 +37,18 @@ class UserController extends ControllerBase {
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $Noti = $User->getAdminNoti($id, 0);
+                $noti = $User->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $Noti = $User->getUserNoti($id, 1);
+                $noti = $User->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
-        $numofatt = $Attendances->getAttList($id);
-        $numofleaves = $Attendances->gettotalleaves($id);
-        $this->view->setVar("numatt", $numofatt);
-        $this->view->setVar("numleaves", $numofleaves);
+        $num_of_att = $Attendances->getAttList($id);
+        $num_of_leaves = $Attendances->getTotalLeaves($id);
+        $this->view->setVar("numatt", $num_of_att);
+        $this->view->setVar("numleaves", $num_of_leaves);
         $this->view->t = $this->_getTranslation();
     }
 

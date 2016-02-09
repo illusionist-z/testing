@@ -3,7 +3,7 @@
 use Phalcon\Mvc\Application;
 use Phalcon\Config\Adapter\Ini;
 
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 //$debug = new \Phalcon\Debug();
 //$debug->listen();
 
@@ -13,25 +13,25 @@ try {
     //Register some namespaces
     $loader->registerDirs(array(
         // set namespace for libraries
-        'Library\Core' => __DIR__.'/../Library/Core/',
+        'Library\Core' => __DIR__.'/../library/core/',
        
     ))->register();
     $loader->registerNamespaces(array(
         // set namespace for libraries
-        'Library\Core' => __DIR__.'/../Library/Core/',
+        'Library\Core' => __DIR__.'/../library/core/',
         
         // set namespace for the core module
 //        'salts\Core\Controllers' => '../apps/core/controllers/',
-        'salts\Core\Models' => '../Apps/Core/Models/',
+        'salts\Core\Models' => '../apps/core/models/',
 //        'salts\Auth\Controllers' => '../apps/auth/controllers/',
-//        'salts\Auth\Models' => '../apps/auth/models/',
+    
     ));
 
     // register autoloader
     $loader->register();
 
     // get config
-    $config = new Ini(__DIR__ . '/../Config/config.ini');
+    $config = new Ini(__DIR__ . '/../config/org/config.ini');
 
     // Create a DI
     $di = new \Phalcon\DI\FactoryDefault();
@@ -47,7 +47,7 @@ try {
     });
     
     // Include services
-    require __DIR__ . '/../Config/services.php';
+    require __DIR__ . '/../config/services.php';
 
     // Handle the request
     $application = new Application();
@@ -59,11 +59,11 @@ try {
     \Phalcon\DI::setDefault($di);
 
     // Include modules
-    require __DIR__ . '/../Config/modules.php';
+    require __DIR__ . '/../config/modules.php';
     /**
      * Module config 
      */
-    require __DIR__ . '/../Library/Core/module_config.php';
+    require __DIR__ . '/../library/core/models/Config.php';
     echo $application->handle()->getContent();
 } catch (Phalcon\Exception $e) {
     $logString = $e->getMessage() . " [{$e->getFile()}({$e->getLine()})]" . PHP_EOL

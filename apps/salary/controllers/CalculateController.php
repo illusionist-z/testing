@@ -21,12 +21,12 @@ class CalculateController extends ControllerBase {
      */
     public function indexAction() {
         $salary_start_date = $this->request->get('salary_date');
-        $basic_salary_ssc = $this->config->salary['basic_salary_ssc'];
-        $deduce = $this->config->salary['deduce'];
-        $overrate = $this->config->salary['overrate'];
+      //  $basic_salary_ssc = $this->config->salary['basic_salary_ssc'];
+     //   $deduce = $this->config->salary['deduce'];
+     //   $overrate = $this->config->salary['overrate'];
         $SalaryDetail = new SalaryDetail();
         $Salarymaster = new SalaryMaster();
-        $Attendance = new Attendances();
+        $Attendance = new \salts\Salary\Models\Attendances();
         $countattday = $Attendance->getCountattday($salary_start_date);
 
         $getbasic_salary = $Salarymaster->getBasicsalary($countattday);

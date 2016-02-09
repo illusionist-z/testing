@@ -16,8 +16,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
 
         parent::initialize();
-        $this->config = \Module_Config::getModuleConfig('leavedays');
-        $this->salaryconfig = \Module_Config::getModuleConfig('salary');
+       // $this->config = \Module_Config::getModuleConfig('leavedays');
+        //$this->salaryconfig = \Module_Config::getModuleConfig('salary');
         $this->assets->addCss('apps/salary/css/index_show_salarylist.css');
         $this->assets->addCss('apps/salary/css/salary.css');
         $this->assets->addJs('common/js/paging.js');
@@ -43,7 +43,7 @@ class IndexController extends ControllerBase {
             }
         }
 
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $Noti);
         $this->view->t = $this->_getTranslation();
         $moduleIdCallCore = new Db\CoreMember();
         $this->module_name = $this->router->getModuleName();
@@ -97,7 +97,7 @@ class IndexController extends ControllerBase {
             $this->view->setVar("year", $year);
             $this->view->setVar("usernames", $user_name);
             $this->view->setVar("getsalarylists", $get_salary_list);
-            $this->view->setVar("allowancenames", $allowancename);
+            //$this->view->setVar("allowancenames", $allowancename);
             $this->view->module_name = $this->router->getModuleName();
         } else {
             $this->response->redirect('core/index');
@@ -398,7 +398,7 @@ class IndexController extends ControllerBase {
             $this->assets->addJs('apps/salary/js/index-salarysetting.js');
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
-            $Noti = $Admin->getAdminNoti($id);
+            $Noti = $Admin->getAdminNoti($id,0);
 
             $Tax = new SalaryTaxs();
             $list = $Tax->getTaxlist();
@@ -407,7 +407,7 @@ class IndexController extends ControllerBase {
             $dlist = $Deduction->getDeducelist();
             if ($this->permission === 1) {
                 $this->view->module_name = $this->router->getModuleName();
-                $this->view->setVar("noti", $Noti);
+                $this->view->setVar("Noti", $Noti);
                 $this->view->setVar("deduction", $dlist);
             } else {
                 $this->response->redirect('core/index');

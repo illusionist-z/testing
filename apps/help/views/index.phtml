@@ -17,7 +17,7 @@ use Phalcon\Tag as Tag; ?>
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
-                <a><img src="../../common/img/menu.png"  style="height: 54px" class="sidebar-toggle" href="#sidepage" role="button">
+                <a><img src="<?php echo $baseUri ?>common/img/menu.png"  style="height: 54px" class="sidebar-toggle" href="#sidepage" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
 
@@ -39,7 +39,7 @@ use Phalcon\Tag as Tag; ?>
                                 echo "noti";
                             }
                             ?>" id="noti" style="padding-top: 20px;">
-                                <img src="../../common/img/noti.png">
+                                <img src="<?php echo $baseUri ?>common/img/noti.png">
                                 <span class="label label-warning"><?php
                                     if (count($Noti) == 0) {
                                         
@@ -110,13 +110,13 @@ use Phalcon\Tag as Tag; ?>
                                         // $this->response->redirect('attendancelist/index/todaylist');
                                         ?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
+                                            <a href="<?php echo $baseUri ?>setting/index" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                         </div>
                                         <?php
                                     } else {
                                         ?> 
                                         <div class="pull-left">
-                                            <a href="../../setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
+                                            <a href="<?php echo $baseUri ?>setting/user/usersetting" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                         </div>
                                     <?php }
                                     ?>
@@ -232,7 +232,6 @@ use Phalcon\Tag as Tag; ?>
                             <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
                                 <li><a href="letterhead"><?php echo $t->_("Letter Head"); ?></a></li>
                                 <li><a href="ssbdocument"><?php echo $t->_("SSB & Tax Document"); ?></a></li>
-
                             </ul>
                         </li>   
                     </ul>

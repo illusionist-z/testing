@@ -1,5 +1,6 @@
-<?php namespace salts\Frontend\Controllers;
+<?php namespace 
 
+salts\Frontend\Controllers;
 
 class ControllerBase extends \Library\Core\Controller
 {

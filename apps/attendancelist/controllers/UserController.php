@@ -19,13 +19,13 @@ class UserController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
-                $Noti = $User->getAdminNoti($id, 0);
+                $noti = $User->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $Noti = $User->getUserNoti($id, 1);
+                $noti = $User->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $noti);
     }
 
     public function indexAction() {
@@ -51,8 +51,8 @@ class UserController extends ControllerBase {
 
         $id = $this->session->user['member_id'];
         $AttList = new \salts\Attendancelist\Models\Attendances();
-        $ResultAttlist = $AttList->getAttList($id, $startdate, $enddate);
-        $this->view->attlist = $ResultAttlist;
+        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate);
+        $this->view->attlist = $Result_Attlist;
         $this->view->offset = $offset;
     }
 

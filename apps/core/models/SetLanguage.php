@@ -12,7 +12,7 @@ use salts\Core\Models\SetLanguage;
  * and open the template in the editor.
  */
 
-class SetLanguage extends \Library\Core\BaseModel {
+class SetLanguage extends \Library\Core\Models\Base {
 
     public function initialize() {
         parent::initialize();

@@ -7,8 +7,8 @@ class IndexController extends ControllerBase
     {
         echo 'front';
     }
-   public function testAction(){
-       echo 'test';
-   }
+    
+    public function testAction(){
+        echo 'test';
+    }
 }
-

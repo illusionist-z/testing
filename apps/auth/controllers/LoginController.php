@@ -1,8 +1,9 @@
 <?php
 
-namespace salts\Auth\Controllers;  
-use salts\Core\Models\Db;
-
+namespace salts\Auth\Controllers;
+use salts\Auth\Models;
+use salts\Auth\Models\Permission;
+use salts\Core\Models\Db\CoreMember;
 class LoginController extends ControllerBase {
 
     public function initialize() {
@@ -18,14 +19,14 @@ class LoginController extends ControllerBase {
         
         $login_params = $this->request->get();
       
-        $ModelAuth = new \salts\Auth\Models\Auth();
-        
+        $ModelAuth = new Models\Auth();
+       
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = 'root';
+            $dbinfo['db_psw'] = '';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
@@ -37,28 +38,28 @@ class LoginController extends ControllerBase {
                 $this->response->redirect('auth/index/failersuperuser');
             }
         } else {
-
+            
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
             
             $this->view->test = $login_params;
          
-            //$companyDB = $ModelAuth->findcomp_db($login_params);
+            $companyDB = $ModelAuth->findCompDb($login_params);
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
+                
                 $this->session->set('db_config', $companyDB);
 
                 // Module Chack
-                $module = new \salts\Auth\Models\Auth();
+                $module = new Models\Auth();
                 $module_id = $this->session->db_config['company_id'];
                 $company_module = $module->findModule($module_id);
                 $this->session->set('module', $company_module);
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
-                $Member = new Db\CoreMember();
-                
+                $Member = new CoreMember();
                 $ll = $Member::getInstance();
                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
@@ -66,32 +67,19 @@ class LoginController extends ControllerBase {
                 $this->session->set('page_rule_group', $permission);
                 $user = array();
                 $this->session->set('user', $result);
-                
                 date_default_timezone_set('Asia/Rangoon');
-                
-                // TODO: ここのオブジェクトを分けている理由を確認 [Kohei Iwasa]
-                $user_ip = $this->request->getPost('local');
-
-                // TODO: 削除？ [Kohei Iwasa]
-                $user_ip_public = $this->request->getPost('public');
-                
-                // $core->token = $tokenpush;
-                $member_id = $this->request->getPost('member_login_name');
-                // $insert = $Member->tokenpush($tokenpush, $member_id, $user_ip);
 
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
                 $this->session->set('tokenpush', $member_id);
-
+                
                 $member_name = $this->session->tokenpush;
-//                $chack_user2 = new Db\CoreMember();
+                $chack_user2 = new Db\CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
-               
-                if (count($chack_user2) != 0) {
-
-//                    $core2 = new Db\CoreMember();
-                    $core2 = $Member::findFirstByMemberLoginName($this->request->getPost('member_login_name'));
-                    $core2 = $core2->timeflag;
+                if (0 === count($chack_user2)) {
+                    
+                $core2 = new Db\CoreMember(); 
+                    $core2 = $chack_user2[0]->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));
                     if ($core2 >= $timestamp) {
@@ -113,12 +101,12 @@ class LoginController extends ControllerBase {
                             $this->response->redirect('auth/index/failer');
                         }
                     }
-                } elseif (count($chack_user2) == 0) {
+                } elseif (0 == count($chack_user2)) {
 
                     $this->response->redirect('auth/index/failer');
                 }
             } else {
-
+                
                 $this->response->redirect('auth/index/failer');
             }
             // When user's login succeed , move to dashboad

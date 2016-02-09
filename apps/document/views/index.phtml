@@ -8,7 +8,6 @@ use Phalcon\Tag as Tag; ?>
         <meta charset="UTF-8">
         <title>Attendance System</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
@@ -17,7 +16,7 @@ use Phalcon\Tag as Tag; ?>
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
-                <a><img src="../../common/img/menu.png"  style="height: 54px" class="sidebar-toggle" href="#sidepage" role="button">
+                <a><img src="<?php echo $baseUri ?>common/img/menu.png"  style="height: 54px" class="sidebar-toggle" href="#sidepage" role="button">
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <!-- Navbar Right Menu -->
@@ -25,7 +24,7 @@ use Phalcon\Tag as Tag; ?>
                     <ul class="nav navbar-nav"> 
                         <li>
                             <a href="<?php echo $baseUri ?>help/index/searchHelp" target="_blank" class="" title="Help" id="help_icon" style="padding-top: 20px;">
-                                <img src="../../common/img/help_browser.png">
+                                <img src="<?php echo $baseUri ?>common/img/help_browser.png">
                             </a>
                         </li>  
                         <!-- Notifications: style can be found in dropdown.less -->
@@ -37,7 +36,7 @@ use Phalcon\Tag as Tag; ?>
                                 echo "noti";
                             }
                             ?>" id="noti" style="padding-top: 20px;">
-                                <img src="../../common/img/noti.png">
+                                <img src="<?php echo $baseUri ?>common/img/noti.png">
                                 <span class="label label-warning"><?php
                                     if (count($Noti) == 0) {
                                         
@@ -71,7 +70,7 @@ use Phalcon\Tag as Tag; ?>
                                     }
                                 }
                                 ?>                                                
-                                <img src="../../uploads/<?php echo $img; ?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                <img src="<?php echo $baseUri ?>uploads/<?php echo $img; ?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                 <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -90,7 +89,7 @@ use Phalcon\Tag as Tag; ?>
                                         }
                                     }
                                     ?>                                                
-                                    <img src="../../uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                    <img src="<?php echo $baseUri ?>uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <p>
                                         <b><?php echo $this->session->user['member_login_name']; ?></b>
 
@@ -105,13 +104,13 @@ use Phalcon\Tag as Tag; ?>
                                     if ($permission == 1) {
                                         ?>
                                         <div class="pull-left">
-                                            <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
+                                            <a href="<?php echo $baseUri ?>setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
                                         </div>
                                         <?php
                                     } else {
                                         ?> 
                                         <div class="pull-left">
-                                            <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                            <a href="<?php echo $baseUri ?>setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
                                         </div>
                                         <?php
                                     }
@@ -236,7 +235,7 @@ use Phalcon\Tag as Tag; ?>
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+                <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='<?php echo $baseUri ?>common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src='<?php echo $baseUri ?>common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src='<?php echo $baseUri ?>common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
 
