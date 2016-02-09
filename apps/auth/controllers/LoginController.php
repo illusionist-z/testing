@@ -2,7 +2,7 @@
 
 namespace salts\Auth\Controllers;
 use salts\Auth\Models;
-use salts\Auth\Models\Permission;
+use salts\Auth\Models\Permission; 
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 
@@ -62,7 +62,7 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
-                $Member = new CoreMember();
+                //$Member = new CoreMember();
                 $ll = $Member::getInstance();
                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
@@ -78,11 +78,11 @@ class LoginController extends ControllerBase {
                 $this->session->set('tokenpush', $member_id);
                 
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new Db\CoreMember();
+                $chack_user2 = new CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
                 if (0 === count($chack_user2)) {
                     
-                $core2 = new Db\CoreMember(); 
+                $core2 = new CoreMember(); 
                     $core2 = $chack_user2[0]->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));
