@@ -46,11 +46,11 @@ use Phalcon\Filter;
                         </tr>
 
                     </thead>
-                    <tbody style="display:none;" id="salary_list">
+                    <tbody id="salary_list">
                         <?php
                         $filter = new Filter();
                         $i = 1;
-                        foreach ($salarydetail as $salarydetails) {
+                        foreach ($salarydetail->items as $salarydetails) {
                             ?>
                             <tr>
                                 <td><?php echo $i; ?></td>
@@ -76,13 +76,28 @@ use Phalcon\Filter;
                         ?>
 
 
-                    </tbody>
-                    <tfoot style="display:none;"></tfoot>
+                    </tbody>                    
                 </table>      
             </div><!--end table content--->
 
         </div><!-- /.row -->
-        <div id="content"></div>
+        <div id="content">
+            <ul class="pagination" style="margin-left:15px;">
+                <?php
+                if ($salarydetail->last === 1 || $salarydetail->last === 0) {
+                    
+                } else {
+                    ?>
+                    <li><a href="salarylist">First</a></li>
+                    <li><a href="salarylist?page=<?= $salarydetail->before; ?>">Previous</a></li>
+                    <li><a href="salarylist?page=<?= $salarydetail->next; ?>">Next</a></li>
+                    <li><a href="salarylist?page=<?= $salarydetail->last; ?>">Last</a></li>
+                    <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $salarydetail->current, " of ", $salarydetail->total_pages; ?></span></li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </div>
 </section>
 <div id="edit_salary_dia" class="navbar">    
 </div>	

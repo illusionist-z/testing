@@ -7,7 +7,6 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use salts\Salary\Models\SalaryDetail;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
-use salts\Core\Models\Db\Attendances;
 
 class SalaryDetail extends Model {
 
@@ -225,7 +224,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     /**
      * Get salary detail for each month
      */
-    public function getSalaryDetail() {
+    public function getSalaryDetail($currentPage) {
         try {
             //echo "Thank you";exit;
             /* $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
@@ -240,22 +239,20 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
                     ->execute();
-            // print_r($row);exit;
-            /* foreach($row as $rows) {
-              echo $rows->core->member_login_name;
-              echo $rows->salarymas->basic_salary;
-              echo $rows->salarymas->travel_fee;
-              echo $rows->salarymas->over_time;
-              echo $rows->salarymas->ssc_emp;
-              echo $rows->salarymas->ssc_comp;
-              echo "<br>";
-              }
+                   $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
 
-              exit; */
+// Get the paginated results
+        $page = $paginator->getPaginate();        
         } catch (Exception $e) {
             echo $e;
         }
-        return $row;
+        return $page;
     }
 
     /**

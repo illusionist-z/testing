@@ -3,15 +3,15 @@
  * @author David JP<david.gnext@gmail.com>
  * @desc   Salary Edit Dial Box
  */
-var pager = new Paging.Pager();   //for pagination
+
 var Salary = {
     isOvl: false,
     init: function () {
-        $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 20;            
-        pager.para = $('tbody > tr');
-        pager.showPage(1);
-        $("tbody").show();
+        $('tbody#salary_list').find("tr").length > 0  ? "" : Salary.Msgdisplay();
+    },
+    Msgdisplay : function () {
+        var th_length = $("thead th").length;
+         $("tbody#salary_list").append("<td colspan="+th_length+"><center>No data to display</center></td>");
     },
     Edit: function (d) {
         $.ajax({

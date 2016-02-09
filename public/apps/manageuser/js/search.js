@@ -7,14 +7,9 @@
  * @GEOprocess()
  * @get @lat @lng
  */
-var pager = new Paging.Pager(), dict = [];   //for pagination
+var dict = [];   //for pagination
 var User = {
-    init: function (reload) {
-        $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 7;
-        pager.para = $('tbody > tr');
-        pager.showPage(1);
-        $("tbody").show();
+    init: function (reload) {    
         if (reload) {
             $.ajax({
                 url: baseUri + 'manageuser/index/usernameautolist',

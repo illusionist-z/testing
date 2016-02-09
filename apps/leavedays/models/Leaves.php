@@ -5,7 +5,7 @@ namespace salts\Leavedays\Models;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use salts\Core\Models\Db\CoreMember;
-use Phalcon\Mvc\Controller;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
 
 class Leaves extends \Library\Core\Models\Base {
@@ -22,7 +22,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @param type $username
      * @return type
      */
-    public function getLeaveList() {
+    public function getLeaveList($currentPage) {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
@@ -31,7 +31,17 @@ class Leaves extends \Library\Core\Models\Base {
                 ->orderBy('leaves.date DESC')
                 ->getQuery()
                 ->execute();
-        return $row;
+             $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
+
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;        
     }
 
     public function getAbsent() {

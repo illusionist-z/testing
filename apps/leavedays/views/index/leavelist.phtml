@@ -33,7 +33,7 @@ $length = count($Month);
             </select>
             <select class="select form-control-static" data-toggle="select" name="month" id="month">
                 <option value=""><?= $t->_("month"); ?></option>
-                <?php                
+                <?php
                 $i = 1;
                 foreach ($Month as $v) {
                     ?>
@@ -78,7 +78,7 @@ $length = count($Month);
                     <?php
                     //print_r($Result);
                     $days = 0;
-                    foreach ($Result as $item) {
+                    foreach ($Result->items as $item) {
                         ?>
                         <tr>
                             <td><?php
@@ -135,10 +135,25 @@ $length = count($Month);
                     }
                     ?>
 
-                </tbody>
-                <tfoot style="display:none;"></tfoot>
+                </tbody>                
             </table> 
 
         </div><!--end table content--->
     </div><!-- /.row -->
-    <div id="content"></div>
+    <div id="content">
+        <ul class="pagination" style="margin-left:15px;">
+            <?php
+            if ($Result->last === 1) {
+                
+            } else {
+                ?>
+                <li><a href="leavelist">First</a></li>
+                <li><a href="leavelist?page=<?= $Result->before; ?>">Previous</a></li>
+                <li><a href="leavelist?page=<?= $Result->next; ?>">Next</a></li>
+                <li><a href="leavelist?page=<?= $Result->last; ?>">Last</a></li>
+                <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?></span></li>
+                    <?php
+                }
+                ?>
+        </ul>
+    </div>

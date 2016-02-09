@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var pager = new Paging.Pager(), dict = [];   //for pagination
+var dict = [];   //for autocomplete
 
 /*
  * show today list by return json array
@@ -11,11 +11,6 @@ var pager = new Paging.Pager(), dict = [];   //for pagination
  */
 var Attendance = {
     init: function (reload) {
-        $('tfoot').append($('table.listtbl tbody').html());   //for csv 
-        pager.perpage = 10;
-        pager.para = $('table.listtbl tbody > tr');
-        pager.showPage(1);
-        $('tbody').show();
         if (reload) {
             $.ajax({
                 url: 'autolist',

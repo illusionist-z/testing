@@ -138,6 +138,7 @@ class IndexController extends ControllerBase {
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
+            $currentPage = $this->request->get("page");
             $noti = $Admin->GetAdminNoti($id, 0);
             $this->view->setVar("noti", $noti);
             $this->assets->addJs('common/js/paging.js');
@@ -149,7 +150,7 @@ class IndexController extends ControllerBase {
             $this->view->setVar("Leavetype", $ltype);
             $UserList = new Db\CoreMember();
             $GetUsername = $UserList::getinstance()->getusername();
-            $leaves = $this->_leave->getLeaveList();
+            $leaves = $this->_leave->getLeaveList($currentPage);
             $absent = $this->_leave->getAbsent();
             $max = $this->_leave->getLeaveSetting();
             $max_leavedays = $max['0']['max_leavedays'];

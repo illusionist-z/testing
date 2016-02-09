@@ -16,7 +16,7 @@ class UserController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         parent::getmodulename();
-        $this->config = \Module_Config::getModuleConfig('leavedays'); // get config data,@type module name
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/export.js');
