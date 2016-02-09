@@ -25,7 +25,7 @@ class UserController extends ControllerBase {
                 $noti = $User->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
     }
 
     public function indexAction() {

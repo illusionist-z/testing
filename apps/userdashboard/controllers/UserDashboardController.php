@@ -21,7 +21,7 @@ class UserDashboardController extends ControllerBase {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $Noti = $User->getUserNoti($id, 1);
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $Noti);
         $user = $User->UserDetail($id);
         $this->view->userdetail = $user;
     }

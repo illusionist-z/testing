@@ -64,7 +64,7 @@ class IndexController extends ControllerBase {
             }
         }
 
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
         //get last create member
         $CMember = new Db\CoreMember();
         $Get_Name = $CMember::getinstance()->getlastname();
@@ -107,7 +107,7 @@ class IndexController extends ControllerBase {
                 $noti = $User->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $noti);
+        $this->view->setVar("Noti", $noti);
         $Attendances = new \salts\Dashboard\Models\Attendances();
         $att_status = $Attendances->userAttLeave($id);
         $this->view->setVar("numatt", $att_status['att']);

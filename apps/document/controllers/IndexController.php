@@ -38,16 +38,14 @@ class IndexController extends ControllerBase {
         $this->view->moduleIdCall = $this->moduleIdCall;
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-
                 $Noti = $Admin->getAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-
                 $Noti = $Admin->getUserNoti($id, 1);
             }
         }
 
-        $this->view->setVar("noti", $Noti);
+        $this->view->setVar("Noti", $Noti);
     }
 
     /**
@@ -88,7 +86,6 @@ class IndexController extends ControllerBase {
             $this->assets->addJs('apps/document/js/print.js');
             $SalaryDetail = new Document();
             $result = $SalaryDetail->getSalaryInfo();
-            $coreid = new CorePermissionGroupId();
             if ($this->permission == 1) {
                 $this->view->salary_info = $result;
             } else {

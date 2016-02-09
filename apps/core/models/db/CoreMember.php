@@ -3,7 +3,7 @@
 namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query; 
+use Phalcon\Mvc\Model\Query;
 use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Mvc\Controller;
@@ -255,20 +255,20 @@ class CoreMember extends \Library\Core\Models\Base {
 
         $AdminNoti = $this->db->query($sql);
         $Noti = $AdminNoti->fetchall();
-
+        
 
         $i = 0;
         foreach ($Noti as $Noti) {
-
+           
             $sql = "SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' and core_member.deleted_flag=0 ";
 
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-
+           
             $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
         }
-
+      
         $data = array();
         foreach ($final_result as $result) {
             foreach ($result as $value) {
@@ -280,7 +280,7 @@ class CoreMember extends \Library\Core\Models\Base {
         if ($type == 2) {
             $data = array_slice($data, 0, 10);
         }
-
+        
 
         return $data;
     }
@@ -297,12 +297,13 @@ class CoreMember extends \Library\Core\Models\Base {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function getUserNoti($id, $type) {
+       
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
         $UserNoti = $this->db->query($sql);
-
         $Noti = $UserNoti->fetchall();
+
         $i = 0;
         foreach ($Noti as $Noti) {
 
@@ -432,25 +433,21 @@ class CoreMember extends \Library\Core\Models\Base {
 
      */
     public function findEmail($member_mail) {
-
         $email = $member_mail;
         $this->db = $this->getDI()->getShared("db");
         $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
         $user = $this->db->query($query);
         $users = $user->fetchAll();
-
         return $users;
     }
 
     /**
      * Saw Zin Min Tun
      * forget password
-
      */
     public function insertEmailAndToken($member_mail, $token) {
         $this->db = $this->getDI()->getShared("db");
         $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
-
         return $user;
     }
 
