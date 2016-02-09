@@ -12,7 +12,9 @@
                     </div>
                     <div class="ssb-reg">
                         <div class="ssb-left">အလုုပ္ဌာနအမည္  :
-                            <span><u><?php echo $cominfo['company_name']; ?></u></span>
+                            <span><u><?php foreach ($cominfo as $value) {echo $value->company_name;
+    }
+ ?></u></span>
                         </div>
                         <div class="ssb-right">
                             အလုုပ္ဌာန မွတ္ပံုုတင္အမွတ္  ......................................
