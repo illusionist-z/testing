@@ -67,11 +67,11 @@ class IndexController extends ControllerBase {
         // Login Error Database Log
         $member_id = $filter->sanitize($this->request->getPost('member_login_name'));
         //$insert = $Member->tokenpush($member_id, $user_ip);
-        
+
         $core_member_log = new Db\CoreMemberLog();
-        $core = save('member_id =' .$member_id,'ip_address = '.$user_ip,'mac = '.$user_ip_public);
-      
-         
+        $core = save('member_id =' . $member_id, 'ip_address = ' . $user_ip, 'mac = ' . $user_ip_public);
+
+
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
@@ -243,7 +243,7 @@ class IndexController extends ControllerBase {
 
     public function sendMailAction() {
         $filter = new Filter();
-        $member_mail = $filter->sanitize($this->request->get('email'),"string");
+        $member_mail = $filter->sanitize($this->request->get('email'), "string");
         $Admin = new \salts\Auth\Models\CoreMember();
         $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
@@ -298,7 +298,7 @@ class IndexController extends ControllerBase {
 
     public function resetPasswordAction() {
         $filter = new Filter();
-        $member_mail = $filter->sanitize($this->request->get('email'),'string');
+        $member_mail = $filter->sanitize($this->request->get('email'), 'string');
         $Admin = new \salts\Auth\Models\CoreMember();
         $result = $Admin::find(
                         array(
