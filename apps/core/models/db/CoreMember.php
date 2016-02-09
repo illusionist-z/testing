@@ -438,8 +438,7 @@ class CoreMember extends \Library\Core\Models\Base {
 
     /**
      * Saw Zin Min Tun
-     * forget password
-
+     * forget password //for resetpassword.phtml
      */
     public function findEmail($member_mail) {
         $email = $member_mail;
@@ -449,16 +448,7 @@ class CoreMember extends \Library\Core\Models\Base {
         $users = $user->fetchAll();
         return $users;
     }
-
-    /**
-     * Saw Zin Min Tun
-     * forget password
-     */
-    public function insertEmailAndToken($member_mail, $token) {
-        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
-        return $user;
-    }
+  
 
     /*
      * User Fix 
@@ -482,52 +472,7 @@ class CoreMember extends \Library\Core\Models\Base {
         return $member_flag;
     }
 
-    /**
-     * Saw Zin Min Tun
-     * user enter code check database code
-     */
-    public function findCode($code, $email) {
-
-        $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT token FROM forgot_password where  check_mail = '" . $email . "'  order by curdate desc limit 1  ";
-        $user = $this->db->query($query);
-        $user = $user->fetchArray();
-
-        if ($user['token'] == $code) {
-            $msg = "success";
-            return $msg;
-        } else {
-            $msg = "fail";
-            return $msg;
-        }
-    }
-
-    /**
-     * Saw Zin Min Tun
-     * forget password
-     */
-    public function updatePassword($member_mail, $newpassword) {
-        // Check if the user exist
-        $newpassword = sha1($newpassword);
-        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-        return $user;
-    }
-
-    public function updateNewPassword($member_mail, $newpass) {
-        $newpassword = sha1($newpass);
-        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-        return $user;
-    }
-
-    public function checkYourMail($getmail) {
-        $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT token FROM forgot_password where  check_mail = '" . $getmail . "'  order by curdate desc limit 1  ";
-        $user = $this->db->query($query);
-        $user = $user->fetchArray();
-        return $user['token'];
-    }
+   
 
     public function findUserAddSalary($id) {
         $cond1 = "Select * from core_member where member_id not in ( select member_id from salary_master)";
