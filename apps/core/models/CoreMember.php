@@ -16,8 +16,7 @@ class CoreMember extends \Library\Core\Models\Base {
     // Table name
     protected $_name = 'core_member';
 
-    public function onConstruct() {
+    public function onConstruct() {       
         parent::onConstruct();
     }
-    
 }

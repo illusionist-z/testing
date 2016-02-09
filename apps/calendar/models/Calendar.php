@@ -3,16 +3,17 @@
 namespace salts\Calendar\Models;
 
 use Phalcon\Mvc\Model;
-
+use Phalcon\Filter;
 /**
  * @author David
  * @since 27/7/2015
  * @desc  To create,edit,delete event
  */
 class Calendar extends Model {
-
+    public $filter;    
     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
+        $this->filter = new Filter();
     }
 
     /**
@@ -54,22 +55,52 @@ class Calendar extends Model {
      * @author David
      * @version Su Zin Kyaw
      */
-    public function createEvent($member_id, $creator_name, $creator_id, $sdate, $edate, $title, $uname) {
+    public function createEvent($member_id, $creator_name, $creator_id, $sdate, $edate, $title, $uname) {       
         $noti_id = rand();
-        $this->db = $this->getDI()->getShared("db");
-        $insert = "INSERT INTO calendar (member_id,member_name,title,startdate,enddate,allDay,noti_id,creator_id,created_dt) Values ('" . $member_id . "','" . $uname . "','" . $title . "','" . $sdate . "','" . $edate . "','true','" . $Noti_id . "','" . $creator_id . "',now())";
-        $query = $this->db->query($insert);
-        $admins = $this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_member.member_id != '" . $creator_id . "' ");
-        $admins = $admins->fetchall();
+        //calendar save ()
+        $calendar = new Calendar();
+        $calendar->member_id = $this->filter->sanitize($member_id,"string");
+        $calendar->member_name = $this->filter->sanitize($uname,"string");
+        $calendar->title  = $this->filter->sanitize($title,"string");
+        $calendar->startdate = $sdate;
+        $calendar->enddate = $edate;
+        $calendar->allDay = true;
+        $calendar->noti_id = $noti_id;
+        $calendar->creator_id = $this->filter->sanitize($creator_id,"string");
+        $calendar->created_dt = date("Y-m-d H:i:s");
+        $calendar->save();
+        //$admins = "SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_member.member_id != '" . $creator_id . "' ";
+        $admins = $this->modelsManager->createBuilder()
+                     ->columns(array('core.*', 'rel_member.*'))
+                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Core\Models\CorePermissionRelMember', 'core.member_id = rel_member.rel_member_id', 'rel_member')
+                    ->where('core.member_id != :id:', array('id' => $creator_id))
+                    ->getQuery()->execute();
         foreach ($admins as $admins) {
-            $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,module_name,noti_id,noti_status) VALUES('" . $creator_name . "','" . $admins['member_id'] . "','calendar','" . $Noti_id . "',0)");
-        }
-        $users = $this->db->query("SELECT * FROM core_member join core_permission_rel_member on core_permission_rel_member.rel_member_id=core_member.member_id where core_permission_rel_member.rel_permission_group_code='USER' and core_member.member_id != '" . $creator_id . "' ");
-        $users = $users->fetchall();
+            $notification = new \salts\Core\Models\Db\CoreNotification();
+            $notification->creator_name = $this->filter->sanitize($creator_name,"string");
+            $notification->noti_creator_id = $this->filter->sanitize($admins->core->member_id,"string");
+            $notification->module_name = $this->filter->sanitize("calendar","string");
+            $notification->noti_id = $this->filter->sanitize($noti_id,"int");
+            $notification->noti_status = 0;
+            $notification->save();
+        }        
+        $users = $this->modelsManager->createBuilder()
+                     ->columns(array('core.*', 'rel_member.*'))
+                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Core\Models\CorePermissionRelMember', 'core.member_id = rel_member.rel_member_id', 'rel_member')
+                    ->where('core.member_id != :id:', array('id' => $creator_id))
+                    ->andWhere('rel_member.rel_permission_group_code ="USER"')
+                    ->getQuery()->execute();        
         foreach ($users as $users) {
-            $this->db->query("INSERT INTO core_notification_rel_member (creator_name,member_id,noti_id,status,module_name) VALUES('" . $creator_name . "','" . $users['member_id'] . "','" . $Noti_id . "',1,'calendar')");
-        }
-        return $query;
+            $NotiRelMember = new \salts\Core\Models\Db\CoreNotificationRelMember();
+            $NotiRelMember->creator_name = $creator_name;
+            $NotiRelMember->member_id    = $this->filter->sanitize($users->core->member_id,"string");
+            $NotiRelMember->noti_id           = $this->filter->sanitize($noti_id,"int");
+            $NotiRelMember->status            = 1;
+            $NotiRelMember->module_name = $this->filter->sanitize("calendar","string");
+            $NotiRelMember->save();
+        }        
     }
 
     /**
@@ -102,9 +133,11 @@ class Calendar extends Model {
     }
 
     public function removeMember($remove_id, $id) {
-        $remove_id = implode("','", $remove_id);
-        $query = "update member_event_permission set delete_flag =1 where permit_name in ('$remove_id') and member_name = '" . $id . "'";
-        $this->db->query($query);
+        foreach($remove_id as $remove){
+        $query = MemberEventPermission::findFirst("permit_name ='$remove' and member_name ='$id'");
+        $query->delete_flag = 1;
+        $query->update();
+        }
     }
 
     /**
@@ -114,25 +147,26 @@ class Calendar extends Model {
      * @desc    event permit action
      */
     public function addPermitName($permit_name, $id) {
-        $query = "Select * from member_event_permission where permit_name ='" . $permit_name . "' and member_name = '" . $id . "' ";
-
-        $result = $this->db->query($query);
-        if ($result->numRows() == 0) {
-            $query1 = "Insert into member_event_permission (member_name,permit_name,delete_flag) Values ('$id','" . $permit_name . "',0)";
-
-            $this->db->query($query1);
-            $return = 0;
-        } else {
-            $query2 = "Select * from member_event_permission where permit_name ='" . $permit_name . "' and member_name = '" . $id . "' and delete_flag=1";
-            $result2 = $this->db->query($query2);
-            if ($result2->numRows() == 0) {
+        $permit = new MemberEventPermission();
+        $query = MemberEventPermission::find("permit_name ='$permit_name' and member_name = '$id' ");
+        if(count($query) == 0){
+        $permit->member_name = $id;
+        $permit->permit_name    = $permit_name;
+        $permit->delete_flag  = 0;
+        $permit->save();
+        $return = 0;
+        }
+        else  {
+            $query2 = MemberEventPermission::findFirst("permit_name ='$permit_name' and member_name ='$id' and delete_flag = 1");
+            if(count($query2) == 0 ){
                 $return = 1;
-            } else {
-                $query3 = "update member_event_permission set delete_flag = 0 where permit_name = '" . $permit_name . "' and member_name = '" . $id . "'";
-                $this->db->query($query3);
+            }
+            else {
+                $query2->delete_flag = 0;
+                $query2->update();
                 $return = 0;
             }
-        }
+        } 
         return $return;
     }
 

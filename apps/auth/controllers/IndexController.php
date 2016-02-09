@@ -3,14 +3,17 @@
 namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
+//use salts\Auth\Models\Db\CoreMember;
 use salts\Core\Models\Db;
+use Phalcon\Filter;
 
 class IndexController extends ControllerBase {
- 
+
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/auth/js/forgot.js');
+        $this->assets->addCss('common/css/css/style.css');
     }
 
     /**
@@ -18,30 +21,27 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function indexAction($mode = NULL) {
-        
-         $localhost = ($this->request->getServer('HTTP_HOST'));
-         $id_auth_filter =$this->session->auth;
-          
-         if(isset($id_auth_filter) != null){
-             
-             $this->response->redirect('dashboard/index');
-             
-         }
-       
-        elseif (isset($id_auth_filter) == null){
-            
-        if (isset($_SESSION['startTime']) != null) {
-            $this->view->pick('salts/auth/index/failer');
-            $page = "http://" . $localhost . "/salts/auth/index/failer";
-            $sec = "1";
-            header("Refresh: $sec; url=$page");
-        } elseif (isset($_SESSION['startTime']) == null) {
 
-            $mode = $this->request->get('mode');
-            $this->view->errorMsg = '';
-            $this->view->mode = $mode;
-        }
+        $localhost = ($this->request->getServer('HTTP_HOST'));
+        $id_auth_filter = $this->session->auth;
+
+        if (isset($id_auth_filter) != null) {
+
+            $this->response->redirect('dashboard/index');
+        } elseif (isset($id_auth_filter) == null) {
+
+            if (isset($_SESSION['startTime']) != null) {
+                $this->view->pick('salts/auth/index/failer');
+                $page = "http://" . $localhost . "/salts/auth/index/failer";
+                $sec = "1";
+                header("Refresh: $sec; url=$page");
+            } elseif (isset($_SESSION['startTime']) == null) {
+
+                $mode = $this->request->get('mode');
+                $this->view->errorMsg = '';
+                $this->view->mode = $mode;
             }
+        }
     }
 
     /**
@@ -49,12 +49,29 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function failerAction($mode = 1) {
-        
+
         /*
          * User failerAction 
          * @author Yan Lin Pai <wizardrider@gmail.com>
          *     
          */
+        $filter = new Filter();
+
+        // TODO: ここのオブジェクトを分けている理由を確認 [Kohei Iwasa]
+        $user_ip = $filter->sanitize($this->request->getPost('local'));
+
+        // TODO: 削除？ [Kohei Iwasa]
+        $user_ip_public = $filter->sanitize($this->request->getPost('public'));
+
+        $core->token = $tokenpush;
+        // Login Error Database Log
+        $member_id = $filter->sanitize($this->request->getPost('member_login_name'));
+        //$insert = $Member->tokenpush($member_id, $user_ip);
+        
+        $core_member_log = new Db\CoreMemberLog();
+        $core = save('member_id =' .$member_id,'ip_address = '.$user_ip,'mac = '.$user_ip_public);
+      
+         
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
@@ -137,7 +154,7 @@ class IndexController extends ControllerBase {
                 }
             }
             // User Not Has
-            elseif (count($chack_user) != 0) {  
+            elseif (count($chack_user) != 0) {
                 $member_name = $this->session->tokenpush;
                 $Chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
@@ -225,11 +242,10 @@ class IndexController extends ControllerBase {
     }
 
     public function sendMailAction() {
-        $member_mail = $this->request->get('email');
-        $Admin = new Db\CoreMember;
-
-        $result = $Admin->findEmail($member_mail);
-
+        $filter = new Filter();
+        $member_mail = $filter->sanitize($this->request->get('email'),"string");
+        $Admin = new \salts\Auth\Models\CoreMember();
+        $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
             $this->view->setVar("Result", $result);
         } else {
@@ -243,11 +259,11 @@ class IndexController extends ControllerBase {
     }
 
     public function checkMailAction() {
-        $member_mail = $this->request->get('email');
-        $Admin = new CoreMember();
-        $result = $Admin->findEmail($member_mail);
+        $filter = new Filter();
+        $member_mail = $filter->sanitize($this->request->get('email'), "string");
+        $Admin = new \salts\Auth\Models\CoreMember();
+        $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
-
             $msg = "success";
         } else {
             $msg = "fail";
@@ -257,51 +273,64 @@ class IndexController extends ControllerBase {
     }
 
     public function checkCodeAction() {
+        $filter = new Filter();
         $code = $this->request->get('code');
-        $email = $this->request->get('email');
-        $Admin = new Db\CoreMember;
-        $result = $Admin->findCode($code, $email);
-        $this->view->disable();
-        echo json_encode($result);
-    }
-
-    // for send email 
-    public function sendEmailAction() {
-        $email = $this->request->get('email');
-        $Admin = new Db\CoreMember;
-        $result = $Admin->findSecurityCode($email);
-        if ($result) {
-            $to = $email;
-            $subject = 'The subject';
-            $message = $result;
-            $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
-                    'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-
-            if (mail($to, $subject, $message, $headers)) {
-                echo $to . " : " . $subject . " : " . $message . " : " . $headers;
-                echo "Mail Sent";
-            } else {
-                echo "Email sending failed";
-            }
+        $email = $filter->sanitize($this->request->get('email'), "string");
+        $FindCode = new \salts\Auth\Models\CoreForgotPassword();
+        $result = $FindCode::find(
+                        array(
+                            "check_mail = '$email'",
+                            "order" => "curdate DESC",
+                            "limit" => 1
+                        )
+        );
+        foreach ($result as $value) {
+            $finded_token = $value->token;
         }
+        if ($code == $finded_token) {
+            $msg = "success";
+        } else {
+            $msg = "fail";
+        }
+        $this->view->disable();
+        echo json_encode($msg);
     }
 
     public function resetPasswordAction() {
-        $member_mail = $this->request->get('email');
-        $Admin = new Db\CoreMember;
-        $result = $Admin->findEmail($member_mail);
-        $this->view->setVar("Result", $result);
+        $filter = new Filter();
+        $member_mail = $filter->sanitize($this->request->get('email'),'string');
+        $Admin = new \salts\Auth\Models\CoreMember();
+        $result = $Admin::find(
+                        array(
+                            "member_mail = '$member_mail'",
+                            "deleted_flag = 0"
+                        )
+        );
+        $data = [];
+        foreach ($result as $value) {
+            $data[] = $value->member_profile;
+            $data[] = $value->member_mail;
+            $data[] = $value->member_login_name;
+        }
+        $this->view->setVar("Result", $data);
     }
 
     public function changePasswordAction() {
+        $filter = new Filter();
         $newpass = $this->request->get('fnp');
-        $member_mail = $this->request->get('email');
-
-        $Admin = new Db\CoreMember;
-
-        $update = $Admin->updateNewPassword($member_mail, $newpass);
-        if ($update) {
+        $member_mail = $filter->sanitize($this->request->get('email'), 'string');
+        $Up = new \salts\Auth\Models\CoreMember();
+        $result = $Up::find(
+                        array(
+                            "member_mail = '$member_mail'",
+                            "deleted_flag = 0"
+                        )
+        );
+        foreach ($result as $value) {
+            $value->member_password = sha1($newpass);
+            $value->update();
+        }
+        if ($value) {
             $msg = "success";
         } else {
             $msg = "fail";
@@ -311,16 +340,25 @@ class IndexController extends ControllerBase {
     }
 
     public function sendToMailAction() {
-        $getemail = $this->request->get('email');
-        $Admin = new Db\CoreMember;
-
+        $filter = new Filter();
+        $getemail = $filter->sanitize($this->request->get('email'), 'string');
+        $Insert = new \salts\Auth\Models\CoreForgotPassword();
         $token = uniqid(bin2hex(mcrypt_create_iv(1, MCRYPT_DEV_RANDOM)));
-        $Admin->insertEmailAndToken($getemail, $token);
-
-        $result = $Admin->checkYourMail($getemail);
+        $Insert->check_mail = $getemail;
+        $Insert->token = $token;
+        $Insert->save();
+        $Find = $Insert::find(array(
+                    "check_mail = '$getemail'",
+                    "order" => "curdate DESC",
+                    "limit" => 1
+                        )
+        );
+        foreach ($Find as $value) {
+            $finded_token = $filter->sanitize($value->token, "string");
+        }
         $to = $getemail;
         $subject = 'The subject';
-        $message = $result;
+        $message = $finded_token;
         $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
                 'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();

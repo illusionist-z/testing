@@ -3,6 +3,7 @@
 namespace salts\Attendancelist\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 
 class Attendances extends Model {
 
@@ -15,7 +16,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function getTodayList($name) {
+    public function getTodayList($name,$currentPage) {
         $today = date("Y:m:d");
 
 
@@ -42,7 +43,17 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
         }
-        return $row;
+                $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
+
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;        
     }
 
     /**
@@ -102,7 +113,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function showAttList() {
+    public function showAttList($currentPage) {
         //search monthly list data
         $year = date('Y');
         $month = date('m');
@@ -116,7 +127,17 @@ class Attendances extends Model {
                 ->orderBy('attendances.checkin_time DESC')
                 ->getQuery()
                 ->execute();
-        return $row;
+        $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
+
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;
     }
 
     /**

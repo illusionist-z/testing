@@ -1,7 +1,6 @@
 <?php
 
-namespace salts\Auth\Controllers;
-use salts\Core\Models\Db\CoreMember;
+namespace salts\Auth\Controllers; 
 use salts\Auth\Models;
 
 class CoreMember extends ControllerBase {

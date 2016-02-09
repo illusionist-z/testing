@@ -1,12 +1,12 @@
 
 @media print{
-    body *{ visibility: hidden; }
-    #printable *{ visibility: visible;}
-    .p_break{page-break-after: always;}
+  body *{ visibility: hidden; }
+  #printable *{ visibility: visible;}
+  .p_break{page-break-after: always;}
 }
 .td-style{
-    float: right; 
-    padding-right: 20px;
+     float: right; 
+     padding-right: 20px;
 }
 
 .detail-tbl th,.detail-tbl td{

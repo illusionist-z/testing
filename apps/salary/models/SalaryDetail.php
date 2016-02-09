@@ -7,7 +7,6 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use salts\Salary\Models\SalaryDetail;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
-use salts\Core\Models\Db\Attendances;
 
 class SalaryDetail extends Model {
 
@@ -21,17 +20,7 @@ class SalaryDetail extends Model {
      * @return type
      * @author zinmon
      */
-    public function getEachmonthsalary() {
-//        $sql = "SELECT MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`ssc_comp`)) AS Total,SUM(`basic_salary`) AS salary_total,SUM(`ssc_comp`) AS Tax_total
-//                FROM salary_detail
-//                GROUP BY YEAR(pay_date),MONTH(pay_date)
-//		order by pay_date DESC";
-//        echo $sql;exit;
-//        $result = $this->db->query($sql);
-//        $row = $result->fetchall();
-//        //print_r($row);exit;
-//        return $row;
-
+    public function getEachmonthsalary($currentPage) {
         $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
                 . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
                 . "SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,"
@@ -41,8 +30,17 @@ class SalaryDetail extends Model {
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";
         $row = $this->modelsManager->executeQuery($query);
-        // print_r($row);exit;
-        return $row;
+          $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
+
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;        
     }
 
     /**
@@ -225,7 +223,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     /**
      * Get salary detail for each month
      */
-    public function getSalaryDetail() {
+    public function getSalaryDetail($currentPage) {
         try {
             //echo "Thank you";exit;
             /* $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id";
@@ -240,22 +238,20 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
                     ->execute();
-            // print_r($row);exit;
-            /* foreach($row as $rows) {
-              echo $rows->core->member_login_name;
-              echo $rows->salarymas->basic_salary;
-              echo $rows->salarymas->travel_fee;
-              echo $rows->salarymas->over_time;
-              echo $rows->salarymas->ssc_emp;
-              echo $rows->salarymas->ssc_comp;
-              echo "<br>";
-              }
+                   $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
 
-              exit; */
+// Get the paginated results
+        $page = $paginator->getPaginate();        
         } catch (Exception $e) {
             echo $e;
         }
-        return $row;
+        return $page;
     }
 
     /**

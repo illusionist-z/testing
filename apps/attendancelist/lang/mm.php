@@ -41,19 +41,6 @@ $messages = array(
     "month_att_chart"=>"လစဥ္တက္ေရာက္သူမ်ားစာရင္း(ဇယား)",
     "att_person"=>"ရုံးတက္ေသာသူ",
     "absent_leave_person"=>" ခြင့္တင္ျပီးရုံးပ်က္ေသာသူ",
-    "absent_noleave_person"=>"ခြင့္မတင္ပဲရုံးပ်က္ေသာသူ",
-        /**
-     * Header
-     */
-    "Help"=>"အကူအညီ",
-    "Notifications"=>"အေၾကာင္းၾကားခ်က္မ်ား",
-    "View All"=>"အားလံုးၾကည့္ရန္",
-    "Member Since"=>"စတင္ အသံုးျပဳေသာေန႔ရက္",
-    "Setting"=>"သတ္မွတ္ခ်က္မ်ား",
-    "Sign out"=>"ထြက္ခြာ",
-    /**
-     * footer
-     */
-    "Change_Language"=>"ဘာသာ စကားေျပာင္းရန္",
+    "absent_noleave_person"=>"ခြင့္မတင္ပဲရုံးပ်က္ေသာသူ"  
 );
 

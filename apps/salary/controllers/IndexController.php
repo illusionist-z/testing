@@ -16,8 +16,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
 
         parent::initialize();
-       // $this->config = \Module_Config::getModuleConfig('leavedays');
-        //$this->salaryconfig = \Module_Config::getModuleConfig('salary');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+        $this->salaryconfig = \Library\Core\Models\Config::getModuleConfig('salary');
         $this->assets->addCss('apps/salary/css/index_show_salarylist.css');
         $this->assets->addCss('apps/salary/css/salary.css');
         $this->assets->addJs('common/js/paging.js');
@@ -60,10 +60,11 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {
 
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->assets->addJs('apps/salary/js/salary.js');
             $SalaryDetail = new SalaryDetail();
-            $get_salary_detail = $SalaryDetail->getSalaryDetail();
+            $curretPage = $this->request->get("page");
+            $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage);
             if ($this->permission == 1) {
                 $this->view->module_name = $this->router->getModuleName();
                 $this->view->salarydetail = $get_salary_detail;
@@ -143,8 +144,9 @@ class IndexController extends ControllerBase {
     public function monthlysalaryAction() {
         $this->assets->addJs('apps/salary/js/salary.js');
         $this->assets->addJs('apps/salary/js/addsalary.js');
+        $currentPage = $this->request->get("page");
         $SalaryDetail = new SalaryDetail();
-        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary();
+        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
         $this->view->module_name = $this->router->getModuleName();
         if ($this->permission === 1) {
             $this->view->setVar("geteachmonthsalarys", $get_eachmonth_salary);

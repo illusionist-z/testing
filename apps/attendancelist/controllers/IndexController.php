@@ -10,7 +10,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addJs('common/js/paging.js');
+        //$this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/attendancelist/js/index.js');
@@ -49,6 +49,7 @@ class IndexController extends ControllerBase {
        
         if ($this->moduleIdCall == 1) {
             $this->act_name = $this->router->getModuleName();
+            $currentPage  = $this->request->get('page');
             $this->permission = $this->setPermission($this->act_name);
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
             $this->assets->addCss('common/css/jquery-ui-timepicker.css');
@@ -113,7 +114,7 @@ class IndexController extends ControllerBase {
             $UserName = $UserList->getusername();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $monthly_list = $Attendances->showAttList();
+            $monthly_list = $Attendances->showAttList($currentPage);
             //$coreid = new CorePermissionGroupId();
          
             if ($this->permission == 1) {

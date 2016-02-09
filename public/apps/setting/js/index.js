@@ -10,14 +10,14 @@ function showDialog()
         buttons: {
             'Save': function () {
                 $("form").submit();
-            },
+               },
             'Delete': function () {
                 Setting.GroupRule.delete(dia_id);
             },
             'Cancel': function () {
                 $(this).dialog('close');
             }
-
+             
         }
     });
 
@@ -40,7 +40,7 @@ function showDialogname()
             'Save': function () {
                 $("form").submit();
             },
-            'Cancel': function () {
+             'Cancel': function () {
                 $(this).dialog('close');
             }
 
@@ -50,7 +50,7 @@ function showDialogname()
 
 }
 
-/**
+ /**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
  * @PageRuleSetting
  */
@@ -65,9 +65,9 @@ function PageRuleSetting()
         height: 'auto',
         buttons: {
             'Save': function () {
-                $("form").submit();
+               $("form").submit();
             },
-            'Delete': function () {
+             'Delete': function () {
                 Setting.PageRule.delete(dia_page_rule);
             },
             'Cancel': function () {
@@ -90,10 +90,10 @@ function showDialoguser()
         height: 'auto',
         buttons: {
             'Save': function () {
-                var group_id = $('#changeuser' + dia_id_name + ' option:selected').val();
-                var group_text = $('#changeuser' + dia_id_name + ' option:selected').text();
-                Setting.UserRule.update(dia_id_name, group_id, group_text);
-            },
+                var group_id = $('#changeuser'+dia_id_name+' option:selected').val();
+                var group_text = $('#changeuser'+dia_id_name+' option:selected').text();
+                Setting.UserRule.update(dia_id_name,group_id,group_text);
+            },          
             'Cancel': function () {
                 $(this).dialog('close');
             }
@@ -104,7 +104,7 @@ function showDialoguser()
 }
 function addGroup()
 {
-
+    
     $("#addGroup").dialog({
         modal: true,
         draggable: false,
@@ -113,7 +113,7 @@ function addGroup()
         height: 'auto',
         buttons: {
             'Save': function () {
-                $("form").submit();
+                   $("form").submit();
             },
             'Cancel': function () {
                 $(this).dialog('close');
@@ -125,7 +125,7 @@ function addGroup()
 
 function addPage()
 {
-
+    
     $("#addPage").dialog({
         modal: true,
         draggable: false,
@@ -134,7 +134,7 @@ function addPage()
         height: 'auto',
         buttons: {
             'Save': function () {
-
+               
                 $("form").submit();
             },
             'Cancel': function () {

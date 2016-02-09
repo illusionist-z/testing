@@ -1,15 +1,15 @@
-checked = false;
-function checkedAll(frm1) {
-    var aa = document.getElementById('frm1');
+checked=false;
+function checkedAll (frm1) {
+    var aa= document.getElementById('frm1'); 
     if (checked == false)
     {
-        checked = true
+    checked = true
     }
     else
     {
-        checked = false
+    checked = false
     }
-    for (var i = 0; i < aa.elements.length; i++) {
-        aa.elements[i].checked = checked;
+for (var i =0; i < aa.elements.length; i++){ 
+    aa.elements[i].checked = checked;
     }
 }

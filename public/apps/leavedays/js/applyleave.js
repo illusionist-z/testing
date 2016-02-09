@@ -11,8 +11,10 @@ var ApplyForm = {
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
+                //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
+                    // alert(json_obj[i].full_name);
                     dict.push(json_obj[i].member_login_name);
                 }
             }
@@ -49,14 +51,14 @@ var ApplyForm = {
                                 break;
                             case 'sdate'   :
                                 $("#apply_form_sdate").css({border: "1px solid red", color: "red"}).focus(function () {
-                                    $(this).css({'border': 'black', color: "#555"});
-                                });
+                                    $(this).css({'border': 'black',color : "#555"});
+                                });                                
                                 $('#apply_form_sdate_error').text(cond[i]).css({color: 'red'});
                                 break;
                             case 'edate'    :
                                 $("#apply_form_edate").css({border: "1px solid red", color: "red"}).focus(function () {
-                                    $(this).css({'border': 'black', color: "#555"});
-                                });
+                                    $(this).css({'border': 'black',color : "#555"});
+                                });                                
                                 $('#apply_form_edate_error').text(cond[i]).css({color: 'red'});
                                 break;
                         }
@@ -91,10 +93,14 @@ var ApplyForm = {
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
+                //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
+
                     dict.push(json_obj[i].member_id);
                 }
+                //var dict = ["Test User02","Adminstrator"];
+                //alert(dict);
                 loadIcon(dict);
             }
 
@@ -114,13 +120,18 @@ $(document).ready(function () {
             showTimezone: false,
             maskInput: true,
             timeFormat: "HH:mm:ss"}).focus();
-        $('#ui-datepicker-div').css("z-index","9999");
     });
     $('#apply_form_submit').on('click', function (e) {
         e.preventDefault();
         ApplyForm.Submit();
     });
     $('#apply_form_name').on('click', function () {
+//                $(this).autocomplete({
+//                        source: function( request, response ) {               
+//                                var results = $.ui.autocomplete.filter(dict, request.term);
+//                                   response(results.slice(0, 10));  
+//                        }
+//                });
         $(this).autocomplete({
             source: function (request, response) {
                 var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");

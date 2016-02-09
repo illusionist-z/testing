@@ -15,6 +15,7 @@ var ApplyForm = {
 
                 if (cond.result === 'error')
                 {
+                    //$('#apply_form_sdate').css('border','black');$('#apply_form_edate').css('border','black');
                     $('#apply_form_name_error').empty();
                     $('#apply_form_desc_error').empty();
                     $('#apply_form_sdate_error').empty();
@@ -33,14 +34,14 @@ var ApplyForm = {
                                 break;
                             case 'sdate'   :
                                 $("#apply_form_sdate").css({border: "1px solid red", color: "red"}).focus(function () {
-                                    $(this).css({'border': 'black', color: "#555"});
+                                    $(this).css({'border': 'black',color : "#555"});
                                 });
                                 $('#apply_form_sdate_error').text(cond[i]).css({color: 'red'});
                                 break;
                             case 'edate'    :
                                 $("#apply_form_edate").css({border: "1px solid red", color: "red"}).focus(function () {
-                                    $(this).css({'border': 'black', color: "#555"});
-                                });
+                                    $(this).css({'border': 'black',color : "#555"});
+                                });                                
                                 $('#apply_form_edate_error').text(cond[i]).css({color: 'red'});
                                 break;
                         }
@@ -72,11 +73,11 @@ var ApplyForm = {
 $(document).ready(function () {
     $('.datetimepicker').on('click', function (e) {
         e.preventDefault();
-        $(this).removeClass('datetimepicker').datetimepicker({dateFormat: "yy-mm-dd",
-            showTimezone: false,
-            maskInput: true,
-            autoClose: true,
-            timeFormat: "HH:mm:ss"}).focus();
+                         $(this).removeClass('datetimepicker').datetimepicker( { dateFormat:"yy-mm-dd",                                                                                           
+                            showTimezone :false,
+                            maskInput : true,
+                            autoClose : true,
+                           timeFormat: "HH:mm:ss"}).focus();
     });
 
     $('#apply_form_submit').on('click', function () {
