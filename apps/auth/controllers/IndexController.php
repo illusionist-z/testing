@@ -4,6 +4,8 @@ namespace salts\Auth\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
+use Phalcon\Filter;
+use Phalcon\Mvc\Url as UrlProvider;
 
 class IndexController extends ControllerBase {
  
@@ -11,6 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/auth/js/forgot.js');
+        $Filter = new Filter();
     }
 
     /**
@@ -18,16 +21,14 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function indexAction($mode = NULL) {
-        
-         $localhost = ($this->request->getServer('HTTP_HOST'));
-         $id_auth_filter =$this->session->auth;
+          
+        $localhost = ($this->request->getServer('HTTP_HOST'));
+        $id_auth_filter =$this->session->auth;
           
          if(isset($id_auth_filter) != null){
-             
              $this->response->redirect('dashboard/index');
-             
-         }
-       
+        }
+        
         elseif (isset($id_auth_filter) == null){
             
         if (isset($_SESSION['startTime']) != null) {
@@ -49,7 +50,8 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function failerAction($mode = 1) {
-        
+         
+        $filter = new Filter();
         /*
          * User failerAction 
          * @author Yan Lin Pai <wizardrider@gmail.com>
@@ -60,7 +62,7 @@ class IndexController extends ControllerBase {
             $_SESSION["attempts"] = 0;
 
         if ($_SESSION["attempts"] < 4) {
-
+            
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
@@ -137,14 +139,22 @@ class IndexController extends ControllerBase {
                 }
             }
             // User Not Has
-            elseif (count($chack_user) != 0) {  
+            elseif (count($chack_user) != 0) {
                 $member_name = $this->session->tokenpush;
                 $Chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
                 $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
-                $insert = $Chack->timeFlag($member_name, $formtdate);
+                
+                $member_name = $filter->sanitize($this->request->getPost('member_login_name'));
+                $member_name_find = CoreMember::FindFirstByMemberLoginName($member_name);
+                $member_id = $member_name_find->member_id;
+                $flag       = $member_name_find->timeflag ;
+                
+                $member_name_find->update();
+                
+                //$insert = $Chack->timeFlag($member_name, $formtdate);
                 $this->view->errorMsg = 'Your Account Has 30 MIN Block';
                 $this->view->pick('index/index');
                 session_destroy();
@@ -153,7 +163,8 @@ class IndexController extends ControllerBase {
     }
 
     public function failerUserAction() {
-
+ 
+        $filter = new Filter();
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
@@ -211,6 +222,8 @@ class IndexController extends ControllerBase {
     }
 
     public function saltsForGetAction() {
+         
+        $filter = new Filter();
         $Core = new CoreMember();
         $login = $this->request->getPost('SaltsForGetInput');
         $user = Users::findFirstByLogin($login);
@@ -225,6 +238,7 @@ class IndexController extends ControllerBase {
     }
 
     public function sendMailAction() {
+        
         $member_mail = $this->request->get('email');
         $Admin = new Db\CoreMember;
 
