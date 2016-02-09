@@ -6,7 +6,7 @@ use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
 use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
-use Phalcon\Mvc\Controller;
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
 
 /*
@@ -43,10 +43,19 @@ class CoreMember extends \Library\Core\Models\Base {
         return $module_id_return;
     }
 
-    public function getUserName() {
+    public function getUserName($currentPage) {
         $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
-        return $row;
+           $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;                
     }
 
     public function module_permission() {
@@ -528,5 +537,5 @@ class CoreMember extends \Library\Core\Models\Base {
         $rows = $data->fetchall();
         return $rows;
     }
-
+    
 }

@@ -49,13 +49,13 @@ class IndexController extends ControllerBase {
      */
     public function IndexAction() {
         //for paging and edit user
-        $User = new Db\CoreMember;
-        $this->assets->addJs('common/js/paging.js');
+        $User = new Db\CoreMember;        
         $this->assets->addJs("apps/manageuser/js/useredit.js");
         $this->assets->addJs('apps/manageuser/js/search.js');
         $getname = $User::getinstance()->getusername();
         $username = $this->request->get('username');
-        $list = $this->user->userList($username);
+        $currentPage = $this->request->get('page');
+        $list = $this->user->userList($username,$currentPage);
         $member_count = new Db\CoreMember();
         $member_count_number = $member_count->getNumberCount();
         $this->view->member_count_number = $member_count_number;
