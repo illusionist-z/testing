@@ -66,15 +66,7 @@ class IndexController extends ControllerBase {
         if (4 > $_SESSION["attempts"]) {
         
         // Login Error Database Log start
-            
-        $user_ip = $filter->sanitize($this->request->getPost('local'),'string');
-        $user_ip_public = $filter->sanitize($this->request->getPost('public'),'string');
-        $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
-        $core_member_log = new Db\CoreMemberLog();
-        $core_member_log->member_id = $member_id;
-        $core_member_log->ip_address = $user_ip;
-        $core_member_log->mac = $user_ip_public;
-        $core_member_log->save();
+       
         
         // Login Error Database Log end
         

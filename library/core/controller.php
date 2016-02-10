@@ -38,7 +38,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $aryModules = \Library\Core\Module::get();
         $allow = array();$permitted = 0;
         //setting permission        
-        $coremember = new \salts\Core\Models\CorePermissionRelMember;
+        $coremember = new \salts\Core\Models\CorePermissionRelMember();
         
         if(null === $this->session->user['member_id']){
             return false;
