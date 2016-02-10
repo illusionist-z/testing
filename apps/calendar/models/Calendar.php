@@ -10,12 +10,12 @@ use Phalcon\Filter;
  * @desc  To create,edit,delete event
  */
 class Calendar extends Model {
+
     public $filter;    
     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
-        $this->filter = new Filter();
-    }
-
+        $this->filter = new Filter();        
+    }   
     /**
      * @return array {calendar event data}
      * @author David
@@ -108,18 +108,20 @@ class Calendar extends Model {
      * @author David
      */
     public function editEvent($name, $sdate, $edate, $title, $id, $member_id) {
-        $this->db = $this->getDI()->getShared("db");
-        $update = "UPDATE calendar SET member_name ='" . $name . "',title ='" . mysql_real_escape_string($title) . "',startdate='" . $sdate . "',enddate='" . $edate . "',member_id ='" . $member_id . "' WHERE id='" . $id . "'";
-        $query = $this->db->query($update);
-        return $query;
+        $edit = Calendar::findFirst("id ='$id'");
+        $edit->member_name = $this->filter->sanitize($name,"string");
+        $edit->title   = $this->filter->sanitize($title,"string");
+        $edit->startdate = $sdate;
+        $edit->enddate  = $edate;
+        $edit->member_id = $this->filter->sanitize($member_id,"string");
+        $edit->update();
+        return $edit;
     }
 
     public function getIdName($id) {
-        $this->db = $this->getDI()->getShared("db");
-        $getname = "Select member_name from calendar where id='" . $id . "'";
-        $query = $this->db->query($getname);
-        $result = $query->fetchall();
-        return $result;
+        $getname = Calendar::find("id ='$id'");
+        $data = $getname->toArray();
+        return $data;
     }
 
     /**
@@ -128,8 +130,8 @@ class Calendar extends Model {
      */
     public function deleteEvent($id) {
         $this->db = $this->getDI()->getShared("db");
-        $delete = "DELETE FROM calendar WHERE id='" . $id . "'";
-        $query = $this->db->query($delete);
+        $delete = Calendar::findFirst("id ='$id'");
+        $delete->delete();
     }
 
     public function removeMember($remove_id, $id) {
@@ -153,27 +155,22 @@ class Calendar extends Model {
         $permit->member_name = $id;
         $permit->permit_name    = $permit_name;
         $permit->delete_flag  = 0;
-        $permit->save();
-        $return = 0;
+        $permit->save();$return = 0;
         }
         else  {
             $query2 = MemberEventPermission::findFirst("permit_name ='$permit_name' and member_name ='$id' and delete_flag = 1");
-            if(count($query2) == 0 ){
-                $return = 1;
-            }
+            if(count($query2) == 0 )   {$return = 1;}
             else {
                 $query2->delete_flag = 0;
-                $query2->update();
-                $return = 0;
+                $query2->update();$return = 0;
             }
         } 
         return $return;
     }
 
     public function getalluser($id) {
-        $query = "Select member_name,permit_name from member_event_permission where member_name ='" . $id . "' and delete_flag=0";
-        $result = $this->db->query($query);
-        $data = $result->fetchall();
+        $AllUser = MemberEventPermission::find("member_name ='$id' and delete_flag = 0");        
+        $data = $AllUser->toArray();
         return $data;
     }
 

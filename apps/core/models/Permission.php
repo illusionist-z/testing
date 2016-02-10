@@ -12,7 +12,8 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
  * and open the template in the editor.
  */
 
-class Permission {
+class Permission {    
+    static $_table_object;
 
     public static function getInstance() {
         return new self();
@@ -121,6 +122,18 @@ class Permission {
 // Get the paginated results
         $page = $paginator->getPaginate();
         return $page;
+    }
+    /**
+     * @author David JP <david.gnext@gmail.com>
+     * change simpler result object to pdo table object
+     * @param object $parameters
+     * @return table object
+     */
+    public static function tableObject($parameters){
+      foreach($parameters as $object_data){
+          self::$_table_object = $object_data;
+      }
+      return self::$_table_object;
     }
 
 }
