@@ -47,7 +47,7 @@ class IndexController extends ControllerBase {
      */
     public function todaylistAction() {
        
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->act_name = $this->router->getModuleName();
             $currentPage  = $this->request->get('page');
             $this->permission = $this->setPermission($this->act_name);

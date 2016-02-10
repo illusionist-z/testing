@@ -15,6 +15,11 @@ function checktime(i) {
 function isValid(str){
  return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
 }
+
+function MsgDisplay(){    
+  var th_length = $('.listtbl thead th').length;
+  $('.listtbl tbody').append("<td colspan="+th_length+"><center>No data to display</center></td>");
+}
 /**
  * sidebar menu link height resize()
  * @author David JP<gnext>

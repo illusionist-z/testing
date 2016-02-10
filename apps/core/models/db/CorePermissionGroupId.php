@@ -5,7 +5,7 @@ namespace salts\Core\Models\Db;
 use Phalcon\Mvc\Model;
 
 /**
- * @author Yan Lin Pai
+ * @author Yan Lin Paii
  * @desc     Core Permission Id
  */
 class CorePermissionGroupId extends Model {

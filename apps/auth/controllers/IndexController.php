@@ -36,7 +36,6 @@ class IndexController extends ControllerBase {
                 $sec = "1";
                 header("Refresh: $sec; url=$page");
             } elseif (isset($_SESSION['startTime']) == null) {
-
                 $mode = $this->request->get('mode');
                 $this->view->errorMsg = '';
                 $this->view->mode = $mode;
@@ -56,11 +55,10 @@ class IndexController extends ControllerBase {
          *     
          */
         $filter = new Filter();
-        
+
         date_default_timezone_set('Asia/Rangoon');
-        
+
         if (!isset($_SESSION["attempts"]))
-            
             $_SESSION["attempts"] = 0;
 
         if (4 > $_SESSION["attempts"]) {
@@ -105,16 +103,16 @@ class IndexController extends ControllerBase {
                 }
             }
         } else {
-            
+
             $member_name = $this->session->tokenpush;
             $ChackUser = new CoreMember();
             $chack_user = $ChackUser::findByMemberLoginName($member_name);
-            
+
 
             if (0 == count($chack_user)) {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
-                
+
                 if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
 
                     $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
@@ -357,11 +355,8 @@ class IndexController extends ControllerBase {
                 'X-Mailer: PHP/' . phpversion();
 
         if (mail($to, $subject, $message, $headers)) {
-//                            echo $to ." : " .$subject." : ".$message." : ".$headers;
-//                            echo "Mail Sent";
             $msg = "success";
         } else {
-//                            echo "Email sending failed";
             $msg = "fail";
         }
         $this->view->disable();
