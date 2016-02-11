@@ -9,7 +9,7 @@ namespace Library\Core;
  */
 
 use salts\Core\Models\Db;
-use salts\Auth\Models\Db\CorePermissionRelMember;
+//use salts\Auth\Models\Db;
 
 abstract class Controller extends \Phalcon\Mvc\Controller {
 

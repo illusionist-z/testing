@@ -1,15 +1,14 @@
 <?php
 
 namespace salts\Calendar\Models;
-
-use Phalcon\Mvc\Model;
+ 
 use Phalcon\Filter;
 /**
  * @author David
  * @since 27/7/2015
  * @desc  To create,edit,delete event
  */
-class Calendar extends Model {
+class Calendar extends Models {
     public $filter;    
     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
@@ -86,8 +85,8 @@ class Calendar extends Model {
             $notification->save();
         }        
         $users = $this->modelsManager->createBuilder()
-                     ->columns(array('core.*', 'rel_member.*'))
-                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->columns(array('core.*', 'rel_member.*'))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->join('salts\Core\Models\CorePermissionRelMember', 'core.member_id = rel_member.rel_member_id', 'rel_member')
                     ->where('core.member_id != :id:', array('id' => $creator_id))
                     ->andWhere('rel_member.rel_permission_group_code ="USER"')
