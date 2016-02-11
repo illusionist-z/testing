@@ -1,11 +1,45 @@
 <?php
-/*
- * This file is part of PHPUnit.
+/**
+ * PHPUnit
  *
- * (c) Sebastian Bergmann <sebastian@phpunit.de>
+ * Copyright (c) 2001-2014, Sebastian Bergmann <sebastian@phpunit.de>.
+ * All rights reserved.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   * Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in
+ *     the documentation and/or other materials provided with the
+ *     distribution.
+ *
+ *   * Neither the name of Sebastian Bergmann nor the names of his
+ *     contributors may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package    PHPUnit
+ * @author     Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @link       http://www.phpunit.de/
+ * @since      File available since Release 3.3.0
  */
 
 /**
@@ -13,7 +47,7 @@
  *
  * @package    PHPUnit
  * @author     Sebastian Bergmann <sebastian@phpunit.de>
- * @copyright  Sebastian Bergmann <sebastian@phpunit.de>
+ * @copyright  2001-2014 Sebastian Bergmann <sebastian@phpunit.de>
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @link       http://www.phpunit.de/
  * @since      Class available since Release 3.3.0
@@ -25,7 +59,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->configuration = PHPUnit_Util_Configuration::getInstance(
-            dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'configuration.xml'
+          dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'configuration.xml'
         );
     }
 
@@ -44,7 +78,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testFilterConfigurationIsReadCorrectly()
     {
         $this->assertEquals(
-            array(
+          array(
             'blacklist' =>
             array(
               'include' =>
@@ -121,8 +155,8 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
                 ),
               ),
             ),
-            ),
-            $this->configuration->getFilterConfiguration()
+          ),
+          $this->configuration->getFilterConfiguration()
         );
     }
 
@@ -132,7 +166,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testGroupConfigurationIsReadCorrectly()
     {
         $this->assertEquals(
-            array(
+          array(
             'include' =>
             array(
               0 => 'name',
@@ -141,8 +175,8 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
             array(
               0 => 'name',
             ),
-            ),
-            $this->configuration->getGroupConfiguration()
+          ),
+          $this->configuration->getGroupConfiguration()
         );
     }
 
@@ -157,7 +191,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
         ini_set('include_path', $dir . PATH_SEPARATOR . $includePath);
 
         $this->assertEquals(
-            array(
+          array(
             0 =>
             array(
               'class' => 'MyListener',
@@ -190,8 +224,8 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
                 0 => 42
               ),
             ),
-            ),
-            $this->configuration->getListenerConfiguration()
+          ),
+          $this->configuration->getListenerConfiguration()
         );
 
         ini_set('include_path', $includePath);
@@ -203,7 +237,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testLoggingConfigurationIsReadCorrectly()
     {
         $this->assertEquals(
-            array(
+          array(
             'lowUpperBound' => '50',
             'highLowerBound' => '90',
             'coverage-html' => '/tmp/report',
@@ -215,8 +249,8 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
             'junit' => '/tmp/logfile.xml',
             'testdox-html' => '/tmp/testdox.html',
             'testdox-text' => '/tmp/testdox.txt',
-            ),
-            $this->configuration->getLoggingConfiguration()
+          ),
+          $this->configuration->getLoggingConfiguration()
         );
     }
 
@@ -226,7 +260,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testPHPConfigurationIsReadCorrectly()
     {
         $this->assertEquals(
-            array(
+          array(
             'include_path' =>
             array(
               dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . '.',
@@ -242,8 +276,8 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
             'server'=> array('foo' => 'bar'),
             'files'=> array('foo' => 'bar'),
             'request'=> array('foo' => 'bar'),
-            ),
-            $this->configuration->getPHPConfiguration()
+          ),
+          $this->configuration->getPHPConfiguration()
         );
     }
 
@@ -302,7 +336,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testPHPUnitConfigurationIsReadCorrectly()
     {
         $this->assertEquals(
-            array(
+          array(
             'backupGlobals' => true,
             'backupStaticAttributes' => false,
             'bootstrap' => '/path/to/bootstrap.php',
@@ -320,14 +354,13 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
             'strictCoverage' => false,
             'disallowTestOutput' => false,
             'enforceTimeLimit' => false,
-            'disallowTodoAnnotatedTests' => false,
             'testSuiteLoaderClass' => 'PHPUnit_Runner_StandardTestSuiteLoader',
             'verbose' => false,
             'timeoutForSmallTests' => 1,
             'timeoutForMediumTests' => 10,
             'timeoutForLargeTests' => 60
-            ),
-            $this->configuration->getPHPUnitConfiguration()
+          ),
+          $this->configuration->getPHPUnitConfiguration()
         );
     }
 
@@ -337,7 +370,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testSeleniumBrowserConfigurationIsReadCorrectly()
     {
         $this->assertEquals(
-            array(
+          array(
             0 =>
             array(
               'name' => 'Firefox on Linux',
@@ -346,8 +379,8 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
               'port' => 4444,
               'timeout' => 30000,
             ),
-            ),
-            $this->configuration->getSeleniumBrowserConfiguration()
+          ),
+          $this->configuration->getSeleniumBrowserConfiguration()
         );
     }
 
@@ -357,7 +390,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testXincludeInConfiguration()
     {
         $configurationWithXinclude = PHPUnit_Util_Configuration::getInstance(
-            dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'configuration_xinclude.xml'
+          dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'configuration_xinclude.xml'
         );
 
         $this->assertConfigurationEquals(
@@ -378,7 +411,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
     public function testWithEmptyConfigurations()
     {
         $emptyConfiguration = PHPUnit_Util_Configuration::getInstance(
-            dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'configuration_empty.xml'
+          dirname(__DIR__) . DIRECTORY_SEPARATOR . '_files' . DIRECTORY_SEPARATOR . 'configuration_empty.xml'
         );
 
         $logging = $emptyConfiguration->getLoggingConfiguration();
@@ -413,7 +446,7 @@ class Util_ConfigurationTest extends PHPUnit_Framework_TestCase
      * @param PHPUnit_Util_Configuration $actualConfiguration
      * @return void
      */
-    protected function assertConfigurationEquals(PHPUnit_Util_Configuration $expectedConfiguration, PHPUnit_Util_Configuration $actualConfiguration)
+    protected function assertConfigurationEquals( PHPUnit_Util_Configuration $expectedConfiguration, PHPUnit_Util_Configuration $actualConfiguration )
     {
         $this->assertEquals(
             $expectedConfiguration->getFilterConfiguration(),

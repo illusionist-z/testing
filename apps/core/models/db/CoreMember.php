@@ -457,18 +457,7 @@ class CoreMember extends \Library\Core\Models\Base {
         return $res;
     }
 
-    /**
-     * Saw Zin Min Tun
-     * forget password //for resetpassword.phtml
-     */
-    public function findEmail($member_mail) {
-        $email = $member_mail;
-        $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
-        $user = $this->db->query($query);
-        $users = $user->fetchAll();
-        return $users;
-    }
+  
 
     /*
      * User Fix 

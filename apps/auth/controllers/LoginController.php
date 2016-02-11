@@ -1,8 +1,9 @@
 <?php
 
 namespace salts\Auth\Controllers;
+
 use salts\Auth\Models;
-use salts\Auth\Models\Permission; 
+use salts\Auth\Models\Permission;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 
@@ -21,9 +22,9 @@ class LoginController extends ControllerBase {
         $filter = new Filter();
 
         $login_params = $this->request->get();
-      
+
         $ModelAuth = new Models\Auth();
-       
+
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
             $dbinfo['host'] = 'localhost';
@@ -41,17 +42,14 @@ class LoginController extends ControllerBase {
                 $this->response->redirect('auth/index/failersuperuser');
             }
         } else {
-            
+
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
-            
-         //   $this->view->test = $login_params;
-         
-            //$companyDB = $ModelAuth->findCompDb($login_params);
+
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
-                
+
                 $this->session->set('db_config', $companyDB);
 
                 // Module Chack
@@ -74,15 +72,15 @@ class LoginController extends ControllerBase {
 
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
-                $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
+                $member_id = $filter->sanitize($this->request->getPost('member_login_name'), 'string');
                 $this->session->set('tokenpush', $member_id);
-                
+
                 $member_name = $this->session->tokenpush;
                 $chack_user2 = new CoreMember();
                 $chack_user2 = $Member::findByMemberLoginName($member_name);
                 if (0 != count($chack_user2)) {
-                    
-                $core2 = new CoreMember(); 
+
+                    $core2 = new CoreMember();
                     $core2 = $chack_user2[0]->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));
@@ -102,6 +100,18 @@ class LoginController extends ControllerBase {
                             $this->response->redirect('home');
                             session_destroy(($_SESSION['attempts']));
                         } else {
+                            
+                                 
+                        $user_ip = $filter->sanitize($this->request->getPost('local'),'string');
+                        $user_ip_public = $filter->sanitize($this->request->getPost('public'),'string');
+                        $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
+                        $core_member_log = new \salts\Core\Models\Db\CoreMemberLog();
+                        $core_member_log->token = '';
+                        $core_member_log->member_id = $member_id;
+                        $core_member_log->ip_address = $user_ip;
+                        $core_member_log->mac = $user_ip_public;
+                        $core_member_log->save();
+                            
                             $this->response->redirect('auth/index/failer');
                         }
                     }
@@ -110,6 +120,16 @@ class LoginController extends ControllerBase {
                     $this->response->redirect('auth/index/failer');
                 }
             } else {
+                
+                        $user_ip = $filter->sanitize($this->request->getPost('local'),'string');
+                        $user_ip_public = $filter->sanitize($this->request->getPost('public'),'string');
+                        $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
+                        $core_member_log = new \salts\Core\Models\Db\CoreMemberLog();
+                        $core_member_log->token = '';
+                        $core_member_log->member_id = $member_id;
+                        $core_member_log->ip_address = $user_ip;
+                        $core_member_log->mac = $user_ip_public;
+                        $core_member_log->save();
                 
                 $this->response->redirect('auth/index/failer');
             }
