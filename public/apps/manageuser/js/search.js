@@ -62,10 +62,23 @@ $(document).ready(function(){
         User.search();
     });
     $('form').on('click','#addinguser',function () {      
-       
-        Manage.User.Edit('new');
+           var type="new";
+                    $.ajax({
+                    type:'GET',
+                    url :baseUri+'manageuser/index/getpermit?data=' + type,
+                    success: function(d){
+                    var json_obj = $.parseJSON(d);                    
+                    var opt='',option="";
+                    for (var i in json_obj){
+                   if(json_obj[i].name_of_group=='USER'){ opt="selected"}else{opt=''}
+                       option += "<option value='"+json_obj[i].name_of_group+","+json_obj[i].group_id+"'"+opt+">"+json_obj[i].name_of_group+"</option>";                        
+                    }
+                    Manage.User.Edit('new',option);
+                    }
+                   });
+        
     });
-    $("tbody").on('click','.displaypopup',function () {        
+    $("tbody").on('click','.displaypopup',function () {
         var type = $(this).attr('id');  
        // alert("aa");
         Manage.User.Edit(type);

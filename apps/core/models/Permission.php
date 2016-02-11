@@ -126,8 +126,7 @@ class Permission {
     /**
      * @author David JP <david.gnext@gmail.com>
      * change simpler result object to pdo table object
-     * @param object $parameters
-     * @return table object
+     * @param object $parameters     
      */
     public static function tableObject($parameters){
       foreach($parameters as $object_data){

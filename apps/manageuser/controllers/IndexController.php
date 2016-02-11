@@ -4,7 +4,6 @@ namespace salts\Manageuser\Controllers;
 
 use salts\Manageuser\Models\User as User;
 use salts\Core\Models\Db;
-use salts\Dashboard\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase {
 
@@ -181,9 +180,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function getpermitAction() {
-        $Permission = new CorePermissionGroupId();
-        $result = $Permission->getPermitName();
-        echo json_encode($result);
+        $Permission = new Db\CorePermissionGroupId();
+        $row = $Permission::find();        
+        echo json_encode($row->toArray());
         $this->view->disable();
     }
 
