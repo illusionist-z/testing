@@ -80,16 +80,29 @@ class CoreMember extends \Library\Core\Models\Base {
         return $groupid;
     }
 
-    public function getgroupid() {
-        $query = "Select member_id,member_login_name,group_id,core_member.deleted_flag from core_member "
-                . "left join core_permission_rel_member on core_member.member_id=core_permission_rel_member.rel_member_id "
-                . "left join core_permission_group_id on core_permission_group_id.name_of_group = core_permission_rel_member.rel_permission_group_code";
-
-        $data = $this->db->query($query);
-
-        $groupid = $data->fetchall();
-
-        return $groupid;
+    public function getGroupId($currentPage = null) {
+        try{
+          $row = $this->modelsManager->createBuilder()
+                    ->columns(array('core.*','coregroup.group_id'))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->Leftjoin('salts\Core\Models\CorePermissionRelMember', 'core.member_id = rel.rel_member_id', 'rel')
+                    ->Leftjoin('salts\Core\Models\Db\CorePermissionGroupId','rel.rel_permission_group_code = coregroup.name_of_group','coregroup')
+                    ->where('core.deleted_flag = 0')
+                    ->getQuery()
+                    ->execute();       
+           $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 3,
+            "page" => $currentPage
+                )
+        );
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        }  catch (Phalcon\Exception $e) {
+            $di->getShared("logger")->error($e->getMessage());
+        }
+        return $page;        
     }
 
     public function username($name) {
@@ -436,18 +449,6 @@ class CoreMember extends \Library\Core\Models\Base {
         return $res;
     }
 
-    /**
-     * Saw Zin Min Tun
-     * forget password //for resetpassword.phtml
-     */
-    public function findEmail($member_mail) {
-        $email = $member_mail;
-        $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
-        $user = $this->db->query($query);
-        $users = $user->fetchAll();
-        return $users;
-    }
   
 
     /*

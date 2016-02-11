@@ -62,8 +62,7 @@ class Issue1340Test extends PHPUnit_Framework_TestCase
         $undefined();
     }
 
-    public static function onShutdown()
-    {
+    public static function onShutdown() {
         echo "\nshutdown: stdout:", self::get4KB(), "\n";
         error_log("\nshutdown: stderr:" . self::get4KB());
     }

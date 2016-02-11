@@ -21,6 +21,7 @@ class SalaryDetail extends Model {
      * @author zinmon
      */
     public function getEachmonthsalary($currentPage) {
+        try{
         $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
                 . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
                 . "SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,"
@@ -39,8 +40,11 @@ class SalaryDetail extends Model {
                          );
 
 // Get the paginated results
-        $page = $paginator->getPaginate();
-        return $page;        
+        $page = $paginator->getPaginate();        
+        }  catch (Phalcon\Exception $e) {           
+              $di->getShared('logger')->error($e->getMessage());
+        }
+        return $page;
     }
 
     /**

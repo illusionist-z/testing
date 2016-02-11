@@ -36,7 +36,6 @@ class IndexController extends ControllerBase {
                 $sec = "1";
                 header("Refresh: $sec; url=$page");
             } elseif (isset($_SESSION['startTime']) == null) {
-
                 $mode = $this->request->get('mode');
                 $this->view->errorMsg = '';
                 $this->view->mode = $mode;
@@ -56,25 +55,16 @@ class IndexController extends ControllerBase {
          *     
          */
         $filter = new Filter();
-        
+
         date_default_timezone_set('Asia/Rangoon');
-        
+
         if (!isset($_SESSION["attempts"]))
-            
             $_SESSION["attempts"] = 0;
 
         if (4 > $_SESSION["attempts"]) {
         
         // Login Error Database Log start
-            
-        $user_ip = $filter->sanitize($this->request->getPost('local'),'string');
-        $user_ip_public = $filter->sanitize($this->request->getPost('public'),'string');
-        $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
-        $core_member_log = new Db\CoreMemberLog();
-        $core_member_log->member_id = $member_id;
-        $core_member_log->ip_address = $user_ip;
-        $core_member_log->mac = $user_ip_public;
-        $core_member_log->save();
+       
         
         // Login Error Database Log end
         
@@ -85,7 +75,7 @@ class IndexController extends ControllerBase {
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 
-                if (0 === count($chack_user2)) {
+                if (0 != count($chack_user2)) {
 
                     $member_name = $this->session->tokenpush;
                     $core_fai = new Db\CoreMember();
@@ -113,16 +103,16 @@ class IndexController extends ControllerBase {
                 }
             }
         } else {
-            
+
             $member_name = $this->session->tokenpush;
             $ChackUser = new CoreMember();
             $chack_user = $ChackUser::findByMemberLoginName($member_name);
-            
+
 
             if (0 == count($chack_user)) {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
-                
+
                 if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
 
                     $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
@@ -155,7 +145,7 @@ class IndexController extends ControllerBase {
                 }
             }
             // User Not Has
-            elseif (0 === count($chack_user)) {
+            elseif (0 != count($chack_user)) {
                 $member_name = $this->session->tokenpush;
                 $Chack = new CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
@@ -244,7 +234,7 @@ class IndexController extends ControllerBase {
 
     public function sendMailAction() {
         $filter = new Filter();
-        $member_mail = $filter->sanitize($this->request->get('email'),"string");
+        $member_mail = $filter->sanitize($this->request->get('email'), "string");
         $Admin = new \salts\Auth\Models\CoreMember();
         $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
@@ -299,7 +289,7 @@ class IndexController extends ControllerBase {
 
     public function resetPasswordAction() {
         $filter = new Filter();
-        $member_mail = $filter->sanitize($this->request->get('email'),'string');
+        $member_mail = $filter->sanitize($this->request->get('email'), 'string');
         $Admin = new \salts\Auth\Models\CoreMember();
         $result = $Admin::find(
                         array(
@@ -365,11 +355,8 @@ class IndexController extends ControllerBase {
                 'X-Mailer: PHP/' . phpversion();
 
         if (mail($to, $subject, $message, $headers)) {
-//                            echo $to ." : " .$subject." : ".$message." : ".$headers;
-//                            echo "Mail Sent";
             $msg = "success";
         } else {
-//                            echo "Email sending failed";
             $msg = "fail";
         }
         $this->view->disable();

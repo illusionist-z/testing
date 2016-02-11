@@ -18,7 +18,7 @@ use Phalcon\Filter;
  * and open the template in the editor.
  */
 
-class CoreMember extends \Library\Core\Models\Base {
+class CoreMember extends Model {
     
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;

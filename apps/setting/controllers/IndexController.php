@@ -10,7 +10,6 @@ use salts\Setting\Models\CorePermissionGroupId;
 use salts\Setting\Models\CorePermissionRelMember;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
-use Phalcon\Http\Response;
 use Phalcon\Filter;
 
 /**
@@ -24,10 +23,10 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/paging.js');
+        //$this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/setting/js/index.js');
         $this->assets->addJs('apps/setting/js/setting.js');
-        $this->config = \Module_Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getActionName();
         $this->permission = $this->setPermission($this->act_name);
@@ -51,18 +50,22 @@ class IndexController extends ControllerBase {
      */
     public function adminAction() {
         if ($this->permission == 1) {
+            $permission = new \salts\Core\Models\Permission();
             $coreid = new CorePermissionGroupId();
             $corememberid = new CorePermissionRelMember();
-            $coreuser = new CoreMember();
+            $coreuser = new CoreMember();            
             $coreuser2 = new CorePermissionGroup();
+            $currentPage  = $this->request->get("page");
+            $currentPage1  = $this->request->get("page1");
             $core_groupid = $coreid::find();
             $coremember = $corememberid::find();
             $core_groupuser2 = $coreuser2::find();
-            $core_groupuser = $coreuser->getgroupid();
+            $core_groupuser2 = $permission->pagination($core_groupuser2,$currentPage);
+            $core_groupuser = $coreuser->getGroupId($currentPage1);
             $this->view->coreid = $core_groupid;
             $this->view->coremember = $coremember;
             $this->view->coreuser = $core_groupuser;
-            $this->view->coreuser2 = $core_groupuser2;
+            $this->view->coreuser2 = $core_groupuser2;            
             $id = $this->session->user['member_id'];
             $Noti = $coreuser->getAdminNoti($id, 0);
             $this->view->setVar("noti", $Noti);

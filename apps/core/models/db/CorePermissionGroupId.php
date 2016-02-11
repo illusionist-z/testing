@@ -1,6 +1,6 @@
 <?php
 
-namespace salts\Core\Models\Db\Models;
+namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
 

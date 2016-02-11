@@ -47,7 +47,7 @@ class IndexController extends ControllerBase {
      */
     public function todaylistAction() {
        
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->act_name = $this->router->getModuleName();
             $currentPage  = $this->request->get('page');
             $this->permission = $this->setPermission($this->act_name);
@@ -59,8 +59,7 @@ class IndexController extends ControllerBase {
             $UserList = new \salts\Core\Models\Db\CoreMember();
             $Username = $UserList->getUserName();
             $AttList = new \salts\Attendancelist\Models\Attendances();
-            $Result_Attlist = $AttList->getTodayList($name);
-//            print_r($Result_Attlist);exit;
+            $Result_Attlist = $AttList->getTodayList($name,$currentPage);
             if ($this->permission == 1) {
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;
@@ -107,11 +106,11 @@ class IndexController extends ControllerBase {
      * 
      */
     public function monthlylistAction() {
-        //print_r($this->moduleIdCall);exit;
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $offset = $this->session->location['offset'];
-            $UserList = new \salts\Attendancelist\Models\Attendances();
-            $UserName = $UserList->getusername();
+            $currentPage = $this->request->get("page");
+            $UserList = new \salts\Core\Models\CoreMember();
+            $UserName = $UserList::getinstance()->getusername();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthly_list = $Attendances->showAttList($currentPage);
