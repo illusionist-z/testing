@@ -34,26 +34,26 @@ class LoginController extends ControllerBase {
             $name = $filter->sanitize($login_params['member_login_name'], "string");
             $password = $login_params['password'];
             $database = $_SESSION['db_config'];
-            
-            if ($database['db_name'] == 'company_db') {
-                
-                $user = Models\UserTbl::findLoginName($login_params, $user);
-                
-                } 
-                
-           else {
-               
-                 $user = Models\CoreMember::findMemberLoginName($login_params, $user);
-           
-                }
-             
-            $this->session->set('user', $result);
-            // Data Base Chack
-            if ($result) {
-                $this->response->redirect('managecompany');
-            } else {
-                $this->response->redirect('auth/index/failersuperuser');
-            }
+//            
+//            if ($database['db_name'] == 'company_db') {
+//                
+//                $user = Models\UserTbl::findLoginName($login_params, $user);
+//                
+//                } 
+//                
+//           else {
+//               
+//                 $user = Models\CoreMember::findMemberLoginName($login_params, $user);
+//           
+//                }
+//             
+//            $this->session->set('user', $result);
+//            // Data Base Chack
+//            if ($result) {
+//                $this->response->redirect('managecompany');
+//            } else {
+//                $this->response->redirect('auth/index/failersuperuser');
+//            }
         } else {
             $this->view->test = $login_params;
             $companyDB = Models\CompanyTbl::findByCompanyId($login_params['company_id']);
