@@ -11,8 +11,7 @@
  *
  * @author Su Zin Kyaw <gnext.suzin@gmail.com>
  */
-
-class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
+class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public static $browsers = array(
         array('browserName' => 'firefox', 'sessionStrategy' => 'shared')
@@ -20,7 +19,6 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     function setUp() {
         $this->setBrowserUrl('http://localhost/salts');
-
     }
 
     public function testLoginSuccess() {
@@ -30,8 +28,8 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         $username = $this->byName('member_login_name');
         $password = $this->byName('password');
         $company->value('cop1');
-        $username->value('malkhin');
-        $password->value('123');
+        $username->value('admin');
+        $password->value('admin');
         $form->submit();
         $this->assertEquals('Dashboard', $this->title());
     }
@@ -55,8 +53,8 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         $username = $this->byName('member_login_name');
         $password = $this->byName('password');
         $company->value('cop1');
-        $username->value('malkhin');
-        $password->value('890');
+        $username->value('adm');
+        $password->value('admi');
         $form->submit();
         $elements = $this->elements($this->using('css selector')->value('p'));
         $this->assertEquals(2, count($elements));

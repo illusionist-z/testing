@@ -16,12 +16,17 @@ class LeavesSetting extends \Library\Core\Models\Base {
     }
 
     public function getLeaveSetting() {
-        $row = $this->modelsManager->createBuilder()
+        try {
+            $row = $this->modelsManager->createBuilder()
                 ->columns('max_leavedays,fine_amount')
                 ->from('salts\Leavedays\Models\LeavesSetting')
                 ->getQuery()
                 ->execute();
-        return $row;
+             return $row;
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        
     }
 
     public function editLeaveSetting($max_leavedays) {

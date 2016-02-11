@@ -4,11 +4,8 @@ namespace salts\Auth\Models\Db;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
-use Phalcon\Mvc\User\Component;
-use Phalcon\DI\FactoryDefault;
-use salts\Auth\Models\Db\AuthFailedLogins; 
-use salts\Auth\Models\Db\CorePermissionRelMember;
-use salts\Auth\Models\Db\CorePermissionGroupId;
+use salts\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db\CorePermissionRelMember;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
 

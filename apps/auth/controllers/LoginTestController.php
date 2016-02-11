@@ -3,7 +3,7 @@ namespace salts\Auth\Controllers;
 use salts\Auth\Models;
 use salts\Auth\Models\Permission;
 use salts\Core\Models\Db\CoreMember;
-use salts\Core\Models\Db\CompanyTbl;
+use salts\Core\Models\Db\CompanyTbl ;
 use salts\Core\Models\Db\UserTbl;
 use salts\Core\Models\Db\EnableModule;
 use Phalcon\Filter;
@@ -12,39 +12,41 @@ class LoginController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
     }
+
     /**
      * Index Action
      */
     public function indexAction() {
         $filter = new Filter();
         $login_params = $this->request->get();
+      
         $ModelAuth = new Models\Auth();
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = 'root';
+            $dbinfo['db_psw'] = '';
             $this->session->set('db_config', $dbinfo);
             //$result = $ModelAuth->Check($login_params, $user);
             
             $filter = new Filter();
-            $name = $filter->sanitize($loginParams['member_login_name'], "string");
-            $password = $loginParams['password'];
+            $name = $filter->sanitize($login_params['member_login_name'], "string");
+            $password = $login_params['password'];
             $database = $_SESSION['db_config'];
             
             if ($database['db_name'] == 'company_db') {
                 
-                $result = \salts\Core\Models\UserTbl::findByLoginName($login_params);
+                $user = Models\UserTbl::findLoginName($login_params, $user);
                 
                 } 
                 
            else {
                
-                 $result = Models\CoreMember::findByMemberLoginName($login_params);
+                 $user = Models\CoreMember::findMemberLoginName($login_params, $user);
            
                 }
-                return $result;
+             
             $this->session->set('user', $result);
             // Data Base Chack
             if ($result) {
@@ -54,7 +56,7 @@ class LoginController extends ControllerBase {
             }
         } else {
             $this->view->test = $login_params;
-            $companyDB = \salts\Core\Models\CompanyTbl::findByCompanyId($login_params);
+            $companyDB = Models\CompanyTbl::findByCompanyId($login_params['company_id']);
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
@@ -63,7 +65,7 @@ class LoginController extends ControllerBase {
                 $module = new Models\Auth();
                 $module_id = $this->session->db_config['company_id'];
                 
-                $company_module = \salts\Core\Models\EnableModule::findCompanyId($module_id);
+                $company_module = \salts\Core\Models\EnableModule::findByCompanyId($module_id);
               // $company_module = $module->findModule($module_id);
                 $this->session->set('module', $company_module);
                 $result = $ModelAuth->check($login_params, $user);

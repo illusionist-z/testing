@@ -1,7 +1,6 @@
 <?php
 
 use Phalcon\Filter;
-
 //calculate the user time offset
 
 if ($offset < 0) {
@@ -173,7 +172,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
     </div><!-- /.row -->    
     <div id="content">
         <ul class="pagination" style="margin-left:15px;">
-            <?php if($monthlylist->last === 1 ){} 
+            <?php if($monthlylist->last === 1 || $monthlylist->last === 0 ){} 
             else{                 
             ?>
             <li><a href="monthlylist">First</a></li>
