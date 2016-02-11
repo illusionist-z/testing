@@ -185,7 +185,7 @@ class IndexController extends ControllerBase {
             $this->permission = $this->setPermission($this->act_name);
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
-            $noti = $Admin->GetAdminNoti($id);
+            $noti = $Admin->GetAdminNoti($id,0);
             $this->view->setVar("Noti", $noti);
             $LeaveCategories = new LeaveCategories();
             $LeaveSetting = new LeavesSetting();

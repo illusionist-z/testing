@@ -60,7 +60,7 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {
 
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/salary.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
@@ -324,6 +324,8 @@ class IndexController extends ControllerBase {
         if (!empty($all_name)) {
             $Allowance = new \salts\Salary\Models\Allowances();
             $Allowance->addAllowance($all_value, $all_name, $count);
+               
+               
             $this->response->redirect('salary/index/allowance');
             $this->flashSession->success("Allowances are added successfully!");
         } else {
