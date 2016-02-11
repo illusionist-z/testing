@@ -4,7 +4,6 @@ namespace salts\Manageuser\Controllers;
 
 use salts\Manageuser\Models\User as User;
 use salts\Core\Models\Db;
-use salts\Dashboard\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase {
 
@@ -48,13 +47,12 @@ class IndexController extends ControllerBase {
      * @version 3/9/2015 @by David JP
      */
     public function IndexAction() {
-        //for paging and edit user
-        $User = new Db\CoreMember;        
+        //for paging and edit user        
+        $currentPage = $this->request->get('page');
         $this->assets->addJs("apps/manageuser/js/useredit.js");
         $this->assets->addJs('apps/manageuser/js/search.js');
-        $getname = $User::getinstance()->getusername();
-        $username = $this->request->get('username');
-        $currentPage = $this->request->get('page');
+        $getname = Db\CoreMember::getInstance()->getUserName($currentPage);
+        $username = $this->request->get('username');        
         $list = $this->user->userList($username,$currentPage);
         $member_count = new Db\CoreMember();
         $member_count_number = $member_count->getNumberCount();
@@ -72,7 +70,7 @@ class IndexController extends ControllerBase {
     //for monthly list autocomplete
     public function usernameautolistAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autousername();
+        $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }
@@ -182,9 +180,9 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function getpermitAction() {
-        $Permission = new CorePermissionGroupId();
-        $result = $Permission->getPermitName();
-        echo json_encode($result);
+        $Permission = new Db\CorePermissionGroupId();
+        $row = $Permission::find();        
+        echo json_encode($row->toArray());
         $this->view->disable();
     }
 

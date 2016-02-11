@@ -44,18 +44,17 @@ class CoreMember extends \Library\Core\Models\Base {
     }
 
     public function getUserName($currentPage) {
-        $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
-        $row = $this->modelsManager->executeQuery($query);
-           $paginator = new PaginatorModel(
-                            array(
-                        "data" => $row,
-                        "limit" => 10,
-                        "page" => $currentPage
-                            )
-                         );
+        $row = CoreMember::find("deleted_flag = 0 order by created_dt desc");
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 10,
+            "page" => $currentPage
+                )
+        );
 // Get the paginated results
         $page = $paginator->getPaginate();
-        return $page;                
+        return $page;
     }
 
     public function module_permission() {
@@ -81,28 +80,28 @@ class CoreMember extends \Library\Core\Models\Base {
     }
 
     public function getGroupId($currentPage = null) {
-        try{
-          $row = $this->modelsManager->createBuilder()
-                    ->columns(array('core.*','coregroup.group_id'))
+        try {
+            $row = $this->modelsManager->createBuilder()
+                    ->columns(array('core.*', 'coregroup.group_id'))
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->Leftjoin('salts\Core\Models\CorePermissionRelMember', 'core.member_id = rel.rel_member_id', 'rel')
-                    ->Leftjoin('salts\Core\Models\Db\CorePermissionGroupId','rel.rel_permission_group_code = coregroup.name_of_group','coregroup')
+                    ->Leftjoin('salts\Core\Models\Db\CorePermissionGroupId', 'rel.rel_permission_group_code = coregroup.name_of_group', 'coregroup')
                     ->where('core.deleted_flag = 0')
                     ->getQuery()
-                    ->execute();       
-           $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 3,
-            "page" => $currentPage
-                )
-        );
+                    ->execute();
+            $paginator = new PaginatorModel(
+                    array(
+                "data" => $row,
+                "limit" => 3,
+                "page" => $currentPage
+                    )
+            );
 // Get the paginated results
-        $page = $paginator->getPaginate();
-        }  catch (Phalcon\Exception $e) {
+            $page = $paginator->getPaginate();
+        } catch (Phalcon\Exception $e) {
             $di->getShared("logger")->error($e->getMessage());
         }
-        return $page;        
+        return $page;
     }
 
     public function username($name) {
@@ -119,20 +118,30 @@ class CoreMember extends \Library\Core\Models\Base {
      * user list search with name in user list
      */
 
-    public function getoneusername($username) {
-
+    public function getOneUsername($username,$currentPage) {
+        try{
         $filter = new Filter();
         $username = $filter->sanitize($username, "string");
-        $getname = $this->modelsManager->createBuilder()
+        $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                 ->where('core.member_login_name = :username:', array('username' => $username))
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
-
-
-        return $getname;
+           $paginator = new PaginatorModel(
+                    array(
+                "data" => $row,
+                "limit" => 3,
+                "page" => $currentPage
+                    )
+            );
+// Get the paginated results
+            $page = $paginator->getPaginate();
+        } catch (Phalcon\Exception $e) {
+            $di->getShared("logger")->error($e->getMessage());
+        }
+        return $page;
     }
 
     public function getUsernameById($id) {
@@ -277,20 +286,20 @@ class CoreMember extends \Library\Core\Models\Base {
 
         $AdminNoti = $this->db->query($sql);
         $Noti = $AdminNoti->fetchall();
-        
+
 
         $i = 0;
         foreach ($Noti as $Noti) {
-           
+
             $sql = "SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' and core_member.deleted_flag=0 ";
 
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-           
+
             $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
         }
-      
+
         $data = array();
         foreach ($final_result as $result) {
             foreach ($result as $value) {
@@ -302,7 +311,7 @@ class CoreMember extends \Library\Core\Models\Base {
         if ($type == 2) {
             $data = array_slice($data, 0, 10);
         }
-        
+
 
         return $data;
     }
@@ -319,7 +328,7 @@ class CoreMember extends \Library\Core\Models\Base {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function getUserNoti($id, $type) {
-       
+
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
@@ -397,9 +406,8 @@ class CoreMember extends \Library\Core\Models\Base {
 
     //for auto complete function
     public function autoUsername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
+        $user_name = CoreMember::find('deleted_flag = 0');
+        $getname = $user_name->toArray();        
         return $getname;
     }
 
@@ -473,8 +481,6 @@ class CoreMember extends \Library\Core\Models\Base {
         return $member_flag;
     }
 
-   
-
     public function findUserAddSalary($id) {
         $cond1 = "Select * from core_member where member_id not in ( select member_id from salary_master)";
         $cond2 = "Select * from core_member where member_id in ( select member_id from salary_master)";
@@ -483,5 +489,5 @@ class CoreMember extends \Library\Core\Models\Base {
         $rows = $data->fetchall();
         return $rows;
     }
-    
+
 }

@@ -3,7 +3,6 @@
 namespace salts\Manageuser\Models;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use salts\Core\Models\Db;
 
 /*
@@ -22,9 +21,9 @@ class User extends Model {
      */
     public function userList($username,$currentPage) {
         if ($username == null) {
-            $user = Db\CoreMember::getUserName($currentPage);
+            $user = Db\CoreMember::getInstance()->getUserName($currentPage);
         } else {
-            $user = Db\CoreMember::getoneusername($username);
+            $user = Db\CoreMember::getInstance()->getOneUsername($username,$currentPage);
         }
         return $user;
     }
@@ -69,23 +68,43 @@ class User extends Model {
         $res['dept'] = filter_var($cond['dept'], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/([^\s])/'))) ? true : false;
         $res['pos'] = filter_var($cond['position'], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/([^\s])/'))) ? true : false;
         if ($res['mail'] && $res['pno'] && $res['uname'] && $res['dept'] && $res['pos']) {
-            $this->db = $this->getDI()->getShared("db");
-            $query = "Update core_member SET member_login_name='" . $cond['name'] . "',member_dept_name='" . $cond['dept'] . "',member_mobile_tel='" . $cond['pno'] . "',member_mail='" . $cond['email'] . "',position='" . $cond['position'] . "',member_address='" . $cond['address'] . "',working_start_dt='" . $cond['work_sdate'] . "' Where member_id='" . $cond['id'] . "'";
-            $this->db->query($query);
+                        $core_table = Db\CoreMember::findByMemberId($cond['id']);
+                        $core_table_update = \salts\Core\Models\Permission::tableObject($core_table);
+                        $core_table_update->member_login_name = $cond['name'];
+                        $core_table_update->member_dept_name = $cond['dept'];
+                        $core_table_update->member_mobile_tel  = $cond['pno'];
+                        $core_table_update->member_mail           = $cond['email'];
+                        $core_table_update->position                    = $cond['position'];
+                        $core_table_update->member_address      = $cond['address'];
+                        $core_table_update->working_start_dt       = $cond['work_sdate'];          
+                        $core_table_update->update();                        
             $res['valid'] = true;
         } else {
             $res['valid'] = false;
         }
         return $res;
     }
-
+    /**
+     * @version David JP<david.gnext@gmail.com>
+     * @param string $id     
+     */
     public function userDelete($id) {
-        $this->db = $this->getDI()->getShared("db");
-        $query = "UPDATE core_member SET deleted_flag=1 where member_id ='" . $id . "'";
-        $this->db->query($query);
-        $this->db->query("UPDATE core_permission_rel_member SET permission_member_group_is_deleted=1 where rel_member_id ='" . $id . "'");
-        $this->db->query("UPDATE absent SET deleted_flag=1 where member_id ='" . $id . "'");
-        $this->db->query("UPDATE salary_master SET deleted_flag=1 where member_id ='" . $id . "'");
+        $core_member = Db\CoreMember::findByMemberId($id);
+        $core_delete = \salts\Core\Models\Permission::tableObject($core_member);
+        $core_delete->deleted_flag = 1;
+        $core_delete->update();
+        $core_rel_member = \salts\Core\Models\CorePermissionRelMember::findByRelMemberId($id);
+        $core_rel_member_delete = \salts\Core\Models\Permission::tableObject($core_rel_member);
+        $core_rel_member_delete->permission_member_group_is_deleted = 1;
+        $core_rel_member_delete->update();
+        $salary_master = Db\SalaryMaster::findByMemberId($id);
+        $salary_master_delete = \salts\Core\Models\Permission::tableObject($salary_master);
+        $salary_master_delete->deleted_flag = 1;
+        $salary_master_delete->update();
+        $absent = Db\Attendances::findByMemberId($id);
+        $absent_delete = \salts\Core\Models\Permission::tableObject($absent);
+        $absent_delete->deleted_flag = 1 ;
+        $absent_delete->update();
     }
 
 }
