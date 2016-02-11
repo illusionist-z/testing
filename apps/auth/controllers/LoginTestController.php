@@ -31,7 +31,7 @@ class LoginController extends ControllerBase {
             //$result = $ModelAuth->Check($login_params, $user);
             
          /*
-         * User failerAction 
+         *  
          * @Varsion Yan Lin Pai <wizardrider@gmail.com>
          * LoginController Change simple SQL function To -> Phalcon SQL Type
          */
