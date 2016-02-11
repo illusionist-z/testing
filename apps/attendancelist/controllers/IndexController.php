@@ -109,8 +109,6 @@ class IndexController extends ControllerBase {
         if ($this->moduleIdCall == 0) {
             $offset = $this->session->location['offset'];
             $currentPage = $this->request->get("page");
-            $UserList = new \salts\Core\Models\CoreMember();
-            $UserName = $UserList::getinstance()->getusername();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthly_list = $Attendances->showAttList($currentPage);
@@ -118,8 +116,7 @@ class IndexController extends ControllerBase {
          
             if ($this->permission == 1) {
                 $this->view->monthlylist = $monthly_list;
-                $this->view->setVar("Month", $month);
-                $this->view->setVar("Getname", $UserName);
+                $this->view->setVar("Month", $month);                
                 $this->view->setVar("offset", $offset);
             } else {
                 $this->response->redirect('core/index');
