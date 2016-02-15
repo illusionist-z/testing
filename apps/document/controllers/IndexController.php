@@ -125,7 +125,12 @@ class IndexController extends ControllerBase {
      */
     public function editinfoAction() {
         $file_name = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
-        $target_dir = "uploads/";
+        $company_id=($this->session->db_config['company_id']);
+         $target_dir = ".$company_id./";
+        if (!is_dir($target_dir)) {
+         mkdir($target_dir);
+       }exit;
+       
         $target_file = $target_dir . $file_name;
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         $ComInfo = new CompanyInfo();
