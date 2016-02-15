@@ -74,8 +74,6 @@ class Attendances extends Model {
      */
     public function getAttList($id, $year, $month) {
         $currentmth = date('m');
-
-
         if (isset($year) || isset($month)) {
             $start = date("Y-m-d", strtotime($year));
             $end = date("Y-m-d", strtotime($month));
