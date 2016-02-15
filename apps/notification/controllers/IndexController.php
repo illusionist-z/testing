@@ -153,6 +153,7 @@ class IndexController extends ControllerBase {
         $core = CoreNotification::findFirst('noti_id =' . $this->request->get('id'));
         $core->noti_status = '1';
         $core->update();
+        $this->response->redirect("attendancelist/index/todaylist");
        
    
     }
