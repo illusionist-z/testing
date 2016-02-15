@@ -16,7 +16,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function getTodayList($name,$currentPage) {
+    public function getTodayList($name, $currentPage) {
         $today = date("Y:m:d");
 
 
@@ -43,17 +43,17 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
         }
-                $paginator = new PaginatorModel(
-                            array(
-                        "data" => $row,
-                        "limit" => 10,
-                        "page" => $currentPage
-                            )
-                         );
+        $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 10,
+            "page" => $currentPage
+                )
+        );
 
 // Get the paginated results
         $page = $paginator->getPaginate();
-        return $page;        
+        return $page;
     }
 
     /**
@@ -74,8 +74,6 @@ class Attendances extends Model {
      */
     public function getAttList($id, $year, $month) {
         $currentmth = date('m');
-
-
         if (isset($year) || isset($month)) {
             $start = date("Y-m-d", strtotime($year));
             $end = date("Y-m-d", strtotime($month));
@@ -128,12 +126,12 @@ class Attendances extends Model {
                 ->getQuery()
                 ->execute();
         $paginator = new PaginatorModel(
-                            array(
-                        "data" => $row,
-                        "limit" => 10,
-                        "page" => $currentPage
-                            )
-                         );
+                array(
+            "data" => $row,
+            "limit" => 10,
+            "page" => $currentPage
+                )
+        );
 
 // Get the paginated results
         $page = $paginator->getPaginate();

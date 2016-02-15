@@ -1,4 +1,15 @@
 <!-- Main content -->
+<!-- Main content -->
+<?php 
+foreach ($salary_info as $value) {
+   $date=(int)$value->salary_detail->pay_date;
+   $month = date("m",$date);
+//   $year = date("Y",$date);
+   $dateObj   = DateTime::createFromFormat('!m', $month);
+   $monthName = $dateObj->format('F'); 
+}
+
+?>
 <section class="content">
     <div class="row"><!-- for search form-->
         <div class="col-md-12"><!--start add user form--->
@@ -19,7 +30,7 @@
                         <div class="ssb-right">
                             အလုုပ္ဌာန မွတ္ပံုုတင္အမွတ္  ......................................
                             <br>
-                            ............................လအတြက္
+                            <?php echo $monthName; ?> လအတြက္
                         </div>
                     </div>
                 </div>
@@ -145,7 +156,7 @@
                                     </td>
                                     <td>
                                         <?php
-                                        echo number_format($ssb_total);
+                                        echo number_format($salary_infos->salary_detail->ssc_emp+ $salary_infos->salary_detail->ssc_comp);
                                         ?>
                                     </td>
                                     <td></td>

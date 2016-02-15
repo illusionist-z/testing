@@ -150,10 +150,10 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                     ?>
                                                     <li id="noleaveli">
                                                         <?php
-                                                        if ($na['member_profile'] == null) {
+                                                        if ($na->member_profile == null) {
                                                             $img = "profile1.jpg";
                                                         } else {
-                                                            $img = $na['member_profile'];
+                                                            $img = $na->member_profile;
                                                             if (file_exists('./uploads/' . $img)) {
                                                                 $img = $img;
                                                             } else {
@@ -162,10 +162,10 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                         }
                                                         ?>                 
                                                         <img src="../../uploads/<?php echo $img; ?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
-                                                        <?= $na['member_login_name'] ?>
+                                                        <?= $na->member_login_name ?>
                                                     </li>
                                                     <?php
-                                                    array_push($noleave, $na['member_login_name']);
+                                                    array_push($noleave, $na->member_login_name);
                                                 }
                                                 ?>
                                             </ul>

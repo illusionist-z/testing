@@ -80,7 +80,7 @@ class IndexController extends ControllerBase {
      * @desc   Apply Leave Action
      */
     public function applyleaveAction() {
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/leavedays/js/applyleave.js');
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
             $this->assets->addCss('common/css/jquery-ui-timepicker.css');
@@ -134,7 +134,7 @@ class IndexController extends ControllerBase {
     public function leavelistAction() {
 
 
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
 
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);

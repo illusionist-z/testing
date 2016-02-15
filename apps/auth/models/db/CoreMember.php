@@ -476,14 +476,17 @@ class CoreMember extends Component {
      */
     public function updatedata($data, $id) {
         $this->db = $this->getDI()->getShared("db");
-
+         $company_id=($this->session->db_config['company_id']);
+         $target_dir = "uploads/$company_id./";
+        if (!is_dir($target_dir)) {
+         mkdir($target_dir);
+       }
         if ($_FILES["fileToUpload"]["name"] == NULL) {
             $filename = $data['file'];
         } else {
             $pic = $data['file'];
             unlink("uploads/$pic");
-            $filename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
-            $target_dir = "uploads/";
+            $filename =($this->session->db_config['company_id']).($this->session->user['member_id']). '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
             $target_file = $target_dir . $filename;
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         }

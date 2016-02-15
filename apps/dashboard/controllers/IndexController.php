@@ -73,7 +73,6 @@ class IndexController extends ControllerBase {
         $CheckLeave = new \salts\Dashboard\Models\Attendances();
         $leave_name = $CheckLeave->checkLeave();
         $status = $CheckLeave->todayAttLeave();
-        //$coreid = new \salts\Dashboard\Models\CorePermissionGroupId();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'admin_dashboard') {
                 $this->view->setVar("attname", $status['att']);
@@ -141,7 +140,7 @@ class IndexController extends ControllerBase {
         $noti_Creatorid = $User->GetAdminstratorId();
         $creator_id = $noti_Creatorid[0]['rel_member_id'];
         $CheckIn = new \salts\Dashboard\Models\Attendances();
-        $status = $CheckIn->setCheckInTime($id, $note, $add, $creator_id,$offset);
+        $status = $CheckIn->setCheckInTime($id, $note, $add, $creator_id, $offset);
         $this->view->disable();
         echo json_encode($status);
     }
@@ -154,7 +153,7 @@ class IndexController extends ControllerBase {
         $id = $this->session->user['member_id'];
         $offset = $this->session->location['offset'];
         $CheckOut = new \salts\Dashboard\Models\Attendances();
-        $status = $CheckOut->setCheckOutTime($id,$offset);
+        $status = $CheckOut->setCheckOutTime($id, $offset);
         $this->view->disable();
         echo json_encode($status);
     }

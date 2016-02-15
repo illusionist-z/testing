@@ -1,3 +1,4 @@
+
 <head>
     <meta charset="UTF-8">
     <title>Attendance System</title>
@@ -28,7 +29,7 @@
                         <table>
                             <tr><?php foreach ($info as $value) {?>
                                 <td style="width:100px">
-                                    <img src="<?php echo $baseUri ?>public/uploads/<?php echo $value->company_logo ?>"  style="width:100px; height:90px" />
+                                    <img src="<?php echo $baseUri ?>public/uploads/<?php echo$this->session->db_config['company_id']?>/<?php echo $value->company_logo ?>"  style="width:100px; height:90px" />
                                     <input type="file" id="my_file" style="display: none;" />
                                 </td>
                                 <td style=" width: 1000px;">
