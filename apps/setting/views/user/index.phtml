@@ -50,14 +50,14 @@ function tz_list() {
                                         $img = "profile1.jpg";
                                     } else {
                                         $img = $result['member_profile'];
-                                        if (file_exists('./uploads/' . $img)) {
-                                            $img = $img;
+                                        if (file_exists('./uploads/' .$this->session->db_config["company_id"]."/". $img)) {
+                                            $img = $this->session->db_config["company_id"]."/". $img;
                                         } else {
                                             $img = "profile1.jpg";
                                         }
                                     }
                                     ?>                                                 
-                                    <img src="<?php echo $baseUri; ?>/uploads/<?php echo $img; ?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
+                                    <img src="<?php echo $baseUri; ?>uploads/<?php echo $img; ?>"  style="box-shadow: 2px 3px 2px #428bca;" class="img-circle" class="user-image" width="200px" alt="User Image"/>
                                 </td>
                             </tr>
                             <tr>
