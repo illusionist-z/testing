@@ -105,7 +105,7 @@ class IndexController extends ControllerBase {
     public function checkapplyAction() {
         if ($this->request->isPost()) {
             $user = $this->_leave;
-            $validate = $user->validation($this->request->getPost());
+            $validate = $user->validating($this->request->getPost());
 
             if (count($validate)) {
                 foreach ($validate as $message) {
@@ -178,7 +178,7 @@ class IndexController extends ControllerBase {
     public function leavesettingAction() {
 
 
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
 
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
@@ -225,7 +225,7 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
-        $data = $LeaveCategories->getListTypeData($id);
+        $data[0] = $LeaveCategories->getListTypeData($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
         $data[1]['yes'] = $t->_("yes");
         $data[1]['no'] = $t->_("cancel");
