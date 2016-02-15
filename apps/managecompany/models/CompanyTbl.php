@@ -6,7 +6,7 @@ use Phalcon\Mvc\Model;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 
-class CompanyTbl extends \Library\Core\BaseModel {
+class CompanyTbl extends \Library\Core\Models\Base {
 
     public function initialize() {
         //parent::initialize();

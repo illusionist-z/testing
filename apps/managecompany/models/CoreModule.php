@@ -4,7 +4,7 @@ namespace salts\Managecompany\Models;
 
 use Phalcon\Mvc\Model;
 
-class CoreModule extends \Library\Core\BaseModel {
+class CoreModule extends \Library\Core\Models\Base {
 
     public function initialize() {
         //parent::initialize();
