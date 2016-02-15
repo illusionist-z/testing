@@ -30,6 +30,12 @@ class LoginController extends ControllerBase {
             $this->session->set('db_config', $dbinfo);
             //$result = $ModelAuth->Check($login_params, $user);
             
+         /*
+         *  
+         * @Varsion Yan Lin Pai <wizardrider@gmail.com>
+         * LoginController Change simple SQL function To -> Phalcon SQL Type
+         */
+            
             $filter = new Filter();
             $name = $filter->sanitize($login_params['member_login_name'], "string");
             $password = $login_params['password'];
@@ -69,6 +75,9 @@ class LoginController extends ControllerBase {
               // $company_module = $module->findModule($module_id);
                 $this->session->set('module', $company_module);
                 $result = $ModelAuth->check($login_params, $user);
+                
+            //LoginController Change simple SQL function To -> Phalcon SQL Type
+            
                 $permission = $ModelAuth->getPermit($login_params);
                 $Member = new CoreMember();
                 $ll = $Member::getInstance();
