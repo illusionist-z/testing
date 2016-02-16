@@ -1,7 +1,7 @@
 <?php
 
 $messages = array(
-    "userlist" => "User Lists",
+    "userlist" => "User Lists",    
     "name" => "User Name",
     "home" => "Home",
     "dept" => "Department",
@@ -23,6 +23,7 @@ $messages = array(
     "btn_delete" => "Delete",
     "btn_cancel" => "Cancel",
     "username" => "Full Name ",
+    "placeholder_ssn" => "Enter SSN NO",
     "placeholder1" => "Enter User Name",
     "placeholder2" => "Enter your full name",
     "placeholder3" => "Enter your password",
@@ -34,10 +35,6 @@ $messages = array(
     "placeholder9" => "Enter Phone no",
     "placeholder10" => "Enter Address",
     "placeholder11" => "Add User",
-    "placeholder12" => "Cancel",
-    /**
-     * footer
-     */
-    "Change_Language" => "Change Language",
+    "placeholder12" => "Cancel"   
 );
 

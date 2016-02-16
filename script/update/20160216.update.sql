@@ -1,0 +1,1 @@
+ALTER TABLE `core_member` ADD `ssn_no` VARCHAR(36) NOT NULL AFTER `member_id`;

@@ -1,5 +1,6 @@
 <?php
 $messages = array (
+    "ssn_no" => "SSN NO",
 /**
      * Header
      */
