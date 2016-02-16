@@ -47,7 +47,7 @@ class IndexController extends ControllerBase {
      */
     public function todaylistAction() {
        
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $this->act_name = $this->router->getModuleName();
             $currentPage  = $this->request->get('page');
             $this->permission = $this->setPermission($this->act_name);
@@ -60,6 +60,7 @@ class IndexController extends ControllerBase {
             $Username = $UserList->getUserName();
             $AttList = new \salts\Attendancelist\Models\Attendances();
             $Result_Attlist = $AttList->getTodayList($name,$currentPage);
+            
             if ($this->permission == 1) {
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;
@@ -106,9 +107,11 @@ class IndexController extends ControllerBase {
      * 
      */
     public function monthlylistAction() {
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
             $currentPage = $this->request->get("page");
+            $UserList = new \salts\Core\Models\CoreMember();
+           // $UserName = $UserList::getinstance()->getusername();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthly_list = $Attendances->showAttList($currentPage);
@@ -116,7 +119,8 @@ class IndexController extends ControllerBase {
          
             if ($this->permission == 1) {
                 $this->view->monthlylist = $monthly_list;
-                $this->view->setVar("Month", $month);                
+                $this->view->setVar("Month", $month);
+                $this->view->setVar("Getname", $UserName);
                 $this->view->setVar("offset", $offset);
             } else {
                 $this->response->redirect('core/index');

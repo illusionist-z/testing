@@ -66,8 +66,8 @@ use Phalcon\Tag as Tag; ?>
                                     $img = "profile1.jpg";
                                 } else {
                                     $img = $this->session->user['member_profile'];
-                                    if (file_exists('./uploads/' . $img)) {
-                                        $img = $img;
+                                    if (file_exists('./uploads/' .$this->session->db_config['company_id']."/". $img)) {
+                                        $img = $this->session->db_config['company_id']."/". $img;
                                     } else {
                                         $img = "profile1.jpg";
                                     }
@@ -84,9 +84,9 @@ use Phalcon\Tag as Tag; ?>
                                     if ($this->session->user['member_profile'] == null) {
                                         $img = "profile1.jpg";
                                     } else {
-                                        $img = $this->session->user['member_profile'];
-                                        if (file_exists('./uploads/' . $img)) {
-                                            $img = $img;
+                                       $img = $this->session->user['member_profile'];
+                                        if (file_exists('./uploads/' . $this->session->db_config['company_id'] . "/" . $img)) {
+                                            $img = $this->session->db_config['company_id'] . "/" . $img;
                                         } else {
                                             $img = "profile1.jpg";
                                         }

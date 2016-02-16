@@ -10,10 +10,10 @@ use Phalcon\Tag as Tag;
         <title>Leave Lists</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-        <?php $this->assets->outputCss() ?>
+<?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini">
-        <?php error_reporting(0); ?>   
+<?php error_reporting(0); ?>   
 
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
@@ -60,13 +60,13 @@ use Phalcon\Tag as Tag;
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                              <?php
+                                <?php
                                 if ($this->session->user['member_profile'] == null) {
                                     $img = "profile1.jpg";
                                 } else {
                                     $img = $this->session->user['member_profile'];
-                                    if (file_exists('./uploads/' . $img)) {
-                                        $img = $img;
+                                    if (file_exists('./uploads/' . $this->session->db_config['company_id'] . "/" . $img)) {
+                                        $img = $this->session->db_config['company_id'] . "/" . $img;
                                     } else {
                                         $img = "profile1.jpg";
                                     }
@@ -80,17 +80,17 @@ use Phalcon\Tag as Tag;
                                 <li class="user-header">
 
                                     <?php
-                                if ($this->session->user['member_profile'] == null) {
-                                    $img = "profile1.jpg";
-                                } else {
-                                    $img = $this->session->user['member_profile'];
-                                    if (file_exists('./uploads/' . $img)) {
-                                        $img = $img;
-                                    } else {
+                                    if ($this->session->user['member_profile'] == null) {
                                         $img = "profile1.jpg";
+                                    } else {
+                                       $img = $this->session->user['member_profile'];
+                                        if (file_exists('./uploads/' . $this->session->db_config['company_id'] . "/" . $img)) {
+                                            $img = $this->session->db_config['company_id'] . "/" . $img;
+                                        } else {
+                                            $img = "profile1.jpg";
+                                        }
                                     }
-                                }
-                                ?>                                              
+                                    ?>                                              
                                     <img src="<?php echo $baseUri ?>uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <p>
                                         <b><?php echo $this->session->user['member_login_name']; ?></b>                                      
@@ -238,7 +238,7 @@ use Phalcon\Tag as Tag;
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
             <div class="language">
-                   <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
+<?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='../../common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src='../../common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src='../../common/img/myanmar.jpg' width='25px'>") ?>
             </div>
         </footer>
 

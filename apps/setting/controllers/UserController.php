@@ -54,6 +54,7 @@ class UserController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function changeprofileAction() {
+         
         if ($this->request->isPost()) {
 
             $updatedata = array();
@@ -81,7 +82,7 @@ class UserController extends ControllerBase {
             $user = $User->userData($id);
             $this->session->set('user', $user);
         }
-        $this->response->redirect('setting/user/usersetting');
+        $this->response->redirect('setting/user');
     }
 
 }

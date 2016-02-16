@@ -13,7 +13,8 @@ class CoreNotification extends \Phalcon\Mvc\Model {
     }
 
     public function getNotiInfo($Noti_id) {
-
+            
+     
         try {
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('core.*', 'leaves.*'))

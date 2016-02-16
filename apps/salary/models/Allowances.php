@@ -9,8 +9,11 @@ use Phalcon\Filter;
 
 class Allowances extends Model {
 
-    public function initialize() {
+    public $allowance_id;
+    public $allowance_name;
+    public $allowance_amount;
 
+    public function initialize() {
         $this->db = $this->getDI()->getShared("db");
     }
 
@@ -22,10 +25,21 @@ class Allowances extends Model {
      * Adding Allowances to allowance table
      */
     public function addAllowance($all_value, $all_name, $count) {
-        $created_date = date("Y-m-d H:i:s");
-        $this->db = $this->getDI()->getShared("db");
-        for ($x = 1; $x < $count; $x++) {
-            $this->db->query("INSERT INTO allowances (allowance_id,allowance_name,allowance_amount,created_dt) VALUES (uuid(),'" . $all_name['"' . $x . '"'] . "','" . $all_value['"' . $x . '"'] . "','" . $created_date . "')");
+        try {
+            $data = Array();
+            $filter = new Filter();
+            $data['created_dt'] = date("Y-m-d H:i:s");
+            
+            $this->db = $this->getDI()->getShared("db");
+            for ($x = 1; $x < $count; $x++) {
+                $all = new Allowances();
+                $data['allowance_id'] = uniqid();
+                $data['allowance_name'] = $filter->sanitize(isset($all_name['"' . $x . '"']) ? $all_name['"' . $x . '"'] : "", "string");
+                $data['allowance_amount'] = $filter->sanitize(isset($all_value['"' . $x . '"']) ? $all_value['"' . $x . '"'] : "", "int");
+                $all->save($data);
+            }
+        } catch (\PDOException $ex) {
+            throw $ex;
         }
     }
 
@@ -35,13 +49,17 @@ class Allowances extends Model {
      * @return type
      */
     public function showAlwlist() {
-        $row = $this->modelsManager->createBuilder()
-                ->columns('allowance_id,allowance_name,allowance_amount')
-                ->from('salts\Salary\Models\Allowances')
-                ->orderBy('salts\Salary\Models\Allowances.created_dt DESC')
-                ->getQuery()
-                ->execute();
-        return $row;
+        try {
+            $row = $this->modelsManager->createBuilder()
+                    ->columns('allowance_id,allowance_name,allowance_amount')
+                    ->from('salts\Salary\Models\Allowances')
+                    ->orderBy('salts\Salary\Models\Allowances.created_dt DESC')
+                    ->getQuery()
+                    ->execute();
+            return $row;
+        } catch (\PDOException $ex) {
+            throw $ex;
+        }
     }
 
     /**
@@ -55,8 +73,14 @@ class Allowances extends Model {
             $filter = new Filter();
             $name = $filter->sanitize($data['name'], "string");
             $allowance_amount = $filter->sanitize($data['allowance_amount'], "string");
-            $sql = "Update allowances SET allowance_name ='" . $name . "',allowance_amount ='" . $allowance_amount . "' Where allowances.allowance_id='" . $data['id'] . "'";
-            $this->db->query($sql);
+            $all = new Allowances();
+            $id = $data['id'];
+            $all = Allowances::findFirst('allowance_id ="' . $id . '"');
+            $all->allowance_amount = $allowance_amount;
+            $all->allowance_name = $name;
+            $all->update();
+            // $sql = "Update allowances SET allowance_name ='" . $name . "',allowance_amount ='" . $allowance_amount . "' Where allowances.allowance_id='" . $data['id'] . "'";
+            //$this->db->query($sql);
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -69,9 +93,12 @@ class Allowances extends Model {
      * @author Su Zin Kyaw
      */
     public function deleteAllowance($id) {
+        $filter = new Filter();
+        $id = $filter->sanitize(isset($id) ? $id : "", "string");
         try {
             $sql = "Delete From allowances  Where allowances.allowance_id='" . $id . "'";
             $this->db->query($sql);
+            echo $sql;exit;
         } catch (Exception $ex) {
             echo $ex;
         }
