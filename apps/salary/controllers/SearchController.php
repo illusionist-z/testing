@@ -10,7 +10,7 @@ class SearchController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-        $this->config = \Module_Config::getModuleConfig('salary');
+        //$this->config = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
     }
 

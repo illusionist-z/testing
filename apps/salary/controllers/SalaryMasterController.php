@@ -14,7 +14,7 @@ class SalaryMasterController extends ControllerBase {
 
     public function initialize() {
         $this->_addsalary = new Salary;
-        $this->config = \Module_Config::getModuleConfig('salary');
+     //   $this->config = \Module_Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
@@ -90,7 +90,15 @@ class SalaryMasterController extends ControllerBase {
         }
     }
 
-    public function editsalarydetailAction($bsalary, $overtimerate, $allowance, $member_id, $absent, $year, $month, $overtime_hr) {
+    public function editsalarydetailAction() {
+        $bsalary = $this->request->get('bsalary');
+        $overtimerate = $this->request->get('overtime');
+        $member_id = $this->request->get('member_id');
+        $overtime_hr = $this->request->get('overtime_hr');
+        $allowance = $this->request->get('specific_dedce');
+        $year = $this->request->get('year');
+        $month = $this->request->get('month');
+        $absent = $this->request->get('absent');
         $SalaryMaster = new SalaryMaster();
         $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
         $Salarydetail = new SalaryDetail();

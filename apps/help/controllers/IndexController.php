@@ -11,9 +11,9 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addJs('apps/help/js/help.js');
+        $this->assets->addJs('apps/help/js/base.js');
         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('apps/help/css/help.css');
+        $this->assets->addCss('apps/help/css/base.css');
         $this->view->t = $this->_getTranslation();
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
