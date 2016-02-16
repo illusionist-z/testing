@@ -15,8 +15,8 @@ class IndexController extends ControllerBase {
         $this->user = new User();
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('apps/manageuser/js/adduser.js');
-        $this->assets->addCss('apps/manageuser/css/manageuser.css');
+        $this->assets->addJs('apps/manageuser/js/coremember-saveuser.js');
+        $this->assets->addCss('apps/manageuser/css/base.css');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->permission = $this->permission;
@@ -46,11 +46,11 @@ class IndexController extends ControllerBase {
      * @since  18/7/15
      * @version 3/9/2015 @by David JP
      */
-    public function IndexAction() {
+    public function indexAction() {
         //for paging and edit user        
         $currentPage = $this->request->get('page');
-        $this->assets->addJs("apps/manageuser/js/useredit.js");
-        $this->assets->addJs('apps/manageuser/js/search.js');
+        $this->assets->addJs("apps/manageuser/js/index-index.js");
+        $this->assets->addJs('apps/manageuser/js/base.js');
         $getname = Db\CoreMember::getInstance()->getUserName($currentPage);
         $username = $this->request->get('username');        
         $list = $this->user->userList($username,$currentPage);

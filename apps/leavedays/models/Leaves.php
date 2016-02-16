@@ -141,10 +141,8 @@ class Leaves extends \Library\Core\Models\Base {
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
         $date = $this->getContractData($uname);
-
-        $ldata = $this->db->query("SELECT total_leavedays FROM leaves  "
-                . "WHERE leaves.member_id= '" . $uname . "' ORDER BY date DESC LIMIT 1 ");
-        $list = $ldata->fetchall();
+        $ldata = Leaves::find("member_id = '$uname' order by date DESC LIMIT 1");
+        $list = $ldata->toArray();
 
         if ($list == NULL) {
             $lastdata = "0";
@@ -176,29 +174,37 @@ class Leaves extends \Library\Core\Models\Base {
                         $leave_days = (int) $leave_days;
                         $leave_day = $leave_day - 0.5;
                     }
-
-
-                    $this->db->query("INSERT INTO leaves (member_id,date,"
-                            . "start_date,end_date,leave_days,leave_category,"
-                            . "leave_description,total_leavedays,leave_status,"
-                            . "noti_id,created_dt) VALUES('" . $uname . "',"
-                            . "'" . $today . "','" . $sdate . "',"
-                            . "'" . $edate . "','" . $leave_day . "',"
-                            . "'" . $type . "','" . $desc . "',"
-                            . "'" . $lastdata . "',0,'" . $Noti_id . "',now())");
-
-                    $users = $this->db->query("SELECT * FROM core_member where deleted_flag=0 ");
-                    $users = $users->fetchall();
-                    foreach ($users as $users) {
-                        $this->db->query("INSERT INTO core_notification (creator_name,noti_creator_id,"
-                                . "module_name,noti_id,noti_status) "
-                                . "VALUES('" . $name . "','" . $users['member_id'] . "','leaves','" . $Noti_id . "',0)");
+                    $leave = new Leaves();
+                    $leave->member_id = $filter->sanitize($uname,"string");
+                    $leave->date  =  $today;
+                    $leave->start_date = $sdate;
+                    $leave->end_date = $edate;
+                    $leave->leave_days = $leave_day;
+                    $leave->leave_category = $type;
+                    $leave->leave_description = $filter->sanitize($desc,"string");
+                    $leave->total_leavedays = $lastdata;
+                    $leave->leave_status = 0 ;
+                    $leave->noti_id = $Noti_id;
+                    $leave->created_dt = date("Y-m-d");
+                    $leave->save();
+                    $users = CoreMember::find("deleted_flag = 0");
+                    $users = $users->toArray();
+                    foreach ($users as $user) {
+                        $core_noti = new \salts\Core\Models\Db\CoreNotification();
+                        $core_noti->creator_name = $filter->sanitize($name,"string");
+                        $core_noti->noti_creator_id = $user['member_id'];
+                        $core_noti->module_name = "leaves";
+                        $core_noti->noti_id = $Noti_id;
+                        $core_noti->noti_status = 0;
+                        $core_noti->save();
                     }
-
-
-                    $this->db->query("INSERT INTO core_notification_rel_member "
-                            . "(creator_name,member_id,noti_id,status,module_name) "
-                            . "VALUES('" . $name . "','" . $uname . "','" . $Noti_id . "',0,'leaves')");
+                    $rel_member = new \salts\Core\Models\Db\CoreNotificationRelMember();
+                    $rel_member->creator_name = $name;
+                    $rel_member->member_id = $uname;
+                    $rel_member->noti_id = $Noti_id;
+                    $rel_member->status = 0;
+                    $rel_member->module_name = "leaves";
+                    $rel_member->save();
                     $cond['success'] = "Your Leave Applied Successfully!";
                 } else {
                     $cond['error'] = "End date must be greater than Start date";
@@ -239,9 +245,8 @@ class Leaves extends \Library\Core\Models\Base {
      * @author Su Zin Kyaw
      */
     public function getContractData($id) {
-        $credt = $this->db->query("SELECT * "
-                . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
-        $created_date = $credt->fetchArray();
+        $credt = \salts\Core\Models\CoreMember::findByMemberId($id);
+        $created_date = $credt->toArray();
 
         if ($created_date['working_year_by_year'] == NULL) {
             $date['startDate'] = $created_date['working_start_dt'];
@@ -327,24 +332,27 @@ class Leaves extends \Library\Core\Models\Base {
      * when admin accept leavedays request from user
      * @author Su Zin kyaw
      */
-    public function acceptLeave($id, $days, $noti_id) {
-        $this->db = $this->getDI()->getShared("db");
+    public function acceptLeave($id, $days, $noti_id) {        
         $date = $this->getContractData($id);
-        $sql = "UPDATE leaves set "
-                . "leaves.total_leavedays=total_leavedays+'" . $days . "' "
-                . "WHERE leaves.member_id='" . $id . "'  AND start_date "
-                . "BETWEEN '" . $date['startDate'] . "' AND  '" . $date['endDate'] . "'";
+        $sql = Leaves::find("member_id ='$id' AND start_date BETWEEN '".$date["startDate"]."' AND '".$date["endDate"]."'");
+        $leave = \salts\Core\Models\Permission::tableObject($sql);
+        $leave->total_leavedays += $days ;
+        $leave->update();
         $status = 1;
-        $this->db->query("UPDATE leaves set"
-                . " leaves.leave_status='" . $status . "' "
-                . " WHERE leaves.noti_id='" . $noti_id . "'");
-        $this->db->query($sql);
-        $this->db->query("UPDATE core_notification set"
-                . " core_notification.noti_status=1  "
-                . "WHERE core_notification.noti_id='" . $noti_id . "'");
-        $this->db->query("UPDATE core_notification_rel_member "
-                . "set core_notification_rel_member.status=1,module_name='leaves',created_time='now()' "
-                . " WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
+        $noti_sql = Leaves::find("noti_id ='$noti_id'");
+        $leave_noti = \salts\Core\Models\Permission::tableObject($noti_sql);
+        $leave_noti->leave_status = $status;
+        $leave_noti->update();
+        $core_noti_sql = \salts\Core\Models\Db\CoreNotification::findByNotiId($noti_id);
+        $core_noti = \salts\Core\Models\Permission::tableObject($core_noti_sql);
+        $core_noti->status = $status;
+        $core_noti->update();
+        $rel_member_sql = \salts\Core\Models\Db\CoreNotificationRelMember::findByNotiId($noti_id);
+        $rel_member = \salts\Core\Models\Permission::tableObject($rel_member_sql);
+        $rel_member->status = $status;
+        $rel_member->module_name = "leaves";
+        $rel_member->created_time = date("Y-m-d H:i:s");
+        $rel_member->update();
     }
 
     /**
@@ -356,17 +364,19 @@ class Leaves extends \Library\Core\Models\Base {
      * @author Su Zin Kyaw<gnext.suzin@gmail.com
      */
     public function rejectLeave($noti_id) {
-        $this->db = $this->getDI()->getShared("db");
-        $sql = "UPDATE leaves set leaves.leave_status=2 "
-                . "WHERE leaves.noti_id='" . $Noti_id . "'";
-        $this->db->query("UPDATE core_notification "
-                . "set core_notification.noti_status=1  "
-                . "WHERE core_notification.noti_id='" . $Noti_id . "'");
-        $this->db->query("UPDATE core_notification_rel_member set "
-                . "core_notification_rel_member.status=1,module_name='leaves'"
-                . "  WHERE core_notification_rel_member.noti_id='" . $Noti_id . "'");
-
-        $this->db->query($sql);
+        $leave_sql = Leaves::findByNotiId($noti_id);
+        $leave = \salts\Core\Models\Permission::tableObject($leave_sql);
+        $leave->leave_status = 2 ;
+        $leave->update();
+        $core_noti_sql = \salts\Core\Models\Db\CoreNotification::findByNotiId($noti_id);
+        $core_noti = \salts\Core\Models\Permission::tableObject($core_noti_sql);
+        $core_noti->noti_status = 1;
+        $core_noti->update();
+        $rel_member_sql = \salts\Core\Models\Db\CoreNotificationRelMember::findByNotiId($noti_id);
+        $rel_member = \salts\Core\Models\Permission::tableObject($rel_member_sql);
+        $rel_member->status = 1;
+        $rel_member->module_name = "leaves";
+        $rel_member->update();        
     }
 
     public function getLeaveSetting() {
@@ -383,7 +393,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @return cond array
      * @desc   Validate Form 
      */
-    public function validation($data) {
+    public function validating($data) {
         $res = array();
         $validate = new Validation();
         $validate->add('username', new PresenceOf(

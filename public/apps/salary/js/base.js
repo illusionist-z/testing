@@ -403,6 +403,7 @@ var Salary = {
         
     search : function () { 
     var $form = $('#search_frm').serialize();
+
     var year=document.getElementById('year').value;
     var month=document.getElementById('month').value;
     //window.location.href = baseUri + 'salary/search?'+$form;
@@ -414,7 +415,7 @@ var Salary = {
         if (d.length==2) {
             
             var output = "<tr>"
-                    + "<td colspan='14'><center>No data to display</center></td>"
+                    + "<td colspan='15'><center>No data to display</center></td>"
                     + "</tr>";
             $("tbody").append(output);
         }
@@ -441,6 +442,7 @@ var Salary = {
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].income_tax) + "</div></td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_comp) + "</div></td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
+                        + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
                         + "<td><div class='td-style'>" + formatter.format(json_obj[i].total) + "</div></td>"
                         + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
                      
@@ -452,7 +454,7 @@ var Salary = {
        
           
             var html='<tr>'
-                        +'<td colspan="12" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
+                        +'<td colspan="13" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
                         +'<td style ="background-color:#3c8dbc; color:#ffffff;"><div class="td-style"> '+formatter.format(totalsal)+'</div></td>'
                         +'<td style ="background-color:#3c8dbc; color:#ffffff;"></td>'
                         +'</tr>'

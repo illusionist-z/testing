@@ -56,7 +56,7 @@ seJSON(res);
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "delete_ltype",
+            url : "deleteListType",
             success:function(){
                 
                 d.dialog("close");             
@@ -118,7 +118,7 @@ seJSON(res);
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "add_ltype",
+            url : "addListType",
             success:function(){                
                 d.dialog("close");                
             }
