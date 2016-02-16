@@ -9,11 +9,13 @@
  */
 var dict = [];   //for pagination
 var User = {
+        Ctrl : baseUri+"manageuser/index",
+        
         init  : function(reload) {
         $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
         if(reload){
        $.ajax({
-                url:baseUri+'manageuser/index/usernameautolist',
+                url: User.Ctrl+"/usernameautolist",
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
@@ -40,7 +42,7 @@ var User = {
         else{
               $.ajax({
                     type: 'GET',
-                    url: "index?username="+name,
+                    url: User.Ctrl+"?username="+name,
                     success:function(result){       
                       $('body').html(result);
                        $('.dropdown-toggle').dropdown();
@@ -54,7 +56,7 @@ var User = {
         }
 };
     
-$(document).ready(function(){                 
+$(document).ready( function() {
     
      User.init('reload'); 
     // ここに実際の処理を記述します。   
@@ -65,7 +67,8 @@ $(document).ready(function(){
            var type="new";
                     $.ajax({
                     type:'GET',
-                    url :baseUri+'manageuser/index/getpermit?data=' + type,
+                    url : User.Ctrl+"/getpermit",
+                    data : {data : type},
                     success: function(d){
                     var json_obj = $.parseJSON(d);                    
                     var opt='',option="";

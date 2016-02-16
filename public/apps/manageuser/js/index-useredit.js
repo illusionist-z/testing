@@ -10,7 +10,8 @@
         
         $.ajax({
             type: 'GET',
-            url: baseUri+'manageuser/index/manageuser?data=' + type,
+            url:  User.Ctrl+"/manageuser",
+            data : {data : type },
             dataType:'json',
             success: function (res) {
                 
@@ -144,7 +145,7 @@
         $form = $('#edit_user');
         $.ajax({
             type:"GET",
-            url : baseUri+"manageuser/index/userdata_edit?data="+id,
+            url : User.Ctrl+"/userdataedit?data="+id,
             data:$form.serialize(),
             dataType:'json',
             success:function(d){

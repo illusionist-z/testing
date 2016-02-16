@@ -12,11 +12,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->user = new User();
-        $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('apps/manageuser/js/adduser.js');
-        $this->assets->addCss('apps/manageuser/css/manageuser.css');
+        $this->setManageUserJsAndCss();
+        $this->user = new User();     
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->permission = $this->permission;
@@ -49,8 +46,8 @@ class IndexController extends ControllerBase {
     public function IndexAction() {
         //for paging and edit user        
         $currentPage = $this->request->get('page');
-        $this->assets->addJs("apps/manageuser/js/useredit.js");
-        $this->assets->addJs('apps/manageuser/js/search.js');
+        $this->assets->addJs("apps/manageuser/js/index-useredit.js");
+        $this->assets->addJs('apps/manageuser/js/base.js');
         $getname = Db\CoreMember::getInstance()->getUserName($currentPage);
         $username = $this->request->get('username');        
         $list = $this->user->userList($username,$currentPage);
@@ -150,7 +147,7 @@ class IndexController extends ControllerBase {
      * @desc   update user
      * @since  20/7/15
      */
-    public function userdata_editAction() {
+    public function userdataeditAction() {
         $cond = array();
         $cond['id'] = $this->request->get('data');
         $cond['name'] = $this->request->get('name');
