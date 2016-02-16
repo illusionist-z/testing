@@ -9,32 +9,26 @@
  */
 var dict = [];   //for pagination
 var User = {
-    Ctrl : baseUri+'manageuser',
-    
-    init : function(reload) {
+        Ctrl : baseUri+"manageuser/index",
+        
+        init  : function(reload) {
         $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
-        if(TRUE !==reload){
-            return false;
-        }
-            
-        $.ajax({
-            url : baseUri+'manageuser/index/usernameautolist',
-            method: 'GET',
-            //dataType: 'json',
-            success: function(data) {
+        if(reload){
+       $.ajax({
+                url: User.Ctrl+"/usernameautolist",
+                method: 'GET',
+                //dataType: 'json',
+                success: function(data) {
                 //alert(data);    
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                    // alert(json_obj[i].full_name);
-                    dict.push(json_obj[i].member_login_name);
+                dict.push(json_obj[i].member_login_name);
                 }                  
-            }                        
-        });     
-        
-    },
-    /**
-     * 
-     */
+                        }                        
+                    });     
+                }
+       },
         search: function(){
         var name = document.getElementById('username').value;
         if(name === ''){
@@ -48,7 +42,7 @@ var User = {
         else{
               $.ajax({
                     type: 'GET',
-                    url: "index?username="+name,
+                    url: User.Ctrl+"?username="+name,
                     success:function(result){       
                       $('body').html(result);
                        $('.dropdown-toggle').dropdown();
@@ -62,7 +56,7 @@ var User = {
         }
 };
     
-$(document).ready(function(){                 
+$(document).ready( function() {
     
      User.init('reload'); 
     // ここに実際の処理を記述します。   
@@ -73,7 +67,8 @@ $(document).ready(function(){
            var type="new";
                     $.ajax({
                     type:'GET',
-                    url :baseUri+'manageuser/index/getpermit?data=' + type,
+                    url : User.Ctrl+"/getpermit",
+                    data : {data : type},
                     success: function(d){
                     var json_obj = $.parseJSON(d);                    
                     var opt='',option="";

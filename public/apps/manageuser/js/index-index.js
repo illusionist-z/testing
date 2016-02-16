@@ -10,7 +10,8 @@
         
         $.ajax({
             type: 'GET',
-            url: baseUri+'manageuser/index/manageuser?data=' + type,
+            url:  User.Ctrl+"/manageuser",
+            data : {data : type },
             dataType:'json',
             success: function (res) {
                 
@@ -45,6 +46,7 @@
                    +'<table class="row-fluid" style="font-size:13px;"><tr><td class="">'+res[1]['name']+'</td><td>'
                    +'<input style="margin-top:10px" type="text" name="uname" id="uname" class="col-sm-10" placeholder="'+res[1]['placeholder1']+'"></td></tr>'
                    +'<tr><td></td><td id="existId"></td></tr>'
+                   +'<tr><td>'+res[1]['ssn']+'</td><td><input style="margin-top:10px" type="text" name="ssn_no" class="col-sm-10" placeholder="'+res[1]['placeholder_ssn']+'"></td></tr>'
                    +'<tr><td>'+res[1]['username']+'</td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="'+res[1]['placeholder2']+'"></td></tr>'
                    +'<tr><td>'+res[1]['pass']+'</td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="'+res[1]['placeholder3']+'"></td></tr>'
                    +'<tr><td>'+res[1]['confirm']+'</td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="'+res[1]['placeholder4']+'"></td></tr>'
@@ -144,7 +146,7 @@
         $form = $('#edit_user');
         $.ajax({
             type:"GET",
-            url : baseUri+"manageuser/index/userdata_edit?data="+id,
+            url : User.Ctrl+"/userdataedit?data="+id,
             data:$form.serialize(),
             dataType:'json',
             success:function(d){

@@ -13,7 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->setManageUserJsAndCss();
-        $this->user = new User();
+        $this->user = new User();     
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->permission = $this->permission;
@@ -85,6 +85,7 @@ class IndexController extends ControllerBase {
         if ($type == 'new') {
             $edit[0] = $type;
             $edit[1]["add"] = $t->_("adduser");
+            $edit[1]["ssn"] = $t->_("ssn_no");
             $edit[1]["name"] = $t->_("name");
             $edit[1]["username"] = $t->_("username");
             $edit[1]["pass"] = $t->_("password");
@@ -97,6 +98,7 @@ class IndexController extends ControllerBase {
             $edit[1]["role"] = $t->_("user_role");
             $edit[1]["profile"] = $t->_("user_profile");
             $edit[1]["w_start_dt"] = $t->_("w_start_dt");
+            $edit[1]['placeholder_ssn'] = $t->_("placeholder_ssn");
             $edit[1]["placeholder1"] = $t->_("placeholder1");
             $edit[1]["placeholder2"] = $t->_("placeholder2");
             $edit[1]["placeholder3"] = $t->_("placeholder3");
@@ -147,7 +149,7 @@ class IndexController extends ControllerBase {
      * @desc   update user
      * @since  20/7/15
      */
-    public function userdata_editAction() {
+    public function userdataeditAction() {
         $cond = array();
         $cond['id'] = $this->request->get('data');
         $cond['name'] = $this->request->get('name');
