@@ -12,11 +12,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->setManageUserJsAndCss();
         $this->user = new User();
-        $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('apps/manageuser/js/coremember-saveuser.js');
-        $this->assets->addCss('apps/manageuser/css/base.css');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->permission = $this->permission;

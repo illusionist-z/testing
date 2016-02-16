@@ -18,9 +18,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Library\Core\Models\Config::getModuleConfig('salary');
-        $this->assets->addCss('apps/salary/css/base.css');
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('common/js/export.js');
+        $this->setSalaryJsAndCss();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;

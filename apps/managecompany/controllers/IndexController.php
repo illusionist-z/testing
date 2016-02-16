@@ -11,11 +11,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->setCompanyJsAndCss();
         $this->view->t = $this->_getTranslation();
-        $this->assets->addJs('apps/managecompany/js/index-base.js');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('common/css/dialog.css');
-      //  $moduleIdCallCore = new CoreMember();
     }
 
     /**

@@ -21,11 +21,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/css/style.css');
-        //$this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/setting/js/base.js');
-        $this->assets->addJs('apps/setting/js/index-admin.js');
+        $this->setSettingJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getActionName();

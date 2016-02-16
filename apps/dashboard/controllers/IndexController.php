@@ -12,11 +12,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addJs('common/js/time.js');
-        $this->assets->addJs('common/js/btn.js');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('common/css/boot.css');
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        $this->setDashboardJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
