@@ -148,7 +148,6 @@ for (var i = 0; i < cells.length; i++) {
        overtime_hr=overtimehour[i].value;
        specific_duty_allowance=specific_deduce_arr[i].value; 
        absent=absent_amount[i].value;
-       
        if(specific_duty_allowance=="")
        {
         specific_duty_allowance=0;
@@ -157,11 +156,16 @@ for (var i = 0; i < cells.length; i++) {
          //window.location.href = baseUri + 'salary/salarymaster/editsalarydetail/'+$b_salary+'/'+$overtime_rate+'/0/'+$member_id;  
        $.ajax({
             type:'get',
-            //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
-            url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'
-                    +overtime_rate+'/'+specific_duty_allowance+'/'+member_id+'/'
-                    +absent+'/'+year+'/'+month+'/'+overtime_hr,
+            url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='
+                    +b_salary+'& overtime='+overtime_rate+
+                    '& specific_dedce='+specific_duty_allowance+
+                    ' & member_id='+member_id+'&absent='+absent+
+                    '& year='+year+'&month='+month+'&overtime_hr='+overtime_hr,
+//            url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'
+//                    +overtime_rate+'/'+specific_duty_allowance+'/'+member_id+'/'
+//                    +absent+'/'+year+'/'+month+'/'+overtime_hr,
             success:function(){
+                
                 alert("Data has been updated");
                 window.location.reload();
             }

@@ -20,7 +20,7 @@ class AbsentController extends ControllerBase {
         $this->view->t = $this->_getTranslation();
         $this->id = $this->session->user['member_id'];
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/attendancelist/js/absent.js');
+        $this->assets->addJs('apps/attendancelist/js/absent-addabsent.js');
         $this->assets->addCss('common/css/css/style.css');
     }
 
