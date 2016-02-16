@@ -12,7 +12,7 @@ class ControllerBase extends Library\Core\Controller {
             $this->assets->addCss('common/css/dialog.css')
                                 ->addCss('common/css/css/style.css')                        
                                 ->addCss('apps/manageuser/css/manageuser.css');
-            $this->assets->addJs('apps/manageuser/js/index-adduser.js');    
+            $this->assets->addJs('apps/manageuser/js/coremember-saveuser.js');
     }
     
 }
