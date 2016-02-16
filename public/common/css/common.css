@@ -28,7 +28,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 .userauto,.tags,.monthauto,.applyauto,#apply_form_sdate,#apply_form_edate,#apply_form_desc,
 #select_name,#title_create_event,#sdate_create_event,#edate_create_event,.salusername{
     padding: 0px 10px;
-    outline-color: #3c8dbc;
+    outline-color: #3c8dbc;    
 }
 @media(max-width:767px){
     .main-sidebar{transform:translate3d(0,0,0);}

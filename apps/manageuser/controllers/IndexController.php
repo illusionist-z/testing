@@ -43,10 +43,10 @@ class IndexController extends ControllerBase {
      * @since  18/7/15
      * @version 3/9/2015 @by David JP
      */
-    public function IndexAction() {
+    public function indexAction() {
         //for paging and edit user        
         $currentPage = $this->request->get('page');
-        $this->assets->addJs("apps/manageuser/js/index-useredit.js");
+        $this->assets->addJs("apps/manageuser/js/index-index.js");
         $this->assets->addJs('apps/manageuser/js/base.js');
         $getname = Db\CoreMember::getInstance()->getUserName($currentPage);
         $username = $this->request->get('username');        

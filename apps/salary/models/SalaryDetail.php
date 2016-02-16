@@ -340,7 +340,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function updateSalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,
             $salary_start_month,$absent_amount,$overtime_hr,$overtimerate) {
-        
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
@@ -449,6 +448,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             
             $filter = new Filter();
             foreach ($param as $params) {
+             
             $basic_salary = $filter->sanitize($param[0]['basic_salary'], "int");
             $member_id = $filter->sanitize($param[0]['member_id'], "string");
             $allowance_amount = $filter->sanitize($param[0]['allowance_amount'], "int");

@@ -115,6 +115,7 @@ class IndexController extends ControllerBase {
        
         $Noti_detail = new \salts\Notification\Models\CoreNotification();
         $Detail_result = $Noti_detail->getNotiInfo($Noti_id);
+     
         $this->view->setVar("module_name", $module_name);
         $this->view->setVar("result", $Detail_result);
         $this->view->t = $this->_getTranslation();
@@ -153,6 +154,7 @@ class IndexController extends ControllerBase {
         $core = CoreNotification::findFirst('noti_id =' . $this->request->get('id'));
         $core->noti_status = '1';
         $core->update();
+        $this->response->redirect("attendancelist/index/todaylist");
        
    
     }
