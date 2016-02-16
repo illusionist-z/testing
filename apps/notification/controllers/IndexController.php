@@ -112,7 +112,6 @@ class IndexController extends ControllerBase {
         $this->view->setVar("type", $type);
         $Noti_id = $this->request->get('id');
         $module_name = $this->request->get('mname');
-       
         $Noti_detail = new \salts\Notification\Models\CoreNotification();
         $Detail_result = $Noti_detail->getNotiInfo($Noti_id);
         $this->view->setVar("module_name", $module_name);

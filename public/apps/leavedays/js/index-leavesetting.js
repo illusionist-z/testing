@@ -7,8 +7,8 @@ var Categories = {
            url:"ltypedia?id="+d,
            type: "GET",
            success:function(res){               
-                
-               var result = $.parseJSON(res);
+               var result = $.par                
+seJSON(res);
                
                var data ='<form id="edit_ltype_table"><table>';               
                    data += '<tr><td></td><td><input type="hidden"  value="'+result[0]['leavetype_id']+ '" name="id" ></td></tr>'
