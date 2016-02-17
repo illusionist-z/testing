@@ -20,8 +20,8 @@ try {
         'salts\Auth\Models' => __DIR__.'../apps/Auth/models/',
         'salts\Auth\Models\Db' => __DIR__.'../apps/Auth/models/db',
         'salts\Core\Models\Db' => __DIR__.'../apps/core/models/db', 
-        'salts\Core\Models' => __DIR__.'../apps/core/models/',
-         
+        'salts\Core\Models' => __DIR__.'../apps/core/models',
+
     ))->register();
     $loader->registerNamespaces(array(
         // set namespace for libraries
@@ -30,9 +30,9 @@ try {
         'Library\Core\Models' => __DIR__.'/../library/core/models',
         // set namespace for the core module
 //        'salts\Core\Controllers' => '../apps/core/controllers/',
-        'salts\Core\Models' => __DIR__.'../apps/core/models/',
+        'salts\Core\Models' => __DIR__.'../apps/core/models',
          
-        'salts\Auth\Models' => __DIR__.'../apps/Auth/models/',
+        'salts\Auth\Models' => __DIR__.'../apps/Auth/models',
         
         'salts\Core\Models\Db' => __DIR__.'../apps/core/models/db',
         'salts\Auth\Models\Db' => __DIR__.'../apps/Auth/models/db',
