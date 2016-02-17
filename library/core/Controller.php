@@ -1,18 +1,21 @@
 <?php
-
 namespace Library\Core;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+$server = PHP_OS;
 
+if($server == 'Linux'){
+ include_once '/var/www/html/salts/apps/core/models/CorePermissionRelMember.php'; 
+ include_once '/var/www/html/salts/apps/core/models/CorePermissionGroup.php';
+ include_once '/var/www/html/salts/apps/core/models/CorePermission.php';
+}
 use salts\Core\Models\Db;
-
+//use salts\Auth\Models\Db;
 abstract class Controller extends \Phalcon\Mvc\Controller {
-
-    public $moduleName;    
+    public $moduleName;
     /**
      * use language
      * 
@@ -20,17 +23,19 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public $lang;
     public $_isJsonResponse = FALSE;
-
     /**
      * initialize controller
      */
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
+        
+        
     }
         /**
         * Set Permission
         * @return int
         */
+    
    
             public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
@@ -82,7 +87,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->response->setJsonContent($content);
         return $this->response;
     }
-
     /**
      * 
      * @param \Phalcon\Mvc\Dispatcher $dispatcher
@@ -96,39 +100,29 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         }
         $this->moduleName = $dispatcher->getModuleName();
     }
-
     /**
      * 
      * @param type $prefix
      * @return \Phalcon\Translate\Adapter\NativeArray
      */
-    protected function _getTranslation($prefix = '') {        
+    protected function _getTranslation($prefix = '') {
         // Check if we have a translation file for that lang
-        $langDir = __DIR__ . "/../../apps/{$this->moduleName}/lang";
-        $common_lang = __DIR__."/../../library/core/lang";
+        $langDir = __DIR__ . "/../../library/core/lang";
         if ('' !== $prefix) {
             $prefix .= '-';
-        }        
+        }
         // 
         if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
             require $langDir . '/' . $prefix . $this->lang . '.php';
-            $msg1 = $messages;
-            require $common_lang . '/' . $prefix . $this->lang . '.php';
-            $message = array_merge($msg1,$messages);
         } else {
             // fallback to some default
             require $langDir . '/' . $prefix . "jp.php";
-            $msg1 = $messages;
-            require $common_lang . '/' . $prefix . "jp.php";
-            $message = array_merge($msg1,$messages);
         }
-        
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
-            "content" => $message
+            "content" => $messages
         ));
     }
-
     /**
      * 
      */
@@ -138,8 +132,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 ->addCss('common/css/common.css')
                 ->addCss('common/css/jquery-ui.css')
                 ->addCss('common/css/skins.min.css');
-
-
         $this->assets->addJs('common/js/jquery.min.js')
                 ->addJs('common/js/common.js')
                 //->addJs('common/js/btn.js')
@@ -150,7 +142,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     }
     
        public function setNotificationJsAndCss() {
-
         $this->assets
                 //->addJs('common/js/jquery.min.js')
                 //->addJs('common/js/common.js')
@@ -160,7 +151,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                ->addJs('common/js/jquery-ui.js');
                 //->addJs('common/js/notification.js');
     }
-
     /**
      * using slide menu
      */
@@ -168,29 +158,23 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('lib/mmenu/js/jquery.mmenu.min.js');
         $this->assets->addCss('lib/mmenu/css/jquery.mmenu.css');
         $this->assets->addJs('js/bootstrap/slide-menu.js');
-
-
         // Get application list
         $this->view->coreAppsTran = $this->_getCoreTranslation();
         $dbCoreApps = new Db\CoreApps();
         $this->view->menulist = $dbCoreApps->getActiveApps($this->session->get('auth'));
-
 //        $this->view->menulist = \Crm\Core\Models\Db\CoreApps::find()->toArray();
 //        $this->view->slideMenus = $this->view
 //                ->setViewsDir(realpath(__DIR__.'/../../apps/core/views'))
 //                ->pick("index/cmn-slide-menu");
 //        $this->view->setPartialsDir($partialsDir)->pick($renderView);
     }
-
     // After route executed event
     public function afterExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
         
     }
-
     private function _getCoreTranslation() {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/core/messages";
-
         $prefix = 'apps-';
         if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
             require $langDir . '/' . $prefix . $this->lang . '.php';
@@ -198,11 +182,9 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
             // fallback to some default
             require $langDir . '/' . $prefix . "ja.php";
         }
-
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $messages
         ));
     }
-
 }

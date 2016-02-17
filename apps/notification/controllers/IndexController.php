@@ -6,8 +6,8 @@ use salts\Leavedays\Models\Leaves;
 use salts\Attendancelist\Models\Attendances;
 use salts\Notification\Models\CoreNotification;
 use salts\Core\Models\Db\CoreMember;
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+// include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+// include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -113,7 +113,6 @@ class IndexController extends ControllerBase {
         $this->view->setVar("type", $type);
         $Noti_id = $this->request->get('id');
         $module_name = $this->request->get('mname');
-       
         $Noti_detail = new \salts\Notification\Models\CoreNotification();
         $Detail_result = $Noti_detail->getNotiInfo($Noti_id);
      

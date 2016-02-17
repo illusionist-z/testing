@@ -4,6 +4,7 @@ namespace salts\Core\Models\Db;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
+
 use salts\Core\Models\Db\CorePermissionRelMember;
 use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
