@@ -11,7 +11,8 @@ use salts\Setting\Models\CorePermissionRelMember;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 use Phalcon\Filter;
-
+include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 /**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
  * @desc     CorePermissionGroup
@@ -21,11 +22,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/css/style.css');
-        //$this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/setting/js/base.js');
-        $this->assets->addJs('apps/setting/js/index-admin.js');
+//        /$this->setSettingJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getActionName();

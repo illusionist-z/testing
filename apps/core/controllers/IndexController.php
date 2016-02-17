@@ -5,7 +5,8 @@ namespace salts\Core\Controllers;
 use salts\Core\Models\CoreMember;
 use salts\Core\Models\Permission;
 use Library;
-
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends Library\Core\Controller {
     
     public function initialize() {

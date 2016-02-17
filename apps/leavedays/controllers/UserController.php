@@ -19,9 +19,7 @@ class UserController extends ControllerBase {
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/css/style.css');
+        $this->setUserLeaveJsAndCss();
         $this->view->t = $this->_getTranslation();
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];

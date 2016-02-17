@@ -19,9 +19,7 @@ class CorememberController extends ControllerBase {
         parent::initialize();
         $this->user = new User();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addJs('apps/manageuser/js/base.js');
+        $this->setManageUserControllerJsAndCss();
     }
 
     /**

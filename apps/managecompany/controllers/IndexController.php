@@ -5,17 +5,15 @@ namespace salts\Managecompany\Controllers;
 use salts\Auth\Models\Db\CoreMember;
 
 //use Phalcon\Flash\Direct as FlashDirect;
-
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->setCompanyJsAndCss();
         $this->view->t = $this->_getTranslation();
-        $this->assets->addJs('apps/managecompany/js/index-base.js');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('common/css/dialog.css');
-      //  $moduleIdCallCore = new CoreMember();
     }
 
     /**

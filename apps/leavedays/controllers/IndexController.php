@@ -6,7 +6,8 @@ use salts\Core\Models\Db;
 use salts\Leavedays\Models\Leaves as Leave;
 use salts\Leavedays\Models\LeaveCategories as LeaveCategories;
 use salts\Leavedays\Models\LeavesSetting as LeavesSetting;
-
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
     public $_leave;
@@ -16,11 +17,21 @@ class IndexController extends ControllerBase {
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         parent::initialize();
-        $this->setCommonJsAndCss();
+       // $this->setCommonJsAndCss();
+          $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+        $this->assets->addCss('common/css/bootstrap.min.css');
+        $this->assets->addCss('common/css/common.css');
         $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->assets->addCss('common/css/skins.min.css');
+
+
+        $this->assets->addJs('common/js/jquery.min.js');
+        $this->assets->addJs('common/js/common.js');
+                //->addJs('common/js/btn.js')
+        $this->assets->addJs('common/js/bootstrap.min.js');
+        $this->assets->addJs('common/js/app.min.js');
+        $this->assets->addJs('common/js/jquery-ui.js');
+        $this->assets->addJs('common/js/notification.js');
         $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
