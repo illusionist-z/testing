@@ -7,11 +7,8 @@ class ModuleController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->setCompanyModuleJsAndCss();
         $this->view->t = $this->_getTranslation();
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/managecompany/js/module.js');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('common/css/dialog.css');
     }
 
     /**

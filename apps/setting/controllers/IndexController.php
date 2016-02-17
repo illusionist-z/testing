@@ -21,11 +21,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/dialog.css');
-        $this->assets->addCss('common/css/css/style.css');
-        //$this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/setting/js/index.js');
-        $this->assets->addJs('apps/setting/js/setting.js');
+        $this->setSettingJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getActionName();
@@ -93,7 +89,7 @@ class IndexController extends ControllerBase {
     public function AddPageRuleAction() {
          
         $filter = new Filter();
-        $creator_id = $filter->sanitize($this->session->user['member_id'],'string');;
+        $creator_id = $filter->sanitize($this->session->user['member_id'],'string');
         $created_dt = date("Y-m-d H:i:s");
         $core = new CorePermissionGroup();
         $option = explode("_", $this->request->getPost('page_rule_group'));

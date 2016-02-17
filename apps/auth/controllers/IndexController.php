@@ -8,8 +8,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addJs('apps/auth/js/forgot.js');
-        $this->assets->addCss('common/css/css/style.css');
+        $this->setAuthJsAndCss();
     }
     /**
      * Index Action
@@ -48,12 +47,10 @@ class IndexController extends ControllerBase {
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
         if (4 > $_SESSION["attempts"]) {
-        
-        // Login Error Database Log start
-       
-        
-        // Login Error Database Log end
-        
+
+            // Login Error Database Log start
+            // Login Error Database Log end
+
             if ($this->session) {
                 $member_name = $this->session->tokenpush;
                 $ChackUser = new Db\CoreMember();

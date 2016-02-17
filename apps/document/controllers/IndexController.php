@@ -15,15 +15,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('apps/document/css/index_ssbdocument.css');
-        $this->assets->addJs('apps/document/js/FileSaver.js');
-        $this->assets->addJs('apps/document/js/FileSaver.min.js');
-        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
-        $this->assets->addJs('apps/document/js/FileSaver.js');
-        $this->assets->addJs('apps/document/js/FileSaver.min.js');
-        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
+        $this->setDocumentJsAndCss();
         $this->act_name = $this->router->getActionName();
         $this->permission = $this->setPermission($this->act_name);
         $code = $this->session->permission_code;
@@ -55,7 +47,7 @@ class IndexController extends ControllerBase {
     public function ssbdocumentAction() {
         if ($this->moduleIdCall == 1) {
             $this->view->module_name = $this->router->getModuleName();
-            $this->assets->addJs('apps/document/js/print.js');
+            $this->assets->addJs('apps/document/js/index-print.js');
             $SalaryDetail = new Document();
             $result = $SalaryDetail->getSsbInfo();
              $ComInfo = new CompanyInfo();
@@ -83,7 +75,7 @@ class IndexController extends ControllerBase {
         $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
 
         if ($moduleIdCall == 1) {
-            $this->assets->addJs('apps/document/js/print.js');
+            $this->assets->addJs('apps/document/js/index-print.js');
             $SalaryDetail = new Document();
             $result = $SalaryDetail->getSalaryInfo();
             if ($this->permission == 1) {
@@ -105,7 +97,7 @@ class IndexController extends ControllerBase {
         $this->view->module_name = $this->router->getModuleName();
         $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
         if ($this->moduleIdCall == 1) {
-            $this->assets->addJs('apps/document/js/letterhead.js');
+            $this->assets->addJs('apps/document/js/index-letterhead.js');
             $ComInfo = new CompanyInfo();
             $ComInfo = CompanyInfo::find();
             $coreid = new CorePermissionGroupId();

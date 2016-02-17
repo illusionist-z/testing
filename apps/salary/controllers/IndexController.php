@@ -18,10 +18,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Library\Core\Models\Config::getModuleConfig('salary');
-        $this->assets->addCss('apps/salary/css/index_show_salarylist.css');
-        $this->assets->addCss('apps/salary/css/salary.css');
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('common/js/export.js');
+        $this->setSalaryJsAndCss();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
@@ -61,7 +58,7 @@ class IndexController extends ControllerBase {
     public function salarylistAction() {
 
         if ($this->moduleIdCall == 1) {
-            $this->assets->addJs('apps/salary/js/salary.js');
+            $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
             $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage);
@@ -84,8 +81,8 @@ class IndexController extends ControllerBase {
     public function showsalarylistAction() {
 
         if ($this->moduleIdCall == 1) {
-            $this->assets->addJs('apps/salary/js/salary.js');
-            $this->assets->addJs('apps/salary/js/index_show_salarylist.js');
+            $this->assets->addJs('apps/salary/js/base.js');
+            $this->assets->addJs('apps/salary/js/index-show-salarylist.js');
 
             $month = $this->request->get('month');
             $year = $this->request->get('year');
@@ -93,12 +90,12 @@ class IndexController extends ControllerBase {
             $get_salary_list = $SalaryDetail->salarylist($month, $year);
 
             $UserList = new Db\CoreMember();
-            $user_name = $UserList::getinstance()->getusername();
-            $this->view->setVar("month", $month);
+            $user_name = $UserList->find();
+             $this->view->setVar("month", $month);
             $this->view->setVar("year", $year);
             $this->view->setVar("usernames", $user_name);
             $this->view->setVar("getsalarylists", $get_salary_list);
-            //$this->view->setVar("allowancenames", $allowancename);
+        //    $this->view->setVar("allowancenames", $allowancename);
             $this->view->module_name = $this->router->getModuleName();
         } else {
             $this->response->redirect('core/index');
@@ -110,7 +107,7 @@ class IndexController extends ControllerBase {
      */
     public function addsalaryAction() {
 
-        $this->assets->addJs('apps/salary/js/addsalary.js');
+        $this->assets->addJs('apps/salary/js/index-addsalary.js');
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getUserName();
         $Allowance = new Allowances();
@@ -142,8 +139,8 @@ class IndexController extends ControllerBase {
      * show total salary  of each month
      */
     public function monthlysalaryAction() {
-        $this->assets->addJs('apps/salary/js/salary.js');
-        $this->assets->addJs('apps/salary/js/addsalary.js');
+        $this->assets->addJs('apps/salary/js/base.js');
+        $this->assets->addJs('apps/salary/js/index-addsalary.js');
         $currentPage = $this->request->get("page");
         $SalaryDetail = new SalaryDetail();
         $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
@@ -159,7 +156,7 @@ class IndexController extends ControllerBase {
      * get detail data for payslip
      */
     public function payslipAction() {
-        $this->assets->addJs('apps/salary/js/salary.js');
+        $this->assets->addJs('apps/salary/js/base.js');
 
         $member_id = $this->request->get('member_id');
         $month = $this->request->get('month');
@@ -536,7 +533,7 @@ class IndexController extends ControllerBase {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function printsalaryAction() {
-        $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/salary/js/index-print.js');
         $month = $this->request->get('month');
         $year = $this->request->get('year');
         $member_id = $this->request->get('chk_val');
@@ -556,7 +553,7 @@ class IndexController extends ControllerBase {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia> 
      */
     public function salarydetailAction() {
-        $this->assets->addJs('apps/salary/js/index_salarydetail.js');
+        $this->assets->addJs('apps/salary/js/index-salarydetail.js');
         $month = $this->request->get('month');
         $year = $this->request->get('year');
         $member_id = $this->request->get('chk_val');
@@ -613,7 +610,7 @@ class IndexController extends ControllerBase {
 
     //for show calculate salary
     public function checkmonthyearAction() {
-        $this->assets->addJs('apps/salary/js/salary.js');
+        $this->assets->addJs('apps/salary/js/base.js');
         $monthyear = $this->request->get('monthyear');
         $SalaryDetail = new SalaryDetail();
         $result = $SalaryDetail->findMonthyear($monthyear);
@@ -747,7 +744,7 @@ class IndexController extends ControllerBase {
     }
 
     public function memberidforprintAction() {
-        $this->assets->addJs('apps/salary/js/print.js');
+        $this->assets->addJs('apps/salary/js/index-print.js');
         $member_id = $this->request->get('member_id');
         $paydate = $this->request->get('paydate');
 

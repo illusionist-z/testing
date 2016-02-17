@@ -16,24 +16,32 @@ class LeaveCategories extends \Library\Core\Models\Base {
     }
 
     public function getLeaveType() {
-        $sql = "SELECT * FROM leave_categories  order by created_dt desc";
-        $results = $this->db->query($sql);
-        $typelist = $results->fetchall();
+   $leave_cate =  $this->modelsManager->createBuilder()
+                           ->columns("*")
+                           ->from("salts\LeaveDays\Models\LeaveCategories")
+                           ->orderBy("salts\LeaveDays\Models\LeaveCategories.created_dt desc")
+                           ->getQuery()
+                           ->execute();
+        $typelist = $leave_cate->toArray();        
         return $typelist;
     }
 
     public function getListTypeData($id) {
-        $results = $this->db->query("SELECT * FROM leave_categories WHERE leavetype_id='" . $id . "'");
-        $data = $results->fetchall();
+        $leave_cate = LeaveCategories::find("leavetype_id ='$id'");
+        $results = \salts\Core\Models\Permission::tableObject($leave_cate);
+        $data = $results->toArray();
         return $data;
     }
 
     public function deleteCategories($id) {
-        $this->db->query("DELETE FROM leave_categories WHERE leavetype_id='" . $id . "'");
+        $delete_cate = LeaveCategories::find("leavetype_id ='$id'");
+        $delete_cate_row = \salts\Core\Models\Permission::tableObject($delete_cate);
+        $delete_cate_row->delete();        
     }
 
     public function addNewCategories($ltype_name) {
-        $this->db->query("INSERT INTO leave_categories(leavetype_id,leavetype_name,created_dt) VALUES (uuid(),'" . $ltype_name . "',now() )");
+        $psql = "INSERT INTO salts\LeaveDays\Models\LeaveCategories (leavetype_id,leavetype_name,created_dt) VALUES (uuid(),'" . $ltype_name . "',now() )";
+        $this->modelsManager->executeQuery($psql);
     }
 
     /**
@@ -41,9 +49,8 @@ class LeaveCategories extends \Library\Core\Models\Base {
      *  type get $member_id
      */
     public function memberIdApplyLeave($uname) {
-        $sql = "select * from core_member WHERE member_login_name ='" . $uname . "'";
-        $result = $this->db->query($sql);
-        $row = $result->fetchall();
+        $core_member = \salts\Core\Models\Db\CoreMember::findByMemberLoginName($uname);
+        $row = $core_member->toArray();        
         return $row;
     }
 

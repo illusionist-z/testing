@@ -10,12 +10,8 @@ class UserController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-        $this->setCommonJsAndCss();
-        $this->assets->addJs('common/js/time.js');
-        $this->assets->addJs('common/js/btn.js');
-        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('common/css/boot.css');
+        $this->setCommonJsAndCss();        
+        $this->setDashboardJsAndCss();
         $this->config = \Module_Config::getModuleConfig('leavedays');
         $Admin = new \salts\Auth\Models\Db\CoreMember;
         $id = $this->session->user['member_id'];

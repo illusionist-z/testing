@@ -11,11 +11,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->setCompanyJsAndCss();
         $this->view->t = $this->_getTranslation();
-        $this->assets->addJs('apps/managecompany/js/index.js');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('common/css/dialog.css');
-      //  $moduleIdCallCore = new CoreMember();
     }
 
     /**
@@ -26,7 +23,7 @@ class IndexController extends ControllerBase {
 
 
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/managecompany/js/paging.js');
+        $this->assets->addJs('apps/managecompany/js/base.js');
         $com_id = $this->request->get('comlistsearch');
         $Company = new \salts\Managecompany\Models\CompanyTbl();
         $result = $Company->getAllcom();

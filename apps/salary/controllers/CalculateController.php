@@ -11,8 +11,7 @@ class CalculateController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-       // $this->config = \Module_Config::getModuleConfig('salary');
-        $this->assets->addJs('apps/salary/js/salary.js');
+        $this->assets->addJs('apps/salary/js/base.js');
         $this->setCommonJsAndCss();
     }
 
@@ -21,9 +20,6 @@ class CalculateController extends ControllerBase {
      */
     public function indexAction() {
         $salary_start_date = $this->request->get('salary_date');
-      //  $basic_salary_ssc = $this->config->salary['basic_salary_ssc'];
-     //   $deduce = $this->config->salary['deduce'];
-     //   $overrate = $this->config->salary['overrate'];
         $SalaryDetail = new SalaryDetail();
         $Salarymaster = new SalaryMaster();
         $Attendance = new \salts\Salary\Models\Attendances();

@@ -8,7 +8,7 @@ use salts\Core\Models\Db\CoreMember;
 use Phalcon\Mvc\Controller;
 use Phalcon\Filter;
 
-class Salary extends \Library\Core\BaseModel {
+class Salary extends \Library\Core\Models\Base {
 
     public function initialize() {
         parent::initialize();

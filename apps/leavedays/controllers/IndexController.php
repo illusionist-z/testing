@@ -17,10 +17,7 @@ class IndexController extends ControllerBase {
         $this->_leave = new Leave();
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->setLeaveJsAndCss();
         $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
@@ -81,7 +78,7 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {
         if ($this->moduleIdCall == 1) {
-            $this->assets->addJs('apps/leavedays/js/applyleave.js');
+            $this->assets->addJs('apps/leavedays/js/index-applyleave.js');
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
             $this->assets->addCss('common/css/jquery-ui-timepicker.css');
             $LeaveType = new LeaveCategories();
@@ -105,7 +102,7 @@ class IndexController extends ControllerBase {
     public function checkapplyAction() {
         if ($this->request->isPost()) {
             $user = $this->_leave;
-            $validate = $user->validation($this->request->getPost());
+            $validate = $user->validating($this->request->getPost());
 
             if (count($validate)) {
                 foreach ($validate as $message) {
@@ -144,7 +141,7 @@ class IndexController extends ControllerBase {
             $noti = $Admin->GetAdminNoti($id, 0);
             $this->view->setVar("noti", $noti);            
             $this->assets->addJs('apps/leavedays/js/search.js');
-            $this->assets->addJs('apps/leavedays/js/leavelist.js');
+            $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
             $month = $this->config->month;
             $LeaveType = new LeaveCategories();
             $ltype = $LeaveType->getLeaveType();
@@ -178,7 +175,7 @@ class IndexController extends ControllerBase {
     public function leavesettingAction() {
 
 
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
 
             $this->act_name = $this->router->getModuleName();
             $this->permission = $this->setPermission($this->act_name);
@@ -225,7 +222,7 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
-        $data = $LeaveCategories->getListTypeData($id);
+        $data[0] = $LeaveCategories->getListTypeData($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
         $data[1]['yes'] = $t->_("yes");
         $data[1]['no'] = $t->_("cancel");
@@ -305,7 +302,7 @@ class IndexController extends ControllerBase {
      */
     public function noleavelistAction() {
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/leavedays/js/leavepaging.js');
+        $this->assets->addJs('apps/leavedays/js/index-paging.js');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);
@@ -323,7 +320,7 @@ class IndexController extends ControllerBase {
      */
     public function leavemostAction() {
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/leavedays/js/leavepaging.js');
+        $this->assets->addJs('apps/leavedays/js/index-paging.js');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id);

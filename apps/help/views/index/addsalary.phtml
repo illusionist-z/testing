@@ -7,7 +7,7 @@
         </ul>
         <hr>
         <div class="col-md-6">        
-            <img src="<?php echo $baseUri ?>help/addsalary.png" style="width:100%;"> 
+            <img src="<?php echo $baseUri ?>/apps/help/img/addsalary.png" style="width:100%;"> 
         </div>
         <div class="col-md-6">
             <ol type="1" style="font-family: Century,Hevitical,sans-serif;font-weight: bold;">
@@ -31,13 +31,17 @@
                 </li>
                 <li><?php echo $t->_("sal_start_date"); ?></li>
                 <li><span><?php echo $t->_("Salary_apply"); ?></span></li>
-                <li><span><pre><?php echo $t->_("download_csv"); ?></pre></span></li>
+                <li><span class="text-aqua">  &nbsp;</span>
+                     <ul>
+                         <li><pre><?php echo $t->_("download_csv"); ?></pre></li>
+                     </ul>
+                </li>
                 <li><span><?php echo $t->_("apply_with_csv"); ?></span></li>
 
 
             </ol>
         </div>
-        <div class="col-md-12 top-padding">
+        <div class="col-md-12 pad">
             <div class="col-md-6 ">
                 <a href="calendar"><< <?php echo $t->_("Calendar"); ?> </a>
             </div>

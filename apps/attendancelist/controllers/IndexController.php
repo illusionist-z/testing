@@ -10,14 +10,11 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        //$this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('apps/attendancelist/js/index.js');
+        $this->setAttJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
-       
+
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
@@ -25,12 +22,11 @@ class IndexController extends ControllerBase {
                 $noti = $CoreMember->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                
+
                 $noti = $CoreMember->GetUserNoti($id, 1);
-               
             }
         }
-        
+
         $this->view->setVar("Noti", $noti);
         $this->act_name = $this->router->getActionName();
         $this->view->t = $this->_getTranslation();
@@ -46,10 +42,10 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction() {
-       
+
         if ($this->moduleIdCall == 1) {
             $this->act_name = $this->router->getModuleName();
-            $currentPage  = $this->request->get('page');
+            $currentPage = $this->request->get('page');
             $this->permission = $this->setPermission($this->act_name);
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
             $this->assets->addCss('common/css/jquery-ui-timepicker.css');
@@ -59,8 +55,8 @@ class IndexController extends ControllerBase {
             $UserList = new \salts\Core\Models\Db\CoreMember();
             $Username = $UserList->getUserName();
             $AttList = new \salts\Attendancelist\Models\Attendances();
-            $Result_Attlist = $AttList->getTodayList($name,$currentPage);
-            
+            $Result_Attlist = $AttList->getTodayList($name, $currentPage);
+
             if ($this->permission == 1) {
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;
@@ -111,12 +107,12 @@ class IndexController extends ControllerBase {
             $offset = $this->session->location['offset'];
             $currentPage = $this->request->get("page");
             $UserList = new \salts\Core\Models\CoreMember();
-           // $UserName = $UserList::getinstance()->getusername();
+            // $UserName = $UserList::getinstance()->getusername();
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthly_list = $Attendances->showAttList($currentPage);
             //$coreid = new CorePermissionGroupId();
-         
+
             if ($this->permission == 1) {
                 $this->view->monthlylist = $monthly_list;
                 $this->view->setVar("Month", $month);
