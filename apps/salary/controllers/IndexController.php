@@ -10,7 +10,8 @@ use salts\Salary\Models\SalaryTaxs;
 use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
 use Phalcon\Filter;
-
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -18,12 +19,25 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Library\Core\Models\Config::getModuleConfig('salary');
-        $this->setSalaryJsAndCss();
+           $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+        $this->assets->addCss('common/css/bootstrap.min.css');
+        $this->assets->addCss('common/css/common.css');
+        $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/skins.min.css');
+
+
+        $this->assets->addJs('common/js/jquery.min.js');
+        $this->assets->addJs('common/js/common.js');
+                //->addJs('common/js/btn.js')
+        $this->assets->addJs('common/js/bootstrap.min.js');
+        $this->assets->addJs('common/js/app.min.js');
+        $this->assets->addJs('common/js/jquery-ui.js');
+        $this->assets->addJs('common/js/notification.js');
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
         $this->module_name = $this->router->getModuleName();
-        $this->setCommonJsAndCss();
+         
         $this->assets->addCss('common/css/css/style.css');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];

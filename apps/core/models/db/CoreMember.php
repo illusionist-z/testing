@@ -220,7 +220,7 @@ class CoreMember extends \Library\Core\Models\Base {
         $filter = new Filter();
         $username = $filter->sanitize($member['uname'], "string");
         $full_name = $filter->sanitize($member['full_name'], "string");
-        $ssn = $member['ssn_no'] === "" ? : $filter->sanitize($member['ssn_no'],"string");
+
         $pass = $filter->sanitize($pass, "string");
         $dept = $filter->sanitize($member['dept'], "string");
         $position = $filter->sanitize($member['position'], "string");
@@ -237,20 +237,15 @@ class CoreMember extends \Library\Core\Models\Base {
         $lang = "en";
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
 
-        $phql = "INSERT INTO salts\Core\Models\Db\CoreMember (user_rule,ssn_no,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
-                . " VALUES('" . $arr['1'] . "','".$ssn."',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address . "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')";
-        $this->modelsManager->executeQuery($phql);
-        $user_name = CoreMember::find("member_login_name = '".$member['uname']."'");
-        $us = $user_name->toArray();
+        $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
+                . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address . "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
+        $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['uname'] . "'");
+        $us = $user_name->fetchall();
 
         foreach ($us as $value) {
-            $rel_member = new \salts\Core\Models\CorePermissionRelMember();
-            $rel_member->rel_member_id = $value['member_id'];
-            $rel_member->permission_group_id_user = $arr[1];
-            $rel_member->rel_permission_group_code = $arr[0];
-            $rel_member->creator_id = $member_id;
-            $rel_member->created_dt = $today;
-            $rel_member->save();
+            $sql = "INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
+                    . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())";
+            $this->db->query($sql);
         }
     }
 

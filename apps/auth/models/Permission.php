@@ -10,7 +10,10 @@ use Phalcon\Mvc\Model;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+ include_once '/var/www/html/salts/apps/auth/models/db/CorePermissionRelMember.php';
+ include_once '/var/www/html/salts/apps/auth/models/db/CorePermissionGroup.php';
+ 
+ include_once '/var/www/html/salts/apps/auth/models/db/CorePermission.php';
 class Permission {
 
     public static function getInstance() {

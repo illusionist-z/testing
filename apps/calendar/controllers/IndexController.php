@@ -4,7 +4,8 @@ namespace salts\Calendar\Controllers;
 
 use salts\Core\Models\Db;
 use salts\Core\Models\Db\CoreMember;
-
+include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
     public $Calendar;
@@ -12,8 +13,20 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->Calendar = new \salts\Calendar\Models\Calendar();
-        $this->setCommonJsAndCss();
-        $this->setCalJsAndCss();
+        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css')
+                ->addCss('common/css/bootstrap.min.css')
+                ->addCss('common/css/common.css')
+                ->addCss('common/css/jquery-ui.css')
+                ->addCss('common/css/skins.min.css');
+
+
+        $this->assets->addJs('common/js/jquery.min.js')
+                ->addJs('common/js/common.js')
+                //->addJs('common/js/btn.js')
+                ->addJs('common/js/bootstrap.min.js')
+                ->addJs('common/js/app.min.js')
+                ->addJs('common/js/jquery-ui.js')
+                ->addJs('common/js/notification.js');
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
