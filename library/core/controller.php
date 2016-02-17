@@ -295,8 +295,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setSalaryJsAndCss() {
         $this->assets->addCss('apps/salary/css/base.css');
-        $this->assets->addJs('common/js/paging.js')
-                ->addJs('common/js/export.js');
+        $this->assets->addJs('common/js/export.js');
     }
 
     /**

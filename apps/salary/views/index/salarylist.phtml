@@ -35,7 +35,7 @@ use Phalcon\Filter;
                 <table class="listtbl">
                     <thead>
                         <tr>
-                            <th><?= $t->_("no"); ?></th>
+<!--                            <th><?= $t->_("no"); ?></th>-->
                             <th><?= $t->_("name"); ?></th>
                             <th><?= $t->_("basic_salary"); ?></th>
                             <th id="th_travelfees"><?= $t->_("travel_fee_perday"); ?></th>
@@ -53,7 +53,7 @@ use Phalcon\Filter;
                         foreach ($salarydetail->items as $salarydetails) {
                             ?>
                             <tr>
-                                <td><?php echo $i; ?></td>
+<!--                                <td></td>-->
                                 <td><?php echo $filter->sanitize($salarydetails->core->member_login_name, "string"); ?></td>
                                 <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "int")); ?></td>
                                 <td><?php
