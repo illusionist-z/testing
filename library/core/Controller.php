@@ -107,20 +107,27 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     protected function _getTranslation($prefix = '') {
         // Check if we have a translation file for that lang
-        $langDir = __DIR__ . "/../../library/core/lang";
+        $langDir = __DIR__ . "/../../apps/{$this->moduleName}/lang";
+        $common_lang = __DIR__."/../../library/core/lang";
         if ('' !== $prefix) {
             $prefix .= '-';
         }
         // 
         if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
             require $langDir . '/' . $prefix . $this->lang . '.php';
+            $msg1 = $messages;
+            require $common_lang . '/' . $prefix . $this->lang . '.php';
+            $message = array_merge($msg1,$messages);
         } else {
             // fallback to some default
             require $langDir . '/' . $prefix . "jp.php";
+            $msg1 = $messages;
+            require $common_lang . '/' . $prefix . "jp.php";
+            $message = array_merge($msg1,$messages);
         }
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
-            "content" => $messages
+            "content" => $message
         ));
     }
     /**
