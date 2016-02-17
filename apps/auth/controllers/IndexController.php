@@ -1,20 +1,37 @@
 <?php
 namespace salts\Auth\Controllers;
-use salts\Core\Models\Db\CoreMember;
+use Library\Core\Models\Db;
+use Library\Core\Models;
 //use salts\Auth\Models\Db\CoreMember;
-use salts\Core\Models\Db;
+//use salts\Core\Models\Db;
 use Phalcon\Filter;
+ 
 class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
-        $this->setCommonJsAndCss();
-        $this->setAuthJsAndCss();
+        //$this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+        $this->assets->addCss('common/css/bootstrap.min.css');
+        $this->assets->addCss('common/css/common.css');
+        $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/skins.min.css');
+
+
+        $this->assets->addJs('common/js/jquery.min.js');
+        $this->assets->addJs('common/js/common.js');
+                //->addJs('common/js/btn.js')
+        $this->assets->addJs('common/js/bootstrap.min.js');
+        $this->assets->addJs('common/js/app.min.js');
+        $this->assets->addJs('common/js/jquery-ui.js');
+        $this->assets->addJs('common/js/notification.js');
+       // $this->setAuthJsAndCss();
     }
     /**
      * Index Action
      * @param type $mode
      */
     public function indexAction($mode = NULL) {
+    
         $localhost = ($this->request->getServer('HTTP_HOST'));
         $id_auth_filter = $this->session->auth;
         if (isset($id_auth_filter) != null) {
@@ -37,11 +54,13 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function failerAction($mode = 1) {
+        
         /*
          * User failerAction 
          * @author Yan Lin Pai <wizardrider@gmail.com>
          *     
          */
+       
         $filter = new Filter();
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))

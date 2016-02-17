@@ -6,7 +6,7 @@ use salts\Auth\Models;
 use salts\Auth\Models\Permission;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
-
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
 class LoginController extends ControllerBase {
 
     public function initialize() {
@@ -21,12 +21,14 @@ class LoginController extends ControllerBase {
         $filter = new Filter();
         $login_params = $this->request->get();
         $ModelAuth = new Models\Auth();
+        
+        
 // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = '';
+            $dbinfo['db_psw'] = 'root';
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
             $this->session->set('user', $result);
@@ -36,14 +38,18 @@ class LoginController extends ControllerBase {
             } else {
                 $this->response->redirect('auth/index/failersuperuser');
             }
+             
         } else {
+            
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
+             
 // $this->view->test = $login_params;
 //$companyDB = $ModelAuth->findCompDb($login_params);
 // Data Base Hase
             if ($companyDB) {
 // User Chack
+                
                 $this->session->set('db_config', $companyDB);
 // Module Chack
                 $module = new Models\Auth();

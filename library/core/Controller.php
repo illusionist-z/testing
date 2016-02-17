@@ -7,7 +7,9 @@ namespace Library\Core;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+ include_once '/var/www/html/salts/apps/core/models/CorePermissionRelMember.php'; 
+ include_once '/var/www/html/salts/apps/core/models/CorePermissionGroup.php';
+ include_once '/var/www/html/salts/apps/core/models/CorePermission.php';
 use salts\Core\Models\Db;
 //use salts\Auth\Models\Db;
 
@@ -28,11 +30,14 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
+        
+        
     }
         /**
         * Set Permission
         * @return int
         */
+    
    
             public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
@@ -106,7 +111,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     protected function _getTranslation($prefix = '') {
         // Check if we have a translation file for that lang
-        $langDir = __DIR__ . "/../../library\core\lang";
+        $langDir = __DIR__ . "/../../library/core/lang";
         if ('' !== $prefix) {
             $prefix .= '-';
         }

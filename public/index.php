@@ -19,7 +19,7 @@ try {
         
         'salts\Auth\Models' => __DIR__.'../apps/Auth/models/',
         'salts\Auth\Models\Db' => __DIR__.'../apps/Auth/models/db',
-        'salts\Core\Models\Db' => __DIR__.'../apps/core/models/db',
+        'salts\Core\Models\Db' => __DIR__.'../apps/core/models/db', 
         'salts\Core\Models' => __DIR__.'../apps/core/models/',
          
     ))->register();

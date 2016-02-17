@@ -3,6 +3,7 @@
 namespace salts\Dashboard\Models;
 
 use Phalcon\Mvc\Model;
+use Library\Core\Models\Db\CoreMember;
 date_default_timezone_set("UTC");
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -120,7 +121,7 @@ class Attendances extends Model {
                 . "order by count(*) desc limit 3";
         $data = $this->db->query($query);
         //select where no leave name in current month
-         $query1 = "select * from salts\Core\Models\CoreMember as core where core.member_id not in
+         $query1 = "select * from  CoreMember as core where core.member_id not in
                    (select absent.member_id from salts\Dashboard\Models\Absent as absent where absent.date >'(NOW()-INTERVAL 2 MONTH)' and absent.deleted_flag = 0 ) and core.deleted_flag=0 order by core.created_dt desc  limit 3";
        $data1 = $this->modelsManager->executeQuery($query1);
         $res['leave_name'] = $data->fetchall();
@@ -141,7 +142,7 @@ class Attendances extends Model {
         $data = $this->modelsManager->executeQuery($query);
         $result['att'] = $data[0]['att'];
         //today leave list
-        $query1 = "select count(*) as allmember from salts\Core\Models\CoreMember where deleted_flag=0";
+        $query1 = "select count(*) as allmember from CoreMember where deleted_flag=0";
         $data1 = $this->modelsManager->executeQuery($query1);
         $allmember = $data1[0]['allmember'];
         $result['absent'] = $allmember - $result['att'];
