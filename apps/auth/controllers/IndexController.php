@@ -1,9 +1,9 @@
 <?php
 namespace salts\Auth\Controllers;
-use Library\Core\Models\Db;
-use Library\Core\Models;
-//use salts\Auth\Models\Db\CoreMember;
-//use salts\Core\Models\Db;
+//use Library\Core\Models\Db;
+//use Library\Core\Models;
+use salts\Auth\Models\Db\CoreMember;
+use salts\Core\Models\Db;
 use Phalcon\Filter;
  
 class IndexController extends ControllerBase {
@@ -72,7 +72,7 @@ class IndexController extends ControllerBase {
 
             if ($this->session) {
                 $member_name = $this->session->tokenpush;
-                $ChackUser = new Db\CoreMember();
+                $ChackUser = new \salts\Auth\Models\CoreMember();
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
                 if (0 != count($chack_user2)) {

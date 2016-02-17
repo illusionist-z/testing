@@ -8,14 +8,15 @@ use salts\Dashboard\Models\CorePermissionGroup;
 
 //use Phalcon\Flash\Direct as FlashDirect;
 
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+// include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+// include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
         //$this->setDashboardJsAndCss();
+        
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);

@@ -4,8 +4,8 @@ namespace salts\Attendancelist\Controllers;
 
 //use salts\Core\Models\Db;
 use salts\Attendancelist\Models\CorePermissionGroupId;
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+ //include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ //include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
     public function initialize() {

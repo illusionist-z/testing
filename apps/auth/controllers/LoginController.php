@@ -4,9 +4,10 @@ namespace salts\Auth\Controllers;
 
 use salts\Auth\Models;
 use salts\Auth\Models\Permission;
-use salts\Core\Models\Db\CoreMember;
+use salts\Core\Models\Db;
+ 
 use Phalcon\Filter;
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+// include_once 'C:\xampp\htdocs\salts\apps\core\models\db\CoreMember.php';
 class LoginController extends ControllerBase {
 
     public function initialize() {
@@ -28,7 +29,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = 'root';
+            $dbinfo['db_psw'] = '';
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
             $this->session->set('user', $result);
@@ -58,7 +59,7 @@ class LoginController extends ControllerBase {
                 $this->session->set('module', $company_module);
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
-                $Member = new \salts\Core\Models\Db\CoreMember();
+                $Member = new Db\CoreMember();
                 $ll = $Member::getInstance();
                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
@@ -72,7 +73,7 @@ class LoginController extends ControllerBase {
                 $member_id = $filter->sanitize($this->request->getPost('member_login_name'), 'string');
                 $this->session->set('tokenpush', $member_id);
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new CoreMember();
+                $chack_user2 = new Db\CoreMember();
                 $chack_user2 = CoreMember::findByMemberLoginName($member_name);
                 var_dump(count($chack_user2));
                 if (0 !== count($chack_user2)) {
