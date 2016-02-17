@@ -12,8 +12,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
-        $this->assets->addCss('common/css/css/style.css');
+        $this->setAuthJsAndCss();
     }
 
     /**
@@ -21,7 +20,6 @@ class IndexController extends ControllerBase {
      * @param type $mode
      */
     public function indexAction($mode = NULL) {
-
         $localhost = ($this->request->getServer('HTTP_HOST'));
         $id_auth_filter = $this->session->auth;
 
@@ -62,12 +60,10 @@ class IndexController extends ControllerBase {
             $_SESSION["attempts"] = 0;
 
         if (4 > $_SESSION["attempts"]) {
-        
-        // Login Error Database Log start
-       
-        
-        // Login Error Database Log end
-        
+
+            // Login Error Database Log start
+            // Login Error Database Log end
+
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;

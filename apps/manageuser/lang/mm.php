@@ -23,6 +23,7 @@ $messages = array(
     "btn_delete" => "ဖ်က္မည္",
     "btn_cancel" => "မလုပ္ေတာ့ပါ",
     "username" => "အသံုးျပဳမည့္နာမည္",
+    "placeholder_ssn" => "SSN NO ကိုထည့္ေပးပါ။",
     "placeholder1" => "အမည္ကိုုျဖည္႔ရန္",
     "placeholder2" => "နာမည္အျပည္႔အစံုုျဖည္႔ရန္",
     "placeholder3" => "လ်ွဳိ႔၀ွက္နံပါတ္",

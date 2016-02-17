@@ -28,50 +28,51 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
     }
-        /**
-        * Set Permission
-        * @return int
-        */
-   
-            public function setPermission($actname) {
+
+    /**
+     * Set Permission
+     * @return int
+     */
+    public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
-        $allow = array();$permitted = 0;
+        $allow = array();
+        $permitted = 0;
         //setting permission        
         $coremember = new \salts\Core\Models\CorePermissionRelMember;
-        
-        if(null === $this->session->user['member_id']){
+
+        if (null === $this->session->user['member_id']) {
             return false;
-        }
-        {
-        $core = $coremember::findByRelMemberId($this->session->user['member_id']); 
-        $permission = $core[0]->permission_group_id_user;
-        $coreuser2 = new \salts\Core\Models\CorePermissionGroup();
-        $permission_group = $coreuser2->find();
-        //get permitted action name
-       
-        foreach($permission_group as $v){
-        $permission === $v->page_rule_group ?  $allow[] = $v->permission_code :   0;
-        }
-        $permission_name = $this->getPermissionCode($allow);
-        foreach($permission_name as $name){
-            $name = strtolower(str_replace(' ','',$name));
-             $name === $actname ? $permitted = 1 : 0;
-        }
-        return $permitted;
+        } {
+            $core = $coremember::findByRelMemberId($this->session->user['member_id']);
+            $permission = $core[0]->permission_group_id_user;
+            $coreuser2 = new \salts\Core\Models\CorePermissionGroup();
+            $permission_group = $coreuser2->find();
+            //get permitted action name
+
+            foreach ($permission_group as $v) {
+                $permission === $v->page_rule_group ? $allow[] = $v->permission_code : 0;
+            }
+            $permission_name = $this->getPermissionCode($allow);
+            foreach ($permission_name as $name) {
+                $name = strtolower(str_replace(' ', '', $name));
+                $name === $actname ? $permitted = 1 : 0;
+            }
+            return $permitted;
         }
     }
-    
+
     public function getPermissionCode($code) {
-     $setPermission = array();
-    $corepermission = new \salts\Core\Models\CorePermission();        
-    foreach($code as $c){
-        $temp = $corepermission::findByPermissionCode($c);
-        foreach($temp as $t){
-            $setPermission[] =$t->permission_name_en;
+        $setPermission = array();
+        $corepermission = new \salts\Core\Models\CorePermission();
+        foreach ($code as $c) {
+            $temp = $corepermission::findByPermissionCode($c);
+            foreach ($temp as $t) {
+                $setPermission[] = $t->permission_name_en;
+            }
         }
+        return $setPermission;
     }
-    return $setPermission;    
-    }
+
     /**
      * Call this func to set json response enabled
      * @param type $content
@@ -106,7 +107,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     protected function _getTranslation($prefix = '') {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/{$this->moduleName}/lang";
-        $common_lang = __DIR__."/../../library/core/lang";
+        $common_lang = __DIR__ . "/../../library/core/lang";
         if ('' !== $prefix) {
             $prefix .= '-';
         }
@@ -115,14 +116,14 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
             require $langDir . '/' . $prefix . $this->lang . '.php';
             $msg1 = $messages;
             require $common_lang . '/' . $prefix . $this->lang . '.php';
-            $message = array_merge($msg1,$messages);
+            $message = array_merge($msg1, $messages);
         } else {
             // fallback to some default
             require $langDir . '/' . $prefix . "jp.php";
             $msg1 = $messages;
             require $common_lang . '/' . $prefix . "jp.php";
-            $message = array_merge($msg1,$messages);
-        }        
+            $message = array_merge($msg1, $messages);
+        }
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $message
@@ -139,26 +140,177 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 ->addCss('common/css/jquery-ui.css')
                 ->addCss('common/css/skins.min.css');
 
-
         $this->assets->addJs('common/js/jquery.min.js')
                 ->addJs('common/js/common.js')
-                //->addJs('common/js/btn.js')
                 ->addJs('common/js/bootstrap.min.js')
                 ->addJs('common/js/app.min.js')
                 ->addJs('common/js/jquery-ui.js')
                 ->addJs('common/js/notification.js');
     }
-    
-       public function setNotificationJsAndCss() {
 
-        $this->assets
-                //->addJs('common/js/jquery.min.js')
-                //->addJs('common/js/common.js')
-                //->addJs('common/js/jQuery-2.1.4.min.js')
-                //->addJs('common/js/bootstrap.min.js')
-                //->addJs('common/js/app.min.js')
-               ->addJs('common/js/jquery-ui.js');
-                //->addJs('common/js/notification.js');
+    /**
+     * Js and Css for attendance list
+     */
+    public function setAttJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css');
+
+        $this->assets->addJs('common/js/export.js')
+                ->addJs('apps/attendancelist/js/base.js');
+    }
+
+    /**
+     * Js and Css for Absent  list
+     */
+    public function setAttAbsentJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addJs('common/js/paging.js')
+                ->addJs('apps/attendancelist/js/absent-addabsent.js');
+    }
+
+    /**
+     * Js and Css for User attendance list
+     */
+    public function setAttUserJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css');
+
+        $this->assets->addJs('common/js/export.js')
+                ->addJs('common/js/paging.js')
+                ->addJs('apps/attendancelist/js/user-attendancelist.js');
+    }
+
+    /**
+     * Js and Css for Auth
+     */
+    public function setAuthJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
+    }
+
+    /**
+     * Js and Css for Calendar
+     */
+    public function setCalJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css')
+                ->addCss('apps/calendar/css/calendar.css')
+                ->addCss('apps/calendar/css/fullcalendar.min.css');
+
+        $this->assets->addJs('apps/calendar/js/moment.min.js')
+                ->addJs('apps/calendar/js/fullcalendar.min.js')
+                ->addJs('apps/calendar/js/calendar.js')
+                ->addJs('apps/calendar/js/selectall.js');
+    }
+
+    /**
+     * Js and Css for Document
+     */
+    public function setDocumentJsAndCss() {
+        $this->assets->addCss('common/css/jquery-ui.css')
+                ->addCss('common/css/css/style.css')
+                ->addCss('apps/document/css/index_ssbdocument.css');
+
+        $this->assets->addJs('apps/document/js/FileSaver.js')
+                ->addJs('apps/document/js/jquery.wordexport.js')
+                ->addJs('apps/document/js/jquery.wordexport.js');
+    }
+
+    /**
+     * Js and Css for Dashboard
+     */
+    public function setDashboardJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css')
+                ->addCss('common/css/boot.css');
+        $this->assets->addJs('common/js/time.js')
+                ->addJs('common/js/btn.js')
+                ->addJs('http://www.geoplugin.net/javascript.gp');
+    }
+
+    /**
+     * Js and Css for Help
+     */
+    public function setHelpJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css')
+                ->addCss('apps/help/css/base.css');
+        $this->assets->addJs('apps/help/js/base.js');
+    }
+
+    /**
+     * Js and Css for Leave Days
+     */
+    public function setLeaveJsAndCss() {
+        $this->assets->addCss('common/css/jquery-ui.css')
+                ->addCss('common/css/css/style.css');
+        $this->assets->addJs('common/js/export.js')
+                ->addJs('apps/leavedays/js/index-leavesetting.js');
+    }
+
+    /**
+     * Js and Css for User Leave Days
+     */
+    public function setUserLeaveJsAndCss() {
+        $this->assets->addCss('common/css/jquery-ui.css')
+                ->addCss('common/css/css/style.css');
+        $this->assets->addJs('common/js/export.js');
+    }
+
+    /**
+     * Js and Css for Manage Company
+     */
+    public function setCompanyJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css')
+                ->addCss('common/css/dialog.css');
+        $this->assets->addJs('apps/managecompany/js/index-base.js');
+    }
+
+    /**
+     * Js and Css for Manage Company Module Controller
+     */
+    public function setCompanyModuleJsAndCss() {
+        $this->assets->addCss('common/css/css/style.css')
+                ->addCss('common/css/dialog.css');
+        $this->assets->addJs('common/js/base.js')
+                ->addJs('apps/managecompany/js/module-base.js');
+    }
+
+    /**
+     * Js and Css for Manage User
+     */
+    public function setManageUserJsAndCss() {
+        $this->assets->addCss('common/css/dialog.css')
+                ->addCss('common/css/css/style.css');
+        $this->assets->addJs('apps/manageuser/js/coremember-saveuser.js')
+                ->addCss('apps/manageuser/css/base.css');
+    }
+
+    /**
+     * Js and Css for Manage User(Core Member Controller)
+     */
+    public function setManageUserControllerJsAndCss() {
+        $this->assets->addCss('common/css/dialog.css')
+                ->addCss('common/css/jquery-ui.css');
+        $this->assets->addJs('apps/manageuser/js/base.js');
+    }
+
+    /**
+     * Js and Css for Salary
+     */
+    public function setSalaryJsAndCss() {
+        $this->assets->addCss('apps/salary/css/base.css');
+        $this->assets->addJs('common/js/paging.js')
+                ->addJs('common/js/export.js');
+    }
+
+    /**
+     * Js and Css for Setting
+     */
+    public function setSettingJsAndCss() {
+        $this->assets->addCss('common/css/dialog.css')
+                ->addCss('common/css/css/style.css');
+        $this->assets->addJs('apps/setting/js/base.js')
+                ->addJs('apps/setting/js/index-admin.js');
+    }
+
+    public function setNotificationJsAndCss() {
+        $this->assets->addJs('common/js/jquery-ui.js');
     }
 
     /**
@@ -174,12 +326,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->view->coreAppsTran = $this->_getCoreTranslation();
         $dbCoreApps = new Db\CoreApps();
         $this->view->menulist = $dbCoreApps->getActiveApps($this->session->get('auth'));
-
-//        $this->view->menulist = \Crm\Core\Models\Db\CoreApps::find()->toArray();
-//        $this->view->slideMenus = $this->view
-//                ->setViewsDir(realpath(__DIR__.'/../../apps/core/views'))
-//                ->pick("index/cmn-slide-menu");
-//        $this->view->setPartialsDir($partialsDir)->pick($renderView);
     }
 
     // After route executed event

@@ -17,10 +17,7 @@ class IndexController extends ControllerBase {
         $this->_leave = new Leave();
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->setLeaveJsAndCss();
         $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {

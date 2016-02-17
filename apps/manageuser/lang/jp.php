@@ -26,6 +26,7 @@ $messages = array(
     "btn_delete" => "削除",
     "btn_cancel" => "キャンセル",
     "username" => "名前",
+    "placeholder_ssn" => "SSN NO 入れてください",
     "placeholder1" => "ユーザ名を入力してください",
     "placeholder2" => "名前を入力してください",
     "placeholder3" => "パスワードを入れてください",

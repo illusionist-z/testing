@@ -15,13 +15,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('apps/document/css/index_ssbdocument.css');
-        $this->assets->addJs('apps/document/js/FileSaver.js');
-        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
-      
-        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
+        $this->setDocumentJsAndCss();
         $this->act_name = $this->router->getActionName();
         $this->permission = $this->setPermission($this->act_name);
         $code = $this->session->permission_code;

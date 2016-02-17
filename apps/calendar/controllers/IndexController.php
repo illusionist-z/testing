@@ -13,13 +13,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->Calendar = new \salts\Calendar\Models\Calendar();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('apps/calendar/css/calendar.css');
-        $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');
-        $this->assets->addJs('apps/calendar/js/moment.min.js');
-        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
-        $this->assets->addJs('apps/calendar/js/calendar.js');
-        $this->assets->addJs('apps/calendar/js/selectall.js');
-        $this->assets->addCss('common/css/css/style.css');
+        $this->setCalJsAndCss();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
