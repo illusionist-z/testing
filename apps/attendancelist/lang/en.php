@@ -23,6 +23,10 @@ $messages = array(
     "searchusername" => "Search User Name",
     "startdate" => "Start Date",
     "enddate" => "End Date",
-    "absentlist" => "Absent Lists"
-  
+    "absentlist" => "Absent Lists",
+    "month_att_chart"=>"Monthly Attendance Chart",
+    "att_person"=>" Attendance Person",
+    "absent_leave_person"=>" Absent Person(Applied Leave)",
+    "absent_noleave_person"=>" Absent Person(No apply leave)",
+    "half_att_person" => "Half Day Attendance Person"
 );

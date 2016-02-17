@@ -9,8 +9,7 @@ class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
-        $this->setCommonJsAndCss();
-        //$this->assets->addJs('common/js/paging.js');
+        $this->setCommonJsAndCss();        
         $this->assets->addJs('common/js/export.js');
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/attendancelist/js/base.js');
@@ -47,7 +46,7 @@ class IndexController extends ControllerBase {
      */
     public function todaylistAction() {
        
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->act_name = $this->router->getModuleName();
             $currentPage  = $this->request->get('page');
             $this->permission = $this->setPermission($this->act_name);
@@ -94,10 +93,9 @@ class IndexController extends ControllerBase {
      */
     public function editTimeAction($id, $localtime) {
 
-        $offset = $this->session->location['offset'];
-        $post = $localtime;
+        $offset = $this->session->location['offset'];        
         $Att = new \salts\Attendancelist\Models\Attendances();
-        $Att->editAtt($post, $id, $offset);
+        $Att->editAtt($localtime, $id, $offset);
         $this->response->redirect('attendancelist/index/todaylist');
 //        $this->view->disable();
     }
@@ -107,7 +105,7 @@ class IndexController extends ControllerBase {
      * 
      */
     public function monthlylistAction() {
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $offset = $this->session->location['offset'];
             $currentPage = $this->request->get("page");
             $UserList = new \salts\Core\Models\CoreMember();
@@ -154,7 +152,7 @@ class IndexController extends ControllerBase {
     }
 
     public function autolistAction() {
-        $UserList = new Db\CoreMember();
+        $UserList = new \salts\Core\Models\Db\CoreMember();
         $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);

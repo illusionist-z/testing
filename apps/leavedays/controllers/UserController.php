@@ -10,7 +10,7 @@ use salts\Core\Models\Db;
 
 class UserController extends ControllerBase {
 
-    public $config;
+    public $config = array();
     public $_leave;
 
     public function initialize() {
@@ -87,7 +87,7 @@ class UserController extends ControllerBase {
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         //month
-        $month = $this->config->month;
+        $month = $this->config['config']['month'];
         $LeaveType = new LeaveCategories();
         $ltype = $LeaveType->getLeaveType();
         $this->view->setVar("Leavetype", $ltype);

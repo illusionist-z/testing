@@ -21,7 +21,7 @@ Class Config {
      * @return type
      */
     public static function getModuleConfig($_module) {
-        $module_dir_path = __DIR__ . '/../../apps/';
+        $module_dir_path = __DIR__ . '/../../../apps/';
         $ini_file_config = $module_dir_path . $_module . '/config/config.ini';
         
         if (file_exists($ini_file_config)) {
