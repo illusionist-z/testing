@@ -35,6 +35,7 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
+        $this->assets->addJs('common/js/btn.js');
         //$this->setDashboardJsAndCss();
      }
      else { 

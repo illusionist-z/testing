@@ -21,12 +21,12 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/skins.min.css');
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/common.js');
-                //->addJs('common/js/btn.js')
+        $this->assets->addJs('common/js/btn.js');
         $this->assets->addJs('common/js/bootstrap.min.js');
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
-        //$this->setDashboardJsAndCss();
+        $this->setDashboardJsAndCss();
      }
      else { 
          
