@@ -11,8 +11,8 @@ use salts\Setting\Models\CorePermissionRelMember;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 use Phalcon\Filter;
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 /**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
  * @desc     CorePermissionGroup

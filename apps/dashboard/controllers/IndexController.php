@@ -2,13 +2,13 @@
 
 namespace salts\Dashboard\Controllers;
 
+use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 use salts\Dashboard\Models\CorePermissionGroup;
 
 //use Phalcon\Flash\Direct as FlashDirect;
 
  include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- 
  include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
 class IndexController extends ControllerBase {
 
@@ -51,7 +51,7 @@ class IndexController extends ControllerBase {
     public function adminAction() {
         $CoreUser = new CorePermissionGroup();
         $core_groupuser2 = $CoreUser::find();
-        $Admin = new Db\CoreMember;
+        $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
 
@@ -65,7 +65,7 @@ class IndexController extends ControllerBase {
 
         $this->view->setVar("Noti", $noti);
         //get last create member
-        $CMember = new Db\CoreMember();
+        $CMember = new CoreMember();
         $Get_Name = $CMember::getinstance()->getlastname();
         $new_member = count($Get_Name);
         //get most leave name

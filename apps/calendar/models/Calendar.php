@@ -3,6 +3,9 @@
 namespace salts\Calendar\Models;
  
 use Phalcon\Filter;
+
+use Phalcon\Mvc\Url as UrlProvider;
+use Phalcon\Mvc\Model;
 /**
  * @author David
  * @since 27/7/2015
