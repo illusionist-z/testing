@@ -4,14 +4,15 @@ namespace salts\Attendancelist\Controllers;
 
 //use salts\Core\Models\Db;
 use salts\Attendancelist\Models\CorePermissionGroupId;
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+ 
 class IndexController extends ControllerBase {
-
-    public function initialize() {
+    
+    public $config;
+    
+    public function initialize() {        
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->setAttJsAndCss();
+        //$this->setAttJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
