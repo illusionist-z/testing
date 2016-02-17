@@ -7,11 +7,7 @@ var pager = new Paging.Pager();   //for pagination
 var Salary = {
     isOvl: false,
     init  : function() {
-        $("tfoot").html($('tbody').html()); //for csv
-        pager.perpage = 10;            
-        pager.para = $('tbody > tr');
-        pager.showPage(1);  
-        $("tbody").show();
+    
         },
      Edit: function (d) {
         $.ajax({

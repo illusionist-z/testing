@@ -7,21 +7,47 @@ use salts\Core\Models\Db;
 use salts\Dashboard\Models\CorePermissionGroup;
 
 //use Phalcon\Flash\Direct as FlashDirect;
+$server = PHP_OS;
 
+if($server == 'Linux'){
  include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
  include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+    }
+ 
 class IndexController extends ControllerBase {
 
     public function initialize() {
-        parent::initialize();
-        $this->setCommonJsAndCss();
+        parent::initialize(); 
+        
+       
+        $server = PHP_OS;
+     if($server == 'Linux'){
+         
+        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+        $this->assets->addCss('common/css/bootstrap.min.css');
+        $this->assets->addCss('common/css/common.css');
+        $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/skins.min.css');
+        $this->assets->addJs('common/js/jquery.min.js');
+        $this->assets->addJs('common/js/common.js');
+                //->addJs('common/js/btn.js')
+        $this->assets->addJs('common/js/bootstrap.min.js');
+        $this->assets->addJs('common/js/app.min.js');
+        $this->assets->addJs('common/js/jquery-ui.js');
+        $this->assets->addJs('common/js/notification.js');
         //$this->setDashboardJsAndCss();
+     }
+     else { 
+         
+         $this->setCommonJsAndCss();
+     
+     }
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
-
+   
         // Module ID Filter Start By (1,0)
         $ModuleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $ModuleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
