@@ -12,7 +12,7 @@ class IndexController extends ControllerBase {
     public function initialize() {        
         parent::initialize();
         $this->setCommonJsAndCss();
-        //$this->setAttJsAndCss();
+        $this->setAttJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
