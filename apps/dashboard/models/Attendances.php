@@ -12,6 +12,14 @@ date_default_timezone_set("UTC");
  */
 
 class Attendances extends Model {
+    
+      public $checkin_time;
+      public $member_id;
+      public $att_date;
+      public $location;
+      public $notes;
+      public $noti_id;
+      public $status;
 
     /**
      * set check in time when user click 'checkin'button
@@ -39,19 +47,28 @@ class Attendances extends Model {
                 $att_leave = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 2");
                 $hour = \salts\Core\Models\Db\Attendances::getInstance()->UTCToLocal($mydate, $offset);
                 $hour = date("H",strtotime($hour));
-                if ($att_leave === FALSE) {
-                    $this->db->query("INSERT INTO attendances (checkin_time,member_id,"
-                            . "att_date,location,notes,noti_id,status) VALUES ('" . $mydate . "'"
-                            . ",'" . $id . "','" . $today . "',
-                    '" . $add . "','" . $note . "','" . $Noti_id . "',".($hour > 12 ? 3 : 0 ).")");
+                   if ($att_leave === FALSE) {
+                    $Attendances = new Attendances();
+                   
+                    $Attendances->checkin_time = $mydate;
+                    $Attendances->member_id = $id;
+                    $Attendances->att_date = $today;
+                    $Attendances->location = $add;
+                    $Attendances->notes = $note;
+                    $Attendances->noti_id = $Noti_id;
+                    $Attendances->status = ($hour > 12 ? 3 : 0 );
+                    $Attendances->save();
                 } else {
                     $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
                     location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = ".($hour > 12 ? 3 : 0)." where att_date ='" . $today . "' AND member_id ='" . $id . "'");
                 }
                 if ($note != NULL) {
-                    $this->db->query("INSERT INTO core_notification (noti_creator_id,"
-                            . "module_name,noti_id,noti_status) "
-                            . "VALUES('" . $creator_id . "','attendances','" . $Noti_id . "',0)");
+                    $Noti = new CoreNotification();
+                    $Noti->noti_creator_id = $creator_id;
+                    $Noti->module_name = 'attendances';
+                    $Noti->noti_id = $Noti_id;
+                    $Noti->noti_status = 0;
+                    $Noti->save();
                 }
                 $status = " Successfully Checked In";
             } else {
