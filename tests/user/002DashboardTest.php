@@ -12,7 +12,6 @@
  * @author Khine Thazin Phyo 
  * 
  */
-
 class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public static $browsers = array(
@@ -110,7 +109,6 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals("Notifications", $element->text());
         sleep(1);
         $this->byCssSelector('img.img-circle')->click();
-        
     }
 
     /**
@@ -123,6 +121,88 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('#help_icon')->click();
         $this->url('help/index/searchHelp');
         $this->assertEquals("Search Help", $this->title());
+    }
+
+    public function testHelpDashboard() {
+        $this->url('help/index/searchHelp');
+        $this->byClassName('allhelpimg')->click();
+        $this->assertEquals("Dashboard help center", $this->byId('searchhelpcenter')->text());
+    }
+
+    public function testHelpAttendance() {
+        $this->url('help/index/searchHelp');
+        $this->byLinkText('Attendance List')->click();
+        $this->byLinkText('Today Attendance Lists')->click();
+        $this->assertEquals("Today Attendance List help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Attendance List')->click();
+        sleep(2);
+        $this->byLinkText('Monthly Attendance Lists')->click();
+        $this->assertEquals("Monthly Attendance List help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Attendance List')->click();
+        sleep(2);
+        $this->byLinkText('Monthly Attendance Chart')->click();
+        $this->assertEquals("Monthly Attendance Chart", $this->byId('searchhelpcenter')->text());
+    }
+
+    public function testHelpManageUser() {
+        $this->url('help/index/searchHelp');
+        $this->byLinkText('Manage User')->click();
+        $this->assertEquals("Manage User help center", $this->byId('searchhelpcenter')->text());
+    }
+
+    public function testHelpLeaveDay() {
+        $this->url('help/index/searchHelp');
+        $this->byLinkText('Leave Days')->click();
+        $this->byLinkText('Apply Leave')->click();
+        $this->assertEquals("Apply Leave help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Leave Days')->click();
+        sleep(2);
+        $this->byLinkText('Leave Lists')->click();
+        $this->assertEquals("Leave Lists help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Leave Days')->click();
+        sleep(2);
+        $this->byLinkText('Leave Setting')->click();
+        $this->assertEquals("Leave Setting help center", $this->byId('searchhelpcenter')->text());
+    }
+
+    public function testHelpCalendar() {
+        $this->url('help/index/searchHelp');
+        $this->byLinkText('Calendar')->click();
+        $this->assertEquals("Calendar help center", $this->byId('searchhelpcenter')->text());
+    }
+
+    public function testHelpSalary() {
+        $this->url('help/index/searchHelp');
+        $this->byLinkText('Salary')->click();
+        $this->byLinkText('Add Salary')->click();
+        $this->assertEquals("Add Salary help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Salary')->click();
+        sleep(2);
+        $this->byLinkText('Salary Lists')->click();
+        $this->assertEquals("Salary List help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Salary')->click();
+        sleep(2);
+        $this->byLinkText('Monthly Salary Lists')->click();
+        $this->assertEquals("(1) Monthly Salary Lists help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Salary')->click();
+        sleep(2);
+        $this->byLinkText('Salary Setting')->click();
+        $this->assertEquals("Salary Setting help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Salary')->click();
+        sleep(2);
+        $this->byLinkText('Allowance')->click();
+        $this->assertEquals("Allowance help center", $this->byId('searchhelpcenter')->text());
+    }
+
+    public function testHelpDocument() {
+        $this->url('help/index/searchHelp');
+        $this->byLinkText('Document')->click();
+        $this->byLinkText('Letter Head')->click();
+        $this->assertEquals("Letter Head help center", $this->byId('searchhelpcenter')->text());
+        $this->byLinkText('Document')->click();
+        sleep(2);
+        $this->byLinkText('SSB & Tax Document')->click();
+        $this->assertEquals("SSB & Tax Document help center", $this->byId('searchhelpcenter')->text());
     }
 
     /**

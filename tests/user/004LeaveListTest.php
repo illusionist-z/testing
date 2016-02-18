@@ -30,7 +30,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testMenu() {
         $this->url('leavedays/user/leavelist');
-        $this->assertEquals('leave_list', $this->byCssSelector('h1')->text());
+        $this->assertEquals('Leave Lists', $this->byCssSelector('h1')->text());
     }
 
     /**
@@ -68,7 +68,31 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('leavedays/user/leavelist');
         $this->byLinkText('Leave List')->click();
         $this->url('leavedays/user/leavelist');
-        $this->assertEquals("leave_list", $this->byCssSelector('h1')->text());
+        $this->assertEquals("Leave Lists", $this->byCssSelector('h1')->text());
+    }
+
+    public function testpagingFirst() {
+        $this->url('leavedays/user/leavelist');
+        $elements = $this->elements($this->using('css selector')->value('ul.pagination li'));
+        $this->assertEquals(4, count($elements));
+        $link = $this->byLinkText($elements[0]->text());
+        $link->click();
+    }
+
+    public function testpaginationNP() {
+        $this->url('leavedays/user/leavelist');
+        $elements = $this->elements($this->using('css selector')->value('ul.pagination li'));
+        $this->assertEquals(4, count($elements));
+        $link = $this->byLinkText($elements[1]->text());
+        $link->click();
+    }
+
+    public function testpaginationLast() {
+        $this->url('leavedays/user/leavelist');
+        $elements = $this->elements($this->using('css selector')->value('ul.pagination li'));
+        $this->assertEquals(4, count($elements));
+        $link = $this->byLinkText($elements[2]->text());
+        $link->click();
     }
 
     /**
@@ -84,7 +108,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testLeaveForm() {
-//        $this->testApplyLeave();
+
         $this->url('leavedays/user/applyleave');
         $this->byId('apply_form');
         $start_Date = $this->byName('sdate');
@@ -98,25 +122,23 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testLformValidation() {
-        $this->testApplyLeave();
+        $this->url('leavedays/user/applyleave');
         $this->byId('apply_form');
         $start_Date = $this->byName('sdate');
         $start_Date->value("");
         $end_Date = $this->byName('edate');
         $end_Date->value("");
-        $this->select($this->byName('leavetype'))->selectOptionByValue("Family Case");
         $this->byCssSelector('textarea')->value("");
         $this->byId("apply_form_submit")->click();
         sleep(5);
-        $this->url('leavedays/user/applyleave');
-        $errorDiv = $this->byCssSelector('td span#apply_form_sdate_error');
-        $this->assertEquals("* Start Date is required", $errorDiv->text());
-        $this->assertEquals("* End Date is required", $this->byCssSelector('td span#apply_form_edate_error')->text());
-        $this->assertEquals("* Reason Must be Insert", $this->byCssSelector('td span#apply_form_desc_error')->text());
+        $elements = $this->elements($this->using('css selector')->value('td span'));
+        $this->assertEquals(3, count($elements));
+        $this->assertEquals('* Start Date is required', $elements[0]->text());
+        $this->assertEquals('* End Date is required', $elements[1]->text());
+        $this->assertEquals('* Reason Must be Insert', $elements[2]->text());
     }
 
     public function testFormReset() {
-//        $this->testApplyLeave();
         $this->url('leavedays/user/applyleave');
         $this->byId('apply_form');
         $start_Date = $this->byName('sdate');
@@ -128,7 +150,8 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('input#apply_form_cancel')->click();
         $this->url('leavedays/user/applyleave');
     }
- public function onNotSuccessfulTest(Exception $e) {
+
+    public function onNotSuccessfulTest(Exception $e) {
         throw $e;
     }
 
