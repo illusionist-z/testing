@@ -17,37 +17,11 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->setBrowserUrl('http://localhost/salts');
     }
 
-    public function testTitle() {
-
-        $this->url('index.php');
-        $this->assertEquals('Login', $this->title());
-    }
-
-    /**
-     * 
-     * @param type $euser
-     * @author 
-     * 
-     */
-    public function testLeave() {
-
-        $this->url('index.phtml');
-        $list = $this->byId('pointer_style3');
-        $list->click();
-        $this->assertEquals('Attendance System', $this->title());
-        $this->url('leavedays/index/leavelist');
-        $element = $this->byCssSelector('h1');
-        $this->assertEquals('Leave Lists', $element->text());
-    }
-
     public function testLeaveList() {
 
-        $this->url('index.phtml');
+        $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
-        $this->byCssSelector('a')->click();
         $this->url('leavedays/index/leavelist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Leave Lists', $element->text());
@@ -55,16 +29,10 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testListsearch() {
 
-        $this->url('index.phtml');
-        $salarychk = $this->byId('pointer_style3');
-        $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
+         $this->url('leavedays/index/leavelist');
         $this->byCssSelector('a')->click();
         $this->url('leavedays/index/leavelist');
-
         $llsearch = $this->byId('search');
-
         $ltype = $this->byName('ltype');
         $month = $this->byName('month');
         $namelist = $this->byName('namelist');
@@ -72,52 +40,33 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $month->value('Feburary');
         $namelist->value('admin');
         $llsearch->click();
+        sleep(2);
         $this->url('leavedays/index/leavelist');
     }
 
     public function testListExport() {
 
-        $this->url('index.phtml');
-        $list = $this->byId('pointer_style3');
-        $list->click();
-
-        $this->byCssSelector('a')->click();
-        $this->url('leavedays/index/leavelist');
+         $this->url('leavedays/index/leavelist');
         $this->byLinkText('Export')->click();
         $this->url('leavedays/index/leavelist');
     }
 
     public function testFirst() {
 
-        $this->url('index.phtml');
-        $list = $this->byId('pointer_style3');
-        $list->click();
-
-        $this->byCssSelector('a')->click();
-        $this->url('leavedays/index/leavelist');
+         $this->url('leavedays/index/leavelist');
         $this->byLinkText('First')->click();
         $this->url('leavedays/index/leavelist');
     }
 
     public function testNext() {
 
-        $this->url('index.phtml');
-        $list = $this->byId('pointer_style3');
-        $list->click();
-
-        $this->byCssSelector('a')->click();
-        $this->url('leavedays/index/leavelist');
+         $this->url('leavedays/index/leavelist');
         $this->byLinkText('Next')->click();
         $this->url('leavedays/index/leavelist');
     }
 
     public function testLast() {
 
-        $this->url('index.phtml');
-        $list = $this->byId('pointer_style3');
-        $list->click();
-
-        $this->byCssSelector('a')->click();
         $this->url('leavedays/index/leavelist');
         $this->byLinkText('Last')->click();
         $this->url('leavedays/index/leavelist');
@@ -125,11 +74,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testApplyLeave() {
 
-        $this->url('index.phtml');
-        $salarychk = $this->byId('pointer_style3');
-        $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
+         $this->url('leavedays/index/leavelist');
         $this->byCssSelector('a')->click();
         $this->url('leavedays/index/applyleave');
         $element = $this->byCssSelector('h1');
@@ -138,11 +83,6 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testApplyForm() {
 
-        $this->url('index.phtml');
-        $list = $this->byId('pointer_style3');
-        $list->click();
-
-        $this->byCssSelector('a')->click();
         $this->url('leavedays/index/applyleave');
         $form = $this->byId('apply_form');
         $apply = $this->byId('apply_form_submit');
@@ -164,11 +104,6 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testApplyCancel() {
 
-        $this->url('index.phtml');
-        $list = $this->byId('pointer_style3');
-        $list->click();
-
-        $this->byCssSelector('a')->click();
         $this->url('leavedays/index/applyleave');
         $form = $this->byId('apply_form');
         $apply = $this->byId('apply_cancel');
@@ -190,11 +125,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testLeaveSett() {
 
-        $this->url('index.phtml');
-        $salarychk = $this->byId('pointer_style3');
-        $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
+        $this->url('leavedays/index/applyleave');
         $this->byCssSelector('a')->click();
         $this->url('leavedays/index/leavesetting');
         $element = $this->byCssSelector('h1');
@@ -203,13 +134,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testLeaveSetEdit() {
 
-        $this->url('index.phtml');
-        $salarychk = $this->byId('pointer_style3');
-        $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
-        $this->byCssSelector('a')->click();
-        $this->url('leavedays/index/leavesetting');
+         $this->url('leavedays/index/leavesetting');
         $edit = $this->byId('editsetting');
         $save = $this->byId('savesetting');
         $edit->click();
@@ -221,12 +146,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testSalarySettDelete() {
 
-        $this->url('index.phtml');
-        $salarychk = $this->byId('pointer_style3');
-        $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
-        $this->byCssSelector('a')->click();
+       
         $this->url('leavedays/index/leavesetting');
         $this->byCssSelector('a.ltypepopup')->click();
         $this->url('leavedays/index/leavelist');
@@ -234,12 +154,6 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testSalarySettAdd() {
 
-        $this->url('index.phtml');
-        $salarychk = $this->byId('pointer_style3');
-        $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
-        $this->byCssSelector('a')->click();
         $this->url('leavedays/index/leavesetting');
         $add = $this->byId('addinguser');
         $add->click();
@@ -253,13 +167,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testSalarySettCancel() {
 
-        $this->url('index.phtml');
-        $salarychk = $this->byId('pointer_style3');
-        $salarychk->click();
-        $this->url('leavedays/index/leavelist');
-
-        $this->byCssSelector('a')->click();
-        $this->url('leavedays/index/leavesetting');
+         $this->url('leavedays/index/leavesetting');
         $add = $this->byId('addinguser');
         $add->click();
 
@@ -268,6 +176,24 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $leavetype->value('aa');
         $cancel->click();
         $this->url('leavedays/index/leavesetting');
+    }
+    public function testLformValidation() {
+        $this->url('leavedays/index/applyleave');
+        $this->byId('apply_form');
+         $this->byName('username')->value('');
+        $start_Date = $this->byName('sdate');
+        $start_Date->value("");
+        $end_Date = $this->byName('edate');
+        $end_Date->value("");        
+        $this->byName('description')->value("");
+        $this->byId("apply_form_submit")->click();
+        sleep(5);
+        $elements = $this->elements($this->using('css selector')->value('td span'));
+        $this->assertEquals(4, count($elements));
+        $this->assertEquals('* Username is required', $elements[0]->text());
+        $this->assertEquals('* Start Date is required', $elements[1]->text());
+        $this->assertEquals('* End Date is required', $elements[2]->text());
+        $this->assertEquals('* Reason Must be Insert', $elements[3]->text());
     }
 
     public function onNotSuccessfulTest(Exception $e) {

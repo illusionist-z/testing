@@ -4,7 +4,12 @@ namespace salts\Attendancelist\Controllers;
 
 //use salts\Core\Models\Db;
 use salts\Attendancelist\Models\CorePermissionGroupId;
- 
+ $server = PHP_OS;
+
+if($server == 'Linux'){
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+    }
 class IndexController extends ControllerBase {
     
     public $config;
@@ -22,12 +27,12 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/skins.min.css');
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/common.js');
-                //->addJs('common/js/btn.js')
+        $this->assets->addJs('common/js/btn.js');
         $this->assets->addJs('common/js/bootstrap.min.js');
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
-        //$this->setDashboardJsAndCss();
+        $this->setDashboardJsAndCss();
      }
      else { 
          

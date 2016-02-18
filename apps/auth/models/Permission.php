@@ -4,22 +4,16 @@ namespace salts\Auth\Models;
 
 use salts\Auth\Models\Db;
 use Phalcon\Mvc\Model;
-$server = PHP_OS;
-if($server == 'Linux'){
-  
- include_once '/var/www/html/salts/apps/auth/models/db/CorePermissionRelMember.php';
- 
- include_once '/var/www/html/salts/apps/auth/models/db/CorePermissionGroup.php';
- 
- include_once '/var/www/html/salts/apps/auth/models/db/CorePermission.php';
-    }
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+// include_once '/var/www/html/salts/apps/auth/models/db/CorePermissionRelMember.php';
+// include_once '/var/www/html/salts/apps/auth/models/db/CorePermissionGroup.php';
+// 
+// include_once '/var/www/html/salts/apps/auth/models/db/CorePermission.php';
 class Permission {
 
     public static function getInstance() {

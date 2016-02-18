@@ -10,8 +10,12 @@ use salts\Salary\Models\SalaryTaxs;
 use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
 use Phalcon\Filter;
-// include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
-// include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+$server = PHP_OS;
+
+if($server == 'Linux'){
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+    }
 class IndexController extends ControllerBase {
 
     public function initialize() {

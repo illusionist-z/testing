@@ -1,7 +1,6 @@
 <?php
 
-namespace salts\Core\Models\Db;
-//namespace salts\Auth\Models\Db;
+namespace salts\Auth\Models\Db;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
@@ -9,23 +8,145 @@ use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db\CorePermissionRelMember;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
-//include_once '/var/www/html/salts/library/core/BaseModel.php';
-//include_once '/var/www/html/salts/library/core/models/SingletonTrait.php';
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+                
+class CoreMember extends Component {
 
-class CoreMember extends Model {
-    
     // Use trait for singleton
     use \Library\Core\Models\SingletonTrait;
 
     public function initialize() {
         parent::onConstruct();
     }
+   
+    
+     public function findCompDb($param) {
+       
+        try {
+            $sql = "SELECT * FROM company_tbl where company_id='".$param['company_id']."' and deleted_flag=0";
+            //print_r($sql);
+//            $rs = $this->getDI()->getShared("login_db")
+//                    ->query($sql, array($param['company_id']));
+            $rs=$this->login_db->query($sql);
+            
+            $row = $rs->fetchArray();
+        } catch (\Exception $e) {
+            $di = FactoryDefault::getDefault();
+            $di->getShared('logger')->WriteException($e);
+        }
+       //print_r($row);exit;
+        return $row;
+    }
+    
+    public function findModule($company_module) {
+        $sql = "SELECT * FROM enable_module where company_id='" . $company_module . "' ";
+        $Result = $this->login_db->query($sql);
+        $Result = $Result->fetchAll();
+        return $Result;
+    }
 
+    /**
+     * Checks the user credentials
+     *
+     * @param array $loginParams
+     * @return boolan
+     */
+    public function Check($loginParams, & $user = null) {
+       
+        $filter = new Filter();
+        $name = $filter->sanitize($loginParams['member_login_name'], "string");
+        $password = $loginParams['password'];
+        $database = $_SESSION['db_config'];
+        if ($database['db_name'] == 'company_db') {
+            $sql = "SELECT * FROM user_tbl where login_name='" . $name . "' and password='" . sha1($password) . "' and deleted_flag=0";
+        } else {
+            $sql = "SELECT * FROM core_member where member_login_name= '" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0";
+        }
+        $user = $this->db->query($sql);
+        $user = $user->fetchArray();
+        return $user;
+    }
+
+    public function getPermit($loginParams) {
+        $filter = new Filter();
+        $name = $filter->sanitize($loginParams['member_login_name'], "string");
+        $password = $loginParams['password'];
+        $this->db = $this->getDI()->getShared("db");
+
+        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+        $user = $user->fetchArray();
+        
+        $permission = $this->db->query("SELECT permission_group_id_user FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
+        $permission_name = $permission->fetchArray();
+        return $permission_name['permission_group_id_user'];
+    }
+
+    /**
+     * Implements login throttling
+     * Reduces the efectiveness of brute force attacks
+     *
+     * @param int $userId
+     */
+    public function failedLogin($userId) {
+        try {
+            $failedLogin = new AuthFailedLogins();
+            $failedLogin->user_uuid = $userId;
+            $failedLogin->ip_address = $this->request->getClientAddress();
+            $failedLogin->attempted = time();
+            $failedLogin->save();
+
+            $attempts = AuthFailedLogins::count(array(
+                        'ip_address = ?0 AND attempted >= ?1',
+                        'bind' => array(
+                            $this->request->getClientAddress(),
+                            time() - 3600 * 6
+                        )
+            ));
+
+            switch ($attempts) {
+                case 1:
+                case 2:
+                    // no delay
+                    break;
+                case 3:
+                case 4:
+                    sleep(2);
+                    break;
+                default:
+                    sleep(4);
+                    break;
+            }
+        } catch (\Exception $e) {
+            $di = FactoryDefault::getDefault();
+            $di->getShared('logger')->WriteException($e);
+        }
+    }
+
+    /**
+     * 
+     * @param type $userObject
+     */
+    private function _setUserInfo($userObject) {
+        $user = [
+            'id' => $userObject->id,
+            'name' => $userObject->name,
+            'kana' => $userObject->kana,
+            'dept_code' => $userObject->dept_code,
+            'dept_name' => $userObject->dept_name,
+            'lang' => $userObject->lang,
+            'email01' => $userObject->email01,
+            'rank_code' => $userObject->rank_code,
+        ];
+        $this->session->set('user', $user);
+    }
+    
+    
+    
     public function ModuleIdSetPermission($v, $m) {
 
         //// Module ID Filter Start
@@ -44,13 +165,22 @@ class CoreMember extends Model {
         return $module_id_return;
     }
 
-    public function getUserName() {
+    public function getUserName($currentPage) {
         $query = "SELECT * FROM salts\Core\Models\Db\CoreMember WHERE deleted_flag=0 order by created_dt desc";
         $row = $this->modelsManager->executeQuery($query);
-        return $row;
+           $paginator = new PaginatorModel(
+                            array(
+                        "data" => $row,
+                        "limit" => 10,
+                        "page" => $currentPage
+                            )
+                         );
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;                
     }
 
-    public function module_Permission() {
+    public function module_permission() {
         $this->db = $this->getDI()->getShared("db");
         $query = "Select permission_code,permission_name_en,permission_name_$lang from core_permission where permission_code ='$code'";
         $data = $this->db->query($query);
@@ -72,16 +202,29 @@ class CoreMember extends Model {
         return $groupid;
     }
 
-    public function getgroupid() {
-        $query = "Select member_id,member_login_name,group_id,core_member.deleted_flag from core_member "
-                . "left join core_permission_rel_member on core_member.member_id=core_permission_rel_member.rel_member_id "
-                . "left join core_permission_group_id on core_permission_group_id.name_of_group = core_permission_rel_member.rel_permission_group_code";
-
-        $data = $this->db->query($query);
-
-        $groupid = $data->fetchall();
-
-        return $groupid;
+    public function getGroupId($currentPage = null) {
+        try{
+          $row = $this->modelsManager->createBuilder()
+                    ->columns(array('core.*','coregroup.group_id'))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->Leftjoin('salts\Core\Models\CorePermissionRelMember', 'core.member_id = rel.rel_member_id', 'rel')
+                    ->Leftjoin('salts\Core\Models\Db\CorePermissionGroupId','rel.rel_permission_group_code = coregroup.name_of_group','coregroup')
+                    ->where('core.deleted_flag = 0')
+                    ->getQuery()
+                    ->execute();       
+           $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 3,
+            "page" => $currentPage
+                )
+        );
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        }  catch (Phalcon\Exception $e) {
+            $di->getShared("logger")->error($e->getMessage());
+        }
+        return $page;        
     }
 
     public function username($name) {
@@ -99,6 +242,7 @@ class CoreMember extends Model {
      */
 
     public function getoneusername($username) {
+
         $filter = new Filter();
         $username = $filter->sanitize($username, "string");
         $getname = $this->modelsManager->createBuilder()
@@ -108,10 +252,12 @@ class CoreMember extends Model {
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
+
+
         return $getname;
     }
 
-    public function getUserNameById($id) {
+    public function getUsernameById($id) {
 
         $sql = "select * from core_member WHERE member_id ='" . $id . "'";
         $result = $this->db->query($sql);
@@ -145,7 +291,7 @@ class CoreMember extends Model {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * updating core member updated_dt after one year
      */
-    public function updateContract($loginParams) {
+    public function updatecontract($loginParams) {
         $filter = new Filter();
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $filter->sanitize($loginParams['password'], "string");
@@ -253,20 +399,20 @@ class CoreMember extends Model {
 
         $AdminNoti = $this->db->query($sql);
         $Noti = $AdminNoti->fetchall();
-
+        
 
         $i = 0;
         foreach ($Noti as $Noti) {
-
+           
             $sql = "SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' and core_member.deleted_flag=0 ";
 
             $result = $this->db->query($sql);
             $final_result[] = $result->fetchall();
-
+           
             $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
         }
-
+      
         $data = array();
         foreach ($final_result as $result) {
             foreach ($result as $value) {
@@ -278,7 +424,7 @@ class CoreMember extends Model {
         if ($type == 2) {
             $data = array_slice($data, 0, 10);
         }
-
+        
 
         return $data;
     }
@@ -294,15 +440,14 @@ class CoreMember extends Model {
      * for user notification
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function GetUserNoti($id, $type) {
-        echo "aa";exit;
+    public function getUserNoti($id, $type) {
+       
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
         $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
         $UserNoti = $this->db->query($sql);
-
         $Noti = $UserNoti->fetchall();
-        print_r($Noti);echo "aa";
+
         $i = 0;
         foreach ($Noti as $Noti) {
 
@@ -319,7 +464,6 @@ class CoreMember extends Model {
                 }
             }
         }
-        exit;
         return $data;
     }
 
@@ -332,14 +476,17 @@ class CoreMember extends Model {
      */
     public function updatedata($data, $id) {
         $this->db = $this->getDI()->getShared("db");
-
+         $company_id=($this->session->db_config['company_id']);
+         $target_dir = "uploads/$company_id./";
+        if (!is_dir($target_dir)) {
+         mkdir($target_dir);
+       }
         if ($_FILES["fileToUpload"]["name"] == NULL) {
             $filename = $data['file'];
         } else {
             $pic = $data['file'];
             unlink("uploads/$pic");
-            $filename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
-            $target_dir = "uploads/";
+            $filename =($this->session->db_config['company_id']).($this->session->user['member_id']). '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
             $target_file = $target_dir . $filename;
             move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
         }
@@ -427,33 +574,7 @@ class CoreMember extends Model {
         return $res;
     }
 
-    /**
-     * Saw Zin Min Tun
-     * forget password
-
-     */
-    public function findemail($member_mail) {
-
-        $email = $member_mail;
-        $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT * FROM core_member where member_mail ='" . $email . "'  and deleted_flag=0";
-        $user = $this->db->query($query);
-        $users = $user->fetchAll();
-
-        return $users;
-    }
-
-    /**
-     * Saw Zin Min Tun
-     * forget password
-
-     */
-    public function insertemailandtoken($member_mail, $token) {
-        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("INSERT INTO forgot_password(check_mail,token,curdate) values(' " . $member_mail . " ' ,' " . $token . " ',now() )");
-
-        return $user;
-    }
+  
 
     /*
      * User Fix 
@@ -477,52 +598,7 @@ class CoreMember extends Model {
         return $member_flag;
     }
 
-    /**
-     * Saw Zin Min Tun
-     * user enter code check database code
-     */
-    public function findcode($code, $email) {
-
-        $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT token FROM forgot_password where  check_mail = '" . $email . "'  order by curdate desc limit 1  ";
-        $user = $this->db->query($query);
-        $user = $user->fetchArray();
-
-        if ($user['token'] == $code) {
-            $msg = "success";
-            return $msg;
-        } else {
-            $msg = "fail";
-            return $msg;
-        }
-    }
-
-    /**
-     * Saw Zin Min Tun
-     * forget password
-     */
-    public function updatepassword($member_mail, $newpassword) {
-        // Check if the user exist
-        $newpassword = sha1($newpassword);
-        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-        return $user;
-    }
-
-    public function updatenewpassword($member_mail, $newpass) {
-        $newpassword = sha1($newpass);
-        $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("UPDATE core_member set member_password = '" . $newpassword . "' WHERE member_mail ='" . $member_mail . "' ");
-        return $user;
-    }
-
-    public function checkYourMail($getmail) {
-        $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT token FROM forgot_password where  check_mail = '" . $getmail . "'  order by curdate desc limit 1  ";
-        $user = $this->db->query($query);
-        $user = $user->fetchArray();
-        return $user['token'];
-    }
+   
 
     public function findUserAddSalary($id) {
         $cond1 = "Select * from core_member where member_id not in ( select member_id from salary_master)";
@@ -532,5 +608,5 @@ class CoreMember extends Model {
         $rows = $data->fetchall();
         return $rows;
     }
-
+    
 }
