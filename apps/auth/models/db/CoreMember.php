@@ -1,5 +1,7 @@
 <?php
+
 namespace salts\Auth\Models\Db;
+//namespace salts\Auth\Models\Db;
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
