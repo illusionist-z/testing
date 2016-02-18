@@ -173,8 +173,9 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
+        $currentPage = $this->request->get("page");
         $Attendances = new \salts\Attendancelist\Models\Attendances();
-        $data = $Attendances->currentAttList();
+        $data = $Attendances->currentAttList($currentPage);
         $this->view->data = $data;
     }
 
