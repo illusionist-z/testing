@@ -123,6 +123,11 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals("Search Help", $this->title());
     }
 
+    /**
+     * Description of DashboardTest
+     * @author khine thazin phyo 
+     * test for Help Dashboard
+     */
     public function testHelpDashboard() {
         $this->url('help/index/searchHelp');
         $this->byClassName('allhelpimg')->click();

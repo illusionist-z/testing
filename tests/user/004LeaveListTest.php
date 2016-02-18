@@ -71,6 +71,11 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals("Leave Lists", $this->byCssSelector('h1')->text());
     }
 
+    /**
+     * Description of LeaveListTest
+     * @author khine thazin phyo 
+     * test for first paging
+     */
     public function testpagingFirst() {
         $this->url('leavedays/user/leavelist');
         $elements = $this->elements($this->using('css selector')->value('ul.pagination li'));
