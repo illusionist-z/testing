@@ -3,13 +3,13 @@
 namespace salts\Auth\Controllers;
 use salts\Auth\Models;
 use salts\Auth\Models\Permission;
-use salts\Auth\Models\Db;
+use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 $server = PHP_OS;
 
 if($server == 'Linux'){
-// include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
-// include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
     }
 class LoginController extends ControllerBase {
 
@@ -34,7 +34,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = '';
+            $dbinfo['db_psw'] = 'root';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
@@ -67,7 +67,7 @@ class LoginController extends ControllerBase {
 
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
-                $Member = new Db\CoreMember();
+                $Member = new \salts\Core\Models\Db\CoreMember();
                 $ll = $Member::getInstance();
                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
