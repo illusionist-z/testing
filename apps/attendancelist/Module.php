@@ -2,7 +2,7 @@
 
 namespace salts\Attendancelist;
 
-class Module extends \Library\Core\Module implements \Phalcon\Mvc\ModuleDefinitionInterface {
+class Module extends \Library\Core\Modules implements \Phalcon\Mvc\ModuleDefinitionInterface {
 
     /**
      * constructor

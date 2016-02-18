@@ -1,10 +1,8 @@
 <?php
 
-namespace salts\Core;
+namespace salts\Core; 
 
-use Phalcon\Mvc\ModuleDefinitionInterface;
-
-class Module extends \Library\Core\Module implements ModuleDefinitionInterface {
+class Module extends \Library\Core\Modules implements \Phalcon\Mvc\ModuleDefinitionInterface {
 
     public function __construct() {
         parent::__construct(__DIR__);
