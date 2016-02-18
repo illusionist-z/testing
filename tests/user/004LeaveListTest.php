@@ -109,7 +109,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('leavedays/user/leavelist');
         $this->byLinkText('Apply Leave')->click();
         $this->url('leavedays/user/applyleave');
-        $this->assertEquals("applyleave", $this->byCssSelector('h1')->text());
+        $this->assertEquals("Apply Leave", $this->byCssSelector('h1')->text());
     }
 
     public function testLeaveForm() {
