@@ -2,14 +2,8 @@
 
 namespace salts\Attendancelist\Controllers;
 
-//use salts\Core\Models\Db;
 use salts\Attendancelist\Models\CorePermissionGroupId;
- $server = PHP_OS;
 
-if($server == 'Linux'){
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
-    }
 class IndexController extends ControllerBase {
     
     public $config;
@@ -173,9 +167,8 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
-        $currentPage = $this->request->get("page");
         $Attendances = new \salts\Attendancelist\Models\Attendances();
-        $data = $Attendances->currentAttList($currentPage);
+        $data = $Attendances->currentAttList();
         $this->view->data = $data;
     }
 

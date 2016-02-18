@@ -4,12 +4,7 @@ namespace salts\Manageuser\Controllers;
 
 use salts\Manageuser\Models\User as User;
 use salts\Core\Models\Db;
-$server = PHP_OS;
-
-if($server == 'Linux'){
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
-    } 
+ 
 class IndexController extends ControllerBase {
 
     public $user;
