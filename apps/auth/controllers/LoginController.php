@@ -8,8 +8,8 @@ use Phalcon\Filter;
 $server = PHP_OS;
 
 if($server == 'Linux'){
-include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
-include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+//include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+//include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
     }
 class LoginController extends ControllerBase {
 
