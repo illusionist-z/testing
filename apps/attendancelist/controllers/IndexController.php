@@ -4,11 +4,17 @@ namespace salts\Attendancelist\Controllers;
 
 //use salts\Core\Models\Db;
 use salts\Attendancelist\Models\CorePermissionGroupId;
- //include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- //include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
-class IndexController extends ControllerBase {
+ $server = PHP_OS;
 
-    public function initialize() {
+if($server == 'Linux'){
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+    }
+class IndexController extends ControllerBase {
+    
+    public $config;
+    
+    public function initialize() {        
         parent::initialize();
          
         $server = PHP_OS;
@@ -173,7 +179,7 @@ class IndexController extends ControllerBase {
     }
 
     public function autolistAction() {
-        $UserList = new \salts\Core\Models\Db\CoreMember();
+        $UserList = new Db\CoreMember();
         $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);

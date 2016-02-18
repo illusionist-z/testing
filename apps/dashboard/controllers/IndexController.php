@@ -35,13 +35,13 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
-        $this->assets->addJs('common/js/btn.js');
         //$this->setDashboardJsAndCss();
      }
      else { 
          
          $this->setCommonJsAndCss();
-     
+         $this->assets->addJs('common/js/btn.js');
+         $this->setDashboardJsAndCss();
      }
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();

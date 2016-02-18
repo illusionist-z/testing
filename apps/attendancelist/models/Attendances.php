@@ -200,23 +200,21 @@ class Attendances extends Model {
         $result = $data->fetchall();
         return $result;
     }
-
+    /**
+     * @version David JP
+     * @param date $data [local time]
+     * @param type $id
+     * @param type $offset
+     */
     public function editAtt($data, $id, $offset) {
-        $localtime = $this->LocalToUTC($data, $offset);
-        $query = "update attendances set checkin_time='" . $localtime . "' where id='" . $id . "'";
-        $this->db->query($query);
-    }
-
-    public function LocalToUTC($data, $offset) {
-        if ($offset < 0) {
-            $value = $offset;
-            $localtime = date("Y-m-d H:i:s", strtotime($value . " minutes", strtotime($data)));
-        } else {
-            $value = $offset;
-            $localtime = date("Y-m-d H:i:s", strtotime($value . " minutes", strtotime($data)));
-        }
-        return $localtime;
-    }
+        $utctime = \salts\Core\Models\Db\Attendances::getInstance()->LocalToUTC($data, $offset);
+        $hour = date("H",  strtotime($data));
+        $row = Attendances::find("id = '$id'");
+        $attendance = \salts\Core\Models\Permission::tableObject($row);
+        $attendance->checkin_time = $utctime;
+        $attendance->status = $hour < 12 ? 0 : 3 ;
+        $attendance->update();
+    } 
 
     public function searchAttList($year, $month, $username) {
 
@@ -237,7 +235,10 @@ class Attendances extends Model {
 
     public function currentAttList() {
         try {
-            $select = "Select group_concat(DAY(att_date)) as day,attendances.member_id,group_concat(status) as status,member_login_name from attendances JOIN core_member ON attendances.member_id = core_member.member_id where MONTH(CURRENT_DATE) = MONTH(attendances.att_date) group by core_member.member_id desc";
+            $select = "Select group_concat(DAY(att_date)) as day,attendances.member_id,group_concat(status) as "
+                    . "status,member_login_name from attendances JOIN core_member ON "
+                    . "attendances.member_id = core_member.member_id where MONTH(CURRENT_DATE) "
+                    . "= MONTH(attendances.att_date) group by core_member.member_id desc";
             $data = $this->db->query($select);
             $result = $data->fetchall();
         } catch (Exception $ex) {

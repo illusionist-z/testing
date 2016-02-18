@@ -4,7 +4,12 @@ namespace salts\Attendancelist\Controllers;
 
 use salts\Core\Models\Db;
 use salts\Attendancelist\Models\Attendances;
+$server = PHP_OS;
 
+if($server == 'Linux'){
+ include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+ include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+    }
 class SearchController extends ControllerBase {
 
     public function initialize() {
