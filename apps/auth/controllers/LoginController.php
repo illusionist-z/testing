@@ -8,8 +8,8 @@ use Phalcon\Filter;
 $server = PHP_OS;
 
 if($server == 'Linux'){
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
+include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
     }
 class LoginController extends ControllerBase {
 
@@ -34,7 +34,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = '';
+            $dbinfo['db_psw'] = 'root';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);

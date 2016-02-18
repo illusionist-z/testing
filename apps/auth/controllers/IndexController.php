@@ -86,14 +86,14 @@ class IndexController extends ControllerBase {
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
-                $ChackUser = new CoreMember();
+                $ChackUser = new Db\CoreMember();
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 
                 if (0 != count($chack_user2)) {
 
                     $member_name = $this->session->tokenpush;
-                    $core_fai = new CoreMember();
+                    $core_fai = new Db\CoreMember();
                     $core_fai = CoreMember::findFirstByMemberLoginName($member_name);
                     $core_fai = $core_fai->timeflag;
                     $timestamp = (date("Y-m-d H:i:s"));

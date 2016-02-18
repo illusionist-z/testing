@@ -1,6 +1,6 @@
 <?php
 
-namespace salts\Core\Models\Db;
+namespace salts\Auth\Models\Db;
 //namespace salts\Auth\Models\Db;
 
 use Phalcon\Mvc\Model;
