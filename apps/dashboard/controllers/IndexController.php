@@ -32,10 +32,8 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/notification.js');
         //$this->setDashboardJsAndCss();
      }
-     else { 
-         
-         $this->setCommonJsAndCss();
-         $this->assets->addJs('common/js/btn.js');
+     else {          
+         $this->setCommonJsAndCss();         
          $this->setDashboardJsAndCss();
      }
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
