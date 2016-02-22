@@ -5,9 +5,8 @@ use salts\Notification\Models\CoreNotificationRelMember;
 use salts\Leavedays\Models\Leaves;
 use salts\Attendancelist\Models\Attendances;
 use salts\Notification\Models\CoreNotification;
-use salts\Core\Models\Db\CoreMember;
-// include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
-// include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+use salts\Core\Models\Db\CoreMember; 
+
 class IndexController extends ControllerBase {
 
     public function initialize() {

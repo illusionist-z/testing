@@ -4,8 +4,7 @@ namespace salts\Calendar\Controllers;
 
 use salts\Core\Models\Db;
 use salts\Core\Models\Db\CoreMember;
-include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
-include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+
 class IndexController extends ControllerBase {
 
     public $Calendar;
@@ -54,8 +53,8 @@ class IndexController extends ControllerBase {
     public function calenderautoAction() {
         $UserList = new Db\CoreMember();
         $Username = $UserList->autousername();
-        $this->view->disable();
         echo json_encode($Username);
+        $this->view->disable();
     }
 
     /**
@@ -72,7 +71,7 @@ class IndexController extends ControllerBase {
 
     public function addmemberAction() {
         $permit_name = $this->request->get("permit");
-        $id = $this->session->user['member_login_name'];
+        $id = $this->session->user['member_id'];
         $data = ($permit_name == $id ? 1 : $this->Calendar->addPermitName($permit_name, $id));
         echo json_encode($data);
         $this->view->disable();

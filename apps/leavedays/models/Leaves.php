@@ -140,7 +140,7 @@ class Leaves extends \Library\Core\Models\Base {
 
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
-        $date = $this->getContractData($uname);
+        $this->getContractData($uname);
         $ldata = Leaves::find("member_id = '$uname' order by date DESC LIMIT 1");
         $list = $ldata->toArray();
 
@@ -246,14 +246,13 @@ class Leaves extends \Library\Core\Models\Base {
      */
     public function getContractData($id) {
         $credt = \salts\Core\Models\CoreMember::findByMemberId($id);
-        $created_date = $credt->toArray();
-
-        if ($created_date['working_year_by_year'] == NULL) {
-            $date['startDate'] = $created_date['working_start_dt'];
-            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_start_dt'])));
+        $created_date = $credt->toArray();        
+        if ($created_date[0]['working_year_by_year'] == NULL) {
+            $date['startDate'] = $created_date[0]['working_start_dt'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date[0]['working_start_dt'])));
         } else {
-            $date['startDate'] = $created_date['working_year_by_year'];
-            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
+            $date['startDate'] = $created_date[0]['working_year_by_year'];
+            $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date[0]['working_year_by_year'])));
         }
         return $date;
     }

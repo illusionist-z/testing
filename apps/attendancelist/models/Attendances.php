@@ -95,7 +95,7 @@ class Attendances extends Model {
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
                     ->andWhere('attendances.member_id = :id:', array('id' => $id))
-                    ->andWhere('core.deleted_flag = 0 and attendances.status = 0')
+                    ->andWhere('core.deleted_flag = 0 and (attendances.status = 0 OR attendances.status = 3)')
                     ->orderBy('attendances.att_date DESC')
                     ->getQuery()
                     ->execute();
@@ -200,6 +200,7 @@ class Attendances extends Model {
         $result = $data->fetchall();
         return $result;
     }
+
     /**
      * @version David JP
      * @param date $data [local time]
@@ -208,13 +209,13 @@ class Attendances extends Model {
      */
     public function editAtt($data, $id, $offset) {
         $utctime = \salts\Core\Models\Db\Attendances::getInstance()->LocalToUTC($data, $offset);
-        $hour = date("H",  strtotime($data));
+        $hour = date("H", strtotime($data));
         $row = Attendances::find("id = '$id'");
         $attendance = \salts\Core\Models\Permission::tableObject($row);
         $attendance->checkin_time = $utctime;
-        $attendance->status = $hour < 12 ? 0 : 3 ;
+        $attendance->status = $hour < 12 ? 0 : 3;
         $attendance->update();
-    } 
+    }
 
     public function searchAttList($year, $month, $username) {
 
@@ -233,18 +234,32 @@ class Attendances extends Model {
         return $row;
     }
 
-    public function currentAttList() {
+    public function currentAttList($currentPage) {
         try {
-            $select = "Select group_concat(DAY(att_date)) as day,attendances.member_id,group_concat(status) as "
-                    . "status,member_login_name from attendances JOIN core_member ON "
-                    . "attendances.member_id = core_member.member_id where MONTH(CURRENT_DATE) "
-                    . "= MONTH(attendances.att_date) group by core_member.member_id desc";
-            $data = $this->db->query($select);
-            $result = $data->fetchall();
+            $currentmth = date('m');
+            $row = $this->modelsManager->createBuilder()
+                    ->columns(array('core.member_login_name', "group_concat(DAY(attendances.att_date)) as day,attendances.member_id,group_concat(attendances.status) as status"))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                    ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
+                    ->andWhere('core.deleted_flag = 0')
+                    ->groupBy('core.member_id')
+                    ->getQuery()
+                    ->execute();
+            $paginator = new PaginatorModel(
+                    array(
+                "data" => $row,
+                "limit" => 10,
+                "page" => $currentPage
+                    )
+            );
+
+// Get the paginated results
+            $page = $paginator->getPaginate();            
         } catch (Exception $ex) {
             echo $ex;
         }
-        return $result;
+        return $page;
     }
 
     /**

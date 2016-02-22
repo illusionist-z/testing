@@ -4,9 +4,7 @@ namespace salts\Managecompany\Controllers;
 
 use salts\Managecompany\Models\CoreModule;
 use salts\Auth\Models\Db\CoreMember;
-
-////use Phalcon\Flash\Direct as FlashDirect;
-
+ 
 class IndexController extends ControllerBase {
 
     public function initialize() {

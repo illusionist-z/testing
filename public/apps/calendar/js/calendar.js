@@ -9,7 +9,7 @@ var Calendar = {
 
         if (!json_events) {
             $.ajax({
-                url: 'index/calenderauto',
+                url: 'calenderauto',
                 method: 'GET',
                 success: function (data) {
              
@@ -124,7 +124,7 @@ var Calendar = {
     event: function (val, reload) {
         $.ajax({
             type: "GET",
-            url: "index/showdata",
+            url: "showdata",
             async: false,
             data: {event_id: val},
             success: function (d) {
@@ -154,7 +154,7 @@ var Calendar = {
 
         var id = [];
         $.ajax({
-            url: 'index/getcalmemberid?uname=' + name,
+            url: 'getcalmemberid?uname=' + name,
             method: 'GET',
             async: false,
             success: function (data) {
@@ -177,7 +177,7 @@ var Calendar = {
                 //alert(selectedvalue[i]);
             });
             $.ajax({
-                url: "index/removeEventByname",
+                url: "removeEventByname",
                 data: {remove: selectedvalue},
                 type: "POST",
                 success: function () {
@@ -225,7 +225,7 @@ var Calendar = {
                     $.ajax({
                         type: "GET",
                         data: {permit: ui.item.value},
-                        url: "index/addmember",
+                        url: "addmember",
                         dataType: "json",
                         success: function (d) {
                             if (d === 1) {
@@ -258,7 +258,7 @@ Calendar.Dialog = {
          * @type @arr member_id
          */
         $.ajax({
-            url: 'index/getid?id=' + event.id,
+            url: 'getid?id=' + event.id,
             type: 'GET',
             async: false,
             dataType: 'json',
@@ -336,7 +336,7 @@ Calendar.Dialog = {
     },
     edit: function (event, old_id, dia) {
         $.ajax({
-            url: "index/edit/" + event.id+"/"+1,
+            url: "edit/" + event.id+"/"+1,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -357,7 +357,7 @@ Calendar.Dialog = {
     drag: function (start, end, id, title, name, event) {
 
         $.ajax({
-            url: "index/edit/" + id,
+            url: "edit/" + id,
             data: {sdate: start, edate: end, title: title, uname: name},
             async: false,
             dataType: 'json',
@@ -371,7 +371,7 @@ Calendar.Dialog = {
     //create new event
     create: function (dia) {
         $.ajax({
-            url: "index/create",
+            url: "create",
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",
@@ -432,7 +432,7 @@ Calendar.Dialog = {
     },
     delete: function (id, member, dia) {
         $.ajax({
-            url: "index/delete",
+            url: "delete",
             data: {data: id},
             async: false,
             dataType: 'json'
