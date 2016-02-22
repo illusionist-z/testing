@@ -49,15 +49,15 @@ use Phalcon\Filter;
                     foreach ($result as $result) {
                         ?>    <tr>
                             <td><?php echo $i; ?></td>
-                            <td><?php echo $result['company_id']; ?></td>
-                            <td><?php echo $result['company_name']; ?></td>
-                            <td><?php echo $result['starting_date']; ?></td>
-                            <td><?php echo $result['email']; ?></td>
-                            <td><?php echo $result['phone_no']; ?></td>
-                            <td><?php echo $result['db_name']; ?></td>
-                            <td><?php echo $result['host']; ?></td>
-                            <td><?php echo $result['user_limit']; ?></td>
-                            <td>  <a href="<?php echo $baseUri ?>managecompany/index/editcompany?id=<?php echo $result['company_id']; ?>" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td></tr>
+                            <td><?php echo $result->company_id; ?></td>
+                            <td><?php echo $result->company_name; ?></td>
+                            <td><?php echo $result->starting_date; ?></td>
+                            <td><?php echo $result->email; ?></td>
+                            <td><?php echo $result->phone_no; ?></td>
+                            <td><?php echo $result->db_name; ?></td>
+                            <td><?php echo $result->host; ?></td>
+                            <td><?php echo $result->user_limit; ?></td>
+                            <td>  <a href="<?php echo $baseUri ?>managecompany/index/editcompany?id=<?php echo $result->company_id; ?>" style="float:right;margin-top: 12px;" class="inedit editnewcom" id=""></a></td></tr>
                         <?php
                         $i++;
                     }

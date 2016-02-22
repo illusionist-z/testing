@@ -77,8 +77,8 @@ class UserController extends ControllerBase {
 
             $updatedata['file'] = $updatedata['temp_file'];
 
-            $User = new Db\CoreMember;
-            $profile_pic = $User->updatedata($updatedata, $id);
+            $User = new \salts\Setting\Models\CoreMember();
+            $User->updatedata($updatedata, $id);
             $user = $User->userData($id);
             $this->session->set('user', $user);
         }

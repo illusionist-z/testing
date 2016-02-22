@@ -269,8 +269,9 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function setCompanyModuleJsAndCss() {
         $this->assets->addCss('common/css/css/style.css')
                 ->addCss('common/css/dialog.css');
-        $this->assets->addJs('common/js/base.js')
+        $this->assets->addJs('common/js/paging.js')
                 ->addJs('apps/managecompany/js/module-base.js');
+        
     }
 
     /**

@@ -99,6 +99,7 @@ class IndexController extends ControllerBase {
         $Att = new \salts\Attendancelist\Models\Attendances();
         $t = $this->_getTranslation(); //for translate
         $data = $Att->getAttTime($id);
+        
         $data[1]['attlist'] = $t->_("attendancelist");
         $data[1]['edit_att'] = $t->_("edit_att_list");
         $data[1]['name'] = $t->_("username");
@@ -179,7 +180,7 @@ class IndexController extends ControllerBase {
     }
 
     public function autolistAction() {
-        $UserList = new Db\CoreMember();
+        $UserList = new \salts\Auth\Models\Db\CoreMember();
         $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);

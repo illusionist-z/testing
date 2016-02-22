@@ -36,13 +36,13 @@
                         <tr><td>User Limit</td><td><input style="margin-top:10px ; width:50%" type="text" name="com[limit]" class=" col-sm-10" id="pass" value="<?php echo $result['user_limit'] ?>" placeholder="Write User Limit "></td></tr>
                         <tr><td>Module Flag</td><td>
                                 <?php foreach ($module_list as $value) { ?>
-                                    <input type="checkbox" name="check[]"  id="checkall1" value="<?php echo $value['module_id']; ?>" style="margin-bottom: 5px" <?php
+                                    <input type="checkbox" name="check[]"  id="checkall1" value="<?php echo $value->module_id; ?>" style="margin-bottom: 5px" <?php
                                     foreach ($module as $data) {
-                                        if ($value['module_id'] == $data['module_id']) {
+                                        if ($value->module_id == $data->module_id) {
                                             echo "checked";
                                         }
                                     }
-                                    ?>><?php echo $value['module_name'] ?> 
+                                    ?>><?php echo $value->module_name ?> 
                                        <?php } ?> 
 
 

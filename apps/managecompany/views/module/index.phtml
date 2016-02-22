@@ -43,9 +43,9 @@ use Phalcon\Filter;
                     foreach ($result as $result) {
                         ?>    <tr>                   
                             <td><?php echo $i; ?></td>
-                            <td><?php echo $result['module_id']; ?></td>
-                            <td><?php echo $result['module_name']; ?></td>
-                            <td>  <a href="#" style="margin-top: 12px;" class="inedit editnewmodule" id="<?php echo $result['module_id'] ?>"></a></td></tr>
+                            <td><?php echo $result->module_id; ?></td>
+                            <td><?php echo $result->module_name; ?></td>
+                            <td>  <a href="#" style="margin-top: 12px;" class="inedit editnewmodule" id="<?php echo $result->module_id ?>"></a></td></tr>
                         <?php
                         $i++;
                     }

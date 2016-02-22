@@ -2,11 +2,11 @@
 
 namespace salts\Managecompany\Controllers;
 
+use salts\Managecompany\Models\CoreModule;
 use salts\Auth\Models\Db\CoreMember;
 
 ////use Phalcon\Flash\Direct as FlashDirect;
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -27,9 +27,9 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('apps/managecompany/js/base.js');
         $com_id = $this->request->get('comlistsearch');
         $Company = new \salts\Managecompany\Models\CompanyTbl();
-        $result = $Company->getAllcom();
+        $result = $Company->find();
         if (isset($com_id)) {
-            $result = $Company->findCombyId($com_id);
+            $result = $Company->find("company_id = '$com_id' ");
         }
         $this->view->result = $result;
     }
@@ -59,9 +59,10 @@ class IndexController extends ControllerBase {
         $id = $this->request->get('id');
         $Company = new \salts\Managecompany\Models\CompanyTbl();
         $result = $Company->findDatabyId($id);
-        $module = $Company->findModulebyId($id);
+        $EnableModule = new \salts\Core\Models\EnableModule();
+        $module = $EnableModule->find("company_id = '$id' ");
         $CoreModule = new \salts\Managecompany\Models\CoreModule();
-        $module_list = $CoreModule->getAllmodule();
+        $module_list = $CoreModule->find();
         $this->view->module_list = $module_list;
         $this->view->module = $module;
         $this->view->result = $result;
@@ -85,10 +86,6 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
             } else {
                 $com = $this->request->getPost();
-
-
-
-
                 $error = $Company->addNew($com);
                 $this->view->disable();
                 echo json_encode($error);
@@ -131,7 +128,8 @@ class IndexController extends ControllerBase {
     public function deletecompanyAction() {
         $id = $this->request->get('id');
         $Company = new \salts\Managecompany\Models\CompanyTbl();
-        $Company->deleteCompanyById($id);
+        $data = $Company->find("company_id = '$id' ");
+        $data->delete();
         $this->response->redirect("managecompany/index");
     }
 

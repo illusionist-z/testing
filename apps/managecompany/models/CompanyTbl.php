@@ -6,8 +6,19 @@ use Phalcon\Mvc\Model;
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 
-class CompanyTbl extends \Library\Core\Models\Base {
+class CompanyTbl extends Model {
 
+    public $company_name;
+    public $email;
+    public $phone_no;
+    public $db_name;
+    public $user_name;
+    public $db_psw;
+    public $host;
+    public $user_limit;
+    public $starting_date;
+    public $created_dt;
+    public $id;
     public function initialize() {
         //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
@@ -23,6 +34,19 @@ class CompanyTbl extends \Library\Core\Models\Base {
     public function addNew($data) {
         $date = date("Y-m-d H:i:s");
         $sdate = date("Y-m-d", strtotime($data['com_sdate']));
+//        $CompanyTbl = new CompanyTbl();
+//        $CompanyTbl->company_id = $data['comid'];
+//        $CompanyTbl->company_name = $data['com_name'];
+//        $CompanyTbl->email = $data['com_email'];
+//        $CompanyTbl->phone_no = $data['com_phno'];
+//        $CompanyTbl->db_name = $data['com_db'];
+//        $CompanyTbl->user_name = $data['com_dbun'];
+//        $CompanyTbl->db_psw = $data['com_dbpsw'];
+//        $CompanyTbl->host = $data['com_host'];
+//        $CompanyTbl->user_limit = $data['com_limit'];
+//        $CompanyTbl->starting_date = $sdate;
+//        $CompanyTbl->created_dt = $date;
+//        $CompanyTbl->save();
 
         $sql = "INSERT INTO `company_tbl`(`company_id`, `company_name`, `email`, `phone_no`, "
                 . "`db_name`, `user_name`, `db_psw`, `host`, `user_limit`, `starting_date`, "
@@ -32,8 +56,12 @@ class CompanyTbl extends \Library\Core\Models\Base {
                 . "'" . $data['com_limit'] . "','" . $sdate . "','" . $date . "')";
         $this->db->query($sql);
         for ($i = 0; $i < count($data['check']); $i++) {
-            $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $data['comid'] . "','" . $data['check'][$i] . "')";
-            $this->db->query($sql);
+            $EnableModule = new \salts\Core\Models\EnableModule();
+            $EnableModule->company_id = $data['comid'];
+            $EnableModule->module_id = $data['check'][$i];
+            $EnableModule->save();
+//            $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $data['comid'] . "','" . $data['check'][$i] . "')";
+//            $this->db->query($sql);
         }
         $message = "success";
         return $message;
@@ -87,6 +115,7 @@ class CompanyTbl extends \Library\Core\Models\Base {
     }
 
     public function validation($data) {
+      
         $res = array();
         $validate = new Validation();
         $validate->add('comid', new PresenceOf(

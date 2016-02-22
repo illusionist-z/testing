@@ -107,12 +107,14 @@ class Attendances extends Model {
                 $hour = \salts\Core\Models\Db\Attendances::getInstance()->UTCToLocal($mydate, $offset);
                 $hour = date("H",strtotime($hour));
                 if($hour < 12){
-                      $this->db->query("UPDATE attendances set status = 3 where att_date ='" . $today .
-                              "' AND member_id ='" . $id . "'");
+                      $Attendances = new Attendances();
+                      $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
+                      $att->status=3;
+                      $att->update();
                 }
-                $this->db->query("UPDATE attendances SET "
-                        . "checkout_time='" . $mydate . "',overtime='" . $ovt . "' "
-                        . "WHERE att_date='" . $today . "' AND member_id='" . $id . "'");
+                $att->checkout_time = $mydate;
+                $att->overtime = $ovt;
+                $att->update();
                 $status = "Successfully Checked Out ";
             }
         } else {

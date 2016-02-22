@@ -18,9 +18,9 @@ class ModuleController extends ControllerBase {
     public function indexAction() {
         $id = $this->request->get("msearch");
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $result = $Obj->getAllmodule();
+        $result = $Obj->find();
         if (isset($id)) {
-            $result = $Obj->search($id);
+            $result = $Obj::find("module_id = '$id' ");
         }
         $this->view->result = $result;
     }
@@ -37,10 +37,10 @@ class ModuleController extends ControllerBase {
      *  Add new module 
      */
     public function addmoduleAction() {
-        $data['mid'] = $this->request->getPost('mid');
-        $data['mname'] = $this->request->getPost('mname');
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $Obj->adNewmodule($data);
+        $Obj->module_id = $this->request->getPost('mid');
+        $Obj->module_name = $this->request->getPost('mname');
+        $Obj->save();
     }
 
     /**
@@ -50,7 +50,7 @@ class ModuleController extends ControllerBase {
     public function editmoduleAction() {
         $id = $this->request->get('id');
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $result = $Obj->getmodulebyId($id);
+        $result = $Obj::findFirst("module_id = '$id' ");
         echo json_encode($result);
         $this->view->disable();
     }
@@ -63,6 +63,9 @@ class ModuleController extends ControllerBase {
         $id = $this->request->get('id');
         $mname = $this->request->get('mname');
         $Obj = new \salts\Managecompany\Models\CoreModule();
+//        $result= $Obj::findFirst("module_id = '$id' ");
+//        $result->module_name = $mname;
+//        $result->update();
         $Obj->updateModuleById($id, $mname);
     }
 
@@ -73,7 +76,8 @@ class ModuleController extends ControllerBase {
     public function deletemoduleAction() {
         $id = $this->request->get('id');
         $Obj = new \salts\Managecompany\Models\CoreModule();
-        $Obj->deleteModuleById($id);
+        $result = $Obj::findFirst("module_id = '$id' ");
+        $result->delete();
     }
 
 }

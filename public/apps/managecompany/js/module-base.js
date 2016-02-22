@@ -4,9 +4,10 @@
  * @author David
  * @desc {dialog} for edit user profile
  */
-    var pager = new Paging.Pager(),dict =[];   //for pagination
+ var pager = new Paging.Pager(),dict =[];   //for pagination
 
 var Manage = {
+    
         init : function (reload){
             $('tfoot').append($('table.listtbl tbody').html());   //for csv 
             pager.perpage = 10;
@@ -15,11 +16,10 @@ var Manage = {
             $('tbody').show();
             if(reload){
              $.ajax({
-                url:'module/getmodulename',
+                url:baseUri+'managecompany/module/getmodulename',
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
-                
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
                  // alert(json_obj[i].member_login_name);
@@ -155,7 +155,7 @@ var Manage = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "module/add_module",
+            url : "module/addmodule",
             success:function(){
                 
               d.dialog("close");
@@ -176,7 +176,7 @@ var Manage = {
             data:$form.serialize(),
            
             success:function(d){
-               location.reload();
+               //location.reload();
             }
         });
     },
