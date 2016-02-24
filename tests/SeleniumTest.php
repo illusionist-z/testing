@@ -29,15 +29,6 @@ class SeleniumTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testHasLoginForm() {
-//        $this->url('login.php');
-//        $username = $this->byId('uname')->value('someone');
-//        $password = $this->byId('pword')->value('1234');
-//        echo $username;
-//        echo $password;
-//        $this->byName('login')->submit();
-//
-//        $content = $this->byCssSelector('h4')->text();
-//        $this->assertEquals('Right username or password', $content);
         $username = 'test';
         $password = '1234';
 
@@ -52,18 +43,7 @@ class SeleniumTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byName('login')->submit();
         $this->url("login/logout.php");
         $this->assertEquals('logout', $this->title());
-//        $content = $this->byCssSelector('h4')->text();
-//        $this->assertEquals('Right username or password', $content);
-//        $form = current($this->elements($this->using('css selector')->value('form.login')));
-//        $form->submit();
-//
-//        /* Check for text on index page */
-//        $h1 = current($this->elements($this->using('css selector')->value('h1')));
-//        $this->assertEquals('Welcome to protected area!', $h1->text());
-//
-//        /* Check that cookie user has been set */
-//        $authCookie = $this->cookie()->get('user');
-//        $this->assertEquals('loggedin', $authCookie);
+
     }
 
 }
