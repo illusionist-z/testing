@@ -4,12 +4,9 @@ namespace salts\Attendancelist\Controllers;
 
 use salts\Attendancelist\Models\Attendances as Attendance;
 use salts\Core\Models\Db;
-$server = PHP_OS;
 
-if($server == 'Linux'){
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
-    }
+
+ 
 /**
  * @desc     Get absent member 
  * @category member_id

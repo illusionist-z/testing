@@ -1,4 +1,10 @@
-<?php $leavetypelength = count($Leavetype); ?> 
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+   
+$leavetypelength = count($Leavetype); ?> 
 <section class="content-header">
     <h1>
         <?= $t->_("applyleave"); ?>
