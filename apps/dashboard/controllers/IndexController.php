@@ -14,30 +14,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize(); 
         
-       
-        $server = PHP_OS;
-     if($server == 'Linux'){
-         
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
-        $this->assets->addCss('common/css/bootstrap.min.css');
-        $this->assets->addCss('common/css/common.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/skins.min.css');
-        $this->assets->addJs('common/js/jquery.min.js');
-        $this->assets->addJs('common/js/common.js');
-                //->addJs('common/js/btn.js')
-        $this->assets->addJs('common/js/bootstrap.min.js');
-        $this->assets->addJs('common/js/app.min.js');
-        $this->assets->addJs('common/js/jquery-ui.js');
-        $this->assets->addJs('common/js/notification.js');
-        //$this->setDashboardJsAndCss();
-     }
-     else { 
-         
-         $this->setCommonJsAndCss();
-         $this->assets->addJs('common/js/btn.js');
-         $this->setDashboardJsAndCss();
-     }
+        $this->setCommonJsAndCss();
+        $this->setDashboardJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);

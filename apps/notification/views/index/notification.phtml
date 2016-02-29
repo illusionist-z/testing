@@ -1,6 +1,12 @@
 <div class="forscroll">
 
-    <?php
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+                
     foreach ($Noti as $Noti) {
         if (isset($Noti['module_name'])) {
             ?>

@@ -5,10 +5,7 @@ namespace salts\Attendancelist\Controllers;
 use salts\Core\Models\Db;
 $server = PHP_OS;
 
-if($server == 'Linux'){
- include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
-    }
+ 
 class UserController extends ControllerBase {
 
     public function initialize() {

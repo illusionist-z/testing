@@ -3,6 +3,10 @@
     <head>
         <title>Login</title>
         <?php
+        if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
         $this->assets->outputCss();
         $this->assets->outputJs();
         ?>
