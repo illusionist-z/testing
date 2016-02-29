@@ -1,10 +1,10 @@
 <!-- Main content -->
 <?php 
 foreach ($salary_info as $value) {
-   $date=(int)$value->salary_detail->pay_date;
-   $month = date("m",$date);
-//   $year = date("Y",$date);
-   $dateObj   = DateTime::createFromFormat('!m', $month);
+   $date=$value->salary_detail->pay_date;
+   $month = explode("-", $date);
+
+   $dateObj   = DateTime::createFromFormat('!m', $month[1]);
    $monthName = $dateObj->format('F'); 
 }
 
@@ -23,7 +23,7 @@ foreach ($salary_info as $value) {
                     ၀င္ေငြခြန္ဥပေဒ  ပုဒ္မ ၁၆(ဃ) နွင္႔ ၁၆(စ) အရ လစာေခါင္းစဥ္နွင္႔<br>
                     အက်ံဴး၀င္သည္႔<br>
                     ၀င္ေငြမွ ၀င္ေငြခြန္လစဥ္နုတ္ယူေသာစာရင္း<br>
-                    <?php echo $date; ?> ခု၊ <?php echo$monthName; ?> လအတြက္။<br><br>
+                    <?php echo $month[0]; ?> ခု၊ <?php echo$monthName; ?> လအတြက္။<br><br>
 
                 </div>
                 <table border="1px;" class="tbl-tax">
@@ -42,7 +42,7 @@ foreach ($salary_info as $value) {
                               လစာေငြ
                             </td>
                             <td rowspan="3">
-                                ႏွုတ္ယူသည္႔၀င္ေငြခြန
+                               ႏူတ္ယူသည့္ဝင္ေငြခြန္
                             </td>
 
                             <td rowspan="3">
@@ -175,6 +175,19 @@ foreach ($salary_info as $value) {
                         ?>
                     </tbody>
                 </table>
+                     <div id ="taxdoc">
+                    <p>  -------------------------------------  <br>
+                     -------------------------------------       <br>
+                     -------------------------------------      <br>
+                     -------------------------------------  </p>  
+                </div>
+                <div id ="taxdoc">
+                    <p>  လက္မွတ္  <br>
+                    အမည္     <br>
+                    ရာထူး    <br>
+                    ဌာန/အဖြဲ႕အစည္း</p>  
+                </div>
+              
             </div>
         </div>
     </div>

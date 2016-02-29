@@ -9,7 +9,7 @@ use Phalcon\Mvc\Model;
  */
 class CompanyTbl extends Model {
 
-    public $conpany_id;
+    public $company_id;
     public $company_name;
     public $email;
     public $phone_no;

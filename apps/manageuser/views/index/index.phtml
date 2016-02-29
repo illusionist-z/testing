@@ -43,9 +43,10 @@ use Phalcon\Filter;
                     $filter = new Filter();
                     $i = 1;
                     foreach ($Result->items as $result) {
+                        $t = ($Result->current)-1;
                         ?>                       
                         <tr>
-                            <td><?= $i ?></td>
+                            <td><?= $i +($Result->limit*$t)?></td>
                             <td><?= $filter->sanitize($result->member_login_name, "string"); ?></td>
                             <td><?= $filter->sanitize($result->member_dept_name, "string"); ?></td>
                             <td><?= $filter->sanitize($result->position, "string"); ?></td>

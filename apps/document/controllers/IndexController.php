@@ -69,6 +69,7 @@ class IndexController extends ControllerBase {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function taxdocumentAction() {
+        $this->assets->addCss('apps/document/css/index_tax.css');
         $ModuleIdCallCore = new Db\CoreMember();
         $this->view->module_name = $this->router->getModuleName();
         $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);

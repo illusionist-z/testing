@@ -17,9 +17,9 @@ class LoginController extends ControllerBase {
      * Index Action
      */
     public function indexAction() {
+        
         $filter = new Filter();
         $login_params = $this->request->get();
-      
         $ModelAuth = new Models\Auth();
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
@@ -28,8 +28,9 @@ class LoginController extends ControllerBase {
             $dbinfo['user_name'] = 'root';
             $dbinfo['db_psw'] = '';
             $this->session->set('db_config', $dbinfo);
-            //$result = $ModelAuth->Check($login_params, $user);
-            
+            $result = $ModelAuth->Check($login_params, $user);
+             $this->session->set('user', $result);
+
          /*
          *  
          * @Varsion Yan Lin Pai <wizardrider@gmail.com>
@@ -62,7 +63,8 @@ class LoginController extends ControllerBase {
             }
         } else {
             $this->view->test = $login_params;
-            $companyDB = Models\CompanyTbl::findByCompanyId($login_params['company_id']);
+            $companyDB = Models\CompanyTbl::findFirst('company_id =' . $login_params['company_id']);
+            
             // Data Base Hase
             if ($companyDB) {
                 // User Chack    
