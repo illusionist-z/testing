@@ -139,10 +139,10 @@ class IndexController extends ControllerBase {
             $id = $this->session->user['member_id'];
             $currentPage = $this->request->get("page");
             $noti = $Admin->GetAdminNoti($id, 0);
-            $this->view->setVar("noti", $noti);            
-            $this->assets->addJs('apps/leavedays/js/search.js');
+            $this->view->setVar("noti", $noti);
+            $this->assets->addJs('apps/leavedays/js/index-search.js');
             $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
-            $month = $this->config->month;
+            $month = $this->config['config']['month'];
             $LeaveType = new LeaveCategories();
             $ltype = $LeaveType->getLeaveType();
             $this->view->setVar("Leavetype", $ltype);

@@ -155,7 +155,7 @@ class Attendances extends Model {
         $today = date('Y-m-d');
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
-        $query = "select count(*) as att from salts\Dashboard\Models\Attendances where att_date='$today' and status =0 or status = 3";
+        $query = "select count(*) as att from salts\Dashboard\Models\Attendances where att_date='$today' and (status =0 or status = 3)";
         $data = $this->modelsManager->executeQuery($query);
         $result['att'] = $data[0]['att'];
         //today leave list

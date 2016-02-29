@@ -187,8 +187,8 @@ class Leaves extends \Library\Core\Models\Base {
                     $leave->noti_id = $Noti_id;
                     $leave->created_dt = date("Y-m-d");
                     $leave->save();
-                    $users = CoreMember::find("deleted_flag = 0");
-                    $users = $users->toArray();
+                    $alluser = CoreMember::find("deleted_flag = 0");
+                    $users = $alluser->toArray();
                     foreach ($users as $user) {
                         $core_noti = new \salts\Core\Models\Db\CoreNotification();
                         $core_noti->creator_name = $filter->sanitize($name,"string");

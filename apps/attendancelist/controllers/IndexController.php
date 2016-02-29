@@ -168,7 +168,8 @@ class IndexController extends ControllerBase {
      */
     public function attendancechartAction() {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
-        $data = $Attendances->currentAttList();
+        $currentPage = $this->request->get("page");
+        $data = $Attendances->currentAttList($currentPage);
         $this->view->data = $data;
     }
 
