@@ -16,7 +16,7 @@ class IndexController extends ControllerBase {
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         parent::initialize();
-       $this->setCommonJsAndCss();
+        $this->setCommonJsAndCss();
         $this->setLeaveJsAndCss();
         $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];

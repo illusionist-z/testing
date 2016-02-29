@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-<?php use Phalcon\Tag as Tag; ?>
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+
+use Phalcon\Tag as Tag; ?>
 <html>
     <head>
         <meta charset="UTF-8">

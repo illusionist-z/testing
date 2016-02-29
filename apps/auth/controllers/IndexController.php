@@ -4,12 +4,8 @@ namespace salts\Auth\Controllers;
 use salts\Auth\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 use Phalcon\Filter;
-$server = PHP_OS;
-
-if($server == 'Linux'){
- //include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
- //include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
-    }
+ 
+ 
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -71,7 +67,7 @@ class IndexController extends ControllerBase {
          */
         $filter = new Filter();
 
-        date_default_timezone_set('Asia/Rangoon');
+        date_default_timezone_set('UTC');
 
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;

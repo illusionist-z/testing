@@ -1,3 +1,11 @@
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+
+?>
 <section class="content-header" style="height:auto;margin-top: 5px;">
     <h1>
         <?= $t->_("leavesetting"); ?>

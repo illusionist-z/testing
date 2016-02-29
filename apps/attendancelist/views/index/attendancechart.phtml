@@ -1,6 +1,15 @@
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+
+?>
+
 <section class="content-header">
     <h1>
-        <?php echo $t->_("month_att_chart") . " (" . date('Y') . "/" . date('m') . ")" ?>
+        <?php echo $t->_("month_att_chart") . " (" . date('Y/m'). ")" ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i><?php echo $t->_("home") ?></a></li>
@@ -21,7 +30,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($data->items as $result) {
+                    foreach ($data as $result) {                        
                         $day = explode(",", $result['day']);
                         $status = explode(",", $result['status']);
                         echo "<tr>";
@@ -59,23 +68,7 @@
         </div>
     </div>
 </section>
-<div id="content">
-    <ul class="pagination" style="margin-left:15px;">
-        <?php
-        if ($data->last === 1 || $data->last === 0) {
-            
-        } else {
-            ?>
-            <li><a href="attendancechart">First</a></li>
-            <li><a href="attendancechart?page=<?= $data->before; ?>">Previous</a></li>
-            <li><a href="attendancechart?page=<?= $data->next; ?>">Next</a></li>
-            <li><a href="attendancechart?page=<?= $data->last; ?>">Last</a></li>
-            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $data->current, " of ", $data->total_pages; ?></span></li>
-            <?php
-        }
-        ?>
-    </ul>
-</div>
+<div id="content"></div>
 <div class="attchart">
     <div class="col-md-12"><div class="col-sm-1 leave0 btn"></div> <?php echo $t->_("att_person"); ?>  </div>
     <div class="col-md-12"><div class="col-sm-1 leave1 btn"></div> <?php echo $t->_("absent_leave_person"); ?>  </div>

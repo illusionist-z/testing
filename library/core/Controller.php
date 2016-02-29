@@ -5,13 +5,7 @@ namespace Library\Core;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$server = PHP_OS;
-
-if($server == 'Linux'){
- include_once '/var/www/html/salts/apps/core/models/CorePermissionRelMember.php'; 
- include_once '/var/www/html/salts/apps/core/models/CorePermissionGroup.php';
- include_once '/var/www/html/salts/apps/core/models/CorePermission.php';
-}
+ 
 use salts\Core\Models\Db;
 //use salts\Auth\Models\Db;
 abstract class Controller extends \Phalcon\Mvc\Controller {
@@ -136,8 +130,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * 
      */
     public function setCommonJsAndCss() {
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css')
-                ->addCss('common/css/bootstrap.min.css')
+        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css') 
                 ->addCss('common/css/common.css')
                 ->addCss('common/css/jquery-ui.css')
                 ->addCss('common/css/skins.min.css');

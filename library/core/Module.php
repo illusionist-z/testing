@@ -8,12 +8,7 @@ use Phalcon\Mvc\ModuleDefinitionInterface;
 use Phalcon\Mvc\View;
 
 //use Phalcon\Config\Adapter\Ini;
-$server = PHP_OS;
-
-if($server == 'Linux'){
- include_once '/var/www/html/salts/library/core/plugin/Permission.php';
-  
-    }
+ 
 Class Module implements ModuleDefinitionInterface {
 
     public $_moduleName;

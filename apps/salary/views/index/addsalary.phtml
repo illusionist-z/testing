@@ -1,4 +1,12 @@
-<section class="content-header" style="height:auto;">
+<?php
+
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+
+?><section class="content-header" style="height:auto;">
     <h1>
         <?= $t->_("addsalary_title"); ?>
     </h1>

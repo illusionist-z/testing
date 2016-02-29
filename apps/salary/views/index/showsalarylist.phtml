@@ -1,4 +1,10 @@
 <?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+ 
 foreach ($usernames as $value) {
     $array[] = $value->member_dept_name;
     $pos[] = $value->position;

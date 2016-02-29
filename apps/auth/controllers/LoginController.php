@@ -7,10 +7,7 @@ use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 $server = PHP_OS;
 
-if($server == 'Linux'){
-//include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
-//include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
-    }
+ 
 class LoginController extends ControllerBase {
 
     public function initialize() {
@@ -31,7 +28,7 @@ class LoginController extends ControllerBase {
        
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
-            $dbinfo['host'] = 'localhost';
+            $dbinfo['host'] = '';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
             $dbinfo['db_psw'] = '';
