@@ -11,9 +11,7 @@ class IndexController extends ControllerBase {
     public function initialize() {        
         parent::initialize();
          
-        $server = PHP_OS;
-     if($server == 'Linux'){
-         
+       
         $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
         $this->assets->addCss('common/css/bootstrap.min.css');
         $this->assets->addCss('common/css/common.css');
@@ -26,13 +24,10 @@ class IndexController extends ControllerBase {
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
-        $this->setDashboardJsAndCss();
-     }
-     else { 
+     
          
          $this->setCommonJsAndCss();
-     
-     }
+      
         $this->setAttJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();

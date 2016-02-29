@@ -63,8 +63,10 @@ class LoginController extends ControllerBase {
         } else {
             $this->view->test = $login_params;
             $companyDB = Models\CompanyTbl::findByCompanyId($login_params['company_id']);
+            
             // Data Base Hase
             if ($companyDB) {
+                 
                 // User Chack    
                 $this->session->set('db_config', $companyDB);
                 // Module Chack

@@ -5,7 +5,7 @@ use salts\Auth\Models;
 use salts\Auth\Models\Permission;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
-$server = PHP_OS;
+
 
  
 class LoginController extends ControllerBase {
@@ -28,7 +28,7 @@ class LoginController extends ControllerBase {
        
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
-            $dbinfo['host'] = '';
+            $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
             $dbinfo['db_psw'] = 'root';
