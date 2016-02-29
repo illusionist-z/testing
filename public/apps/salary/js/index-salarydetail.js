@@ -167,7 +167,7 @@ for (var i = 0; i < cells.length; i++) {
             success:function(){
                 
                 alert("Data has been updated");
-                window.location.reload();
+                //window.location.reload();
             }
         })
 //        

@@ -306,7 +306,6 @@ class SalaryMaster extends Model {
         } catch (Exception $exc) {
             echo $exc;
         }
-//       print_r($final_result);exit;
         return $final_result;
     }
 

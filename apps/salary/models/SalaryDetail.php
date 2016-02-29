@@ -385,6 +385,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     $date_to_calculate=$date_diff+$SD['count_pay'];
                     echo "basic salary in salary detail ".$SD['total_salary'];
                 }
+                echo "---".$date_diff;echo "--".$SD['count_pay'];
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$old_allowance,$SM['status'],$SD['total_all_amount'],$SD['count_pay']);
             $basic_salary=$Allowanceresult['basic_salary_annual'];
             
@@ -429,7 +430,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
                     echo "The Income tax  is " . $income_tax . '<br>';
                     $taxs = $Salarymaster->deducerate($income_tax, $date_to_calculate);
-                    //print_r($taxs);
         }
         
         $final_result[] = array('income_tax' => $taxs['tax_result'],
@@ -437,7 +437,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             'special_allowance' => $allowancetoadd,'overtime' => $ot_fees,
             'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
        
-        //print_r($final_result);exit;
+        print_r($final_result);exit;
        $Result=$this->saveSalaryEditdata($final_result,$salary_start_year,$salary_start_month);
       
         return $Result;
@@ -546,7 +546,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 //            $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
 //                    . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
 //                    "' order by created_dt desc limit 1";
-            //echo $sql.'<br>';
+            echo $sql.'<br>';
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
