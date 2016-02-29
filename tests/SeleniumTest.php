@@ -26,7 +26,7 @@ class SeleniumTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testTitle() {
         $this->url('index.php');
-        $this->assertEquals('Hell', $this->title());
+        $this->assertEquals('Hello', $this->title());
     }
 
     public function testHasLoginForm() {
