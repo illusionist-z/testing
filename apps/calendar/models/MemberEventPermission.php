@@ -10,5 +10,7 @@ use Phalcon\Mvc\Model;
  */
 class MemberEventPermission extends Model {
     
+    public $permit_name;
+    public $member_name;
     
 }

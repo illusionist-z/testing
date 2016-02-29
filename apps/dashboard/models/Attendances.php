@@ -4,7 +4,7 @@ namespace salts\Dashboard\Models;
 
 use Phalcon\Mvc\Model;
 use Library\Core\Models\Db\CoreMember;
- 
+date_default_timezone_set("UTC");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -171,15 +171,19 @@ class Attendances extends Model {
         $result = array();
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
-        $query = "select count(*) as att from attendances where member_id ='$id' and (status = 0 or status = 3)and MONTH(att_date) = '$currentmth' ";
-        $query = $this->db->query($query);
-        $data = $query->fetchall();
-        $result['att'] = $data[0]['att'];
+        $attendance_query = \salts\Core\Models\Db\Attendances::find(array(
+            "member_id = :id: and (status =0 or status = 3) and MONTH(att_date) = :mth:",
+            "bind" => array("id" => $id, "mth" => $currentmth)
+        ));
+        $attendance = count($attendance_query);
+        $result['att'] = $attendance;
         //today leave list
-        $query1 = "select count(*) as absent from leaves where member_id = '$id' and MONTH(start_date) =  '$currentmth'";
-        $query1 = $this->db->query($query1);
-        $data1 = $query1->fetchall();
-        $result['absent'] = $data1[0]['absent'];
+        $leave_query = \salts\Core\Models\Db\Attendances::find(array(
+            "member_id = :id: and status = 1 and MONTH(att_date) = :mth:",
+            "bind" => array("id" => $id, "mth" => $currentmth)
+        ));
+        $leave = count($leave_query);        
+        $result['absent'] = $leave;
         return $result;
     }
 
@@ -196,7 +200,7 @@ class Attendances extends Model {
                 . "lat,lng,overtime,location from core_member left join "
                 . "attendances on core_member.member_id = attendances.member_id "
                 . "where MONTH(attendances.att_date) ='" . $currentmth . "' "
-                . "AND attendances.member_id ='" . $id . "' "
+                . "AND attendances.member_id ='" . $id . "' "                
                 . "order by attendances.att_date DESC ";
         $result = $this->db->query($row);
         $list = $result->fetchall();

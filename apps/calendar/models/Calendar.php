@@ -153,18 +153,20 @@ class Calendar extends Model {
     public function addPermitName($permit_name, $id) {
         $permit = new MemberEventPermission();
         $query = MemberEventPermission::find("permit_name ='$permit_name' and member_name = '$id' ");
-        if(count($query) == 0){
+        if($query == false || count($query) == 0 ){
         $permit->member_name = $id;
         $permit->permit_name    = $permit_name;
         $permit->delete_flag  = 0;
-        $permit->save();$return = 0;
+        $permit->save();
+        $return = 0;
         }
         else  {
-            $query2 = MemberEventPermission::findFirst("permit_name ='$permit_name' and member_name ='$id' and delete_flag = 1");
-            if(count($query2) == 0 )   {$return = 1;}
+            $add_permit = \salts\Core\Models\Permission::tableObject($query);
+            if($add_permit->delete_flag == 0 )   {$return = 1;}
             else {
-                $query2->delete_flag = 0;
-                $query2->update();$return = 0;
+                $add_permit->delete_flag = 0;
+                $add_permit->update();
+                $return = 0;
             }
         } 
         return $return;
@@ -182,9 +184,8 @@ class Calendar extends Model {
      * @author Saw Zin Min Tun
      */
     public function memIdCal($uname) {
-        $sql = "select * from core_member WHERE full_name ='" . $uname . "'";
-        $result = $this->db->query($sql);
-        $row = $result->fetchall();
+        $core_member = \salts\Core\Models\Db\CoreMember::find("full_name ='$uname'");
+        $row = $core_member->toArray();
         return $row;
     }
 
