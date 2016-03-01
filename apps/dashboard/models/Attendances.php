@@ -35,21 +35,25 @@ class Attendances extends Model {
         $mydate = date("Y-m-d H:i:s");
         
         $today = date("Y:m:d");
-        $att = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 1");
+        $HasLeave = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 1");
         /**
           Condition : Already Checked in or not
          * */
-        if ($att === FALSE) {
+        if ($HasLeave === FALSE) {
             //$status = " Already Checked in ";
             $Noti_id = rand();
             $att_today = Attendances::findFirst("att_date = '$today' AND member_id ='$id' AND (status = 0 OR status = 3)");
             if ($att_today === FALSE) {
-                $att_leave = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 2");
+                $HasAbsent = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 2");
                 $hour = \salts\Core\Models\Db\Attendances::getInstance()->UTCToLocal($mydate, $offset);
                 $hour = date("H",strtotime($hour));
-                   if ($att_leave === FALSE) {
+                   if ($HasAbsent === FALSE) {
                     $Attendances = new Attendances();
-                   
+                    $Attendances->execute = 0;
+                } else {
+                    $Attendances = \salts\Core\Models\Permission::tableObject($HasLeave);
+                    $Attendances->execute = 1;
+                }
                     $Attendances->checkin_time = $mydate;
                     $Attendances->member_id = $id;
                     $Attendances->att_date = $today;
@@ -57,11 +61,7 @@ class Attendances extends Model {
                     $Attendances->notes = $note;
                     $Attendances->noti_id = $Noti_id;
                     $Attendances->status = ($hour > 12 ? 3 : 0 );
-                    $Attendances->save();
-                } else {
-                    $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
-                    location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = ".($hour > 12 ? 3 : 0)." where att_date ='" . $today . "' AND member_id ='" . $id . "'");
-                }
+                    $Attendances->execute ===  0 ? $Attendances->save() : $Attendances->update();
                 if ($note != NULL) {
                     $Noti = new CoreNotification();
                     $Noti->noti_creator_id = $creator_id;
@@ -155,7 +155,7 @@ class Attendances extends Model {
         $today = date('Y-m-d');
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
-        $query = "select count(*) as att from salts\Dashboard\Models\Attendances where att_date='$today' and status =0 or status = 3";
+        $query = "select count(*) as att from salts\Dashboard\Models\Attendances where att_date='$today' and (status =0 or status = 3)";
         $data = $this->modelsManager->executeQuery($query);
         $result['att'] = $data[0]['att'];
         //today leave list

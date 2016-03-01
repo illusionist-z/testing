@@ -14,9 +14,8 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize(); 
         
-       
+        $this->setCommonJsAndCss();
         $this->setDashboardJsAndCss();
-        
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);

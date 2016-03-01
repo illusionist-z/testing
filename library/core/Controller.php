@@ -130,17 +130,21 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * 
      */
     public function setCommonJsAndCss() {
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css') 
-                ->addCss('common/css/common.css')
-                ->addCss('common/css/jquery-ui.css')
-                ->addCss('common/css/skins.min.css');
-        $this->assets->addJs('common/js/jquery.min.js')
-                ->addJs('common/js/common.js')
+           $this->assets->addCss('common/css/bootstrap/bootstrap.min.css'); 
+        $this->assets->addCss('common/css/bootstrap.min.css');
+          $this->assets->addCss('common/css/common.css');
+          $this->assets->addCss('common/css/jquery-ui.css');
+          $this->assets->addCss('common/css/skins.min.css');
+        $this->assets->addJs('common/js/jquery.min.js');
+        $this->assets->addJs('common/js/common.js');
                 //->addJs('common/js/btn.js')
-                ->addJs('common/js/bootstrap.min.js')
-                ->addJs('common/js/app.min.js')
-                ->addJs('common/js/jquery-ui.js')
-                ->addJs('common/js/notification.js');
+        $this->assets->addJs('common/js/bootstrap.min.js');
+        $this->assets->addJs('common/js/app.min.js');
+        $this->assets->addJs('common/js/jquery-ui.js');
+        $this->assets->addJs('common/js/notification.js');
+        
+         
+        
     }
     
    /**
@@ -149,8 +153,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function setAttJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
 
-        $this->assets->addJs('common/js/export.js')
-                ->addJs('apps/attendancelist/js/base.js');
+        $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('apps/attendancelist/js/base.js');
     }
 
     /**
@@ -158,8 +162,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setAttAbsentJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/paging.js')
-                ->addJs('apps/attendancelist/js/absent-addabsent.js');
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/attendancelist/js/absent-addabsent.js');
     }
 
     /**
@@ -168,9 +172,9 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function setAttUserJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
 
-        $this->assets->addJs('common/js/export.js')
-                ->addJs('common/js/paging.js')
-                ->addJs('apps/attendancelist/js/user-attendancelist.js');
+        $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
     }
 
     /**
@@ -185,60 +189,59 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * Js and Css for Calendar
      */
     public function setCalJsAndCss() {
-        $this->assets->addCss('common/css/css/style.css')
-                ->addCss('apps/calendar/css/calendar.css')
-                ->addCss('apps/calendar/css/fullcalendar.min.css');
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addCss('apps/calendar/css/calendar.css');
+        $this->assets->addCss('apps/calendar/css/fullcalendar.min.css');
 
-        $this->assets->addJs('apps/calendar/js/moment.min.js')
-                ->addJs('apps/calendar/js/fullcalendar.min.js')
-                ->addJs('apps/calendar/js/calendar.js')
-                ->addJs('apps/calendar/js/selectall.js');
+        $this->assets->addJs('apps/calendar/js/moment.min.js');
+        $this->assets->addJs('apps/calendar/js/fullcalendar.min.js');
+        $this->assets->addJs('apps/calendar/js/calendar.js');
+        $this->assets->addJs('apps/calendar/js/selectall.js');
     }
 
     /**
      * Js and Css for Document
      */
     public function setDocumentJsAndCss() {
-        $this->assets->addCss('common/css/jquery-ui.css')
-                ->addCss('common/css/css/style.css')
-                ->addCss('apps/document/css/index_ssbdocument.css');
+        $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addCss('apps/document/css/index_ssbdocument.css');
 
-        $this->assets->addJs('apps/document/js/FileSaver.js')
-                ->addJs('apps/document/js/jquery.wordexport.js')
-                ->addJs('apps/document/js/jquery.wordexport.js');
+        $this->assets->addJs('apps/document/js/FileSaver.js');
+        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
+        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
     }
 
     /**
      * Js and Css for Dashboard
      */
     public function setDashboardJsAndCss() {
-        
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css'); 
         $this->assets->addCss('common/css/bootstrap.min.css');
         $this->assets->addCss('common/css/common.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/skins.min.css');
         $this->assets->addJs('common/js/jquery.min.js');
-        $this->assets->addJs('common/js/common.js'); 
+        $this->assets->addJs('common/js/common.js');
+                //->addJs('common/js/btn.js')
         $this->assets->addJs('common/js/bootstrap.min.js');
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
+        
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-                    // ->addJs('http://www.geoplugin.net/javascript.gp');
-        
-        
+                //s->addJs('http://www.geoplugin.net/javascript.gp');
     }
 
     /**
      * Js and Css for Help
      */
     public function setHelpJsAndCss() {
-        $this->assets->addCss('common/css/css/style.css')
-                ->addCss('apps/help/css/base.css');
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addCss('apps/help/css/base.css');
         $this->assets->addJs('apps/help/js/base.js');
     }
 
@@ -246,18 +249,18 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * Js and Css for Leave Days
      */
     public function setLeaveJsAndCss() {
-        $this->assets->addCss('common/css/jquery-ui.css')
-                ->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/export.js')
-                ->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->assets->addCss('common/css/jquery-ui.css');
+         $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addJs('common/js/export.js');
+         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
     }
 
     /**
      * Js and Css for User Leave Days
      */
     public function setUserLeaveJsAndCss() {
-        $this->assets->addCss('common/css/jquery-ui.css')
-                ->addCss('common/css/css/style.css');
+        $this->assets->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('common/js/export.js');
     }
 
@@ -265,8 +268,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * Js and Css for Manage Company
      */
     public function setCompanyJsAndCss() {
-        $this->assets->addCss('common/css/css/style.css')
-                ->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addCss('common/css/dialog.css');
         $this->assets->addJs('apps/managecompany/js/index-base.js');
     }
 
@@ -274,28 +277,28 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * Js and Css for Manage Company Module Controller
      */
     public function setCompanyModuleJsAndCss() {
-        $this->assets->addCss('common/css/css/style.css')
-                ->addCss('common/css/dialog.css');
-        $this->assets->addJs('common/js/base.js')
-                ->addJs('apps/managecompany/js/module-base.js');
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addJs('common/js/base.js');
+         $this->assets->addJs('apps/managecompany/js/module-base.js');
     }
 
     /**
      * Js and Css for Manage User
      */
     public function setManageUserJsAndCss() {
-        $this->assets->addCss('common/css/dialog.css')
-                ->addCss('common/css/css/style.css');
-        $this->assets->addJs('apps/manageuser/js/coremember-saveuser.js')
-                ->addCss('apps/manageuser/css/base.css');
+        $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addJs('apps/manageuser/js/coremember-saveuser.js');
+        $this->assets->addJs('apps/manageuser/css/base.css');
     }
 
     /**
      * Js and Css for Manage User(Core Member Controller)
      */
     public function setManageUserControllerJsAndCss() {
-        $this->assets->addCss('common/css/dialog.css')
-                ->addCss('common/css/jquery-ui.css');
+        $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addJs('apps/manageuser/js/base.js');
     }
 
@@ -304,18 +307,18 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setSalaryJsAndCss() {
         $this->assets->addCss('apps/salary/css/base.css');
-        $this->assets->addJs('common/js/paging.js')
-                       ->addJs('common/js/export.js');
+        $this->assets->addJs('common/js/paging.js');
+       $this->assets->addJs('common/js/export.js');
     }
 
     /**
      * Js and Css for Setting
      */
     public function setSettingJsAndCss() {
-        $this->assets->addCss('common/css/dialog.css')
-                ->addCss('common/css/css/style.css');
-        $this->assets->addJs('apps/setting/js/base.js')
-                ->addJs('apps/setting/js/index-admin.js');
+        $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addJs('apps/setting/js/base.js');
+        $this->assets->addJs('apps/setting/js/index-admin.js');
     }
 
     public function setNotificationJsAndCss() {

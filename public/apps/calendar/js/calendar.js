@@ -5,11 +5,12 @@
  */
 var $ovl, $selectname, dict = [];
 var Calendar = {
+    Ctrl : baseUri+"calendar/index",
     init: function (json_events) {
 
         if (!json_events) {
             $.ajax({
-                url: 'calenderauto',
+                url: Calendar.Ctrl+'/calenderauto',
                 method: 'GET',
                 success: function (data) {
              
@@ -177,7 +178,7 @@ var Calendar = {
                 //alert(selectedvalue[i]);
             });
             $.ajax({
-                url: "removeEventByname",
+                url: Calendar.Ctrl+"/removeEventByname",
                 data: {remove: selectedvalue},
                 type: "POST",
                 success: function () {
@@ -225,7 +226,7 @@ var Calendar = {
                     $.ajax({
                         type: "GET",
                         data: {permit: ui.item.value},
-                        url: "addmember",
+                        url: Calendar.Ctrl+"/addmember",
                         dataType: "json",
                         success: function (d) {
                             if (d === 1) {
@@ -258,7 +259,7 @@ Calendar.Dialog = {
          * @type @arr member_id
          */
         $.ajax({
-            url: 'getid?id=' + event.id,
+            url:  Calendar.Ctrl+'/getid?id=' + event.id,
             type: 'GET',
             async: false,
             dataType: 'json',

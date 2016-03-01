@@ -48,7 +48,7 @@ class CoreMember extends \Library\Core\Models\Base {
         $paginator = new PaginatorModel(
                 array(
             "data" => $row,
-            "limit" => 10,
+            "limit" => 2,
             "page" => $currentPage
                 )
         );
