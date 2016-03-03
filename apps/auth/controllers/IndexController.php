@@ -3,6 +3,7 @@
 namespace salts\Auth\Controllers; 
 use salts\Auth\Models\Db\CoreMember;
 use salts\Core\Models\Db;
+use salts\Auth\Models;
 use Phalcon\Filter;
  
  
@@ -82,15 +83,15 @@ class IndexController extends ControllerBase {
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
-                $ChackUser = new Db\CoreMember();
+                $ChackUser = new Models\CoreMember();
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
 
                 if (0 != count($chack_user2)) {
 
                     $member_name = $this->session->tokenpush;
-                    $core_fai = new Db\CoreMember();
-                    $core_fai = CoreMember::findFirstByMemberLoginName($member_name);
+                    $core_fai = new Models\CoreMember();
+                    $core_fai = Models\CoreMember::findFirstByMemberLoginName($member_name);
                     $core_fai = $core_fai->timeflag;
                     $timestamp = (date("Y-m-d H:i:s"));
 
@@ -116,7 +117,7 @@ class IndexController extends ControllerBase {
         } else {
 
             $member_name = $this->session->tokenpush;
-            $ChackUser = new CoreMember();
+            $ChackUser = new Models\CoreMember();
             $chack_user = $ChackUser::findByMemberLoginName($member_name);
 
 
@@ -158,7 +159,7 @@ class IndexController extends ControllerBase {
             // User Not Has
             elseif (0 != count($chack_user)) {
                 $member_name = $this->session->tokenpush;
-                $Chack = new CoreMember();
+                $Chack = new Models\CoreMember();
                 date_default_timezone_set('Asia/Rangoon');
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
@@ -176,7 +177,7 @@ class IndexController extends ControllerBase {
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
-        $ChackUser = new CoreMember();
+        $ChackUser = new Models\CoreMember();
         $chack_user = $ChackUser::findByMemberLoginName($member_name);
         if (0 == count($chack_user)) {
             $timestamp = (date("Y-m-d H:i:s"));

@@ -12,7 +12,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->Calendar = new \salts\Calendar\Models\Calendar();
-                $this->setCommonJsAndCss();
+        $this->setCommonJsAndCss();
         $this->setCalJsAndCss();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);

@@ -238,7 +238,7 @@ class Attendances extends Model {
         try {
             $currentmth = date('m');
             $row = $this->modelsManager->createBuilder()
-                    ->columns(array('core.member_login_name', "group_concat(DAY(attendances.att_date)) as day,attendances.member_id,group_concat(attendances.status) as status"))
+                    ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day,attendances.member_id,group_concat(attendances.status) as status"))
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
