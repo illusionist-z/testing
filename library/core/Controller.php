@@ -136,7 +136,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 ->addCss('common/css/jquery-ui.css')
                 ->addCss('common/css/skins.min.css');
         $this->assets->addJs('common/js/jquery.min.js')
-                ->addJs('common/js/common.js')
+                ->addJs('common/js/common.js');
                 //->addJs('common/js/btn.js')
         $this->assets->addJs('common/js/bootstrap.min.js');
         $this->assets->addJs('common/js/app.min.js');
