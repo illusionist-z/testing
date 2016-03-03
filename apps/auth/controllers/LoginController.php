@@ -46,11 +46,9 @@ class LoginController extends ControllerBase {
             
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
-           
-         //   $this->view->test = $login_params;
-         
-            //$companyDB = $ModelAuth->findCompDb($login_params);
-            // Data Base Hase
+            
+        
+            
             if ($companyDB) {
                 // User Chack    
                 

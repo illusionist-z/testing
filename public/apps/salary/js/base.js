@@ -224,10 +224,11 @@ var Salary = {
         });
     },
     Delete : function(d){
-         $del = $('#confirm');
+      
+        $del = $('#confirm');
         $del.css('color','black');
         $del.css('background','#F5F5F5');
-          $del.dialog({
+        $del.dialog({
             autoOpen:false,
             height:'auto',
             width:'auto',
@@ -246,7 +247,7 @@ var Salary = {
            
         }).parent('.ui-dialog').css('zIndex',9999);
          $del.html("<p>Are u sure to delete?</p>");
-        $del.dialog("open");  
+        $del.dialog("open");
     },
     Confirm :function(d){
         var form=$('#edit_salary');

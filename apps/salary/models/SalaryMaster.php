@@ -138,11 +138,14 @@ class SalaryMaster extends Model {
     public function saveSalaryDedution($dedution, $no_of_children, $member_id, $creator_id) {
         try {
             for ($i = 0; $i < count($dedution); $i++) {
-                $sql = "INSERT INTO salts\Salary\Models\SalaryMemberTaxDeduce 
-                        (deduce_id,member_id,creator_id, created_dt,updater_id,updated_dt)
-                        VALUES('" . $dedution[$i] . "','" . $member_id . "', '"
-                        . $creator_id . "',NOW(),0,'00:00:00')";
-                $result = $this->modelsManager->executeQuery($sql);
+                $taxdeduce = new SalaryMemberTaxDeduce();
+                $taxdeduce->deduce_id = $dedution[$i];
+                $taxdeduce->member_id = $member_id ;
+                $taxdeduce->creator_id = $creator_id;
+                $taxdeduce->created_dt = '00:00:00';
+                $taxdeduce->updater_id = 0;
+                $taxdeduce->updated_dt = '00:00:00';
+                $taxdeduce->save();
             }
             $sql = "UPDATE salary_member_tax_deduce SET"
                     . " no_of_children='" . $no_of_children . "' WHERE member_id='" . $member_id . "' and deduce_id='children'";

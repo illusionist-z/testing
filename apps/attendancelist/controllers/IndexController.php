@@ -71,7 +71,7 @@ class IndexController extends ControllerBase {
      * show today attendance list
      */
     public function todaylistAction() {
-
+      
         if ($this->moduleIdCall == 1) {
             $this->act_name = $this->router->getModuleName();
             $currentPage = $this->request->get('page');
@@ -85,7 +85,7 @@ class IndexController extends ControllerBase {
             $Username = $UserList->getUserName();
             $AttList = new \salts\Attendancelist\Models\Attendances();
             $Result_Attlist = $AttList->getTodayList($name, $currentPage);
-
+            
             if ($this->permission == 1) {
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;

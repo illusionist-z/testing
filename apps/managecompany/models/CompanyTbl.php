@@ -47,7 +47,7 @@ class CompanyTbl extends Model {
 //        $CompanyTbl->starting_date = $sdate;
 //        $CompanyTbl->created_dt = $date;
 //        $CompanyTbl->save();
-
+        
         $sql = "INSERT INTO `company_tbl`(`company_id`, `company_name`, `email`, `phone_no`, "
                 . "`db_name`, `user_name`, `db_psw`, `host`, `user_limit`, `starting_date`, "
                 . "`created_dt`) VALUES "
@@ -60,13 +60,50 @@ class CompanyTbl extends Model {
             $EnableModule->company_id = $data['comid'];
             $EnableModule->module_id = $data['check'][$i];
             $EnableModule->save();
-//            $sql = "INSERT INTO `enable_module`(`company_id`, `module_id`) VALUES ('" . $data['comid'] . "','" . $data['check'][$i] . "')";
-//            $this->db->query($sql);
         }
+        $this->createdb($data['com_host'],$data['com_db'],$data['com_dbun'],$data['com_dbpsw']);
         $message = "success";
         return $message;
     }
 
+    
+    public function createdb($host,$dbname,$username,$password){
+            $dbhost = $host;
+            $dbuser = $username;
+            $dbpass = $password;
+            $mysql_database = $dbname;
+            $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die('Error connecting to MySQL server: ' . mysql_error());
+            $sql = 'CREATE Database '.$mysql_database.'';
+            mysql_query( $sql, $conn );
+            mysql_select_db($mysql_database) or die('Error selecting MySQL database: ' . mysql_error());
+                // Temporary variable, used to store current query
+                $templine = '';
+               $filename = '../script/build/test.sql';
+                $lines = file($filename);
+                
+                // Loop through each line
+                foreach ($lines as $line)
+                {
+                // Skip it if it's a comment
+                if (substr($line, 0, 2) == '--' || $line == ''){
+                    continue;
+                }
+                // Add this line to the current segment
+                $templine .= $line;
+                // If it has a semicolon at the end, it's the end of the query
+                if (substr(trim($line), -1, 1) == ';')
+                {
+                    // Perform the query
+                    mysql_query($templine) or print('Error performing query \'<strong>' . $templine . '\': ' . mysql_error() . '<br /><br />');
+                    // Reset temp variable to empty
+                    $templine = '';
+                }
+                }
+              
+
+    }
+    
+    
     public function getAllcom() {
         $result = $this->db->query("select * from company_tbl where deleted_flag=0");
         $final_result = $result->fetchall();
@@ -153,11 +190,7 @@ class CompanyTbl extends Model {
             'message' => ' * db username is required'
                 )
         ));
-        $validate->add('com_dbpsw', new PresenceOf(
-                array(
-            'message' => ' * db password is required'
-                )
-        ));
+       
         $validate->add('com_host', new PresenceOf(
                 array(
             'message' => ' * DB host is required'

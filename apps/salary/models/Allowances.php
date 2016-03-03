@@ -126,9 +126,11 @@ class Allowances extends Model {
     public function saveAllowance($allowance, $member_id) {
         try {
             for ($i = 0; $i < count($allowance); $i++) {
-                $sql = "INSERT INTO salary_master_allowance (allowance_id,member_id) VALUES('" . $allowance[$i] . "','" . $member_id . "')";
-                $result = $this->db->query($sql);
-            }
+                $Allowance = new SalaryMasterAllowance();
+                $Allowance->allowance_id = $allowance[$i];
+                $Allowance->member_id = $member_id ;
+                $Allowance->save();
+           }
         } catch (Exception $e) {
             echo $e;
         }

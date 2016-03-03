@@ -7,7 +7,9 @@ use Phalcon\Mvc\Model;
 use salts\Salary\Models\Allowances;
 
 class SalaryMasterAllowance extends Model {
-
+    
+    public $allowance_id;
+    public $member_id;
     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
     }

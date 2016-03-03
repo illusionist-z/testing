@@ -6,7 +6,7 @@ if(! ini_get('date.timezone')){
 }
     
 
-
+$month = $monthName= 0;
 foreach ($salary_info as $value) {
    $date=$value->salary_detail->pay_date;
    $month = explode("-", $date);

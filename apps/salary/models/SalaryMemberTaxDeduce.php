@@ -6,7 +6,14 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 
 class SalaryMemberTaxDeduce extends Model {
-
+    public $id;
+    public $deduce_id;
+    public $member_id;
+    public $creator_id;
+    public $created_dt;
+    public $updater_id;
+    public $updated_dt;
+    public $no_of_childern;
     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
     }

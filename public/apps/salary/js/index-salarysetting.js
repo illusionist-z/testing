@@ -247,6 +247,7 @@ var Deduction = {
         });
     },
     Delete : function(d){
+       
         $del = $('#confirm');
 
           $del.dialog({
