@@ -8,14 +8,10 @@
  * show monthly list by return json array
  * @author Su ZIn Kyaw
  */
- var User={},pager = new Paging.Pager();
+ var User={};
  User.Attendance = {
     init : function(){
-            $('tfoot').html($('tbody').html());   //for csv
-            pager.perpage =7;            
-            pager.para = $('tbody > tr');
-            pager.showPage(1);  
-            $('tbody').show();
+       $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
     },
     search : function(){
       var startdate = document.getElementById('startdate').value;

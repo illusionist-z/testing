@@ -1,0 +1,87 @@
+
+<!-- Main content -->
+<!-- Main content -->
+
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+foreach ($salary_info as $value) {
+   $date=$value->salary_detail->pay_date;
+     $data = explode("-", $date);
+//   $year = date("Y",$date);
+   $dateObj   = DateTime::createFromFormat('!m', $data[1]);
+   $monthName = $dateObj->format('F'); 
+}
+
+?>
+<section class="content">
+    <div class="row"><!-- for search form-->
+        <div class="col-md-12"><!--start add user form--->
+            <span style="float: right;"><a href="#" title="Print" class="print" id="printimg"></a></span>
+            <div class="printable">
+             
+
+                <table border="1px;" class="tbl-tax">
+                    <thead>
+                        <tr>
+                            <td rowspan="2">
+                                 No.
+                            </td>
+                            <td rowspan="2">
+                                Account Name : 
+                            </td>
+                            <td rowspan="2">
+                                Card(or) MMK <br>
+                                Account No:
+                            </td>
+                            <td rowspan="2">
+                                Amount MMK
+                            </td>
+                            
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        $ssb_total = 0;
+                        $sum1 = 0;
+                        $sum2 = 0;
+                        $sum3 = 0;
+                        $sum4 = 0;
+                        $sum5 = 0;
+                        $Total = 0;
+                        if (!empty($salary_info)) {
+                            foreach ($salary_info as $salary_infos) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $no; ?></td>
+                                    <td><?php echo $salary_infos->core->member_login_name; ?></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <?php
+                                $no++;
+                            }
+                            ?>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total : </td>
+                                <td></td>
+                                
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="resign" class="navbar"></div>
+</section>

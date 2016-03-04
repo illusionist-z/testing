@@ -772,5 +772,7 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($msg);
     }
+    
+   
 
 }

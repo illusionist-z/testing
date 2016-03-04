@@ -138,5 +138,21 @@ class IndexController extends ControllerBase {
         $ComInfo->editCompanyInfo($update_info);
         $this->response->redirect("document/index/letterhead");
     }
+    
+     public function salaryreferAction(){
+        
+            $this->view->module_name = $this->router->getModuleName();
+            $this->assets->addJs('apps/document/js/index-print.js');
+            $SalaryDetail = new Document();
+            $result = $SalaryDetail->getSsbInfo();
+             $ComInfo = new CompanyInfo();
+            $ComInfo = CompanyInfo::find();
+            $coreid = new CorePermissionGroupId();
+
+                $this->view->salary_info = $result;
+                $this->view->cominfo = $ComInfo;
+
+        }
+    
 
 }
