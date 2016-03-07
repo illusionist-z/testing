@@ -1,12 +1,7 @@
-var pager = new Paging.Pager();
 var Absent = {
     //paging effect
     init: function () {
-        $('tfoot').append($('table.listtbl tbody').html());   //for csv 
-        pager.perpage = 10 ;
-        pager.para = $('table.listtbl tbody > tr');
-        pager.showPage(1);
-        $('tbody').show();
+      $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
     },
     Search: function (id) {
         //alert($('#add_salary').serialize());

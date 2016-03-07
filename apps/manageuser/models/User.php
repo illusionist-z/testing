@@ -72,12 +72,13 @@ class User extends Model {
                         $core_table_update = \salts\Core\Models\Permission::tableObject($core_table);
                         $core_table_update->member_login_name = $cond['name'];
                         $core_table_update->member_dept_name = $cond['dept'];
+                        $core_table_update->bank_acc                 = $cond['bank'];
                         $core_table_update->member_mobile_tel  = $cond['pno'];
                         $core_table_update->member_mail           = $cond['email'];
                         $core_table_update->position                    = $cond['position'];
                         $core_table_update->member_address      = $cond['address'];
                         $core_table_update->working_start_dt       = $cond['work_sdate'];          
-                        $core_table_update->update();                        
+                        $core_table_update->update();
             $res['valid'] = true;
         } else {
             $res['valid'] = false;
