@@ -14,7 +14,7 @@ class Auth extends Component {
         $this->login_db = $this->getDI()->getShared("login_db");
     }
 
-    /**
+     /**
      * Find company_db
      * @param type $param
      * @return type

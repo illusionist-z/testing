@@ -26,4 +26,3 @@ class CompanyTbl extends Model {
     public $deleted_flag;
     public $id;
 }
-    

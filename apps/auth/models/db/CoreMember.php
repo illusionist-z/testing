@@ -1,7 +1,6 @@
 <?php
 
-namespace salts\Auth\Models\Db;
-//namespace salts\Auth\Models\Db;
+namespace salts\Auth\Models\Db; 
 
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Query;
@@ -9,8 +8,7 @@ use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db\CorePermissionRelMember;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
-//include_once '/var/www/html/salts/library/core/BaseModel.php';
-//include_once '/var/www/html/salts/library/core/models/SingletonTrait.php';
+ 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
