@@ -125,7 +125,7 @@ var Calendar = {
     event: function (val, reload) {
         $.ajax({
             type: "GET",
-            url: "showdata",
+            url: Calendar.Ctrl+"/showdata",
             async: false,
             data: {event_id: val},
             success: function (d) {
@@ -155,7 +155,7 @@ var Calendar = {
 
         var id = [];
         $.ajax({
-            url: 'getcalmemberid?uname=' + name,
+            url: Calendar.Ctrl+'/getcalmemberid?uname=' + name,
             method: 'GET',
             async: false,
             success: function (data) {
@@ -372,7 +372,7 @@ Calendar.Dialog = {
     //create new event
     create: function (dia) {
         $.ajax({
-            url: "create",
+            url: Calendar.Ctrl+"/create",
             data: $('#create_event').serialize(),
             async: false,
             dataType: "json",

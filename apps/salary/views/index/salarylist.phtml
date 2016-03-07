@@ -35,7 +35,7 @@ use Phalcon\Filter;
                 <table class="listtbl">
                     <thead>
                         <tr>
-<!--                            <th><?= $t->_("no"); ?></th>-->
+                            <th><?= $t->_("no"); ?></th>
                             <th><?= $t->_("name"); ?></th>
                             <th><?= $t->_("basic_salary"); ?></th>
                             <th id="th_travelfees"><?= $t->_("travel_fee_perday"); ?></th>
@@ -51,9 +51,9 @@ use Phalcon\Filter;
                         $filter = new Filter();
                         $i = 1;
                         foreach ($salarydetail->items as $salarydetails) {
-                            ?>
+                            $t = ($salarydetail->current)-1;?>
                             <tr>
-<!--                                <td></td>-->
+                                <td><?= $i +($salarydetail->limit*$t)?></td>
                                 <td><?php echo $filter->sanitize($salarydetails->core->member_login_name, "string"); ?></td>
                                 <td><?php echo number_format($filter->sanitize($salarydetails->salarymas->basic_salary, "int")); ?></td>
                                 <td><?php
@@ -100,8 +100,6 @@ use Phalcon\Filter;
         </div>
 </section>
 <div id="edit_salary_dia" class="navbar">    
-<div id="confirm" title="Confirm Delete">
 
-</div>
-</div>	
+</div>	<div id="confirm" class="navbar"></div>
 

@@ -27,5 +27,8 @@
   .printable *{ visibility: visible;}
   #side {display:none;}
 }
-
+#doc{
+    float: right;
+    padding: 15px;
+}
 
