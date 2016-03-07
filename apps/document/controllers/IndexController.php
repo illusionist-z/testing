@@ -143,14 +143,21 @@ class IndexController extends ControllerBase {
         
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
-            $SalaryDetail = new Document();
-            $result = $SalaryDetail->getSsbInfo();
-             $ComInfo = new CompanyInfo();
+           
+           
+            $SalaryDetail = new \salts\Document\Models\SalaryDetail();
+            $salary =\salts\Document\Models\SalaryDetail::find(array(
+            'order' => 'pay_date DESC',
+            "limit" => 1
+            ));
+            $data = explode("-", $salary[0]->pay_date);
+            $month = $data['1'];
+            $year =$data['0'];
+            $result = $SalaryDetail->salarylist($month, $year);
             $ComInfo = CompanyInfo::find();
-            $coreid = new CorePermissionGroupId();
-
-                $this->view->salary_info = $result;
-                $this->view->cominfo = $ComInfo;
+            $name = $ComInfo['0']->company_name;
+            $this->view->salary_info = $result;
+            $this->view->com_name = $name;
 
         }
     
