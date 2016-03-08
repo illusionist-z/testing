@@ -158,9 +158,10 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     }
     public function setSettJsAndCss(){
         $this->assets->addJs('apps/setting/js/base.js');
-         $this->assets->addJs('apps/setting/js/index-admin.js');
+        $this->assets->addJs('apps/setting/js/index-admin.js');
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
-               
+          $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/css/style.css');
     }
 
     /**
@@ -169,7 +170,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function setAttAbsentJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/attendancelist/js/absent-addabsent.js');
+        $this->assets->addJs('apps/attendancelist/js/absent-addabsent.js'); 
     }
 
     /**
