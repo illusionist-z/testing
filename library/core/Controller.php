@@ -156,6 +156,12 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/attendancelist/js/base.js');
     }
+    public function setSettJsAndCss(){
+        $this->assets->addJs('apps/setting/js/base.js');
+         $this->assets->addJs('apps/setting/js/index-admin.js');
+        $this->assets->addJs('apps/setting/js/user-changeprofile.js');
+               
+    }
 
     /**
      * Js and Css for Absent  list

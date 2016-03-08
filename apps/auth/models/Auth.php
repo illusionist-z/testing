@@ -41,7 +41,8 @@ class Auth extends Component {
         $Result = $this->login_db->query($sql);
         $Result = $Result->fetchAll();
         return $Result;
-    }
+        }
+                
 
     /**
      * Checks the user credentials
