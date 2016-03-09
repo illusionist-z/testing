@@ -1,15 +1,12 @@
 <?php
-
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
-    
-
 ?>
 
 <section class="content-header">
     <h1>
-        <?php echo $t->_("month_att_chart") . " (" . date('Y') . "/" . date('m') . ")" ?>
+<?php echo $t->_("month_att_chart") . " (" . date('Y') . "/" . date('m') . ")" ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i><?php echo $t->_("home") ?></a></li>
@@ -21,54 +18,73 @@ if(! ini_get('date.timezone')){
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
                 <thead>
+                <th><?php  echo "NO."; ?></th>
                 <th><?= $t->_("username"); ?></th>
-                <?php
-                for ($i = 1; $i <= date('t'); $i++) {
-                    echo "<th>Day " . $i . "</th>";
-                }
-                ?>                    
+<?php
+for ($i = 1; $i <= date('t'); $i++) {
+    echo "<th>Day " . $i . "</th>";
+}
+?>                    
                 </thead>
                 <tbody>
-                    <?php
-                    foreach ($data as $result) {                        
-                        $day = explode(",", $result['day']);
-                        $status = explode(",", $result['status']);
-                        echo "<tr>";
-                        echo "<td>" . $result['member_login_name'] . "</td>";
-                        for ($i = 1; $i <= date('t'); $i++) {
-                            $j = array();
-                            //get under today date
-                            if ($i <= date('d')) {
-                                foreach ($day as $k => $v) {
-                                    if ($i == $v) {
-                                        $j[$v + 1] = $v;
-                                        $j[$v] = array();
-                                        $j[$v][$v] = $status[$k];
-                                    }
-                                }
-                                if (array_key_exists($i, $j)) {
-                                    if ($i == $j[$i + 1]) {
-                                        $j[$i][$i] == 0 ? $class = 'leave0' : ($j[$i][$i] == 1 ? $class = "leave1" : ($j[$i][$i] == 2 ? $class = "leave2" : $class = "leave3"));
-                                        echo "<td class='$class'></td>";
-                                    }
-                                } else {
-                                    echo "<td class='unleave'></td>";
+                <?php   $no = 1;
+                foreach ($data->items as $result) {
+                    $day = explode(",", $result['day']);
+                    $status = explode(",", $result['status']);
+                    $tt = ($data->current-1);
+                    echo "<tr>";
+                    echo "<td>" . ($no+($data->limit*$tt)) . "</td>";
+                    echo "<td>" . $result['member_login_name'] . "</td>";
+                    for ($i = 1; $i <= date('t'); $i++) {
+                        $j = array();
+                        //get under today date
+                        if ($i <= date('d')) {
+                            foreach ($day as $k => $v) {
+                                if ($i == $v) {
+                                    $j[$v + 1] = $v;
+                                    $j[$v] = array();
+                                    $j[$v][$v] = $status[$k];
                                 }
                             }
-                            //get above today date
-                            else {
+                            if (array_key_exists($i, $j)) {
+                                if ($i == $j[$i + 1]) {
+                                    $j[$i][$i] == 0 ? $class = 'leave0' : ($j[$i][$i] == 1 ? $class = "leave1" : ($j[$i][$i] == 2 ? $class = "leave2" : $class = "leave3"));
+                                    echo "<td class='$class'></td>";
+                                }
+                            } else {
                                 echo "<td class='unleave'></td>";
                             }
                         }
-                        echo "</tr>";
+                        //get above today date
+                        else {
+                            echo "<td class='unleave'></td>";
+                        }
                     }
-                    ?>
+                    echo "</tr>";
+                   $no++;}
+                ?>
                 </tbody>
             </table>
         </div>
     </div>
 </section>
-<div id="content"></div>
+<div id="content">
+    <ul class="pagination" style="margin-left:15px;">
+<?php
+if ($data->last === 1 || $data->last === 0) {
+    
+} else {
+    ?>
+            <li><a href="attendancechart">First</a></li>
+            <li><a href="attendancechart?page=<?= $data->before; ?>">Previous</a></li>
+            <li><a href="attendancechart?page=<?= $data->next; ?>">Next</a></li>
+            <li><a href="attendancechart?page=<?= $data->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $data->current, " of ", $data->total_pages; ?></span></li>
+            <?php
+        }
+        ?>
+    </ul>
+</div>
 <div class="attchart">
     <div class="col-md-12"><div class="col-sm-1 leave0 btn"></div> <?php echo $t->_("att_person"); ?>  </div>
     <div class="col-md-12"><div class="col-sm-1 leave1 btn"></div> <?php echo $t->_("absent_leave_person"); ?>  </div>

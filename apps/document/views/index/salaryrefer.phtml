@@ -1,0 +1,88 @@
+
+<!-- Main content -->
+<!-- Main content -->
+
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+foreach ($salary_info as $value) {
+   $date=$value['pay_date'];
+     $data = explode("-", $date);
+//   $year = date("Y",$date);
+   $dateObj   = DateTime::createFromFormat('!m', $data[1]);
+   $monthName = $dateObj->format('F'); 
+}
+
+?>
+<section class="content">
+    <div class="row"><!-- for search form-->
+        <div class="col-md-12"><!--start add user form--->
+            <span style="float: right;"><a href="#" title="Print" class="print" id="printimg"></a></span>
+            <div class="printable">
+             
+
+                <table border="1px;" class="tbl-tax">
+                    <thead>
+                        <tr>
+                            <td rowspan="2">
+                                <b> No.</b>
+                            </td>
+                            <td rowspan="2">
+                                <b>  Account Name : </b>
+                            </td>
+                            <td rowspan="2">
+                                <b>  Card(or) MMK <br>
+                                    Account No:</b>
+                            </td>
+                            <td rowspan="2">
+                                <b>   Amount MMK </b>
+                            </td>
+                            
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <?php
+                        $no = 1;
+                        $total = 0;
+                        if (!empty($salary_info)) {
+                            foreach ($salary_info as $salary_infos) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $no; ?></td>
+                                    <td><?php echo $salary_infos['member_login_name']; ?></td>
+                                    <td><?php echo $salary_infos['bank_acc']; ?></td>
+                                    <td><?php $total += $salary_infos['total']+$salary_infos['special_allowance'];echo number_format(round($salary_infos['total']+$salary_infos['special_allowance'], -2))?></td>
+                                </tr>
+                                <?php
+                                $no++;
+                            }
+                            ?>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total : </td>
+                                <td><?php echo number_format(round($total,-2))?></td>
+                                
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <div id="doc">
+                    -----------------------------------------------<br>
+                   <div id="name" > Name : </div><br>
+                    <div id="pos" >Position :</div><br>
+                    Company's Name : <?php echo $com_name; ?><br>
+                  
+                </div>
+                  
+            </div>
+        </div><div style="float: right;    margin-right: 13%;"><a href="#" id="edit" class="button ">Edit</a><a href="#" id="save" class="button ">Save</a></div>
+    </div>
+</section>

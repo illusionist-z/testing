@@ -269,7 +269,7 @@ var Deduction = {
             }
            
         });
-         $del.html("<p>Are u sure to delete?</p>");
+         $del.html("<p>Are you sure to delete?</p>");
         $del.dialog("open"); 
 
     },
@@ -328,12 +328,12 @@ var Deduction = {
             url : "add_dect",
             success:function(){
                 
-                d.dialog("close");
+                //d.dialog("close");
                 
 
             }
         }).done(function(){
-           location.reload();
+          // location.reload();
         });
     },
       Add : function (){

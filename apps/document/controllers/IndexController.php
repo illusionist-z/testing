@@ -138,5 +138,28 @@ class IndexController extends ControllerBase {
         $ComInfo->editCompanyInfo($update_info);
         $this->response->redirect("document/index/letterhead");
     }
+    
+     public function salaryreferAction(){
+        
+            $this->view->module_name = $this->router->getModuleName();
+            $this->assets->addJs('apps/document/js/index-print.js');
+           
+           
+            $SalaryDetail = new \salts\Document\Models\SalaryDetail();
+            $salary =\salts\Document\Models\SalaryDetail::find(array(
+            'order' => 'pay_date DESC',
+            "limit" => 1
+            ));
+            $data = explode("-", $salary[0]->pay_date);
+            $month = $data['1'];
+            $year =$data['0'];
+            $result = $SalaryDetail->salarylist($month, $year);
+            $ComInfo = CompanyInfo::find();
+            $name = $ComInfo['0']->company_name;
+            $this->view->salary_info = $result;
+            $this->view->com_name = $name;
+
+        }
+    
 
 }
