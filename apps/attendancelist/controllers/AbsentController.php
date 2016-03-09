@@ -14,7 +14,7 @@ use salts\Core\Models\Db;
  */
 class AbsentController extends ControllerBase {
 
-    public $id;
+   // public $id;
 
     public function initialize() {
         parent::initialize();
@@ -32,12 +32,16 @@ class AbsentController extends ControllerBase {
     }
 
     public function absentlistAction() {
+        $this->view->t = $this->_getTranslation();
         $Admin = new Db\CoreMember;
-        $Noti = $Admin->getAdminNoti($this->id);
-        $this->view->setVar("Noti", $Noti);
+       // $Noti = $Admin->getAdminNoti($this->id);
+       // $this->view->setVar("Noti", $Noti);
         $AbsentList = new \salts\Attendancelist\Models\Attendances();
         $Result = $AbsentList->GetAbsentList();
+        var_dump($Result);
+        exit();
         $this->view->setVar('Result', $Result);
+        
     }
 
 }
