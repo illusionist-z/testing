@@ -186,12 +186,37 @@ class Attendances extends Model {
         return $message;
     }
 
-    public function GetAbsentList() {
-        $query = "Select * from core_member where member_id NOT IN (Select member_id from attendances "
-                . "where att_date = CURRENT_DATE and (status = 0 or status = 3)) AND deleted_flag=0 order by created_dt desc";
-        $list = $this->db->query($query);
-        $absentlist = $list->fetchall();
-        return $absentlist;
+    public function GetAbsentList($current_page) {
+        try {
+            $currentdate = date('Y-m-d');
+            $phql = "Select member_id from salts\Attendancelist\Models\Attendances where att_date = :current: and (status = 2 or status = 3)";
+            $result = $this->modelsManager->executeQuery($phql, array('current' => $currentdate));
+            $get_member_id = $result->toArray();
+            $member_id = array();
+            foreach ($get_member_id as $v) {
+                $member_id[] = $v['member_id'];
+            }
+            $row = $this->modelsManager->createBuilder()
+                    ->columns("core.*")
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->notInWhere('core.member_id', $member_id)
+                    ->andWhere('core.deleted_flag = 0')
+                    ->orderBy('core.created_dt desc')
+                    ->getQuery()
+                    ->execute();
+            $paginator = new PaginatorModel(
+                    array(
+                "data" => $row,
+                "limit" => 10,
+                "page" => $current_page
+                    )
+            );
+// Get the paginated results
+            $page = $paginator->getPaginate();
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        return $page;
     }
 
     public function getAttTime($id) {
@@ -255,7 +280,7 @@ class Attendances extends Model {
             );
 
 // Get the paginated results
-            $page = $paginator->getPaginate();            
+            $page = $paginator->getPaginate();
         } catch (Exception $ex) {
             echo $ex;
         }

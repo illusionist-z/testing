@@ -221,7 +221,7 @@
         $.ajax({
             type:'GET',
             url:baseUri+'manageuser/index/deleteuser',
-            data:{data:id}            
+            data:{data:id}
         }).done(function(){
             $('body').load('index');
         });

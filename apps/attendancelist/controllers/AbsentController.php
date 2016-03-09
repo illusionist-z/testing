@@ -32,11 +32,12 @@ class AbsentController extends ControllerBase {
     }
 
     public function absentlistAction() {
+        $currentPage = $this->request->get('page');
         $Admin = new Db\CoreMember;
-        $Noti = $Admin->getAdminNoti($this->id);
+        $Noti = $Admin->getAdminNoti($this->id,0);
         $this->view->setVar("Noti", $Noti);
         $AbsentList = new \salts\Attendancelist\Models\Attendances();
-        $Result = $AbsentList->GetAbsentList();
+        $Result = $AbsentList->GetAbsentList($currentPage);
         $this->view->setVar('Result', $Result);
     }
 
