@@ -148,7 +148,7 @@ use Phalcon\Filter;
                             <td <?php echo $a; ?>><div class="td-style"><?php if ($getsalarylist['print_id'] == 1) { ?><font color="red"><?php echo "printed"; ?></font><?php } else { ?><?php echo "-"; ?><?php }; ?></div></td>
                             <td <?php echo $a; ?>><div class="td-style"><?php
                                     $totalresult+=$getsalarylist['total'];
-                                    echo number_format($getsalarylist['total']);
+                                    echo number_format($getsalarylist['total']+$getsalarylist['special_allowance']);
                                     ?></div>
                                 <input type="hidden" value="<?php echo $month; ?>" name="month" id="month">
                                 <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">

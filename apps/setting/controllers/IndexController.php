@@ -10,9 +10,7 @@ use salts\Setting\Models\CorePermissionGroupId;
 use salts\Setting\Models\CorePermissionRelMember;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
-use Phalcon\Filter;
-include_once '/var/www/html/salts/apps/core/models/db/CoreMember.php';
-include_once '/var/www/html/salts/apps/core/models/CoreMember.php';
+use Phalcon\Filter; 
 /**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
  * @desc     CorePermissionGroup
@@ -22,7 +20,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-//        /$this->setSettingJsAndCss();
+        $this->setSettJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getActionName();

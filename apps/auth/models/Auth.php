@@ -14,7 +14,7 @@ class Auth extends Component {
         $this->login_db = $this->getDI()->getShared("login_db");
     }
 
-    /**
+     /**
      * Find company_db
      * @param type $param
      * @return type
@@ -41,7 +41,8 @@ class Auth extends Component {
         $Result = $this->login_db->query($sql);
         $Result = $Result->fetchAll();
         return $Result;
-    }
+        }
+                
 
     /**
      * Checks the user credentials

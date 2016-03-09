@@ -14,7 +14,7 @@ use salts\Core\Models\Db;
  */
 class AbsentController extends ControllerBase {
 
-    public $id;
+   // public $id;
 
     public function initialize() {
         parent::initialize();
@@ -39,6 +39,7 @@ class AbsentController extends ControllerBase {
         $AbsentList = new \salts\Attendancelist\Models\Attendances();
         $Result = $AbsentList->GetAbsentList($currentPage);
         $this->view->setVar('Result', $Result);
+        
     }
 
 }

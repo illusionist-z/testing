@@ -127,7 +127,7 @@ use Phalcon\Filter;
                                             <td colspan="2">Sub Total(Rounded up)</td>
                                             <td style="text-align: right;">
                                                 <?php
-                                                $sub_total = $sum - $deduce;
+                                                $sub_total = ($sum+$a) - $deduce;
                                                 echo number_format(round($sub_total,-2));
                                                 ?></td>
                                             <td></td>                   
@@ -141,7 +141,7 @@ use Phalcon\Filter;
                                             <td colspan="2" height="50px">Grand Total</td>
                                             <td style="text-align: right;">
                                                 <?php
-                                               $grand_total = $sub_total + $A[$i]->salarydet->travel_fee+$a;
+                                               $grand_total = $sub_total + $A[$i]->salarydet->travel_fee;
                                                 echo number_format((round($grand_total, -2)));
                                                                                                 
                                                 ?>
