@@ -21,13 +21,15 @@ class Document extends Model {
      */
     public function getSalaryInfo() {
         try {
-             $salary = new SalaryDetail();
-        $salary =SalaryDetail::find(array(
+            $salary = new SalaryDetail();
+             $salary =SalaryDetail::find(array(
             'order' => 'pay_date DESC',
             "limit" => 1
             ));
-$data = explode("-", $salary[0]->pay_date);
-                        $row = $this->modelsManager->createBuilder()
+                $row = Array();
+                if(isset($salary)){
+                $data = explode("-", $salary[0]->pay_date);
+                $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'salary_detail.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                 ->join('salts\Document\Models\SalaryDetail', 'core.member_id = salary_detail.member_id', 'salary_detail')
@@ -35,7 +37,7 @@ $data = explode("-", $salary[0]->pay_date);
                 ->andWhere('core.deleted_flag = 0')
                 ->andWhere('salary_detail.income_tax!=0 ')
                 ->getQuery()
-                ->execute();
+                ->execute();}
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -54,6 +56,8 @@ $data = explode("-", $salary[0]->pay_date);
             ));
             
         try {
+            $row = Array();
+            if(isset($salary)){
             $data = explode("-", $salary[0]->pay_date);
             
          
@@ -64,7 +68,7 @@ $data = explode("-", $salary[0]->pay_date);
                 ->where('MONTH(salary_detail.pay_date) = :month: ', array('month' => $data[1]))
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
-                ->execute();
+            ->execute();}
 
         } catch (Exception $ex) {
             echo $ex;

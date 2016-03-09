@@ -189,7 +189,8 @@ class Attendances extends Model {
     public function GetAbsentList($current_page) {
         try {
             $currentdate = date('Y-m-d');
-            $phql = "Select member_id from salts\Attendancelist\Models\Attendances where att_date = :current: and (status = 2 or status = 3)";
+            $phql = "Select member_id from salts\Attendancelist\Models\Attendances where att_date = :current: and (status = 0 or status = 3)";
+            //var_dump($phql);exit;
             $result = $this->modelsManager->executeQuery($phql, array('current' => $currentdate));
             $get_member_id = $result->toArray();
             $member_id = array();
