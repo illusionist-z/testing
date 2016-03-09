@@ -86,6 +86,7 @@ class IndexController extends ControllerBase {
             $edit[0] = $type;
             $edit[1]["add"] = $t->_("adduser");
             $edit[1]["ssn"] = $t->_("ssn_no");
+            $edit[1]['bank'] = $t->_("bank");
             $edit[1]["name"] = $t->_("name");
             $edit[1]["username"] = $t->_("username");
             $edit[1]["pass"] = $t->_("password");
@@ -99,6 +100,7 @@ class IndexController extends ControllerBase {
             $edit[1]["profile"] = $t->_("user_profile");
             $edit[1]["w_start_dt"] = $t->_("w_start_dt");
             $edit[1]['placeholder_ssn'] = $t->_("placeholder_ssn");
+            $edit[1]['placeholder_bank'] = $t->_("placeholder_bank");
             $edit[1]["placeholder1"] = $t->_("placeholder1");
             $edit[1]["placeholder2"] = $t->_("placeholder2");
             $edit[1]["placeholder3"] = $t->_("placeholder3");
@@ -117,6 +119,7 @@ class IndexController extends ControllerBase {
             $edit[0] = $res[0];
             $edit[1]["edit"] = $t->_("edit_user");
             $edit[1]["id"] = $t->_("id");
+            $edit[1]["bank"] = $t->_("bank");
             $edit[1]["name"] = $t->_("name");
             $edit[1]["dept"] = $t->_("dept");
             $edit[1]["pos"] = $t->_("position");
@@ -152,6 +155,7 @@ class IndexController extends ControllerBase {
     public function userdataeditAction() {
         $cond = array();
         $cond['id'] = $this->request->get('data');
+        $cond['bank'] = $this->request->get('bank');
         $cond['name'] = $this->request->get('name');
         $cond['dept'] = $this->request->get('dept');
         $cond['position'] = $this->request->get('position');

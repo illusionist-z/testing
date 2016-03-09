@@ -220,8 +220,8 @@ class CoreMember extends \Library\Core\Models\Base {
         $filter = new Filter();
         $username = $filter->sanitize($member['uname'], "string");
         $full_name = $filter->sanitize($member['full_name'], "string");
-
-        $pass = $filter->sanitize($pass, "string");
+        $bank_acc = $filter->sanitize($member["bank"],"string");
+        //$pass = $filter->sanitize($pass, "string");
         $dept = $filter->sanitize($member['dept'], "string");
         $position = $filter->sanitize($member['position'], "string");
         $email = $filter->sanitize($member['email'], "email");
@@ -237,8 +237,8 @@ class CoreMember extends \Library\Core\Models\Base {
         $lang = "en";
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetfile);
 
-        $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
-                . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $phno . "','" . $address . "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
+        $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,bank_acc,member_mobile_tel,member_address,member_profile,creator_id,created_dt,updated_dt,working_start_dt)"
+                . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $bank_acc ."','". $phno . "','" . $address . "','" . $newfilename . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['uname'] . "'");
         $us = $user_name->fetchall();
 

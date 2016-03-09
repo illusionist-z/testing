@@ -31,7 +31,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = '';
+            $dbinfo['db_psw'] = 'root';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
@@ -46,8 +46,6 @@ class LoginController extends ControllerBase {
             
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
-            
-        
             
             if ($companyDB) {
                 // User Chack    
@@ -80,7 +78,7 @@ class LoginController extends ControllerBase {
                 $member_name = $this->session->tokenpush;
                 $chack_user2 = new CoreMember();
                 $chack_user2 = CoreMember::findByMemberLoginName($member_name);
-                var_dump(count($chack_user2)); 
+             
                 if (0 !== count($chack_user2)) {
                     
                 $core2 = new CoreMember(); 

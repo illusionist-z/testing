@@ -26,7 +26,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = '';
+            $dbinfo['db_psw'] = 'root';
             $this->session->set('db_config', $dbinfo);
             //$result = $ModelAuth->Check($login_params, $user);
             
@@ -62,8 +62,13 @@ class LoginController extends ControllerBase {
             }
         } else {
             $this->view->test = $login_params;
-            $companyDB = Models\CompanyTbl::findByCompanyId($login_params['company_id']);
-            
+            $companyDB = new \salts\Core\Models\CompanyTbl();
+             
+           // $companyDB = $companyDB::findByCompanyId($login_params['company_id']);
+          $companyDB = $companyDB::findFirst("id = 1");
+           print_r(get_class_methods($companyDB));
+           var_dump($companyDB);
+              exit();
             // Data Base Hase
             if ($companyDB) {
                  
