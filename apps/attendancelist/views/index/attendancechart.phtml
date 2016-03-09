@@ -18,6 +18,7 @@ if (!ini_get('date.timezone')) {
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
                 <thead>
+                <th><?php  echo "NO."; ?></th>
                 <th><?= $t->_("username"); ?></th>
 <?php
 for ($i = 1; $i <= date('t'); $i++) {
@@ -26,11 +27,13 @@ for ($i = 1; $i <= date('t'); $i++) {
 ?>                    
                 </thead>
                 <tbody>
-                <?php
+                <?php   $no = 1;
                 foreach ($data->items as $result) {
                     $day = explode(",", $result['day']);
                     $status = explode(",", $result['status']);
+                    $tt = ($data->current-1);
                     echo "<tr>";
+                    echo "<td>" . ($no+($data->limit*$tt)) . "</td>";
                     echo "<td>" . $result['member_login_name'] . "</td>";
                     for ($i = 1; $i <= date('t'); $i++) {
                         $j = array();
@@ -58,7 +61,7 @@ for ($i = 1; $i <= date('t'); $i++) {
                         }
                     }
                     echo "</tr>";
-                }
+                   $no++;}
                 ?>
                 </tbody>
             </table>
