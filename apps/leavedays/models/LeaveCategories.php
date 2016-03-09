@@ -36,11 +36,11 @@ class LeaveCategories extends \Library\Core\Models\Base {
     public function deleteCategories($id) {
         $delete_cate = LeaveCategories::find("leavetype_id ='$id'");
         $delete_cate_row = \salts\Core\Models\Permission::tableObject($delete_cate);
-        $delete_cate_row->delete();        
+        $delete_cate_row->delete();                                                     
     }
 
-    public function addNewCategories($ltype_name) {
-        $psql = "INSERT INTO salts\LeaveDays\Models\LeaveCategories (leavetype_id,leavetype_name,created_dt) VALUES (uuid(),'" . $ltype_name . "',now() )";
+    public function addNewCategories($leavetype_name) {
+        $psql = "INSERT INTO salts\LeaveDays\Models\LeaveCategories (leavetype_id,leavetype_name,created_dt) VALUES (uuid(),'" . $leavetype_name . "',now() )";
         $this->modelsManager->executeQuery($psql);
     }
 
