@@ -184,7 +184,7 @@ class Calendar extends Model {
      * @author Saw Zin Min Tun
      */
     public function memIdCal($uname) {
-        $core_member = \salts\Core\Models\Db\CoreMember::find("full_name ='$uname'");
+        $core_member = \salts\Core\Models\Db\CoreMember::find("member_login_name ='$uname'");
         $row = $core_member->toArray();
         return $row;
     }
