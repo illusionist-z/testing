@@ -111,16 +111,16 @@ var ApplyForm = {
 
     }
 };
-$(document).ready(function () {
-
+$(document).ready(function () {    
     ApplyForm.init();
     $('.datetimepicker').on('click', function (e) {
         e.preventDefault();
-        $(this).removeClass('datetimepicker').datetimepicker({dateFormat: "yy-mm-dd",
+        $(this).datetimepicker({dateFormat: "yy-mm-dd",
             showTimezone: false,
-            maskInput: true,
-            timeFormat: "HH:mm:ss"}).focus();
+            maskInput: true,       
+            timeFormat: "HH:mm:ss"}).focus();      
     });
+    
     $('#apply_form_submit').on('click', function (e) {
         e.preventDefault();
         ApplyForm.Submit();
