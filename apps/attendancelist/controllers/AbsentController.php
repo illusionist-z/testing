@@ -38,9 +38,7 @@ class AbsentController extends ControllerBase {
        // $this->view->setVar("Noti", $Noti);
         $AbsentList = new \salts\Attendancelist\Models\Attendances();
         $Result = $AbsentList->GetAbsentList();
-        var_dump($Result);
-        exit();
-        $this->view->setVar('Result', $Result);
+                $this->view->setVar('Result', $Result);
         
     }
 
