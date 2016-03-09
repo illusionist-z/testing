@@ -1,5 +1,5 @@
 /** 
- * @author David JP<david.gnext@gmail.com>
+ * @futhor David JP<david.gnext@gmail.com>
  * @desc dialog box ,event edit box
  * @version 2/9/2015
  */
@@ -17,7 +17,7 @@ var Calendar = {
                     var json_obj = $.parseJSON(data);
 
                     $.map(json_obj, function (item) {
-                        dict.push({label: item.full_name, id: item.member_id});
+                        dict.push({label: item.member_login_name, id: item.member_id});
                     });
                     return dict;
                 }
