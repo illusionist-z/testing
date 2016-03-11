@@ -11,7 +11,7 @@ class ControllerBase extends Library\Core\Controller {
       public function setManageUserJsAndCss() {
             $this->assets->addCss('common/css/dialog.css')
                                 ->addCss('common/css/css/style.css')                        
-                                ->addCss('apps/manageuser/css/manageuser.css');
+                                ->addCss('apps/manageuser/css/base.css');
             $this->assets->addJs('apps/manageuser/js/coremember-saveuser.js');
     }
     

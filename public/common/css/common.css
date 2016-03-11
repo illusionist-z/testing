@@ -749,6 +749,8 @@ hr{
 .unleave{
     background: #fbf9ee;
 }
-/*        #print_color{
-            background: red;
-        }*/
+/*ui-dialog
+* z-index for override dispaly
+*/
+.ui-dialog { z-index: 9999 !important ;}
+#ui-datepicker-div { z-index: 99999 !important;}

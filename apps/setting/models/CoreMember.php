@@ -51,10 +51,10 @@ class CoreMember extends Model {
             $array->member_mail = $filter->sanitize($data['email'], "string");     
             $array->member_address = $filter->sanitize($data['add'], "string");     
             $array->member_mobile_tel = $filter->sanitize($data['phno'], "string");     
-            $array->member_profile = $filter->sanitize($data['dept'], "string");     
-            $array->member_dept_name = $filter->sanitize($filename, "string");     
+            $array->member_profile = $filter->sanitize($filename, "string");     
+            $array->member_dept_name = $filter->sanitize($data['dept'], "string");
              if ($data['password'] !=$data['temp_password']) {
-                  $array->member_password = $filter->sanitize(sha1($data['password']), "string");     
+                  $array->member_password = $filter->sanitize(sha1($data['password']), "string");
 
              }
             $array->update();

@@ -53,11 +53,11 @@ if ($offset < 0) {
                     <th><?= $t->_("location"); ?></th>
                 </tr>
             </thead>
-            <tbody style="display: none;">
+            <tbody>
                 <?php
                 $filter = new Filter();
 
-                foreach ($attlist as $result) {
+                foreach ($attlist->items as $result) {
                     ?>
                     <tr>
                         <td><?php echo $result->attendances->att_date; ?></td>
@@ -157,7 +157,23 @@ if ($offset < 0) {
         </table>    
     </div>
 </section>
-<div id="content"></div><!-- for pagination button -->
+<div id="content">
+    <ul class="pagination" style="margin-left:15px;">
+<?php
+if ($attlist->last === 1 || $attlist->last === 0) {
+    
+} else {
+    ?>
+            <li><a href="attendancelist">First</a></li>
+            <li><a href="attendancelist?page=<?= $attlist->before; ?>">Previous</a></li>
+            <li><a href="attendancelist?page=<?= $attlist->next; ?>">Next</a></li>
+            <li><a href="attendancelist?page=<?= $attlist->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></span></li>
+            <?php
+        }
+        ?>
+    </ul>
+</div>
 
 
 
