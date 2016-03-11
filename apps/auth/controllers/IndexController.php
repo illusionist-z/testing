@@ -2,9 +2,10 @@
 
 namespace salts\Auth\Controllers; 
 use salts\Auth\Models\Db\CoreMember;
-use salts\Core\Models\Db;
+use salts\Auth\Models\Db;
 use salts\Auth\Models;
 use Phalcon\Filter;
+use Phalcon\Mvc\Url as UrlProvider;
  
  
 class IndexController extends ControllerBase {
@@ -66,17 +67,25 @@ class IndexController extends ControllerBase {
          */
         $filter = new Filter();
 
-        date_default_timezone_set('UTC');
+        $user_ip = $this->request->getPost('local');
 
+         
+        $user_ip_public = $this->request->getPost('public');
+
+        //$core->token = $tokenpush;
+        //$Member = new CoreMember();
+        // Login Error Database Log
+        //$member_id = $this->request->getPost('member_login_name');
+        //$insert = $Member->tokenpush($member_id, $user_ip);
+
+       // $core_member_log = new Db\CoreMemberLog();
+        
+        //
+        date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
 
-        if (4 > $_SESSION["attempts"]) {
-        
-        // Login Error Database Log start
-       
-        
-        // Login Error Database Log end
+        if (1 > $_SESSION["attempts"]) {
         
             if ($this->session) {
 
@@ -132,6 +141,7 @@ class IndexController extends ControllerBase {
                     $_SESSION['expire'] = $_SESSION['startTime'];
                     $rout_time = $nowtime - $_SESSION['expire'];
                     $localhost = ($this->request->getServer('HTTP_HOST'));
+                    $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
@@ -162,7 +172,14 @@ class IndexController extends ControllerBase {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
                 $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
-                $insert = $Chack->timeFlag($member_name, $formtdate);
+
+                $member_name = $filter->sanitize($this->request->getPost('member_login_name'));
+                $member_name_find = CoreMember::FindFirstByMemberLoginName($member_name);
+                $member_id = $member_name_find->member_id;
+                $flag = $member_name_find->timeflag;
+
+                $member_name_find->update();
+
                 $this->view->errorMsg = 'Your Account Has 30 MIN Block';
                 $this->view->pick('index/index');
                 session_destroy();
@@ -172,6 +189,7 @@ class IndexController extends ControllerBase {
 
     public function failerUserAction() {
 
+        $filter = new Filter();
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
@@ -229,6 +247,8 @@ class IndexController extends ControllerBase {
     }
 
     public function saltsForGetAction() {
+
+        $filter = new Filter();
         $Core = new CoreMember();
         $login = $this->request->getPost('SaltsForGetInput');
         $user = Users::findFirstByLogin($login);
