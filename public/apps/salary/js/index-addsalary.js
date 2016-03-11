@@ -53,9 +53,9 @@ var AddSalary = {
      * import csv data to sql
      * @returns {status}
      */
-    importcsv : function() {
+    importcsv : function(id) {
         $.ajax({
-            url : 'csvimport',
+            url : 'csvimport/'+id,
             method : "POST",
             dataType : "json",
             data : new FormData($("#csvimport")[0]),
@@ -77,8 +77,8 @@ var AddSalary = {
             }
         });
     },
-    downloadcsv : function () {
-        document.location.href = "downloadcsv";
+    downloadcsv : function (id) {
+        document.location.href = "downloadcsv/"+id;
 //        $.ajax({
 //            url : "downloadcsv",
 //            success : function(d){
@@ -174,13 +174,15 @@ var AddSalary = {
                
 	});
         
-      $('#csvtosql').click(function(e){
+     $('.csvtosql').click(function(e){
           e.preventDefault();
-          AddSalary.importcsv();
+          var id = $(this).attr('id');
+          AddSalary.importcsv(id);
       });
     
-    $('#csv_download').click(function(e){
-        AddSalary.downloadcsv();
+    $('.csv_download').click(function(e){
+        var id = $(this).attr('id');
+        AddSalary.downloadcsv(id);
     });
     //for clear csv box
     $('#csv_file').click(function(){

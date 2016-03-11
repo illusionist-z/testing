@@ -752,4 +752,4 @@ hr{
 /*        #print_color{
             background: red;
         }*/
-
+.ui-dialog {z-index: 9999 !important;}

@@ -45,19 +45,20 @@ use Phalcon\Filter;
                     </tr>
                     <?php
                 } else {
-                    foreach ($Result as $result) {
+                    foreach ($Result->items as $result) {
+                         $t = ($Result->current)-1;
                         ?>                       
                         <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $filter->sanitize($result['member_login_name'], "string"); ?></td>
-                            <td><?= $filter->sanitize($result['member_dept_name'], "string"); ?></td>
-                            <td><?= $filter->sanitize($result['position'], "string"); ?></td>
-                            <td><?= $filter->sanitize($result['member_mail'], "email"); ?></td>
-                            <td><?= $filter->sanitize($result['member_mobile_tel'], "int"); ?></td>
-                            <td><?= $filter->sanitize($result['member_address'], "string"); ?>
+                            <td><?= $i +($Result->limit*$t) ?></td>
+                            <td><?= $filter->sanitize($result->member_login_name, "string"); ?></td>
+                            <td><?= $filter->sanitize($result->member_dept_name, "string"); ?></td>
+                            <td><?= $filter->sanitize($result->position, "string"); ?></td>
+                            <td><?= $filter->sanitize($result->member_mail, "email"); ?></td>
+                            <td><?= $filter->sanitize($result->member_mobile_tel, "int"); ?></td>
+                            <td><?= $filter->sanitize($result->member_address, "string"); ?>
                             </td>
                             <td>
-                                <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="absentcheck" title="Absent" id="<?php echo $result['member_id'] ?>" ></a>
+                                <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="absentcheck" title="Absent" id="<?php echo $result->member_id ?>" ></a>
                             </td>   
                         </tr>
                         <?php
@@ -65,9 +66,24 @@ use Phalcon\Filter;
                     }
                 }
                 ?>
-                </tbody>
-                <tfoot style="display:none;"></tfoot>                    
+                </tbody>                
             </table>
         </div>
 </section>   
-<div id="content"></div>
+<div id="content">
+    <ul class="pagination" style="margin-left:15px;">
+        <?php
+        if ($Result->last === 1 || $Result->last === 0) {
+            
+        } else {
+            ?>
+            <li><a href="absentlist">First</a></li>
+            <li><a href="absentlist?page=<?= $Result->before; ?>">Previous</a></li>
+            <li><a href="absentlist?page=<?= $Result->next; ?>">Next</a></li>
+            <li><a href="absentlist?page=<?= $Result->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?></span></li>
+                <?php
+            }
+            ?>
+    </ul>
+</div>
