@@ -9,7 +9,7 @@ use salts\Core\Models\Db;
 use salts\Document\Models\CorePermissionGroupId; 
 class IndexController extends ControllerBase {
 
-    public $calendar;
+    public $calendar;   
 
     public function initialize() {
         parent::initialize();
