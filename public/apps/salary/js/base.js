@@ -26,7 +26,7 @@ var Salary = {
                     check1="checked";
                }
               
-               var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
+                var data ='<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';               
                    data +='<tr><td></td><td><b>'+result.t['name']+'</b><input style="margin-top:10px;" type="hidden" value='+result.data[0]['member_id']+ ' name="member_id" id="member_id"></td>'
                         +'<td><input style="margin-top:10px;" type="text" value= " '+result.data[0]['member_login_name']+ ' " name="uname" disabled></td><td ></td></tr>'
                         +'<tr><td></td><td><b>'+result.t['b_salary']+' </b></td>'
@@ -42,7 +42,7 @@ var Salary = {
                         +'<td id="empmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_emp']+' name="ssc_emp" id="emperr"> %</td><td style="width:55px;height:40px;"></td></tr>'
                         +'<tr><td></td><td><b>SSC Comp </b></td>'
                         +'<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value='+result.data[0]['ssc_comp']+ ' name="ssc_comp" id="comperr"> %</td></tr>';
-                       
+                        
                 data += '<tr><td></td><td> '+result.t['Decut Name']+' </td><td colspan="4" style="font-size:12px;">';
                 for(var j in result.dedution){
                 var duct = Salary.Check(result.dedution[j]['deduce_id'],result.permit_dedution);
@@ -108,7 +108,8 @@ var Salary = {
              
             modal: true,
             title: title,
-          
+     
+        
         }).parent('.ui-dialog').css('zIndex',1030);
         $ovl.html(d);
         $ovl.dialog("open");
@@ -254,11 +255,10 @@ var Salary = {
         var member_id=document.getElementById('member_id').value;
         $.ajax({
             type:'POST',
-            url : baseUri+"salary/index/delete_salary",
+            url : baseUri+"salary/index/deleteSalary",
             data: {id: member_id },
             success:function(){
-                
-                d.dialog("close");
+                 d.dialog("close");
             }
         }).done(function(){
             //$('body').load('salarylist');

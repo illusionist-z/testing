@@ -11,7 +11,7 @@ use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
 use Phalcon\Filter;
 
-class IndexController extends ControllerBase {
+class IndexController extends ControllerBase {  
 
     public function initialize() {
         $this->setSalaryJsAndCss();

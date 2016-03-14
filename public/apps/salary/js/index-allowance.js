@@ -12,7 +12,7 @@ var Allowance = {
            url:"editallowance?id="+d,
            type: "GET",
            success:function(res){
-               //alert(res);
+                
                
                var result = $.parseJSON(res);
                
@@ -75,6 +75,7 @@ var Allowance = {
             }
         }).done(function(){
             $('body').load('allowance');
+                                                                                                                                                                                                                      
         });
     },
      Delete : function(d){
@@ -91,6 +92,7 @@ var Allowance = {
             title:"Confirm Delete",
             buttons:{
                 Yes:function(){
+                   
                     Allowance.Confirm(d);
                 },
                 No:function(){

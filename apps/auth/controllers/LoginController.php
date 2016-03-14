@@ -89,7 +89,7 @@ class LoginController extends ControllerBase {
                         $this->view->errorMsg = "You've Login To Next. 30 Minutes";
                         // Push Into Database Mamber Log
                         $this->response->redirect('auth/index/failer');
-                        //session_destroy();
+                            
                     } elseif ($core2 <= $timestamp) {
 
                         if ($result) {
