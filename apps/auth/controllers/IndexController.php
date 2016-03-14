@@ -172,9 +172,8 @@ class IndexController extends ControllerBase {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
                 $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
-
-                $member_name = $filter->sanitize($this->request->getPost('member_login_name'));
-                $member_name_find = CoreMember::FindFirstByMemberLoginName($member_name);
+                $member_name = $this->request->getPost('member_login_name');
+                $member_name_find = Models\CoreMember::FindFirstByMemberLoginName($member_name);
                 $member_id = $member_name_find->member_id;
                 $flag = $member_name_find->timeflag;
 
@@ -188,7 +187,7 @@ class IndexController extends ControllerBase {
     }
 
     public function failerUserAction() {
-
+   
         $filter = new Filter();
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
@@ -209,9 +208,12 @@ class IndexController extends ControllerBase {
 
                 $rout_time = $nowtime - $_SESSION['expire'];
                 $localhost = ($this->request->getServer('HTTP_HOST'));
+                  $this->view->pick('salts/auth'); 
+     $this->view->errorMsg = '';
                 $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
+               
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
                     echo "Your session has expired ! ";
@@ -224,7 +226,10 @@ class IndexController extends ControllerBase {
                 $localhost = ($this->request->getServer('HTTP_HOST'));
                 $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
+                $this->view->pick('salts/auth'); 
+                $this->view->errorMsg = '';
                 header("Refresh: $sec; url=$page");
+               
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
                 }
