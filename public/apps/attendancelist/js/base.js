@@ -116,7 +116,7 @@ var Attendance = {
          
         $.ajax({
         url: 'todaylist?namelist='+name ,
-        type: 'GET',
+        type: 'post',
         success: function (d) {
             //alert(d);
          $('body').html(d);

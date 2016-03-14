@@ -43,7 +43,8 @@ class IndexController extends ControllerBase {
      * @desc    $core_groupid = {}
      * @desc    $core_user = {}
      */
-      public function indexAction() {
+    
+   public function indexAction() {
             $this->response->redirect('core/index');
     }
     public function adminAction() {
