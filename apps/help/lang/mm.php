@@ -172,7 +172,7 @@ $messages = array(
     "Deduce for SSC"=>"လူမႈဖူလံုေရးခံစားခြင့္ပမာဏ",    
     "sal_start_date"=>"လစာေပးမည့္ရက္ကိုေရြးေပးပါ",
     "Salary_apply"=>"အထက္ပါအခ်က္အလက္မ်ားကိုၿဖည့္ျပီး Apply Button ကိုနိပ္ေပးပါရန္",
-    "download_csv"=>"CSV Files ကို Download ယူရန္။download လုပ္ယူၿပီးတစ္ေၿကာင္းထဲေပၚေနပါကExcel ကိုအရင္ဖြင့္ပါ။ၿပီးလွ်င္Data tab ထဲက'Form Text' ကိုေရြးပါ။ၿပီးလွ်င္downlaod fileကိုေရြးေပးပါ။ၿပီးလွ်င္'Next'ကိုေရြးၿပီး  Delimeters ထဲကေအာက္ကပံုနဲ႕အဆင္ေၿပတဲ့ဟာကိုေရြးေပးလိုက္ပါ။",
+    "download_csv"=>"CSV Files ကို Download ယူရန္။download လုပ္ယူၿပီးတစ္ေၿကာင္းထဲေပၚေနပါကExcel ကိုဖြင့္ၿပီးၿပင္ႏိုင္သည္။ဖြင့္ၿပီးလွ်င္Data tab ထဲက'Form Text' ကိုေရြးပါ။ၿပီးလွ်င္downlaod လုပ္ထားတဲ့ fileကိုေရြးေပးပါ။ၿပီးလွ်င္'Next'ကိုေရြးၿပီး  Delimeters ထဲကေအာက္မွာၿပလာတဲ့ပံုနဲ႕အဆင္ေၿပတဲ့ဟာကိုေရြးေပးလိုက္ပါ။",
     "apply_with_csv"=>"CSV Files ႏွင့္ လစာေပးရန္",
     
     /**
