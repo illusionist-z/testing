@@ -72,7 +72,8 @@ class Attendances extends Model {
      * @author Su Zin Kyaw
      * for user
      */
-    public function getAttList($id, $year, $month) {
+    public function getAttList($id, $year, $month,$currentPage) {
+        try{
         $currentmth = date('m');
         if (isset($year) || isset($month)) {
             $start = date("Y-m-d", strtotime($year));
@@ -100,7 +101,19 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
         }
-        return $row;
+         $paginator = new PaginatorModel(
+                array(
+            "data" => $row,
+            "limit" => 10,
+            "page" => $currentPage
+                )
+        );
+        $page = $paginator->getPaginate();
+        }
+        catch (Exception $err){
+            echo $err;
+        }
+        return $page;
     }
 
     /**
