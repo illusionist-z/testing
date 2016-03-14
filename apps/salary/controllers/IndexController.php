@@ -289,11 +289,14 @@ class IndexController extends ControllerBase {
 
      */
     public function getmemberidAction() {
+        if ( $this->permission == 1){
         $data = $this->request->get('uname');
         $SalaryDetail = new SalaryMaster();
         $cond = $SalaryDetail->memidsalary($data);
         echo json_encode($cond);
         $this->view->disable();
+        }
+        else { Echo "Page Not Fond";}
     }
 
     /**

@@ -301,7 +301,7 @@ var Salary = {
         $ovl.dialog("open");
         $ovl.css('color','black');
         $ovl.css('background','#F5F5F5');
-        $('#cal_salary_month').click(function(){
+        $('#cal_salary_month').click(function(){x
             var salary_start = document.getElementById('salary_start').value;                     
                     if(salary_start == ''){
                         $('#error_salary').show();
