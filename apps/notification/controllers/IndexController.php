@@ -27,8 +27,8 @@ class IndexController extends ControllerBase {
         $this->view->setVar("permission", $permission);
     }
 
-    public function indexAction() {
-        
+   public function indexAction() {
+            $this->response->redirect('core/index');
     }
 
     /**

@@ -40,7 +40,9 @@ class IndexController extends ControllerBase {
         $this->moduleIdCall = $CoreMember->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
     }
-
+  public function indexAction() {
+            $this->response->redirect('core/index');
+    }
     /**
      * show today attendance list
      */

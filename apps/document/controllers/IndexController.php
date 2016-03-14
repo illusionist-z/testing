@@ -38,7 +38,9 @@ class IndexController extends ControllerBase {
 
         $this->view->setVar("Noti", $Noti);
     }
-
+       public function indexAction() {
+            $this->response->redirect('core/index');
+    }
     /**
      * Show ssb document
      * @author zinmon

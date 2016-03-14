@@ -41,10 +41,8 @@ class IndexController extends ControllerBase {
     }
     
     
-  
-    
     public function indexAction() {
-        
+            $this->response->redirect('core/index');
     }
 
     public function autolistAction() {

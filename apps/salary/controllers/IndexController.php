@@ -1,7 +1,6 @@
 <?php
 
 namespace salts\Salary\Controllers;
-
 use salts\Core\Models\Db;
 use salts\Salary\Models\SalaryDetail;
 use salts\Salary\Models\SalaryMaster;
@@ -59,7 +58,7 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
-        
+            $this->response->redirect('core/index');
     }
 
     /**

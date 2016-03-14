@@ -43,6 +43,9 @@ class IndexController extends ControllerBase {
      * @desc    $core_groupid = {}
      * @desc    $core_user = {}
      */
+      public function indexAction() {
+            $this->response->redirect('core/index');
+    }
     public function adminAction() {
         if ($this->permission == 1) {
             $permission = new \salts\Core\Models\Permission();
