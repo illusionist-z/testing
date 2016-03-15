@@ -368,12 +368,12 @@ var Salary = {
                 {
                     if (json_obj[i].travel_fee_perday)
                     {
-                        var travelfees = json_obj[i].travel_fee_perday;
-                        var travelfee_header = 'Travel fees (per day)';
+                         travelfees = json_obj[i].travel_fee_perday;
+                         travelfee_header = 'Travel fees (per day)';
                     }
                     else {
-                        var travelfees = json_obj[i].travel_fee_permonth;
-                        var travelfee_header = 'Travel fees (per month)';
+                         travelfees = json_obj[i].travel_fee_permonth;
+                         travelfee_header = 'Travel fees (per month)';
                     }
                     var output = "<tr>"
                             + "<td>" + j + "</td>"

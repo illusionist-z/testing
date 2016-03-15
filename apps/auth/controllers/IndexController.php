@@ -171,9 +171,8 @@ class IndexController extends ControllerBase {
                 date_default_timezone_set('Asia/Rangoon');
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
-                $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
-                $member_name = $this->request->getPost('member_login_name');
-                $member_name_find = Models\CoreMember::FindFirstByMemberLoginName($member_name);
+                $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));                
+                $member_name_find = $Chack::findFirst("member_login_name = '$member_name'");
                 $member_id = $member_name_find->member_id;
                 $flag = $member_name_find->timeflag;
 
