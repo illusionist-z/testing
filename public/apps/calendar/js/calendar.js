@@ -48,7 +48,7 @@ var Calendar = {
                 var end = event.end.format("YYYY-MM-DD");
 //                var shr = event.start.format("HH:mm:ss");
 //                var ehr = event.end.format("HH:mm:ss");
-                //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");  
+                //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
                 Calendar.Dialog.drag(start, end, event.id, event.title, event.member_name, event);
             },
             eventDrop: function (event) {
@@ -433,7 +433,7 @@ Calendar.Dialog = {
     },
     delete: function (id, member, dia) {
         $.ajax({
-            url: "delete",
+            url: Calendar.Ctrl+"/delete",
             data: {data: id},
             async: false,
             dataType: 'json'
