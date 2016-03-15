@@ -38,6 +38,7 @@ class UserController extends ControllerBase {
     }
 
     public function applyleaveAction() {
+           if ($this->permission == 1) {
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');
         $User = new Db\CoreMember;
@@ -72,6 +73,10 @@ class UserController extends ControllerBase {
                 $this->view->disable();
             }
         }
+           }
+        else {
+               echo 'Page Not Found';
+        }
     }
 
     /**
@@ -80,6 +85,7 @@ class UserController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function leavelistAction() {
+           if ($this->permission == 1) {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/user-leavelist.js');
         $User = new Db\CoreMember;
@@ -106,6 +112,10 @@ class UserController extends ControllerBase {
         $this->view->setVar("Ltype", $leave_type);
         $this->view->setVar("Mth", $mth);
         $this->view->setVar("max", $max_leavedays);
+           }
+           else {
+               echo 'Page Not Found';
+           }
     }
 
 }

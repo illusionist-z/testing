@@ -92,12 +92,10 @@ class IndexController extends ControllerBase {
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $this->assets->addJs('apps/salary/js/index-show-salarylist.js');
-
             $month = $this->request->get('month');
             $year = $this->request->get('year');
             $SalaryDetail = new SalaryDetail();
             $get_salary_list = $SalaryDetail->salarylist($month, $year);
-
             $UserList = new Db\CoreMember();
             $user_name = $UserList->find();
              $this->view->setVar("month", $month);
@@ -144,7 +142,7 @@ class IndexController extends ControllerBase {
         $this->view->disable();
         echo json_encode($username);
            }
-           else {echo "Page Not Fond";}
+           else {echo "Page Not Found";}
     }
 
     /**
@@ -188,7 +186,7 @@ class IndexController extends ControllerBase {
         $this->view->getallowance = $get_allowance;
           }
           else {
-               echo 'Page Not Fond';
+               echo 'Page Not Found';
           }
     }
 
@@ -230,7 +228,7 @@ class IndexController extends ControllerBase {
         echo json_encode($resultsalary);
           }
           else {
-              echo "Page Not Fond";
+              echo "Page Not Found";
           }
     }
 
@@ -269,7 +267,7 @@ class IndexController extends ControllerBase {
         $this->view->disable();
           }
         else {
-            echo "Page Not Fond";
+            echo "Page Not Found";
         }
     }
 
@@ -287,7 +285,7 @@ class IndexController extends ControllerBase {
         $this->view->disable();
           }
           else {
-              echo "Page Not Fond";
+              echo "Page Not Found";
           }
     }
 
@@ -303,7 +301,7 @@ class IndexController extends ControllerBase {
         $this->view->disable();
           }
           else {
-              echo "Page Not Fond";
+              echo "Page Not Found";
           }
     }
 
@@ -320,7 +318,7 @@ class IndexController extends ControllerBase {
         echo json_encode($cond);
         $this->view->disable();
         }
-        else { Echo "Page Not Fond";}
+        else { Echo "Page Not Found";}
     }
 
     /**
@@ -373,7 +371,7 @@ class IndexController extends ControllerBase {
         }
           }
           else {
-              echo "Page Not Fond";
+              echo "Page Not Found";
           }
     }
 
@@ -398,7 +396,7 @@ class IndexController extends ControllerBase {
         echo json_encode($data);
           }
           else {
-              echo "Page Not Fond";
+              echo "Page Not Found";
           }
     }
 
@@ -430,7 +428,7 @@ class IndexController extends ControllerBase {
         $this->view->disable();
           }
           else {
-              echo "Page Not Fond";
+              echo "Page Not Found";
           }
     }
 
@@ -438,6 +436,7 @@ class IndexController extends ControllerBase {
      * delete allowance data
      * @author Su Zin Kyaw
      */
+    
     public function deletedataAction() {
         $id = $this->request->getPost('id');
         $Allowance = new Allowances();
@@ -479,6 +478,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function taxdiaAction() {
+        if ($this->permission === 1) {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $Tax = new SalaryTaxs();
@@ -493,6 +493,10 @@ class IndexController extends ControllerBase {
         $data['t']['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**
@@ -500,6 +504,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function edittaxAction() {
+        if ($this->permission === 1) {
         $data['id'] = $this->request->getPost('id');
         $data['taxs_from'] = $this->request->getPost('taxs_from');
         $data['taxs_to'] = $this->request->getPost('taxs_to');
@@ -509,6 +514,10 @@ class IndexController extends ControllerBase {
         $SalaryTax = new SalaryTaxs();
         $SalaryTax->editTax($data);
         $this->view->disable();
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**
@@ -516,6 +525,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function dectdiaAction() {
+        if ($this->permission === 1) {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $Deduction = new SalaryTaxsDeduction();
@@ -528,6 +538,10 @@ class IndexController extends ControllerBase {
         $data['t']['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**
@@ -535,12 +549,18 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function editDeductAction() {
+        if ($this->permission === 1) {
         $data['id'] = $this->request->getPost('id');
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
         $Deduction = new SalaryTaxsDeduction();
         $Deduction->editDeduction($data);
         $this->view->disable();
+        }
+        else {
+            echo "Page Not Found";
+           
+        }
     }
 
     /**
@@ -548,12 +568,16 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function addDectAction() {
-
+        if ($this->permission === 1) {
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
         $Deduction = new SalaryTaxsDeduction();
         $Deduction->addDeduction($data);
         $this->view->disable();
+        }
+        else {
+            echo 'Page Not Found';
+        }
     }
 
     /**
@@ -561,6 +585,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function show_add_dectAction() {
+        if ($this->permission === 1) {
         $t = $this->_getTranslation();
         $data[1]['deduce_frm'] = $t->_("deduce_frm");
         $data[1]['deduce_name'] = $t->_("deduce_name");
@@ -571,17 +596,26 @@ class IndexController extends ControllerBase {
         $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
-    }
+        }
+        else {
+            echo "Page Not Found";
+        }
+        }
 
     /**
      * Delete Deduction 
      * @author Su Zin Kyaw
      */
     public function deleteDeductAction() {
+        if ($this->permission === 1) {
         $deduce_id = $this->request->getPost('id');
         $Deduction = new SalaryTaxsDeduction();
         $Deduction->deleteDeduction($deduce_id);
         $this->view->disable();
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**
