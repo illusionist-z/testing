@@ -64,11 +64,11 @@ class IndexController extends ControllerBase {
      * when user seen noti and click ok update data
      */
     public function updateNotiAction() {
-        
        $core = new CoreNotificationRelMember();
-       $core = CoreNotificationRelMember::findFirst('noti_id =' . $this->request->getPost('noti_id'));
-       $core->status = '2';
-        $core->update();
+       $core->updateNoti($this->request->getPost('noti_id'));
+//       $coredata = CoreNotificationRelMember::findFirst('noti_id =' . $this->request->getPost('noti_id'));
+//       $coredata->status = '2';
+//      $coredata>update();
 
         
     }
@@ -137,7 +137,7 @@ class IndexController extends ControllerBase {
             }
             if ($key_name == 'show_user_notification') {
                    $member_id = $this->session->user['member_id'];
-                 $Noti = CoreNotification::findFirst("noti_id = '" . $id . "' AND created_at =  '" . $member_id . "'");
+                 $Noti = CoreNotification::findFirst("noti_id = '" . $id . "' AND noti_creator_id =  '" . $member_id . "'");
                 $Noti->noti_status='2';
                 $Noti->update();
                

@@ -54,7 +54,6 @@ class UserController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function changeprofileAction() {
-         
         if ($this->request->isPost()) {
 
             $updatedata = array();
@@ -75,10 +74,16 @@ class UserController extends ControllerBase {
             }
             $id = $this->session->user['member_id'];
 
-            $updatedata['file'] = $updatedata['temp_file'];
-
+           $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+        $file = fopen($MY_FILE, 'r');
+        $file_contents = fread($file, filesize($MY_FILE));
+        fclose($file);
+        $file_contents = addslashes($file_contents);
+        if($file_contents==NULL){
+            $file_contents=$this->request->getPost('temp_profile');
+        }
             $User = new \salts\Setting\Models\CoreMember();
-            $User->updatedata($updatedata, $id);
+            $User->updatedata($updatedata, $id,$file_contents);
             $user = $User->userData($id);
             $this->session->set('user', $user);
         }

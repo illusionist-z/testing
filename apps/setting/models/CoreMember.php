@@ -23,43 +23,28 @@ class CoreMember extends Model {
      * while user change something in profile
      * @author Su Zin Kyaw
      */
-    public function updatedata($data, $id) {
-        $filter = new Filter();
+    public function updatedata($data, $id,$content) {
         $this->db = $this->getDI()->getShared("db");
-         $company_id=($this->getDI()->getSession()->get(db_config)['company_id']);
-         $target_dir = "uploads/$company_id./";
         
-        if (!is_dir($target_dir)) {
-         mkdir($target_dir);
-       }
-        if ($_FILES["fileToUpload"]["name"] == NULL) {
-            $filename = $data['file'];
-        } else {
-            $pic = $data['file'];
-            unlink("uploads/$pic");
-            $filename =($this->getDI()->getSession()->get(db_config)['company_id'])."__".($this->getDI()->getSession()->get(user)['member_id']). '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
-            $target_file = $target_dir . $filename;
-            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+         if ($data['password'] !=$data['temp_password']) {
+              $changeprofile = "UPDATE core_member set core_member.member_login_name='" . $data['username'] . "' ,  "
+                    . "core_member.member_dept_name='" . $data['dept'] . "' , core_member.position='" . $data['position'] . "' "
+                    . " ,core_member.member_mail='" . $data['email'] . "' , core_member.member_mobile_tel='" . $data['phno'] . "' "
+                    . " ,core_member.member_address='" . $data['add'] . "' , core_member.member_password='" . sha1($data['password']) . "'  WHERE core_member.member_id='" . $id . "'";
+            
+              $this->db->query($changeprofile);
+         }else{
+                      $this->db->query("UPDATE core_member set core_member.member_login_name='" . $data['username'] . "' , "
+                    . "core_member.member_dept_name='" . $data['dept'] . "' , core_member.position='" . $data['position'] . "'"
+                    . ", core_member.member_mail='" . $data['email'] . "' , core_member.member_address='" . $data['add'] . "'"
+                    . ", core_member.member_mobile_tel='" . $data['phno'] . "'  WHERE core_member.member_id='" . $id . "' ");  
+            }
+        if($content!=NULL){
+              $this->db->query("UPDATE core_member set core_member.member_profile='" . $content . "' WHERE core_member.member_id='" . $id . "' ");  
+            
         }
 
-           
-            $CoreMember = new CoreMember();
-            $array = $CoreMember::findFirst('member_id ="' . $id.'"');
-            $array->member_login_name = $filter->sanitize($data['username'], "string");
-            $array->member_dept_name = $filter->sanitize($data['dept'], "string"); 
-            $array->position = $filter->sanitize($data['position'], "string");     
-            $array->member_mail = $filter->sanitize($data['email'], "string");     
-            $array->member_address = $filter->sanitize($data['add'], "string");     
-            $array->member_mobile_tel = $filter->sanitize($data['phno'], "string");     
-            $array->member_profile = $filter->sanitize($filename, "string");     
-            $array->member_dept_name = $filter->sanitize($data['dept'], "string");
-             if ($data['password'] !=$data['temp_password']) {
-                  $array->member_password = $filter->sanitize(sha1($data['password']), "string");
 
-             }
-            $array->update();
-
-        return $filename;
     }
     
     

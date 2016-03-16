@@ -38,7 +38,7 @@ var Salary = {
                 else{
                     if(cond.success) { 
                         alert(cond.success);
-                        location.reload();
+                        //location.reload();
                     }
                     else if(cond.error){
                         $('#apply_form_name_error').empty();$('#apply_form_desc_error').empty();$('#apply_form_sdate_error').empty();$("#apply_form_edate_error").empty();
