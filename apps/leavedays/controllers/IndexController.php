@@ -235,6 +235,7 @@ class IndexController extends ControllerBase {
            if ($this->permission == 1) {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
+        
         $LeaveCategories = new LeaveCategories();
         $data[0] = $LeaveCategories->getListTypeData($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
@@ -257,6 +258,7 @@ class IndexController extends ControllerBase {
         $leavetype_id = $this->request->getPost('id');
         $LeaveCategories = new LeaveCategories();
         $LeaveCategories->deleteCategories($leavetype_id);
+        
         $this->view->disable();
             }
             else {
