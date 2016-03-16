@@ -25,6 +25,7 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
+                         if ($this->permission == 1) {
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
@@ -47,14 +48,23 @@ class IndexController extends ControllerBase {
         $this->view->member_name = $this->session->user['member_login_name'];
         $this->view->uname = $AllName;
         $this->view->modulename = $this->module_name;
+                }
+                else {
+                    echo 'Page Not Found';
+                }
     }
 
     //calender auto complete  for username
     public function calenderautoAction() {
+                          if ($this->permission == 1) {
         $UserList = new Db\CoreMember();
         $Username = $UserList->autousername();
         echo json_encode($Username);
         $this->view->disable();
+                }
+                else {
+                    echo 'Page Not Found';
+                }
     }
 
     /**
@@ -63,26 +73,42 @@ class IndexController extends ControllerBase {
 
      */
     public function getcalmemberidAction() {
+                  if ($this->permission == 1) {
         $data = $this->request->get('uname');
         $cond = $this->Calendar->memIdCal($data);
         echo json_encode($cond);
-        $this->view->disable();
+                $this->view->disable();
+                }
+                else {
+                    echo "Page Not Found";
+                }
+        
     }
 
     public function addmemberAction() {
+                       if ($this->permission == 1) {
         $permit_name = $this->request->get("permit");
         $id = $this->session->user['member_id'];
         $data = ($permit_name == $id ? 1 : $this->Calendar->addPermitName($permit_name, $id));
         echo json_encode($data);
         $this->view->disable();
+                }
+                else {
+                    echo "Page Not Found";
+                }
     }
 
     public function removeEventBynameAction() {
+             if ($this->permission == 1) {
         $remove = $this->request->getPost('remove');
         $id = $this->session->user['member_id'];
         $data = $this->Calendar->removeMember($remove, $id);
         echo json_encode($data);
         $this->view->disable();
+                }
+                else {
+                    echo "";
+                }
     }
 
     /**
@@ -91,10 +117,15 @@ class IndexController extends ControllerBase {
      * @since 27/7/15
      */
     public function showdataAction() {
+                  if ($this->permission == 1) {
         $id = $this->request->get('event_id');
         $this->view->disable();
         $events = $this->Calendar->fetch($id);
         echo json_encode($events);
+                  }
+                  else {
+                      echo 'Page Not Found';
+                  }
     }
 
     /**
@@ -103,6 +134,7 @@ class IndexController extends ControllerBase {
      * @return   json { error message }
      */
     public function createAction() {
+                  if ($this->permission == 1) {
         $this->view->disable();
         $uname = $this->request->get('uname');
         $member_id = $this->request->get('member_id');
@@ -129,6 +161,10 @@ class IndexController extends ControllerBase {
             $res['name'] = $uname;
         }
         echo json_encode($res);
+                  }
+                  else {
+                      echo 'Page Not Found';
+                  }
     }
 
     /**
@@ -137,6 +173,7 @@ class IndexController extends ControllerBase {
      * @return   json { error message }
      */
     public function editAction($id, $e = null) {
+                  if ($this->permission == 1) {
         $this->view->disable();
         $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');
@@ -158,6 +195,10 @@ class IndexController extends ControllerBase {
             $res['name'] = $name;
         }
         echo json_encode($res);
+                  }
+                  else {
+                      echo 'Page Not Found';
+                  }
     }
 
     /**
@@ -166,16 +207,26 @@ class IndexController extends ControllerBase {
      * @since 27/7/15
      */
     public function deleteAction() {
+                  if ($this->permission == 1) {
         $this->view->disable();
         $id = $this->request->get('data');
-        $this->Calendar->deleteEvent($id);
+        $this->Calendar->deleteEvent($id); 
+                  }
+                  else {
+                      echo 'Page Not Found';
+                  }
     }
 
     public function getidAction() {
+                  if ($this->permission == 1) {
         $this->view->disable();
         $id = $this->request->get('id');
         $result = $this->Calendar->getIdName($id);
         echo json_encode($result);
+                  }
+                  else {
+                      echo 'Page Not Found';
+                  }
     }
 
 }

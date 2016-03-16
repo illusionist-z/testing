@@ -71,12 +71,14 @@ class IndexController extends ControllerBase {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function taxdocumentAction() {
+          $ModuleIdCallCore = new Db\CoreMember();
+          if ($moduleIdCall == 1) {
         $this->assets->addCss('apps/document/css/index_tax.css');
-        $ModuleIdCallCore = new Db\CoreMember();
+       
         $this->view->module_name = $this->router->getModuleName();
         $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
 
-        if ($moduleIdCall == 1) {
+      
             $this->assets->addJs('apps/document/js/index-print.js');
             $SalaryDetail = new Document();
             $result = $SalaryDetail->getSalaryInfo();
@@ -96,9 +98,10 @@ class IndexController extends ControllerBase {
     public function letterheadAction() {
 
         $ModuleIdCallCore = new Db\CoreMember();
+          if ($this->moduleIdCall == 1) {
         $this->view->module_name = $this->router->getModuleName();
         $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
-        if ($this->moduleIdCall == 1) {
+      
             $this->assets->addJs('apps/document/js/index-letterhead.js');
             $ComInfo = new CompanyInfo();
             $ComInfo = CompanyInfo::find();
@@ -118,6 +121,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function editinfoAction() {
+           if ($this->permission == 1) {
         $file_name = $this->session->db_config['company_id']. '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
         $company_id=($this->session->db_config['company_id']);
          $target_dir = "uploads/$company_id./";
@@ -140,9 +144,13 @@ class IndexController extends ControllerBase {
         $ComInfo->editCompanyInfo($update_info);
         $this->response->redirect("document/index/letterhead");
     }
+    else{
+        echo 'Page Not Found';
+    }
+    }
     
      public function salaryreferAction(){
-        
+           if ($this->permission == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
            
@@ -160,7 +168,10 @@ class IndexController extends ControllerBase {
             $name = $ComInfo['0']->company_name;
             $this->view->salary_info = $result;
             $this->view->com_name = $name;
-
+           }
+           else {
+               echo 'Page Not Found';
+           }
         }
     
 

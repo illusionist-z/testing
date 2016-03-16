@@ -20,6 +20,9 @@ class CorememberController extends ControllerBase {
         $this->user = new User();
         $this->setCommonJsAndCss();
         $this->setManageUserControllerJsAndCss();
+        $this->act_name = $this->router->getModuleName();
+        $this->permission = $this->setPermission($this->act_name);
+          $this->view->permission = $this->permission;
     }
 
     /**
@@ -29,6 +32,7 @@ class CorememberController extends ControllerBase {
      * 
      */
     public function saveuserAction() {
+         if ($this->permission == 1) {
         $json = array();
         //form validation init
         if ($this->request->isPost()) {
@@ -65,6 +69,10 @@ class CorememberController extends ControllerBase {
                 }
             }
         }
+         }
+         else {
+             echo 'Page Not Found';
+         }
     }
 
 }

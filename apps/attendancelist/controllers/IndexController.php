@@ -72,6 +72,7 @@ class IndexController extends ControllerBase {
     }
 
     public function editTimedialogAction($id) {
+         if ($this->moduleIdCall == 1) {
         $Att = new \salts\Attendancelist\Models\Attendances();
         $t = $this->_getTranslation(); //for translate
         $data = $Att->getAttTime($id);
@@ -85,6 +86,10 @@ class IndexController extends ControllerBase {
         $data[1]['cancel'] = $t->_("cancel");
         echo json_encode($data);
         $this->view->disable();
+         }
+         else {
+             echo "Page Not Found";
+         }
     }
 
     /**
@@ -95,7 +100,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function editTimeAction($id, $localtime) {
-
+ if ($this->moduleIdCall == 1) {
         $offset = $this->session->location['offset'];
         $post = $localtime;
         $Att = new \salts\Attendancelist\Models\Attendances();
@@ -103,6 +108,11 @@ class IndexController extends ControllerBase {
         $this->response->redirect('attendancelist/index/todaylist');
 //        $this->view->disable();
     }
+    else {
+        echo 'Page Not Found';
+    }
+    }
+    
 
     /**
      * show monthly attendancelist
@@ -133,6 +143,7 @@ class IndexController extends ControllerBase {
     }
 
     public function attsearchAction() {
+         if ($this->moduleIdCall == 1) {
         if ($this->request->isAjax() == true) {
             $month = $this->request->get('month');
             $username = $this->request->get('username', "string");
@@ -143,6 +154,10 @@ class IndexController extends ControllerBase {
             $this->view->disable();
             echo json_encode($result);
         }
+         }
+         else {
+             echo 'Page Not Found';
+         }
     }
 
     /**
@@ -150,17 +165,29 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
+         if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
         $data = $Attendances->currentAttList($currentPage);
         $this->view->data = $data;
+         }
+         else {
+             echo 'Page Not Found';
+         }
     }
 
     public function autolistAction() {
+         if ($this->moduleIdCall == 1) {
         $UserList = new \salts\Auth\Models\CoreMember();
         $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);
     }
-
+  
+    else {
+    echo 'Page Not Found';
+    }
+  }
+  
+  
 }
