@@ -127,11 +127,11 @@ class IndexController extends ControllerBase {
        $localhost = ($this->request->getServer('HTTP_HOST'));
      //   if ($this->permission == 1) {
             if (isset($_FILES['fileToUpload'])) {
-                $file_type = $_FILES['fileToUpload']['tmp_name'];
+                $file_type = $_FILES['fileToUpload']['type'];
                 $file_size = $_FILES['fileToUpload']['size'];
                 //  $file_type = $_FILES['uploaded_file']['type'];
                 //   if (($file_size > 12000000)){      
-                if (($file_size > 100000)) {
+                if (($file_size > 1000000)) {
                     $message = 'File too large. File must be less than 10 megabytes.';
                     echo '<script type="text/javascript">alert("' . $message . '");</script>';
                       $page = "http://" . $localhost . "/salts/document/index/letterhead";
