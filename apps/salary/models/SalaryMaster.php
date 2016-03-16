@@ -404,7 +404,7 @@ class SalaryMaster extends Model {
            try {
             
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
-                    . "and YEAR(att_date) =  '".$date['0']."' and MONTH(att_date)= '".$date['1']."' and deleted_flag=0 and (status=1 or 2)  ";
+                    . "and YEAR(att_date) =  '".$date['0']."' and MONTH(att_date)= '".$date['1']."' and deleted_flag=0 and (status=1 or status=2)  ";
             
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
