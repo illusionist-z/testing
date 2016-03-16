@@ -43,9 +43,9 @@ class Calendar extends Model {
             $e['title'] = $fetch['title'];
             $e['start'] = $fetch['startdate'];
             $s = $fetch['enddate'];
-            $e['end'] = date('Y-m-d H:i:s', strtotime($s . '+1 days'));
+            $e['end'] = date('Y-m-d', strtotime($s . '+1 days'));
             ($today > date("Y-m-d", strtotime($fetch['enddate']))) ? $e['color'] = '#aaa' : $e['color'] = '#3a87ad';
-            $allday = ($fetch['allDay'] == "true") ? true : false;
+            $allday = ($fetch['allDay'] == true) ? true : false;
             $e['allDay'] = $allday;
             array_push($events, $e);
         }

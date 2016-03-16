@@ -46,9 +46,7 @@ var Calendar = {
             eventResize: function (event) {
                 var start = event.start.format("YYYY-MM-DD");
                 var end = event.end.format("YYYY-MM-DD");
-//                var shr = event.start.format("HH:mm:ss");
-//                var ehr = event.end.format("HH:mm:ss");
-                //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
+
                 Calendar.Dialog.drag(start, end, event.id, event.title, event.member_name, event);
             },
             eventDrop: function (event) {
@@ -62,20 +60,20 @@ var Calendar = {
                 Calendar.Dialog.drag(start, end, event.id, event.title, event.member_name, event);
             },
             select: function (start, end, allDay) {
-                var start = start.format("YYYY-MM-DD");
-                var end = end.format("YYYY-MM-DD");
-                var d_end = DateTimeFix(end);
+                var startdate = start.format("YYYY-MM-DD");
+                var enddate = end.format("YYYY-MM-DD");
+                var d_end = DateTimeFix(enddate);
                 Calendar.Dialog.auto();
                 //check if dialog is exist
                 if ($('#dialog_create').hasClass('ui-dialog-content')) {
-                    $('#sdate_create_event').val(start);
+                    $('#sdate_create_event').val(startdate);
                     $('#title_create_event').val("");
                     $('#select_name').val("");
                     $('#edate_create_event').val(d_end);
                     $('#dialog_create').dialog('open');
                 }
                 else {
-                    Calendar.Dialog.new(start,d_end);
+                    Calendar.Dialog.new(startdate,d_end);
                 }
             },
             eventMouseout: function (calEvent, domEvent) {
@@ -537,11 +535,11 @@ $(document).ready(function () {
          * @returns {date} to fullcalendar schedule view
          */
         function DateTimeFix(end){
-               var day =  new Date(end).getDate() - 1;
-               var mth = new Date(end).getMonth() + 1;
+               var day =  new Date(end).getDate()-1;
+               var mth = new Date(end).getMonth();
                var year = new Date(end).getFullYear();
                //for leap year and last day of month
-               if(day === 0){
+               if(day === 0){                   
                    if(mth === 9 || mth === 4 || mth === 5 || mth === 11) {day = 30;}
                    else if(mth === 1 || mth === 3 || mth === 6 || mth === 7 || mth === 8|| mth === 10 || mth === 12) {
                        //last day of december is equalalent to next year first day of January
@@ -557,7 +555,7 @@ $(document).ready(function () {
                    else{
                        day = 28;
                    }
-               }
+               }else { mth +=1;}
                (mth < 10) ?  mth = "0"+mth : mth;
                (day < 10) ?  day  = "0"+day : day;
                var fix_date  = year+"-"+mth+"-"+ day;    //get Vitural date

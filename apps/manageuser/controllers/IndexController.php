@@ -188,11 +188,7 @@ class IndexController extends ControllerBase {
          }
     }
 
-    /*
-     * @Count Member Limit
-     * @Inset Buyer Code
-     * @Yan Lin Pai <Yan Lin Pai>
-     */
+    
 
     public function adduserAction() {
         
