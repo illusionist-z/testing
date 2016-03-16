@@ -309,6 +309,7 @@ class SalaryMaster extends Model {
         } catch (Exception $exc) {
             echo $exc;
         }
+      
         return $final_result;
     }
 
@@ -403,10 +404,15 @@ class SalaryMaster extends Model {
            try {
             
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
-                    . "and YEAR(att_date) =  '".$date['0']."' and MONTH(att_date)= '".$date['1']."' and deleted_flag=0 and status!=0";
+                    . "and YEAR(att_date) =  '".$date['0']."' and MONTH(att_date)= '".$date['1']."' and deleted_flag=0 and (status=1 or status=2)  ";
             
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
+            $sql2 = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
+                    . "and YEAR(att_date) =  '".$date['0']."' and MONTH(att_date)= '".$date['1']."' and deleted_flag=0 and (status=3)  ";
+            $result2 = $this->db->query($sql2);
+            $row2 = $result2->fetcharray();
+            $row['countAbsent']+=(($row2['countAbsent'])/2); 
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -423,9 +429,15 @@ class SalaryMaster extends Model {
         try {
             $absent_deduce = "";
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
-                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and status!=0";
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and (status = 1 or status = 2)";
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
+             $sql2 = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and (status = 3)";
+            $result2 = $this->db->query($sql2);
+            $row2 = $result2->fetcharray();
+            $row['countAbsent']+=(($row2['countAbsent'])/2); 
+            
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -739,7 +751,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      */
     public function editSalary($member_id) {
         try {
-            $sql = "select * from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE salary_master.member_id ='" . $member_id . "'";
+            $sql = "select *  from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE salary_master.member_id ='" . $member_id . "'";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
         } catch (Exception $e) {

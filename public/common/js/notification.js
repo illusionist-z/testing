@@ -27,7 +27,7 @@ var Noti = {
                     data: form.serialize(),
                     url: baseUri + "leavedays/index/acceptleave",
                     success: function() {
-                        window.location.href = baseUri + 'dashboard';
+                  window.location.href = baseUri + 'dashboard';
                     }
                 });
         

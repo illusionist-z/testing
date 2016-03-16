@@ -200,6 +200,7 @@ class IndexController extends ControllerBase {
         $t = $this->_getTranslation();
         $SalaryMaster = new SalaryMaster();
         $edit_salary = $SalaryMaster->editSalary($member_id);
+      
         $resultsalary['data'] = $edit_salary;
         $PermitAllowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $PermitAllowance->getAllowanceByMemberid($edit_salary[0]['member_id']);
@@ -208,7 +209,6 @@ class IndexController extends ControllerBase {
         $PermitDedution = new SalaryMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $PermitDedution->getDeduceBymemberid($edit_salary[0]['member_id']);
         $resultsalary['no_of_children'] = $PermitDedution->getNoOfChildrenBymemberid($edit_salary[0]['member_id']);
-
         $Dedution = new SalaryTaxsDeduction();
         $resultsalary['dedution'] = $Dedution->getDeducelist();
         $Allowance = new Allowances();
@@ -225,6 +225,7 @@ class IndexController extends ControllerBase {
         $resultsalary['t']['delete_btn'] = $t->_("delete_btn");
         $resultsalary['t']['cancel_btn'] = $t->_("cancel_btn");
         $this->view->disable();
+
         echo json_encode($resultsalary);
           }
           else {
