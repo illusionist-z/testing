@@ -141,7 +141,7 @@ class IndexController extends ControllerBase {
         $member_id = $this->session->user['member_id'];
         $sdate = $this->request->get('sdate');
         $edate = $this->request->get('edate');
-        null === $e ? $edate = date('Y-m-d H:i:s', strtotime($edate . '-1 days')) : $edate;
+        null === $e ? $edate = date('Y-m-d', strtotime($edate . '-1 days')) : $edate;
         $name = $this->request->get('uname');
         $title = $this->request->get('title');
         $res = array();
