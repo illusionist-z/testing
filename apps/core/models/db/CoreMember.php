@@ -221,7 +221,6 @@ class CoreMember extends \Library\Core\Models\Base {
         $username = $filter->sanitize($member['uname'], "string");
         $full_name = $filter->sanitize($member['full_name'], "string");
         $bank_acc = $filter->sanitize($member["bank"],"string");
-        //$pass = $filter->sanitize($pass, "string");
         $dept = $filter->sanitize($member['dept'], "string");
         $position = $filter->sanitize($member['position'], "string");
         $email = $filter->sanitize($member['email'], "email");
@@ -256,8 +255,15 @@ class CoreMember extends \Library\Core\Models\Base {
         $user = $user->fetchall();
         return $user;
     }
+    
+    public function getProfile($id){
+          $this->db = $this->getDI()->getShared("db");
+        $user = $this->db->query("SELECT * FROM core_member_profile WHERE member_id='" . $id . "'");
+        $user = $user->fetchArray();
+        return $user;
+    }
 
-   
+    
     /**
      * 
      * @return type
