@@ -121,7 +121,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function editinfoAction() {
-
+if ($this->permission == 1) {
         $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
         $file = fopen($MY_FILE, 'r');
         $file_contents = fread($file, filesize($MY_FILE));
