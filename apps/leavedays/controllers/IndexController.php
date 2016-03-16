@@ -41,10 +41,8 @@ class IndexController extends ControllerBase {
     }
     
     
-  
-    
     public function indexAction() {
-        
+            $this->response->redirect('core/index');
     }
 
     public function autolistAction() {
@@ -64,11 +62,16 @@ class IndexController extends ControllerBase {
      * get member id
      */
     public function getapplymemberidAction() {
+           if ($this->permission == 1) {
         $data = $this->request->get('username');
         $LeaveType = new LeaveCategories();
         $cond = $LeaveType->memberIdApplyLeave($data);
         echo json_encode($cond);
         $this->view->disable();
+           }
+           else {
+               echo 'Page Not Found';
+           }
     }
 
     /**
@@ -100,6 +103,7 @@ class IndexController extends ControllerBase {
     }
 
     public function checkapplyAction() {
+           if ($this->permission == 1) {
         if ($this->request->isPost()) {
             $user = $this->_leave;
             $validate = $user->validating($this->request->getPost());
@@ -123,6 +127,10 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
             }
         }
+           }
+           else {
+               echo 'Page Not Found';
+           }
     }
 
     /**
@@ -204,6 +212,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function ltyaddAction() {
+           if ($this->permission == 1) {
         $t = $this->_getTranslation();
         $data[1]['addleavetype'] = $t->_("addleavetype");
         $data[1]['leave_category'] = $t->_("leave_category");
@@ -212,6 +221,10 @@ class IndexController extends ControllerBase {
         $data[1]['enterltp'] = $t->_("enterltp");
         $this->view->disable();
         echo json_encode($data);
+           }
+           else { 
+               echo 'Page Not Found';
+           }
     }
 
     /**
@@ -219,6 +232,7 @@ class IndexController extends ControllerBase {
      * Edit Leave categories with dialog
      */
     public function ltypediaAction() {
+           if ($this->permission == 1) {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
@@ -228,6 +242,10 @@ class IndexController extends ControllerBase {
         $data[1]['no'] = $t->_("cancel");
         $this->view->disable();
         echo json_encode($data);
+           }
+           else {
+               echo 'Page Not Found';
+           }
     }
 
     /**
@@ -235,10 +253,15 @@ class IndexController extends ControllerBase {
      * Deleting leave categories in leave setting
      */
     public function deleteListTypeAction() {
+            if ($this->permission == 1) {
         $leavetype_id = $this->request->getPost('id');
         $LeaveCategories = new LeaveCategories();
         $LeaveCategories->deleteCategories($leavetype_id);
         $this->view->disable();
+            }
+            else {
+                echo 'Page Not Found';
+            }
     }
 
     /**
@@ -246,9 +269,14 @@ class IndexController extends ControllerBase {
      * Adding new leave categories in leave setting
      */
     public function addListTypeAction() {
+            if ($this->permission == 1) {
         $leavetype_name = $this->request->getPost('ltype_name');
         $LeaveCategories = new LeaveCategories();
         $LeaveCategories->addNewCategories($leavetype_name);
+            }
+            else {
+                echo 'Page Not Found';
+            }
     }
 
     /**
@@ -257,10 +285,15 @@ class IndexController extends ControllerBase {
      * max leavedays/leave categories
      */
     public function editleavesettingAction() {
+            if ($this->permission == 1) {
         $max_leavedays = $this->request->getPost('max_leavedays');
         $LeaveSetting = new LeavesSetting();
         $LeaveSetting->editLeaveSetting($max_leavedays);
         $this->response->redirect('leavedays/index/leavesetting');
+            }
+            else {
+                echo "Page Not Found";
+            }
     }
 
     /**
@@ -268,11 +301,16 @@ class IndexController extends ControllerBase {
      * Admin Accepting the leave request
      */
     public function acceptleaveAction() {
+            if ($this->permission == 1) {
         $id = $this->request->get('id');
         $days = $this->request->getPost('leave_days');
         $noti_id = $this->request->getPost('noti_id');
        
         $this->_leave->acceptLeave($id, $days, $noti_id);
+            }
+            else {
+                echo 'Page Not Found';
+            }
     }
 
     /**
@@ -280,8 +318,13 @@ class IndexController extends ControllerBase {
      * Admin rejecting the leave request
      */
     public function rejectleaveAction() {
+            if ($this->permission == 1) {
         $noti_id = $this->request->getPost('noti_id');
         $this->_leave->rejectLeave($noti_id);
+            }
+            else {
+                echo 'Page Not Found';
+            }
     }
 
     /**
@@ -289,10 +332,15 @@ class IndexController extends ControllerBase {
      * @author Saw Zin Min Htun 
      */
     public function applyautolistAction() {
+            if ($this->permission == 1) {
         $UserList = new Db\CoreMember();
         $Username = $UserList->applyautousername();
         $this->view->disable();
         echo json_encode($Username);
+            }
+            else {
+                echo 'Page Not Found';
+            }
     }
 
     /**
@@ -301,6 +349,7 @@ class IndexController extends ControllerBase {
      * @desc   No Leave Action
      */
     public function noleavelistAction() {
+            if ($this->permission == 1) {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/index-paging.js');
         $Admin = new Db\CoreMember;
@@ -311,6 +360,10 @@ class IndexController extends ControllerBase {
         $Result = $Admin->checkLeave();
 
         $this->view->setVar("Result", $Result);
+            }
+            else {
+                echo 'Page Not Found';
+            }
     }
 
     /**
@@ -319,6 +372,7 @@ class IndexController extends ControllerBase {
      * @desc  Leave Most Action
      */
     public function leavemostAction() {
+            if ($this->permission == 1) {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/index-paging.js');
         $Admin = new Db\CoreMember;
@@ -329,9 +383,14 @@ class IndexController extends ControllerBase {
         $Result = $Admin->leaveMost();
 
         $this->view->setVar("Result", $Result);
+            }
+            else{
+                echo 'Page Not Found';
+            }
     }
     
        public function detailAction() {
+               if ($this->permission == 1) {
         $this->setCommonJsAndCss();
         $this->assets->addCss('common/css/css/style.css');
         $Admin = new Db\CoreMember();
@@ -356,6 +415,10 @@ class IndexController extends ControllerBase {
         $this->view->setVar("module_name", $module_name);
         $this->view->setVar("result", $Detail_result);
         $this->view->t = $this->_getTranslation();
+               }
+               else {
+                   echo 'Page Not Found';
+               }
     }
 
 }

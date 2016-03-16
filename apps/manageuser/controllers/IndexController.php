@@ -19,8 +19,7 @@ class IndexController extends ControllerBase {
         $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
         $this->view->module_name = $this->module_name;
-        $this->view->permission = $this->permission;
-        $Admin = new Db\CoreMember();
+                $Admin = new Db\CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
@@ -45,6 +44,7 @@ class IndexController extends ControllerBase {
      */
     public function indexAction() {
         //for paging and edit user        
+          if ($this->permission == 1) {
         $currentPage = $this->request->get('page');
         $this->assets->addJs("apps/manageuser/js/index-index.js");
         $this->assets->addJs('apps/manageuser/js/base.js');
@@ -55,7 +55,7 @@ class IndexController extends ControllerBase {
         $member_count_number = $member_count->getNumberCount();
         $this->view->member_count_number = $member_count_number;
 
-        if ($this->permission == 1) {
+     
             $this->view->modulename = $this->module_name;
             $this->view->setVar('username', $getname);
             $this->view->setVar('Result', $list);
@@ -66,10 +66,15 @@ class IndexController extends ControllerBase {
 
     //for monthly list autocomplete
     public function usernameautolistAction() {
+                         if ($this->permission == 1) {
         $UserList = new Db\CoreMember();
         $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);
+                         }
+                         else {
+                             "Page Not Found";                             
+                         }
     }
 
     /**
@@ -79,6 +84,7 @@ class IndexController extends ControllerBase {
      * @since 20/7/15
      */
     public function manageuserAction() {
+         if ($this->permission == 1) {
         $type = $this->request->get('data');
         $t = $this->_getTranslation();
         $edit = array();
@@ -133,6 +139,10 @@ class IndexController extends ControllerBase {
             echo json_encode($edit);
         }
         $this->view->disable();
+         }
+         else {
+             echo 'Page Not Found';
+         }
     }
 
     /**
@@ -142,9 +152,14 @@ class IndexController extends ControllerBase {
      * @since  20/7/15
      */
     public function deleteuserAction() {
+         if ($this->permission == 1) {
         $id = $this->request->get('data');
         $this->user->userDelete($id);
         $this->view->disable();
+         }
+         else {
+             echo 'Page Not Found';
+         }
     }
 
     /**
@@ -153,6 +168,7 @@ class IndexController extends ControllerBase {
      * @since  20/7/15
      */
     public function userdataeditAction() {
+         if ($this->permission == 1) {
         $cond = array();
         $cond['id'] = $this->request->get('data');
         $cond['bank'] = $this->request->get('bank');
@@ -166,6 +182,10 @@ class IndexController extends ControllerBase {
         $result = $this->user->editByCond($cond);
         echo json_encode($result);             // send validating data
         $this->view->disable();
+         }
+         else {
+             echo 'Page Not Found';
+         }
     }
 
     /*
@@ -183,10 +203,15 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function getpermitAction() {
+         if ($this->permission == 1) {
         $Permission = new Db\CorePermissionGroupId();
         $row = $Permission::find();        
         echo json_encode($row->toArray());
         $this->view->disable();
+         }
+        else {
+             echo 'Page Not Found';
+        }
     }
 
 }

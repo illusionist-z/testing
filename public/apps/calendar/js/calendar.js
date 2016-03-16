@@ -46,9 +46,9 @@ var Calendar = {
             eventResize: function (event) {
                 var start = event.start.format("YYYY-MM-DD");
                 var end = event.end.format("YYYY-MM-DD");
-                var shr = event.start.format("HH:mm:ss");
-                var ehr = event.end.format("HH:mm:ss");
-                //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");  
+//                var shr = event.start.format("HH:mm:ss");
+//                var ehr = event.end.format("HH:mm:ss");
+                //var end = $.fullCalendar.formatDate(event.end, "yyyy-MM-dd HH:mm:ss");
                 Calendar.Dialog.drag(start, end, event.id, event.title, event.member_name, event);
             },
             eventDrop: function (event) {
@@ -337,7 +337,7 @@ Calendar.Dialog = {
     },
     edit: function (event, old_id, dia) {
         $.ajax({
-            url: "edit/" + event.id+"/"+1,
+            url: Calendar.Ctrl+"/edit/" + event.id+"/"+1,
             data: $('#edit_event').serialize(),
             async: false,
             dataType: 'json',
@@ -358,7 +358,7 @@ Calendar.Dialog = {
     drag: function (start, end, id, title, name, event) {
 
         $.ajax({
-            url: "edit/" + id,
+            url: Calendar.Ctrl+"/edit/" + id,
             data: {sdate: start, edate: end, title: title, uname: name},
             async: false,
             dataType: 'json',
@@ -433,7 +433,7 @@ Calendar.Dialog = {
     },
     delete: function (id, member, dia) {
         $.ajax({
-            url: "delete",
+            url: Calendar.Ctrl+"/delete",
             data: {data: id},
             async: false,
             dataType: 'json'

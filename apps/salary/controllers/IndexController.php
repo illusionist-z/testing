@@ -1,7 +1,6 @@
 <?php
 
 namespace salts\Salary\Controllers;
-
 use salts\Core\Models\Db;
 use salts\Salary\Models\SalaryDetail;
 use salts\Salary\Models\SalaryMaster;
@@ -11,7 +10,7 @@ use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
 use Phalcon\Filter;
 
-class IndexController extends ControllerBase {
+class IndexController extends ControllerBase {  
 
     public function initialize() {
         $this->setSalaryJsAndCss();
@@ -23,8 +22,6 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/common.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/skins.min.css');
-
-
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/common.js'); 
         $this->assets->addJs('common/js/paging.js');
@@ -35,12 +32,11 @@ class IndexController extends ControllerBase {
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
-        $this->module_name = $this->router->getModuleName();
-         $this->assets->addJs('apps/salary/js/base.js');
+        $this->module_name = $this->router->getModuleName(); 
         $this->assets->addCss('common/css/css/style.css');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
-
+        
         foreach ($this->session->auth as $key_name => $key_value) {
 
             if ($key_name == 'show_admin_notification') {
@@ -62,7 +58,7 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
-        
+            $this->response->redirect('core/index');
     }
 
     /**
@@ -96,12 +92,10 @@ class IndexController extends ControllerBase {
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $this->assets->addJs('apps/salary/js/index-show-salarylist.js');
-
             $month = $this->request->get('month');
             $year = $this->request->get('year');
             $SalaryDetail = new SalaryDetail();
             $get_salary_list = $SalaryDetail->salarylist($month, $year);
-
             $UserList = new Db\CoreMember();
             $user_name = $UserList->find();
              $this->view->setVar("month", $month);
@@ -119,7 +113,7 @@ class IndexController extends ControllerBase {
      * Add salary form
      */
     public function addsalaryAction() {
-
+       if ($this->permission == 1) {
         $this->assets->addJs('apps/salary/js/index-addsalary.js');
         $userlist = new Db\CoreMember();
         $user_name = $userlist::getinstance()->getUserName();
@@ -130,7 +124,7 @@ class IndexController extends ControllerBase {
         $deduce = $TaxDeduction->getDeducelist();
 
         $position = $this->salaryconfig->position;
-        if ($this->permission == 1) {
+ 
             $this->view->module_name = $this->router->getModuleName();
             $this->view->setVar("usernames", $user_name);
             $this->view->position = $position;
@@ -142,23 +136,27 @@ class IndexController extends ControllerBase {
     }
 
     public function autolistAction() {
+           if ($this->permission == 1) {
         $UserList = new Db\CoreMember();
         $username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($username);
+           }
+           else {echo "Page Not Found";}
     }
 
     /**
      * show total salary  of each month
      */
     public function monthlysalaryAction() {
+         if ($this->permission === 1) {  
         $this->assets->addJs('apps/salary/js/base.js');
         $this->assets->addJs('apps/salary/js/index-addsalary.js');
         $currentPage = $this->request->get("page");
         $SalaryDetail = new SalaryDetail();
         $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
         $this->view->module_name = $this->router->getModuleName();
-        if ($this->permission === 1) {
+    
             $this->view->setVar("geteachmonthsalarys", $get_eachmonth_salary);
         } else {
             
@@ -169,6 +167,7 @@ class IndexController extends ControllerBase {
      * get detail data for payslip
      */
     public function payslipAction() {
+          if ($this->permission == 1) {
         $this->assets->addJs('apps/salary/js/base.js');
 
         $member_id = $this->request->get('member_id');
@@ -185,6 +184,10 @@ class IndexController extends ControllerBase {
 
         $this->view->getsalarydetails = $get_salary_detail;
         $this->view->getallowance = $get_allowance;
+          }
+          else {
+               echo 'Page Not Found';
+          }
     }
 
     /**
@@ -192,6 +195,7 @@ class IndexController extends ControllerBase {
      * @version 9/9/15
      */
     public function editsalaryAction() {
+          if ($this->permission == 1) {
         $member_id = $this->request->get('id');
         $t = $this->_getTranslation();
         $SalaryMaster = new SalaryMaster();
@@ -223,6 +227,10 @@ class IndexController extends ControllerBase {
         $this->view->disable();
 
         echo json_encode($resultsalary);
+          }
+          else {
+              echo "Page Not Found";
+          }
     }
 
     /**
@@ -231,7 +239,7 @@ class IndexController extends ControllerBase {
      * @return true|false
      */
     public function btneditAction() {
-
+          if ($this->permission == 1) {
         $data['id'] = $this->request->getPost('id');
         $data['member_id'] = $this->request->getPost('member_id');
         $data['uname'] = $this->request->getPost('uname');
@@ -258,9 +266,14 @@ class IndexController extends ControllerBase {
 
         echo json_encode($cond);
         $this->view->disable();
+          }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     public function salSettingAction() {
+          if ($this->permission == 1) {
         $t = $this->_getTranslation();
         $sett['deduc_name'] = $t->_('deduc_name');
         $sett['deduc_amount'] = $t->_('deduc_amount');
@@ -271,9 +284,14 @@ class IndexController extends ControllerBase {
         $sett['cancel'] = $t->_('cancel');
         echo json_encode($sett);
         $this->view->disable();
+          }
+          else {
+              echo "Page Not Found";
+          }
     }
 
     public function calSalaryAction() {
+          if ($this->permission == 1) {
         $t = $this->_getTranslation();
         $tras['cal_title'] = $t->_('cal_title');
         $tras['cal_text'] = $t->_('calSalary_noti');
@@ -282,6 +300,10 @@ class IndexController extends ControllerBase {
         $tras['cal_no'] = $t->_('cancel');
         echo json_encode($tras);
         $this->view->disable();
+          }
+          else {
+              echo "Page Not Found";
+          }
     }
 
     /**
@@ -290,11 +312,14 @@ class IndexController extends ControllerBase {
 
      */
     public function getmemberidAction() {
+        if ( $this->permission == 1){
         $data = $this->request->get('uname');
         $SalaryDetail = new SalaryMaster();
         $cond = $SalaryDetail->memidsalary($data);
         echo json_encode($cond);
         $this->view->disable();
+        }
+        else { Echo "Page Not Found";}
     }
 
     /**
@@ -302,11 +327,12 @@ class IndexController extends ControllerBase {
      * @author Su Zin kyaw
      */
     public function allowanceAction() {
-        $this->assets->addJs('apps/salary/js/index-allowance.js');
+        if ($this->permission == 1) {
+         $this->assets->addJs('apps/salary/js/index-allowance.js');
         $AllList = new \salts\Salary\Models\Allowances();
         $list = $AllList->showAlwlist();
 
-        if ($this->permission == 1) {
+       
             $this->view->setVar("list", $list); //paginated data
             $this->view->module_name = $this->router->getModuleName();
         } else {
@@ -319,6 +345,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function saveallowanceAction() {
+          if ($this->permission == 1) {
         for ($x = 1; $x <= 10; $x++) { // getting all value from text boxes
             $all_name['"' . $x . '"'] = $this->request->get('textbox' . $x);
             $all_value['"' . $x . '"'] = $this->request->get('txt' . $x);
@@ -343,6 +370,10 @@ class IndexController extends ControllerBase {
             $this->response->redirect('salary/index/allowance');
             $this->flashSession->success("No data!Insert Data First");
         }
+          }
+          else {
+              echo "Page Not Found";
+          }
     }
 
     /**
@@ -351,6 +382,7 @@ class IndexController extends ControllerBase {
      * @update translate #jp
      */
     public function editallowanceAction() {
+          if ($this->permission == 1) {
         $all_id = $this->request->get('id');
         $t = $this->_getTranslation();
         $Allowance = new Allowances();
@@ -363,6 +395,10 @@ class IndexController extends ControllerBase {
         $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
+          }
+          else {
+              echo "Page Not Found";
+          }
     }
 
     /**
@@ -384,18 +420,24 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function editdataAction() {
+          if ($this->permission == 1) {
         $data['id'] = $this->request->getPost('id');
         $data['name'] = $this->request->getPost('name');
         $data['allowance_amount'] = $this->request->getPost('allowance_amount');
         $Allowance = new Allowances();
         $Allowance->editAllowance($data);
         $this->view->disable();
+          }
+          else {
+              echo "Page Not Found";
+          }
     }
 
     /**
      * delete allowance data
      * @author Su Zin Kyaw
      */
+    
     public function deletedataAction() {
         $id = $this->request->getPost('id');
         $Allowance = new Allowances();
@@ -437,6 +479,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function taxdiaAction() {
+        if ($this->permission === 1) {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $Tax = new SalaryTaxs();
@@ -451,6 +494,10 @@ class IndexController extends ControllerBase {
         $data['t']['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**
@@ -458,6 +505,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function edittaxAction() {
+        if ($this->permission === 1) {
         $data['id'] = $this->request->getPost('id');
         $data['taxs_from'] = $this->request->getPost('taxs_from');
         $data['taxs_to'] = $this->request->getPost('taxs_to');
@@ -467,6 +515,10 @@ class IndexController extends ControllerBase {
         $SalaryTax = new SalaryTaxs();
         $SalaryTax->editTax($data);
         $this->view->disable();
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**
@@ -474,6 +526,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function dectdiaAction() {
+        if ($this->permission === 1) {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $Deduction = new SalaryTaxsDeduction();
@@ -486,6 +539,10 @@ class IndexController extends ControllerBase {
         $data['t']['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**
@@ -493,12 +550,18 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function editDeductAction() {
+        if ($this->permission === 1) {
         $data['id'] = $this->request->getPost('id');
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
         $Deduction = new SalaryTaxsDeduction();
         $Deduction->editDeduction($data);
         $this->view->disable();
+        }
+        else {
+            echo "Page Not Found";
+           
+        }
     }
 
     /**
@@ -506,12 +569,16 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function addDectAction() {
-
+        if ($this->permission === 1) {
         $data['deduce_name'] = $this->request->getPost('deduce_name');
         $data['amount'] = $this->request->getPost('amount');
         $Deduction = new SalaryTaxsDeduction();
         $Deduction->addDeduction($data);
         $this->view->disable();
+        }
+        else {
+            echo 'Page Not Found';
+        }
     }
 
     /**
@@ -519,6 +586,7 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw
      */
     public function show_add_dectAction() {
+        if ($this->permission === 1) {
         $t = $this->_getTranslation();
         $data[1]['deduce_frm'] = $t->_("deduce_frm");
         $data[1]['deduce_name'] = $t->_("deduce_name");
@@ -529,17 +597,26 @@ class IndexController extends ControllerBase {
         $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
-    }
+        }
+        else {
+            echo "Page Not Found";
+        }
+        }
 
     /**
      * Delete Deduction 
      * @author Su Zin Kyaw
      */
     public function deleteDeductAction() {
+        if ($this->permission === 1) {
         $deduce_id = $this->request->getPost('id');
         $Deduction = new SalaryTaxsDeduction();
         $Deduction->deleteDeduction($deduce_id);
         $this->view->disable();
+        }
+        else {
+            echo "Page Not Found";
+        }
     }
 
     /**

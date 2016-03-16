@@ -38,7 +38,9 @@ class IndexController extends ControllerBase {
 
         $this->view->setVar("Noti", $Noti);
     }
-
+       public function indexAction() {
+            $this->response->redirect('core/index');
+    }
     /**
      * Show ssb document
      * @author zinmon
@@ -69,12 +71,14 @@ class IndexController extends ControllerBase {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function taxdocumentAction() {
+          $ModuleIdCallCore = new Db\CoreMember();
+          if ($moduleIdCall == 1) {
         $this->assets->addCss('apps/document/css/index_tax.css');
-        $ModuleIdCallCore = new Db\CoreMember();
+       
         $this->view->module_name = $this->router->getModuleName();
         $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
 
-        if ($moduleIdCall == 1) {
+      
             $this->assets->addJs('apps/document/js/index-print.js');
             $SalaryDetail = new Document();
             $result = $SalaryDetail->getSalaryInfo();
@@ -94,9 +98,10 @@ class IndexController extends ControllerBase {
     public function letterheadAction() {
 
         $ModuleIdCallCore = new Db\CoreMember();
+          if ($this->moduleIdCall == 1) {
         $this->view->module_name = $this->router->getModuleName();
         $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
-        if ($this->moduleIdCall == 1) {
+      
             $this->assets->addJs('apps/document/js/index-letterhead.js');
             $ComInfo = new CompanyInfo();
             $ComInfo = CompanyInfo::find();
@@ -127,9 +132,13 @@ class IndexController extends ControllerBase {
         $ComInfo->editCompanyInfo($update_info,$file_contents);
         $this->response->redirect("document/index/letterhead");
     }
+    else{
+        echo 'Page Not Found';
+    }
+    }
     
      public function salaryreferAction(){
-        
+           if ($this->permission == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
            
@@ -147,7 +156,10 @@ class IndexController extends ControllerBase {
             $name = $ComInfo['0']->company_name;
             $this->view->salary_info = $result;
             $this->view->com_name = $name;
-
+           }
+           else {
+               echo 'Page Not Found';
+           }
         }
     
 
