@@ -254,7 +254,7 @@ var Salary = {
         var member_id=document.getElementById('member_id').value;
         $.ajax({
             type:'POST',
-            url : baseUri+"salary/index/delete_salary",
+            url : baseUri+"salary/index/deleteSalary",
             data: {id: member_id },
             success:function(){
                 
@@ -522,6 +522,7 @@ $(document).ready(function () {
     });
     $("body").on("click",".displaypopup",function () {
         var id = $(this).attr('id');
+        
         Salary.Edit(id);
     });
     //for auto complete into user name textbox

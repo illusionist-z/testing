@@ -36,7 +36,7 @@ if(! ini_get('date.timezone')){
                         <table>
                             <tr><?php foreach ($info as $value) {?>
                                 <td style="width:100px">
-                                    <img src="<?php echo $baseUri ?>public/uploads/<?php echo$this->session->db_config['company_id']?>/<?php echo $value->company_logo ?>"  style="width:100px; height:90px" />
+                                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode(  $value->company_logo ).'"/>';?>
                                     <input type="file" id="my_file" style="display: none;" />
                                 </td>
                                 <td style=" width: 1000px;">
@@ -55,7 +55,7 @@ if(! ini_get('date.timezone')){
                     <input style="height: 1%" type="text" class="company_name" id="company_name" name="update[company_name]" value="<?php echo $value->company_name; ?>"  style="width:350px;">
                     <input style="height: 1%; width: 90%" type="text" class="company_address" id="company_address" name="update[company_address]" value="<?php echo $value->company_address; ?>"  style="width:350px;">
                     <input style="height: 1%" type="text" class="company_phno" id="company_phno" name="update[company_phno]" value="<?php echo $value->company_phno; ?>"  style="width:350px;">
-                    <input style="height: 1%" type="hidden" class="temp_logo" id="temp_logo" name="update[temp_logo]" value="<?php echo $value->company_logo; ?>"  style="width:350px;">
+                    <input style="height: 1%" type="hidden" class="temp_logo" id="temp_logo" name="update[temp_logo]" value="<?php ; ?>"  style="width:350px;">
                 </div><?php }?>
             </div>
         </div>

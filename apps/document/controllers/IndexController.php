@@ -116,26 +116,15 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function editinfoAction() {
-        $file_name = $this->session->db_config['company_id']. '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
-        $company_id=($this->session->db_config['company_id']);
-         $target_dir = "uploads/$company_id./";
-        if (!is_dir($target_dir)) {
-         mkdir($target_dir);
-       }
-       
-        $target_file = $target_dir . $file_name;
-       
-        $ComInfo = new CompanyInfo();
+
+        $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+        $file = fopen($MY_FILE, 'r');
+        $file_contents = fread($file, filesize($MY_FILE));
+        fclose($file);
+        $file_contents = addslashes($file_contents);
         $update_info = $this->request->getPost('update');
-        if ($_FILES["fileToUpload"]["name"] == null) {
-            $update_info['company_logo'] = $update_info['temp_logo'];
-        } else {
-            $pic = $update_info['temp_logo'];
-             unlink("$target_dir/$pic");
-              move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-            $update_info['company_logo'] = $file_name;
-        }
-        $ComInfo->editCompanyInfo($update_info);
+        $ComInfo = new CompanyInfo();
+        $ComInfo->editCompanyInfo($update_info,$file_contents);
         $this->response->redirect("document/index/letterhead");
     }
     

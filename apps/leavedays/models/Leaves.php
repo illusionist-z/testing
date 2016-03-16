@@ -331,7 +331,8 @@ class Leaves extends \Library\Core\Models\Base {
      * when admin accept leavedays request from user
      * @author Su Zin kyaw
      */
-    public function acceptLeave($id, $days, $noti_id) {        
+    public function acceptLeave($id, $days, $noti_id) { 
+           $this->db = $this->getDI()->getShared("db");
         $date = $this->getContractData($id);
         $sql = Leaves::find("member_id ='$id' AND start_date BETWEEN '".$date["startDate"]."' AND '".$date["endDate"]."'");
         $leave = \salts\Core\Models\Permission::tableObject($sql);
@@ -342,16 +343,12 @@ class Leaves extends \Library\Core\Models\Base {
         $leave_noti = \salts\Core\Models\Permission::tableObject($noti_sql);
         $leave_noti->leave_status = $status;
         $leave_noti->update();
-        $core_noti_sql = \salts\Core\Models\Db\CoreNotification::findByNotiId($noti_id);
-        $core_noti = \salts\Core\Models\Permission::tableObject($core_noti_sql);
-        $core_noti->status = $status;
-        $core_noti->update();
-        $rel_member_sql = \salts\Core\Models\Db\CoreNotificationRelMember::findByNotiId($noti_id);
-        $rel_member = \salts\Core\Models\Permission::tableObject($rel_member_sql);
-        $rel_member->status = $status;
-        $rel_member->module_name = "leaves";
-        $rel_member->created_time = date("Y-m-d H:i:s");
-        $rel_member->update();
+       $this->db->query("UPDATE core_notification set"
+                . " core_notification.noti_status=1  "
+                . "WHERE core_notification.noti_id='" . $noti_id . "'");
+         $this->db->query("UPDATE core_notification_rel_member "
+                . "set core_notification_rel_member.status=1,module_name='leaves',created_time='now()' "
+                . " WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
     }
 
     /**

@@ -1,0 +1,1 @@
+ALTER TABLE `core_member` CHANGE `member_profile` `member_profile` MEDIUMBLOB NULL DEFAULT NULL;
