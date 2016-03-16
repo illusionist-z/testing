@@ -36,7 +36,9 @@ class UserController extends ControllerBase {
         $this->view->setVar("noti", $Noti);
 
         $user = $Admin->userDetail($id);
+        $profile = $Admin->getProfile($id);
         $this->view->userDetail = $user;
+        $this->view->profile = $profile;
     }
 
     public function usersettingAction() {

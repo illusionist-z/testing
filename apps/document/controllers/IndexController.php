@@ -72,7 +72,7 @@ class IndexController extends ControllerBase {
      */
     public function taxdocumentAction() {
           $ModuleIdCallCore = new Db\CoreMember();
-          if ($moduleIdCall == 1) {
+          if ($this->moduleIdCall == 1) {
         $this->assets->addCss('apps/document/css/index_tax.css');
        
         $this->view->module_name = $this->router->getModuleName();
@@ -138,7 +138,9 @@ if ($this->permission == 1) {
     }
     
      public function salaryreferAction(){
-           if ($this->permission == 1) {
+  
+           if ($this->permission == 0) {
+               
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
            
@@ -151,13 +153,14 @@ if ($this->permission == 1) {
             $data = explode("-", $salary[0]->pay_date);
             $month = $data['1'];
             $year =$data['0'];
-            $result = $SalaryDetail->salarylist($month, $year);
+            $result = $SalaryDetail->getSalaryReferData($month, $year);
             $ComInfo = CompanyInfo::find();
             $name = $ComInfo['0']->company_name;
             $this->view->salary_info = $result;
             $this->view->com_name = $name;
            }
            else {
+               
                echo 'Page Not Found';
            }
         }

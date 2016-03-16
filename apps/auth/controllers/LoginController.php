@@ -68,7 +68,6 @@ class LoginController extends ControllerBase {
                 $this->session->set('page_rule_group', $permission);
                 $user = array();
                 $this->session->set('user', $result);
-                date_default_timezone_set('Asia/Rangoon');
                 
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 

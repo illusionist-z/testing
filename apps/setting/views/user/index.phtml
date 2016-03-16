@@ -49,10 +49,10 @@ function tz_list() {
                                 <td><b>Profile Picture</b></td>
                                 <td>
                                     <?php
-                                    if ($result['member_profile'] == null) {
+                                    if ($profile['member_profile'] == null) {
                                       ?>  <img src="../uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
                                     } else {
-                                        echo '<img class="img-circle" style="height: 103px;width: 130px;" src="data:image/jpeg;base64,'.base64_encode(  $result['member_profile'] ).'"/>';
+                                        echo '<img class="img-circle" style="height: 103px;width: 130px;" src="data:image/jpeg;base64,'.base64_encode(  $profile['member_profile'] ).'"/>';
                                     }
                                     ?>               
 

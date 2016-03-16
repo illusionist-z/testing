@@ -25,6 +25,7 @@ class CoreMember extends Model {
      */
     public function updatedata($data, $id,$content) {
         $this->db = $this->getDI()->getShared("db");
+     
         
          if ($data['password'] !=$data['temp_password']) {
               $changeprofile = "UPDATE core_member set core_member.member_login_name='" . $data['username'] . "' ,  "
@@ -40,7 +41,7 @@ class CoreMember extends Model {
                     . ", core_member.member_mobile_tel='" . $data['phno'] . "'  WHERE core_member.member_id='" . $id . "' ");  
             }
         if($content!=NULL){
-              $this->db->query("UPDATE core_member set core_member.member_profile='" . $content . "' WHERE core_member.member_id='" . $id . "' ");  
+              $this->db->query("UPDATE core_member_profile set core_member_profile.member_profile='" . $content . "' WHERE core_member_profile.member_id='" . $id . "' ");  
             
         }
 
