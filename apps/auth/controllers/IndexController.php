@@ -1,13 +1,13 @@
 <?php
 
-namespace salts\Auth\Controllers; 
+namespace salts\Auth\Controllers;
+
 use salts\Auth\Models\Db\CoreMember;
 use salts\Auth\Models\Db;
 use salts\Auth\Models;
 use Phalcon\Filter;
 use Phalcon\Mvc\Url as UrlProvider;
- 
- 
+
 class IndexController extends ControllerBase {
 
     public function initialize() {
@@ -20,7 +20,7 @@ class IndexController extends ControllerBase {
         $this->assets->addCss('common/css/skins.min.css');
         $this->assets->addJs('common/js/jquery.min.js');
         $this->assets->addJs('common/js/common.js');
-                //->addJs('common/js/btn.js')
+        //->addJs('common/js/btn.js')
         $this->assets->addJs('common/js/bootstrap.min.js');
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
@@ -69,7 +69,7 @@ class IndexController extends ControllerBase {
 
         $user_ip = $this->request->getPost('local');
 
-         
+
         $user_ip_public = $this->request->getPost('public');
 
         //$core->token = $tokenpush;
@@ -77,16 +77,14 @@ class IndexController extends ControllerBase {
         // Login Error Database Log
         //$member_id = $this->request->getPost('member_login_name');
         //$insert = $Member->tokenpush($member_id, $user_ip);
-
-       // $core_member_log = new Db\CoreMemberLog();
-        
+        // $core_member_log = new Db\CoreMemberLog();
         //
         date_default_timezone_set('Asia/Rangoon');
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
 
-        if (1 > $_SESSION["attempts"]) {
-        
+        if (4 > $_SESSION["attempts"]) {
+
             if ($this->session) {
 
                 $member_name = $this->session->tokenpush;
@@ -154,7 +152,6 @@ class IndexController extends ControllerBase {
                     // checking the time now when home page starts
                     $rout_time = $nowtime - $_SESSION['expire'];
                     $localhost = ($this->request->getServer('HTTP_HOST'));
-
                     $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                     $sec = "1";
                     header("Refresh: $sec; url=$page");
@@ -171,7 +168,7 @@ class IndexController extends ControllerBase {
                 date_default_timezone_set('Asia/Rangoon');
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
-                $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));                
+                $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
                 $member_name_find = $Chack::findFirst("member_login_name = '$member_name'");
                 $member_id = $member_name_find->member_id;
                 $flag = $member_name_find->timeflag;
@@ -186,7 +183,7 @@ class IndexController extends ControllerBase {
     }
 
     public function failerUserAction() {
-   
+
         $filter = new Filter();
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
@@ -207,15 +204,15 @@ class IndexController extends ControllerBase {
 
                 $rout_time = $nowtime - $_SESSION['expire'];
                 $localhost = ($this->request->getServer('HTTP_HOST'));
-                  $this->view->pick('salts/auth'); 
-     $this->view->errorMsg = '';
+//                $this->view->pick('salts/auth'); 
+//                 $this->view->errorMsg = '';
                 $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
                 header("Refresh: $sec; url=$page");
-               
+
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
-                    echo "Your session has expired ! ";
+                    echo "Your Can Login To System ! ";
                 }
             } else if (isset($_SESSION['startTime']) != null && count($chack_user) == 0) {
                 $nowtime = (date("Y-m-d H:i:s"));
@@ -225,12 +222,12 @@ class IndexController extends ControllerBase {
                 $localhost = ($this->request->getServer('HTTP_HOST'));
                 $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
-                $this->view->pick('salts/auth'); 
-                $this->view->errorMsg = '';
+//                $this->view->pick('salts/auth'); 
+//                $this->view->errorMsg = '';
                 header("Refresh: $sec; url=$page");
-               
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
+                    echo "Your Can Login To System ! ";
                 }
             }
         }
