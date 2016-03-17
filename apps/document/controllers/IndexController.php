@@ -122,6 +122,7 @@ class IndexController extends ControllerBase {
     /**
      * Edit Company Profile
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+     * @varsion Yan Lin Pai <wizardrider@gmail.com>
      */
     public function editinfoAction() {
        $localhost = ($this->request->getServer('HTTP_HOST'));
@@ -149,7 +150,6 @@ class IndexController extends ControllerBase {
                       $sec = "0";
                       header("Refresh: $sec; url=$page");
                 } else {
-
                     $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
                     $file = fopen($MY_FILE, 'r');
                     $file_contents = fread($file, filesize($MY_FILE));
