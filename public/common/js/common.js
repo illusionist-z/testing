@@ -69,10 +69,10 @@ function GEOprocess(position) {
         dataType: 'json'
     });
 }
-///**
-// * @4:00pm{optional time} check absent member
-// * @author David JP <david.gnext@gmail.com>
-// */
+/**
+ * @4:00pm{optional time} check absent member
+ * @author David JP <david.gnext@gmail.com>
+ **/
 var done;
 function getAbsentMember() {
     var x = new Date();
