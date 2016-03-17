@@ -58,9 +58,15 @@ class CorememberController extends ControllerBase {
 
                     $member = $this->request->getPost();
                     $member_id = $this->session->user['member_id'];
-                    $filename = $_FILES["fileToUpload"]["name"];
+                       $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+        $file = fopen($MY_FILE, 'r');
+        $file_contents = fread($file, filesize($MY_FILE));
+        fclose($file);
+        $file_contents = addslashes($file_contents);
+       
                     $NewUser = new CoreMember;
-                    $NewUser->addNewUser($member_id, $member, $filename);
+                    
+                    $NewUser->addNewUser($member_id, $member, $file_contents);
 
                     $this->view->disable();
                     // Make a full HTTP redirection
