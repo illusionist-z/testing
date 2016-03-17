@@ -150,8 +150,17 @@ class Attendances extends Model {
         $page = $paginator->getPaginate();
         return $page;
     }
-
     /**
+     * @desc    Has already in attendance table
+     * @param type $id
+     * @return 1 || 0
+     */
+    public function checkAttendance($id) {
+        $current = date("Y-m-d");
+        $hasId = Attendances::find("member_id ='".$id."' and att_date ='".$current."'");
+        return count($hasId);
+    }
+       /**
      * @desc   insert absent member to absent 
      * @author David
      * @param  $v[0] = member_id
