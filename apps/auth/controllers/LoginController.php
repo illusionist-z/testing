@@ -31,7 +31,7 @@ class LoginController extends ControllerBase {
             $dbinfo['host'] = 'localhost';
             $dbinfo['db_name'] = 'company_db';
             $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = 'root';
+            $dbinfo['db_psw'] = '';
 
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
@@ -79,7 +79,6 @@ class LoginController extends ControllerBase {
                 $chack_user2 = CoreMember::findByMemberLoginName($member_name);
              
                 if (0 !== count($chack_user2)) {
-                    
                 $core2 = new CoreMember(); 
                     $core2 = $chack_user2[0]->timeflag;
 
@@ -104,12 +103,10 @@ class LoginController extends ControllerBase {
                         }
                     }
                 } elseif (0 == count($chack_user2)) {
-
                     $this->response->redirect('auth/index/failer');
                 }
                 
             } else {
-                
                 $this->response->redirect('auth/index/failer');
             }
             // When user's login succeed , move to dashboad
