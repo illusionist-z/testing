@@ -67,6 +67,8 @@ class LoginController extends ControllerBase {
                 $Member->updateContract($login_params);
                 $this->session->set('page_rule_group', $permission);
                 $user = array();
+                $profile_pic = $ModelAuth->getProfile($result['member_id']);
+                $this->session->set('profile', $profile_pic);
                 $this->session->set('user', $result);
                 
                 $timestamp = date("Y-m-d H:i:s");

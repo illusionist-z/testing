@@ -65,37 +65,27 @@ use Phalcon\Tag as Tag;
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                 <?php
-                                if ($this->session->user['member_profile'] == null) {
-                                    $img = "profile1.jpg";
-                                } else {
-                                    $img = $this->session->user['member_profile'];
-                                    if (file_exists('./uploads/' . $this->session->db_config['company_id'] . "/" . $img)) {
-                                        $img = $this->session->db_config['company_id'] . "/" . $img;
+                                    if ($this->session->profile['member_profile'] == null) {
+                                      ?>  <img src="../uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
                                     } else {
-                                        $img = "profile1.jpg";
+                                        echo '<img class="img-circle" style="height: 30px;width: 30px;" src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
                                     }
-                                }
-                                ?>                                                 
-                                <img src="<?php echo $baseUri; ?>uploads/<?php echo $img; ?>"  style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
+                                    ?>            
+                                
+                                
                                 <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
                             </a>
 
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <?php
-                                    if ($this->session->user['member_profile'] == null) {
-                                        $img = "profile1.jpg";
+                                       <?php
+                                    if ($this->session->profile['member_profile'] == null) {
+                                      ?>  <img src="../uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
                                     } else {
-                                        $img = $this->session->user['member_profile'];
-                                        if (file_exists('./uploads/' . $this->session->db_config['company_id'] . "/" . $img)) {
-                                            $img = $this->session->db_config['company_id'] . "/" . $img;
-                                        } else {
-                                            $img = "profile1.jpg";
-                                        }
+                                        echo '<img class="img-circle" style="width: 90px;" src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
                                     }
                                     ?>                                                 
-                                    <img src="<?php echo $baseUri; ?>uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                     <p>
                                         <b><?php echo $this->session->user['member_login_name']; ?></b>
                                         <small><b><?php echo $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>" . date("M - Y", strtotime($this->session->user['created_dt'])) . "</b>"; ?></small>

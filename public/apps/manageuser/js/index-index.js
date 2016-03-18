@@ -223,7 +223,7 @@
             url:baseUri+'manageuser/index/deleteuser',
             data:{data:id}
         }).done(function(){
-            $('body').load('index');
+            //$('body').load('index');
         });
     }
 };

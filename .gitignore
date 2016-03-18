@@ -6,3 +6,4 @@
 *.log       # log files
 *.swp       # swap files
 /config/
+/vendor/
