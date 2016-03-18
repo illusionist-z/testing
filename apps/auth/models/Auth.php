@@ -42,7 +42,15 @@ class Auth extends Component {
         $Result = $Result->fetchAll();
         return $Result;
         }
-                
+         
+        
+    public function getProfile($id){
+          $this->db = $this->getDI()->getShared("db");
+        $user = $this->db->query("SELECT * FROM core_member_profile WHERE member_id='" . $id . "'");
+        $user = $user->fetchArray();
+        return $user;
+    
+    }
 
     /**
      * Checks the user credentials

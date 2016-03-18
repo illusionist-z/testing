@@ -152,7 +152,9 @@ class IndexController extends ControllerBase {
      * @since  20/7/15
      */
     public function deleteuserAction() {
-         if ($this->permission == 1) {
+        
+        if ($this->permission == 1) {
+             
         $id = $this->request->get('data');
         $this->user->userDelete($id);
         $this->view->disable();
