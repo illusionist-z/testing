@@ -12,13 +12,13 @@ function checktime(i) {
     return i;
 }
 //for special character string
-function isValid(str){
- return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+function isValid(str) {
+    return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
 }
 
-function MsgDisplay(){    
-  var th_length = $('.listtbl thead th').length;
-  $('.listtbl tbody').append("<td colspan="+th_length+"><center>No data to display</center></td>");
+function MsgDisplay() {
+    var th_length = $('.listtbl thead th').length;
+    $('.listtbl tbody').append("<td colspan=" + th_length + "><center>No data to display</center></td>");
 }
 /**
  * sidebar menu link height resize()
@@ -27,29 +27,29 @@ function MsgDisplay(){
 function link_height() {
     //for link border right in link page
     var link_width = $(document).outerWidth();
-    var link_height = $(document).outerHeight()-($(".main-footer").outerHeight()+$("#fixedheader").outerHeight());
-    var link_ht = $(document).outerHeight()-($(".main-footer").outerHeight()+$("#fixedheader").outerHeight());
-     if(link_width > 983){
-           $("#showhelp").css({"height":link_ht+"px","background":"#fff"});
-           $(".link").css({"height":link_height+"px","border-right":"1px solid #aaa","background":"#fff"});
+    var link_height = $(document).outerHeight() - ($(".main-footer").outerHeight() + $("#fixedheader").outerHeight());
+    var link_ht = $(document).outerHeight() - ($(".main-footer").outerHeight() + $("#fixedheader").outerHeight());
+    if (link_width > 983) {
+        $("#showhelp").css({"height": link_ht + "px", "background": "#fff"});
+        $(".link").css({"height": link_height + "px", "border-right": "1px solid #aaa", "background": "#fff"});
     }
-   
-    else if(link_width > 423){  
-        $(".link").css({"height":link_height/10.5+"px","border-right":"1px solid #aaa","background":"#fff"});
-      // $("#showhelp").css({"height":link_ht+"px","background":"#fff"});
+
+    else if (link_width > 423) {
+        $(".link").css({"height": link_height / 10.5 + "px", "border-right": "1px solid #aaa", "background": "#fff"});
+        // $("#showhelp").css({"height":link_ht+"px","background":"#fff"});
     }
 }
 
-function geo() {  
-   
+function geo() {
+
     if (navigator.geolocation) {
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
-        var location=geoplugin_city()+","+geoplugin_countryName();
-        
+        var location = geoplugin_city() + "," + geoplugin_countryName();
+
         $.ajax({
-            url: url + "?offset=" + offset+"&location="+ location,
+            url: url + "?offset=" + offset + "&location=" + location,
             type: 'GET',
             dataType: 'json'
         });
@@ -62,35 +62,58 @@ function GEOprocess(position) {
     var url = "location_session";
     var n = new Date();
     var offset = n.getTimezoneOffset();
-    var location=geoplugin_city()+","+geoplugin_countryName();
+    var location = geoplugin_city() + "," + geoplugin_countryName();
     $.ajax({
-        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&offset=" + offset+"&location="+ location,
+        url: url + "?lat=" + position.coords.latitude + "&lng=" + position.coords.longitude + "&offset=" + offset + "&location=" + location,
         type: 'GET',
-        dataType: 'json'    
+        dataType: 'json'
     });
 }
-///**
-// * @4:00pm{optional time} check absent member
-// * @author David JP <david.gnext@gmail.com>
-// */
-var done = true;
+/**
+ * @4:00pm{optional time} check absent member
+ * @author David JP <david.gnext@gmail.com>
+ **/
+var done;
 function getAbsentMember() {
     var x = new Date();
     var h = x.getHours();
     var m = x.getMinutes();
-    var s  = x.getSeconds();
-    if (h === 9 && m === 0 && s === 0) {
-        $.ajax({
-            url: baseUri + "attendancelist/absent/addAbsent",
-            type: 'GET',
-            success: function() {
-                done = false;
-            }
-        });
+    var s = x.getSeconds();
+    if (h === 8 && m === 0 && s === 0) {
+        addAbsent();
+          setTimeout(function () {
+                getAbsentMember();
+            }, 5*60*1000);
     }
-    setTimeout(function(){
-        getAbsentMember();
-    },1000);
+    else if (h > 9) {
+        $.ajax({
+            url: baseUri + "attendancelist/absent/checkAtt",
+            type: "GET",
+            dataType: "json",
+            success: function (c) {
+                if (!c)
+                 addAbsent();
+                 setTimeout(function () {
+                        getAbsentMember();
+                }, 5*60*1000);
+            }
+        });        
+    }
+    else{
+          setTimeout(function () {
+                getAbsentMember();
+            }, 1000);
+    }
+}
+
+function addAbsent() {
+    $.ajax({
+        url: baseUri + "attendancelist/absent/addAbsent",
+        type: 'GET',
+        success: function () {
+            done = false;
+        }
+    });
 }
 /*
  * @author David
@@ -98,7 +121,7 @@ function getAbsentMember() {
  */
 function repair(val) {
     var cache;
-    $(val).focus(function(e) {
+    $(val).focus(function (e) {
         e.preventDefault();
         $(this).css("border", "1px solid #ccc");  // for error border
         $(this).attr("placeholder", "");
@@ -111,37 +134,36 @@ function repair(val) {
         }
         $(this).css("color", "black");
     });
-    $(val).focusout(function() {
+    $(val).focusout(function () {
         cache = $(this).val();
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     //absent member
     $('body').attr('onload', getAbsentMember());
     // ここに実際の処理を記述します。
-    var logout = function() {
+    var logout = function () {
         window.location.href = baseUri + 'auth/logout';
     };
 //   
     // ユーザーのクリックした時の動作。
-    $('#btn_logout').on('click',function(){
-         $.ajax({
-            
-           url:baseUri+"auth/logout/gettranslate",
-           type: "GET",
-           success:function(res){
-               var result = $.parseJSON(res);
-               var logout=result['logout'];
-               alert(logout);
-           }
+    $('#btn_logout').on('click', function () {
+        $.ajax({
+            url: baseUri + "auth/logout/gettranslate",
+            type: "GET",
+            success: function (res) {
+                var result = $.parseJSON(res);
+                var logout = result['logout'];
+                alert(logout);
+            }
         });
-      
+
         logout();
     });
 
-    $('#btnLogin').on('click',function(){
-       // var url = "location_session";
+    $('#btnLogin').on('click', function () {
+        // var url = "location_session";
         var n = new Date();
 
 
@@ -151,49 +173,49 @@ $(document).ready(function() {
             url: baseUri + "dashboard/index/location_session?offset=" + offset,
             type: 'GET',
             dataType: 'json',
-            success: function(d) {
+            success: function (d) {
 
             },
-            error: function(d) {
+            error: function (d) {
 
             }
-        });        
+        });
     });
-  
+
     /**
      * @author David JP<david.gnext@gmail.com>
      * @version 28/8/2015
      * menu toggle function
      */
 
-    $('.sidebar-toggle').on('click',function(e){
-        e.stopPropagation();        
+    $('.sidebar-toggle').on('click', function (e) {
+        e.stopPropagation();
         //get collapse content selector
         var collapse_content_selector = $(this).attr('href');
 
         //make the collapse content to be shown or hide
         var toggle_switch = $(this);
         $(collapse_content_selector).toggle();
- 
-      });
-         //toggle off or notification off when click body
-         $('body').click(function (e) {
-                if (0 === $(e.target).closest('#sidepage').length) {
-                    $('#sidepage').fadeOut(200);
-                    //$('.collapse-wrapper').css("margin-left","0");
-                    //$('.main-footer').css("margin-left","0");
-                }
-                if(0 === $(e.target).closest('#noti').length){
-                    $('#notificationContainer').fadeOut(300);            
-                }
+
+    });
+    //toggle off or notification off when click body
+    $('body').click(function (e) {
+        if (0 === $(e.target).closest('#sidepage').length) {
+            $('#sidepage').fadeOut(200);
+            //$('.collapse-wrapper').css("margin-left","0");
+            //$('.main-footer').css("margin-left","0");
+        }
+        if (0 === $(e.target).closest('#noti').length) {
+            $('#notificationContainer').fadeOut(300);
+        }
     });
     //geo();
- $('.datepicker').datepicker(); 
- 
+    $('.datepicker').datepicker();
+
 });
-$(window).load(function(){
+$(window).load(function () {
     link_height();
 });
-$(window).resize(function(){
+$(window).resize(function () {
     link_height();
 });
