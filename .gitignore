@@ -1,9 +1,10 @@
 /nbproject/private/
 /bk/nbproject/private/
+/vendor/
 /data/*/*
 /config/config.ini
 .DS_Store
 *.log       # log files
 *.swp       # swap files
-/config/
+*~
 /public/uploads/
