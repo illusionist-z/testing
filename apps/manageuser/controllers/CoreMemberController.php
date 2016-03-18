@@ -36,7 +36,6 @@ class CorememberController extends ControllerBase {
         $json = array();
         //form validation init
         if ($this->request->isPost()) {
-
             $user = new AddUser();
             $id = $this->request->getPost('uname');
             $exist_id = CoreMember::findByMemberLoginName($id);

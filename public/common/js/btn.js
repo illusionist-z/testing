@@ -58,7 +58,7 @@ $(document).ready(function(){
            success: function(d){
                //alert(d);
                msg = JSON.parse(d);
-               alert(msg);
+              // alert(msg);
                window.location.href = baseUri + 'dashboard/index/direct';
            }
         });
@@ -69,8 +69,8 @@ $(document).ready(function(){
            type : 'GET',
            url  : baseUri + 'dashboard/index/checkout',
            success: function(d){
-               msg = JSON.parse(d);
-               alert(msg);
+             msg = JSON.parse(d);
+             //  alert(msg);
                window.location.href = baseUri + 'dashboard/index/direct';
            }
         });

@@ -79,7 +79,7 @@ Class Module implements ModuleDefinitionInterface {
     static function get() {
         // Cache the files for 2 days using a Data frontend
         $frontCache = new Phalcon\Cache\Frontend\Data(array(
-            "lifetime" => 172800
+            "lifetime" => 1728000
         ));
 
         // Create the component that will cache "Data" to a "File" backend
