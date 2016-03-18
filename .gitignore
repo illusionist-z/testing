@@ -5,5 +5,4 @@
 .DS_Store
 *.log       # log files
 *.swp       # swap files
-/config/
 /vendor/
