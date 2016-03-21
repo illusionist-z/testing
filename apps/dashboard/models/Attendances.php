@@ -69,7 +69,7 @@ class Attendances extends Model {
                     $Noti->noti_status = 0;
                     $Noti->save();
                 }
-                $status = " Successfully Checked In";
+               $status = " Successfully Checked In";
             } else {
                 $status = "You have already check in";
             }
