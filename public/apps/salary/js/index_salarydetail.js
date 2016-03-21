@@ -145,7 +145,8 @@ for (var i = 0; i < cells.length; i++) {
        b_salary=b_salary_arr[i].value;
        member_id=member_id_arr[i].value;
        overtime_rate=overtime_rate_arr[i].value;
-       specific_duty_allowance=specific_deduce_arr[i].value;
+       overtime_hr=overtimehour[i].value;
+       specific_duty_allowance=specific_deduce_arr[i].value; 
        absent=absent_amount[i].value;
        
        if(specific_duty_allowance=="")
@@ -157,10 +158,12 @@ for (var i = 0; i < cells.length; i++) {
        $.ajax({
             type:'get',
             //url : baseUri + 'salary/salarymaster/editsalarydetail?bsalary='+$b_salary+'& overtime='+$overtime_rate+'& specific_dedce=0 & member_id='+$member_id,
-            url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'+overtime_rate+'/'+specific_duty_allowance+'/'+member_id+'/'+absent+'/'+year+'/'+'/'+month,
+            url : baseUri + 'salary/salarymaster/editsalarydetail/'+b_salary+'/'
+                    +overtime_rate+'/'+specific_duty_allowance+'/'+member_id+'/'
+                    +absent+'/'+year+'/'+month+'/'+overtime_hr,
             success:function(){
-//                alert("Data has been updated");
-//                window.location.reload();
+                alert("Data has been updated");
+                window.location.reload();
             }
         })
 //        
