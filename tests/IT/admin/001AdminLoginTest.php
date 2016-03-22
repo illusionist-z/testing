@@ -11,7 +11,7 @@
  *
  * @author Su Zin Kyaw <gnext.suzin@gmail.com>
  */
-class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
+class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public static $browsers = array(
         array('browserName' => 'firefox', 'sessionStrategy' => 'shared')
