@@ -150,9 +150,15 @@ class IndexController extends ControllerBase {
                       $sec = "0";
                       header("Refresh: $sec; url=$page");
                 } else {
-                    $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
-                    $file = fopen($MY_FILE, 'r');
-                    $file_contents = fread($file, filesize($MY_FILE));
+                         $member = $this->request->getPost();
+                       $member_id = $this->session->user['member_id'];
+                       $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+                       $image = new Imagick($MY_FILE); // default 72 dpi image
+                       $ReImgdpi = $image->setImageResolution(150,150);
+                       $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 500 dpi
+                        
+                    $file = fopen($ImageResolution, 'r');
+                    $file_contents = fread($file, filesize($ImageResolution));
                     fclose($file);
                     $file_contents = addslashes($file_contents);
                     $update_info = $this->request->getPost('update');
