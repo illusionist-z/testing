@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
-<phpunit bootstrap="tests/bootstrap.php"
+<phpunit bootstrap="./TestHelper.php"
          backupGlobals="false"
          backupStaticAttributes="false"
          verbose="true"
@@ -19,4 +19,7 @@ and open the template in the editor.
     <testsuite name="Phalcon - Testsuite">
         <directory>./tests</directory>
     </testsuite>
+    <php>
+        <server name='HTTP_HOST' value='http://localhost' />
+    </php>
 </phpunit>
