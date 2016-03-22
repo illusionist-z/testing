@@ -90,9 +90,9 @@ class CorememberController extends ControllerBase {
                        $member = $this->request->getPost();
                        $member_id = $this->session->user['member_id'];
                        $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
-                       $image = new Imagick($MY_FILE); // default 72 dpi image
+                       $image = new \Imagick($MY_FILE); // default 72 dpi image
                        $ReImgdpi = $image->setImageResolution(150,150);
-                       $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 500 dpi
+                       $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 150 dpi
                         $file = fopen($ImageResolution, 'r');
                         $file_contents = fread($file, filesize($ImageResolution));
                         fclose($file);
