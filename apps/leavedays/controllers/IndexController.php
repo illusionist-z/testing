@@ -103,7 +103,7 @@ class IndexController extends ControllerBase {
     }
 
     public function checkapplyAction() {
-           if ($this->permission == 1) {
+           if ($this->permission == 0) {
         if ($this->request->isPost()) {
             $user = $this->_leave;
             $validate = $user->validating($this->request->getPost());
