@@ -81,8 +81,8 @@ function PageRuleSetting()
 
 function showDialoguser()
 {
-    var dia_id_name = $(this).attr('id');
-    $("#openu" + dia_id_name).dialog({
+    var dia_id_name = $(this).attr('id');    
+    $("div#openu"+dia_id_name).dialog({
         modal: true,
         draggable: false,
         resizable: false,
@@ -97,9 +97,7 @@ function showDialoguser()
             'Cancel': function () {
                 $(this).dialog('close');
             }
-
         }
-
     });
 }
 function addGroup()

@@ -26,7 +26,11 @@
   body *{ visibility: hidden; }
   .printable *{ visibility: visible;}
   #side {display:none;}
+  .printable table.tbl-tax thead{
+       display : table-header-group;
+    }
 }
+
 #doc{
     float: right;
     padding: 15px;

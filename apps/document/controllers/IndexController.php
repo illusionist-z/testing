@@ -49,7 +49,7 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function ssbdocumentAction() {
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
             $SalaryDetail = new Document();
@@ -75,7 +75,7 @@ class IndexController extends ControllerBase {
      */
     public function taxdocumentAction() {
         $ModuleIdCallCore = new Db\CoreMember();
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->assets->addCss('apps/document/css/index_tax.css');
 
             $this->view->module_name = $this->router->getModuleName();
@@ -101,7 +101,7 @@ class IndexController extends ControllerBase {
     public function letterheadAction() {
 
         $ModuleIdCallCore = new Db\CoreMember();
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->view->module_name = $this->router->getModuleName();
             $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
 
