@@ -57,7 +57,6 @@ class UserController extends ControllerBase {
      */
     public function changeprofileAction() {
         if ($this->request->isPost()) {
-
             $updatedata = array();
             $updatedata = $this->request->getPost('member');
             $timezone = $this->request->getPost('timezone');
@@ -85,7 +84,7 @@ class UserController extends ControllerBase {
                 $file_size = $_FILES['fileToUpload']['size'];
                 //  $file_type = $_FILES['uploaded_file']['type'];
                 //   if (($file_size > 12000000)){      
-                if (($file_size > 1000000)) {
+                if (($file_size > 10000000)) {
                    $message = 'File too large. File must be less than 10 megabytes.';
                    $error =  '<script type="text/javascript">alert("' . $message . '");</script>';
                    $page = "http://" . $localhost . "/salts/document/index/letterhead";
@@ -107,7 +106,7 @@ class UserController extends ControllerBase {
                 } else {
         $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
         $image = new \Imagick($MY_FILE); // default 72 dpi image
-        $ReImgdpi = $image->setImageResolution(150,150);
+        $ReImgdpi = $image->setImageResolution(20,20);
         $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 150 dpi
         $file = fopen($ImageResolution, 'r');
         $file_contents = fread($file, filesize($ImageResolution));
