@@ -57,7 +57,7 @@ class CorememberController extends ControllerBase {
 
                     
                     
-                     $localhost = ($this->request->getServer('HTTP_HOST'));
+                $localhost = ($this->request->getServer('HTTP_HOST'));
      //   if ($this->permission == 1) {
             if (isset($_FILES['fileToUpload'])) {
                 $file_type = $_FILES['fileToUpload']['type'];
@@ -90,8 +90,11 @@ class CorememberController extends ControllerBase {
                        $member = $this->request->getPost();
                        $member_id = $this->session->user['member_id'];
                        $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
-                        $file = fopen($MY_FILE, 'r');
-                        $file_contents = fread($file, filesize($MY_FILE));
+                       $image = new \Imagick($MY_FILE); // default 72 dpi image
+                       $ReImgdpi = $image->setImageResolution(150,150);
+                       $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 150 dpi
+                        $file = fopen($ImageResolution, 'r');
+                        $file_contents = fread($file, filesize($ImageResolution));
                         fclose($file);
                         $file_contents = addslashes($file_contents);
        
