@@ -40,7 +40,7 @@ $leavetypelength = count($Leavetype); ?>
 
                             <td><?= $t->_("start_date"); ?></td>
                             <td style="height:40px;">
-                                <input type="text" class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
+                                <input type="text" required class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
                                 <span id="apply_form_sdate_error"></span>
                             </td>                
                         </tr>
@@ -48,7 +48,7 @@ $leavetypelength = count($Leavetype); ?>
                         <tr>
                             <td><?= $t->_("end_date"); ?> </td>
                             <td style="height:40px;">
-                                <input type="text" class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
+                                <input type="text" required class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
                                 <span id="apply_form_edate_error"></span>                
                             </td>
 
@@ -57,7 +57,7 @@ $leavetypelength = count($Leavetype); ?>
 
                             <td><?= $t->_("leave_category"); ?></td>
                             <td style="height:40px;">
-                                <select class="select active" data-toggle="select" name="leavetype">
+                                <select class="select active" required data-toggle="select" name="leavetype">
                                     <?php
                                     foreach ($Leavetype as $data) {
                                         ?>
@@ -70,7 +70,7 @@ $leavetypelength = count($Leavetype); ?>
                         <tr>
                             <td><?= $t->_("leave_desc"); ?></td>
                             <td >
-                                <textarea name="description" id="apply_form_desc" style="width:260px;" rows="5" cols="30"  placeholder="Write Description"></textarea>
+                                <textarea name="description" required id="apply_form_desc" style="width:260px;" rows="5" cols="30"  placeholder="Write Description"></textarea>
                                 <span id="apply_form_desc_error"></span>
                             </td>
                         </tr>
