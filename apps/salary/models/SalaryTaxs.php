@@ -41,5 +41,6 @@ class SalaryTaxs extends Model {
             echo $exc;
         }
     }
+    
 
 }
