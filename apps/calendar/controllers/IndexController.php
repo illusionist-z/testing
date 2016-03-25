@@ -102,13 +102,9 @@ class IndexController extends ControllerBase {
              if ($this->permission == 1) {
         $remove = $this->request->getPost('remove');
         $id = $this->session->user['member_id'];
-        $data = $this->Calendar->removeMember($remove, $id);
-        echo json_encode($data);
+        $this->Calendar->removeMember($remove, $id);        
         $this->view->disable();
-                }
-                else {
-                    echo "";
-                }
+                }              
     }
 
     /**

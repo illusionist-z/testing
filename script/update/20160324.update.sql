@@ -1,0 +1,1 @@
+ALTER TABLE `member_event_permission` ADD `id` INT(36) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`id`) ;

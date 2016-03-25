@@ -1,0 +1,189 @@
+<?php
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+use Phalcon\Filter;
+
+//calculate the user time offset
+if ($offset < 0) {
+    $sign = '-';
+    $value = $offset * (-1);
+} else {
+    $sign = '+';
+
+    $value = $offset * (-1);
+}
+?>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        <?php echo $t->_("todayattendancelist"); ?>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i><?php echo $t->_("home"); ?></a></li>
+        <li class="active"><?php echo $t->_("todayattendancelist"); ?></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">  
+    <div class="buttons">
+        <form onsubmit="return false;" method="post">
+            <input type="text" class="tags form-control-static" name="namelist" style="margin-top: 9px;"  id="namelist" placeholder="<?php echo $t->_("searchusername"); ?>">
+            <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="namesearch">
+            <a href="#" class="button export  " onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><?php echo $t->_("export"); ?></a>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12"><!--start table content--->
+
+            <?php $this->flashSession->output() ?>
+            <table class="listtbl attlist">
+                <thead>
+                    <tr>
+                        <th width="110px" ><?= $t->_("date"); ?></th>
+                        <th ><?= $t->_("username"); ?></th>
+                        <th ><?= $t->_("checkin"); ?></th>
+                        <th ><?= $t->_("late"); ?></th>
+                        <th ><?= $t->_("latereason"); ?></th>
+                        <th ><?= $t->_("checkout"); ?></th>
+                        <th ><?= $t->_("workingtime"); ?></th>
+                        <th ><?= $t->_("overtime"); ?></th>
+                        <th ><?= $t->_("location"); ?></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $filter = new Filter();
+
+                    foreach ($attlist->items as $result) {
+                        ?>
+                        <tr>
+                            <td><?php
+                                $date = date('Y-m-d');
+                                echo $date;
+                                ?></td>
+                            <td><?php echo $filter->sanitize($result->core->member_login_name, "string"); ?></td>
+                            <td>
+                                <?php
+                                $checkintime = $result->attendances->checkin_time;
+                                if ($sign == '-') {
+                                    $time = new DateTime($checkintime);
+                                    $time->add(new DateInterval('PT' . $value . 'M'));
+                                    echo $time->format('H:i:s A ');
+                                } else {
+                                    $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
+                                    echo $datetime_from;
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                //calculate late time
+                                $checkintime = $result->attendances->checkin_time;
+                                $dt = new DateTime($checkintime);
+                                $time = $dt->format('H:i:s');
+                                $office_start_time = '01:30:00 ';
+                                if ($time > $office_start_time) {
+                                    $start = strtotime($office_start_time);
+                                    $end = strtotime($time);
+                                    $late = $end - $start;
+
+                                    echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
+                                } else {
+                                    echo "-";
+                                }
+                                ?>
+                            </td>
+                            <td><?php
+                                if ($result->attendances->notes != '') {
+                                    echo "<font color='red'>" . $result->attendances->notes . " </font>";
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                $checkouttime = $result->attendances->checkout_time;
+                                if ($checkouttime == 0) {
+                                    echo "-";
+                                } else {
+                                    if ($sign = '-') {
+                                        $time = new DateTime($checkouttime);
+                                        $time->add(new DateInterval('PT' . $value . 'M'));
+                                        echo $time->format('H:i:s A');
+                                    } else {
+                                        $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkouttime)));
+                                        echo $datetime_from;
+                                    }
+                                }
+                                ?></td>
+
+                            <td>
+                                <?php
+                                //calculate working time
+                                $start_time = strtotime($result->attendances->checkin_time);
+                                $end_time = strtotime($result->attendances->checkout_time);
+                                if ($end_time == 0) {
+                                    echo "-";
+                                } else {
+                                    $workingHour = $end_time - $start_time;
+                                    $hours = floor($workingHour / 3600);
+                                    $minutes = floor(($workingHour / 60) % 60);
+                                    $seconds = $workingHour % 60;
+                                    echo "$hours:$minutes:$seconds";
+                                }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                //calculate overtime                                               
+
+                                if ($result->attendances->overtime != 0) {
+                                    echo $result->attendances->overtime;
+                                } else {
+                                    echo "-";
+                                }
+                                ?> 
+
+                            </td>
+                            <td class="row">
+                                <div class="span1"><?php echo $filter->sanitize($result->attendances->location, "string"); ?>
+                            </td>
+                            <td>
+                                <a href="#" onclick="return false;"  style="float:right;margin-top:5px;" class="inedit displaypopup" id="<?= $result->attendances->id ?>" data-toggle="modal"></a></div>
+
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                </tbody>                
+            </table>      
+        </div><!--end table content--->
+    </div><!-- /.row -->
+</section>
+<div id="content">
+    <ul class="pagination" style="margin-left:15px;">
+        <?php
+        if ($attlist->last === 1 || $attlist->last === 0) {
+            
+        } else {
+            ?>
+            <li><a href="todaylist">First</a></li>
+            <li><a href="todaylist?page=<?= $attlist->before; ?>">Previous</a></li>
+            <li><a href="todaylist?page=<?= $attlist->next; ?>">Next</a></li>
+            <li><a href="todaylist?page=<?= $attlist->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></span></li>
+            <?php
+        }
+        ?>
+    </ul>
+</div>  
+<div id="edit_att_time"></div>
+
+
+

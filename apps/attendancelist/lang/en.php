@@ -1,0 +1,32 @@
+<?php
+
+$messages = array(
+    "todayattendancelist" => "Today Attendance List",
+    "monthlylist" => "Monthly Attendance List",
+    "Monthly Attendance Chart" => "Monthly Attendance Chart",
+    "home" => "Home",
+    "hi-name" => "Bonjour %name%",
+    "song" => "La chanson est %song%",
+    "date" => "Date",
+    "username" => "Username",
+    "checkin" => "Check In",
+    "late" => "Late",
+    "checkout" => "Check Out",
+    "workingtime" => "Working Time",
+    "overtime" => "Overtime",
+    "location" => "Location",
+    "edit_att_list" => "Edit Attendance List",
+    "note" => "Reason Note",
+    "latereason" => "Reason Of Late",
+    "search" => "Search",
+    "export" => "Export",
+    "searchusername" => "Search User Name",
+    "startdate" => "Start Date",
+    "enddate" => "End Date",
+    "absentlist" => "Absent Lists",
+    "month_att_chart"=>"Monthly Attendance Chart",
+    "att_person"=>" Attendance Person",
+    "absent_leave_person"=>" Absent Person(Applied Leave)",
+    "absent_noleave_person"=>" Absent Person(No apply leave)",
+    "half_att_person" => "Half Day Attendance Person"
+);
