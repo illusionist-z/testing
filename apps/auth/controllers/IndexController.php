@@ -71,7 +71,7 @@ class IndexController extends ControllerBase {
 
 
         $user_ip_public = $this->request->getPost('public');
-
+          $this->view->errorMsg = 'company id or user name or password wrong';
         //$core->token = $tokenpush;
         //$Member = new CoreMember();
         // Login Error Database Log
@@ -169,10 +169,9 @@ class IndexController extends ControllerBase {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
                 $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
-                $member_name_find = $Chack::findFirst("member_login_name = '$member_name'");
+                $member_name_find = Models\CoreMember::findFirst("member_login_name = '$member_name'");
                 $member_id = $member_name_find->member_id;
-                $flag = $member_name_find->timeflag;
-
+                $member_name_find->timeflag = $formtdate;
                 $member_name_find->update();
 
                 $this->view->errorMsg = 'Your Account Has 30 MIN Block';
@@ -239,7 +238,7 @@ class IndexController extends ControllerBase {
      */
     public function failersuperuserAction() {
         $this->view->errorMsg = 'user name or password wrong';
-        //$this->view->mode=1;
+        $this->view->mode=1;
         $this->view->pick('index/index');
     }
 

@@ -18,7 +18,7 @@
                 this.cond = JSON.parse(d);
                 if(this.cond.result === 'error')
                 {
-                 for(var i in this.cond){
+                for(var i in this.cond){
                      $('#saveuser input').addClass('adduser-table');//for placeholder text color
                      switch(i){
                          case 'uname':$("#uname").css({border:"1px solid red",color:"red"}).attr("placeholder",this.cond[i]);
@@ -37,8 +37,8 @@
                                          repair('#mail');break;            
                          case 'phno'    :$("#pno").val("").css({border:"1px solid red",color:"red"}).attr("placeholder",this.cond[i]);                                         
                                          repair("#pno");break;                                                
-                     }
-                 }
+                                }
+                        }
                 }
                 else if(this.cond.result === 'existId'){
                     for(var i in this.cond){                     

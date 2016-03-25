@@ -360,7 +360,7 @@ public function setDashboardJsAndCss() {
             require $langDir . '/' . $prefix . $this->lang . '.php';
         } else {
             // fallback to some default
-            require $langDir . '/' . $prefix . "ja.php";
+            require $langDir . '/' . $prefix . "jp.php";
         }
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
