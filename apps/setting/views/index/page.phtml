@@ -69,7 +69,7 @@ if(! ini_get('date.timezone')){
     <thead>
     <br>
     <tr>
-        <th width="5px" style="text-align:center;">User ID</th> 
+        <th width="5px" style="text-align:center;">User ID</th>
         <th width="200px">Page Name</th>
         <th width="250px">G Name</th>
         <th width="5px" style="text-align:center;">Action</th>
@@ -99,10 +99,9 @@ if(! ini_get('date.timezone')){
                 <a href="#" onclick="PageRuleSetting.apply(this);
                         return false;" class="insettingedit" type="black" id="<?= $datauser2->idpage ?>">  </a>  
             </td> 
-
-        </tr>
-        
-    <div id="pageRule<?= $datauser2->idpage ?>" title="Change User Rule" style="display: none;">
+        </tr>        
+ 
+    <div id="pageRule<?= $datauser2->idpage ?>" title="Change Page Rule" style="display: none;">
 
         <br> 
         Group ID    
@@ -116,15 +115,15 @@ if(! ini_get('date.timezone')){
             <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >            
 
             <select type="text" style="margin-left:33px;" name='page_rule_group' value='' id="changeuser">
-                <?php
+    <?php
                 foreach ($coreid as $data) {
                     ?>
                     <option value="<?= $data->group_id ?>" <?php if ($datauser2->page_rule_group == $data->group_id) { ?>selected <?php } ?>>
                         <?= $data->name_of_group ?>  
                     </option>
                     <?php
-                }
-                ?>
+}
+?>        
             </select>
         </form>
 
