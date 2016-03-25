@@ -305,6 +305,22 @@ class IndexController extends ControllerBase {
               echo "Page Not Found";
           }
     }
+    /**
+     * edit tax data
+     * @author Su Zin Kyaw
+     */
+    public function edit_taxAction() {
+        $data['id'] = $this->request->getPost('id');
+        $data['taxs_from'] = $this->request->getPost('taxs_from');
+        $data['taxs_to'] = $this->request->getPost('taxs_to');
+        $data['ssc_emp'] = $this->request->getPost('ssc_emp');
+        $data['ssc_comp'] = $this->request->getPost('ssc_comp');
+        $data['taxs_rate'] = $this->request->getPost('taxs_rate');
+        //print_r($data);exit;
+        $SalaryTax = new SalaryTaxs();
+        $SalaryTax->editTax($data);
+        $this->view->disable();
+    }
 
     /**
      * 
@@ -432,7 +448,17 @@ class IndexController extends ControllerBase {
               echo "Page Not Found";
           }
     }
-
+    /**
+     * Delete Deduction 
+     * @author Su Zin Kyaw
+     */
+    public function delete_deductAction() {
+        $deduce_id = $this->request->getPost('id');
+        $Deduction = new SalaryTaxsDeduction();
+        $Deduction->deleteDeduction($deduce_id);
+        $this->view->disable();
+    }
+    
     /**
      * delete allowance data
      * @author Su Zin Kyaw

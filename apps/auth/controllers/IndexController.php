@@ -238,7 +238,7 @@ class IndexController extends ControllerBase {
      */
     public function failersuperuserAction() {
         $this->view->errorMsg = 'user name or password wrong';
-        //$this->view->mode=1;
+        $this->view->mode=1;
         $this->view->pick('index/index');
     }
 
