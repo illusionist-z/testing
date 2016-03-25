@@ -31,7 +31,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("Noti", $noti);
         $this->view->module_name = $this->router->getModuleName();
         $this->view->t = $this->_getTranslation();
-        $this->act_name = $this->router->getActionName();
+        $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
@@ -103,11 +103,10 @@ class IndexController extends ControllerBase {
     }
 
     public function checkapplyAction() {
-           if ($this->permission == 0) {
+ 
         if ($this->request->isPost()) {
             $user = $this->_leave;
             $validate = $user->validating($this->request->getPost());
-
             if (count($validate)) {
                 foreach ($validate as $message) {
                     $json[$message->getField()] = $message->getMessage();
@@ -127,10 +126,7 @@ class IndexController extends ControllerBase {
                 $this->view->disable();
             }
         }
-           }
-           else {
-               echo 'Page Not Found';
-           }
+         
     }
 
     /**
