@@ -61,12 +61,25 @@ class IndexController extends ControllerBase {
             $core_groupuser2 = $coreuser2::find();
             $core_groupuser2 = $permission->pagination($core_groupuser2,$currentPage);
             $core_groupuser = $coreuser->getGroupId($currentPage1);
+            //for paging without reload
+            if($this->request->has("type")){
+                $type = $this->request->get("type");
+                if($type == "page"){
+                    $group_id = [$core_groupid->toArray(),$core_groupuser2];
+                    echo json_encode($group_id);
+                }
+                elseif ($type == "user"){
+                    $group_id = [$core_groupid->toArray(),$core_groupuser];
+                    echo json_encode($group_id);
+                }
+                $this->view->disable();                
+            }
             $this->view->coreid = $core_groupid;
             $this->view->coremember = $coremember;
             $this->view->coreuser = $core_groupuser;
             $this->view->coreuser2 = $core_groupuser2;            
             $id = $this->session->user['member_id'];
-            $Noti = $coreuser->getAdminNoti($id, 0);
+            $Noti = $coreuser->getAdminNoti($id, 0);            
             $this->view->setVar("noti", $Noti);
         } else {
             $this->response->redirect('core/index');
