@@ -2,9 +2,9 @@
 
 namespace salts\Auth\Controllers;
 use salts\Auth\Models;
-use salts\Auth\Models\Permission;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
+use Phalcon\Config\Adapter\Ini;
 
 
  
@@ -13,6 +13,7 @@ class LoginController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        
     }
 
     /**
@@ -28,11 +29,13 @@ class LoginController extends ControllerBase {
        
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
-            $dbinfo['host'] = 'localhost';
-            $dbinfo['db_name'] = 'company_db';
-            $dbinfo['user_name'] = 'root';
-            $dbinfo['db_psw'] = '';
-
+            $config = new Ini(__DIR__ . '/../../../config/org/config.ini');
+            //print_r($config->database->dbname);exit;
+            $dbinfo['host'] = $config->database->host;
+            $dbinfo['db_name'] = $config->database->dbname;
+            $dbinfo['user_name'] = $config->database->username;
+            $dbinfo['db_psw'] = $config->database->password;
+            
             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
             $this->session->set('user', $result);

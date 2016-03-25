@@ -71,6 +71,7 @@ class IndexController extends ControllerBase {
 
 
         $user_ip_public = $this->request->getPost('public');
+        $this->view->errorMsg = "company id or user name or password wrong";
 
         //$core->token = $tokenpush;
         //$Member = new CoreMember();
@@ -238,7 +239,7 @@ class IndexController extends ControllerBase {
      */
     public function failersuperuserAction() {
         $this->view->errorMsg = 'user name or password wrong';
-        //$this->view->mode=1;
+        $this->view->mode=1;
         $this->view->pick('index/index');
     }
 
