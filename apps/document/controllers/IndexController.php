@@ -149,8 +149,8 @@ class IndexController extends ControllerBase {
                       $page = "http://" . $localhost . "/salts/document/index/letterhead";
                       $sec = "0";
                       header("Refresh: $sec; url=$page");
-                } else {
-                    $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+                } 
+                $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
                     $file = fopen($MY_FILE, 'r');
                     $file_contents = fread($file, filesize($MY_FILE));
                     fclose($file);
@@ -159,7 +159,6 @@ class IndexController extends ControllerBase {
                     $ComInfo = new CompanyInfo();
                     $ComInfo->editCompanyInfo($update_info, $file_contents);
                     $this->response->redirect("document/index/letterhead");
-                }
             }
   //      } else {
     //       echo 'Page Not Found';
