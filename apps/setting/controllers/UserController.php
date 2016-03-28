@@ -57,7 +57,6 @@ class UserController extends ControllerBase {
      */
     public function changeprofileAction() {
         if ($this->request->isPost()) {
-
             $updatedata = array();
             $updatedata = $this->request->getPost('member');
             $timezone = $this->request->getPost('timezone');
@@ -76,9 +75,41 @@ class UserController extends ControllerBase {
             }
             $id = $this->session->user['member_id'];
 
-           $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
-        $file = fopen($MY_FILE, 'r');
-        $file_contents = fread($file, filesize($MY_FILE));
+            
+            
+                $localhost = ($this->request->getServer('HTTP_HOST'));
+     //   if ($this->permission == 1) {
+            if (isset($_FILES['fileToUpload'])) {
+                $file_type = $_FILES['fileToUpload']['type'];
+                $file_size = $_FILES['fileToUpload']['size'];
+                //  $file_type = $_FILES['uploaded_file']['type'];
+                //   if (($file_size > 12000000)){      
+                if (($file_size > 10000000)) {
+                   $message = 'File too large. File must be less than 10 megabytes.';
+                   $error =  '<script type="text/javascript">alert("' . $message . '");</script>';
+                   $page = "http://" . $localhost . "/salts/document/index/letterhead";
+                   $sec = "0";
+                 header("Refresh: $sec; url=$page");
+ 
+                } elseif (
+                        ($file_type != "image/jpeg") &&
+                        ($file_type != "image/jpg") &&
+                        ($file_type != "image/gif") &&
+                        ($file_type != "image/png")
+                ) {
+                    $message = 'Invalid file type. Only JPG, GIF and PNG types are accepted.';
+                    $error =  '<script type="text/javascript">alert("' . $message . '");</script>';
+                    $page = "http://" . $localhost . "/salts/document/index/letterhead";
+                    $sec = "0";
+                    header("Refresh: $sec; url=$page");
+ 
+                } else {
+        $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+        $image = new \Imagick($MY_FILE); // default 72 dpi image
+        $ReImgdpi = $image->setImageResolution(20,20);
+        $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 150 dpi
+        $file = fopen($ImageResolution, 'r');
+        $file_contents = fread($file, filesize($ImageResolution));
         fclose($file);
         $file_contents = addslashes($file_contents);
         if($file_contents==NULL){
@@ -88,8 +119,10 @@ class UserController extends ControllerBase {
             $User->updatedata($updatedata, $id,$file_contents);
             $user = $User->userData($id);
             $this->session->set('user', $user);
-        }
+        }        
         $this->response->redirect('setting/user');
-    }
+    }  
+        }
+            }
 
 }

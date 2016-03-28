@@ -77,7 +77,7 @@ use Phalcon\Tag as Tag; ?>
                                 <li class="user-header">
                                  <?php
                                     if ($this->session->profile['member_profile'] == null) {
-                                      ?>  <img src="../../public/uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
+                                      ?>  <img src="../uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
                                     } else {
                                         echo '<img class="img-circle" style="width: 90px;" src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
                                     }
@@ -160,7 +160,7 @@ use Phalcon\Tag as Tag; ?>
                                         if (isset($top_link[1])) {
                                             echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         } else {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index' . strtolower($top_link[0]) . '"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         }
                                     } else {
                                         if (isset($top[1])) {

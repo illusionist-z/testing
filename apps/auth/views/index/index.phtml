@@ -31,16 +31,16 @@ if(! ini_get('date.timezone')){
                         <?php if (!isset($mode)) { ?>
                             <tr>
                                 <td><span id="compayimg"><span id="unameopt">companyid</span></span></td>
-                                <td><input type="text" style="margin-top: 10px;" size="50%" name="company_id" class="form-control"  placeholder="Company Id"/></td>
+                                <td><input type="text" style="margin-top: 10px;" size="50%" name="company_id" class="form-control"  placeholder="Company Id" required></td>
                             </tr>
                         <?php } ?>
                         <tr>
                             <td><span id="unameimg"><span id="unameopt">name</span></span></td>
-                            <td><input type="text" style="margin-top: 10px;" size="50%" name="member_login_name" class="form-control"  placeholder="UserName"/></td>
+                            <td><input type="text" style="margin-top: 10px;" size="50%" name="member_login_name" class="form-control"  placeholder="UserName" required></td>
                         </tr>
                         <tr>
                             <td><span id="passimg"><span id="unameopt">pass</span></span></td>
-                            <td><input type="password" style="margin-top: 10px;" name="password" class="form-control"  placeholder="Password"/></td>
+                            <td><input type="password" style="margin-top: 10px;" name="password" class="form-control"  placeholder="Password" required></td>
                         </tr>
                         <tr>        
                             <td></td>

@@ -13,7 +13,7 @@ use Phalcon\Mvc\Model;
  */
 class Calendar extends Model {
 
-    public $filter;    
+    public $filter;
     public function initialize() {
         $this->db = $this->getDI()->getShared("db");
         $this->filter = new Filter();        
