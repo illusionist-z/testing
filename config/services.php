@@ -12,6 +12,7 @@ use Phalcon\Crypt;
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
  */
 $di = new FactoryDefault();
+
 /**
  * Registering a router
  */
@@ -93,7 +94,7 @@ $di->setShared('db',function() {
             'charset'     => 'utf8']);
     }
     else {
-//          $localhost = $this->request->getServer('HTTP_HOST');
+//        $localhost = $this->request->getServer('HTTP_HOST');
           
        header("Location:http://localhost/salts");
     }

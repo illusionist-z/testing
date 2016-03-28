@@ -325,15 +325,15 @@ var Deduction = {
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "add_dect",
+            url : "addDect",
             success:function(){
                 
-                //d.dialog("close");
+                d.dialog("close");
                 
 
             }
         }).done(function(){
-          // location.reload();
+           location.reload();
         });
     },
       Add : function (){
