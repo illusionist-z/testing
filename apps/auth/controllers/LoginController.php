@@ -1,13 +1,12 @@
 <?php
 
 namespace salts\Auth\Controllers;
+
 use salts\Auth\Models;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 use Phalcon\Config\Adapter\Ini;
 
-
- 
 class LoginController extends ControllerBase {
 
     public function initialize() {
@@ -20,13 +19,9 @@ class LoginController extends ControllerBase {
      * Index Action
      */
     public function indexAction() {
-
         $filter = new Filter();
-
         $login_params = $this->request->get();
-      
         $ModelAuth = new Models\Auth();
-       
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
             $config = new Ini(__DIR__ . '/../../../config/org/config.ini');
@@ -46,21 +41,16 @@ class LoginController extends ControllerBase {
                 $this->response->redirect('auth/index/failersuperuser');
             }
         } else {
-            
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
-            
             if ($companyDB) {
                 // User Chack    
-                
                 $this->session->set('db_config', $companyDB);
-
                 // Module Chack
                 $module = new Models\Auth();
                 $module_id = $this->session->db_config['company_id'];
                 $company_module = $module->findModule($module_id);
                 $this->session->set('module', $company_module);
-
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
                 $Member = new \salts\Core\Models\Db\CoreMember();
@@ -73,18 +63,15 @@ class LoginController extends ControllerBase {
                 $profile_pic = $ModelAuth->getProfile($result['member_id']);
                 $this->session->set('profile', $profile_pic);
                 $this->session->set('user', $result);
-                
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
-                $member_id = $filter->sanitize($this->request->getPost('member_login_name'),'string');
+                $member_id = $filter->sanitize($this->request->getPost('member_login_name'), 'string');
                 $this->session->set('tokenpush', $member_id);
-                
                 $member_name = $this->session->tokenpush;
                 $chack_user2 = new Models\CoreMember();
                 $chack_user2 = CoreMember::findByMemberLoginName($member_name);
-             
                 if (0 !== count($chack_user2)) {
-                $core2 = new CoreMember(); 
+                    $core2 = new CoreMember();
                     $core2 = $chack_user2[0]->timeflag;
 
                     $timestamp = (date("Y-m-d H:i:s"));
@@ -92,7 +79,6 @@ class LoginController extends ControllerBase {
                         $this->view->errorMsg = "You've Login To Next. 30 Minutes";
                         // Push Into Database Mamber Log
                         $this->response->redirect('auth/index/failer');
-                            
                     } elseif ($core2 <= $timestamp) {
 
                         if ($result) {
@@ -110,7 +96,6 @@ class LoginController extends ControllerBase {
                 } elseif (0 == count($chack_user2)) {
                     $this->response->redirect('auth/index/failer');
                 }
-                
             } else {
                 $this->response->redirect('auth/index/failer');
             }

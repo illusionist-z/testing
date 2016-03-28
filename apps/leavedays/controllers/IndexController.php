@@ -5,14 +5,14 @@ namespace salts\Leavedays\Controllers;
 use salts\Core\Models\Db;
 use salts\Leavedays\Models\Leaves as Leave;
 use salts\Leavedays\Models\LeaveCategories as LeaveCategories;
-use salts\Leavedays\Models\LeavesSetting as LeavesSetting;
- 
+use salts\Leavedays\Models\LeavesSetting as LeavesSetting; 
 class IndexController extends ControllerBase {
 
     public $_leave;
     public $config;
 
     public function initialize() {
+         
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         parent::initialize();
@@ -228,10 +228,8 @@ class IndexController extends ControllerBase {
      * Edit Leave categories with dialog
      */
     public function ltypediaAction() {
-           if ($this->permission == 1) {
         $id = $this->request->get('id');
         $t = $this->_getTranslation();
-        
         $LeaveCategories = new LeaveCategories();
         $data[0] = $LeaveCategories->getListTypeData($id);
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
@@ -239,10 +237,6 @@ class IndexController extends ControllerBase {
         $data[1]['no'] = $t->_("cancel");
         $this->view->disable();
         echo json_encode($data);
-           }
-           else {
-               echo 'Page Not Found';
-           }
     }
 
     /**
@@ -250,16 +244,10 @@ class IndexController extends ControllerBase {
      * Deleting leave categories in leave setting
      */
     public function deleteListTypeAction() {
-            if ($this->permission == 1) {
         $leavetype_id = $this->request->getPost('id');
         $LeaveCategories = new LeaveCategories();
         $LeaveCategories->deleteCategories($leavetype_id);
-        
         $this->view->disable();
-            }
-            else {
-                echo 'Page Not Found';
-            }
     }
 
     /**
