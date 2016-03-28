@@ -91,7 +91,7 @@ var ApplyForm = {
         $.ajax({
             url: 'getapplymemberid?username=' + name,
             method: 'GET',
-            //dataType: 'json',
+           // dataType: 'json',
             success: function (data) {
                 //alert(data);    
                 var json_obj = $.parseJSON(data);

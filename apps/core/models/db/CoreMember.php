@@ -19,6 +19,7 @@ use Phalcon\Filter;
 class CoreMember extends \Library\Core\Models\Base {
 
     // Use trait for singleton
+    
     use \Library\Core\Models\SingletonTrait;
 
     public function initialize() {
@@ -69,7 +70,8 @@ class CoreMember extends \Library\Core\Models\Base {
      * @Count Member Limit
      * @Inset Buyer Code
      * @Yan Lin Pai <Yan Lin Pai>
-     */
+    
+     *  */
 
     public function getNumberCount() {
         $this->db = $this->getDI()->getShared("db");

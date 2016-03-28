@@ -103,7 +103,7 @@ class IndexController extends ControllerBase {
     }
 
     public function checkapplyAction() {
-           if ($this->permission == 1) {
+           if ($this->permission == 0) {
         if ($this->request->isPost()) {
             $user = $this->_leave;
             $validate = $user->validating($this->request->getPost());
@@ -287,15 +287,15 @@ class IndexController extends ControllerBase {
      * max leavedays/leave categories
      */
     public function editleavesettingAction() {
-            if ($this->permission == 1) {
+           // if ($this->permission == 1) {
         $max_leavedays = $this->request->getPost('max_leavedays');
         $LeaveSetting = new LeavesSetting();
         $LeaveSetting->editLeaveSetting($max_leavedays);
         $this->response->redirect('leavedays/index/leavesetting');
-            }
-            else {
-                echo "Page Not Found";
-            }
+          //  }
+           // else {
+            //    echo "Page Not Found";
+           // }
     }
 
     /**
