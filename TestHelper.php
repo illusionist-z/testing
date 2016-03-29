@@ -47,7 +47,7 @@ spl_autoload_register(function () {
     include_once 'apps/dashboard/models/CorePermissionGroup.php';
     include_once 'apps/dashboard/models/CorePermissionGroupId.php';
     include_once 'library/core/Controller.php';
-     include_once 'library/core/models/SingletonTrait.php';
+    include_once 'library/core/models/SingletonTrait.php';
     include_once 'apps/manageuser/controllers/ControllerBase.php';
     include_once 'apps/manageuser/models/User.php';
     include_once 'apps/manageuser/models/AddUser.php';
@@ -59,11 +59,20 @@ spl_autoload_register(function () {
     include_once 'apps/core/models/Permission.php';
     include_once 'apps/core/models/CorePermissionRelMember.php';
     include_once 'apps/core/models/db/Attendances.php';
-     include_once 'apps/attendancelist/controllers/AbsentController.php';
+    include_once 'apps/attendancelist/controllers/AbsentController.php';
     include_once 'apps/attendancelist/controllers/ControllerBase.php';
     include_once 'apps/attendancelist/controllers/SearchController.php';
     include_once 'apps/attendancelist/controllers/UserController.php';
-include_once 'apps/attendancelist/models/Attendances.php';
+    include_once 'apps/attendancelist/models/Attendances.php';
+    include_once 'apps/leavedays/controllers/IndexController.php';
+    include_once 'apps/leavedays/controllers/ControllerBase.php';
+    include_once 'apps/leavedays/controllers/SearchController.php';
+    include_once 'apps/leavedays/controllers/UserController.php';
+    include_once 'apps/leavedays/models/LeaveCategories.php';
+    include_once 'apps/leavedays/models/Leaves.php';
+    include_once 'apps/leavedays/models/LeavesSetting.php';
+    include_once 'apps/core/models/db/CoreNotification.php';
+    include_once 'apps/core/models/db/CoreNotificationRelMember.php';
 });
 
 // use the application autoloader to autoload the classes
@@ -115,7 +124,6 @@ $di->set('router', function () {
         ]);
     }
     return $router;
-    
 });
 //db set up
 $di->set('login_db', function() use ($config) {
