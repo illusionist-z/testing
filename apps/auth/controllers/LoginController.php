@@ -25,7 +25,6 @@ class LoginController extends ControllerBase {
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) {
             $config = new Ini(__DIR__ . '/../../../config/org/config.ini');
-            //print_r($config->database->dbname);exit;
             $dbinfo['host'] = $config->database->host;
             $dbinfo['db_name'] = $config->database->dbname;
             $dbinfo['user_name'] = $config->database->username;

@@ -91,7 +91,7 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td colspan="2">Gross Salary</td>
-                                            <td style="text-align: right;"><?php $a = 0;if($A[$i]->salarydet->special_allowance!=null){$a =20000;}?><?php echo number_format(($sum+$a)); ?></td>
+                                            <td style="text-align: right;"><?php $a = 0;if($A[$i]->salarydet->special_allowance!=null){$a =$A[$i]->salarydet->special_allowance;}?><?php echo number_format(($sum+$a)); ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>

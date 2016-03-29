@@ -49,7 +49,7 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function ssbdocumentAction() {
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
             $SalaryDetail = new Document();
@@ -101,7 +101,7 @@ class IndexController extends ControllerBase {
     public function letterheadAction() {
 
         $ModuleIdCallCore = new Db\CoreMember();
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
 
@@ -149,23 +149,16 @@ class IndexController extends ControllerBase {
                       $page = "http://" . $localhost . "/salts/document/index/letterhead";
                       $sec = "0";
                       header("Refresh: $sec; url=$page");
-                } else {
-                         $member = $this->request->getPost();
-                       $member_id = $this->session->user['member_id'];
-                       $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
-                       $image = new \Imagick($MY_FILE); // default 72 dpi image
-                       $ReImgdpi = $image->setImageResolution(150,150); 
-                       $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 150 dpi
-                        
-                    $file = fopen($ImageResolution, 'r');
-                    $file_contents = fread($file, filesize($ImageResolution));
+                } 
+                $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+                    $file = fopen($MY_FILE, 'r');
+                    $file_contents = fread($file, filesize($MY_FILE));
                     fclose($file);
                     $file_contents = addslashes($file_contents);
                     $update_info = $this->request->getPost('update');
                     $ComInfo = new CompanyInfo();
                     $ComInfo->editCompanyInfo($update_info, $file_contents);
                     $this->response->redirect("document/index/letterhead");
-                }
             }
   //      } else {
     //       echo 'Page Not Found';

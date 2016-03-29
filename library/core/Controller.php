@@ -219,8 +219,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     /**
      * Js and Css for Dashboard
      */
-public function setDashboardJsAndCss() {
-        
+public function setDashboardJsAndCss() {        
         $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
         $this->assets->addCss('common/css/bootstrap.min.css');
         $this->assets->addCss('common/css/common.css');
