@@ -1,8 +1,6 @@
 <?php
 
 namespace salts\Document\Models;
-use Phalcon\Filter;
-
 class CompanyInfo extends \Phalcon\Mvc\Model {
       public $company_name;
       public $company_phno;
@@ -30,14 +28,6 @@ class CompanyInfo extends \Phalcon\Mvc\Model {
                 . "company_phno='" . $data['company_phno'] . "' WHERE 1";
         }
         $this->db->query($sql);
-//        $ComInfo = CompanyInfo::findFirst('id =1');
-//      
-//        $ComInfo->company_name = $filter->sanitize($update_info['company_name'], "string");
-//        $ComInfo->company_logo =$file_contents;
-//        $ComInfo->company_address = $filter->sanitize($update_info['company_address'], "string");
-//        $ComInfo->company_phno =$filter->sanitize($update_info['company_phno'], "string");
-//        $ComInfo->update();
-        
     }
 
 }

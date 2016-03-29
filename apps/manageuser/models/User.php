@@ -69,6 +69,7 @@ class User extends Model {
         $res['pos'] = filter_var($cond['position'], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/([^\s])/'))) ? true : false;
         if ($res['mail'] && $res['pno'] && $res['uname'] && $res['dept'] && $res['pos']) {
                         $core_table = Db\CoreMember::findByMemberId($cond['id']);
+                        
                         $core_table_update = \salts\Core\Models\Permission::tableObject($core_table);
                         $core_table_update->member_login_name = $cond['name'];
                         $core_table_update->member_dept_name = $cond['dept'];
