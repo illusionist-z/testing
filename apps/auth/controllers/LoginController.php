@@ -2,8 +2,7 @@
 
 namespace salts\Auth\Controllers;
 
-use salts\Auth\Models;
-use salts\Core\Models\Db\CoreMember;
+use salts\Auth\Models; 
 use Phalcon\Filter;
 use Phalcon\Config\Adapter\Ini;
 
@@ -30,8 +29,7 @@ class LoginController extends ControllerBase {
             $dbinfo['db_name'] = $config->database->dbname;
             $dbinfo['user_name'] = $config->database->username;
             $dbinfo['db_psw'] = $config->database->password;
-            
-            $this->session->set('db_config', $dbinfo);
+             $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
             $this->session->set('user', $result);
             // Data Base Chack
@@ -54,8 +52,7 @@ class LoginController extends ControllerBase {
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
                 $Member = new \salts\Core\Models\Db\CoreMember();
-                $ll = $Member::getInstance();
-                $lang = $Member->getLang($login_params);
+                 $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
                 $Member->updateContract($login_params);
                 $this->session->set('page_rule_group', $permission);
@@ -68,12 +65,11 @@ class LoginController extends ControllerBase {
                 $member_id = $filter->sanitize($this->request->getPost('member_login_name'), 'string');
                 $this->session->set('tokenpush', $member_id);
                 $member_name = $this->session->tokenpush;
-                $chack_user2 = new Models\CoreMember();
-                $chack_user2 = CoreMember::findByMemberLoginName($member_name);
+               // $chack_user2 = new Models\CoreMember();
+                $chack_user2 = Models\CoreMember::findByMemberLoginName($member_name);
                 if (0 !== count($chack_user2)) {
-                    $core2 = new CoreMember();
+                    //$core = new CoreMember();
                     $core2 = $chack_user2[0]->timeflag;
-
                     $timestamp = (date("Y-m-d H:i:s"));
                     if ($core2 >= $timestamp) {
                         $this->view->errorMsg = "You've Login To Next. 30 Minutes";

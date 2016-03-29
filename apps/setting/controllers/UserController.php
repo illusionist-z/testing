@@ -4,6 +4,7 @@ namespace salts\Setting\Controllers;
 
 use salts\Core\Models\Db;
 use salts\Core\Models\Db\CoreMember;
+use Phalcon\Tag as Tag;
 
 class UserController extends ControllerBase {
 
@@ -12,7 +13,8 @@ class UserController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
         $this->module_name = $this->router->getModuleName();
-        $this->permission = $this->setPermission();
+        $this->permission = $this->setPermission($this->module_name);
+       
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
     }
@@ -104,12 +106,71 @@ class UserController extends ControllerBase {
                     header("Refresh: $sec; url=$page");
  
                 } else {
-        $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
-        $image = new \Imagick($MY_FILE); // default 72 dpi image
-        $ReImgdpi = $image->setImageResolution(20,20);
-        $ImageResolution  = $image->writeImage($ReImgdpi); // this image will have 150 dpi
-        $file = fopen($ImageResolution, 'r');
-        $file_contents = fread($file, filesize($ImageResolution));
+                     
+                     
+//File size small script
+        function getExtension($str) {
+            $i = strrpos($str, ".");
+            if (!$i) {
+                return "";
+            }
+            $l = strlen($str) - $i;
+            $ext = substr($str, $i + 1, $l);
+            return $ext;
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $image = $_FILES["fileToUpload"]["name"];
+            $uploadedfile = $_FILES['fileToUpload']['tmp_name'];
+
+            if ($image) {
+
+                $filename = stripslashes($_FILES['fileToUpload']['name']);
+                $extension = getExtension($filename);
+                $extension = strtolower($extension);
+
+                if ($extension == "jpg" || $extension == "jpeg") {
+                    $uploadedfile = $_FILES['fileToUpload']['tmp_name'];
+                    $src = imagecreatefromjpeg($uploadedfile);
+                } else if ($extension == "png") {
+                    $uploadedfile = $_FILES['fileToUpload']['tmp_name'];
+                    $src = imagecreatefrompng($uploadedfile);
+                } else {
+                    $src = imagecreatefromgif($uploadedfile);
+                }
+
+                 //echo $scr; 
+                list($width, $height) = getimagesize($uploadedfile);
+
+                $newwidth =150;
+                $newheight = ($height / $width) * $newwidth;
+                $tmp = imagecreatetruecolor($newwidth, $newheight);
+
+                $newwidth1 = 250;
+                $newheight1 = ($height / $width) * $newwidth1;
+                $tmp1 = imagecreatetruecolor($newwidth1, $newheight1);
+
+                imagecopyresampled($tmp, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+                $filename = $_FILES['fileToUpload']['name'];
+                imagejpeg($tmp, $filename, 100); 
+                 
+                echo $filename;
+                exit();
+                //$filename =   "<img src=". $file." /> "; 
+                       
+                //$file_name = file_get_contents($file);
+                //File upload script
+//                $input_name = '<input style="margin-top: 10px;" type="file"   name="img_name"   id="fileToUpload" disabled="true" style="padding-bottom: 39px"> ';
+//                $filename =   "<img src=". $file." /> "; 
+                          
+        $MY_FILE = 'http://localhost/salts/public/'.$_FILES[$filename]['tmp_name'];
+       
+        echo $MY_FILE;
+   
+         
+        $file = fopen($MY_FILE, 'r');
+        $file_contents = fread($file, filesize($MY_FILE));
         fclose($file);
         $file_contents = addslashes($file_contents);
         if($file_contents==NULL){
@@ -119,6 +180,18 @@ class UserController extends ControllerBase {
             $User->updatedata($updatedata, $id,$file_contents);
             $user = $User->userData($id);
             $this->session->set('user', $user);
+                                   
+                //File upload script
+                unlink($filename);
+                imagedestroy($src);
+                imagedestroy($tmp); 
+                 
+            }
+        } 
+        
+   //File size small script
+  
+            
         }        
         $this->response->redirect('setting/user');
     }  

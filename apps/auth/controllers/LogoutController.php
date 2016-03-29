@@ -1,9 +1,7 @@
 <?php
 
 namespace salts\Auth\Controllers;
-
-use salts\Auth\Models;
-
+  
 class LogoutController extends ControllerBase {
 
     public function indexAction() {

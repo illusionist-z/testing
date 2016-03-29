@@ -38,16 +38,16 @@ class Auth extends Component {
     
     public function findModule($company_module) {
         $sql = "SELECT * FROM enable_module where company_id='" . $company_module . "' ";
-        $Result = $this->login_db->query($sql);
-        $Result = $Result->fetchAll();
+        $Result_sql = $this->login_db->query($sql);
+        $Result = $Result_sql->fetchAll();
         return $Result;
         }
          
         
     public function getProfile($id){
           $this->db = $this->getDI()->getShared("db");
-        $user = $this->db->query("SELECT * FROM core_member_profile WHERE member_id='" . $id . "'");
-        $user = $user->fetchArray();
+        $user_sql = $this->db->query("SELECT * FROM core_member_profile WHERE member_id='" . $id . "'");
+        $user = $user_sql->fetchArray();
         return $user;
     
     }
@@ -69,8 +69,8 @@ class Auth extends Component {
         } else {
             $sql = "SELECT * FROM core_member where member_login_name= '" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0";
         }
-        $user = $this->db->query($sql);
-        $user = $user->fetchArray();
+        $user_sql = $this->db->query($sql);
+        $user = $user_sql->fetchArray();
         return $user;
     }
 
@@ -80,8 +80,8 @@ class Auth extends Component {
         $password = $loginParams['password'];
         $this->db = $this->getDI()->getShared("db");
 
-        $user = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
-        $user = $user->fetchArray();
+        $user_sql = $this->db->query("SELECT * FROM core_member where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
+        $user = $user_sql->fetchArray();
         
         $permission = $this->db->query("SELECT permission_group_id_user FROM core_permission_rel_member where rel_member_id='" . $user['member_id'] . "' ");
         $permission_name = $permission->fetchArray();
@@ -101,7 +101,6 @@ class Auth extends Component {
             $failedLogin->ip_address = $this->request->getClientAddress();
             $failedLogin->attempted = time();
             $failedLogin->save();
-
             $attempts = AuthFailedLogins::count(array(
                         'ip_address = ?0 AND attempted >= ?1',
                         'bind' => array(
