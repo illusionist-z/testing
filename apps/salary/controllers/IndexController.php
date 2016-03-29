@@ -17,28 +17,15 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Library\Core\Models\Config::getModuleConfig('salary');
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
-        $this->assets->addCss('common/css/bootstrap.min.css');
-        $this->assets->addCss('common/css/common.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/skins.min.css');
-        $this->assets->addJs('common/js/jquery.min.js');
-        $this->assets->addJs('common/js/common.js'); 
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('common/js/bootstrap.min.js');
-        $this->assets->addJs('common/js/app.min.js');
-        $this->assets->addJs('common/js/jquery-ui.js');
-        $this->assets->addJs('common/js/notification.js');
+        $this->setCommonJsAndCss();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
         $this->module_name = $this->router->getModuleName(); 
         $this->assets->addCss('common/css/css/style.css');
         $Admin = new Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        
+        $id = $this->session->user['member_id'];        
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
                 //Go to user dashboard
                 $Noti = $Admin->getAdminNoti($id, 0);
@@ -48,7 +35,6 @@ class IndexController extends ControllerBase {
                 $Noti = $Admin->getUserNoti($id, 1);
             }
         }
-
         $this->view->setVar("Noti", $Noti);
         $this->view->t = $this->_getTranslation();
         $moduleIdCallCore = new Db\CoreMember();
@@ -66,7 +52,7 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {
 
-        if ($this->moduleIdCall == 1) {
+        if ($this->moduleIdCall == 0) {
             $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
@@ -239,31 +225,19 @@ class IndexController extends ControllerBase {
      * @return true|false
      */
     public function btneditAction() {
-          if ($this->permission == 1) {
-        $data['id'] = $this->request->getPost('id');
-        $data['member_id'] = $this->request->getPost('member_id');
-        $data['uname'] = $this->request->getPost('uname');
-        $data['basesalary'] = $this->request->getPost('basesalary');
-        $data['travelfee'] = $this->request->getPost('travelfee');
-        $data['radio'] = $this->request->getPost('radTravel');
-        $data['overtime'] = $this->request->getPost('overtime');
-        $data['ssc_emp'] = $this->request->getPost('ssc_emp');
-        $data['ssc_comp'] = $this->request->getPost('ssc_comp');
-        $data['start_date'] = $this->request->getPost('work_sdate');
+          if ($this->permission == 1) {       
+        $data['member_id'] = $this->request->getPost('member_id');        
         $data['no_of_children'] = $this->request->getPost('no_of_children');
-        $data['travelfee_permonth'] = $this->request->getPost('travelfee_permonth');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce = $this->request->getPost('check_list');
-
         $SalaryDetail = new SalaryMaster();
-        $cond = $SalaryDetail->btnedit($data);
+        $cond = $SalaryDetail->btnedit($this->request->getPost());
 
         $Taxdeduce = new SalaryMemberTaxDeduce();
         $Taxdeduce->editTaxByMemberid($check_deduce, $data['no_of_children'], $data['member_id']);
 
         $SalaryMasterAllowance = new \salts\Salary\Models\SalaryMasterAllowance();
         $SalaryMasterAllowance->editAllowanceByMemberid($check_allow, $data['member_id']);
-
         echo json_encode($cond);
         $this->view->disable();
           }
@@ -749,17 +723,12 @@ class IndexController extends ControllerBase {
         $status = array();
         if ($this->request->isAjax()) {
             //check file exist   
-            if (count($_FILES) == 0) {
-                $ext = array();
-            } else {
-                $ext = explode(".", $_FILES['file']['name']);
-            }
+            (count($_FILES) == 0) ?  $ext = array() :  $ext = explode(".", $_FILES['file']['name']);            
             //check file xls exist
             if (end($ext) == "xls" || end($ext) == "xlsx") {
                 $status[0] = "Covert excel file to csv !!";
                 echo json_encode($status);
-            }
-            //check file is not csv
+            } //check file is not csv
             else if (end($ext) != "csv") {
                 $status[1] = "Invalid file format . (CSV only allowed)";
                 echo json_encode($status);
@@ -784,24 +753,15 @@ class IndexController extends ControllerBase {
                         }
                     }
                 }
-                $temp = "";
-                $err_txt = "";
+                $temp = ""; $err_txt = "";
                 if (!isset($return)) {
                     $temp = "Insert all field data please ,";
                 } else {
                     foreach ($return as $v) {
-                        if (gettype($v) === "object") {
-                            $temp .= $v->getMessage() . " ,";
-                        } else {
-                            $err_txt .= $v . " ,";
-                        }
-                    }
+                       (gettype($v) === "object") ? $temp .= $v->getMessage() . " ,": $err_txt .= $v . " ,";
+                        }                    
                 }
-                if (strlen($temp) > 0) {
-                    $temp = substr_replace($temp, "", -1);
-                } else {
-                    $temp = substr_replace($err_txt, "", -1);
-                }
+       (strlen($temp) > 0) ? $temp = substr_replace($temp, "", -1):     $temp = substr_replace($err_txt, "", -1);                                               
                 $status[2] = $temp;
                 echo json_encode($status);
                 fclose($file);
@@ -813,17 +773,12 @@ class IndexController extends ControllerBase {
     public function downloadcsvAction($id) {
         $this->view->disable();
         (1 == $id) ? $title = "salary_data_" : $title = "salary_detail_";
-        $file_name = "$title" . date('Ymd') . ".csv";
+        $file_name = $title. date('Ymd') . ".csv";
         header("Content-type: application/csv");
-        header("Content-Transfer-Encoding: binary");
-        header("Content-Disposition: attachment; filename=\"$file_name\";");
-        header('Content-Encoding: UTF-8');
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM
-
-        ob_start();
+        header("Content-Disposition: attachment; filename=\"$file_name\";");        
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM        
         $output = fopen('php://output', 'w');
-        $core = new Db\CoreMember();
-        // output the column headings 
+        $core = new Db\CoreMember();        
         //for add salary action
         if (1 == $id) {
             $Master = new SalaryMaster();
@@ -851,7 +806,6 @@ class IndexController extends ControllerBase {
             //rows for example
             fputcsv($output, array("THIS LINE IS EXAMPLE INSERT DATA FORMAT (see above column right sign):: {(X) = Dont edit}, {(INT) = insert only interger number},"
                 . "{(Y-M-D) = 1993-04-04} @Warn::Don't delete this row"));
-
             foreach ($rows as $row) {
                 fputcsv($output, array($row['member_id'], $row['member_login_name'], $row['full_name']));
             }
