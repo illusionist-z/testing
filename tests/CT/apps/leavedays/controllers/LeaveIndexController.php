@@ -290,7 +290,6 @@ class LeaveIndexController extends Controllers\IndexController {
         }
     }
 
-//---------------
     public function ltyaddAction() {
         $this->initialize();
         if ($this->permission == 1) {

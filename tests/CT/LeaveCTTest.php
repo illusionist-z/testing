@@ -11,7 +11,7 @@
  *
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
  * edited by Khine Thazin Phyo
- * reject delete
+ * 
  */
 require_once 'apps/Leavedays/controllers/LeaveIndexController.php';
 
@@ -74,9 +74,9 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
 
    public function testdeleteListTypeAction() {
        $id = '95eb0765-9d54-11e5-9bf6-4c3488333b45';
-       $del = new LeaveIndexController();
-       $del->setStatus($id);
-       $this->assertTrue($del->deleteListTypeAction());
+       $leave = new LeaveIndexController();
+       $leave->setStatus($id);
+       $this->assertTrue($leave->deleteListTypeAction());
    }
     public function testaddListTypeAction() {
         $ltype_name = 'Family Case';
