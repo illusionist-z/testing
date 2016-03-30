@@ -90,8 +90,7 @@ class User extends Model {
      * @version David JP<david.gnext@gmail.com>
      * @param string $id     
      */
-    public function userDelete($id) {
-        
+    public function userDelete($id) {        
         $core_member = Db\CoreMember::findByMemberId($id);
         $core_delete = \salts\Core\Models\Permission::tableObject($core_member);
         $core_delete->deleted_flag = 1;

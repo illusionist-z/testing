@@ -48,12 +48,9 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {
-        $CoreUser = new CorePermissionGroup();
-        $core_groupuser2 = $CoreUser::find();
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
-
             if ($key_name == 'show_admin_notification') {
                 $noti = $Admin->GetAdminNoti($id, 0);
             }
@@ -61,7 +58,6 @@ class IndexController extends ControllerBase {
                 $noti = $Admin->GetUserNoti($id, 1);
             }
         }
-
         $this->view->setVar("Noti", $noti);
         //get last create member
         $CMember = new CoreMember();

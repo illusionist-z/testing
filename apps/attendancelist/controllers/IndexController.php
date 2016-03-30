@@ -54,18 +54,14 @@ class IndexController extends ControllerBase {
             $this->permission = $this->setPermission($this->act_name);
             $this->assets->addJs('common/js/jquery-ui-timepicker.js');
             $this->assets->addCss('common/css/jquery-ui-timepicker.css');
-            $id = $this->session->user['member_id'];
+            //$id = $this->session->user['member_id'];
             $name = $this->request->get('namelist');
-            $offset = $this->session->location['offset'];
-            $UserList = new \salts\Core\Models\Db\CoreMember();
-            $Username = $UserList->getUserName();
+            $offset = $this->session->location['offset'];                       
             $AttList = new \salts\Attendancelist\Models\Attendances();
-            $Result_Attlist = $AttList->getTodayList($name, $currentPage);
-            
+            $Result_Attlist = $AttList->getTodayList($name, $currentPage);            
             if ($this->permission == 1) {
                 $this->view->attlist = $Result_Attlist;
-                $this->view->offset = $offset;
-                $this->view->uname = $Username;
+                $this->view->offset = $offset;                
                 $this->view->modulename = $this->module_name;
             }
         }
@@ -121,9 +117,7 @@ class IndexController extends ControllerBase {
     public function monthlylistAction() {
         if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
-            $currentPage = $this->request->get("page");
-            $UserList = new \salts\Core\Models\CoreMember();
-            // $UserName = $UserList::getinstance()->getusername();
+            $currentPage = $this->request->get("page");            
             $month = $this->config->month;
             $Attendances = new \salts\Attendancelist\Models\Attendances();
             $monthly_list = $Attendances->showAttList($currentPage);
@@ -131,8 +125,7 @@ class IndexController extends ControllerBase {
 
             if ($this->permission == 1) {
                 $this->view->monthlylist = $monthly_list;
-                $this->view->setVar("Month", $month);
-                $this->view->setVar("Getname", $UserName);
+                $this->view->setVar("Month", $month);                
                 $this->view->setVar("offset", $offset);
             } else {
                 $this->response->redirect('core/index');
