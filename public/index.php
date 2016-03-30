@@ -44,7 +44,7 @@ try {
     $loader->register();
 
     // get config
-    $config = new Ini(__DIR__ . '/../config/org/config.ini');
+    $config = new Ini(__DIR__ . '/../config/config.ini');
 
     // Create a DI
     $di = new \Phalcon\DI\FactoryDefault();

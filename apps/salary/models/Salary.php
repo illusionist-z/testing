@@ -1,12 +1,9 @@
 <?php
-
 namespace salts\Salary\Models;
 
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use salts\Core\Models\Db\CoreMember;
-use Phalcon\Mvc\Controller;
-use Phalcon\Filter;
+
 
 class Salary extends \Library\Core\Models\Base {
 

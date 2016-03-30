@@ -1,7 +1,5 @@
 <?php
-
 namespace salts\Leavedays\Models;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,13 +14,13 @@ class LeaveCategories extends \Library\Core\Models\Base {
     }
 
     public function getLeaveType() {
-   $leave_cate =  $this->modelsManager->createBuilder()
-                           ->columns("*")
-                           ->from("salts\LeaveDays\Models\LeaveCategories")
-                           ->orderBy("salts\LeaveDays\Models\LeaveCategories.created_dt desc")
-                           ->getQuery()
-                           ->execute();
-        $typelist = $leave_cate->toArray();        
+        $leave_cate = $this->modelsManager->createBuilder()
+                ->columns("*")
+                ->from("salts\LeaveDays\Models\LeaveCategories")
+                ->orderBy("salts\LeaveDays\Models\LeaveCategories.created_dt desc")
+                ->getQuery()
+                ->execute();
+        $typelist = $leave_cate->toArray();
         return $typelist;
     }
 
@@ -36,7 +34,7 @@ class LeaveCategories extends \Library\Core\Models\Base {
     public function deleteCategories($id) {
         $delete_cate = LeaveCategories::find("leavetype_id ='$id'");
         $delete_cate_row = \salts\Core\Models\Permission::tableObject($delete_cate);
-        $delete_cate_row->delete();                                                     
+        $delete_cate_row->delete();
     }
 
     public function addNewCategories($leavetype_name) {
@@ -50,7 +48,7 @@ class LeaveCategories extends \Library\Core\Models\Base {
      */
     public function memberIdApplyLeave($uname) {
         $core_member = \salts\Core\Models\Db\CoreMember::findByMemberLoginName($uname);
-        $row = $core_member->toArray();        
+        $row = $core_member->toArray();
         return $row;
     }
 

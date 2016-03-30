@@ -10,6 +10,7 @@
  * Description of AttendanceCITest
  *
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
+ * edited by Khine Thazin Phyo
  */
 require_once 'apps/attendancelist/controllers/AttendancelistIndexController.php';
 require_once 'apps/attendancelist/controllers/AttAbsentController.php';
@@ -25,12 +26,6 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($name->todaylistAction());
     }
 
-    public function testeditTimedialogAction() {
-        $id = '1621';
-        $edit = new AttendancelistIndexController();
-        $edit->setId($id);
-        $this->assertTrue($edit->editTimedialogAction($id));
-    }
 
     public function testeditTimeAction() {
         $id = '1598';
@@ -45,10 +40,7 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($month->monthlylistAction());
     }
 
-    public function testattsearchAction() {
-        $search = new AttendancelistIndexController();
-        $this->assertTrue($search->attsearchAction());
-    }
+
 
     public function testattendancechartAction() {
         $chart = new AttendancelistIndexController();
@@ -64,16 +56,20 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
      * AbsentController function test
      */
 
-    public function testaddAbsentAction() {
-        $test = new AttAbsentController();
-        $this->assertTrue($test->addAbsentAction());
-    }
+
 
     public function testabsentlistAction() {
-        $id = 'admin';
+
         $ablist = new AttAbsentController();
-        $ablist->setID($id);
+
         $this->assertTrue($ablist->absentlistAction());
+    }
+
+    public function testcheckAttAction() {
+
+        $ablist = new AttAbsentController();
+
+        $this->assertTrue($ablist->checkAttAction());
     }
 
     /*

@@ -2,9 +2,8 @@
 
 namespace salts\Salary\Models;
 
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
-use salts\Salary\Models\Allowances;
+
 
 class SalaryMasterAllowance extends Model {
     

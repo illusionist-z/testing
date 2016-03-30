@@ -5,11 +5,9 @@
  * and open the template in the editor.
  */
 
-
 use salts\Core\Models\Db;
 use salts\Attendancelist\Controllers;
 use salts\Attendancelist\Models\Attendances as Attendance;
-
 
 include_once 'tests\CT\apps\LoginForAll.php';
 
@@ -22,46 +20,50 @@ require_once 'apps/attendancelist/controllers/AbsentController.php';
  */
 class AttAbsentController extends Controllers\AbsentController {
 
-    public $moduleIdCall;
-    public $Attendance;
     public $memberId;
-    public $id;
-    public $ID;
-    public $view;
-    public $login_params = array('company_id' => 'cop1', "member_login_name" => "admin", "password" => "admin");
+  
+ 
 
     public function setmemberId($memberId) {
         $this->memberId = $memberId;
     }
 
-    public function setID($ID) {
-        $this->ID = $ID;
-    }
-
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
+        $this->permission = 1;
+        $this->id = $this->session->user['member_id'];
+        $this->act_name = 'attendancelist';
     }
 
     public function addAbsentAction() {
-        $this->permission = 1;
-       if ($this->permission == 1) {
+        $this->initialize();
+        if ($this->permission == 1) {
             $Attendance = new Attendance();
             $message = $Attendance->absent();
+            var_dump($message);
+            exit();
             echo json_encode($message);
-         
-        } else {
-            echo 'Page Not Found';
         }
     }
+
+    public function checkAttAction() {
+        $this->initialize();
+        $Attendace = new Attendance();
+        $message = $Attendace->checkAttendance($this->id);
+        return true;
+    }
+
     public function absentlistAction() {
         $this->initialize();
-        $currentPage = $this->request->get('page');
-        $Admin = new Db\CoreMember;
-        $Noti = $Admin->getAdminNoti($this->ID, 0);
-        $AbsentList = new \salts\Attendancelist\Models\Attendances();
-        $Result = $AbsentList->GetAbsentList($currentPage);
-        return true;
+        if ($this->permission == 1) {
+            $currentPage = $this->request->get('page');
+            $Admin = new Db\CoreMember;
+            $Noti = $Admin->getAdminNoti($this->id, 0);
+            $AbsentList = new \salts\Attendancelist\Models\Attendances();
+            $Result = $AbsentList->GetAbsentList($currentPage);
+            return true;
+        }
     }
 
 }
