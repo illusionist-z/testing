@@ -5,7 +5,7 @@ namespace salts\Manageuser\Controllers;
 use salts\Manageuser\Models\User as User;
 use salts\Manageuser\Models\AddUser;
 use salts\Core\Models\Db\CoreMember;
-
+ 
 /**
  * @author David
  * @type   User Editing
@@ -32,35 +32,21 @@ class CorememberController extends ControllerBase {
      * 
      */
     public function saveuserAction() {
-        if ($this->permission == 1) {
+        //if ($this->permission == 1) {
 
             if ($this->request->isPost()) {
                 $this->checkuser($this->request->getPost('uname'));
             }
-        } else {
-            echo 'Page Not Found';
-        }
+       // } else {
+        //    echo 'Page Not Found';
+       // }
     }
 
     /*
      * check username is already taken or not
      */
 
-    public function checkuser($id) {
-        $json = array();
-        $user = new AddUser();
-        $exist_id = CoreMember::findByMemberLoginName($id);
-        if (count($exist_id) > 0) {
-            $json['uname'] = "Name already taken ! Choose Other Please!";
-            $json['result'] = "existId";
-            echo json_encode($json);
-            $this->view->disable();
-        } else {
-            $validate = $user->validat($this->request->getPost());
-            $this->checkvalidation($validate);
-            
-        }
-    }
+ 
 
     /**
      * 
