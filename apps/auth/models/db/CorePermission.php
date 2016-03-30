@@ -18,7 +18,6 @@ class CorePermission extends \Library\Core\Models\Base {
     /**
      * @author David JP <david.gnext@gmail.com>
      * @desc   Translate language
-     * @param type $permission_code
      * @param type $lang
      * @return type array
      */

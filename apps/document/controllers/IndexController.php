@@ -157,7 +157,7 @@ class IndexController extends ControllerBase {
 
     public function salaryreferAction() {
 
-        if ($this->permission == 0) {
+        if ($this->permission == 1) {
 
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');

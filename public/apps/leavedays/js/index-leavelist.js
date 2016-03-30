@@ -25,9 +25,10 @@ Leave.init =  function(reload){
                 });
             }
      };
-Leave.List = function () {
-    Leave.init();
-           search_list();  
+Leave.List = function () {   
+    
+      search_list();  
+      Leave.init();
 };          
     
 $(document).ready(function(){     
@@ -36,7 +37,7 @@ $(document).ready(function(){
     
     var userUri = baseUri + 'leavedays/';    
     
-    $('#search').on('click',function(){     
+    $('#search').on('click',function(){    
         Leave.List();
     }); 
    $('.userauto').on('click',function(){

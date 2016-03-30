@@ -1,131 +1,78 @@
 <?php
-
 namespace salts\Auth\Controllers;
-
-use salts\Auth\Models\Db\CoreMember;
-use salts\Auth\Models\Db;
+ 
 use salts\Auth\Models;
-use Phalcon\Filter;
-use Phalcon\Mvc\Url as UrlProvider;
+use Phalcon\Filter; 
 
 class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
-        $this->assets->addCss('common/css/bootstrap.min.css');
-        $this->assets->addCss('common/css/common.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/skins.min.css');
-        $this->assets->addJs('common/js/jquery.min.js');
-        $this->assets->addJs('common/js/common.js');
-        //->addJs('common/js/btn.js')
-        $this->assets->addJs('common/js/bootstrap.min.js');
-        $this->assets->addJs('common/js/app.min.js');
-        $this->assets->addJs('common/js/jquery-ui.js');
-        $this->assets->addJs('common/js/notification.js');
-    }
-
-    /**
-     * Index Action
-     * @param type $mode    
-     */
+     }
+    /**  Index Action @param type $mode */
+     
     public function indexAction($mode = NULL) {
-
-        $localhost = ($this->request->getServer('HTTP_HOST'));
+ 
+        $localhost = ($this->request->getServer('HTTP_HOST')); 
         $id_auth_filter = $this->session->auth;
-
         if (isset($id_auth_filter) != null) {
-
-            $this->response->redirect('dashboard/index');
+        $this->response->redirect('dashboard/index');
         } elseif (isset($id_auth_filter) == null) {
-
-            if (isset($_SESSION['startTime']) != null) {
+        if (isset($_SESSION['startTime']) != null) {
                 $this->view->pick('salts/auth/index/failer');
                 $page = "http://" . $localhost . "/salts/auth/index/failer";
                 $sec = "1";
                 header("Refresh: $sec; url=$page");
-            } elseif (isset($_SESSION['startTime']) == null) {
+            } elseif (isset($_SESSION['startTime']) == null) {  
                 $mode = $this->request->get('mode');
                 $this->view->errorMsg = '';
                 $this->view->mode = $mode;
             }
         }
     }
-
-    /**
-     * When user failed login
-     * @param type $mode
-     */
+     /**  When user failed login @param type $mode   */
+    
     public function failerAction($mode = 1) {
-
-        /*
-         * User failerAction 
-         * @author Yan Lin Pai <wizardrider@gmail.com>
-         *     
-         */
-        $filter = new Filter();
-
-        $user_ip = $this->request->getPost('local');
-
-
-        $user_ip_public = $this->request->getPost('public');
+         /*  User failerAction  @author Yan Lin Pai <wizardrider@gmail.com> */
           $this->view->errorMsg = 'company id or user name or password wrong';
-        //$core->token = $tokenpush;
-        //$Member = new CoreMember();
-        // Login Error Database Log
-        //$member_id = $this->request->getPost('member_login_name');
-        //$insert = $Member->tokenpush($member_id, $user_ip);
-        // $core_member_log = new Db\CoreMemberLog();
-       
-        date_default_timezone_set('Asia/Rangoon');
-        if (!isset($_SESSION["attempts"]))
+         date_default_timezone_set('Asia/Rangoon');
+         if (!isset($_SESSION["attempts"])) 
             $_SESSION["attempts"] = 0;
-
+       
         if (4 > $_SESSION["attempts"]) {
-
-            if ($this->session) {
-
+              if ($this->session) {
                 $member_name = $this->session->tokenpush;
                 $ChackUser = new Models\CoreMember();
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
-
                 if (0 != count($chack_user2)) {
-
                     $member_name = $this->session->tokenpush;
-                    $core_fai = new Models\CoreMember();
-                    $core_fai = Models\CoreMember::findFirstByMemberLoginName($member_name);
-                    $core_fai = $core_fai->timeflag;
+                     $core_fai_obj = Models\CoreMember::findFirstByMemberLoginName($member_name);
+                    $core_fai_timeflag = $core_fai_obj->timeflag;
                     $timestamp = (date("Y-m-d H:i:s"));
-
-                    if ($core_fai >= $timestamp) {
-
+                    if ($core_fai_timeflag >= $timestamp) {
+                        
                         $this->view->errorMsg = "You've Login To Next. 30 Minutes";
                         $this->view->pick('index/index');
                         session_destroy();
                         // Login To Next. 30 Minutes
-                    } elseif ($core_fai <= $timestamp) {
-
+                    } elseif ($core_fai_timeflag <= $timestamp) {
                         $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
                         $this->view->errorMsg = "company id or user name or password wrong";
                         $this->view->pick('index/index');
                     }
                 } elseif (0 == count($chack_user2)) {
-
                     $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
                     $this->view->errorMsg = 'company id or user name or password wrong';
                     $this->view->pick('index/index');
                 }
             }
         } else {
-
             $member_name = $this->session->tokenpush;
             $ChackUser = new Models\CoreMember();
             $chack_user = $ChackUser::findByMemberLoginName($member_name);
-
-
+ 
             if (0 == count($chack_user)) {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
@@ -135,7 +82,6 @@ class IndexController extends ControllerBase {
                     $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
                     $startTime = $_SESSION['startTime'];
                     $nowtime = (date("Y-m-d H:i:s"));
-
                     $_SESSION['expire'] = $_SESSION['startTime'];
                     $rout_time = $nowtime - $_SESSION['expire'];
                     $localhost = ($this->request->getServer('HTTP_HOST'));
@@ -157,8 +103,7 @@ class IndexController extends ControllerBase {
                     header("Refresh: $sec; url=$page");
                     if ($nowtime > $_SESSION['expire']) {
                         session_destroy();
-                        echo " ";
-                    }
+                        }
                 }
             }
             // User Not Has
@@ -173,7 +118,6 @@ class IndexController extends ControllerBase {
                 $member_id = $member_name_find->member_id;
                 $member_name_find->timeflag = $formtdate;
                 $member_name_find->update();
-
                 $this->view->errorMsg = 'Your Account Has 30 MIN Block';
                 $this->view->pick('index/index');
                 session_destroy();
@@ -183,7 +127,7 @@ class IndexController extends ControllerBase {
 
     public function failerUserAction() {
 
-        $filter = new Filter();
+        
         //Count For Not User Has
         date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
@@ -192,23 +136,16 @@ class IndexController extends ControllerBase {
         if (0 == count($chack_user)) {
             $timestamp = (date("Y-m-d H:i:s"));
             $date = strtotime($timestamp);
-
-            if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
-
+           if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
                 $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
                 $startTime = $_SESSION['startTime'];
                 $nowtime = (date("Y-m-d H:i:s"));
-
                 $_SESSION['expire'] = $_SESSION['startTime'];
-
                 $rout_time = $nowtime - $_SESSION['expire'];
-                $localhost = ($this->request->getServer('HTTP_HOST'));
-//                $this->view->pick('salts/auth'); 
-//                 $this->view->errorMsg = '';
+                $localhost = ($this->request->getServer('HTTP_HOST')); 
                 $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
-                header("Refresh: $sec; url=$page");
-
+                header("Refresh: $sec; url=$page"); 
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
                     echo "Your Can Login To System ! ";
@@ -220,9 +157,7 @@ class IndexController extends ControllerBase {
                 $rout_time = $nowtime - $_SESSION['expire'];
                 $localhost = ($this->request->getServer('HTTP_HOST'));
                 $page = "http://" . $localhost . "/salts/auth/index/failerUser";
-                $sec = "10";
-//                $this->view->pick('salts/auth'); 
-//                $this->view->errorMsg = '';
+                $sec = "10"; 
                 header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
@@ -232,24 +167,16 @@ class IndexController extends ControllerBase {
         }
     }
 
-    /**
-     * When user failed  email  go 
-     * @param type $mode
-     */
+    /**  When user failed  email  go  @param type $mode  */
     public function failersuperuserAction() {
         $this->view->errorMsg = 'user name or password wrong';
         $this->view->mode=1;
         $this->view->pick('index/index');
     }
-
-    public function forGotPasswordAction() {
-        
-    }
-
+  
     public function saltsForGetAction() {
-
-        $filter = new Filter();
-        $Core = new CoreMember();
+  
+       // $Core = new CoreMember();
         $login = $this->request->getPost('SaltsForGetInput');
         $user = Users::findFirstByLogin($login);
         if ($user) {
@@ -257,12 +184,9 @@ class IndexController extends ControllerBase {
             $this->response->redirect('setting/index/index');
         }
     }
-
-    public function resetYourPasswordAction() {
-        
-    }
-
+ 
     public function sendMailAction() {
+        
         $filter = new Filter();
         $member_mail = $filter->sanitize($this->request->get('email'), "string");
         $Admin = new \salts\Auth\Models\CoreMember();
@@ -298,13 +222,7 @@ class IndexController extends ControllerBase {
         $code = $this->request->get('code');
         $email = $filter->sanitize($this->request->get('email'), "string");
         $FindCode = new \salts\Auth\Models\CoreForgotPassword();
-        $result = $FindCode::find(
-                        array(
-                            "check_mail = '$email'",
-                            "order" => "curdate DESC",
-                            "limit" => 1
-                        )
-        );
+        $result = $FindCode::find( array( "check_mail = '$email'", "order" => "curdate DESC", "limit" => 1 ) );
         foreach ($result as $value) {
             $finded_token = $value->token;
         }
@@ -321,12 +239,7 @@ class IndexController extends ControllerBase {
         $filter = new Filter();
         $member_mail = $filter->sanitize($this->request->get('email'), 'string');
         $Admin = new \salts\Auth\Models\CoreMember();
-        $result = $Admin::find(
-                        array(
-                            "member_mail = '$member_mail'",
-                            "deleted_flag = 0"
-                        )
-        );
+        $result = $Admin::find(array("member_mail = '$member_mail'","deleted_flag = 0" ));
         $data = [];
         foreach ($result as $value) {
             $data[] = $value->member_profile;
@@ -341,12 +254,7 @@ class IndexController extends ControllerBase {
         $newpass = $this->request->get('fnp');
         $member_mail = $filter->sanitize($this->request->get('email'), 'string');
         $Up = new \salts\Auth\Models\CoreMember();
-        $result = $Up::find(
-                        array(
-                            "member_mail = '$member_mail'",
-                            "deleted_flag = 0"
-                        )
-        );
+        $result = $Up::find(array( "member_mail = '$member_mail'", "deleted_flag = 0") );
         foreach ($result as $value) {
             $value->member_password = sha1($newpass);
             $value->update();
@@ -368,21 +276,13 @@ class IndexController extends ControllerBase {
         $Insert->check_mail = $getemail;
         $Insert->token = $token;
         $Insert->save();
-        $Find = $Insert::find(array(
-                    "check_mail = '$getemail'",
-                    "order" => "curdate DESC",
-                    "limit" => 1
-                        )
-        );
-        foreach ($Find as $value) {
-            $finded_token = $filter->sanitize($value->token, "string");
-        }
+        $Find = $Insert::find(array( "check_mail = '$getemail'", "order" => "curdate DESC",  "limit" => 1 )  );
+        foreach ($Find as $value) {   $finded_token = $filter->sanitize($value->token, "string");  }
         $to = $getemail;
         $subject = 'The subject';
         $message = $finded_token;
-        $headers = 'From: sawzinminmin@gmail.com' . "\r\n" .
-                'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
-                'X-Mailer: PHP/' . phpversion();
+        $headers = 'From: sawzinminmin@gmail.com' . "\r\n" . 'Reply-To: sawzinminmin@gmail.com' . "\r\n" .
+                          'X-Mailer: PHP/' . phpversion();
 
         if (mail($to, $subject, $message, $headers)) {
             $msg = "success";
