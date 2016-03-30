@@ -23,22 +23,21 @@
     float: right;
 }
 @media print{
-  
+
     body *{ visibility: hidden; }
     .printable *{ visibility: visible;}
     #side {display:none;}  
-    
+
     table.tbl-tax thead {
         display: table-header-group;
-              margin: 0;
-        border: initial;
+        margin: 0;
         border-radius: initial;
         width: initial;
         min-height: initial;
         box-shadow: initial;
         background: #eeefff !important;
         page-break-before:  always;
-        page-break-after: always;
+        page-break-after: always; 
     }    
 }
 

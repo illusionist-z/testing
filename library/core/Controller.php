@@ -243,7 +243,7 @@ public function setDashboardJsAndCss() {
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        //$this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
         
         
     }
