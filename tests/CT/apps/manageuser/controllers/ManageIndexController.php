@@ -58,12 +58,11 @@ class ManageIndexController extends Controllers\IndexController {
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
-
-       
+        $this->permission = 1;
     }
 
-     public function manageuserAction() {
-        $type = $this->data;       
+    public function manageuserAction() {
+        $type = $this->data;
         $edit = array();
         if ($type == 'new') {
             $edit[0] = $type;
@@ -80,24 +79,23 @@ class ManageIndexController extends Controllers\IndexController {
             $edit[1]["pno"] = "phone";
             $edit[1]["address"] = "address";
             $edit[1]["role"] = "user_role";
-            $edit[1]["profile"] ="user_profile";
-            $edit[1]["w_start_dt"] ="w_start_dt";
+            $edit[1]["profile"] = "user_profile";
+            $edit[1]["w_start_dt"] = "w_start_dt";
             $edit[1]['placeholder_ssn'] = "placeholder_ssn";
             $edit[1]['placeholder_bank'] = "placeholder_bank";
             $edit[1]["placeholder1"] = "placeholder1";
             $edit[1]["placeholder2"] = "placeholder2";
-            $edit[1]["placeholder3"] ="placeholder3";
+            $edit[1]["placeholder3"] = "placeholder3";
             $edit[1]["placeholder4"] = "placeholder4";
-            $edit[1]["placeholder5"] ="placeholder5";
+            $edit[1]["placeholder5"] = "placeholder5";
             $edit[1]["placeholder6"] = "placeholder6";
             $edit[1]["placeholder7"] = "placeholder7";
-            $edit[1]["placeholder8"] ="placeholder8";
+            $edit[1]["placeholder8"] = "placeholder8";
             $edit[1]["placeholder9"] = "placeholder9";
             $edit[1]["placeholder10"] = "placeholder10";
             $edit[1]["placeholder11"] = "placeholder11";
             $edit[1]["placeholder12"] = "placeholder12";
             return true;
-            
         } else {
             $res = $this->user->userEdit($type);
             $edit[0] = $res[0];
@@ -105,15 +103,15 @@ class ManageIndexController extends Controllers\IndexController {
 
             $edit[1]["id"] = "id";
             $edit[1]["bank"] = "bank";
-            $edit[1]["name"] ="name";
+            $edit[1]["name"] = "name";
             $edit[1]["dept"] = "dept";
             $edit[1]["pos"] = "position";
             $edit[1]["mail"] = "mail";
             $edit[1]["pno"] = "phone";
             $edit[1]["address"] = "address";
-            $edit[1]["w_start_dt"] ="w_start_dt";
- 
-           $edit[1]["btn_edit"] = "btn_edit";
+            $edit[1]["w_start_dt"] = "w_start_dt";
+
+            $edit[1]["btn_edit"] = "btn_edit";
             $edit[1]["btn_delete"] = "btn_delete";
             $edit[1]["btn_cancel"] = "btn_cancel";
             echo json_encode($edit);
@@ -127,7 +125,7 @@ class ManageIndexController extends Controllers\IndexController {
         $this->initialize();
         $this->user = new User();
         $currentPage = $this->request->get('page');
-        
+
         $this->assets->addJs("apps/manageuser/js/index-index.js");
         $this->assets->addJs('apps/manageuser/js/base.js');
         $getname = Db\CoreMember::getInstance()->getUserName($currentPage);
@@ -161,19 +159,24 @@ class ManageIndexController extends Controllers\IndexController {
     }
 
     public function userdataeditAction() {
-        $this->initialize();
-        $cond = array();
-        $cond['id'] = $this->data;
-        $cond['bank'] = $this->request->get('bank');
-        $cond['name'] = $this->name;
-        $cond['dept'] = $this->dept;
-        $cond['position'] = $this->position;
-        $cond['email'] = $this->email;
-        $cond['pno'] = $this->pno;
-        $cond['address'] = $this->request->get('address');
-        $cond['work_sdate'] = $this->request->get('work_sdate');
-        $result = $this->user->editByCond($cond);
-        return true;
+         $this->initialize();
+        if ($this->permission == 1) {
+            $cond = array();
+            $cond['id'] = $this->data;
+            $cond['bank'] = "99930799932389901";
+            $cond['name'] = $this->name;
+            $cond['dept'] = $this->dept;
+            $cond['position'] = $this->position;
+            $cond['email'] = $this->email;
+            $cond['pno'] = $this->pno;
+            $cond['address'] = "yangon";
+            $cond['work_sdate'] = "2015-11-02";
+            $result = $this->user->editByCond($cond);
+            return true;
+        } else {
+            echo 'Page Not Found';
+        }
+       
     }
 
     public function getpermitAction() {

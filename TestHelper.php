@@ -149,6 +149,7 @@ $di->setShared('db', function() {
         header('Location:http://localhost/salts');
     }
 });
+
 // add any needed services to the DI here
 
 DI::setDefault($di);

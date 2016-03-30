@@ -223,14 +223,13 @@ class LeaveIndexController extends Controllers\IndexController {
 
     public function deleteListTypeAction() {
         $this->initialize();
+        $LeaveType = new LeaveCategories();
+        $ltype = $LeaveType->getLeaveType();
         if ($this->permission == 1) {
-            $leavetype_id = $this->status;
+            $leavetype_id = $ltype[0]['leavetype_id'];
             $LeaveCategories = new LeaveCategories();
             $LeaveCategories->deleteCategories($leavetype_id);
-
-            $this->view->disable();
-        } else {
-            echo 'Page Not Found';
+            return true;
         }
     }
 
@@ -239,7 +238,6 @@ class LeaveIndexController extends Controllers\IndexController {
         $leavetype_name = $this->ltype_name;
         $LeaveCategories = new models\LeaveCategories();
         $LeaveCategories->addNewCategories($leavetype_name);
-
         return $leavetype_name;
     }
 
@@ -265,18 +263,6 @@ class LeaveIndexController extends Controllers\IndexController {
         return true;
     }
 
-//    public function rejectleaveAction() {
-//        $this->initialize();
-//        if ($this->permission == 1) {
-//            $noti_id = $this->noti_id;
-//            $this->_leave->rejectLeave($noti_id);
-//            return true;
-//        } else {
-//            echo 'Page Not Found';
-//        }
-//    }
-
-
     public function applyautolistAction() {
         $this->initialize();
         if ($this->permission == 1) {
@@ -285,8 +271,6 @@ class LeaveIndexController extends Controllers\IndexController {
 
 
             return true;
-        } else {
-            echo 'Page Not Found';
         }
     }
 
@@ -302,8 +286,6 @@ class LeaveIndexController extends Controllers\IndexController {
 
 
             return $data;
-        } else {
-            echo 'Page Not Found';
         }
     }
 
@@ -319,44 +301,6 @@ class LeaveIndexController extends Controllers\IndexController {
 
         return $data;
     }
-
-//    public function noleavelistAction() {
-//        $this->initialize();
-//        $this->permission = 0;
-//        if ($this->permission == 0) {
-//            $this->assets->addJs('common/js/paging.js');
-//            $this->assets->addJs('apps/leavedays/js/index-paging.js');
-//            $Admin = new Db\CoreMember;
-//            $id = $this->session->user['member_id'];
-//            var_dump($id);
-//            $noti = $Admin->GetAdminNoti($id);
-//            $this->view->setVar("Noti", $noti);
-//
-//            $Result = $Admin->checkLeave();
-//
-//            $this->view->setVar("Result", $Result);
-//        } else {
-//            echo 'Page Not Found';
-//        }
-//    }
-//
-//    public function leavemostAction() {
-//        $this->initialize();
-//        if ($this->permission == 1) {
-//            $this->assets->addJs('common/js/paging.js');
-//            $this->assets->addJs('apps/leavedays/js/index-paging.js');
-//            $Admin = new Db\CoreMember;
-//            $id = $this->session->user['member_id'];
-//            $noti = $Admin->GetAdminNoti($id);
-//            $this->view->setVar("Noti", $noti);
-//
-//            $Result = $Admin->leaveMost();
-//
-//            $this->view->setVar("Result", $Result);
-//        } else {
-//            echo 'Page Not Found';
-//        }
-//    }
 
     public function detailAction() {
         $this->initialize();
@@ -384,8 +328,6 @@ class LeaveIndexController extends Controllers\IndexController {
 
             $Detail_result = $Noti_detail->getNotiInfo($module_name, $Noti_id);
             return true;
-        } else {
-            echo 'Page Not Found';
         }
     }
 

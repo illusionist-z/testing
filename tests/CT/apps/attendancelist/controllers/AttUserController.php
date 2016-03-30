@@ -22,17 +22,14 @@ require_once 'apps/attendancelist/controllers/UserController.php';
  */
 class AttUserController extends Controllers\UserController {
 
-    public $login_params = array('company_id' => 'cop1', "member_login_name" => "admin", "password" => "admin");
+   
 
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
     }
 
-    /**
-     * getting user attendance list by user id
-     * @author Su Zin Kyaw <gnext.suzin@gmail.com>
-     */
+
     public function attendancelistAction() {
         $this->initialize();
        

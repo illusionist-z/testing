@@ -37,24 +37,24 @@ class ManageUserCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($test->manageuserAction());
     }
 
-    public function testDeleteUserAction() {
-        $test = new ManageIndexController();
-        $data = "9e6bda37-ebf0-11e5-be57-33c74e310ca9";
-        $test->setdata($data);
-        $this->assertTrue($test->deleteuserAction());
-    }
+//    public function testDeleteUserAction() {
+//        $test = new ManageIndexController();
+//        $data = "9e6bda37-ebf0-11e5-be57-33c74e310ca9";
+//        $test->setdata($data);
+//        $this->assertTrue($test->deleteuserAction());
+//    }
 
-    public function testUserDataEditAction() {
-        $test = new ManageIndexController();
-        $test->setdata('9e6bda37-ebf0-11e5-be57-33c74e310ca9');
-        $test->setname("Khine Thazin Phyo");
-        $test->setdept('PHP');
-        $test->setposition("Developer");
-        $test->setemail('ktzp27@gmail.com');
-        $test->setpno("01572570");
-
-        $this->assertTrue($test->userdataeditAction());
-    }
+//    public function testUserDataEditAction() {
+//        $test = new ManageIndexController();
+//        $test->setdata('90e73464-c899-11e5-9e13-4c3488333b45');
+//        $test->setname("Khine Thazin Phyo");
+//        $test->setdept('PHP');
+//        $test->setposition("Developer");
+//        $test->setemail('bndream92@gmail.com');
+//        $test->setpno("01572570");
+//
+//        $this->assertTrue($test->userdataeditAction());
+//    }
 
     public function testgetpermitAction() {
         $permit = new ManageIndexController();
