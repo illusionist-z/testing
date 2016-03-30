@@ -52,7 +52,7 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {
 
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");

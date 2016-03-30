@@ -6,7 +6,8 @@
 var pager = new Paging.Pager(),dict = [];   //for pagination
 var Salary = {
     isOvl: false,
-    init: function () {         
+    init: function () {
+        
         $.ajax({
             url: 'autolist',
             method: 'GET',
@@ -339,6 +340,7 @@ var Salary = {
         });
     },
     autolist: function () {        
+        
             $('.tags,.username').autocomplete({
                 source: function (request, response) {
                     var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
@@ -389,7 +391,7 @@ var Salary = {
                     j++;
                 }
                 $("#th_travelfees").append(travelfee_header);
-                Salary.init();
+              //  Salary.init();
             }
 
         });
@@ -529,9 +531,10 @@ $(document).ready(function () {
     $('#cal_salary').click(function () {
         Salary.search();
     });
-    $('.tags,.username').click(function () {
-        Salary.autolist();
-    });
+//    $('.tags,.username').click(function () {
+//
+//        Salary.autolist();
+//    });
     $("#search_salary").mouseenter(function () {
         var name = document.getElementById('namelist').value;
         Salary.getmemid(name);
