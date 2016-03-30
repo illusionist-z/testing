@@ -148,9 +148,20 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
-    }
+        }
+    
+        public function setSettingUse(){
+        $this->module_name = $this->router->getModuleName();
+        $this->act_name = $this->router->getActionName();
+        $this->permission = $this->setPermission($this->act_name);
+         $this->view->module_name = $this->module_name;
+        $this->view->permission = $this->permission;
+        $moduleIdCallCore = new Db\CoreMember();
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        $this->view->moduleIdCall = $this->moduleIdCall;
+        }
 
-    /**
+                /**
      * Js and Css for attendance list
      */
     public function setAttJsAndCss() {
@@ -239,7 +250,9 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-        //$this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        
+        
     }
 
     /**
