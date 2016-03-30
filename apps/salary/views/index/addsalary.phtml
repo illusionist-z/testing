@@ -1,12 +1,9 @@
 <?php
-
-
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
-    
-
-?><section class="content-header" style="height:auto;">
+?>
+<section class="content-header" style="height:auto;">
     <h1>
         <?= $t->_("addsalary_title"); ?>
     </h1>
@@ -33,7 +30,7 @@ if (isset($Msg)) {
                             <span class="col-xs-8">
                                 <input type="text" class="salusername" name="uname" id="uname" style="width:45%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
                                 <span id="add_salary_uname_error"></span>
-                                <input type="hidden" value="" id="formemberid" name="member_id">
+                                <input type="text" value="" id="formemberid" name="member_id">
                             </span>                                          
                         </div>
 
@@ -79,9 +76,9 @@ if (isset($Msg)) {
                                         $j = 0;
                                     }
                                     if ($i == 3) {
-                                        echo "<div id='No_of_children' style='display:none;'>
+                                    echo "<div id='No_of_children' style='display:none;'>
                                 <input type='text'  name='no_of_children' id='no_of_children' placeholder='number of children'>
-                            </div>";
+                                </div>";
                                     }
                                 }
                                 ?>                                     
@@ -143,7 +140,7 @@ if (isset($Msg)) {
 <script type="text/javascript">
 
     function checkValue() {
-        var linkemail = document.forms["add_salary"]["checkall2"].checked
+        var linkemail = document.forms["add_salary"]["checkall2"].checked;
         if (linkemail) {
             document.getElementById('No_of_children').style.display = '';
         } else {
@@ -157,11 +154,11 @@ if (isset($Msg)) {
     var textBox = document.getElementById('travelfee');
 
     function displayTextBox(evt) {
-        if (evt.target.value == "1") {
+        if (evt.target.value === "1") {
             textBox.disabled = false;
             $('#travelfee').attr("placeholder", "Enter Trave fees per day");
         }
-        else if (evt.target.value == "2") {
+        else if (evt.target.value === "2") {
             textBox.disabled = false;
             $('#travelfee').attr("placeholder", "Enter Trave fees per month");
         }

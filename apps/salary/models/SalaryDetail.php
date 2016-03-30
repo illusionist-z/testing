@@ -5,7 +5,6 @@ namespace salts\Salary\Models;
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use salts\Salary\Models\SalaryDetail;
-use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 
 class SalaryDetail extends Model {
@@ -133,7 +132,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                         .$rows['basic_salary_annual']."','".$rows['total_annual_income']."','".$rows['basic_examption']."','".$rows['travel_fee']."','".$rows['overtime']."','".$rows['creator_id']."')";
                 //$sql = "UPDATE salary_detail SET income_tax ='" . $rows['income_tax'] . "'  WHERE member_id ='" . $rows['member_id'] . "' and pay_date= CURDATE()";
                 //echo $sql.'<br>';
-                $result = $this->db->query($sql);
+                $this->db->query($sql);
             }
             //exit;
         } catch (Exception $e) {
@@ -156,7 +155,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
                 //echo "Member_id ".$rows['member_id']." "." Income tax ".$rows['income_tax'].'<br>';
                 $sql = "UPDATE salary_detail SET ssc_comp ='" . $ssc_comp . "',ssc_emp='" . $ssc_emp . "'  WHERE member_id ='" . $rows['member_id'] . "' ";
                 //echo $sql.'<br>';
-                $result = $this->db->query($sql);
+                $this->db->query($sql);
             }
             //exit;
         } catch (Exception $e) {
@@ -218,12 +217,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     public function getSalaryDetail($currentPage) {
         try {
       
-
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarymas.*', 'core.*'))
                     ->from(array('salarymas' => 'salts\Salary\Models\SalaryMaster'))
                     ->leftjoin('salts\Core\Models\Db\CoreMember', 'salarymas.member_id = core.member_id', 'core')
-                    ->where('salarymas.deleted_flag=0')
+                    ->where('salarymas.travel_fee_perday !=0')
+                    ->andwhere('salarymas.deleted_flag=0')
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
                     ->execute();
@@ -249,7 +248,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      */
     public function editSalary($member_id) {
         try {
-            $sql = "select * from salary_master left join core_member on salary_master.member_id=core_member.member_id where salary_master.id ='" . $member_id . "'";
+            $sql = "select * from salary_master left join core_member on "
+                    . "salary_master.member_id=core_member.member_id where salary_master.id ='" . $member_id . "'";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
         } catch (Exception $e) {
@@ -324,19 +324,19 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
 
     public function updateSalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,
-            $salary_start_month,$absent_amount,$overtime_hr,$overtimerate) {
+        $salary_start_month,$absent_amount,$overtime_hr,$overtimerate) {
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
         $deduce_amount = array();
         $now = new \DateTime('now');
-        $budget_startmonth = '04';
+        //$budget_startmonth = '04';
         $budget_startyear = $now->format('Y') . '-04-01';
-        $budget_endmonth = '03';
+        //$budget_endmonth = '03';
         $endyear = $now->format('Y') . '-03';
         $budget_endyear = date("Y-m", strtotime("+1 year", strtotime($endyear)));
         $budget_endyear_one = date("Y-m-d", strtotime("+1 year", strtotime($endyear)));
-        $allowance = "";
+        //$allowance = "";
         $salary = "";
         $salary_star_date=$salary_start_year.'-'.$salary_start_month;
         $salary_update_yr=$salary_start_year;
@@ -350,7 +350,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $resignyear=$resigndate[1];
             $resignmonth=$resigndate[0];
             $bsalaryparday=$SM['basic_salary']/24;
-            $count_attdate=$this->countattdate($resign['resign_date'],$resignyear,$resignmonth,$member_id);
+            $count_attdate=$this->countattdate($resign['resign_date'],$resignmonth,$member_id);
             //print_r($count_attdate);
             $salary=$count_attdate['count_attdate']*$bsalaryparday;
             //echo "SALARY".$bsalaryparday;
@@ -362,13 +362,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             
             $date_diff=$Salarymaster->dateDifference($salary_star_date, $budget_endyear);
             $basic_salary=$bsalary*$date_diff;
-            echo $basic_salary;
             if(!empty($SD))
                 {
                     $basic_salary=$basic_salary+$SD['total_salary'];
                     $old_allowance=$SD['total_all_amount']+$allowancetoadd;
                     $date_to_calculate=$date_diff+$SD['count_pay'];
-                    echo "basic salary in salary detail ".$SD['total_salary'];
+                    //echo "basic salary in salary detail ".$SD['total_salary'];
                 }
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$old_allowance,$SM['status'],$SD['total_all_amount'],$SD['count_pay']);
             $basic_salary=$Allowanceresult['basic_salary_annual'];
@@ -387,7 +386,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $basic_salary = $basic_salary-$absent_dedution;
             
             $basic_deduction = $basic_salary * (20 / 100);
-                    echo "SALARY ".$basic_deduction;
+                    //echo "SALARY ".$basic_deduction;
                     
                     //calculate ssc pay amount to deduce
                     if ($SM['basic_salary'] > 300000) {
@@ -402,12 +401,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     //print_r($deduce_amount).'<br>';
                     
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    echo "Total deduction is ".$total_deduce;
+                    //echo "Total deduction is ".$total_deduce;
                     
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary - $total_deduce;
 
-                    echo "The Income tax  is " . $income_tax . '<br>';
+                    //echo "The Income tax  is " . $income_tax . '<br>';
                     $taxs = $Salarymaster->deducerate($income_tax, $date_to_calculate);
         }
         
@@ -420,13 +419,18 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
       
         return $Result;
     }
-    
+    /**
+     * Save salary edit data
+     * @param type $param
+     * @param type $salary_start_year
+     * @param type $salary_start_month
+     * @return string
+     */
     public function saveSalaryEditdata($param,$salary_start_year,$salary_start_month) {
         try {
             
             $filter = new Filter();
             foreach ($param as $params) {
-             
             $basic_salary = $filter->sanitize($param[0]['basic_salary'], "int");
             $member_id = $filter->sanitize($param[0]['member_id'], "string");
             $allowance_amount = $filter->sanitize($param[0]['allowance_amount'], "int");
@@ -487,7 +491,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @return type
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function countattdate($resigndate,$resignyear,$resignmonth,$member_id) {
+    public function countattdate($resigndate,$resignmonth,$member_id) {
         try {
             $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'";
             //echo $sql.'<br>';exit;
@@ -596,6 +600,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
          return $rows;
     }
     
+    /**
+     * Header for csv file
+     * @param type $param
+     * @return string
+     * @author David
+     */
     public function getHeader($param) {
         $n = 0;$header = array();
         $getField = ["member_id"=>0,"basic_salary"=>1,"basic_salary_annual"=>2,"travel_fee"=>3,
@@ -623,6 +633,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             return $header;
     }
     
+    /**
+     * Import csv file
+     * @param type $data
+     * @return string
+     * @author David
+     */
     public function importSalary($data){
         try {        
         $salDetail = new SalaryDetail();

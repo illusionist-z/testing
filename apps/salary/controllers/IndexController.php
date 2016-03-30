@@ -1,5 +1,4 @@
 <?php
-
 namespace salts\Salary\Controllers;
 use salts\Core\Models\Db;
 use salts\Salary\Models\SalaryDetail;
@@ -8,27 +7,18 @@ use salts\Salary\Models\Allowances;
 use salts\Salary\Models\SalaryTaxs;
 use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
-use Phalcon\Filter;
 
 class IndexController extends ControllerBase {  
 
     public function initialize() {
         $this->setSalaryJsAndCss();
+        $this->setCommonJsAndCss();
         parent::initialize();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Library\Core\Models\Config::getModuleConfig('salary');
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
-        $this->assets->addCss('common/css/bootstrap.min.css');
-        $this->assets->addCss('common/css/common.css');
-        $this->assets->addCss('common/css/jquery-ui.css');
-        $this->assets->addCss('common/css/skins.min.css');
-        $this->assets->addJs('common/js/jquery.min.js');
-        $this->assets->addJs('common/js/common.js'); 
+
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('common/js/bootstrap.min.js');
-        $this->assets->addJs('common/js/app.min.js');
-        $this->assets->addJs('common/js/jquery-ui.js');
-        $this->assets->addJs('common/js/notification.js');
+
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
@@ -195,16 +185,15 @@ class IndexController extends ControllerBase {
      * @version 9/9/15
      */
     public function editsalaryAction() {
-          if ($this->permission == 1) {
+        if ($this->permission == 1) {
         $member_id = $this->request->get('id');
-        $t = $this->_getTranslation();
         $SalaryMaster = new SalaryMaster();
         $edit_salary = $SalaryMaster->editSalary($member_id);
       
         $resultsalary['data'] = $edit_salary;
+        
         $PermitAllowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $PermitAllowance->getAllowanceByMemberid($edit_salary[0]['member_id']);
-
 
         $PermitDedution = new SalaryMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $PermitDedution->getDeduceBymemberid($edit_salary[0]['member_id']);
@@ -213,17 +202,7 @@ class IndexController extends ControllerBase {
         $resultsalary['dedution'] = $Dedution->getDeducelist();
         $Allowance = new Allowances();
         $resultsalary['allowance'] = $Allowance->getAllallowances();
-        $resultsalary['t']['title'] = $t->_("edit_salary");
-        $resultsalary['t']['name'] = $t->_("name");
-        $resultsalary['t']['b_salary'] = $t->_("basic_salary");
-        $resultsalary['t']['t_fee'] = $t->_("travel_fee");
-        $resultsalary['t']['ot'] = $t->_("overtime");
-        $resultsalary['t']['Decut Name'] = $t->_("Decut Name");
-        $resultsalary['t']['Allow Name'] = $t->_("Allow Name");
-        $resultsalary['t']['Starting Date'] = $t->_("Starting Date");
-        $resultsalary['t']['edit_btn'] = $t->_("edit_btn");
-        $resultsalary['t']['delete_btn'] = $t->_("delete_btn");
-        $resultsalary['t']['cancel_btn'] = $t->_("cancel_btn");
+        $resultsalary['t'] = $this->Translateforedit();
         $this->view->disable();
 
         echo json_encode($resultsalary);
@@ -231,6 +210,26 @@ class IndexController extends ControllerBase {
           else {
               echo "Page Not Found";
           }
+    }
+    /**
+     * Traslation for salary edit
+     * @return type
+     */
+    public function Translateforedit() {
+        $t = $this->_getTranslation();
+        $resultsalary = array();
+        $resultsalary['title'] = $t->_("edit_salary");
+        $resultsalary['name'] = $t->_("name");
+        $resultsalary['b_salary'] = $t->_("basic_salary");
+        $resultsalary['t_fee'] = $t->_("travel_fee");
+        $resultsalary['ot'] = $t->_("overtime");
+        $resultsalary['Decut Name'] = $t->_("Decut Name");
+        $resultsalary['Allow Name'] = $t->_("Allow Name");
+        $resultsalary['Starting Date'] = $t->_("Starting Date");
+        $resultsalary['edit_btn'] = $t->_("edit_btn");
+        $resultsalary['delete_btn'] = $t->_("delete_btn");
+        $resultsalary['cancel_btn'] = $t->_("cancel_btn");
+        return $resultsalary;
     }
 
     /**
@@ -254,7 +253,6 @@ class IndexController extends ControllerBase {
         $data['travelfee_permonth'] = $this->request->getPost('travelfee_permonth');
         $check_allow = $this->request->getPost('check_allow');
         $check_deduce = $this->request->getPost('check_list');
-
         $SalaryDetail = new SalaryMaster();
         $cond = $SalaryDetail->btnedit($data);
 
@@ -273,7 +271,7 @@ class IndexController extends ControllerBase {
     }
 
     public function salSettingAction() {
-          if ($this->permission == 1) {
+        if ($this->permission == 1) {
         $t = $this->_getTranslation();
         $sett['deduc_name'] = $t->_('deduc_name');
         $sett['deduc_amount'] = $t->_('deduc_amount');
@@ -291,7 +289,7 @@ class IndexController extends ControllerBase {
     }
 
     public function calSalaryAction() {
-          if ($this->permission == 1) {
+        if ($this->permission == 1) {
         $t = $this->_getTranslation();
         $tras['cal_title'] = $t->_('cal_title');
         $tras['cal_text'] = $t->_('calSalary_noti');
@@ -344,7 +342,7 @@ class IndexController extends ControllerBase {
      */
     public function allowanceAction() {
         if ($this->permission == 1) {
-         $this->assets->addJs('apps/salary/js/index-allowance.js');
+        $this->assets->addJs('apps/salary/js/index-allowance.js');
         $AllList = new \salts\Salary\Models\Allowances();
         $list = $AllList->showAlwlist();
 
@@ -375,6 +373,21 @@ class IndexController extends ControllerBase {
                 unset($all_name[$key]);
             }
         }
+        $this->chkEmpty($all_value, $all_name, $count);
+
+          }
+          else {
+              echo "Page Not Found";
+          }
+    }
+    /**
+     * Check empty to add allowance for salary
+     * @param type $all_value
+     * @param type $all_name
+     * @param type $count
+     * @author zinmon
+     */
+    public function chkEmpty($all_value, $all_name, $count) {
         if (!empty($all_name)) {
             $Allowance = new \salts\Salary\Models\Allowances();
             $Allowance->addAllowance($all_value, $all_name, $count);
@@ -386,10 +399,6 @@ class IndexController extends ControllerBase {
             $this->response->redirect('salary/index/allowance');
             $this->flashSession->success("No data!Insert Data First");
         }
-          }
-          else {
-              echo "Page Not Found";
-          }
     }
 
     /**
@@ -613,6 +622,7 @@ class IndexController extends ControllerBase {
      */
     public function show_add_dectAction() {
         if ($this->permission === 1) {
+        $data = array();
         $t = $this->_getTranslation();
         $data[1]['deduce_frm'] = $t->_("deduce_frm");
         $data[1]['deduce_name'] = $t->_("deduce_name");

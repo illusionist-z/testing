@@ -42,5 +42,21 @@ class Attendances extends \Library\Core\Models\Base {
         }
         return $localtime;
     }
-
+     /**
+     * get count attendance day 
+     * @return type
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
+    public function getCountattday($salary_start_date) {
+        try {
+            $dt = explode('-', $salary_start_date);
+            $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
+                    . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' group by core_member.member_id";
+            $data = $this->db->query($query);
+            $result = $data->fetchall();
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        return $result;
+    }
 }

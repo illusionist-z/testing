@@ -79,10 +79,10 @@ var Allowance = {
         });
     },
      Delete : function(d){
-         $del = $('#confirm');
+        $del = $('#confirm');
         $del.css('color','black');
         $del.css('background','#F5F5F5');
-          $del.dialog({
+        $del.dialog({
             autoOpen:false,
             height:'auto',
             width:'auto',
@@ -101,7 +101,7 @@ var Allowance = {
             }
            
         });
-         $del.html("<p>Are u sure to delete?</p>");
+        $del.html("<p>Are u sure to delete?</p>");
         $del.dialog("open");  
     },
     Confirm :function(d){
@@ -113,9 +113,10 @@ var Allowance = {
             success:function(){
                 
                 d.dialog("close");
+                $('#allowance').reload();
             }
         }).done(function(){
-            $('body').load('allowance');
+            $('#allowance').reload();
         });
     }
     

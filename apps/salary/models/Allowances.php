@@ -73,7 +73,7 @@ class Allowances extends Model {
             $filter = new Filter();
             $name = $filter->sanitize($data['name'], "string");
             $allowance_amount = $filter->sanitize($data['allowance_amount'], "string");
-            $all = new Allowances();
+            
             $id = $data['id'];
             $all = Allowances::findFirst('allowance_id ="' . $id . '"');
             $all->allowance_amount = $allowance_amount;
@@ -94,9 +94,9 @@ class Allowances extends Model {
      */
     public function deleteAllowance($id) {
         $filter = new Filter();
-        $id = $filter->sanitize(isset($id) ? $id : "", "string");
+        $allowanceid = $filter->sanitize(isset($id) ? $id : "", "string");
         try {
-            $sql = "Delete From allowances  Where allowances.allowance_id='" . $id . "'";
+            $sql = "Delete From allowances  Where allowances.allowance_id='" . $allowanceid . "'";
             $this->db->query($sql);
             echo $sql;exit;
         } catch (Exception $ex) {

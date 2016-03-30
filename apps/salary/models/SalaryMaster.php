@@ -20,17 +20,19 @@ class SalaryMaster extends Model {
      * @author zinmon
      */
     public function savesalary($data) {
-      
-     $return = array();
-         $SalaryMaster = new SalaryMaster();    
+         
         try {
             
+            $SalaryMaster = new SalaryMaster();
+            $SalaryMaster->save($data);
+           
             if ($SalaryMaster->save($data) == false) {
+                echo "Umh, We can't store robots right now ";
                 foreach ($SalaryMaster->getMessages() as $message) {
-                    $return[] = $message;
+                    echo $message;
                 }
             } else {
-                $return [0] = "Data was saved successfully!";
+                echo "Great, a new robot was saved successfully!";
             }
         } catch (Exception $e) {
             echo $e;
@@ -186,7 +188,7 @@ class SalaryMaster extends Model {
     public function calculateTaxSalary($param, $salary_start_date, $creator_id) {
         try {
             $deduce_amount = array();
-            $now = new \DateTime('now');
+            //$now = new \DateTime('now');
             $final_result = "";
             $absent_dedution = "";
             $date_diff = "";
@@ -214,8 +216,6 @@ class SalaryMaster extends Model {
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
                     $date_to_calculate = $date_diff;
 
-                    echo $value[0]['basic_salary'] . '<br>';
-                    echo "salary starting date " . $salary_start_date . '<br>';
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the basic salary from salary master
@@ -227,10 +227,10 @@ class SalaryMaster extends Model {
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
                         $date_to_calculate = $date_diff + $SD['count_pay'];
-                        echo "basic salary in salary detail " . $SD['total_basic_salary'];
+                        //echo "basic salary in salary detail " . $SD['total_basic_salary'];
                     }
 
-                    echo "OLD ALLOWANCE" . $old_allowance . '<br>';
+                    //echo "OLD ALLOWANCE" . $old_allowance . '<br>';
                     $Allowanceresult = $this->getAllowances($value[0]['member_id'], $basic_salary_annual, $date_diff, $old_allowance, $SM['status'], $SD['allowance_amount'], $SD['count_pay']);
 
                     $basic_salary_allowance_annual = $Allowanceresult['basic_salary_annual'];
@@ -255,7 +255,7 @@ class SalaryMaster extends Model {
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
                     $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
-                    echo "SALARY ///" . $basic_salary_allowance_annual;
+                    //echo "SALARY ///" . $basic_salary_allowance_annual;
                     if ($flg != 1) {
                         //calculate ssc pay amount to deduce
                         if ($value[0]['basic_salary'] > 300000) {
@@ -270,12 +270,12 @@ class SalaryMaster extends Model {
                     $deduce_amount = $this->getreduce($value[0]['member_id']);
                     //print_r($deduce_amount).'<br>';
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    echo "Total deduction is " . $basic_deduction;
+                    //echo "Total deduction is " . $basic_deduction;
 
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
-                    echo "The Income tax  is " . $income_tax . '<br>';
+                    //echo "The Income tax  is " . $income_tax . '<br>';
                    
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
                     $tax_foreach_month = $taxs['tax_result'];

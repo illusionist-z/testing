@@ -2,8 +2,6 @@
 
 namespace salts\Attendancelist\Controllers;
 
-//use salts\Core\Models\Db;
-use salts\Attendancelist\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase {
     
@@ -189,5 +187,16 @@ class IndexController extends ControllerBase {
     }
   }
   
+  /**
+     * Delete salary detail
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
+    public function deleteSalaryAction() {
+        $member_id = $this->request->getPost('id');
+        $SalaryMaster=new SalaryMaster();
+        $SalaryMaster->deleteSalaryInfo($member_id);
+        
+    }
+ 
   
 }
