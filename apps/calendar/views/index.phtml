@@ -3,8 +3,7 @@
 
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
-}
-    
+}   
  
 
 use Phalcon\Tag as Tag;
@@ -24,16 +23,23 @@ use Phalcon\Tag as Tag;
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">
-                <a><img src="<?php echo $baseUri; ?>common/img/menu.png"  style="height: 54px"  class="sidebar-toggle" href="#sidepage" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                </a>
+                <ul class="nav navbar-nav"> 
+                    <li>
+                        <a><img id="formenuicon" class="sidebar-toggle" href="#sidepage" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                    </li> 
+                </ul>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="<?php echo $baseUri ?>help/index/searchHelp" target="_blank" class="" title="<?php echo $t->_("Help"); ?>" id="help_icon" style="padding-top: 20px;">
-                                <img src="<?php echo $baseUri; ?>/common/img/help_browser.png">
+                            <a href="<?php echo $baseUri ?>help/index/searchHelp" target="_blank" class=""  id="help_icon" style="padding-top: 20px;">
+                                <img id="helpicon">
                             </a>
+                             <div id="helpnoti">
+                                <div id="helpnotiTitle"><?php echo $t->_("Help"); ?></div>                                
+                            </div>
                         </li>
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu" >
@@ -44,7 +50,7 @@ use Phalcon\Tag as Tag;
                                 echo "noti";
                             }
                             ?>" id="noti" style="padding-top: 20px;">
-                                <img src="<?php echo $baseUri; ?>/common/img/noti.png">
+                                <img id="notiicon">
                                 <span class="label label-warning"><?php
                                     if (count($Noti) == 0) {
                                         
@@ -68,7 +74,7 @@ use Phalcon\Tag as Tag;
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
                                 <?php
                                     if ($this->session->profile['member_profile'] == null) {
-                                      ?>  <img src="../uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
+                                      ?>  <img src="../../public/common/img/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
                                     } else {
                                         echo '<img class="img-circle" style="height: 30px;width: 30px;" src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
                                     }
@@ -79,7 +85,7 @@ use Phalcon\Tag as Tag;
                                 <li class="user-header">
                                    <?php
                                     if ($this->session->profile['member_profile'] == null) {
-                                      ?>  <img src="../uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
+                                      ?>  <img src="../../public/common/img/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:90px;height:90px;" class="img-circle"  alt="User Image"><?php
                                     } else {
                                         echo '<img class="img-circle" style="width: 90px;" src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
                                     }
@@ -158,7 +164,7 @@ use Phalcon\Tag as Tag;
                                         if (isset($top_link[1])) {
                                             echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img src="../common/img/list' . $count . '.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         } else {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img src="' . $baseUri . '/common/img/list' . $count . '.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index' . strtolower($top_link[0]) . '"><img src="' . $baseUri . '/common/img/list' . $count . '.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         }
                                     } else {
                                         if (isset($top[1])) {

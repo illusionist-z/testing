@@ -5,7 +5,6 @@ if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
     
-
 use Phalcon\Tag as Tag; ?>
 <html>
     <head>
@@ -15,21 +14,25 @@ use Phalcon\Tag as Tag; ?>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
         <?php error_reporting(0); ?>   
 
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
-                <a><img src="<?php echo $baseUri ?>common/img/menu.png"  style="height: 54px" class="sidebar-toggle" href="#sidepage" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                </a>
+               <ul class="nav navbar-nav"> 
+                    <li>
+                        <a><img id="formenuicon" class="sidebar-toggle" href="#sidepage" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                    </li> 
+                </ul>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav"> 
+                    <ul class="nav navbar-nav">
                         <li>
                             <a href="<?php echo $baseUri ?>help/index/searchHelp" target="_blank" class="" title="Help" id="help_icon" style="padding-top: 20px;">
-                                <img src="<?php echo $baseUri ?>common/img/help_browser.png">
+                                <img id="helpicon">
                             </a>
                         </li>  
                         <!-- Notifications: style can be found in dropdown.less -->
@@ -41,7 +44,7 @@ use Phalcon\Tag as Tag; ?>
                                 echo "noti";
                             }
                             ?>" id="noti" style="padding-top: 20px;">
-                                <img src="<?php echo $baseUri ?>common/img/noti.png">
+                                <img id="notiicon">
                                 <span class="label label-warning"><?php
                                     if (count($Noti) == 0) {
                                         
@@ -156,15 +159,15 @@ use Phalcon\Tag as Tag; ?>
                                 if ($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting') {
                                     if (count($key_value) > 2) {
                                         if (isset($top_link[1])) {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img src="../../common/img/list' . $count . '.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         } else {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img src="../../common/img/list' . $count . '.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         }
                                     } else {
                                         if (isset($top[1])) {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index"><img src="../../common/img/list' . $count . '.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         } else {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img src="../../common/img/list' . $count . '.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img id="navicon' . $count . '"><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         }
                                     }
                                 }

@@ -3,9 +3,10 @@
 /vendor/
 /data/*/*
 /config/config.ini
+*.DS_Store
 .DS_Store
 *.log       # log files
 *.swp       # swap files
 *~
 /public/uploads/
-/config/org/
+/config/

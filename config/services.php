@@ -94,7 +94,7 @@ $di->setShared('db',function() {
             'charset'     => 'utf8']);
     }
     else {
-//          $localhost = $this->request->getServer('HTTP_HOST');
+//        $localhost = $this->request->getServer('HTTP_HOST');
           
        header("Location:http://localhost/salts");
     }

@@ -154,7 +154,7 @@ use Phalcon\Filter;
                                             <td>
                                                 <?php
                                                 $grand_total = $sub_total + $A[$i]->salarydet->travel_fee;
-                                                echo number_format($grand_total);
+                                                echo number_format(round($grand_total,-2));
                                                 ?>
                                             </td>
                                             <td></td>                   
