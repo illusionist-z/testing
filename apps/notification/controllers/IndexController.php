@@ -2,8 +2,7 @@
 
 namespace salts\Notification\Controllers;
 use salts\Notification\Models\CoreNotificationRelMember;
-use salts\Leavedays\Models\Leaves;
-use salts\Attendancelist\Models\Attendances;
+
 use salts\Notification\Models\CoreNotification;
 use salts\Core\Models\Db\CoreMember; 
 

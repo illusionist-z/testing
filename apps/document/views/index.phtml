@@ -14,11 +14,10 @@ use Phalcon\Tag as Tag; ?>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini" onload="display_ct()">
+    <body class="skin-blue sidebar-mini" >
         <?php error_reporting(0); ?>   
 
         <header class="main-header">
-            <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
                <ul class="nav navbar-nav"> 
                     <li>
@@ -65,7 +64,7 @@ use Phalcon\Tag as Tag; ?>
 
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 13px;">
                                <?php
                                     if ($this->session->profile['member_profile'] == null) {
                                       ?>  <img src="../uploads/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:30px;height:25px;" class="img-circle" width="30px" alt="User Image"><?php
@@ -196,8 +195,9 @@ use Phalcon\Tag as Tag; ?>
                                     $link_name = $value;
                                 }
                                 if (is_string($name)) {
-                                    if ($v_result = explode(" ", $value)) {
+                                    if ((explode(" ", $value)!== false)) {
                                         //set to link action value
+                                        $v_result = explode(" ", $value);
                                         $link_val = strtolower($v_result[0] . $v_result[1]);
                                         $mod = explode(" ", $key_value["link0"]);
                                     }
@@ -223,14 +223,12 @@ use Phalcon\Tag as Tag; ?>
             $this->assets->outputJs();
             echo '</section></div></div>';
             ?>
-            <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
+            <script  type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
         </div><!-- /.content-wrapper -->
 
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-            <div class="language">
-                <?php echo "Change language" ?>: <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src='<?php echo $baseUri ?>common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src='<?php echo $baseUri ?>common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src='<?php echo $baseUri ?>common/img/myanmar.jpg' width='25px'>") ?>
-            </div>
+            
         </footer>
 
         <div id="notidetail" style=" display:none;" class="navbar">

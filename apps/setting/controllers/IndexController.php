@@ -1,17 +1,11 @@
 <?php
-
-use Phalcon\Config;
-use Phalcon\Mvc\Url as UrlProvider;
-
 namespace salts\Setting\Controllers;
-
 use salts\Setting\Models\CorePermissionGroup;
 use salts\Setting\Models\CorePermissionGroupId;
 use salts\Setting\Models\CorePermissionRelMember;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
-use Phalcon\Filter; 
-
+use Phalcon\Filter;  
 /**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
  * @desc     CorePermissionGroup
@@ -27,15 +21,12 @@ class IndexController extends ControllerBase {
         $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getActionName();
         $this->permission = $this->setPermission($this->act_name);
-                                    
-        $this->view->module_name = $this->module_name;
+         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-        
-        $filter = new Filter();
-        
+         
     }
 
     /**
@@ -51,7 +42,7 @@ class IndexController extends ControllerBase {
     }
     public function adminAction() {
         if ($this->permission == 1) {
-            $permission = new \salts\Core\Models\Permission();
+          $permission = new \salts\Core\Models\Permission();
             $coreid = new CorePermissionGroupId();
             $corememberid = new CorePermissionRelMember();
             $coreuser = new CoreMember();            
@@ -60,8 +51,8 @@ class IndexController extends ControllerBase {
             $currentPage1  = $this->request->get("page1");
             $core_groupid = $coreid::find();
             $coremember = $corememberid::find();
-            $core_groupuser2 = $coreuser2::find();
-            $core_groupuser2 = $permission->pagination($core_groupuser2,$currentPage);
+            $core_groupuser22 = $coreuser2::find();
+            $core_groupuser2 = $permission->pagination($core_groupuser22,$currentPage);
             $core_groupuser = $coreuser->getGroupId($currentPage1);
             //for paging without reload
             if($this->request->has("type")){
@@ -81,7 +72,7 @@ class IndexController extends ControllerBase {
             $this->view->coreuser = $core_groupuser;
             $this->view->coreuser2 = $core_groupuser2;            
             $id = $this->session->user['member_id'];
-            $Noti = $coreuser->getAdminNoti($id, 0);            
+            $Noti = $coreuser->getAdminNoti($id, 0);
             $this->view->setVar("noti", $Noti);
         } else {
             $this->response->redirect('core/index');
@@ -123,7 +114,7 @@ class IndexController extends ControllerBase {
     }
 
     public function DelGroupRuleAction() {
-        $core = new CorePermissionGroupId();
+        
         $core = CorePermissionGroupId::Find($this->request->getPost('group_id'));
         $core->delete();
         $this->view->disable();
@@ -134,7 +125,7 @@ class IndexController extends ControllerBase {
      * @DelPageRuleAction
      */
     public function DelPageRuleAction() {
-        $core = new CorePermissionGroup();
+        //$core = new CorePermissionGroup();
         $core = CorePermissionGroup::Find($this->request->getPost('idpage'));
         $core->delete();
         $this->view->disable();
@@ -144,8 +135,8 @@ class IndexController extends ControllerBase {
          
         $filter = new Filter();
         $group_name = $filter->sanitize($this->request->getPost('name_of_group'),'string');
-        $core = new CorePermissionGroupId();
-        $core = CorePermissionGroupId::FindFirst('group_id =' . $this->request->getPost('group_id'));
+         
+        $core = CorePermissionGroupId::findFirst('group_id =' . $this->request->getPost('group_id'));
         $core->name_of_group = strtoupper($group_name);
         $core->update();
         $this->view->disable();
@@ -161,11 +152,11 @@ class IndexController extends ControllerBase {
     public function User2RuleSettingAction() {
          
         $filter = new Filter();
-        $idpage = $this->request->getPost("idpage");
+        $idpage =$filter->sanitize($this->request->getPost('idpage'),'string'); 
         $page_rule_group = $filter->sanitize($this->request->getPost("page_rule_group"),'string');
-        $permission_code = $this->request->getPost("permission_code");
-        $core = new CorePermissionGroup();
-        $core = CorePermissionGroup::FindFist($idpage);
+        $permission_code = $this->request->getPost("permission_code"); 
+       
+        $core = CorePermissionGroup::findFist('idpage=' .$idpage);
         $core->idpage = $idpage;
         $core->page_rule_group = $page_rule_group;
         $core->permission_code = $permission_code;
@@ -180,12 +171,12 @@ class IndexController extends ControllerBase {
     }
 
     public function UserRuleSettingAction() {
-        $core = new CorePermissionRelMember();
+      
         $id = $this->request->getPost('rel_member_id');
         $group_id = $this->request->getPost('group_id');
-        $group_name = $this->request->getPost('group_text');
-        $group_name = trim($group_name);
-        $coreuser_update = new CoreMember();
+        $group_name_post = $this->request->getPost('group_text');
+        $group_name = trim($group_name_post);
+         
         $core = CorePermissionRelMember::findFirstByRelMemberId($id);
         $coreuser_update = CoreMember::findFirstByMemberId($id);
         $coreuser_update->user_rule = $group_id;

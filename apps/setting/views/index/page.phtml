@@ -24,13 +24,14 @@ if(! ini_get('date.timezone')){
                 <td>
                     <input list="browsers" name="permission_code" value="" id="page_rule">
                     <datalist id="browsers">
-                        <?php foreach ($coreuser2 as $datauser2) {
-                            ?>
-
-                            <option value="<?= $datauser2->permission_code ?>">
-                                <?php
-                            }
-                            ?>
+                                  <?php  
+                                  foreach ($coreuser2->items as $datauser2) {
+                                      ?>
+                     
+                                  <option value="<?= $datauser2->permission_code ?>">
+                                    <?php
+                                  }
+                                   ?>
                     </datalist>
                 </td>
             </tr>
@@ -88,7 +89,7 @@ if(! ini_get('date.timezone')){
                     ?>
                     <td style="text-align:left;"> 
                         <?= $data->name_of_group ?>  
-                        (<?= $datauser2->page_rule_group ?>)
+                        (<?= $datauser2->page_rule_group ?>)    
                     </td>
                     <?php
                 }
