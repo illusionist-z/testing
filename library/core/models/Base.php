@@ -1,7 +1,7 @@
 <?php
 
 namespace Library\Core\Models;
-
+use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -202,8 +202,23 @@ Class Base extends \Phalcon\Mvc\Model {
         }
         return $list;
     }
-
-    
+    /**
+     * Pagination for table or page
+     * @param object $row
+     * @author David JP <david.gnext@gmail.com>
+     * @since 03/29/2016
+     */
+    public function pagination ($row,$current_page) {
+          $paginator = new PaginatorModel(
+                    array(
+                "data" => $row,
+                "limit" => 10,
+                "page" => $current_page
+                    )
+            );
+            $page = $paginator->getPaginate();
+            return $page;
+    }
     /**
      * Set conditions
      * @param object $select

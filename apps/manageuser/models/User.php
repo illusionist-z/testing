@@ -69,6 +69,7 @@ class User extends Model {
         $res['pos'] = filter_var($cond['position'], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/([^\s])/'))) ? true : false;
         if ($res['mail'] && $res['pno'] && $res['uname'] && $res['dept'] && $res['pos']) {
                         $core_table = Db\CoreMember::findByMemberId($cond['id']);
+                        
                         $core_table_update = \salts\Core\Models\Permission::tableObject($core_table);
                         $core_table_update->member_login_name = $cond['name'];
                         $core_table_update->member_dept_name = $cond['dept'];
@@ -89,8 +90,7 @@ class User extends Model {
      * @version David JP<david.gnext@gmail.com>
      * @param string $id     
      */
-    public function userDelete($id) {
-        
+    public function userDelete($id) {        
         $core_member = Db\CoreMember::findByMemberId($id);
         $core_delete = \salts\Core\Models\Permission::tableObject($core_member);
         $core_delete->deleted_flag = 1;

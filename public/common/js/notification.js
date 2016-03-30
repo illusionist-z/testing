@@ -6,68 +6,68 @@
  */
 var baseUri;
 var Noti = {
-    Seen: function(d) {
+    Seen: function (d) {
         var form = $('#noti_detail');
-        
+
         $.ajax({
             type: 'POST',
             data: form.serialize(),
             url: baseUri + "notification/index/updateNoti",
-            success: function() {
+            success: function () {
                 window.location.href = baseUri + 'dashboard';
 
             }
         });
     },
-    Accept: function() {
-        var form = $('#noti_detail');        
-       
-                $.ajax({
-                    type: 'POST',
-                    data: form.serialize(),
-                    url: baseUri + "leavedays/index/acceptleave",
-                    success: function() {
-                  window.location.href = baseUri + 'dashboard';
-                    }
-                });
-        
-        
-    },
-    Reject: function() {
+    Accept: function () {
         var form = $('#noti_detail');
-      
-                $.ajax({
-                    type: 'POST',
-                    data: form.serialize(),
-                    url: baseUri + "leavedays/index/rejectleave",
-                    success: function() {
 
-                        window.location.href = baseUri + 'dashboard';
-                    }
-                });
-               
-        
+        $.ajax({
+            type: 'POST',
+            data: form.serialize(),
+            url: baseUri + "leavedays/index/acceptleave",
+            success: function () {
+                window.location.href = baseUri + 'dashboard';
+            }
+        });
+
+
+    },
+    Reject: function () {
+        var form = $('#noti_detail');
+
+        $.ajax({
+            type: 'POST',
+            data: form.serialize(),
+            url: baseUri + "leavedays/index/rejectleave",
+            success: function () {
+
+                window.location.href = baseUri + 'dashboard';
+            }
+        });
+
+
     }
 
 
 };
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $('#noti_reject').on('click',function(e){
+    $('#noti_reject').on('click', function (e) {
         Noti.Reject();
         e.preventDefault();
     }),
-            $('#noti_accept').on('click',function(){
+            $('#noti_accept').on('click', function () {
         Noti.Accept();
     }),
-            $('#noti_ok').on('click',function(){
+            $('#noti_ok').on('click', function () {
         Noti.Seen();
     });
 
 
 
-    $(".noti").on('click',function(e){
+    $(".noti").on('click', function (e) {
         e.preventDefault();
         //document.getElementById("noti").className = "noticlose";
         $("#notificationContainer").fadeToggle(100);
@@ -75,12 +75,19 @@ $(document).ready(function() {
     });
 
 
-    $(".content").on('click',function(){
+    $(".content").on('click', function () {
         $("#notificationContainer").hide();
-        
     });
 
 
-
-
+ 
+    
+$("#help_icon").on('mouseover', function (e) {
+        e.preventDefault();
+        //document.getElementById("noti").className = "noticlose";
+        $("#helpnoti").fadeToggle(100);
+    });
+  $("#helpnoti").on('mouseover', function () {
+         $("#helpnoti").hide();
+    });
 });

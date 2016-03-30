@@ -770,38 +770,30 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $row = $result->fetchall();
         return $row;
     }
-
     /**
      * @author David JP <david.gnext@gmail.com>
      * @return $res[]?true :false
      * Salary Edit action
      */
     public function btnedit($data) {
-        if ($data['radio'] == 1) {
-            $travel = "travel_fee_perday";
-            $empty = "travel_fee_permonth";
+        if ($data['radTravel'] == 1) {
+            $travel = "travel_fee_perday";$empty = "travel_fee_permonth";
         } else {
-            $travel = "travel_fee_permonth";
-            $empty = "travel_fee_perday";
+            $travel = "travel_fee_permonth";$empty = "travel_fee_perday";
         }
         $res = array();
-        $res['baseerr'] = filter_var($data['basesalary'], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => '/^([\d])/'))) ? true : false;
-
-        $res['overtimerr'] = preg_match('/^(?=.*\d)[0-9]*$/', $data['overtime']) ? true : false;      //validate empty field and not number
-        //if not valid return false
+        $res['baseerr'] = filter_var($data['basesalary'], FILTER_VALIDATE_REGEXP, 
+                array('options' => array('regexp' => '/^([\d])/'))) ? true : false;
+        $res['overtimerr'] = preg_match('/^(?=.*\d)[0-9]*$/', $data['overtime']) ? true : false;      //validate empty field and not number        
         $res['sscemp'] = preg_match('/^(?=.*\d)[0-9]*$/', $data['ssc_emp']) ? true : false;
-
         $res['ssccomp'] = preg_match('/^(?=.*\d)[0-9]*$/', $data['ssc_comp']) ? true : false;
-
         if ($res['baseerr'] && $res['overtimerr'] && $res['sscemp'] && $res['ssccomp']) {
             try {
-                $sql = "Update salary_master SET basic_salary ='" . $data['basesalary'] .
-                        "', $travel ='" . $data['travelfee'] . "',$empty = 0,over_time ='" . $data['overtime'] .
-                        "',ssc_emp ='" . $data['ssc_emp'] . "',ssc_comp ='" . $data['ssc_comp'] .
-                        "',updated_dt=NOW(), salary_start_date ='" . $data['start_date'] . "' Where id='" . $data['id'] . "'";
-
+                $sql = "Update salary_master SET basic_salary ='" . $data['basesalary']."', $travel ='" 
+                        . $data['travelfee'] . "',$empty = 0,over_time ='" . $data['overtime'] ."',ssc_emp ='"
+                        . $data['ssc_emp'] . "',ssc_comp ='" . $data['ssc_comp'] ."',updated_dt=NOW(),"
+                        . " salary_start_date ='" . $data['work_sdate'] . "' Where id='" . $data['id'] . "'";
                 $this->db->query($sql);
-
                 $res['valid'] = true;
             } catch (Exception $ex) {
                 echo $ex;
@@ -820,9 +812,11 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      */
     public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr) {
         try {
-            $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate . "',updated_dt=NOW() Where member_id='" . $member_id . "'";
+            $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate .
+                    "',updated_dt=NOW() Where member_id='" . $member_id . "'";
             $this->db->query($sql);
-            $sqlupdate = "Update attendances SET overtime ='" . $overtime_hr . "' Where member_id='" . $member_id . "'";
+            $sqlupdate = "Update attendances SET overtime ='" . $overtime_hr . "' Where member_id='"
+                    . $member_id . "'";
             $this->db->query($sqlupdate);
         } catch (Exception $ex) {
             echo $ex;
