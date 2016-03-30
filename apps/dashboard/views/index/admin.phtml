@@ -150,19 +150,14 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                     ?>
                                                     <li id="noleaveli">
                                                         <?php
-                                                        if ($na->member_profile == null) {
-                                                            $img = "profile1.jpg";
+                                                        if ($this->session->profile['member_profile'] == null) {
+                                      ?>  <img src="../../public/uploads/profile1.jpg"style="width:15px;height:15px;"  class="user-image "   alt="User Image"><?php
                                                         } else {
-                                                            $img = $na->member_profile;
-                                                            if (file_exists('./uploads/' . $img)) {
-                                                                $img = $img;
-                                                            } else {
-                                                                $img = "profile1.jpg";
-                                                            }
+                                                     echo '<img class="img-circle" style="width:15px;height:15px;"  src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
+
                                                         }
                                                         ?>                 
-                                                        <img src="../../uploads/<?php echo $img; ?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
-                                                        <?= $na->member_login_name ?>
+                                                       <?= $na->member_login_name ?>
                                                     </li>
                                                     <?php
                                                     array_push($noleave, $na->member_login_name);
@@ -195,20 +190,14 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                 foreach ($lname as $na) {
                                                     ?>
                                                     <li id="noleaveli">
-                                                        <?php
-                                                        if ($na['member_profile'] == null) {
-                                                            $img = "profile1.jpg";
+                                                          <?php
+                                                        if ($this->session->profile['member_profile'] == null) {
+                                      ?>  <img src="../../public/uploads/profile1.jpg"style="width:15px;height:15px;"  class="user-image "   alt="User Image"><?php
                                                         } else {
-                                                            $img = $na['member_profile'];
-                                                            if (file_exists('./uploads/' . $img)) {
-                                                                $img = $img;
-                                                            } else {
-                                                                $img = "profile1.jpg";
-                                                            }
+                                                     echo '<img class="img-circle" style="width:15px;height:15px;"  src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
+
                                                         }
-                                                        ?>
-                                                        <img src="../../uploads/<?php echo $img; ?>" style="width:15px;height:15px;"  class="user-image " id="noleavecic" alt="User Image"/>
-                                                        <?= $na['member_login_name'] ?>
+                                                        ?>  <?= $na['member_login_name'] ?>
                                                     </li>
                                                     <?php
                                                     array_push($count, $na['member_login_name']);

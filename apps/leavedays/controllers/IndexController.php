@@ -335,7 +335,8 @@ class IndexController extends ControllerBase {
      * @desc   No Leave Action
      */
     public function noleavelistAction() {
-            if ($this->permission == 1) {
+        
+            if ($this->permission == 0) {
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/index-paging.js');
         $Admin = new Db\CoreMember;
