@@ -8,7 +8,6 @@ use salts\Salary\Models\Allowances;
 use salts\Salary\Models\SalaryTaxs;
 use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
-use Phalcon\Filter;
 
 class IndexController extends ControllerBase {  
 
@@ -52,7 +51,7 @@ class IndexController extends ControllerBase {
      */
     public function salarylistAction() {
 
-        if ($this->moduleIdCall == 0) {
+        if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
@@ -181,16 +180,15 @@ class IndexController extends ControllerBase {
      * @version 9/9/15
      */
     public function editsalaryAction() {
-          if ($this->permission == 1) {
+        if ($this->permission == 1) {
         $member_id = $this->request->get('id');
-        $t = $this->_getTranslation();
         $SalaryMaster = new SalaryMaster();
         $edit_salary = $SalaryMaster->editSalary($member_id);
       
         $resultsalary['data'] = $edit_salary;
+        
         $PermitAllowance = new SalaryDetail();
         $resultsalary['permit_allowance'] = $PermitAllowance->getAllowanceByMemberid($edit_salary[0]['member_id']);
-
 
         $PermitDedution = new SalaryMemberTaxDeduce();
         $resultsalary['permit_dedution'] = $PermitDedution->getDeduceBymemberid($edit_salary[0]['member_id']);
@@ -199,17 +197,7 @@ class IndexController extends ControllerBase {
         $resultsalary['dedution'] = $Dedution->getDeducelist();
         $Allowance = new Allowances();
         $resultsalary['allowance'] = $Allowance->getAllallowances();
-        $resultsalary['t']['title'] = $t->_("edit_salary");
-        $resultsalary['t']['name'] = $t->_("name");
-        $resultsalary['t']['b_salary'] = $t->_("basic_salary");
-        $resultsalary['t']['t_fee'] = $t->_("travel_fee");
-        $resultsalary['t']['ot'] = $t->_("overtime");
-        $resultsalary['t']['Decut Name'] = $t->_("Decut Name");
-        $resultsalary['t']['Allow Name'] = $t->_("Allow Name");
-        $resultsalary['t']['Starting Date'] = $t->_("Starting Date");
-        $resultsalary['t']['edit_btn'] = $t->_("edit_btn");
-        $resultsalary['t']['delete_btn'] = $t->_("delete_btn");
-        $resultsalary['t']['cancel_btn'] = $t->_("cancel_btn");
+        $resultsalary['t'] = $this->Translateforedit();
         $this->view->disable();
 
         echo json_encode($resultsalary);
@@ -217,6 +205,26 @@ class IndexController extends ControllerBase {
           else {
               echo "Page Not Found";
           }
+    }
+    /**
+     * Traslation for salary edit
+     * @return type
+     */
+    public function Translateforedit() {
+        $t = $this->_getTranslation();
+        $resultsalary = array();
+        $resultsalary['title'] = $t->_("edit_salary");
+        $resultsalary['name'] = $t->_("name");
+        $resultsalary['b_salary'] = $t->_("basic_salary");
+        $resultsalary['t_fee'] = $t->_("travel_fee");
+        $resultsalary['ot'] = $t->_("overtime");
+        $resultsalary['Decut Name'] = $t->_("Decut Name");
+        $resultsalary['Allow Name'] = $t->_("Allow Name");
+        $resultsalary['Starting Date'] = $t->_("Starting Date");
+        $resultsalary['edit_btn'] = $t->_("edit_btn");
+        $resultsalary['delete_btn'] = $t->_("delete_btn");
+        $resultsalary['cancel_btn'] = $t->_("cancel_btn");
+        return $resultsalary;
     }
 
     /**
@@ -587,6 +595,7 @@ class IndexController extends ControllerBase {
      */
     public function show_add_dectAction() {
         if ($this->permission === 1) {
+        $data = array();
         $t = $this->_getTranslation();
         $data[1]['deduce_frm'] = $t->_("deduce_frm");
         $data[1]['deduce_name'] = $t->_("deduce_name");

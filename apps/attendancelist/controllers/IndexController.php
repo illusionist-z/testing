@@ -2,8 +2,6 @@
 
 namespace salts\Attendancelist\Controllers;
 
-//use salts\Core\Models\Db;
-use salts\Attendancelist\Models\CorePermissionGroupId;
 
 class IndexController extends ControllerBase {
     

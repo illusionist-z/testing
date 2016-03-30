@@ -2,7 +2,6 @@
 
 namespace salts\Salary\Models;
 
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
 
 class SalaryTaxsDeduction extends Model {
