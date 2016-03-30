@@ -22,8 +22,7 @@ require_once 'apps/manageuser/controllers/IndexController.php';
  */
 class ManageIndexController extends Controllers\IndexController {
 
-    public $user;
-    public $login_params = array('company_id' => 'cop1', "member_login_name" => "admin", "password" => "admin");
+    public $user;    
     public $data;
     public $name;
     public $dept;

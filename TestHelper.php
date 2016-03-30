@@ -31,6 +31,7 @@ spl_autoload_register(function () {
     include_once 'apps/auth/controllers/LoginController.php';
     include_once 'apps/auth/controllers/ControllerBase.php';
     include_once 'apps/auth/controllers/LogoutController.php';
+    include_once 'apps/auth/controllers/IndexController.php';
     include_once 'apps/auth/models/Auth.php';
     include_once 'apps/auth/models/CoreMember.php';
     include_once 'apps/auth/models/CoreForgotPassword.php';
