@@ -5,54 +5,47 @@ namespace salts\Leavedays\Controllers;
 use salts\Core\Models\Db;
 use salts\Leavedays\Models\Leaves as Leave;
 use salts\Leavedays\Models\LeaveCategories as LeaveCategories;
-use salts\Leavedays\Models\LeavesSetting as LeavesSetting; 
+use salts\Leavedays\Models\LeavesSetting as LeavesSetting;
+
 class IndexController extends ControllerBase {
 
     public $_leave;
     public $config;
 
     public function initialize() {
-         
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->setLeaveJsAndCss();
         $Admin = new Db\CoreMember();
-        $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
-                $noti = $Admin->GetAdminNoti($id, 0);
+                $noti = $Admin->GetAdminNoti($this->session->user['member_id'], 0);
             }
             if ($key_name == 'show_user_notification') {
-                $noti = $Admin->GetUserNoti($id, 1);
+                $noti = $Admin->GetUserNoti($this->session->user['member_id'], 1);
             }
         }
         $this->view->setVar("Noti", $noti);
         $this->view->module_name = $this->router->getModuleName();
         $this->view->t = $this->_getTranslation();
-        $this->act_name = $this->router->getModuleName();
-        $this->permission = $this->setPermission($this->act_name);
+        $this->permission = $this->setPermission($this->router->getModuleName());
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
-        $this->module_name = $this->router->getModuleName();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->router->getModuleName(), $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
     }
-    
-    
+
     public function indexAction() {
-            $this->response->redirect('core/index');
+        $this->response->redirect('core/index');
     }
 
     public function autolistAction() {
-
-
         if ($this->moduleIdCall == 1) {
             $UserList = new Db\CoreMember();
-            $username = $UserList->autoUsername();
             $this->view->disable();
-            echo json_encode($username);
+            echo json_encode( $UserList->autoUsername());
         } else {
             $this->response->redirect('core/index');
         }
@@ -62,16 +55,14 @@ class IndexController extends ControllerBase {
      * get member id
      */
     public function getapplymemberidAction() {
-           if ($this->permission == 1) {
-        $data = $this->request->get('username');
-        $LeaveType = new LeaveCategories();
-        $cond = $LeaveType->memberIdApplyLeave($data);
-        echo json_encode($cond);
-        $this->view->disable();
-           }
-           else {
-               echo 'Page Not Found';
-           }
+        if ($this->permission == 1) {
+            $LeaveType = new LeaveCategories();
+            $cond = $LeaveType->memberIdApplyLeave($this->request->get('username'));
+            echo json_encode($cond);
+            $this->view->disable();
+        } else {
+            echo 'Page Not Found';
+        }
     }
 
     /**
@@ -81,18 +72,12 @@ class IndexController extends ControllerBase {
      */
     public function applyleaveAction() {
         if ($this->moduleIdCall == 1) {
-            $this->assets->addJs('apps/leavedays/js/index-applyleave.js');
-            $this->assets->addJs('common/js/jquery-ui-timepicker.js');
-            $this->assets->addCss('common/css/jquery-ui-timepicker.css');
             $LeaveType = new LeaveCategories();
-            $ltype = $LeaveType->getLeaveType();
             $UserList = new Db\CoreMember();
-
             $name = $UserList::getinstance()->getusername();
-
             if ($this->permission == 1) {
                 $this->view->setVar("name", $name);
-                $this->view->setVar("Leavetype", $ltype);
+                $this->view->setVar("Leavetype", $LeaveType->getLeaveType());
                 $this->view->modulename = $this->module_name;
             } else {
                 $this->response->redirect('core/index');
@@ -103,66 +88,40 @@ class IndexController extends ControllerBase {
     }
 
     public function checkapplyAction() {
- 
         if ($this->request->isPost()) {
-            $user = $this->_leave;
-            $validate = $user->validating($this->request->getPost());
+            $validate = $this->_leave->validating($this->request->getPost());
             if (count($validate)) {
                 foreach ($validate as $message) {
                     $json[$message->getField()] = $message->getMessage();
                 }
                 $json['result'] = "error";
                 echo json_encode($json);
-                $this->view->disable();
             } else {
-                $creator_id = $this->session->user['member_id'];
-                $uname = $this->request->getPost('member_id');
-                $sdate = $this->request->getPost('sdate');
-                $edate = $this->request->getPost('edate');
-                $type = $this->request->getPost('leavetype');
-                $desc = $this->request->getPost('description');
-                $error = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
-                echo json_encode($error);
-                $this->view->disable();
+                echo json_encode($this->_leave->applyLeave($this->request->getPost('member_id'), $this->request->getPost('sdate'), $this->request->getPost('edate'), $this->request->getPost('leavetype'), $this->request->getPost('description'), $this->session->user['member_id']));
             }
+            $this->view->disable();
         }
-         
     }
 
     /**
      * Show Leave data list
      */
     public function leavelistAction() {
-
-
         if ($this->moduleIdCall == 1) {
-
-            $this->act_name = $this->router->getModuleName();
-            $this->permission = $this->setPermission($this->act_name);
+            $this->permission = $this->setPermission($this->router->getModuleName());
             $Admin = new Db\CoreMember;
-            $id = $this->session->user['member_id'];
-            $currentPage = $this->request->get("page");
-            $noti = $Admin->GetAdminNoti($id, 0);
-            $this->view->setVar("noti", $noti);            
-            $this->assets->addJs('apps/leavedays/js/search.js');
-            $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
-            $month = $this->config->month;
+            $this->view->setVar("noti", $Admin->GetAdminNoti($this->session->user['member_id'], 0));
             $LeaveType = new LeaveCategories();
-            $ltype = $LeaveType->getLeaveType();
-            $this->view->setVar("Leavetype", $ltype);
+            $this->view->setVar("Leavetype", $LeaveType->getLeaveType());
             $UserList = new Db\CoreMember();
-            $GetUsername = $UserList::getinstance()->getusername();
-            $leaves = $this->_leave->getLeaveList($currentPage);
-            $absent = $this->_leave->getAbsent();
             $max = $this->_leave->getLeaveSetting();
-            $max_leavedays = $max['0']['max_leavedays'];
             if ($this->permission == 1) {
-                $this->view->max = $max_leavedays;
-                $this->view->Getname = $GetUsername;
-                $this->view->setVar("Result", $leaves);
-                $this->view->setVar("absent", $absent);
-                $this->view->setVar("Month", $month);
-                $this->view->modulename = $this->module_name;
+                $this->view->max = $max['0']['max_leavedays'];
+                $this->view->Getname = $UserList::getinstance()->getusername();
+                $this->view->setVar("Result", $this->_leave->getLeaveList($this->request->get("page")));
+                $this->view->setVar("absent", $this->_leave->getAbsent());
+                $this->view->setVar("Month", $this->config->month);
+                //$this->view->modulename = $this->module_name;
             } else {
                 $this->response->redirect('core/index');
             }
@@ -177,24 +136,16 @@ class IndexController extends ControllerBase {
      * to edit leave categories and max leave day
      */
     public function leavesettingAction() {
-
-
         if ($this->moduleIdCall == 1) {
-
-            $this->act_name = $this->router->getModuleName();
-            $this->permission = $this->setPermission($this->act_name);
+            $this->permission = $this->setPermission($this->router->getModuleName());
             $Admin = new Db\CoreMember;
-            $id = $this->session->user['member_id'];
-            $noti = $Admin->GetAdminNoti($id,0);
-            $this->view->setVar("Noti", $noti);
+            $this->view->setVar("Noti", $Admin->GetAdminNoti($this->session->user['member_id'], 0));
             $LeaveCategories = new LeaveCategories();
             $LeaveSetting = new LeavesSetting();
-            $typelist = $LeaveCategories->getLeaveType();
-            $setting = $LeaveSetting->getLeaveSetting();
             if ($this->permission == 1) {
                 $this->view->modulename = $this->module_name;
-                $this->view->setVar("leave_typelist", $typelist);
-                $this->view->setVar("leave_setting", $setting);
+                $this->view->setVar("leave_typelist", $LeaveCategories->getLeaveType());
+                $this->view->setVar("leave_setting", $LeaveSetting->getLeaveSetting());
             } else {
                 $this->response->redirect('core/index');
             }
@@ -208,19 +159,18 @@ class IndexController extends ControllerBase {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function ltyaddAction() {
-           if ($this->permission == 1) {
-        $t = $this->_getTranslation();
-        $data[1]['addleavetype'] = $t->_("addleavetype");
-        $data[1]['leave_category'] = $t->_("leave_category");
-        $data[1]['yes'] = $t->_("yes");
-        $data[1]['no'] = $t->_("cancel");
-        $data[1]['enterltp'] = $t->_("enterltp");
-        $this->view->disable();
-        echo json_encode($data);
-           }
-           else { 
-               echo 'Page Not Found';
-           }
+        if ($this->permission == 1) {
+            $t = $this->_getTranslation();
+            $data[1]['addleavetype'] = $t->_("addleavetype");
+            $data[1]['leave_category'] = $t->_("leave_category");
+            $data[1]['yes'] = $t->_("yes");
+            $data[1]['no'] = $t->_("cancel");
+            $data[1]['enterltp'] = $t->_("enterltp");
+            $this->view->disable();
+            echo json_encode($data);
+        } else {
+            echo 'Page Not Found';
+        }
     }
 
     /**
@@ -228,10 +178,9 @@ class IndexController extends ControllerBase {
      * Edit Leave categories with dialog
      */
     public function ltypediaAction() {
-        $id = $this->request->get('id');
         $t = $this->_getTranslation();
         $LeaveCategories = new LeaveCategories();
-        $data[0] = $LeaveCategories->getListTypeData($id);
+        $data[0] = $LeaveCategories->getListTypeData($this->request->get('id'));
         $data[1]['delete_confirm'] = $t->_("deleteleavetype");
         $data[1]['yes'] = $t->_("yes");
         $data[1]['no'] = $t->_("cancel");
@@ -255,14 +204,12 @@ class IndexController extends ControllerBase {
      * Adding new leave categories in leave setting
      */
     public function addListTypeAction() {
-            if ($this->permission == 1) {
-        $leavetype_name = $this->request->getPost('ltype_name');
-        $LeaveCategories = new LeaveCategories();
-        $LeaveCategories->addNewCategories($leavetype_name);
-            }
-            else {
-                echo 'Page Not Found';
-            }
+        if ($this->permission == 1) {
+            $LeaveCategories = new LeaveCategories();
+            $LeaveCategories->addNewCategories($this->request->getPost('ltype_name'));
+        } else {
+            echo 'Page Not Found';
+        }
     }
 
     /**
@@ -271,15 +218,9 @@ class IndexController extends ControllerBase {
      * max leavedays/leave categories
      */
     public function editleavesettingAction() {
-           // if ($this->permission == 1) {
-        $max_leavedays = $this->request->getPost('max_leavedays');
         $LeaveSetting = new LeavesSetting();
-        $LeaveSetting->editLeaveSetting($max_leavedays);
+        $LeaveSetting->editLeaveSetting($this->request->getPost('max_leavedays'));
         $this->response->redirect('leavedays/index/leavesetting');
-          //  }
-           // else {
-            //    echo "Page Not Found";
-           // }
     }
 
     /**
@@ -287,16 +228,11 @@ class IndexController extends ControllerBase {
      * Admin Accepting the leave request
      */
     public function acceptleaveAction() {
-            if ($this->permission == 1) {
-        $id = $this->request->get('id');
-        $days = $this->request->getPost('leave_days');
-        $noti_id = $this->request->getPost('noti_id');
-       
-        $this->_leave->acceptLeave($id, $days, $noti_id);
-            }
-            else {
-                echo 'Page Not Found';
-            }
+        if ($this->permission == 1) {
+            $this->_leave->acceptLeave($this->request->get('id'), $this->request->getPost('leave_days'), $this->request->getPost('noti_id'));
+        } else {
+            echo 'Page Not Found';
+        }
     }
 
     /**
@@ -304,30 +240,27 @@ class IndexController extends ControllerBase {
      * Admin rejecting the leave request
      */
     public function rejectleaveAction() {
-            if ($this->permission == 1) {
-        $noti_id = $this->request->getPost('noti_id');
-        $this->_leave->rejectLeave($noti_id);
-            }
-            else {
-                echo 'Page Not Found';
-            }
+        if ($this->permission == 1) {
+            $this->_leave->rejectLeave($this->request->getPost('noti_id'));
+        } else {
+            echo 'Page Not Found';
+        }
     }
 
-    /**
-     * auto complete username when apply leave
-     * @author Saw Zin Min Htun 
-     */
-    public function applyautolistAction() {
-            if ($this->permission == 1) {
-        $UserList = new Db\CoreMember();
-        $Username = $UserList->applyautousername();
-        $this->view->disable();
-        echo json_encode($Username);
-            }
-            else {
-                echo 'Page Not Found';
-            }
-    }
+//    /**
+//     * auto complete username when apply leave
+//     * @author Saw Zin Min Htun 
+//     */
+//    public function applyautolistAction() {
+//        if ($this->permission == 1) {
+//            $UserList = new Db\CoreMember();
+//            $Username = $UserList->applyautousername();
+//            $this->view->disable();
+//            echo json_encode($Username);
+//        } else {
+//            echo 'Page Not Found';
+//        }
+//    }
 
     /**
      * @author Saw Zin Min Tun
@@ -335,22 +268,18 @@ class IndexController extends ControllerBase {
      * @desc   No Leave Action
      */
     public function noleavelistAction() {
-        
-            if ($this->permission == 0) {
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/leavedays/js/index-paging.js');
-        $Admin = new Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("Noti", $noti);
-
-        $Result = $Admin->checkLeave();
-
-        $this->view->setVar("Result", $Result);
-            }
-            else {
-                echo 'Page Not Found';
-            }
+        if ($this->permission == 1) {
+            $this->assets->addJs('common/js/paging.js');
+            $this->assets->addJs('apps/leavedays/js/index-paging.js');
+            $Admin = new Db\CoreMember;
+            $id = $this->session->user['member_id'];
+            $noti = $Admin->GetAdminNoti($id);
+            $this->view->setVar("Noti", $noti);
+            $Result = $Admin->checkLeave();
+            $this->view->setVar("Result", $Result);
+        } else {
+            echo 'Page Not Found';
+        }
     }
 
     /**
@@ -359,53 +288,43 @@ class IndexController extends ControllerBase {
      * @desc  Leave Most Action
      */
     public function leavemostAction() {
-            if ($this->permission == 1) {
-        $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/leavedays/js/index-paging.js');
-        $Admin = new Db\CoreMember;
-        $id = $this->session->user['member_id'];
-        $noti = $Admin->GetAdminNoti($id);
-        $this->view->setVar("Noti", $noti);
-
-        $Result = $Admin->leaveMost();
-
-        $this->view->setVar("Result", $Result);
-            }
-            else{
-                echo 'Page Not Found';
-            }
-    }
-    
-       public function detailAction() {
-               if ($this->permission == 1) {
-        $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/css/style.css');
-        $Admin = new Db\CoreMember();
-        $id = $this->session->user['member_id'];
-        foreach ($this->session->auth as $key_name => $key_value) {
-            if ($key_name == 'show_admin_notification') {
-                $Noti = $Admin->getAdminNoti($id, 0);
-            }
-            if ($key_name == 'show_user_notification') {
-                $Noti = $Admin->getUserNoti($id, 1);
-            }
+        if ($this->permission == 1) {
+            $this->assets->addJs('common/js/paging.js');
+            $this->assets->addJs('apps/leavedays/js/index-paging.js');
+            $Admin = new Db\CoreMember;
+            $id = $this->session->user['member_id'];
+            $noti = $Admin->GetAdminNoti($id);
+            $this->view->setVar("Noti", $noti);
+            $Result = $Admin->leaveMost();
+            $this->view->setVar("Result", $Result);
+        } else {
+            echo 'Page Not Found';
         }
+    }
 
-        $this->view->setVar("Noti", $Noti);
-        $type = "detail";
-        $this->view->setVar("type", $type);
-        $Noti_id = $this->request->get('id');
-        $module_name = $this->request->get('mname');
-       
-        $Noti_detail = new Leave();;
-        $Detail_result = $Noti_detail->getNotiInfo($module_name, $Noti_id);
-        $this->view->setVar("module_name", $module_name);
-        $this->view->setVar("result", $Detail_result);
-        $this->view->t = $this->_getTranslation();
-               }
-               else {
-                   echo 'Page Not Found';
-               }
+    public function detailAction() {
+        if ($this->permission == 1) {
+            $this->setCommonJsAndCss();
+            $this->assets->addCss('common/css/css/style.css');
+            $Admin = new Db\CoreMember();
+            $id = $this->session->user['member_id'];
+            foreach ($this->session->auth as $key_name => $key_value) {
+                if ($key_name == 'show_admin_notification') {
+                    $Noti = $Admin->getAdminNoti($id, 0);
+                }
+                if ($key_name == 'show_user_notification') {
+                    $Noti = $Admin->getUserNoti($id, 1);
+                }
+            }
+            $this->view->setVar("Noti", $Noti);
+            $this->view->setVar("type", "detail");
+            $Noti_detail = new Leave();
+            $this->view->setVar("module_name", $this->request->get('mname'));
+            $this->view->setVar("result", $Noti_detail->getNotiInfo($this->request->get('mname'), $this->request->get('id')));
+            $this->view->t = $this->_getTranslation();
+        } else {
+            echo 'Page Not Found';
+        }
     }
 
 }

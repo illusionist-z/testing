@@ -1,15 +1,20 @@
 <?php
+
 namespace Library\Core;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- 
+
 use salts\Core\Models\Db;
+
 //use salts\Auth\Models\Db;
 abstract class Controller extends \Phalcon\Mvc\Controller {
+
     public $moduleName;
+
     /**
      * use language
      * 
@@ -17,59 +22,58 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public $lang;
     public $_isJsonResponse = FALSE;
+
     /**
      * initialize controller
      */
     public function initialize() {
         $this->view->baseUri = $this->url->getBaseUri();
-        
-        
     }
-        /**
-        * Set Permission
-        * @return int
-        */
-    
-   
-            public function setPermission($actname) {
+
+    /**
+     * Set Permission
+     * @return int
+     */
+    public function setPermission($actname) {
         $aryModules = \Library\Core\Module::get();
-        $allow = array();$permitted = 0;
+        $allow = array();
+        $permitted = 0;
         //setting permission        
         $coremember = new \salts\Core\Models\CorePermissionRelMember();
-        
-        if(null === $this->session->user['member_id']){
+
+        if (null === $this->session->user['member_id']) {
             return false;
-        }
-        {
-        $core = $coremember::findByRelMemberId($this->session->user['member_id']); 
-        $permission = $core[0]->permission_group_id_user;
-        $coreuser2 = new \salts\Core\Models\CorePermissionGroup();
-        $permission_group = $coreuser2->find();
-        //get permitted action name
-       
-        foreach($permission_group as $v){
-        $permission === $v->page_rule_group ?  $allow[] = $v->permission_code :   0;
-        }
-        $permission_name = $this->getPermissionCode($allow);
-        foreach($permission_name as $name){
-            $name = strtolower(str_replace(' ','',$name));
-             $name === $actname ? $permitted = 1 : 0;
-        }
-        return $permitted;
+        } {
+            $core = $coremember::findByRelMemberId($this->session->user['member_id']);
+            $permission = $core[0]->permission_group_id_user;
+            $coreuser2 = new \salts\Core\Models\CorePermissionGroup();
+            $permission_group = $coreuser2->find();
+            //get permitted action name
+
+            foreach ($permission_group as $v) {
+                $permission === $v->page_rule_group ? $allow[] = $v->permission_code : 0;
+            }
+            $permission_name = $this->getPermissionCode($allow);
+            foreach ($permission_name as $name) {
+                $name = strtolower(str_replace(' ', '', $name));
+                $name === $actname ? $permitted = 1 : 0;
+            }
+            return $permitted;
         }
     }
-    
+
     public function getPermissionCode($code) {
-     $setPermission = array();
-    $corepermission = new \salts\Core\Models\CorePermission();        
-    foreach($code as $c){
-        $temp = $corepermission::findByPermissionCode($c);
-        foreach($temp as $t){
-            $setPermission[] =$t->permission_name_en;
+        $setPermission = array();
+        $corepermission = new \salts\Core\Models\CorePermission();
+        foreach ($code as $c) {
+            $temp = $corepermission::findByPermissionCode($c);
+            foreach ($temp as $t) {
+                $setPermission[] = $t->permission_name_en;
+            }
         }
+        return $setPermission;
     }
-    return $setPermission;    
-    }
+
     /**
      * Call this func to set json response enabled
      * @param type $content
@@ -81,6 +85,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->response->setJsonContent($content);
         return $this->response;
     }
+
     /**
      * 
      * @param \Phalcon\Mvc\Dispatcher $dispatcher
@@ -94,6 +99,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         }
         $this->moduleName = $dispatcher->getModuleName();
     }
+
     /**
      * 
      * @param type $prefix
@@ -102,24 +108,24 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     protected function _getTranslation($prefix = '') {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/{$this->moduleName}/lang";
-        $common_lang = __DIR__."/../../library/core/lang";
+        $common_lang = __DIR__ . "/../../library/core/lang";
         if ('' !== $prefix) {
             $prefix .= '-';
         }
-        
+
         if (file_exists($langDir . '/' . $prefix . $this->lang . '.php')) {
             require $langDir . '/' . $prefix . $this->lang . '.php';
             $msg1 = $messages;
             require $common_lang . '/' . $prefix . $this->lang . '.php';
-            $message = array_merge($msg1,$messages);
+            $message = array_merge($msg1, $messages);
         } else {
             // fallback to some default
             require $langDir . '/' . $prefix . "jp.php";
             $msg1 = $messages;
             require $common_lang . '/' . $prefix . "jp.php";
-            $message = array_merge($msg1,$messages);
+            $message = array_merge($msg1, $messages);
         }
-        
+
         //Return a translation object
         return new \Phalcon\Translate\Adapter\NativeArray(array(
             "content" => $message
@@ -130,24 +136,21 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * 
      */
     public function setCommonJsAndCss() {
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css') ;
-                 $this->assets->addCss('common/css/bootstrap.min.css')
+        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+        $this->assets->addCss('common/css/bootstrap.min.css')
                 ->addCss('common/css/common.css')
                 ->addCss('common/css/jquery-ui.css')
                 ->addCss('common/css/skins.min.css');
         $this->assets->addJs('common/js/jquery.min.js')
                 ->addJs('common/js/common.js');
-                //->addJs('common/js/btn.js')
+        //->addJs('common/js/btn.js')
         $this->assets->addJs('common/js/bootstrap.min.js');
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
-        
-         
-        
     }
-    
-   /**
+
+    /**
      * Js and Css for attendance list
      */
     public function setAttJsAndCss() {
@@ -156,11 +159,12 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/attendancelist/js/base.js');
     }
-    public function setSettJsAndCss(){
+
+    public function setSettJsAndCss() {
         $this->assets->addJs('apps/setting/js/base.js');
         $this->assets->addJs('apps/setting/js/index-admin.js');
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
-          $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');
     }
 
@@ -170,7 +174,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function setAttAbsentJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('common/js/paging.js');
-        $this->assets->addJs('apps/attendancelist/js/absent-addabsent.js'); 
+        $this->assets->addJs('apps/attendancelist/js/absent-addabsent.js');
     }
 
     /**
@@ -214,19 +218,19 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('apps/document/js/FileSaver.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
-        }
+    }
 
     /**
      * Js and Css for Dashboard
      */
-public function setDashboardJsAndCss() {        
+    public function setDashboardJsAndCss() {
         $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
         $this->assets->addCss('common/css/bootstrap.min.css');
         $this->assets->addCss('common/css/common.css');
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/skins.min.css');
         $this->assets->addJs('common/js/jquery.min.js');
-        $this->assets->addJs('common/js/common.js'); 
+        $this->assets->addJs('common/js/common.js');
         $this->assets->addJs('common/js/bootstrap.min.js');
         $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
@@ -236,8 +240,6 @@ public function setDashboardJsAndCss() {
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
         //$this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        
-        
     }
 
     /**
@@ -254,9 +256,14 @@ public function setDashboardJsAndCss() {
      */
     public function setLeaveJsAndCss() {
         $this->assets->addCss('common/css/jquery-ui.css');
-         $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('common/js/export.js');
-         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->assets->addJs('apps/leavedays/js/search.js');
+        $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
+        $this->assets->addJs('apps/leavedays/js/index-applyleave.js');
+        $this->assets->addJs('common/js/jquery-ui-timepicker.js');
+        $this->assets->addCss('common/css/jquery-ui-timepicker.css');
     }
 
     /**
@@ -284,8 +291,7 @@ public function setDashboardJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addJs('common/js/paging.js');
-         $this->assets->addJs('apps/managecompany/js/module-base.js');
-        
+        $this->assets->addJs('apps/managecompany/js/module-base.js');
     }
 
     /**
@@ -313,7 +319,7 @@ public function setDashboardJsAndCss() {
     public function setSalaryJsAndCss() {
         $this->assets->addCss('apps/salary/css/base.css');
         $this->assets->addJs('common/js/paging.js');
-       $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('common/js/export.js');
     }
 
     /**
@@ -347,10 +353,12 @@ public function setDashboardJsAndCss() {
 //                ->pick("index/cmn-slide-menu");
 //        $this->view->setPartialsDir($partialsDir)->pick($renderView);
     }
+
     // After route executed event
     public function afterExecuteRoute(\Phalcon\Mvc\Dispatcher $dispatcher) {
         
     }
+
     private function _getCoreTranslation() {
         // Check if we have a translation file for that lang
         $langDir = __DIR__ . "/../../apps/core/messages";
@@ -366,4 +374,5 @@ public function setDashboardJsAndCss() {
             "content" => $messages
         ));
     }
+
 }
