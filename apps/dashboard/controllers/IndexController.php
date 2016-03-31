@@ -52,7 +52,7 @@ class IndexController extends ControllerBase {
      */
     public function adminAction() {
         
-        $this->setDashboardJsAndCss();
+        
         //$this->view->setLayout('/../core/view/partial/header');
    
         $Admin = new CoreMember();
