@@ -567,6 +567,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     
     public function searchSList($param) {
         try{
+            
             if($param['travel_fees'] == 1){
             $field="travel_fee_perday";
             }
@@ -579,7 +580,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             if($param['user_id'] !== ""){
                 $select .= " and salary_master.member_id='" . $param["user_id"] . "'";
             }
-            
             $result = $this->db->query($select);
             $row = $result->fetchall();
             

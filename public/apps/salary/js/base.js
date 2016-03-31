@@ -164,25 +164,23 @@ var Salary = {
             // ... do whatever you need to do with icon here
         }
     },
-    getmemid: function (name) {
-        var dict = [];
+    getmemid: function (name) {;
+        var dictvariable = [];
         $.ajax({
             url: 'getmemberid?uname=' + name,
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
-                  
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
-                    dict.push(json_obj[i].member_id);
+                    dictvariable.push(json_obj[i].member_id);
                 }
-
-                loadIcon(dict);
+                loadIcon(dictvariable);
             }
 
         });
-        function loadIcon(dict) {
-            $('#formemberid').val(dict);
+        function loadIcon(dictvariable) {
+            $('#formemberid').val(dictvariable);
         }
 
     },
@@ -352,9 +350,10 @@ var Salary = {
     },
     //searcch salary list by travel fees and user name
     search_salarylist: function () {
-        var $form = $('#frm_search').serialize();
+        var form = $('#frm_search').serialize();
+        //window.location.href = baseUri + 'salary/search/searchTravelfees?' + form;
         $.ajax({
-            url: baseUri + 'salary/search/searchTravelfees?' + $form,
+            url: baseUri + 'salary/search/searchTravelfees?' + form,
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
@@ -529,16 +528,20 @@ $(document).ready(function () {
     $('#cal_salary').click(function () {
         Salary.search();
     });
-    $('.tags,.username').click(function () {
-        Salary.autolist();
-    });
-    $("#search_salary").mouseenter(function () {
+//    $('.tags,.username').click(function () {
+//        Salary.autolist();
+//    });
+    $("#search_salary").mouseenter(function () {alert("a");
         var name = document.getElementById('namelist').value;
         Salary.getmemid(name);
     });
     $(".search-trtype").click(function () {
         Salary.search_salarylist();
     });
+    $("#username").mouseenter(function(){
+        var name = document.getElementById('username').value;
+        Salary.getmemid(name);
+    })
 
 
 });

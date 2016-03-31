@@ -51,6 +51,7 @@ if (isset($Msg)) {
                                 </div> 
                                 <div style="" >
                                     <input type="text"class="col-xs-2" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:45%; height: 20%;" name="travelfees" disabled/>
+                                    <span  id="travelfee_error"></span>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +82,8 @@ if (isset($Msg)) {
                                 </div>";
                                     }
                                 }
-                                ?>                                     
+                                ?> 
+                                
                             </div>        
                             <div  style="float: right;margin-right: 50px;margin-top: -50px;" id="add_salary_ssc_error"></div>
                         </div>                       
