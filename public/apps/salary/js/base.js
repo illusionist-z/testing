@@ -183,6 +183,7 @@ var Salary = {
         });
         function loadIcon(dict) {
             $('#formemberid').val(dict);
+            Salary.search_salarylist();
         }
 
     },
@@ -353,42 +354,49 @@ var Salary = {
     //searcch salary list by travel fees and user name
     search_salarylist: function () {
         var $form = $('#frm_search').serialize();
+         $('ul.pagination').empty();
         $.ajax({
             url: baseUri + 'salary/search/searchTravelfees?' + $form,
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
                 var json_obj = $.parseJSON(data);//parse JSON 
-                $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div #content').empty(), $('#th_travelfees').empty();
+                $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
 
                 var j = 1;
                 var travelfees;
                 var travelfee_header;
-                for (var i in json_obj)
+                 for (var i in json_obj.items)
                 {
-                    if (json_obj[i].travel_fee_perday)
+                    if (json_obj.items[i].travel_fee_perday)
                     {
-                         travelfees = json_obj[i].travel_fee_perday;
+                         travelfees = json_obj.items[i].travel_fee_perday;
                          travelfee_header = 'Travel fees (per day)';
                     }
                     else {
-                         travelfees = json_obj[i].travel_fee_permonth;
+                         travelfees = json_obj.items[i].travel_fee_permonth;
                          travelfee_header = 'Travel fees (per month)';
                     }
                     var output = "<tr>"
                             + "<td>" + j + "</td>"
-                            + "<td>" + json_obj[i].member_login_name + "</td>"
-                            + "<td>" + json_obj[i].basic_salary + " </td>"
+                            + "<td>" + json_obj.items[i].member_login_name + "</td>"
+                            + "<td>" + json_obj.items[i].basic_salary + " </td>"
                             + "<td>" + travelfees + "</td>"
-                            + "<td>" + json_obj[i].over_time + "</td>"
-                            + "<td>" + json_obj[i].ssc_emp + "</td>"
-                            + "<td>" + json_obj[i].ssc_comp + "</td>"
-                            + "<td><a href='#' onclick='return false;' style='float:right;margin-top: 5px;' class='inedit displaypopup' id='" + json_obj[i].member_id + "'></a></td>"
+                            + "<td>" + json_obj.items[i].over_time + "</td>"
+                            + "<td>" + json_obj.items[i].ssc_emp + "</td>"
+                            + "<td>" + json_obj.items[i].ssc_comp + "</td>"
+                            + "<td><a href='#' onclick='return false;' style='float:right;margin-top: 5px;' class='inedit displaypopup' id='" + json_obj.items[i].member_id + "'></a></td>"
                             + "</tr>";
                     $("tbody").append(output);
                     j++;
                 }
                 $("#th_travelfees").append(travelfee_header);
+                if(json_obj.last != 0 && json_obj.last != 1){
+                    var paginglink = '  <li><a href="salarylist">First</a></li><li><a href="salarylist?page='+json_obj.before+'">Previous</a></li>'
+                    +'<li><a href="salarylist?page='+json_obj.next+'">Next</a></li><li><a href="salarylist?page='+json_obj.last+'">Last</a></li>'
+                    +'<li><span class="btn" style="margin-left:20px;">You are in page '+ json_obj.current+' of '+ json_obj.total_pages +'</span></li>';
+                $('ul.pagination').append(paginglink);
+                }
                 Salary.init();
             }
 
@@ -532,12 +540,14 @@ $(document).ready(function () {
     $('.tags,.username').click(function () {
         Salary.autolist();
     });
-    $("#search_salary").mouseenter(function () {
-        var name = document.getElementById('namelist').value;
-        Salary.getmemid(name);
-    });
+    //    $("#search_salary").mouseenter(function () {
+//        var name = document.getElementById('namelist').value;
+//        Salary.getmemid(name);
+//    });
     $(".search-trtype").click(function () {
-        Salary.search_salarylist();
+        var name = document.getElementById('username').value;
+        Salary.getmemid(name);
+        //Salary.search_salarylist();
     });
 
 

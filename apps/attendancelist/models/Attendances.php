@@ -217,23 +217,23 @@ class Attendances extends Model {
         $attendance->update();
     }
 
-    public function searchAttList($year, $month, $username) {
+    public function searchAttList($year, $month, $username,$currentPage) {
 
-        try {
-            $select = "SELECT * FROM core_member JOIN attendances ON core_member.member_id = "
-                    . "attendances.member_id ";
+         try {
+            $select = "SELECT c.member_login_name,att.* FROM salts\Core\Models\Db\CoreMember as c JOIN salts\Attendancelist\Models\Attendances as att"
+                    . " ON c.member_id = att.member_id ";
             $conditions = $this->setCondition($year, $month, $username);
             $sql = $select;
             if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(' AND ', $conditions) . " AND core_member.deleted_flag = 0 and "
-                        . "attendances.status=0 order by att_date desc";
+                $sql .= " WHERE " . implode(' AND ', $conditions) . " AND c.deleted_flag = 0 and "
+                        . "att.status=0 ORDER BY att.checkin_time DESC";
             }
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
+            $row = $this->modelsManager->executeQuery($sql);
+            $page = $this->base->pagination($row, $currentPage);
         } catch (Exception $ex) {
             echo $ex;
         }
-        return $row;
+        return $page;
     }
 
     public function currentAttList($currentPage) {
@@ -268,14 +268,14 @@ class Attendances extends Model {
 
         if ($year) {
             $start = date("Y-m-d", strtotime($year));
-            $conditions[] = "attendances.att_date >=  ' " . $start . " ' ";
+            $conditions[] = "att.att_date >=  ' " . $start . " ' ";
         }
         if ($month) {
             $end = date("Y-m-d", strtotime($month));
-            $conditions[] = "attendances.att_date <=  ' " . $end . " ' ";
+            $conditions[] = "att.att_date <=  ' " . $end . " ' ";
         }
         if ($username) {
-            $conditions[] = "member_login_name ='" . $username . "'";
+            $conditions[] = "c.member_login_name ='" . $username . "'";
         }
         return $conditions;
     }

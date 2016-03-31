@@ -30,7 +30,7 @@ class SearchController extends ControllerBase {
     public function searchTravelfeesAction() {
         $data = $this->request->get();
         $SalaryDetail = new SalaryDetail();
-        $search_result = $SalaryDetail->searchSList($data);
+        $search_result = $SalaryDetail->searchSList($data,'1');
         $this->view->disable();
         echo json_encode($search_result);
     }
