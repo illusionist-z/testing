@@ -21,6 +21,8 @@ class UserController extends ControllerBase {
         $this->view->t = $this->_getTranslation();
         $User = new Db\CoreMember;
         $id = $this->session->user['member_id'];
+         $this->permission = $this->setPermission($this->router->getModuleName());
+        $this->view->permission = $this->permission;
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
                 $noti = $User->GetAdminNoti($id, 0);

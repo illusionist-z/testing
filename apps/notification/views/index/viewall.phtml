@@ -10,8 +10,8 @@
                         ?>
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li>
+                            <ul class="">
+                                <li style="list-style-type: circle">
                                     <?php if ($permission == "admin") { ?>
 
                                         <a href="<?php echo $baseUri; ?>notification/index/detail?id=<?php echo $Noti['noti_id']; ?>&mname=leaves" class="" id="<?php
@@ -21,7 +21,6 @@
                                         ?>">
 
                                                                                            
-                                            <img src="<?php echo $baseUri; ?>public/common/img/profile1.jpg"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
                                             <b><i style="color:red"><?php echo $Noti['member_login_name']; ?></i></b> apply  leave for <?php
                                             echo "<b>" . date("d-m-Y", strtotime($Noti['start_date'])) . "</b> created by " . $Noti['creator_name'];
                                         } else {
@@ -54,8 +53,8 @@
                         ?> 
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li>
+                            <ul>
+                                <li style="list-style-type: circle">
 
 
                                     <a href="<?php echo $baseUri; ?>notification/index/noticalendar?id=<?php echo $Noti['noti_id']; ?>" class="calendar" id="<?php echo $Noti['noti_id']; ?>">
@@ -74,8 +73,8 @@
                         ?> 
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li>               
+                            <ul >
+                                <li style="list-style-type: circle">               
 
                                     <a href="<?php echo $baseUri; ?>notification/index/notiattendances?id=<?php echo $Noti['noti_id']; ?>" class="attendances" id="<?php echo $Noti['noti_id']; ?>">
                                         <img src="<?php echo $baseUri; ?>common/img/notid.png"> 
@@ -100,13 +99,12 @@
                         ?>
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li>
+                            <ul >
+                                <li style="list-style-type: circle">
                                     <?php if ($permission == "admin") { ?>
 
 
                                                                                       
-                                        <img src="<?php echo $baseUri; ?>public/common/img/profile1.jpg?>"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
                                         <b><i ><?php echo $Noti['member_login_name']; ?></i></b> apply  leave for <?php
                                         echo "<b>" . date("d-m-Y", strtotime($Noti['start_date'])) . "</b> created by " . $Noti['creator_name'];
                                     } else {
@@ -134,10 +132,9 @@
                         ?> 
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li>
+                            <ul >
+                                <li style="list-style-type: circle">
                                                                                    
-                                    <img src="<?php echo $baseUri; ?>public/common/img/profile1.jpg"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
 
 
                                     <b><i ><?php echo $Noti['creator_name']; ?></i></b> marked calendar for <i style="color:red"> <?php echo $Noti['member_login_name']; ?></i><?php echo " at <b>" . date("d-m-Y", strtotime($Noti['startdate'])) . "</b> ";
@@ -154,10 +151,9 @@
                         ?> 
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li>               
+                            <ul>
+                                <li style="list-style-type: circle">               
                                                                                   
-                                    <img src="<?php echo $baseUri; ?>public/common/img/profile1.jpg"  style="width:20px;height: 20px;" class="img-circle" class="user-image"  alt="User Image"/>
 
                                     <b><i><?php echo $Noti['member_login_name']; ?></i></b> is Late for   <?php
                                     echo $Noti['notes'];

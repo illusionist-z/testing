@@ -273,6 +273,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
         $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
+        $this->assets->addJs('apps/leavedays/js/index-search.js');
         $this->assets->addJs('apps/leavedays/js/index-applyleave.js');
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');
