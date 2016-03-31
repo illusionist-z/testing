@@ -105,7 +105,8 @@ var Attendance = {
       });        
 },
          time_edit_btn : function(id) {
-           localtime=document.getElementById('time').value;    
+           //alert(id);
+           localtime=document.getElementById('time').value;           
            window.location.href='editTime/'+id+'/'+localtime;         
        },
        
@@ -131,8 +132,8 @@ var Attendance = {
             var yy = $('#year').val(),
              mm = $('#month').val(),
              name = $('#username').val();         
-        //set empty
-        $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div#content').empty();        
+       //set empty
+        $('table.listtbl tbody').empty(), $('tfoot').empty(),$('ul.pagination').empty();        
         if ("" === yy && "" === mm && ( "" === name ||  !isValid(name))) {
             var output = "<tr>"
                     + "<td colspan='9'><center>No data to display</center></td>"
@@ -143,14 +144,13 @@ var Attendance = {
             $.ajax({
                 url: 'attsearch',
                 type: 'POST',
-                data: {month: mm, username: name, year: yy},      
+                data: {month: mm, username: name, year: yy},
                 cache : false,
-                success: function (d) {
-                    
-                    var json_obj = $.parseJSON(d);//parse JSON                               
-                    for (var i in json_obj)
+                success: function (d) {                    
+                    var json_obj = $.parseJSON(d);//parse JSON                                                                       
+                    for (var i in json_obj.items)
                     {
-                        checkin_place = json_obj[i].location;
+                        checkin_place = json_obj.items[i].att.location;
                         //alert(checkin_place);
                         a = "08:00:00";
                         n = new Date();
@@ -164,7 +164,7 @@ var Attendance = {
                             sign = '+';
                         }
 
-                        checkin = json_obj[i].checkin_time.split(" ");
+                        checkin = json_obj.items[i].att.checkin_time.split(" ");
                         b = checkin[1];
                         ds = b.split(":");
                         total = (ds[0] * 3600) + (ds[1] * 60) + (ds[2] * 1);
@@ -190,12 +190,12 @@ var Attendance = {
                         localcheckin = hours + ':' + minutes + ':' + seconds;
                         //for late 
                         office_stime = "08:00:00";
-                        p = json_obj[i].att_date + " ";
+                        p = json_obj.items[i].att.att_date + " ";
                         late = new Date(new Date(p + localcheckin) - new Date(p + office_stime)).toUTCString().split(" ")[4];
 
                         //for check out time
-                        if (json_obj[i].checkout_time !== null) {
-                            checkout = json_obj[i].checkout_time.split(" ");
+                        if (json_obj.items[i].att.checkout_time !== null) {
+                            checkout = json_obj.items[i].att.checkout_time.split(" ");
                             out = checkout[1];
                             ds = out.split(":");
                             total = (ds[0] * 3600) + (ds[1] * 60) + (ds[2] * 1);
@@ -242,18 +242,24 @@ var Attendance = {
                         //Calculate Location
 
                         var output = "<tr>"
-                                + "<td>" + json_obj[i].att_date + "</td>"
-                                + "<td>" + json_obj[i].member_login_name + "</td>"
+                                + "<td>" + json_obj.items[i].att.att_date + "</td>"
+                                + "<td>" + json_obj.items[i].member_login_name + "</td>"
                                 + "<td>" + localcheckin + " </td>"
                                 + "<td style='color:red'>" + late + "</td>"
-                                + "<td>" + json_obj[i].notes + "</td>"
+                                + "<td>" + json_obj.items[i].att.notes + "</td>"
                                 + "<td>" + localcheckout + "</td>"
                                 + "<td>" + workinghour + "</td>"
                                 + "<td>" + overtime + "</td>"
                                 + "<td>" + checkin_place + "</td>"
                                 + "</tr>";
                         $("tbody").append(output);
-                    }                    
+                    }
+                     if(json_obj.last != 1 && json_obj.last != 0 ){
+                         var paginglink = '<li><a href="monthlylist">First</a></li><li><a href="monthlylist?page='+json_obj.before+'">Previous</a></li>'
+                        +'<li><a href="monthlylist?page='+json_obj.next+'">Next</a></li><li><a href="monthlylist?page='+json_obj.last+'">Last</a></li>'
+                        +'<li><span class="btn" style="margin-left:20px;">You are in page '+json_obj.current+'  of '+json_obj.total_pages+'</span></li>';
+                        $('ul.pagination').append(paginglink);
+                     }                     
                     Attendance.init();
                 },
                 error: function (d) {

@@ -92,7 +92,7 @@ var Tax = {
                var result = $.parseJSON(res);
                //edit dialog box
                var data ='<form id="edit_tax_table" width="250px" height="200px"><table width="400px" height="270px" style="font-size:13px;"  align="center" >';               
-                   data += '<br><tr><td> <small>ID </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['id']+ '" name="id" disabled /></td></tr>'
+                   data += '<br><tr><td> <small>ID </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value="'+result[0]['id']+ '" name="id" disabled /><input type="hidden" value="'+result[0]['id']+ '" name="taxid" /></td></tr>'
                         +'<tr><td> <small>Taxs From </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_from']+ ' name="taxs_from"></td></tr>'
                         +'<tr><td> <small>Taxs To </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_to']+ ' name="taxs_to" ></td></tr>'
                         +'<tr><td> <small>Taxs Rate </small> </td><td><input style="margin-top:10px;font-size:13px;" type="text" value='+result[0]['taxs_rate']+ ' name="taxs_rate"></td></tr>'
@@ -146,10 +146,12 @@ var Tax = {
     //edit data
     BtnEdit : function(d){
         var form=$('#edit_tax_table');
-       // alert( form.serialize());
+        var senddata = form.serialize();
+        //window.location.href = baseUri + 'salary/index/edit_tax?' + senddata;
+        //alert( form.serialize());
         $.ajax({
             type:'POST',
-            data: form.serialize(),
+            data: senddata,
             url : "edit_tax",
             success:function(){
                 
