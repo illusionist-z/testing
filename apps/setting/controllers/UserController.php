@@ -14,7 +14,7 @@ class UserController extends ControllerBase {
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
-
+        $this->view->t = $this->_getTranslation();
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
     }

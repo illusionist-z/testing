@@ -124,15 +124,15 @@ $length = count($Month);
                                 ?></td>
                             <td><font color="red"><?php
                                 $absent_day = 0;
-                                if (isset($absent[$item->core->member_login_name])) {
-                                    $absent_day = $absent[$item->core->member_login_name];
+                                if (isset($absent[$item->core->member_id])) {
+                                    $absent_day = $absent[$item->core->member_id];
                                 }
-                                if ($item->leaves->total_leavedays >= $max) {
-                                    echo (($item->leaves->total_leavedays + $absent_day) - $max);
+                                if ($absent_day >= $max) {
+                                    echo (( $absent_day) - $max);
                                     echo " Days  in absent";
                                 } else {
 
-                                    echo $max - ($item->leaves->total_leavedays + $absent_day);
+                                    echo $max - ( $absent_day);
                                 }
                                 ?></font></td>
                         </tr>

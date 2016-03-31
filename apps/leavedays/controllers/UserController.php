@@ -96,7 +96,7 @@ class UserController extends ControllerBase {
             $leave_type = $this->request->get('ltype');
             $mth = $this->request->get('month');
             $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id);
-
+            
             $absent_days = $this->_leave->getAbsentById($id);
             $this->view->setVar("Result", $leave_list);
             $this->view->setVar("absentdays", $absent_days);

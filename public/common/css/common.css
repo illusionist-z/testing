@@ -365,10 +365,13 @@ a.export {
 .inedit{
     background: url("../img/images1.png")  1px 0px no-repeat  ;
     padding: 6px 10px 12px 8px;
+    display: inline-block;
+    height: 9px;
 }
 .insettingedit{
     background: url("../img/images1.png")  1px 0px no-repeat  ;
-    padding: 0px 10px 0px 8px;
+    padding: 6px 10px 12px 8px;
+    display: inline-block;
 }
 #viewprofile{
     background: url("../img/acc.png")  1px 0px no-repeat  ;
@@ -797,9 +800,9 @@ hr{
     padding: 6px 10px 20px 15px;
 }
 
-
 #noleavelistblock,#leavemostlistblock{
     display: block;
+    width: 26.5em;
 }
 #noleavelistnone,#leavemostlistnone{
     display: none;

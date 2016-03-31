@@ -360,6 +360,7 @@ var Salary = {
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
+                
                 var json_obj = $.parseJSON(data);//parse JSON 
                 $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div #content').empty(), $('#th_travelfees').empty();
 
@@ -368,6 +369,7 @@ var Salary = {
                 var travelfee_header;
                 for (var i in json_obj)
                 {
+                    
                     if (json_obj[i].travel_fee_perday)
                     {
                          travelfees = json_obj[i].travel_fee_perday;
@@ -535,10 +537,13 @@ $(document).ready(function () {
 //
 //        Salary.autolist();
 //    });
-    $("#search_salary").mouseenter(function () {
-        var name = document.getElementById('namelist').value;
-        Salary.getmemid(name);
+
+    $('#namelist').on('blur', function () {
+       var name = document.getElementById('namelist').value;
+       Salary.getmemid(name);
     });
+
+    
     $(".search-trtype").click(function () {
         Salary.search_salarylist();
     });

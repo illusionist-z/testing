@@ -24,6 +24,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @return type
      */
     public function getLeaveList($currentPage) {
+        $mth = date('m');
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'leaves.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
@@ -65,7 +66,7 @@ class Leaves extends \Library\Core\Models\Base {
                 ->execute();
         foreach ($row as $value) {
             $result = $this->db->query("select * from attendances where attendances.member_id='" . $value->core->member_id . "'"
-                    . "and attendances.status=2");
+                    . "and (status = 1 or status = 2)");
             $data = $result->fetchall();
             $absent[$value->core->member_id] = count($data);
         }
@@ -133,15 +134,15 @@ class Leaves extends \Library\Core\Models\Base {
 
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
-        $this->getContractData($uname);
-        $ldata = Leaves::find("member_id = '$uname' order by date DESC LIMIT 1");
-        $list = $ldata->toArray();
-
-        if ($list == NULL) {
-            $lastdata = "0";
-        } else {
-            $lastdata = ($list['0']['total_leavedays']);
-        }
+//        $this->getContractData($uname);
+//        $ldata = Leaves::find("member_id = '$uname' order by date DESC LIMIT 1");
+//        $list = $ldata->toArray();
+//
+//        if ($list == NULL) {
+//            $lastdata = "0";
+//        } else {
+//            $lastdata = ($list['0']['total_leavedays']);
+//        }
         if (isset($sdate) AND isset($edate) AND isset($desc)) {
             $Noti_id = rand();
             $today = date("Y-m-d H:i:s");
@@ -175,7 +176,6 @@ class Leaves extends \Library\Core\Models\Base {
                     $leave->leave_days = $leave_day;
                     $leave->leave_category = $type;
                     $leave->leave_description = $filter->sanitize($desc,"string");
-                    $leave->total_leavedays = $lastdata;
                     $leave->leave_status = 0 ;
                     $leave->noti_id = $Noti_id;
                     $leave->created_dt = date("Y-m-d");
@@ -265,6 +265,7 @@ class Leaves extends \Library\Core\Models\Base {
 
         $this->db = $this->getDI()->getShared("db");
         if ($leave_type == null and $mth == null) {
+            
             $mth = date('m');
             $row = "select date,start_date,member_login_name,"
                     . "end_date,leave_category,leave_status,leave_days,"
