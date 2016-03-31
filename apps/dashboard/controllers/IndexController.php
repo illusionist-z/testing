@@ -3,8 +3,7 @@
 namespace salts\Dashboard\Controllers;
 
 use salts\Core\Models\Db\CoreMember;
-use salts\Core\Models\Db;
-use salts\Dashboard\Models\CorePermissionGroup;
+use salts\Core\Models\Db; 
 
 //use Phalcon\Flash\Direct as FlashDirect;
  
@@ -13,7 +12,7 @@ class IndexController extends ControllerBase {
 
     public function initialize() {
         parent::initialize(); 
-        
+       // $view->setPartialsDir('/app/core/view/partials/');
         $this->setDashboardJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
@@ -39,6 +38,9 @@ class IndexController extends ControllerBase {
     public function indexAction() {
         $this->view->disable();
         $this->response->redirect('dashboard/index/user');
+    
+        
+      
     }
 
     /**
@@ -48,6 +50,10 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {
+        
+        $this->setDashboardJsAndCss();
+        //$this->view->setLayout('/../core/view/partial/header');
+   
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {

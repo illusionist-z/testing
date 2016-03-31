@@ -1,8 +1,7 @@
 <?php
 
 namespace salts\Attendancelist\Controllers;
-
-use salts\Core\Models\Db;
+ 
 use salts\Attendancelist\Models\Attendances;
  
  
