@@ -84,7 +84,7 @@ $(document).ready(function () {
 
 
 
-    $("#help_icon").on('mouseover', function (e) {
+    $("#btn_cmn_help").on('mouseover', function (e) {
         e.preventDefault();
         //document.getElementById("noti").className = "noticlose";
         $("#helpnoti").fadeToggle(100);
