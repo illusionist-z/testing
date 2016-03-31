@@ -9,7 +9,7 @@ namespace Library\Core;
  */
 
 use salts\Core\Models\Db;
-
+ 
 //use salts\Auth\Models\Db;
 abstract class Controller extends \Phalcon\Mvc\Controller {
 
@@ -150,15 +150,30 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/notification.js');
         }
     
-        public function setSettingUse(){
-        $this->module_name = $this->router->getModuleName();
-        $this->act_name = $this->router->getActionName();
-        $this->permission = $this->setPermission($this->act_name);
-         $this->view->module_name = $this->module_name;
+        public function setAllUse(){
+            $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+        $Admin = new Db\CoreMember();
+        foreach ($this->session->auth as $key_name => $key_value) {
+            if ($key_name == 'show_admin_notification') {
+                $noti = $Admin->GetAdminNoti($this->session->user['member_id'], 0);
+            }
+            if ($key_name == 'show_user_notification') {
+                $noti = $Admin->GetUserNoti($this->session->user['member_id'], 1);
+            }
+        }
+        $this->view->setVar("Noti", $noti);
+        $this->view->module_name = $this->router->getModuleName();
+        $this->view->t = $this->_getTranslation();
+        $this->permission = $this->setPermission($this->router->getModuleName());
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
-        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
+        $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->router->getModuleName(), $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
+        
+        // Module ID Filter Start By (Module Name)        
+        $this->view->module_name_view = $this->module_name;
+        $this->module_id_set = $this->session->module;
+        $this->view->module_id_set = $this->module_id_set;
         }
 
                 /**

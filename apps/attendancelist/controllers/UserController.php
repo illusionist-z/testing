@@ -2,8 +2,7 @@
 
 namespace salts\Attendancelist\Controllers;
 
-use salts\Core\Models\Db;
-$server = PHP_OS;
+use salts\Core\Models\Db; 
 
  
 class UserController extends ControllerBase {

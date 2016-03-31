@@ -94,9 +94,9 @@ $di->setShared('db',function() {
             'charset'     => 'utf8']);
     }
     else {
-//        $localhost = $this->request->getServer('HTTP_HOST');
-          
-       header("Location:http://localhost:8080/salts");
+         
+        $localhost = $_SERVER[HTTP_HOST];
+       header("Location:http://".$localhost."/salts");
     }
 });
 $di->set('cookies', function () {
@@ -109,3 +109,7 @@ $di->set('crypt', function () {
     $crypt->setKey('#1dj8$=dp?.ak//j1V$'); // Use your own key!
     return $crypt;
 });
+
+  
+    
+    
