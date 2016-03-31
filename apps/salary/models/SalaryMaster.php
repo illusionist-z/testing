@@ -222,7 +222,7 @@ class SalaryMaster extends Model {
                     $SM = $this->getLatestsalary($value[0]['member_id']);
                     //get the latest
                     $latest_otpay = $this->getlatestOTPay($value[0]['member_id'], $budget_startyear, $budget_endyear);
-                   print_r($SD);exit;
+                  
                     if (!empty($SD)) {
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
@@ -230,29 +230,7 @@ class SalaryMaster extends Model {
                         echo "basic salary in salary detail " . $SD['total_basic_salary'];
                         
                     }
-                       if(03==$working_start_date[1] || 03==$salary_starting_month)
-               {
-                   //calculate date difference between starting date and budget end year
-//                    $date_diff=1;
-//                    $basic_salary_annual=$value['basic_salary']*$date_diff;
-//                    $date_to_calculate=$date_diff;
-//                    $this->change_status($member_id);
-                   $detail_data=$this->getsalarydetail_oneyear($budget_startyear,$budget_endyear,$value[0]['member_id']);
-                   
-                   $basic_salary_annual =$detail_data['total_bsalary']+$value[0]['basic_salary'];
-//                   $total_deduce=$detail_data['total_absent_dedution']+$detail_data['total_ssc_emp'];
-                   echo "BASIC SALARY ".$detail_data['total_bsalary'];
-                   
-                   if ($value[0]['basic_salary'] > 300000) {
-                        $emp_ssc = $detail_data['total_ssc_emp']+6000;
-                    } else {
-                        $emp_ssc = $detail_data['total_ssc_emp']+($value[0]['basic_salary']*2/100);
-                        
-                    }
-                   $total_income_tax=$detail_data['total_income_tax'];
-                  
-                   $flg=1;
-               }
+                       
 
                     echo "OLD ALLOWANCE" . $old_allowance . '<br>';
                     $Allowanceresult = $this->getAllowances($value[0]['member_id'], $basic_salary_annual, $date_diff, $old_allowance, $SM['status'], $SD['allowance_amount'], $SD['count_pay']);

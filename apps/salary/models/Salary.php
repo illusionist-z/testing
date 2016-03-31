@@ -5,7 +5,6 @@ use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Regex;
 
-
 class Salary extends \Library\Core\Models\Base {
 
     public function initialize() {
@@ -14,7 +13,6 @@ class Salary extends \Library\Core\Models\Base {
     }
 
     public function chkValidate($data) {
-
         $ress = array();
         $validate = new Validation();
         $validate->add('uname', new PresenceOf(
@@ -28,22 +26,28 @@ class Salary extends \Library\Core\Models\Base {
         'pattern' => '/\+44 [0-9]+/'
             )
         ));
-        $validate->add('travelfee', new Regex(
+//        $validate->add('travelfee', new Regex(
+//            array(
+//        'message' => '* Only number',
+//        'pattern' => '/\+44 [0-9]+/'
+//            )
+//        ));
+        $validate->add('checkall', new PresenceOf(
             array(
-        'message' => '* Only number',
-        'pattern' => '/\+44 [0-9]+/'
+        'message' => 'Choose aleast one'
+        
             )
         ));
 
-        $group1 = new Check('checkall', array(
-            'name' => 'checkall[]',
-            'value' => '1'
-        ));
-        $group1->addValidator(new PresenceOf(array(
-            'message' => 'Group 1 is required'
-        )));
-        $this->add($group1);
-        
+//        $group1 = new Check('checkall', array(
+//            'name' => 'checkall[]',
+//            'value' => '1'
+//        ));
+//        $group1->addValidator(new PresenceOf(array(
+//            'message' => 'Group 1 is required'
+//        )));
+//        $this->add($group1);
+//        
         $messages = $validate->validate($data);
         if (count($messages)) {
             foreach ($messages as $message) {

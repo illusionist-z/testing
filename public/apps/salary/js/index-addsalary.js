@@ -4,7 +4,7 @@ var AddSalary = {
            type : 'POST',
            url  : baseUri+'salary/salarymaster/savesalary',
            data : $('#add_salary').serialize(),
-           success: function(d){  //alert(d);
+           success: function(d){  
                cond = JSON.parse(d);
             
                 if(cond.result === 'error')

@@ -30,7 +30,7 @@ if (isset($Msg)) {
                             <span class="col-xs-8">
                                 <input type="text" class="salusername" name="uname" id="uname" style="width:45%; height: 20%;" placeholder="<?php echo $t->_("searchusername"); ?>">
                                 <span id="add_salary_uname_error"></span>
-                                <input type="text" value="" id="formemberid" name="member_id">
+                                <input type="hidden" value="" id="formemberid" name="member_id">
                             </span>                                          
                         </div>
 
@@ -50,7 +50,7 @@ if (isset($Msg)) {
                                     <input type='radio' name='radTravel' value='2' id="radtravel2"/>Per month
                                 </div> 
                                 <div style="" >
-                                    <input type="text"class="col-xs-2" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:45%; height: 20%;" name="travelfees" disabled/>
+                                    <input type="number"class="col-xs-2" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:45%; height: 20%;" name="travelfees" disabled/>
                                     <span  id="travelfee_error"></span>
                                 </div>
                             </div>
@@ -58,7 +58,8 @@ if (isset($Msg)) {
                         <div class="div-bottom col-md-12">
                             <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("overtime"); ?></span>
                             <span class="col-xs-8">
-                                <input type="text" id="overtime" value="" style="width:45%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>">
+                                <input type="number" id="overtime" value="" style="width:45%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>">
+                            
                             </span>
                         </div>
 
