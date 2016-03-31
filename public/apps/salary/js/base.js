@@ -360,9 +360,9 @@ var Salary = {
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
-                var json_obj = $.parseJSON(data);//parse JSON 
+                var json_obj = $.parseJSON(data);//parse JSON
                 $('table.listtbl tbody').empty(), $('tfoot').empty(), $('div #content').empty(), $('#th_travelfees').empty();
-
+                
                 var j = 1;
                 var travelfees;
                 var travelfee_header;
@@ -535,7 +535,6 @@ $(document).ready(function () {
 //
 //        Salary.autolist();
 //    });
-
     $('#namelist').on('blur', function () {
        var name = document.getElementById('namelist').value;
        Salary.getmemid(name);
