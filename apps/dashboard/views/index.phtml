@@ -1,121 +1,102 @@
-<!DOCTYPE html>
-
 <?php
-
 use Phalcon\Tag as Tag;
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
         <?php $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini" onload="display_ct()">
-        <?php error_reporting(0); ?>                                
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
-            <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">   
-                <ul class="nav navbar-nav"> 
-                    <li>
-                        <a><img id="formenuicon" class="sidebar-toggle" href="#sidepage" role="button" >
-                            <span class="sr-only">Toggle navigation</span>
-                        </a>
-                    </li> 
-                </ul>
-
+            <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">
+                <a class="sidebar-toggle" role="button" href="#sidepage">
+                    <span id="btn_show_menu" class="cmn-icons cmn-icons-toggle"></span>
+                </a>
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="<?php echo $baseUri ?>help/index/searchHelp" id="btn_cmn_help">
+                            <span class="cmn-icons cmn-icons-help"></span>
+                        </a> 
+                        <div id="helpnoti">
+                            <div id="helpnotiTitle"><?php echo $t->_("Help"); ?></div>
+                        </div>
+                    </li>  
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu" >
+                        <a href="#" class="<?php
+                        if (count($Noti) == 0) {
+                            echo "nonoti";
+                        } else {
+                            echo "noti";
+                        }
+                        ?>" id="noti">
+                            <span class="cmn-icons cmn-icons-notifi"></span>
+                            <span class="label label-warning"><?php
+                                if (count($Noti) == 0) {
 
-                    <ul class="nav navbar-nav"> 
-                        <li>
-                            <a href="<?php echo $baseUri ?>help/index/searchHelp"    id="help_icon" style="padding-top: 20px;" >
-                                <img id="helpicon">                               
-                            </a> 
-                            <div id="helpnoti">
-                                <div id="helpnotiTitle"><?php echo $t->_("Help"); ?></div>                                
+                                } else {
+                                    echo count($Noti);
+                                }
+                                ?></span>
+                        </a>
+
+                        <div id="notificationContainer">
+                            <div id="notificationTitle"><?php echo $t->_("Notifications"); ?></div>
+                            <div id="notificationsBody" class="notifications">
+
                             </div>
-                        </li>  
-                        <!-- Notifications: style can be found in dropdown.less -->
-                        <li class="dropdown notifications-menu" >
-                            <a href="#" class="<?php
-                            if (count($Noti) == 0) {
-                                echo "nonoti";
-                            } else {
-                                echo "noti";
-                            }
-                            ?>" id="noti" style="padding-top: 20px;">
-                                <img id="notiicon">
-                                <span class="label label-warning"><?php
-                                    if (count($Noti) == 0) {
-                                        
-                                    } else {
-                                        echo count($Noti);
-                                    }
-                                    ?></span>
-                            </a>
+                            <div id="notificationFooter"><a href="<?php echo $baseUri ?>/notification/index/viewall"><span style="color:white"><?php echo $t->_("View All"); ?></span></a></div>
+                        </div>
+                    </li>
+                    <!-- Tasks: style can be found in dropdown.less -->
 
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" id="cmn_login_name" data-toggle="dropdown">
+                            <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                               <p>
+                                <b><?php echo $this->session->user['member_login_name']; ?></b>
+                                    <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>" . date("M - Y", strtotime($this->session->user['created_dt'])) . "</b>"; ?></small>
+                                </p>
+                            </li>
 
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
 
-                            <div id="notificationContainer">
-                                <div id="notificationTitle"><?php echo $t->_("Notifications"); ?></div>
-                                <div id="notificationsBody" class="notifications">
-
-                                </div>
-                                <div id="notificationFooter"><a href="<?php echo $baseUri ?>/notification/index/viewall"><span style="color:white"><?php echo $t->_("View All"); ?></span></a></div>
-                            </div>
-                        </li>
-                        <!-- Tasks: style can be found in dropdown.less -->
-
-                        <!-- User Account: style can be found in dropdown.less -->
-                       <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 20px;">
-                                <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- User image -->
-                                <li class="user-header">
-
-                                 
-                                      <img src="../../public/common/img/profile1.jpg" style="box-shadow: 2px 3px 2px #428bca;width:90px;height:90px;" class="img-circle" width="30px" alt="User Image">
-                                    
-                                     <p>
-                                        <b><?php echo $this->session->user['member_login_name']; ?></b>
-
-                                        <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>" . date("M - Y", strtotime($this->session->user['created_dt'])) . "</b>"; ?></small>
-                                    </p>
-                                </li>
-
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-
-                                    <?php
-                                    if ($permission == 1) {
-                                        ?>
-                                        <div class="pull-left">
-                                            <a href="<?php echo $baseUri ?>setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
-                                        </div>
-                                        <?php
-                                    } else {
-                                        ?> 
-                                        <div class="pull-left">
-                                            <a href="<?php echo $baseUri ?>setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
-                                        </div>
-                                        <?php
-                                    }
+                                <?php
+                                if ($permission == 1) {
                                     ?>
-
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
-
+                                    <div class="pull-left">
+                                        <a href="<?php echo $baseUri ?>setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
                                     </div>
-                                </li>
-                            </ul>
-                        </li>
+                                    <?php
+                                } else {
+                                    ?> 
+                                    <div class="pull-left">
+                                        <a href="<?php echo $baseUri ?>setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
 
-                    </ul>
-                </div>                
+                </ul>
+                </div>
             </nav>
         </header>
 
@@ -132,8 +113,6 @@ use Phalcon\Tag as Tag;
                         <?php
                         $count = 1;
                         foreach ($this->session->auth as $key_name => $key_value) {
-
-
                             $top = explode(" ", $key_value["link0"]);
                             $top_link = explode(" ", $key_value["link1"]);
                             if (strpos($key_name, 'user') !== false) {
