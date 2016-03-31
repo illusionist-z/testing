@@ -151,13 +151,12 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                     <li id="noleaveli">
                                                         <?php
                                                         if ($this->session->profile['member_profile'] == null) {
-                                      ?>  <img src="../../public/uploads/profile1.jpg"style="width:15px;height:15px;"  class="user-image "   alt="User Image"><?php
+                                                            ?>  <img src="../../public/uploads/profile1.jpg"style="width:15px;height:15px;"  class="user-image "   alt="User Image"><?php
                                                         } else {
-                                                     echo '<img class="img-circle" style="width:15px;height:15px;"  src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
-
+                                                            echo '<img class="img-circle" style="width:15px;height:15px;"  src="data:image/jpeg;base64,' . base64_encode($this->session->profile['member_profile']) . '"/>';
                                                         }
                                                         ?>                 
-                                                       <?= $na->member_login_name ?>
+                                                        <?= $na->member_login_name ?>
                                                     </li>
                                                     <?php
                                                     array_push($noleave, $na->member_login_name);
@@ -167,19 +166,15 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                             <?php
                                             if (sizeof($noleave) > 2) {
                                                 ?>
-                                                <style type="text/css">#noleavelist,hr{
-                                                        display:block;
-                                                    }</style> 
+                                            <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelistblock"><?= $t->_("View All"); ?></a>
                                                 <?php } else {
                                                     ?>
-                                                <style type="text/css">#noleavelist,hr{
-                                                        display:none;
-                                                    }</style>             
+                                             <hr>
+                                            <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelistnone"><?= $t->_("View All"); ?></a>
                                                     <?php
                                                 }
                                                 ?>
-                                            <hr>
-                                            <a href="../../leavedays/index/noleavelist"  class="btn"  id="noleavelist"><?= $t->_("View All"); ?></a>
+                                           
                                         </li>
                                     </ul>
                                     <ul class="nav nav-pills nav-stacked">
@@ -190,12 +185,11 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                 foreach ($lname as $na) {
                                                     ?>
                                                     <li id="noleaveli">
-                                                          <?php
+                                                        <?php
                                                         if ($this->session->profile['member_profile'] == null) {
-                                      ?>  <img src="../../public/uploads/profile1.jpg"style="width:15px;height:15px;"  class="user-image "   alt="User Image"><?php
+                                                            ?>  <img src="../../public/uploads/profile1.jpg"style="width:15px;height:15px;"  class="user-image "   alt="User Image"><?php
                                                         } else {
-                                                     echo '<img class="img-circle" style="width:15px;height:15px;"  src="data:image/jpeg;base64,'.base64_encode(  $this->session->profile['member_profile'] ).'"/>';
-
+                                                            echo '<img class="img-circle" style="width:15px;height:15px;"  src="data:image/jpeg;base64,' . base64_encode($this->session->profile['member_profile']) . '"/>';
                                                         }
                                                         ?>  <?= $na['member_login_name'] ?>
                                                     </li>
@@ -207,19 +201,16 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                             <?php
                                             if (sizeof($count) > 2) {
                                                 ?>
-                                                <style type="text/css">#leavemostlist,hr{
-                                                        display:block;
-                                                    }</style> 
+                                                <hr>
+                                            <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlistblock"><?= $t->_("View All"); ?></a>
                                                 <?php } else {
                                                     ?>
-                                                <style type="text/css">#leavemostlist,hr{
-                                                        display:none;
-                                                    }</style>
+                                               <hr>
+                                            <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlistnone"><?= $t->_("View All"); ?></a>
                                                     <?php
                                                 }
                                                 ?>
-                                            <hr>
-                                            <a href="../../leavedays/index/leavemost"  class="btn"  id="leavemostlist"><?= $t->_("View All"); ?></a>
+                                            
                                         </li>
                                     </ul>
                                 </div><!-- ./chart-responsive -->

@@ -1,7 +1,6 @@
 <?php
 
 namespace salts\Auth\Models;
-
 use salts\Auth\Models\Db;
 use Phalcon\Mvc\Model;
 $server = PHP_OS;

@@ -11,7 +11,7 @@
  *
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
  * edited by Khine Thazin Phyo
- * 
+ * reject noleave leavemost
  */
 require_once 'apps/Leavedays/controllers/LeaveIndexController.php';
 
@@ -72,17 +72,16 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $this->assertContains("Family Case", $result[0]['leavetype_name']);
     }
 
-   public function testdeleteListTypeAction() {
-       $id = '95eb0765-9d54-11e5-9bf6-4c3488333b45';
-       $leave = new LeaveIndexController();
-       $leave->setStatus($id);
-       $this->assertTrue($leave->deleteListTypeAction());
-   }
     public function testaddListTypeAction() {
         $ltype_name = 'Family Case';
         $addlist = new LeaveIndexController();
         $addlist->setltype_name($ltype_name);
         $this->assertEquals("Family Case", $addlist->addListTypeAction());
+    }
+
+    public function testdeleteListTypeAction() {
+        $leave = new LeaveIndexController();
+        $this->assertTrue($leave->deleteListTypeAction());
     }
 
     public function testeditleavesettingAction() {
@@ -103,12 +102,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($accept_leave->acceptleaveAction());
     }
 
-//    public function testrejectleaveAction() {
-//        $noti_id = 11454;
-//        $reject = new LeaveIndexController();
-//        $reject->setNoti($noti_id);
-//        $this->assertTrue($reject->rejectleaveAction());
-//    }
+
     public function testapplyautolistAction() {
         $apply_auto = new LeaveIndexController();
         $this->assertTrue($apply_auto->applyautolistAction());
@@ -128,17 +122,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $this->assertContains("donation", $result[0]['leave_category']);
     }
 
-//    public function testnoleavelistAction() {
-//        $leave = new LeaveIndexController();
-//        $this->assertTrue($leave->noleavelistAction());
-//    }
 
-//        public function testleavemostAction() {
-//        $leave = new LeaveIndexController();
-//
-//
-//        $this->assertTrue($leave->leavemostAction());
-//    }
     public function testdetailAction() {
         $leave = new LeaveIndexController();
 

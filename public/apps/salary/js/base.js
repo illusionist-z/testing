@@ -60,7 +60,7 @@ var Salary = {
                 data += '<tr><td></td><td> ' + result.t['Decut Name'] + ' </td><td colspan="4" style="font-size:12px;">';
                 for (var j in result.dedution) {
                     var duct = Salary.Check(result.dedution[j]['deduce_id'], result.permit_dedution);
-                    if (Salary.Check('children', result.permit_dedution) != 'checked') {
+                    if (Salary.Check('children', result.permit_dedution) !== 'checked') {
                         result.no_of_children = 'No';
                     }
                     ;
@@ -128,7 +128,7 @@ var Salary = {
         $ovl.html(d);
         $ovl.dialog("open");
         $('#edit_salary_edit').click(function () {
-
+            
             Salary.BtnEdit($ovl);
         });
         $('#edit_delete').click(function () {
@@ -172,7 +172,7 @@ var Salary = {
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
-                //alert(data);    
+                  
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
                     dict.push(json_obj[i].member_id);
@@ -189,19 +189,19 @@ var Salary = {
     },
     BtnEdit: function (val) {
         var form = $('#edit_salary');
-
+        
         $.ajax({
             type: 'POST',
             data: form.serialize(),
             dataType: 'json',
             url: "btnedit",
             success: function (d) {
-
+                
                 if (true === d.valid)
                 {
                     val.dialog("close");
 
-                    $('body').load("salarylist");
+                    //$('#salary_list').reload();
                     link_height();
                 }
                 //if fail , show error data
@@ -272,7 +272,7 @@ var Salary = {
         var member_id = document.getElementById('member_id').value;
         $.ajax({
             type: 'POST',
-            url: baseUri + "salary/index/delete_salary",
+            url: baseUri + "salary/index/deleteSalary",
             data: {id: member_id},
             success: function () {
 
@@ -280,7 +280,7 @@ var Salary = {
             }
         }).done(function () {
             //$('body').load('salarylist');
-            location.reload();
+            $("#salarylist").reload();
         });
     },
     calSalary: function () {

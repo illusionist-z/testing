@@ -2,10 +2,9 @@
 
 namespace salts\Salary\Controllers;
 
-use salts\Core\Models\Db;
 use salts\Salary\Models\SalaryDetail;
 use salts\Salary\Models\SalaryMaster;
-use salts\Attendancelist\Models\Attendances;
+use salts\Core\Models\Db\Attendances;
 
 class CalculateController extends ControllerBase {
 
@@ -22,7 +21,7 @@ class CalculateController extends ControllerBase {
         $salary_start_date = $this->request->get('salary_date');
         $SalaryDetail = new SalaryDetail();
         $Salarymaster = new SalaryMaster();
-        $Attendance = new \salts\Salary\Models\Attendances();
+        $Attendance = new Attendances();
         $countattday = $Attendance->getCountattday($salary_start_date);
 
         $getbasic_salary = $Salarymaster->getBasicsalary($countattday);

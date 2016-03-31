@@ -78,16 +78,18 @@ $(document).ready(function () {
     $(".content").on('click', function () {
         $("#notificationContainer").hide();
     });
+    $(".noti").on('click', function () {
+        $("#helpnoti").hide();
+    });
 
 
- 
-    
-$("#help_icon").on('mouseover', function (e) {
+
+    $("#help_icon").on('mouseover', function (e) {
         e.preventDefault();
         //document.getElementById("noti").className = "noticlose";
         $("#helpnoti").fadeToggle(100);
     });
-  $("#helpnoti").on('mouseover', function () {
-         $("#helpnoti").hide();
+    $(".content").on('mouseover', function () {
+        $("#helpnoti").hide();
     });
 });

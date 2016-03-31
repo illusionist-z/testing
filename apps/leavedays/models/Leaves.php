@@ -49,13 +49,10 @@ class Leaves extends \Library\Core\Models\Base {
                     ->columns(array('core.*', 'leaves.*'))
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
-                    ->Where('leaves.noti_id = :Noti_id:', array('Noti_id' => $Noti_id))
-                    
+                    ->Where('leaves.noti_id = :Noti_id:', array('Noti_id' => $Noti_id))                    
                     ->getQuery()
-                    ->execute();
-            
-         return $row;
-        
+                    ->execute();            
+         return $row;        
     }
     public function getAbsent() {
         $row = $this->modelsManager->createBuilder()
@@ -67,7 +64,6 @@ class Leaves extends \Library\Core\Models\Base {
                 ->getQuery()
                 ->execute();
         foreach ($row as $value) {
-
             $result = $this->db->query("select * from attendances where attendances.member_id='" . $value->core->member_id . "'"
                     . "and attendances.status=2");
             $data = $result->fetchall();
@@ -94,7 +90,6 @@ class Leaves extends \Library\Core\Models\Base {
         $filter = new Filter();
         $ltype = $filter->sanitize($ltype, "string");
         $namelist = $filter->sanitize($namelist, "string");
-
         $select = "SELECT date(date) as date,member_login_name,date(start_date)"
                 . "as start_date, date(end_date) as end_date,leave_days,"
                 . "leave_category,leave_description,leave_status,"
@@ -102,9 +97,7 @@ class Leaves extends \Library\Core\Models\Base {
                 . " leaves JOIN core_member ON "
                 . "leaves.member_id=core_member.member_id "
                 . "and core_member.deleted_flag = 0 ";
-
         $conditions = array();
-
         if ($ltype != "") {
             $conditions[] = "leaves.leave_category='" . $ltype . "'";
         }
@@ -332,7 +325,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @author Su Zin kyaw
      */
     public function acceptLeave($id, $days, $noti_id) { 
-           $this->db = $this->getDI()->getShared("db");
+        $this->db = $this->getDI()->getShared("db");
         $date = $this->getContractData($id);
         $sql = Leaves::find("member_id ='$id' AND start_date BETWEEN '".$date["startDate"]."' AND '".$date["endDate"]."'");
         $leave = \salts\Core\Models\Permission::tableObject($sql);
@@ -422,7 +415,6 @@ class Leaves extends \Library\Core\Models\Base {
     public function userValidation($data) {
         $res = array();
         $validate = new Validation();
-
         $validate->add('sdate', new PresenceOf(
                         array(
                     'message' => ' * Start Date is required'
@@ -433,11 +425,7 @@ class Leaves extends \Library\Core\Models\Base {
                     'message' => ' * End Date is required'
         )));
         $validate->add('description', new PresenceOf(
-                array(
-            'message' => " * Reason Must be Insert"
-        )));
-
-
+                array('message' => " * Reason Must be Insert")));
         $messages = $validate->validate($data);
         if (count($messages)) {
             foreach ($messages as $message) {
