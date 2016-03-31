@@ -8,10 +8,11 @@ use salts\Salary\Models\SalaryDetail;
 use Phalcon\Filter;
 
 class SalaryDetail extends Model {
-
+    public $base;
     public function initialize() {
         //parent::initialize();
         $this->db = $this->getDI()->getShared("db");
+        $this->base = new \Library\Core\Models\Base();
     }
 
     /**
@@ -565,28 +566,27 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     }
     
-    public function searchSList($param) {
+    public function searchSList($param,$currentPage) {
         try{
-            
             if($param['travel_fees'] == 1){
             $field="travel_fee_perday";
             }
             if($param['travel_fees'] == 2){
             $field="travel_fee_permonth";
             }
-            $select = "SELECT salary_master.member_id,member_login_name,basic_salary,".$field.",over_time,ssc_emp,ssc_comp FROM salary_master"
-                    . " join core_member on salary_master.member_id=core_member.member_id";
-            $select .= " WHERE ".$field." <> 0";
+            $select = "SELECT sm.member_id,c.member_login_name,sm.basic_salary,sm.".$field.",sm.over_time,sm.ssc_emp,sm.ssc_comp FROM salts\Core\Models\Db\SalaryMaster as sm"
+                    . " join salts\Core\Models\Db\CoreMember as c on sm.member_id= c.member_id";
+            $select .= " WHERE sm.".$field." <> 0";
             if($param['user_id'] !== ""){
-                $select .= " and salary_master.member_id='" . $param["user_id"] . "'";
-            }
-            $result = $this->db->query($select);
-            $row = $result->fetchall();
-            
+                $select .= " and sm.member_id='" . $param["user_id"] . "'";
+            }            
+            $select .= " ORDER BY sm.created_dt desc";
+            $result = $this->modelsManager->executeQuery($select);
+            $page = $this->base->pagination($result, $currentPage);
         } catch (Exception $ex) {
          echo $ex;
         }
-        return $row;
+        return $page;
     }
     /**
      * @author David JP <david.gnext@gmail.com>
