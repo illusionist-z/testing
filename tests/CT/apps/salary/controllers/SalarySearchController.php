@@ -9,7 +9,8 @@
 use salts\Core\Models\Db;
 use salts\Salary\Controllers;
 use salts\Salary\Models;
-
+use salts\Salary\Models\SalaryDetail;
+use salts\Salary\Models\SalaryMaster;
 include_once 'tests\CT\apps\LoginForAll.php';
 
 require_once 'apps/salary/controllers/SearchController.php';
@@ -21,9 +22,8 @@ require_once 'apps/core/models/db/CoreMember.php';
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
  */
 class SalarySearchController extends Controllers\SearchController {
-  
+
     public $param;
-    public $login_params = array('company_id' => 'cop1', "member_login_name" => "admin", "password" => "admin");
 
     public function setparam($param) {
         $this->param = $param;
@@ -33,18 +33,18 @@ class SalarySearchController extends Controllers\SearchController {
         $login = new LoginForAll();
         $login->loginFirst();
     }
-/*
- * $cond fill value
- */
+
+    /*
+     * $cond fill value
+     */
+
     public function indexAction() {
         $this->initialize();
-    //    if ($this->request->isAjax() == true) {
-            $SalaryDetail = new SalaryDetail();
-            $cond = $this->request->get('cond', array());
-            $search_result = $SalaryDetail->searchSalary($cond);
-//            $this->view->disable();
-//            echo json_encode($search_result);
-    //    }
+        $SalaryDetail = new SalaryDetail();
+        $cond = $this->request->get('cond', array());
+        $search_result = $SalaryDetail->searchSalary($cond);
+        $this->view->disable();
+        echo json_encode($search_result);
         return true;
     }
 
@@ -52,12 +52,12 @@ class SalarySearchController extends Controllers\SearchController {
      * undefined $field
      */
     public function searchTravelfeesAction() {
-        $this->initialize();
-        $param = $this->param;
-        $SalaryDetail = new Models\SalaryDetail();
-        $search_result = $SalaryDetail->searchSList($param);
-//        $this->view->disable();
-//        echo json_encode($search_result);
-        return true;
+        $this->initialize();        
+       $data = $this->param;
+        $SalaryDetail = new SalaryDetail();
+        $search_result = $SalaryDetail->searchSList($data);
+       
+        echo json_encode($search_result);
     }
+
 }

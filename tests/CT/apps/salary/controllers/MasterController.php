@@ -81,16 +81,7 @@ class MasterController extends Controllers\SalaryMasterController {
         $this->absent = $absent;
     }
 
-    public function salaryinitialize() {
-        $this->initialize();
-      //  $this->_addsalary = new Salary;
-     //   $this->config = \Module_Config::getModuleConfig('salary');
-        $this->setCommonJsAndCss();
-        $this->act_name = $this->router->getModuleName();
-        $this->permission = $this->setPermission($this->act_name);
-       // $this->view->permission = $this->permission;
-        return true;
-    }
+   
 
     /**
      * Save salary,tax deduce and allowance to salary master using sanitize
