@@ -95,6 +95,7 @@ class IndexController extends ControllerBase {
      */
     public function editTimeAction($id, $localtime) {
  if ($this->moduleIdCall == 1) {
+   
         $offset = $this->session->location['offset'];
         $post = $localtime;
         $Att = new \salts\Attendancelist\Models\Attendances();
@@ -140,7 +141,7 @@ class IndexController extends ControllerBase {
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $result = $Attendances->searchAttList($year, $month, $username,'1');
+            $result = $Attendances->searchAttList($year, $month, $username);
 
             $this->view->disable();
             echo json_encode($result);

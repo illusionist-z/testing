@@ -127,41 +127,41 @@ foreach ($salary_info as $value) {
                                     <td><?php echo $no; ?></td>
                                     <td><?php echo $salary_infos->core->member_login_name; ?></td>
                                     <td><?php echo $salary_infos->core->ssn_no; ?></td>
-                                    <td><?php if($salary_infos->salary_detail->basic_salary>300000){echo "300000";}else{echo $salary_infos->salary_detail->basic_salary; }?></td>
-                                    <td>
+                                    <td style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo "300000";}else{echo $salary_infos->salary_detail->basic_salary; }?></td>
+                                    <td style="text-align: right;">
                                         <?php
                                         $sum1 = $sum1 + $salary_infos->salary_detail->ssc_emp;
                                         echo $salary_infos->salary_detail->ssc_emp;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td style="text-align: right;">
                                         <?php
                                         $sum2 = $sum2 + $salary_infos->salary_detail->ssc_emp;
                                         echo $salary_infos->salary_detail->ssc_emp;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td style="text-align: right;">
                                         <?php
                                         $onepercent = $salary_infos->salary_detail->ssc_emp / 2;
                                         $sum3 = $sum3 + $onepercent;
                                         echo $onepercent;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_comp;
                                         $sum4 = $sum4 + $salary_infos->salary_detail->ssc_comp;
                                         echo $salary_infos->salary_detail->ssc_comp;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_emp;
                                         $sum5 = $sum5 + $salary_infos->salary_detail->ssc_emp;
                                         echo $salary_infos->salary_detail->ssc_emp;
                                         ?>
                                     </td>
-                                    <td>
+                                    <td style="text-align: right;">
                                         <?php
                                         echo number_format($salary_infos->salary_detail->ssc_emp+ $salary_infos->salary_detail->ssc_comp);
                                         ?>
@@ -178,12 +178,12 @@ foreach ($salary_info as $value) {
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td><?php echo number_format($sum1) ?></td>
-                                <td><?php echo number_format($sum2) ?></td>
-                                <td><?php echo number_format($sum3) ?></td>
-                                <td><?php echo number_format($sum4) ?></td>
-                                <td><?php echo number_format($sum5) ?></td>
-                                <td>
+                                <td style="text-align: right;"><?php echo number_format($sum1) ?></td>
+                                <td style="text-align: right;"><?php echo number_format($sum2) ?></td>
+                                <td style="text-align: right;"><?php echo number_format($sum3) ?></td>
+                                <td style="text-align: right;"><?php echo number_format($sum4) ?></td>
+                                <td style="text-align: right;"><?php echo number_format($sum5) ?></td>
+                                <td style="text-align: right;">
                                     <?php
                                     $Total = $Total + $sum4 + $sum5;
                                     echo number_format($Total);

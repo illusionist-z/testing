@@ -17,6 +17,7 @@ class Attendances extends \Library\Core\Models\Base {
         if ($offset < 0) {
             $value = $offset;
             $localtime = date("Y-m-d H:i:s", strtotime($value . " minutes", strtotime($data)));
+            
         } else {
             $value = $offset;
             $localtime = date("Y-m-d H:i:s", strtotime($value . " minutes", strtotime($data)));

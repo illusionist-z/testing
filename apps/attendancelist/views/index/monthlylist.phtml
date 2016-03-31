@@ -42,11 +42,11 @@ foreach ($this->session->auth as $key_name => $key_value) {
 <section class="content">
     <div class="buttons">
 
-        <input type="name" name="year"  id="year" class="datepicker form-control-static"   placeholder="<?= $t->_("startdate"); ?>" style="height:25px; width: 100px;" max="20" required>
+        <input type="text" name="year"  id="year" class="datepicker form-control-static"   placeholder="<?= $t->_("startdate"); ?>" style="margin-top: 9px;height:25px; width: 100px;" max="20" required>
 
-        <input type="name" name="month" id="month" class="datepicker form-control-static"   placeholder="<?= $t->_("enddate"); ?>" style="height:25px; width: 100px;" required>
+        <input type="text" name="month" id="month" class="datepicker form-control-static"   placeholder="<?= $t->_("enddate"); ?>" style="margin-top: 9px;height:25px; width: 100px;" required>
 
-        <input type="password" class="monthauto form-control-static" name="username"  id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off" required>
+        <input type="text" class="monthauto form-control-static" name="username"  id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off" required>
 
 
         <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn form-control-static" required id="sub">

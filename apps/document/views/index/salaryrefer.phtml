@@ -55,7 +55,7 @@ foreach ($salary_info as $value) {
                                     <td><?php echo $no; ?></td>
                                     <td><?php echo $salary_infos['member_login_name']; ?></td>
                                     <td><?php echo $salary_infos['bank_acc']; ?></td>
-                                    <td><?php $total += $salary_infos['total']+$salary_infos['special_allowance'];echo number_format(round($salary_infos['total']+$salary_infos['special_allowance'], -2))?></td>
+                                    <td style="text-align: right;"><?php $total += $salary_infos['total']+$salary_infos['special_allowance'];echo number_format(round($salary_infos['total']+$salary_infos['special_allowance'], -2))?></td>
                                 </tr>
                                 <?php
                                 $no++;
@@ -66,7 +66,7 @@ foreach ($salary_info as $value) {
                                 <td></td>
                                 <td></td>
                                 <td>Total : </td>
-                                <td><?php echo number_format(round($total,-2))?></td>
+                                <td style="text-align: right;"><?php echo number_format(round($total,-2))?></td>
                                 
                             </tr>
                             <?php
