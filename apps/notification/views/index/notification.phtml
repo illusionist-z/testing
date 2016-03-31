@@ -28,7 +28,6 @@ if(! ini_get('date.timezone')){
                                         echo $Noti['start_date'];
                                         ?>">
                                                                                              
-                                            <img src="<?php echo $baseUri; ?>public/common/img/profile1.jpg"  style="width:15px;height:15px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                             <b><i style="color:red"><?php echo $Noti['member_login_name']; ?></i></b> apply  leave for <?php
                                             echo "<b>" . date("d-m-Y", strtotime($Noti['start_date'])) . "</b> created by " . $Noti['creator_name'];
                                         } else {
@@ -69,7 +68,6 @@ if(! ini_get('date.timezone')){
                                     <a href="<?php echo $baseUri; ?>notification/index/noticalendar?id=<?php echo $Noti['noti_id']; ?>" class="calendar" id="<?php echo $Noti['noti_id']; ?>">
 
                                                                                       
-                                        <img src="<?php echo $baseUri; ?>public/common/img/profile1.jpg"  style="width:15px;height:15px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <b><i style="color:red"><?php echo $Noti['creator_name']; ?></i></b> marked calendar for <i style="color:red"> <?php echo $Noti['member_login_name']; ?></i><?php echo " at <b>" . date("d-m-Y", strtotime($Noti['startdate'])) . "</b> ";
                                         ?></a></span>
                                 </li>
@@ -91,7 +89,6 @@ if(! ini_get('date.timezone')){
                                     <a href="<?php echo $baseUri; ?>notification/index/notiattendances?id=<?php echo $Noti['noti_id']; ?>" class="attendances" id="<?php echo $Noti['noti_id']; ?>">
 
                                                                                        
-                                        <img src="<?php echo $baseUri; ?>public/common/img/profile1.jpg"  style="width:15px;height:15px;" class="img-circle" class="user-image" width="30px" alt="User Image"/>
                                         <b><i style="color:red"><?php echo $Noti['member_login_name']; ?></i></b> is Late for   <?php
                                             echo $Noti['notes'];
                                             echo " at <b>" . date("d-m-Y", strtotime($Noti['checkin_time'])) . "</b> ";

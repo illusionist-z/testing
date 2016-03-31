@@ -535,10 +535,13 @@ $(document).ready(function () {
 //
 //        Salary.autolist();
 //    });
-    $("#search_salary").mouseenter(function () {
-        var name = document.getElementById('namelist').value;
-        Salary.getmemid(name);
+
+    $('#namelist').on('blur', function () {
+       var name = document.getElementById('namelist').value;
+       Salary.getmemid(name);
     });
+
+    
     $(".search-trtype").click(function () {
         Salary.search_salarylist();
     });

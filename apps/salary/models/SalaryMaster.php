@@ -765,7 +765,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      *  type get $member_id
      */
     public function memidsalary($uname) {
-        $sql = "select * from core_member WHERE full_name ='" . $uname . "'";
+        $sql = "select * from core_member WHERE member_login_name ='" . $uname . "'";
         $result = $this->db->query($sql);
         $row = $result->fetchall();
         return $row;
