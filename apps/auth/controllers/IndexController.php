@@ -36,7 +36,6 @@ class IndexController extends ControllerBase {
     public function failerAction($mode = 1) {
          /*  User failerAction  @author Yan Lin Pai <wizardrider@gmail.com> */
           $this->view->errorMsg = 'company id or user name or password wrong';
-         date_default_timezone_set('Asia/Rangoon');
          if (!isset($_SESSION["attempts"])) 
             $_SESSION["attempts"] = 0;
        
@@ -110,7 +109,6 @@ class IndexController extends ControllerBase {
             elseif (0 != count($chack_user)) {
                 $member_name = $this->session->tokenpush;
                 $Chack = new Models\CoreMember();
-                date_default_timezone_set('Asia/Rangoon');
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
                 $formtdate = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
@@ -129,7 +127,6 @@ class IndexController extends ControllerBase {
 
         
         //Count For Not User Has
-        date_default_timezone_set('Asia/Rangoon');
         $member_name = $this->session->tokenpush;
         $ChackUser = new Models\CoreMember();
         $chack_user = $ChackUser::findByMemberLoginName($member_name);

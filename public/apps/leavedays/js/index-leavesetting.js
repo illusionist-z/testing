@@ -104,7 +104,7 @@ var Categories = {
         $ovl.dialog("open");
         $('#Add_ltype').on('click',function(){
             Categories.AddNew($ovl);
-            location.reload();
+//            location.reload();
         });  
           
         $('#cancel_ltype').on('click',function(){
@@ -122,9 +122,7 @@ var Categories = {
                 d.dialog("close");                
             }
         }).done(function(){
-             $('body').load('leavesetting',function(){
-                 $('.dropdown-toggle').dropdown();
-             });
+            location.reload();
         });
     }
 

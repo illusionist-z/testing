@@ -95,6 +95,7 @@ class IndexController extends ControllerBase {
      */
     public function editTimeAction($id, $localtime) {
  if ($this->moduleIdCall == 1) {
+   
         $offset = $this->session->location['offset'];
         $post = $localtime;
         $Att = new \salts\Attendancelist\Models\Attendances();

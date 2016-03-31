@@ -96,7 +96,6 @@ class LoginController extends ControllerBase {
                 $this->session->set('user', $result);
                 
                 
-                date_default_timezone_set('Asia/Rangoon');
                 $timestamp = date("Y-m-d H:i:s");
                 // Type Error Chack 5 Time 
                 $member_id = $filter->sanitize($this->request->getPost('member_login_name'), 'string');

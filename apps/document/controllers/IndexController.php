@@ -157,7 +157,6 @@ class IndexController extends ControllerBase {
 
     public function salaryreferAction() {
 
-        if ($this->permission == 1) {
 
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
@@ -176,10 +175,7 @@ class IndexController extends ControllerBase {
             $name = $ComInfo['0']->company_name;
             $this->view->salary_info = $result;
             $this->view->com_name = $name;
-        } else {
-
-            echo 'Page Not Found';
-        }
+      
     }
 
 }
