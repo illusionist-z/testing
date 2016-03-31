@@ -354,9 +354,9 @@ var Salary = {
     },
     //searcch salary list by travel fees and user name
     search_salarylist: function () {
-        var $form = $('#frm_search').serialize();
+        var form = $('#frm_search').serialize();
         $.ajax({
-            url: baseUri + 'salary/search/searchTravelfees?' + $form,
+            url: baseUri + 'salary/search/searchTravelfees?' + form,
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
