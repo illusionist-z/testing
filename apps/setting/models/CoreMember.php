@@ -23,7 +23,7 @@ class CoreMember extends Model {
      * while user change something in profile
      * @author Su Zin Kyaw
      */
-    public function updatedata($data, $id,$content) {
+    public function updatedata($data, $id) {
         $this->db = $this->getDI()->getShared("db");
      
         
@@ -40,10 +40,7 @@ class CoreMember extends Model {
                     . ", core_member.member_mail='" . $data['email'] . "' , core_member.member_address='" . $data['add'] . "'"
                     . ", core_member.member_mobile_tel='" . $data['phno'] . "'  WHERE core_member.member_id='" . $id . "' ");  
             }
-        if($content!=NULL){
-              $this->db->query("UPDATE core_member_profile set core_member_profile.member_profile='" . $content . "' WHERE core_member_profile.member_id='" . $id . "' ");  
-            
-        }
+        
 
 
     }

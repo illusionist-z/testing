@@ -1,4 +1,5 @@
 <?php
+
 namespace salts\Manageuser\Controllers;
 
 use salts\Manageuser\Models\User as User;
@@ -19,7 +20,6 @@ class CorememberController extends ControllerBase {
         $this->user = new User();
         $this->setCommonJsAndCss();
         $this->setManageUserControllerJsAndCss();
-       
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
@@ -32,7 +32,6 @@ class CorememberController extends ControllerBase {
      * 
      */
     public function saveuserAction() {
-      
         if ($this->permission == 1) {
 
             if ($this->request->isPost()) {
@@ -59,6 +58,7 @@ class CorememberController extends ControllerBase {
         } else {
             $validate = $user->validat($this->request->getPost());
             $this->checkvalidation($validate);
+            
         }
     }
 
@@ -75,7 +75,8 @@ class CorememberController extends ControllerBase {
             $json['result'] = "error";
             echo json_encode($json);
             $this->view->disable();
-        } else {
+        }
+        else{
             $this->savenewuser();
         }
     }
@@ -85,11 +86,11 @@ class CorememberController extends ControllerBase {
      * Insert new user 
      */
     public function savenewuser() {
-        $file_contents = 0;
+        $file_contents =0;
         if (($_FILES['fileToUpload']['size']) != 0) {
             $file_type = $_FILES['fileToUpload']['type'];
             $file_size = $_FILES['fileToUpload']['size'];
-            $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+             $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
             $file = fopen($MY_FILE, 'r');
             $file_content = fread($file, filesize($MY_FILE));
             fclose($file);
@@ -100,30 +101,32 @@ class CorememberController extends ControllerBase {
             ) {
                 $this->checkimgtype();
             }
-        }
-        $member = $this->request->getPost();
-        $member_id = $this->session->user['member_id'];
-        $NewUser = new CoreMember;
-
-        $NewUser->addNewUser($member_id, $member, $file_contents);
-        $this->view->disable();
-        $json['result'] = "success";
-        echo json_encode($json);
+            else{
+            $member = $this->request->getPost();
+            $member_id = $this->session->user['member_id'];
+            $NewUser = new CoreMember;
+            $NewUser->addNewUser($member_id, $member, $file_contents);
+            $this->view->disable();
+            $json['result'] = "success";
+            echo json_encode($json);
+            }
+        } 
+            
+        
     }
 
     public function checkimgsize() {
-        $message = 'File too large. File must be less than 10 megabytes.';
-        $error = '<script type="text/javascript">alert("' . $message . '");</script>';
-        $json['result'] = $error;
-        echo json_encode($json);
+          $message = 'File too large. File must be less than 10 megabytes.';
+                    $error =  '<script type="text/javascript">alert("' . $message . '");</script>';
+                    $json['result'] = $error;
+                    echo json_encode($json);
     }
 
     public function checkimgtype() {
-        $message = 'Invalid file type. Only JPG, GIF and PNG types are accepted.';
-        $error = '<script type="text/javascript">alert("' . $message . '");</script>';
-        $json['result'] = $error;
-        echo json_encode($json);
+      $message = 'Invalid file type. Only JPG, GIF and PNG types are accepted.';
+                      $error =  '<script type="text/javascript">alert("' . $message . '");</script>';
+                    $json['result'] = $error;
+                    echo json_encode($json);
     }
 
 }
-

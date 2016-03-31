@@ -9,6 +9,7 @@ use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
 
 class Leaves extends \Library\Core\Models\Base {
+ 
 
     public function initialize() {
         parent::initialize();
@@ -121,7 +122,6 @@ class Leaves extends \Library\Core\Models\Base {
      * Get today attendance list
      * @return type
      * @author David JP <david.gnext@gmail.com>
-     * @version Su Zin Kyaw< suzinkyaw.gnext@gmail.com>
      */
     public function applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id) {
         $CoreMember = new CoreMember();
@@ -350,22 +350,20 @@ class Leaves extends \Library\Core\Models\Base {
      * @param type $sdate
      * change leave status to '2'
      * when admin reject leavedays request from user
-     * @author Su Zin Kyaw<gnext.suzin@gmail.com
      */
     public function rejectLeave($noti_id) {
-        $leave_sql = Leaves::findByNotiId($noti_id);
-        $leave = \salts\Core\Models\Permission::tableObject($leave_sql);
-        $leave->leave_status = 2 ;
-        $leave->update();
-        $core_noti_sql = \salts\Core\Models\Db\CoreNotification::findByNotiId($noti_id);
-        $core_noti = \salts\Core\Models\Permission::tableObject($core_noti_sql);
-        $core_noti->noti_status = 1;
-        $core_noti->update();
-        $rel_member_sql = \salts\Core\Models\Db\CoreNotificationRelMember::findByNotiId($noti_id);
-        $rel_member = \salts\Core\Models\Permission::tableObject($rel_member_sql);
-        $rel_member->status = 1;
-        $rel_member->module_name = "leaves";
-        $rel_member->update();        
+    
+        $this->db = $this->getDI()->getShared("db");
+        $sql = "UPDATE leaves set leaves.leave_status=2 "
+                . "WHERE leaves.noti_id='" . $noti_id . "'";
+        $this->db->query("UPDATE core_notification "
+                . "set core_notification.noti_status=1  "
+                . "WHERE core_notification.noti_id='" . $noti_id . "'");
+        $this->db->query("UPDATE core_notification_rel_member set "
+                . "core_notification_rel_member.status=1,module_name='leaves'"
+                . "  WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
+
+        $this->db->query($sql);      
     }
 
     public function getLeaveSetting() {

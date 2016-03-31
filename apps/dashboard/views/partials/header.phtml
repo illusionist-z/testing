@@ -1,14 +1,15 @@
 <?php
 use Phalcon\Tag as Tag;
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html> 
+
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Dashboard</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <?php $this->assets->outputCss() ?>
-      <?php 
+        <?php 
  
      //   $this->partial("partials/header"); ?>
     </head>
@@ -161,26 +162,5 @@ use Phalcon\Tag as Tag;
             <!-- /.sidebar -->
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-
-            <?php
-            echo $this->getContent();
-            $this->assets->outputJs();
-            ?>
-        </div><!-- /.content-wrapper -->
-        <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
-        <footer class="main-footer" style="margin-left:0;">
-            <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-            <div class="language">
-                <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src=' " . $baseUri . "common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src=' " . $baseUri . "common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src=' " . $baseUri . "common/img/myanmar.jpg' width='25px'>") ?>
-            </div>
-        </footer>
-
-        <div id="notidetail" style=" display:none;" class="navbar">
-
-        </div>
-
-
-    </body>
-</html>
+         
+ 

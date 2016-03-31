@@ -104,7 +104,7 @@ var Categories = {
         $ovl.dialog("open");
         $('#Add_ltype').on('click',function(){
             Categories.AddNew($ovl);
-            location.reload();
+//            location.reload();
         });  
           
         $('#cancel_ltype').on('click',function(){
@@ -114,17 +114,17 @@ var Categories = {
     },
      AddNew : function(d){
         var form=$('#Add_new_ltype');
+        var data=form.serialize();
+        alert(data);
         $.ajax({
             type:'POST',
             data: form.serialize(),
-            url : "addListType",
+          //  url : "addListType",
             success:function(){                
                 d.dialog("close");                
             }
         }).done(function(){
-             $('body').load('leavesetting',function(){
-                 $('.dropdown-toggle').dropdown();
-             });
+            location.reload();
         });
     }
 

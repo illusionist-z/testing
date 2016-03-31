@@ -51,27 +51,30 @@ use Phalcon\Filter;
 
                                         </thead>
                                         <tbody>
-                                        <td rowspan="5" style="border-bottom-color: #ecf0f5"></td>
+                                            <tr>
+                                        <td rowspan="5" style="border-bottom-color: #ecf0f5; padding: 17px"></td>
+                                        
                                         <td>Basic Salary</td>
-                                        <td  style="text-align: right;"><?php
+                                        <td  style="text-align: right;padding: 2px"><?php
                                             echo number_format($filter->sanitize($A[$i]->salarydet->basic_salary, "string"));
                                             $sum = $sum + $A[$i]->salarydet->basic_salary;
                                             ?></td>
                                         <td></td>
                                         </tr>
                                         <tr>
+                                            
                                             <td>Overtime Rate</td>
-                                            <td style="text-align: right;" ><?php echo $filter->sanitize($A[$i]->salarymast->over_time, "string"); ?></td>
+                                            <td style="text-align: right;padding: 2px" ><?php echo $filter->sanitize($A[$i]->salarymast->over_time, "string"); ?></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>Overtime Hour</td>
-                                            <td style="text-align: right;"><?php if($A[$i]->attend->overtime==0){echo "";}else{echo $filter->sanitize($A[$i]->attend->overtime, "string");} ?></td>
+                                            <td style="text-align: right;padding: 2px"><?php if($A[$i]->attend->overtime==0){echo "";}else{echo $filter->sanitize($A[$i]->attend->overtime, "string");} ?></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>Overtime Payment</td>
-                                            <td style="text-align: right;">
+                                            <td style="text-align: right;padding: 2px">
                                                 <?php
                                                 if ($filter->sanitize($A[$i]->attend->overtime, "string") > 0) {
                                                     $overtime_pay_perhr = $A[$i]->attend->overtime * $A[$i]->salarymast->over_time;
@@ -86,17 +89,17 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td>Allowance for specific duty</td>
-                                            <td style="text-align: right;"><?php if($A[$i]->salarydet->special_allowance!=null){echo number_format($filter->sanitize($A[$i]->salarydet->special_allowance, "string"));}?></td>
+                                            <td style="text-align: right;padding: 2px"><?php if($A[$i]->salarydet->special_allowance!=null){echo number_format($filter->sanitize($A[$i]->salarydet->special_allowance, "string"));}?></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">Gross Salary</td>
-                                            <td style="text-align: right;"><?php $a = 0;if($A[$i]->salarydet->special_allowance!=null){$a =$A[$i]->salarydet->special_allowance;}?><?php echo number_format(($sum+$a)); ?></td>
+                                            <td style="text-align: right;padding: 2px"><?php $a = 0;if($A[$i]->salarydet->special_allowance!=null){$a =$A[$i]->salarydet->special_allowance;}?><?php echo number_format(($sum+$a)); ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>
                                             <td colspan="2">Deduce for absent</td>
-                                            <td style="text-align: right;"><?php
+                                            <td style="text-align: right;padding: 2px"><?php
                                                 echo number_format($filter->sanitize($A[$i]->salarydet->absent_dedution, "string"));
                                                 $deduce+=$A[$i]->salarydet->absent_dedution;
                                                 ?></td>
@@ -104,7 +107,7 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td colspan="2">Personal Income Tax</td>
-                                            <td style="text-align: right;"><?php
+                                            <td style="text-align: right;padding: 2px"><?php
                                                 echo number_format($filter->sanitize($A[$i]->salarydet->income_tax, "string"));
                                                 $deduce+=$A[$i]->salarydet->income_tax;
                                                 ?></td>
@@ -112,7 +115,7 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td colspan="2">SSB Employee 2%</td>
-                                            <td style="text-align: right;"><?php
+                                            <td style="text-align: right;padding: 2px"><?php
                                                 echo number_format($filter->sanitize($A[$i]->salarydet->ssc_emp, "string"));
                                                 $deduce+=$A[$i]->salarydet->ssc_emp;
                                                 ?></td>
@@ -120,12 +123,12 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td colspan="2">Sub Total</td>
-                                            <td style="text-align: right;"><?php echo number_format($deduce); ?></td>
+                                            <td style="text-align: right;padding: 2px"><?php echo number_format($deduce); ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>
                                             <td colspan="2">Sub Total(Rounded up)</td>
-                                            <td style="text-align: right;">
+                                            <td style="text-align: right;padding: 2px">
                                                 <?php
                                                 $sub_total = ($sum+$a) - $deduce;
                                                 echo number_format(round($sub_total,-2));
@@ -134,12 +137,12 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td colspan="2">Commute Fee</td>
-                                            <td style="text-align: right;"><?php echo number_format($filter->sanitize($A[$i]->salarydet->travel_fee, "string")); ?></td>
+                                            <td style="text-align: right;padding: 2px"><?php echo number_format($filter->sanitize($A[$i]->salarydet->travel_fee, "string")); ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="50px">Grand Total</td>
-                                            <td style="text-align: right;">
+                                            <td style="text-align: right;padding: 2px">
                                                 <?php
                                                $grand_total = $sub_total + $A[$i]->salarydet->travel_fee;
                                                 echo number_format((round($grand_total, -2)));

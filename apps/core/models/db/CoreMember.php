@@ -215,7 +215,7 @@ class CoreMember extends \Library\Core\Models\Base {
      * @param type $filename
      * @return string
      */
-    public function addNewUser($member_id, $member,$file_contents) {
+    public function addNewUser($member_id, $member) {
         $lang="en";
         $arr = (explode(",", $member['user_role']));
         $pass = sha1($member['password']);
@@ -239,11 +239,7 @@ class CoreMember extends \Library\Core\Models\Base {
             $sql = "INSERT INTO core_permission_rel_member (rel_member_id,permission_group_id_user,rel_permission_group_code,creator_id,created_dt)"
                     . " VALUES('" . $value['member_id'] . "','" . $arr['1'] . "','" . $arr['0'] . "','" . $member_id . "',now())";
             $this->db->query($sql);
-            if($file_contents!=NULL){
-                $sql1="INSERT INTO core_member_profile(member_id,member_profile) VALUES('" . $value['member_id'] . "','" . $file_contents . "')  ";
-                $this->db->query($sql1);  
-            
-        }
+       
         }
     }
 

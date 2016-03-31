@@ -29,7 +29,8 @@ class Attendances extends Model {
      */
     public function setCheckInTime($id, $note, $add, $creator_id,$offset) {
         $this->db = $this->getDI()->getShared("db");
-        $mydate = date("Y-m-d H:i:s");$today = date("Y:m:d");
+        $mydate = date("Y-m-d H:i:s");
+        $today = date("Y:m:d");
         $att = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 1");
         /*Condition : Already Checked in or not*/
         if ($att === FALSE) {

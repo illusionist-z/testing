@@ -797,9 +797,9 @@ hr{
     padding: 6px 10px 20px 15px;
 }
 
-
 #noleavelistblock,#leavemostlistblock{
     display: block;
+    width: 26.5em;
 }
 #noleavelistnone,#leavemostlistnone{
     display: none;
