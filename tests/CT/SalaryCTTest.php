@@ -8,7 +8,7 @@
 /**
  * Description of IndexController
  *
- * @author Ei Thandar Aung <khinnyeinchanthu.gnext@gmail.com>
+ * @author Ei Thandar Aung 
  */
 require_once 'apps/salary/controllers/SalaryIndexController.php';
 require_once 'apps/salary/controllers/SalarySearchController.php';
