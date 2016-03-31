@@ -3,7 +3,6 @@
 use Phalcon\DI,
     Phalcon\DI\FactoryDefault;
 use Phalcon\Config\Adapter\Ini;
-use Phalcon\Mvc\Router;
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -14,7 +13,7 @@ define('PATH_SERVICES', __DIR__ . '/../app/services/');
 define('PATH_RESOURCES', __DIR__ . '/../app/resources/');
 
 define('PATH_INCUBATOR', __DIR__ . '/../vendor/incubator/');
-define('PATH_CONFIG', __DIR__ . '/../app/config/config.ini');
+define('PATH_CONFIG', __DIR__ . '/../app/config/org/config.ini');
 define('PATH_MODELS', __DIR__ . '/../app/models/');
 
 set_include_path(
@@ -25,16 +24,30 @@ set_include_path(
 include __DIR__ . "/vendor/autoload.php";
 
 include __DIR__ . "/library/core/models/Base.php";
+
 include __DIR__ . "/library/core/Controller.php";
 
+//spl_autoload_register(function () {
+//    include_once 'apps/auth/controllers/LoginController.php';
+//    include_once 'apps/auth/controllers/ControllerBase.php';
+//    include_once 'apps/manageuser/controllers/ControllerBase.php';
+////    require_once 'apps/manageuser/controllers/CoreMemberController.php';
+//   
+//    include_once 'apps/auth/models/Auth.php';
+//    include_once 'apps/core/models/db/CoreMember.php';
+//    include_once 'apps/auth/models/CoreMember.php';
+//    include_once 'apps/auth/models/Permission.php';
+//    include_once 'apps/auth/models/db/CorePermissionRelMember.php';
+//    include_once 'apps/auth/models/db/CorePermissionGroup.php';
+//    include_once 'apps/auth/models/db/CorePermission.php';
+//});
 spl_autoload_register(function () {
     include_once 'apps/auth/controllers/LoginController.php';
     include_once 'apps/auth/controllers/ControllerBase.php';
     include_once 'apps/auth/controllers/LogoutController.php';
-    include_once 'apps/auth/controllers/IndexController.php';
     include_once 'apps/auth/models/Auth.php';
+    include_once 'apps/core/models/db/CoreMember.php';
     include_once 'apps/auth/models/CoreMember.php';
-    include_once 'apps/auth/models/CoreForgotPassword.php';
     include_once 'apps/auth/models/Permission.php';
     include_once 'apps/auth/models/db/CorePermissionRelMember.php';
     include_once 'apps/auth/models/db/CorePermissionGroup.php';
@@ -48,23 +61,15 @@ spl_autoload_register(function () {
     include_once 'apps/dashboard/models/CorePermissionGroup.php';
     include_once 'apps/dashboard/models/CorePermissionGroupId.php';
     include_once 'library/core/Controller.php';
-    include_once 'library/core/models/SingletonTrait.php';
+    include_once 'apps/core/models/db/Attendances.php';
     include_once 'apps/manageuser/controllers/ControllerBase.php';
     include_once 'apps/manageuser/models/User.php';
-    include_once 'apps/manageuser/models/AddUser.php';
     include_once 'apps/core/models/CoreMember.php';
-    include_once 'apps/core/models/db/Attendances.php';
-    include_once 'apps/core/models/db/CoreMember.php';
-    include_once 'apps/core/models/db/CorePermissionGroupId.php';
-    include_once 'apps/core/models/db/SalaryMaster.php';
-    include_once 'apps/core/models/Permission.php';
-    include_once 'apps/core/models/CorePermissionRelMember.php';
-    include_once 'apps/core/models/db/Attendances.php';
+    //include_once "/library/core/lang/jp.php";
     include_once 'apps/attendancelist/controllers/AbsentController.php';
     include_once 'apps/attendancelist/controllers/ControllerBase.php';
     include_once 'apps/attendancelist/controllers/SearchController.php';
     include_once 'apps/attendancelist/controllers/UserController.php';
-    include_once 'apps/attendancelist/models/Attendances.php';
     include_once 'apps/leavedays/controllers/IndexController.php';
     include_once 'apps/leavedays/controllers/ControllerBase.php';
     include_once 'apps/leavedays/controllers/SearchController.php';
@@ -72,10 +77,31 @@ spl_autoload_register(function () {
     include_once 'apps/leavedays/models/LeaveCategories.php';
     include_once 'apps/leavedays/models/Leaves.php';
     include_once 'apps/leavedays/models/LeavesSetting.php';
-    include_once 'apps/core/models/db/CoreNotification.php';
-    include_once 'apps/core/models/db/CoreNotificationRelMember.php';
-});
+    include_once 'apps/core/models/Permission.php';
 
+    include_once 'apps/salary/controllers/CalculateController.php';
+    include_once 'apps/salary/controllers/ControllerBase.php';
+    include_once 'apps/salary/controllers/IndexController.php';
+    include_once 'apps/salary/controllers/SalaryMasterController.php';
+    include_once 'apps/salary/controllers/SearchController.php';
+    include_once 'apps/salary/models/Allowances.php';
+    include_once 'apps/salary/models/Salary.php';
+    include_once 'apps/salary/models/SalaryDetail.php';
+    include_once 'apps/salary/models/SalaryMaster.php';
+    include_once 'apps/salary/models/SalaryMasterAllowance.php';
+    include_once 'apps/salary/models/SalaryMemberTaxDeduce.php';
+    include_once 'apps/salary/models/SalaryTaxs.php';
+    include_once 'apps/salary/models/SalaryTaxsDeduction.php';
+
+    include_once 'apps/document/controllers/IndexController.php';
+    
+    include_once 'apps/document/controllers/ControllerBase.php';
+    include_once 'apps/document/models/CompanyInfo.php';
+    include_once 'apps/document/models/CorePermissionGroupId.php';
+    include_once 'apps/document/models/Document.php';
+    include_once 'apps/document/models/SalaryDetail.php';
+    include_once 'apps/document/models/SimpleImage.php';
+});
 // use the application autoloader to autoload the classes
 // autoload the dependencies found in composer
 $loader = new \Phalcon\Loader();
@@ -97,35 +123,7 @@ $config = new Ini(__DIR__ . '/config/org/config.ini');
 
 
 $di = new FactoryDefault();
-$di->set('router', function () {
-    $router = new Router();
-    $def_mod = "frontend";
-    $router->setDefaultModule($def_mod);
-    $aryModules = \Library\Core\Module::get();
-    // auth moduleの追加
-    foreach ($aryModules as $module) {
-        if ($def_mod === $module) {
-            continue;
-        }
-        $router->add('/' . $module, [
-            'module' => $module,
-            'action' => 'index',
-            'params' => 'index'
-        ]);
-        $router->add('/' . $module . '/:controller', [
-            'module' => $module,
-            'controller' => 1,
-            'action' => 'index'
-        ]);
-        $router->add('/' . $module . '/:controller/:action/:params', [
-            'module' => $module,
-            'controller' => 1,
-            'action' => 2,
-            'params' => 3
-        ]);
-    }
-    return $router;
-});
+
 //db set up
 $di->set('login_db', function() use ($config) {
     return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
@@ -150,7 +148,6 @@ $di->setShared('db', function() {
         header('Location:http://localhost/salts');
     }
 });
-
 // add any needed services to the DI here
 
 DI::setDefault($di);
