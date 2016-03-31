@@ -40,8 +40,8 @@ class SalarySearchController extends Controllers\SearchController {
 
     public function indexAction() {
         $this->initialize();
-        $SalaryDetail = new SalaryDetail();
-        $cond = $this->request->get('cond', array());
+        $SalaryDetail = new SalaryDetailTest();
+        $cond = $this->request->get('Khin Nyein Chan Thu', array());
         $search_result = $SalaryDetail->searchSalary($cond);
         $this->view->disable();
         echo json_encode($search_result);
@@ -52,7 +52,7 @@ class SalarySearchController extends Controllers\SearchController {
      * undefined $field
      */
     public function searchTravelfeesAction() {
-        $this->initialize();        
+        $this->initialize();
        $data = $this->param;
         $SalaryDetail = new SalaryDetail();
         $search_result = $SalaryDetail->searchSList($data);
