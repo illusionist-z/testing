@@ -266,9 +266,10 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-        
+       
         
     }
+    
 
     /**
      * Js and Css for Help

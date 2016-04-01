@@ -30,6 +30,10 @@ class IndexController extends ControllerBase {
         $this->view->module_name_view = $this->module_name;
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
+        $view = new \Phalcon\Mvc\View();
+$view->setViewsDir( realpath('../../../core/views/partials/') );
+$view->setLayoutsDir( '../../../core/views/layouts/' );
+$view->setPartialsDir( '../../../core/views/partials/' );
     }
 
     /**
@@ -51,10 +55,9 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {
-        
-        
+  
         //$this->view->setLayout('/../core/view/partial/header');
-   
+     
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
