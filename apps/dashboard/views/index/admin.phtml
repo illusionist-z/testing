@@ -179,13 +179,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                 foreach ($lname as $na) {
                                                     ?>
                                                     <li id="noleaveli">
-                                                        <?php
-                                                        if ($this->session->profile['member_profile'] == null) {
-                                                            ?>  <img src="../../public/uploads/profile1.jpg"style="width:15px;height:15px;"  class="user-image "   alt="User Image"><?php
-                                                        } else {
-                                                            echo '<img class="img-circle" style="width:15px;height:15px;"  src="data:image/jpeg;base64,' . base64_encode($this->session->profile['member_profile']) . '"/>';
-                                                        }
-                                                        ?>  <?= $na['member_login_name'] ?>
+                                                        <?= $na['member_login_name'] ?>
                                                     </li>
                                                     <?php
                                                     array_push($count, $na['member_login_name']);

@@ -766,7 +766,11 @@ hr{
 */
 .ui-dialog { z-index: 9999 !important ;}
 #ui-datepicker-div { z-index: 99999 !important;}
-
+@-moz-document url-prefix() {
+    #navicon5,#navicon31{/*calendar*/
+        background: red;
+    }
+}
 
 #navicon5,#navicon31{/*calendar*/
     background: url("../img/main.png")  -190px -115px no-repeat  ;
@@ -799,7 +803,8 @@ hr{
 
 #noleavelistblock,#leavemostlistblock{
     display: block;
-    width: 26.5em;
+    width: 10.5em;
+    margin-left: 100px;
 }
 #noleavelistnone,#leavemostlistnone{
     display: none;
