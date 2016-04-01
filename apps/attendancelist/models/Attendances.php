@@ -212,7 +212,7 @@ class Attendances extends Model {
         $utctime = \salts\Core\Models\Db\Attendances::getInstance()->LocalToUTC($data, $offset);
         
         $hour = date("H", strtotime($data));
-        $row = Attendances::find("id = '$id'");
+        $row = Attendances::findFirst("id = '$id'");
         $attendance = \salts\Core\Models\Permission::tableObject($row);
         
         $attendance->checkin_time = $utctime;

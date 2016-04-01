@@ -13,7 +13,7 @@ class IndexController extends ControllerBase {
     /**  Index Action @param type $mode */
      
     public function indexAction($mode = NULL) {
- 
+       
         $localhost = ($this->request->getServer('HTTP_HOST')); 
         $id_auth_filter = $this->session->auth;
         if (isset($id_auth_filter) != null) {

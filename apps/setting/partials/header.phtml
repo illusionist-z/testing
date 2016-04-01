@@ -1,0 +1,166 @@
+<?php
+use Phalcon\Tag as Tag;
+?>
+<!DOCTYPE html> 
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Setting</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <?php $this->assets->outputCss() ?>
+        <?php 
+ 
+     //   $this->partial("partials/header"); ?>
+    </head>
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
+        <header class="main-header">
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" id="fixedheader" style="margin-left:0;">
+                <a class="sidebar-toggle" role="button" href="#sidepage">
+                    <span id="btn_show_menu" class="cmn-icons cmn-icons-toggle"></span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="<?php echo $baseUri ?>help/index/searchHelp" id="btn_cmn_help">
+                            <span class="cmn-icons cmn-icons-help"></span>
+                        </a> 
+                        <div id="helpnoti">
+                            <div id="helpnotiTitle"><?php echo $t->_("Help"); ?></div>
+                        </div>
+                    </li>  
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown notifications-menu" >
+                        <a href="#" class="<?php
+                        if (count($Noti) == 0) {
+                            echo "nonoti";
+                        } else {
+                            echo "noti";
+                        }
+                        ?>" id="noti">
+                            <span class="cmn-icons cmn-icons-notifi"></span>
+                            <span class="label label-warning"><?php
+                                if (count($Noti) == 0) {
+
+                                } else {
+                                    echo count($Noti);
+                                }
+                                ?></span>
+                        </a>
+
+                        <div id="notificationContainer">
+                            <div id="notificationTitle"><?php echo $t->_("Notifications"); ?></div>
+                            <div id="notificationsBody" class="notifications">
+
+                            </div>
+                            <div id="notificationFooter"><a href="<?php echo $baseUri ?>/notification/index/viewall"><span style="color:white"><?php echo $t->_("View All"); ?></span></a></div>
+                        </div>
+                    </li>
+                    <!-- Tasks: style can be found in dropdown.less -->
+
+                    <!-- User Account: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" id="cmn_login_name" data-toggle="dropdown">
+                            <span class="hidden-xs"><?php echo $this->session->user['member_login_name']; ?></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                               <p>
+                                <b><?php echo $this->session->user['member_login_name']; ?></b>
+                                    <small><b>Member Since </b><?php echo "<b style='color:white;font-size:13px;'>" . date("M - Y", strtotime($this->session->user['created_dt'])) . "</b>"; ?></small>
+                                </p>
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+
+                                <?php
+                                if ($permission == 1) {
+                                    ?>
+                                    <div class="pull-left">
+                                        <a href="<?php echo $baseUri ?>setting/index/admin" class="btn btn-default btn-flat" id="setting"><b>Setting</b></a>
+                                    </div>
+                                    <?php
+                                } else {
+                                    ?> 
+                                    <div class="pull-left">
+                                        <a href="<?php echo $baseUri ?>setting/user" class="btn btn-default btn-flat"  id="setting"><b>Setting</b></a>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b>Sign out</b></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar" id="sidepage" style="display:none;height: auto;">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar" >
+                <!-- Sidebar user panel -->                   
+
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <aside>
+                    <ul class="sidebar-menu">
+                        <li class="header"><b>MAIN NAVIGATION</b></li>
+                        <?php
+                        $count = 1;
+                        foreach ($this->session->auth as $key_name => $key_value) {
+                            $top = explode(" ", $key_value["link0"]);
+                            $top_link = explode(" ", $key_value["link1"]);
+                            if (strpos($key_name, 'user') !== false) {
+                                if ($key_name != 'show_user_notification' && $key_name != 'show_user_setting') {
+                                    if (count($key_value) > 2) {
+                                        if (isset($top_link[1])) {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top_link[0] . $top_link[1]) . '"><img  id="navicon' . $count . '1" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        } else {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img src="../../common/img/list.png" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        }
+                                    } else {
+                                        if (isset($top[1])) {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img  id="navicon' . $count . '1"  ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        } else {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img  id="navicon' . $count . '1"  ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        }
+                                    }
+                                }
+                            } else {
+                                if ($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting') {
+
+                                    if (count($key_value) > 2) {
+                                        if (isset($top_link[1])) {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img  id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        } else {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        }
+                                    } else {
+                                        if (isset($top[1])) {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/index"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        } else {
+                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img id="navicon' . $count . '"  ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                        }
+                                    }
+                                }
+                            }
+
+                            $count++;
+                        }
+                        ?>
+                    </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+         
+ 
