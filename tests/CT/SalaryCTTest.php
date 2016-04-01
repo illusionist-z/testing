@@ -21,7 +21,9 @@ if (!isset($_SESSION))
 class SalaryCTTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
-        
+        global $di;
+
+        $this->object = new SalaryIndexController($di);
     }
 
     public function testsalarylistAction() {
@@ -30,12 +32,12 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->salarylistAction());
     }
 
-//    public function testshowsalarylistAction() {
-//        $month = "june";
-//        $year = "2016";
-//        $name = new SalaryIndexController();
-//        $this->assertTrue($name->showsalarylistAction());
-//    }
+    public function testshowsalarylistAction() {        
+        $salary = new SalaryIndexController();
+        $salary->setmonth("2");
+        $salary->setyear("2016");
+        $this->assertTrue($salary->showsalarylistAction());
+    }
 
     public function testautolistAction() {
         $salary = new SalaryIndexController();
@@ -47,7 +49,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->monthlysalaryAction());
     }
 
-//db
+
 //    public function testpayslipAction() {
 //        $salary = new SalaryIndexController();
 //        $this->assertTrue($salary->payslipAction());
@@ -231,14 +233,13 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
 //        $search = new SalarySearchController();
 //        $this->assertTrue($search->indexAction());
 //    }
-
-    public function testsearchTravelfeesAction() {
-        $data = 1;
-        $search_travel = new SalarySearchController();
-        $search_travel->setparam($data);
-        $this->assertTrue($search_travel->searchTravelfeesAction());
-    }
-
+//note
+//    public function testsearchTravelfeesAction() {
+//        $data = 1;
+//        $search_travel = new SalarySearchController();
+//        $search_travel->setparam($data);
+//        $this->assertTrue($search_travel->searchTravelfeesAction());
+//    }
 //
 //    /*
 //     * SalaryMasterController.php
