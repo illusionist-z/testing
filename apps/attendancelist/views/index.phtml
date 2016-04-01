@@ -3,14 +3,13 @@
 <?php
 
 use Phalcon\Tag as Tag;
-$this->partial("partials/header");
+$this->partial('../../core/views/partials/header');
 
 ?>
  
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-
+        
             <?php
             echo $this->getContent();
             $this->assets->outputJs();
