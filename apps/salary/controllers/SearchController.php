@@ -2,9 +2,7 @@
 
 namespace salts\Salary\Controllers;
 
-use salts\Core\Models\Db;
 use salts\Salary\Models\SalaryDetail;
-use salts\Salary\Models\SalaryMaster;
 
 class SearchController extends ControllerBase {
 

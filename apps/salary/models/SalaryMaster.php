@@ -20,7 +20,7 @@ class SalaryMaster extends Model {
      * @author zinmon
      */
     public function savesalary($data) {
-      
+     
      $return = array();
          $SalaryMaster = new SalaryMaster();    
         try {
@@ -314,16 +314,17 @@ class SalaryMaster extends Model {
                         'absent_dedution' => round($absent_dedution),
                         'creator_id' => $creator_id,
                         'pay_date' => $salary_start_date);
+                    if ('03' == $working_start_date[1] || '03' == $salary_starting_month) {
+                    $latestDate = $this->getLatestDate($value[0]['member_id']);
+
+                    $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
+                    $bdg_startyear = $ayear . '-04-01';
+                    $byear = date("Y", strtotime($latestDate['salary_end_date'])) + 1;
+                    $bdg_endyear = $byear . '-03-31';
+                    $this->EditSalarymaster($value[0]['member_id'], $bdg_startyear, $bdg_endyear);
+                    }
                 }
-//                if ('03' == $working_start_date[1] || '03' == $salary_starting_month) {
-//                    $latestDate = $this->getLatestDate($value[0]['member_id']);
-//
-//                    $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
-//                    $bdg_startyear = $ayear . '-04-01';
-//                    $byear = date("Y", strtotime($latestDate['salary_end_date'])) + 1;
-//                    $bdg_endyear = $byear . '-03-31';
-//                    $this->EditSalarymaster($value[0]['member_id'], $bdg_startyear, $bdg_endyear);
-//                }
+                
             }
         } catch (Exception $exc) {
             echo $exc;
@@ -787,7 +788,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      *  type get $member_id
      */
     public function memidsalary($uname) {
-        $sql = "select * from core_member WHERE full_name ='" . $uname . "'";
+        $sql = "select * from core_member WHERE member_login_name ='" . $uname . "'";
         $result = $this->db->query($sql);
         $row = $result->fetchall();
         return $row;

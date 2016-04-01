@@ -139,7 +139,7 @@ var AddSalary = {
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
-                //alert(data);    
+                
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
                     //alert(json_obj[i].member_id);
