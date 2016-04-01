@@ -2,14 +2,14 @@
 <html>
     <head>
         <title>Login</title>
-        <?php
+<?php
         if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
-    
+ 
         $this->assets->outputCss();
-        $this->assets->outputJs();
-        ?>
+            $this->assets->outputJs();
+            ?>
     </head>
     <body>
         <?php echo $this->getContent(); ?>
