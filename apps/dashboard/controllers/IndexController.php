@@ -15,25 +15,8 @@ class IndexController extends ControllerBase {
         parent::initialize(); 
        // $view->setPartialsDir('/app/core/view/partials/');
         $this->setDashboardJsAndCss();
-        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
-        $this->module_name = $this->router->getModuleName();
-        $this->permission = $this->setPermission($this->module_name);
-        $this->view->module_name = $this->module_name;
-        $this->view->permission = $this->permission;
-   
-        // Module ID Filter Start By (1,0)
-        $ModuleIdCallCore = new Db\CoreMember();
-        $this->moduleIdCall = $ModuleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
-        $this->view->moduleIdCall = $this->moduleIdCall;
-
-        // Module ID Filter Start By (Module Name)        
-        $this->view->module_name_view = $this->module_name;
-        $this->module_id_set = $this->session->module;
-        $this->view->module_id_set = $this->module_id_set;
-        $view = new \Phalcon\Mvc\View();
-$view->setViewsDir( realpath('../../../core/views/partials/') );
-$view->setLayoutsDir( '../../../core/views/layouts/' );
-$view->setPartialsDir( '../../../core/views/partials/' );
+          $this->setAllUse();
+ 
     }
 
     /**
@@ -56,7 +39,7 @@ $view->setPartialsDir( '../../../core/views/partials/' );
      */
     public function adminAction() {
   
-        //$this->view->setLayout('/../core/view/partial/header');
+     
      
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
