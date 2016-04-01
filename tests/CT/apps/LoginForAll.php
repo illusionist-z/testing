@@ -9,9 +9,9 @@
 /**
  * Description of LoginForAll
  *
- * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+ * @author Khine Thazin Phyo <ktzp27@gmail.com>
  */
-//require_once 'apps/auth/controllers/LoginControllerTest.php';
+
 use Phalcon\Filter;
 use salts\Auth\Models;
 use salts\Auth\Controllers;
