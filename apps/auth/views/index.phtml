@@ -1,32 +1,17 @@
-<?php
-use Phalcon\Tag as Tag;
-?>
-    <?php 
- 
-    $this->partial("partials/header"); 
-    ?>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-
-            <?php
-            echo $this->getContent();
-            $this->assets->outputJs();
-            ?>
-        </div><!-- /.content-wrapper -->
-        <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
-        <footer class="main-footer" style="margin-left:0;">
-            <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-            <div class="language">
-                <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src=' " . $baseUri . "common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src=' " . $baseUri . "common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src=' " . $baseUri . "common/img/myanmar.jpg' width='25px'>") ?>
-            </div>
-            
-            <?php 
- 
-    $this->partial("partials/footer"); 
-    ?>
-       
-
-
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login</title>
+        <?php
+        if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+        $this->assets->outputCss();
+        $this->assets->outputJs();
+        ?>
+    </head>
+    <body>
+        <?php echo $this->getContent(); ?>
     </body>
 </html>

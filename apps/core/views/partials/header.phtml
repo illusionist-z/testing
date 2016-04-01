@@ -76,20 +76,7 @@ use Phalcon\Tag as Tag;
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <?php
-                                    if ($this->session->user['member_profile'] == null) {
-                                        $img = "profile1.jpg";
-                                    } else {
-                                        $img = $this->session->user['member_profile'];
-                                        if (file_exists('./uploads/' . $this->session->db_config['company_id'] . "/" . $img)) {
-                                            $img = $this->session->db_config['company_id'] . "/" . $img;
-                                        } else {
-                                            $img = "profile1.jpg";
-                                        }
-                                    }
-                                    ?>                                                 
-                                    <img src="<?php echo $baseUri; ?>uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>
-                                    <p>
+                              <p>
                                         <b><?php echo $this->session->user['member_login_name']; ?></b>
                                         <small><b><?php echo $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>" . date("M - Y", strtotime($this->session->user['created_dt'])) . "</b>"; ?></small>
                                     </p>
