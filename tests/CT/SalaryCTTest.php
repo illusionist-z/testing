@@ -20,11 +20,7 @@ if (!isset($_SESSION))
 
 class SalaryCTTest extends PHPUnit_Framework_TestCase {
 
-    public function setUp() {
-        global $di;
-
-        $this->object = new SalaryIndexController($di);
-    }
+   
 
     public function testsalarylistAction() {
 

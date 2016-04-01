@@ -108,8 +108,7 @@ class SalaryIndexController extends Controllers\IndexController {
 
                 $Noti = $Admin->getUserNoti($id, 1);
             }
-        }
-
+        } 
         $moduleIdCallCore = new Db\CoreMember();
         $this->module_name = "salary";
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
@@ -160,9 +159,9 @@ class SalaryIndexController extends Controllers\IndexController {
             $month = $this->month;
             $year = $this->year;
             $SalaryDetail = new SalaryDetailTest();
-            $get_salary_list = $SalaryDetail->salarylist($month, $year);            
+            $get_salary_list = $SalaryDetail->salarylist($month, $year);
             $UserList = new Db\CoreMember();
-            $user_name = $UserList->find();            
+            $user_name = $UserList->find();
             return true;
         }
     }

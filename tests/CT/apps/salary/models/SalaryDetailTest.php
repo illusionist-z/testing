@@ -13,11 +13,7 @@ class SalaryDetailTest extends Models\SalaryDetail {
 
     public $base;
 
-//    public function initialize() {
-//        //parent::initialize();
-//        $this->db = $this->getDI()->getShared("db");
-//        $this->base = new \Library\Core\Models\Base();
-//    }
+
     public function initialize() {
         parent::initialize();
     }
