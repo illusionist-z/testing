@@ -53,8 +53,7 @@ class IndexController extends ControllerBase {
             $member_count = new Db\CoreMember();
             $member_count_number = $member_count->getNumberCount();
             $this->view->member_count_number = $member_count_number;
-
-
+ 
             $this->view->modulename = $this->module_name;
             $this->view->setVar('username', $getname);
             $this->view->setVar('Result', $list);

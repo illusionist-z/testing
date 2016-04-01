@@ -105,8 +105,8 @@ var Attendance = {
       });        
 },
          time_edit_btn : function(id) {
-           localtime=document.getElementById('time').value;    
-           
+           //alert(id);
+           localtime=document.getElementById('time').value;           
            window.location.href='editTime/'+id+'/'+localtime;         
        },
        
