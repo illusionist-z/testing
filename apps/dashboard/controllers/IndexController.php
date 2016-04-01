@@ -16,7 +16,8 @@ class IndexController extends ControllerBase {
        // $view->setPartialsDir('/app/core/view/partials/');
         $this->setDashboardJsAndCss();
           $this->setAllUse();
- 
+        
+   
     }
 
     /**
