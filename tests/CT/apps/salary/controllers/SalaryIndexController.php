@@ -16,9 +16,7 @@ use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
 
 include_once 'tests\CT\apps\LoginForAll.php';
-include_once 'tests/CT/apps/salary/models/SalaryDetailTest.php';
-require_once 'apps/salary/controllers/IndexController.php';
-require_once 'apps/core/models/db/CoreMember.php';
+
 
 /**
  * Description of IndexController
@@ -108,7 +106,7 @@ class SalaryIndexController extends Controllers\IndexController {
 
                 $Noti = $Admin->getUserNoti($id, 1);
             }
-        } 
+        }
         $moduleIdCallCore = new Db\CoreMember();
         $this->module_name = "salary";
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
@@ -192,7 +190,7 @@ class SalaryIndexController extends Controllers\IndexController {
         if ($this->permission == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
 
-            $member_id = "4a83516d-c898-11e5-9e13-4c3488333b45";
+            $member_id = "76efdcbe-c897-11e5-9e13-4c3488333b45";
             $month = "2";
             if ($month < 10) {
                 $month = '0' . $month;
@@ -201,7 +199,6 @@ class SalaryIndexController extends Controllers\IndexController {
             $year = "2016";
             $SalaryDetail = new SalaryDetailTest();
             $get_salary_detail = $SalaryDetail->getPayslip($member_id, $month, $year);
-
             $get_allowance = $SalaryDetail->getAllowanceByMemberid($member_id);
 
             $this->view->getsalarydetails = $get_salary_detail;
@@ -227,10 +224,11 @@ class SalaryIndexController extends Controllers\IndexController {
     public function getmemberidAction() {
         $this->initialize();
         if ($this->permission == 1) {
-            $data = $this->uname;
-            $SalaryDetail = new SalaryMaster();
+            $data = $this->name;
+            $SalaryDetail = new Master();
             $cond = $SalaryDetail->memidsalary($data);
-            return true;
+
+            return $cond;
         }
     }
 
