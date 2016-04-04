@@ -26,7 +26,8 @@ class IndexController extends ControllerBase {
         $moduleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-         
+             
+     
     }
 
     /**
