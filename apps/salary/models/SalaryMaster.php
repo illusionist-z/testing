@@ -20,7 +20,7 @@ class SalaryMaster extends Model {
      * @author zinmon
      */
     public function savesalary($data) {
-      
+     
      $return = array();
          $SalaryMaster = new SalaryMaster();    
         try {
@@ -224,7 +224,7 @@ class SalaryMaster extends Model {
                     $SM = $this->getLatestsalary($value[0]['member_id']);
                     //get the latest
                     $latest_otpay = $this->getlatestOTPay($value[0]['member_id'], $budget_startyear, $budget_endyear);
-                  
+
                     if (!empty($SD)) {
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
@@ -247,7 +247,7 @@ class SalaryMaster extends Model {
                             
                             }
                     }
-                    echo "OLD ALLOWANCE" . $SD['allowance_amount'] . '<br>';
+                    echo "OLD ALLOWANCE" . $old_allowance . '<br>';
                     $Allowanceresult = $this->getAllowances($value[0]['member_id'], $basic_salary_annual, $date_diff, $old_allowance, $SM['status'], $SD['allowance_amount'], $SD['count_pay']);
 
                     $basic_salary_allowance_annual = $Allowanceresult['basic_salary_annual'];
@@ -316,7 +316,6 @@ class SalaryMaster extends Model {
                         'creator_id' => $creator_id,
                         'pay_date' => $salary_start_date);
                     if ('03' == $working_start_date[1] || '03' == $salary_starting_month) {
-                   
                     $latestDate = $this->getLatestDate($value[0]['member_id']);
 
                     $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
@@ -324,7 +323,7 @@ class SalaryMaster extends Model {
                     $byear = date("Y", strtotime($latestDate['salary_end_date'])) + 1;
                     $bdg_endyear = $byear . '-03-31';
                     $this->EditSalarymaster($value[0]['member_id'], $bdg_startyear, $bdg_endyear);
-                }
+                    }
                 }
                 
             }
@@ -597,7 +596,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $allowance_master = 0;
                 $new_allowance = $all_amount * $date_diff;
                 $total_allowance = $new_allowance + $old_allowance;
-                echo "ALLOWANCE AMOUNT ".$old_allowance;
+                echo "ALLOWANCE AMOUNT ".$total_allowance;
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
                 echo 'Basic salary annual with allowance two ' . $basic_salary_annual . 'Old ' . $old_allowance * $count_pay;
             }
@@ -616,7 +615,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
                     . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '" . $budget_startyear . "' AND '" . $budget_endyear . "') and member_id='" . $member_id .
                     "' order by created_dt desc limit 1";
-            
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {

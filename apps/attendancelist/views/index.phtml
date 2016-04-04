@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-    <?php  $this->assets->outputCss() ?>
+<?php  $this->assets->outputCss() ?>
 <?php
-
     
 $this->partial('../../core/views/partials/header');
-
-
- 
 ?>
-     <!-- Content Wrapper. Contains page content -->
-   <?php
-            echo $this->getContent();
-            $this->assets->outputJs();
-            echo '</div></div>';
-            ?>
-        </div><!-- /.content-wrapper -->
-    
-
-    ?>
-<?php $this->partial("../../core/views/partials/footer"); ?>
+            
+<?php $this->partial('../../core/views/partials/footer'); ?>
