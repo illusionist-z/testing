@@ -181,9 +181,10 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setAttJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
-
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/attendancelist/js/base.js');
+        $this->assets->addJs('apps/attendancelist/js/base.js');  
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
     }
 
     public function setSettJsAndCss() {

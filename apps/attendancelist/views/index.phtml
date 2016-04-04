@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-
+    <?php  $this->assets->outputCss() ?>
 <?php
 
-use Phalcon\Tag as Tag;
+    
 $this->partial('../../core/views/partials/header');
 ?>
  
@@ -48,8 +48,7 @@ $this->partial('../../core/views/partials/header');
 
             echo $this->getContent();
             $this->assets->outputJs();
-            echo '</div></div>';    
             ?>
         </div><!-- /.content-wrapper -->
     
-<?php $this->partial('../../core/views/partials/footer'); ?>
+            echo '</div></div>';    
