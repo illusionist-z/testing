@@ -18,13 +18,13 @@ use Phalcon\Filter;
     <div class="buttons">
         <form id="frm_search" onsubmit="return false;">
             <input type="text" class="monthauto form-control-static username" name="username"  id="username" placeholder="<?= $t->_("searchusername"); ?>" style="margin-top: 9px;height:25px;" autocomplete="off">
-            <input type="text" value="" id="formemberid" name="user_id">
+            <input type="hidden" value="" id="formemberid" name="user_id">
             <select class="select  form-control-static" data-toggle="select" name="travel_fees" id="ltype" style="width:250px; height: 35px;">
                 <option value="1">Travel fees per day</option>
                 <option value="2">Travel fees per month</option>
             </select>
             <input type="submit" class="buttonn  form-control-static search-trtype" value="<?= $t->_("search"); ?>" id="search">
-            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);">Export</a>  
+            <a href="" class="buttonn  form-control-static  export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);"><img id="exicon">Export</a>  
         </form>
     </div>
 
