@@ -311,9 +311,9 @@ a.button:active {
     border-color: #444;
 }
 a.add-big {
-    background: url("../img/5Fm069k.png")  5px -28px no-repeat #F8F8F8 ;
+    background: url("../img/5Fm069k.png") 5px -26px no-repeat #F8F8F8;
     font-size: 12px;
-    padding: 6px 10px 6px 26px;
+    padding: 8px 10px 8px 26px;
 }
 a.export {
 /*    background: url("../img/cmn-icons.png")  -58px 6px no-repeat red ;*/

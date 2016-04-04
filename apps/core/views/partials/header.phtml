@@ -38,8 +38,6 @@ use Phalcon\Tag as Tag;
                 <a class="sidebar-toggle" role="button" href="#sidepage">
                     <span id="btn_show_menu" class="cmn-icons cmn-icons-toggle"></span>
                         </a>
-                    </li> 
-                </ul>
 
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
@@ -176,7 +174,12 @@ use Phalcon\Tag as Tag;
                                         if (isset($top_link[1])) {
                                             echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img  id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         } else {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            if($top[0] == 'Calendar'){
+                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            }else{
+                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            }
+                                            
                                         }
                                     } else {
                                         if (isset($top[1])) {
