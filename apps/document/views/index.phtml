@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 
 <?php
-
-use Phalcon\Tag as Tag;
 $this->partial('../../core/views/partials/header');
-
 ?>
- 
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
+<?php
+echo $this->getContent();
+$this->assets->outputJs();
+?>
+</div><!-- /.content-wrapper -->
 
-            <?php
-            echo $this->getContent();
-            $this->assets->outputJs();
-            ?>
-        </div><!-- /.content-wrapper -->
-    
-<?php $this->partial("../../core/views/partials/footer"); ?>
+    <?php $this->partial("../../core/views/partials/footer"); ?>

@@ -3,7 +3,7 @@ namespace salts\Salary\Models;
 
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
-use Phalcon\Validation\Validator\Regex;
+use Phalcon\Validation\Validator\Numericality;
 
 class Salary extends \Library\Core\Models\Base {
 
@@ -20,10 +20,9 @@ class Salary extends \Library\Core\Models\Base {
             'message' => ' * Username is required'
                 )
         ));
-        $validate->add('bsalary', new Regex(
+        $validate->add('bsalary', new Numericality(
             array(
-        'message' => '* Basic Salary is required',
-        'pattern' => '/\+44 [0-9]+/'
+        'message' => '* Basic Salary is required'
             )
         ));
 //        $validate->add('travelfee', new Regex(
