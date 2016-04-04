@@ -12,33 +12,30 @@ use salts\Salary\Models;
 
 include_once 'tests\CT\apps\LoginForAll.php';
 
-require_once 'apps/salary/controllers/CalculateController.php';
-require_once 'apps/core/models/db/CoreMember.php';
-require_once 'library/core/Controller.php';
-
 /**
  * Description of SalaryMasterController
  *
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
  */
 class SalaryCalculateController extends Controllers\CalculateController {
-    
+
     public $salary_date;
     public $member_id;
-    public $login_params = array('company_id' => 'cop1', "member_login_name" => "admin", "password" => "admin");
+   
 
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
     }
 
-    public function setsalary_date($salary_date){
+    public function setsalary_date($salary_date) {
         $this->salary_date = $salary_date;
     }
 
-     public function setmember_id($member_id) {
+    public function setmember_id($member_id) {
         $this->member_id = $member_id;
     }
+
     /**
      * calculation of salary and tax
      */
@@ -49,13 +46,14 @@ class SalaryCalculateController extends Controllers\CalculateController {
         $Salarymaster = new Models\SalaryMaster();
         $Attendance = new \salts\Salary\Models\Attendances();
         $countattday = $Attendance->getCountattday($salary_start_date);
-                
+
         $getbasic_salary = $Salarymaster->getBasicsalary($countattday);
-         var_dump($countattday);exit();
+        var_dump($countattday);
+        exit();
         //calculate overtime by attendances and salary master
         // $getcomp_startdate=$SalaryDetail->getCompStartdate();
         $creator_id = $this->member_id;
-       
+
         //calculate the basic salary
         $tax = $Salarymaster->calculateTaxSalary($getbasic_salary, $salary_start_date, $creator_id);
 
@@ -74,5 +72,3 @@ class SalaryCalculateController extends Controllers\CalculateController {
     }
 
 }
-
-

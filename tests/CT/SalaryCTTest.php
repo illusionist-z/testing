@@ -10,16 +10,12 @@
  *
  * @author Ei Thandar Aung 
  */
+include_once 'apps/salary/controllers/SalaryCalculateController.php';
 
-require_once 'apps/salary/controllers/SalarySearchController.php';
-require_once 'apps/salary/controllers/MasterController.php';
-require_once 'apps/salary/controllers/SalaryCalculateController.php';
 if (!isset($_SESSION))
     $_SESSION = array();
 
 class SalaryCTTest extends PHPUnit_Framework_TestCase {
-
-   
 
     public function testsalarylistAction() {
 
@@ -27,7 +23,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->salarylistAction());
     }
 
-    public function testshowsalarylistAction() {        
+    public function testshowsalarylistAction() {
         $salary = new SalaryIndexController();
         $salary->setmonth("2");
         $salary->setyear("2016");
@@ -55,13 +51,12 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->salSettingAction());
     }
 
-
     public function testgetmemberidAction() {
         $uname = "admin";
         $salary = new SalaryIndexController();
         $salary->setname($uname);
         $result = $salary->getmemberidAction();
-        $this->assertEquals("admin",$result[0]["member_login_name"]);        
+        $this->assertEquals("admin", $result[0]["member_login_name"]);
     }
 
     public function testallowanceAction() {
@@ -85,12 +80,10 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("No data!Insert Data First", $result);
     }
 
-//db
     public function testeditallowanceAction() {
         $salary = new SalaryIndexController();
         $this->assertTrue($salary->editallowanceAction());
     }
-
 
     public function testeditdataAction() {
 
@@ -100,37 +93,32 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Bonus", $salary->editdataAction());
     }
 
-//    db
-//    public function testdeletedataAction() {        
-//        $salary = new SalaryIndexController();
-//        $this->assertTrue($salary->deletedataAction());
-//    }
+    public function testdeletedataAction() {
+        $salary = new SalaryIndexController();
+        $this->assertTrue($salary->deletedataAction());
+    }
 
     public function testsalarysettingAction() {
         $salary = new SalaryIndexController();
         $this->assertTrue($salary->salarysettingAction());
     }
 
-//db
-//    public function testtaxdiaAction() {
-//       
-//        $name = new SalaryIndexController();
-//        $this->assertTrue($name->taxdiaAction());
-//    }
-    //db
-//    public function testedittaxAction() {
-//
-//
-//        $tax = array("taxs_from" => '20000001', "taxs_to" => "30000000", "ssc_emp" => "20", "ssc_comp" => "2", "taxs_rate" => "3");
-//        $salary = new SalaryIndexController();
-//        $salary->setTax($tax);
-//        $this->assertTrue($salary->edittaxAction());
-//    }
-//db
-//    public function testdectdiaAction() {       
-//        $name = new SalaryIndexController();
-//        $this->assertTrue($name->dectdiaAction());
-//    }
+    public function testtaxdiaAction() {
+        $name = new SalaryIndexController();
+        $this->assertTrue($name->taxdiaAction());
+    }
+
+    public function testedittaxAction() {
+        $tax = array("taxs_from" => '20000001', "taxs_to" => "30000000", "ssc_emp" => "20", "ssc_comp" => "2", "taxs_rate" => "3");
+        $salary = new SalaryIndexController();
+        $salary->setTax($tax);
+        $this->assertTrue($salary->edittaxAction());
+    }
+
+    public function testdectdiaAction() {
+        $name = new SalaryIndexController();
+        $this->assertTrue($name->dectdiaAction());
+    }
 
     public function testprintsalaryAction() {
         $salary = new SalaryIndexController();
@@ -139,17 +127,23 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->printsalaryAction());
     }
 
-    public function testshow_add_dectAction() {
-        $name = new SalaryIndexController();
-        $this->assertTrue($name->show_add_dectAction());
+    public function testAddDectAction() {
+        $salary = new SalaryIndexController();
+        $deduce = array("deduce_name" => "spouse","amount" => "40000");
+        $salary->setDeduce($deduce);
+        $this->assertTrue($salary->addDectAction());
     }
 
-//db
-//    public function testdeleteDeductAction() {
-//
-//        $name = new SalaryIndexController();
-//        $this->assertTrue($name->deleteDeductAction());
-//    }
+    public function testshow_add_dectAction() {
+        $salary = new SalaryIndexController();
+        $this->assertTrue($salary->show_add_dectAction());
+    }
+
+    public function testdeleteDeductAction() {
+
+        $salary = new SalaryIndexController();
+        $this->assertTrue($salary->deleteDeductAction());
+    }
 
     public function testsalarydetailAction() {
         $member = array("month" => "2", "year" => "2016", "member_id" => "90e73464-c899-11e5-9e13-4c3488333b45");
@@ -158,15 +152,13 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->salarydetailAction());
     }
 
-//db
-//    public function testaddresigndateAction() {
-//        
-//        $resignData = array("date" => "2016-07-31","member_id" => "90e73464-c899-11e5-9e13-4c3488333b45");
-//        $salary = new SalaryIndexController();
-//        $salary->setResignData($resignData);
-//        $this->assertTrue($salary->addresigndateAction());
-//    }
+    public function testaddresigndateAction() {
 
+        $resignData = array("date" => "2016-07-31", "member_id" => "1b7ddc0a-c897-11e5-9e13-4c3488333b45");
+        $salary = new SalaryIndexController();
+        $salary->setResignData($resignData);
+        $this->assertTrue($salary->addresigndateAction());
+    }
 
     public function testcheckmonthyearAction() {
         $monthyear = '2016-02-29';
@@ -211,11 +203,11 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
 //
 //        $this->assertTrue($salary->addsalaryAction());
 //    }
-//    public function testMemberidforprintAction() {        
-//        $salary = new SalaryIndexController();
-//        $salary->setmember_id("4a83516d-c898-11e5-9e13-4c3488333b45");
-//        $this->assertTrue($salary->memberidforprintAction());
-//    }
+    public function testMemberidforprintAction() {        
+        $salary = new SalaryIndexController();
+        $salary->setmember_id("4a83516d-c898-11e5-9e13-4c3488333b45");
+        $this->assertTrue($salary->memberidforprintAction());
+    }
 //    // interupt
 //
 //    /*
