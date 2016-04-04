@@ -1,54 +1,7 @@
-<!DOCTYPE html>
-    <?php  $this->assets->outputCss() ?>
+<?php  $this->assets->outputCss() ?>
 <?php
-
     
 $this->partial('../../core/views/partials/header');
 ?>
- 
-   <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
-
-            <?php
-            $j = 0;
-            foreach ($this->session->auth as $key_name => $key_value) {
-                $top = explode(" ", $key_value["link0"]);
-                if (strtolower($top[0] . $top[1]) == $module_name) {
-                    if (count($key_value) > 2) {
-                        echo '<div class="row"><div class="col-sm-2 link">';
-                        echo '<aside class="sidebar-menu">';
-                        foreach ($key_value as $name => $value) {
-                            if ($j > 1) {
-                                if ($j % 2 == 0) {
-                                    $link_name = $value;
-                                }
-                                if (is_string($name)) {
-                                    if ($v_result = explode(" ", $value)) {
-                                        //set to link action value
-                                        $link_val = strtolower($v_result[0] . $v_result[1]);
-                                        $mod = explode(" ", $key_value["link0"]);
-                                    }
-                                    if (strpos($key_name, 'user') !== false) {
-                                        if ($key_name == 'show_admin_user') {
-                                            echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
-                                        } else {
-                                            echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
-                                        }
-                                    } else {
-                                        echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
-                                    }
-                                }
-                            }
-                            $j++;
-                        }
-                        echo '</aside></div><div class="col-md-10">';
-                    }
-                }
-            }
-
-            echo $this->getContent();
-            $this->assets->outputJs();
-            ?>
-        </div><!-- /.content-wrapper -->
-    
-            echo '</div></div>';    
+            
+<?php $this->partial('../../core/views/partials/footer'); ?>
