@@ -34,7 +34,7 @@ if ($offset < 0) {
         <form onsubmit="return false;" method="post">
             <input type="text" class="tags form-control-static" name="namelist" style="margin-top: 9px;"  id="namelist" placeholder="<?php echo $t->_("searchusername"); ?>">
             <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="namesearch">
-            <a href="#" class="buttonn form-control-static export " id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><img id="exicon"><?php echo $t->_("export"); ?></a>
+            <a href="#" class="button export  " onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><?php echo $t->_("export"); ?></a>
         </form>
     </div>
 

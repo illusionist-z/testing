@@ -151,7 +151,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         }
     
         public function setAllUse(){
-            $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $Admin = new Db\CoreMember();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
@@ -169,8 +169,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $moduleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->router->getModuleName(), $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-        
-        // Module ID Filter Start By (Module Name)        
+       // Module ID Filter Start By (Module Name)        
         $this->view->module_name_view = $this->module_name;
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
@@ -188,11 +187,14 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     }
 
     public function setSettJsAndCss() {
+        
+        $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/setting/js/base.js');
         $this->assets->addJs('apps/setting/js/index-admin.js');
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
         $this->assets->addCss('common/css/dialog.css');
         $this->assets->addCss('common/css/css/style.css');
+      
     }
 
     /**
@@ -243,6 +245,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('apps/document/css/index_ssbdocument.css');
         $this->assets->addJs('apps/document/js/FileSaver.js');
+        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
     }
 
@@ -359,6 +362,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addCss('common/css/css/style.css');
         $this->assets->addJs('apps/setting/js/base.js');
         $this->assets->addJs('apps/setting/js/index-admin.js');
+         $this->assets->addJs('common/js/paging.js'); 
+        $this->assets->addJs('common/js/notification.js');  
     }
 
     public function setNotificationJsAndCss() {
