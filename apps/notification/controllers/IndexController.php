@@ -12,7 +12,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
-     //   $this->view->v = $this->module_name;
+        $this->view->v = $this->module_name;
         $this->view->permission = $this->permission;
         $this->view->t = $this->_getTranslation();
         foreach ($this->session->auth as $key_name => $key_value) {

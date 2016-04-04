@@ -11,7 +11,7 @@ class LoginController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-       // $this->setAllUse();
+       
     }
 
     /**

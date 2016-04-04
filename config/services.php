@@ -110,12 +110,6 @@ $di->set('crypt', function () {
     return $crypt;
 });
 
- $di->set('common', function() {
-        $view = new \Phalcon\Mvc\View();       
-        $view->setViewsDir(APP_DIR.'/common/views/');        
-         $view->setPartialsDir(APP_DIR.'/common/views/partials/');
-        return $view;
-    }, true);
-  
+ 
     
     
