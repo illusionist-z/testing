@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 
 <?php
-
 use Phalcon\Tag as Tag;
+if ($type == "noti") {
+        ?>
+
+        <section class="content">
+            <?php echo $this->getContent() ?>
+            <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script>
+            <?php $this->assets->outputJs(); ?>
+        </section>
+
+        <?php
+    }
+    else{
+
 $this->partial('../../core/views/partials/header');
 
 ?>
  
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
+<!--        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
 
             <?php
-            echo $this->getContent();
+           // echo $this->getContent();
             $this->assets->outputJs();
             ?>
-        </div><!-- /.content-wrapper -->
-    
-<?php $this->partial('../../core/views/partials/footer'); ?>
+        </div> /.content-wrapper -->
+
+    <?php $this->partial('../../core/views/partials/footer');
+    } ?>
