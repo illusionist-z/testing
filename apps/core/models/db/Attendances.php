@@ -52,7 +52,7 @@ class Attendances extends \Library\Core\Models\Base {
         try {
             $dt = explode('-', $salary_start_date);
             $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
-                    . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' group by core_member.member_id";
+                    . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' and (status = 0 or status=3) group by core_member.member_id";
             $data = $this->db->query($query);
             $result = $data->fetchall();
         } catch (Exception $exc) {
