@@ -16,7 +16,7 @@ define('PATH_RESOURCES', __DIR__ . '/../app/resources/');
 define('PATH_INCUBATOR', __DIR__ . '/../vendor/incubator/');
 define('PATH_CONFIG', __DIR__ . '/../app/config/config.ini');
 define('PATH_MODELS', __DIR__ . '/../app/models/');
-
+define('PATH_TESTS', __DIR__ . '/../tests/CT/');
 set_include_path(
         ROOT_PATH . PATH_SEPARATOR . get_include_path()
 );
@@ -74,14 +74,13 @@ spl_autoload_register(function () {
     include_once 'apps/leavedays/models/LeavesSetting.php';
     include_once 'apps/core/models/db/CoreNotification.php';
     include_once 'apps/core/models/db/CoreNotificationRelMember.php';
-    
+
     include_once 'apps/salary/controllers/CalculateController.php';
     include_once 'apps/salary/controllers/ControllerBase.php';
     include_once 'apps/salary/controllers/IndexController.php';
     include_once 'apps/salary/controllers/SalaryMasterController.php';
     include_once 'apps/salary/controllers/SearchController.php';
     include_once 'apps/salary/models/Allowances.php';
-    include_once 'apps/salary/models/Attendances.php';
     include_once 'apps/salary/models/Salary.php';
     include_once 'apps/salary/models/SalaryDetail.php';
     include_once 'apps/salary/models/SalaryMaster.php';
@@ -89,15 +88,18 @@ spl_autoload_register(function () {
     include_once 'apps/salary/models/SalaryMemberTaxDeduce.php';
     include_once 'apps/salary/models/SalaryTaxs.php';
     include_once 'apps/salary/models/SalaryTaxsDeduction.php';
-	
-	 include_once 'apps/document/controllers/IndexController.php';
-    
+    include_once 'apps/salary/models/SalaryDetail.php';
+    include_once 'apps/salary/models/SalaryMaster.php';
+    include_once 'apps/document/controllers/IndexController.php';
     include_once 'apps/document/controllers/ControllerBase.php';
     include_once 'apps/document/models/CompanyInfo.php';
     include_once 'apps/document/models/CorePermissionGroupId.php';
     include_once 'apps/document/models/Document.php';
     include_once 'apps/document/models/SalaryDetail.php';
     include_once 'apps/document/models/SimpleImage.php';
+    include_once 'tests/CT/apps/salary/models/SalaryDetailTest.php';
+    include_once 'tests/CT/apps/salary/models/Master.php';
+    include_once 'tests/CT/apps/salary/controllers/SalaryIndexController.php';
 });
 
 // use the application autoloader to autoload the classes
@@ -107,7 +109,8 @@ $loader = new \Phalcon\Loader();
 $loader->registerDirs(array(
     ROOT_PATH,
     PATH_CONFIG,
-    PATH_MODELS
+    PATH_MODELS,
+    PATH_TESTS
 ));
 
 $loader->register();
@@ -116,11 +119,12 @@ $loader->registerNamespaces(array(
     'Phalcon' => PATH_INCUBATOR . 'Library/Phalcon/'
 ));
 
-$config = new Ini(__DIR__ . '/config/org/config.ini');
+$config = new Ini(__DIR__ . '/config/config.ini');
 //$config = include PATH_CONFIG;
 
 
 $di = new FactoryDefault();
+
 $di->set('router', function () {
     $router = new Router();
     $def_mod = "frontend";
@@ -150,6 +154,7 @@ $di->set('router', function () {
     }
     return $router;
 });
+
 //db set up
 $di->set('login_db', function() use ($config) {
     return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
@@ -159,7 +164,14 @@ $di->set('login_db', function() use ($config) {
         "dbname" => $config->database->dbname
     ));
 }, true);
-
+$di->set('db', function() use ($config) {
+    return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
+        "host" => $config->database->host,
+        "username" => $config->database->username,
+        "password" => $config->database->password,
+        "dbname" => $config->database->dbname
+    ));
+}, true);
 $di->setShared('db', function() {
 
     //$database = (isset($_SESSION['db_config'])) ? $_SESSION['db_config'] : $config->database->database;
@@ -178,3 +190,4 @@ $di->setShared('db', function() {
 // add any needed services to the DI here
 
 DI::setDefault($di);
+$_SESSION = [];

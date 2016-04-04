@@ -17,9 +17,6 @@ use salts\Salary\Models\SalaryMemberTaxDeduce;
 
 include_once 'tests\CT\apps\LoginForAll.php';
 
-require_once 'apps/salary/controllers/IndexController.php';
-require_once 'apps/core/models/db/CoreMember.php';
-require_once 'apps/salary/models/SalaryDetail.php';
 
 /**
  * Description of IndexController
@@ -90,6 +87,7 @@ class SalaryIndexController extends Controllers\IndexController {
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
+
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->salaryconfig = \Library\Core\Models\Config::getModuleConfig('salary');
         $this->setCommonJsAndCss();
@@ -109,7 +107,6 @@ class SalaryIndexController extends Controllers\IndexController {
                 $Noti = $Admin->getUserNoti($id, 1);
             }
         }
-
         $moduleIdCallCore = new Db\CoreMember();
         $this->module_name = "salary";
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
@@ -129,7 +126,7 @@ class SalaryIndexController extends Controllers\IndexController {
     }
 
     public function addsalaryAction() {
-         $this->initialize();
+        $this->initialize();
         if ($this->permission == 1) {
             $this->assets->addJs('apps/salary/js/index-addsalary.js');
             $userlist = new Db\CoreMember();
@@ -154,18 +151,15 @@ class SalaryIndexController extends Controllers\IndexController {
 
     public function showsalarylistAction() {
         $this->initialize();
-        $month = $this->month;
-        $year = $this->year;
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $this->assets->addJs('apps/salary/js/index-show-salarylist.js');
-
-            $month = $this->request->get('month');
-
-            $year = $this->request->get('year');
-            $SalaryDetail = new SalaryDetail();
+            $month = $this->month;
+            $year = $this->year;
+            $SalaryDetail = new SalaryDetailTest();
             $get_salary_list = $SalaryDetail->salarylist($month, $year);
-
+            $UserList = new Db\CoreMember();
+            $user_name = $UserList->find();
             return true;
         }
     }
@@ -196,16 +190,15 @@ class SalaryIndexController extends Controllers\IndexController {
         if ($this->permission == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
 
-            $member_id = $this->request->get('member_id');
-            $month = $this->request->get('month');
+            $member_id = "76efdcbe-c897-11e5-9e13-4c3488333b45";
+            $month = "2";
             if ($month < 10) {
                 $month = '0' . $month;
             }
 
-            $year = $this->request->get('year');
-            $SalaryDetail = new SalaryDetail();
+            $year = "2016";
+            $SalaryDetail = new SalaryDetailTest();
             $get_salary_detail = $SalaryDetail->getPayslip($member_id, $month, $year);
-
             $get_allowance = $SalaryDetail->getAllowanceByMemberid($member_id);
 
             $this->view->getsalarydetails = $get_salary_detail;
@@ -231,10 +224,11 @@ class SalaryIndexController extends Controllers\IndexController {
     public function getmemberidAction() {
         $this->initialize();
         if ($this->permission == 1) {
-            $data = $this->uname;
-            $SalaryDetail = new SalaryMaster();
+            $data = $this->name;
+            $SalaryDetail = new Master();
             $cond = $SalaryDetail->memidsalary($data);
-            return true;
+
+            return $cond;
         }
     }
 

@@ -10,19 +10,16 @@
  *
  * @author Ei Thandar Aung 
  */
-require_once 'apps/salary/controllers/SalaryIndexController.php';
+
 require_once 'apps/salary/controllers/SalarySearchController.php';
 require_once 'apps/salary/controllers/MasterController.php';
 require_once 'apps/salary/controllers/SalaryCalculateController.php';
-
 if (!isset($_SESSION))
     $_SESSION = array();
 
 class SalaryCTTest extends PHPUnit_Framework_TestCase {
 
-    public function setUp() {
-        
-    }
+   
 
     public function testsalarylistAction() {
 
@@ -30,12 +27,12 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->salarylistAction());
     }
 
-//    public function testshowsalarylistAction() {
-//        $month = "june";
-//        $year = "2016";
-//        $name = new SalaryIndexController();
-//        $this->assertTrue($name->showsalarylistAction());
-//    }
+    public function testshowsalarylistAction() {        
+        $salary = new SalaryIndexController();
+        $salary->setmonth("2");
+        $salary->setyear("2016");
+        $this->assertTrue($salary->showsalarylistAction());
+    }
 
     public function testautolistAction() {
         $salary = new SalaryIndexController();
@@ -47,7 +44,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->monthlysalaryAction());
     }
 
-//db
+//error
 //    public function testpayslipAction() {
 //        $salary = new SalaryIndexController();
 //        $this->assertTrue($salary->payslipAction());
@@ -58,13 +55,14 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->salSettingAction());
     }
 
-//db
-//    public function testgetmemberidAction() {
-//        $uname = "admin";
-//        $salary = new SalaryIndexController();
-//        $salary->setuname($uname);
-//        $this->assertTrue($salary->getmemberidAction());
-//    }
+
+    public function testgetmemberidAction() {
+        $uname = "admin";
+        $salary = new SalaryIndexController();
+        $salary->setname($uname);
+        $result = $salary->getmemberidAction();
+        $this->assertEquals("admin",$result[0]["member_login_name"]);        
+    }
 
     public function testallowanceAction() {
 
@@ -88,10 +86,10 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
     }
 
 //db
-//    public function testeditallowanceAction() {
-//        $name = new SalaryIndexController();
-//        $this->assertTrue($name->editallowanceAction());
-//    }
+    public function testeditallowanceAction() {
+        $salary = new SalaryIndexController();
+        $this->assertTrue($salary->editallowanceAction());
+    }
 
 
     public function testeditdataAction() {
@@ -231,14 +229,13 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
 //        $search = new SalarySearchController();
 //        $this->assertTrue($search->indexAction());
 //    }
-
-    public function testsearchTravelfeesAction() {
-        $data = 1;
-        $search_travel = new SalarySearchController();
-        $search_travel->setparam($data);
-        $this->assertTrue($search_travel->searchTravelfeesAction());
-    }
-
+//note
+//    public function testsearchTravelfeesAction() {
+//        $data = 1;
+//        $search_travel = new SalarySearchController();
+//        $search_travel->setparam($data);
+//        $this->assertTrue($search_travel->searchTravelfeesAction());
+//    }
 //
 //    /*
 //     * SalaryMasterController.php

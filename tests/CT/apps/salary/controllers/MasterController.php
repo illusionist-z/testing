@@ -34,15 +34,9 @@ class MasterController extends Controllers\SalaryMasterController {
     public $year;
     public $month;
     public $absent;
-    public $login_params = array('company_id' => 'cop1', "member_login_name" => "admin", "password" => "admin");
 
     public function setmodule_name($module_name) {
         $this->module_name = $module_name;
-    }
-
-    public function initialize() {
-        $login = new LoginForAll();
-        $login->loginFirst();
     }
 
     public function setmember_id($member_id) {
@@ -56,37 +50,44 @@ class MasterController extends Controllers\SalaryMasterController {
     public function setpermission($permission) {
         $this->permission = $permission;
     }
-    
-     public function setbsalary($bsalary) {
+
+    public function setbsalary($bsalary) {
         $this->bsalary = $bsalary;
     }
-    
+
     public function setallowance($allowance) {
         $this->allowance = $allowance;
     }
-     public function setovertime($overtime) {
+
+    public function setovertime($overtime) {
         $this->overtime = $overtime;
     }
-    
-     public function setovertime_hr($overtime_hr) {
+
+    public function setovertime_hr($overtime_hr) {
         $this->overtime_hr = $overtime_hr;
     }
+
     public function setyear($year) {
         $this->year = $year;
     }
+
     public function setmonth($month) {
         $this->month = $month;
     }
+
     public function setabsent($absent) {
         $this->absent = $absent;
     }
 
-   
+    public function initialize() {
+        $login = new LoginForAll();
+        $login->loginFirst();
+        $this->_addsalary = new Salary;
+        $this->setCommonJsAndCss();
+        $this->act_name = "salary";
+        $this->permission = "1";
+    }
 
-    /**
-     * Save salary,tax deduce and allowance to salary master using sanitize
-     * @author zinmon
-     */
     public function savesalaryAction() {
         $this->initialize();
 
@@ -150,7 +151,7 @@ class MasterController extends Controllers\SalaryMasterController {
                     $json['result'] = "Inserted";
                 }
             }
-           // echo json_encode($json);
+            // echo json_encode($json);
             // $this->view->disable();
             return $json;
         } else {
@@ -171,7 +172,8 @@ class MasterController extends Controllers\SalaryMasterController {
             $absent = $this->absent;
             $SalaryMaster = new Models\SalaryMaster();
             $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
-            var_dump($SalaryMaster);exit();
+            var_dump($SalaryMaster);
+            exit();
             $Salarydetail = new Models\SalaryDetail();
             $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, $month, $absent, $overtime_hr, $overtimerate);
             //$this->view->disable();
