@@ -115,17 +115,20 @@ var Categories = {
      AddNew : function(d){
         var form=$('#Add_new_ltype');
         var data=form.serialize();
-        alert(data);
+        if(data.length>12){
         $.ajax({
             type:'POST',
             data: form.serialize(),
-          //  url : "addListType",
+          url : "addListType",
             success:function(){                
                 d.dialog("close");                
             }
         }).done(function(){
             location.reload();
-        });
+        });}
+        else{
+            alert("Insert Some Value");
+        }
     }
 
 };

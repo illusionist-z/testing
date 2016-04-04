@@ -38,7 +38,7 @@ use Phalcon\Filter;
                         <div id="salary_detail_div1">
                             <?= $t->_("username"); ?> :
                             <input  class="tags form-control-static"   style="width:100%;margin-top: 1px;"  id="namelist" placeholder="<?php echo $t->_("enter_name"); ?>">
-                            <input type="text" value="" id="formemberid" name="cond[mem]">
+                            <input type="hidden" value="" id="formemberid" name="cond[mem]">
                         </div>
                         <div id="salary_detail_div2">
                             <?= $t->_("department"); ?> :
@@ -82,7 +82,7 @@ use Phalcon\Filter;
                     <div class="search-btn-box"><!--search btn-->
                         <div>
                             <a href="#" class="button form-control-static" id="search_salary"><?= $t->_("search"); ?></a>
-                            <a href="#" class="button export form-control-static"><?= $t->_("Export"); ?></a>
+                            <a href="#" class="button export form-control-static" id="exbg"><img id="exicon"><?= $t->_("Export"); ?></a>
                             <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a><br>
 
                         </div>

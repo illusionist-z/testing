@@ -101,11 +101,16 @@ var ApplyForm = {
                 }
                 //var dict = ["Test User02","Adminstrator"];
                 //alert(dict);
-                loadIcon(dict);
+                loadIcon(dict,name);
             }
 
         });
-        function loadIcon(dict) {
+        function loadIcon(dict,name) {
+            if(dict == 0){
+                alert(name+" doesn't exist in this system.Type another name!");
+                location.reload();
+             
+            }
             $('#formemberid').val(dict);
         }
 
@@ -113,7 +118,7 @@ var ApplyForm = {
 };
 $(document).ready(function () {
 
-    ApplyForm.init();
+    //ApplyForm.init();
     $('.datetimepicker').on('click', function (e) {
         e.preventDefault();
         $(this).removeClass('datetimepicker').datetimepicker({dateFormat: "yy-mm-dd",

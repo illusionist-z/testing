@@ -157,7 +157,7 @@ class IndexController extends ControllerBase {
         $page_rule_group = $filter->sanitize($this->request->getPost("page_rule_group"),'string');
         $permission_code = $this->request->getPost("permission_code"); 
        
-        $core = CorePermissionGroup::findFist('idpage=' .$idpage);
+        $core = CorePermissionGroup::findFirst('idpage=' .$idpage);
         $core->idpage = $idpage;
         $core->page_rule_group = $page_rule_group;
         $core->permission_code = $permission_code;
