@@ -2,9 +2,6 @@
 
 namespace salts\Managecompany\Controllers;
 
-use salts\Managecompany\Models\CoreModule;
-use salts\Auth\Models\Db\CoreMember;
- 
 class IndexController extends ControllerBase {
 
     public function initialize() {

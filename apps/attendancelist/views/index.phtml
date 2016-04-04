@@ -2,18 +2,15 @@
 
 <?php
 
-use Phalcon\Tag as Tag;
 $this->partial('../../core/views/partials/header');
 
 ?>
  
 
-        <!-- Content Wrapper. Contains page content -->
-        
+       
             <?php
-            echo $this->getContent();
+            //echo $this->getContent();
             $this->assets->outputJs();
             ?>
-        </div><!-- /.content-wrapper -->
-    
+       
 <?php $this->partial("partials/footer"); ?>

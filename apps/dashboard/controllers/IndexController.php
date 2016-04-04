@@ -31,9 +31,9 @@ class IndexController extends ControllerBase {
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
         $view = new \Phalcon\Mvc\View();
-$view->setViewsDir( realpath('../../../core/views/partials/') );
-$view->setLayoutsDir( '../../../core/views/layouts/' );
-$view->setPartialsDir( '../../../core/views/partials/' );
+        $view->setViewsDir( realpath('../../../core/views/partials/') );
+        $view->setLayoutsDir( '../../../core/views/layouts/' );
+        $view->setPartialsDir( '../../../core/views/partials/' );
     }
 
     /**

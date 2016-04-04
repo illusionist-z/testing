@@ -11,7 +11,7 @@ class LoginController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-        $this->setAllUse();
+        //$this->setAllUse();
     }
 
     /**
@@ -22,13 +22,13 @@ class LoginController extends ControllerBase {
         $login_params = $this->request->get();
         $ModelAuth = new Models\Auth();
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
-        if (!isset($login_params['company_id'])) {
-            $config = new Ini(__DIR__ . '/../../../config/org/config.ini');
+        if (!isset($login_params['company_id'])) { 
+            $config = new Ini(__DIR__ . '/../../../config/config.ini');
             $dbinfo['host'] = $config->database->host;
             $dbinfo['db_name'] = $config->database->dbname;
             $dbinfo['user_name'] = $config->database->username;
             $dbinfo['db_psw'] = $config->database->password;
-             $this->session->set('db_config', $dbinfo);
+            $this->session->set('db_config', $dbinfo);
             $result = $ModelAuth->Check($login_params, $user);
             $this->session->set('user', $result);
             // Data Base Chack
