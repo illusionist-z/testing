@@ -78,6 +78,7 @@ class IndexController extends ControllerBase {
      */
     public function letterheadAction() {
         if ($this->moduleIdCall == 1) {
+            
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-letterhead.js');
             $ComInfo = CompanyInfo::find();

@@ -46,7 +46,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #search_salary,#add_user,#edit_edit,#Add_deduct,#Add_ltype,#delete_ltype,#cal_salary,
 #create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,
 #edit_allowance_edit,#edit_attendance_edit,#alladd,#Add_Resign_Date,#edit,#usersearch,#noti_accept,
-#btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql,#exbg{
+#btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
 #apply_cancel,#add_salary_cancel,#displaypopup,#add_dec,#addinguser_close,#edit_close,
@@ -311,14 +311,14 @@ a.button:active {
     border-color: #444;
 }
 a.add-big {
-    background: url("../img/5Fm069k.png") 5px -26px no-repeat #F8F8F8;
+    background: url("../img/5Fm069k.png")  5px -28px no-repeat #F8F8F8 ;
     font-size: 12px;
-    padding: 8px 10px 8px 26px;
+    padding: 6px 10px 6px 26px;
 }
 a.export {
-/*    background: url("../img/cmn-icons.png")  -58px 6px no-repeat red ;*/
+    background: url("../img/5Fm069k.png")  5px -168px no-repeat #F8F8F8 ;
     font-size: 12px;
-    padding: 4px 10px 2px 5px;
+    padding: 6px 10px 6px 26px;
 }
 
 /*.............flat select box................*/
@@ -908,9 +908,4 @@ hr{
     font-size:9px;
     padding:2px 4px;
     line-height:.9
-}
-/*export icon*/
-#exicon{
-    background: url("../img/cmn-icons.png") -60px 2px no-repeat ;
-    padding: 5px 12px 20px 10px;
 }

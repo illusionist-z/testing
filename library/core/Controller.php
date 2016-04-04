@@ -246,6 +246,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addCss('apps/document/css/index_ssbdocument.css');
         $this->assets->addJs('apps/document/js/FileSaver.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
+        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
     }
 
     /**
