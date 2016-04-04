@@ -14,6 +14,7 @@ class Attendances extends \Library\Core\Models\Base {
     }
 
     public function LocalToUTC($data, $offset) {
+        
         if ($offset < 0) {
             $value = $offset;
             $localtime = date("Y-m-d H:i:s", strtotime($value . " minutes", strtotime($data)));
