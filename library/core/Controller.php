@@ -181,9 +181,10 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      */
     public function setAttJsAndCss() {
         $this->assets->addCss('common/css/css/style.css');
-
         $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/attendancelist/js/base.js');
+        $this->assets->addJs('apps/attendancelist/js/base.js');  
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/attendancelist/js/user-attendancelist.js');
     }
 
     public function setSettJsAndCss() {
@@ -243,7 +244,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addCss('apps/document/css/index_ssbdocument.css');
         $this->assets->addJs('apps/document/js/FileSaver.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
-        $this->assets->addJs('apps/document/js/jquery.wordexport.js');
     }
 
     /**
@@ -289,6 +289,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/export.js');
         $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
         $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
+        $this->assets->addJs('apps/leavedays/js/index-search.js');
         $this->assets->addJs('apps/leavedays/js/index-applyleave.js');
         $this->assets->addJs('common/js/jquery-ui-timepicker.js');
         $this->assets->addCss('common/css/jquery-ui-timepicker.css');

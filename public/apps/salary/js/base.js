@@ -361,6 +361,7 @@ var Salary = {
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
+                
                 var json_obj = $.parseJSON(data);//parse JSON 
                 $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
 
@@ -369,7 +370,8 @@ var Salary = {
                 var travelfee_header;
                  for (var i in json_obj.items)
                 {
-                    if (json_obj.items[i].travel_fee_perday)
+                    
+                    if (json_obj[i].travel_fee_perday)
                     {
                          travelfees = json_obj.items[i].travel_fee_perday;
                          travelfee_header = 'Travel fees (per day)';

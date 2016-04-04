@@ -26,7 +26,7 @@
         </title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-        <?php $this->assets->outputCss() ?>
+        <?php  $this->assets->outputCss() ?>
     </head>
     <body class="skin-blue sidebar-mini" onload="display_ct()">
         <?php error_reporting(0); ?>                                
@@ -36,8 +36,6 @@
                 <a class="sidebar-toggle" role="button" href="#sidepage">
                     <span id="btn_show_menu" class="cmn-icons cmn-icons-toggle"></span>
                         </a>
-                    </li> 
-                </ul>
 
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
@@ -92,20 +90,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <?php
-//                                    if ($this->session->user['member_profile'] == null) {
-//                                        $img = "profile1.jpg";
-//                                    } else {
-//                                        $img = $this->session->user['member_profile'];
-//                                        if (file_exists('./uploads/' . $this->session->db_config['company_id'] . "/" . $img)) {
-//                                            $img = $this->session->db_config['company_id'] . "/" . $img;
-//                                        } else {
-//                                            $img = "profile1.jpg";
-//                                        }
-//                                    }
-                                    ?>                                                 
-<!--                                    <img src="<?php echo $baseUri; ?>uploads/<?php echo $img; ?>"  class="img-circle" class="user-image" width="30px" alt="User Image"/>-->
-                                    <p>
+                              <p>
                                         <b><?php echo $this->session->user['member_login_name']; ?></b>
                                         <small><b><?php echo $t->_("Member Since"); ?> </b><?php echo "<b style='color:white;font-size:13px;'>" . date("M - Y", strtotime($this->session->user['created_dt'])) . "</b>"; ?></small>
                                     </p>
@@ -187,7 +172,12 @@
                                         if (isset($top_link[1])) {
                                             echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/' . strtolower($top_link[0] . $top_link[1]) . '"><img  id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                         } else {
-                                            echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            if($top[0] == 'Calendar'){
+                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            }else{
+                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                            }
+                                            
                                         }
                                     } else {
                                         if (isset($top[1])) {
@@ -206,8 +196,9 @@
             </section>
             <!-- /.sidebar -->
         </aside>
-                <!-- Content Wrapper. Contains page content -->
+     <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
+
             <?php
             $j = 0;
             foreach ($this->session->auth as $key_name => $key_value) {
@@ -246,11 +237,8 @@
             }
 
             echo $this->getContent();
-            //$this->assets->outputJs();
+            $this->assets->outputJs();
             echo '</div></div>';
             ?>
-            <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
         </div><!-- /.content-wrapper -->
-
-        <!-- Content Wrapper. Contains page content -->
       

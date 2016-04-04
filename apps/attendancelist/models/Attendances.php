@@ -96,7 +96,7 @@ class Attendances extends Model {
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'attendances.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-  ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                 ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
                 ->andWhere('core.deleted_flag = 0')
                 ->andWhere('attendances.status = 0')
@@ -207,9 +207,10 @@ class Attendances extends Model {
      * @param type $id
      * @param type $offset
      */
-     public function editAtt($data, $id, $offset) {
-     
+    public function editAtt($data, $id, $offset) {
+       
         $utctime = \salts\Core\Models\Db\Attendances::getInstance()->LocalToUTC($data, $offset);
+        
         $hour = date("H", strtotime($data));
         $row = Attendances::findFirst("id = '$id'");
      // $attendance = \salts\Core\Models\Permission::tableObject($row);

@@ -31,7 +31,7 @@ use Phalcon\Filter;
             </div>
         </span>
         <a href="#" class="button add-big" id="displaypopup"><?= $t->_("Calculate salary"); ?></a>
-        <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);">Export</a>
+        <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);"><img id="exicon">Export</a>
     </div>
 
     <div class="row">

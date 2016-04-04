@@ -5,22 +5,24 @@ namespace salts\Dashboard\Controllers;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 use salts\Dashboard\Models\CorePermissionGroup;
+
 date_default_timezone_set('UTC');
+
 //use Phalcon\Flash\Direct as FlashDirect;
- 
- 
+
+
 class IndexController extends ControllerBase {
 
     public function initialize() {
-        parent::initialize(); 
-       // $view->setPartialsDir('/app/core/view/partials/');
+        parent::initialize();
+        // $view->setPartialsDir('/app/core/view/partials/');
         $this->setDashboardJsAndCss();
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $this->module_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->module_name);
         $this->view->module_name = $this->module_name;
         $this->view->permission = $this->permission;
-   
+
         // Module ID Filter Start By (1,0)
         $ModuleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $ModuleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
@@ -31,9 +33,9 @@ class IndexController extends ControllerBase {
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
         $view = new \Phalcon\Mvc\View();
-        $view->setViewsDir( realpath('../../../core/views/partials/') );
-        $view->setLayoutsDir( '../../../core/views/layouts/' );
-        $view->setPartialsDir( '../../../core/views/partials/' );
+        $view->setViewsDir(realpath('../../../core/views/partials/'));
+        $view->setLayoutsDir('../../../core/views/layouts/');
+        $view->setPartialsDir('../../../core/views/partials/');
     }
 
     /**
@@ -43,9 +45,6 @@ class IndexController extends ControllerBase {
     public function indexAction() {
         $this->view->disable();
         $this->response->redirect('dashboard/index/user');
-    
-        
-      
     }
 
     /**
@@ -55,9 +54,9 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {
-  
+
         //$this->view->setLayout('/../core/view/partial/header');
-     
+
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
