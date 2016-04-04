@@ -2,7 +2,6 @@
 /bk/nbproject/private/
 /vendor/
 /data/*/*
-/config/config.ini
 *.DS_Store
 .DS_Store
 *.log       # log files
