@@ -15,28 +15,11 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->setDocumentJsAndCss();
-        $this->act_name = $this->router->getActionName();
-        $this->permission = $this->setPermission($this->act_name);
-        $Admin = new CoreMember();
-        $id = $this->session->user['member_id'];
-        $ModuleIdCallCore = new Db\CoreMember();
-        $this->module_name = $this->router->getModuleName();
-        $this->moduleIdCall = $ModuleIdCallCore->moduleIdSetPermission($this->module_name, $this->session->module);
-        $this->view->moduleIdCall = $this->moduleIdCall;
-
-        foreach ($this->session->auth as $key_name => $key_value) {
-            if ($key_name == 'show_admin_notification') {
-                $Noti = $Admin->getAdminNoti($id, 0);
-            }
-            if ($key_name == 'show_user_notification') {
-                $Noti = $Admin->getUserNoti($id, 1);
-            }
-        }
-        $this->view->setVar("Noti", $Noti);
+        $this->setAllUse();
     }
 
     public function indexAction() {
-        $this->response->redirect('core/index');
+//        /$this->response->redirect('core/index');
     }
 
     /**
@@ -95,6 +78,7 @@ class IndexController extends ControllerBase {
      */
     public function letterheadAction() {
         if ($this->moduleIdCall == 1) {
+            
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-letterhead.js');
             $ComInfo = CompanyInfo::find();

@@ -59,7 +59,7 @@ $length = count($Month);
             <input class="userauto form-control-static" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
             <input type="submit" class="buttonn  form-control-static" value="<?= $t->_("search"); ?>" id="search">
-            <a href="#" class="buttonn  form-control-static export " id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><?= $t->_("export"); ?></a>
+            <a href="#" class="button export " onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><?= $t->_("export"); ?></a>
         </form>
     </div>
 

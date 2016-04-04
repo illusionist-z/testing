@@ -208,16 +208,15 @@ class Attendances extends Model {
      * @param type $offset
      */
     public function editAtt($data, $id, $offset) {
-       
+     
         $utctime = \salts\Core\Models\Db\Attendances::getInstance()->LocalToUTC($data, $offset);
-        
         $hour = date("H", strtotime($data));
         $row = Attendances::findFirst("id = '$id'");
-        $attendance = \salts\Core\Models\Permission::tableObject($row);
-        
-        $attendance->checkin_time = $utctime;
-        $attendance->status = $hour < 12 ? 0 : 3;
-        $attendance->update();
+     // $attendance = \salts\Core\Models\Permission::tableObject($row);
+     
+        $row->checkin_time = $utctime;
+        $row->status = $hour < 12 ? 0 : 3;
+        $row->update();
     }
 
     public function searchAttList($year, $month, $username,$currentPage) {

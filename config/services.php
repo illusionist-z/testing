@@ -94,8 +94,8 @@ $di->setShared('db',function() {
             'charset'     => 'utf8']);
     }
     else {
-         
-        $localhost = $_SERVER[HTTP_HOST];
+      
+       $localhost = $_SERVER[HTTP_HOST];
        header("Location:http://".$localhost."/salts");
     }
 });
