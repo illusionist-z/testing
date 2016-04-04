@@ -49,7 +49,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql,#exbg{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
-#apply_cancel,#add_salary_cancel,#displaypopup,#add_dec,#addinguser_close,#edit_close,
+#apply_cancel,#add_salary_cancel,#add_dec,#addinguser_close,#edit_close,
 #cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
 #cancel,#save,#btn_logout,#settingimg,#settingborder,#apply_form_cancel,#noti_reject,
 #editsetting,#savesetting,#noleaveview,#btn_cancel,#notyou,#setting,.addgn,.addpp{
@@ -310,11 +310,11 @@ a.button:active {
     color: #000;
     border-color: #444;
 }
-a.add-big {
+/*a.add-big {
     background: url("../img/5Fm069k.png") 5px -26px no-repeat #F8F8F8;
     font-size: 12px;
     padding: 8px 10px 8px 26px;
-}
+}*/
 a.export {
 /*    background: url("../img/cmn-icons.png")  -58px 6px no-repeat red ;*/
     font-size: 12px;
@@ -913,4 +913,121 @@ hr{
 #exicon{
     background: url("../img/cmn-icons.png") -60px 2px no-repeat ;
     padding: 5px 12px 20px 10px;
+}
+
+/* for hover notification */
+
+#hovernoti {
+    background-color: #F1F1F1;
+    border: 1px solid rgba(100, 100, 100, .4);
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    overflow: visible;
+    position: absolute;
+    top: 25px;
+    margin-left:-50px;
+    margin-top:16px;
+    width: 100px;
+    z-index: -1;
+    display: none;
+}
+#hovernoti:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: transparent;
+    border: 6px solid black;
+    border-color: transparent transparent white;
+    margin-top: -13px;
+    margin-left: 68px;
+}
+#hovernotiTitle {
+    z-index: 1000;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #3c8dbc;
+    color:white;
+    width: 100px;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* for download hover notification */
+
+#downloadhover {
+    background-color: #F1F1F1;
+    border: 1px solid rgba(100, 100, 100, .4);
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    overflow: visible;
+    position: absolute;
+    top: 40px;
+    margin-left:20px;
+    margin-top:16px;
+    width: 250px;
+}
+#downloadhover:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: transparent;
+    border: 6px solid black;
+    border-color: transparent transparent white;
+    margin-top: -13px;
+    margin-left: 220px;
+}
+#downloadhoverTitle {
+    z-index: 1000;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #3c8dbc;
+    color:white;
+    width: 250px;
+    border-bottom: 1px solid #dddddd;
+}
+
+
+/* for download hover notification */
+
+#hoverdown {
+    background-color: #F1F1F1;
+    border: 1px solid rgba(100, 100, 100, .4);
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, .25);
+    overflow: visible;
+    position: absolute;
+    top: 25px;
+    margin-left:-10px;
+    margin-top:16px;
+    width: 250px;
+    z-index: 1;
+}
+#hoverdown:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    color: transparent;
+    border: 6px solid black;
+    border-color: transparent transparent white;
+    margin-top: -13px;
+    margin-left: 195px;
+}
+#hoverdownTitle {
+    z-index: 1000;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #3c8dbc;
+    color:white;
+    width: 250px;
+    border-bottom: 1px solid #dddddd;
+}
+#displaypopup{
+    color: white;
+    border-radius: 4px;
+    padding: 7px 10px 10px 10px
 }
