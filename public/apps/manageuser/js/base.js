@@ -15,6 +15,7 @@ var User = {
         $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
         if(reload){
        $.ajax({
+          
                 url: User.Ctrl+"/usernameautolist",
                 method: 'GET',
                 //dataType: 'json',
@@ -61,7 +62,8 @@ $(document).ready( function() {
     $('form').on('click','#userlistsearch',function () {        
         User.search();
     });
-    $('form').on('click','#addinguser',function () {      
+    $('form').on('click','#addinguser',function () {     
+       
            var type="new";
                     $.ajax({
                     type:'GET',
