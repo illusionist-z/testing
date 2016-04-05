@@ -136,22 +136,13 @@ class SalaryIndexController extends Controllers\IndexController {
             $this->assets->addJs('apps/salary/js/index-addsalary.js');
             $userlist = new Db\CoreMember();
             $user_name = $userlist::getinstance()->getUserName("Khine Thazin Phyo");
-            $Allowance = new Allowances();
+            $Allowance = new SalaryAllowances();
             $getall_allowance = $Allowance->getAllallowances();
-
-            $TaxDeduction = new SalaryTaxsDeduction();
+            $TaxDeduction = new TaxsDeduction();
             $deduce = $TaxDeduction->getDeducelist();
-
-            $position = $this->salaryconfig->position;
-
-            $this->view->module_name = $this->router->getModuleName();
-            $this->view->setVar("usernames", $user_name);
-            $this->view->position = $position;
-            $this->view->getall_allowance = $getall_allowance;
-            $this->view->getall_deduce = $deduce;
-        } else {
-            $this->response->redirect('core/index');
-        }
+            return true;
+           
+        } 
     }
 
     public function showsalarylistAction() {
@@ -250,31 +241,14 @@ class SalaryIndexController extends Controllers\IndexController {
 
     public function saveallowanceAction() {
         $this->initialize();
-        if ($this->permission == 1) {
-
-            for ($x = 1; $x <= 10; $x++) { // getting all value from text boxes
-                $all_name['"' . $x . '"'] = $this->request->get('textbox' . $x);
-                $all_value['"' . $x . '"'] = $this->request->get('txt' . $x);
-                if (!isset($all_name['"' . $x . '"'])) {
-
-                    $count = $x;
-                    break; //getting the number of textboxes
-                }
-            }
-            foreach ($all_name as $key => $value) {
-                if (empty($value)) {
-                    unset($all_name[$key]);
-                }
-            }
+        if ($this->permission == 1) {           
             $all_name = $this->all_name['all_name'];
             $all_value = $this->all_name['all_value'];
-
+               
             if (!empty($all_name) && $this->state == 1) {
-
-                $Allowance = new \salts\Salary\Models\Allowances();
-                $Allowance->addAllowance($all_value, $all_name, $count);
-
-
+                       
+                $Allowance = new SalaryAllowances();
+                $Allowance->addAllowance($all_value, $all_name, 2);
                 $this->response->redirect('salary/index/allowance');
                 $this->flashSession->success("Allowances are added successfully!");
                 return "Allowances are added successfully!";
@@ -428,8 +402,8 @@ class SalaryIndexController extends Controllers\IndexController {
             $Deduction = new TaxsDeduction();
             $list = $Deduction->getDeducelist();
 
-            $deduce_id = $list[0]['deduce_id'];
-
+            $deduce_id = $list[5]['deduce_id'];
+            
             $Deduction->deleteDeduction($deduce_id);
             return true;
         }
@@ -556,7 +530,7 @@ class SalaryIndexController extends Controllers\IndexController {
     }
 
     public function downloadcsvAction($id) {
-
+        $this->initialize();
         (1 == $id) ? $title = "salary_data_" : $title = "salary_detail_";
         $file_name = $title . date('Ymd') . ".csv";
         $output = fopen('php://output', 'w');
@@ -599,11 +573,11 @@ class SalaryIndexController extends Controllers\IndexController {
     }
 
     public function memberidforprintAction() {
+        $this->initialize();
         $this->assets->addJs('apps/salary/js/index-print.js');
-        $member_id = $this->member_id;
-        $paydate = "2016-01-31";
-
-        $SalaryDetail = new SalaryDetail();
+        $member_id = $this->member_id;       
+        $paydate = "2016-03-31";
+        $SalaryDetail = new SalaryDetailTest();
         $result = $SalaryDetail->addMemberid($member_id, $paydate);
 
         if ($result) {

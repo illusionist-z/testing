@@ -35,17 +35,22 @@ class SalaryAllowances extends Models\Allowances {
      * Adding Allowances to allowance table
      */
     public function addAllowance($all_value, $all_name, $count) {
-        try {
+        try {           
             $data = Array();
-            $filter = new Filter();
-            $data['created_dt'] = date("Y-m-d H:i:s");
-            
+           
+            $data['created_dt'] = date("Y-m-d H:i:s");          
+                    
             $this->db = $this->getDI()->getShared("db");
+            
             for ($x = 1; $x < $count; $x++) {
-                $all = new Allowances();
-                $data['allowance_id'] = uniqid();
-                $data['allowance_name'] = $filter->sanitize(isset($all_name['"' . $x . '"']) ? $all_name['"' . $x . '"'] : "", "string");
-                $data['allowance_amount'] = $filter->sanitize(isset($all_value['"' . $x . '"']) ? $all_value['"' . $x . '"'] : "", "int");
+                
+                $all = new Models\Allowances();
+                $data['allowance_id'] = uniqid();       
+               
+                $data['allowance_name'] = $all_name;               
+                               
+                $data['allowance_amount'] = $all_value;
+                
                 $all->save($data);
             }
         } catch (\PDOException $ex) {
@@ -116,6 +121,7 @@ class SalaryAllowances extends Models\Allowances {
     }
 
     public function getAllallowances() {
+        $this->db = $this->getDI()->getShared("db");
         try {
             $sql = "select * from allowances";
             $result = $this->db->query($sql);
@@ -149,6 +155,7 @@ class SalaryAllowances extends Models\Allowances {
 
     public function editAll($allid) {
         try {
+            $this->db = $this->getDI()->getShared("db");
             $sql = "select * from allowances where allowances.allowance_id ='" . $allid . "'";
             $result = $this->db->query($sql);
             $row = $result->fetchall();

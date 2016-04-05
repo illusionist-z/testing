@@ -2,7 +2,7 @@
 
 use Phalcon\Mvc\Model;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
-use salts\Salary\Models\SalaryDetail;
+use salts\Salary\Models\SalaryMaster;
 use Phalcon\Filter;
 use salts\Salary\Models;
 
@@ -126,6 +126,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function insertTaxs($row) {
         try {
+             $this->db = $this->getDI()->getShared("db");
             foreach ($row as $rows) {
                 if ($rows['allowance_amount'] === "") {
                     $rows['allowance_amount'] = "0";
@@ -326,6 +327,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
 
     public function updateSalarydetail($bsalary, $allowancetoadd, $member_id, $salary_start_year, $salary_start_month, $absent_amount, $overtime_hr, $overtimerate) {
+         $this->db = $this->getDI()->getShared("db");
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
@@ -526,7 +528,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 //                    . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
 //                    "' order by created_dt desc limit 1";
             echo $sql . '<br>';
-            var_dump($this->db);
+           
             $result = $this->db->query($sql);
            
             $row = $result->fetcharray();
