@@ -1,4 +1,4 @@
-                <?php
+<?php
 
 namespace salts\Notification\Controllers;
 use salts\Notification\Models\CoreNotificationRelMember;
