@@ -1,7 +1,6 @@
 <?php
-
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
 
 use Phalcon\Filter;
@@ -21,7 +20,10 @@ use Phalcon\Filter;
     <div class="buttons">
         <span class="dropdown">
             <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
-            <h4 class="btn btn-primary csv_download" title="Download Sample CSV(we recommend to open in excel)" id="2"><img src="../../common/img/download1.png"></h4>
+            <h4 class="btn btn-primary csv_download"  id="2"><img id="exicon"></h4>
+            <div id="hoverdown">
+                <div id="hoverdownTitle"><?php echo $t->_("Download Sample CSV(We recommend to open in excel)"); ?></div>                                
+            </div>
             <div class="dropdown-menu"  id="radsal_type" style="margin-top: 20px;">
                 <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
                     <input type="file" name="file" id="file_select" class="col-xs-6 col-xs-offset-0">
@@ -30,8 +32,10 @@ use Phalcon\Filter;
                 </form>
             </div>
         </span>
-        <a href="#" class="button add-big" id="displaypopup"><?= $t->_("Calculate salary"); ?></a>
-        <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);"><img id="exicon">Export</a>
+<!--        <a href="#" class="button add-big" id="displaypopup"><?= $t->_("Calculate salary"); ?></a>-->
+        <h4 class="btn btn-primary add-big"  id="displaypopup"><?= $t->_("Calculate salary"); ?></h4>
+<!--        <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);"><img id="exicon">Export</a>-->
+        <h4 class="btn btn-primary export"  id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);"><img id="exicon">Export</h4>
     </div>
 
     <div class="row">

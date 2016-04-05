@@ -1,6 +1,6 @@
 <?php
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
 ?>
 <section class="content-header" style="height:auto;">
@@ -59,7 +59,7 @@ if (isset($Msg)) {
                             <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("overtime"); ?></span>
                             <span class="col-xs-8">
                                 <input type="number" id="overtime" value="" style="width:45%; height: 20%;" name="overtime" placeholder="<?php echo $t->_("over"); ?>">
-                            
+
                             </span>
                         </div>
 
@@ -78,13 +78,13 @@ if (isset($Msg)) {
                                         $j = 0;
                                     }
                                     if ($i == 3) {
-                                    echo "<div id='No_of_children' style='display:none;'>
+                                        echo "<div id='No_of_children' style='display:none;'>
                                 <input type='text'  name='no_of_children' id='no_of_children' placeholder='number of children'>
                                 </div>";
                                     }
                                 }
                                 ?> 
-                                
+
                             </div>        
                             <div  style="float: right;margin-right: 50px;margin-top: -50px;" id="add_salary_ssc_error"></div>
                         </div>                       
@@ -125,7 +125,10 @@ if (isset($Msg)) {
                 </div>
                 <div class="col-md-4 dropdown"  style="text-align: center;padding-bottom: 10px; ">                    
                     <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
-                    <h4 class="btn btn-primary csv_download" title="Download Sample CSV(We recommend to open in excel)" id="1"><img id="exicon"></h4>
+                    <h4 class="btn  btn-primary csv_download"  id="1"><img id="exicon"></h4>
+                    <div id="downloadhover">
+                        <div id="downloadhoverTitle"><?php echo $t->_("Download Sample CSV(We recommend to open in excel)"); ?></div>                                
+                    </div>
                     <div class="col-sm-12 dropdown-menu"  id="radsal_type">                   
                         <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">
                             <input type="file" name="file" id="file_select" class="col-xs-6 col-xs-offset-0">
