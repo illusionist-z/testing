@@ -360,8 +360,7 @@ var Salary = {
             url: baseUri + 'salary/search/searchTravelfees?' + $form,
             method: 'GET',
             //dataType: 'json',
-            success: function (data) {
-                
+            success: function (data) { alert(data);
                 var json_obj = $.parseJSON(data);//parse JSON 
                 $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
 
@@ -371,15 +370,16 @@ var Salary = {
                  for (var i in json_obj.items)
                 {
                     
-                    if (json_obj[i].travel_fee_perday)
-                    {
-                         travelfees = json_obj.items[i].travel_fee_perday;
-                         travelfee_header = 'Travel fees (per day)';
-                    }
-                    else {
-                         travelfees = json_obj.items[i].travel_fee_permonth;
-                         travelfee_header = 'Travel fees (per month)';
-                    }
+//                    if (json_obj[i].travel_fee_perday !== undefined)
+//                    {
+//                         travelfees = json_obj.items[i].travel_fee_perday;
+//                         travelfee_header = 'Travel fees (per day)';
+//                    }
+//                    else {
+//                         travelfees = json_obj.items[i].travel_fee_permonth;
+//                         travelfee_header = 'Travel fees (per month)';
+//                    }
+                    
                     var output = "<tr>"
                             + "<td>" + j + "</td>"
                             + "<td>" + json_obj.items[i].member_login_name + "</td>"

@@ -581,7 +581,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $select .= " and sm.member_id='" . $param["user_id"] . "'";
             }            
             $select .= " ORDER BY sm.created_dt desc";
-            //echo $select;exit;
             $result = $this->modelsManager->executeQuery($select);
             $page = $this->base->pagination($result, $currentPage);
         } catch (Exception $ex) {
