@@ -86,10 +86,38 @@ $(document).ready(function () {
 
     $("#btn_cmn_help").on('mouseover', function (e) {
         e.preventDefault();
-        //document.getElementById("noti").className = "noticlose";
         $("#helpnoti").fadeToggle(100);
+        $("#hovernoti").hide();
     });
     $(".content").on('mouseover', function () {
         $("#helpnoti").hide();
+    });
+    
+    /* hover notification */
+     $(".cmn-icons-notifi").on('mouseover', function (e) {
+        e.preventDefault();
+        $("#hovernoti").fadeToggle(100);
+        $("#helpnoti").hide();
+    });
+    $(".content").on('mouseover', function () {
+        $("#hovernoti").hide();
+    });
+    
+      /* download hover notification */
+     $(".csv_download").on('mouseover', function (e) {
+        e.preventDefault();
+        $("#downloadhover").fadeToggle(100);
+    });
+    $(".content").on('mouseover', function () {
+        $("#downloadhover").hide();
+    });
+    
+      /* download hover notification */
+     $(".csv_download").on('mouseover', function (e) {
+        e.preventDefault();
+        $("#hoverdown").fadeToggle(100);
+    });
+    $(".content").on('mouseover', function () {
+        $("#hoverdown").hide();
     });
 });

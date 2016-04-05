@@ -59,3 +59,7 @@ a.btn_detail {
     -moz-border-radius: 2px;
     margin-right: 1px;
 }
+
+#csv_file{
+    padding: 8px 13px;
+}

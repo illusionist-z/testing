@@ -74,7 +74,7 @@ class Leaves extends \Library\Core\Models\Base {
     }
 
     public function getAbsentById($id) {
-        $result = $this->db->query("select * from attendances where attendances.member_id = '" . $id . "' and attendances.status=2");
+        $result = $this->db->query("select * from attendances where attendances.member_id = '" . $id . "' and (status = 1 or status = 2)");
         $data = count($result->fetchall());
         return $data;
     }

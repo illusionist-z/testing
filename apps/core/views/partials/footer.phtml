@@ -1,19 +1,18 @@
  
 <?php
+
 use Phalcon\Tag as Tag;
 ?>
-<script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
-        <footer class="main-footer" style="margin-left:0;">
-            <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-            <div class="language">
-                <?php echo $t->_("Change_Language"); ?> : <?php echo Tag::linkTo("core/index/setLanguage/en", "<img src=' " . $baseUri . "common/img/english.png' width='20px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/jp", "<img src=' " . $baseUri . "common/img/japan.jpg' width='25px'>") ?> &nbsp;&nbsp; <?php echo Tag::linkTo("core/index/setLanguage/mm", "<img src=' " . $baseUri . "common/img/myanmar.jpg' width='25px'>") ?>
-            </div>
-        </footer>
-
-        <div id="notidetail" style=" display:none;" class="navbar">
-
+    <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
+    <footer id="cmn_footer" style="margin-left:0;">
+        <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+        <div id="cmn_lang_box">
+            <?php echo $t->_("Change_Language"); ?> : 
+            <span id="cmn_lang_mm" class="cmn-icons cmn-icons-contry mm"></span>
+            <span id="cmn_lang_jp" class="cmn-icons cmn-icons-contry jp"></span>
+            <span id="cmn_lang_en" class="cmn-icons cmn-icons-contry en"></span>
         </div>
-
-
+    </footer>
+        <div id="notidetail" style="display:none;" class="navbar"></div>
     </body>
-</html>
+</html> 

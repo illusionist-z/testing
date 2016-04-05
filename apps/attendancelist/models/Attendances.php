@@ -208,9 +208,8 @@ class Attendances extends Model {
      * @param type $offset
      */
     public function editAtt($data, $id, $offset) {
-       
+     
         $utctime = \salts\Core\Models\Db\Attendances::getInstance()->LocalToUTC($data, $offset);
-        
         $hour = date("H", strtotime($data));
         $row = Attendances::findFirst("id = '$id'");
      // $attendance = \salts\Core\Models\Permission::tableObject($row);
