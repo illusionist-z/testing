@@ -8,5 +8,3 @@
 *.swp       # swap files
 *~
 /public/uploads/
-/config/org/
-/config/
