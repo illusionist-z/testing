@@ -1088,7 +1088,8 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 /* navbar-nav margin */
 @media (min-width: 768px){
 .navbar-nav {
-    position: relative;    
+    position: relative;
+    float: left;
     margin:0 10px 0 0;
 }
 }

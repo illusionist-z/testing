@@ -61,11 +61,11 @@ class DocumentCTTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($msg, $document->editinfoAction());
     }
 
-    public function testsalaryreferAction() {
-
-        $refer = new DocumentIndexController();
-        $name = "G - NEXT Co.,Ltd";
-        $this->assertEquals($name, $refer->salaryreferAction());
-    }
+//    public function testsalaryreferAction() {
+//
+//        $refer = new DocumentIndexController();
+//        $name = "G - NEXT Co.,Ltd";
+//        $this->assertEquals($name, $refer->salaryreferAction());
+//    }
 
 }
