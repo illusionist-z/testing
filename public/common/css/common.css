@@ -276,7 +276,7 @@ a.button {
     border-radius: 2px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
-    margin-right: 1px;
+    /*margin-right: 1px;*/
 }
 form.buttons ,form.buttons > input {
     margin-bottom: 20px;
