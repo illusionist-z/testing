@@ -145,7 +145,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 ->addJs('common/js/common.js');
         //->addJs('common/js/btn.js')
         $this->assets->addJs('common/js/bootstrap.min.js');
-        $this->assets->addJs('common/js/app.min.js');
+        //$this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
         }
@@ -253,7 +253,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * Js and Css for Dashboard
      */
     public function setDashboardJsAndCss() {
-        $this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+        //$this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
         $this->assets->addCss('common/css/bootstrap.min.css');
         $this->assets->addCss('common/css/common.css');
         $this->assets->addCss('common/css/jquery-ui.css');
@@ -269,8 +269,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
-       
-        
+               
     }
     
 
