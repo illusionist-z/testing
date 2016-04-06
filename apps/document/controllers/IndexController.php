@@ -98,7 +98,9 @@ class IndexController extends ControllerBase {
      * @version Yan Lin Pai <wizardrider@gmail.com>
      */
     public function editinfoAction() {
+        $file_contents='';
         if (($_FILES['fileToUpload']['size']) != 0) {
+            
             $file_type = $_FILES['fileToUpload']['type'];
             $file_size = $_FILES['fileToUpload']['size'];
 
@@ -108,17 +110,22 @@ class IndexController extends ControllerBase {
             ) {
                 $this->checkimgtype();
             }
-        } else {
+            else{
             $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
             $file = fopen($MY_FILE, 'r');
             $file_content = fread($file, filesize($MY_FILE));
             fclose($file);
-            $file_contents = addslashes($file_content);
+            $file_contents = addslashes($file_content);}
+        } 
             $update_info = $this->request->getPost('update');
             $ComInfo = new CompanyInfo();
             $ComInfo->editCompanyInfo($update_info, $file_contents);
-            $this->response->redirect("document/index/letterhead");
-        }
+            //$this->response->redirect("document/index/letterhead");
+           $localhost = ($this->request->getServer('HTTP_HOST'));
+           $page = "http://" . $localhost . "/salts/document/index/letterhead";
+           $sec = "0";
+           header("Refresh: $sec; url=$page");
+        
     }
 
     public function checkimgsize() {

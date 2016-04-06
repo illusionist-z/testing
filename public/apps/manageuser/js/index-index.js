@@ -10,7 +10,7 @@
         
         $.ajax({
             type: 'GET',
-            url:  User.Ctrl+"/manageuser",
+            url:  baseUri+"manageuser/index/manageuser",
             data : {data : type },
             dataType:'json',
             success: function (res) {
