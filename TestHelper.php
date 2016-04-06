@@ -29,7 +29,8 @@ include __DIR__ . "/library/core/Controller.php";
 
 spl_autoload_register(function () {
 //    auth
-    include_once 'apps/auth/controllers/LoginController.php';
+
+   
     include_once 'apps/auth/controllers/ControllerBase.php';
     include_once 'apps/auth/controllers/LogoutController.php';
     include_once 'apps/auth/controllers/IndexController.php';
@@ -111,6 +112,7 @@ spl_autoload_register(function () {
     include_once 'apps/notification/models/Leaves.php';
     include_once 'apps/notification/models/CoreNotificationRelMember.php';
 //    tests
+    include_once 'tests/CT/apps/attendancelist/model/AttendancesTest.php';
     include_once 'tests/CT/apps/salary/models/SalaryDetailTest.php';
     include_once 'tests/CT/apps/salary/models/Master.php';
     include_once 'tests/CT/apps/salary/models/SalaryAllowances.php';
@@ -155,14 +157,6 @@ $di->set('login_db', function() use ($config) {
     ));
 }, true);
 
-//$di->set('db', function() use ($config) {
-//    return new \Phalcon\Db\Adapter\Pdo\Mysql(array(
-//        "host" => $config->database->host,
-//        "username" => $config->database->username,
-//        "password" => $config->database->password,
-//        "dbname" => $config->database->dbname
-//    ));
-//}, true);
 $di->setShared('db', function() {
 
     //$database = (isset($_SESSION['db_config'])) ? $_SESSION['db_config'] : $config->database->database;

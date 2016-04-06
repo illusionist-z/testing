@@ -119,9 +119,6 @@ class LeaveIndexController extends Controllers\IndexController {
     public function applyleaveAction() {
         $this->initialize();
         if ($this->moduleIdCall == 1) {
-            $this->assets->addJs('apps/leavedays/js/index-applyleave.js');
-            $this->assets->addJs('common/js/jquery-ui-timepicker.js');
-            $this->assets->addCss('common/css/jquery-ui-timepicker.css');
             $LeaveType = new models\LeaveCategories();
             $ltype = $LeaveType->getLeaveType();
             $UserList = new Db\CoreMember();
@@ -130,12 +127,7 @@ class LeaveIndexController extends Controllers\IndexController {
             if ($this->permission == 1) {
 
                 return true;
-            } else {
-
-                $this->response->redirect('core/index');
             }
-        } else {
-            $this->response->redirect('core/index');
         }
     }
 
@@ -149,7 +141,7 @@ class LeaveIndexController extends Controllers\IndexController {
             }
             $json['result'] = "error";
 
-            return $json;
+           
         } else {
             $creator_id = $this->session->user['member_id'];
             $uname = $this->info['uname'];
@@ -157,9 +149,11 @@ class LeaveIndexController extends Controllers\IndexController {
             $edate = $this->info['edate'];
             $type = $this->info['type'];
             $desc = $this->info['desc'];
-            $error = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
-            return $error;
+            $json = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
+           
         }
+        
+        return $json;
     }
 
     public function leavelistAction() {

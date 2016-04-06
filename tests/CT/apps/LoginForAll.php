@@ -11,13 +11,12 @@
  *
  * @author Khine Thazin Phyo <ktzp27@gmail.com>
  */
-
 use Phalcon\Filter;
 use salts\Auth\Models;
 use salts\Auth\Controllers;
 use salts\Core\Models\Db\CoreMember;
 
-
+require_once 'apps/auth/controllers/LoginController.php';
 
 class LoginForAll extends Controllers\LoginController {
 

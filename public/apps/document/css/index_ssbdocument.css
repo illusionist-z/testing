@@ -19,28 +19,15 @@
 }
 
 .ssb-right{
-    width:26%;
-    float: right;
+  width:26%;
+  float: right;
 }
 @media print{
-
-    body *{ visibility: hidden; }
-    .printable *{ visibility: visible;}
-    #side {display:none;}  
-
-    table.tbl-tax thead {
-        display: table-header-group;
-        margin: 0;
-        border-radius: initial;
-        width: initial;
-        min-height: initial;
-        box-shadow: initial;
-        background: #eeefff !important;
-        page-break-before:  always;
-        page-break-after: always; 
-    }    
+  body *{ visibility: hidden; }
+  .printable *{ visibility: visible;}
+  #side {display:none;}
+  .link{display: none;}
 }
-
 #doc{
     float: right;
     padding: 15px;
