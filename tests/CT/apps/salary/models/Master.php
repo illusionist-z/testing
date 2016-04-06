@@ -446,19 +446,21 @@ class Master extends Models\SalaryMaster {
      * @param type $member_id 
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    function checkAbsent($member_id, $budget_startyear, $budget_endyear_one) {
+     function checkAbsent($member_id, $budget_startyear) {
         try {
+            $workingnextyr = date('Y-m-d', strtotime("+1 year", strtotime($budget_startyear)));
             $absent_deduce = "";
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
-                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and (status = 1 or status = 2)";
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $workingnextyr . "' and deleted_flag=0 and (status = 1 or status = 2)";
+           //echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
              $sql2 = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
-                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $budget_endyear_one . "' and deleted_flag=0 and (status = 3)";
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $workingnextyr . "' and deleted_flag=0 and (status = 3)";
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
             $row['countAbsent']+=(($row2['countAbsent'])/2); 
-            
+            echo "absentArray";print_r($row['countAbsent']);
         } catch (Exception $ex) {
             echo $ex;
         }
