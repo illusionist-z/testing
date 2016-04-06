@@ -3,8 +3,8 @@
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
-    
- 
+   
+
 use Phalcon\Filter;
 ?>
 
@@ -24,30 +24,24 @@ use Phalcon\Filter;
 
     <div class="col-sm-10">
         <div class=col-md-12">
-            <a href="user"  style="float:right;" id="viewprofile">View Profile</a>
+            <a href="<?php echo $baseUri; ?>setting/user"  style="float:right;" id="viewprofile">View Profile</a>
 
             <h3 link="#Group" >Group Rule Setting </h3>
 
             <a href="#" style="float:right;" onclick="addGroup.apply(this);
-                    return false;" class="btn addgn" type="black" id=""> Add Group Name  </a>   
-
-
+                    return false;" class="btn addgn" type="black" id=""> Add Group Name  </a>  
 
             <div id="addGroup" title="Add Group Rule" style="display: none;">
-                <form method="POST" action="index/AddGroupRule">
+                <form method="POST" action="AddGroupRule">
                     <table>
                         <tr>
                             <td>Group Name</td>
                             <td><input type="text" style="margin-top:10px;" name="name_of_group" value="" ></td>
                         </tr>
                     </table>
-
                 </form>
-            </div>            
-
+            </div>  
             <br>
-
-
             <table class="listtbladmin listtbl" >
 
                 <thead style="text-align:center;">
@@ -75,7 +69,7 @@ use Phalcon\Filter;
                             </td> 
                         </tr>                                                                                                   
                     <div id="open<?= $data->group_id ?>" title="Change Group Rule" style="display: none;">
-                        <form method="POST" action="index/GroupRuleSetting">
+                        <form method="POST" action="GroupRuleSetting">
 
                             <input type="hidden" name="group_id" value="<?= $data->group_id ?>" >
 
@@ -98,12 +92,11 @@ use Phalcon\Filter;
 
         </div>
         <!-- /.content-wrapper-content -->
-
         <!-- Top Menu -->
-
         <!-- /Top Menu -->
 
     </div>
+
 
 
 

@@ -31,7 +31,7 @@ class IndexController extends ControllerBase {
         $this->view->setVar("Noti", $noti);
         $this->view->module_name = $this->router->getModuleName();
         $this->view->t = $this->_getTranslation();
-        $this->permission = $this->setPermission($this->router->getActionName());
+        $this->permission = $this->setPermission($this->router->getModuleName());
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->router->getModuleName(), $this->session->module);
@@ -54,10 +54,7 @@ class IndexController extends ControllerBase {
      */
     
    public function indexAction() {
-            $this->response->redirect('core/index');
-    }
-    public function adminAction() {
-        if ($this->permission == 1) {
+          if ($this->permission == 1) {
           $permission = new \salts\Core\Models\Permission();
             $coreid = new CorePermissionGroupId();
             $corememberid = new CorePermissionRelMember();
@@ -93,6 +90,9 @@ class IndexController extends ControllerBase {
         } else {
             $this->response->redirect('core/index');
         }
+    }
+    public function adminAction() {
+        
     }
 
     /**
