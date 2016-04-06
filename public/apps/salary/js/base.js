@@ -355,13 +355,14 @@ var Salary = {
     //searcch salary list by travel fees and user name
       search_salarylist: function () {
         var $form = $('#frm_search').serialize();
+        var type = document.getElementById('ltype').value;
          $('ul.pagination').empty();
+         
         $.ajax({
             url: baseUri + 'salary/search/searchTravelfees?' + $form,
             method: 'GET',
             //dataType: 'json',
-            success: function (data) {
-                
+            success: function (data) { 
                 var json_obj = $.parseJSON(data);//parse JSON 
                 $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
 
@@ -371,7 +372,7 @@ var Salary = {
                  for (var i in json_obj.items)
                 {
                     
-                    if (json_obj[i].travel_fee_perday)
+                    if (type == 1)
                     {
                          travelfees = json_obj.items[i].travel_fee_perday;
                          travelfee_header = 'Travel fees (per day)';
@@ -380,6 +381,7 @@ var Salary = {
                          travelfees = json_obj.items[i].travel_fee_permonth;
                          travelfee_header = 'Travel fees (per month)';
                     }
+                    
                     var output = "<tr>"
                             + "<td>" + j + "</td>"
                             + "<td>" + json_obj.items[i].member_login_name + "</td>"
