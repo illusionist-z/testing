@@ -278,6 +278,9 @@ a.button {
     -moz-border-radius: 2px;
     margin-right: 1px;
 }
+form.buttons ,form.buttons > input {
+    margin-bottom: 20px;
+}
 .buttonn{
     color: #6e6e6e;
     font: bold 11px Helvetica, Arial, sans-serif;
@@ -296,8 +299,7 @@ a.button {
     border: solid 1px #dcdcdc;
     border-radius: 2px;
     -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    margin-right: 1px;
+    -moz-border-radius: 2px;    
 }
 a.button:hover {
     color: #333;
@@ -927,7 +929,13 @@ hr{
     height:20px;
     background-position:-20px 0;
 }
-
+.nav>li>a {
+    float: none;
+    padding: 9px 15px 5px;
+    color: #777;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+}
 
 .nav>li>a>.label{
     position:absolute;
@@ -1059,4 +1067,28 @@ hr{
     color: white;
     border-radius: 4px;
     padding: 7px 10px 10px 10px
+}
+/* li element and form span */
+li{
+    line-height: 20px;
+}
+[class*="span"] {
+    float: left;
+    min-height: 1px;
+}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input{
+    padding: 4px 6px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 20px;
+    border-radius: 4px;
+    border : 1px solid #ccc;
+    vertical-align: middle;        
+}
+/* navbar-nav margin */
+@media (min-width: 768px){
+.navbar-nav {
+    position: relative;    
+    margin:0 10px 0 0;
+}
 }

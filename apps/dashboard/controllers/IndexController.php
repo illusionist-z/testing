@@ -17,7 +17,7 @@ class IndexController extends ControllerBase {
         parent::initialize(); 
        
         $this->setDashboardJsAndCss();
-       $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $Admin = new Db\CoreMember();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
