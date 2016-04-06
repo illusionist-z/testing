@@ -26,7 +26,6 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($name->todaylistAction());
     }
 
-
     public function testeditTimeAction() {
         $id = '1598';
         $localtime = '2016-02-01 09:00:00';
@@ -39,8 +38,6 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
         $month = new AttendancelistIndexController();
         $this->assertTrue($month->monthlylistAction());
     }
-
-
 
     public function testattendancechartAction() {
         $chart = new AttendancelistIndexController();
@@ -56,8 +53,6 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
      * AbsentController function test
      */
 
-
-
     public function testabsentlistAction() {
 
         $ablist = new AttAbsentController();
@@ -72,13 +67,13 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($ablist->checkAttAction());
     }
 
-    /*
-     * UserController function test
-     */
-
+//
+//    /*
+//     * UserController function test
+//     */
+//
     public function testattendancelistAction() {
         $userlist = new AttUserController();
         $this->assertTrue($userlist->attendancelistAction());
     }
-
 }

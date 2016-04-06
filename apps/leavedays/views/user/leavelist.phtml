@@ -3,9 +3,6 @@
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
-    
-
-
 $length = count($Month);
 ?>
 
@@ -24,7 +21,7 @@ $length = count($Month);
 <section class="content">
     <div class="buttons">
         <form id="frm_search">
-            <select class="select" data-toggle="select" name="ltype" id="ltype">
+            <select class="select form-control-static" data-toggle="select" name="ltype" id="ltype">
 
                 <option value=""><?= $t->_("leave_type"); ?></option>
                 <?php
@@ -36,7 +33,7 @@ $length = count($Month);
                 ?>
 
             </select>
-            <select class="select" data-toggle="select" name="month" id="month">
+            <select class="select form-control-static" data-toggle="select" name="month" id="month">
                 <option value=""><?= $t->_("month"); ?></option>
                 <?php
                 for ($i = 1; $i <= $length; $i++) {
@@ -56,8 +53,8 @@ $length = count($Month);
 
             </select>
 
-            <b><input type="submit" onclick="return false;" class="buttonn" value="Search" id="usersearch"></b>
-            <a href="#" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><b>Export</b></a>
+            <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="Search" id="usersearch"></b>
+            <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><b>Export</b></a>
         </form>
     </div>
 

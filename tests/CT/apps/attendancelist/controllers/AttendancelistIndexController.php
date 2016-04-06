@@ -127,11 +127,12 @@ class AttendancelistIndexController extends Controllers\IndexController {
             $currentPage = "monthlylist";
             $UserList = new \salts\Core\Models\CoreMember();
 
-            $Attendances = new \salts\Attendancelist\Models\Attendances();
+            $Attendances = new AttendancesTest();
             $monthly_list = $Attendances->showAttList($currentPage);
 
 
             if ($this->permission == 1) {
+              
                 return true;
             }
         }
@@ -156,7 +157,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
     public function attendancechartAction() {
         $this->initialize();
         if ($this->moduleIdCall == 1) {
-            $Attendances = new \salts\Attendancelist\Models\Attendances();
+            $Attendances = new AttendancesTest();
             $currentPage = $this->request->get("page");
 
             $data = $Attendances->currentAttList($currentPage);
