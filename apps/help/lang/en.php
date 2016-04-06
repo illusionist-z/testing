@@ -84,7 +84,7 @@ $messages = array(
     /**
      * Monthly Attenance Chart
      */
-    "Admin can show" => "Admin can show who attendance , leave and no leave of all member.Monthly Attendance Chart show with green,yellow and red colors.",
+    "Admin can show" => "Admin can show who attendance , leave and no leave of all member.Monthly Attendance Chart show with green,yellow,red and pink colors.",
     "Colors" => "Colors",
     "Green" => "Green",
     "att_person" => "Attendance Person",
@@ -92,6 +92,8 @@ $messages = array(
     "absent_leave_person" => "Absent Person(Apply Leave)",
     "Red" => "Red",
     "absent_noleave_person" => "Absent Person(No Apply Leave)",
+     "Pink" => "Pink",
+    "Half Day" => "Half Day Attendance Person",
     /**
      * Manage User
      */
@@ -174,11 +176,14 @@ After downloaded,we would like to
      * Salary Lists
      */
     "Salary List help center" => "Salary List help center",
+    "You can select"=>"You can select Travel fees per day and Travel fees per month",
     /**
      * Monthly Salary Lists
      */
     "Monthly Salary Lists help center" => "(1) Monthly Salary Lists help center",
     "Calculate Salary" => "Calculate Salary",
+    "Add salary"=>"Add salary with csv file",
+    "Download"=>"Download simple csv file",
     "Admin can calculate" => "Admin can calculate salary for this month.",
     "Month/Year" => "Month/Year",
     "Show details" => "Show details information,click Month/Year field date.",
