@@ -1,10 +1,10 @@
 <?php
-
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
-    
+
 use Phalcon\Filter;
+
 //calculate the user time offset
 
 if ($offset < 0) {
@@ -176,17 +176,19 @@ foreach ($this->session->auth as $key_name => $key_value) {
     </div><!-- /.row -->    
     <div id="content">
         <ul class="pagination" style="margin-left:15px;">
-            <?php if($monthlylist->last === 1 || $monthlylist->last === 0 ){} 
-            else{                 
-            ?>
-            <li><a href="monthlylist">First</a></li>
-            <li><a href="monthlylist?page=<?= $monthlylist->before; ?>">Previous</a></li>
-            <li><a href="monthlylist?page=<?= $monthlylist->next; ?>">Next</a></li>
-        <li><a href="monthlylist?page=<?= $monthlylist->last; ?>">Last</a></li>
-        <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $monthlylist->current, " of ", $monthlylist->total_pages; ?></span></li>
-        <?php 
-            }
-          ?>
+            <?php
+            if ($monthlylist->last === 1 || $monthlylist->last === 0) {
+                
+            } else {
+                ?>
+                <li><a href="monthlylist">First</a></li>
+                <li><a href="monthlylist?page=<?= $monthlylist->before; ?>">Previous</a></li>
+                <li><a href="monthlylist?page=<?= $monthlylist->next; ?>">Next</a></li>
+                <li><a href="monthlylist?page=<?= $monthlylist->last; ?>">Last</a></li>
+                <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $monthlylist->current, " of ", $monthlylist->total_pages; ?></span></li>
+                    <?php
+                }
+                ?>
         </ul>
     </div>
 </section> 

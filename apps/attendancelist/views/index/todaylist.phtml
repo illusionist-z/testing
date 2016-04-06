@@ -1,8 +1,7 @@
 <?php
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
-    
 
 use Phalcon\Filter;
 
@@ -65,9 +64,9 @@ if ($offset < 0) {
                         ?>
                         <tr>
                             <td><?php
-                                $date = date('Y-m-d');
-                                echo $date;
-                                ?></td>
+                    $date = date('Y-m-d');
+                    echo $date;
+                        ?></td>
                             <td><?php echo $filter->sanitize($result->core->member_login_name, "string"); ?></td>
                             <td>
                                 <?php
@@ -101,9 +100,9 @@ if ($offset < 0) {
                                 ?>
                             </td>
                             <td><?php
-                                if ($result->attendances->notes != '') {
-                                    echo "<font color='red'>" . $result->attendances->notes . " </font>";
-                                }
+                            if ($result->attendances->notes != '') {
+                                echo "<font color='red'>" . $result->attendances->notes . " </font>";
+                            }
                                 ?>
                             </td>
                             <td>
@@ -165,25 +164,27 @@ if ($offset < 0) {
                 </tbody>                
             </table>      
         </div><!--end table content--->
+
     </div><!-- /.row -->
-</section>
-<div id="content">
-    <ul class="pagination" style="margin-left:15px;">
-        <?php
-        if ($attlist->last === 1 || $attlist->last === 0) {
-            
-        } else {
-            ?>
-            <li><a href="todaylist">First</a></li>
-            <li><a href="todaylist?page=<?= $attlist->before; ?>">Previous</a></li>
-            <li><a href="todaylist?page=<?= $attlist->next; ?>">Next</a></li>
-            <li><a href="todaylist?page=<?= $attlist->last; ?>">Last</a></li>
-            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></span></li>
+    <div id="content">
+        <ul class="pagination" style="margin-left:15px;">
             <?php
-        }
-        ?>
-    </ul>
-</div>  
+            if ($attlist->last === 1 || $attlist->last === 0) {
+                
+            } else {
+                ?>
+                <li><a href="todaylist">First</a></li>
+                <li><a href="todaylist?page=<?= $attlist->before; ?>">Previous</a></li>
+                <li><a href="todaylist?page=<?= $attlist->next; ?>">Next</a></li>
+                <li><a href="todaylist?page=<?= $attlist->last; ?>">Last</a></li>
+                <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $attlist->current, " of ", $attlist->total_pages; ?></span></li>
+                <?php
+            }
+            ?>
+        </ul>
+    </div>  
+</section>
+
 <div id="edit_att_time"></div>
 
 

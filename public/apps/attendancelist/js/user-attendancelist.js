@@ -10,9 +10,6 @@
  */
  var User={};
  User.Attendance = {
-    init : function(){
-       $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
-    },
     search : function(){
       var startdate = document.getElementById('startdate').value;
       var enddate = document.getElementById('enddate').value;
@@ -23,7 +20,7 @@
  
 $(document).ready(function () { 
     
-    User.Attendance.init();
+    //User.Attendance.init();
     
     $('#search').on('click',function(){
         //alert("search");

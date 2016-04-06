@@ -31,10 +31,10 @@ if ($offset < 0) {
     <div class="buttons">
         <?php if (isset($timezone)) { ?><p  onmouseover="aa" style="font-size: 17px">Current Timezone : <font color='red'><?php echo $timezone; ?></font></p><?php } ?>
         <form id="frm_search" onsubmit="return false;">
-            <input type="text" name="year" id="startdate" class="datepicker"  placeholder="Start Date" style="margin-top: 10px;height:28px; width: 100px;">          
-            <input type="text" name="month" id="enddate"  class="datepicker"   placeholder="End Date" style="margin-top: 10px;height:28px; width: 100px;">
-            <input type="submit" class="buttonn" value="Search" id="search">
-            <a href="" class="button export" onclick="Export.Export.apply(this, [$('table.listtbl'), 'attendance_list.csv']);">Export</a>
+            <input type="text" name="year" id="startdate" class="datepicker form-control-static"  placeholder="Start Date" style="margin-top: 10px;height:28px; width: 100px;">          
+            <input type="text" name="month" id="enddate"  class="datepicker form-control-static"   placeholder="End Date" style="margin-top: 10px;height:28px; width: 100px;">
+            <input type="submit" class="buttonn form-control-static"  value="Search" id="search">
+            <a href="" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'attendance_list.csv']);"><img id="exicon">Export</a>
         </form>
     </div><!--Button-->
     <div class="demo-content" style="padding-top:2%;">
