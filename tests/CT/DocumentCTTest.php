@@ -11,78 +11,61 @@
  *
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
  */
-require_once 'apps/document/controller/DocumentInedxController.php';
-
-
-
-
+require_once 'apps/document/controller/DocumentIndexController.php';
 
 if (!isset($_SESSION))
     $_SESSION = array();
 
 class DocumentCTTest extends PHPUnit_Framework_TestCase {
 
-    public static $_SESSION = array();
+    public function testssbdocumentAction() {
 
-    public function setUp() {
-        $_SESSION = DocumentCTTest::$_SESSION;
+        $ssb = new DocumentIndexController();
+
+        $this->assertTrue($ssb->ssbdocumentAction());
     }
 
-     public function testinitialize() {
-         $id = 'admin';
-         $actname = 'letterhead';
-         $module = 'document';
-         $permission = 1;
-         $key_name = 'show_admin_notification';
-         $ini = new DocumentIndexController();
-         $ini->setmember_id($id);
-         $ini->setactname($actname);
-         $ini->setmodule($module);
-         $ini->setpermission($permission);
-         $ini->setkey_name($key_name);
-         $this->assertTrue($ini->initialize());
-     }
-      public function testssbdocumentAction() {
-          $module = 1;
-          $permit = 1;
-          $ssb = new DocumentIndexController();
-          $ssb->setmoduleIdCall($module);
-          $ssb->setpermission($permit);
-          $this->assertTrue($ssb->ssbdocumentAction());
-      }
-       public function testtaxdocumentAction() {
-          $moduleIdCall = 1;
-          $permission = 1;
-          $module = 'document';
-          $tax = new DocumentIndexController();
-          $tax->setmoduleIdCall($moduleIdCall);
-          $tax->setpermission($permission);
-          $tax->setmodule($module);
-          $this->assertTrue($tax->taxdocumentAction());
-       }
-//       public function testletterheadAction() {
-//            $moduleIdCall = 1;
-//          $permission = 1;
-//          $module = 'document';
-//          $module_id = 'dashboard';
-//          $letter = new DocumentIndexController();
-//          $letter->setmoduleIdCall($moduleIdCall);
-//          $letter->setpermission($permission);
-//          $letter->setmodule($module);
-//          $letter->setmodule_id($module_id);
-//          $this->assertTrue($letter->letterheadAction());  
-//       }
-//        public function testeditinfoAction() {
-//            $edit = new DocumentIndexController();
-//            $this->assertTrue($edit->editinfoAction());
-//        }
-        public function testsalaryreferAction() {
-            $permission = 0;
-            $data = '2016.02.29 00:00:00';
-            $refer = new DocumentIndexController();
-            $refer->setpermission($permission);
-            $refer->setdata($data);
-            $this->assertTrue($refer->salaryreferAction());
-        }
-        
+    public function testtaxdocumentAction() {
+
+        $tax = new DocumentIndexController();
+        $this->assertTrue($tax->taxdocumentAction());
+    }
+
+    public function testletterheadAction() {
+
+        $letter = new DocumentIndexController();
+        $this->assertTrue($letter->letterheadAction());
+    }
+
+// error
+//    public function testeditinfoAction() {
+//        $document = new DocumentIndexController();
+//       $file = array("name" => "myfile.png" ,"type" => "image/png" ,"tmp_name" => "myfile.tmp", "size" => 500);
+//        $document->setFile($file);
+//        $this->assertTrue($document->editinfoAction());
+//    }
+
+    public function testcheckimgsize() {
+        $mesg = 'File too large. File must be less than 10 megabytes.';
+        $document = new DocumentIndexController();
+        $file = array("name" => "myfile.png", "type" => "image/png", "tmp_name" => "myfile.tmp", "size" => 12220);
+        $document->setFile($file);
+        $this->assertEquals($mesg, $document->editinfoAction());
+    }
+
+    public function testcheckimgtype() {
+        $msg = 'Invalid file type. Only JPG, GIF and PNG types are accepted.';
+        $document = new DocumentIndexController();
+        $file = array("name" => "myfile.png", "type" => "text/plain", "tmp_name" => "myfile.tmp", "size" => 5);
+        $document->setFile($file);
+        $this->assertEquals($msg, $document->editinfoAction());
+    }
+
+    public function testsalaryreferAction() {
+
+        $refer = new DocumentIndexController();
+        $name = "G - NEXT Co.,Ltd";
+        $this->assertEquals($name, $refer->salaryreferAction());
+    }
+
 }

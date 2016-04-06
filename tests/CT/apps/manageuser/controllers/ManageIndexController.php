@@ -22,13 +22,14 @@ require_once 'apps/manageuser/controllers/IndexController.php';
  */
 class ManageIndexController extends Controllers\IndexController {
 
-    public $user;    
+    public $user;
     public $data;
     public $name;
     public $dept;
     public $position;
     public $email;
     public $pno;
+    public $login_params = array('company_id' => 'gnext', "member_login_name" => "admin", "password" => "admin");
 
     public function setdata($data) {
         $this->data = $data;
@@ -158,7 +159,7 @@ class ManageIndexController extends Controllers\IndexController {
     }
 
     public function userdataeditAction() {
-         $this->initialize();
+        $this->initialize();
         if ($this->permission == 1) {
             $cond = array();
             $cond['id'] = $this->data;
@@ -175,7 +176,6 @@ class ManageIndexController extends Controllers\IndexController {
         } else {
             echo 'Page Not Found';
         }
-       
     }
 
     public function getpermitAction() {

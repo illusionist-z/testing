@@ -45,7 +45,7 @@ class AttUserController extends Controllers\UserController {
         $enddate = $this->request->get('enddate');
         $currentPage = $this->request->get('page');
         $id = $this->session->user['member_id'];
-        $AttList = new \salts\Attendancelist\Models\Attendances();
+        $AttList = new AttendancesTest();
         $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate, $currentPage);
         return true;
     }

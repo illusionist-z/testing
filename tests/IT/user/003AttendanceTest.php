@@ -9,7 +9,7 @@
 /**
  * Description of AttendanceTest
  *
- * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+ * @author Khine Thazin Phyo <ktzp27@gmail.com>
  */
 class AttendanceTest extends PHPUnit_Extensions_Selenium2TestCase {
 
