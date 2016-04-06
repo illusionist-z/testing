@@ -135,8 +135,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     /**
      * 
      */
-    public function setCommonJsAndCss() {
-        //$this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+    public function setCommonJsAndCss() {        
         $this->assets->addCss('common/css/bootstrap.min.css')
                 ->addCss('common/css/common.css')
                 ->addCss('common/css/jquery-ui.css')
@@ -252,8 +251,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     /**
      * Js and Css for Dashboard
      */
-    public function setDashboardJsAndCss() {
-        //$this->assets->addCss('common/css/bootstrap/bootstrap.min.css');
+    public function setDashboardJsAndCss() {        
         $this->assets->addCss('common/css/bootstrap.min.css');
         $this->assets->addCss('common/css/common.css');
         $this->assets->addCss('common/css/jquery-ui.css');
