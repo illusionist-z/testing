@@ -29,7 +29,7 @@ class IndexController extends ControllerBase {
             }
         }
         $this->view->setVar("Noti", $noti);
-        $this->view->module_name = $this->router->getModuleName();
+        $this->module_name = $this->router->getModuleName();
         $this->view->t = $this->_getTranslation();
         $this->permission = $this->setPermission($this->router->getActionName());
         $this->view->permission = $this->permission;

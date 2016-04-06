@@ -53,7 +53,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
     public function testcheckapplySuccessaction() {
         $appleave = new LeaveIndexController();
         $leave = array("uname" => "1fe9f520-c89a-11e5-9e13-4c3488333b45",
-            "sdate" => "2016-04-06 00:00:00", "edate" => "2016-04-08 00:00:00",
+            "sdate" => "2016-04-5 00:00:00", "edate" => "2016-04-12 00:00:00",
             "type" => "donation", "desc" => "family donation");
         $appleave->setinfo($leave);
         $result = $appleave->checkapplyAction();
@@ -79,11 +79,6 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Family Case", $addlist->addListTypeAction());
     }
 
-    public function testdeleteListTypeAction() {
-        $leave = new LeaveIndexController();
-        $this->assertTrue($leave->deleteListTypeAction());
-    }
-
     public function testeditleavesettingAction() {
         $edit_day = 16;
         $editleaveday = new LeaveIndexController();
@@ -102,7 +97,6 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($accept_leave->acceptleaveAction());
     }
 
-
     public function testapplyautolistAction() {
         $apply_auto = new LeaveIndexController();
         $this->assertTrue($apply_auto->applyautolistAction());
@@ -119,9 +113,14 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $leave = new LeaveIndexController();
         $leave->setId($id);
         $result = $leave->ltypediaAction();
-        $this->assertContains("donation", $result[0]['leave_category']);
+
+        $this->assertContains("Others", $result[0]['leave_category']);
     }
 
+    public function testdeleteListTypeAction() {
+        $leave = new LeaveIndexController();
+        $this->assertTrue($leave->deleteListTypeAction());
+    }
 
     public function testdetailAction() {
         $leave = new LeaveIndexController();

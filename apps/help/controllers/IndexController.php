@@ -13,17 +13,23 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->setHelpJsAndCss();
         $this->view->t = $this->_getTranslation();
-        $Admin = new CoreMember();
+        //$Admin = new CoreMember();
+        $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
+
         foreach ($this->session->auth as $key_name => $key_value) {
+
             if ($key_name == 'show_admin_notification') {
-                $this->noti = $Admin->getAdminNoti($id, 0);
+
+                $noti = $CoreMember->GetAdminNoti($id, 0);
             }
             if ($key_name == 'show_user_notification') {
-                $this->noti = $Admin->getUserNoti($id, 1);
+
+                $noti = $CoreMember->GetUserNoti($id, 1);
             }
         }
-        $this->view->setVar("noti", $this->noti);
+
+        $this->view->setVar("Noti", $noti);
     }
 
     /**
