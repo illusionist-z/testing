@@ -20,6 +20,22 @@ function MsgDisplay() {
     $('.listtbl tbody').append("<td colspan=" + th_length + "><center>No data to display</center></td>");
 }
 /**
+ * loading text
+ * @returns {undefined}
+ */
+function loadingMsg(d) {
+     //Creating event message
+                        if(d === true){
+                        var message = "<div class='message' style='top:40%;left:18%;"
+                                + "text-align:center;color:white;position:absolute;"
+                                + ";width:100%;height:100%;z-index:100;margin-left:115px;'></div>";
+                        $('body').append(message);
+                        }
+                        else{                        
+                             $('.message').remove();
+                        }
+}
+/**
  * sidebar menu link height resize()
  * @author David JP<gnext>
  */

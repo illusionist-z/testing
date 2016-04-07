@@ -38,12 +38,14 @@ var User = {
                     $('div#content').empty();        
         }
         else{
+              loadingMsg(true);
               $.ajax({
                     type: 'GET',
                     url: User.Ctrl+"?username="+name,
                     success:function(result){       
                       $('body').html(result);
                        $('.dropdown-toggle').dropdown();
+                       loadingMsg(false);
                     },
                     error: function (d) {
                         alert('error');

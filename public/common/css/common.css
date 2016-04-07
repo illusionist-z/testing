@@ -1093,3 +1093,8 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     margin:0 10px 0 0;
 }
 }
+/* loading image */
+.message{
+    background:url('../img/loading.gif') 180px -30px no-repeat;
+    background-size: 300px;
+}
