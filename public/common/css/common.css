@@ -46,7 +46,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #search_salary,#add_user,#edit_edit,#Add_deduct,#Add_ltype,#delete_ltype,#cal_salary,
 #create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,
 #edit_allowance_edit,#edit_attendance_edit,#alladd,#Add_Resign_Date,#edit,#usersearch,#noti_accept,
-#btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql,#exbg{
+#btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql,#exbg,#word-export{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
 #apply_cancel,#add_salary_cancel,#add_dec,#addinguser_close,#edit_close,
@@ -316,7 +316,7 @@ a.button:active {
     padding: 8px 10px 8px 26px;
 }*/
 a.export {
-/*    background: url("../img/5Fm069k.png")  5px -168px no-repeat #F8F8F8 ;*/
+    /*    background: url("../img/5Fm069k.png")  5px -168px no-repeat #F8F8F8 ;*/
     font-size: 12px;
     padding: 4px 10px 2px 5px;
 }
@@ -769,15 +769,17 @@ hr{
 */
 .ui-dialog { z-index: 9999 !important ;}
 #ui-datepicker-div { z-index: 99999 !important;}
-@-moz-document url-prefix() {
-    #navicon5,#navicon31{/*calendar*/
-        background: red;
+
+@media (max-width: 900px){
+    #navicon3{/*manage user*/
+        background: url("../img/main.png")  -167px 5px no-repeat  ;
+        padding: 6px 10px 20px 15px;
     }
 }
 
 #navicon5,#navicon31{/*calendar*/
     background: url("../img/main.png")  -190px -115px no-repeat  ;
-    padding: 6px 10px 20px 15px;
+    padding: 6px 10px 20px 15px;   
 }
 #navicon7{
     background: url("../img/main.png")  -22px -20px no-repeat  ;

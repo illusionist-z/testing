@@ -179,12 +179,15 @@ $messages = array(
      * Salary Lists
      */
     "Salary List help center"=>"လစာစာရင္းအတြက္လိုအပ္ေသာအကူအညီ",
+    "You can select"=>"လမ္းခရီးစရိတ္ ေန႔အလိုက္ ႏွင့္လအလိုက္ မ်ားေရြးႏုိင္သည္။",
     
     /**
      * Monthly Salary Lists
      */
     "Monthly Salary Lists help center"=>"(၁) လအလိုက္လစာစာရင္းအတြက္လိုအပ္ေသာအကူအညီ",
-    "Calculate Salary"=>"လစာတြက္ရန္",
+    "Calculate Salary"=>"လစာတြက္ရန္",    
+    "Add salary"=>"csv file ႏွင့္ လစာမ်ားကို ထည့္ႏုိင္္သည္။",
+    "Download"=>"csv file ပံုစံမ်ားကို Download ဆြဲယူရန္",
     "Admin can calculate"=>"အက္မင္မွ ယခုလအတြက္လစာကိုတြက္ခ်က္ႏုိင္သည္။",
     "Month/Year"=>"လ/ခုႏွစ္",
     "Show details"=>"လိုခ်င္ေသာ လ/ခုႏွစ္ကိုႏွိပ္လိုက္ပါက ထိုလအတြက္အေသးစိတ္အခ်က္အလက္မ်ားကိုျပေပးပါသည္။",
