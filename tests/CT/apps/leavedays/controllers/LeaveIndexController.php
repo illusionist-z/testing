@@ -75,6 +75,7 @@ class LeaveIndexController extends Controllers\IndexController {
         $this->permission = 1;
         $this->moduleIdCall = 1;
         $this->currentPage = "leavelist";
+
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         $this->setCommonJsAndCss();
@@ -97,12 +98,8 @@ class LeaveIndexController extends Controllers\IndexController {
         if ($this->moduleIdCall == 1) {
             $UserList = new Db\CoreMember();
             $username = $UserList->autoUsername();
-            //$this->view->disable();
-            //  echo json_encode($username);
-        } else {
-            $this->response->redirect('core/index');
+            return true;
         }
-        return true;
     }
 
     public function getapplymemberidAction() {
@@ -140,8 +137,6 @@ class LeaveIndexController extends Controllers\IndexController {
                 $json[$message->getField()] = $message->getMessage();
             }
             $json['result'] = "error";
-
-           
         } else {
             $creator_id = $this->session->user['member_id'];
             $uname = $this->info['uname'];
@@ -150,9 +145,8 @@ class LeaveIndexController extends Controllers\IndexController {
             $type = $this->info['type'];
             $desc = $this->info['desc'];
             $json = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
-           
         }
-        
+
         return $json;
     }
 
@@ -182,12 +176,7 @@ class LeaveIndexController extends Controllers\IndexController {
             if ($this->permission == 1) {
 
                 return true;
-            } else {
-
-                $this->response->redirect('core/index');
             }
-        } else {
-            $this->response->redirect('core/index');
         }
     }
 
@@ -207,11 +196,7 @@ class LeaveIndexController extends Controllers\IndexController {
 
             if ($this->permission == 1) {
                 return $typelist;
-            } else {
-                $this->response->redirect('core/index');
             }
-        } else {
-            $this->response->redirect('core/index');
         }
     }
 
@@ -219,12 +204,11 @@ class LeaveIndexController extends Controllers\IndexController {
         $this->initialize();
         $LeaveType = new LeaveCategories();
         $ltype = $LeaveType->getLeaveType();
-        if ($this->permission == 1) {
-            $leavetype_id = $ltype[0]['leavetype_id'];
-            $LeaveCategories = new LeaveCategories();
-            $LeaveCategories->deleteCategories($leavetype_id);
-            return true;
-        }
+
+        $leavetype_id = $ltype[0]['leavetype_id'];
+        $LeaveCategories = new LeaveCategories();
+        $LeaveCategories->deleteCategories($leavetype_id);
+        return true;
     }
 
     public function addListTypeAction() {
@@ -259,28 +243,26 @@ class LeaveIndexController extends Controllers\IndexController {
 
     public function applyautolistAction() {
         $this->initialize();
-        if ($this->permission == 1) {
-            $UserList = new Db\CoreMember();
-            $Username = $UserList->applyautousername();
+
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->applyautousername();
 
 
-            return true;
-        }
+        return true;
     }
 
     public function ltyaddAction() {
         $this->initialize();
-        if ($this->permission == 1) {
-
-            $data[1]['addleavetype'] = _("addleavetype");
-            $data[1]['leave_category'] = _("leave_category");
-            $data[1]['yes'] = _("yes");
-            $data[1]['no'] = _("cancel");
-            $data[1]['enterltp'] = _("enterltp");
 
 
-            return $data;
-        }
+        $data[1]['addleavetype'] = _("addleavetype");
+        $data[1]['leave_category'] = _("leave_category");
+        $data[1]['yes'] = _("yes");
+        $data[1]['no'] = _("cancel");
+        $data[1]['enterltp'] = _("enterltp");
+
+
+        return $data;
     }
 
     public function ltypediaAction() {
@@ -298,31 +280,61 @@ class LeaveIndexController extends Controllers\IndexController {
 
     public function detailAction() {
         $this->initialize();
-        if ($this->permission == 1) {
-            $this->setCommonJsAndCss();
-            $this->assets->addCss('common/css/css/style.css');
-            $Admin = new Db\CoreMember();
-            $id = $this->session->user['member_id'];
-            foreach ($this->session->auth as $key_name => $key_value) {
-                if ($key_name == 'show_admin_notification') {
-                    $Noti = $Admin->getAdminNoti($id, 0);
-                }
-                if ($key_name == 'show_user_notification') {
-                    $Noti = $Admin->getUserNoti($id, 1);
-                }
+
+        $this->setCommonJsAndCss();
+        $this->assets->addCss('common/css/css/style.css');
+        $Admin = new Db\CoreMember();
+        $id = $this->session->user['member_id'];
+        foreach ($this->session->auth as $key_name => $key_value) {
+            if ($key_name == 'show_admin_notification') {
+                $Noti = $Admin->getAdminNoti($id, 0);
             }
-
-
-            $type = "detail";
-
-            $Noti_id = $this->request->get('id');
-            $module_name = "detail";
-
-            $Noti_detail = new Leave();
-
-            $Detail_result = $Noti_detail->getNotiInfo($module_name, $Noti_id);
-            return true;
+            if ($key_name == 'show_user_notification') {
+                $Noti = $Admin->getUserNoti($id, 1);
+            }
         }
+
+
+        $type = "detail";
+
+        $Noti_id = $this->request->get('id');
+        $module_name = "detail";
+
+        $Noti_detail = new Leave();
+
+        $Detail_result = $Noti_detail->getNotiInfo($module_name, $Noti_id);
+        return true;
+    }
+
+    public function noleavelistAction() {
+        $this->initialize();
+
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/leavedays/js/index-paging.js');
+        $Admin = new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti = $Admin->GetAdminNoti($id, 0);
+
+        $Result = $Admin->checkLeave();
+        return true;
+    }
+
+    public function leavemostAction() {
+        $this->initialize();
+
+        $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/leavedays/js/index-paging.js');
+        $Admin = new Db\CoreMember;
+        $id = $this->session->user['member_id'];
+        $noti = $Admin->GetAdminNoti($id, 0);
+        $Result = $Admin->leaveMost();
+        return true;
+    }
+
+    public function rejectleaveAction() {
+        $this->initialize();
+        $this->_leave->rejectLeave($this->request->getPost('noti_id'));
+        return true;
     }
 
 }

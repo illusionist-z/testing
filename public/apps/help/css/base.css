@@ -25,9 +25,9 @@ and open the template in the editor.
      padding: 1px 1px 16px 25px;
  }
  #showhelp{
-     background: white;    
-
+     background: white;   
  }
+
   .helpcenter a{
             display: block;
             margin-bottom: 6px;
@@ -63,4 +63,7 @@ and open the template in the editor.
 
  .btn-color{
      background: #0081c2 !important;
+ }
+ #scrolly pre{
+     overflow-y: hidden;
  }

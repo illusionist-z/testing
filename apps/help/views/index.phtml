@@ -8,29 +8,29 @@ $this->partial('../../core/views/partials/header');
 
 
             <div class="row-fluid">
-                <div class="sidebar-menu col-md-2 helpcenter">
+                <div class="sidebar-menu col-md-2 helpcenter link">
                     <img src="<?php echo $baseUri ?>/apps/help/img/app_help.png">   
                     <label><?php echo $t->_("Search Help"); ?></label>
                     <ul>
                         <li><a href="dashboard" id="" class="allhelpimg" ><?php echo $t->_("Dashboard"); ?></a></li>
                         <li>
                             <a href="" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Attendance List"); ?></a>
-                            <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
-                                <li><a href="todayattlist"><?php echo $t->_("Today Attendance List"); ?></a></li>
-                                <li><a href="monthlyattlist"><?php echo $t->_("Monthly Attendance List"); ?></a></li>
-                                <li><a href="monthlyattchart"><?php echo $t->_("Monthly Attendance Chart"); ?></a></li>
+                            <ul class="togshow col-xs-offset-0" style="display:none;margin-top:-15px;">
+                                <li><a href="todayattlist"><?php echo $t->_("Today List"); ?></a></li>
+                                <li><a href="monthlyattlist"><?php echo $t->_("Monthly List"); ?></a></li>
+                                <li><a href="monthlyattchart"><?php echo $t->_("Monthly Chart"); ?></a></li>
                             </ul>
                         </li>       
                         <li><a href="manageuser" class="allhelpimg"><?php echo $t->_("Manage User"); ?></a></li>
                         <li><a href="#" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Leave Days"); ?></a>
-                            <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
+                            <ul class="togshow col-xs-offset-0" style="display:none;margin-top:-15px;">
                                 <li><a href="applyleave"><?php echo $t->_("Apply Leave"); ?></a></li>
                                 <li><a href="leavelists"><?php echo $t->_("Leave Lists"); ?></a></li>
                                 <li><a href="leavesetting"><?php echo $t->_("Leave Setting"); ?></a></li>
                             </ul>
                         </li>
                         <li><a href="#" class="allhelpimg tog"><?php echo $t->_("Salary"); ?></a>
-                            <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
+                            <ul class="togshow col-xs-offset-0" style="display:none;margin-top:-15px;">
                                 <li><a href="addsalary"><?php echo $t->_("Add Salary"); ?></a></li>
                                 <li><a href="salarylists"><?php echo $t->_("Salary Lists"); ?></a></li>
                                 <li><a href="monthlysallists"><?php echo $t->_("Monthly Salary Lists"); ?></a></li>
@@ -39,7 +39,7 @@ $this->partial('../../core/views/partials/header');
                             </ul>
                         </li>        
                         <li><a href="#" onclick="return false;" class="allhelpimg tog"><?php echo $t->_("Document"); ?></a>
-                            <ul class="togshow col-xs-offset-2" style="display:none;margin-top:-15px;">
+                            <ul class="togshow col-xs-offset-0" style="display:none;margin-top:-15px;">
                                 <li><a href="letterhead"><?php echo $t->_("Letter Head"); ?></a></li>
                                 <li><a href="ssbdocument"><?php echo $t->_("SSB & Tax Document"); ?></a></li>
                             </ul>
@@ -50,7 +50,6 @@ $this->partial('../../core/views/partials/header');
                 echo $this->getContent();
                 $this->assets->outputJs();
                 ?>
-                <script language="javascript" type="text/javascript">var baseUri = '<?= $baseUri ?>';</script> 
             </div><!-- /.content-wrapper -->
         </div>
 <?php $this->partial('../../core/views/partials/footer'); ?>

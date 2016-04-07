@@ -113,8 +113,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $leave = new LeaveIndexController();
         $leave->setId($id);
         $result = $leave->ltypediaAction();
-
-        $this->assertContains("Others", $result[0]['leave_category']);
+        $this->assertEquals("Others", $result[0]['leave_category']);
     }
 
     public function testdeleteListTypeAction() {
@@ -126,6 +125,22 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $leave = new LeaveIndexController();
 
         $this->assertTrue($leave->detailAction());
+    }
+
+    public function testnoleavelistAction() {
+        $leave = new LeaveIndexController();
+
+        $this->assertTrue($leave->noleavelistAction());
+    }
+
+    public function testleavemostAction() {
+        $leave = new LeaveIndexController();
+        $this->assertTrue($leave->leavemostAction());
+    }
+
+    public function testrejectleaveAction() {
+        $leave = new LeaveIndexController();
+        $this->assertTrue($leave->rejectleaveAction());
     }
 
 }
