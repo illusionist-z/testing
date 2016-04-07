@@ -28,22 +28,23 @@ var User = {
                 }
        },
         search: function(){
-        var name = document.getElementById('username').value;
+        var name = document.getElementById('username').value;        
         if(name === ''){
-            $('tbody').empty();           
+            $('.content-wrapper').css("height",555);
+            $('tbody').empty();
              var output = "<tr>"
                                 + "<td colspan='9'><center>No data to display</center></td>"                           
                                  + "</tr>";
                     $("tbody").append(output);
-                    $('div#content').empty();        
+                    $('div#content').empty();
         }
         else{
               $.ajax({
                     type: 'GET',
-                    url: User.Ctrl+"?username="+name,
-                    success:function(result){       
+                    url: User.Ctrl+"?username="+name,                    
+                    success:function(result){
                       $('body').html(result);
-                       $('.dropdown-toggle').dropdown();
+                       $('.dropdown-toggle').dropdown();$('.content-wrapper').css("height",555);
                     },
                     error: function (d) {
                         alert('error');
@@ -54,8 +55,7 @@ var User = {
         }
 };
     
-$(document).ready( function() {
-    
+$(document).ready( function() {    
      User.init('reload'); 
     // ここに実際の処理を記述します。   
     $('form').on('click','#userlistsearch',function () {        

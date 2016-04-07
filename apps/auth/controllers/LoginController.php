@@ -51,7 +51,7 @@ class LoginController extends ControllerBase {
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
                 $Member = new \salts\Core\Models\Db\CoreMember();
-                 $lang = $Member->getLang($login_params);
+                $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
                 $Member->updateContract($login_params);
                 $this->session->set('page_rule_group', $permission);
