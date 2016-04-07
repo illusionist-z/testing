@@ -331,6 +331,10 @@ a.export {
 }
 
 
+#calendar{
+    width:535px;
+}
+
 
 #lft {
 
@@ -607,9 +611,9 @@ a.export {
 }
 
 /* footer setting is below */
-#cmn_footer{
+/*#cmn_footer{
     position: relative;
-    background: #fff;/*#222D32*/
+    background: #fff;#222D32
     padding: 15px;
     color: #444;
 }
@@ -618,6 +622,18 @@ a.export {
     position:absolute;
     right:5px;
     top:15px;
+}*/
+/* footer setting is below */
+#cmn_footer{
+   background: #fff;/* #222D32*/
+    padding: 15px;
+    color: #444;
+}
+
+#cmn_lang_box{
+    position:relative;
+    right:5px;
+    float: right;
 }
 
 #form_div{
@@ -856,13 +872,13 @@ hr{
 }
 
 .cmn-icons-contry.jp{
-    background-position-x:0px;
+    background-position-x:4px;
 }
 .cmn-icons-contry.mm{
-    background-position-x:-30px;
+    background-position-x:-40px;
 }
 .cmn-icons-contry.en{
-    background-position-x:-60px;
+    background-position-x:-16px;
 }
 
 #cmn_sub_menu{

@@ -79,6 +79,7 @@ class SalaryDetailTest extends Models\SalaryDetail {
      */
     public function salarylist($month, $year) {
         try {
+            $this->db = $this->getDI()->getShared("db");
             $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
                 from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
 select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='" . $year . "' GROUP BY id";
@@ -204,6 +205,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function getAllowanceByMemberid($member_id) {
         try {
+            $this->db = $this->getDI()->getShared("db");
             $sql = "select * from allowances where allowance_id in (
 select allowance_id from salary_master_allowance where member_id='" . $member_id . "')";
             //echo $sql;
@@ -532,11 +534,11 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
 
-    public function getoldsalarydetail($member_id, $salary_update_yr, $workingstartdt,$budget_endyear) {
+    public function getoldsalarydetail($member_id, $salary_update_yr, $workingstartdt, $budget_endyear) {
         try {
             $sql = "select SUM((case when (basic_salary) then basic_salary else 0 end))as total_salary,COUNT(pay_date)as count_pay, SUM(allowance_amount) as total_all_amount,"
                     . "SUM((case when (overtime) then overtime else 0 end)) as total_overtime from salary_detail "
-                    . "where member_id='" . $member_id . "' and YEAR(pay_date)<='" . $salary_update_yr . "' and pay_date>='".$workingstartdt."'";
+                    . "where member_id='" . $member_id . "' and YEAR(pay_date)<='" . $salary_update_yr . "' and pay_date>='" . $workingstartdt . "'";
 //            $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
 //                    . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
 //                    "' order by created_dt desc limit 1";
