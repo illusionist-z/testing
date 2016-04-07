@@ -8,7 +8,7 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>        
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-blue sidebar-mini" onload="display_ct()">
         <?php error_reporting(0); ?>                                
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
@@ -83,25 +83,11 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
 
-                                    <?php
-                                    foreach ($this->session->auth as $key_name => $key_value) {
-                                        if ($key_name == 'admin_dashboard') {
-                                            ?>
+                                     
                                             <div class="pull-left">
-                                                <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
+                                                <a href="../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                             </div>
-                                            <?php
-                                        }
-
-                                        if ($key_name == 'user_dashboard') {
-                                            ?> 
-                                            <div class="pull-left">
-                                                <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
-                                            </div>
-                                            <?php
-                                        }
-                                    }
-                                    ?>       
+                                             
 
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b><?php echo $t->_("Sign out"); ?></b></a>
@@ -150,7 +136,7 @@
                                         }
                                     }
                                 } else {
-                                    if ($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting') {
+                                    if ($key_name != 'show_admin_notification') {
 
                                         if (count($key_value) > 2) {
                                             if (isset($top_link[1])) {
@@ -159,12 +145,12 @@
                                                 if ($top[0] == 'Calendar') {
                                                     echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                 } else {
-                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                    echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index' . strtolower($top_link[0]) . '"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                                 }
                                             }
                                         } else {
                                             if (isset($top[1])) {
-                                                echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/index"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/index/"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                             } else {
                                                 echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img id="navicon' . $count . '"  ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                             }
