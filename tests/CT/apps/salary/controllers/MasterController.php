@@ -23,66 +23,24 @@ require_once 'library/core/Controller.php';
  */
 class MasterController extends Controllers\SalaryMasterController {
 
-    public $module_name;
-    public $member_id;
-    public $uname;
-    public $bsalary;
-    public $permission;
-    public $SalaryMaster;
-    public $overtime_hr;
-    public $allowance;
-    public $year;
-    public $month;
-    public $absent;
 
-    public function setmodule_name($module_name) {
-        $this->module_name = $module_name;
+    public $salary;
+    public $editsalary;
+
+    public function setEditSalary($editsalary) {
+        $this->editsalary = $editsalary;
     }
 
-    public function setmember_id($member_id) {
-        $this->member_id = $member_id;
+    public function setSalary($salary) {
+        $this->salary = $salary;
     }
 
-    public function setuname($uname) {
-        $this->uname = $uname;
-    }
-
-    public function setpermission($permission) {
-        $this->permission = $permission;
-    }
-
-    public function setbsalary($bsalary) {
-        $this->bsalary = $bsalary;
-    }
-
-    public function setallowance($allowance) {
-        $this->allowance = $allowance;
-    }
-
-    public function setovertime($overtime) {
-        $this->overtime = $overtime;
-    }
-
-    public function setovertime_hr($overtime_hr) {
-        $this->overtime_hr = $overtime_hr;
-    }
-
-    public function setyear($year) {
-        $this->year = $year;
-    }
-
-    public function setmonth($month) {
-        $this->month = $month;
-    }
-
-    public function setabsent($absent) {
-        $this->absent = $absent;
-    }
+   
 
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
-        $this->_addsalary = new Salary;
+
         $this->setCommonJsAndCss();
         $this->act_name = "salary";
         $this->permission = "1";
@@ -90,97 +48,53 @@ class MasterController extends Controllers\SalaryMasterController {
 
     public function savesalaryAction() {
         $this->initialize();
-
         if ($this->permission == 1) {
-//        $chkTravelfees = $this->request->get('radTravel');
-//        $data['no_of_children'] = $this->request->get('no_of_children', 'int');
-//        $dedution = $this->request->get('checkall');
-//        $allowance = $this->request->get('check_allow');
+            $chkTravelfees = $this->salary["radTravel"];
+            $data['no_of_children'] = $this->salary["no_of_children"];
+            $dedution = $this->salary["checkall"];
+            $allowance = $this->salary["check_allow"];
             $data['id'] = uniqid();
-            $member_id = $this->member_id;
+            $data['member_id'] = $this->salary['member_id'];
+            $data['basic_salary'] = $this->salary['bsalary'];
+            $setdata = $this->setSalaryData($chkTravelfees, "20000", "30000");
 
-            $data['basic_salary'] = $this->bsalary;
-//        if ($chkTravelfees == 1) {
-//            $data['travel_fee_perday'] = $this->request->get('travelfees', 'int');
-//            $data['travel_fee_permonth'] = 0;
-//        }
-//        if ($chkTravelfees == 2) {
-//            $data['travel_fee_perday'] = 0;
-//            $data['travel_fee_permonth'] = $this->request->get('travelfees', 'int');
-//        }
-//
-//        if (null !== $this->request->get('overtime', 'int')) {
-//            $data['over_time'] = $this->request->get('overtime', 'int');
-//        } else {
-//            $data['over_time'] = 0;
-//        }
-//        $data['ssc_emp'] = 2;
-//        $data['ssc_comp'] = 3;
-//        $sdate = $this->request->get('s_sdate');
-//        $data['salary_start_date'] = date("Y-m-d", strtotime($sdate));
-//        $byear = date("Y", strtotime($sdate)) + 1;
-//        $data['salary_end_date'] = $byear . "-03-31";
-//        $data['allowance_id'] = 0;
-//        $data['creator_id'] = $this->session->user['member_id'];
-//        $data['created_dt'] = date("Y-m-d H:i:s");
-//        $data['updater_id'] = 3;
-//        $data['updated_dt'] = '00:00:00';
-//        $data['deleted_flag'] = 0;
-            $data = array('uname' => $this->uname, 'bsalary' => $this->bsalary);
+            $sdate = $this->salary['sdate'];
+            $data['salary_start_date'] = date("Y-m-d", strtotime($sdate));
+            $byear = date("Y", strtotime($sdate)) + 1;
+            $data['salary_end_date'] = $byear . "-03-31";
 
-            $user = new Models\Salary();
-            $validate = $user->chkValidate($data);
+            $data['creator_id'] = $this->session->user['member_id'];
 
-            if (count($validate)) {
-                foreach ($validate as $message) {
-                    $json[$message->getField()] = $message->getMessage();
-                }
-                $json['result'] = "error";
-            } else {
-                $SalaryMaster = new Models\SalaryMaster();
-                //check the member id has been inserted
-                $Check_salarymaster = $SalaryMaster->getLatestsalary($member_id);
+            $data = array_merge($data, $setdata);
 
-                if (empty($Check_salarymaster)) {
-//                    $SalaryMaster->saveSalaryDedution($dedution, $data['no_of_children'], $data['member_id'], $data['creator_id']);
-//                    $SalaryMaster->savesalary($data);
-//                    $Allowance = new Allowances();
-//                    $Allowance->saveAllowance($allowance, $data['member_id']);
-                    $json['result'] = "success";
-                } else {
-                    $json['result'] = "Inserted";
-                }
-            }
-            // echo json_encode($json);
-            // $this->view->disable();
-            return $json;
-        } else {
-            echo 'Page Not Found';
+
+
+            return true;
         }
     }
 
     public function editsalarydetailAction() {
         $this->initialize();
         if ($this->permission == 1) {
-            $bsalary = $this->bsalary;
-            $overtimerate = $this->overtime;
-            $member_id = $this->member_id;
-            $overtime_hr = $this->overtime_hr;
-            $allowance = $this->allowance;
-            $year = $this->year;
-            $month = $this->month;
-            $absent = $this->absent;
-            $SalaryMaster = new Models\SalaryMaster();
-            $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
-            var_dump($SalaryMaster);
-            exit();
-            $Salarydetail = new Models\SalaryDetail();
-            $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, $month, $absent, $overtime_hr, $overtimerate);
+            $bsalary = $this->editsalary['bsalary'];
+            $overtimerate = $this->editsalary['overtime'];
+            $member_id = $this->editsalary['member_id'];
+            $overtime_hr = $this->editsalary['overtime_hr'];
+            $allowance = $this->editsalary['specific_dedce'];
+            $workingstartdt = $this->editsalary['workingstartdt'];
+            $year = $this->editsalary['year'];
+            $month = $this->editsalary['month'];
+            $absent = $this->editsalary['absent'];
+            $SalaryMaster = new Master();
+          
+$SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
+            $Salarydetail = new SalaryDetailTest();
+            $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, 
+                $month, $absent, $overtime_hr, $overtimerate,$workingstartdt);
             //$this->view->disable();
-            echo json_encode($resultsalary);
-        } else {
-            echo 'Page Not Found';
-        }return true;
+//            echo json_encode($resultsalary);
+            return true;
+        }
     }
 
 }

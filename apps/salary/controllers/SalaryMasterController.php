@@ -131,10 +131,12 @@ class SalaryMasterController extends ControllerBase {
         $year = $this->request->get('year');
         $month = $this->request->get('month');
         $absent = $this->request->get('absent');
+        $workingstartdt = $this->request->get('workingstartdt');
         $SalaryMaster = new SalaryMaster();
         $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
         $Salarydetail = new SalaryDetail();
-        $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, $month, $absent, $overtime_hr, $overtimerate);
+        $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, 
+                $month, $absent, $overtime_hr, $overtimerate,$workingstartdt);
         $this->view->disable();
         echo json_encode($resultsalary);
     }

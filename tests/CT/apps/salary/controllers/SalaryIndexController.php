@@ -16,7 +16,7 @@ use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
 
 include_once 'tests\CT\apps\LoginForAll.php';
-
+include_once 'tests/CT/apps/salary/models/TaxsTest.php';
 
 /**
  * Description of IndexController
@@ -36,6 +36,11 @@ class SalaryIndexController extends Controllers\IndexController {
     public $member;
     public $resign;
     public $tmp;
+    public $deduce;
+
+    public function setDeduce($deduce) {
+        $this->deduce = $deduce;
+    }
 
     public function setMember($member) {
         $this->member = $member;
@@ -131,22 +136,13 @@ class SalaryIndexController extends Controllers\IndexController {
             $this->assets->addJs('apps/salary/js/index-addsalary.js');
             $userlist = new Db\CoreMember();
             $user_name = $userlist::getinstance()->getUserName("Khine Thazin Phyo");
-            $Allowance = new Allowances();
+            $Allowance = new SalaryAllowances();
             $getall_allowance = $Allowance->getAllallowances();
-
-            $TaxDeduction = new SalaryTaxsDeduction();
+            $TaxDeduction = new TaxsDeduction();
             $deduce = $TaxDeduction->getDeducelist();
-
-            $position = $this->salaryconfig->position;
-
-            $this->view->module_name = $this->router->getModuleName();
-            $this->view->setVar("usernames", $user_name);
-            $this->view->position = $position;
-            $this->view->getall_allowance = $getall_allowance;
-            $this->view->getall_deduce = $deduce;
-        } else {
-            $this->response->redirect('core/index');
-        }
+            return true;
+           
+        } 
     }
 
     public function showsalarylistAction() {
@@ -245,31 +241,14 @@ class SalaryIndexController extends Controllers\IndexController {
 
     public function saveallowanceAction() {
         $this->initialize();
-        if ($this->permission == 1) {
-
-            for ($x = 1; $x <= 10; $x++) { // getting all value from text boxes
-                $all_name['"' . $x . '"'] = $this->request->get('textbox' . $x);
-                $all_value['"' . $x . '"'] = $this->request->get('txt' . $x);
-                if (!isset($all_name['"' . $x . '"'])) {
-
-                    $count = $x;
-                    break; //getting the number of textboxes
-                }
-            }
-            foreach ($all_name as $key => $value) {
-                if (empty($value)) {
-                    unset($all_name[$key]);
-                }
-            }
+        if ($this->permission == 1) {           
             $all_name = $this->all_name['all_name'];
             $all_value = $this->all_name['all_value'];
-
+               
             if (!empty($all_name) && $this->state == 1) {
-
-                $Allowance = new \salts\Salary\Models\Allowances();
-                $Allowance->addAllowance($all_value, $all_name, $count);
-
-
+                       
+                $Allowance = new SalaryAllowances();
+                $Allowance->addAllowance($all_value, $all_name, 2);
                 $this->response->redirect('salary/index/allowance');
                 $this->flashSession->success("Allowances are added successfully!");
                 return "Allowances are added successfully!";
@@ -287,7 +266,7 @@ class SalaryIndexController extends Controllers\IndexController {
             $AllList = new \salts\Salary\Models\Allowances();
             $list = $AllList->showAlwlist();
             $all_id = $list[0]['allowance_id'];
-            $Allowance = new Allowances();
+            $Allowance = new SalaryAllowances();
             $data = $Allowance->editAll($all_id);
             $data[1]['allowance_name'] = _("allowance_name");
             $data[1]['allowance_edit'] = _("allowance_edit");
@@ -295,8 +274,7 @@ class SalaryIndexController extends Controllers\IndexController {
             $data[1]['save'] = _("save_btn");
             $data[1]['delete'] = _("delete_btn");
             $data[1]['cancel'] = _("cancel_btn");
-            $this->view->disable();
-            echo json_encode($data);
+            return true;
         }
     }
 
@@ -316,10 +294,10 @@ class SalaryIndexController extends Controllers\IndexController {
 
     public function deletedataAction() {
         $this->initialize();
-        $AllList = new \salts\Salary\Models\Allowances();
+        $AllList = new SalaryAllowances();
         $list = $AllList->showAlwlist();
         $id = $list[0]['allowance_id'];
-        $Allowance = new Allowances();
+        $Allowance = new SalaryAllowances();
         $Allowance->deleteAllowance($id);
         return true;
     }
@@ -346,7 +324,7 @@ class SalaryIndexController extends Controllers\IndexController {
         $this->initialize();
         if ($this->permission == 1) {
             $id = "1";
-            $Tax = new SalaryTaxs();
+            $Tax = new TaxsTest();
             $data = $Tax->getTaxdata($id);
             $data['t']['tax_edit'] = _("tax_edit");
             $data['t']['tax_from'] = _("tax_from");
@@ -356,23 +334,20 @@ class SalaryIndexController extends Controllers\IndexController {
             $data['t']['ssc_comp'] = _("ssc_comp");
             $data['t']['save'] = _("edit_btn");
             $data['t']['cancel'] = _("cancel_btn");
-            $this->view->disable();
-            echo json_encode($data);
+            return true;
         }
     }
 
     public function edittaxAction() {
         $this->initialize();
         if ($this->permission == 1) {
-            $Tax = new SalaryTaxs();
-            $list = $Tax->getTaxlist();
-            $data['id'] = $list[0]['id'];
+            $data['id'] = 1;
             $data['taxs_from'] = $this->tax['taxs_from'];
             $data['taxs_to'] = $this->tax['taxs_to'];
             $data['ssc_emp'] = $this->tax['ssc_emp'];
             $data['ssc_comp'] = $this->tax['ssc_comp'];
             $data['taxs_rate'] = $this->tax['taxs_rate'];
-            $SalaryTax = new SalaryTaxs();
+            $SalaryTax = new TaxsTest();
             $SalaryTax->editTax($data);
             return true;
         }
@@ -381,8 +356,8 @@ class SalaryIndexController extends Controllers\IndexController {
     public function dectdiaAction() {
         $this->initialize();
         if ($this->permission == 1) {
-            $id = $this->request->get('id');
-            $Deduction = new SalaryTaxsDeduction();
+            $id = 1;
+            $Deduction = new TaxsDeduction();
             $data = $Deduction->getdectdata($id);
             $data['t']['edit_deduct_title'] = _("taxeditform");
             $data['t']['edit_deduct_name'] = _("deduction_name");
@@ -391,7 +366,45 @@ class SalaryIndexController extends Controllers\IndexController {
             $data['t']['delete'] = _("delete_btn");
             $data['t']['cancel'] = _("cancel_btn");
 
-            echo json_encode($data);
+
+            return true;
+        }
+    }
+
+    public function addDectAction() {
+        $this->initialize();
+        if ($this->permission == 1) {
+            $data['deduce_name'] = $this->deduce['deduce_name'];
+            $data['amount'] = $this->deduce['amount'];
+            $Deduction = new SalaryTaxsDeduction();
+            $Deduction->addDeduction($data);
+            return true;
+        }
+    }
+
+    public function show_add_dectAction() {
+        $this->initialize();
+        if ($this->permission == 1) {
+            $data[1]['deduce_frm'] = _("deduce_frm");
+            $data[1]['deduce_name'] = _("deduce_name");
+            $data[1]['amount'] = _("amount");
+            $data[1]['wr_deduce_name'] = _("wr_deduce_name");
+            $data[1]['wr_deduce_amount'] = _("wr_deduce_amount");
+            $data[1]['save'] = _("save_btn");
+            $data[1]['cancel'] = _("cancel_btn");
+            return true;
+        }
+    }
+
+    public function deleteDeductAction() {
+        $this->initialize();
+        if ($this->permission == 1) {
+            $Deduction = new TaxsDeduction();
+            $list = $Deduction->getDeducelist();
+
+            $deduce_id = $list[5]['deduce_id'];
+            
+            $Deduction->deleteDeduction($deduce_id);
             return true;
         }
     }
@@ -413,30 +426,6 @@ class SalaryIndexController extends Controllers\IndexController {
         }
 
         return true;
-    }
-
-    public function show_add_dectAction() {
-        $this->initialize();
-        if ($this->permission == 1) {
-            $data[1]['deduce_frm'] = _("deduce_frm");
-            $data[1]['deduce_name'] = _("deduce_name");
-            $data[1]['amount'] = _("amount");
-            $data[1]['wr_deduce_name'] = _("wr_deduce_name");
-            $data[1]['wr_deduce_amount'] = _("wr_deduce_amount");
-            $data[1]['save'] = _("save_btn");
-            $data[1]['cancel'] = _("cancel_btn");
-            return true;
-        }
-    }
-
-    public function deleteDeductAction() {
-        $this->initialize();
-        if ($this->permission == 1) {
-            $deduce_id = $this->request->getPost('id');
-            $Deduction = new SalaryTaxsDeduction();
-            $Deduction->deleteDeduction($deduce_id);
-            return true;
-        }
     }
 
     public function salarydetailAction() {
@@ -463,19 +452,21 @@ class SalaryIndexController extends Controllers\IndexController {
 
         $this->initialize();
 
-        $SalaryDetail = new SalaryDetail();
+        $SalaryDetail = new SalaryDetailTest();
         $data['member_id'] = $this->resign['member_id'];
         $data['resign_date'] = $this->resign['date'];
         $SalaryDetail->addResign($data);
         return true;
     }
 
+// deleteSalaryAction
+//    salaryusernameAction
     public function checkmonthyearAction() {
         $this->initialize();
         $this->assets->addJs('apps/salary/js/base.js');
         $monthyear = $this->monthyear;
 
-        $SalaryDetail = new SalaryDetail();
+        $SalaryDetail = new SalaryDetailTest();
         $result = $SalaryDetail->findMonthyear($monthyear);
         if ($result) {
             $msg = "found";
@@ -539,7 +530,7 @@ class SalaryIndexController extends Controllers\IndexController {
     }
 
     public function downloadcsvAction($id) {
-
+        $this->initialize();
         (1 == $id) ? $title = "salary_data_" : $title = "salary_detail_";
         $file_name = $title . date('Ymd') . ".csv";
         $output = fopen('php://output', 'w');
@@ -582,11 +573,11 @@ class SalaryIndexController extends Controllers\IndexController {
     }
 
     public function memberidforprintAction() {
+        $this->initialize();
         $this->assets->addJs('apps/salary/js/index-print.js');
-        $member_id = $this->member_id;
-        $paydate = "2016-01-31";
-
-        $SalaryDetail = new SalaryDetail();
+        $member_id = $this->member_id;       
+        $paydate = "2016-03-31";
+        $SalaryDetail = new SalaryDetailTest();
         $result = $SalaryDetail->addMemberid($member_id, $paydate);
 
         if ($result) {

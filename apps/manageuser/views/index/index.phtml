@@ -19,10 +19,10 @@ use Phalcon\Filter;
 <!-- Main content -->
 <section class="content">
     <div class="row">	
-        <form class="buttons">
-            <input  type="text" class="userauto form-control-static" name="username" data-autocomplete-limit="10" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
-            <input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= $t->_("search"); ?>" id="userlistsearch" style="margin-top: -10px;">
-            <input type="submit" onclick="return false;" class="right buttonn displaypopup form-control-static" value="<?= $t->_("adduser"); ?>" id="addinguser" >     
+        <form class="buttons col-sm-5">
+            <input  type="text" class="userauto form-control-static col-sm-6" name="username" data-autocomplete-limit="10" id="username" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
+            <input type="submit" onclick="return false;" class="buttonn form-control-static col-sm-3" value="<?= $t->_("search"); ?>" id="userlistsearch">
+            <input type="submit" onclick="return false;" class="buttonn displaypopup col-sm-3 form-control-static" value="<?= $t->_("adduser"); ?>" id="addinguser" >     
         </form>
     </div>
 
@@ -41,7 +41,7 @@ use Phalcon\Filter;
                         <th ><?= $t->_("address"); ?></th>   
                     </tr>
                 </thead>
-                <tbody>                  
+                <tbody>
                     <?php
                     $filter = new Filter();
                     $i = 1;

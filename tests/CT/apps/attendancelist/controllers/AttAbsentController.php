@@ -60,7 +60,7 @@ class AttAbsentController extends Controllers\AbsentController {
             $currentPage = $this->request->get('page');
             $Admin = new Db\CoreMember;
             $Noti = $Admin->getAdminNoti($this->id, 0);
-            $AbsentList = new \salts\Attendancelist\Models\Attendances();
+            $AbsentList = new AttendancesTest();
             $Result = $AbsentList->GetAbsentList($currentPage);
             return true;
         }
