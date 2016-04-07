@@ -25,10 +25,8 @@ Leave.init =  function(reload){
                 });
             }
      };
-Leave.List = function () {   
-    
-      search_list();  
-      Leave.init();
+Leave.List = function () {       
+      search_list();        
 };          
     
 $(document).ready(function(){     

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+var baseUri = '/salts/';
 function checktime(i) {
     if (i < 10) {
         i = "0" + i;  // add zero in front of numbers < 10        
@@ -138,36 +139,6 @@ function repair(val) {
     });
 }
 
-/**
- * Core functions
- * @type object
- */
-var Core = {
-    /**
-     * initialize core object
-     * @returns boolean
-     */
-    init : function(){
-        $('.cmn-icons-contry').on('click',function(){
-            // Set langage code
-            var lang = $(this).attr('id').split('_')[2];
-            Core.changeLang(lang);
-        });
-        
-        return true;
-    },
-    
-    /**
-     * Change language
-     * @param {type} lang
-     * @returns {undefined}
-     * @author Kohei Iwasa
-     */
-    changeLang : function(lang){
-        window.location.href = baseUri + 'core/index/setLanguage/'+lang;
-    }
-};
-
 $(document).ready(function () {
     //absent member
     $('body').attr('onload', getAbsentMember());
@@ -175,9 +146,6 @@ $(document).ready(function () {
     var logout = function () {
         window.location.href = baseUri + 'auth/logout';
     };
-    
-    // initalize
-    Core.init();
 //   
     // ユーザーのクリックした時の動作。
     $('#btn_logout').on('click', function () {

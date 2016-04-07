@@ -120,7 +120,7 @@ class IndexController extends ControllerBase {
                 $this->view->Getname = $UserList::getinstance()->getusername();
                 $this->view->setVar("Result", $this->_leave->getLeaveList($this->request->get("page")));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
-                $this->view->setVar("Month", $this->config->month);
+                $this->view->setVar("Month", $this->config['config']['month']);
                 //$this->view->modulename = $this->module_name;
             } else {
                 $this->response->redirect('core/index');
