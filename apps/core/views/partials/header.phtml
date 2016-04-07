@@ -83,25 +83,11 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
 
-                                    <?php
-                                    foreach ($this->session->auth as $key_name => $key_value) {
-                                        if ($key_name == 'admin_dashboard') {
-                                            ?>
+                                   
                                             <div class="pull-left">
-                                                <a href="../../setting/index/admin" class="btn btn-default btn-flat" id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
+                                                <a href="<?php echo $baseUri; ?>setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
                                             </div>
-                                            <?php
-                                        }
-
-                                        if ($key_name == 'user_dashboard') {
-                                            ?> 
-                                            <div class="pull-left">
-                                                <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
-                                            </div>
-                                            <?php
-                                        }
-                                    }
-                                    ?>       
+                                           
 
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" id="btn_logout"><b><?php echo $t->_("Sign out"); ?></b></a>
@@ -150,7 +136,7 @@
                                         }
                                     }
                                 } else {
-                                    if ($key_name != 'show_admin_notification' && $key_name != 'show_admin_setting') {
+                                    if ($key_name != 'show_admin_notification') {
 
                                         if (count($key_value) > 2) {
                                             if (isset($top_link[1])) {
