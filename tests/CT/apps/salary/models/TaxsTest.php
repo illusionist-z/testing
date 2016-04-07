@@ -23,6 +23,7 @@ class TaxsTest extends Models\SalaryTaxs {
 
     public function getTaxlist() {
         try {
+             $this->db = $this->getDI()->getShared("db");
             $data = $this->db->query("SELECT * FROM salary_taxs ");
             $result = $data->fetchall();
         } catch (Exception $exc) {
@@ -43,6 +44,7 @@ class TaxsTest extends Models\SalaryTaxs {
 
     public function editTax($data) {
         try {
+            
             $this->db = $this->getDI()->getShared("db");
             $to = $data['taxs_from'] - 1;
             $data['taxs_diff'] = $data['taxs_to'] - $to;
