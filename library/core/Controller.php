@@ -144,7 +144,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
                 ->addJs('common/js/common.js');
         //->addJs('common/js/btn.js')
         $this->assets->addJs('common/js/bootstrap.min.js');
-        $this->assets->addJs('common/js/app.min.js');
+       // $this->assets->addJs('common/js/app.min.js');
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
         }
@@ -169,7 +169,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->router->getModuleName(), $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
        // Module ID Filter Start By (Module Name)        
-       // $this->view->module_name_view = $this->module_name;
+        $this->view->module_name_view = $this->module_name;
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
         }
@@ -266,6 +266,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
+          $this->assets->addJs('apps/dashboard/js/index.js');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
                
     }

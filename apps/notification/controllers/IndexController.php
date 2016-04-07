@@ -94,7 +94,7 @@ class IndexController extends ControllerBase {
 
     public function detailAction() {
         $this->setCommonJsAndCss();
-        $this->assets->addCss('common/css/css/style.css');
+       // $this->assets->addCss('common/css/css/style.css');
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
