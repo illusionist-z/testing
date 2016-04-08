@@ -28,9 +28,7 @@ include __DIR__ . "/library/core/models/Base.php";
 include __DIR__ . "/library/core/Controller.php";
 
 spl_autoload_register(function () {
-//    auth
-
-   
+    //    auth
     include_once 'apps/auth/controllers/ControllerBase.php';
     include_once 'apps/auth/controllers/LogoutController.php';
     include_once 'apps/auth/controllers/IndexController.php';
@@ -54,7 +52,9 @@ spl_autoload_register(function () {
     include_once 'library/core/Controller.php';
     include_once 'library/core/models/SingletonTrait.php';
 //    manageuser
+    include_once 'apps/manageuser/controllers/CoreMemberController.php';
     include_once 'apps/manageuser/controllers/ControllerBase.php';
+    include_once 'apps/manageuser/controllers/IndexController.php';
     include_once 'apps/manageuser/models/User.php';
     include_once 'apps/manageuser/models/AddUser.php';
 //    core
@@ -69,11 +69,12 @@ spl_autoload_register(function () {
     include_once 'apps/core/models/db/CoreNotification.php';
     include_once 'apps/core/models/db/CoreNotificationRelMember.php';
 //    attendancelist
-    include_once 'apps/attendancelist/controllers/AbsentController.php';
+    include_once 'apps/attendancelist/controllers/IndexController.php';
     include_once 'apps/attendancelist/controllers/ControllerBase.php';
     include_once 'apps/attendancelist/controllers/SearchController.php';
     include_once 'apps/attendancelist/controllers/UserController.php';
     include_once 'apps/attendancelist/models/Attendances.php';
+
 //    leavedays
     include_once 'apps/leavedays/controllers/IndexController.php';
     include_once 'apps/leavedays/controllers/ControllerBase.php';
@@ -108,9 +109,17 @@ spl_autoload_register(function () {
     include_once 'apps/document/models/SalaryDetail.php';
     include_once 'apps/document/models/SimpleImage.php';
     //    notification
+    include_once 'apps/notification/controllers/IndexController.php';
+    include_once 'apps/notification/controllers/ControllerBase.php';
     include_once 'apps/notification/models/CoreNotification.php';
     include_once 'apps/notification/models/Leaves.php';
     include_once 'apps/notification/models/CoreNotificationRelMember.php';
+    // setting 
+    include_once 'apps/setting/controllers/IndexController.php';
+    include_once 'apps/setting/controllers/ControllerBase.php';
+    include_once 'apps/setting/models/CorePermissionGroupId.php';
+    include_once 'apps/setting/models/CorePermissionRelMember.php';
+    include_once 'apps/setting/models/CorePermissionGroup.php';
 //    tests
     include_once 'tests/CT/apps/attendancelist/model/AttendancesTest.php';
     include_once 'tests/CT/apps/salary/models/SalaryDetailTest.php';
@@ -121,6 +130,10 @@ spl_autoload_register(function () {
     include_once 'tests/CT/apps/salary/controllers/SalaryIndexController.php';
     include_once 'tests/CT/apps/salary/controllers/SalarySearchController.php';
     include_once 'tests/CT/apps/salary/controllers/MasterController.php';
+    include_once 'tests/CT/apps/salary/models/TaxDeduce.php';
+    include_once 'tests/CT/apps/salary/models/TaxsTest.php';
+    //tests controller
+   
 });
 
 // use the application autoloader to autoload the classes

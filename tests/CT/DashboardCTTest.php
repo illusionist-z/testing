@@ -7,7 +7,7 @@
  */
 
 require_once 'apps/dashboard/controllers/IndexControllerTest.php';
-//namespace Test;
+
 
 /**
  * Description of DashboardCITest

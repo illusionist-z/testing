@@ -12,8 +12,8 @@ use salts\Attendancelist\Controllers;
 use salts\Auth\Models;
 use salts\Attendancelist\Models\CorePermissionGroupId;
 
-include_once 'tests\CT\apps\LoginForAll.php';
-require_once 'apps/attendancelist/controllers/IndexController.php';
+
+
 
 /**
  * Description of IndexController

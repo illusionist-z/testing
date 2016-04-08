@@ -11,10 +11,8 @@ use salts\Salary\Controllers;
 use salts\Salary\Models;
 use salts\Salary\Models\SalaryDetail;
 use salts\Salary\Models\SalaryMaster;
-include_once 'tests\CT\apps\LoginForAll.php';
 
-require_once 'apps/salary/controllers/SearchController.php';
-require_once 'apps/core/models/db/CoreMember.php';
+include_once 'tests\CT\apps\LoginForAll.php';
 
 /**
  * Description of IndexController
@@ -41,7 +39,7 @@ class SalarySearchController extends Controllers\SearchController {
     public function indexAction() {
         $this->initialize();
         $SalaryDetail = new SalaryDetailTest();
-        $cond = $this->request->get('Khin Nyein Chan Thu', array());
+        $cond = $this->request->get('cond', array());
         $search_result = $SalaryDetail->searchSalary($cond);
         $this->view->disable();
         echo json_encode($search_result);
@@ -51,13 +49,13 @@ class SalarySearchController extends Controllers\SearchController {
     /*
      * undefined $field
      */
+
     public function searchTravelfeesAction() {
         $this->initialize();
-       $data = $this->param;
-        $SalaryDetail = new SalaryDetail();
-        $search_result = $SalaryDetail->searchSList($data);
-       
-        echo json_encode($search_result);
+        $data = $this->param;
+        $SalaryDetail = new SalaryDetailTest();
+        $search_result = $SalaryDetail->searchSList($data, "1");       
+        return true;
     }
 
 }

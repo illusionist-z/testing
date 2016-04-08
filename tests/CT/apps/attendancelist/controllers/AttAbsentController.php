@@ -9,7 +9,7 @@ use salts\Core\Models\Db;
 use salts\Attendancelist\Controllers;
 use salts\Attendancelist\Models\Attendances as Attendance;
 
-include_once 'tests\CT\apps\LoginForAll.php';
+
 
 require_once 'apps/attendancelist/controllers/AbsentController.php';
 
