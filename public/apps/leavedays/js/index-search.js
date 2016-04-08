@@ -23,6 +23,7 @@ function search_list()
         $("tbody").append(output);
     }
     else {
+        loadingMsg(true);
         $.ajax({
             url: baseUri + 'leavedays/search?ltype=' + leave_type + '&month=' + month + '&namelist=' + namelist,
             type: 'GET',
@@ -74,6 +75,7 @@ function search_list()
                     $("tbody").append(output);
                 }
                 Leave.init();
+                loadingMsg(false);
             },
             error: function (d) {
                 alert('error');

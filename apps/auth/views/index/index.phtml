@@ -31,12 +31,12 @@ if(! ini_get('date.timezone')){
                         <?php if (!isset($mode)) { ?>
                             <tr>    
                                 <td><span id="compayimg"><span id="unameopt">companyid</span></span></td>
-                                <td><input type="text" pattern="[A-Za-z-0-9]+[A-Za-z-'0-9]+" style="margin-top: 10px;" size="50%" name="company_id" class="form-control"  placeholder="Company Id" required></td>
+                                <td><input type="text" pattern="[A-Za-z-0-9-_]+[A-Za-z-'0-9-_]+" style="margin-top: 10px;" size="50%" name="company_id" class="form-control"  placeholder="Company Id" required></td>
                             </tr>
                         <?php } ?>
                         <tr>
                             <td><span id="unameimg"><span id="unameopt">name</span></span></td>
-                            <td><input type="text" pattern="[A-Za-z-0-9]+[A-Za-z-'0-9]+" style="margin-top: 10px;" size="50%" name="member_login_name" class="form-control"  placeholder="UserName" required></td>
+                            <td><input type="text" pattern="[A-Za-z-0-9-_]+[A-Za-z-'0-9-_]+" style="margin-top: 10px;" size="50%" name="member_login_name" class="form-control"  placeholder="UserName" required></td>
                         </tr>
                         <tr>
                             <td><span id="passimg"><span id="unameopt">pass</span></span></td>
