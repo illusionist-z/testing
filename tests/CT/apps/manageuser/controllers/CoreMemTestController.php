@@ -15,9 +15,7 @@ use salts\Core\Models\Db\CoreMember;
  *
  * @author Khine Thazin Phyo <ktzp27@gmail.com>
  */
-include_once 'tests\CT\apps\LoginForAll.php';
 
-require_once 'apps/manageuser/controllers/CoreMemberController.php';
 
 class CoreMemTestController extends Controllers\CorememberController {
 

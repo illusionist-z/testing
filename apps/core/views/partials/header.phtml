@@ -8,7 +8,7 @@
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>        
         <?php $this->assets->outputCss() ?>
     </head>
-    <body class="skin-blue sidebar-mini" onload="display_ct()">
+    <body class="skin-blue sidebar-mini" >
         <?php error_reporting(0); ?>                                
         <header class="main-header">
             <!-- Header Navbar: style can be found in header.less -->
@@ -22,7 +22,7 @@
 
                     <ul class="nav navbar-nav"> 
                         <li>
-                            <a href="<?php echo $baseUri ?>help/index/searchHelp" id="btn_cmn_help" target="_black">
+                            <a href="<?php echo $baseUri ?>help/index/searchHelp" id="btn_cmn_help" target="_blank">
                                 <span class="cmn-icons cmn-icons-help"></span>
                             </a> 
                             <div id="helpnoti">
@@ -85,7 +85,7 @@
 
                                      
                                             <div class="pull-left">
-                                                <a href="../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo $t->_("Setting"); ?></b></a>
+                                                <a href="../../setting/user" class="btn btn-default btn-flat"  id="setting"><b><?php echo "Profile"; ?></b></a>
                                             </div>
                                              
 
@@ -150,7 +150,7 @@
                                             }
                                         } else {
                                             if (isset($top[1])) {
-                                                echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/index/"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/index/index"><img id="navicon' . $count . '" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                             } else {
                                                 echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index"><img id="navicon' . $count . '"  ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                             }

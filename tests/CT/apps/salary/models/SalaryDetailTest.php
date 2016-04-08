@@ -584,6 +584,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function searchSList($param, $currentPage) {
         try {
+            $this->db = $this->getDI()->getShared("db");
             if ($param['travel_fees'] == 1) {
                 $field = "travel_fee_perday";
             }
