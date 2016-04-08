@@ -76,4 +76,5 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
         $userlist = new AttUserController();
         $this->assertTrue($userlist->attendancelistAction());
     }
+
 }

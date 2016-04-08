@@ -5,18 +5,17 @@ require_once 'apps/auth/controllers/LoginControllerTest.php';
 require_once 'apps/auth/controllers/AuthIndexController.php';
 require_once 'apps/auth/controllers/LogoutControllerTest.php';
 
-//namespace Test;
 
 
 /**
- * Class LoginCITest
+ * Class LoginCTTest
  */
 if (!isset($_SESSION)) {
 
     $_SESSION = array();
 }
 
-class LoginCITest extends PHPUnit_Framework_TestCase {
+class LoginCTTest extends PHPUnit_Framework_TestCase {
 
     public function testindexAction() {
 
@@ -86,22 +85,21 @@ class LoginCITest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("success", $test->changePasswordAction());
     }
 
+//    public function testcheckCodeAction() {
+//        $test = new AuthIndexController();
+//        $this->assertEquals("success", $test->checkCodeAction());
+//    }
 //    public function testsendToMailAction() {
 //        $email_params = 'ktzp27@gmail.com';
 //        $test = new AuthIndexController();
 //        $test->setmailParam($email_params);
 //        $this->assertTrue($test->sendToMailAction());
 //    }
+//    
 
-//    public function testLogoutIndexAction() {
-//        
-//      
-//        $logout = new LogoutControllerTest();
-//        $this->assertTrue($logout->indexAction());
-//    }
+    public function testLogoutIndexAction() {
+        $logout = new LogoutControllerTest();
+        $this->assertTrue($logout->indexAction());
+    }
 
-//    public function testGetTranslateAction() {
-//        $logout = new LogoutControllerTest();
-//        $this->assertTrue($logout->gettranslateAction());
-//    }
 }
