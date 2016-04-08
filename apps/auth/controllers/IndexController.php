@@ -10,6 +10,7 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
     }
 
     /**  Index Action @param type $mode */
@@ -279,6 +280,7 @@ class IndexController extends ControllerBase {
         $Insert->token = $token;
         $Insert->save();
         $Find = $Insert::find(array("check_mail = '$getemail'", "order" => "curdate DESC", "limit" => 1));
+       $finded_token = '';
         foreach ($Find as $value) {
             $finded_token = $filter->sanitize($value->token, "string");
         }

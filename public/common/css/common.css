@@ -1095,6 +1095,6 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 /* loading image */
 .message{
-    background:url('../img/loading.gif') 180px -30px no-repeat;
-    background-size: 300px;
+    background:url('../img/loading.gif') 180px 50px no-repeat;
+    background-size: 150px;
 }
