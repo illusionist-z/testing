@@ -13,10 +13,7 @@ use salts\Document\Models\CompanyInfo;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 
-include_once 'tests\CT\apps\LoginForAll.php';
 
-require_once 'apps/document/controllers/IndexController.php';
-require_once 'apps/core/models/db/CoreMember.php';
 
 /**
  * Description of IndexController

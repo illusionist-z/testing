@@ -12,7 +12,7 @@ use salts\Salary\Models;
 use salts\Core\Models\Db\Attendances;
 use salts\Salary\Models\SalaryDetail;
 use salts\Salary\Models\SalaryMaster;
-include_once 'tests\CT\apps\LoginForAll.php';
+
 
 /**
  * Description of SalaryMasterController

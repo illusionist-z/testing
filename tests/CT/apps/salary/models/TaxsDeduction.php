@@ -44,7 +44,7 @@ class TaxsDeduction extends Models\SalaryTaxsDeduction {
 
     public function editDeduction($data) {
         try {
-           
+
             $this->db = $this->getDI()->getShared("db");
             $sql = "Update salary_taxs_deduction SET deduce_name ='" . $data['deduce_name'] . "',amount ='" . $data['amount'] . "'  Where salary_taxs_deduction.deduce_id='" . $data['deduce_id'] . "'";
             $this->db->query($sql);
@@ -55,6 +55,7 @@ class TaxsDeduction extends Models\SalaryTaxsDeduction {
 
     public function addDeduction($data) {
         try {
+            $this->db = $this->getDI()->getShared("db");
             $this->db->query("INSERT INTO salary_taxs_deduction (deduce_id,deduce_name,amount) VALUES (uuid(),'" . $data['deduce_name'] . "','" . $data['amount'] . "')");
         } catch (Exception $exc) {
             echo $exc;
