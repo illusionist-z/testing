@@ -10,12 +10,11 @@
  * Description of IndexControllerTest
  *
  * @author Su Zin Kyaw <gnext.suzin@gmail.com>
- */ 
+ */
 use salts\Auth\Models;
 use Phalcon\Filter;
 use salts\Auth\Controllers;
 
- 
 /**
  * Class UnitTest
  */
@@ -42,18 +41,18 @@ class AuthIndexController extends Controllers\IndexController {
         /* User failerAction @author Yan Lin Pai <wizardrider@gmail.com> */
         $filter = new Filter();
         date_default_timezone_set('UTC');
-         if (!isset($_SESSION["attempts"]))
+        if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
 
         if (4 > $_SESSION["attempts"]) {
-                    if ($this->session) {
-                        $member_name = $this->param['member_login_name'];
-                        $ChackUser = new Models\CoreMember();
-                        $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
-                        $member_id = $this->request->getPost('member_login_name');
+            if ($this->session) {
+                $member_name = $this->param['member_login_name'];
+                $ChackUser = new Models\CoreMember();
+                $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
+                $member_id = $this->request->getPost('member_login_name');
                 if (0 == count($chack_user2)) {
-                        $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
-                        return 'company id or user name or password wrong';
+                    $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
+                    return 'company id or user name or password wrong';
                 }
             }
         }
@@ -68,7 +67,7 @@ class AuthIndexController extends Controllers\IndexController {
         if (0 == count($chack_user)) {
             $timestamp = (date("Y-m-d H:i:s"));
             $date = strtotime($timestamp);
- 
+
             if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
 
                 $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
@@ -81,7 +80,7 @@ class AuthIndexController extends Controllers\IndexController {
                 $localhost = ($this->request->getServer('HTTP_HOST'));
                 $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "10";
-                 header("Refresh: $sec; url=$page");
+                header("Refresh: $sec; url=$page");
                 if ($nowtime > $_SESSION['expire']) {
                     session_destroy();
                     echo "Your session has expired ! ";
@@ -105,8 +104,8 @@ class AuthIndexController extends Controllers\IndexController {
     }
 
     public function saltsForGetAction() {
-      //  $Core = new Models\CoreMember();
-        $login = $this->request->getPost('SaltsForGetInput');
+        //  $Core = new Models\CoreMember();
+        $login = $this->param;
         $user = Users::findFirstByLogin($login);
         if ($user) {
             $this->view->disable();
@@ -120,11 +119,11 @@ class AuthIndexController extends Controllers\IndexController {
         $Admin = new \salts\Auth\Models\CoreMember();
         $result = $Admin::findFirst("member_mail = '" . $member_mail . "' AND deleted_flag = 0 ");
         if ($result) {
-             return true;
-        } else {
-            echo 'Error';
+            return true;
         }
     }
+
+
 
     public function checkMailAction() {
         $filter = new Filter();
@@ -144,7 +143,7 @@ class AuthIndexController extends Controllers\IndexController {
         $filter = new Filter();
         $member_mail = $filter->sanitize($this->mailParam, 'string');
         $Admin = new \salts\Auth\Models\CoreMember();
-        $result = $Admin::find( array("member_mail = '$member_mail'","deleted_flag = 0"));
+        $result = $Admin::find(array("member_mail = '$member_mail'", "deleted_flag = 0"));
         $data = [];
         foreach ($result as $value) {
             $data[] = $value->member_profile;
@@ -159,7 +158,7 @@ class AuthIndexController extends Controllers\IndexController {
         $newpass = $this->pwd;
         $member_mail = $filter->sanitize($this->mailParam, 'string');
         $Up = new \salts\Auth\Models\CoreMember();
-        $result = $Up::find(array("member_mail = '$member_mail'","deleted_flag = 0"));
+        $result = $Up::find(array("member_mail = '$member_mail'", "deleted_flag = 0"));
         foreach ($result as $value) {
             $value->member_password = sha1($newpass);
             $value->update();
@@ -177,7 +176,7 @@ class AuthIndexController extends Controllers\IndexController {
         $code = $this->pwd;
         $email = $filter->sanitize($this->mailParam, "string");
         $FindCode = new \salts\Auth\Models\CoreForgotPassword();
-        $result = $FindCode::find(array("check_mail = '$email'","order" => "curdate DESC","limit" => 1));
+        $result = $FindCode::find(array("check_mail = '$email'", "order" => "curdate DESC", "limit" => 1));
         foreach ($result as $value) {
             $finded_token = $value->token;
         }
@@ -199,7 +198,9 @@ class AuthIndexController extends Controllers\IndexController {
         $Insert->token = $token;
         $Insert->save();
         $Find = $Insert::find(array("check_mail = '$getemail'", "order" => "curdate DESC", "limit" => 1));
-        foreach ($Find as $value) {   $finded_token = $filter->sanitize($value->token, "string"); }
+        foreach ($Find as $value) {
+            $finded_token = $filter->sanitize($value->token, "string");
+        }
         $to = $getemail;
         $subject = 'The subject';
         $message = $finded_token;

@@ -4,9 +4,9 @@ use salts\Salary\Models;
 use Phalcon\Mvc\Model;
 use Phalcon\Filter;
 
-//use salts\Salary\Models\SalaryMaster as sa;
 
-require_once 'apps/salary/models/SalaryMaster.php';
+
+
 
 class Master extends Models\SalaryMaster {
 

@@ -15,13 +15,7 @@ use salts\Leavedays\Models\LeaveCategories as LeaveCategories;
 use salts\Leavedays\Models\LeavesSetting as LeavesSetting;
 use salts\Core\Models\Db\CoreMember;
 
-include_once 'tests\CT\apps\LoginForAll.php';
 
-require_once 'apps/Leavedays/controllers/IndexController.php';
-require_once 'apps/leavedays/models/LeaveCategories.php';
-require_once 'apps/core/models/db/CoreMember.php';
-require_once 'apps/leavedays/models/Leaves.php';
-require_once 'apps/leavedays/models/LeavesSetting.php';
 
 /**
  * Description of IndexController

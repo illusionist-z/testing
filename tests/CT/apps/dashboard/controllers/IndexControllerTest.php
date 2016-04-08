@@ -5,8 +5,7 @@ use salts\Dashboard\Models\CorePermissionGroup;
 use salts\Dashboard\Controllers;
 use salts\Core\Models\Db;
 
-include_once 'tests\CT\apps\LoginForAll.php';
-require_once 'apps/dashboard/controllers/IndexController.php';
+
 
 class IndexControllerTest extends Controllers\IndexController {
 
