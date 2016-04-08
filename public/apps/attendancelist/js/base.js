@@ -110,7 +110,8 @@ var Attendance = {
            window.location.href='editTime/'+id+'/'+localtime;         
        },
        
-        todaylist: function (){  
+        todaylist: function (){
+            loadingMsg(true);
            // $('table.listtbl tbody').empty();
         var name = document.getElementById('namelist').value;        
          
@@ -121,6 +122,7 @@ var Attendance = {
             //alert(d);
          $('body').html(d);
          link_height() ;
+         loadingMsg(false);
          // Attendance.init();
         },
         error: function (d) {
@@ -141,6 +143,7 @@ var Attendance = {
             $("tbody").append(output);
         }
         else {
+            loadingMsg(true);
             $.ajax({
                 url: 'attsearch',
                 type: 'POST',
@@ -261,6 +264,7 @@ var Attendance = {
                         $('ul.pagination').append(paginglink);
                      }                     
                     Attendance.init();
+                    loadingMsg(false);
                 },
                 error: function (d) {
                     alert('error');
