@@ -19,7 +19,7 @@ if (!ini_get('date.timezone')) {
             <table class="listtbl attlist attchart">
                 <thead>
                 <th><?php echo "NO."; ?></th>
-                <th><?= $t->_("username"); ?></th>
+                <th style="width:15%;"><?= $t->_("username"); ?></th>
                 <?php
                 for ($i = 1; $i <= date('t'); $i++) {
                     echo "<th>Day " . $i . "</th>";
