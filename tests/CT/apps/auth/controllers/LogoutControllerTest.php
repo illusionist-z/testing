@@ -16,43 +16,22 @@ use salts\Auth\Models;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Filter;
 
-include_once 'tests\CT\apps\LoginForAll.php';
-require_once 'apps/auth/lang/jp.php';
+
+
 
 //namespace Test;
-
-if (!isset($_SESSION))
-    $_SESSION = array();
 
 class LogoutControllerTest extends Controllers\LogoutController {
 
     //put your code here
 
-    public function initialize() {
-
-        $login = new LoginForAll();
-        $login->loginFirst();
-    }
 
     public function indexAction() {
-        
-        $this->initialize();
         $this->session->remove('location');
         $this->session->remove('permission_code');
-
-        $this->cookies->get('cookies')->delete();
-
-        $this->session->destroy();
         $this->response->redirect('index/index');
+        return true;
     }
-
-    public function gettranslateAction() {
-         
-        $this->initialize();
-        $t = $this->_getTranslation();
-        $data['logout'] = $t->_("logout");
-        $this->view->disable();
-        echo json_encode($data);
-    }
+   
 
 }

@@ -41,11 +41,10 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($salary->monthlysalaryAction());
     }
 
-//error
-//    public function testpayslipAction() {
-//        $salary = new SalaryIndexController();
-//        $this->assertTrue($salary->payslipAction());
-//    }
+    public function testpayslipAction() {
+        $salary = new SalaryIndexController();
+        $this->assertTrue($salary->payslipAction());
+    }
 
     public function testsalSettingAction() {
         $salary = new SalaryIndexController();
@@ -84,6 +83,12 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
     public function testeditallowanceAction() {
         $salary = new SalaryIndexController();
         $this->assertTrue($salary->editallowanceAction());
+    }
+
+    public function testeditsalaryAction() {
+        $salary = new SalaryIndexController();
+        $salary->setmember_id("90e73464-c899-11e5-9e13-4c3488333b45");
+        $this->assertTrue($salary->editsalaryAction());
     }
 
     public function testeditdataAction() {
@@ -221,18 +226,57 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("success", $result);
     }
 
-//note
-//    public function testsearchTravelfeesAction() {
-//        $data = 1;
-//        $search_travel = new SalarySearchController();
-//        $search_travel->setparam($data);
-//        $this->assertTrue($search_travel->searchTravelfeesAction());
-//    }
-//
+    public function testbtneditAction() {
+        $salary = new SalaryIndexController();
+        $data = array("id" => "56b035b989bf2", "radTravel" => 1, "member_id" =>
+            "90e73464-c899-11e5-9e13-4c3488333b45",
+            "no_of_children" => 2, "check_allow" => "transpotation",
+            "check_list" => "children",
+            "basicsalary" => "200,000", "overtime" => "0", "ssc_emp" => "2",
+            "ssc_comp" => "3", "travelfee" => "300",
+            "work_sdate" => "2015-11-02");
+        $salary->setData($data);
+        $this->assertTrue($salary->btneditAction());
+    }
+
+    public function testcalSalaryAction() {
+        $salary = new SalaryIndexController();
+        $this->assertTrue($salary->calSalaryAction());
+    }
+
+    public function testeditDeductAction() {
+        $data = array("deduce_name" => "stay_with_father", "amount" => "50000");
+        $salary = new SalaryIndexController();
+        $salary->setData($data);
+        $this->assertTrue($salary->editDeductAction());
+    }
+
+    public function testdeleteSalaryAction() {
+
+        $salary = new SalaryIndexController();
+        $salary->setmember_id("90e73464-c899-11e5-9e13-4c3488333b45");
+        $this->assertTrue($salary->deleteSalaryAction());
+    }
+
+    public function testsalaryusernameAction() {
+        $salary = new SalaryIndexController();
+        $this->assertTrue($salary->salaryusernameAction());
+    }
+
+    /*
+     * SalarySearchController.php
+     */
+
+    public function testsearchTravelfeesAction() {
+        $data = 1;
+        $search_travel = new SalarySearchController();
+        $search_travel->setparam($data);
+        $this->assertTrue($search_travel->searchTravelfeesAction());
+    }
+
     /*
      * SalaryMasterController.php
      */
-
 
     public function testsavesalaryAction() {
 
@@ -269,51 +313,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
 
         $cal = new SalaryCalculateController();
         $cal->setsalary_date($salary_date);
-
         $this->assertTrue($cal->indexAction());
-    }
-
-    public function testeditsalaryAction() {
-        $salary = new SalaryIndexController();
-        $salary->setmember_id("90e73464-c899-11e5-9e13-4c3488333b45");
-        $this->assertTrue($salary->editsalaryAction());
-    }
-
-    public function testbtneditAction() {
-        $salary = new SalaryIndexController();
-        $data = array("id" => "56b035b989bf2", "radTravel" => 1, "member_id" =>
-            "90e73464-c899-11e5-9e13-4c3488333b45",
-            "no_of_children" => 2, "check_allow" => "transpotation",
-            "check_list" => "children",
-            "basicsalary" => "200,000", "overtime" => "0", "ssc_emp" => "2",
-            "ssc_comp" => "3", "travelfee" => "300",
-            "work_sdate" => "2015-11-02");
-        $salary->setData($data);
-        $this->assertTrue($salary->btneditAction());
-    }
-
-    public function testcalSalaryAction() {
-        $salary = new SalaryIndexController();
-        $this->assertTrue($salary->calSalaryAction());
-    }
-
-    public function testeditDeductAction() {
-        $data = array("deduce_name" => "stay_with_father", "amount" => "50000");
-        $salary = new SalaryIndexController();
-        $salary->setData($data);
-        $this->assertTrue($salary->editDeductAction());
-    }
-
-    public function testdeleteSalaryAction() {
-
-        $salary = new SalaryIndexController();
-        $salary->setmember_id("90e73464-c899-11e5-9e13-4c3488333b45");
-        $this->assertTrue($salary->deleteSalaryAction());
-    }
-
-    public function testsalaryusernameAction() {
-        $salary = new SalaryIndexController();
-        $this->assertTrue($salary->salaryusernameAction());
     }
 
 }

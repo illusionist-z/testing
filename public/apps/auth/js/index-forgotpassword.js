@@ -140,7 +140,7 @@ var forgot  = {
             });
             
             //for btnemail of resetpassword
-            $("#btnemail").click(function(){          
+            $("#btnemail").click(function(){
                var email=document.getElementById('emailaddress').value;
                forgot.sendemail(email);
                //window.location.href = baseUri + 'auth/index/sendmail?email='+email;
