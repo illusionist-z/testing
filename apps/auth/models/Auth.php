@@ -64,7 +64,7 @@ class Auth extends Component {
         $name = $filter->sanitize($loginParams['member_login_name'], "string");
         $password = $loginParams['password'];
         $database = $_SESSION['db_config'];
-        if ($database['db_name'] == 'company_db') {
+        if ($database['db_name'] == 'salts_company') {
             $sql = "SELECT * FROM user_tbl where login_name='" . $name . "' and password='" . sha1($password) . "' and deleted_flag=0";
         } else {
             $sql = "SELECT * FROM core_member where member_login_name= '" . $name . "' and member_password='" . sha1($password) . "' and deleted_flag=0";
