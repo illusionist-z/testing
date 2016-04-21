@@ -23,6 +23,7 @@ class LoginController extends ControllerBase {
         $ModelAuth = new Models\Auth();
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) { 
+           
             $config = new Ini(__DIR__ . '/../../../config/config.ini');
             $dbinfo['host'] = $config->database->host;
             $dbinfo['db_name'] = $config->database->dbname;
