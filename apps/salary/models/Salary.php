@@ -22,6 +22,11 @@ class Salary extends \Library\Core\Models\Base {
         ));
         $validate->add('bsalary', new Numericality(
             array(
+        'message' => '* Basic Salary should be number format'
+            )
+        ));
+        $validate->add('bsalary', new PresenceOf(
+            array(
         'message' => '* Basic Salary is required'
             )
         ));

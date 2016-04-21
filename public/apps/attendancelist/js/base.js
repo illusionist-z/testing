@@ -150,7 +150,9 @@ var Attendance = {
                 data: {month: mm, username: name, year: yy},
                 cache : false,
                 success: function (d) {                    
-                    var json_obj = $.parseJSON(d);//parse JSON                                                                       
+                    var json_obj = $.parseJSON(d);//parse JSON         \
+                     $("tbody").empty();
+                $("tfoot").empty();
                     for (var i in json_obj.items)
                     {
                         checkin_place = json_obj.items[i].att.location;
@@ -256,13 +258,14 @@ var Attendance = {
                                 + "<td>" + checkin_place + "</td>"
                                 + "</tr>";
                         $("tbody").append(output);
+                        
                     }
-                     if(json_obj.last != 1 && json_obj.last != 0 ){
+                       if(json_obj.last != 1 && json_obj.last != 0 ){
                          var paginglink = '<li><a href="monthlylist">First</a></li><li><a href="monthlylist?page='+json_obj.before+'">Previous</a></li>'
                         +'<li><a href="monthlylist?page='+json_obj.next+'">Next</a></li><li><a href="monthlylist?page='+json_obj.last+'">Last</a></li>'
                         +'<li><span class="btn" style="margin-left:20px;">You are in page '+json_obj.current+'  of '+json_obj.total_pages+'</span></li>';
                         $('ul.pagination').append(paginglink);
-                     }                     
+                     }                   
                     Attendance.init();
                     loadingMsg(false);
                 },
