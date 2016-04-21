@@ -14,8 +14,10 @@ var User = {
         init  : function(reload) {
         $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
         if(reload){
+         
        $.ajax({
-                url: User.Ctrl+"/usernameautolist",
+          
+                url: baseUri+"manageuser/index/usernameautolist",
                 method: 'GET',
                 //dataType: 'json',
                 success: function(data) {
@@ -41,8 +43,8 @@ var User = {
         else{
               $.ajax({
                     type: 'GET',
-                    url: User.Ctrl+"?username="+name,                    
-                    success:function(result){
+                    url: baseUri+"manageuser/index?username="+name,
+                    success:function(result){       
                       $('body').html(result);
                        $('.dropdown-toggle').dropdown();$('.content-wrapper').css("height",555);
                     },
@@ -61,13 +63,15 @@ $(document).ready( function() {
     $('form').on('click','#userlistsearch',function () {        
         User.search();
     });
-    $('form').on('click','#addinguser',function () {      
+    $('form').on('click','#addinguser',function () {     
+       
            var type="new";
                     $.ajax({
                     type:'GET',
-                    url : User.Ctrl+"/getpermit",
+                    url : baseUri+"manageuser/index/getpermit",
                     data : {data : type},
                     success: function(d){
+                        
                     var json_obj = $.parseJSON(d);                    
                     var opt='',option="";
                     for (var i in json_obj){

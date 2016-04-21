@@ -265,6 +265,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addCss('common/css/boot.css');
         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
+          $this->assets->addJs('apps/dashboard/js/index.js');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
                
     }

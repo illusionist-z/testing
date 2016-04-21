@@ -8,7 +8,6 @@ use salts\Salary\Models\Allowances;
 use salts\Salary\Models\SalaryTaxs;
 use salts\Salary\Models\SalaryTaxsDeduction;
 use salts\Salary\Models\SalaryMemberTaxDeduce;
-
 class IndexController extends ControllerBase {  
 
     public function initialize() {
