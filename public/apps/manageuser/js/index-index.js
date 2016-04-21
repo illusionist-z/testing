@@ -35,7 +35,7 @@
 		    +'<tr><td>'+res[1]['pno']+'</td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_mobile_tel +'" name="pno" id="edit_user_phone"></td></tr>'
                     +'<tr><td>'+res[1]['address']+' </td>'
-                    +'<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="50" name="address" style="color:black">'+ res[0].member_address +'</textarea></td></tr>'
+                    +'<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="20" name="address" style="color:black">'+ res[0].member_address +'</textarea></td></tr>'
 		    +'<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">'+res[1]['btn_edit']+'</a><a href="#" class="button" id="edit_delete">'+res[1]['btn_delete']+'</a><a href="#" class="button" id="edit_close">'+res[1]['btn_cancel']+'</a></td>'
                     +'</tr></table></form>'; 
                   title = res[1]['edit'];

@@ -16,10 +16,6 @@ use salts\Notification\Models\CoreNotificationRelMember;
 use salts\Notification\Models\CoreNotification;
 use salts\Core\Models\Db\CoreMember;
 
-include_once 'tests\CT\apps\LoginForAll.php';
-
-require_once 'apps\notification\controllers\IndexController.php';
-
 class NotiIndexControllerTest extends Controllers\IndexController {
 
     public function initialize() {

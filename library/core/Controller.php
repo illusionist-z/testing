@@ -136,7 +136,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * 
      */
     public function setCommonJsAndCss() {                
-        $this->assets->addCss('common/css/bootstrap.min.css')
+        $this->assets->addCss("common/css/bootstrap.min.css?")
                 ->addCss('common/css/common.css')
                 ->addCss('common/css/jquery-ui.css')
                 ->addCss('common/css/skins.min.css');
@@ -185,7 +185,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     }
 
     public function setSettJsAndCss() {
-        
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/setting/js/base.js');
         $this->assets->addJs('apps/setting/js/index-admin.js');
@@ -246,7 +245,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
     }
-
+ 
     /**
      * Js and Css for Dashboard
      */
@@ -262,8 +261,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('common/css/boot.css');
-        $this->assets->addJs('common/js/time.js');
+         $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
           $this->assets->addJs('apps/dashboard/js/index.js');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');

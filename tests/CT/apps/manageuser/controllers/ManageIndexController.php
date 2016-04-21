@@ -11,10 +11,6 @@ use salts\Core\Models\Db;
 use salts\Manageuser\Controllers;
 use salts\Auth\Models;
 
-include_once 'tests\CT\apps\LoginForAll.php';
-
-require_once 'apps/manageuser/controllers/IndexController.php';
-
 /**
  * Description of IndexController
  *

@@ -4,70 +4,6 @@
  * 
  */
 var pager, pager2;
-//var Setting = {
-//    init: function () {
-//        Setting.PageRule.paging();
-//        Setting.UserRule.paging();
-//        $('tbody').show();
-//    }
-//};
-//
-//Setting.GroupRule = {
-//    delete: function (id) {
-//        $.ajax({
-//            url : "DelGroupRule",
-//            data : {group_id : id},
-//            type : "POST",
-//            success: function(){
-//                location.reload();
-//            }
-//        });
-//    }
-//};
-//Setting.PageRule = {
-//    delete: function (id) {
-//        $.ajax({
-//            url : "DelPageRule",
-//            data : {idpage : id},
-//            type : "POST",
-//            success: function(){
-//                location.reload();
-//            }
-//        });
-//    },
-//    paging: function () {
-//        pager = new Paging.MultiPager();
-//        tbody = 'table#page_role > tbody';
-//        pager.currentpagerobject = 'pager';
-//        pager.content = 'table#page_role';
-//        pager.perpage = 4;
-//        pager.pagingcontainer = tbody;
-//        pager.para = $(tbody + " > tr ");
-//        pager.showPage(1);
-//    }
-//};
-//Setting.UserRule = {
-//    update: function (id, groupid, grouptext) {
-//        $.ajax({
-//            url : 'UserRuleSetting',
-//            data : {rel_member_id : id, group_id :groupid,group_text : grouptext},
-//            type : "POST",
-//            success : function(){
-//                location.reload();
-//            }
-//        });
-//    },
-//    paging: function () {
-//        pager2 = new Paging.MultiPager();
-//        tbody = 'table#user_role > tbody';//current table
-//        pager2.currentpagerobject = 'pager2';        //current pager object
-//        pager2.content = 'table#user_role';//current content
-//        pager2.perpage = 4;
-//        pager2.pagingcontainer = tbody;
-//        pager2.para = $(tbody + " > tr ");
-//        pager2.showPage(1);
-//    }
-//};
 var Setting = {
     init: function () {
         Setting.PageRule.paging();
@@ -99,16 +35,20 @@ Setting.PageRule = {
         });
     },
     paging: function () {
+        
         $('#page_role ul.pagination a').unbind("click").bind("click", function (e) {
             e.preventDefault();
             var link = $(this).attr("href");
+             $('#loading').html('<div class=circle></div>');
             $.ajax({
                 url: link,
                 data: {type: "page"},
                 type: "GET",
                 dataType: "json",
                 success: function (d) {
+                     
                     var paging = "",dialog = "";
+                     $('#loading').html(d);
                     $('#page_role tbody').empty();
                     $('#page_role ul.pagination').empty();
                     for (var i in d[1].items) {
@@ -140,13 +80,14 @@ Setting.PageRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                    var bar = '<li><a href="admin">First</a></li><li><a href="admin?page=' + d[1].before + '">Previous</a></li>'
-                            + '<li><a href="admin?page=' + d[1].next + '">Next</a></li><li><a href="admin?page=' + d[1].last + '">Last</a></li>'
+                    var bar = '<li><a href="index">First</a></li><li><a href="index?page=' + d[1].before + '">Previous</a></li>'
+                            + '<li><a href="index?page=' + d[1].next + '">Next</a></li><li><a href="index?page=' + d[1].last + '">Last</a></li>'
                             + '<li><span class="btn" style="margin-left:20px;">You are in page ' + d[1].current + ' of ' + d[1].total_pages + '</span></li>';
                     $('#page_role tbody').append(paging);
                     $('#page_role').append(dialog);
                     $('#page_role ul.pagination').append(bar);
                     Setting.init();
+                 
                 }
             });
         });
@@ -167,6 +108,7 @@ Setting.UserRule = {
         $('#user_role ul.pagination a').unbind("click").bind("click", function (e) {
             e.preventDefault();
             var link = $(this).attr("href");
+              $('#loading').html('<div class=circle></div>');
             $.ajax({
                 url: link,
                 data: {type: "user"},
@@ -203,8 +145,8 @@ Setting.UserRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                    var bar = '<li><a href="admin">First</a></li><li><a href="admin?page1=' + d[1].before + '">Previous</a></li>'
-                            + '<li><a href="admin?page1=' + d[1].next + '">Next</a></li><li><a href="admin?page1=' + d[1].last + '">Last</a></li>'
+                    var bar = '<li><a href="index">First</a></li><li><a href="index?page1=' + d[1].before + '">Previous</a></li>'
+                            + '<li><a href="index?page1=' + d[1].next + '">Next</a></li><li><a href="index  ?page1=' + d[1].last + '">Last</a></li>'
                             + '<li><span class="btn" style="margin-left:20px;">You are in page ' + d[1].current + ' of ' + d[1].total_pages + '</span></li>';
                     $('#user_role tbody').append(paging);
                     $('#user_role').append(dialog);
@@ -218,3 +160,5 @@ Setting.UserRule = {
 $(document).ready(function () {
     Setting.init();
 });
+
+ 

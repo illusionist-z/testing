@@ -6,8 +6,9 @@
 var pager = new Paging.Pager(),dict = [];   //for pagination
 var Salary = {
     isOvl: false,
-    init: function () {
-        
+    init: function (d) {
+        $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
+        if(d){
         $.ajax({
             url: 'autolist',
             method: 'GET',
@@ -22,6 +23,7 @@ var Salary = {
             }
 
         });
+    }
     },
     Edit: function (d) {
         $.ajax({
@@ -167,6 +169,9 @@ var Salary = {
     },
     getmemid: function (name) {
         var dict = [];
+        $('ul.pagination').empty();
+         $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
+        loadingMsg(true);
         $.ajax({
             url: 'getmemberid?uname=' + name,
             method: 'GET',
@@ -184,6 +189,7 @@ var Salary = {
         });
         function loadIcon(dict) {
             $('#formemberid').val(dict);
+            Salary.search_salarylist();
         }
 
     },
@@ -356,15 +362,13 @@ var Salary = {
       search_salarylist: function () {
         var $form = $('#frm_search').serialize();
         var type = document.getElementById('ltype').value;
-         $('ul.pagination').empty();
-         
+                  
         $.ajax({
             url: baseUri + 'salary/search/searchTravelfees?' + $form,
             method: 'GET',
             //dataType: 'json',
-            success: function (data) { 
-                var json_obj = $.parseJSON(data);//parse JSON 
-                $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
+            success: function (data) {
+                var json_obj = $.parseJSON(data);//parse JSON                 
 
                 var j = 1;
                 var travelfees;
@@ -402,7 +406,8 @@ var Salary = {
                     +'<li><span class="btn" style="margin-left:20px;">You are in page '+ json_obj.current+' of '+ json_obj.total_pages +'</span></li>';
                 $('ul.pagination').append(paginglink);
                 }
-                //Salary.init();
+                Salary.init();
+                loadingMsg(false);
             }
 
         });
@@ -525,7 +530,7 @@ var Salary = {
 };
 
 $(document).ready(function () {
-    Salary.init();
+    Salary.init(true);
     var popupStatus = 0;
     $('#search_salary').click(function () {
         Salary.search();
@@ -547,17 +552,17 @@ $(document).ready(function () {
 //        Salary.autolist();
 //    });
     $('#username').on('blur', function () {
-        var name = document.getElementById('username').value;
-        Salary.getmemid(name);
+        
     });
     $('#namelist').on('blur', function () {
-       var name = document.getElementById('namelist').value;
-       Salary.getmemid(name);
+      var name = document.getElementById('namelist').value;
+        Salary.getmemid(name);
     });
 
     
     $(".search-trtype").click(function () {
-        Salary.search_salarylist();
+         var name = document.getElementById('username').value;
+         Salary.getmemid(name);
     });
 
 

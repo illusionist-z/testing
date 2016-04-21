@@ -17,9 +17,9 @@ use salts\Salary\Models\SalaryMemberTaxDeduce;
 use Library\Core;
 
 include_once 'tests\CT\apps\LoginForAll.php';
-include_once 'tests/CT/apps/salary/models/TaxsTest.php';
-include_once 'tests/CT/apps/salary/models/TaxDeduce.php';
-/* * t
+
+
+/* * 
  * Description of IndexController
  *
  * @author Ei Thandar Aung 
@@ -205,10 +205,7 @@ class SalaryIndexController extends Controllers\IndexController {
             $year = "2016";
             $SalaryDetail = new SalaryDetailTest();
             $get_salary_detail = $SalaryDetail->getPayslip($member_id, $month, $year);
-            $get_allowance = $SalaryDetail->getAllowanceByMemberid($member_id);
-
-            $this->view->getsalarydetails = $get_salary_detail;
-            $this->view->getallowance = $get_allowance;
+            $get_allowance = $SalaryDetail->getAllowanceByMemberid($member_id);           
             return true;
         }
     }
@@ -386,7 +383,7 @@ class SalaryIndexController extends Controllers\IndexController {
         if ($this->permission == 1) {
             $data['deduce_name'] = $this->deduce['deduce_name'];
             $data['amount'] = $this->deduce['amount'];
-            $Deduction = new SalaryTaxsDeduction();
+            $Deduction = new TaxsDeduction();
             $Deduction->addDeduction($data);
             return true;
         }
@@ -611,7 +608,7 @@ class SalaryIndexController extends Controllers\IndexController {
             $PermitDedution = new SalaryMemberTaxDeduce();
             $resultsalary['permit_dedution'] = $PermitDedution->getDeduceBymemberid($edit_salary[0]['member_id']);
             $resultsalary['no_of_children'] = $PermitDedution->getNoOfChildrenBymemberid($edit_salary[0]['member_id']);
-            $Dedution = new SalaryTaxsDeduction();
+            $Dedution = new TaxsDeduction();
             $resultsalary['dedution'] = $Dedution->getDeducelist();
             $Allowance = new SalaryAllowances();
             $resultsalary['allowance'] = $Allowance->getAllallowances();

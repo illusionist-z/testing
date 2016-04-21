@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8'>
+        <title>WORK MANAGIMENT SYSTEM</title>
+
+    </head>
+    <body class='login-page'>
+        <div class='login-box'>
+            <div class='forgot-logo'>
+                <!--        <b>FORGOT YOUR PASSWORD</b>-->
+                <br>
+                <p id='forgottext'>YOUR ERROR IN 5 TIME !!!!!</p>
+            </div><!-- /.forgot-logo -->
+            <div class='forgot-box-body'>
+
+                You failed to log-in ,
+                <?php
+                date_default_timezone_set('Asia/Rangoon');
+                $nowtime = (date("Y-m-d h:i:s"));
+
+                echo $nowtime;
+                ?>
+                MIN
+            </div><!-- /.forgot-box-body -->
+            <div class='backtologin'><br>
+                <a href='#' id='backtologintext'>Block 30 MIN,Try Login Next <?php echo $_SESSION['expire']; ?></a>
+            </div><!-- /.backtologin -->
+
+        </div><!-- /.login-box -->
+
+    </body>
+</html> 

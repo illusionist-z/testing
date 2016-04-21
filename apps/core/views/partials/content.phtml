@@ -1,12 +1,12 @@
      <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">
+        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
 
             <?php
             $j = 0;
             foreach ($this->session->auth as $key_name => $key_value) {
                 $top = explode(" ", $key_value["link0"]);
                 if (strtolower($top[0] . $top[1]) == $module_name) {
-                    if (count($key_value) > 2 && $key_name != 'show_admin_setting' && $key_name != 'show_user_setting') {
+                    if (count($key_value) > 2) {
                         echo '<div class="row"><div class="col-sm-2 link">';
                         echo '<aside class="sidebar-menu">';
                         foreach ($key_value as $name => $value) {

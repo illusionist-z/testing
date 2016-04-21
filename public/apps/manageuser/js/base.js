@@ -30,23 +30,24 @@ var User = {
                 }
        },
         search: function(){
-        var name = document.getElementById('username').value;        
+        var name = document.getElementById('username').value;
         if(name === ''){
-            $('.content-wrapper').css("height",555);
-            $('tbody').empty();
+            $('tbody').empty();           
              var output = "<tr>"
                                 + "<td colspan='9'><center>No data to display</center></td>"                           
                                  + "</tr>";
                     $("tbody").append(output);
-                    $('div#content').empty();
+                    $('div#content').empty();        
         }
         else{
+              loadingMsg(true);
               $.ajax({
                     type: 'GET',
                     url: baseUri+"manageuser/index?username="+name,
                     success:function(result){       
                       $('body').html(result);
-                       $('.dropdown-toggle').dropdown();$('.content-wrapper').css("height",555);
+                       $('.dropdown-toggle').dropdown();
+                       loadingMsg(false);
                     },
                     error: function (d) {
                         alert('error');
@@ -57,7 +58,8 @@ var User = {
         }
 };
     
-$(document).ready( function() {    
+$(document).ready( function() {
+    
      User.init('reload'); 
     // ここに実際の処理を記述します。   
     $('form').on('click','#userlistsearch',function () {        

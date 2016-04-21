@@ -40,6 +40,7 @@ class LoginController extends ControllerBase {
         } else {
             $this->view->test = $login_params;
             $companyDB = $ModelAuth->findCompDb($login_params);
+            
             if ($companyDB) {
                 // User Chack    
                 $this->session->set('db_config', $companyDB);

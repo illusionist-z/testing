@@ -11,10 +11,6 @@ use salts\Core\Models\Db;
 use salts\Attendancelist\Controllers;
 use salts\Attendancelist\Models;
 
-include_once 'tests\CT\apps\LoginForAll.php';
-
-require_once 'apps/attendancelist/controllers/UserController.php';
-
 /**
  * Description of IndexController
  *
@@ -22,24 +18,20 @@ require_once 'apps/attendancelist/controllers/UserController.php';
  */
 class AttUserController extends Controllers\UserController {
 
-   
-
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
     }
 
-
     public function attendancelistAction() {
         $this->initialize();
-       
+
         if (isset($this->session->tzoffset)) {
             $offset = $this->session->tzoffset['offset'];
             $timezone = $this->session->tzoffset['timezone'];
             $this->view->timezone = $timezone;
         } else {
             $offset = $this->session->location['offset'];
-             
         }
         $startdate = $this->request->get('startdate');
         $enddate = $this->request->get('enddate');

@@ -9,13 +9,6 @@
 use salts\Core\Models\Db;
 use salts\Salary\Controllers;
 use salts\Salary\Models;
-
-include_once 'tests\CT\apps\LoginForAll.php';
-
-require_once 'apps/salary/controllers/SalaryMasterController.php';
-require_once 'apps/core/models/db/CoreMember.php';
-require_once 'library/core/Controller.php';
-
 /**
  * Description of SalaryMasterController
  *
