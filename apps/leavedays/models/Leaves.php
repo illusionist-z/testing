@@ -119,6 +119,7 @@ class Leaves extends \Library\Core\Models\Base {
         return $list;
     }
 
+
     /**
      * Get today attendance list
      * @return type
