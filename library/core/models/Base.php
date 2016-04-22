@@ -212,7 +212,7 @@ Class Base extends \Phalcon\Mvc\Model {
           $paginator = new PaginatorModel(
                     array(
                 "data" => $row,
-                "limit" => 10,
+                "limit" => 2,
                 "page" => $current_page
                     )
             );

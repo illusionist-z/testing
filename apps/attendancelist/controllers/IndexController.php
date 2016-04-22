@@ -141,8 +141,9 @@ class IndexController extends ControllerBase {
             $month = $this->request->get('month');
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
+            $page = $this->request->get('page');
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $result = $Attendances->searchAttList($year, $month, $username,'1');
+            $result = $Attendances->searchAttList($year, $month, $username,$page);
 
             $this->view->disable();
             echo json_encode($result);
