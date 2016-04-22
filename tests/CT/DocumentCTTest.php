@@ -37,18 +37,24 @@ class DocumentCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($letter->letterheadAction());
     }
 
-// error
-//    public function testeditinfoAction() {
-//        $document = new DocumentIndexController();
-//       $file = array("name" => "myfile.png" ,"type" => "image/png" ,"tmp_name" => "myfile.tmp", "size" => 500);
-//        $document->setFile($file);
-//        $this->assertTrue($document->editinfoAction());
-//    }
+    public function testeditinfoAction() {
+        $document = new DocumentIndexController();
+        $file = array("name" => "myfile.png", "type" => "image/png",
+            "tmp_name" => '\myfile.png', "size" => 0);
+        $info = array("company_name" => "G - NEXT Co.,Ltd",
+            "company_address" => "(7+1)A - Parami Condo,Ma Yan Gone TownShip,"
+            . "Yangon,Myanmar.",
+            "company_phno" => "01522997", "temp_logo" => "");
+        $document->setFile($file);
+        $document->setinfo($info);
+        $this->assertTrue($document->editinfoAction());
+    }
 
     public function testcheckimgsize() {
         $mesg = 'File too large. File must be less than 10 megabytes.';
         $document = new DocumentIndexController();
-        $file = array("name" => "myfile.png", "type" => "image/png", "tmp_name" => "myfile.tmp", "size" => 12220);
+        $file = array("name" => "myfile.png", "type" => "image/png",
+            "tmp_name" => "myfile.tmp", "size" => 12220);
         $document->setFile($file);
         $this->assertEquals($mesg, $document->editinfoAction());
     }
@@ -56,16 +62,16 @@ class DocumentCTTest extends PHPUnit_Framework_TestCase {
     public function testcheckimgtype() {
         $msg = 'Invalid file type. Only JPG, GIF and PNG types are accepted.';
         $document = new DocumentIndexController();
-        $file = array("name" => "myfile.png", "type" => "text/plain", "tmp_name" => "myfile.tmp", "size" => 5);
+        $file = array("name" => "myfile.png", "type" => "text/plain", 
+            "tmp_name" => "myfile.tmp", "size" => 5);
         $document->setFile($file);
         $this->assertEquals($msg, $document->editinfoAction());
     }
 
-//    public function testsalaryreferAction() {
-//
-//        $refer = new DocumentIndexController();
-//        $name = "G - NEXT Co.,Ltd";
-//        $this->assertEquals($name, $refer->salaryreferAction());
-//    }
+    public function testsalaryreferAction() {
+        $refer = new DocumentIndexController();
+        $name = "G - NEXT Co.,Ltd";
+        $this->assertEquals($name, $refer->salaryreferAction());
+    }
 
 }
