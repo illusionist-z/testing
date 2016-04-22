@@ -794,7 +794,7 @@ hr{
     padding: 6px 10px 20px 15px;
 }
 #navicon7{
-    background: url("../img/main.png")  -22px -20px no-repeat  ;
+    background: url("../img/main.png")  -451px -140px no-repeat  ;
     padding: 6px 10px 20px 15px;
 }
 #navicon3{/*manage user*/
@@ -814,11 +814,7 @@ hr{
     padding: 6px 10px 20px 15px;
 }
 #navicon6{ 
-    background: url("../img/main.png")  -262px 5px no-repeat  ;
-    padding: 6px 10px 20px 15px;
-}
-#navicon8{
-    background: url("../img/main.png")  -451px -140px no-repeat  ;
+    background: url("../img/main.png")  -22px -20px no-repeat  ;
     padding: 6px 10px 20px 15px;
 }
 #noleavelistblock,#leavemostlistblock{

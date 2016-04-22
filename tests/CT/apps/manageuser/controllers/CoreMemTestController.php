@@ -15,14 +15,17 @@ use salts\Core\Models\Db\CoreMember;
  *
  * @author Khine Thazin Phyo <ktzp27@gmail.com>
  */
-
-
 class CoreMemTestController extends Controllers\CorememberController {
 
     public $user;
     public $param;
     public $member;
     public $memberId;
+    public $file;
+
+    public function setFile($file) {
+        $this->file = $file;
+    }
 
     public function setmemberId($memberId) {
 
@@ -37,46 +40,80 @@ class CoreMemTestController extends Controllers\CorememberController {
         $this->member = $member;
     }
 
-    //put your code her
-    public function saveuserAction() {
+    public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
+    }
+
+    public function checkuser($id) {
+        $this->initialize();
         $json = array();
-        //form validation init
-
         $user = new AddUser();
-        $id = $this->param;
-
         $exist_id = CoreMember::findByMemberLoginName($id);
         if (count($exist_id) > 0) {
-
             $json['uname'] = "Name already taken ! Choose Other Please!";
             $json['result'] = "existId";
-
             return $json;
         } else {
-
             $validate = $user->validat($this->request->getPost());
-            if (count($validate)) {
-                foreach ($validate as $message) {
-                    $json[$message->getField()] = $message->getMessage();
-                }
-                $json['result'] = "error";
+            $result = $this->checkvalidation($validate);
+            return $result;
+        }
+    }
 
-                return $json;
+    public function checkvalidation($validate) {
+        if (count($validate)) {
+            foreach ($validate as $message) {
+                $json[$message->getField()] = $message->getMessage();
+            }
+            $json['result'] = "error";
+            return $json;
+        }
+    }
+
+    public function savenewuser() {
+        $this->initialize();
+        $file_contents = 0;
+        $_FILES['fileToUpload'] = $this->file;
+        if (($_FILES['fileToUpload']['size']) != 0) {
+            $file_type = $_FILES['fileToUpload']['type'];
+            $file_size = $_FILES['fileToUpload']['size'];
+            $tmp = (dirname(__DIR__) . '\tmp' . $this->file["tmp_name"]);
+            $_FILES['fileToUpload']['tmp_name'] = $tmp;
+            $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
+            $file = fopen($MY_FILE, 'r');
+            $file_content = fread($file, filesize($MY_FILE));
+            fclose($file);
+            $file_contents = addslashes($file_content);
+            if (($file_size > 10000)) {
+                $result = $this->checkimgsize();
+                return $result;
+            } elseif (($file_type != "image/jpeg") && ($file_type != "image/jpg") && ($file_type != "image/gif") && ($file_type != "image/png")
+            ) {
+                $result = $this->checkimgtype();
+                return $result;
             } else {
-                echo "last";
-                $member = $this->request->getPost();
-                $member_id = $this->session->user[$this->memberId];
-                $filename = $_FILES["fileToUpload"]["name"];
+                $member = $this->param;
+                $member_id = $this->session->user['member_id'];
                 $NewUser = new CoreMember;
-                $NewUser->addNewUser($member_id, $member, $filename);
-
-                // Make a full HTTP redirection
+                $NewUser->addNewUser($member_id, $member, $file_contents);
                 $json['result'] = "success";
-                echo json_encode($json);
+                return $json;
             }
         }
+    }
+
+    public function checkimgsize() {
+        $message = 'File too large. File must be less than 10 megabytes.';
+        $json['result'] = $message;
+
+        return $json;
+    }
+
+    public function checkimgtype() {
+        $message = 'Invalid file type. Only JPG, GIF and PNG types are accepted.';
+        $json['result'] = $message;
+        return $json;
     }
 
 }
