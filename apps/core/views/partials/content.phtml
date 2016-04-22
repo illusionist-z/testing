@@ -4,7 +4,10 @@
             <?php
             $j = 0;
             foreach ($this->session->auth as $key_name => $key_value) {
+                
                 $top = explode(" ", $key_value["link0"]);
+                if(!isset($top[1])){
+                $top[1]="";}
                 if (strtolower($top[0] . $top[1]) == $module_name) {
                     if (count($key_value) > 2) {
                         echo '<div class="row"><div class="col-sm-2 link">';
@@ -17,6 +20,9 @@
                                 if (is_string($name)) {
                                     if ($v_result = explode(" ", $value)) {
                                         //set to link action value
+                                        if(!isset($v_result[1])){
+                                        $v_result[1]="";
+                                        }
                                         $link_val = strtolower($v_result[0] . $v_result[1]);
                                         $mod = explode(" ", $key_value["link0"]);
                                     }
@@ -27,6 +33,8 @@
                                             echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
                                         }
                                     } else {
+                                        if(!isset($mod[1])){
+                                        $mod[1]="";}
                                         echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
                                     }
                                 }
