@@ -13,8 +13,6 @@ use salts\Document\Models\CompanyInfo;
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
 
-
-
 /**
  * Description of IndexController
  *
@@ -77,6 +75,17 @@ class DocumentIndexController extends Controllers\IndexController {
     }
 
     public $file;
+    public $tmp;
+    public $info;
+
+    public function setInfo($info) {
+
+        $this->info = $info;
+    }
+
+    public function setTmp($tmp) {
+        $this->tmp = $tmp;
+    }
 
     public function setFile($file) {
         $this->file = $file;
@@ -84,6 +93,7 @@ class DocumentIndexController extends Controllers\IndexController {
 
     public function editinfoAction() {
         $this->initialize();
+        $file_contents = '';
         $_FILES['fileToUpload'] = $this->file;
 
         if (($_FILES['fileToUpload']['size']) != 0) {
@@ -96,20 +106,21 @@ class DocumentIndexController extends Controllers\IndexController {
             ) {
                 $result = $this->checkimgtype();
             }
+            return $result;
         } else {
-            echo "here";
+            $tmp = (dirname(__DIR__) . '\tmp' . $this->file["tmp_name"]);
+            $_FILES['fileToUpload']['tmp_name'] = $tmp;
             $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
             $file = fopen($MY_FILE, 'r');
             $file_content = fread($file, filesize($MY_FILE));
             fclose($file);
             $file_contents = addslashes($file_content);
-            $update_info = $this->request->getPost('update');
-            $ComInfo = new CompanyInfo();
-            $ComInfo->editCompanyInfo($update_info, $file_contents);
-            $this->response->redirect("document/index/letterhead");
-            return true;
         }
-        return $result;
+        $update_info = $this->info;
+        $ComInfo = new CompanyInfo();
+        $ComInfo->editCompanyInfo($update_info, $file_contents);
+        $this->response->redirect("document/index/letterhead");
+        return true;
     }
 
     public function checkimgsize() {
@@ -134,7 +145,7 @@ class DocumentIndexController extends Controllers\IndexController {
         $salary = \salts\Document\Models\SalaryDetail::find(array(
                     'order' => 'pay_date DESC',
                     "limit" => 1
-        ));         
+        ));
         $data = explode("-", $salary[0]->pay_date);
         $month = $data['1'];
         $year = $data['0'];

@@ -130,10 +130,10 @@ var Attendance = {
         }       
        });                 
        },
-      monthlylist :function (){
+      monthlylist :function (pg){
             var yy = $('#year').val(),
              mm = $('#month').val(),
-             name = $('#username').val();         
+             name = $('#username').val(),pg =( pg === "undefined" ? 0 : pg);
        //set empty
         $('table.listtbl tbody').empty(), $('tfoot').empty(),$('ul.pagination').empty();        
         if ("" === yy && "" === mm && ( "" === name ||  !isValid(name))) {
@@ -147,12 +147,10 @@ var Attendance = {
             $.ajax({
                 url: 'attsearch',
                 type: 'POST',
-                data: {month: mm, username: name, year: yy},
+                data: {month: mm, username: name, year: yy, page:pg},
                 cache : false,
                 success: function (d) {                    
-                    var json_obj = $.parseJSON(d);//parse JSON         \
-                     $("tbody").empty();
-                $("tfoot").empty();
+                    var json_obj = $.parseJSON(d);//parse JSON                                                                       
                     for (var i in json_obj.items)
                     {
                         checkin_place = json_obj.items[i].att.location;
@@ -258,14 +256,13 @@ var Attendance = {
                                 + "<td>" + checkin_place + "</td>"
                                 + "</tr>";
                         $("tbody").append(output);
-                        
                     }
-                       if(json_obj.last != 1 && json_obj.last != 0 ){
-                         var paginglink = '<li><a href="monthlylist">First</a></li><li><a href="monthlylist?page='+json_obj.before+'">Previous</a></li>'
-                        +'<li><a href="monthlylist?page='+json_obj.next+'">Next</a></li><li><a href="monthlylist?page='+json_obj.last+'">Last</a></li>'
+                     if(json_obj.last != 1 && json_obj.last != 0 ){
+                         var paginglink = '<li><a href="#" onclick="Attendance.monthlylist()">First</a></li><li><a href="#" onclick="Attendance.monthlylist('+json_obj.before+')">Previous</a></li>'
+                        +'<li><a href="#" onclick="Attendance.monthlylist('+json_obj.next+')">Next</a></li><li><a href="#" onclick="Attendance.monthlylist('+json_obj.last+')">Last</a></li>'
                         +'<li><span class="btn" style="margin-left:20px;">You are in page '+json_obj.current+'  of '+json_obj.total_pages+'</span></li>';
                         $('ul.pagination').append(paginglink);
-                     }                   
+                     }                     
                     Attendance.init();
                     loadingMsg(false);
                 },
