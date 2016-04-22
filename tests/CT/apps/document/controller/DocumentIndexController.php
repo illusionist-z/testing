@@ -23,6 +23,23 @@ class DocumentIndexController extends Controllers\IndexController {
      * Document IndexController test
      */
 
+    public $file;
+    public $tmp;
+    public $info;
+
+    public function setInfo($info) {
+
+        $this->info = $info;
+    }
+
+    public function setTmp($tmp) {
+        $this->tmp = $tmp;
+    }
+
+    public function setFile($file) {
+        $this->file = $file;
+    }
+
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
@@ -72,23 +89,6 @@ class DocumentIndexController extends Controllers\IndexController {
             $this->response->redirect('core/index');
         }
         return true;
-    }
-
-    public $file;
-    public $tmp;
-    public $info;
-
-    public function setInfo($info) {
-
-        $this->info = $info;
-    }
-
-    public function setTmp($tmp) {
-        $this->tmp = $tmp;
-    }
-
-    public function setFile($file) {
-        $this->file = $file;
     }
 
     public function editinfoAction() {
