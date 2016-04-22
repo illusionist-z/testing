@@ -43,16 +43,12 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($test->failerUserAction());
     }
 
-//    public function testsaltsForGetAction() {
-//        $wrong_params = array('company_id' => 'gnext', "member_login_name" => "admin", "password" => "admins");
-//        $test = new AuthIndexController();
-//        $test->setparam($wrong_params);
-//        $this->assertTrue($test->saltsForGetAction());
-//    }
-
-    /*
-     * did'not work in progress forgot password
-     */
+    public function testsaltsForGetAction() {
+        $wrong_params = array('company_id' => 'gnext', "member_login_name" => "admin", "password" => "admins");
+        $test = new AuthIndexController();
+        $test->setparam($wrong_params);
+        $this->assertTrue($test->saltsForGetAction());
+    }   
 
     public function testsendMailAction() {
         $email_params = 'ktzp27@gmail.com';
@@ -85,17 +81,19 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("success", $test->changePasswordAction());
     }
 
-//    public function testcheckCodeAction() {
-//        $test = new AuthIndexController();
-//        $this->assertEquals("success", $test->checkCodeAction());
-//    }
-//    public function testsendToMailAction() {
-//        $email_params = 'ktzp27@gmail.com';
-//        $test = new AuthIndexController();
-//        $test->setmailParam($email_params);
-//        $this->assertTrue($test->sendToMailAction());
-//    }
-//    
+    public function testcheckCodeAction() {
+        $test = new AuthIndexController();
+        $test->setparam("6757071976a015f");
+        $test->setmailParam("sawzinminmin@gmail.com");
+        $this->assertEquals("success", $test->checkCodeAction());
+    }
+    public function testsendToMailAction() {
+        $email_params = 'ktzp27@gmail.com';
+        $test = new AuthIndexController();
+        $test->setmailParam($email_params);
+        $this->assertEquals("success", $test->sendToMailAction());
+    }
+    
 
     public function testLogoutIndexAction() {
         $logout = new LogoutControllerTest();
