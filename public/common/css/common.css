@@ -177,7 +177,8 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
     height:5%;
     background-color:#FFFFFF;
     border-bottom:1px solid #c3c3c3;
-    margin-bottom: 3px;
+    margin-top: 3px;
+    padding-top: 5px;
 }
 .imgstyle{
     padding-right:10px;
