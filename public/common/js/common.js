@@ -95,6 +95,7 @@ function getAbsentMember() {
     var h = x.getHours();
     var m = x.getMinutes();
     var s = x.getSeconds();
+    
     if (h === 8 && m === 0 && s === 0) {
         addAbsent();
           setTimeout(function () {
