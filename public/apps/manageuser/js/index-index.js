@@ -24,7 +24,7 @@
 		    +'<tr><td>'+res[1]['name']+' </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_login_name +'" name="name" id="edit_user_name"></td></tr>'
                      +'<tr><td>Full Name</td>'
-                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].full_name +'" name="name" id="edit_user_name"></td></tr>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].full_name +'" name="full_name" id="edit_full_name"></td></tr>'
                     +'<tr><td>'+res[1]['w_start_dt']+'</td>'
                     +'<td><input style="margin-top:10px;" class="datepicker" type="text" value="'+ res[0].working_start_dt+'" name="work_sdate" id="edit_work_sdate"></td></tr>'
                     +'<tr><td>'+res[1]['dept']+'</td>'

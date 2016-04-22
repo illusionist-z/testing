@@ -23,6 +23,7 @@
   float: right;
 }
 @media print{
+      thead {display: table-header-group;}
   body *{ visibility: hidden; }
   .printable *{ visibility: visible;}
   .link{display: none;}

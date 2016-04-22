@@ -171,6 +171,8 @@ class IndexController extends ControllerBase {
             $cond['id'] = $this->request->get('data');
             $cond['bank'] = $this->request->get('bank');
             $cond['name'] = $this->request->get('name');
+            $cond['full_name'] = $this->request->get('full_name');
+
             $cond['dept'] = $this->request->get('dept');
             $cond['position'] = $this->request->get('position');
             $cond['email'] = $this->request->get('email');
