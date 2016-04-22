@@ -25,7 +25,6 @@
 @media print{
   body *{ visibility: hidden; }
   .printable *{ visibility: visible;}
-  #side {display:none;}
   .link{display: none;}
 }
 #doc{

@@ -14,7 +14,6 @@
             data : {data : type },
             dataType:'json',
             success: function (res) {
-                
                 var html,title,id;
                 if( res[0] !== 'new' ){
                  html = '<form id="edit_user" width="250px" height="200px"><table width="420px" height="100px" align="center" style="font-size:13px;">'
@@ -24,6 +23,8 @@
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].bank_acc +'" name="bank" id=""></td></tr>'
 		    +'<tr><td>'+res[1]['name']+' </td>'
                     +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].member_login_name +'" name="name" id="edit_user_name"></td></tr>'
+                     +'<tr><td>Full Name</td>'
+                    +'<td><input style="margin-top:10px;" type="text" value="'+ res[0].full_name +'" name="name" id="edit_user_name"></td></tr>'
                     +'<tr><td>'+res[1]['w_start_dt']+'</td>'
                     +'<td><input style="margin-top:10px;" class="datepicker" type="text" value="'+ res[0].working_start_dt+'" name="work_sdate" id="edit_work_sdate"></td></tr>'
                     +'<tr><td>'+res[1]['dept']+'</td>'
