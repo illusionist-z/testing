@@ -91,7 +91,7 @@ class IndexController extends ControllerBase {
                 $edit[1]["ssn"] = $t->_("ssn_no");
                 $edit[1]['bank'] = $t->_("bank");
                 $edit[1]["name"] = $t->_("name");
-                $edit[1]["username"] = $t->_("username");
+                $edit[1]["fullname"] = $t->_("username");
                 $edit[1]["pass"] = $t->_("password");
                 $edit[1]["confirm"] = $t->_("confirm_pass");
                 $edit[1]["dept"] = $t->_("dept");
@@ -121,6 +121,7 @@ class IndexController extends ControllerBase {
                 $res = $this->user->userEdit($type);
                 $edit[0] = $res[0];
                 $edit[1]["edit"] = $t->_("edit_user");
+
                 $edit[1]["id"] = $t->_("id");
                 $edit[1]["bank"] = $t->_("bank");
                 $edit[1]["name"] = $t->_("name");
@@ -170,6 +171,8 @@ class IndexController extends ControllerBase {
             $cond['id'] = $this->request->get('data');
             $cond['bank'] = $this->request->get('bank');
             $cond['name'] = $this->request->get('name');
+            $cond['full_name'] = $this->request->get('full_name');
+
             $cond['dept'] = $this->request->get('dept');
             $cond['position'] = $this->request->get('position');
             $cond['email'] = $this->request->get('email');
