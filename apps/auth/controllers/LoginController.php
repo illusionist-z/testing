@@ -23,6 +23,7 @@ class LoginController extends ControllerBase {
         $ModelAuth = new Models\Auth();
         // TODO: この下の式が正しいのかをチェック [Kohei Iwasa]
         if (!isset($login_params['company_id'])) { 
+           
             $config = new Ini(__DIR__ . '/../../../config/config.ini');
             $dbinfo['host'] = $config->database->host;
             $dbinfo['db_name'] = $config->database->dbname;
@@ -52,7 +53,7 @@ class LoginController extends ControllerBase {
                 $result = $ModelAuth->check($login_params, $user);
                 $permission = $ModelAuth->getPermit($login_params);
                 $Member = new \salts\Core\Models\Db\CoreMember();
-                 $lang = $Member->getLang($login_params);
+                $lang = $Member->getLang($login_params);
                 $this->session->set('language', $lang['lang']);
                 $Member->updateContract($login_params);
                 $this->session->set('page_rule_group', $permission);

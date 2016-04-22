@@ -20,9 +20,11 @@ class AbsentController extends ControllerBase {
         $this->setAttAbsentJsAndCss();
         $this->view->t = $this->_getTranslation();
         $this->id = $this->session->user['member_id'];
+        $this->module_name = $this->router->getModuleName();
         $this->act_name = $this->router->getModuleName();
         $this->permission = $this->setPermission($this->act_name);
         $this->view->permission = $this->permission;
+        $this->view->module_name = $this->module_name;
     }
 
     public function addAbsentAction() {

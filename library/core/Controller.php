@@ -185,7 +185,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     }
 
     public function setSettJsAndCss() {
-        
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/setting/js/base.js');
         $this->assets->addJs('apps/setting/js/index-admin.js');
