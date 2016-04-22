@@ -9,7 +9,7 @@
 /**
  * Description of IndexControllerTest
  *
- * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+ * 
  */
 use salts\Auth\Models;
 use Phalcon\Filter;
@@ -105,12 +105,15 @@ class AuthIndexController extends Controllers\IndexController {
 
     public function saltsForGetAction() {
         //  $Core = new Models\CoreMember();
-        $login = $this->param;
-        $user = Users::findFirstByLogin($login);
+        $user = $this->param;       
         if ($user) {
-            $this->view->disable();
+            
             $this->response->redirect('setting/index/index');
         }
+        return true;
+    }
+     public function forGotPasswordAction() {
+        
     }
 
     public function sendMailAction() {
@@ -173,7 +176,7 @@ class AuthIndexController extends Controllers\IndexController {
 
     public function checkCodeAction() {
         $filter = new Filter();
-        $code = $this->pwd;
+        $code = $this->param;
         $email = $filter->sanitize($this->mailParam, "string");
         $FindCode = new \salts\Auth\Models\CoreForgotPassword();
         $result = $FindCode::find(array("check_mail = '$email'", "order" => "curdate DESC", "limit" => 1));
@@ -185,8 +188,7 @@ class AuthIndexController extends Controllers\IndexController {
         } else {
             $msg = "fail";
         }
-        $this->view->disable();
-        echo json_encode($msg);
+        return $msg;
     }
 
     public function sendToMailAction() {
@@ -198,6 +200,7 @@ class AuthIndexController extends Controllers\IndexController {
         $Insert->token = $token;
         $Insert->save();
         $Find = $Insert::find(array("check_mail = '$getemail'", "order" => "curdate DESC", "limit" => 1));
+        $finded_token = '';
         foreach ($Find as $value) {
             $finded_token = $filter->sanitize($value->token, "string");
         }
@@ -210,8 +213,7 @@ class AuthIndexController extends Controllers\IndexController {
         } else {
             $msg = "fail";
         }
-        $this->view->disable();
-        echo json_encode($msg);
+        return $msg;
     }
 
 }
