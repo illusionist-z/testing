@@ -39,6 +39,7 @@
     table.fauxRow > tbody > tr > td > table.print {
       display: inline-table;
       vertical-align: top;
+      
     }
     table.fauxRow > tbody > tr > td > table.print > caption {caption-side: top;}
     .noBreak {
@@ -92,7 +93,7 @@
     table.print > caption {font-weight: bold;}
 @media print{
   .link{display: none;}
-  .cmn_footer{display : none;}
+  #cmn_footer{display:    none;}
 }
 #doc{
     float: right;

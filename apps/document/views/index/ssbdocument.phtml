@@ -105,6 +105,7 @@ foreach ($salary_info as $value) {
                     </thead>
                     <tbody>
                         <?php
+                        $no=1;
                         $ssb_total = 0;
                         $sum1 = 0;
                         $sum2 = 0;
@@ -116,7 +117,7 @@ foreach ($salary_info as $value) {
                             foreach ($salary_info as $salary_infos) {
                                 ?>
                                 <tr>
-                                    <td></td>
+                                    <td><?php  ?></td>
                                     <td><?php echo $salary_infos->core->full_name; ?></td>
                                     <td><?php echo $salary_infos->core->ssn_no; ?></td>
                                     <td style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo "300000";}else{echo $salary_infos->salary_detail->basic_salary; }?></td>
@@ -161,6 +162,7 @@ foreach ($salary_info as $value) {
                                     <td></td>
                                 </tr>
                                 <?php
+                                $no++;
                             }
                             ?>
 
