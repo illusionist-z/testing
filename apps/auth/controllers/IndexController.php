@@ -29,6 +29,7 @@ class IndexController extends ControllerBase {
             } elseif (isset($_SESSION['startTime']) == null) {
                 $mode = $this->request->get('mode');
                 $this->view->errorMsg = '';
+                $this->view->errorMsgForgot = '';
                 $this->view->mode = $mode;
             }
         }
@@ -38,6 +39,7 @@ class IndexController extends ControllerBase {
     public function failerAction($mode = 1) {
         /*  User failerAction  @author Yan Lin Pai <wizardrider@gmail.com> */
         $this->view->errorMsg = 'company id or user name or password wrong';
+        $this->view->errorMsgForgot = 'I forgot my password ?';
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
 

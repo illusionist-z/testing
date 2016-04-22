@@ -24,6 +24,7 @@
 }
 @media print{
   body *{ visibility: hidden; }
+   thead {display: table-header-group;}
   .printable *{ visibility: visible;}
   #side {display:none;}
   .link{display: none;}
