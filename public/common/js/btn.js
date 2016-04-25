@@ -68,7 +68,7 @@ $(document).ready(function () {
 
     }),
             $('.checkout').on('click', function () {
-                 
+                 $('#loading').html(' Request Loading.... ');
         $.ajax({
             type: 'GET',
             url: baseUri + 'dashboard/index/checkout',
