@@ -1,7 +1,7 @@
 
 
 $(document).ready(function () {
-    $(".print").on('click',function(){
+    $(".printing").on('click',function(){
         window.print();
     });
     
