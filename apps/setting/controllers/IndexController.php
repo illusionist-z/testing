@@ -104,7 +104,7 @@ class IndexController extends ControllerBase {
         $core = new CorePermissionGroupId();
         $core->save($this->request->getPost());
         $this->view->disable();
-        $this->response->redirect('setting/index/admin');
+        $this->response->redirect('setting/index');
     }
 
     /**
@@ -126,7 +126,7 @@ class IndexController extends ControllerBase {
         $core->permission_code = $this->request->getPost('permission_code');
         $core->save();
         $this->view->disable();
-        $this->response->redirect('setting/index/admin');
+        $this->response->redirect('setting/index');
     }
 
     public function DelGroupRuleAction() {
@@ -156,7 +156,7 @@ class IndexController extends ControllerBase {
         $core->name_of_group = strtoupper($group_name);
         $core->update();
         $this->view->disable();
-        $this->response->redirect('setting/index/admin');
+        $this->response->redirect('setting/index');
     }
 
     /**
@@ -180,19 +180,19 @@ class IndexController extends ControllerBase {
         //$success = $core->corePermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
         if ($update) {
             $this->view->disable();
-            $this->response->redirect('setting/index/admin');
+            $this->response->redirect('setting/index');
         } else {
             echo "Failed!!";
         }
     }
 
     public function UserRuleSettingAction() {
-      
+                          
         $id = $this->request->getPost('rel_member_id');
         $group_id = $this->request->getPost('group_id');
         $group_name_post = $this->request->getPost('group_text');
         $group_name = trim($group_name_post);
-         
+        exit();
         $core = CorePermissionRelMember::findFirstByRelMemberId($id);
         $coreuser_update = CoreMember::findFirstByMemberId($id);
         $coreuser_update->user_rule = $group_id;
@@ -201,8 +201,9 @@ class IndexController extends ControllerBase {
         $core->rel_permission_group_code = $group_name;
         $coreuser_update->update();
         $core->update();
+       
         $this->view->disable();
-        $this->response->redirect('setting/index/admin');
+        $this->response->redirect('setting/index');
     }
 
     public function SettingModuleAction() {

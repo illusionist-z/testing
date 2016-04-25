@@ -43,20 +43,20 @@ var Salary = {
                 }
 
                 var data = '<form id="edit_salary" width="650px" height="500px"><table width="550px" height="300px" >';
-                data += '<tr><td></td><td><b>' + result.t['name'] + '</b><input style="margin-top:10px;" type="hidden" value=' + result.data[0]['member_id'] + ' name="member_id" id="member_id"></td>'
+                data += '<tr><td></td><td>' + result.t['name'] + '<input style="margin-top:10px;" type="hidden" value=' + result.data[0]['member_id'] + ' name="member_id" id="member_id"></td>'
                         + '<td><input style="margin-top:10px;" type="text" value= " ' + result.data[0]['member_login_name'] + ' " name="uname" disabled></td><td ></td></tr>'
-                        + '<tr><td></td><td><b>' + result.t['b_salary'] + ' </b></td>'
+                        + '<tr><td></td><td>' + result.t['b_salary'] + '</td>'
                         + '<td><input style="margin-top:10px;" type="text" value=' + result.data[0]['basic_salary'] + ' name="basesalary" id="baseerr"></td></tr>'
 
-                        + '<tr><td></td><td><b>' + result.t['t_fee'] + ' type </b></td>'
+                        + '<tr><td></td><td>' + result.t['t_fee'] + ' type</td>'
                         + '<td><input type="radio" name="radTravel" value="1"' + check1 + '>per day <input type="radio" name="radTravel" value="2" ' + check2 + ' >Per Month</td><td style="width:100px;height:40px;"></td></tr>'
-                        + '<tr><td></td><td><b>' + result.t['t_fee'] + '</b></td>'
+                        + '<tr><td></td><td>' + result.t['t_fee'] + '</td>'
                         + '<td><input style="margin-top:10px;" type="text" value=' + travel_fee + ' name="travelfee" id=""></td><td style="width:100px;height:40px;"></td></tr>'
-                        + '<tr><td></td><td><b>' + result.t['ot'] + '</b></td>'
+                        + '<tr><td></td><td>' + result.t['ot'] + '</td>'
                         + '<td id="overmsg"><input style="width:100px;margin-top:10px;" type="text" value="' + result.data[0]['over_time'] + '" name="overtime" id="overerr"></td></tr>'
                         + '<tr><td></td><td>SSC Emp </td>'
                         + '<td id="empmsg"><input style="width:50px;margin-top:10px;" type="text" value=' + result.data[0]['ssc_emp'] + ' name="ssc_emp" id="emperr"> %</td><td style="width:55px;height:40px;"></td></tr>'
-                        + '<tr><td></td><td><b>SSC Comp </b></td>'
+                        + '<tr><td></td><td>SSC Comp </td>'
                         + '<td id="compmsg"><input style="width:50px;margin-top:10px;" type="text" value=' + result.data[0]['ssc_comp'] + ' name="ssc_comp" id="comperr"> %</td></tr>';
 
                 data += '<tr><td></td><td> ' + result.t['Decut Name'] + ' </td><td colspan="4" style="font-size:12px;">';

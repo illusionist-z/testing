@@ -91,17 +91,19 @@ function GEOprocess(position) {
  **/
 var done;
 function getAbsentMember() {
+    
     var x = new Date();
     var h = x.getHours();
     var m = x.getMinutes();
     var s = x.getSeconds();
+    
     if (h === 8 && m === 0 && s === 0) {
         addAbsent();
           setTimeout(function () {
                 getAbsentMember();
             }, 5*60*1000);
     }
-    else if (h > 9 && h < 17) {
+    else if (h >= 9 && h < 17) {
         $.ajax({
             url: baseUri + "attendancelist/absent/checkAtt",
             type: "GET",
