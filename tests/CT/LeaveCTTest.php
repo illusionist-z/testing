@@ -11,7 +11,7 @@
  *
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
  * edited by Khine Thazin Phyo
- * reject noleave leavemost
+ * 
  */
 require_once 'apps/Leavedays/controllers/LeaveIndexController.php';
 

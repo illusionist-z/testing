@@ -48,7 +48,7 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $test = new AuthIndexController();
         $test->setparam($wrong_params);
         $this->assertTrue($test->saltsForGetAction());
-    }   
+    }
 
     public function testsendMailAction() {
         $email_params = 'ktzp27@gmail.com';
@@ -87,13 +87,13 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $test->setmailParam("sawzinminmin@gmail.com");
         $this->assertEquals("success", $test->checkCodeAction());
     }
+
     public function testsendToMailAction() {
         $email_params = 'ktzp27@gmail.com';
         $test = new AuthIndexController();
         $test->setmailParam($email_params);
         $this->assertEquals("success", $test->sendToMailAction());
     }
-    
 
     public function testLogoutIndexAction() {
         $logout = new LogoutControllerTest();

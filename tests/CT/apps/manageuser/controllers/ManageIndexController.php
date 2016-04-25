@@ -161,12 +161,14 @@ class ManageIndexController extends Controllers\IndexController {
             $cond['id'] = $this->data;
             $cond['bank'] = "99930799932389901";
             $cond['name'] = $this->name;
+            $cond['full_name'] = "Khine Thazin Phyo";
             $cond['dept'] = $this->dept;
             $cond['position'] = $this->position;
-            $cond['email'] = $this->email;
+            $cond['email'] = "bndream92@gmail.com";
             $cond['pno'] = $this->pno;
             $cond['address'] = "yangon";
             $cond['work_sdate'] = "2015-11-02";
+            var_dump($cond);
             $result = $this->user->editByCond($cond);
             return true;
         } else {
