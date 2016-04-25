@@ -87,36 +87,44 @@ class Leaves extends \Library\Core\Models\Base {
      * @return type
      * @author zinmon
      */
-    public function search($ltype, $month, $namelist) {
+    public function search($ltype, $month, $namelist,$currentP) {
         $filter = new Filter();
         $ltype = $filter->sanitize($ltype, "string");
         $namelist = $filter->sanitize($namelist, "string");
-        $select = "SELECT date(date) as date,member_login_name,date(start_date)"
-                . "as start_date, date(end_date) as end_date,leave_days,"
-                . "leave_category,leave_description,leave_status,"
-                . "total_leavedays,max_leavedays FROM leaves_setting,"
-                . " leaves JOIN core_member ON "
-                . "leaves.member_id=core_member.member_id "
-                . "and core_member.deleted_flag = 0 ";
+        $select = "SELECT date(l.date) as date,c.member_login_name,date(l.start_date)"
+                . "as start_date, date(l.end_date) as end_date,l.leave_days,"
+                . "l.leave_category,l.leave_description,l.leave_status,"
+                . "l.total_leavedays,ls.max_leavedays FROM  salts\Leavedays\Models\LeavesSetting ls INNER JOIN salts\Leavedays\Models\Leaves l JOIN "
+                . "salts\Core\Models\Db\CoreMember c ON "
+                . "l.member_id= c.member_id "
+                . "and c.deleted_flag = 0 ";
         $conditions = array();
         if ($ltype != "") {
-            $conditions[] = "leaves.leave_category='" . $ltype . "'";
+            $conditions[] = "l.leave_category='" . $ltype . "'";
         }
         if ($month != "") {
-            $conditions[] = "MONTH(leaves.start_date) = '" . $month . "'";
+            $conditions[] = "MONTH(l.start_date) = '" . $month . "'";
         }
         if ($namelist != "") {
-            $conditions[] = "core_member.member_login_name='" . $namelist . "'";
+            $conditions[] = "c.member_login_name='" . $namelist . "'";
         }
 
         $sql = $select;
         if (count($conditions) > 0) {
-            $sql .= " WHERE " . implode(' AND ', $conditions) . "order by leaves.date desc";
+            $sql .= " WHERE " . implode(' AND ', $conditions) . "order by l.date desc";
         }
 
-        $result = $this->db->query($sql);
-        $list = $result->fetchall();
-        return $list;
+        $result = $this->modelsManager->executeQuery($sql);
+        $paginator = new PaginatorModel(
+                            array(
+                        "data" => $result,
+                        "limit" => 10,
+                        "page" => $currentP
+                            )
+                         );
+// Get the paginated results
+        $page = $paginator->getPaginate();
+        return $page;        
     }
 
     /**

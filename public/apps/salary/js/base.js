@@ -167,7 +167,8 @@ var Salary = {
             // ... do whatever you need to do with icon here
         }
     },
-    getmemid: function (name) {
+    getmemid: function (p) {
+        var name = document.getElementById('username').value;
         var dict = [];
         $('ul.pagination').empty();
          $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
@@ -183,13 +184,13 @@ var Salary = {
                     dict.push(json_obj[i].member_id);
                 }
 
-                loadIcon(dict);
+                loadIcon(dict,p);
             }
 
         });
-        function loadIcon(dict) {
+        function loadIcon(dict,p) {
             $('#formemberid').val(dict);
-            Salary.search_salarylist();
+            Salary.search_salarylist(p);
         }
 
     },
@@ -359,12 +360,12 @@ var Salary = {
             // ... do whatever you need to do with icon here        
     },
     //searcch salary list by travel fees and user name
-      search_salarylist: function () {
+      search_salarylist: function (p) {
         var $form = $('#frm_search').serialize();
         var type = document.getElementById('ltype').value;
-                  
+        var pg = ( typeof p === "undefined" ? 0 : p);
         $.ajax({
-            url: baseUri + 'salary/search/searchTravelfees?' + $form,
+            url: baseUri + 'salary/search/searchTravelfees?' + $form+'&page='+pg,
             method: 'GET',
             //dataType: 'json',
             success: function (data) {
@@ -401,8 +402,8 @@ var Salary = {
                 }
                 $("#th_travelfees").append(travelfee_header);
                 if(json_obj.last != 0 && json_obj.last != 1){
-                    var paginglink = '  <li><a href="salarylist">First</a></li><li><a href="salarylist?page='+json_obj.before+'">Previous</a></li>'
-                    +'<li><a href="salarylist?page='+json_obj.next+'">Next</a></li><li><a href="salarylist?page='+json_obj.last+'">Last</a></li>'
+                    var paginglink = '  <li><a href="#" onclick="Salary.getmemid()">First</a></li><li><a href="#" onclick="Salary.getmemid('+json_obj.before+')">Previous</a></li>'
+                    +'<li><a href="#" onclick="Salary.getmemid('+json_obj.next+')">Next</a></li><li><a href="#" onclick="Salary.getmemid('+json_obj.last+')">Last</a></li>'
                     +'<li><span class="btn" style="margin-left:20px;">You are in page '+ json_obj.current+' of '+ json_obj.total_pages +'</span></li>';
                 $('ul.pagination').append(paginglink);
                 }
@@ -555,14 +556,13 @@ $(document).ready(function () {
         
     });
     $('#namelist').on('blur', function () {
-      var name = document.getElementById('namelist').value;
-        Salary.getmemid(name);
+    //  var name = document.getElementById('namelist').value;
+       // Salary.getmemid(name);
     });
 
     
-    $(".search-trtype").click(function () {
-         var name = document.getElementById('username').value;
-         Salary.getmemid(name);
+    $(".search-trtype").click(function () {         
+         Salary.getmemid();
     });
 
 
