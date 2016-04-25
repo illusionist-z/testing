@@ -91,6 +91,7 @@ function GEOprocess(position) {
  **/
 var done;
 function getAbsentMember() {
+    
     var x = new Date();
     var h = x.getHours();
     var m = x.getMinutes();

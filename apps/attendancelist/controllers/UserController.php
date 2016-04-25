@@ -23,6 +23,9 @@ class UserController extends ControllerBase {
                 $noti = $User->GetUserNoti($id, 1);
             }
         }
+        $this->module_name = $this->router->getModuleName();
+        $this->permission = $this->setPermission($this->module_name);
+        $this->view->module_name = $this->module_name;
         $this->view->setVar("Noti", $noti);
     }
 
