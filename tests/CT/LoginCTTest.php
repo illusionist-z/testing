@@ -26,7 +26,7 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testfailerAction() {
-        $wrong_params = array('company_id' => 'gnext', "member_login_name" => "john", "password" => "admin");
+        $wrong_params = array('company_id' => 'gnext', "member_login_name" => "merry", "password" => "admin");
         $test = new AuthIndexController();
         $test->setparam($wrong_params);
         $result = $test->failerAction(1);
