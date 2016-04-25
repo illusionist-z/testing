@@ -33,7 +33,6 @@
     }
     table.fauxRow {border-spacing: 0;}
     table.fauxRow > tbody > tr > td {
-      
       overflow: hidden;
     }
     table.fauxRow > tbody > tr > td > table.print {
@@ -79,10 +78,13 @@
     }
     table.fauxRow, table.print {
        /* Delete if you don't want table to be centered. */
+           margin: 0 auto 0 auto; 
     }
     table.print {border-spacing: 0;}
     table.print > * > tr > * {
-      
+       border-right: 2px;
+      border-bottom: 2px ;
+      padding:10px;
     }
    
     table.print > thead ~ * > :first-child > *, table.print > tbody ~ * > :first-child > * {border-top: none;}

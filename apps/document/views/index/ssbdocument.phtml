@@ -16,7 +16,7 @@ foreach ($salary_info as $value) {
 <html>
   <body>
      <!-- Delete "t1" class to remove row numbers. -->
-     <div id="ssb_top"> <span style="float: right;"><a href="#" title="Print" class="print" id="printimg"></a></span>
+     <div id="ssb_top"> <span style="float: right;"><a href="#" title="Print" class="printssb" id="printimg"></a></span>
                     <div class="top-center">
                         လူမႈဖူလံုုေရးအဖြဲ႔<br>
                         အာမခံထားသူမ်ားအတြက္ လစဥ္ထည္႔၀င္ေၾကးေပးသြင္းစာရင္း
@@ -35,8 +35,11 @@ foreach ($salary_info as $value) {
                         </div>
                     </div>
                 </div>
-    <table border="1px;" class=" print t1 tbl-tax">
+     
+    <table border="1px;" class=" print  ">
+       
                     <thead>
+                        
                         <tr>
                             <td rowspan="2">
                                 Sr No.<br>
@@ -46,7 +49,9 @@ foreach ($salary_info as $value) {
                                 Insurance Name<br>
                                 အာမခံထားသူအမည္
                             </td>
+                            
                             <td rowspan="2">
+                                
                                 SSN.No<br>  
                                 အာမခံစီစစ္ေရးအမွတ္
                             </td>
@@ -103,6 +108,7 @@ foreach ($salary_info as $value) {
 
                         </tr>
                     </thead>
+                    
                     <tbody>
                         <?php
                         $no=1;
@@ -117,7 +123,7 @@ foreach ($salary_info as $value) {
                             foreach ($salary_info as $salary_infos) {
                                 ?>
                                 <tr>
-                                    <td><?php  ?></td>
+                                    <td><?php echo $no; ?></td>
                                     <td><?php echo $salary_infos->core->full_name; ?></td>
                                     <td><?php echo $salary_infos->core->ssn_no; ?></td>
                                     <td style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo "300000";}else{echo $salary_infos->salary_detail->basic_salary; }?></td>

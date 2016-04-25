@@ -45,7 +45,7 @@
             , tbodNum = 0
             , tbod = tbods[0];
           for(; cellNum--; colCount += cells[cellNum].colSpan);
-          for(cellNum = colCount; cellNum--; metricsRow.appendChild(document.createElement("td")).style.padding = 0);
+         for(cellNum = colCount; cellNum--; metricsRow.appendChild(document.createElement("td")).style.padding =0);
           cells = metricsRow.cells;
           tbod.insertBefore(metricsRow, tbod.firstChild);
           for(; ++cellNum < colCount; colgroup.appendChild(document.createElement("col")).style.width = cells[cellNum].offsetWidth + "px");
