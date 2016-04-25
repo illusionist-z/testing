@@ -151,8 +151,19 @@ if(! ini_get('date.timezone')){
         }
         ?>
     </ul>
+    
         </td>
     </tr>
 </tfoot>
     
 </table>  
+        <?php
+                        for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
+                            ?>
+                            <a href="index?page=<?= $x; ?>#Page"><?php 
+                             
+                             echo "<b>$x </b>&nbsp;"; ?></a>
+                                
+                            <?php
+}                    
+                    ?>
