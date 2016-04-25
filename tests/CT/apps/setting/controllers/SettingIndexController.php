@@ -21,6 +21,12 @@ include_once 'tests\CT\apps\LoginForAll.php';
 
 class SettingIndexController extends Controllers\IndexController {
 
+    public $group_code;
+
+    public function setGroupCode($group_code) {
+        $this->group_code = $group_code;
+    }
+
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
@@ -68,6 +74,7 @@ class SettingIndexController extends Controllers\IndexController {
             $this->view->coremember = $coremember;
             $this->view->coreuser = $core_groupuser;
             $this->view->coreuser2 = $core_groupuser2;
+
             $id = $this->session->user['member_id'];
             $Noti = $coreuser->getAdminNoti($id, 0);
             $this->view->setVar("noti", $Noti);
@@ -79,8 +86,8 @@ class SettingIndexController extends Controllers\IndexController {
     public function AddGroupRuleAction() {
         $this->initialize();
         $core = new CorePermissionGroupId();
-        $core->save($this->request->getPost());
-        $this->response->redirect('setting/index/admin');
+        $core->save($this->group_code);
+        $this->response->redirect('setting/index');
         return true;
     }
 
@@ -90,14 +97,17 @@ class SettingIndexController extends Controllers\IndexController {
         $creator_id = $filter->sanitize($this->session->user['member_id'], 'string');
         $created_dt = date("Y-m-d H:i:s");
         $core = new CorePermissionGroup();
-        $option = explode("_", $this->request->getPost('page_rule_group'));
+        $option = explode("_", $this->group_code['page_rule_group']);
         $core->page_rule_group = $option[0];
         $core->permission_group_code = $option[1];
         $core->permission_group_name = strtolower($option[1]);
-        $core->permission_code = $this->request->getPost('permission_code');
+        $core->creator_id = $creator_id;
+        $core->created_dt = $created_dt;
+        $core->permission_code = $this->group_code['permission_code'];
         $core->save();
-        $this->response->redirect('setting/index/admin');
-        return true;
+        $result = array("1" => $core->permission_code, "2" => $core->idpage);
+        $this->response->redirect('setting/index');
+        return $result;
     }
 
     public function DelGroupRuleAction() {
@@ -110,9 +120,39 @@ class SettingIndexController extends Controllers\IndexController {
     public function DelPageRuleAction() {
         $this->initialize();
         //$core = new CorePermissionGroup();
+
         $core = CorePermissionGroup::Find($this->request->getPost('idpage'));
         $core->delete();
         return true;
+    }
+
+    public function GroupRuleSettingAction() {
+        $this->initialize();
+        $filter = new Filter();
+        $group_name = $filter->sanitize($this->group_code['name_of_group'], 'string');
+        $core = CorePermissionGroupId::findFirst('group_id =' . $this->group_code['group_id']);
+        $core->name_of_group = strtoupper($group_name);
+        $core->update();
+        $this->response->redirect('setting/index');
+        return true;
+    }
+
+    public function User2RuleSettingAction() {
+        $this->initialize();
+        $filter = new Filter();
+        $idpage = $filter->sanitize($this->group_code['idpage'], 'string');
+        $page_rule_group = $filter->sanitize($this->group_code['page_rule_group'], 'string');
+        $permission_code = $this->group_code['page_rule_group'];
+
+        $core = CorePermissionGroup::findFirst('idpage=' . $idpage);
+        $core->idpage = $idpage;
+        $core->page_rule_group = $page_rule_group;
+        $core->permission_code = $permission_code;
+        $update = $core->update();
+        if ($update) {
+            $this->response->redirect('setting/index');
+            return true;
+        }
     }
 
     public function SettingModuleAction() {
