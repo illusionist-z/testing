@@ -142,10 +142,10 @@ if(! ini_get('date.timezone')){
             
         } else {
             ?>
-            <li><a href="admin">First</a></li>
-            <li><a href="admin?page=<?= $coreuser2->before; ?>">Previous</a></li>
-            <li><a href="admin?page=<?= $coreuser2->next; ?>">Next</a></li>
-            <li><a href="admin?page=<?= $coreuser2->last; ?>">Last</a></li>
+            <li><a href="index">First</a></li>
+            <li><a href="index?page=<?= $coreuser2->before; ?>">Previous</a></li>
+            <li><a href="index?page=<?= $coreuser2->next; ?>">Next</a></li>
+            <li><a href="index?page=<?= $coreuser2->last; ?>">Last</a></li>
             <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $coreuser2->current, " of ", $coreuser2->total_pages; ?></span></li>
             <?php
         }

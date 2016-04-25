@@ -95,10 +95,10 @@ use Phalcon\Filter;
                     
                 } else {
                     ?>
-                    <li><a href="admin">First</a></li>
-                    <li><a href="admin?page1=<?= $coreuser->before; ?>">Previous</a></li>
-                    <li><a href="admin?page1=<?= $coreuser->next; ?>">Next</a></li>
-                    <li><a href="admin?page1=<?= $coreuser->last; ?>">Last</a></li>
+                    <li><a href="index">First</a></li>
+                    <li><a href="index?page1=<?= $coreuser->before; ?>">Previous</a></li>
+                    <li><a href="index?page1=<?= $coreuser->next; ?>">Next</a></li>
+                    <li><a href="index?page1=<?= $coreuser->last; ?>">Last</a></li>
                     <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $coreuser->current, " of ", $coreuser->total_pages; ?></span></li>
                         <?php
                     }
