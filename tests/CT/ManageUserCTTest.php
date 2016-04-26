@@ -40,12 +40,11 @@ class ManageUserCTTest extends PHPUnit_Framework_TestCase {
 //    public function testUserDataEditAction() {
 //        $test = new ManageIndexController();
 //        $test->setdata('90e73464-c899-11e5-9e13-4c3488333b45');
-//        $test->setname("Khine Thazin Phyo");
+//        $test->setname("Khine Thazin Pyoe");
 //        $test->setdept('PHP');
 //        $test->setposition("Developer");
-//        $test->setemail('bndream92@gmail.com');
+//        $test->setemail("bndream92@gmail.com");
 //        $test->setpno("01572570");
-//
 //        $this->assertTrue($test->userdataeditAction());
 //    }
 

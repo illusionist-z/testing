@@ -23,8 +23,16 @@
   float: right;
 }
 
+@media print{
+  .link{display: none;}
+  #cmn_footer{display:    none;}
+}
+#doc{
+    float: right;
+    padding: 15px;
+}
 
-  /* THE FOLLOWING CSS IS REQUIRED AND SHOULD NOT BE MODIFIED. */
+.fauxRow{width: 100%;}
     div.fauxRow {
       display: inline-block;
       vertical-align: top;
@@ -33,13 +41,12 @@
     }
     table.fauxRow {border-spacing: 0;}
     table.fauxRow > tbody > tr > td {
-      
+      padding: 0;
       overflow: hidden;
     }
     table.fauxRow > tbody > tr > td > table.print {
       display: inline-table;
       vertical-align: top;
-      
     }
     table.fauxRow > tbody > tr > td > table.print > caption {caption-side: top;}
     .noBreak {
@@ -65,7 +72,8 @@
   /* THE FOLLOWING CSS IS REQUIRED, but the values may be adjusted. */
     /* NOTE: All size values that can affect an element's height should use the px unit! */
     table.fauxRow, table.print {
-     
+      font-size: 12px;
+      line-height: 20px;
     }
 
   /* THE FOLLOWING CSS IS OPTIONAL. */
@@ -78,25 +86,21 @@
       content: counter(t1);
     }
     table.fauxRow, table.print {
-       /* Delete if you don't want table to be centered. */
+      font-family: Tahoma, Verdana, Georgia; /* Try to use fonts that don't get bigger when printed. */
+      //margin: 0 auto 0 auto; /* Delete if you don't want table to be centered. */
     }
     table.print {border-spacing: 0;}
     table.print > * > tr > * {
-      
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+      padding: 0 2px 0 2px;
     }
-   
+    table.print > * > :first-child > * {border-top: 1px solid black;}
     table.print > thead ~ * > :first-child > *, table.print > tbody ~ * > :first-child > * {border-top: none;}
-   
+    table.print > * > tr > :first-child {border-left: 1px solid black;}
     table.print > thead {vertical-align: bottom;}
     table.print > thead > .borderRow > th {border-bottom: none;}
     table.print > tbody {vertical-align: top;}
     table.print > caption {font-weight: bold;}
-@media print{
-  .link{display: none;}
-  #cmn_footer{display:    none;}
-}
-#doc{
-    float: right;
-    padding: 15px;
-}
-
+    
+    .fauxRow td{ height: 30px };

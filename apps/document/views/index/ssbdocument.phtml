@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 
 if(! ini_get('date.timezone')){
@@ -14,9 +15,11 @@ foreach ($salary_info as $value) {
 
 ?>
 <html>
-  <body>
-     <!-- Delete "t1" class to remove row numbers. -->
-     <div id="ssb_top"> <span style="float: right;"><a href="#" title="Print" class="printing" id="printimg"></a></span>
+    <body><br>
+                  <span style="float: right;"><a href="#" title="print" class="printing" id="printimg"></a></span>
+
+      <table class="print " style="width:100%;"> <!-- Delete "t1" class to remove row numbers. -->
+                      <div id="ssb_top">
                     <div class="top-center">
                         လူမႈဖူလံုုေရးအဖြဲ႔<br>
                         အာမခံထားသူမ်ားအတြက္ လစဥ္ထည္႔၀င္ေၾကးေပးသြင္းစာရင္း
@@ -35,77 +38,48 @@ foreach ($salary_info as $value) {
                         </div>
                     </div>
                 </div>
-     <table border="1px;" class="tbl-tax print">
-                    <thead>
+      <thead>
                         <tr>
-                        <td rowspan="2">
-                                Sr No.<br>
-                                စဥ္
-                            </td>
-                            <td rowspan="2">
-                                Insurance Name<br>
-                                အာမခံထားသူအမည္
-                            </td>
-                            <td rowspan="2">
-                                SSN.No<br>  
-                                အာမခံစီစစ္ေရးအမွတ္
-                            </td>
-                            <td rowspan="2">
-                                Payment<br>
-                                လုုပ္ခလစာ
-                            </td>
-                            <td colspan="2">
+                            <th rowspan="2" style="width:20px;">Sr No.<br>
+                                စဥ္</th>
+                            <th rowspan="2" style="width:200px;">Insurance Name<br>
+                                အာမခံထားသူအမည္</th>
+                            <th rowspan="2">SSN.No<br>  
+                                အာမခံစီစစ္ေရးအမွတ္</th>
+                            <th rowspan="2">Payment<br>
+                                လုုပ္ခလစာ</th>
+                            <th colspan="2">
                                 Health and Social Care<br>
                                 Insurance System<br>
                                 က်န္းမာေရးႏွင္္႔လူမႈေရး<br>
-                                ေစာင္႔ေရွာက္မႈစနစ္
-                            </td>
-
-                            <td>
-                                Employment Injury Benefit Insurance System
-                            </td>
-                            <td colspan="3">
-                                Total<br>
-                                စုုစုုေပါင္း
-                            </td>
-
-                            <td rowspan="2">Remark
-                                <br> မွတ္ခ်က္
-                            </td>
+                                ေစာင္႔ေရွာက္မႈစနစ္</th>
+                            <th>Employment <br>Injury <br>Benefit <br>Insurance <br>System</th>
+                            <th colspan="3">Total<br>
+                                စုုစုုေပါင္း</th>
+                            <th rowspan="2">Remark
+                                <br> မွတ္ခ်က္</th>
+                            
                         </tr>
                         <tr>
-
-                            <td>
-                                Employer<br>
-                                အလုုပ္ရွင္
-                            </td>
-                            <td>
-                                Employee<br>
-                                အလုုပ္သမား
-                            </td>
-                            <td>
-                                Employer<br>
-                                အလုုပ္ရွင္
-                            </td>
-
-                            <td>
-                                Employer<br>
-                                အလုုပ္ရွင္  ၃%
-                            </td>
-                            <td>
-                                Employee<br>
-                                အလုုပ္သမား ၂%
-                            </td>
-                            <td>
-                                Total<br>
-                                စုုစုုေပါင္း ၅%
-                            </td>
-
+                            
+                            <th>Employer<br>
+                                အလုုပ္ရွင္</th>
+                            <th>Employee<br>
+                                အလုုပ္သမား</th>
+                            <th>Employer<br>
+                                အလုုပ္ရွင္</th>
+                            <th>Employer<br>
+                                အလုုပ္ရွင္  ၃%</th>
+                           <th>Employee<br>
+                                အလုုပ္သမား ၂%</th>
+                            <th>Total<br>
+                                စုုစုုေပါင္း ၅%</th>
+                            
                         </tr>
                     </thead>
-                    <tbody>
+       <tbody>
                         <?php
-                        $no=1;
+                        $no = 1;
                         $ssb_total = 0;
                         $sum1 = 0;
                         $sum2 = 0;
@@ -117,9 +91,14 @@ foreach ($salary_info as $value) {
                             foreach ($salary_info as $salary_infos) {
                                 ?>
                                 <tr>
-                                    <td><?php echo $no;?></td>
+                                    <td><?php echo $no; ?></td>
                                     <td><?php echo $salary_infos->core->full_name; ?></td>
-                                    <td><?php echo $salary_infos->core->ssn_no; ?></td>
+                                    <td><?php
+                                    if($salary_infos->core->ssn_no !== ""){
+                                    echo $salary_infos->core->ssn_no;}
+                                    else{
+                                    echo "<div style='width:106px; background-color:red;'></div>";}
+                                    ?></td>
                                     <td style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo "300000";}else{echo $salary_infos->salary_detail->basic_salary; }?></td>
                                     <td style="text-align: right;">
                                         <?php
@@ -169,7 +148,7 @@ foreach ($salary_info as $value) {
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                                <td><div style='width:105px; background-color:red;'></div></td>
                                 <td></td>
                                 <td style="text-align: right;"><?php echo number_format($sum1) ?></td>
                                 <td style="text-align: right;"><?php echo number_format($sum2) ?></td>
@@ -187,9 +166,12 @@ foreach ($salary_info as $value) {
                         }
                         ?>
                     </tbody>
-                </table>
+    </table>
   </body>
 </html>
 
-
+<style>
+  /* THE FOLLOWING CSS IS REQUIRED AND SHOULD NOT BE MODIFIED. */
+  
+</style>
 
