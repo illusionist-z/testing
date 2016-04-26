@@ -1,7 +1,7 @@
 
 
 $(document).ready(function () {
-    $(".printssb").on('click',function(){
+    $(".printing").on('click',function(){
         window.print();
     });
     
