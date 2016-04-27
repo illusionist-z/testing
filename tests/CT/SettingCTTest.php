@@ -72,6 +72,7 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
 
     public function testDelGroupRuleAction() {
         $setting = new SettingIndexController();
+        $setting->setGroupCode("3");
         $this->assertTrue($setting->DelGroupRuleAction());
     }
 
