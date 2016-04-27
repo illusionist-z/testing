@@ -80,10 +80,10 @@ Setting.PageRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                     
-                    var bar = '<li><a href="index">First</a></li><li><a href="index?page=' + d[1].before + '">Previous</a></li>'
-                            + '<li><a href="index?page=' + d[1].next + '">Next</a></li><li><a href="index?page=' + d[1].last + '">Last</a></li>'
-                            + '<li><span class="btn" style="margin-left:20px;">You are in page ' + d[1].current + ' of ' + d[1].total_pages +'</span></li>';
+                        var bar = "";
+                        for (var x = 1; x <= d[1].total_pages; x++) {
+                            bar += '<a href="index?page='+x+'" class="button"><b>'+x+'</b>&nbsp;</a>';
+                        }
                     $('#page_role tbody').append(paging);
                     $('#page_role').append(dialog);
                     $('#page_role ul.pagination').append(bar);
@@ -146,10 +146,10 @@ Setting.UserRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                   
-                    var bar = '<li><a href="index">First</a></li><li><a href="index?page1=' + d[1].before + '">Previous</a></li>'
-                            + '<li><a href="index?page1=' + d[1].next + '">Next</a></li><li><a href="index?page1=' + d[1].last + '">Last</a></li>'
-                            + '<li><span class="btn" style="margin-left:20px;">You are in page ' + d[1].current + ' of ' + d[1].total_pages + '</span></li>';
+                      var bar = "";
+                        for (var x = 1; x <= d[1].total_pages; x++) {
+                            bar += '<a href="index?page1='+x+'" class="button"><b>'+x+'</b>&nbsp;</a>';
+                        }           
                     $('#user_role tbody').append(paging);
                     $('#user_role').append(dialog);
                     $('#user_role ul.pagination').append(bar);
