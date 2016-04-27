@@ -12,10 +12,17 @@ if (!isset($_SESSION))
 
 class SettingCTTest extends PHPUnit_Framework_TestCase {
 
-//    public function testindexAction() {
-//        $setting = new SettingIndexController();
-//        $this->assertTrue($setting->indexAction());
-//    }
+    public function testindexPageAction() {
+        $setting = new SettingIndexController();
+        $setting->setType("page");
+        $this->assertTrue($setting->indexAction());
+    }
+
+    public function testindexUserAction() {
+        $setting = new SettingIndexController();
+        $setting->setType("user");
+        $this->assertTrue($setting->indexAction());
+    }
 
     public function testAddGroupRuleAction() {
         $setting = new SettingIndexController();
@@ -53,14 +60,16 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($setting->User2RuleSettingAction());
     }
 
-//    public function testDelGroupRuleAction() {
-//        $setting = new SettingIndexController();
-//        $this->assertTrue($setting->DelGroupRuleAction());
-//    }
-//
-//    public function testDelPageRuleAction() {
-//        $setting = new SettingIndexController();
-//        $setting->setGroupCode("4");
-//        $this->assertTrue($setting->DelPageRuleAction());
-//    }
+    public function testDelGroupRuleAction() {
+        $setting = new SettingIndexController();
+        $setting->setGroupCode("1");
+        $this->assertTrue($setting->DelGroupRuleAction());
+    }
+
+    public function testDelPageRuleAction() {
+        $setting = new SettingIndexController();
+        $setting->setGroupCode("4");
+        $this->assertTrue($setting->DelPageRuleAction());
+    }
+
 }
