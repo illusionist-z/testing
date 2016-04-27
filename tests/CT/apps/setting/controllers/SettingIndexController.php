@@ -81,7 +81,7 @@ class SettingIndexController extends Controllers\IndexController {
     public function AddGroupRuleAction() {
         $this->initialize();
         $core = new CorePermissionGroupId();
-        $core->save($this->group_code['page']);
+        $core->save($this->group_code);
         $this->response->redirect('setting/index');
         return true;
     }
@@ -107,14 +107,13 @@ class SettingIndexController extends Controllers\IndexController {
 
     public function DelGroupRuleAction() {
         $this->initialize();
-        $core = CorePermissionGroupId::Find($this->request->getPost('group_id'));
+        $core = CorePermissionGroupId::Find($this->group_code);
         $core->delete();
         return true;
     }
 
     public function DelPageRuleAction() {
         $this->initialize();
-        //$core = new CorePermissionGroup();
         $core = CorePermissionGroup::Find($this->group_code);
         $core->delete();
         return true;
@@ -149,25 +148,23 @@ class SettingIndexController extends Controllers\IndexController {
         }
     }
 
-//    public function UserRuleSettingAction() {
-//
-//        $id = $this->request->getPost('rel_member_id');
-//        $group_id = $this->request->getPost('group_id');
-//        $group_name_post = $this->request->getPost('group_text');
-//        $group_name = trim($group_name_post);
-//        exit();
-//        $core = CorePermissionRelMember::findFirstByRelMemberId($id);
-//        $coreuser_update = CoreMember::findFirstByMemberId($id);
-//        $coreuser_update->user_rule = $group_id;
-//        $core->permission_group_id_user = $group_id;
-//        $core->permission_member_group_member_name = strtolower($group_name);
-//        $core->rel_permission_group_code = $group_name;
-//        $coreuser_update->update();
-//        $core->update();
-//
-//        $this->view->disable();
-//        $this->response->redirect('setting/index');
-//    }
+    public function UserRuleSettingAction() {
+        $this->initialize();
+        $id = $this->group_code['rel_member_id'];
+        $group_id = $this->group_code['group_id'];
+        $group_name_post = $this->group_code['group_text'];
+        $group_name = trim($group_name_post);
+
+        $core = CorePermissionRelMember::findFirstByRelMemberId($id);
+        $coreuser_update = CoreMember::findFirstByMemberId($id);
+        $coreuser_update->user_rule = $group_id;
+        $core->permission_group_id_user = $group_id;
+        $core->permission_member_group_member_name = strtolower($group_name);
+        $core->rel_permission_group_code = $group_name;
+        $coreuser_update->update();
+        $core->update();
+        $this->response->redirect('setting/index');
+    }
 
     public function SettingModuleAction() {
         $UserList = new Db\CoreMember();

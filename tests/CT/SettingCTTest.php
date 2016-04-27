@@ -26,7 +26,7 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
 
     public function testAddGroupRuleAction() {
         $setting = new SettingIndexController();
-        $setting->setGroupCode(array("page" => "Director"));
+        $setting->setGroupCode("Director");
         $this->assertTrue($setting->AddGroupRuleAction());
     }
 
@@ -60,19 +60,9 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($setting->User2RuleSettingAction());
     }
 
-//    public function testUserRuleSettingAction() {
-//        $setting = new SettingIndexController();
-//        $code = array("permission_code" => "newpage", "page_rule_group" => "1_ADMIN");
-//        $setting->setGroupCode($code);
-//        $res = $setting->AddPageRuleAction();
-//        $code2 = array("idpage" => $res[2], "permission_code" => "admin_home", "page_rule_group" => "1");
-//        $setting->setGroupCode($code2);
-//        $this->assertTrue($setting->UserRuleSettingAction());
-//    }
-
     public function testDelGroupRuleAction() {
         $setting = new SettingIndexController();
-        $setting->setGroupCode("3");
+        $setting->setGroupCode("1");
         $this->assertTrue($setting->DelGroupRuleAction());
     }
 
