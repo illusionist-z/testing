@@ -27,8 +27,8 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testeditTimeAction() {
-        $id = '1598';
-        $localtime = '2016-02-01 09:00:00';
+        $id = '2433';
+        $localtime = '2016-04-27 09:00:00';
         $attendance = new AttendancelistIndexController();
         $attendance->setOffset("-390");
         $this->assertTrue($attendance->editTimeAction($id, $localtime));
@@ -66,7 +66,6 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
 
         $this->assertTrue($ablist->checkAttAction());
     }
-
 
     /*
      * UserController function test

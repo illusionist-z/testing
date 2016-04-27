@@ -53,7 +53,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
     public function testcheckapplySuccessaction() {
         $appleave = new LeaveIndexController();
         $leave = array("uname" => "1fe9f520-c89a-11e5-9e13-4c3488333b45",
-            "sdate" => "2016-04-5 00:00:00", "edate" => "2016-04-12 00:00:00",
+            "sdate" => "2016-05-04 00:00:00", "edate" => "2016-05-12 00:00:00",
             "type" => "donation", "desc" => "family donation");
         $appleave->setinfo($leave);
         $result = $appleave->checkapplyAction();
@@ -113,7 +113,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $leave = new LeaveIndexController();
         $leave->setId($id);
         $result = $leave->ltypediaAction();
-        $this->assertEquals("Others", $result[0]['leave_category']);
+        $this->assertEquals("donation", $result[0]['leave_category']);
     }
 
     public function testdeleteListTypeAction() {
