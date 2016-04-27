@@ -136,15 +136,25 @@ if (!ini_get('date.timezone')) {
     <tr>
         <td colspan="4">
             <ul class="pagination" style="margin-left:15px;">
+                  <ul class="pagination" style="margin-left:15px;">
+                 <li><a href="index">First</a></li>
+                <li><a href="index?page1=<?= $coreuser2->last; ?>">Last</a></li>
+                <li>
                 <?php
                 if ($coreuser2->last !== 1) {
                     for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
+                           if (($coreuser->current  + 3 ) >= $x && ($coreuser->current -  3 ) <= $x){
                         ?>
                 <a href="index?page=<?= $x; ?>" class="button"><?php echo "<b>$x</b>"; ?></a>
                         <?php
                     }
+                    }
+                      ?>
+                <li><span><?php echo "You are in page ", $coreuser2->current, " of ", $coreuser2->total_pages; ?></span></li>
+                <?php
                 }
                 ?>
+                </li>
             </ul>
 
         </td>
