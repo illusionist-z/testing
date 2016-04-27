@@ -1,3 +1,7 @@
+
+<!-- Main content -->
+<!-- Main content -->
+
 <?php
 
 if(! ini_get('date.timezone')){
@@ -13,10 +17,12 @@ foreach ($salary_info as $value) {
 }
 
 ?>
-<html>
-  <body>
-     <!-- Delete "t1" class to remove row numbers. -->
-     <div id="ssb_top"> <span style="float: right;"><a href="#" title="Print" class="printing" id="printimg"></a></span>
+<section class="content">
+    <div class="row"><!-- for search form-->
+        <div class="col-md-12"><!--start add user form--->
+            <span style="float: right;"><a href="#" title="Print" class="printing" id="printimg"></a></span>
+            <div class="printable">
+                <div id="ssb_top">
                     <div class="top-center">
                         လူမႈဖူလံုုေရးအဖြဲ႔<br>
                         အာမခံထားသူမ်ားအတြက္ လစဥ္ထည္႔၀င္ေၾကးေပးသြင္းစာရင္း
@@ -35,7 +41,8 @@ foreach ($salary_info as $value) {
                         </div>
                     </div>
                 </div>
-    <table border="1px;" class=" print t1 tbl-tax">
+
+                <table border="1px;" class="tbl-tax">
                     <thead>
                         <tr>
                             <td rowspan="2">
@@ -46,7 +53,7 @@ foreach ($salary_info as $value) {
                                 Insurance Name<br>
                                 အာမခံထားသူအမည္
                             </td>
-                            <td rowspan="2" style="width:200px">
+                            <td rowspan="2">
                                 SSN.No<br>  
                                 အာမခံစီစစ္ေရးအမွတ္
                             </td>
@@ -105,7 +112,7 @@ foreach ($salary_info as $value) {
                     </thead>
                     <tbody>
                         <?php
-                        $no=1;
+                        $no = 1;
                         $ssb_total = 0;
                         $sum1 = 0;
                         $sum2 = 0;
@@ -117,41 +124,41 @@ foreach ($salary_info as $value) {
                             foreach ($salary_info as $salary_infos) {
                                 ?>
                                 <tr>
-                                    <td><?php  ?></td>
+                                    <td><?php echo $no; ?></td>
                                     <td><?php echo $salary_infos->core->full_name; ?></td>
                                     <td><?php echo $salary_infos->core->ssn_no; ?></td>
-                                    <td style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo "300000";}else{echo $salary_infos->salary_detail->basic_salary; }?></td>
+                                    <td style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo number_format(300000);}else{echo number_format($salary_infos->salary_detail->basic_salary); }?></td>
                                     <td style="text-align: right;">
                                         <?php
                                         $sum1 = $sum1 + $salary_infos->salary_detail->ssc_emp;
-                                        echo $salary_infos->salary_detail->ssc_emp;
+                                        echo number_format($salary_infos->salary_detail->ssc_emp);
                                         ?>
                                     </td>
                                     <td style="text-align: right;">
                                         <?php
                                         $sum2 = $sum2 + $salary_infos->salary_detail->ssc_emp;
-                                        echo $salary_infos->salary_detail->ssc_emp;
+                                        echo number_format($salary_infos->salary_detail->ssc_emp);
                                         ?>
                                     </td>
                                     <td style="text-align: right;">
                                         <?php
                                         $onepercent = $salary_infos->salary_detail->ssc_emp / 2;
                                         $sum3 = $sum3 + $onepercent;
-                                        echo $onepercent;
+                                        echo number_format($onepercent);
                                         ?>
                                     </td>
                                     <td style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_comp;
                                         $sum4 = $sum4 + $salary_infos->salary_detail->ssc_comp;
-                                        echo $salary_infos->salary_detail->ssc_comp;
+                                        echo number_format($salary_infos->salary_detail->ssc_comp);
                                         ?>
                                     </td>
                                     <td style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_emp;
                                         $sum5 = $sum5 + $salary_infos->salary_detail->ssc_emp;
-                                        echo $salary_infos->salary_detail->ssc_emp;
+                                        echo number_format($salary_infos->salary_detail->ssc_emp);
                                         ?>
                                     </td>
                                     <td style="text-align: right;">
@@ -163,6 +170,10 @@ foreach ($salary_info as $value) {
                                 </tr>
                                 <?php
                                 $no++;
+                                if($no==5){?>
+                                   <div class="page">
+                                    </div>
+                                <?php }
                             }
                             ?>
 
@@ -188,8 +199,9 @@ foreach ($salary_info as $value) {
                         ?>
                     </tbody>
                 </table>
-  </body>
-</html>
-
-
-
+                <div class="break"></div>
+            </div>
+        </div>
+    </div>
+    <div id="resign" class="navbar"></div>
+</section>
