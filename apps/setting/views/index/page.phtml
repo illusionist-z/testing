@@ -1,9 +1,8 @@
 <?php
-
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
- /**
+/**
  * @author Yan Lin Pai  <> <wizardrider@gmail.com>
  * @page.html
  */
@@ -24,14 +23,14 @@ if(! ini_get('date.timezone')){
                 <td>
                     <input list="browsers" name="permission_code" value="" id="page_rule">
                     <datalist id="browsers">
-                                  <?php  
-                                  foreach ($coreuser2->items as $datauser2) {
-                                      ?>
-                     
-                                  <option value="<?= $datauser2->permission_code ?>">
-                                    <?php
-                                  }
-                                   ?>
+                        <?php
+                        foreach ($coreuser2->items as $datauser2) {
+                            ?>
+
+                            <option value="<?= $datauser2->permission_code ?>">
+                                <?php
+                            }
+                            ?>
                     </datalist>
                 </td>
             </tr>
@@ -98,10 +97,10 @@ if(! ini_get('date.timezone')){
             <td>
 
                 <a href="#" onclick="PageRuleSetting.apply(this);
-                        return false;" class="insettingedit" type="black" id="<?= $datauser2->idpage ?>">  </a>  
+                            return false;" class="insettingedit" type="black" id="<?= $datauser2->idpage ?>">  </a>  
             </td> 
         </tr>        
- 
+
     <div id="pageRule<?= $datauser2->idpage ?>" title="Change Page Rule" style="display: none;">
 
         <br> 
@@ -116,15 +115,15 @@ if(! ini_get('date.timezone')){
             <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >            
 
             <select type="text" style="margin-left:33px;" name='page_rule_group' value='' id="changeuser">
-    <?php
+                <?php
                 foreach ($coreid as $data) {
                     ?>
                     <option value="<?= $data->group_id ?>" <?php if ($datauser2->page_rule_group == $data->group_id) { ?>selected <?php } ?>>
                         <?= $data->name_of_group ?>  
                     </option>
                     <?php
-}
-?>        
+                }
+                ?>        
             </select>
         </form>
 
@@ -136,43 +135,20 @@ if(! ini_get('date.timezone')){
 <tfoot>
     <tr>
         <td colspan="4">
-    <ul class="pagination" style="margin-left:15px;">
-        <?php
-        if ($coreuser2->last === 1) {
-            
-        } else {
-            ?>
-            <li><a href="index">First</a></li>
-            <li><a href="index?page=<?= $coreuser2->before; ?>">Previous</a></li>
-            <li><a href="index?page=<?= $coreuser2->next; ?>">Next</a></li>
-            <li><a href="index?page=<?= $coreuser2->last; ?>">Last</a></li>
-            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $coreuser2->current, " of ", $coreuser2->total_pages; ?></span></li>
-            <?php
-        }
-        ?>
-    </ul>
-    
+            <ul class="pagination" style="margin-left:15px;">
+                <?php
+                if ($coreuser2->last !== 1) {
+                    for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
+                        ?>
+                <a href="index?page=<?= $x; ?>" class="button"><?php echo "<b>$x</b>"; ?></a>
+                        <?php
+                    }
+                }
+                ?>
+            </ul>
+
         </td>
     </tr>
 </tfoot>
-    
+
 </table>  
-        <?php
-                        for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
-                            if ($x == $coreuser2->current){
-                            ?>
-                            <a href="index?page=<?= $x; ?>#Page"><?php 
-                             
-                             echo "<font color=red><b>$x </b></font>&nbsp;"; ?></a>
-                                
-                            <?php
-}                    
-else{
-?>
-  <a href="index?page=<?= $x; ?>#Page"><?php 
-                             
-                             echo "$x &nbsp;"; ?></a>
-<?php
-}
-                        }
-                    ?>
