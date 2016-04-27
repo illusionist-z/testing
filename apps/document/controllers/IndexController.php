@@ -30,8 +30,7 @@ class IndexController extends ControllerBase {
         if ($this->moduleIdCall == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
-                        $this->assets->addJs('apps/document/js/index-ssbprint.js');
-
+                        
             $SalaryDetail = new Document();
             $result = $SalaryDetail->getSsbInfo();
             //$ComInfo = new CompanyInfo();

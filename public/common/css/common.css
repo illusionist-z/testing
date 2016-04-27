@@ -215,7 +215,7 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 
 .listtbl th {font-weight: bold;background-color: #3c8dbc}
 
-/*.listtbl th:first-child, td:first-child {padding: 0 12px 0 20px;}*/
+.listtbl th:first-child, td:first-child {padding: 0 12px 0 20px;}
 
 .listtbl thead tr:last-child th {border-bottom: 2px solid #ddd;}
 /*manage user*/
