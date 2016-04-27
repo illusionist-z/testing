@@ -12,14 +12,21 @@ if (!isset($_SESSION))
 
 class SettingCTTest extends PHPUnit_Framework_TestCase {
 
-//    public function testindexAction() {
-//        $setting = new SettingIndexController();
-//        $this->assertTrue($setting->indexAction());
-//    }
+    public function testindexPageAction() {
+        $setting = new SettingIndexController();
+        $setting->setType("page");
+        $this->assertTrue($setting->indexAction());
+    }
+
+    public function testindexUserAction() {
+        $setting = new SettingIndexController();
+        $setting->setType("user");
+        $this->assertTrue($setting->indexAction());
+    }
 
     public function testAddGroupRuleAction() {
         $setting = new SettingIndexController();
-        $setting->setGroupCode("Director");
+        $setting->setGroupCode(array("page" => "Director"));
         $this->assertTrue($setting->AddGroupRuleAction());
     }
 
@@ -53,14 +60,25 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($setting->User2RuleSettingAction());
     }
 
-//    public function testDelGroupRuleAction() {
+//    public function testUserRuleSettingAction() {
 //        $setting = new SettingIndexController();
-//        $this->assertTrue($setting->DelGroupRuleAction());
+//        $code = array("permission_code" => "newpage", "page_rule_group" => "1_ADMIN");
+//        $setting->setGroupCode($code);
+//        $res = $setting->AddPageRuleAction();
+//        $code2 = array("idpage" => $res[2], "permission_code" => "admin_home", "page_rule_group" => "1");
+//        $setting->setGroupCode($code2);
+//        $this->assertTrue($setting->UserRuleSettingAction());
 //    }
-//
-//    public function testDelPageRuleAction() {
-//        $setting = new SettingIndexController();
-//        $setting->setGroupCode("4");
-//        $this->assertTrue($setting->DelPageRuleAction());
-//    }
+
+    public function testDelGroupRuleAction() {
+        $setting = new SettingIndexController();
+        $this->assertTrue($setting->DelGroupRuleAction());
+    }
+
+    public function testDelPageRuleAction() {
+        $setting = new SettingIndexController();
+        $setting->setGroupCode("4");
+        $this->assertTrue($setting->DelPageRuleAction());
+    }
+
 }

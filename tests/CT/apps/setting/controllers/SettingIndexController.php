@@ -22,6 +22,11 @@ include_once 'tests\CT\apps\LoginForAll.php';
 class SettingIndexController extends Controllers\IndexController {
 
     public $group_code;
+    public $type;
+
+    public function setType($type) {
+        $this->type = $type;
+    }
 
     public function setGroupCode($group_code) {
         $this->group_code = $group_code;
@@ -59,34 +64,24 @@ class SettingIndexController extends Controllers\IndexController {
             $core_groupuser2 = $permission->pagination($core_groupuser22, $currentPage);
             $core_groupuser = $coreuser->getGroupId($currentPage1);
             //for paging without reload
-            if ($this->request->has("type")) {
-                $type = $this->request->get("type");
-                if ($type == "page") {
-                    $group_id = [$core_groupid->toArray(), $core_groupuser2];
-                    echo json_encode($group_id);
-                } elseif ($type == "user") {
-                    $group_id = [$core_groupid->toArray(), $core_groupuser];
-                    echo json_encode($group_id);
-                }
-                $this->view->disable();
+            $type = $this->type;
+            if ($type == "page") {
+                $group_id = [$core_groupid->toArray(), $core_groupuser2];
+            } elseif ($type == "user") {
+                $group_id = [$core_groupid->toArray(), $core_groupuser];
             }
-            $this->view->coreid = $core_groupid;
-            $this->view->coremember = $coremember;
-            $this->view->coreuser = $core_groupuser;
-            $this->view->coreuser2 = $core_groupuser2;
-
             $id = $this->session->user['member_id'];
             $Noti = $coreuser->getAdminNoti($id, 0);
-            $this->view->setVar("noti", $Noti);
         } else {
             $this->response->redirect('core/index');
         }
+        return true;
     }
 
     public function AddGroupRuleAction() {
         $this->initialize();
         $core = new CorePermissionGroupId();
-        $core->save($this->group_code);
+        $core->save($this->group_code['page']);
         $this->response->redirect('setting/index');
         return true;
     }
@@ -120,8 +115,7 @@ class SettingIndexController extends Controllers\IndexController {
     public function DelPageRuleAction() {
         $this->initialize();
         //$core = new CorePermissionGroup();
-
-        $core = CorePermissionGroup::Find($this->request->getPost('idpage'));
+        $core = CorePermissionGroup::Find($this->group_code);
         $core->delete();
         return true;
     }
@@ -142,7 +136,7 @@ class SettingIndexController extends Controllers\IndexController {
         $filter = new Filter();
         $idpage = $filter->sanitize($this->group_code['idpage'], 'string');
         $page_rule_group = $filter->sanitize($this->group_code['page_rule_group'], 'string');
-        $permission_code = $this->group_code['page_rule_group'];
+        $permission_code = $this->group_code['permission_code'];
 
         $core = CorePermissionGroup::findFirst('idpage=' . $idpage);
         $core->idpage = $idpage;
@@ -154,6 +148,26 @@ class SettingIndexController extends Controllers\IndexController {
             return true;
         }
     }
+
+//    public function UserRuleSettingAction() {
+//
+//        $id = $this->request->getPost('rel_member_id');
+//        $group_id = $this->request->getPost('group_id');
+//        $group_name_post = $this->request->getPost('group_text');
+//        $group_name = trim($group_name_post);
+//        exit();
+//        $core = CorePermissionRelMember::findFirstByRelMemberId($id);
+//        $coreuser_update = CoreMember::findFirstByMemberId($id);
+//        $coreuser_update->user_rule = $group_id;
+//        $core->permission_group_id_user = $group_id;
+//        $core->permission_member_group_member_name = strtolower($group_name);
+//        $core->rel_permission_group_code = $group_name;
+//        $coreuser_update->update();
+//        $core->update();
+//
+//        $this->view->disable();
+//        $this->response->redirect('setting/index');
+//    }
 
     public function SettingModuleAction() {
         $UserList = new Db\CoreMember();

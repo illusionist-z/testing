@@ -582,7 +582,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $user;
     }
 
-    public function searchSList($param, $currentPage) {
+    public function searchSList($param) {
         try {
             $this->db = $this->getDI()->getShared("db");
             if ($param['travel_fees'] == 1) {
@@ -599,7 +599,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             }
             $select .= " ORDER BY sm.created_dt desc";
             $result = $this->modelsManager->executeQuery($select);
-            $page = $this->base->pagination($result, $currentPage);
+            $page = $this->base->pagination($result, $param["page"]);
         } catch (Exception $ex) {
             echo $ex;
         }
