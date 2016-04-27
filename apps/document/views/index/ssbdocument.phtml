@@ -121,6 +121,8 @@ foreach ($salary_info as $value) {
                         $sum4 = 0;
                         $sum5 = 0;
                         $Total = 0;
+                        $pbreak=1; 
+                        $b = 6;
                         if (!empty($salary_info)) {
                             foreach ($salary_info as $salary_infos) {
                                
@@ -172,10 +174,18 @@ foreach ($salary_info as $value) {
                                 </tr>
                                 <?php
                                 $no++;
-                                $page++;
+                                $pbreak++; 
+                               
+                                if($pbreak == $b){
+                                ?>
+                                <tr class="page-break">
+                                </tr>
+                                <?php
+                                $b = $b+10;
+                                }
                             }
                             ?>
-
+                                
                             <tr>
                                 <td></td>
                                 <td></td>

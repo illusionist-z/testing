@@ -192,7 +192,7 @@ class IndexController extends ControllerBase {
         $group_id = $this->request->getPost('group_id');
         $group_name_post = $this->request->getPost('group_text');
         $group_name = trim($group_name_post);
-        exit();
+     
         $core = CorePermissionRelMember::findFirstByRelMemberId($id);
         $coreuser_update = CoreMember::findFirstByMemberId($id);
         $coreuser_update->user_rule = $group_id;
