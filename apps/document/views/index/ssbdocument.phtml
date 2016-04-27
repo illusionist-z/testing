@@ -41,7 +41,6 @@ foreach ($salary_info as $value) {
                         </div>
                     </div>
                 </div>
-
                 <table border="1px;" class="tbl-tax">
                     <thead>
                         <tr>
@@ -113,6 +112,7 @@ foreach ($salary_info as $value) {
                     <tbody>
                         <?php
                         $no = 1;
+                        $page=1;
                         $ssb_total = 0;
                         $sum1 = 0;
                         $sum2 = 0;
@@ -120,10 +120,13 @@ foreach ($salary_info as $value) {
                         $sum4 = 0;
                         $sum5 = 0;
                         $Total = 0;
+                        $pbreak=1; 
+                        $b = 6;
                         if (!empty($salary_info)) {
                             foreach ($salary_info as $salary_infos) {
-                                ?>
-                                <tr>
+                               
+                                ?><tr class="page">
+                                
                                     <td><?php echo $no; ?></td>
                                     <td><?php echo $salary_infos->core->full_name; ?></td>
                                     <td><?php echo $salary_infos->core->ssn_no; ?></td>
@@ -170,13 +173,18 @@ foreach ($salary_info as $value) {
                                 </tr>
                                 <?php
                                 $no++;
-                                if($no==5){?>
-                                   <div class="page">
-                                    </div>
-                                <?php }
+//                                $pbreak++; 
+//                               
+//                                if($pbreak == $b){
+                                ?>
+<!--                                <tr class="page-break">
+                                </tr>-->
+                                <?php
+//                                $b = $b+10;
+//                                }
                             }
                             ?>
-
+                                
                             <tr>
                                 <td></td>
                                 <td></td>

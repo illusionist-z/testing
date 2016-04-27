@@ -14,7 +14,7 @@ var Setting = {
 Setting.GroupRule = {
     delete: function (id) {
         $.ajax({
-            url: "DelGroupRule",
+            url: "index/DelGroupRule",
             data: {group_id: id},
             type: "POST",
             success: function () {
@@ -26,7 +26,7 @@ Setting.GroupRule = {
 Setting.PageRule = {
     delete: function (id) {
         $.ajax({
-            url: "DelPageRule",
+            url: "index/DelPageRule",
             data: {idpage: id},
             type: "POST",
             success: function () {
@@ -65,7 +65,7 @@ Setting.PageRule = {
                          */
                         dialog += '<div id="pageRule'+ d[1].items[i].idpage +'" title="Change Page Rule" style="display:none"><br> Group ID'
                                  +'<input type="text" style="margin-left:50px;" name="permission_group_code" value="'+d[1].items[i].permission_group_code+'" disabled><br> '
-                                +'<form method="POST" action="User2RuleSetting">'
+                                +'<form method="POST" action="index/User2RuleSetting">'
                                 + 'Page  Name <input type="text" style="margin-left:33px;" name="permission_code" value="' + d[1].items[i].permission_code +'">'
                                 + '<br><br>Group Rule<input type="hidden" name="idpage" value="'+d[1].items[i].idpage+'"><select type="text" style="margin-left:33px;" name="page_rule_group" id="changeuser">';
                         for (var j in d[0]) {
@@ -80,10 +80,10 @@ Setting.PageRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                     
-                    var bar = '<li><a href="index">First</a></li><li><a href="index?page=' + d[1].before + '">Previous</a></li>'
-                            + '<li><a href="index?page=' + d[1].next + '">Next</a></li><li><a href="index?page=' + d[1].last + '">Last</a></li>'
-                            + '<li><span class="btn" style="margin-left:20px;">You are in page ' + d[1].current + ' of ' + d[1].total_pages +'</span></li>';
+                        var bar = "";
+                        for (var x = 1; x <= d[1].total_pages; x++) {
+                            bar += '<a href="index?page='+x+'" class="button"><b>'+x+'</b>&nbsp;</a>';
+                        }
                     $('#page_role tbody').append(paging);
                     $('#page_role').append(dialog);
                     $('#page_role ul.pagination').append(bar);
@@ -131,7 +131,7 @@ Setting.UserRule = {
                          /**
                          * for use dialog 
                          */
-                        dialog += '<div id="openu'+ d[1].items[i].core.member_id +'" title="Change User Rule" style="display:none"><form method="POST" action="UserRuleSetting">'
+                        dialog += '<div id="openu'+ d[1].items[i].core.member_id +'" title="Change User Rule" style="display:none"><form method="POST" action="index/UserRuleSetting">'
                                 + 'User Name <input type="text" style="margin-left:50px;" name="member_login_name" value="' + d[1].items[i].core.member_login_name +'" disabled>'
                                 + '<br><br>Group Rule<select type="text" style="margin-left:50px;" name="user_rule" id="changeuser'+ d[1].items[i].core.member_id +'">';
                         for (var j in d[0]) {
@@ -146,10 +146,10 @@ Setting.UserRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                   
-                    var bar = '<li><a href="index">First</a></li><li><a href="index?page1=' + d[1].before + '">Previous</a></li>'
-                            + '<li><a href="index?page1=' + d[1].next + '">Next</a></li><li><a href="index?page1=' + d[1].last + '">Last</a></li>'
-                            + '<li><span class="btn" style="margin-left:20px;">You are in page ' + d[1].current + ' of ' + d[1].total_pages + '</span></li>';
+                      var bar = "";
+                        for (var x = 1; x <= d[1].total_pages; x++) {
+                            bar += '<a href="index?page1='+x+'" class="button"><b>'+x+'</b>&nbsp;</a>';
+                        }           
                     $('#user_role tbody').append(paging);
                     $('#user_role').append(dialog);
                     $('#user_role ul.pagination').append(bar);

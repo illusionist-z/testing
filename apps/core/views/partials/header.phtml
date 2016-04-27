@@ -121,18 +121,20 @@
                                 //$key_value["link1"]='';
                                 if(!isset($key_value["link1"])){$key_value["link1"]='';}
                                 $top_link = explode(" ", $key_value["link1"]);
-                                //print_r($top_link);
                                 
+                               
                                 if (strpos($key_name, 'user') !== false) {
                                     if ($key_name != 'show_user_notification' && $key_name != 'show_user_setting') {
+                                     
                                         if (count($key_value) > 2) {
-                                            if (isset($top_link[1])) {
+                                            if (isset($top[1])) {
                                                 echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top_link[0] . $top_link[1]) . '"><img  id="navicon' . $count . '1" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                             } else {
-                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img id="navicon' . $count . '1" ><span><b>' . $key_value[0] . '</b></span></a></li>';
+                                                echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img  id="navicon' . $count . '1" ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                             }
                                         } else {
-                                            if (isset($top[1])) {
+                                           
+                                            if (isset($top)) {
                                                 echo '<li><a href="' . $baseUri . strtolower($top[0] . $top[1]) . '/user/' . strtolower($top[0] . $top[1]) . '"><img  id="navicon' . $count . '1"  ><span><b>' . $key_value[0] . '</b></span></a></li>';
                                             } else {
                                                 echo '<li><a href="' . $baseUri . strtolower($top[0]) . '/index/index"><img  id="navicon' . $count . '1"  ><span><b>' . $key_value[0] . '</b></span></a></li>';
@@ -140,6 +142,7 @@
                                         }
                                     }
                                 } else {
+                                   
                                     if ($key_name != 'show_admin_notification') {
 
                                         if (count($key_value) > 3) {
