@@ -159,11 +159,20 @@ if(! ini_get('date.timezone')){
 </table>  
         <?php
                         for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
+                            if ($x == $coreuser2->current){
                             ?>
                             <a href="index?page=<?= $x; ?>#Page"><?php 
                              
-                             echo "<b>$x </b>&nbsp;"; ?></a>
+                             echo "<font color=red><b>$x </b></font>&nbsp;"; ?></a>
                                 
                             <?php
 }                    
+else{
+?>
+  <a href="index?page=<?= $x; ?>#Page"><?php 
+                             
+                             echo "$x &nbsp;"; ?></a>
+<?php
+}
+                        }
                     ?>

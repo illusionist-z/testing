@@ -112,14 +112,24 @@ use Phalcon\Filter;
     </tr>
 </tfoot>
 </table>  
+ 
 
-       <?php
+<?php
                         for ($x = 1; $x <= $coreuser->total_pages; $x++) {
+                            if ($x == $coreuser->current){
                             ?>
-                            <a href="index?page1=<?= $x; ?>#User"><?php 
+                            <a href="index?page1=<?= $x; ?>#Page"><?php 
                              
-                             echo "<b>$x </b>&nbsp;"; ?></a>
+                             echo "<font color=red><b>$x </b></font>&nbsp;"; ?></a>
                                 
                             <?php
 }                    
+else{
+?>
+  <a href="index?page1=<?= $x; ?>#User"><?php 
+                             
+                             echo "$x &nbsp;"; ?></a>
+<?php
+}
+                        }
                     ?>
