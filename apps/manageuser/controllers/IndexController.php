@@ -91,7 +91,7 @@ class IndexController extends ControllerBase {
                 $edit[1]["ssn"] = $t->_("ssn_no");
                 $edit[1]['bank'] = $t->_("bank");
                 $edit[1]["name"] = $t->_("name");
-                $edit[1]["fullname"] = $t->_("username");
+                $edit[1]["username"] = $t->_("username");
                 $edit[1]["pass"] = $t->_("password");
                 $edit[1]["confirm"] = $t->_("confirm_pass");
                 $edit[1]["dept"] = $t->_("dept");
