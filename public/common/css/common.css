@@ -793,8 +793,8 @@ hr{
     background: url("../img/main.png")  -190px -115px no-repeat  ;
     padding: 6px 10px 20px 15px;
 }
-#navicon7{
-    background: url("../img/main.png")  -451px -140px no-repeat  ;
+#navicon7{/*setting*/
+    background:url("../img/main.png") -430px 4px no-repeat;
     padding: 6px 10px 20px 15px;
 }
 #navicon3{/*manage user*/
