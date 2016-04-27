@@ -28,7 +28,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
 <section class="content" style="height:auto">
     <div class="row">
         <div class="col-md-12"><!--start add user form--->
-            <div class="top-row"><a href="../../attendancelist/user/attendancelist" ><?php echo Tag::image(array('common/img/student_id.png', 'width' => 27)) ?> <font style="color:blue;"><?= $t->_("attendance"); ?> : </font><?php echo $numatt; ?></a></div>
+            <div class="top-row"><a href="../../attendancelist/user/attendancelist" ><?php echo Tag::image(array('../../common/img/user_male_delete3.png', 'width' => 27)) ?> <font style="color:blue;"><?= $t->_("attendance"); ?> : </font><?php echo $numatt; ?></a></div>
             <div class="top-row"><a href="../../leavedays/user/leavelist" ><?php echo Tag::image(array('common/img/leave.jpg', 'width' => 30)) ?> <font style="color:red;"><?= $t->_("leaveday"); ?> : <?php echo $numleaves; ?> </font></a></div>
             <div id="form_div">
 
