@@ -29,7 +29,7 @@
   .link{display: none;}
   tr.page-break  { display: block; page-break-after: always; }
 }
-//div.page { page-break-after: always }
+.page { page-break-after: always }
 #doc{
     float: right;
     padding: 15px;
