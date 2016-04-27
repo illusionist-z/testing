@@ -247,22 +247,17 @@ class LeaveIndexController extends Controllers\IndexController {
 
     public function ltyaddAction() {
         $this->initialize();
-
-
         $data[1]['addleavetype'] = _("addleavetype");
         $data[1]['leave_category'] = _("leave_category");
         $data[1]['yes'] = _("yes");
         $data[1]['no'] = _("cancel");
         $data[1]['enterltp'] = _("enterltp");
-
-
         return $data;
     }
 
     public function ltypediaAction() {
         $this->initialize();
         $id = $this->id;
-
         $LeaveCategories = new LeaveCategories();
         $data[0] = $LeaveCategories->getListTypeData($id);
         $data[1]['delete_confirm'] = _("deleteleavetype");

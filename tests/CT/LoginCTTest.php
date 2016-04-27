@@ -19,14 +19,16 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
 
     public function testindexAction() {
 
-        $login_params = array('company_id' => 'gnext', "member_login_name" => "admin", "password" => "admin");
+        $login_params = array('company_id' => 'gnext', 
+            "member_login_name" => "admin", "password" => "admin");
         $controller = new LoginControllerTest();
         $controller->setparam($login_params);
         $this->assertTrue($controller->indexAction());
     }
 
     public function testfailerAction() {
-        $wrong_params = array('company_id' => 'gnext', "member_login_name" => "merry", "password" => "admin");
+        $wrong_params = array('company_id' => 'gnext',
+            "member_login_name" => "merry", "password" => "admin");
         $test = new AuthIndexController();
         $test->setparam($wrong_params);
         $result = $test->failerAction(1);
@@ -37,14 +39,16 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
     public function testfailerUserAction() {
         $timestamp = (date("Y-m-d H:i:s"));
         $_SESSION['startTime'] = $timestamp;
-        $wrong_params = array('company_id' => 'gnext', "member_login_name" => "malkhin", "password" => "balh");
+        $wrong_params = array('company_id' => 'gnext', 
+            "member_login_name" => "malkhin", "password" => "balh");
         $test = new AuthIndexController();
         $test->setparam($wrong_params);
         $this->assertTrue($test->failerUserAction());
     }
 
     public function testsaltsForGetAction() {
-        $wrong_params = array('company_id' => 'gnext', "member_login_name" => "admin", "password" => "admins");
+        $wrong_params = array('company_id' => 'gnext',
+            "member_login_name" => "admin", "password" => "admins");
         $test = new AuthIndexController();
         $test->setparam($wrong_params);
         $this->assertTrue($test->saltsForGetAction());
