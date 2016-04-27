@@ -9,6 +9,7 @@
     }
 </script>
 <?php
+ 
 foreach ($this->session->auth as $key_name => $key_value) {
     if ($key_name == 'user_dashboard') {
         $this->view->disable();
