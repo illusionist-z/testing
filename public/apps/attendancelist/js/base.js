@@ -133,7 +133,7 @@ var Attendance = {
       monthlylist :function (pg){
             var yy = $('#year').val(),
              mm = $('#month').val(),
-             name = $('#username').val(),pg =( pg === "undefined" ? 0 : pg);
+             name = $('#username').val(),pg =( typeof pg === "undefined" ? 0 : pg);
        //set empty
         $('table.listtbl tbody').empty(), $('tfoot').empty(),$('ul.pagination').empty();        
         if ("" === yy && "" === mm && ( "" === name ||  !isValid(name))) {
