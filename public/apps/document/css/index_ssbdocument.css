@@ -27,8 +27,8 @@
   body *{ visibility: hidden; }
   .printable *{ visibility: visible;}
   .link{display: none;}
-  tr.page-break  { display: block; page-break-before: always; }
 }
+
 .page { page-break-after: always }
 #doc{
     float: right;

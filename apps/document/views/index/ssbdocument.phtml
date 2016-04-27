@@ -3,7 +3,6 @@
 <!-- Main content -->
 
 <?php
-
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
@@ -15,7 +14,6 @@ foreach ($salary_info as $value) {
    $dateObj   = DateTime::createFromFormat('!m', $data[1]);
    $monthName = $dateObj->format('F'); 
 }
-
 ?>
 <section class="content">
     <div class="row"><!-- for search form-->
@@ -41,7 +39,6 @@ foreach ($salary_info as $value) {
                         </div>
                     </div>
                 </div>
-
                 <table border="1px;" class="tbl-tax">
                     <thead>
                         <tr>
@@ -67,7 +64,6 @@ foreach ($salary_info as $value) {
                                 က်န္းမာေရးႏွင္္႔လူမႈေရး<br>
                                 ေစာင္႔ေရွာက္မႈစနစ္
                             </td>
-
                             <td>
                                 Employment Injury Benefit Insurance System
                             </td>
@@ -75,13 +71,11 @@ foreach ($salary_info as $value) {
                                 Total<br>
                                 စုုစုုေပါင္း
                             </td>
-
                             <td rowspan="2">Remark
                                 <br> မွတ္ခ်က္
                             </td>
                         </tr>
                         <tr>
-
                             <td>
                                 Employer<br>
                                 အလုုပ္ရွင္
@@ -94,7 +88,6 @@ foreach ($salary_info as $value) {
                                 Employer<br>
                                 အလုုပ္ရွင္
                             </td>
-
                             <td>
                                 Employer<br>
                                 အလုုပ္ရွင္  ၃%
@@ -107,7 +100,6 @@ foreach ($salary_info as $value) {
                                 Total<br>
                                 စုုစုုေပါင္း ၅%
                             </td>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -174,15 +166,15 @@ foreach ($salary_info as $value) {
                                 </tr>
                                 <?php
                                 $no++;
-                                $pbreak++; 
-                               
-                                if($pbreak == $b){
+//                                $pbreak++; 
+//                               
+//                                if($pbreak == $b){
                                 ?>
-                                <tr class="page-break">
-                                </tr>
+<!--                                <tr class="page-break">
+                                </tr>-->
                                 <?php
-                                $b = $b+10;
-                                }
+//                                $b = $b+10;
+//                                }
                             }
                             ?>
                                 
