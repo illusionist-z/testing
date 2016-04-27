@@ -28,7 +28,7 @@
   .printable *{ visibility: visible;}
   .link{display: none;}
 }
-div.page { page-break-after: always }
+.page { page-break-after: always }
 #doc{
     float: right;
     padding: 15px;
