@@ -34,6 +34,7 @@ class TaxsDeduction extends Models\SalaryTaxsDeduction {
 
     public function getdectdata($id) {
         try {
+             $this->db = $this->getDI()->getShared("db");
             $data = $this->db->query("SELECT * FROM salary_taxs_deduction WHERE deduce_id='" . $id . "' ");
             $result = $data->fetchall();
         } catch (Exception $exc) {

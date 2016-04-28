@@ -20,44 +20,28 @@ class ManageIndexController extends Controllers\IndexController {
 
     public $user;
     public $data;
-    public $name;
-    public $dept;
-    public $position;
-    public $email;
-    public $pno;
-    public $login_params = array('company_id' => 'gnext', "member_login_name" => "admin", "password" => "admin");
+    public $meminfo;
+    public $login_params = array('company_id' => 'gnext',
+        "member_login_name" => "admin", "password" => "admin");
+
+    public function setMeminfo($meminfo) {
+
+        $this->meminfo = $meminfo;
+    }
 
     public function setdata($data) {
         $this->data = $data;
     }
 
-    public function setname($name) {
-        $this->name = $name;
-    }
-
-    public function setdept($dept) {
-        $this->dept = $dept;
-    }
-
-    public function setposition($position) {
-        $this->position = $position;
-    }
-
-    public function setemail($email) {
-        $this->$email = $email;
-    }
-
-    public function setpno($pno) {
-        $this->pno = $pno;
-    }
-
     public function initialize() {
         $login = new LoginForAll();
         $login->loginFirst();
+        $this->user = new User();
         $this->permission = 1;
     }
 
     public function manageuserAction() {
+        $this->initialize();
         $type = $this->data;
         $edit = array();
         if ($type == 'new') {
@@ -91,7 +75,6 @@ class ManageIndexController extends Controllers\IndexController {
             $edit[1]["placeholder10"] = "placeholder10";
             $edit[1]["placeholder11"] = "placeholder11";
             $edit[1]["placeholder12"] = "placeholder12";
-            return true;
         } else {
             $res = $this->user->userEdit($type);
             $edit[0] = $res[0];
@@ -110,9 +93,8 @@ class ManageIndexController extends Controllers\IndexController {
             $edit[1]["btn_edit"] = "btn_edit";
             $edit[1]["btn_delete"] = "btn_delete";
             $edit[1]["btn_cancel"] = "btn_cancel";
-            echo json_encode($edit);
         }
-        $this->view->disable();
+        return true;
     }
 
     //put your code here
@@ -144,36 +126,39 @@ class ManageIndexController extends Controllers\IndexController {
         $this->initialize();
         $UserList = new Db\CoreMember();
         $Username = $UserList->autoUsername();
-        return true;
-    }
 
-    public function deleteuserAction() {
-        $this->initialize();
-        $id = $this->data;
-        $this->user->userDelete($id);
         return true;
     }
 
     public function userdataeditAction() {
         $this->initialize();
         if ($this->permission == 1) {
+            $UserList = new Db\CoreMember();
+            $Username = $UserList->autoUsername();
+            $id = $Username[18]['member_id'];
             $cond = array();
-            $cond['id'] = $this->data;
-            $cond['bank'] = "99930799932389901";
-            $cond['name'] = $this->name;
-            $cond['full_name'] = "Khine Thazin Phyo";
-            $cond['dept'] = $this->dept;
-            $cond['position'] = $this->position;
-            $cond['email'] = "bndream92@gmail.com";
-            $cond['pno'] = $this->pno;
-            $cond['address'] = "yangon";
-            $cond['work_sdate'] = "2015-11-02";
-            var_dump($cond);
+            $cond['id'] = $id;
+            $cond['bank'] = $this->meminfo['bank'];
+            $cond['name'] = $this->meminfo['uname'];
+            $cond['full_name'] = $this->meminfo['full_name'];
+            $cond['dept'] = $this->meminfo['dept'];
+            $cond['position'] = $this->meminfo['position'];
+            $cond['email'] = $this->meminfo['email'];
+            $cond['pno'] = $this->meminfo['phno'];
+            $cond['address'] = $this->meminfo['address'];
+            $cond['work_sdate'] = $this->meminfo['work_sdate'];
             $result = $this->user->editByCond($cond);
             return true;
-        } else {
-            echo 'Page Not Found';
         }
+    }
+
+    public function deleteuserAction() {
+        $this->initialize();
+        $UserList = new Db\CoreMember();
+        $Username = $UserList->autoUsername();
+        $id = $Username[18]['member_id'];
+        $this->user->userDelete($id);
+        return true;
     }
 
     public function getpermitAction() {

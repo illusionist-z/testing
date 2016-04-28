@@ -90,15 +90,25 @@ use Phalcon\Filter;
     <tr>
         <td colspan="4">
             <ul class="pagination" style="margin-left:15px;">
+                 <li><a href="index">First</a></li>
+                <li><a href="index?page1=<?= $coreuser->last; ?>">Last</a></li>
+                <li>
                 <?php
                 if ($coreuser->last !== 1) {
                     for ($x = 1; $x <= $coreuser->total_pages; $x++) {
-                        ?>
-                <a href="index?page1=<?= $x; ?>" class="button"><?php echo "<b>$x</b>"; ?></a>
+                         if (($coreuser->current  + 3 ) >= $x && ($coreuser->current -  3 ) <= $x){
+                        ?>  
+                <a href="index?page1=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
                         <?php
                     }
+                    }
+                    ?>
+                <li><span><?php echo "You are in page ", $coreuser->current, " of ", $coreuser->total_pages; ?></span></li>
+                <?php
+                    
                 }
                 ?>
+                </li>
             </ul>
         </td>
     </tr>

@@ -32,7 +32,8 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
 
     public function testAddPageRuleAction() {
         $setting = new SettingIndexController();
-        $code = array("permission_code" => "newpage", "page_rule_group" => "1_ADMIN");
+        $code = array("permission_code" => "newpage", 
+            "page_rule_group" => "1_ADMIN");
         $setting->setGroupCode($code);
         $res = $setting->AddPageRuleAction();
         $this->assertEquals($code['permission_code'], $res[1]);
@@ -52,10 +53,12 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
 
     public function testUser2RuleSettingAction() {
         $setting = new SettingIndexController();
-        $code = array("permission_code" => "newpage", "page_rule_group" => "1_ADMIN");
+        $code = array("permission_code" => "newpage", 
+            "page_rule_group" => "1_ADMIN");
         $setting->setGroupCode($code);
         $res = $setting->AddPageRuleAction();
-        $code2 = array("idpage" => $res[2], "permission_code" => "admin_home", "page_rule_group" => "1");
+        $code2 = array("idpage" => $res[2], "permission_code" => "admin_home",
+            "page_rule_group" => "1");
         $setting->setGroupCode($code2);
         $this->assertTrue($setting->User2RuleSettingAction());
     }

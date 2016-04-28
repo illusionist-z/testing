@@ -27,6 +27,11 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * initialize controller
      */
     public function initialize() {
+        
+/* set the cache expire to 30 minutes */
+session_cache_expire(30);
+$cache_expire = session_cache_expire();
+
         $this->view->baseUri = $this->url->getBaseUri();
     }
 
@@ -35,6 +40,9 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * @return int
      */
     public function setPermission($actname) {
+        
+  
+
         $aryModules = \Library\Core\Module::get();
         $allow = array();
         $permitted = 0;
