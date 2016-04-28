@@ -273,7 +273,7 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * Js and Css for Help
      */
     public function setHelpJsAndCss() {        
-        $this->assets->addCss('common/css/css/style.css');
+//        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('apps/help/css/base.css');
         $this->assets->addJs('apps/help/js/base.js');
     }

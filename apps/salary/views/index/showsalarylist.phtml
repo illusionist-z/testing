@@ -80,12 +80,12 @@ use Phalcon\Filter;
                         </div>
                     </div>
                     <div class="search-btn-box"><!--search btn-->
-                        <div>
-                            <a href="#" class="button form-control-static" id="search_salary"><?= $t->_("search"); ?></a>
-                            <a href="#" class="button export form-control-static" id="exbg"><img id="exicon"><?= $t->_("Export"); ?></a>
-                            <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a><br>
-
-                        </div>
+                       
+                            <a href="#" class="button form-control-static" id="search_salary" ><?= $t->_("search"); ?></a>
+<!--                            <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="search_salary">-->
+                            <a href="#" class="buttonn form-control-static export" id="exbg"><img id="exicon"><?= $t->_("Export"); ?></a>
+                            <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a>
+                        
                     </div><!--search btn-->
                 </form>
             </div>
@@ -132,8 +132,8 @@ use Phalcon\Filter;
                             $a = "style='background: #E2E2E2'";
                         }
                         ?>
-                        <tr>
-                            <td  <?php echo $a; ?>  ><input type="checkbox" class='case' name='chk[]'  value="<?= $getsalarylist['member_id']; ?>" ></td>
+                        <tr id="clicktd">
+                            <td  <?php echo $a; ?>  ><input type="checkbox" id="getcheck" class='case' name='chk[]'  value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td <?php echo $a; ?>><?php echo $filter->sanitize($getsalarylist['member_login_name'], "string"); ?></td>
                             <td <?php echo $a; ?>><?php echo $filter->sanitize($getsalarylist['member_dept_name'], "string") ?></td>
                             <td <?php echo $a; ?>><?php echo $filter->sanitize($getsalarylist['position'], "string") ?></td>
@@ -153,7 +153,7 @@ use Phalcon\Filter;
                                 <input type="hidden" value="<?php echo $month; ?>" name="month" id="month">
                                 <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">
                             </td>
-                            <td <?php echo $a; ?>><a href="#" class="btn_detail" title="<?= $t->_("Detail"); ?>" id="detail_img" style="margin-top: 13px;"></a></td>
+                            <td <?php echo $a; ?>><a href="#" class="btn_detail" title="<?= $t->_("Detail"); ?>" id="detail_img"></a></td>
                         </tr>
                         <?php
                         $i++;
