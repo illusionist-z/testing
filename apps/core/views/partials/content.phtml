@@ -1,13 +1,16 @@
      <!-- Content Wrapper. Contains page content -->
+     
         <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
 
             <?php
+            error_reporting(0);
             $j = 0;
             foreach ($this->session->auth as $key_name => $key_value) {
                 
                 $top = explode(" ", $key_value["link0"]);
                 if(!isset($top[1])){
                 $top[1]="";}
+
                 if (strtolower($top[0] . $top[1]) == $module_name) {
                     if (count($key_value) > 2) {
                         echo '<div class="row"><div class="col-sm-2 link">';
