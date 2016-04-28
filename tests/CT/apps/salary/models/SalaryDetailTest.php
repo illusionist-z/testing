@@ -208,12 +208,9 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
             $this->db = $this->getDI()->getShared("db");
             $sql = "select * from allowances where allowance_id in (
 select allowance_id from salary_master_allowance where member_id='" . $member_id . "')";
-            //echo $sql;
+
             $result = $this->db->query($sql);
             $row = $result->fetchall();
-            //print_r($row);
-            //exit;
-//            var_dump($row);exit();
         } catch (Exception $e) {
             echo $e;
         }
@@ -599,11 +596,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             }
             $select .= " ORDER BY sm.created_dt desc";
             $result = $this->modelsManager->executeQuery($select);
-            $page = $this->base->pagination($result, $param["page"]);
         } catch (Exception $ex) {
             echo $ex;
         }
-        return $page;
+        return $result;
     }
 
     /**
@@ -710,10 +706,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     public function colorprint() {
         $this->db = $this->getDI()->getShared("db");
         $query = "SELECT * FROM salary_detail where print_id = 1 and deleted_flag=0";
-        // print_r($query);exit;
+
         $user = $this->db->query($query);
         $users = $user->fetchAll();
-        //var_dump($users);exit;
+
         return $users;
     }
 

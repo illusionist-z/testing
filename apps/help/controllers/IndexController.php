@@ -2,8 +2,6 @@
 
 namespace salts\Help\Controllers;
 
-use salts\Core\Models\Db\CoreMember;
-
 class IndexController extends ControllerBase {
 
     public $Noti;
@@ -13,7 +11,6 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->setHelpJsAndCss();
         $this->view->t = $this->_getTranslation();
-        //$Admin = new CoreMember();
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
 

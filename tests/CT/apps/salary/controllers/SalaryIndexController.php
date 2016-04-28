@@ -205,7 +205,7 @@ class SalaryIndexController extends Controllers\IndexController {
             $year = "2016";
             $SalaryDetail = new SalaryDetailTest();
             $get_salary_detail = $SalaryDetail->getPayslip($member_id, $month, $year);
-            $get_allowance = $SalaryDetail->getAllowanceByMemberid($member_id);           
+            $get_allowance = $SalaryDetail->getAllowanceByMemberid($member_id);
             return true;
         }
     }
@@ -596,13 +596,15 @@ class SalaryIndexController extends Controllers\IndexController {
     public function editsalaryAction() {
         $this->initialize();
         if ($this->permission == 1) {
-            $member_id = $this->member_id;
+            $UserList = new Db\CoreMember();
+            $username = $UserList->autoUsername();            
+            $member_id = $username[18]["member_id"];             
             $SalaryMaster = new Master();
-            $edit_salary = $SalaryMaster->editSalary($member_id);
-
+            $edit_salary = $SalaryMaster->editSalary($member_id);            
             $resultsalary['data'] = $edit_salary;
 
             $PermitAllowance = new SalaryDetailTest();
+            
             $resultsalary['permit_allowance'] = $PermitAllowance->getAllowanceByMemberid($edit_salary[0]['member_id']);
 
             $PermitDedution = new SalaryMemberTaxDeduce();
@@ -671,7 +673,7 @@ class SalaryIndexController extends Controllers\IndexController {
 
     public function salaryusernameAction() {
         $UserList = new Db\CoreMember();
-        $Username = $UserList->autoUsername();       
+        $Username = $UserList->autoUsername();
         return true;
     }
 
