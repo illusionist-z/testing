@@ -98,7 +98,7 @@ use Phalcon\Filter;
                     for ($x = 1; $x <= $coreuser->total_pages; $x++) {
                          if (($coreuser->current  + 3 ) >= $x && ($coreuser->current -  3 ) <= $x){
                         ?>  
-                <a href="index?page1=<?= $x; ?>" class="button"><?php echo "<b>$x</b>"; ?></a>
+                <a href="index?page1=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
                         <?php
                     }
                     }
