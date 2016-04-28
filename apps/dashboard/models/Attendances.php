@@ -33,6 +33,7 @@ class Attendances extends Model {
         $mydate = date("Y-m-d H:i:s");
         $today = date("Y:m:d");
         $att = Attendances::findFirst("att_date = '$today' AND member_id='$id' AND status = 1");
+        
         /*Condition : Already Checked in or not*/
         if ($att === FALSE) {
             //$status = " Already Checked in ";
@@ -53,12 +54,12 @@ class Attendances extends Model {
                     $Attendances->noti_id = $Noti_id;
                     $Attendances->status = ($hr > 12 ? 3 : 0 );
                     $Attendances->save();
-                } else {
+                } else { 
                     $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
                     location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = "
                             .($hour > 12 ? 3 : 0)." where att_date ='" . $today . "' AND member_id ='" . $id . "'");
                 }
-                if ($note != NULL) {
+                if ($note != NULL) { 
                     $Noti = new CoreNotification();
                     $Noti->noti_creator_id = $creator_id;$Noti->module_name = 'attendances';
                     $Noti->noti_id = $Noti_id;$Noti->noti_status = 0;$Noti->save();
