@@ -131,6 +131,7 @@ class LeaveIndexController extends Controllers\IndexController {
                 $json[$message->getField()] = $message->getMessage();
             }
             $json['result'] = "error";
+           
         } else {
             $creator_id = $this->session->user['member_id'];
             $uname = $this->info['uname'];
@@ -139,6 +140,7 @@ class LeaveIndexController extends Controllers\IndexController {
             $type = $this->info['type'];
             $desc = $this->info['desc'];
             $json = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
+            
         }
 
         return $json;
@@ -247,22 +249,17 @@ class LeaveIndexController extends Controllers\IndexController {
 
     public function ltyaddAction() {
         $this->initialize();
-
-
         $data[1]['addleavetype'] = _("addleavetype");
         $data[1]['leave_category'] = _("leave_category");
         $data[1]['yes'] = _("yes");
         $data[1]['no'] = _("cancel");
         $data[1]['enterltp'] = _("enterltp");
-
-
         return $data;
     }
 
     public function ltypediaAction() {
         $this->initialize();
         $id = $this->id;
-
         $LeaveCategories = new LeaveCategories();
         $data[0] = $LeaveCategories->getListTypeData($id);
         $data[1]['delete_confirm'] = _("deleteleavetype");

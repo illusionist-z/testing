@@ -36,28 +36,10 @@ class ManageUserCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($test->manageuserAction());
     }
 
-//fixing
-//    public function testUserDataEditAction() {
-//        $test = new ManageIndexController();
-//        $test->setdata('90e73464-c899-11e5-9e13-4c3488333b45');
-//        $test->setname("Khine Thazin Pyoe");
-//        $test->setdept('PHP');
-//        $test->setposition("Developer");
-//        $test->setemail("bndream92@gmail.com");
-//        $test->setpno("01572570");
-//        $this->assertTrue($test->userdataeditAction());
-//    }
-
     public function testgetpermitAction() {
         $permit = new ManageIndexController();
         $row = $permit->getpermitAction();
         $this->assertContains(array("group_id" => 4, "name_of_group" => "USER"), $row->toArray());
-    }
-
-    public function testcheckuser() {
-        $cormember = new CoreMemTestController();
-        $result = $cormember->checkuser("Ei Thandar Aung");
-        $this->assertEquals("Name already taken ! Choose Other Please!", $result['uname']);
     }
 
     public function testcheckvalidation() {
@@ -110,11 +92,26 @@ class ManageUserCTTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($mesg, $msg['result']);
     }
 
-//fixing
-//     public function testDeleteUserAction() {
-//        $test = new ManageIndexController();
-//        $data = "90e73464-c899-11e5-9e13-4c3488333b45";
-//        $test->setdata($data);
-//        $this->assertTrue($test->deleteuserAction());
-//    }
+    public function testcheckuser() {
+        $cormember = new CoreMemTestController();
+        $result = $cormember->checkuser("John");
+        $this->assertEquals("Name already taken ! Choose Other Please!", $result['uname']);
+    }
+
+    public function testUserDataEditAction() {
+        $test = new ManageIndexController();
+        $meminfo = array("uname" => 'Zin', "work_sdate" => '2016-04-01',
+            "dept" => 'Android', "position" => "SE",
+            "email" => "zin@gmail.com", "phno" => "01572670",
+            "full_name" => "Zin Phyo",
+            "bank" => "333307999978901", "address" => "Yangon");
+        $test->setMeminfo($meminfo);
+        $this->assertTrue($test->userdataeditAction());
+    }
+
+    public function testDeleteUserAction() {
+        $test = new ManageIndexController();
+        $this->assertTrue($test->deleteuserAction());
+    }
+
 }

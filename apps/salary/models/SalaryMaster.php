@@ -207,11 +207,14 @@ class SalaryMaster extends Model {
                     $salary_starting_date = $start_date[0] . '-' . $start_date[1];
                     $salary_starting_month = $start_date[1];
                     
+                    echo "///////".$working_start_date[1].'///////////';
                     //calculate date difference between starting date and budget end year
                     $date_diff = $this->dateDifference($salary_start_date, $budget_endyear);
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
                     $date_to_calculate = $date_diff;
 
+                    echo $value[0]['basic_salary'] . '<br>';
+                    echo "salary starting date " . $salary_start_date . '<br>';
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the basic salary from salary master
@@ -223,6 +226,7 @@ class SalaryMaster extends Model {
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
                         $date_to_calculate = $date_diff + $SD['count_pay'];
+                        echo "basic salary in salary detail " . $basic_salary_annual;
                         
                         if($working_start_date[1] == '03')
                             {
@@ -240,9 +244,11 @@ class SalaryMaster extends Model {
                             
                             }
                     }
+                    echo "OLD ALLOWANCE" . $SD['allowance_amount'] . '<br>';
                     $Allowanceresult = $this->getAllowances($value[0]['member_id'], $basic_salary_annual, $date_diff, $old_allowance, $SM['status'], $SD['allowance_amount'], $SD['count_pay']);
 
                     $basic_salary_allowance_annual = $Allowanceresult['basic_salary_annual'];
+                    echo "bbbbbbbb".$basic_salary_allowance_annual."//";
                     //calculating of overtime 
                     $OTResult = $this->calculateOvertimeAnnual($value[0]['member_id'], $SD['total_overtime'], $salary_starting_date, $budget_endyear, $date_diff, $SD['count_pay'], $latest_otpay['overtime']);
 
@@ -256,6 +262,7 @@ class SalaryMaster extends Model {
                     //Get the data of leave setting
                     $leavesetting = $this->getleavesetting();
                     $thismonth_leave= $this->getLeave($salary_starting_date,$value[0]['member_id']);
+                    echo "countabsent".$absent['countAbsent'].$value[0]['member_id'];
                     //calculate absent deduce
                     $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $thismonth_leave['countAbsent'], $value[0]['basic_salary']);
                     $absent_dedution = $countabsent;
@@ -263,6 +270,7 @@ class SalaryMaster extends Model {
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
                     $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
+                    echo "SALARY ///" . $basic_salary_allowance_annual;
                     if ($flg != 1) {
                         //calculate ssc pay amount to deduce
                         if ($value[0]['basic_salary'] > 300000) {
@@ -277,15 +285,20 @@ class SalaryMaster extends Model {
                     $deduce_amount = $this->getreduce($value[0]['member_id']);
                     //print_r($deduce_amount).'<br>';
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
+                    echo "Total deduction is " . $basic_deduction;
 
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
+
+                    echo "The Income tax  is " . $income_tax . '<br>';
                    
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
                    
                     $tax_foreach_month = $taxs['tax_result'];
                     if ($flg == 1) {
+                        echo "aaa..".$taxs['total_tax_annual'];
                         $tax_foreach_month = $taxs['total_tax_annual'] - $total_income_tax;
+                        echo "For March <br>".$tax_foreach_month;
                     }
 
                     $final_result[] = array('basic_salary' => $value[0]['basic_salary'],
@@ -316,7 +329,7 @@ class SalaryMaster extends Model {
         } catch (Exception $exc) {
             echo $exc;
         }
-       // print_r($final_result);exit;
+        //print_r($final_result);exit;
         return $final_result;
     }
 
@@ -457,6 +470,7 @@ class SalaryMaster extends Model {
      */
     function checkAbsent($member_id, $budget_startyear) {
         try {
+            echo ">>>>>>>>>>>>>>".$budget_startyear;
             $workingnextyr = date('Y-m-d', strtotime("+1 year", strtotime($budget_startyear)));
             $absent_deduce = "";
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
@@ -597,18 +611,18 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $new_allowance = $allowance_master * $date_diff;
                 
                 $total_allowance = $new_allowance + $old_allowance;
-                
+                echo "NEW all  " . $new_allowance;
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
-                
+                echo 'Basic salary annual with allowance ' . $basic_salary_annual;
                 
             } else {
                 
                 $allowance_master = 0;
                 $new_allowance = $all_amount * $date_diff;
                 $total_allowance = $new_allowance + $old_allowance;
-                
+                echo "ALLOWANCE AMOUNT ".$new_allowance;
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
-                
+                echo 'Basic salary annual with allowance two ' . $basic_salary_annual . 'Old ' . $old_allowance * $count_pay;
             }
             $data['basic_salary_annual'] = $basic_salary_annual;
             $data['allowance'] = $allowance_master;

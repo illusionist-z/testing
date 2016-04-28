@@ -10,9 +10,9 @@ $(document).ready(function(){
 //                $("#maindashboard").css("color","white");               
             });
            $('.linkhover').hover(function(){
-               $('.collapse-wrapper').animate({'background-color':'#aaaecf'},"slow");
+               $('.helpcenter').animate({'background-color':'#aaaecf'},"slow");
                $(this).mouseleave(function(){
-                   $('.collapse-wrapper').animate({'background-color':'#ecf0f5'},"fast");
+                   $('.helpcenter').animate({'background-color':'#ecf0f5'},"fast");
                });
            });
            
