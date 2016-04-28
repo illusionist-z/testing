@@ -14,6 +14,7 @@
 .tbl-tax{
     width: 100%;
 }
+
 .tbl-tax td{
     padding: 10px;
 }
@@ -23,13 +24,15 @@
   float: right;
 }
 @media print{
-      thead {display: table-header-group;}
+     
   body *{ visibility: hidden; }
   .printable *{ visibility: visible;}
   .link{display: none;}
-  tr.page-break  { display: block; page-break-after: always; }
+   
 }
-.page { page-break-after: always }
+.page {  
+      page-break-before: always;
+      page-break-inside: avoid; }
 #doc{
     float: right;
     padding: 15px;
