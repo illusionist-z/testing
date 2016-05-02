@@ -207,14 +207,14 @@ class SalaryMaster extends Model {
                     $salary_starting_date = $start_date[0] . '-' . $start_date[1];
                     $salary_starting_month = $start_date[1];
                     
-                    echo "///////".$working_start_date[1].'///////////';
+                    echo "///////".$budget_endyear.'///////////';
                     //calculate date difference between starting date and budget end year
                     $date_diff = $this->dateDifference($salary_start_date, $budget_endyear);
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
                     $date_to_calculate = $date_diff;
 
                     echo $value[0]['basic_salary'] . '<br>';
-                    echo "salary starting date " . $salary_start_date . '<br>';
+                    echo "salary starting date " . $date_diff . '<br>';
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the basic salary from salary master
@@ -246,9 +246,9 @@ class SalaryMaster extends Model {
                     }
                     echo "OLD ALLOWANCE" . $SD['allowance_amount'] . '<br>';
                     $Allowanceresult = $this->getAllowances($value[0]['member_id'], $basic_salary_annual, $date_diff, $old_allowance, $SM['status'], $SD['allowance_amount'], $SD['count_pay']);
-
+                    
                     $basic_salary_allowance_annual = $Allowanceresult['basic_salary_annual'];
-                    echo "bbbbbbbb".$basic_salary_allowance_annual."//";
+                    echo "ggggggggg".$basic_salary_allowance_annual."//";
                     //calculating of overtime 
                     $OTResult = $this->calculateOvertimeAnnual($value[0]['member_id'], $SD['total_overtime'], $salary_starting_date, $budget_endyear, $date_diff, $SD['count_pay'], $latest_otpay['overtime']);
 
@@ -470,7 +470,6 @@ class SalaryMaster extends Model {
      */
     function checkAbsent($member_id, $budget_startyear) {
         try {
-            echo ">>>>>>>>>>>>>>".$budget_startyear;
             $workingnextyr = date('Y-m-d', strtotime("+1 year", strtotime($budget_startyear)));
             $absent_deduce = "";
             $sql = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
@@ -620,7 +619,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $allowance_master = 0;
                 $new_allowance = $all_amount * $date_diff;
                 $total_allowance = $new_allowance + $old_allowance;
-                echo "ALLOWANCE AMOUNT ".$new_allowance;
+                echo "ALLOWANCE AMOUNT adadfadf".$old_allowance;
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
                 echo 'Basic salary annual with allowance two ' . $basic_salary_annual . 'Old ' . $old_allowance * $count_pay;
             }
@@ -639,7 +638,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
                     . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '" . $budget_startyear . "' AND '" . $budget_endyear . "') and member_id='" . $member_id .
                     "' order by created_dt desc limit 1";
-            
+            echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {
