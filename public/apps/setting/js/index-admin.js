@@ -85,7 +85,7 @@ Setting.PageRule = {
                         var bar =  '<li><a href="index">First</a></li><li><a href="index?page=' + d[1].last + '">Last</a></li>';
                         for (var x = 1; x <= d[1].total_pages; x++) {
                             if ((d[1].current  + 3 ) >= x && (d[1].current  -  3 ) <= x){
-                           bar += '<li><a href="index?page='+x+'" class="button"><b>'+x+'</b></a></li>';
+                           bar += '<li><a href="index?page='+x+'" ><b>'+x+'</b></a></li>';
                              }
                         }
                           var bar2 =  '<li><span>You are in page ' + d[1].current + ' of ' + d[1].total_pages +'</span></li>';
@@ -156,7 +156,7 @@ Setting.UserRule = {
                          
                          for (var x = 1; x <= d[1].total_pages; x++) {
                              if ((d[1].current  + 3 ) >= x && (d[1].current  -  3 ) <= x){
-                           bar += '<li><a href="index?page1='+x+'" class="button"><b>'+x+'</b></a></li>';
+                           bar += '<li><a href="index?page1='+x+'" ><b>'+x+'</b></a></li>';
                              }
                              
                           }

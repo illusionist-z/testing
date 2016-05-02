@@ -277,7 +277,7 @@ class Leaves extends \Library\Core\Models\Base {
             $mth = date('m');
             $row = "select date,start_date,member_login_name,"
                     . "end_date,leave_category,leave_status,leave_days,"
-                    . "leave_description,total_leavedays from core_member"
+                    . "leave_description from core_member"
                     . " left join leaves on "
                     . "core_member.member_id = leaves.member_id"
                     . " where month(leaves.start_date)='" . $mth . "' "
@@ -286,7 +286,7 @@ class Leaves extends \Library\Core\Models\Base {
             //for searching by leave type and month           
             $row = "select date,start_date,member_login_name,end_date,"
                     . "leave_category,leave_status,leave_days,"
-                    . "leave_description,total_leavedays "
+                    . "leave_description "
                     . "from core_member left join leaves on "
                     . "core_member.member_id = leaves.member_id "
                     . "where " . $this->setCondition2($mth, $leave_type)

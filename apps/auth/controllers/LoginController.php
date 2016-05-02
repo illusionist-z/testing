@@ -71,13 +71,13 @@ class LoginController extends ControllerBase {
                 if (0 !== count($chack_user2)) {
                     //$core = new CoreMember();
                     $core2 = $chack_user2[0]->timeflag;
+                  
                     $timestamp = (date("Y-m-d H:i:s"));
                     if ($core2 >= $timestamp) {
                         $this->view->errorMsg = "You've Login To Next. 30 Minutes";
                         // Push Into Database Mamber Log
                         $this->response->redirect('auth/index/failer');
                     } elseif ($core2 <= $timestamp) {
-
                         if ($result) {
                             $ModelPermission = new Models\Permission();
                             $permissions = [];
