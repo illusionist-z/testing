@@ -1,9 +1,8 @@
 
 
 $(document).ready(function () {
-//    var head = $('table thead tr');
-//
-//	  $("tbody tr:nth-child(5n+5)").after(head.clone());
+        var head = $('table thead tr');
+    //$("tbody tr:nth-child(5n+5)").after(head.clone());
     $(".printing").on('click',function(){
         window.print();
     });

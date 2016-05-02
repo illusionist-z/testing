@@ -131,6 +131,7 @@ class LeaveIndexController extends Controllers\IndexController {
                 $json[$message->getField()] = $message->getMessage();
             }
             $json['result'] = "error";
+           
         } else {
             $creator_id = $this->session->user['member_id'];
             $uname = $this->info['uname'];
@@ -139,6 +140,7 @@ class LeaveIndexController extends Controllers\IndexController {
             $type = $this->info['type'];
             $desc = $this->info['desc'];
             $json = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
+            
         }
 
         return $json;
