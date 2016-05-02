@@ -40,9 +40,7 @@ class AttAbsentController extends Controllers\AbsentController {
         $this->initialize();
         if ($this->permission == 1) {
             $Attendance = new Attendance();
-            $message = $Attendance->absent();
-            var_dump($message);
-            exit();
+            $message = $Attendance->absent();           
             echo json_encode($message);
         }
     }
