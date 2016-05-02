@@ -88,7 +88,7 @@ Setting.PageRule = {
                            bar += '<li><a href="index?page='+x+'"><b>'+x+'</b></a></li>';
                              }
                         }
-                          var bar2 =  '<li><span>You are in page ' + d[1].current + ' of ' + d[1].total_pages +'</span></li>';
+                          var bar2 =  '<li><span>You are in page  <font color="red"> ' + d[1].current + ' </font>of ' + d[1].total_pages +'</span></li>';
                    
                     $('#page_role tbody').append(paging);
                     $('#page_role').append(dialog);
@@ -160,7 +160,7 @@ Setting.UserRule = {
                              }
                              
                           }
-                          var bar2 =  '<li><span>You are in page ' + d[1].current + ' of ' + d[1].total_pages +'</span></li>';     
+                          var bar2 =  '<li><span>You are in page  <font color="red"> ' + d[1].current + ' </font>of ' + d[1].total_pages +'</span></li>';     
                           
                     $('#user_role tbody').append(paging);
                     $('#user_role').append(dialog);
