@@ -24,7 +24,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $company = $this->byName('company_id');
         $username = $this->byName('member_login_name');
         $password = $this->byName('password');
-        $company->value('cop1');
+        $company->value('gnext');
         $username->value('admin');
         $password->value('admin');
         $form->submit();
