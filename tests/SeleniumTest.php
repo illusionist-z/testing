@@ -13,7 +13,7 @@ class SeleniumTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->setHost('localhost');
         $this->setPort(4444);              
         $this->setBrowser('firefox');
-        $this->url('http://localhost:4444/wd/hub');        
+          
         $this->setBrowserUrl('http://localhost/testing');
     }
 
