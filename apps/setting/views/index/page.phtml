@@ -145,12 +145,12 @@ if (!ini_get('date.timezone')) {
                     for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
                            if (($coreuser->current  + 3 ) >= $x && ($coreuser->current -  3 ) <= $x){
                         ?>
-                <a href="index?page=<?= $x; ?>" ><?php echo "<b>$x</b>"; ?></a>
+                <a href="index?page=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
                         <?php
                     }
                     }
                       ?>
-                <li><span><?php echo "You are in page ", $coreuser2->current, " of ", $coreuser2->total_pages; ?></span></li>
+                <li><span><?php echo "You are in page <font color='red'> ", $coreuser2->current, "</font> of ", $coreuser2->total_pages; ?></span></li>
                 <?php
                 }
                 ?>

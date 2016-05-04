@@ -87,7 +87,6 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
 
     public function testeditsalaryAction() {
         $salary = new SalaryIndexController();
-        $salary->setmember_id("90e73464-c899-11e5-9e13-4c3488333b45");
         $this->assertTrue($salary->editsalaryAction());
     }
 
@@ -268,7 +267,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
      */
 
     public function testsearchTravelfeesAction() {
-        $data = 1;
+        $data = array("username" => "EiThandarAung", "user_id" => "1fe9f520-c89a-11e5-9e13-4c3488333b45", "travel_fees" => "1");
         $search_travel = new SalarySearchController();
         $search_travel->setparam($data);
         $this->assertTrue($search_travel->searchTravelfeesAction());

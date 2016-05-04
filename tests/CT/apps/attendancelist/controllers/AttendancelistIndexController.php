@@ -101,7 +101,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
             $data[1]['att_time'] = _("att_time");
             $data[1]['save'] = _("save");
             $data[1]['cancel'] = _("cancel");
-            var_dump($data[1]);exit();
+           
             return true;
         }
     }

@@ -72,7 +72,7 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $email_params = 'ktzp27@gmail.com';
         $test = new AuthIndexController();
         $test->setmailParam($email_params);
-        $result = $test->resetPasswordAction();
+        $result = $test->resetPasswordAction();        
         $this->assertEquals($email_params, $result[1]);
     }
 
