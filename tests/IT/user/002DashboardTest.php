@@ -34,8 +34,8 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testMenu() {
         $this->url('index.phtml');
         $form = $this->byId('form_login');
-        $this->byName('company_id')->value('cop1');
-        $this->byName('member_login_name')->value('malkhin');
+        $this->byName('company_id')->value('gnext');
+        $this->byName('member_login_name')->value('eithandaraung');
         $this->byName('password')->value('123');
         $form->submit();
         $this->assertEquals('Dashboard', $this->title());

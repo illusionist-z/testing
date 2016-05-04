@@ -2,7 +2,7 @@
 
 namespace salts\Auth\Controllers;
 
-use salts\Auth\Models;
+use salts\Auth\Models; 
 use Phalcon\Filter;
 
 class IndexController extends ControllerBase {
@@ -42,6 +42,9 @@ class IndexController extends ControllerBase {
         $this->view->errorMsgForgot = 'I forgot my password ?';
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
+
+
+
 
         if (4 > $_SESSION["attempts"]) {
             if ($this->session) {
@@ -282,7 +285,7 @@ class IndexController extends ControllerBase {
         $Insert->token = $token;
         $Insert->save();
         $Find = $Insert::find(array("check_mail = '$getemail'", "order" => "curdate DESC", "limit" => 1));
-       $finded_token = '';
+        $finded_token = '';
         foreach ($Find as $value) {
             $finded_token = $filter->sanitize($value->token, "string");
         }

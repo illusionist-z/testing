@@ -11,12 +11,13 @@ use Phalcon\Mvc\Model;
  **/
 
 class CoreMemberLog extends Model {
-    public function initialize() {
-        parent::onConstruct();
-    }
+   
+    
     public $token;
     public $member_id;
+    public $time;
     public $ip_address;
     public $mac;
+    public $ipv6;
 
 }

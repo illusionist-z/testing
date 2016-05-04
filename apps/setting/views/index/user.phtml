@@ -98,12 +98,12 @@ use Phalcon\Filter;
                     for ($x = 1; $x <= $coreuser->total_pages; $x++) {
                          if (($coreuser->current  + 3 ) >= $x && ($coreuser->current -  3 ) <= $x){
                         ?>  
-                <a href="index?page1=<?= $x; ?>" ><?php echo "<b>$x</b>"; ?></a>
+                <a href="index?page1=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
                         <?php
                     }
                     }
                     ?>
-                <li><span><?php echo "You are in page ", $coreuser->current, " of ", $coreuser->total_pages; ?></span></li>
+                <li><span><?php echo "You are in page  <font color='red'>  ", $coreuser->current, "</font> of ", $coreuser->total_pages; ?></span></li>
                 <?php
                     
                 }
