@@ -7,6 +7,8 @@ $(document).ready(function () {
         window.print();
     });
     
+    
+    
 });
  $('#edit').on('click',function(){
       

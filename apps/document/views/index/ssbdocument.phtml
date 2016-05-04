@@ -3,7 +3,6 @@
 <!-- Main content -->
 
 <?php
-
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
@@ -15,7 +14,6 @@ foreach ($salary_info as $value) {
    $dateObj   = DateTime::createFromFormat('!m', $data[1]);
    $monthName = $dateObj->format('F'); 
 }
-
 ?>
 <script src="<?php echo $baseUri ?>/public/common/js/jquery.min.js"></script>
         <style type="text/css" media="all">

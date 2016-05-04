@@ -371,6 +371,12 @@ a.export {
     display: inline-block;
     height: 9px;
 }
+
+.inedit3{
+    background: url("../img/images1.png")  1px 0px no-repeat  ;
+    padding: 6px 10px 12px 8px;
+    height: 9px;
+}
 .insettingedit{
     background: url("../img/images1.png")  1px 0px no-repeat  ;
     padding: 6px 10px 12px 8px;

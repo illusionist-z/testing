@@ -100,7 +100,8 @@ class CompanyTbl extends Model {
                 }
                 }
               
-
+                echo "<script type='text/javascript'>alert('Company is added successfully');</script>";
+                echo "<script type='text/javascript'>location.reload();</script>";
     }
     
     

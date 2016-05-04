@@ -63,6 +63,8 @@ class Attendances extends Model {
                     ->where('attendances.att_date >= :start:', array('start' => $start))
                     ->andWhere('attendances.att_date <= :end:', array('end' => $end))
              ->andWhere('attendances.member_id = :id:', array('id' => $id))->andWhere('core.deleted_flag = 0')
+                                        ->andWhere('core.deleted_flag = 0 and (attendances.status = 0 OR attendances.status = 3)')
+
                     ->orderBy('attendances.att_date DESC')
                     ->getQuery()->execute();
         } else {
