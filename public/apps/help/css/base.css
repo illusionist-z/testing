@@ -68,3 +68,14 @@ and open the template in the editor.
  #scrolly pre{
      overflow-y: hidden;
  }
+ /* help footer */
+#help_footer{
+    background: #fff;/*#222D32*/
+    padding: 15px;
+    color: #444;
+}
+#help_lang_box{
+    float: right;
+    right:5px;
+    top:13px;
+}

@@ -49,8 +49,17 @@ $this->partial('../../core/views/partials/header');
                 echo $this->getContent();
                 $this->assets->outputJs();
                 ?>
-            </div><!-- /.content-wrapper -->
+            </div><!-- /.content-wrapper -->             
         </div>
-<?php
-$this->partial('../../core/views/partials/footer');
-?>
+    <footer id="help_footer" style="margin-left:0;">
+        <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
+        <div id="help_lang_box">
+            <?php echo $t->_("Change_Language"); ?> : 
+            <a href="../../core/index/setLanguage/en"><span id="cmn_lang_mm" class="cmn-icons cmn-icons-contry mm"></span></a>
+            <a href="../../core/index/setLanguage/jp"><span id="cmn_lang_jp" class="cmn-icons cmn-icons-contry jp"></span></a>
+            <a href="../../core/index/setLanguage/mm"><span id="cmn_lang_en" class="cmn-icons cmn-icons-contry en"></span></a>
+        </div>
+    </footer>
+        <div id="notidetail" style="display:none;" class="navbar"></div>
+    </body>
+</html> 
