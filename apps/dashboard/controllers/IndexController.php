@@ -39,7 +39,6 @@ class IndexController extends ControllerBase {
         //$this->view->module_name_view = $this->module_name;
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
-        
    
     }
 
@@ -174,6 +173,7 @@ class IndexController extends ControllerBase {
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'admin_dashboard') {
                 $this->view->disable();
+                
                 $this->response->redirect('attendancelist/index/todaylist');
             } else if ($key_name == 'user_dashboard') {
                 $this->view->disable();
