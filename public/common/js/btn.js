@@ -35,7 +35,25 @@ $(document).ready(function () {
         location = geoplugin_city() + geoplugin_countryName();
     });
     
-    $('.checkin').on('click', function () {
+    
+        $('.login_log').on('click',function (){
+          $('.geolocation').ready(function() {
+       geo_login();
+});
+
+        var url = "location_session";
+        var n = new Date();
+        var offset = n.getTimezoneOffset();
+           
+        $.ajax({
+            url: url + "?offset=" + offset + "&location=" + location,
+            type: 'GET',
+            dataType: 'json'
+        });
+       
+    });
+    
+   $('.checkin').on('click', function () {
   $('.geolocation').ready(function() {
     geo();
 });
@@ -51,7 +69,7 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json'
         });
-
+      
         var note = document.getElementById('note').value;
        
         $.ajax({

@@ -19,8 +19,7 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('dashboard/index/admin');
         $list = $this->byId('pointer_style2');
-        $list->click();
-        $this->assertEquals('Attendance System', $this->title());
+        $list->click();       
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Today Attendance List', $element->text());
@@ -30,7 +29,7 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testTodaySearch() {
 
-        $this->url('attendancelist/index/todaylist');        
+        $this->url('attendancelist/index/todaylist');
         $todaysearchclick = $this->byId('namesearch');
         $todaysearchbox = $this->byName('namelist');
         $todaysearchbox->value('admin');
@@ -105,7 +104,7 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('a')->click();
         $this->url('attendancelist/index/attendancechart');
         $element = $this->byCssSelector('h1');
-        $this->assertEquals('Monthly Attendance Chart (2016/02)', $element->text());
+        $this->assertEquals('Monthly Attendance Chart (2016/05)', $element->text());
     }
 
     public function testFirst() {

@@ -20,8 +20,7 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/admin');
         $manageuser = $this->byId('pointer_style1');
         $manageuser->click();
-        $this->url('manageuser/index/index');
-        $this->assertEquals('Attendance System', $this->title());
+        $this->url('manageuser/index/index');       
         $element = $this->byCssSelector('h1');
         $this->assertEquals('User Lists', $element->text());
     }
