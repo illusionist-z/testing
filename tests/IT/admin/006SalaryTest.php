@@ -30,8 +30,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
-        $this->url('salary/index/salarylist');
-        $this->assertEquals('Attendance System', $this->title());
+        $this->url('salary/index/salarylist');        
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Salary Lists', $element->text());
     }
