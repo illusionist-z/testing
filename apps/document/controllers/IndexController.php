@@ -27,6 +27,8 @@ class IndexController extends ControllerBase {
      * @author zinmon
      */
     public function ssbdocumentAction() {
+                $this->assets->addCss('apps/document/css/index_ssbdocument.css');
+
         if ($this->moduleIdCall == 1) {
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
@@ -53,6 +55,8 @@ class IndexController extends ControllerBase {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function taxdocumentAction() {
+                $this->assets->addCss('apps/document/css/index_ssbdocument.css');
+
         //$ModuleIdCallCore = new Db\CoreMember();
         if ($this->moduleIdCall == 1) {
             $this->assets->addCss('apps/document/css/index_tax.css');
@@ -149,6 +153,7 @@ class IndexController extends ControllerBase {
 
     public function salaryreferAction() {
 
+            $this->assets->addCss('apps/document/css/salaryrefer.css');
 
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');

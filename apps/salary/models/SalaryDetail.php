@@ -31,7 +31,7 @@ class SalaryDetail extends Model {
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";
         $row = $this->modelsManager->executeQuery($query);
-          $paginator = new PaginatorModel(
+        $paginator = new PaginatorModel(
                             array(
                         "data" => $row,
                         "limit" => 10,

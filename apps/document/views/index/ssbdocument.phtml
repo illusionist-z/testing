@@ -140,7 +140,7 @@ foreach ($salary_info as $value) {
      </td>
        <td width="250px">
        
-       <table>
+       <table width="247px">
              <tr>
                  <td>
                   Total
@@ -205,7 +205,7 @@ foreach ($salary_info as $value) {
                                 ?><tr>
                                 
                                     <td style="width:35px;"> <?php echo $no; ?> </td>
-                                    <td style="width:125px;"><?php echo $salary_infos->core->full_name; ?></td>
+                                    <td style="width:125px;"><?php echo $salary_infos->core->mm_name; ?></td>
                                     <td  style="width:137px;"><?php echo $salary_infos->core->ssn_no; ?></td>
                                     <td style="text-align: right;width:75px;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo number_format(300000);}else{echo number_format($salary_infos->salary_detail->basic_salary); }?></td>
                                     <td   style="text-align: right;width:76px;">
