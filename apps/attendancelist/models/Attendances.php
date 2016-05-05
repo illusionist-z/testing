@@ -123,25 +123,26 @@ class Attendances extends Model {
      * @author David
      * @param  $v[0] = member_id
      */
-    public function absent() {
+    public function absent($id) {
         //get today absent list
         $sql = "Select member_id from core_member where member_id NOT IN (select member_id from "
-                . "attendances where att_date = CURRENT_DATE) AND deleted_flag=0 order by created_dt desc";
+                . "attendances where att_date = CURRENT_DATE) AND deleted_flag=0 AND member_id='".$id."' order by created_dt desc";
         $absentlist = $this->db->query($sql);
-        $finalresult = $absentlist->fetchall();
+        $finalresult = $absentlist->fetcharray();
         if ($finalresult != null) {
             $string = "";
             //get absent member id
-            foreach ($finalresult as $v) {
-                $string .= "'" . $v['member_id'] . "',";
-            }
+           
+            $string .= "'" . $finalresult['member_id'] . "',";
+            
             $insert_string = substr_replace($string, "", -1);
             //get absent applied leave id
             $checkleavequery = "SELECT member_id  FROM leaves where member_id IN ($insert_string) and "
                     . "CURRENT_DATE in (start_date,end_date)";
+            
             $checkleave = $this->db->query($checkleavequery);
             $checkresult = $checkleave->fetchall();
-            $this->InsertAbsentStatus($checkresult,$finalresult);
+            $this->InsertAbsentStatus($checkresult,$finalresult['member_id'],$id);
             $message = "Adding is successfully";
         } else {
             $message = "Already Exist";
@@ -149,7 +150,7 @@ class Attendances extends Model {
         return $message;
     }
     
-    public function InsertAbsentStatus($checkresult,$finalresult) {
+    public function InsertAbsentStatus($checkresult,$finalresult,$id) {
             $insert = "Insert into attendances (member_id,att_date,status) VALUES ";
             //insert absent with apply leave
             if (count($checkresult) > 0) {
@@ -164,9 +165,8 @@ class Attendances extends Model {
             }
             //insert absent with no apply leave
             else {
-                foreach ($finalresult as $v) {
-                    $insert .= "('" . $v['member_id'] . "',CURRENT_DATE,2),";
-                }
+                    $insert .= "('" . $finalresult . "',CURRENT_DATE,2),";
+                
             }
             $insertquery = substr_replace($insert, ";", -1);
             $this->db->query($insertquery);            
@@ -174,17 +174,25 @@ class Attendances extends Model {
     
     public function GetAbsentList($current_page) {
         try {
-            $currentdate = date('Y-m-d');$member_id = array();
-            $phql = "Select member_id from salts\Attendancelist\Models\Attendances where att_date = :current: "
-                    . "and (status = 1 or status = 2)";
-            $result = $this->modelsManager->executeQuery($phql, array('current' => $currentdate));
-            $get_member_id = $result->toArray();
-            foreach ($get_member_id as $v) {
-                $member_id[] = $v['member_id'];
-            }
+//            $currentdate = date('Y-m-d');$member_id = array();
+//            $phql = "Select member_id from salts\Attendancelist\Models\Attendances where att_date = :current: "
+//                    . "and (status = 1 or status = 2)";
+//            $result = $this->modelsManager->executeQuery($phql, array('current' => $currentdate));
+//            $get_member_id = $result->toArray();
+//            foreach ($get_member_id as $v) {
+//                $member_id[] = $v['member_id'];
+//            }
+//            $row = $this->modelsManager->createBuilder()->columns("core.*")
+//                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+//                    ->InWhere('core.member_id',$member_id)
+//                    ->andWhere('core.deleted_flag = 0')
+//                    ->orderBy('core.created_dt desc')
+//                    ->getQuery()->execute();
+//            $page = $this->base->pagination($row, $current_page);
+
             $row = $this->modelsManager->createBuilder()->columns("core.*")
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                    ->InWhere('core.member_id',$member_id)
+                    ->notInWhere('core.member_id',array('memberid' => '(Select member_id from attendances where att_date = CURRENT_DATE)'))
                     ->andWhere('core.deleted_flag = 0')
                     ->orderBy('core.created_dt desc')
                     ->getQuery()->execute();

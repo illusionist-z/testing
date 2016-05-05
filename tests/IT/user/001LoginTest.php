@@ -33,7 +33,7 @@ class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         $username->value('eithandaraung');
         $password->value('123');
         $form->submit();
-        $this->assertEquals('Dashboard', $this->title());
+        $this->assertEquals('Salts', $this->title());
     }
 
     /**
@@ -65,6 +65,14 @@ class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testForgetPassword() {
         $this->url('index.phtml');
+         $form = $this->byId('form_login');
+        $company = $this->byName('company_id');
+        $username = $this->byName('member_login_name');
+        $password = $this->byName('password');
+        $company->value('gnext');
+        $username->value('malkhin');
+        $password->value('890');
+        $form->submit();
         $this->byCssSelector('a')->click();
         $element = $this->byCssSelector('#forgottext');
         $this->assertEquals('FORGOT YOUR PASSWORD?', $element->text());

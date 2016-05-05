@@ -10,7 +10,7 @@ foreach ($result as $data) {
   
     if ($module_name == 'leaves') {
         $leave_stt = $data->leaves->leave_status;
-        ?>
+        ?><section class="content" style="height:580px">
         <form id="noti_detail" width="10px" height="300px" >
             <fieldset>
                 <legend>
@@ -44,7 +44,7 @@ foreach ($result as $data) {
                 </table>
 
                
-            </fieldset></form>
+            </fieldset></form></section>
 
         <?php
     }
