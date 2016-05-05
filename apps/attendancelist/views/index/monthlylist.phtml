@@ -52,7 +52,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
         <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn form-control-static" required id="sub">
         <input type="hidden" value='' id='hidden-type' name='ExportType'/>
         <a href="" class="buttonn form-control-static  export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><img id="exicon"><b><?php echo $t->_("export"); ?></b></a>
-
+        <a href="monthlylist/1" class="buttonn form-control-static  export" id="exbg"><img id="exicon"><b>Export All</b></a>
 
     </div>
 
@@ -90,7 +90,8 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                 if ($sign == '-') {
                                     $time = new DateTime($checkintime);
                                     $time->add(new DateInterval('PT' . $value . 'M'));
-                                    echo $time->format('H:i:s A ');
+                                    $datetime_from = $time->format('H:i:s A ');
+                                    echo $datetime_from;
                                 } else {
                                     $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
                                     echo $datetime_from;
