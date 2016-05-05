@@ -7,7 +7,7 @@ $length = count($Month);
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" id="showleavelist">
     <h1>
         <b><?= $t->_("leave_list"); ?></b>
     </h1>
@@ -20,7 +20,11 @@ $length = count($Month);
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <form id="frm_search">
+     
+        <form id="frm_search" onsubmit="return false;">
+            <a  href="/salts/leavedays/user/applyleave">  
+                <input type="button" value=" Apply Leave" id="usersearch" class="buttonn form-control-static">
+            </a> 
             <select class="select form-control-static" data-toggle="select" name="ltype" id="ltype">
 
                 <option value=""><?= $t->_("leave_type"); ?></option>
