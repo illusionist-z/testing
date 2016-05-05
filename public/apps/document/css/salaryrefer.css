@@ -1,0 +1,61 @@
+/******** for tax form *************/
+#ssb_top{
+    margin: 25px 0 0 0;
+}
+.top-center{
+    padding: 0px 0px 5px 0px;
+    text-align: center;
+}
+.ssb-left{
+    float: left;
+    width: 74%;
+    height: 50px;
+}
+.tbl-tax{
+    width: 100%;
+    
+}
+.table_ssb{
+       width: 100%;
+}
+.table_ssb td{
+     padding: 2px;
+      
+}
+ 
+.tbl-tax td{
+    padding: 5px;
+}
+.border-top td{
+    border-top: 1px solid;
+    padding: 0px;
+    }
+.ssb-right{
+  width:26%;
+  float: right;
+}
+@media all {
+	.page-break	{ display: none; }
+}
+
+@media print{
+     
+  body *{ visibility: hidden; }
+  .printable *{ visibility: visible;}
+   
+  .link{display: none;}
+   
+}
+@page {
+   
+     
+    margin: 5px;
+}
+.page {  
+      page-break-before: always;
+      page-break-inside: avoid; }
+#doc{
+    float: right;
+    padding: 15px;
+}
+
