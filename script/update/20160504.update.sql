@@ -1,0 +1,1 @@
+ALTER TABLE `core_member` ADD `mm_name` VARCHAR(36) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL AFTER `full_name`;

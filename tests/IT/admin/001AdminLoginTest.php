@@ -18,6 +18,7 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
     );
 
     function setUp() {
+        
         $this->setBrowserUrl('http://localhost/salts');
     }
 
@@ -61,8 +62,16 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals('company id or user name or password wrong', $elements[1]->text());
     }
 
-    public function testForgetPassword() {
+    public function testForgetPassword() {        
         $this->url('index.phtml');
+        $form = $this->byId('form_login');
+        $company = $this->byName('company_id');
+        $username = $this->byName('member_login_name');
+        $password = $this->byName('password');
+        $company->value('gnext');
+        $username->value('adm');
+        $password->value('admi');
+        $form->submit();
         $this->byCssSelector('a')->click();
         $element = $this->byCssSelector('#forgottext');
         $this->assertEquals('FORGOT YOUR PASSWORD?', $element->text());

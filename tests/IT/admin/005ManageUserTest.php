@@ -15,12 +15,11 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->setBrowserUrl('http://localhost/salts');
     }
 
-     public function testMenu() {
-
+    public function testMenu() {
         $this->url('dashboard/index/admin');
         $manageuser = $this->byId('pointer_style1');
         $manageuser->click();
-        $this->url('manageuser/index/index');       
+        $this->url('manageuser/index/index');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('User Lists', $element->text());
     }
@@ -40,20 +39,19 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         $addinguser = $this->byId('addinguser');
         $addinguser->click();
         sleep(3);
-        $form = $this->byId('saveuser');
+        $this->byId('saveuser');
         $adduser = $this->byId('add_user');
-        $addusername = $this->byName('uname')->value('Jaff');
-        $addfullrname = $this->byName('full_name')->value('Jaff Way');
-        $pswd = $this->byName('password')->value('Jaffway');
-        $confirmpswd = $this->byName('confirm')->value('Jaffway');
-        $workstartdate = $this->byName('work_sdate')->value('2016-02-09');
-        $department = $this->byId('dept')->value('Testing');
-        $position = $this->byName('position')->value('Tester');
-        $email = $this->byName('email')->value('Jaffway@gmail.com');
-        $phno = $this->byName('phno')->value('2598741');
-        $address = $this->byName('address')->value('London');
-        $userrole = $this->byName('user_role')->value('TEST');
-        $userprofile = $this->byName('fileToUpload')->value('C:\xampp\htdocs\salts\tests\sample.txt');
+        $this->byName('uname')->value('Jaff');
+        $this->byName('full_name')->value('Jaff Way');
+        $this->byName('password')->value('Jaffway');
+        $this->byName('confirm')->value('Jaffway');
+        $this->byName('work_sdate')->value('2016-02-09');
+        $this->byId('dept')->value('Testing');
+        $this->byName('position')->value('Tester');
+        $this->byName('email')->value('Jaffway@gmail.com');
+        $this->byName('phno')->value('2598741');
+        $this->byName('address')->value('London');
+        $this->byName('user_role')->value('TEST');
         sleep(3);
         $adduser->click();
         $this->url('manageuser/index/index');
@@ -114,7 +112,7 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testFirst() {
 
-       $this->url('manageuser/index/index');
+        $this->url('manageuser/index/index');
 
 
         $this->byLinkText('First')->click();
@@ -132,7 +130,7 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testLast() {
 
-         $this->url('manageuser/index/index');
+        $this->url('manageuser/index/index');
 
 
         $this->byLinkText('Last')->click();

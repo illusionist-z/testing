@@ -14,8 +14,8 @@ class LoginController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
-     //   $this->assets->addJs('common/js/btn.js');   
-      //  $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        $this->assets->addJs('common/js/btn.js');   
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
     }
 
     /**
