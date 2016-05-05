@@ -30,7 +30,8 @@ class AbsentController extends ControllerBase {
     public function addAbsentAction() {
         if ($this->permission == 1) {
             $Attendance = new Attendance();
-            $message = $Attendance->absent();
+            $id = $this->request->get('id');
+            $message = $Attendance->absent($id);
             echo json_encode($message);
             $this->view->disable();
         } else {
