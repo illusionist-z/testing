@@ -229,9 +229,11 @@ class CoreMember extends \Library\Core\Models\Base {
         $email = $filter->sanitize($member['email'], "email");
         $phno = $filter->sanitize($member['phno'], "int");
         $address = $filter->sanitize($member['address'], "string");
+        $mm = $filter->sanitize($member['mm_name'], "string");
 
-        $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,bank_acc,member_mobile_tel,member_address,creator_id,created_dt,updated_dt,working_start_dt)"
-                . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $bank_acc ."','". $phno . "','" . $address . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
+
+        $this->db->query("INSERT INTO core_member (user_rule,member_id,full_name,mm_name,member_login_name,member_password,member_dept_name,position,member_mail,lang,bank_acc,member_mobile_tel,member_address,creator_id,created_dt,updated_dt,working_start_dt)"
+                . " VALUES('" . $arr['1'] . "',uuid(),'" . $full_name . "','" . $mm . "','" . $username . "','" . $pass . "','" . $dept . "','" . $position . "','" . $email . "','" . $lang . "','" . $bank_acc ."','". $phno . "','" . $address . "','" . $member_id . "','" . $today . "','0000-00-00 00:00:00','" . $member['work_sdate'] . "')");
         $user_name = $this->db->query("SELECT * FROM core_member WHERE  member_login_name='" . $member['uname'] . "'");
         $us = $user_name->fetchall();
 
@@ -411,7 +413,12 @@ class CoreMember extends \Library\Core\Models\Base {
                 . "as c join absent as a on c.member_id=a.member_id "
                 . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
                 . "order by count(*)";
+//          $query = "select * from core_member "
+//                . "as c join attendances as a on c.member_id=a.member_id "
+//                . "where a.status = 1 and 2 and 3 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
+//                . "order by count(*) desc";
         $data = $this->db->query($query);
+        
         $res['leave_name'] = $data->fetchall();
 
         return $res;

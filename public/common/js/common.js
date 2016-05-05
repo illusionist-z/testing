@@ -72,6 +72,23 @@ function geo() {
         navigator.geolocation.getCurrentPosition(GEOprocess);
     }
 }
+
+function geo_login() {
+
+    if (navigator.geolocation) {
+        var url = "location_session";
+        var n = new Date();
+        var offset = n.getTimezoneOffset();
+        var location = geoplugin_city() + "," + geoplugin_countryName();
+
+        $.ajax({
+            url: url + "?offset=" + offset + "&location=" + location,
+            type: 'GET',
+            dataType: 'json'
+        });
+        navigator.geolocation.getCurrentPosition(GEOprocess);
+    }
+}
 function GEOprocess(position) {
     //GET geo location of user
 
@@ -159,7 +176,7 @@ function repair(val) {
 
 $(document).ready(function () {
     //absent member
-    $('body').attr('onload', getAbsentMember());
+    //$('body').attr('onload', getAbsentMember());
     // ここに実際の処理を記述します。
     var logout = function () {
         window.location.href = baseUri + 'auth/logout';

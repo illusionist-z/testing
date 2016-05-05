@@ -345,26 +345,28 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 //        $endyear = $now->format('Y') . '-03';
 //        $budget_endyear = date("Y-m", strtotime("+1 year", strtotime($endyear)));
 //        $budget_endyear_one = date("Y-m-d", strtotime("+1 year", strtotime($endyear)));
-        $budget_endyear =  date("Y-m-d", strtotime("-1 month", strtotime($SM['salary_start_date'])));
-        $budget_start_year = date("Y-m-d", strtotime("-1 year", strtotime($SM['salary_start_date'])));
+//        $budget_endyear =  date("Y-m-d", strtotime("-1 month", strtotime($SM['salary_start_date'])));
+//        $budget_start_year = date("Y-m-d", strtotime("-1 year", strtotime($SM['salary_start_date'])));
+        $budget_endyear = date("Y-m-d", strtotime("+1 year", strtotime($SM['salary_start_date'])));
+        $budget_start_year = $SM['salary_start_date'];
         $salary = "";
-        $salary_star_date = $salary_start_year.'-'.$salary_start_month;
+        $salary_star_date = $salary_start_year.'-'.$salary_start_month.'-01';
         
         $salary_update_yr = $salary_start_year;
         $salary_update_mth = $salary_start_month;
         $resign=  $this->getResigndate($member_id);
         $basic_salary='';
-        $SD = $this->getoldsalarydetail($member_id, $salary_update_yr, $workingstartdt,$budget_endyear);
-        //print_r($SD);
+        $SD = $this->getoldsalarydetail($member_id, $salary_update_yr,$salary_update_mth,$budget_start_year);
+        
         if($resign['resign_date']!=null){
             $resigndate=  explode("-", $resign['resign_date']);
             $resignyear=$resigndate[1];
             $resignmonth=$resigndate[0];
             $bsalaryparday=$SM['basic_salary']/24;
             $count_attdate=$this->countattdate($resign['resign_date'],$resignmonth,$member_id);
-            //print_r($count_attdate);
+            
             $salary=$count_attdate['count_attdate']*$bsalaryparday;
-            //echo "SALARY".$bsalaryparday;
+           
             $count_paymonth=  $this->getPaySalarymonth($resignyear,$resignmonth,$member_id);
             $year=$count_paymonth['count_pay_date'];
             
@@ -372,21 +374,25 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         else{
             
             $date_diff=$Salarymaster->dateDifference($salary_star_date, $budget_endyear);
-            
+            $date_to_calculate = $date_diff;
             $basic_salary=$bsalary*$date_diff;
-            if(!empty($SD))
-                {
-                    $basic_salary=$SD['total_salary'];
-                    $old_allowance=$SD['total_all_amount']+$allowancetoadd;
-                    $date_to_calculate=$SD['count_pay'];
-                }
-            $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$allowancetoadd,$SM['status'],$SD['total_all_amount'],$SD['count_pay']);
-            $basic_salary=$Allowanceresult['basic_salary_annual'];
            
+            if($SD['count_pay']!= 0)
+                {
+                    $oldsalary = $SD['total_salary'];
+                    //$old_allowance=$SD['total_all_amount']+$allowancetoadd;
+                    $date_to_calculate = $SD['count_pay']+$date_diff;
+                    $basic_salary = ($SD['basic_salary']*$date_diff)+$oldsalary;
+                    echo "jjjj".$basic_salary;
+                }
+           
+            $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$SD['total_all_amount'],$SM['status'],$allowancetoadd,$SD['count_pay']);
+           
+            $basic_salary=$Allowanceresult['basic_salary_annual'];
+            
             $latest_otpay = $Salarymaster->getlatestOTPay($member_id, $budget_start_year, $budget_endyear);
             $OTResult = $Salarymaster->calculateOvertimeAnnual($member_id, $SD['total_overtime'], $budget_start_year, $budget_endyear, $date_diff, $SD['count_pay'], $latest_otpay['overtime']);
-            //print_r($OTResult);
-            
+           
             $ot_fees=($overtimerate*$overtime_hr)+$OTResult['overtime_annual'];
             $basic_salary = $basic_salary+$ot_fees;
             //check the user who is absent.
@@ -402,7 +408,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $basic_deduction = $basic_salary * (20 / 100);
             //calculate ssc pay amount to deduce
                     if ($SM['basic_salary'] > 300000) {
-                        
                         $emp_ssc = (300000 * $date_to_calculate) * (2 / 100);
                     } else {
                         
@@ -423,7 +428,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     $TaxResult = $taxs['tax_result'];
                     if(3 == $salary_start_month){
                     $oldResult = $this->getoldsalarydetailByMember_id($member_id, $budget_start_year, $workingstartdt,$budget_endyear);
-                    //print_r($oldResult);
+                    
                     $TaxResult = $taxs['tax_result']-$oldResult['incometax'];
                     }
         }
@@ -539,15 +544,15 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
     
-    public function getoldsalarydetail($member_id, $salary_update_yr, $workingstartdt,$budget_endyear) {
+    public function getoldsalarydetail($member_id,$salary_update_yr,$salary_update_mth,$budget_start_year) {
         try {
-            $sql = "select SUM((case when (basic_salary) then basic_salary else 0 end))as total_salary,COUNT(pay_date)as count_pay, SUM(allowance_amount) as total_all_amount,"
-                    . "SUM((case when (overtime) then overtime else 0 end)) as total_overtime from salary_detail "
-                    . "where member_id='" . $member_id . "' and YEAR(pay_date)<='" . $salary_update_yr . "' and pay_date>='".$workingstartdt."'";
+            $sql = "select SUM((case when (basic_salary) then basic_salary else 0 end))as total_salary,COUNT(pay_date)as count_pay, SUM((case when (allowance_amount) then allowance_amount else special_allowance end)) as total_all_amount,"
+                    . "SUM((case when (overtime) then overtime else 0 end)) as total_overtime,basic_salary from salary_detail "
+                    . "where member_id='" . $member_id . "' and YEAR(pay_date)>='" . $salary_update_yr . "' and pay_date>='".$budget_start_year."' and MONTH(pay_date)<'".$salary_update_mth."'";
 //            $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
 //                    . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '".$budget_startyear."' AND '".$budget_endyear."') and member_id='" . $member_id . 
 //                    "' order by created_dt desc limit 1";
-            //echo $sql.'<br>';
+            //echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {

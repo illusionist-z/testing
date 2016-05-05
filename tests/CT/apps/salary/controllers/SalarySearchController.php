@@ -54,7 +54,7 @@ class SalarySearchController extends Controllers\SearchController {
         $this->initialize();
         $data = $this->param;
         $SalaryDetail = new SalaryDetailTest();
-        $search_result = $SalaryDetail->searchSList($data, "1");       
+        $search_result = $SalaryDetail->searchSList($data);       
         return true;
     }
 

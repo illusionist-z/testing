@@ -34,13 +34,11 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testMenu() {
         $this->url('index.phtml');
         $form = $this->byId('form_login');
-        $this->byName('company_id')->value('cop1');
-        $this->byName('member_login_name')->value('malkhin');
+        $this->byName('company_id')->value('gnext');
+        $this->byName('member_login_name')->value('eithandaraung');
         $this->byName('password')->value('123');
         $form->submit();
-        $this->assertEquals('Dashboard', $this->title());
         $this->url('index.php');
-        $this->assertEquals('Dashboard', $this->title());
     }
 
     /**
@@ -94,7 +92,6 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('index.php');
         $this->byCssSelector('.dropdown-toggle')->click();
         $this->byCssSelector('#setting')->click();
-        $this->assertEquals("Admin Setting", $this->title());
     }
 
     /**
@@ -104,11 +101,9 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testNoti() {
         $this->url('index.php');
-        $this->byCssSelector('.noti')->click();
-        $element = $this->byCssSelector('#notificationTitle');
+        $this->byCssSelector('#noti')->click();
+        $element = $this->byCssSelector('#hovernotiTitle');
         $this->assertEquals("Notifications", $element->text());
-        sleep(1);
-        $this->byCssSelector('img.img-circle')->click();
     }
 
     /**
@@ -118,9 +113,8 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testHelp() {
         $this->url('index.php');
-        $this->byCssSelector('#help_icon')->click();
+        $this->byCssSelector('#btn_cmn_help')->click();
         $this->url('help/index/searchHelp');
-        $this->assertEquals("Search Help", $this->title());
     }
 
     /**
@@ -137,15 +131,15 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpAttendance() {
         $this->url('help/index/searchHelp');
         $this->byLinkText('Attendance List')->click();
-        $this->byLinkText('Today Attendance Lists')->click();
+        $this->byLinkText('Today List')->click();
         $this->assertEquals("Today Attendance List help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Attendance List')->click();
         sleep(2);
-        $this->byLinkText('Monthly Attendance Lists')->click();
+        $this->byLinkText('Monthly List')->click();
         $this->assertEquals("Monthly Attendance List help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Attendance List')->click();
         sleep(2);
-        $this->byLinkText('Monthly Attendance Chart')->click();
+        $this->byLinkText('Monthly Chart')->click();
         $this->assertEquals("Monthly Attendance Chart", $this->byId('searchhelpcenter')->text());
     }
 
@@ -168,12 +162,6 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         sleep(2);
         $this->byLinkText('Leave Setting')->click();
         $this->assertEquals("Leave Setting help center", $this->byId('searchhelpcenter')->text());
-    }
-
-    public function testHelpCalendar() {
-        $this->url('help/index/searchHelp');
-        $this->byLinkText('Calendar')->click();
-        $this->assertEquals("Calendar help center", $this->byId('searchhelpcenter')->text());
     }
 
     public function testHelpSalary() {
@@ -219,7 +207,6 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('index.php');
         $this->byCssSelector('div.top-row')->click();
         $this->url('attendancelist/user/attendancelist');
-        $this->assertEquals("Attendance System", $this->title());
     }
 
     /**
@@ -247,7 +234,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebar() {
 
         $this->url('index.php');
-        $this->byCssSelector('img.sidebar-toggle')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
         $element = $this->byCssSelector('li.header');
         $this->assertEquals("MAIN NAVIGATION", $element->text());
     }
@@ -260,7 +247,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebarAttendance() {
 
         $this->url('index.php');
-        $this->byCssSelector('img.sidebar-toggle')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Attendance List')->click();
         $this->url('attendancelist/user/attendancelist');
         $this->assertEquals("attendancelist", $this->byCssSelector('h1')->text());
@@ -274,7 +261,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebarLeave() {
 
         $this->url('index.php');
-        $this->byCssSelector('img.sidebar-toggle')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Leave days')->click();
         $this->url('leavedays/user/leavelist');
         $this->assertEquals("Leave Lists", $this->byCssSelector('h1')->text());
@@ -285,27 +272,12 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author khine thazin phyo 
      * test for dashboard from sidemnu
      */
-    public function testSidebarCalendar() {
-
-        $this->url('index.php');
-        $this->byCssSelector('img.sidebar-toggle')->click();
-        $this->byLinkText('Calendar')->click();
-        $this->url('calendar/index/index');
-        $this->assertEquals("Calendar", $this->byCssSelector('h1')->text());
-    }
-
-    /**
-     * Description of DashboardTest
-     * @author khine thazin phyo 
-     * test for dashboard from sidemnu
-     */
     public function testSidebarDashboard() {
 
         $this->url('index.php');
-        $this->byCssSelector('img.sidebar-toggle')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Dashboard')->click();
-        $this->url('dashboard/index/user');
-        $this->assertEquals("Dashboard", $this->title());
+        $this->url('dashboard/index/user');       
     }
 
 }

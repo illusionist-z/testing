@@ -80,12 +80,12 @@ use Phalcon\Filter;
                         </div>
                     </div>
                     <div class="search-btn-box"><!--search btn-->
-                        <div>
-                            <a href="#" class="button form-control-static" id="search_salary"><?= $t->_("search"); ?></a>
-                            <a href="#" class="button export form-control-static" id="exbg"><img id="exicon"><?= $t->_("Export"); ?></a>
-                            <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a><br>
-
-                        </div>
+                       
+                            <a href="#" class="button form-control-static" id="search_salary" ><?= $t->_("search"); ?></a>
+<!--                            <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="search_salary">-->
+                            <a href="#" class="buttonn form-control-static export" id="exbg"><img id="exicon"><?= $t->_("Export"); ?></a>
+                            <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a>
+                        
                     </div><!--search btn-->
                 </form>
             </div>
@@ -111,7 +111,7 @@ use Phalcon\Filter;
                 <th><center><?= $t->_("tax"); ?></center></th>
                 <th><center><?= $t->_("ssc_comp"); ?></center></th>
                 <th><center><?= $t->_("ssc_emp"); ?></center></th>
-                <th><center>info</center></th>
+                
                 <th><center><?= $t->_("total"); ?></center></th>
                 <th width="30px"></th>
                 </tr>
@@ -127,33 +127,30 @@ use Phalcon\Filter;
                     $totalresult = "";
                     echo '<form id ="frm1">';
                     foreach ($getsalarylists as $getsalarylist) {
-                        $a = '';
-                        if ($getsalarylist['print_id'] == 1) {
-                            $a = "style='background: #E2E2E2'";
-                        }
+                        
                         ?>
-                        <tr>
-                            <td  <?php echo $a; ?>  ><input type="checkbox" class='case' name='chk[]'  value="<?= $getsalarylist['member_id']; ?>" ></td>
-                            <td <?php echo $a; ?>><?php echo $filter->sanitize($getsalarylist['member_login_name'], "string"); ?></td>
-                            <td <?php echo $a; ?>><?php echo $filter->sanitize($getsalarylist['member_dept_name'], "string") ?></td>
-                            <td <?php echo $a; ?>><?php echo $filter->sanitize($getsalarylist['position'], "string") ?></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['allowance_amount'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_emp'], "int")); ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php if ($getsalarylist['print_id'] == 1) { ?><font color="red"><?php echo "printed"; ?></font><?php } else { ?><?php echo "-"; ?><?php }; ?></div></td>
-                            <td <?php echo $a; ?>><div class="td-style"><?php
+                        <tr id="clicktd">
+                            <td><input type="checkbox" id="getcheck" class='case' name='chk[]'  value="<?= $getsalarylist['member_id']; ?>" ></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['member_login_name'], "string"); ?></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'], "string") ?></td>
+                            <td><?php echo $filter->sanitize($getsalarylist['position'], "string") ?></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['basic_salary'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['overtime'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['travel_fee'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['allowance_amount'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['absent_dedution'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['income_tax'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_comp'], "int")); ?></div></td>
+                            <td><div class="td-style"><?php echo number_format($filter->sanitize($getsalarylist['ssc_emp'], "int")); ?></div></td>
+                            
+                            <td><div class="td-style"><?php
                                     $totalresult+=$getsalarylist['total'];
                                     echo number_format($getsalarylist['total']+$getsalarylist['special_allowance']);
                                     ?></div>
                                 <input type="hidden" value="<?php echo $month; ?>" name="month" id="month">
                                 <input type="hidden" value="<?php echo $year; ?>" name="year" id="year">
                             </td>
-                            <td <?php echo $a; ?>><a href="#" class="btn_detail" title="<?= $t->_("Detail"); ?>" id="detail_img" style="margin-top: 13px;"></a></td>
+                            <td><a href="#" class="btn_detail" title="<?= $t->_("Detail"); ?>" id="detail_img"></a></td>
                         </tr>
                         <?php
                         $i++;
@@ -162,7 +159,7 @@ use Phalcon\Filter;
                     ?>
 
                     <tr>
-                        <td colspan="13" style="text-align:center; background-color:#3c8dbc; color: #FFFFFF"><b><?= $t->_("Total salary for all user"); ?></b></td>
+                        <td colspan="12" style="text-align:center; background-color:#3c8dbc; color: #FFFFFF"><b><?= $t->_("Total salary for all user"); ?></b></td>
                         <td style="background-color:#3c8dbc; color: #FFFFFF"><div class="td-style"><b><?php echo number_format($filter->sanitize($totalresult, "int")); ?></b></div></td>
                         <td style="background-color:#3c8dbc;"></td>
                     </tr>

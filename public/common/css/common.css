@@ -49,6 +49,12 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql,#exbg{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
+a.ledit{
+    margin-top: 10px;
+}
+a.exbg{
+     background:#3c8dbc;color:white;border-radius: 4px;
+}
 #apply_cancel,#add_salary_cancel,#add_dec,#addinguser_close,#edit_close,
 #cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
 #cancel,#save,#btn_logout,#settingimg,#settingborder,#apply_form_cancel,#noti_reject,
@@ -371,6 +377,12 @@ a.export {
     display: inline-block;
     height: 9px;
 }
+
+.inedit3{
+    background: url("../img/images1.png")  1px 0px no-repeat  ;
+    padding: 6px 10px 12px 8px;
+    height: 9px;
+}
 .insettingedit{
     background: url("../img/images1.png")  1px 0px no-repeat  ;
     padding: 6px 10px 12px 8px;
@@ -633,7 +645,8 @@ a.export {
     border-radius: 5px; height:100px;padding:10px 0px 10px 27px;
 }
 .search-btn-box{
-    float:right; width:30%; margin-top:7px;
+    float:right; width:30%; 
+    margin-top:25px;
     margin-right: -30px;
 }
 #Menu
@@ -793,8 +806,8 @@ hr{
     background: url("../img/main.png")  -190px -115px no-repeat  ;
     padding: 6px 10px 20px 15px;
 }
-#navicon7{
-    background: url("../img/main.png")  -451px -140px no-repeat  ;
+#navicon7{/*setting*/
+    background:url("../img/main.png") -430px 4px no-repeat;
     padding: 6px 10px 20px 15px;
 }
 #navicon3{/*manage user*/

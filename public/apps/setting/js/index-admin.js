@@ -80,13 +80,19 @@ Setting.PageRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                        var bar = "";
+                   
+                    
+                        var bar =  '<li><a href="index">First</a></li><li><a href="index?page=' + d[1].last + '">Last</a></li>';
                         for (var x = 1; x <= d[1].total_pages; x++) {
-                            bar += '<a href="index?page='+x+'" class="button"><b>'+x+'</b>&nbsp;</a>';
+                            if ((d[1].current  + 3 ) >= x && (d[1].current  -  3 ) <= x){
+                           bar += '<li><a href="index?page='+x+'"><b>'+x+'</b></a></li>';
+                             }
                         }
+                          var bar2 =  '<li><span>You are in page  <font color="red"> ' + d[1].current + ' </font>of ' + d[1].total_pages +'</span></li>';
+                   
                     $('#page_role tbody').append(paging);
                     $('#page_role').append(dialog);
-                    $('#page_role ul.pagination').append(bar);
+                    $('#page_role ul.pagination').append(bar,bar2);
                     Setting.init();
                  
                 }
@@ -97,7 +103,7 @@ Setting.PageRule = {
 Setting.UserRule = {
     update: function (id, groupid, grouptext) {
         $.ajax({
-            url: 'UserRuleSetting',
+            url: 'index/UserRuleSetting',
             data: {rel_member_id: id, group_id: groupid, group_text: grouptext},
             type: "POST",
             success: function () {
@@ -146,13 +152,19 @@ Setting.UserRule = {
                         }
                         dialog += "</select></form></div>";
                     }
-                      var bar = "";
-                        for (var x = 1; x <= d[1].total_pages; x++) {
-                            bar += '<a href="index?page1='+x+'" class="button"><b>'+x+'</b>&nbsp;</a>';
-                        }           
+                         var bar =  '<li><a href="index">First</a></li><li><a href="index?page1=' + d[1].last + '">Last</a></li>';
+                         
+                         for (var x = 1; x <= d[1].total_pages; x++) {
+                             if ((d[1].current  + 3 ) >= x && (d[1].current  -  3 ) <= x){
+                           bar += '<li><a href="index?page1='+x+'"><b>'+x+'</b></a></li>';
+                             }
+                             
+                          }
+                          var bar2 =  '<li><span>You are in page  <font color="red"> ' + d[1].current + ' </font>of ' + d[1].total_pages +'</span></li>';     
+                          
                     $('#user_role tbody').append(paging);
                     $('#user_role').append(dialog);
-                    $('#user_role ul.pagination').append(bar);
+                    $('#user_role ul.pagination').append(bar,bar2);
                     Setting.init();
                 }
             });

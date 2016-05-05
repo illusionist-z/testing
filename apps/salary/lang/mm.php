@@ -88,7 +88,7 @@ $messages = array(
      "calSalary_noti" => "လအလိုက္လစာတြက္ခ်က္ရန္",
     "calSalary_m" => "ေပးေခ်မည့္လကိုေရြးပါ",
     "cal_title"=>"လစာမ်ားကိုတြက္ခ်က္မည္",
-  
+    "sa_sdate" => "လစာစတြက္မည္႔ေန႔",
     "add_new"=>"Deduction အသစ္မ်ားထည့္ရန္",
     "deduc_name"=>"Deduction အမ်ဳိးအစား",
     "deduc_amount"=>"Deduction ႏႈန္း",

@@ -27,6 +27,11 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * initialize controller
      */
     public function initialize() {
+        
+/* set the cache expire to 30 minutes */
+session_cache_expire(30);
+$cache_expire = session_cache_expire();
+
         $this->view->baseUri = $this->url->getBaseUri();
     }
 
@@ -35,6 +40,9 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
      * @return int
      */
     public function setPermission($actname) {
+        
+  
+
         $aryModules = \Library\Core\Module::get();
         $allow = array();
         $permitted = 0;
@@ -240,7 +248,6 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     public function setDocumentJsAndCss() {
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addCss('apps/document/css/index_ssbdocument.css');
         $this->assets->addJs('apps/document/js/FileSaver.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
         $this->assets->addJs('apps/document/js/jquery.wordexport.js');
@@ -272,8 +279,8 @@ abstract class Controller extends \Phalcon\Mvc\Controller {
     /**
      * Js and Css for Help
      */
-    public function setHelpJsAndCss() {
-        $this->assets->addCss('common/css/css/style.css');
+    public function setHelpJsAndCss() {        
+//        $this->assets->addCss('common/css/css/style.css');
         $this->assets->addCss('apps/help/css/base.css');
         $this->assets->addJs('apps/help/js/base.js');
     }

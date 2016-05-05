@@ -29,9 +29,7 @@
 .border-top td{
     border-top: 1px solid;
     padding: 0px;
-    
     }
-   
 .ssb-right{
   width:26%;
   float: right;
@@ -43,13 +41,13 @@
 @media print{
      
   body *{ visibility: hidden; }
-  .printable *{ visibility: visible; font-size: 9px;}
+  .printable *{ visibility: visible;}
    
   .link{display: none;}
    
 }
 @page {
-    font-size: 10px;
+   
      
     margin: 5px;
 }

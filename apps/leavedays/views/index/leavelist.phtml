@@ -11,7 +11,7 @@ use Phalcon\Tag as Tag;
 $length = count($Month);
 ?>
 <!-- Content Header (Page header) -->
-<section class="content-header" id="showleavelist"">
+<section class="content-header" id="showleavelist">
     <h1>
         <?= $t->_("leave_list"); ?>
     </h1>
@@ -24,6 +24,7 @@ $length = count($Month);
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
+      
         <form id="frm_search" onsubmit="return false;">
             <select class="select  form-control-static" data-toggle="select" name="ltype" id="ltype">
                 <option value=""><?= $t->_("leave_type"); ?></option>

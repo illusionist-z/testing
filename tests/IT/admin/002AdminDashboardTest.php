@@ -24,7 +24,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $company = $this->byName('company_id');
         $username = $this->byName('member_login_name');
         $password = $this->byName('password');
-        $company->value('cop1');
+        $company->value('gnext');
         $username->value('admin');
         $password->value('admin');
         $form->submit();
@@ -35,34 +35,15 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testHelpicon() {
         $this->url('dashboard/index/admin');
-        $helpicn = $this->byId('help_icon');
+        $helpicn = $this->byId('btn_cmn_help'); //change
         $helpicn->click();
         $this->url('help/index/searchHelp');
-        $this->assertEquals("Search Help", $this->title());
     }
 
     public function testNotiicon() {
         $this->url('dashboard/index/admin');
         $notiicn = $this->byId('noti');
         $notiicn->click();
-    }
-
-    public function testStaffAtt() {
-
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('a');
-        $this->url('attendancelist/index/todaylist');
-        $element = $this->byCssSelector('h1');
-        $this->assertEquals("Today Attendance List", $element->text());
-    }
-
-    public function testStaffAbs() {
-
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('a')->click();
-        $this->url('attendancelist/absent/absentlist');
-        $element = $this->byCssSelector('h1');
-        $this->assertEquals("Absent Lists", $element->text());
     }
 
     public function testCheck() {
@@ -82,8 +63,6 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('dashboard/index/admin');
         $this->byCssSelector('a.checkin')->click();
-        $this->assertEquals('You have already check in', $this->alertText());
-        $this->acceptAlert();
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals("Today Attendance List", $element->text());
@@ -92,9 +71,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testCheckOut() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.checkout')->click();
-        $this->assertEquals('Already Checkout', $this->alertText());
-        $this->acceptAlert();
+        $this->byCssSelector('a.checkout')->click();   //change       
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals("Today Attendance List", $element->text());
@@ -103,38 +80,41 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testViewAll() {
 
         $this->url('dashboard/index/admin');
-        $this->byId('noleavelist')->click();
+        $this->byId('noleavelistblock')->click();  //change
         $this->url('leavedays/index/noleavelist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals("People who take no leave", $element->text());
     }
 
-    public function testViewAllMember() {
+    public function testStaffnoAtt() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.uppercase')->click();
-        $this->url('manageuser/index');
+        $elements = $this->elements($this->using('css selector')->value('img.imgstyle'));
+        $this->assertEquals(2, count($elements));
+        $link = $this->byLinkText($elements[1]->text());
+        $link->click();
+        $this->url('attendancelist/absent/absentlist');
         $element = $this->byCssSelector('h1');
-        $this->assertEquals("User Lists", $element->text());
+        $this->assertEquals('Absent Lists', $element->text());
     }
 
-    public function testDropdownDb() {
+    public function testStaffAtt() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-
-        $this->byCssSelector('a')->click();
-        $this->url('dashboard/index');
+        $elements = $this->elements($this->using('css selector')->value('img.imgstyle'));
+        $this->assertEquals(2, count($elements));
+        $link = $this->byLinkText($elements[0]->text());
+        $link->click();
+        $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
-        $this->assertEquals('Dashboard', $element->text());
+        $this->assertEquals('Today Attendance List', $element->text());
     }
 
     public function testDropdownAtt() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-
-        $this->byCssSelector('a')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byLinkText('Attendance List')->click();
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Today Attendance List', $element->text());
@@ -143,9 +123,8 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownMang() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-
-        $this->byCssSelector('a')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byLinkText('Manage User')->click();
         $this->url('manageuser/index/index');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('User Lists', $element->text());
@@ -154,62 +133,57 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownLeave() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-
-        $this->byCssSelector('a')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byLinkText('Leave days')->click();
         $this->url('leavedays/index/leavelist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Leave Lists', $element->text());
     }
 
-    public function testDropdownCalendar() {
-
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-
-        $this->byCssSelector('a')->click();
-        $this->url('calendar/index');
-        $element = $this->byCssSelector('h1');
-        $this->assertEquals('Calendar', $element->text());
-    }
-
     public function testDropdownDocument() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-
-        $this->byCssSelector('a')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byLinkText('Document')->click();
         $this->url('document/index/letterhead');
     }
 
     public function testDropdownSsb() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-        $this->byCssSelector('a')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
         $this->url('document/index/letterhead');
-        $this->byCssSelector('a')->click();
+        $this->byLinkText('SSB Document')->click();
         $this->url('document/index/ssbdocument');
     }
 
     public function testDropdownTaxDocu() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img')->click();
-        $this->byCssSelector('a')->click();
+        $this->byCssSelector('a.sidebar-toggle')->click();
         $this->url('document/index/letterhead');
-        $this->byCssSelector('a')->click();
+        $this->byLinkText('Tax document')->click();
         $this->url('document/index/taxdocument');
+    }
+
+    public function testDropdownSalarreferDocu() {
+
+        $this->url('dashboard/index/admin');
+        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->url('document/index/letterhead');
+        $this->byLinkText('Salary Refer Document')->click();
+        $this->url('document/index/salaryrefer');
     }
 
     public function testSetting() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('img.img-circle')->click();
-        $this->byCssSelector('div.pull-left')->click();
-        $this->url('setting/index/admin');
+        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byLinkText('Setting')->click();
+        $this->url('setting/index');
+         $element = $this->byCssSelector('h3');
+        $this->assertEquals('Group Rule Setting', $element->text());
     }
-
 
     public function onNotSuccessfulTest(Exception $e) {
         throw $e;

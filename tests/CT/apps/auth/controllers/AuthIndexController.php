@@ -146,7 +146,7 @@ class AuthIndexController extends Controllers\IndexController {
         $filter = new Filter();
         $member_mail = $filter->sanitize($this->mailParam, 'string');
         $Admin = new \salts\Auth\Models\CoreMember();
-        $result = $Admin::find(array("member_mail = '$member_mail'", "deleted_flag = 0"));
+        $result = $Admin::find(array("member_mail = '$member_mail'", "deleted_flag = 0"));          
         $data = [];
         foreach ($result as $value) {
             $data[] = $value->member_profile;

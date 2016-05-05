@@ -7,59 +7,6 @@ if(! ini_get('date.timezone')){
     
 
 ?>
-
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>SALTS</title>
-
-    </head>
-    <body class="login-page">
-        <div class="login-box">
-            <div class="loginbox"> <br>         
-                <span id="salts">SALTS</span>
-            </div><!-- /.login-logo -->
-            <div class="login-box-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                <p style="color: red"><?= $errorMsg ?></p>
-
-                <form method="post" action="<?= $this->url->getBaseUri(); ?>auth/login" id="form_login">
-                    <input name=local type=hidden>
-                    <input name=public type=hidden>
-                    <input name=IPv6 type=hidden>
-                    <table>
-                        <?php if (!isset($mode)) { ?>
-                            <tr>    
-                                <td><span id="compayimg"><span id="unameopt">companyid</span></span></td>
-                                <td><input type="text" pattern="[A-Za-z-0-9-_]+[A-Za-z-'0-9-_]+" style="margin-top: 10px;" size="50%" name="company_id" class="form-control"  placeholder="Company Id" required></td>
-                            </tr>
-                        <?php } ?>
-                        <tr>
-                            <td><span id="unameimg"><span id="unameopt">name</span></span></td>
-                            <td><input type="text" pattern="[A-Za-z-0-9-_- ]+[A-Za-z-'0-9-_- ]+" style="margin-top: 10px;" size="50%" name="member_login_name" class="form-control"  placeholder="UserName" required></td>
-                        </tr>
-                        <tr>
-                            <td><span id="passimg"><span id="unameopt">pass</span></span></td>
-                            <td><input type="password" style="margin-top: 10px;" name="password" class="form-control"  placeholder="Password" required></td>
-                        </tr>
-                        <tr>        
-                            <td></td>
-                            <td><button type="submit" style="margin-top: 10px;" id="btnLogin" class="btn btn-primary btn-block btn-flat">Sign In >></button></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><br><a href="<?php echo $baseUri; ?>auth/index/forgotpassword" title="Please type in the wrong the first time round!" ><?= $errorMsgForgot ?></a><br></td>
-                        </tr>
-                    </table>
-                </form>
-
-
-
-            </div><!-- /.login-box-body -->
-        </div><!-- /.login-box -->
-
-    </body>
-</html>
 <script>
     //get the IP addresses associated with an account
 
@@ -161,3 +108,59 @@ if(! ini_get('date.timezone')){
             document.getElementsByTagName("input")[1].value = ip;
     });
 </script>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SALTS</title>
+
+    </head>
+    <body class="login-page">
+        <div class="login-box">
+            <div class="loginbox"> <br>         
+                <span id="salts">SALTS</span>
+            </div><!-- /.login-logo -->
+            <div class="login-box-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                <p style="color: red"><?= $errorMsg ?></p>
+
+                <form method="post" action="<?= $this->url->getBaseUri(); ?>auth/login" id="form_login">
+                    <input name="local" type=hidden>
+                    <input name="public" type=hidden>
+                    <input name="IPv6" type=hidden>
+                    <table>
+                        <?php if (!isset($mode)) { ?>
+                            <tr>    
+                                <td><span id="compayimg"><span id="unameopt">companyid</span></span></td>
+                                <td><input type="text" pattern="[A-Za-z-0-9-_]+[A-Za-z-'0-9-_]+" style="margin-top: 10px;" size="50%" name="company_id" class="form-control"  placeholder="Company Id" required></td>
+                            </tr>
+                        <?php } ?>
+                        <tr>
+                            <td><span id="unameimg"><span id="unameopt">name</span></span></td>
+                            <td><input type="text" pattern="[A-Za-z-0-9-_- ]+[A-Za-z-'0-9-_- ]+" style="margin-top: 10px;" size="50%" name="member_login_name" class="form-control"  placeholder="UserName" required></td>
+                        </tr>
+                        <tr>
+                            <td><span id="passimg"><span id="unameopt">pass</span></span></td>
+                            <td><input type="password" style="margin-top: 10px;" name="password" class="form-control"  placeholder="Password" required></td>
+                        </tr>
+                        <tr>        
+                            <td></td>
+                            <td>
+<!--                                <button type="submit" style="margin-top: 10px;" id="btnLogin" class="btn btn-primary btn-block btn-flat">Sign In >></button>-->
+                                <button type="submit" style="margin-top: 10px;" id="btnLogin" class="btn btn-primary btn-block btn-flat login_log">Sign In >></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><br><a href="<?php echo $baseUri; ?>auth/index/forgotpassword" title="Please type in the wrong the first time round!" ><?= $errorMsgForgot ?></a><br></td>
+                        </tr>
+                    </table>
+                </form>
+
+
+
+            </div><!-- /.login-box-body -->
+        </div><!-- /.login-box -->
+
+    </body>
+</html>
+

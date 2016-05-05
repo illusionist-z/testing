@@ -2,7 +2,7 @@
 
 namespace salts\Auth\Controllers;
 
-use salts\Auth\Models;
+use salts\Auth\Models; 
 use Phalcon\Filter;
 
 class IndexController extends ControllerBase {
@@ -10,7 +10,9 @@ class IndexController extends ControllerBase {
     public function initialize() {
         parent::initialize();
         $this->setCommonJsAndCss();
+        $this->assets->addJs('common/js/btn.js');   
         $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
+       $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
     }
 
     /**  Index Action @param type $mode */
@@ -34,7 +36,13 @@ class IndexController extends ControllerBase {
             }
         }
     }
-
+  public function location_sessionAction() {
+        $add = $this->request->get('location');
+         $this->session->set('location', array(
+            'location' => $add,
+            'offset' => $offset
+        ));
+    }
     /**  When user failed login @param type $mode   */
     public function failerAction($mode = 1) {
         /*  User failerAction  @author Yan Lin Pai <wizardrider@gmail.com> */
@@ -42,7 +50,7 @@ class IndexController extends ControllerBase {
         $this->view->errorMsgForgot = 'I forgot my password ?';
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
-
+  
         if (4 > $_SESSION["attempts"]) {
             if ($this->session) {
                 $member_name = $this->session->tokenpush;
@@ -79,7 +87,7 @@ class IndexController extends ControllerBase {
             if (0 == count($chack_user)) {
                 $timestamp = (date("Y-m-d H:i:s"));
                 $date = strtotime($timestamp);
-
+                
                 if (isset($_SESSION['startTime']) == null && count($chack_user) == 0) {
 
                     $_SESSION['startTime'] = date("Y-m-d H:i:s", strtotime("+30 minutes", $date));
@@ -100,6 +108,7 @@ class IndexController extends ControllerBase {
                     $_SESSION['expire'] = $_SESSION['startTime']; // ending a session in 30
                     // checking the time now when home page starts
                     $rout_time = $nowtime - $_SESSION['expire'];
+                    
                     $localhost = ($this->request->getServer('HTTP_HOST'));
                     $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                     $sec = "1";
@@ -282,7 +291,7 @@ class IndexController extends ControllerBase {
         $Insert->token = $token;
         $Insert->save();
         $Find = $Insert::find(array("check_mail = '$getemail'", "order" => "curdate DESC", "limit" => 1));
-       $finded_token = '';
+        $finded_token = '';
         foreach ($Find as $value) {
             $finded_token = $filter->sanitize($value->token, "string");
         }

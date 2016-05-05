@@ -35,23 +35,41 @@ $(document).ready(function () {
         location = geoplugin_city() + geoplugin_countryName();
     });
     
-    $('.checkin').on('click', function () {
-//    $('.geolocation').ready(function() {
-//    geo();
-//});
-//alert(location);
+    
+        $('.login_log').on('click',function (){
+          $('.geolocation').ready(function() {
+       geo_login();
+});
+
         var url = "location_session";
         var n = new Date();
         var offset = n.getTimezoneOffset();
-        //alert(offset);
-        $('#loading').html(' Request Loading <img src=img/loading-dots.gif> ');
            
         $.ajax({
             url: url + "?offset=" + offset + "&location=" + location,
             type: 'GET',
             dataType: 'json'
         });
-
+       
+    });
+    
+   $('.checkin').on('click', function () {
+  $('.geolocation').ready(function() {
+    geo();
+});
+//alert(location);
+        var url = "location_session";
+        var n = new Date();
+        var offset = n.getTimezoneOffset();
+        //alert(offset);
+        $('#loading').html(' Request Loading <img src=/salts/public/apps/dashboard/img/loading-dots.gif> ');
+           
+        $.ajax({
+            url: url + "?offset=" + offset + "&location=" + location,
+            type: 'GET',
+            dataType: 'json'
+        });
+      
         var note = document.getElementById('note').value;
        
         $.ajax({
@@ -68,7 +86,7 @@ $(document).ready(function () {
 
     }),
             $('.checkout').on('click', function () {
-                 $('#loading').html(' Request Loading  <img src=img/loading-dots.gif>');
+                 $('#loading').html(' Request Loading  <img src=/salts/public/apps/dashboard/img/loading-dots.gif>');
         $.ajax({
             type: 'GET',
             url: baseUri + 'dashboard/index/checkout',

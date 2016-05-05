@@ -38,6 +38,7 @@ class IndexController extends ControllerBase {
         $this->module_name = $this->router->getModuleName();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
+         //$this->view->module_name = $this->module_name;
     }
 
     public function indexAction() {

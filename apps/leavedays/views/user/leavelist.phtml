@@ -7,20 +7,24 @@ $length = count($Month);
 ?>
 
 <!-- Content Header (Page header) -->
-<section class="content-header">
+<section class="content-header" id="showleavelist">
     <h1>
         <b><?= $t->_("leave_list"); ?></b>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <b>Home</b></a></li>
-        <li class="active"><b>Leave List</b></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <b><?= $t->_("home"); ?></b></a></li>
+        <li class="active"><b><?= $t->_("leave_list"); ?></b></li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
     <div class="buttons">
-        <form id="frm_search">
+     
+        <form id="frm_search" onsubmit="return false;">
+            <a  href="/salts/leavedays/user/applyleave">  
+                <input type="button" value=" Apply Leave" id="usersearch" class="buttonn form-control-static">
+            </a> 
             <select class="select form-control-static" data-toggle="select" name="ltype" id="ltype">
 
                 <option value=""><?= $t->_("leave_type"); ?></option>
