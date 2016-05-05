@@ -411,7 +411,12 @@ class CoreMember extends \Library\Core\Models\Base {
                 . "as c join absent as a on c.member_id=a.member_id "
                 . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
                 . "order by count(*)";
+//          $query = "select * from core_member "
+//                . "as c join attendances as a on c.member_id=a.member_id "
+//                . "where a.status = 1 and 2 and 3 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
+//                . "order by count(*) desc";
         $data = $this->db->query($query);
+        
         $res['leave_name'] = $data->fetchall();
 
         return $res;
