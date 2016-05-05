@@ -48,16 +48,22 @@ class IndexController extends ControllerBase {
     /**
      * Show salary list after adding salary of each staff
      */
-    public function salarylistAction() {
-
+    public function salarylistAction($exportMode = null) {        
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
-            $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage);
+            
             if ($this->permission == 1) {
+                if(1 == $exportMode){
+                    $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,0);
+                    $SalaryDetail->SalaryListExport($get_salary_detail);               
+                }
+                else{
+                $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,1);
                 $this->view->module_name = $this->router->getModuleName();
                 $this->view->salarydetail = $get_salary_detail;
+                }
             } else {
 
                 $this->response->redirect('core/index');
@@ -132,16 +138,21 @@ class IndexController extends ControllerBase {
     /**
      * show total salary  of each month
      */
-    public function monthlysalaryAction() {
+    public function monthlysalaryAction($exportMode = null) {
          if ($this->permission === 1) {  
         $this->assets->addJs('apps/salary/js/base.js');
         $this->assets->addJs('apps/salary/js/index-addsalary.js');
         $currentPage = $this->request->get("page");
         $SalaryDetail = new SalaryDetail();
-        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
-        $this->view->module_name = $this->router->getModuleName();
-    
-            $this->view->setVar("geteachmonthsalarys", $get_eachmonth_salary);
+        if(1 == $exportMode){
+            $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage,0);
+            $SalaryDetail->MonthlyListExport($get_eachmonth_salary);
+        }
+        else{
+        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage,1);
+        $this->view->module_name = $this->router->getModuleName();    
+        $this->view->setVar("geteachmonthsalarys", $get_eachmonth_salary);
+        }
         } else {
             
         }
