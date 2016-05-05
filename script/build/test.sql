@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 29, 2016 at 10:44 AM
+-- Generation Time: Apr 28, 2016 at 06:22 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `gnext_db`
+-- Database: `salts_user_gnext`
 --
 
 -- --------------------------------------------------------
@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `allowances` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
+
 --
 -- Table structure for table `attendances`
 --
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `attendances` (
   `lat` double DEFAULT NULL,
   `lng` double DEFAULT NULL,
   `location` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `noti_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `noti_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   `module_name` varchar(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'attendances',
   `creator_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -73,32 +74,8 @@ CREATE TABLE IF NOT EXISTS `attendances` (
   `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `updated_dt` datetime DEFAULT NULL,
   `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1399 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=98 ;
 
-
---
--- Table structure for table `calendar`
---
-
-CREATE TABLE IF NOT EXISTS `calendar` (
-`id` int(11) NOT NULL,
-  `member_name` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `title` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `startdate` datetime NOT NULL,
-  `enddate` datetime NOT NULL,
-  `allDay` varchar(5) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `noti_id` varchar(36) NOT NULL,
-  `module_name` varchar(10) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'calendar',
-  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `created_dt` datetime DEFAULT NULL,
-  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `updated_dt` datetime DEFAULT NULL,
-  `deleted_flag` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `company_info`
@@ -107,116 +84,13 @@ CREATE TABLE IF NOT EXISTS `calendar` (
 CREATE TABLE IF NOT EXISTS `company_info` (
   `id` int(11) NOT NULL DEFAULT '1',
   `company_name` varchar(36) NOT NULL,
-  `company_logo` varchar(20) NOT NULL,
+  `company_logo` mediumblob NOT NULL,
   `company_address` varchar(60) NOT NULL,
   `company_phno` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `company_info`
---
-
-INSERT INTO `company_info` (`id`, `company_name`, `company_logo`, `company_address`, `company_phno`) VALUES
-(1, 'G NEXT Co.,Ltd', 'cop2.jpg', '(7+1)A - Parami Condo,Ma Yan Gone TownShip,Yangon,Myanmar.', '01522997');
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `core_action_log`
---
-
-CREATE TABLE IF NOT EXISTS `core_action_log` (
-  `action_log_id` bigint(20) unsigned NOT NULL COMMENT 'ID',
-  `module` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT '処理実行モジュール',
-  `controller` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT 'Controller',
-  `action` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT '実行処理名',
-  `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'メンバーID',
-  `action_log_datetime` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP COMMENT 'アクセス日時',
-  `action_log_url` text NOT NULL COMMENT '利用URL',
-  `client_ipv4` varchar(20) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT 'clientIPv4',
-  `client_ipv6` varchar(40) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL COMMENT 'clientIPv6'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `core_dept`
---
-
-CREATE TABLE IF NOT EXISTS `core_dept` (
-  `dept_code` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT '',
-  `dept_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `abbreviation` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '略名',
-  `parent_dept_code` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `dept_level` tinyint(11) unsigned DEFAULT NULL,
-  `dept_order` int(11) unsigned DEFAULT NULL,
-  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `created_dt` datetime DEFAULT NULL,
-  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `updated_dt` datetime DEFAULT NULL,
-  `deleted_flag` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `core_exports`
---
-
-CREATE TABLE IF NOT EXISTS `core_exports` (
-  `id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `title` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `file_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `file_type` varchar(12) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `module_name` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `table_name` varchar(122) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `export_fields` text CHARACTER SET latin1 COLLATE latin1_general_ci,
-  `shared_flag` tinyint(2) NOT NULL DEFAULT '0',
-  `add_date_flag` tinyint(4) NOT NULL DEFAULT '0',
-  `shared_dept_code` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `created_dt` datetime DEFAULT NULL,
-  `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `updated_dt` datetime DEFAULT NULL,
-  `deleted_flag` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `core_images`
---
-
-CREATE TABLE IF NOT EXISTS `core_images` (
-  `uuid` varchar(36) NOT NULL,
-  `mime_type` varchar(254) DEFAULT NULL COMMENT 'Mime type',
-  `extension` varchar(10) DEFAULT NULL COMMENT '拡張子',
-  `rel_table` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `rel_code` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'relational code',
-  `category_id` varchar(20) DEFAULT NULL,
-  `delete_flag_files` tinyint(4) NOT NULL DEFAULT '0',
-  `creator_id` varchar(36) DEFAULT NULL,
-  `created_dt` datetime DEFAULT NULL COMMENT 'created date',
-  `updater_id` varchar(36) DEFAULT NULL,
-  `updated_dt` datetime DEFAULT NULL COMMENT 'updated date',
-  `deleted_flag` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Delete flag'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `core_lock_record`
---
-
-CREATE TABLE IF NOT EXISTS `core_lock_record` (
-  `relation_table` varchar(64) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT '対象テーブル名',
-  `relation_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'リレーキー',
-  `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'member id',
-  `member_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT 'member name',
-  `expired_time` datetime NOT NULL COMMENT 'ロック開放時間',
-  `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `created_dt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -226,7 +100,8 @@ CREATE TABLE IF NOT EXISTS `core_lock_record` (
 
 CREATE TABLE IF NOT EXISTS `core_member` (
   `member_id` varchar(500) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'uuid',
-  `ssn_no` varchar(36) NOT NULL,
+  `ssn_no` varchar(36) DEFAULT NULL,
+  `bank_acc` varchar(36) DEFAULT NULL,
 `user_rule_member_id` int(50) NOT NULL,
   `member_login_name` varchar(256) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `member_password` varchar(128) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
@@ -238,13 +113,12 @@ CREATE TABLE IF NOT EXISTS `core_member` (
   `user_rule` int(50) DEFAULT NULL,
   `lang` varchar(2) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT 'en',
   `member_address` varchar(75) DEFAULT NULL,
-  `member_profile` varchar(70) DEFAULT NULL,
   `rank_code` tinyint(3) unsigned DEFAULT '0',
   `member_is_change` tinyint(1) DEFAULT NULL,
   `working_start_dt` date NOT NULL,
   `working_year_by_year` date DEFAULT NULL,
   `rs_status` varchar(20) DEFAULT NULL,
-  `timeflag` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timeflag` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `creator_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `created_dt` datetime DEFAULT NULL,
   `updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
@@ -256,8 +130,18 @@ CREATE TABLE IF NOT EXISTS `core_member` (
 -- Dumping data for table `core_member`
 --
 
-INSERT INTO `core_member` (`member_id`, `ssn_no`, `user_rule_member_id`, `member_login_name`, `member_password`, `full_name`, `member_dept_name`, `member_mobile_tel`, `member_mail`, `position`, `user_rule`, `lang`, `member_address`, `member_profile`, `rank_code`, `member_is_change`, `working_start_dt`, `working_year_by_year`, `rs_status`, `timeflag`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-('admin', '', 1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 'Manage', '1234567', 'sample@test.comFF', 'Adminstrator', 0, 'en', 'yangon ', '9259.jpg', 1, NULL, '2015-02-02', '2016-02-02', '', '2016-02-17 02:08:00', '1', '2014-09-22 11:41:47', 'admin', '2015-05-18 10:45:27', 0);
+INSERT INTO `core_member` (`member_id`, `ssn_no`, `bank_acc`, `user_rule_member_id`, `member_login_name`, `member_password`, `full_name`, `member_dept_name`, `member_mobile_tel`, `member_mail`, `position`, `user_rule`, `lang`, `member_address`, `rank_code`, `member_is_change`, `working_start_dt`, `working_year_by_year`, `rs_status`, `timeflag`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
+('admin', '', '', 1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', 'Manage', '12345678', 'sample@test.comFF', 'Adminstrator', 0, 'en', 'yangon ', 1, NULL, '2015-02-02', '2016-02-02', '', '2016-04-20 05:28:41', '1', '2014-09-22 11:41:47', 'admin', '2015-05-18 10:45:27', 0);
+
+--
+-- Table structure for table `core_member_profile`
+--
+
+CREATE TABLE IF NOT EXISTS `core_member_profile` (
+  `member_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
+  `member_profile` mediumblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 -- --------------------------------------------------------
 
@@ -291,8 +175,7 @@ CREATE TABLE IF NOT EXISTS `core_notification` (
   `noti_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `noti_status` tinyint(4) NOT NULL,
   `created_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=117 ;
 
 
 -- --------------------------------------------------------
@@ -332,16 +215,14 @@ CREATE TABLE IF NOT EXISTS `core_permission` (
   `permission_updater_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `core_permission`
---
+
 
 INSERT INTO `core_permission` (`id`, `permission_code`, `module_id`, `permission_name_en`, `permission_name_jp`, `permission_name_mm`, `permission_note`, `permission_created_time`, `permission_updated_time`, `permission_is_deleted`, `permission_creator_id`, `permission_updater_id`) VALUES
+(0, 'show_admin_setting', 'setting', 'Setting', '', '', NULL, NULL, NULL, 0, NULL, NULL),
 (1, 'admin_dashboard', 'admin', 'Dashboard', 'ホーム', 'ပင္မစာမ်က္ႏွာ', 'dashboard', NULL, NULL, 0, NULL, NULL),
 (2, 'show_admin_attlist', 'attendance', 'Attendance List', '参加者リスト', 'တက္ေရာက္စာရင္း', NULL, NULL, NULL, 0, NULL, NULL),
 (3, 'show_admin_manage', 'user', 'Manage User', '管理ユーザー', 'စီမံခန္႕ခြဲ', NULL, NULL, NULL, 0, NULL, NULL),
 (4, 'show_admin_leave', 'leave', 'Leave days', '休み', 'ခြင့္ရက္', NULL, NULL, NULL, 0, NULL, NULL),
-(5, 'show_admin_calendar', 'calendar', 'Calendar', 'カレンダー', 'ၿပကၡဒိန္', NULL, NULL, NULL, 0, NULL, NULL),
 (6, 'show_salary', 'salary', 'Salary', '給料', 'လစာ', NULL, NULL, NULL, 0, NULL, NULL),
 (7, 'user_dashboard', 'checkinout', 'Dashboard', 'ホーム', 'ပင္မစာမ်က္ႏွာ', NULL, NULL, NULL, 0, NULL, NULL),
 (8, 'show_user_attlist', 'attendance', 'Attendance List', '参加者リスト', 'တက္ေရာက္စာရင္း', NULL, NULL, NULL, 0, NULL, NULL),
@@ -353,7 +234,6 @@ INSERT INTO `core_permission` (`id`, `permission_code`, `module_id`, `permission
 (14, 'show_salary', 'salary', 'Add Salary', '給料新規入力', 'လစာစာရင္းသြင္းရန္', NULL, NULL, NULL, 0, NULL, NULL),
 (15, 'show_salary', 'salary', 'Salary List', '給料一覧', 'လစာစာရင္း', NULL, NULL, NULL, 0, NULL, NULL),
 (16, 'show_salary', 'salary', 'Monthly Salary', '支払った給料リスト', 'လအလိုုက္လစာစာရင္း', NULL, NULL, NULL, 0, NULL, NULL),
-(17, 'show_user_calendar', 'calendar', 'Calendar', 'カレンダー', 'ၿပကၡဒိန္', NULL, NULL, NULL, 0, NULL, NULL),
 (18, 'show_user_leave', 'leave', 'Leave List', '休暇リスト', 'ခြင္႔စာရင္း', NULL, NULL, NULL, 0, NULL, NULL),
 (19, 'show_user_leave', 'leave', 'Apply Leave', '休暇申請', 'ခြင္႔တင္ရန္', NULL, NULL, NULL, 0, NULL, NULL),
 (20, 'show_salary', 'salary', 'Salary Setting', '給料設定', 'လစာsetting', NULL, NULL, NULL, 0, NULL, NULL),
@@ -363,11 +243,12 @@ INSERT INTO `core_permission` (`id`, `permission_code`, `module_id`, `permission
 (24, 'show_admin_document', 'document', 'Letterhead', 'レターヘッド', 'Letterhead', NULL, NULL, NULL, 0, NULL, NULL),
 (25, 'show_admin_document', 'document', 'SSB Document', 'SSB 用紙', 'SSB အခြန္', NULL, NULL, NULL, 0, NULL, NULL),
 (26, 'show_admin_document', 'document', 'Tax document', '税金用紙', '၀င္ေငြခြန္', NULL, NULL, NULL, 0, NULL, NULL),
-(27, 'show_admin_setting', 'setting', 'admin', '', '', NULL, NULL, NULL, 0, NULL, NULL),
 (28, 'show_admin_notification', 'notification', 'notification', 'notification', 'notification', NULL, NULL, NULL, 0, NULL, NULL),
 (29, 'show_user_notification', 'notification', 'notification', 'notification', 'notification', NULL, NULL, NULL, 0, NULL, NULL),
 (30, 'show_user_setting', 'setting', 'setting', '', '', '', NULL, NULL, 0, NULL, NULL),
-(31, 'show_admin_attlist', 'attendance', 'Attendance Chart', 'Attendance Chart', 'Attendance Chart', NULL, NULL, NULL, 0, NULL, NULL);
+(31, 'show_admin_attlist', 'attendance', 'Attendance Chart', 'Attendance Chart', 'Attendance Chart', NULL, NULL, NULL, 0, NULL, NULL),
+(32, 'show_admin_document', 'document', 'Salary Refer Document', 'Salary Refer Document', 'Salary Refer Document', NULL, NULL, NULL, 0, NULL, NULL),
+(35, 'show_user_attlist', 'attendance', 'Attendance List', '参加者リスト', 'တက္ေရာက္စာရင္း', NULL, NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -387,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `core_permission_group` (
   `updated_dt` datetime DEFAULT NULL,
   `deleted_flag` tinyint(1) NOT NULL DEFAULT '0',
   `order_num` int(11) unsigned NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=50 ;
 
 --
 -- Dumping data for table `core_permission_group`
@@ -424,7 +305,9 @@ INSERT INTO `core_permission_group` (`idpage`, `page_rule_group`, `permission_co
 (44, 1, 'show_admin_calendar', 'ADMIN', 'admin', 'admin', '2016-01-24 02:12:22', NULL, NULL, 0, 0),
 (45, 5, 'admin_dashboard', 'MANAGER', 'manager', 'admin', '2016-02-07 21:39:02', NULL, NULL, 0, 0),
 (46, 5, 'show_admin_attlist', 'MANAGER', 'manager', 'admin', '2016-02-07 21:40:17', NULL, NULL, 0, 0),
-(47, 5, 'show_admin_leave', 'MANAGER', 'manager', 'admin', '2016-02-07 21:40:31', NULL, NULL, 0, 0);
+(47, 5, 'show_admin_leave', 'MANAGER', 'manager', 'admin', '2016-02-07 21:40:31', NULL, NULL, 0, 0),
+(48, 1, 'show_admin_document', 'ADMIN', 'admin', 'admin', '2016-03-16 02:44:48', NULL, NULL, 0, 0),
+(49, 1, 'show_admin_document', 'ADMIN', 'admin', 'admin', '2016-04-06 03:28:19', NULL, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -480,6 +363,7 @@ CREATE TABLE IF NOT EXISTS `core_permission_rel_member` (
 --
 
 INSERT INTO `core_permission_rel_member` (`rel_member_id`, `permission_group_id_user`, `permission_member_group_member_name`, `rel_permission_group_code`, `creator_id`, `created_dt`, `permission_member_group_is_deleted`) VALUES
+
 ('admin', 1, 'admin', 'ADMIN', '', '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
@@ -497,29 +381,17 @@ CREATE TABLE IF NOT EXISTS `core_session` (
 
 -- --------------------------------------------------------
 
+
 --
--- Table structure for table `forgot_password`
+-- Table structure for table `core_forgot_password`
 --
 
-CREATE TABLE IF NOT EXISTS `forgot_password` (
+CREATE TABLE IF NOT EXISTS `core_forgot_password` (
 `ID` int(11) NOT NULL,
   `check_mail` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `curdate` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `for_get_user`
---
-
-CREATE TABLE IF NOT EXISTS `for_get_user` (
-  `token` char(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `tstamp` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+  `curdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 -- --------------------------------------------------------
 
 --
@@ -536,7 +408,7 @@ CREATE TABLE IF NOT EXISTS `leaves` (
   `leave_category` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `leave_description` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `leave_status` tinyint(1) NOT NULL,
-  `total_leavedays` double NOT NULL,
+  `total_leavedays` double DEFAULT NULL,
   `noti_id` varchar(36) COLLATE utf8_unicode_ci NOT NULL,
   `module_name` varchar(10) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL DEFAULT 'leaves',
   `noti_seen` int(11) DEFAULT NULL,
@@ -545,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `leaves` (
   `updater_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `updated_dt` datetime DEFAULT NULL,
   `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 
 -- --------------------------------------------------------
@@ -573,27 +445,22 @@ INSERT INTO `leaves_setting` (`max_leavedays`, `fine_amount`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `leave_categories` (
-  `leavetype_id` varchar(36) NOT NULL COMMENT 'uuid',
-  `leavetype_name` varchar(60) NOT NULL,
+  `leavetype_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL COMMENT 'uuid',
+  `leavetype_name` varchar(60) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `created_dt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `leave_categories`
+--
+
+INSERT INTO `leave_categories` (`leavetype_id`, `leavetype_name`, `created_dt`) VALUES
+('95eb0765-9d54-11e5-9bf6-4c3488333b45', 'Family Case', '2015-12-08 09:07:12'),
+('a58f10f9-4499-11e5-a5ce-19cbaf0a2497', 'On Vacation', '0000-00-00 00:00:00'),
+('da75129c-4499-11e5-a5ce-19cbaf0a2497', 'Because Of ill', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `member_event_permission`
---
-
-CREATE TABLE IF NOT EXISTS `member_event_permission` (
-  `member_name` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
-  `permit_name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `delete_flag` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `member_event_permission`
---
 
 
 -- --------------------------------------------------------
@@ -609,6 +476,7 @@ CREATE TABLE IF NOT EXISTS `member_log` (
   `ip_address` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mac` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
 -- --------------------------------------------------------
@@ -680,11 +548,6 @@ CREATE TABLE IF NOT EXISTS `salary_master_allowance` (
   `member_id` varchar(36) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `salary_master_allowance`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -701,7 +564,7 @@ CREATE TABLE IF NOT EXISTS `salary_member_tax_deduce` (
   `updater_id` varchar(36) COLLATE utf8_unicode_ci DEFAULT NULL,
   `updated_dt` datetime DEFAULT NULL,
   `deleted_flag` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=114 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=153 ;
 
 
 -- --------------------------------------------------------
@@ -759,11 +622,11 @@ CREATE TABLE IF NOT EXISTS `salary_taxs_deduction` (
 --
 
 INSERT INTO `salary_taxs_deduction` (`deduce_id`, `deduce_name`, `amount`, `creator_id`, `created_dt`, `updater_id`, `updated_dt`, `deleted_flag`) VALUES
-('spouse', 'spouse', 1000000, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0),
 ('children', 'children', 500000, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0),
 ('stay_father', 'stay_with_father', 1000000, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0),
 ('stay_mother', 'stay_wiith_mother', 1000000, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0),
-('life_insurance', 'life_insurance', 150000, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0);
+('life_insurance', 'life_insurance', 150000, '', '2015-07-25 00:00:00', '', '0000-00-00 00:00:00', 0),
+('5eec1297-079e-11e6-b402-34689590deea', 'spouse', 1000000, NULL, NULL, NULL, NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -800,6 +663,12 @@ ALTER TABLE `core_member`
  ADD PRIMARY KEY (`user_rule_member_id`), ADD UNIQUE KEY `user_rule_member_id` (`user_rule_member_id`), ADD KEY `member_login_name` (`member_login_name`), ADD KEY `user_rule_member_id_2` (`user_rule_member_id`), ADD KEY `user_rule_member_id_3` (`user_rule_member_id`);
 
 --
+-- Indexes for table `core_member_profile`
+--
+ALTER TABLE `core_member_profile`
+ ADD PRIMARY KEY (`member_id`);
+
+--
 -- Indexes for table `core_notification`
 --
 ALTER TABLE `core_notification`
@@ -832,20 +701,19 @@ ALTER TABLE `core_permission_rel_member`
 --
 -- Indexes for table `forgot_password`
 --
-ALTER TABLE `forgot_password`
- ADD PRIMARY KEY (`ID`);
 
---
--- Indexes for table `for_get_user`
---
-ALTER TABLE `for_get_user`
- ADD PRIMARY KEY (`token`);
 
 --
 -- Indexes for table `leaves`
 --
 ALTER TABLE `leaves`
  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `leave_categories`
+--
+ALTER TABLE `leave_categories`
+ ADD PRIMARY KEY (`leavetype_id`);
 
 --
 -- Indexes for table `salary_detail`
@@ -873,12 +741,8 @@ ALTER TABLE `salary_taxs`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1399;
---
--- AUTO_INCREMENT for table `calendar`
---
-ALTER TABLE `calendar`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=98;
+
 --
 -- AUTO_INCREMENT for table `core_member`
 --
@@ -888,12 +752,12 @@ MODIFY `user_rule_member_id` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=88;
 -- AUTO_INCREMENT for table `core_notification`
 --
 ALTER TABLE `core_notification`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=117;
 --
 -- AUTO_INCREMENT for table `core_permission_group`
 --
 ALTER TABLE `core_permission_group`
-MODIFY `idpage` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
+MODIFY `idpage` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `core_permission_group_id`
 --
@@ -908,12 +772,12 @@ MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `leaves`
 --
 ALTER TABLE `leaves`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `salary_member_tax_deduce`
 --
 ALTER TABLE `salary_member_tax_deduce`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=114;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=153;
 --
 -- AUTO_INCREMENT for table `salary_taxs`
 --
@@ -922,4 +786,3 @@ MODIFY `id` int(36) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-ALTER TABLE `core_member` ADD `bank_acc` VARCHAR(36) NOT NULL AFTER `ssn_no`;

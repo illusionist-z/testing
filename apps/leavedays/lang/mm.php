@@ -1,7 +1,7 @@
 <?php
      
 $messages = array(
-  "leave_list" => "ခြင့္မဲ့စာရင္း",
+  "leave_list" => " ခြင့္စာရင္း",
   "leave_type" => "အေၾကာင္းအရာ",
   "month" => "ခြင့္လ",
   "name" => "နာမည္",

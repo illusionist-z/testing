@@ -3,7 +3,6 @@
 <!-- Main content -->
 
 <?php
-
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
@@ -15,13 +14,15 @@ foreach ($salary_info as $value) {
    $dateObj   = DateTime::createFromFormat('!m', $data[1]);
    $monthName = $dateObj->format('F'); 
 }
-
 ?>
 <script src="<?php echo $baseUri ?>/public/common/js/jquery.min.js"></script>
         <style type="text/css" media="all">
             
        table {
-      border: 1;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px; 
     }
     tr{
         display: block;
@@ -66,22 +67,24 @@ foreach ($salary_info as $value) {
                         </div>
                     </div>
                 </div>
-                <table border="1px;" class="tbl-tax">
+                <div class="clone_div">
+                    
+                <table border="" class="table_ssb" width="100%">
                      
   <thead>
     <tr class="head">
-      <td>Sr No.<br> စဥ္ </td>
+      <td width="35">Sr <br>No.<br> စဥ္ </td>
       
-     <td>  Insurance Name<br>    အာမခံထားသူအမည္ </td>
+     <td width="125">  Insurance Name<br>    အာမခံထားသူအမည္ </td>
      
-       <td width="138">   SSN.No<br>  အာမခံစီစစ္ေရး<br>        အမွတ္</td>
+       <td width="137">   SSN.No<br>  အာမခံစီစစ္ေရး<br>        အမွတ္</td>
        
-     <td>   Payment<br>  လုုပ္ခလစာ </td>
+     <td width="75">   Payment<br>  လုုပ္ခလစာ </td>
      <td>
          
          <table>
              <tr>
-                 <td>
+                 <td width="150">
                        Health and Social Care<br>
                                 Insurance System<br>
                                 က်န္းမာေရးႏွင္္႔လူမႈေရး<br>
@@ -90,15 +93,17 @@ foreach ($salary_info as $value) {
              </tr>
              <tr>
                  <td>
-                    <table>
+                     <table class="border-top">
              <tr>
                  <td>
                   Employer
+                  <br>
 အလုုပ္ရွင္
                  </td>
             
                  <td>
                        Employee
+                       <br>
 အလုုပ္သမား
                  </td>
              </tr>
@@ -108,48 +113,62 @@ foreach ($salary_info as $value) {
          </table>
          
      </td>
-     <td>  
+     <td width="124px">  
          
-         <table>
+         <table >
              <tr>
                  <td>
-                 Employment Injury Benefit Insurance System
+                     Employment Injury <br>
+                 Benefit Insurance <br>
+                 System 
                  </td>
              </tr>
              <tr>
                  <td>
-                     Employer
-အလုုပ္ရွင္
+                     <table class="border-top">
+                         <tr>
+                             <td width="124px">        Employer
+                     <br>
+အလုုပ္ရွင္</td>
+                         </tr>
+                     </table>
+              
                  </td>
              </tr>
          </table>
              
      </td>
-       <td>
+       <td width="250px">
        
        <table>
              <tr>
                  <td>
                   Total
+                  <br>
 စုုစုုေပါင္း
+ 
                  </td>
              </tr>
              <tr>
                  <td>
-                   <table>
+                   <table class="border-top" >
              <tr>
                  <td>
                    Employer
+                   <br>
 အလုုပ္ရွင္ ၃%
                  </td>
             
                  <td>
                      Employee
+                     <br>
 အလုုပ္သမား ၂%
                  </td>
                  <td>
                    Total
+                   <br>
 စုုစုုေပါင္း ၅%
+
                  </td>
              </tr>
          </table>
@@ -158,14 +177,15 @@ foreach ($salary_info as $value) {
          </table>
            
        </td>
-     <td>  
+     <td width="58">  
          Remark
+         <br>
         မွတ္ခ်က္ </td>
     </tr>
   </thead>
    </table>
-                
-                   <table border="1px;" class="tbl-tax">
+                </div>
+                   <table border="1px;" class="table_ssb">
                        <tbody>
                         <?php
                         $no = 1;
@@ -182,51 +202,51 @@ foreach ($salary_info as $value) {
                         if (!empty($salary_info)) {
                             foreach ($salary_info as $salary_infos) {
                                
-                                ?><tr class="">
+                                ?><tr>
                                 
-                                    <td width="43"><?php echo $no; ?></td>
-                                    <td width="85"><?php echo $salary_infos->core->full_name; ?></td>
-                                    <td width="138"><?php echo $salary_infos->core->ssn_no; ?></td>
-                                    <td width="77" style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo number_format(300000);}else{echo number_format($salary_infos->salary_detail->basic_salary); }?></td>
-                                    <td width="102" style="text-align: right;">
+                                    <td style="width:35px;"> <?php echo $no; ?> </td>
+                                    <td style="width:125px;"><?php echo $salary_infos->core->full_name; ?></td>
+                                    <td  style="width:137px;"><?php echo $salary_infos->core->ssn_no; ?></td>
+                                    <td style="text-align: right;width:75px;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo number_format(300000);}else{echo number_format($salary_infos->salary_detail->basic_salary); }?></td>
+                                    <td   style="text-align: right;width:76px;">
                                         <?php
                                         $sum1 = $sum1 + $salary_infos->salary_detail->ssc_emp;
                                         echo number_format($salary_infos->salary_detail->ssc_emp);
                                         ?>
                                     </td>
-                                    <td width="102" style="text-align: right;">
+                                    <td width="79" style="text-align: right;">
                                         <?php
                                         $sum2 = $sum2 + $salary_infos->salary_detail->ssc_emp;
                                         echo number_format($salary_infos->salary_detail->ssc_emp);
                                         ?>
                                     </td>
-                                    <td width="160" style="text-align: right;">
+                                    <td width="124" style="text-align: right;">
                                         <?php
                                         $onepercent = $salary_infos->salary_detail->ssc_emp / 2;
                                         $sum3 = $sum3 + $onepercent;
                                         echo number_format($onepercent);
                                         ?>
                                     </td>
-                                    <td width="87" style="text-align: right;">
+                                    <td width="83" style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_comp;
                                         $sum4 = $sum4 + $salary_infos->salary_detail->ssc_comp;
                                         echo number_format($salary_infos->salary_detail->ssc_comp);
                                         ?>
                                     </td>
-                                    <td width="88" style="text-align: right;">
+                                    <td width="83" style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_emp;
                                         $sum5 = $sum5 + $salary_infos->salary_detail->ssc_emp;
                                         echo number_format($salary_infos->salary_detail->ssc_emp);
                                         ?>
                                     </td>
-                                    <td width="90" style="text-align: right;">
+                                    <td width="84" style="text-align: right;">
                                         <?php
                                         echo number_format($salary_infos->salary_detail->ssc_emp+ $salary_infos->salary_detail->ssc_comp);
                                         ?>
                                     </td>
-                                    <td width="71" ></td>
+                                    <td width="58" ></td>
                                 </tr>
                                 <?php
                                 $no++;
@@ -243,32 +263,32 @@ foreach ($salary_info as $value) {
                             ?>
                                 
                             <tr>
-                                <td width="43"></td>
-                                <td width="85"></td>
-                                <td width="138"></td>
-                                <td width="77" ></td>
-                                <td width="102"  style="text-align: right;"><?php echo number_format($sum1) ?></td>
-                                <td width="102" style="text-align: right;"><?php echo number_format($sum2) ?></td>
-                                <td  width="160"  style="text-align: right;"><?php echo number_format($sum3) ?></td>
-                                <td width="87"  style="text-align: right;"><?php echo number_format($sum4) ?></td>
-                                <td width="88" style="text-align: right;"><?php echo number_format($sum5) ?></td>
-                                <td width="90" style="text-align: right;">
+                                <td width="35px"></td>
+                                <td width="125px"></td>
+                                <td width="137"></td>
+                                <td width="75" ></td>
+                                <td width="76"  style="text-align: right;"><?php echo number_format($sum1) ?></td>
+                                <td width="79" style="text-align: right;"><?php echo number_format($sum2) ?></td>
+                                <td  width="124"  style="text-align: right;"><?php echo number_format($sum3) ?></td>
+                                <td width="83"  style="text-align: right;"><?php echo number_format($sum4) ?></td>
+                                <td width="83" style="text-align: right;"><?php echo number_format($sum5) ?></td>
+                                <td width="84" style="text-align: right;">
                                     <?php
                                     $Total = $Total + $sum4 + $sum5;
                                     echo number_format($Total);
                                     ?></td>
-                                <td width="71"></td>
+                                <td width="59"></td>
                             </tr>
                             <?php
                         }
                         ?>
                     </tbody>
-                </table> 
+                </table>   <div class="break"></div>
                  <script language="JavaScript" type="text/javascript">
 	$(document).ready(function() { 
-	  var head = $('thead');
+	  var head = $('.clone_div');
       
-	  $("tbody tr:nth-child(10n+10)").after(head.clone());
+	  $("tbody tr:nth-child(20n+20)").after(head.clone());
 	});
 	</script>
                 <div class="break"></div>

@@ -54,11 +54,12 @@ class Document extends Model {
         try {
             $row = Array();
             if (isset($salary)) {
+
                 $row = $this->modelsManager->createBuilder()
                         ->columns(array('core.*', 'salary_detail.*'))
                         ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                         ->join('salts\Document\Models\SalaryDetail', 'core.member_id = salary_detail.member_id', 'salary_detail')
-                        ->where('salary_detail.pay_date = :pday: ', array('pday' => $salary[0]->pay_date))
+                        ->where('salary_detail.pay_date = :pday: ', array('pday' => $salary[0]->pay_date))                        
                         ->andWhere('core.deleted_flag = 0')
                         ->getQuery()
                         ->execute();
