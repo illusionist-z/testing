@@ -38,7 +38,7 @@ class UserController extends ControllerBase {
      * getting user attendance list by user id
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function attendancelistAction() {
+    public function attendancelistAction($exportMode = null) {
 
         if (isset($this->session->tzoffset)) {
             $offset = $this->session->tzoffset['offset'];
@@ -52,9 +52,15 @@ class UserController extends ControllerBase {
         $currentPage = $this->request->get('page');
         $id = $this->session->user['member_id'];
         $AttList = new \salts\Attendancelist\Models\Attendances();
-        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate,$currentPage);
+        if(1 == $exportMode){                        
+        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate, $currentPage,0);
+        $AttList->AttendanceExport($Result_Attlist,"UserAttendanceList",$offset);
+        }
+        else{
+        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate,$currentPage,1);
         $this->view->attlist = $Result_Attlist;
         $this->view->offset = $offset;
+        }
     }
 
 }

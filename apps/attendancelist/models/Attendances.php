@@ -61,7 +61,7 @@ class Attendances extends Model {
      * @author Su Zin Kyaw
      * for user
      */
-    public function getAttList($id, $year, $month, $currentPage) {
+    public function getAttList($id, $year, $month, $currentPage,$IsPaging) {
         try {
             $currentmth = date('m');
             if (isset($year) || isset($month)) {
@@ -85,7 +85,12 @@ class Attendances extends Model {
                                 ->orderBy('attendances.att_date DESC')
                                 ->getQuery()->execute();
             }
-            $page = $this->base->pagination($row, $currentPage);
+            if(0 != $IsPaging){
+             $page = $this->base->pagination($row, $currentPage);
+            }
+            else{
+             $page = $row;
+            }            
         } catch (Exception $err) {
             echo $err;
         }
@@ -334,7 +339,7 @@ class Attendances extends Model {
         return $date;
     }
 
-    public function MonthlyAttendance($data, $filename, $offset) {
+    public function AttendanceExport($data, $filename, $offset) {
         header("Content-type: application/csv");
         header("Content-Disposition: attachment; filename=$filename.csv;");
         echo "\xEF\xBB\xBF"; // UTF-8 BOM        
