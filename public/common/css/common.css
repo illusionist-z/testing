@@ -803,32 +803,39 @@ hr{
 }
 
 #navicon5,#navicon31{/*calendar*/
-    background: url("../img/main.png")  -190px -115px no-repeat  ;
-    padding: 6px 10px 20px 15px;
+    background: url("../img/main.png")  -190px -115px  no-repeat;
+    padding: 2px 0px 7px 25px;
+    margin: 0px 190px 0px 13px;
 }
 #navicon7{/*setting*/
-    background:url("../img/main.png") -430px 4px no-repeat;
-    padding: 6px 10px 20px 15px;
+    background: url("../img/main.png") -430px 4px no-repeat;
+     padding: 2px 0px 7px 25px;
+    margin: 0px 190px 0px 13px;
 }
 #navicon3{/*manage user*/
-    background: url("../img/main.png")  -167px 5px no-repeat  ;
-    padding: 6px 10px 20px 15px;
+    background: url("../img/main.png") -168px 6px no-repeat;
+    padding: 2px 0px 7px 25px;
+    margin: 0px 190px 0px 13px;
 }
-#navicon1,#navicon41{ /*dashboard*/
-    background: url("../img/main.png")  2px -20px no-repeat  ;
-    padding: 6px 10px 20px 15px;
+#navicon1,#navicon31{ /*dashboard*/
+    background: url("../img/main.png") 2px -20px no-repeat;
+    padding: 2px 0px 7px 25px;
+    margin: 0px 190px 0px 13px;
 }
 #navicon2,#navicon11{ /*attendance list*/
-    background: url("../img/main.png")  -358px -43px no-repeat ;
-    padding: 6px 10px 20px 15px;
+    background: url("../img/main.png")  -358px -43px no-repeat;
+    padding: 2px 0px 7px 25px;
+    margin: 0px 190px 0px 13px;
 }
 #navicon4,#navicon21{ /*leave lists*/
-    background: url("../img/main.png")  -263px -20px no-repeat  ;
-    padding: 6px 10px 20px 15px;
+    background: url("../img/main.png")  -263px -20px no-repeat;
+    padding: 2px 0px 7px 25px;
+    margin: 0px 190px 0px 13px;
 }
-#navicon6{ 
-    background: url("../img/main.png")  -22px -20px no-repeat  ;
-    padding: 6px 10px 20px 15px;
+#navicon6{ /*document*/
+    background: url("../img/main.png") -22px -20px no-repeat;
+    padding: 2px 0px 7px 25px;
+    margin: 0px 190px 0px 13px;
 }
 #noleavelistblock,#leavemostlistblock{
     display: block;
