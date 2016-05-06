@@ -189,13 +189,19 @@ class Attendances extends Model {
 //                    ->orderBy('core.created_dt desc')
 //                    ->getQuery()->execute();
 //            $page = $this->base->pagination($row, $current_page);
-
+            $attid = 'Select member_id from attendances where att_date = CURRENT_DATE and status = 0';
+            $attendancelist = $this->db->query($attid);
+            $finalresult = $attendancelist->fetchall();
+            $final = array();
+            foreach ($finalresult as $value) {
+                array_push($final, $value['member_id']);
+            }
             $row = $this->modelsManager->createBuilder()->columns("core.*")
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                    ->notInWhere('core.member_id',array('memberid' => '(Select member_id from attendances where att_date = CURRENT_DATE)'))
+                    ->notInWhere('core.member_id',$final)
                     ->andWhere('core.deleted_flag = 0')
                     ->orderBy('core.created_dt desc')
-                    ->getQuery()->execute();
+                    ->getQuery(array('current' => $currentdate))->execute();
             $page = $this->base->pagination($row, $current_page);
         } catch (Exception $ex) {
             echo $ex;
