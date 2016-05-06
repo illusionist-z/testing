@@ -192,6 +192,9 @@ class Attendances extends Model {
             $attid = 'Select member_id from attendances where att_date = CURRENT_DATE and status = 0';
             $attendancelist = $this->db->query($attid);
             $finalresult = $attendancelist->fetchall();
+             if(empty($finalresult)){
+              array_push($final, '0');
+            }
             $final = array();
             foreach ($finalresult as $value) {
                 array_push($final, $value['member_id']);
@@ -201,7 +204,7 @@ class Attendances extends Model {
                     ->notInWhere('core.member_id',$final)
                     ->andWhere('core.deleted_flag = 0')
                     ->orderBy('core.created_dt desc')
-                    ->getQuery(array('current' => $currentdate))->execute();
+                    ->getQuery()->execute();
             $page = $this->base->pagination($row, $current_page);
         } catch (Exception $ex) {
             echo $ex;
