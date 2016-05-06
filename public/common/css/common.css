@@ -49,6 +49,12 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql,#exbg{
     background:#3c8dbc;color:white;border-radius: 4px;
 }
+a.ledit{
+    margin-top: 10px;
+}
+a.exbg{
+     background:#3c8dbc;color:white;border-radius: 4px;
+}
 #apply_cancel,#add_salary_cancel,#add_dec,#addinguser_close,#edit_close,
 #cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
 #cancel,#save,#btn_logout,#settingimg,#settingborder,#apply_form_cancel,#noti_reject,

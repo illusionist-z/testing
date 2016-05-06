@@ -118,19 +118,21 @@ class Attendances extends Model {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken        
-        $query = "select * from core_member "
-                . "as c join absent as a on c.member_id=a.member_id "
-                . "where  c.deleted_flag = 0  and a.deleted_flag = 0 group by a.member_id "
+        $query ="select * from core_member "
+                . "as c join attendances as a on c.member_id=a.member_id "
+                . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
                 . "order by count(*) desc limit 3";
         $data = $this->db->query($query);
         //select where no leave name in current month
-         $query1 = "select * from salts\Core\Models\CoreMember as core where core.member_id not in "
-                 . " (select absent.member_id from salts\Dashboard\Models\Absent as absent where absent.date"
-                 . " >'(NOW()-INTERVAL 2 MONTH)' and absent.deleted_flag = 0 ) and core.deleted_flag=0 "
-                 . "order by core.created_dt desc  limit 3";
-       $data1 = $this->modelsManager->executeQuery($query1);
+//         $query1 = "select * from salts\Core\Models\CoreMember as core where core.member_id not in "
+//                 . " (select a.member_id from Attendances as a where a.status  != 0 "
+//                 . "and a.deleted_flag = 0 and (YEAR(NOW())) = YEAR(a.att_date))  ) and core.deleted_flag=0 "
+//                 . "order by core.created_dt desc  limit 3";
+         $query1 = "select * from core_member where member_id not in
+                   (select member_id from attendances where status != 0 and deleted_flag = 0 and  (YEAR(NOW())) = YEAR(att_date)) and deleted_flag=0 order by created_dt desc";
+       $data1 = $this->db->query($query1);
         $res['leave_name'] = $data->fetchall();
-        $res['noleave_name'] = $data1;
+        $res['noleave_name'] = $data1->fetchall();
         return $res;
     }
 

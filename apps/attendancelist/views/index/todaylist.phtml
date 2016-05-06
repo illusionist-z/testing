@@ -34,6 +34,7 @@ if ($offset < 0) {
             <input type="text" class="tags form-control-static" name="namelist" style="margin-top: 9px;"  id="namelist" placeholder="<?php echo $t->_("searchusername"); ?>">
             <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="namesearch">
             <a href="#" class="buttonn form-control-static export  " id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'todaylist.csv']);"><img id="exicon"><?php echo $t->_("export"); ?></a>
+            <a href="todaylist/1" class="buttonn form-control-static export  " id="exbg"><img id="exicon">Export All</a>
         </form>
     </div>
 
@@ -64,9 +65,9 @@ if ($offset < 0) {
                         ?>
                         <tr>
                             <td><?php
-                    $date = date('Y-m-d');
-                    echo $date;
-                        ?></td>
+                                $date = date('Y-m-d');
+                                echo $date;
+                                ?></td>
                             <td><?php echo $filter->sanitize($result->core->member_login_name, "string"); ?></td>
                             <td>
                                 <?php
@@ -85,15 +86,14 @@ if ($offset < 0) {
                             <td>
                                 <?php
                                 //calculate late time
-//                                $checkintime = $result->attendances->checkin_time;
-//                                $dt = new DateTime($checkintime);
-//                                $time = $dt->format('H:i:s');
-                                $office_start_time = '08:00:00 ';
-                                if ($datetime_from > $office_start_time) {
+                                $checkintime = $result->attendances->checkin_time;
+                                $dt = new DateTime($checkintime);
+                                $time = $dt->format('H:i:s');
+                                $office_start_time = '01:30:00 ';
+                                if ($time > $office_start_time) {
                                     $start = strtotime($office_start_time);
-                                    $end = strtotime($datetime_from);
+                                    $end = strtotime($time);
                                     $late = $end - $start;
-
                                     echo "<font color='red'>" . gmdate("H:i:s", $late) . " </font>";
                                 } else {
                                     echo "-";
@@ -101,9 +101,9 @@ if ($offset < 0) {
                                 ?>
                             </td>
                             <td><?php
-                            if ($result->attendances->notes != '') {
-                                echo "<font color='red'>" . $result->attendances->notes . " </font>";
-                            }
+                                if ($result->attendances->notes != '') {
+                                    echo "<font color='red'>" . $result->attendances->notes . " </font>";
+                                }
                                 ?>
                             </td>
                             <td>
@@ -170,9 +170,7 @@ if ($offset < 0) {
     <div id="content">
         <ul class="pagination" style="margin-left:15px;">
             <?php
-            if ($attlist->last === 1 || $attlist->last === 0) {
-                
-            } else {
+            if ($attlist->last !== 1 && $attlist->last !== 0) {
                 ?>
                 <li><a href="todaylist">First</a></li>
                 <li><a href="todaylist?page=<?= $attlist->before; ?>">Previous</a></li>

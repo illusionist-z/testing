@@ -179,6 +179,7 @@ class CoreMember extends \Library\Core\Models\Base {
      * @param type $loginParams
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * updating core member updated_dt after one year
+     * carry last year leave days
      */
     public function updatecontract($loginParams) {
         $filter = new Filter();
@@ -195,8 +196,46 @@ class CoreMember extends \Library\Core\Models\Base {
         }
 
         if (strtotime($end_date) <= strtotime($today)) {
+            $absent_day = $this->checkAbsent($user1['0']['member_id'], $user1['0']['working_start_dt']);
+            $leave_setting = $this->db->query("SELECT max_leavedays from leaves_setting");
+            $max_leaveday= $leave_setting->fetcharray();
+            if($absent_day['countAbsent']<6){
+                $leavedays_carry = $max_leaveday['max_leavedays']-6;
+                
+            }
+            else{
+                $leavedays_carry = $max_leaveday['max_leavedays']-$absent_day['countAbsent'];
+
+            }
+            $this->db->query("UPDATE core_member set core_member.leaveday_carry='" . ($leavedays_carry+$user1['0']['leaveday_carry']) . "' where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
             $this->db->query("UPDATE core_member set core_member.working_year_by_year='" . $end_date . "'  where member_login_name='" . $name . "' and member_password='" . sha1($password) . "'");
         }
+    }
+    
+    /**
+     * check whether absent or not
+     * @param type $member_id 
+     * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
+     */
+    function checkAbsent($member_id, $budget_startyear) {
+        try {
+            $workingnextyr = date('Y-m-d', strtotime("+1 year", strtotime($budget_startyear)));
+            $absent_deduce = "";
+            $sql = "select count(status) as countAbsent ,member_id from attendances where member_id='" . $member_id . "' "
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $workingnextyr . "' and deleted_flag=0 and (status = 1 or status = 2)";
+           //echo $sql;
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+             $sql2 = "select count(status) as countAbsent,member_id from attendances where member_id='" . $member_id . "' "
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $workingnextyr . "' and deleted_flag=0 and (status = 3)";
+            $result2 = $this->db->query($sql2);
+            $row2 = $result2->fetcharray();
+            $row['countAbsent']+=(($row2['countAbsent'])/2); 
+            //echo "absentArray";print_r($row['countAbsent']);
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        return $row;
     }
 
     public function getLang($member) {
@@ -392,8 +431,10 @@ class CoreMember extends \Library\Core\Models\Base {
         $this->db = $this->getDI()->getShared("db");
 
         //select where no leave name in current month
+//        $query1 = "select * from core_member where member_id not in
+//                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0) and deleted_flag=0 order by created_dt desc";
         $query1 = "select * from core_member where member_id not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0) and deleted_flag=0 order by created_dt desc";
+                   (select member_id from attendances where status != 0 and deleted_flag = 0 and  (YEAR(NOW())) = YEAR(att_date)) and deleted_flag=0 order by created_dt desc";
         $data1 = $this->db->query($query1);
         $res['noleave_name'] = $data1->fetchall();
         return $res;
@@ -405,18 +446,24 @@ class CoreMember extends \Library\Core\Models\Base {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function leaveMost() {
+    public function leaveMost($currentPage) {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken
-        $query = "select * from core_member "
-                . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
-                . "order by count(*)";
+//        $query = "select * from core_member "
+//                . "as c join absent as a on c.member_id=a.member_id "
+//                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
+//                . "order by count(*)";
+          $query = "select * from core_member "
+                . "as c join attendances as a on c.member_id=a.member_id "
+                . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
+                . "order by count(*) desc";
         $data = $this->db->query($query);
+        
         $res['leave_name'] = $data->fetchall();
-
         return $res;
+//         $page = $this->base->pagination($row, $currentPage);
+//        return $page;
     }
 
   

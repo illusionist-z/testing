@@ -9,7 +9,7 @@ var Leave = {};
 
 Leave.init =  function(reload){
            $("tfoot").html($('tbody').html()); //for csv           
-            pager.perpage = 9;            
+            pager.perpage = 10;            
             pager.para = $('tbody > tr');
             pager.showPage(1);
             $("tbody").show();
