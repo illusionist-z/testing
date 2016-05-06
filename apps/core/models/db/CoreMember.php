@@ -431,8 +431,10 @@ class CoreMember extends \Library\Core\Models\Base {
         $this->db = $this->getDI()->getShared("db");
 
         //select where no leave name in current month
+//        $query1 = "select * from core_member where member_id not in
+//                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0) and deleted_flag=0 order by created_dt desc";
         $query1 = "select * from core_member where member_id not in
-                   (select member_id from absent where date >(NOW()-INTERVAL 2 MONTH) and deleted_flag = 0) and deleted_flag=0 order by created_dt desc";
+                   (select member_id from attendances where status != 0 and deleted_flag = 0 and  (YEAR(NOW())) = YEAR(att_date)) and deleted_flag=0 order by created_dt desc";
         $data1 = $this->db->query($query1);
         $res['noleave_name'] = $data1->fetchall();
         return $res;
@@ -444,18 +446,24 @@ class CoreMember extends \Library\Core\Models\Base {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function leaveMost() {
+    public function leaveMost($currentPage) {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken
-        $query = "select * from core_member "
-                . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
-                . "order by count(*)";
+//        $query = "select * from core_member "
+//                . "as c join absent as a on c.member_id=a.member_id "
+//                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
+//                . "order by count(*)";
+          $query = "select * from core_member "
+                . "as c join attendances as a on c.member_id=a.member_id "
+                . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
+                . "order by count(*) desc";
         $data = $this->db->query($query);
+        
         $res['leave_name'] = $data->fetchall();
-
         return $res;
+//         $page = $this->base->pagination($row, $currentPage);
+//        return $page;
     }
 
   

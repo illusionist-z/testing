@@ -13,12 +13,11 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
     );
 
     function setUp() {
-       
+
         $this->setBrowserUrl('http://localhost/salts');
     }
 
-    public function testLeaveList() {
-
+    public function testLeaveList() {    
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
@@ -29,7 +28,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testListsearch() {
 
-         $this->url('leavedays/index/leavelist');
+        $this->url('leavedays/index/leavelist');
         $this->byCssSelector('a')->click();
         $this->url('leavedays/index/leavelist');
         $llsearch = $this->byId('search');
@@ -46,35 +45,14 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testListExport() {
 
-         $this->url('leavedays/index/leavelist');
+        $this->url('leavedays/index/leavelist');
         $this->byLinkText('Export')->click();
-        $this->url('leavedays/index/leavelist');
-    }
-
-    public function testFirst() {
-
-         $this->url('leavedays/index/leavelist');
-        $this->byLinkText('First')->click();
-        $this->url('leavedays/index/leavelist');
-    }
-
-    public function testNext() {
-
-         $this->url('leavedays/index/leavelist');
-        $this->byLinkText('Next')->click();
-        $this->url('leavedays/index/leavelist');
-    }
-
-    public function testLast() {
-
-        $this->url('leavedays/index/leavelist');
-        $this->byLinkText('Last')->click();
         $this->url('leavedays/index/leavelist');
     }
 
     public function testApplyLeave() {
 
-         $this->url('leavedays/index/leavelist');
+        $this->url('leavedays/index/leavelist');
         $this->byCssSelector('a')->click();
         $this->url('leavedays/index/applyleave');
         $element = $this->byCssSelector('h1');
@@ -134,7 +112,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testLeaveSetEdit() {
 
-         $this->url('leavedays/index/leavesetting');
+        $this->url('leavedays/index/leavesetting');
         $edit = $this->byId('editsetting');
         $save = $this->byId('savesetting');
         $edit->click();
@@ -145,8 +123,6 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testSalarySettDelete() {
-
-       
         $this->url('leavedays/index/leavesetting');
         $this->byCssSelector('a.ltypepopup')->click();
         $this->url('leavedays/index/leavelist');
@@ -157,7 +133,6 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('leavedays/index/leavesetting');
         $add = $this->byId('addinguser');
         $add->click();
-
         $save = $this->byId('Add_ltype');
         $leavetype = $this->byId('addinguser');
         $leavetype->value('aa');
@@ -167,25 +142,23 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testSalarySettCancel() {
 
-         $this->url('leavedays/index/leavesetting');
+        $this->url('leavedays/index/leavesetting');
         $add = $this->byId('addinguser');
         $add->click();
-
         $cancel = $this->byId('cancel_ltype');
         $leavetype = $this->byId('addinguser');
         $leavetype->value('aa');
         $cancel->click();
         $this->url('leavedays/index/leavesetting');
     }
+
     public function testLformValidation() {
         $this->url('leavedays/index/applyleave');
         $this->byId('apply_form');
-         $this->byName('username')->value('');
-        $start_Date = $this->byName('sdate');
-        $start_Date->value("");
+        $this->byName('username')->value('');
         $end_Date = $this->byName('edate');
-        $end_Date->value("");        
-        $this->byName('description')->value("");
+        $end_Date->value("");
+        $this->byCssSelector('textarea')->value("");
         $this->byId("apply_form_submit")->click();
         sleep(5);
         $elements = $this->elements($this->using('css selector')->value('td span'));

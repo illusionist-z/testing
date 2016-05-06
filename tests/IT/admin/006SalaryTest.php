@@ -26,7 +26,6 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * 
      */
     public function testChecksalary() {
-
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
@@ -119,6 +118,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $allowance->click();
         $sdate->value('01/01/2016');
         $apply->click();
+         $this->assertEquals('This Record is already Inserted', $this->alertText());
+        $this->acceptAlert();
         $this->url('salary/index/salarylist');
     }
 
@@ -175,7 +176,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $browse = $this->byId('file_select');
         $browse->click();
         $browse->value('tests\sample.txt');
-        $add = $this->byId('csvtosql');
+        $add = $this->byClassName('csvtosql');
         $add->click();
         $this->url('salary/index/addsalary');
     }
@@ -190,7 +191,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testAddSalaryDownload() {
 
         $this->url('salary/index/addsalary');
-        $this->byId('csv_download')->click();
+        $this->byClassName('csv_download')->click();
         sleep(2);
         $this->url('salary/index/addsalary');
     }
@@ -290,10 +291,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('salary/index/salarysetting');
         $this->byCssSelector('.inedit')->click();
         sleep(2);
-        $save = $this->byId('edit_tax');
-
-        $name = $this->byName('id');
-        $name->clear();
+        $save = $this->byId('edit_tax');       
         $taxform = $this->byName('taxs_from');
         $taxform->clear();
         $taxto = $this->byName('taxs_to');
@@ -303,9 +301,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $sscemp = $this->byName('ssc_emp');
         $sscemp->clear();
         $ssccomp = $this->byName('ssc_comp');
-        $ssccomp->clear();
-
-        $name->value('2');
+        $ssccomp->clear();        
         $taxform->value('369');
         $taxto->value('222222');
         $taxrate->value('3');

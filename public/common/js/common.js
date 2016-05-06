@@ -120,7 +120,7 @@ function getAbsentMember() {
                 getAbsentMember();
             }, 5*60*1000);
     }
-    else if (h >= 9 && h < 17) {
+    else if (h >= 8 && h < 17) {
         $.ajax({
             url: baseUri + "attendancelist/absent/checkAtt",
             type: "GET",

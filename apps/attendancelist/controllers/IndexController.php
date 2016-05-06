@@ -45,7 +45,7 @@ class IndexController extends ControllerBase {
     /**
      * show today attendance list
      */
-    public function todaylistAction() {
+    public function todaylistAction($exportMode = null) {
       
         if ($this->moduleIdCall == 1) {
             $this->act_name = $this->router->getModuleName();
@@ -57,11 +57,18 @@ class IndexController extends ControllerBase {
             $name = $this->request->get('namelist');
             $offset = $this->session->location['offset'];                       
             $AttList = new \salts\Attendancelist\Models\Attendances();
-            $Result_Attlist = $AttList->getTodayList($name, $currentPage);            
+            
             if ($this->permission == 1) {
+                if(1 == $exportMode){
+                $Result_Attlist = $AttList->getTodayList($name, $currentPage,0);
+                $AttList->MonthlyAttendance($Result_Attlist,"TodayAttendanceList",$offset);
+                }
+                else{
+                $Result_Attlist = $AttList->getTodayList($name, $currentPage,1);
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;                
                 $this->view->modulename = $this->module_name;
+                }
             }
         }
     }
@@ -114,19 +121,24 @@ class IndexController extends ControllerBase {
      * show monthly attendancelist
      * 
      */
-    public function monthlylistAction() {
+    public function monthlylistAction($exportMode = null) {
         if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
-            $currentPage = $this->request->get("page");            
-            $month = $this->config->month;
+            $currentPage = $this->request->get("page");
+            //$month = $this->config->month['month'];
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $monthly_list = $Attendances->showAttList($currentPage);
-            //$coreid = new CorePermissionGroupId();
 
             if ($this->permission == 1) {
+                if(1 == $exportMode){
+                $monthly_list = $Attendances->showAttList($currentPage,0);
+                $Attendances->MonthlyAttendance($monthly_list,"MonthlyAttendanceList",$offset);
+                }
+                else{
+                $monthly_list = $Attendances->showAttList($currentPage,1);
                 $this->view->monthlylist = $monthly_list;
                 $this->view->setVar("Month", $month);                
                 $this->view->setVar("offset", $offset);
+                }
             } else {
                 $this->response->redirect('core/index');
             }
