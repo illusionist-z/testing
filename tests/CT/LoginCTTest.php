@@ -73,7 +73,7 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $test = new AuthIndexController();
         $test->setmailParam($email_params);
         $result = $test->resetPasswordAction();        
-        $this->assertEquals($email_params, $result[1]);
+        $this->assertEquals($email_params, $result[0]);
     }
 
     public function testchangePasswordAction() {
@@ -83,13 +83,6 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $test->setmailParam($email_params);
         $test->setpwd($new_paswd);
         $this->assertEquals("success", $test->changePasswordAction());
-    }
-
-    public function testcheckCodeAction() {
-        $test = new AuthIndexController();
-        $test->setparam("6757071976a015f");
-        $test->setmailParam("sawzinminmin@gmail.com");
-        $this->assertEquals("success", $test->checkCodeAction());
     }
 
     public function testsendToMailAction() {

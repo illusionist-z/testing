@@ -105,7 +105,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
    
-    public function absent() {
+    public function absent($id) {
         //get today absent list
         $sql = "Select member_id from core_member where member_id NOT IN (select member_id from "
                 . "attendances where att_date = CURRENT_DATE) AND deleted_flag=0 order by created_dt desc";
@@ -131,7 +131,7 @@ class AttendancesTest extends Models\Attendances {
         return $message;
     }
 
-    public function InsertAbsentStatus($checkresult, $finalresult) {
+    public function InsertAbsentStatus($checkresult, $finalresult,$id) {
         $insert = "Insert into attendances (member_id,att_date,status) VALUES ";
         //insert absent with apply leave
         if (count($checkresult) > 0) {

@@ -23,7 +23,7 @@ class SalaryDetailTest extends Models\SalaryDetail {
      * @return type
      * @author zinmon
      */
-    public function getEachmonthsalary($currentPage) {
+    public function getEachmonthsalary($currentPage,$IsPaging) {
         try {
             $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
                     . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
@@ -220,7 +220,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     /**
      * Get salary detail for each month
      */
-    public function getSalaryDetail($currentPage) {
+    public function getSalaryDetail($currentPage,$IsPaging) {
         try {
 
             $row = $this->modelsManager->createBuilder()
