@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-var pager = new Paging.Pager(), User = {};   //for pagination
 
 /*
  * show today list by return json array
@@ -12,7 +11,7 @@ var pager = new Paging.Pager(), User = {};   //for pagination
  */
 User.LeaveList = {
     init: function () {
-
+         $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
     },
     search: function () {
         var month = document.getElementById('month').value;

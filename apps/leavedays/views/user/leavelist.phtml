@@ -59,6 +59,7 @@ $length = count($Month);
 
             <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="Search" id="usersearch"></b>
             <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><b>Export</b></a>
+            <a href="leavelist/1" class="button export" id="exbg" ><img id="exicon"><b>Export All</b></a>
         </form>
     </div>
 
@@ -78,37 +79,37 @@ $length = count($Month);
                         <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
                 </thead>
-                <tbody style="display: none;">
+                <tbody>
                     <?php
-                    foreach ($Result as $item) {
+                    foreach ($Result->items as $item) {
                         ?>
                         <tr>
                             <td><?php
-                                $dt = explode(" ", date($item['date']));
+                                $dt = explode(" ", date($item->leaves->date));
                                 echo $dt[0];
                                 ?></td>
 
-                            <td><?php echo $item['member_login_name']; ?></td>
+                            <td><?php echo $item->core_member->member_login_name; ?></td>
                             <td><?php
-                                $start_date = explode(" ", $item['start_date']);
+                                $start_date = explode(" ", $item->leaves->start_date);
                                 echo $start_date[0];
                                 ?></td>
                             <td><?php
-                                $end_date = explode(" ", $item['end_date']);
+                                $end_date = explode(" ", $item->leaves->end_date);
                                 echo $end_date[0];
                                 ?></td>
                             <td><?php
-                                echo $item['leave_days'];
+                                echo $item->leaves->leave_days;
                                 ?></td>
                             <td><?php
-                                echo $item['leave_category'];
+                                echo $item->leaves->leave_category;
                                 ?></td>
                             <td><?php
-                                echo $item['leave_description'];
+                                echo $item->leaves->leave_description;
                                 ?></td>
 
                             <td><?php
-                                switch ($item['leave_status']) {
+                                switch ($item->leaves->leave_status) {
                                     case "0" : echo "Pending";
                                         break;
                                     case "1" : echo "Confirmed";
@@ -132,9 +133,22 @@ $length = count($Month);
                     }
                     ?>
 
-                </tbody>
-                <tfoot style="display: none;"></tfoot>
+                </tbody>                
             </table>      
         </div><!--end table content--->
     </div><!-- /.row -->
-    <div id="content"></div>
+     <div id="content">
+        <ul class="pagination" style="margin-left:15px;">
+            <?php
+            if ($Result->last !== 1) {                          
+                ?>
+                <li><a href="leavelist">First</a></li>
+                <li><a href="leavelist?page=<?= $Result->before; ?>">Previous</a></li>
+                <li><a href="leavelist?page=<?= $Result->next; ?>">Next</a></li>
+                <li><a href="leavelist?page=<?= $Result->last; ?>">Last</a></li>
+                <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?></span></li>
+                    <?php
+                }
+                ?>
+        </ul>
+    </div>

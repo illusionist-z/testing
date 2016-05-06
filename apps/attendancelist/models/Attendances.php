@@ -37,7 +37,7 @@ class Attendances extends Model {
                             ->orderBy('attendances.checkin_time DESC')
                             ->getQuery()->execute();
         }
-        if (0 != $IsPaging) {
+        if (1 == $IsPaging) {
             $page = $this->base->pagination($row, $currentPage);
         } else {
             $page = $row;
@@ -118,7 +118,7 @@ class Attendances extends Model {
                 ->orderBy('attendances.checkin_time DESC')
                 ->getQuery()
                 ->execute();
-        if (0 != $IsPaging) {
+        if (1 == $IsPaging) {
             $page = $this->base->pagination($row, $currentPage);
         } else {
             $page = $row;
