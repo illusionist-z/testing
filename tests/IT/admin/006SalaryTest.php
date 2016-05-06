@@ -118,6 +118,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $allowance->click();
         $sdate->value('01/01/2016');
         $apply->click();
+         $this->assertEquals('This Record is already Inserted', $this->alertText());
+        $this->acceptAlert();
         $this->url('salary/index/salarylist');
     }
 

@@ -20,7 +20,7 @@ class SalaryDetail extends Model {
      * @return type
      * @author zinmon
      */
-    public function getEachmonthsalary($currentPage) {
+    public function getEachmonthsalary($currentPage,$IsPaging) {
         try{
         $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
                 . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
@@ -31,7 +31,8 @@ class SalaryDetail extends Model {
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";
         $row = $this->modelsManager->executeQuery($query);
-        $paginator = new PaginatorModel(
+        if(0 != $IsPaging){
+          $paginator = new PaginatorModel(
                             array(
                         "data" => $row,
                         "limit" => 10,
@@ -41,6 +42,10 @@ class SalaryDetail extends Model {
 
 // Get the paginated results
         $page = $paginator->getPaginate();        
+        }
+        else{
+            $page = $row;
+        }
         }  catch (Phalcon\Exception $e) {           
               $di->getShared('logger')->error($e->getMessage());
         }
@@ -215,9 +220,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     /**
      * Get salary detail for each month
      */
-    public function getSalaryDetail($currentPage) {
-        try {
-      
+    public function getSalaryDetail($currentPage,$IsPaging) {
+        try {            
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarymas.*', 'core.*'))
                     ->from(array('salarymas' => 'salts\Salary\Models\SalaryMaster'))
@@ -227,6 +231,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
                     ->execute();
+         if(0 != $IsPaging){
                    $paginator = new PaginatorModel(
                             array(
                         "data" => $row,
@@ -234,9 +239,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                         "page" => $currentPage
                             )
                          );
-
 // Get the paginated results
-        $page = $paginator->getPaginate();        
+        $page = $paginator->getPaginate();
+         }
+         else{
+             $page = $row;
+         }
         } catch (Exception $e) {
             echo $e;
         }
@@ -690,7 +698,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $da["income_tax"] = $filter->sanitize(isset($data[11]) ? $data[11] : "", "int");
         $da["total_annual_income"] = $filter->sanitize(isset($data[12]) ? $data[12] : "", "int");
         $da["basic_examption"] = $filter->sanitize(isset($data[13]) ? $data[13] : "", "int");
-        $paydate = isset($data[14]) ? $data[14] : 0;
+        $paydate = isset($data[14]) ? $data[14] : 0;        
         (0 !== $paydate) ? $da['pay_date'] = date("Y-m-d",strtotime($paydate)) : $da['pay_date'] = null;
         $da["creator_id"] = $data["member_id"];
         $da['updated_dt'] = date("Y-m-d H:m:s");
@@ -731,5 +739,41 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $users = $user->fetchAll(); 
         //var_dump($users);exit;
         return $users;
+    }
+    /**
+     * @author David JP <david.gnext@gmail.com>
+     * @export Data All From Table
+     * @param type $data
+     */
+    public function SalaryListExport($data){
+         header("Content-type: application/csv");
+        header("Content-Disposition: attachment; filename=SalaryListAll.csv;");        
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM        
+        $output = fopen('php://output', 'w');               
+        fputcsv($output, array("No","User Name","Basic Salary","Travel Fees","Overtime","SSC_EMP","SSC_COMP"));      
+        $num = 0;
+        foreach($data as $row){
+        fputcsv($output,array($num++,$row->core->member_login_name,$row->salarymas->basic_salary,$row->salarymas->travel_fee_perday,$row->salarymas->over_time,
+                $row->salarymas->ssc_emp."%",$row->salarymas->ssc_comp."%"));
+
+            }
+        fclose($output);
+        exit;
+    }
+    
+    public function MonthlyListExport($data){
+          header("Content-type: application/csv");
+        header("Content-Disposition: attachment; filename=MonthlySalaryListAll.csv;");        
+        echo "\xEF\xBB\xBF"; // UTF-8 BOM        
+        $output = fopen('php://output', 'w');               
+        fputcsv($output, array("Month/Year","Salary Total","Allowance","Travel Fees","Personal Income","SSC EMPLOYER","SSC EMPLOYEE","Tax Total","Total"));      
+        $num = 0;
+        foreach($data as $geteachmonthsalary){
+        fputcsv($output,array($geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr'],$geteachmonthsalary['salary_total'],$geteachmonthsalary['allowance'],$geteachmonthsalary['travel_expense']
+                ,$geteachmonthsalary['income_tax_amount'],$geteachmonthsalary['ssc_emp_amount'],$geteachmonthsalary['ssc_comp_amount'],$geteachmonthsalary['Tax_total'],
+                $geteachmonthsalary['Total']));
+            }
+        fclose($output);
+        exit;
     }
 }

@@ -165,13 +165,14 @@ $messages = array(
     "You must checked Allowance." => "You must checked Allowance.",
     "sal_start_date" => "Choose Salary Start Date",
     "Salary_apply" => "Submit your Salary apply form.",
-    "download_csv" => "Can you Download(CSV Files) and you can insert users salary details.
+    "download_csv" => "You can Download(CSV Files) and you can insert users salary details.
 After downloaded,we would like to
 1. Open Excel
 2. Go to 'Data' tab
-3. Select 'From Text' (third option from left) and select the .CSV file you want to import.
-4. Click 'Next' on the pop-up window.You should select your appropriate delimeters seeing into columns below already!",
-    "apply_with_csv" => "Can you Add Salary By CSV files",
+3. Select 'From Text' (third option from left) and select the CSV file you want to import.
+4. Click 'Next' on the pop-up window.You should select your appropriate delimeters below box!
+ **Select <font color='red'>long date</font> format when input Date in CSV files**",
+    "apply_with_csv" => "You can Add Salary By CSV files",
     /**
      * Salary Lists
      */
