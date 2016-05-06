@@ -73,34 +73,12 @@ class CoreMemTestController extends Controllers\CorememberController {
 
     public function savenewuser() {
         $this->initialize();
-        $file_contents = 0;
-        $_FILES['fileToUpload'] = $this->file;
-        if (($_FILES['fileToUpload']['size']) != 0) {
-            $file_type = $_FILES['fileToUpload']['type'];
-            $file_size = $_FILES['fileToUpload']['size'];
-            $tmp = (dirname(__DIR__) . '\tmp' . $this->file["tmp_name"]);
-            $_FILES['fileToUpload']['tmp_name'] = $tmp;
-            $MY_FILE = $_FILES['fileToUpload']['tmp_name'];
-            $file = fopen($MY_FILE, 'r');
-            $file_content = fread($file, filesize($MY_FILE));
-            fclose($file);
-            $file_contents = addslashes($file_content);
-            if (($file_size > 10000)) {
-                $result = $this->checkimgsize();
-                return $result;
-            } elseif (($file_type != "image/jpeg") && ($file_type != "image/jpg") && ($file_type != "image/gif") && ($file_type != "image/png")
-            ) {
-                $result = $this->checkimgtype();
-                return $result;
-            } else {
-                $member = $this->param;
-                $member_id = $this->session->user['member_id'];
-                $NewUser = new CoreMember;
-                $NewUser->addNewUser($member_id, $member, $file_contents);
-                $json['result'] = "success";
-                return $json;
-            }
-        }
+        $member = $this->param;
+        $member_id = $this->session->user['member_id'];
+        $NewUser = new CoreMember;
+        $NewUser->addNewUser($member_id, $member);
+        $json['result'] = "success";
+        return $json;
     }
 
     public function checkimgsize() {

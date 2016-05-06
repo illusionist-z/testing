@@ -149,7 +149,7 @@ class AuthIndexController extends Controllers\IndexController {
         $result = $Admin::find(array("member_mail = '$member_mail'", "deleted_flag = 0"));          
         $data = [];
         foreach ($result as $value) {
-            $data[] = $value->member_profile;
+            
             $data[] = $value->member_mail;
             $data[] = $value->member_login_name;
         }

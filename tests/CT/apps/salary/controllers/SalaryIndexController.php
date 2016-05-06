@@ -130,12 +130,12 @@ class SalaryIndexController extends Controllers\IndexController {
             $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
-            
+
 
             if ($this->permission == 1) {
-                if(1 == $exportMode){
-                    $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,0);
-                    $SalaryDetail->SalaryListExport($get_salary_detail);               
+                if (0 == $exportMode) {
+                    $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage, 1);
+                    
                 }
                 return true;
             }
@@ -190,9 +190,8 @@ class SalaryIndexController extends Controllers\IndexController {
             $this->assets->addJs('apps/salary/js/index-addsalary.js');
             $currentPage = $this->request->get("page");
             $SalaryDetail = new SalaryDetail();
-            if (1 == $exportMode) {
-                $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage, 0);
-                $SalaryDetail->MonthlyListExport($get_eachmonth_salary);
+            if (0 == $exportMode) {
+                $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage,1);
             }
             return true;
         }
@@ -605,7 +604,7 @@ class SalaryIndexController extends Controllers\IndexController {
         if ($this->permission == 1) {
             $UserList = new Db\CoreMember();
             $username = $UserList->autoUsername();
-            $member_id = $username[18]["member_id"];
+            $member_id = $username[10]["member_id"];
             $SalaryMaster = new Master();
             $edit_salary = $SalaryMaster->editSalary($member_id);
             $resultsalary['data'] = $edit_salary;
