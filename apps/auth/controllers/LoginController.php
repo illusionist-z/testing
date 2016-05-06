@@ -47,6 +47,7 @@ class LoginController extends ControllerBase {
             $companyDB = $ModelAuth->findCompDb($login_params);
 
             if ($companyDB) {
+              
                 // User Chack    
                 $this->session->set('db_config', $companyDB);
                 // Module Chack
@@ -128,10 +129,15 @@ class LoginController extends ControllerBase {
                     $core_member_log->save();
                     $this->response->redirect('auth/index/failer');
                 }
-            } else {
-                
-                $filter = new Filter();
-                $token = bin2hex(openssl_random_pseudo_bytes(16));
+            } else{
+             $config = new Ini(__DIR__ . '/../../../config/config.ini');
+            $dbinfo['host'] = $config->database->host;
+            $dbinfo['db_name'] = $config->database->dbname;
+            $dbinfo['user_name'] = $config->database->username;
+            $dbinfo['db_psw'] = $config->database->password;
+            $this->session->set('db_config', $dbinfo);
+            $filter = new Filter();
+             $token = bin2hex(openssl_random_pseudo_bytes(16));
 
                 $user_ip = $filter->sanitize($this->request->getPost('local'), "string");
                 $user_ip_public = $filter->sanitize($this->request->getPost('public'), "string");
@@ -146,6 +152,8 @@ class LoginController extends ControllerBase {
                 $core_member_log->mac = $user_ip;
                 $core_member_log->ipv6 = $user_ip_IPv6;
                 $core_member_log->save();
+                var_dump($core_member_log);
+               
                 $this->response->redirect('auth/index/failer');
             }
             // When user's login succeed , move to dashboad

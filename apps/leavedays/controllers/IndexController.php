@@ -16,6 +16,7 @@ class IndexController extends ControllerBase {
         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays'); // get config data,@type module name
         $this->_leave = new Leave();
         parent::initialize();
+        
         $this->setCommonJsAndCss();
         $this->setLeaveJsAndCss();
         $Admin = new Db\CoreMember();
@@ -296,13 +297,14 @@ class IndexController extends ControllerBase {
      */
     public function leavemostAction() {
         if ($this->permission == 1) {
-            $this->assets->addJs('common/js/paging.js');
-            $this->assets->addJs('apps/leavedays/js/index-paging.js');
+            //$this->assets->addJs('common/js/paging.js');
+            //$this->assets->addJs('apps/leavedays/js/index-paging.js');
+            $currentPage = $this->request->get("page");  
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
             $noti = $Admin->GetAdminNoti($id);
             $this->view->setVar("Noti", $noti);
-            $Result = $Admin->leaveMost();
+            $Result = $Admin->leaveMost($currentPage);
             $this->view->setVar("Result", $Result);
         } else {
             echo 'Page Not Found';

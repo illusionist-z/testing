@@ -38,6 +38,7 @@ $messages = array(
     "placeholder10" => "Enter Address",
     "placeholder11" => "Add User",
     "placeholder12" => "Cancel"   ,
-    "mm"=>"Myanmar Name"
+    "mm"=>"Myanmar Name",
+    "l_left"=>"Leave Days Left"
 );
 
