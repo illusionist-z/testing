@@ -38,6 +38,7 @@ $messages = array(
     "placeholder10" => "လိပ္စာအျပည္႔အစံုုျဖည္႔ရန္",
     "placeholder11" => "ထည့္မည္",
     "placeholder12" => "မလုပ္ေတာ့ပါ",
+    "l_left"=>"Leave Days Left"
  
 );
 

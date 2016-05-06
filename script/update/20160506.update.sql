@@ -1,0 +1,1 @@
+ALTER TABLE `core_member` ADD `leaveday_carry` DOUBLE NOT NULL DEFAULT '0' AFTER `user_rule`;

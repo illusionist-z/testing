@@ -153,10 +153,10 @@ foreach ($this->session->auth as $key_name => $key_value) {
                                                     ?>
                                                     <li id="noleaveli">
                                                                       
-                                                        <?= $na->member_login_name ?>
+                                                        <?= $na['member_login_name'] ?>
                                                     </li>
                                                     <?php
-                                                    array_push($noleave, $na->member_login_name);
+                                                    array_push($noleave, $na['member_login_name']);
                                                 }
                                                 ?>
                                             </ul>

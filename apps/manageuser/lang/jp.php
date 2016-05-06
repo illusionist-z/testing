@@ -41,6 +41,7 @@ $messages = array(
     "placeholder10" => "住所を入力してください",
     "placeholder11" => "新規入力",
     "placeholder12" => "キャンセル",
+    "l_left"=>"Leave Days Left"
    
 );
 

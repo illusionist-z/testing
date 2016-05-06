@@ -11,13 +11,13 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/btn.js');   
-        $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
-       $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+      //  $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
+       // $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
     }
 
     /**  Index Action @param type $mode */
     public function indexAction($mode = NULL) {
-
+    
         $localhost = ($this->request->getServer('HTTP_HOST'));
         $id_auth_filter = $this->session->auth;
         if (isset($id_auth_filter) != null) {
@@ -25,7 +25,7 @@ class IndexController extends ControllerBase {
         } elseif (isset($id_auth_filter) == null) {
             if (isset($_SESSION['startTime']) != null) {
                 $this->view->pick('salts/auth/index/failer');
-                $page = "http://" . $localhost . "/salts/auth/index/failer";
+                $page = "http://" . $localhost . "/salts/auth/index/failerUser";
                 $sec = "1";
                 header("Refresh: $sec; url=$page");
             } elseif (isset($_SESSION['startTime']) == null) {
@@ -50,13 +50,16 @@ class IndexController extends ControllerBase {
         $this->view->errorMsgForgot = 'I forgot my password ?';
         if (!isset($_SESSION["attempts"]))
             $_SESSION["attempts"] = 0;
-  
+     
         if (4 > $_SESSION["attempts"]) {
-            if ($this->session) {
+        
+                if ($this->session) {
+                    
                 $member_name = $this->session->tokenpush;
                 $ChackUser = new Models\CoreMember();
                 $chack_user2 = $ChackUser::findByMemberLoginName($member_name);
                 $member_id = $this->request->getPost('member_login_name');
+                
                 if (0 != count($chack_user2)) {
                     $member_name = $this->session->tokenpush;
                     $core_fai_obj = Models\CoreMember::findFirstByMemberLoginName($member_name);
@@ -66,7 +69,7 @@ class IndexController extends ControllerBase {
 
                         $this->view->errorMsg = "You've Login To Next. 30 Minutes";
                         $this->view->pick('index/index');
-                        session_destroy();
+                  
                         // Login To Next. 30 Minutes
                     } elseif ($core_fai_timeflag <= $timestamp) {
                         $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
@@ -77,9 +80,11 @@ class IndexController extends ControllerBase {
                     $_SESSION["attempts"] = $_SESSION["attempts"] + 1;
                     $this->view->errorMsg = 'company id or user name or password wrong';
                     $this->view->pick('index/index');
-                }
-            }
-        } else {
+                  }
+              }
+           
+        } else  {
+            
             $member_name = $this->session->tokenpush;
             $ChackUser = new Models\CoreMember();
             $chack_user = $ChackUser::findByMemberLoginName($member_name);
@@ -134,10 +139,10 @@ class IndexController extends ControllerBase {
                 session_destroy();
             }
         }
+        
     }
 
     public function failerUserAction() {
-
 
         //Count For Not User Has
         $member_name = $this->session->tokenpush;
