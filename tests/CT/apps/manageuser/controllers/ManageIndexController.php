@@ -140,7 +140,9 @@ class ManageIndexController extends Controllers\IndexController {
             $cond['id'] = $id;
             $cond['bank'] = $this->meminfo['bank'];
             $cond['name'] = $this->meminfo['uname'];
+            $cond['ssn'] = $this->meminfo['ssn'];
             $cond['full_name'] = $this->meminfo['full_name'];
+            $cond['mm_name'] = $this->meminfo['mm_name'];
             $cond['dept'] = $this->meminfo['dept'];
             $cond['position'] = $this->meminfo['position'];
             $cond['email'] = $this->meminfo['email'];

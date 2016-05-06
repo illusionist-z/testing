@@ -63,16 +63,4 @@ class SettingCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($setting->User2RuleSettingAction());
     }
 
-    public function testDelGroupRuleAction() {
-        $setting = new SettingIndexController();
-        $setting->setGroupCode("1");
-        $this->assertTrue($setting->DelGroupRuleAction());
-    }
-
-    public function testDelPageRuleAction() {
-        $setting = new SettingIndexController();
-        $setting->setGroupCode("4");
-        $this->assertTrue($setting->DelPageRuleAction());
-    }
-
 }

@@ -21,7 +21,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
     public function testsalarylistAction() {
 
         $salary = new SalaryIndexController();
-        $this->assertTrue($salary->salarylistAction());
+        $this->assertTrue($salary->salarylistAction(0));
     }
 
     public function testshowsalarylistAction() {
@@ -38,7 +38,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
 
     public function testmonthlysalaryAction() {
         $salary = new SalaryIndexController();
-        $this->assertTrue($salary->monthlysalaryAction());
+        $this->assertTrue($salary->monthlysalaryAction(0));
     }
 
     public function testpayslipAction() {

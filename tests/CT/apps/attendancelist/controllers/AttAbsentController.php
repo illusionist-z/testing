@@ -9,8 +9,6 @@ use salts\Core\Models\Db;
 use salts\Attendancelist\Controllers;
 use salts\Attendancelist\Models\Attendances as Attendance;
 
-
-
 require_once 'apps/attendancelist/controllers/AbsentController.php';
 
 /**
@@ -21,8 +19,6 @@ require_once 'apps/attendancelist/controllers/AbsentController.php';
 class AttAbsentController extends Controllers\AbsentController {
 
     public $memberId;
-  
- 
 
     public function setmemberId($memberId) {
         $this->memberId = $memberId;
@@ -36,11 +32,12 @@ class AttAbsentController extends Controllers\AbsentController {
         $this->act_name = 'attendancelist';
     }
 
-    public function addAbsentAction() {
+    public function addAbsentAction() {  //change
         $this->initialize();
         if ($this->permission == 1) {
             $Attendance = new Attendance();
-            $message = $Attendance->absent();           
+            $id = $this->request->get('id');
+            $message = $Attendance->absent($id);
             echo json_encode($message);
         }
     }

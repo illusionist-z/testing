@@ -124,15 +124,19 @@ class SalaryIndexController extends Controllers\IndexController {
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->module_name, $this->session->module);
     }
 
-    public function salarylistAction() {
+    public function salarylistAction($exportMode = null) {
         $this->initialize();
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
-            $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage);
+
 
             if ($this->permission == 1) {
+                if (0 == $exportMode) {
+                    $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage, 1);
+                    
+                }
                 return true;
             }
         }
@@ -179,14 +183,16 @@ class SalaryIndexController extends Controllers\IndexController {
         }
     }
 
-    public function monthlysalaryAction() {
+    public function monthlysalaryAction($exportMode = null) {
         $this->initialize();
         if ($this->permission == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $this->assets->addJs('apps/salary/js/index-addsalary.js');
             $currentPage = $this->request->get("page");
             $SalaryDetail = new SalaryDetail();
-            $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
+            if (0 == $exportMode) {
+                $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage,1);
+            }
             return true;
         }
     }
@@ -597,14 +603,14 @@ class SalaryIndexController extends Controllers\IndexController {
         $this->initialize();
         if ($this->permission == 1) {
             $UserList = new Db\CoreMember();
-            $username = $UserList->autoUsername();            
-            $member_id = $username[18]["member_id"];             
+            $username = $UserList->autoUsername();
+            $member_id = $username[10]["member_id"];
             $SalaryMaster = new Master();
-            $edit_salary = $SalaryMaster->editSalary($member_id);            
+            $edit_salary = $SalaryMaster->editSalary($member_id);
             $resultsalary['data'] = $edit_salary;
 
             $PermitAllowance = new SalaryDetailTest();
-            
+
             $resultsalary['permit_allowance'] = $PermitAllowance->getAllowanceByMemberid($edit_salary[0]['member_id']);
 
             $PermitDedution = new SalaryMemberTaxDeduce();
