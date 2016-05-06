@@ -36,7 +36,7 @@ class AttendanceCTTest extends PHPUnit_Framework_TestCase {
 
     public function testmonthlylistAction() {
         $month = new AttendancelistIndexController();
-        $this->assertTrue($month->monthlylistAction());
+        $this->assertTrue($month->monthlylistAction(1));
     }
 
     public function testattendancechartAction() {
