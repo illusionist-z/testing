@@ -405,23 +405,24 @@ class CoreMember extends \Library\Core\Models\Base {
      * @return array {no leave name}
      * @version saw zin min tun
      */
-    public function leaveMost() {
+    public function leaveMost($currentPage) {
         $res = array();
         $this->db = $this->getDI()->getShared("db");
         //select where user most leave taken
-        $query = "select * from core_member "
-                . "as c join absent as a on c.member_id=a.member_id "
-                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
-                . "order by count(*)";
-//          $query = "select * from core_member "
-//                . "as c join attendances as a on c.member_id=a.member_id "
-//                . "where a.status = 1 and 2 and 3 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
-//                . "order by count(*) desc";
+//        $query = "select * from core_member "
+//                . "as c join absent as a on c.member_id=a.member_id "
+//                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
+//                . "order by count(*)";
+          $query = "select * from core_member "
+                . "as c join attendances as a on c.member_id=a.member_id "
+                . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
+                . "order by count(*) desc";
         $data = $this->db->query($query);
         
         $res['leave_name'] = $data->fetchall();
-
         return $res;
+//         $page = $this->base->pagination($row, $currentPage);
+//        return $page;
     }
 
   
