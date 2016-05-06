@@ -51,6 +51,7 @@ class IndexController extends ControllerBase {
             $username = $this->request->get('username');
             $list = $this->user->userList($username, $currentPage);
             $member_count = new Db\CoreMember();
+            
             $member_count_number = $member_count->getNumberCount();
             $this->view->member_count_number = $member_count_number;
  
