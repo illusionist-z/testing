@@ -135,7 +135,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $add->click();
         $save = $this->byId('Add_ltype');
         $leavetype = $this->byId('addinguser');
-        $leavetype->value('aa');
+        $leavetype->value('Family Case');
         $save->click();
         $this->url('leavedays/index/leavesetting');
     }
@@ -147,7 +147,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $add->click();
         $cancel = $this->byId('cancel_ltype');
         $leavetype = $this->byId('addinguser');
-        $leavetype->value('aa');
+        $leavetype->value('Family Case');
         $cancel->click();
         $this->url('leavedays/index/leavesetting');
     }

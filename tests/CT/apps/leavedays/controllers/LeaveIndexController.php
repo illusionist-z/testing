@@ -146,28 +146,20 @@ class LeaveIndexController extends Controllers\IndexController {
         $this->initialize();
 
         if ($this->moduleIdCall == 1) {
-
             $Admin = new Db\CoreMember;
-            $id = $this->session->user['member_id'];
 
-
-            $noti = $Admin->GetAdminNoti($id, 0);
-
-            $this->assets->addJs('apps/leavedays/js/search.js');
-            $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
             $LeaveType = new LeaveCategories();
-            $ltype = $LeaveType->getLeaveType();
 
             $UserList = new Db\CoreMember();
-            $GetUsername = $UserList::getinstance()->getusername("Ei Thandar Aung");
-            $leaves = $this->_leave->getLeaveList($this->currentPage);
-            $absent = $this->_leave->getAbsent();
+            $page = $this->request->get("page");
             $max = $this->_leave->getLeaveSetting();
-            $max_leavedays = $max['0']['max_leavedays'];
-
             if ($this->permission == 1) {
-
-                return true;
+                if (1 == $exportMode) {
+                    $result = $this->_leave->getLeaveList($page, 0);
+                    $this->_leave->exportUserLeaveList($result, "UserLeaveListAll", $this->_leave->getAbsent(), $max['0']['max_leavedays']);
+                } else {
+                    return true;
+                }
             }
         }
     }
@@ -295,7 +287,7 @@ class LeaveIndexController extends Controllers\IndexController {
     }
 
     public function leavemostAction() {
-        $this->initialize();        
+        $this->initialize();
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/index-paging.js');
         $Admin = new Db\CoreMember;
