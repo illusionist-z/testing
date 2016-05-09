@@ -43,15 +43,15 @@
 @media print{
      
   body *{ visibility: hidden; }
-  .printable *{ visibility: visible; font-size: 9px;}
+  .printable *{ visibility: visible; font-size: 14px;}
    
   .link{display: none;}
    
 }
 @page {
-    font-size: 10px;
+    
      
-    margin: 5px;
+    margin: 50px;
 }
 .page {  
       page-break-before: always;
