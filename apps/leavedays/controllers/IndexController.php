@@ -107,7 +107,7 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-    public function leavelistAction($exportMode = null) {
+   public function leavelistAction($exportMode = null) {
         if ($this->moduleIdCall == 1) {
             $this->permission = $this->setPermission($this->router->getModuleName());
             $Admin = new Db\CoreMember;
@@ -115,7 +115,7 @@ class IndexController extends ControllerBase {
             $LeaveType = new LeaveCategories();
             $this->view->setVar("Leavetype", $LeaveType->getLeaveType());
             $UserList = new Db\CoreMember();
-            $carryleave = $UserList->getCarryLeave();
+            $page = $this->request->get("page");
             $max = $this->_leave->getLeaveSetting();
             if ($this->permission == 1) {
                 if(1 == $exportMode){
@@ -127,9 +127,36 @@ class IndexController extends ControllerBase {
                 $this->view->Getname = $UserList::getinstance()->getusername();
                 $this->view->setVar("Result", $this->_leave->getLeaveList($page,1));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
-                $this->view->setVar("carryleave", $carryleave);
                 $this->view->setVar("Month", $this->config['config']['month']);
                 }
+                //$this->view->modulename = $this->module_name;
+            } else {
+                $this->response->redirect('core/index');
+            }
+        } else {
+            $this->response->redirect('core/index');
+        }
+    }
+    
+     public function leavedayleftAction() {
+        if ($this->moduleIdCall == 1) {
+            $this->permission = $this->setPermission($this->router->getModuleName());
+            $Admin = new Db\CoreMember;
+            $this->view->setVar("noti", $Admin->GetAdminNoti($this->session->user['member_id'], 0));
+            $LeaveType = new LeaveCategories();
+            $this->view->setVar("Leavetype", $LeaveType->getLeaveType());
+            $UserList = new Db\CoreMember();
+            $page = $this->request->get("page");
+            $max = $this->_leave->getLeaveSetting();
+            if ($this->permission == 1) {
+               
+             
+                $this->view->max = $max['0']['max_leavedays'];
+                $this->view->Getname = $UserList::getinstance()->getusername();
+                $this->view->setVar("Result", $this->_leave->getLeavedayleftList($page,1));
+                $this->view->setVar("absent", $this->_leave->getAbsent());
+                $this->view->setVar("Month", $this->config['config']['month']);
+                
                 //$this->view->modulename = $this->module_name;
             } else {
                 $this->response->redirect('core/index');

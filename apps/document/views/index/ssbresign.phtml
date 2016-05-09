@@ -15,23 +15,26 @@ if(! ini_get('date.timezone')){
             size: 21cm 29.7cm;  /* A4 */
             margin: 1cm 1cm 1cm 1cm;
             mso-page-orientation: portrait;
-        }</style>
+        }
+        #p1{
+            text-indent: 170px;
+            text-align: justify;
+        }
+    </style>
 </head>
 <!-- Main content -->
 <section class="content">
-    <div class="row"><!-- for search form-->
-        <div class="col-md-12" ><!--start add user form--->
+    <div class="row"><!-- for search form-->  <div style="float:right;">
+                            <a href="#" id="word-export" style="margin-right: 21px;" class="buttonn export exbg"><img id="exicon">Export</a>
+                        </div>
+        <div class="col-md-12" id="print" ><!--start add user form--->
             <div style="width:100%;">
                 <form action="editinfo" method="post" width="650px" height="300px"  enctype="multipart/form-data"> 
                     <div>
-                        <div style="float:right;">
-                            <a href="#"  id="edit" class="buttonn">Edit</a>
-                            <input type="submit" id="save" disabled value ="save" class="buttonn">
-                            <a href="#" id="word-export" class="buttonn export exbg"><img id="exicon">Export</a>
-                        </div>
+                      
                     </div>
                     <br>
-                    <div style="clear:both;" id="letterhead">
+                    <div style="clear:both; border-bottom: 1px solid gray;" id="letterhead">
                         <table>
                             <tr><?php foreach ($info as $value) {?>
                                 <td style="width:100px">
@@ -49,12 +52,28 @@ if(! ini_get('date.timezone')){
                                 </td>
                             </tr>
                         </table> 
-                        <hr>
-                    </div> <div id="divId"><input  type="file"  style="margin-left: 20px;"   name="fileToUpload"   id="fileToUpload" style="margin-bottom: 1%;" > </div></form><div id="editinfo" style="width: 29%;display: inline-block;float: right;margin-right: 57%;">
-                    <input style="height: 1%" type="text" class="company_name" id="company_name" name="update[company_name]" value="<?php echo $value->company_name; ?>"  style="width:350px;">
-                    <input style="height: 1%; width: 90%" type="text" class="company_address" id="company_address" name="update[company_address]" value="<?php echo $value->company_address; ?>"  style="width:350px;">
-                    <input style="height: 1%" type="text" class="company_phno" id="company_phno" name="update[company_phno]" value="<?php echo $value->company_phno; ?>"  style="width:350px;">
-                    <input style="height: 1%" type="hidden" class="temp_logo" id="temp_logo" name="update[temp_logo]" value="<?php ; ?>"  style="width:350px;">
+                    </div> 
+                    <div style="width: 800px; margin-left:20px; margin-top: 20px; line-height: 30px;">
+                        <address style="line-height: 35px;">
+                            သိုု႔<br>
+                            လူမႈဖူလံုုေရးအဖြဲ႔<br>
+                            ဌာနခြဲ (  )<br>
+                            လွဳိင္ၿမိဳ႔နယ္၊<br>
+                            ရန္ကုုန္ၿမိဳ႔၊
+                            </address>
+                            <div style="float:left; width: 170px;">အေၾကာင္းအရာ။</div>
+                            <div>၀န္ထမ္းႏွဳတ္ထြက္ျခင္းအတြက္ အေၾကာင္းၾကားတင္ျပျခင္း။</div>
+                            
+                            <p id="p1">
+                            ကၽြန္ေတာ္မ်ား G-Next Co.,Ltd မွ ေအာက္ပါ၀န္ထမ္း (.....)ဦးသည္ ……..လ၊…………ႏွစ္မွစ၍လုုပ္ငန္းတြင္ စတင္၀င္ေရာက္ၿပီျဖစ္ပါေၾကာင္း အသိေပးအေၾကာင္းၾကားတင္ျပအပ္ပါသည္။
+                            </p>
+                            <div style="height:400px;"></div>
+                            ေလးစားစြာျဖင္႔<br><br>
+
+                            Mr. Kohei Iwasa<br>
+                            Director<br>
+                            G-Next Company Limited
+                        </div>
                 </div><?php }?>
             </div>
         </div>

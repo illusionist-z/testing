@@ -13,7 +13,7 @@ $length = count($Month);
 <!-- Content Header (Page header) -->
 <section class="content-header" id="showleavelist">
     <h1>
-        <?= $t->_("leave_list"); ?>
+        <?= $t->_("leave_dayleft"); ?>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?> </a></li>
@@ -25,43 +25,7 @@ $length = count($Month);
 <section class="content">
     <div class="buttons">
       
-        <form id="frm_search" onsubmit="return false;">
-            <select class="select  form-control-static" data-toggle="select" name="ltype" id="ltype">
-                <option value=""><?= $t->_("leave_type"); ?></option>
-                <?php
-                foreach ($Leavetype as $result) {
-                    ?>
-                    <option value="<?php echo $result['leavetype_name']; ?>"><?php echo $result['leavetype_name']; ?></option>
-
-                    <?php
-                }
-                ?>
-
-            </select>
-            <select class="select form-control-static" data-toggle="select" name="month" id="month">
-                <option value=""><?= $t->_("month"); ?></option>
-                <?php
-                $i = 1;
-                foreach ($Month as $v) {
-                    ?>
-                    <option value="<?php
-                    if ($i < 10) {
-                        echo '0' . $i;
-                    } else {
-                        echo $i;
-                    }
-                    ?>"><?php echo $v; ?></option>
-                            <?php
-                            $i++;
-                        }
-                        ?>
-
-            </select>
-            <input class="userauto form-control-static" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
-
-            <input type="submit" class="buttonn  form-control-static" value="<?= $t->_("search"); ?>" id="search">
-            <a href="#" class="buttonn  form-control-static export " id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><?= $t->_("export"); ?></a>
-        </form>
+        
     </div>
 
     <div class="row">
@@ -69,14 +33,9 @@ $length = count($Month);
             <table class="listtbl">
                 <thead>
                     <tr>
-                        <th width="150px"><?= $t->_("date"); ?></th>
                         <th width="150px"><?= $t->_("name"); ?></th>
-                        <th width="150px"><?= $t->_("start_date"); ?></th>
-                        <th width="150px"><?= $t->_("end_date"); ?></th>
-                        <th width="150px"><?= $t->_("leave_day"); ?></th>
-                        <th width="150px"><?= $t->_("leave_category"); ?></th>
-                        <th width="150px"><?= $t->_("leave_desc"); ?></th>
-                        <th width="150px"><?= $t->_("leave_status"); ?></th>
+                         <th width="150px">Leave Day Carry</th>
+
                         <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
 
@@ -88,53 +47,22 @@ $length = count($Month);
                     foreach ($Result->items as $item) {
                         ?>
                         <tr>
-                            <td><?php
-                                $dt = explode(" ", $item->leaves->date);
-                                echo $dt[0];
-                                ?></td>                            
-                            <td><?php echo $item->core->member_login_name; ?></td>
-                            <td><?php
-                                $start_date = explode(" ", $item->leaves->start_date);
-                                echo $start_date[0];
-                                ?></td>                            
-                            <td><?php
-                                $end_date = explode(" ", $item->leaves->end_date);
-                                echo $end_date[0];
-                                ?></td>
-                            <td><?php
-                                echo $item->leaves->leave_days;
-                                ;
-                                //echo $days;
-                                ?></td>
-                            <td><?php
-                                echo $item->leaves->leave_category;
-                                ?></td>
-                            <td><?php
-                                echo $item->leaves->leave_description;
-                                ?></td>
-
-                            <td><?php
-                                switch ($item->leaves->leave_status) {
-                                    case "0" : echo "Pending";
-                                        break;
-                                    case "1" : echo "Confirmed";
-                                        break;
-                                    case "2" : echo "Rejected";
-                                        break;
-                                };
-                                ?></td>
+                                                     
+                            <td><?php echo $item->member_login_name; ?></td>
+                             <td><font color="red"><?php
+                                 echo $item->leaveday_carry;
+                              
+                                ?></font></td>
                             <td><font color="red"><?php
                                 $absent_day = 0;
-                                if (isset($absent[$item->core->member_id])) {
-                                    $absent_day = $absent[$item->core->member_id];
+                                if (isset($absent[$item->member_id])) {
+                                    $absent_day = $absent[$item->member_id];
                                 }
-                                
-                                if ($absent_day >= $max) {
-                                    echo (( $absent_day) - $max);
+                                if ($absent_day >= ($max+$item->leaveday_carry)) {
+                                    echo (( $absent_day) - ($max+$item->leaveday_carry));
                                     echo " Days  in absent";
                                 } else {
-
-                                    echo $max - ( $absent_day);
+                                    echo ($item->leaveday_carry+$max) - ( $absent_day);
                                 }
                                 ?></font></td>
                         </tr>
@@ -155,10 +83,10 @@ $length = count($Month);
                 
             } else {
                 ?>
-                <li><a href="leavelist">First</a></li>
-                <li><a href="leavelist?page=<?= $Result->before; ?>">Previous</a></li>
-                <li><a href="leavelist?page=<?= $Result->next; ?>">Next</a></li>
-                <li><a href="leavelist?page=<?= $Result->last; ?>">Last</a></li>
+                <li><a href="leavedayleft">First</a></li>
+                <li><a href="leavedayleft?page=<?= $Result->before; ?>">Previous</a></li>
+                <li><a href="leavedayleft?page=<?= $Result->next; ?>">Next</a></li>
+                <li><a href="leavedayleft?page=<?= $Result->last; ?>">Last</a></li>
                 <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $Result->current, " of ", $Result->total_pages; ?></span></li>
                     <?php
                 }
