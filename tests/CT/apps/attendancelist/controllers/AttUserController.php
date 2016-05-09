@@ -23,7 +23,7 @@ class AttUserController extends Controllers\UserController {
         $login->loginFirst();
     }
 
-    public function attendancelistAction() {
+    public function attendancelistAction($exportMode = null) {
         $this->initialize();
 
         if (isset($this->session->tzoffset)) {
@@ -38,7 +38,7 @@ class AttUserController extends Controllers\UserController {
         $currentPage = $this->request->get('page');
         $id = $this->session->user['member_id'];
         $AttList = new AttendancesTest();
-        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate, $currentPage);
+        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate, $currentPage,1);
         return true;
     }
 

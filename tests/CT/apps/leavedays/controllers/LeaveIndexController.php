@@ -142,7 +142,7 @@ class LeaveIndexController extends Controllers\IndexController {
         return $json;
     }
 
-    public function leavelistAction() {
+    public function leavelistAction($exportMode = null) {
         $this->initialize();
 
         if ($this->moduleIdCall == 1) {
