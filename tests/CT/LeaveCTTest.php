@@ -53,7 +53,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
     public function testcheckapplySuccessaction() {
         $appleave = new LeaveIndexController();
         $leave = array("uname" => "1fe9f520-c89a-11e5-9e13-4c3488333b45",
-            "sdate" => "2016-05-13 00:00:00", "edate" => "2016-05-15 00:00:00",
+            "sdate" => "2016-05-16 00:00:00", "edate" => "2016-05-23 00:00:00",
             "type" => "donation", "desc" => "family donation");
         $appleave->setinfo($leave);
         $result = $appleave->checkapplyAction();
@@ -107,7 +107,6 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $result = $leave->ltyaddAction();
         $this->assertContains("addleavetype", $result[1]['addleavetype']);
     }
-    
 
     public function testdeleteListTypeAction() {
         $leave = new LeaveIndexController();
@@ -134,6 +133,16 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
     public function testrejectleaveAction() {
         $leave = new LeaveIndexController();
         $this->assertTrue($leave->rejectleaveAction());
+    }
+
+    public function testcheckapplySuccessaction2() {
+        $appleave = new LeaveIndexController();
+        $leave = array("uname" => "90e73464-c899-11e5-9e13-4c3488333b45",
+            "sdate" => "2016-05-16 00:00:00", "edate" => "2016-05-23 00:00:00",
+            "type" => "donation", "desc" => "family donation");
+        $appleave->setinfo($leave);
+        $result = $appleave->checkapplyAction();
+        $this->assertEquals("Your Leave Applied Successfully!", $result['success']);
     }
 
 }
