@@ -383,7 +383,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     //$old_allowance=$SD['total_all_amount']+$allowancetoadd;
                     $date_to_calculate = $SD['count_pay']+$date_diff;
                     $basic_salary = ($SD['basic_salary']*$date_diff)+$oldsalary;
-                    echo "jjjj".$basic_salary;
+                    
                 }
            
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$SD['total_all_amount'],$SM['status'],$allowancetoadd,$SD['count_pay']);

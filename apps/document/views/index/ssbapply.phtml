@@ -24,10 +24,15 @@ if(! ini_get('date.timezone')){
 </head>
 <!-- Main content -->
 <section class="content">
+    
     <div class="row"><!-- for search form-->  <div style="float:right;">
                             <a href="#" id="word-export"style="margin-right: 21px;"  class="buttonn export exbg"><img id="exicon">Export</a>
                         </div>
         <div class="col-md-12" id="print" ><!--start add user form--->
+            <?php
+    $aa = mb_convert_encoding("လူမႈဖူလံုုေရးအဖြဲ႔", "UTF-8");
+    echo $aa;
+    ?>
             <div style="width:100%;">
                 <form action="editinfo" method="post" width="650px" height="300px"  enctype="multipart/form-data"> 
                     <div>
