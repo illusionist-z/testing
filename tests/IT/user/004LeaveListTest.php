@@ -88,9 +88,9 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('leavedays/user/applyleave');
         $this->byId('apply_form');
         $start_Date = $this->byName('sdate');
-        $start_Date->value('2016-05-13 00:00:00');
+        $start_Date->value('2016-05-16 00:00:00');
         $end_Date = $this->byName('edate');
-        $end_Date->value('2016-05-14 13:32:41');
+        $end_Date->value('2016-05-23 13:32:41');
         $this->select($this->byName('leavetype'))->selectOptionByValue("On Vacation");
         $this->byCssSelector('textarea')->value("illness");
         $this->byCssSelector('input#apply_form_submit')->click();
