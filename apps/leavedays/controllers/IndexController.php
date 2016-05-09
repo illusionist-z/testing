@@ -115,12 +115,14 @@ class IndexController extends ControllerBase {
             $LeaveType = new LeaveCategories();
             $this->view->setVar("Leavetype", $LeaveType->getLeaveType());
             $UserList = new Db\CoreMember();
+            $carryleave = $UserList->getCarryLeave();
             $max = $this->_leave->getLeaveSetting();
             if ($this->permission == 1) {
                 $this->view->max = $max['0']['max_leavedays'];
                 $this->view->Getname = $UserList::getinstance()->getusername();
                 $this->view->setVar("Result", $this->_leave->getLeaveList($this->request->get("page")));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
+                $this->view->setVar("carryleave", $carryleave);
                 $this->view->setVar("Month", $this->config['config']['month']);
                 //$this->view->modulename = $this->module_name;
             } else {
@@ -154,6 +156,8 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
+    
+ 
 
     /**
      * adding leave categories dialog box
