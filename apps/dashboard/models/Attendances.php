@@ -123,7 +123,7 @@ class Attendances extends Model {
                 . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
                 . "order by count(*) desc limit 3";
         $data = $this->db->query($query);
-        //select where no leave name in current month
+        //select where no leave name in current year
 //         $query1 = "select * from salts\Core\Models\CoreMember as core where core.member_id not in "
 //                 . " (select a.member_id from Attendances as a where a.status  != 0 "
 //                 . "and a.deleted_flag = 0 and (YEAR(NOW())) = YEAR(a.att_date))  ) and core.deleted_flag=0 "

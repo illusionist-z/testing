@@ -15,8 +15,6 @@ use salts\Leavedays\Models\LeaveCategories as LeaveCategories;
 use salts\Leavedays\Models\LeavesSetting as LeavesSetting;
 use salts\Core\Models\Db\CoreMember;
 
-
-
 /**
  * Description of IndexController
  *
@@ -131,7 +129,6 @@ class LeaveIndexController extends Controllers\IndexController {
                 $json[$message->getField()] = $message->getMessage();
             }
             $json['result'] = "error";
-           
         } else {
             $creator_id = $this->session->user['member_id'];
             $uname = $this->info['uname'];
@@ -140,7 +137,6 @@ class LeaveIndexController extends Controllers\IndexController {
             $type = $this->info['type'];
             $desc = $this->info['desc'];
             $json = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
-            
         }
 
         return $json;
@@ -257,18 +253,6 @@ class LeaveIndexController extends Controllers\IndexController {
         return $data;
     }
 
-    public function ltypediaAction() {
-        $this->initialize();
-        $id = $this->id;
-        $LeaveCategories = new LeaveCategories();
-        $data[0] = $LeaveCategories->getListTypeData($id);
-        $data[1]['delete_confirm'] = _("deleteleavetype");
-        $data[1]['yes'] = _("yes");
-        $data[1]['no'] = _("cancel");
-
-        return $data;
-    }
-
     public function detailAction() {
         $this->initialize();
 
@@ -311,14 +295,13 @@ class LeaveIndexController extends Controllers\IndexController {
     }
 
     public function leavemostAction() {
-        $this->initialize();
-
+        $this->initialize();        
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('apps/leavedays/js/index-paging.js');
         $Admin = new Db\CoreMember;
         $id = $this->session->user['member_id'];
         $noti = $Admin->GetAdminNoti($id, 0);
-        $Result = $Admin->leaveMost();
+        $Result = $Admin->leaveMost($this->currentPage);
         return true;
     }
 

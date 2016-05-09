@@ -61,7 +61,7 @@ class IndexController extends ControllerBase {
             if ($this->permission == 1) {
                 if(1 == $exportMode){
                 $Result_Attlist = $AttList->getTodayList($name, $currentPage,0);
-                $AttList->MonthlyAttendance($Result_Attlist,"TodayAttendanceList",$offset);
+                $AttList->AttendanceExport($Result_Attlist,"TodayAttendanceList",$offset);
                 }
                 else{
                 $Result_Attlist = $AttList->getTodayList($name, $currentPage,1);
@@ -131,7 +131,7 @@ class IndexController extends ControllerBase {
             if ($this->permission == 1) {
                 if(1 == $exportMode){
                 $monthly_list = $Attendances->showAttList($currentPage,0);
-                $Attendances->MonthlyAttendance($monthly_list,"MonthlyAttendanceList",$offset);
+                $Attendances->AttendanceExport($monthly_list,"MonthlyAttendanceList",$offset);
                 }
                 else{
                 $monthly_list = $Attendances->showAttList($currentPage,1);

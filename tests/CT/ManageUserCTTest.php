@@ -63,33 +63,10 @@ class ManageUserCTTest extends PHPUnit_Framework_TestCase {
             "password" => "admin", "confirm" => "admin",
             "email" => "john@gmail.com", "phno" => "0152346",
             "user_role" => "USER,4", "full_name" => "John Smit",
-            "bank" => "888307999978901", "address" => "Yangon");
-        $file = array("name" => "myfile.png", "type" => "image/png",
-            "tmp_name" => "\myfile.png", "size" => 5);
-        $cormember->setFile($file);
+            "bank" => "888307999978901", "address" => "Yangon","mm_name" => "ေအာင္ေအာင္","ssn" => "90033.35.3.1.1500");      
         $cormember->setparam($meminfo);
         $result = $cormember->savenewuser();
         $this->assertEquals("success", $result['result']);
-    }
-
-    public function testcheckimgsize() {
-        $mesg = 'File too large. File must be less than 10 megabytes.';
-        $cormember = new CoreMemTestController();
-        $file = array("name" => "myfile.png", "type" => "image/png",
-            "tmp_name" => "\myfile.png", "size" => 12220);
-        $cormember->setFile($file);
-        $msg = $cormember->savenewuser();
-        $this->assertEquals($mesg, $msg['result']);
-    }
-
-    public function testcheckimgtype() {
-        $mesg = 'Invalid file type. Only JPG, GIF and PNG types are accepted.';
-        $cormember = new CoreMemTestController();
-        $file = array("name" => "myfile.txt", "type" => "text/plain",
-            "tmp_name" => "\myfile.tmp", "size" => 5);
-        $cormember->setFile($file);
-        $msg = $cormember->savenewuser();
-        $this->assertEquals($mesg, $msg['result']);
     }
 
     public function testcheckuser() {
@@ -103,8 +80,8 @@ class ManageUserCTTest extends PHPUnit_Framework_TestCase {
         $meminfo = array("uname" => 'Zin', "work_sdate" => '2016-04-01',
             "dept" => 'Android', "position" => "SE",
             "email" => "zin@gmail.com", "phno" => "01572670",
-            "full_name" => "Zin Phyo",
-            "bank" => "333307999978901", "address" => "Yangon");
+            "full_name" => "Zin Phyo","mm_name" => "ေအာင္ေအာင္",
+            "bank" => "333307999978901", "address" => "Yangon","ssn" => "90055.35.3.1.1500");
         $test->setMeminfo($meminfo);
         $this->assertTrue($test->userdataeditAction());
     }
