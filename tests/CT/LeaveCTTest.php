@@ -62,7 +62,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
 
     public function testleavelistAction() {
         $leaveaction = new LeaveIndexController();
-        $this->assertTrue($leaveaction->leavelistAction());
+        $this->assertTrue($leaveaction->leavelistAction(0));
     }
 
     public function testleavesettingAction() {

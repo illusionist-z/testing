@@ -128,7 +128,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
             $UserList = new \salts\Core\Models\CoreMember();
 
             $Attendances = new AttendancesTest();
-            $monthly_list = $Attendances->showAttList($currentPage);
+            $monthly_list = $Attendances->showAttList($currentPage,1);
 
 
             if ($this->permission == 1) {
