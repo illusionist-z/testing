@@ -37,5 +37,6 @@ $messages = array(
     "Position" => "Position",
     "Email" => "Email",
     "Phone" => "Phone",
-    "Address" => "Address"
+    "Address" => "Address",
+    "leave_dayleft"=>"Leave Day Left",
 );

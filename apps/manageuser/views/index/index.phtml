@@ -39,7 +39,6 @@ use Phalcon\Filter;
                         <th ><?= $t->_("mail"); ?></th>
                         <th ><?= $t->_("phone"); ?></th>
                         <th ><?= $t->_("address"); ?></th>   
-                        <th ><?= $t->_("l_left"); ?></th>   
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +56,6 @@ use Phalcon\Filter;
                             <td><?= $filter->sanitize($result->member_mail, "email"); ?></td>
                             <td><?= $filter->sanitize($result->member_mobile_tel, "int"); ?></td>
                             <td><?= $filter->sanitize($result->member_address, "string"); ?>
-                            <td><?= $filter->sanitize($result->leaveday_carry, "string"); ?>
                                 <a href="#" onclick="return false;" style="float:right;margin-top: 12px;" class="inedit displaypopup" id="<?= $result->member_id; ?>"></a>
                             </td>
                         </tr>

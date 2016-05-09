@@ -41,5 +41,7 @@ $messages = array(
     "Email"     =>  "メール",
     "Phone" => "電話番号",
     "Address" => "住所",
+        "leave_dayleft"=>"Leave Day Left",
+
 );
 

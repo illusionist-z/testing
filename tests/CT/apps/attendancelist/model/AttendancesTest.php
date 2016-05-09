@@ -13,7 +13,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
  
-    public function getTodayList($name, $currentPage) {
+    public function getTodayList($name, $currentPage, $IsPaging) {
         $today = date("Y:m:d");
         if (isset($name)) {
             $row = $this->modelsManager->createBuilder()->columns(array('core.*', 'attendances.*'))
@@ -44,7 +44,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
 
-    public function getAttList($id, $year, $month, $currentPage) {
+    public function getAttList($id, $year, $month, $currentPage,$IsPaging) {
         try {
               $this->base = new\Library\Core\Models\Base();
             $currentmth = date('m');
@@ -78,7 +78,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
     
-    public function showAttList($currentPage) {
+    public function showAttList($currentPage, $IsPaging) {
         //search monthly list data     
         $this->base = new\Library\Core\Models\Base();
         $month = date('m');
@@ -105,7 +105,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
    
-    public function absent($id) {
+    public function absent() {
         //get today absent list
         $sql = "Select member_id from core_member where member_id NOT IN (select member_id from "
                 . "attendances where att_date = CURRENT_DATE) AND deleted_flag=0 order by created_dt desc";
@@ -131,7 +131,7 @@ class AttendancesTest extends Models\Attendances {
         return $message;
     }
 
-    public function InsertAbsentStatus($checkresult, $finalresult,$id) {
+    public function InsertAbsentStatus($checkresult, $finalresult) {
         $insert = "Insert into attendances (member_id,att_date,status) VALUES ";
         //insert absent with apply leave
         if (count($checkresult) > 0) {
