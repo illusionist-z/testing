@@ -192,10 +192,11 @@ class Attendances extends Model {
             $attid = 'Select member_id from attendances where att_date = CURRENT_DATE and status = 0';
             $attendancelist = $this->db->query($attid);
             $finalresult = $attendancelist->fetchall();
+            $final = array();
              if(empty($finalresult)){
               array_push($final, '0');
             }
-            $final = array();
+            
             foreach ($finalresult as $value) {
                 array_push($final, $value['member_id']);
             }
