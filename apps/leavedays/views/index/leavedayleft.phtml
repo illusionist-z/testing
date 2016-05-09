@@ -35,7 +35,7 @@ $length = count($Month);
                     <tr>
                         <th width="150px"><?= $t->_("name"); ?></th>
                          <th width="150px">Leave Day Carry</th>
-
+                         <th width="150px">Total Leave Days</th>
                         <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
 
@@ -51,6 +51,10 @@ $length = count($Month);
                             <td><?php echo $item->member_login_name; ?></td>
                              <td><font color="red"><?php
                                  echo $item->leaveday_carry;
+                              
+                                ?></font></td>
+                             <td><font color="red"><?php
+                                 echo ($max+$item->leaveday_carry);
                               
                                 ?></font></td>
                             <td><font color="red"><?php

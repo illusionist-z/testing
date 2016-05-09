@@ -36,7 +36,7 @@ class Leaves extends \Library\Core\Models\Base {
                 ->getQuery()
                 ->execute();
         if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $current_page);
+            $page = $this->base->pagination($row, $currentPage);
         } else {
             $page = $row;
         }
@@ -52,7 +52,7 @@ class Leaves extends \Library\Core\Models\Base {
                 ->getQuery()
                 ->execute();
         if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $current_page);
+            $page = $this->base->pagination($row, $currentPage);
         } else {
             $page = $row;
         }
