@@ -25,6 +25,7 @@ class CalculateController extends ControllerBase {
         $countattday = $Attendance->getCountattday($salary_start_date);
 
         $getbasic_salary = $Salarymaster->getBasicsalary($countattday);
+       
         //calculate overtime by attendances and salary master
         // $getcomp_startdate=$SalaryDetail->getCompStartdate();
         $creator_id = $this->session->user['member_id'];
