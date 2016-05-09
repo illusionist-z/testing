@@ -36,7 +36,23 @@ class Leaves extends \Library\Core\Models\Base {
                 ->getQuery()
                 ->execute();
         if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $current_page);
+            $page = $this->base->pagination($row, $currentPage);
+        } else {
+            $page = $row;
+        }
+        return $page;
+    }
+    
+      public function getLeavedayleftList($currentPage, $IsPaging) {
+        $mth = date('m');
+        $row = $this->modelsManager->createBuilder()
+                ->columns(array('core_member.*'))
+                ->from(array('core_member' => 'salts\Core\Models\Db\CoreMember'))
+                ->Where('core_member.deleted_flag = 0')
+                ->getQuery()
+                ->execute();
+        if (1 == $IsPaging) {
+            $page = $this->base->pagination($row, $currentPage);
         } else {
             $page = $row;
         }
