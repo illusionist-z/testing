@@ -195,21 +195,38 @@ class Attendances extends Model {
 
     public function GetAbsentList($current_page) {
         try {
-            $currentdate = date('Y-m-d');
-            $member_id = array();
-            $phql = "Select member_id from salts\Attendancelist\Models\Attendances where att_date = :current: "
-                    . "and (status = 1 or status = 2)";
-            $result = $this->modelsManager->executeQuery($phql, array('current' => $currentdate));
-            $get_member_id = $result->toArray();
-            foreach ($get_member_id as $v) {
-                $member_id[] = $v['member_id'];
+//            $currentdate = date('Y-m-d');$member_id = array();
+//            $phql = "Select member_id from salts\Attendancelist\Models\Attendances where att_date = :current: "
+//                    . "and (status = 1 or status = 2)";
+//            $result = $this->modelsManager->executeQuery($phql, array('current' => $currentdate));
+//            $get_member_id = $result->toArray();
+//            foreach ($get_member_id as $v) {
+//                $member_id[] = $v['member_id'];
+//            }
+//            $row = $this->modelsManager->createBuilder()->columns("core.*")
+//                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+//                    ->InWhere('core.member_id',$member_id)
+//                    ->andWhere('core.deleted_flag = 0')
+//                    ->orderBy('core.created_dt desc')
+//                    ->getQuery()->execute();
+//            $page = $this->base->pagination($row, $current_page);
+            $attid = 'Select member_id from attendances where att_date = CURRENT_DATE and status = 0';
+            $attendancelist = $this->db->query($attid);
+            $finalresult = $attendancelist->fetchall();
+            $final = array();
+             if(empty($finalresult)){
+              array_push($final, '0');
+            }
+            
+            foreach ($finalresult as $value) {
+                array_push($final, $value['member_id']);
             }
             $row = $this->modelsManager->createBuilder()->columns("core.*")
-                            ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                            ->InWhere('core.member_id', $member_id)
-                            ->andWhere('core.deleted_flag = 0')
-                            ->orderBy('core.created_dt desc')
-                            ->getQuery()->execute();
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->notInWhere('core.member_id',$final)
+                    ->andWhere('core.deleted_flag = 0')
+                    ->orderBy('core.created_dt desc')
+                    ->getQuery()->execute();
             $page = $this->base->pagination($row, $current_page);
         } catch (Exception $ex) {
             echo $ex;

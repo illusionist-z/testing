@@ -167,8 +167,10 @@ class SalaryMaster extends Model {
             foreach ($countattday as $countattdays) {
                 $countatt = $countattdays['attdate'];
                 $m_id = $countattdays['member_id'];
-                $sql = "select *,(case when (travel_fee_perday) then travel_fee_perday*$countatt else travel_fee_permonth end) as travel_fee,salary_start_date as comp_start_date "
-                        . "from salary_master where deleted_flag=0 and member_id='" . $m_id . "'";
+                $sql = "select *,(case when (travel_fee_perday) then travel_fee_perday*$countatt else travel_fee_permonth end) as travel_fee,"
+                        . "salary_start_date as comp_start_date,leaveday_carry "
+                        . "from salary_master join core_member on salary_master.member_id=core_member.member_id "
+                        . "where salary_master.deleted_flag=0 and salary_master.member_id='" . $m_id . "'";
                 $result = $this->db->query($sql);
                 $row = $result->fetchall();
                 array_push($final, $row);
@@ -191,6 +193,7 @@ class SalaryMaster extends Model {
             $absent_dedution = "";
             $date_diff = "";
             $flg = 0;
+            
             foreach ($param as $value) {
                 if (!empty($value)) {
                     //set the working start date whether 1 year or not
@@ -207,14 +210,13 @@ class SalaryMaster extends Model {
                     $salary_starting_date = $start_date[0] . '-' . $start_date[1];
                     $salary_starting_month = $start_date[1];
                     
-                    echo "///////".$budget_endyear.'///////////';
+                    
                     //calculate date difference between starting date and budget end year
                     $date_diff = $this->dateDifference($salary_start_date, $budget_endyear);
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
                     $date_to_calculate = $date_diff;
 
-                    echo $value[0]['basic_salary'] . '<br>';
-                    echo "salary starting date " . $date_diff . '<br>';
+                    
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the basic salary from salary master
@@ -226,7 +228,7 @@ class SalaryMaster extends Model {
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
                         $date_to_calculate = $date_diff + $SD['count_pay'];
-                        echo "basic salary in salary detail " . $basic_salary_annual;
+                        
                         
                         if($working_start_date[1] == '03')
                             {
@@ -244,11 +246,11 @@ class SalaryMaster extends Model {
                             
                             }
                     }
-                    echo "OLD ALLOWANCE" . $SD['allowance_amount'] . '<br>';
+                    
                     $Allowanceresult = $this->getAllowances($value[0]['member_id'], $basic_salary_annual, $date_diff, $old_allowance, $SM['status'], $SD['allowance_amount'], $SD['count_pay']);
                     
                     $basic_salary_allowance_annual = $Allowanceresult['basic_salary_annual'];
-                    echo "ggggggggg".$basic_salary_allowance_annual."//";
+                    
                     //calculating of overtime 
                     $OTResult = $this->calculateOvertimeAnnual($value[0]['member_id'], $SD['total_overtime'], $salary_starting_date, $budget_endyear, $date_diff, $SD['count_pay'], $latest_otpay['overtime']);
 
@@ -262,15 +264,16 @@ class SalaryMaster extends Model {
                     //Get the data of leave setting
                     $leavesetting = $this->getleavesetting();
                     $thismonth_leave= $this->getLeave($salary_starting_date,$value[0]['member_id']);
-                    echo "countabsent".$absent['countAbsent'].$value[0]['member_id'];
+                    
                     //calculate absent deduce
-                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $thismonth_leave['countAbsent'], $value[0]['basic_salary']);
+                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], 
+                            $thismonth_leave['countAbsent'], $value[0]['basic_salary'],$value[0]['leaveday_carry']);
                     $absent_dedution = $countabsent;
                   
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
                     $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
-                    echo "SALARY ///" . $basic_salary_allowance_annual;
+                    
                     if ($flg != 1) {
                         //calculate ssc pay amount to deduce
                         if ($value[0]['basic_salary'] > 300000) {
@@ -285,20 +288,20 @@ class SalaryMaster extends Model {
                     $deduce_amount = $this->getreduce($value[0]['member_id']);
                     //print_r($deduce_amount).'<br>';
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    echo "Total deduction is " . $basic_deduction;
+                    
 
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
-                    echo "The Income tax  is " . $income_tax . '<br>';
+                    //echo "The Income tax  is " . $income_tax . '<br>';
                    
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
                    
                     $tax_foreach_month = $taxs['tax_result'];
                     if ($flg == 1) {
-                        echo "aaa..".$taxs['total_tax_annual'];
+                        
                         $tax_foreach_month = $taxs['total_tax_annual'] - $total_income_tax;
-                        echo "For March <br>".$tax_foreach_month;
+                        
                     }
 
                     $final_result[] = array('basic_salary' => $value[0]['basic_salary'],
@@ -406,10 +409,10 @@ class SalaryMaster extends Model {
      * @param type $basic_salary
      * @return int
      */
-    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary) {
-        
-        if ($countabsent > $max_leavedays) {
-            $overleave = $countabsent - $max_leavedays;
+    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary,$leaveday_carry) {
+        $Leavecount = $max_leavedays+$leaveday_carry;
+        if ($countabsent > $Leavecount) {
+            $overleave = $countabsent - $Leavecount;
             if($overleave < $thismonth_leave){
                 $thismonth_over = $overleave;
                
@@ -418,7 +421,6 @@ class SalaryMaster extends Model {
                  $thismonth_over = $thismonth_leave;
                
             }
-            echo "testtt".$thismonth_over ;
            $absent_deduce = ($basic_salary  / 22)* ($thismonth_over );
             
         } else {
@@ -477,12 +479,12 @@ class SalaryMaster extends Model {
            //echo $sql;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
-             $sql2 = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
+            $sql2 = "select count(status) as countAbsent from attendances where member_id='" . $member_id . "' "
                     . "and att_date>='" . $budget_startyear . "' and att_date<='" . $workingnextyr . "' and deleted_flag=0 and (status = 3)";
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
             $row['countAbsent']+=(($row2['countAbsent'])/2); 
-            echo "absentArray";print_r($row['countAbsent']);
+            
         } catch (Exception $ex) {
             echo $ex;
         }

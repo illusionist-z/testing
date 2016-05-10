@@ -129,12 +129,11 @@ $length = count($Month);
                                 if (isset($absent[$item->core_member->member_id])) {
                                     $absent_day = $absent[$item->core_member->member_id];
                                 }
-                                if ($absent_day >= $max) {
-                                    echo (( $absent_day) - $max);
+                                if ($absent_day >= ($max+$item->core_member->leaveday_carry)) {
+                                    echo (( $absent_day) - ($max+$item->core_member->leaveday_carry));
                                     echo " Days  in absent";
                                 } else {
-
-                                    echo $max - ( $absent_day);
+                                    echo ($item->core_member->leaveday_carry+$max) - ( $absent_day);
                                 }
                                 ?></font></td>
                         </tr>

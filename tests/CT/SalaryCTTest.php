@@ -308,7 +308,7 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
      */
 
     public function testindexAction() {
-        $salary_date = '2015-04-01';
+        $salary_date = '2016-06-30';
 
         $cal = new SalaryCalculateController();
         $cal->setsalary_date($salary_date);
