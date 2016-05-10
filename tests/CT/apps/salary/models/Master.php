@@ -262,7 +262,8 @@ class Master extends Models\SalaryMaster {
                     $thismonth_leave = $this->getLeave($salary_start_date, $value[0]['member_id']);
 
                     //calculate absent deduce
-                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $thismonth_leave['countAbsent'], $value[0]['basic_salary']);
+                     $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], 
+                            $thismonth_leave['countAbsent'], $value[0]['basic_salary'],$value[0]['leaveday_carry']);
                     $absent_dedution = $countabsent;
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
@@ -378,9 +379,9 @@ class Master extends Models\SalaryMaster {
      * @param type $basic_salary
      * @return int
      */
-    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary) {
+    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary,$leaveday_carry) {
 
-        if ($countabsent > $max_leavedays) {
+        if ($countabsent > ($max_leavedays+$leaveday_carry)) {
             $overleave = $countabsent - $max_leavedays;
             if ($overleave < $thismonth_leave) {
                 $thismonth_over = $overleave;

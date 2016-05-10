@@ -52,8 +52,12 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
 
     public function testcheckapplySuccessaction() {
         $appleave = new LeaveIndexController();
-        $leave = array("uname" => "1fe9f520-c89a-11e5-9e13-4c3488333b45",
-            "sdate" => "2016-05-16 00:00:00", "edate" => "2016-05-23 00:00:00",
+        $d = strtotime("+1 Weeks");
+        $sdate = date("Y-m-d h:i:sa", $d);
+        $e = strtotime("+9 Days");
+        $edate = date("Y-m-d h:i:sa", $e);
+        $leave = array("uname" => "7913e45c-c898-11e5-9e13-4c3488333b45",
+            "sdate" => $sdate, "edate" => $edate,
             "type" => "donation", "desc" => "family donation");
         $appleave->setinfo($leave);
         $result = $appleave->checkapplyAction();
@@ -87,7 +91,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testacceptleaveAction() {
-        $id = '1fe9f520-c89a-11e5-9e13-4c3488333b45';
+        $id = '7913e45c-c898-11e5-9e13-4c3488333b45';
         $leave_days = 2;
         $noti_id = 25926;
         $accept_leave = new LeaveIndexController();
@@ -137,8 +141,12 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
 
     public function testcheckapplySuccessaction2() {
         $appleave = new LeaveIndexController();
+        $d = strtotime("+1 Weeks");
+        $sdate = date("Y-m-d h:i:sa", $d);
+        $e = strtotime("+9 Days");
+        $edate = date("Y-m-d h:i:sa", $e);
         $leave = array("uname" => "90e73464-c899-11e5-9e13-4c3488333b45",
-            "sdate" => "2016-05-16 00:00:00", "edate" => "2016-05-23 00:00:00",
+            "sdate" => $sdate, "edate" => $edate,
             "type" => "donation", "desc" => "family donation");
         $appleave->setinfo($leave);
         $result = $appleave->checkapplyAction();

@@ -9,13 +9,13 @@
 use salts\Core\Models\Db;
 use salts\Salary\Controllers;
 use salts\Salary\Models;
+
 /**
  * Description of SalaryMasterController
  *
  * @author Khin Nyein Chan Thu <khinnyeinchanthu.gnext@gmail.com>
  */
 class MasterController extends Controllers\SalaryMasterController {
-
 
     public $salary;
     public $editsalary;
@@ -27,8 +27,6 @@ class MasterController extends Controllers\SalaryMasterController {
     public function setSalary($salary) {
         $this->salary = $salary;
     }
-
-   
 
     public function initialize() {
         $login = new LoginForAll();
@@ -79,11 +77,10 @@ class MasterController extends Controllers\SalaryMasterController {
             $month = $this->editsalary['month'];
             $absent = $this->editsalary['absent'];
             $SalaryMaster = new Master();
-          
-$SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
+
+            $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
             $Salarydetail = new SalaryDetailTest();
-            $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, 
-                $month, $absent, $overtime_hr, $overtimerate,$workingstartdt);
+            $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, $month, $absent, $overtime_hr, $overtimerate, $workingstartdt);
             //$this->view->disable();
 //            echo json_encode($resultsalary);
             return true;
