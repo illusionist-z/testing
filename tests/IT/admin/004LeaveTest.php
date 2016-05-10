@@ -17,7 +17,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->setBrowserUrl('http://localhost/salts');
     }
 
-    public function testLeaveList() {    
+    public function testLeaveList() {
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
@@ -70,10 +70,13 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $edate = $this->byName('edate');
         $catego = $this->byName('leavetype');
         $descript = $this->byName('description');
-
+        $d = strtotime("+1 Weeks");
+        $sd = date("Y-m-d h:i:sa", $d);
         $name->value('admin');
-        $sdate->value('2016-02-15 00:00:00');
-        $edate->value('2016-02-19 00:00:00');
+        $sdate->value($sd);
+        $e = strtotime("+9 Days");
+        $ed = date("Y-m-d h:i:sa", $e);
+        $edate->value($ed);
         $catego->value('Family Case');
         $descript->value('party');
         $apply->click();
@@ -91,10 +94,14 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $edate = $this->byName('edate');
         $catego = $this->byName('leavetype');
         $descript = $this->byName('description');
-
+        $d = strtotime("+1 Weeks");
+        $sd = date("Y-m-d h:i:sa", $d);
+        $e = strtotime("+9 Days");
+        $ed = date("Y-m-d h:i:sa", $e);
         $name->value('admin');
-        $sdate->value('2016-02-15 00:00:00');
-        $edate->value('2016-02-19 00:00:00');
+
+        $sdate->value($sd);
+        $edate->value($ed);
         $catego->value('Family Case');
         $descript->value('party');
         $apply->click();
