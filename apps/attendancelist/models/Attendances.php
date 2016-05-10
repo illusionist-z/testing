@@ -3,12 +3,14 @@
 namespace salts\Attendancelist\Models;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Filter;
 
 class Attendances extends Model {
 
     public $base;
-
+    public $filter;
     public function initialize() {
+        $this->filter = new Filter();
         $this->db = $this->getDI()->getShared("db");
         $this->base = new\Library\Core\Models\Base();
     }
@@ -216,6 +218,7 @@ class Attendances extends Model {
     }
 
     public function getAttTime($id) {
+        $id = $this->filter->sanitize($id,"int");
         $query = "select * from core_member JOIN attendances On core_member.member_id = "
                 . "attendances.member_id Where attendances.id ='" . $id . "' ";
         $data = $this->db->query($query);
@@ -263,17 +266,19 @@ class Attendances extends Model {
     public function currentAttList($currentPage) {
         try {
             $currentmth = date('m');
+            $currentYr   = date("Y");
             $row = $this->modelsManager->createBuilder()
                     ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
+                    ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
                     ->andWhere('core.deleted_flag = 0')
                     ->groupBy('core.member_id')
                     ->getQuery()
                     ->execute();
-            $page = $this->base->pagination($row, $currentPage); //var_dump($page);exit;
+            $page = $this->base->pagination($row, $currentPage);
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -311,8 +316,9 @@ class Attendances extends Model {
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
     public function getCountattday($salary_start_date) {
-        try {
-            $dt = explode('-', $salary_start_date);
+        try {            
+            $start_date = $this->filter->sanitize($salary_start_date,"string");
+            $dt = explode('-', $start_date);
             $query = "select *,count(att_date) as attdate from attendances join core_member on "
                     . "attendances.member_id=core_member.member_id where YEAR(att_date)='" . $dt[0] . "' and "
                     . "MONTH(att_date)='" . $dt[1] . "' group by core_member.member_id";
@@ -325,6 +331,7 @@ class Attendances extends Model {
     }
 
     public function getContractData($id) {
+        $id = $this->filter->sanitize($id,"string");
         $credt = $this->db->query("SELECT * "
                 . "FROM core_member WHERE core_member.member_id= '" . $id . "'");
         $created_date = $credt->fetchArray();
