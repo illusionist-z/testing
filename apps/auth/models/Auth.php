@@ -7,10 +7,8 @@ use Phalcon\DI\FactoryDefault;
 use salts\Auth\Models\Db\AuthFailedLogins;
 use Phalcon\Filter;
 
-class Auth extends Component {
-
-    public $filter;
-
+class Auth extends Component {   
+    
     public function initialize() {
         $this->filter = new Filter();
         $this->db = $this->getDI()->getShared("db");
@@ -22,7 +20,7 @@ class Auth extends Component {
      * @param type $param
      * @return type
      */
-    public function findCompDb($param) {
+    public function findCompDb($param) {    
 
         try {
             $cop_id = $this->filter->sanitize($param['company_id'], "string");
@@ -76,7 +74,7 @@ class Auth extends Component {
         return $user;
     }
 
-    public function getPermit($loginParams) {        
+    public function getPermit($loginParams) {
         $name = $this->filter->sanitize($loginParams['member_login_name'], "string");
         $password = $loginParams['password'];
         $this->db = $this->getDI()->getShared("db");
