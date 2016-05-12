@@ -13,7 +13,7 @@ if(! ini_get('date.timezone')){
         @page
         {
             size: 21cm 29.7cm;  /* A4 */
-            margin: 1cm 1cm 1cm 1cm;
+            margin: 0.5cm 0.5cm 0.5cm 0.5cm;
             mso-page-orientation: portrait;
         }
         #p1{
@@ -29,10 +29,7 @@ if(! ini_get('date.timezone')){
                             <a href="#" id="word-export"style="margin-right: 21px;"  class="buttonn export exbg"><img id="exicon">Export</a>
                         </div>
         <div class="col-md-12" id="print" >
-            <?php
-    $aa = mb_convert_encoding("လူမႈဖူလံုုေရးအဖြဲ႔", "UTF-8"); 
-    echo $aa;
-    ?><!--start add user form--->
+     <!--start add user form--->
             <div style="width:100%;">
                 <form action="editinfo" method="post" width="650px" height="300px"  enctype="multipart/form-data"> 
                     <div>
@@ -58,7 +55,7 @@ if(! ini_get('date.timezone')){
                             </tr>
                         </table> 
                     </div> 
-                    <div style="width: 800px; margin-left:20px; margin-top: 20px; line-height: 30px;">
+                    <div style=" margin-left:20px; margin-top: 20px; line-height: 30px; font-family: Zawgyi-one; ">
                         <address style="line-height: 35px;">
                             သိုု႔<br>
                             လူမႈဖူလံုုေရးအဖြဲ႔<br>
@@ -66,8 +63,8 @@ if(! ini_get('date.timezone')){
                             လွဳိင္ၿမိဳ႔နယ္၊<br>
                             ရန္ကုုန္ၿမိဳ႔၊
                             </address>
-                            <div style="float:left; width: 170px;">အေၾကာင္းအရာ။</div>
-                            <div>။၀န္ထမ္းသစ္ခန္႔ျခင္း အေၾကာင္းၾကားတင္ျပျခင္း။</div>
+                            <div >အေၾကာင္းအရာ။  ။၀န္ထမ္းသစ္ခန္႔ျခင္း အေၾကာင္းၾကားတင္ျပျခင္း။</div>
+                          
                             
                             <p id="p1">
                             ကၽြန္ေတာ္မ်ား G-Next Co.,Ltd မွ ေအာက္ပါ၀န္ထမ္း (.....)ဦးသည္ ……..လ၊…………ႏွစ္မွစ၍လုုပ္ငန္းတြင္ စတင္၀င္ေရာက္ၿပီျဖစ္ပါေၾကာင္း အသိေပးအေၾကာင္းၾကားတင္ျပအပ္ပါသည္။
