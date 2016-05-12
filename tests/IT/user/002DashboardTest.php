@@ -32,13 +32,8 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for DeshboardPage or not
      */
     public function testMenu() {
-        $this->url('index.phtml');
-        $form = $this->byId('form_login');
-        $this->byName('company_id')->value('gnext');
-        $this->byName('member_login_name')->value('eithandaraung');
-        $this->byName('password')->value('123');
-        $form->submit();
-        $this->url('index.php');
+
+        $this->url('dashboard/index/user');
     }
 
     /**
@@ -47,7 +42,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for chekbox
      */
     public function testCheckBox() {
-
+        $this->url('dashboard/index/user');
         $checkbox = $this->byName('linkemail');
         $checkbox->click();
         $this->byCssSelector('textarea')->value("illness");
@@ -63,7 +58,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for checkInbutton
      */
     public function testCheckIn() {
-        $this->url('index.php');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('.checkin')->click();
         $this->url('attendancelist/user/attendancelist');
         $element = $this->byCssSelector('h1');
@@ -76,7 +71,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for checkoutbutton
      */
     public function testCheckout() {
-        $this->url('index.php');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('.checkout')->click();
         $this->url('attendancelist/user/attendancelist');
         $element = $this->byCssSelector('h1');
@@ -89,7 +84,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for Settingbutton
      */
     public function testSetting() {
-        $this->url('index.php');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('.dropdown-toggle')->click();
         $this->byCssSelector('#setting')->click();
     }
@@ -100,7 +95,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for notification
      */
     public function testNoti() {
-        $this->url('index.php');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('#noti')->click();
         $element = $this->byCssSelector('#hovernotiTitle');
         $this->assertEquals("Notifications", $element->text());
@@ -112,7 +107,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for Help
      */
     public function testHelp() {
-        $this->url('index.php');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('#btn_cmn_help')->click();
         $this->url('help/index/searchHelp');
     }
@@ -204,7 +199,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for Attendance link
      */
     public function testAttendance() {
-        $this->url('index.php');
+       $this->url('dashboard/index/user');
         $this->byCssSelector('div.top-row')->click();
         $this->url('attendancelist/user/attendancelist');
     }
@@ -216,7 +211,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testLeave() {
 
-        $this->url('index.php');
+        $this->url('dashboard/index/user');
         $elements = $this->elements($this->using('css selector')->value('div.top-row'));
         $this->assertEquals(2, count($elements));
         $link = $this->byLinkText($elements[1]->text());
@@ -233,7 +228,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testSidebar() {
 
-        $this->url('index.php');
+         $this->url('dashboard/index/user');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $element = $this->byCssSelector('li.header');
         $this->assertEquals("MAIN NAVIGATION", $element->text());
@@ -246,7 +241,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testSidebarAttendance() {
 
-        $this->url('index.php');
+         $this->url('dashboard/index/user');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Attendance List')->click();
         $this->url('attendancelist/user/attendancelist');
@@ -260,7 +255,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testSidebarLeave() {
 
-        $this->url('index.php');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Leave days')->click();
         $this->url('leavedays/user/leavelist');
@@ -274,10 +269,10 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testSidebarDashboard() {
 
-        $this->url('index.php');
+         $this->url('dashboard/index/user');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Dashboard')->click();
-        $this->url('dashboard/index/user');       
+        $this->url('dashboard/index/user');
     }
 
 }

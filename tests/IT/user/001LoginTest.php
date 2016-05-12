@@ -11,7 +11,6 @@
  *
  * @author Su Zin Kyaw <gnext.suzin@gmail.com>
  */
-
 class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public static $browsers = array(
@@ -20,22 +19,9 @@ class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     function setUp() {
         $this->setBrowserUrl('http://localhost/salts');
-
     }
 
-    public function testLoginSuccess() {
-        $this->url('index.phtml');
-        $form = $this->byId('form_login');
-        $company = $this->byName('company_id');
-        $username = $this->byName('member_login_name');
-        $password = $this->byName('password');
-        $company->value('gnext');
-        $username->value('eithandaraung');
-        $password->value('123');
-        $form->submit();
-        $this->assertEquals('Salts', $this->title());
-    }
-
+    
     /**
      * Description of DashboardTest
      * @author khine thazin phyo 
@@ -65,7 +51,7 @@ class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testForgetPassword() {
         $this->url('index.phtml');
-         $form = $this->byId('form_login');
+        $form = $this->byId('form_login');
         $company = $this->byName('company_id');
         $username = $this->byName('member_login_name');
         $password = $this->byName('password');
@@ -76,6 +62,21 @@ class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('a')->click();
         $element = $this->byCssSelector('#forgottext');
         $this->assertEquals('FORGOT YOUR PASSWORD?', $element->text());
+    }
+
+    public function testLoginSuccess() {
+       
+        $this->url('index');
+        $form = $this->byId('form_login');
+        $company = $this->byName('company_id');
+        $username = $this->byName('member_login_name');
+        $password = $this->byName('password');
+        $company->value('gnext');
+        $username->value('eithandaraung');
+        $password->value('123');
+
+        $form->submit();
+        $this->assertEquals('Salts', $this->title());
     }
 
     public function onNotSuccessfulTest(Exception $e) {

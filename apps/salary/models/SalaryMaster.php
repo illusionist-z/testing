@@ -410,9 +410,9 @@ class SalaryMaster extends Model {
      * @return int
      */
     public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary,$leaveday_carry) {
-        
-        if ($countabsent > ($max_leavedays+$leaveday_carry)) {
-            $overleave = $countabsent - $max_leavedays;
+        $Leavecount = $max_leavedays+$leaveday_carry;
+        if ($countabsent > $Leavecount) {
+            $overleave = $countabsent - $Leavecount;
             if($overleave < $thismonth_leave){
                 $thismonth_over = $overleave;
                
