@@ -185,6 +185,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpDocument() {
         $this->url('help/index/searchHelp');
         $this->byLinkText('Document')->click();
+        sleep(1);
         $this->byLinkText('Letter Head')->click();
         $this->assertEquals("Letter Head help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Document')->click();

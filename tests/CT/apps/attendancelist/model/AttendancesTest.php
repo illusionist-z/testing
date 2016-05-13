@@ -123,7 +123,7 @@ class AttendancesTest extends Models\Attendances {
                     . "CURRENT_DATE in (start_date,end_date)";
             $checkleave = $this->db->query($checkleavequery);
             $checkresult = $checkleave->fetchall();
-            $this->InsertAbsentStatus($checkresult, $finalresult);
+            $this->InsertAbsentStatus($checkresult,$finalresult['member_id'],$id);
             $message = "Adding is successfully";
         } else {
             $message = "Already Exist";
@@ -131,7 +131,7 @@ class AttendancesTest extends Models\Attendances {
         return $message;
     }
 
-    public function InsertAbsentStatus($checkresult, $finalresult) {
+    public function InsertAbsentStatus($checkresult,$finalresult,$id) {
         $insert = "Insert into attendances (member_id,att_date,status) VALUES ";
         //insert absent with apply leave
         if (count($checkresult) > 0) {
