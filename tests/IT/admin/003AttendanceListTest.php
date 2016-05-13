@@ -19,7 +19,7 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('dashboard/index/admin');
         $list = $this->byId('pointer_style2');
-        $list->click();       
+        $list->click();
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Today Attendance List', $element->text());

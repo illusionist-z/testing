@@ -475,16 +475,11 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testLformValidation() {
         $this->url('salary/index/addsalary');
-        $this->byId('add_salary');
-        $this->byName('uname')->value('');
-        $this->byName('bsalary')->value('');
-        $this->byName('overtime')->value('');
-        $start_Date = $this->byName('s_sdate');
-        $start_Date->value("");
         $this->byId('addsalary')->click();
         sleep(5);
         $this->assertEquals('* Username is required', $this->byCssSelector('span#add_salary_uname_error')->text());
         $this->assertEquals('* Basic Salary is required', $this->byCssSelector('span#add_salary_bsalary_error')->text());
+      
     }
 
     public function onNotSuccessfulTest(Exception $e) {
