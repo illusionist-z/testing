@@ -30,10 +30,10 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testTodaySearch() {
 
         $this->url('attendancelist/index/todaylist');
-        $todaysearchclick = $this->byId('namesearch');
+       
         $todaysearchbox = $this->byName('namelist');
-        $todaysearchbox->value('admin');
-        $todaysearchclick->click();
+        $todaysearchbox->value('admin');        
+        $this->clickOnElement("namesearch");
         sleep(2);
     }
 
@@ -54,7 +54,10 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testTodayExport() {
 
         $this->url('attendancelist/index/todaylist');        
-        $this->byLinkText('Export')->click();
+         $elements = $this->elements($this->using('css selector')->value('a#exbg'));
+        $this->assertEquals(2, count($elements));
+        $link = $this->byLinkText($elements[0]->text());
+        $link->click();
         $this->url('attendancelist/index/todaylist');
     }
 
