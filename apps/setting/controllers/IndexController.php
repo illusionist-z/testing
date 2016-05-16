@@ -91,10 +91,7 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
-    public function adminAction() {
-        
-    }
-
+  
     /**
      * @author Yan Lin Pai <wizardrider@gmail.com>
      * @desc    $core = {}
@@ -177,8 +174,7 @@ class IndexController extends ControllerBase {
         $core->page_rule_group = $page_rule_group;
         $core->permission_code = $permission_code;
         $update = $core->update();
-        //$success = $core->corePermissionUpdate($idpage, $page_rule_group, $permission_code);  //updating field permission
-        if ($update) {
+         if ($update) {
             $this->view->disable();
             $this->response->redirect('setting/index');
         } else {
