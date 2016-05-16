@@ -104,7 +104,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownAtt() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->clickOnElement('navicon2');
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
@@ -114,7 +114,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownMang() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->clickOnElement('navicon3');
         $this->url('manageuser/index/index');
         $element = $this->byCssSelector('h1');
@@ -124,7 +124,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownLeave() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->clickOnElement('navicon4');
         $this->url('leavedays/index/leavelist');
         $element = $this->byCssSelector('h1');
@@ -134,7 +134,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownDocument() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->clickOnElement('navicon6');
         $this->url('document/index/letterhead');
     }
@@ -142,7 +142,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownSsb() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->url('document/index/letterhead');
         $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
         $this->assertEquals(6, count($elements));
@@ -153,32 +153,20 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testDropdownTaxDocu() {
 
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->url('document/index/letterhead');
-        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
-        $this->assertEquals(6, count($elements));
-        $link = $this->byLinkText($elements[2]->text());
-        $link->click();
+        $this->byLinkText('Tax document')->click();
         $this->url('document/index/taxdocument');
     }
 
     public function testDropdownSalarreferDocu() {
 
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->url('document/index/letterhead');
-        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
-        $this->assertEquals(6, count($elements));
-        $link = $this->byLinkText($elements[3]->text());
-        $link->click();
+        $this->byLinkText('Salary Refer Document')->click();
         $this->url('document/index/salaryrefer');
     }
 
     public function testSetting() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->clickOnElement('navicon7');
         $this->url('setting/index');
         $element = $this->byCssSelector('h3');
