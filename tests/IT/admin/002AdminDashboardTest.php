@@ -156,6 +156,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/admin');
         $this->byCssSelector('span#btn_show_menu')->click();
         $this->url('document/index/letterhead');
+        sleep(2);
         $this->byLinkText('Tax document')->click();
         $this->url('document/index/taxdocument');
     }
