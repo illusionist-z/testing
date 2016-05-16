@@ -31,14 +31,14 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('leavedays/index/leavelist');
         $this->byCssSelector('a')->click();
         $this->url('leavedays/index/leavelist');
-        $llsearch = $this->byId('search');
+        $form = $this->byId('frm_search');
         $ltype = $this->byName('ltype');
         $month = $this->byName('month');
         $namelist = $this->byName('namelist');
         $ltype->value('Family Case');
         $month->value('Feburary');
         $namelist->value('admin');
-        $llsearch->click();
+        $form->submit();
         sleep(2);
         $this->url('leavedays/index/leavelist');
     }
@@ -46,7 +46,10 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testListExport() {
 
         $this->url('leavedays/index/leavelist');
-        $this->byLinkText('Export')->click();
+         $elements = $this->elements($this->using('css selector')->value('a#exbg'));
+        $this->assertEquals(2, count($elements));
+        $link = $this->byLinkText($elements[0]->text());
+        $link->click();
         $this->url('leavedays/index/leavelist');
     }
 

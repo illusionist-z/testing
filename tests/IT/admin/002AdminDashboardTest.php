@@ -159,14 +159,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testDropdownSalarreferDocu() {
 
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('span#btn_show_menu')->click();
-        $this->url('document/index/letterhead');
-        sleep(5);
-        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
-        $this->assertEquals(6, count($elements));
-        $link = $this->byLinkText($elements[3]->text());
-        $link->click();
+        $this->byLinkText('Salary Refer Document')->click();
         $this->url('document/index/salaryrefer');
     }
 
