@@ -77,15 +77,6 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals("Today Attendance List", $element->text());
     }
 
-    public function testViewAll() {
-
-        $this->url('dashboard/index/admin');
-        $this->byId('noleavelistblock')->click();  
-        $this->url('leavedays/index/noleavelist');
-        $element = $this->byCssSelector('h1');
-        $this->assertEquals("People who take no leave", $element->text());
-    }
-
     public function testStaffnoAtt() {
 
         $this->url('dashboard/index/admin');
@@ -113,7 +104,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownAtt() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();      
+        $this->byCssSelector('a.sidebar-toggle')->click();
         $this->clickOnElement('navicon2');
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
@@ -134,7 +125,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('dashboard/index/admin');
         $this->byCssSelector('a.sidebar-toggle')->click();
-       $this->clickOnElement('navicon4');
+        $this->clickOnElement('navicon4');
         $this->url('leavedays/index/leavelist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Leave Lists', $element->text());
@@ -153,7 +144,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/admin');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->url('document/index/letterhead');
-         $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
+        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
         $this->assertEquals(6, count($elements));
         $link = $this->byLinkText($elements[1]->text());
         $link->click();
@@ -165,7 +156,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/admin');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->url('document/index/letterhead');
-         $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
+        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
         $this->assertEquals(6, count($elements));
         $link = $this->byLinkText($elements[2]->text());
         $link->click();
@@ -177,7 +168,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/admin');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->url('document/index/letterhead');
-         $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
+        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
         $this->assertEquals(6, count($elements));
         $link = $this->byLinkText($elements[3]->text());
         $link->click();
@@ -190,7 +181,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->clickOnElement('navicon7');
         $this->url('setting/index');
-         $element = $this->byCssSelector('h3');
+        $element = $this->byCssSelector('h3');
         $this->assertEquals('Group Rule Setting', $element->text());
     }
 
