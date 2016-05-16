@@ -31,8 +31,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author khine thazin phyo 
      * test for DeshboardPage or not
      */
-    public function testMenu() {
-
+    public function testMenu() {       
         $this->url('dashboard/index/user');
     }
 
@@ -120,6 +119,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpDashboard() {
         $this->url('help/index/searchHelp');
         $this->byClassName('allhelpimg')->click();
+        sleep(1);
         $this->assertEquals("Dashboard help center", $this->byId('searchhelpcenter')->text());
     }
 
@@ -185,6 +185,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpDocument() {
         $this->url('help/index/searchHelp');
         $this->byLinkText('Document')->click();
+        sleep(1);
         $this->byLinkText('Letter Head')->click();
         $this->assertEquals("Letter Head help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Document')->click();
@@ -199,7 +200,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * test for Attendance link
      */
     public function testAttendance() {
-       $this->url('dashboard/index/user');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('div.top-row')->click();
         $this->url('attendancelist/user/attendancelist');
     }
@@ -228,7 +229,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testSidebar() {
 
-         $this->url('dashboard/index/user');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $element = $this->byCssSelector('li.header');
         $this->assertEquals("MAIN NAVIGATION", $element->text());
@@ -241,7 +242,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testSidebarAttendance() {
 
-         $this->url('dashboard/index/user');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Attendance List')->click();
         $this->url('attendancelist/user/attendancelist');
@@ -269,7 +270,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
     public function testSidebarDashboard() {
 
-         $this->url('dashboard/index/user');
+        $this->url('dashboard/index/user');
         $this->byCssSelector('a.sidebar-toggle')->click();
         $this->byLinkText('Dashboard')->click();
         $this->url('dashboard/index/user');

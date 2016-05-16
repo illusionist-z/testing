@@ -80,7 +80,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testViewAll() {
 
         $this->url('dashboard/index/admin');
-        $this->byId('noleavelistblock')->click();  //change
+        $this->byId('noleavelistblock')->click();  
         $this->url('leavedays/index/noleavelist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals("People who take no leave", $element->text());

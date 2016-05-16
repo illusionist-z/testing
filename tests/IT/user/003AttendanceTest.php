@@ -41,7 +41,7 @@ class AttendanceTest extends PHPUnit_Extensions_Selenium2TestCase {
         $start_Date->value('05/05/2016');
         $end_Date = $this->byId('enddate');
         $end_Date->value('05/05/2016');
-        $this->byCssSelector('input#search')->click();
+        $this->byCssSelector('input#search')->click();        
         $this->assertEquals("2016-05-05", $this->byCssSelector('td')->text());
     }
 

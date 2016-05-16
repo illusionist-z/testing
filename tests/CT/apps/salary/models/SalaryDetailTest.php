@@ -351,7 +351,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $resign = $this->getResigndate($member_id);
         $basic_salary = '';
         $SD = $this->getoldsalarydetail($member_id, $salary_update_yr, $salary_update_mth, $budget_start_year);
-
+       
         if ($resign['resign_date'] != null) {
             $resigndate = explode("-", $resign['resign_date']);
             $resignyear = $resigndate[1];
