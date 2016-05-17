@@ -2,9 +2,7 @@
 
 namespace salts\Salary\Models;
 
-use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
 use Phalcon\Filter;
 
 class Allowances extends Model {

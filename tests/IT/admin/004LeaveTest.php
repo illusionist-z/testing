@@ -102,7 +102,6 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
         $e = strtotime("+9 Days");
         $ed = date("Y-m-d h:i:sa", $e);
         $name->value('admin');
-
         $sdate->value($sd);
         $edate->value($ed);
         $catego->value('Family Case');
