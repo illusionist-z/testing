@@ -35,7 +35,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testHelpicon() {
         $this->url('dashboard/index/admin');
-        $helpicn = $this->byId('btn_cmn_help'); 
+        $helpicn = $this->byId('btn_cmn_help');
         $helpicn->click();
         $this->url('help/index/searchHelp');
     }
@@ -152,13 +152,13 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testDropdownTaxDocu() {
-
+        sleep(5);
         $this->byLinkText('Tax document')->click();
         $this->url('document/index/taxdocument');
     }
 
     public function testDropdownSalarreferDocu() {
-
+        sleep(5);
         $this->byLinkText('Salary Refer Document')->click();
         $this->url('document/index/salaryrefer');
     }
