@@ -48,12 +48,11 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('attendancelist/index/todaylist');
     }
 
-    public function testTodayExport() {
-
-        $this->url('attendancelist/index/todaylist');
+    public function testTodayExport() {        
         $elements = $this->elements($this->using('css selector')->value('a#exbg'));
         $this->assertEquals(2, count($elements));
         $link = $this->byLinkText($elements[0]->text());
+        sleep(3);
         $link->click();
         $this->url('attendancelist/index/todaylist');
     }
@@ -68,28 +67,29 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testMonthlySearch() {
-
         $this->url('attendancelist/index/todaylist');
 
         $this->byCssSelector('a')->click();
         $this->url('attendancelist/index/monthlylist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Monthly Attendance List', $element->text());
+        $monthlysearchclick = $this->byId('sub');
         $monthlyyear = $this->byName('year');
         $monthlymonth = $this->byName('month');
         $monthlyuname = $this->byName('username');
         $monthlyyear->value('04/02/2016');
         $monthlymonth->value('15/02/2016');
-        $monthlyuname->value('admin');
-        $this->clickOnElement("sub");
+        $monthlyuname->value('admin');        
+        $monthlysearchclick->submit();
         sleep(2);
         $this->url('attendancelist/index/monthlylist');
+       
     }
 
     public function testMonthlyExport() {
 
         $this->url('attendancelist/index/monthlylist');
-        $elements = $this->elements($this->using('css selector')->value('a#exbg'));
+        $elements = $this->elements($this->using('css selector')->value('img#exicon'));
         $this->assertEquals(2, count($elements));
         $link = $this->byLinkText($elements[1]->text());
         $link->click();

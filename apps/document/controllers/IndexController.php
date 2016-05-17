@@ -4,8 +4,6 @@ namespace salts\Document\Controllers;
 
 use salts\Document\Models\Document;
 use salts\Document\Models\CompanyInfo;
-use salts\Core\Models\Db\CoreMember;
-use salts\Core\Models\Db;
 
 class IndexController extends ControllerBase {
 
@@ -19,7 +17,7 @@ class IndexController extends ControllerBase {
     }
 
     public function indexAction() {
-//        /$this->response->redirect('core/index');
+
     }
 
     /**
@@ -184,10 +182,8 @@ class IndexController extends ControllerBase {
     public function salaryreferAction() {
 
             $this->assets->addCss('apps/document/css/salaryrefer.css');
-
             $this->view->module_name = $this->router->getModuleName();
             $this->assets->addJs('apps/document/js/index-print.js');
-
 
             $SalaryDetail = new \salts\Document\Models\SalaryDetail();
             $salary = \salts\Document\Models\SalaryDetail::find(array(

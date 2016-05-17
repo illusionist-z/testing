@@ -63,9 +63,6 @@ class ModuleController extends ControllerBase {
         $id = $this->request->get('id');
         $mname = $this->request->get('mname');
         $Obj = new \salts\Managecompany\Models\CoreModule();
-//        $result= $Obj::findFirst("module_id = '$id' ");
-//        $result->module_name = $mname;
-//        $result->update();
         $Obj->updateModuleById($id, $mname);
     }
 

@@ -142,10 +142,11 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('a.inedit')->click();
         sleep(5);
         $this->byId('edit_user_name')->clear();
-        $this->byId('edit_user_name')->value('PhalconPHP');
+        $this->byId('edit_user_name')->value('Kyaw Kyaw');
+         $this->byId('edit_mm_name')->value('ေက်ာ္ေက်ာ္');
         $this->byId('edit_edit')->click();
         sleep(2);
-        $e = $this->byXPath("//td[contains(text(),'PhalconPHP')]");
+        $e = $this->byXPath("//td[contains(text(),'Kyaw Kyaw')]");
         $this->assertEquals('PhalconPHP', $e->text());
     }
 
@@ -157,7 +158,8 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals('Are you sure to delete ?', $this->byCssSelector('div#confirm p')->text());
         $link = $this->byCssSelector('div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button span.ui-button-text');
         $this->assertEquals('Yes', $link->text());
-        $this->click();
+        $link->click();
+        
     }
 
     public function testNotDelete() {

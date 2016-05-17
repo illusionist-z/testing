@@ -253,14 +253,17 @@ use Phalcon\Filter;
  
         $final_result = array();
         $this->db = $this->getDI()->getShared("db");
-        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member ON core_member.member_id=core_notification_rel_member.member_id WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
+        $sql = "SELECT * FROM core_notification_rel_member JOIN core_member "
+                . "ON core_member.member_id=core_notification_rel_member.member_id"
+                . " WHERE core_notification_rel_member.status='" . $type . "' AND core_notification_rel_member.member_id= '" . $id . "' order by created_dt desc";
         $UserNoti = $this->db->query($sql);
         $Noti = $UserNoti->fetchall();
         print_r($Noti); 
         $i = 0;
         foreach ($Noti as $Noti) {
 
-            $result = $this->db->query("SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' ");
+            $result = $this->db->query("SELECT  * FROM " . $Noti['module_name'] . " JOIN core_member ON "
+                    . "core_member.member_id=" . $Noti['module_name'] . ".member_id WHERE " . $Noti['module_name'] . ".noti_id='" . $Noti['noti_id'] . "' ");
             $final_result[] = $result->fetchall();
             $final_result[$i]['0']['creator_name'] = $Noti['creator_name'];
             $i++;
@@ -280,32 +283,22 @@ use Phalcon\Filter;
     /**  @param type $data, updating core member'profile, while user change something in profile, @author Su Zin Kyaw  */
     public function updatedata($data, $id) {
         $this->db = $this->getDI()->getShared("db");
-        if ($_FILES["fileToUpload"]["name"] == NULL) {
-            $filename = $data['file'];
-        } else {
-            $pic = $data['file'];
-            unlink("uploads/$pic");
-            $filename = rand(1, 99999) . '.' . end(explode(".", $_FILES["fileToUpload"]["name"]));
-            $target_dir = "uploads/";
-            $target_file = $target_dir . $filename;
-            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
-        }
+ 
         if ($data['password'] == $data['temp_password']) {
 
             $this->db->query("UPDATE core_member set core_member.member_login_name='" . $data['username'] . "' , "
                     . "core_member.member_dept_name='" . $data['dept'] . "' , core_member.position='" . $data['position'] . "'"
                     . ", core_member.member_mail='" . $data['email'] . "' , core_member.member_address='" . $data['add'] . "'"
-                    . ", core_member.member_mobile_tel='" . $data['phno'] . "' ,core_member.member_profile="
-                    . "'" . $filename . "' WHERE core_member.member_id='" . $id . "' ");
+                    . ", core_member.member_mobile_tel='" . $data['phno'] . "' WHERE core_member.member_id='" . $id . "' ");
         } else {
             $changeprofile = "UPDATE core_member set core_member.member_login_name='" . $data['username'] . "' ,  "
                     . "core_member.member_dept_name='" . $data['dept'] . "' , core_member.position='" . $data['position'] . "' "
                     . " ,core_member.member_mail='" . $data['email'] . "' , core_member.member_mobile_tel='" . $data['phno'] . "' "
                     . " ,core_member.member_address='" . $data['add'] . "' , core_member.member_password="
-                    . "'" . sha1($data['password']) . "' ,core_member.member_profile='" . $filename . "' WHERE core_member.member_id='" . $id . "'";
+                    . "'" . sha1($data['password']) . "' WHERE core_member.member_id='" . $id . "'";
             $this->db->query($changeprofile);
         }
-        return $filename;
+       
     }
 
     /** @param type $id,@param type $sdate, @author Su Zin Kyaw <gnext.suzin@gmail.com>

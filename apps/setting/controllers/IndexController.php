@@ -18,7 +18,7 @@ class IndexController extends ControllerBase {
         $this->setCommonJsAndCss();
         $this->setSettJsAndCss();
       
-         $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $Admin = new Db\CoreMember();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
@@ -41,8 +41,6 @@ class IndexController extends ControllerBase {
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
         
-        
-     
     }
 
     /**
@@ -55,7 +53,7 @@ class IndexController extends ControllerBase {
     
    public function indexAction() {
           if ($this->permission == 1) {
-          $permission = new \salts\Core\Models\Permission();
+            $permission = new \salts\Core\Models\Permission();
             $coreid = new CorePermissionGroupId();
             $corememberid = new CorePermissionRelMember();
             $coreuser = new CoreMember();            
@@ -168,7 +166,6 @@ class IndexController extends ControllerBase {
         $idpage =$filter->sanitize($this->request->getPost('idpage'),'string'); 
         $page_rule_group = $filter->sanitize($this->request->getPost("page_rule_group"),'string');
         $permission_code = $this->request->getPost("permission_code"); 
-       
         $core = CorePermissionGroup::findFirst('idpage=' .$idpage);
         $core->idpage = $idpage;
         $core->page_rule_group = $page_rule_group;
@@ -188,7 +185,6 @@ class IndexController extends ControllerBase {
         $group_id = $this->request->getPost('group_id');
         $group_name_post = $this->request->getPost('group_text');
         $group_name = trim($group_name_post);
-     
         $core = CorePermissionRelMember::findFirstByRelMemberId($id);
         $coreuser_update = CoreMember::findFirstByMemberId($id);
         $coreuser_update->user_rule = $group_id;
@@ -197,7 +193,6 @@ class IndexController extends ControllerBase {
         $core->rel_permission_group_code = $group_name;
         $coreuser_update->update();
         $core->update();
-       
         $this->view->disable();
         $this->response->redirect('setting/index');
     }

@@ -29,6 +29,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
         $this->url('salary/index/salarylist');
+        sleep(3);
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Salary Lists', $element->text());
     }
@@ -43,12 +44,11 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('salary/index/salarylist');
         $form = $this->byId('frm_search');
-        $searchform = $this->byId('search');
         $saluser = $this->byName('username');
         $salperfees = $this->byName('travel_fees');
         $saluser->value('Euser');
         $salperfees->value('Travel fees per day');
-        $searchform->click();
+        $form->submit();
         $this->url('salary/index/salarylist');
     }
 
@@ -61,8 +61,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalaryListExport() {
 
         $this->url('salary/index/salarylist');
-
-        $this->byLinkText('Export')->click();
+        $form = $this->byId('frm_search');
+        $form->submit();
         $this->url('salary/index/salarylist');
     }
 
@@ -91,9 +91,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalaryApplyform() {
 
         $this->url('salary/index/addsalary');
-
+        sleep(5);
         $form = $this->byId('add_salary');
-        $apply = $this->byId('addsalary');
 
         $salaryuname = $this->byName('uname');
         $bsalary = $this->byName('bsalary');
@@ -115,7 +114,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $sscmother->click();
         $allowance->click();
         $sdate->value('01/01/2016');
-        $apply->click();
+        $form->submit();
+        sleep(3);
         $this->assertEquals('success', $this->alertText());
         $this->acceptAlert();
         $this->url('salary/index/salarylist');
@@ -130,7 +130,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalaryCancelform() {
 
         $this->url('salary/index/addsalary');
-
+        sleep(5);
         $form = $this->byId('add_salary');
         $cancel = $this->byId('add_salary_cancel');
 
@@ -167,6 +167,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testAddSalaryCsv() {
 
         $this->url('salary/index/addsalary');
+        sleep(5);
         $addcsvfile = $this->byId('csv_file');
         $addcsvfile->click();
         $browse = $this->byId('file_select');
@@ -187,6 +188,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testAddSalaryDownload() {
 
         $this->url('salary/index/addsalary');
+        sleep(3);
         $this->byClassName('csv_download')->click();
         sleep(2);
         $this->url('salary/index/addsalary');
@@ -198,10 +200,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testMonthlySalaryCalculateSave() {
-        $this->url('salary/index/addsalary');
-        $this->byCssSelector('a')->click();
+    public function testMonthlySalaryCalculateSave() {    
         $this->url('salary/index/monthlysalary');
+        sleep(3);
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Monthly Salary List', $element->text());
         $this->byCssSelector('.add-big')->click();
@@ -215,8 +216,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testMonthlySalaryCalculateCancel() {
-
         $this->url('salary/index/monthlysalary');
+        sleep(4);
         $this->byCssSelector('.add-big')->click();
         sleep(2);
         $cancel = $this->byId('cancel_deduct');
@@ -233,7 +234,10 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testMonthlySalaryExport() {
 
         $this->url('salary/index/monthlysalary');
-        $this->byLinkText('Export')->click();
+        $elements = $this->elements($this->using('css selector')->value('img#exicon'));
+        $this->assertEquals(2, count($elements));
+        $link = $this->byLinkText($elements[0]->text());
+        $link->click();
         $this->url('salary/index/monthlysalary');
     }
 
@@ -259,6 +263,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalarySettingTax() {
 
         $this->url('salary/index/salarysetting');
+        sleep(5);
         $this->byLinkText('Tax')->click();
         $this->url('salary/index/salarysetting');
     }
@@ -272,6 +277,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalarySettingDeduction() {
 
         $this->url('salary/index/salarysetting');
+        sleep(5);
         $this->byLinkText('deduction')->click();
         $this->url('salary/index/salarysetting');
     }
@@ -286,9 +292,10 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalarySettingTaxEdit() {
 
         $this->url('salary/index/salarysetting');
+        sleep(5);
         $this->byCssSelector('.inedit')->click();
-        sleep(2);
-        $save = $this->byId('edit_tax');
+        sleep(5);
+        $save = $this->byId('edit_tax_table');
         $taxform = $this->byName('taxs_from');
         $taxform->clear();
         $taxto = $this->byName('taxs_to');
@@ -312,7 +319,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('salary/index/salarysetting');
         $this->byCssSelector('.inedit')->click();
-        sleep(2);
+        sleep(4);
         $cancel = $this->byId('edit_close');
         $cancel->click();
         $this->url('salary/index/salarysetting');
@@ -374,14 +381,13 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testAllowanceAdd() {
 
         $this->url('salary/index/allowance');
-
-        $add = $this->byId('alladd');
+       $form = $this->byId("TextBoxesGroup");        
         $name = $this->byName('textbox1');
         $amount = $this->byName('txt1');
         $name->value('Bonus');
         $amount->value('200000');
-        $add->click();
-        $successmesg = $this->byCssSelector('.successMessage');
+       $form->submit();        
+        $successmesg = $this->byCssSelector('div.successMessage');
         $this->assertEquals('Allowances are added successfully!', $successmesg->text());
     }
 
@@ -405,7 +411,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('/salary/index/allowance');
         $this->byCssSelector('a.inedit')->click();
         sleep(5);
-        $this->byId('all_delete')->click();
+        $this->byId('all_delete')->click();        
         $this->assertEquals('Are u sure to delete?', $this->byCssSelector('div#confirm p')->text());
         $submitLink = $this->byXPath("//span[contains(text(),'Yes')]");
         $submitLink->click();
@@ -424,7 +430,6 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testCancel() {
         $this->url('/salary/index/allowance');
         $this->byCssSelector('a.inedit')->click();
-        sleep(5);
         $this->byId('edit_close')->click();
         $this->url('salary/index/allowance#');
     }
@@ -433,6 +438,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('/salary/index/salarylist');
         $this->byCssSelector('a.inedit')->click();
         sleep(5);
+        $this->byId('edit_salary');
         $this->byId('baseerr')->clear();
         $this->byId('baseerr')->value('400000');
         $this->byName('radTravel')->value('2');
@@ -461,8 +467,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testDedEdit() {
         $this->url('/salary/index/salarysetting');
-        $this->byCssSelector('a.inedit')->click();
-        sleep(5);
+        $this->byCssSelector('a.inedit')->click();        
         $this->byName('taxs_to')->clear();
         $this->byName('taxs_to')->value('5000000');
         $this->byName('ssc_comp')->clear();
@@ -479,13 +484,10 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         sleep(5);
         $this->assertEquals('* Username is required', $this->byCssSelector('span#add_salary_uname_error')->text());
         $this->assertEquals('* Basic Salary is required', $this->byCssSelector('span#add_salary_bsalary_error')->text());
-      
     }
 
     public function onNotSuccessfulTest(Exception $e) {
         throw $e;
     }
-
-    
 
 }

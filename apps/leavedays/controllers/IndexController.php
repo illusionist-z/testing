@@ -124,7 +124,7 @@ class IndexController extends ControllerBase {
                 }
                 else{
                 $this->view->max = $max['0']['max_leavedays'];
-                $this->view->Getname = $UserList::getinstance()->getusername();
+                //$this->view->Getname = $UserList::getinstance()->getusername();
                 $this->view->setVar("Result", $this->_leave->getLeaveList($page,1));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
                 $this->view->setVar("Month", $this->config['config']['month']);
@@ -285,21 +285,6 @@ class IndexController extends ControllerBase {
         }
     }
 
-//    /**
-//     * auto complete username when apply leave
-//     * @author Saw Zin Min Htun 
-//     */
-//    public function applyautolistAction() {
-//        if ($this->permission == 1) {
-//            $UserList = new Db\CoreMember();
-//            $Username = $UserList->applyautousername();
-//            $this->view->disable();
-//            echo json_encode($Username);
-//        } else {
-//            echo 'Page Not Found';
-//        }
-//    }
-
     /**
      * @author Saw Zin Min Tun
      * @type   
@@ -326,9 +311,7 @@ class IndexController extends ControllerBase {
      * @desc  Leave Most Action
      */
     public function leavemostAction() {
-        if ($this->permission == 1) {
-            //$this->assets->addJs('common/js/paging.js');
-            //$this->assets->addJs('apps/leavedays/js/index-paging.js');
+        if ($this->permission == 1) {            
             $currentPage = $this->request->get("page");  
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];

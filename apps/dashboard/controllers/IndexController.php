@@ -82,7 +82,13 @@ class IndexController extends ControllerBase {
             if ($key_name == 'admin_dashboard') {
                 $this->view->setVar("attname", $status['att']);
                 $this->view->setVar("absent", $status['absent']);
-                $this->view->setVar("nlname", $leave_name['noleave_name']);  //get current month no taken leave name
+               // $this->view->setVar("nlname", $leave_name['noleave_name']);  //get current month no taken leave name
+                if(sizeof($leave_name['noleave_name']) != 0){
+                        $this->view->setVar("nlname", $leave_name['noleave_name']); 
+                }else{
+                    $this->view->setVar("nlname", $leave_name['noleave_least']);
+                }
+               // var_dump(sizeof($leave_name['noleave_name']));exit;
                 $this->view->setVar("lname", $leave_name['leave_name']);
                 $this->view->setVar("name", $Get_Name);
                 $this->view->setVar("newnumber", $new_member);
