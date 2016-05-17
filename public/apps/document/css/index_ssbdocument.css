@@ -17,6 +17,7 @@
 }
 .table_ssb{
        width: 100%;
+       align-content: center;
 }
 .table_ssb td{
      padding: 0px;
