@@ -65,11 +65,7 @@ class IndexController extends ControllerBase {
     public function updateNotiAction() {
        $core = new CoreNotificationRelMember();
        $core->updateNoti($this->request->getPost('noti_id'));
-//       $coredata = CoreNotificationRelMember::findFirst('noti_id =' . $this->request->getPost('noti_id'));
-//       $coredata->status = '2';
-//      $coredata>update();
-
-        
+       
     }
 
     public function notificationAction() {
@@ -94,7 +90,6 @@ class IndexController extends ControllerBase {
 
     public function detailAction() {
         $this->setCommonJsAndCss();
-       // $this->assets->addCss('common/css/css/style.css');
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
