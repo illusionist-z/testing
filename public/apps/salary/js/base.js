@@ -168,7 +168,8 @@ var Salary = {
         }
     },
     getmemid: function (p) {
-        var name = document.getElementById('namelist').value;
+        var name = document.getElementById('username').value;
+        
         var dict = [];
         $('ul.pagination').empty();
          //$('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();      
@@ -188,7 +189,7 @@ var Salary = {
         });
         function loadIcon(dict,p) {
             $('#formemberid').val(dict);
-            //Salary.search_salarylist(p);
+            Salary.search_salarylist(p);
         }
 
     },
@@ -558,7 +559,7 @@ $(document).ready(function () {
         Salary.getmemid(name);
     });
     $('#search_salary').on('mouseover', function () {
-      var name = document.getElementById('namelist').value;
+      var name = document.getElementById('username').value;
         Salary.getmemid(name);
     });
 
