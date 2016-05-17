@@ -76,7 +76,7 @@ class User extends Model {
 
                         $core_table_update->member_dept_name = $cond['dept'];
                         $core_table_update->bank_acc                 = $cond['bank'];
-                        $core_table_update->ssn_no = $cond['ssn'];
+                        $core_table_update->ssn_no                     = $cond['ssn'];
                         $core_table_update->mm_name                 = $cond['mm_name'];
                         $core_table_update->member_mobile_tel  = $cond['pno'];
                         $core_table_update->member_mail           = $cond['email'];
