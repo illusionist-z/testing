@@ -1,10 +1,14 @@
 <?php
 
 namespace salts\Dashboard\Controllers;
+
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
+use salts\Dashboard\Models\CorePermissionGroup;
 
 date_default_timezone_set('UTC');
+
+//use Phalcon\Flash\Direct as FlashDirect;
 
 
 class IndexController extends ControllerBase {
@@ -39,6 +43,7 @@ class IndexController extends ControllerBase {
     }
 
     /**
+     * 
      * Check User or Admin 
      */
     public function indexAction() {
@@ -52,8 +57,8 @@ class IndexController extends ControllerBase {
      * get last created member name
      * @type array {$gname}
      */
-    public function adminAction() {        
-
+    public function adminAction() {
+ 
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {
@@ -77,7 +82,13 @@ class IndexController extends ControllerBase {
             if ($key_name == 'admin_dashboard') {
                 $this->view->setVar("attname", $status['att']);
                 $this->view->setVar("absent", $status['absent']);
-                $this->view->setVar("nlname", $leave_name['noleave_name']);  //get current month no taken leave name
+               // $this->view->setVar("nlname", $leave_name['noleave_name']);  //get current month no taken leave name
+                if(sizeof($leave_name['noleave_name']) != 0){
+                        $this->view->setVar("nlname", $leave_name['noleave_name']); 
+                }else{
+                    $this->view->setVar("nlname", $leave_name['noleave_least']);
+                }
+               // var_dump(sizeof($leave_name['noleave_name']));exit;
                 $this->view->setVar("lname", $leave_name['leave_name']);
                 $this->view->setVar("name", $Get_Name);
                 $this->view->setVar("newnumber", $new_member);

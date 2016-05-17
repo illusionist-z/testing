@@ -91,8 +91,8 @@ class Attendances extends Model {
                 $page = $this->base->pagination($row, $currentPage);
             }
             else{
-                $page = $row;
-            }
+             $page = $row;
+            }          
         } catch (Exception $err) {
             echo $err;
         }

@@ -114,7 +114,7 @@ class Permission {
         $paginator = new PaginatorModel(
                 array(
             "data" => $row,
-            "limit" => 3,
+            "limit" => 10,
             "page" => $currentPage
                 )
         );

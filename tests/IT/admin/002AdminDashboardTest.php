@@ -35,7 +35,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testHelpicon() {
         $this->url('dashboard/index/admin');
-        $helpicn = $this->byId('btn_cmn_help'); //change
+        $helpicn = $this->byId('btn_cmn_help');
         $helpicn->click();
         $this->url('help/index/searchHelp');
     }
@@ -77,15 +77,6 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals("Today Attendance List", $element->text());
     }
 
-    public function testViewAll() {
-
-        $this->url('dashboard/index/admin');
-        $this->byId('noleavelistblock')->click();  //change
-        $this->url('leavedays/index/noleavelist');
-        $element = $this->byCssSelector('h1');
-        $this->assertEquals("People who take no leave", $element->text());
-    }
-
     public function testStaffnoAtt() {
 
         $this->url('dashboard/index/admin');
@@ -113,8 +104,8 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownAtt() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->byLinkText('Attendance List')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $this->clickOnElement('navicon2');
         $this->url('attendancelist/index/todaylist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Today Attendance List', $element->text());
@@ -123,8 +114,8 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownMang() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->byLinkText('Manage User')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $this->clickOnElement('navicon3');
         $this->url('manageuser/index/index');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('User Lists', $element->text());
@@ -133,8 +124,8 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownLeave() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->byLinkText('Leave days')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $this->clickOnElement('navicon4');
         $this->url('leavedays/index/leavelist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Leave Lists', $element->text());
@@ -143,34 +134,31 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDropdownDocument() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->byLinkText('Document')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $this->clickOnElement('navicon6');
         $this->url('document/index/letterhead');
     }
 
     public function testDropdownSsb() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->url('document/index/letterhead');
-        $this->byLinkText('SSB Document')->click();
+        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
+        $this->assertEquals(6, count($elements));
+        $link = $this->byLinkText($elements[1]->text());
+        $link->click();
         $this->url('document/index/ssbdocument');
     }
 
     public function testDropdownTaxDocu() {
-
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->url('document/index/letterhead');
+        sleep(5);
         $this->byLinkText('Tax document')->click();
         $this->url('document/index/taxdocument');
     }
 
     public function testDropdownSalarreferDocu() {
-
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->url('document/index/letterhead');
+        sleep(5);
         $this->byLinkText('Salary Refer Document')->click();
         $this->url('document/index/salaryrefer');
     }
@@ -178,10 +166,10 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSetting() {
 
         $this->url('dashboard/index/admin');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $this->byLinkText('Setting')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $this->clickOnElement('navicon7');
         $this->url('setting/index');
-         $element = $this->byCssSelector('h3');
+        $element = $this->byCssSelector('h3');
         $this->assertEquals('Group Rule Setting', $element->text());
     }
 

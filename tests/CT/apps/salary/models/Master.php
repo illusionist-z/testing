@@ -4,10 +4,6 @@ use salts\Salary\Models;
 use Phalcon\Mvc\Model;
 use Phalcon\Filter;
 
-
-
-
-
 class Master extends Models\SalaryMaster {
 
     public function initialize() {
@@ -191,25 +187,24 @@ class Master extends Models\SalaryMaster {
             $absent_dedution = "";
             $date_diff = "";
             $flg = 0;
+
             foreach ($param as $value) {
                 if (!empty($value)) {
+                    //set the working start date whether 1 year or not
+                    $wrk_start_dt = $this->getWorkingstartDate($value[0]['member_id']);
+
                     $budget_startyear = $value[0]['salary_start_date'];
 
                     $budget_endyear = $value[0]['salary_end_date'];
-                    //get the salary start date to calculate salary
-                    $start_date = explode("-", $value[0]['comp_start_date']);
+                    //get the working start date from core_member table
+                    $working_start_date = explode("-", $salary_start_date);
+                    $w_start_dt = $working_start_date[0] . '-' . $working_start_date[1];
+                    $comp_start_date = $w_start_dt;
+                    $start_date = explode("-", $comp_start_date);
                     $salary_starting_date = $start_date[0] . '-' . $start_date[1];
                     $salary_starting_month = $start_date[1];
-                    if ($salary_start_date != "") {
 
-                        //get the working start date from core_member table
-                        $working_start_date = explode("-", $salary_start_date);
-                        $w_start_dt = $working_start_date[0] . '-' . $working_start_date[1];
-                        $comp_start_date = $w_start_dt;
-                        $start_date = explode("-", $comp_start_date);
-                        $salary_starting_date = $start_date[0] . '-' . $start_date[1];
-                        $salary_starting_month = $start_date[1];
-                    }
+
                     //calculate date difference between starting date and budget end year
                     $date_diff = $this->dateDifference($salary_start_date, $budget_endyear);
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
@@ -256,15 +251,15 @@ class Master extends Models\SalaryMaster {
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual + $overtime_fees_annual;
 
                     //check the user who is absent.
-                    $absent = $this->checkAbsent($value[0]['member_id'], $budget_startyear, $budget_endyear);
+                    $absent = $this->checkAbsent($value[0]['member_id'], $wrk_start_dt);
                     //Get the data of leave setting
                     $leavesetting = $this->getleavesetting();
-                    $thismonth_leave = $this->getLeave($salary_start_date, $value[0]['member_id']);
-
+                    $thismonth_leave = $this->getLeave($salary_starting_date, $value[0]['member_id']);
+                    $value[0]['leaveday_carry'] = 0;
                     //calculate absent deduce
-                     $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], 
-                            $thismonth_leave['countAbsent'], $value[0]['basic_salary'],$value[0]['leaveday_carry']);
+                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $thismonth_leave['countAbsent'], $value[0]['basic_salary'], $value[0]['leaveday_carry']);
                     $absent_dedution = $countabsent;
+
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
                     $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
@@ -288,7 +283,7 @@ class Master extends Models\SalaryMaster {
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
-
+                    //echo "The Income tax  is " . $income_tax . '<br>';
 
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
 
@@ -311,6 +306,7 @@ class Master extends Models\SalaryMaster {
                         'creator_id' => $creator_id,
                         'pay_date' => $salary_start_date);
                     if ('03' == $working_start_date[1] || '03' == $salary_starting_month) {
+
                         $latestDate = $this->getLatestDate($value[0]['member_id']);
 
                         $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
@@ -324,7 +320,7 @@ class Master extends Models\SalaryMaster {
         } catch (Exception $exc) {
             echo $exc;
         }
-
+        //print_r($final_result);exit;
         return $final_result;
     }
 
@@ -379,16 +375,16 @@ class Master extends Models\SalaryMaster {
      * @param type $basic_salary
      * @return int
      */
-    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary,$leaveday_carry) {
+    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary, $leaveday_carry) {
 
-        if ($countabsent > ($max_leavedays+$leaveday_carry)) {
-            $overleave = $countabsent - $max_leavedays;
+        $Leavecount = $max_leavedays + $leaveday_carry;
+        if ($countabsent > $Leavecount) {
+            $overleave = $countabsent - $Leavecount;
             if ($overleave < $thismonth_leave) {
                 $thismonth_over = $overleave;
             } else {
                 $thismonth_over = $thismonth_leave;
             }
-
             $absent_deduce = ($basic_salary / 22) * ($thismonth_over );
         } else {
             $absent_deduce = 0;
@@ -769,7 +765,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $sql = "select *  from salary_master LEFT JOIN core_member ON salary_master.member_id=core_member.member_id WHERE salary_master.member_id ='" . $member_id . "'";
             $result = $this->db->query($sql);
             $row = $result->fetchall();
-            
         } catch (Exception $e) {
             echo $e;
         }
@@ -797,7 +792,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $this->db = $this->getDI()->getShared("db");
         if ($data['radTravel'] == 1) {
             $travel = "travel_fee_perday";
-            $empty = "travel_fee_permonth";           
+            $empty = "travel_fee_permonth";
         } else {
             $travel = "travel_fee_permonth";
             $empty = "travel_fee_perday";
@@ -859,7 +854,6 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
-
     }
 
     public function getSalMasterField() {

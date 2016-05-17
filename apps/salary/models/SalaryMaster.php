@@ -1,7 +1,6 @@
 <?php
 
 namespace salts\Salary\Models;
-
 use Phalcon\Mvc\Model;
 use Phalcon\Filter;
 
