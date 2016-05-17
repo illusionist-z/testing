@@ -1,7 +1,7 @@
 <?php
 
 namespace salts\Dashboard\Models;
-
+use Phalcon\Filter;
 use Phalcon\Mvc\Model;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,6 +55,10 @@ class Attendances extends Model {
                     $Attendances->status = ($hr > 12 ? 3 : 0 );
                     $Attendances->save();
                 } else { 
+                    $filter = new Filter();
+                    $note = $filter->sanitize($note,"string");
+                    $id     = $filter->sanitize($id,"string");
+                    $add  = $filter->sanitize($add,"string");
                     $this->db->query("UPDATE attendances set checkin_time = '" . $mydate . "',
                     location = '" . $add . "',notes = '" . $note . "',noti_id = '" . $Noti_id . "',status = "
                             .($hour > 12 ? 3 : 0)." where att_date ='" . $today . "' AND member_id ='" . $id . "'");
@@ -168,6 +172,8 @@ class Attendances extends Model {
 
     public function userAttLeave($id) {
         $currentmth = date('m');
+        $filter = new Filter();
+        $id  = $filter->sanitize($id,"string");
         $result = array();
         $this->db = $this->getDI()->getShared("db");
         //today attendance list
@@ -192,6 +198,8 @@ class Attendances extends Model {
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
     public function getAttList($id) {
+        $filter = new Filter();
+        $id  = $filter->sanitize($id,"string");
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
         $row = "Select att_date,member_login_name,checkin_time,checkout_time,"
@@ -206,6 +214,8 @@ class Attendances extends Model {
     }
 
     public function getTotalLeaves($id) {
+        $filter = new Filter();
+        $id  = $filter->sanitize($id,"string");
         $currentmth = date('m');
         $this->db = $this->getDI()->getShared("db");
         $row = "Select * from core_member left join leaves "

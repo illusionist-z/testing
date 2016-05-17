@@ -57,6 +57,14 @@ class CoreMember extends \Library\Core\Models\Base {
         $page = $paginator->getPaginate();
         return $page;
     }
+    
+    public function getCarryLeave(){
+       $this->db = $this->getDI()->getShared("db");
+        $query = "Select leaveday_carry,member_id from core_member ";
+        $data = $this->db->query($query);
+        $result = $data->fetchall();
+        return $result; 
+    }
 
     public function module_permission() {
         $this->db = $this->getDI()->getShared("db");

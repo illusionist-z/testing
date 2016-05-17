@@ -58,9 +58,7 @@ class IndexController extends ControllerBase {
      * @type array {$gname}
      */
     public function adminAction() {
-
-        //$this->view->setLayout('/../core/view/partial/header');
-
+ 
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];
         foreach ($this->session->auth as $key_name => $key_value) {

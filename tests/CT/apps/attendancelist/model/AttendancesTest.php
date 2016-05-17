@@ -13,7 +13,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
  
-    public function getTodayList($name, $currentPage) {
+    public function getTodayList($name, $currentPage, $IsPaging) {
         $today = date("Y:m:d");
         if (isset($name)) {
             $row = $this->modelsManager->createBuilder()->columns(array('core.*', 'attendances.*'))
@@ -44,7 +44,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
 
-    public function getAttList($id, $year, $month, $currentPage) {
+    public function getAttList($id, $year, $month, $currentPage,$IsPaging) {
         try {
               $this->base = new\Library\Core\Models\Base();
             $currentmth = date('m');
@@ -78,7 +78,7 @@ class AttendancesTest extends Models\Attendances {
     }
 
     
-    public function showAttList($currentPage) {
+    public function showAttList($currentPage, $IsPaging) {
         //search monthly list data     
         $this->base = new\Library\Core\Models\Base();
         $month = date('m');
@@ -123,7 +123,7 @@ class AttendancesTest extends Models\Attendances {
                     . "CURRENT_DATE in (start_date,end_date)";
             $checkleave = $this->db->query($checkleavequery);
             $checkresult = $checkleave->fetchall();
-            $this->InsertAbsentStatus($checkresult, $finalresult);
+            $this->InsertAbsentStatus($checkresult,$finalresult['member_id'],$id);
             $message = "Adding is successfully";
         } else {
             $message = "Already Exist";
@@ -131,7 +131,7 @@ class AttendancesTest extends Models\Attendances {
         return $message;
     }
 
-    public function InsertAbsentStatus($checkresult, $finalresult,$id) {
+    public function InsertAbsentStatus($checkresult,$finalresult,$id) {
         $insert = "Insert into attendances (member_id,att_date,status) VALUES ";
         //insert absent with apply leave
         if (count($checkresult) > 0) {
@@ -262,12 +262,13 @@ class AttendancesTest extends Models\Attendances {
     
     public function getCountattday($salary_start_date) {
         try {
-            $dt = explode('-', $salary_start_date);
-            $query = "select *,count(att_date) as attdate from attendances join core_member on "
-                    . "attendances.member_id=core_member.member_id where YEAR(att_date)='" . $dt[0] . "' and "
-                    . "MONTH(att_date)='" . $dt[1] . "' group by core_member.member_id";
+            $this->db = $this->getDI()->getShared("db");
+            $dt = explode('-', $salary_start_date);           
+            $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
+                    . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' and (status = 0 or status=3) group by core_member.member_id";
             $data = $this->db->query($query);
             $result = $data->fetchall();
+            
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

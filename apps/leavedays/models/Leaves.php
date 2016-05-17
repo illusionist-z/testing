@@ -36,7 +36,23 @@ class Leaves extends \Library\Core\Models\Base {
                 ->getQuery()
                 ->execute();
         if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $current_page);
+            $page = $this->base->pagination($row, $currentPage);
+        } else {
+            $page = $row;
+        }
+        return $page;
+    }
+    
+      public function getLeavedayleftList($currentPage, $IsPaging) {
+        $mth = date('m');
+        $row = $this->modelsManager->createBuilder()
+                ->columns(array('core_member.*'))
+                ->from(array('core_member' => 'salts\Core\Models\Db\CoreMember'))
+                ->Where('core_member.deleted_flag = 0')
+                ->getQuery()
+                ->execute();
+        if (1 == $IsPaging) {
+            $page = $this->base->pagination($row, $currentPage);
         } else {
             $page = $row;
         }
@@ -54,20 +70,37 @@ class Leaves extends \Library\Core\Models\Base {
         return $row;
     }
 
-    public function getAbsent() {
+   public function getAbsent() {
         $row = $this->modelsManager->createBuilder()
-                ->columns(array('core.*', 'leaves.*'))
+                ->columns(array('core.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                ->join('salts\Leavedays\Models\Leaves', 'core.member_id = leaves.member_id', 'leaves')
                 ->Where('core.deleted_flag = 0')
-                ->orderBy('leaves.date DESC')
                 ->getQuery()
                 ->execute();
         foreach ($row as $value) {
-            $result = $this->db->query("select * from attendances where attendances.member_id='" . $value->core->member_id . "'"
-                    . "and (status = 1 or status = 2)");
+             if ($value->working_year_by_year == NULL OR $value->working_year_by_year=='0000-00-00') {
+            $end_date = date('Y-m-d', strtotime("+1 year", strtotime($value->working_start_dt)));
+            $start_date=$value->working_start_dt;
+        } else {
+            $end_date = date('Y-m-d', strtotime("+1 year", strtotime($value->working_year_by_year)));
+            $start_date = $value->working_year_by_year;
+        }
+            
+            $result = $this->db->query("select * from attendances where attendances.member_id='" . $value->member_id . "'"
+                    . "and att_date>='" . $start_date . "' and att_date<='" . $end_date . "'and (status = 1 or status = 2)");
             $data = $result->fetchall();
-            $absent[$value->core->member_id] = count($data);
+             $sql2 = "select count(status) as countAbsent from attendances where member_id='" . $value->member_id . "' "
+                    . "and att_date>='" . $start_date . "' and att_date<='" . $end_date . "' and deleted_flag=0 and (status = 3)";
+            $result2 = $this->db->query($sql2);
+            $row2 = $result2->fetcharray();
+          
+            $absent[$value->member_id] = count($data);
+             $absent[$value->member_id]+=(($row2['countAbsent'])/2); 
+            echo $value->member_login_name;
+            echo $start_date;
+            echo $end_date;
+             $absent[$value->member_id];
+            
         }
         return $absent;
     }

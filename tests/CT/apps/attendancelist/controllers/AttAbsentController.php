@@ -32,7 +32,7 @@ class AttAbsentController extends Controllers\AbsentController {
         $this->act_name = 'attendancelist';
     }
 
-    public function addAbsentAction() {  //change
+    public function addAbsentAction() {  
         $this->initialize();
         if ($this->permission == 1) {
             $Attendance = new Attendance();

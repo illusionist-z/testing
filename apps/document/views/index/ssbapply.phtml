@@ -1,0 +1,83 @@
+<?php
+
+if(! ini_get('date.timezone')){
+    date_default_timezone_set('UTC');    
+}
+    
+?>
+<head>
+    <meta charset="UTF-8">
+    <title>LetterHead</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <style>
+        @page
+        {
+            size: 21cm 29.7cm;  /* A4 */
+            margin: 0.5cm 0.5cm 0.5cm 0.5cm;
+            mso-page-orientation: portrait;
+        }
+        #p1{
+            text-indent: 170px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<!-- Main content -->
+<section class="content">
+    
+    <div class="row"><!-- for search form-->  <div style="float:right;">
+                            <a href="#" id="word-export"style="margin-right: 21px;"  class="buttonn export exbg"><img id="exicon">Export</a>
+                        </div>
+        <div class="col-md-12" id="print" >
+     <!--start add user form--->
+            <div style="width:100%;">
+                <form action="editinfo" method="post" width="650px" height="300px"  enctype="multipart/form-data"> 
+                    <div>
+                      
+                    </div>
+                    <br>
+                    <div style="clear:both; border-bottom: 1px solid gray;" id="letterhead">
+                        <table>
+                            <tr><?php foreach ($info as $value) {?>
+                                <td style="width:100px">
+                                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode(  $value->company_logo ).'"/>';?>
+                                    <input type="file" id="my_file" style="display: none;" />
+                                </td>
+                                <td style=" width: 1000px;">
+                                    
+                                        
+                                    
+                                    <div id="document" style="width: 36%;display: inline-block;float: right;margin-right: 62%;">
+                                        <h4><?php echo $value->company_name ?></h4>
+                                        <p><?php echo $value->company_address ?></p>
+                                        <p>Tel: <?php echo $value->company_phno ?></p></div>
+                                </td>
+                            </tr>
+                        </table> 
+                    </div> 
+                    <div style=" margin-left:20px; margin-top: 20px; line-height: 30px; font-family: Zawgyi-one; ">
+                        <address style="line-height: 35px;">
+                            သိုု႔<br>
+                            လူမႈဖူလံုုေရးအဖြဲ႔<br>
+                            ဌာနခြဲ (  )<br>
+                            လွဳိင္ၿမိဳ႔နယ္၊<br>
+                            ရန္ကုုန္ၿမိဳ႔၊
+                            </address>
+                            <div >အေၾကာင္းအရာ။  ။၀န္ထမ္းသစ္ခန္႔ျခင္း အေၾကာင္းၾကားတင္ျပျခင္း။</div>
+                          
+                            
+                            <p id="p1">
+                            ကၽြန္ေတာ္မ်ား G-Next Co.,Ltd မွ ေအာက္ပါ၀န္ထမ္း (.....)ဦးသည္ ……..လ၊…………ႏွစ္မွစ၍လုုပ္ငန္းတြင္ စတင္၀င္ေရာက္ၿပီျဖစ္ပါေၾကာင္း အသိေပးအေၾကာင္းၾကားတင္ျပအပ္ပါသည္။
+                            </p>
+                            <div style="height:400px;"></div>
+                            ေလးစားစြာျဖင္႔<br><br>
+
+                            Mr. Kohei Iwasa<br>
+                            Director<br>
+                            G-Next Company Limited
+                        </div>
+                </div><?php }?>
+            </div>
+        </div>
+    </div>
+</section>

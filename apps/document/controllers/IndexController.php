@@ -97,6 +97,36 @@ class IndexController extends ControllerBase {
         }
     }
 
+    public function ssbapplyAction() {
+        if ($this->moduleIdCall == 1) {
+            
+            $this->view->module_name = $this->router->getModuleName();
+            $this->assets->addJs('apps/document/js/print.js');
+            $ComInfo = CompanyInfo::find();
+            if ($this->permission == 1) {
+                $this->view->setVar("info", $ComInfo);
+            } else {
+                $this->response->redirect('core/index');
+            }
+        } else {
+            $this->response->redirect('core/index');
+        }
+    }
+    public function ssbresignAction() {
+        if ($this->moduleIdCall == 1) {
+            
+            $this->view->module_name = $this->router->getModuleName();
+            $this->assets->addJs('apps/document/js/print.js');
+            $ComInfo = CompanyInfo::find();
+            if ($this->permission == 1) {
+                $this->view->setVar("info", $ComInfo);
+            } else {
+                $this->response->redirect('core/index');
+            }
+        } else {
+            $this->response->redirect('core/index');
+        }
+    }
     /**
      * Edit Company Profile
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>

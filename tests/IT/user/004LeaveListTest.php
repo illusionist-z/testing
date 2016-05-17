@@ -55,7 +55,6 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->select($this->byId('ltype'))->selectOptionByValue("Family Case");
         $this->select($this->byId('month'))->selectOptionByValue('02');
         $this->byCssSelector('input.buttonn')->click();
-        
     }
 
     /**
@@ -67,7 +66,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('leavedays/user/leavelist');
         $this->select($this->byId('ltype'))->selectOptionByValue(NULL);
         $this->select($this->byId('month'))->selectOptionByValue(NULL);
-        $this->byCssSelector('input.buttonn')->click();       
+        $this->byCssSelector('input.buttonn')->click();
     }
 
     /**
@@ -82,15 +81,18 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals("Leave Lists", $this->byCssSelector('h1')->text());
     }
 
-   
     public function testLeaveForm() {
 
         $this->url('leavedays/user/applyleave');
         $this->byId('apply_form');
+        $d = strtotime("+1 Weeks");
+        $sdate = date("Y-m-d h:i:sa", $d);
         $start_Date = $this->byName('sdate');
-        $start_Date->value('2016-05-13 00:00:00');
+        $start_Date->value($sdate);
+        $e = strtotime("+9 Days");
+        $edate = date("Y-m-d h:i:sa", $e);
         $end_Date = $this->byName('edate');
-        $end_Date->value('2016-05-14 13:32:41');
+        $end_Date->value($edate);
         $this->select($this->byName('leavetype'))->selectOptionByValue("On Vacation");
         $this->byCssSelector('textarea')->value("illness");
         $this->byCssSelector('input#apply_form_submit')->click();

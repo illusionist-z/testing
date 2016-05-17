@@ -129,7 +129,7 @@ use Phalcon\Filter;
                     foreach ($getsalarylists as $getsalarylist) {
                         
                         ?>
-                        <tr id="clicktd">
+                        <tr>
                             <td><input type="checkbox" id="getcheck" class='case' name='chk[]'  value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_login_name'], "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'], "string") ?></td>
