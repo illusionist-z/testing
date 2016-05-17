@@ -3,8 +3,6 @@
 namespace salts\Setting\Controllers;
 
 use salts\Core\Models\Db;
-use salts\Core\Models\Db\CoreMember;
-use Phalcon\Tag as Tag;
 
 class UserController extends ControllerBase {
 

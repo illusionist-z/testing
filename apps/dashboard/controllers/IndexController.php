@@ -1,14 +1,10 @@
 <?php
 
 namespace salts\Dashboard\Controllers;
-
 use salts\Core\Models\Db\CoreMember;
 use salts\Core\Models\Db;
-use salts\Dashboard\Models\CorePermissionGroup;
 
 date_default_timezone_set('UTC');
-
-//use Phalcon\Flash\Direct as FlashDirect;
 
 
 class IndexController extends ControllerBase {
@@ -43,7 +39,6 @@ class IndexController extends ControllerBase {
     }
 
     /**
-     * 
      * Check User or Admin 
      */
     public function indexAction() {
@@ -57,9 +52,7 @@ class IndexController extends ControllerBase {
      * get last created member name
      * @type array {$gname}
      */
-    public function adminAction() {
-
-        //$this->view->setLayout('/../core/view/partial/header');
+    public function adminAction() {        
 
         $Admin = new CoreMember();
         $id = $this->session->user['member_id'];

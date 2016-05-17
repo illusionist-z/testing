@@ -2,11 +2,6 @@
 
 namespace salts\Core\Models\Db;
 
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
-
-use salts\Core\Models\Db\CorePermissionRelMember;
-use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
 
@@ -182,8 +177,7 @@ class CoreMember extends \Library\Core\Models\Base {
         return $laname;
     }
 
-    /**
-     * 
+    /**     
      * @param type $loginParams
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * updating core member updated_dt after one year
@@ -398,8 +392,6 @@ class CoreMember extends \Library\Core\Models\Base {
         return $data;
     }
 
-    
-
     /**
      * 
      * @param type $id
@@ -456,12 +448,7 @@ class CoreMember extends \Library\Core\Models\Base {
      */
     public function leaveMost($currentPage) {
         $res = array();
-        $this->db = $this->getDI()->getShared("db");
-        //select where user most leave taken
-//        $query = "select * from core_member "
-//                . "as c join absent as a on c.member_id=a.member_id "
-//                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
-//                . "order by count(*)";
+        $this->db = $this->getDI()->getShared("db");       
           $query = "select * from core_member "
                 . "as c join attendances as a on c.member_id=a.member_id "
                 . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "

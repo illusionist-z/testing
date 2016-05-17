@@ -5,8 +5,6 @@ namespace salts\Auth\Controllers;
 use salts\Auth\Models;
 use Phalcon\Filter;
 use salts\Core\Models\Db\CoreMemberLog;
-use salts\Core\Models\Db\CoreMember;
-use salts\Dashboard\Models\Attendances;
 use Phalcon\Config\Adapter\Ini;
 
 class LoginController extends ControllerBase {
@@ -82,17 +80,10 @@ class LoginController extends ControllerBase {
                 $core_member_log->token = $token;
                 $core_member_log->ip_address = $user_ip_public;
                 $core_member_log->mac = $user_ip;
-                $core_member_log->ipv6 = $user_ip_IPv6;
-       
-    //   $location = $filter->sanitize($this->request->getPost('location'), "string");
-         
-         
-         
-       // var_dump($location);  exit();
-        $this->view->disable();
+                $core_member_log->ipv6 = $user_ip_IPv6;       
+                $this->view->disable();
                 
-                // Type Error Chack 5 Time 
-                $member_id = $filter->sanitize($this->request->getPost('member_login_name'), 'string');
+                // Type Error Chack 5 Time                 
                 $this->session->set('tokenpush', $member_id);
                 $member_name = $this->session->tokenpush;
                 // $chack_user2 = new Models\CoreMember();
@@ -117,10 +108,6 @@ class LoginController extends ControllerBase {
                             $this->response->redirect('home');
                             session_destroy(($_SESSION['attempts']));
                         } else {
-                            
-                            
-                            
-                            
                             $core_member_log->save();
                             $this->response->redirect('auth/index/failer');
                         }
