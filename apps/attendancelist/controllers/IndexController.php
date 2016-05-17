@@ -147,19 +147,23 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function attsearchAction() {
+    public function attsearchAction($exportMode = null) {
          if ($this->moduleIdCall == 1) {
-        if ($this->request->isAjax() == true) {
             $month = $this->request->get('month');
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
             $page = $this->request->get('page');
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $result = $Attendances->searchAttList($year, $month, $username,$page);
-
+            if(1 == $exportMode){
+            $offset = $this->session->location['offset'];
+            $result = $Attendances->searchAttList($year, $month, $username,$page,0);
+            $Attendances->AttendanceExport($result,"MonthlyAttendanceList",$offset);
+            }
+            else{
+            $result = $Attendances->searchAttList($year, $month, $username,$page,1);
             $this->view->disable();
             echo json_encode($result);
-        }
+            }        
          }
          else {
              echo 'Page Not Found';

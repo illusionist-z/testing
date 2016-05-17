@@ -22,18 +22,13 @@ class Auth extends Component {
     public function findCompDb($param) {
        
         try {
-            $sql = "SELECT * FROM company_tbl where company_id='".$param['company_id']."' and deleted_flag=0";
-            //print_r($sql);
-//            $rs = $this->getDI()->getShared("login_db")
-//                    ->query($sql, array($param['company_id']));
-            $rs=$this->login_db->query($sql);
-            
+            $sql = "SELECT * FROM company_tbl where company_id='".$param['company_id']."' and deleted_flag=0";            
+            $rs=$this->login_db->query($sql);            
             $row = $rs->fetchArray();
         } catch (\Exception $e) {
             $di = FactoryDefault::getDefault();
             $di->getShared('logger')->WriteException($e);
-        }
-       //print_r($row);exit;
+        }       
         return $row;
     }
     
@@ -46,7 +41,6 @@ class Auth extends Component {
 
     /**
      * Checks the user credentials
-     *
      * @param array $loginParams
      * @return boolan
      */
@@ -82,8 +76,7 @@ class Auth extends Component {
 
     /**
      * Implements login throttling
-     * Reduces the efectiveness of brute force attacks
-     *
+     * Reduces the efectiveness of brute force attacks     
      * @param int $userId
      */
     public function failedLogin($userId) {
