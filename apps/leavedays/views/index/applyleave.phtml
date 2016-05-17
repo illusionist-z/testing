@@ -31,7 +31,7 @@ $leavetypelength = count($Leavetype); ?>
                         <tr>
                             <td width="200px;"><?= $t->_("name"); ?></td>
                             <td style="height:40px;" >
-                                <input type="text" required class="form-control" data-toggle="select" name="username" style="height:39px; width: 260px;" id="apply_form_name" placeholder="<?php echo $t->_("searchusername"); ?>" >
+                                <input type="text" required class="form-control" data-toggle="select" name="username" style="display: inline;height:39px; width: 260px;" id="apply_form_name" placeholder="<?php echo $t->_("searchusername"); ?>" >
                                 <span id="apply_form_username_error"></span>
                                 <input type="hidden" value="" id="formemberid" name="member_id" >
                             </td>                
@@ -40,7 +40,7 @@ $leavetypelength = count($Leavetype); ?>
 
                             <td><?= $t->_("start_date"); ?></td>
                             <td style="height:40px;">
-                                <input type="text" required class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
+                                <input type="text" required class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="display: inline;height:39px; width: 260px;">
                                 <span id="apply_form_sdate_error"></span>
                             </td>                
                         </tr>
@@ -48,7 +48,7 @@ $leavetypelength = count($Leavetype); ?>
                         <tr>
                             <td><?= $t->_("end_date"); ?> </td>
                             <td style="height:40px;">
-                                <input type="text" required class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">
+                                <input type="text" required class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="display: inline;height:39px; width: 260px;">
                                 <span id="apply_form_edate_error"></span>                
                             </td>
 
@@ -56,7 +56,7 @@ $leavetypelength = count($Leavetype); ?>
                         <tr>
 
                             <td><?= $t->_("leave_category"); ?></td>
-                            <td style="height:40px;">
+                            <td style="display: inline;height:40px;">
                                 <select class="select active" required data-toggle="select" name="leavetype">
                                     <?php
                                     foreach ($Leavetype as $data) {
