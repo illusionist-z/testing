@@ -34,20 +34,7 @@ class CompanyTbl extends Model {
     public function addNew($data) {
         $date = date("Y-m-d H:i:s");
         $sdate = date("Y-m-d", strtotime($data['com_sdate']));
-//        $CompanyTbl = new CompanyTbl();
-//        $CompanyTbl->company_id = $data['comid'];
-//        $CompanyTbl->company_name = $data['com_name'];
-//        $CompanyTbl->email = $data['com_email'];
-//        $CompanyTbl->phone_no = $data['com_phno'];
-//        $CompanyTbl->db_name = $data['com_db'];
-//        $CompanyTbl->user_name = $data['com_dbun'];
-//        $CompanyTbl->db_psw = $data['com_dbpsw'];
-//        $CompanyTbl->host = $data['com_host'];
-//        $CompanyTbl->user_limit = $data['com_limit'];
-//        $CompanyTbl->starting_date = $sdate;
-//        $CompanyTbl->created_dt = $date;
-//        $CompanyTbl->save();
-        
+
         $sql = "INSERT INTO `company_tbl`(`company_id`, `company_name`, `email`, `phone_no`, "
                 . "`db_name`, `user_name`, `db_psw`, `host`, `user_limit`, `starting_date`, "
                 . "`created_dt`) VALUES "

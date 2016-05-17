@@ -8,12 +8,12 @@ use salts\Core\Models\Permission;
 use Library;
 
 class IndexController extends Library\Core\Controller {
-    
+
     public function initialize() {
         parent::initialize();
-        
-          $this->setCommonJsAndCss();
-           $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+
+        $this->setCommonJsAndCss();
+        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $Admin = new Db\CoreMember();
         foreach ($this->session->auth as $key_name => $key_value) {
             if ($key_name == 'show_admin_notification') {
@@ -25,29 +25,29 @@ class IndexController extends Library\Core\Controller {
         }
         $this->view->setVar("Noti", $noti);
         $this->view->module_name = $this->router->getModuleName();
-         
+
         $this->permission = $this->setPermission($this->router->getModuleName());
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
         $this->moduleIdCall = $moduleIdCallCore->ModuleIdSetPermission($this->router->getModuleName(), $this->session->module);
         $this->view->moduleIdCall = $this->moduleIdCall;
-       // Module ID Filter Start By (Module Name)        
+        // Module ID Filter Start By (Module Name)        
         $this->view->module_name_view = $this->module_name;
         $this->module_id_set = $this->session->module;
         $this->view->module_id_set = $this->module_id_set;
     }
 
     public function indexAction() {
-      
+        
     }
 
     public function setLanguageAction($language = '') {
         if ($language) {
             //set language action
             $member = $this->session->user['member_id'];
-            foreach(CoreMember::find("member_id ='$member'") as $lang) {
-            $lang->lang = $language;
-            $lang->update();
+            foreach (CoreMember::find("member_id ='$member'") as $lang) {
+                $lang->lang = $language;
+                $lang->update();
             }
             //get module language action
             $permission = [];

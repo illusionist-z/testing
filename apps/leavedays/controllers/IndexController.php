@@ -107,7 +107,7 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-    public function leavelistAction($exportMode = null) {
+   public function leavelistAction($exportMode = null) {
         if ($this->moduleIdCall == 1) {
             $this->permission = $this->setPermission($this->router->getModuleName());
             $Admin = new Db\CoreMember;
@@ -124,11 +124,39 @@ class IndexController extends ControllerBase {
                 }
                 else{
                 $this->view->max = $max['0']['max_leavedays'];
-                $this->view->Getname = $UserList::getinstance()->getusername();
+                //$this->view->Getname = $UserList::getinstance()->getusername();
                 $this->view->setVar("Result", $this->_leave->getLeaveList($page,1));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
                 $this->view->setVar("Month", $this->config['config']['month']);
                 }
+                //$this->view->modulename = $this->module_name;
+            } else {
+                $this->response->redirect('core/index');
+            }
+        } else {
+            $this->response->redirect('core/index');
+        }
+    }
+    
+     public function leavedayleftAction() {
+        if ($this->moduleIdCall == 1) {
+            $this->permission = $this->setPermission($this->router->getModuleName());
+            $Admin = new Db\CoreMember;
+            $this->view->setVar("noti", $Admin->GetAdminNoti($this->session->user['member_id'], 0));
+            $LeaveType = new LeaveCategories();
+            $this->view->setVar("Leavetype", $LeaveType->getLeaveType());
+            $UserList = new Db\CoreMember();
+            $page = $this->request->get("page");
+            $max = $this->_leave->getLeaveSetting();
+            if ($this->permission == 1) {
+               
+             
+                $this->view->max = $max['0']['max_leavedays'];
+                $this->view->Getname = $UserList::getinstance()->getusername();
+                $this->view->setVar("Result", $this->_leave->getLeavedayleftList($page,1));
+                $this->view->setVar("absent", $this->_leave->getAbsent());
+                $this->view->setVar("Month", $this->config['config']['month']);
+                
                 //$this->view->modulename = $this->module_name;
             } else {
                 $this->response->redirect('core/index');
@@ -161,6 +189,8 @@ class IndexController extends ControllerBase {
             $this->response->redirect('core/index');
         }
     }
+    
+ 
 
     /**
      * adding leave categories dialog box
@@ -255,21 +285,6 @@ class IndexController extends ControllerBase {
         }
     }
 
-//    /**
-//     * auto complete username when apply leave
-//     * @author Saw Zin Min Htun 
-//     */
-//    public function applyautolistAction() {
-//        if ($this->permission == 1) {
-//            $UserList = new Db\CoreMember();
-//            $Username = $UserList->applyautousername();
-//            $this->view->disable();
-//            echo json_encode($Username);
-//        } else {
-//            echo 'Page Not Found';
-//        }
-//    }
-
     /**
      * @author Saw Zin Min Tun
      * @type   
@@ -277,21 +292,14 @@ class IndexController extends ControllerBase {
      */
     public function noleavelistAction() {
         if ($this->permission == 1) {
-         //   $this->assets->addJs('common/js/paging.js');
+            $this->assets->addJs('common/js/paging.js');
             $this->assets->addJs('apps/leavedays/js/index-paging.js');
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
             $noti = $Admin->GetAdminNoti($id);
             $this->view->setVar("Noti", $noti);
-           
             $Result = $Admin->checkLeave();
-          //  $this->view->setVar("Result", $Result);    
-          //var_dump($Result);exit;
-                if(sizeof($Result['noleave_name']) != 0){
-                        $this->view->setVar("Result", $Result['noleave_name']); 
-                }else{
-                    $this->view->setVar("Result", $Result['leave_least']);
-                }
+            $this->view->setVar("Result", $Result);
         } else {
             echo 'Page Not Found';
         }
@@ -303,10 +311,8 @@ class IndexController extends ControllerBase {
      * @desc  Leave Most Action
      */
     public function leavemostAction() {
-        if ($this->permission == 1) {
-            //$this->assets->addJs('common/js/paging.js');
-            //$this->assets->addJs('apps/leavedays/js/index-paging.js');
-            $currentPage = $this->request->get("page");
+        if ($this->permission == 1) {            
+            $currentPage = $this->request->get("page");  
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
             $noti = $Admin->GetAdminNoti($id);

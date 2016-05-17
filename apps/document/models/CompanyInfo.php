@@ -6,8 +6,7 @@ class CompanyInfo extends \Phalcon\Mvc\Model {
       public $company_phno;
       public  $id;
 
-    /**
-     * 
+    /**     
      * @param type $data
      * Update Company Info
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>

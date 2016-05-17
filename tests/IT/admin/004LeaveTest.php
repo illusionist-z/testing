@@ -46,7 +46,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testListExport() {
 
         $this->url('leavedays/index/leavelist');
-         $elements = $this->elements($this->using('css selector')->value('a#exbg'));
+        $elements = $this->elements($this->using('css selector')->value('img#exicon'));
         $this->assertEquals(2, count($elements));
         $link = $this->byLinkText($elements[0]->text());
         $link->click();

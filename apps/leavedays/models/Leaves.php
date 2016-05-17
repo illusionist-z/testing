@@ -174,15 +174,6 @@ class Leaves extends \Library\Core\Models\Base {
 
         $this->db = $this->getDI()->getShared("db");
         $cond = array();
-//        $this->getContractData($uname);
-//        $ldata = Leaves::find("member_id = '$uname' order by date DESC LIMIT 1");
-//        $list = $ldata->toArray();
-//
-//        if ($list == NULL) {
-//            $lastdata = "0";
-//        } else {
-//            $lastdata = ($list['0']['total_leavedays']);
-//        }
         if (isset($sdate) AND isset($edate) AND isset($desc)) {
             $Noti_id = rand();
             $today = date("Y-m-d H:i:s");

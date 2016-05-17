@@ -2,11 +2,6 @@
 
 namespace salts\Core\Models\Db;
 
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Query;
-
-use salts\Core\Models\Db\CorePermissionRelMember;
-use salts\Core\Models\Db\CorePermissionGroupId;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
 
@@ -102,7 +97,7 @@ class CoreMember extends \Library\Core\Models\Base {
             $paginator = new PaginatorModel(
                     array(
                 "data" => $row,
-                "limit" => 10,
+                "limit" => 3,
                 "page" => $currentPage
                     )
             );
@@ -182,8 +177,7 @@ class CoreMember extends \Library\Core\Models\Base {
         return $laname;
     }
 
-    /**
-     * 
+    /**     
      * @param type $loginParams
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      * updating core member updated_dt after one year
@@ -398,8 +392,6 @@ class CoreMember extends \Library\Core\Models\Base {
         return $data;
     }
 
-    
-
     /**
      * 
      * @param type $id
@@ -424,6 +416,7 @@ class CoreMember extends \Library\Core\Models\Base {
         $this->db = $this->getDI()->getShared("db");
         $result = $this->db->query("SELECT rel_member_id FROM core_permission_rel_member JOIN core_member ON core_member.member_id=core_permission_rel_member.rel_member_id WHERE core_permission_rel_member.rel_permission_group_code='ADMIN' ");
         $result = $result->fetchall();
+
         return $result;
     }
 
@@ -444,14 +437,6 @@ class CoreMember extends \Library\Core\Models\Base {
                    (select member_id from attendances where status != 0 and deleted_flag = 0 and  (YEAR(NOW())) = YEAR(att_date)) and deleted_flag=0 order by created_dt desc";
         $data1 = $this->db->query($query1);
         $res['noleave_name'] = $data1->fetchall();
-        
-        $query = "select * from core_member "
-                . "as c join attendances as a on c.member_id=a.member_id "
-                . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
-                . "order by count(*) asc";
-        $data = $this->db->query($query);
-        
-        $res['leave_least'] = $data->fetchall();
         return $res;
     }
 
@@ -463,12 +448,7 @@ class CoreMember extends \Library\Core\Models\Base {
      */
     public function leaveMost($currentPage) {
         $res = array();
-        $this->db = $this->getDI()->getShared("db");
-        //select where user most leave taken
-//        $query = "select * from core_member "
-//                . "as c join absent as a on c.member_id=a.member_id "
-//                . "where a.deleted_flag=0  and c.deleted_flag = 0 group by a.member_id "
-//                . "order by count(*)";
+        $this->db = $this->getDI()->getShared("db");       
           $query = "select * from core_member "
                 . "as c join attendances as a on c.member_id=a.member_id "
                 . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
