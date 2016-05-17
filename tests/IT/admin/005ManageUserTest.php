@@ -146,7 +146,7 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
          $this->byId('edit_mm_name')->value('ေက်ာ္ေက်ာ္');
         $this->byId('edit_edit')->click();
         sleep(2);
-        $e = $this->byXPath("//td[contains(text(),'PhalconPHP')]");
+        $e = $this->byXPath("//td[contains(text(),'Kyaw Kyaw')]");
         $this->assertEquals('PhalconPHP', $e->text());
     }
 

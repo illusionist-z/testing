@@ -200,13 +200,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testMonthlySalaryCalculateSave() {
-
-        $elements = $this->elements($this->using('css selector')->value('aside.sidebar-menu li'));
-        $this->assertEquals(5, count($elements));
-        $link = $this->byLinkText($elements[2]->text());
-        $link->click();
+    public function testMonthlySalaryCalculateSave() {    
         $this->url('salary/index/monthlysalary');
+        sleep(3);
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Monthly Salary List', $element->text());
         $this->byCssSelector('.add-big')->click();
@@ -219,7 +215,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('salary/index/monthlysalary');
     }
 
-    public function testMonthlySalaryCalculateCancel() {        
+    public function testMonthlySalaryCalculateCancel() {
+        $this->url('salary/index/monthlysalary');
+        sleep(4);
         $this->byCssSelector('.add-big')->click();
         sleep(2);
         $cancel = $this->byId('cancel_deduct');
@@ -295,7 +293,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('salary/index/salarysetting');
         sleep(5);
-        $this->byCssSelector('.inedit')->click();        
+        $this->byCssSelector('.inedit')->click();
+        sleep(5);
         $save = $this->byId('edit_tax_table');
         $taxform = $this->byName('taxs_from');
         $taxform->clear();
@@ -319,7 +318,8 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalarySettingTaxEditCancel() {
 
         $this->url('salary/index/salarysetting');
-        $this->byCssSelector('.inedit')->click();        
+        $this->byCssSelector('.inedit')->click();
+        sleep(4);
         $cancel = $this->byId('edit_close');
         $cancel->click();
         $this->url('salary/index/salarysetting');
@@ -381,15 +381,13 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testAllowanceAdd() {
 
         $this->url('salary/index/allowance');
-
-        $add = $this->byId('alladd');
+       $form = $this->byId("TextBoxesGroup");        
         $name = $this->byName('textbox1');
         $amount = $this->byName('txt1');
         $name->value('Bonus');
         $amount->value('200000');
-        $add->click();
-        sleep(5);
-        $successmesg = $this->byCssSelector('.successMessage');
+       $form->submit();        
+        $successmesg = $this->byCssSelector('div.successMessage');
         $this->assertEquals('Allowances are added successfully!', $successmesg->text());
     }
 
@@ -413,7 +411,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('/salary/index/allowance');
         $this->byCssSelector('a.inedit')->click();
         sleep(5);
-        $this->byId('all_delete')->click();
+        $this->byId('all_delete')->click();        
         $this->assertEquals('Are u sure to delete?', $this->byCssSelector('div#confirm p')->text());
         $submitLink = $this->byXPath("//span[contains(text(),'Yes')]");
         $submitLink->click();
@@ -431,7 +429,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testCancel() {
         $this->url('/salary/index/allowance');
-        $this->byCssSelector('a.inedit')->click();        
+        $this->byCssSelector('a.inedit')->click();
         $this->byId('edit_close')->click();
         $this->url('salary/index/allowance#');
     }
@@ -469,8 +467,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testDedEdit() {
         $this->url('/salary/index/salarysetting');
-        $this->byCssSelector('a.inedit')->click();
-        sleep(5);
+        $this->byCssSelector('a.inedit')->click();        
         $this->byName('taxs_to')->clear();
         $this->byName('taxs_to')->value('5000000');
         $this->byName('ssc_comp')->clear();
