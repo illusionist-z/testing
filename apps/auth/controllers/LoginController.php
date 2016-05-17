@@ -84,11 +84,8 @@ class LoginController extends ControllerBase {
                 $core_member_log->mac = $user_ip;
                 $core_member_log->ipv6 = $user_ip_IPv6;
        
-    //   $location = $filter->sanitize($this->request->getPost('location'), "string");
-         
-         
-         
-       // var_dump($location);  exit();
+       $location = $filter->sanitize($this->request->getPost('location'), "string");
+      
         $this->view->disable();
                 
                 // Type Error Chack 5 Time 
@@ -117,10 +114,7 @@ class LoginController extends ControllerBase {
                             $this->response->redirect('home');
                             session_destroy(($_SESSION['attempts']));
                         } else {
-                            
-                            
-                            
-                            
+                             
                             $core_member_log->save();
                             $this->response->redirect('auth/index/failer');
                         }
