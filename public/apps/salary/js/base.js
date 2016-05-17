@@ -168,11 +168,12 @@ var Salary = {
         }
     },
     getmemid: function (p) {
-        var name = document.getElementById('username').value;
+        //var name = document.getElementById('namelist').value;
+        var name = p;
         var dict = [];
-        $('ul.pagination').empty();
-         $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
-        loadingMsg(true);
+        //$('ul.pagination').empty();
+        //$('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
+        
         $.ajax({
             url: 'getmemberid?uname=' + name,
             method: 'GET',
@@ -190,7 +191,7 @@ var Salary = {
         });
         function loadIcon(dict,p) {
             $('#formemberid').val(dict);
-            Salary.search_salarylist(p);
+            //Salary.search_salarylist(p);
         }
 
     },
@@ -374,6 +375,8 @@ var Salary = {
                 var j = 1;
                 var travelfees;
                 var travelfee_header;
+                $('ul.pagination').empty();
+                $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
                  for (var i in json_obj.items)
                 {
                     
@@ -454,7 +457,7 @@ var Salary = {
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].income_tax) + "</div></td>"
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_comp) + "</div></td>"
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
-                                + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
+                                
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].total) + "</div></td>"
                                 + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
 
@@ -466,7 +469,7 @@ var Salary = {
 
 
                     var html = '<tr>'
-                            + '<td colspan="13" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
+                            + '<td colspan="12" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
                             + '<td style ="background-color:#3c8dbc; color:#ffffff;"><div class="td-style"> ' + formatter.format(totalsal) + '</div></td>'
                             + '<td style ="background-color:#3c8dbc; color:#ffffff;"></td>'
                             + '</tr>'
@@ -553,16 +556,21 @@ $(document).ready(function () {
 //        Salary.autolist();
 //    });
     $('#username').on('blur', function () {
+        var name = document.getElementById('username').value;
         
+        Salary.getmemid(name);
     });
-    $('#namelist').on('blur', function () {
-    //  var name = document.getElementById('namelist').value;
-       // Salary.getmemid(name);
-    });
+//    $('#namelist').on('blur', function () {
+//      var name = document.getElementById('namelist').value;
+//        Salary.getmemid(name);
+//    });
 
-    
+     $('#search_salary').on('mouseover', function () {
+      var name = document.getElementById('namelist').value;
+        Salary.getmemid(name);
+    });
     $(".search-trtype").click(function () {         
-         Salary.getmemid();
+         Salary.search_salarylist();
     });
 
 
