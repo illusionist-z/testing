@@ -157,7 +157,8 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals('Are you sure to delete ?', $this->byCssSelector('div#confirm p')->text());
         $link = $this->byCssSelector('div.ui-dialog-buttonpane div.ui-dialog-buttonset button.ui-button span.ui-button-text');
         $this->assertEquals('Yes', $link->text());
-        $this->click();
+        $link->click();
+        
     }
 
     public function testNotDelete() {
