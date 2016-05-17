@@ -29,6 +29,7 @@ class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSignOut() {
         $this->url('dashboard/index/admin');
         $this->byCssSelector('.dropdown-toggle')->click();
+        sleep(2);
         $this->byCssSelector('#btn_logout')->click();
         $this->assertEquals("Login", $this->title());
     }

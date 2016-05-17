@@ -11,13 +11,13 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/btn.js');   
-      //  $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
-       // $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
+        $this->assets->addJs('apps/auth/js/index-forgotpassword.js');
+        $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
     }
 
     /**  Index Action @param type $mode */
     public function indexAction($mode = NULL) {
-    
+        
         $localhost = ($this->request->getServer('HTTP_HOST'));
         $id_auth_filter = $this->session->auth;
         if (isset($id_auth_filter) != null) {
