@@ -20,7 +20,6 @@ var Attendance = {
                 success: function(data) {
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj){
-                 // alert(json_obj[i].member_login_name);
                 dict.push(json_obj[i].member_login_name);
                 }   
                 }                        
@@ -33,7 +32,6 @@ var Attendance = {
                 type :"GET",   
                 dataType : 'json',
                 success : function(d){  
-                   // alert("aa");
                     $('#edit_att_time').empty();
                     var data = d[0]; 
                     var username = data['member_login_name'];          //get user name
@@ -118,8 +116,7 @@ var Attendance = {
         $.ajax({
         url: 'todaylist?namelist='+name ,
         type: 'post',
-        success: function (d) {
-            //alert(d);
+        success: function (d) {        
          $('body').html(d);
          link_height() ;
          loadingMsg(false);
