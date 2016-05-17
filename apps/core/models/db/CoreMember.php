@@ -102,7 +102,7 @@ class CoreMember extends \Library\Core\Models\Base {
             $paginator = new PaginatorModel(
                     array(
                 "data" => $row,
-                "limit" => 3,
+                "limit" => 10,
                 "page" => $currentPage
                     )
             );
@@ -424,7 +424,6 @@ class CoreMember extends \Library\Core\Models\Base {
         $this->db = $this->getDI()->getShared("db");
         $result = $this->db->query("SELECT rel_member_id FROM core_permission_rel_member JOIN core_member ON core_member.member_id=core_permission_rel_member.rel_member_id WHERE core_permission_rel_member.rel_permission_group_code='ADMIN' ");
         $result = $result->fetchall();
-
         return $result;
     }
 
@@ -445,6 +444,14 @@ class CoreMember extends \Library\Core\Models\Base {
                    (select member_id from attendances where status != 0 and deleted_flag = 0 and  (YEAR(NOW())) = YEAR(att_date)) and deleted_flag=0 order by created_dt desc";
         $data1 = $this->db->query($query1);
         $res['noleave_name'] = $data1->fetchall();
+        
+        $query = "select * from core_member "
+                . "as c join attendances as a on c.member_id=a.member_id "
+                . "where a.status != 0 and c.deleted_flag = 0 and  (YEAR(NOW())) = YEAR(a.att_date)  group by a.member_id "
+                . "order by count(*) asc";
+        $data = $this->db->query($query);
+        
+        $res['leave_least'] = $data->fetchall();
         return $res;
     }
 

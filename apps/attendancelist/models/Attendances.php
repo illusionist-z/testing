@@ -92,7 +92,7 @@ class Attendances extends Model {
             }
             else{
              $page = $row;
-            }            
+            }          
         } catch (Exception $err) {
             echo $err;
         }

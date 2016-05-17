@@ -17,9 +17,10 @@
 }
 .table_ssb{
        width: 100%;
+       align-content: center;
 }
 .table_ssb td{
-     padding: 2px;
+     padding: 0px;
       
 }
  
@@ -28,8 +29,8 @@
 }
 .border-top td{
     border-top: 1px solid;
-    padding: 0px;
-    
+    padding: 5px;
+
     }
    
 .ssb-right{
@@ -37,20 +38,19 @@
   float: right;
 }
 @media all {
-	.page-break	{ display: none; }
+	.page-break	{ display: none;       border-spacing: 15px;}
 }
 
 @media print{
      
   body *{ visibility: hidden; }
-  .printable *{ visibility: visible; font-size: 14px;}
+  .printable *{ visibility: visible; font-size: 14px;      border-spacing: 15px;}
    
   .link{display: none;}
    
 }
 @page {
-    
-     
+    border-spacing: 15px;
     margin: 50px;
 }
 .page {  
@@ -58,6 +58,5 @@
       page-break-inside: avoid; }
 #doc{
     float: right;
-    padding: 15px;
-}
+  }
 
