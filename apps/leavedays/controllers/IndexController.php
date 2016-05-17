@@ -277,14 +277,21 @@ class IndexController extends ControllerBase {
      */
     public function noleavelistAction() {
         if ($this->permission == 1) {
-            $this->assets->addJs('common/js/paging.js');
+         //   $this->assets->addJs('common/js/paging.js');
             $this->assets->addJs('apps/leavedays/js/index-paging.js');
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
             $noti = $Admin->GetAdminNoti($id);
             $this->view->setVar("Noti", $noti);
+           
             $Result = $Admin->checkLeave();
-            $this->view->setVar("Result", $Result);
+          //  $this->view->setVar("Result", $Result);    
+          //var_dump($Result);exit;
+                if(sizeof($Result['noleave_name']) != 0){
+                        $this->view->setVar("Result", $Result['noleave_name']); 
+                }else{
+                    $this->view->setVar("Result", $Result['leave_least']);
+                }
         } else {
             echo 'Page Not Found';
         }
@@ -299,7 +306,7 @@ class IndexController extends ControllerBase {
         if ($this->permission == 1) {
             //$this->assets->addJs('common/js/paging.js');
             //$this->assets->addJs('apps/leavedays/js/index-paging.js');
-            $currentPage = $this->request->get("page");  
+            $currentPage = $this->request->get("page");
             $Admin = new Db\CoreMember;
             $id = $this->session->user['member_id'];
             $noti = $Admin->GetAdminNoti($id);

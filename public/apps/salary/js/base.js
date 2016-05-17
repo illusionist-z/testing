@@ -168,17 +168,15 @@ var Salary = {
         }
     },
     getmemid: function (p) {
-        var name = document.getElementById('username').value;
+        var name = document.getElementById('namelist').value;
         var dict = [];
         $('ul.pagination').empty();
-         $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();
-        loadingMsg(true);
+         //$('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();      
         $.ajax({
-            url: 'getmemberid?uname=' + name,
+            url:  'getmemberid?uname=' + name,
             method: 'GET',
             //dataType: 'json',
-            success: function (data) {
-                  
+            success: function (data) {                  
                 var json_obj = $.parseJSON(data);
                 for (var i in json_obj) {
                     dict.push(json_obj[i].member_id);
@@ -555,16 +553,15 @@ $(document).ready(function () {
     $('#username').on('blur', function () {
         
     });
-    $('#namelist').on('blur', function () {
-    //  var name = document.getElementById('namelist').value;
-       // Salary.getmemid(name);
+    $('#search_salary').on('mouseover', function () {
+      var name = document.getElementById('namelist').value;
+        Salary.getmemid(name);
     });
 
     
-    $(".search-trtype").click(function () {         
+    $(".search-trtype").click(function () {       
          Salary.getmemid();
     });
-
 
 });
 
