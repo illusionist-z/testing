@@ -35,7 +35,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testHelpicon() {
         $this->url('dashboard/index/admin');
-        $helpicn = $this->byId('btn_cmn_help'); //change
+        $helpicn = $this->byId('btn_cmn_help'); 
         $helpicn->click();
         $this->url('help/index/searchHelp');
     }
