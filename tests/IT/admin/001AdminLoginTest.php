@@ -18,8 +18,10 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
     );
 
     function setUp() {
-
+        
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
+       
     }
 
     public function testLoginSuccess() {
@@ -44,7 +46,7 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('.dropdown-toggle')->click();
         $this->byCssSelector('#btn_logout')->click();
         $this->assertEquals("Login", $this->title());
-    }   
+    }
 
     public function testForgetPassword() {
         $this->url('index.phtml');

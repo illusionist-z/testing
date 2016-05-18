@@ -13,11 +13,13 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
     );
 
     function setUp() {
-
+ 
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
     public function testLeaveList() {
+        
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
