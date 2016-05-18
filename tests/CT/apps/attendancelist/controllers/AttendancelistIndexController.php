@@ -141,11 +141,12 @@ class AttendancelistIndexController extends Controllers\IndexController {
     public function attsearchAction() {
         $this->initialize();
         if ($this->moduleIdCall == 1) {
+             $currentPage = "monthlylist";
             $month = $this->request->get('month');
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $result = $Attendances->searchAttList($year, $month, $username);
+            $result = $Attendances->searchAttList($year, $month, $username, $currentPage, 1);
             echo json_encode($result);
         }
     }

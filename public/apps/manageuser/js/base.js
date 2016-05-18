@@ -37,7 +37,7 @@ var User = {
                                 + "<td colspan='9'><center>No data to display</center></td>"                           
                                  + "</tr>";
                     $("tbody").append(output);
-                    $('div#content').empty();        
+                    $('div#content').empty();       
         }
         else{
               loadingMsg(true);

@@ -10,12 +10,13 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         array('browserName' => 'firefox', 'sessionStrategy' => 'shared')
     );
 
-    function setUp() {
-
+    function setUp() {      
+        
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
-    public function testMenu() {
+    public function testMenu() {       
         $this->url('dashboard/index/admin');
         $manageuser = $this->byId('pointer_style1');
         $manageuser->click();
@@ -146,8 +147,8 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
          $this->byId('edit_mm_name')->value('ေက်ာ္ေက်ာ္');
         $this->byId('edit_edit')->click();
         sleep(2);
-        $e = $this->byXPath("//td[contains(text(),'PhalconPHP')]");
-        $this->assertEquals('PhalconPHP', $e->text());
+        $e = $this->byXPath("//td[contains(text(),'Kyaw Kyaw')]");
+        $this->assertEquals('Kyaw Kyaw', $e->text());
     }
 
     public function testDelete() {
