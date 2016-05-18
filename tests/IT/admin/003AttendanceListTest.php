@@ -13,6 +13,7 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
     function setUp() {
 
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
     public function testAttdList() {
@@ -48,7 +49,7 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('attendancelist/index/todaylist');
     }
 
-    public function testTodayExport() {        
+    public function testTodayExport() {
         $elements = $this->elements($this->using('css selector')->value('a#exbg'));
         $this->assertEquals(2, count($elements));
         $link = $this->byLinkText($elements[0]->text());
@@ -79,11 +80,10 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $monthlyuname = $this->byName('username');
         $monthlyyear->value('04/02/2016');
         $monthlymonth->value('15/02/2016');
-        $monthlyuname->value('admin');        
-        $monthlysearchclick->submit();
+        $monthlyuname->value('admin');
+        $monthlysearchclick->click();
         sleep(2);
         $this->url('attendancelist/index/monthlylist');
-       
     }
 
     public function testMonthlyExport() {
