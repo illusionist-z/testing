@@ -14,11 +14,12 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     );
 
     function setUp() {
-
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
     public function testNotiViewAll() {
+
         $this->url('index.phtml');
         $form = $this->byId('form_login');
         $company = $this->byName('company_id');
@@ -153,6 +154,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testDropdownTaxDocu() {
         sleep(5);
+
         $this->byLinkText('Tax document')->click();
         $this->url('document/index/taxdocument');
     }
