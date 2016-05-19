@@ -28,6 +28,18 @@ Leave.init =  function(reload){
 Leave.List = function () {       
       search_list();        
 };          
+Leave.ExportAll = function () {
+       var lt = $('#ltype').val(),
+                mm = $('#month').val(),
+                name = $('#namelist').val();
+
+        if ("" === lt && "" === mm && ("" === name || !isValid(name))) {
+            location.href = "leavelist/1";
+        }
+        else {
+            location.href =  baseUri + 'leavedays/search/index/1?ltype='+lt+'&month='+mm+'&namelist='+name+'&page=0';
+        }
+};
     
 $(document).ready(function(){     
     //intialize paging
@@ -50,6 +62,16 @@ $(document).ready(function(){
                           minLength :1
                 });
     }); 
+    
+    $('.leavelist-export').click(function(e){
+           if($('.pagination li').length == 0){            
+            Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);
+        }
+        else{
+            e.preventDefault();
+            Leave.ExportAll();
+        }
+    });
     
 });
 
