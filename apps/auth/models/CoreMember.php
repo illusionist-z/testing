@@ -34,12 +34,6 @@ class CoreMember extends Model {
     public $deleted_flag;
     
     
-        //for auto complete function
-    public function autoUsername() {
-        $this->db = $this->getDI()->getShared("db");
-        $user_name = $this->db->query("Select * from core_member where deleted_flag=0");
-        $getname = $user_name->fetchall();
-        return $getname;
-    }
+
 
 }

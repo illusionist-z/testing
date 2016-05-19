@@ -188,7 +188,7 @@ class IndexController extends ControllerBase {
 
     public function autolistAction() {
          if ($this->moduleIdCall == 1) {
-        $UserList = new \salts\Auth\Models\CoreMember();
+        $UserList = new \salts\Auth\Models\Db\CoreMember();
         $Username = $UserList->autoUsername();
         $this->view->disable();
         echo json_encode($Username);

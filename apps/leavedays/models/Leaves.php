@@ -1,5 +1,5 @@
 <?php
-
+ date_default_timezone_set('UTC');
 namespace salts\Leavedays\Models;
 
 use Phalcon\Validation;
@@ -11,6 +11,7 @@ use Phalcon\Filter;
 class Leaves extends \Library\Core\Models\Base {
 
     public $base;
+    
 
     public function initialize() {
         parent::initialize();
