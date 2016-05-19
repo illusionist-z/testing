@@ -131,12 +131,12 @@ class LeaveIndexController extends Controllers\IndexController {
             $json['result'] = "error";
         } else {
             $creator_id = $this->session->user['member_id'];
-            $uname = $this->info['uname'];
+            $mem_id = $this->info['uname'];
             $sdate = $this->info['sdate'];
             $edate = $this->info['edate'];
             $type = $this->info['type'];
             $desc = $this->info['desc'];
-            $json = $this->_leave->applyLeave($uname, $sdate, $edate, $type, $desc, $creator_id);
+            $json = $this->_leave->applyLeave($mem_id, $sdate, $edate, $type, $desc,$creator_id);
         }
 
         return $json;

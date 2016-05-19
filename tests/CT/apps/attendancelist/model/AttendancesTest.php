@@ -200,7 +200,7 @@ class AttendancesTest extends Models\Attendances {
         $row->update();
     }
 
-    public function searchAttList($year, $month, $username, $currentPage) {
+    public function searchAttList($year, $month, $username, $currentPage, $IsPaging) {
 
         try {
             $select = "SELECT c.member_login_name,att.* FROM salts\Core\Models\Db\CoreMember as c JOIN salts\Attendancelist\Models\Attendances as att"
