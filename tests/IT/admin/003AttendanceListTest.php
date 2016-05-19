@@ -17,7 +17,6 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testAttdList() {
-
         $this->url('dashboard/index/admin');
         $list = $this->byId('pointer_style2');
         $list->click();
@@ -36,11 +35,13 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
     }
 
     public function testTodayEdit() {
-
         $this->url('attendancelist/index/todaylist');
         $this->byCssSelector('.inedit')->click();
         sleep(3);
         $save = $this->byId('edit_attendance_edit');
+        $this->waitUntil(function () {
+            return $this->byId("time")->displayed();
+        }, 2000);
         $atttime = $this->byId('time');
         $atttime->clear();
         $atttime->value('2016-02-05 09:24:00');
@@ -133,18 +134,12 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('attendancelist/index/attendancechart');
     }
 
-    public function testSave() {
-        $this->url('attendancelist/index/todaylist');
-        $this->byCssSelector('a.inedit')->click();
-        sleep(5);
-        $this->byCssSelector('input#time')->clear();
-        $this->byCssSelector('input#time')->value('2016-02-18 14:06:52');
-    }
-
     public function testCancel() {
         $this->url('attendancelist/index/todaylist');
         $this->byCssSelector('a.inedit')->click();
-        sleep(5);
+        $this->waitUntil(function () {
+            return $this->byId("edit_attendance_close")->displayed();
+        }, 2000);
         $this->byId('edit_attendance_close')->submit();
     }
 
