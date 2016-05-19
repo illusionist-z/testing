@@ -20,6 +20,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     function setUp() {
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
     public function onNotSuccessfulTest(Exception $e) {
@@ -44,7 +45,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/user');
         $checkbox = $this->byName('linkemail');
         $checkbox->click();
-        $this->byCssSelector('textarea')->value("illness");
+        $this->byCssSelector('textarea')->value("traffice");
         $this->byCssSelector('.checkin')->click();
         $this->url('attendancelist/user/attendancelist');
         $element = $this->byCssSelector('h1');
@@ -230,8 +231,8 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebar() {
 
         $this->url('dashboard/index/user');
-        $this->byCssSelector('a.sidebar-toggle')->click();
-        $element = $this->byCssSelector('li.header');
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $element = $this->byCssSelector('ul.sidebar-menu li.header');        
         $this->assertEquals("MAIN NAVIGATION", $element->text());
     }
 
@@ -243,7 +244,10 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebarAttendance() {
 
         $this->url('dashboard/index/user');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $this->waitUntil(function () {
+            return $this->byLinkText('Attendance List')->displayed();
+        }, 2000);
         $this->byLinkText('Attendance List')->click();
         $this->url('attendancelist/user/attendancelist');
         $this->assertEquals("attendancelist", $this->byCssSelector('h1')->text());
@@ -257,7 +261,10 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebarLeave() {
 
         $this->url('dashboard/index/user');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
+        $this->waitUntil(function () {
+            return $this->byLinkText('Leave days')->displayed();
+        }, 2000);
         $this->byLinkText('Leave days')->click();
         $this->url('leavedays/user/leavelist');
         $this->assertEquals("Leave Lists", $this->byCssSelector('h1')->text());
@@ -271,7 +278,10 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebarDashboard() {
 
         $this->url('dashboard/index/user');
-        $this->byCssSelector('a.sidebar-toggle')->click();
+       $this->byCssSelector('span#btn_show_menu')->click();
+        $this->waitUntil(function () {
+            return $this->byLinkText('Dashboard')->displayed();
+        }, 2000);
         $this->byLinkText('Dashboard')->click();
         $this->url('dashboard/index/user');
     }

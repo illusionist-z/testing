@@ -25,7 +25,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testChecksalary() {        
+    public function testChecksalary() {
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
@@ -496,14 +496,19 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testAddSalaryDownload() {
-
-        $this->url('salary/index/addsalary');
-        sleep(3);
-        $this->byClassName('csv_download')->click();
-        sleep(2);
-        $this->url('salary/index/addsalary');
-    }
+//    public function testAddSalaryDownload() {
+//
+//        $this->url('salary/index/addsalary');
+//        sleep(3);
+//        $this->byClassName('csv_download')->click();
+////        $this->prepareSession()->doubleclick();      
+//        $this->waitUntil(function () {
+//            return $this->byXPath("//div[contains(text(),'OK')]")->displayed();
+//        }, 5000);
+//        $this->byXPath("//div[contains(text(),'OK')]")->click();
+//        sleep(5);
+//        $this->url('salary/index/addsalary');
+//    }
 
     public function onNotSuccessfulTest(Exception $e) {
         throw $e;
