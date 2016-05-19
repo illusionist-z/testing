@@ -21,6 +21,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     function setUp() {
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
     /**

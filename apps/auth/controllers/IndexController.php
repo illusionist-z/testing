@@ -11,6 +11,7 @@ class IndexController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('common/js/btn.js');   
+         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');   
     }
 
     /**  Index Action @param type $mode */

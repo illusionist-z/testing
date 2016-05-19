@@ -111,12 +111,11 @@ var Allowance = {
             data: form.serialize(),
             url : "deletedata",
             success:function(){
-                
-                d.dialog("close");
-                $('#allowance').reload();
+                location.reload();
+          
             }
         }).done(function(){
-            $('#allowance').reload();
+            $location.reload();
         });
     }
     

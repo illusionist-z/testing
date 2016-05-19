@@ -9,7 +9,7 @@
 /**
  * Description of LoginTest
  *
- * @author Su Zin Kyaw <gnext.suzin@gmail.com>
+ * @author Khine Thazin Phyo <ktzp27@gmail.com>
  */
 class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
@@ -19,23 +19,12 @@ class LoginTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     function setUp() {
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
-    /**
-     * Description of DashboardTest
-     * @author khine thazin phyo 
-     * test for SignOutbutton
-     */
-    public function testSignOut() {
-        $this->url('dashboard/index/admin');
-        $this->byCssSelector('.dropdown-toggle')->click();
-        sleep(2);
-        $this->byCssSelector('#btn_logout')->click();
-        $this->assertEquals("Login", $this->title());
-    }
 
     public function testLoginSuccess() {
-
+        $this->prepareSession()->cookie()->clear();
         $this->url('index');
         $form = $this->byId('form_login');
         $company = $this->byName('company_id');

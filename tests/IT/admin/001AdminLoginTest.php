@@ -21,6 +21,7 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         
         $this->setBrowserUrl('http://localhost/salts');
         $this->prepareSession()->currentWindow()->maximize();
+       
     }
 
     public function testLoginSuccess() {

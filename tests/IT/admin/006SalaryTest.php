@@ -14,7 +14,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     );
 
     function setUp() {
-        
+
         $this->setBrowserUrl('http://localhost/salts');
         $this->prepareSession()->currentWindow()->maximize();
     }
@@ -25,7 +25,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testChecksalary() {        
+    public function testChecksalary() {
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
@@ -117,8 +117,6 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $sdate->value('01/01/2016');
         $form->submit();
         sleep(3);
-//        $this->assertEquals('success', $this->alertText());
-//        $this->acceptAlert();
         $this->url('salary/index/salarylist');
     }
 
@@ -161,42 +159,6 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     /**
      * Description of Salary
-     * Test the Add Salary CSV upload
-     * @author KhinNyeinChanThu
-     * 
-     */
-    public function testAddSalaryCsv() {
-
-        $this->url('salary/index/addsalary');
-        sleep(5);
-        $addcsvfile = $this->byId('csv_file');
-        $addcsvfile->click();
-        $browse = $this->byId('file_select');
-        $browse->click();
-        $browse->value('tests\sample.txt');
-        $add = $this->byClassName('csvtosql');
-        $add->click();
-        $this->url('salary/index/addsalary');
-    }
-
-    /**
-     * Description of Salary
-     * Test the Add Salary CSV download
-     * @param type $euser
-     * @author KhinNyeinChanThu
-     * 
-     */
-    public function testAddSalaryDownload() {
-
-        $this->url('salary/index/addsalary');
-        sleep(3);
-        $this->byClassName('csv_download')->click();
-        sleep(2);
-        $this->url('salary/index/addsalary');
-    }
-
-    /**
-     * Description of Salary
      * Test the Monthly Salary Calculate salary button
      * @author KhinNyeinChanThu
      * 
@@ -207,20 +169,23 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Monthly Salary List', $element->text());
         $this->byCssSelector('h4.add-big')->click();
-        sleep(2);        
-        $cal = $this->byCssSelector('input#salary_start');
-        $cal->value('2016-02-01');        
+        $this->waitUntil(function () {
+            return $this->byId("salary_start")->displayed();
+        }, 5000);
+        $cal = $this->byId("salary_start");
+        $cal->value('2016-02-01');
         $this->clickOnElement("cal_salary_month");
         sleep(2);
         $this->url('salary/index/monthlysalary');
-        
     }
 
     public function testMonthlySalaryCalculateCancel() {
         $this->url('salary/index/monthlysalary');
         sleep(4);
-        $this->byCssSelector('.add-big')->click();
-        sleep(2);
+        $this->byCssSelector('h4.add-big')->click();
+        $this->waitUntil(function () {
+            return $this->byId("cancel_deduct")->displayed();
+        }, 2000);
         $cancel = $this->byId('cancel_deduct');
         $cancel->click();
         $this->url('salary/index/monthlysalary');
@@ -294,8 +259,10 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('salary/index/salarysetting');
         sleep(5);
-        $this->byCssSelector('.inedit')->click();
-        sleep(5);
+        $this->byCssSelector('a.inedit')->click();
+        $this->waitUntil(function () {
+            return $this->byId("edit_tax_table")->displayed();
+        }, 2000);
         $save = $this->byId('edit_tax_table');
         $taxform = $this->byName('taxs_from');
         $taxform->clear();
@@ -319,8 +286,10 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalarySettingTaxEditCancel() {
 
         $this->url('salary/index/salarysetting');
-        $this->byCssSelector('.inedit')->click();
-        sleep(4);
+        $this->byCssSelector('a.inedit')->click();
+        $this->waitUntil(function () {
+            return $this->byId("edit_close")->displayed();
+        }, 2000);
         $cancel = $this->byId('edit_close');
         $cancel->click();
         $this->url('salary/index/salarysetting');
@@ -334,29 +303,32 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      */
 
     public function testSalarySettingDedAdd() {
-
         $this->url('salary/index/salarysetting');
+        $this->waitUntil(function () {
+            return $this->byLinkText('deduction')->displayed();
+        }, 2000);
         $this->byLinkText('deduction')->click();
         $this->byId('add_dec')->click();
-        sleep(2);
-        $adddeduct = $this->byId('Add_deduct');
-        $name = $this->byName('deduce_name');
-        $amount = $this->byName('amount');
-
-        $name->value('admin');
-        $amount->value('177777');
-        $adddeduct->click();
+        $this->waitUntil(function () {
+            return $this->byId('Add_new_deduct')->displayed();
+        }, 2000);
+        $this->byCssSelector('input')->value('test');
+        $this->byName('amount')->value('400');
+        $this->byId("Add_deduct")->click();
         $this->url('salary/index/salarysetting');
     }
 
     public function testSalarySettingDedAddCancel() {
-
         $this->url('salary/index/salarysetting');
+        $this->waitUntil(function () {
+            return $this->byLinkText('deduction')->displayed();
+        }, 2000);
         $this->byLinkText('deduction')->click();
         $this->byId('add_dec')->click();
-        sleep(2);
-        $cancel = $this->byId('cancel_deduct');
-        $cancel->click();
+        $this->waitUntil(function () {
+            return $this->byId('Add_new_deduct')->displayed();
+        }, 2000);
+        $this->byId('cancel_deduct')->click();
         $this->url('salary/index/salarysetting');
     }
 
@@ -395,7 +367,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testAllowenceEdit() {
         $this->url('/salary/index/allowance');
         $this->byCssSelector('a.inedit')->click();
-        sleep(5);
+        $this->waitUntil(function () {
+            return $this->byName("name")->displayed();
+        }, 2000);
         $this->byName('name')->clear();
         $this->byName('name')->value('bonus');
         $this->byName('allowance_amount')->clear();
@@ -411,7 +385,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testDelete() {
         $this->url('/salary/index/allowance');
         $this->byCssSelector('a.inedit')->click();
-        sleep(5);
+        $this->waitUntil(function () {
+            return $this->byId("all_delete")->displayed();
+        }, 2000);
         $this->byId('all_delete')->click();
         $this->assertEquals('Are u sure to delete?', $this->byCssSelector('div#confirm p')->text());
         $submitLink = $this->byXPath("//span[contains(text(),'Yes')]");
@@ -421,7 +397,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testNotDelete() {
         $this->url('/salary/index/allowance');
         $this->byCssSelector('a.inedit')->click();
-        sleep(5);
+        $this->waitUntil(function () {
+            return $this->byId("all_delete")->displayed();
+        }, 2000);
         $this->byId('all_delete')->click();
         $this->assertEquals('Are u sure to delete?', $this->byCssSelector('div#confirm p')->text());
         $submitLink = $this->byXPath("//span[contains(text(),'No')]");
@@ -431,7 +409,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testCancel() {
         $this->url('/salary/index/allowance');
         $this->byCssSelector('a.inedit')->click();
-        sleep(3);
+        $this->waitUntil(function () {
+            return $this->byId("edit_close")->displayed();
+        }, 2000);
         $this->byId('edit_close')->click();
         $this->url('salary/index/allowance#');
     }
@@ -488,6 +468,47 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals('* Username is required', $this->byCssSelector('span#add_salary_uname_error')->text());
         $this->assertEquals('* Basic Salary is required', $this->byCssSelector('span#add_salary_bsalary_error')->text());
     }
+
+    /**
+     * Description of Salary
+     * Test the Add Salary CSV upload
+     * @author KhinNyeinChanThu
+     * 
+     */
+    public function testAddSalaryCsv() {
+
+        $this->url('salary/index/addsalary');
+        sleep(5);
+        $addcsvfile = $this->byId('csv_file');
+        $addcsvfile->click();
+        $browse = $this->byId('file_select');
+        $browse->click();
+        $browse->value('tests\sample.txt');
+        $add = $this->byClassName('csvtosql');
+        $add->click();
+        $this->url('salary/index/addsalary');
+    }
+
+    /**
+     * Description of Salary
+     * Test the Add Salary CSV download
+     * @param type $euser
+     * @author KhinNyeinChanThu
+     * 
+     */
+//    public function testAddSalaryDownload() {
+//
+//        $this->url('salary/index/addsalary');
+//        sleep(3);
+//        $this->byClassName('csv_download')->click();
+////        $this->prepareSession()->doubleclick();      
+//        $this->waitUntil(function () {
+//            return $this->byXPath("//div[contains(text(),'OK')]")->displayed();
+//        }, 5000);
+//        $this->byXPath("//div[contains(text(),'OK')]")->click();
+//        sleep(5);
+//        $this->url('salary/index/addsalary');
+//    }
 
     public function onNotSuccessfulTest(Exception $e) {
         throw $e;
