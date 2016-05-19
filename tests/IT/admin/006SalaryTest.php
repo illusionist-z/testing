@@ -475,19 +475,19 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testAddSalaryCsv() {
-
-        $this->url('salary/index/addsalary');
-        sleep(5);
-        $addcsvfile = $this->byId('csv_file');
-        $addcsvfile->click();
-        $browse = $this->byId('file_select');
-        $browse->click();
-        $browse->value('tests\sample.txt');
-        $add = $this->byClassName('csvtosql');
-        $add->click();
-        $this->url('salary/index/addsalary');
-    }
+//    public function testAddSalaryCsv() {
+//
+//        $this->url('salary/index/addsalary');
+//        sleep(5);
+//        $addcsvfile = $this->byId('csv_file');
+//        $addcsvfile->click();
+//        $browse = $this->byId('file_select');
+//        $browse->click();
+//        $browse->value('tests\sample.txt');
+//        $add = $this->byClassName('csvtosql');
+//        $add->click();
+//        $this->url('salary/index/addsalary');
+//    }
 
     /**
      * Description of Salary
