@@ -7,6 +7,7 @@ use Phalcon\Validation\Validator\PresenceOf;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
+date_default_timezone_set('UTC');
 
 class Leaves extends \Library\Core\Models\Base {
 

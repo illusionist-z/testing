@@ -62,7 +62,7 @@ $(document).ready(function () {
         var n = new Date();
         var offset = n.getTimezoneOffset();
         //alert(offset);
-        $('#loading').html(' Request Loading <img src=/salts/public/apps/dashboard/img/loading-dots.gif> ');
+        //$('#loading').html(' Request Loading <img src=/salts/public/apps/dashboard/img/loading-dots.gif> ');
            
         $.ajax({
             url: url + "?offset=" + offset + "&location=" + location,
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
     }),
             $('.checkout').on('click', function () {
-                 $('#loading').html(' Request Loading  <img src=/salts/public/apps/dashboard/img/loading-dots.gif>');
+                // $('#loading').html(' Request Loading  <img src=/salts/public/apps/dashboard/img/loading-dots.gif>');
         $.ajax({
             type: 'GET',
             url: baseUri + 'dashboard/index/checkout',

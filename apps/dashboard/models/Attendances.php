@@ -13,6 +13,7 @@ date_default_timezone_set('UTC');
 class Attendances extends Model {
     
       public $checkin_time;
+      public $checkout_time;
       public $member_id;
       public $att_date;
       public $location;

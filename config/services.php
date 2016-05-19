@@ -8,6 +8,7 @@ use Phalcon\DI\FactoryDefault;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Http\Response\Cookies;
 use Phalcon\Crypt;
+date_default_timezone_set('UTC');
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
  */
