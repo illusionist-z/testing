@@ -328,9 +328,15 @@ $(document).ready(function () {
         Attendance.monthlylist.apply(this);
     });
 
-    $('.monthlylist').click(function (e) {
-        e.preventDefault();
-        Attendance.monthlyExportAll();
+    $('.monthlylist').click(function (e) {        
+        if($('.pagination li').length == 0){            
+            Export.Export.apply(this,[$('table.listtbl'), 'monthly_list.csv']);            
+        }
+        else{
+            e.preventDefault();
+            Attendance.monthlyExportAll();
+        }
+        
     });
 });
 
