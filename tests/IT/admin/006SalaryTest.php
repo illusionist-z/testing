@@ -25,7 +25,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testChecksalary() {        
+    public function testChecksalary() {
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
@@ -475,19 +475,19 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testAddSalaryCsv() {
-
-        $this->url('salary/index/addsalary');
-        sleep(5);
-        $addcsvfile = $this->byId('csv_file');
-        $addcsvfile->click();
-        $browse = $this->byId('file_select');
-        $browse->click();
-        $browse->value('tests\sample.txt');
-        $add = $this->byClassName('csvtosql');
-        $add->click();
-        $this->url('salary/index/addsalary');
-    }
+//    public function testAddSalaryCsv() {
+//
+//        $this->url('salary/index/addsalary');
+//        sleep(5);
+//        $addcsvfile = $this->byId('csv_file');
+//        $addcsvfile->click();
+//        $browse = $this->byId('file_select');
+//        $browse->click();
+//        $browse->value('tests\sample.txt');
+//        $add = $this->byClassName('csvtosql');
+//        $add->click();
+//        $this->url('salary/index/addsalary');
+//    }
 
     /**
      * Description of Salary
@@ -496,14 +496,19 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testAddSalaryDownload() {
-
-        $this->url('salary/index/addsalary');
-        sleep(3);
-        $this->byClassName('csv_download')->click();
-        sleep(2);
-        $this->url('salary/index/addsalary');
-    }
+//    public function testAddSalaryDownload() {
+//
+//        $this->url('salary/index/addsalary');
+//        sleep(3);
+//        $this->byClassName('csv_download')->click();
+////        $this->prepareSession()->doubleclick();      
+//        $this->waitUntil(function () {
+//            return $this->byXPath("//div[contains(text(),'OK')]")->displayed();
+//        }, 5000);
+//        $this->byXPath("//div[contains(text(),'OK')]")->click();
+//        sleep(5);
+//        $this->url('salary/index/addsalary');
+//    }
 
     public function onNotSuccessfulTest(Exception $e) {
         throw $e;
