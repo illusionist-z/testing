@@ -120,7 +120,7 @@ class IndexController extends ControllerBase {
             if ($this->permission == 1) {
                 if(1 == $exportMode){
                 $result = $this->_leave->getLeaveList($page,0);
-                $this->_leave->exportUserLeaveList($result,"UserLeaveListAll",  $this->_leave->getAbsent(),$max['0']['max_leavedays']);
+                $this->_leave->exportUserLeaveList($result,"UserLeaveListAll",  $this->_leave->getAbsent(),$max['0']['max_leavedays'],1);
                 }
                 else{
                 $this->view->max = $max['0']['max_leavedays'];

@@ -605,7 +605,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     }
     
-    public function searchSList($param) {
+    public function searchSList($param,$IsPaging) {
         try{
             if($param['travel_fees'] == 1){
             $field="travel_fee_perday";
@@ -622,7 +622,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $select .= " ORDER BY sm.created_dt desc";
             //echo $select;exit;
             $result = $this->modelsManager->executeQuery($select);
+            if($IsPaging){
             $page = $this->base->pagination($result, $param["page"]);
+            }
+            else{
+            $page = $result;
+            }
         } catch (Exception $ex) {
          echo $ex;
         }
@@ -745,18 +750,25 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @export Data All From Table
      * @param type $data
      */
-    public function SalaryListExport($data){
-         header("Content-type: application/csv");
+    public function SalaryListExport($data,$ObjectPaging){
+        header("Content-type: application/csv");
         header("Content-Disposition: attachment; filename=SalaryListAll.csv;");        
         echo "\xEF\xBB\xBF"; // UTF-8 BOM        
         $output = fopen('php://output', 'w');               
         fputcsv($output, array("No","User Name","Basic Salary","Travel Fees","Overtime","SSC_EMP","SSC_COMP"));      
         $num = 0;
+        if($ObjectPaging){
         foreach($data as $row){
         fputcsv($output,array($num++,$row->core->member_login_name,$row->salarymas->basic_salary,$row->salarymas->travel_fee_perday,$row->salarymas->over_time,
                 $row->salarymas->ssc_emp."%",$row->salarymas->ssc_comp."%"));
-
             }
+        }
+        else{
+        foreach($data as $row){
+        fputcsv($output,array($num++,$row->member_login_name,$row->basic_salary,$row->travel_fee_perday,$row->over_time,
+                $row->ssc_emp."%",$row->ssc_comp."%"));
+            }
+        }
         fclose($output);
         exit;
     }

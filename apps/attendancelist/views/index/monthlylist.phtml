@@ -51,8 +51,8 @@ foreach ($this->session->auth as $key_name => $key_value) {
 
         <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn form-control-static" required id="sub">
         <input type="hidden" value='' id='hidden-type' name='ExportType'/>
-        <a href="" class="buttonn form-control-static  export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_list.csv']);"><img id="exicon"><b><?php echo $t->_("export"); ?></b></a>
-        <a href="" class="buttonn form-control-static  export monthlylist" id="exbg"><img id="exicon"><b>Export All</b></a>
+        <a href="" class="buttonn form-control-static  export monthlylist" id="exbg"><img id="exicon"><b><?php echo $t->_("export"); ?></b></a>
+        <a href="monthlylist/1" class="buttonn form-control-static  export" id="exbg"><img id="exicon"><b>Export All</b></a>
 
     </div>
 
@@ -178,9 +178,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
     <div id="content">
         <ul class="pagination" style="margin-left:15px;">
             <?php
-            if ($monthlylist->last === 1 || $monthlylist->last === 0) {
-                
-            } else {
+            if ($monthlylist->last !== 1 && $monthlylist->last !== 0) {
                 ?>
                 <li><a href="monthlylist">First</a></li>
                 <li><a href="monthlylist?page=<?= $monthlylist->before; ?>">Previous</a></li>

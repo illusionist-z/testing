@@ -57,7 +57,7 @@ class IndexController extends ControllerBase {
             if ($this->permission == 1) {
                 if(1 == $exportMode){
                     $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,0);
-                    $SalaryDetail->SalaryListExport($get_salary_detail);               
+                    $SalaryDetail->SalaryListExport($get_salary_detail,1);
                 }
                 else{
                 $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,1);
