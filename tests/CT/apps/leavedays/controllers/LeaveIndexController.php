@@ -111,8 +111,7 @@ class LeaveIndexController extends Controllers\IndexController {
             $LeaveType = new models\LeaveCategories();
             $ltype = $LeaveType->getLeaveType();
             $UserList = new Db\CoreMember();
-
-            $name = $UserList::getinstance()->getusername("Ei Thandar Aung");
+            $name = $UserList::getinstance()->getusername("KhinSandaHtun");
             if ($this->permission == 1) {
 
                 return true;
@@ -137,7 +136,7 @@ class LeaveIndexController extends Controllers\IndexController {
             $type = $this->info['type'];
             $desc = $this->info['desc'];
             $json = $this->_leave->applyLeave($mem_id, $sdate, $edate, $type, $desc,$creator_id);
-        }
+        }        
 
         return $json;
     }

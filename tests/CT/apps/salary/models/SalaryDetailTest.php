@@ -328,8 +328,9 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function updateSalarydetail($bsalary, $allowancetoadd, $member_id, $salary_start_year, $salary_start_month, $absent_amount, $overtime_hr, $overtimerate, $workingstartdt) {
         $this->db = $this->getDI()->getShared("db");
-        $Salarymaster = new SalaryMaster();
+        $Salarymaster = new Master();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
+//        var_dump($SM);exit();
         //print_r($SM);
         $deduce_amount = array();
 //        $now = new \DateTime('now');
@@ -351,7 +352,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $resign = $this->getResigndate($member_id);
         $basic_salary = '';
         $SD = $this->getoldsalarydetail($member_id, $salary_update_yr, $salary_update_mth, $budget_start_year);
-       
+
         if ($resign['resign_date'] != null) {
             $resigndate = explode("-", $resign['resign_date']);
             $resignyear = $resigndate[1];
@@ -368,14 +369,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $date_diff = $Salarymaster->dateDifference($salary_star_date, $budget_endyear);
             $date_to_calculate = $date_diff;
             $basic_salary = $bsalary * $date_diff;
-
+            
             if ($SD['count_pay'] != 0) {
                 $oldsalary = $SD['total_salary'];
                 //$old_allowance=$SD['total_all_amount']+$allowancetoadd;
                 $date_to_calculate = $SD['count_pay'] + $date_diff;
-                
                 $basic_salary = ($SD['basic_salary'] * $date_diff) + $oldsalary;
-                echo "jjjj" . $basic_salary;
             }
 
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'], $basic_salary, $date_diff, $SD['total_all_amount'], $SM['status'], $allowancetoadd, $SD['count_pay']);
@@ -585,7 +584,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $user;
     }
 
-    public function searchSList($param) {
+    public function searchSList($param, $IsPaging) {
         try {
             $this->db = $this->getDI()->getShared("db");
             if ($param['travel_fees'] == 1) {
