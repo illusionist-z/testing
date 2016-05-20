@@ -22,7 +22,7 @@ if(! ini_get('date.timezone')){
             <?php foreach ($leave_setting as $data) { ?>
                 <div id="leave_setting_div1"><?= $t->_("max_leavedays"); ?>: 
                     <span>
-                        <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; height: 26px; margin-top: 8px;" disabled> Days
+                        <input type="text" value="<?php echo $data['max_leavedays']; ?>"  id="max_leavedays" name="max_leavedays" style="width: 31px; height: 26px; margin-top: 8px;" disabled> <?= $t->_("days"); ?>
                     </span>
                 </div>
 
@@ -69,9 +69,9 @@ if(! ini_get('date.timezone')){
 <div id="edit_ltype_dia" class="navbar"></div>
 <div id="add_new_ltype" class="navbar" style="display:none;" title="<?= $t->_('addleavetype'); ?>">
     <form id="Add_new_ltype"><table>
-            <tr><td></td></tr><tr><td><?= $t->_("leave_type"); ?>:</td><td><input type="text" value="" name="ltype_name" placeholder="Enter Leave type"></td>                       
+            <tr><td></td></tr><tr><td><?= $t->_("leave_type"); ?>:</td><td><input type="text" value="" name="ltype_name" placeholder="<?= $t->_("leavetype"); ?>"></td>                       
             <tr><td></td></tr>
-            <tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype"><?= $t->_("save"); ?></a><a href="#" class="button" id="cancel_ltype"><?= $t->_("cancel"); ?></a></td></tr>
+            <tr><td></td><td colspan="3"><a href="#" class="button" id="Add_ltype"><?= $t->_("save"); ?></a><a href="#" class="button" id="cancel_ltype"><?= $t->_("applycancel"); ?></a></td></tr>
         </table></form>
 </div>
 

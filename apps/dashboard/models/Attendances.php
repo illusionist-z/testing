@@ -135,7 +135,6 @@ class Attendances extends Model {
          $query1 = "select * from core_member where member_id not in
                    (select member_id from attendances where status != 0 and deleted_flag = 0 and  (YEAR(NOW())) = YEAR(att_date)) and deleted_flag=0 order by created_dt desc";
        $data1 = $this->db->query($query1);
-       
         //select where user least leave       
         $query2 ="select * from core_member "
                 . "as c join attendances as a on c.member_id=a.member_id "

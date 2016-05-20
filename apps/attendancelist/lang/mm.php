@@ -34,7 +34,7 @@ $messages = array(
     "att_time" => "ရံုုးတက္ခ်ိန္",
     "note" =>"အေၾကာင္းအရာ",
     "save" => "သိမ္းရန္",
-    "cancel" => "Cancel",
+    "cancel" => "မလုပ္ေတာ့ပါ",
     
     
     
