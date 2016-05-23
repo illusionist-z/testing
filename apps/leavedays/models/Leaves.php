@@ -1,7 +1,7 @@
 <?php
- date_default_timezone_set('UTC');
-namespace salts\Leavedays\Models;
 
+namespace salts\Leavedays\Models;
+ date_default_timezone_set('UTC');
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use salts\Core\Models\Db\CoreMember;

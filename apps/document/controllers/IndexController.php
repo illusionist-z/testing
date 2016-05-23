@@ -26,6 +26,7 @@ class IndexController extends ControllerBase {
      */
     public function ssbdocumentAction() {
                 $this->assets->addCss('apps/document/css/index_ssbdocument.css');
+                $this->assets->addCss('apps/document/css/ssb_print.css');
 
         if ($this->moduleIdCall == 1) {
             $this->view->module_name = $this->router->getModuleName();
