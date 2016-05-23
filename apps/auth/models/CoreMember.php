@@ -34,6 +34,6 @@ class CoreMember extends Model {
     public $deleted_flag;
     
     
-
+    
 
 }

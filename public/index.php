@@ -6,7 +6,7 @@ use Phalcon\Config\Adapter\Ini;
 error_reporting(E_ALL);
 //$debug = new \Phalcon\Debug();
 //$debug->listen();
-
+date_default_timezone_set('UTC');
 try {
 
     $loader = new \Phalcon\Loader();
@@ -17,8 +17,8 @@ try {
         'Library\Core\Plugin' => __DIR__.'/../library/core/plugin', 
         'Library\Core\Models' => __DIR__.'/../library/core/models', 
        
-        'salts\Auth\Models' => __DIR__.'/../apps/Auth/models/',
-        'salts\Auth\Models\Db' => __DIR__.'/../apps/Auth/models/db',
+        'salts\Auth\Models' => __DIR__.'/../apps/auth/models/',
+        'salts\Auth\Models\Db' => __DIR__.'/../apps/auth/models/db',
         'salts\Core\Models\Db' => __DIR__.'/../apps/core/models/db', 
         'salts\Core\Models' => __DIR__.'/../apps/core/models',
 
@@ -32,10 +32,10 @@ try {
 //        'salts\Core\Controllers' => '../apps/core/controllers/',
         'salts\Core\Models' => __DIR__.'/../apps/core/models',
          
-        'salts\Auth\Models' => __DIR__.'/../apps/Auth/models',
+        'salts\Auth\Models' => __DIR__.'/../apps/auth/models',
         
         'salts\Core\Models\Db' => __DIR__.'/../apps/core/models/db',
-        'salts\Auth\Models\Db' => __DIR__.'/../apps/Auth/models/db',
+        'salts\Auth\Models\Db' => __DIR__.'/../apps/auth/models/db',
 //        'salts\Auth\Controllers' => '../apps/auth/controllers/',
     
     ));

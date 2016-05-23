@@ -1,7 +1,7 @@
 <?php 
 
 namespace salts\Attendancelist\Controllers;
-
+use salts\Auth\Models\CoreMember;
 
 class IndexController extends ControllerBase {
     

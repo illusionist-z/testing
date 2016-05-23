@@ -32,7 +32,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author khine thazin phyo 
      * test for DeshboardPage or not
      */
-    public function testMenu() {       
+    public function testMenu() {
         $this->url('dashboard/index/user');
     }
 
@@ -45,7 +45,10 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/user');
         $checkbox = $this->byName('linkemail');
         $checkbox->click();
-        $this->byCssSelector('textarea')->value("traffice");
+        $this->waitUntil(function () {
+            return $this->byCssSelector('div#xtraInfo')->displayed();
+        }, 2000);
+        $this->byCssSelector('div#xtraInfo textarea#note')->value("traffic");
         $this->byCssSelector('.checkin')->click();
         $this->url('attendancelist/user/attendancelist');
         $element = $this->byCssSelector('h1');
@@ -86,7 +89,10 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSetting() {
         $this->url('dashboard/index/user');
         $this->byCssSelector('.dropdown-toggle')->click();
-        $this->byCssSelector('#setting')->click();
+        $this->waitUntil(function () {
+            return $this->byCssSelector('a#setting')->displayed();
+        }, 2000);
+        $this->byCssSelector('a#setting')->click();
     }
 
     /**
@@ -120,21 +126,30 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpDashboard() {
         $this->url('help/index/searchHelp');
         $this->byClassName('allhelpimg')->click();
-        sleep(1);
+        $this->waitUntil(function () {
+            return $this->byId('searchhelpcenter')->displayed();
+        }, 2000);
         $this->assertEquals("Dashboard help center", $this->byId('searchhelpcenter')->text());
     }
 
     public function testHelpAttendance() {
         $this->url('help/index/searchHelp');
         $this->byLinkText('Attendance List')->click();
+        $this->waitUntil(function () {
+            return $this->byLinkText('Today List')->displayed();
+        }, 2000);
         $this->byLinkText('Today List')->click();
         $this->assertEquals("Today Attendance List help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Attendance List')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Monthly List')->displayed();
+        }, 2000);
         $this->byLinkText('Monthly List')->click();
         $this->assertEquals("Monthly Attendance List help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Attendance List')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Monthly Chart')->displayed();
+        }, 2000);
         $this->byLinkText('Monthly Chart')->click();
         $this->assertEquals("Monthly Attendance Chart", $this->byId('searchhelpcenter')->text());
     }
@@ -148,14 +163,21 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpLeaveDay() {
         $this->url('help/index/searchHelp');
         $this->byLinkText('Leave Days')->click();
+        $this->waitUntil(function () {
+            return $this->byLinkText('Apply Leave')->displayed();
+        }, 2000);
         $this->byLinkText('Apply Leave')->click();
         $this->assertEquals("Apply Leave help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Leave Days')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Leave Lists')->displayed();
+        }, 2000);
         $this->byLinkText('Leave Lists')->click();
         $this->assertEquals("Leave Lists help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Leave Days')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Leave Setting')->displayed();
+        }, 2000);
         $this->byLinkText('Leave Setting')->click();
         $this->assertEquals("Leave Setting help center", $this->byId('searchhelpcenter')->text());
     }
@@ -163,22 +185,33 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpSalary() {
         $this->url('help/index/searchHelp');
         $this->byLinkText('Salary')->click();
+        $this->waitUntil(function () {
+            return $this->byLinkText('Add Salary')->displayed();
+        }, 2000);
         $this->byLinkText('Add Salary')->click();
         $this->assertEquals("Add Salary help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Salary')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Salary Lists')->displayed();
+        }, 2000);
         $this->byLinkText('Salary Lists')->click();
         $this->assertEquals("Salary List help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Salary')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Monthly Salary Lists')->displayed();
+        }, 2000);
         $this->byLinkText('Monthly Salary Lists')->click();
         $this->assertEquals("(1) Monthly Salary Lists help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Salary')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Salary Setting')->displayed();
+        }, 2000);
         $this->byLinkText('Salary Setting')->click();
         $this->assertEquals("Salary Setting help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Salary')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Allowance')->displayed();
+        }, 2000);
         $this->byLinkText('Allowance')->click();
         $this->assertEquals("Allowance help center", $this->byId('searchhelpcenter')->text());
     }
@@ -186,11 +219,15 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testHelpDocument() {
         $this->url('help/index/searchHelp');
         $this->byLinkText('Document')->click();
-        sleep(1);
+        $this->waitUntil(function () {
+            return $this->byLinkText('Letter Head')->displayed();
+        }, 2000);
         $this->byLinkText('Letter Head')->click();
         $this->assertEquals("Letter Head help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Document')->click();
-        sleep(2);
+        $this->waitUntil(function () {
+            return $this->byLinkText('SSB & Tax Document')->displayed();
+        }, 2000);
         $this->byLinkText('SSB & Tax Document')->click();
         $this->assertEquals("SSB & Tax Document help center", $this->byId('searchhelpcenter')->text());
     }
@@ -232,7 +269,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('dashboard/index/user');
         $this->byCssSelector('span#btn_show_menu')->click();
-        $element = $this->byCssSelector('ul.sidebar-menu li.header');        
+        $element = $this->byCssSelector('ul.sidebar-menu li.header');
         $this->assertEquals("MAIN NAVIGATION", $element->text());
     }
 
@@ -246,7 +283,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/user');
         $this->byCssSelector('span#btn_show_menu')->click();
         $this->waitUntil(function () {
-            return $this->byLinkText('Attendance List')->displayed();
+            return $this->byCssSelector("a#navicon11")->displayed();
         }, 2000);
         $this->byLinkText('Attendance List')->click();
         $this->url('attendancelist/user/attendancelist');
@@ -263,7 +300,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('dashboard/index/user');
         $this->byCssSelector('span#btn_show_menu')->click();
         $this->waitUntil(function () {
-            return $this->byLinkText('Leave days')->displayed();
+            return $this->byCssSelector("a#navicon21")->displayed();
         }, 2000);
         $this->byLinkText('Leave days')->click();
         $this->url('leavedays/user/leavelist');
@@ -278,9 +315,9 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSidebarDashboard() {
 
         $this->url('dashboard/index/user');
-       $this->byCssSelector('span#btn_show_menu')->click();
+        $this->byCssSelector('span#btn_show_menu')->click();
         $this->waitUntil(function () {
-            return $this->byLinkText('Dashboard')->displayed();
+            return $this->byCssSelector("a#navicon31")->displayed();
         }, 2000);
         $this->byLinkText('Dashboard')->click();
         $this->url('dashboard/index/user');

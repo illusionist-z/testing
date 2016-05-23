@@ -19,10 +19,10 @@ use Phalcon\Filter;
 <section class="content">
     <div class="buttons">
         <span class="dropdown">
-            <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
+            <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file"><?= $t->_("addsalarycsvfile"); ?></h4>
             <h4 class="btn btn-primary csv_download"  id="2"><img id="exicon"></h4>
             <div id="hoverdown">
-                <div id="hoverdownTitle"><?php echo $t->_("Download Sample CSV(We recommend to open in excel)"); ?></div>                                
+                <div id="hoverdownTitle"><?php echo $t->_("downloadcsvfile"); ?></div>                                
             </div>
             <div class="dropdown-menu"  id="radsal_type" style="margin-top: 20px;">
                 <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">

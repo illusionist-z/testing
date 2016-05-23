@@ -166,8 +166,8 @@ for (var i = 0; i < cells.length; i++) {
 //                    +absent+'/'+year+'/'+month+'/'+overtime_hr,
             success:function(){
                 
-                alert("Data has been updated");
-                window.location.reload();
+//                alert("Data has been updated");
+//                window.location.reload();
             }
         })
 //        
