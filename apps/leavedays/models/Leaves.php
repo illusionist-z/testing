@@ -1,7 +1,7 @@
 <?php
 
 namespace salts\Leavedays\Models;
-
+ date_default_timezone_set('UTC');
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use salts\Core\Models\Db\CoreMember;
@@ -12,6 +12,7 @@ date_default_timezone_set('UTC');
 class Leaves extends \Library\Core\Models\Base {
 
     public $base;
+    
 
     public function initialize() {
         parent::initialize();
