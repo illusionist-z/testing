@@ -94,6 +94,7 @@ class IndexController extends ControllerBase {
                 $edit[1]['bank'] = $t->_("bank");
                 $edit[1]["name"] = $t->_("name");
                 $edit[1]["username"] = $t->_("username");
+                $edit[1]["myanmarname"] = $t->_("myanmarname");
                 $edit[1]["pass"] = $t->_("password");
                 $edit[1]["confirm"] = $t->_("confirm_pass");
                 $edit[1]["dept"] = $t->_("dept");
@@ -108,6 +109,7 @@ class IndexController extends ControllerBase {
                 $edit[1]['placeholder_bank'] = $t->_("placeholder_bank");
                 $edit[1]["placeholder1"] = $t->_("placeholder1");
                 $edit[1]["placeholder2"] = $t->_("placeholder2");
+                $edit[1]["placeholder21"] = $t->_("placeholder21");
                 $edit[1]["placeholder3"] = $t->_("placeholder3");
                 $edit[1]["placeholder4"] = $t->_("placeholder4");
                 $edit[1]["placeholder5"] = $t->_("placeholder5");

@@ -22,7 +22,7 @@ if (isset($Msg)) {
     <div class="row">
         <div class="col-md-12"><!--start table content--->
             <div id="form_div" class="row" style="border: 1px solid #dd4b39;">
-                <div style="height:30px; background-color:#dd4b39; padding:5px 0 5px 15px;" class="col-sm-12"><font color="#fffff">Add Salary Form</font></div>
+                <div style="height:30px; background-color:#dd4b39; padding:5px 0 5px 15px;" class="col-sm-12"><font color="#fffff"><?= $t->_("addsalaryform"); ?></font></div>
                 <div class="left-div-style-box col-sm-8">
                     <form action="#" method="post" id="add_salary">
                         <div class="div-bottom col-md-12">
@@ -42,12 +42,12 @@ if (isset($Msg)) {
                         </div>
 
                         <div class="div-bottom col-md-12">
-                            <div class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("travel fees"); ?></div>                        
+                            <div class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("travelfees"); ?></div>                        
                             <div style="" class="col-xs-8">
                                 <div style="padding-bottom: 10px;">
-                                    Choose travel fees type:
-                                    <input type='radio' name='radTravel' value='1' id="radtravel1"/>Per day
-                                    <input type='radio' name='radTravel' value='2' id="radtravel2"/>Per month
+                                    <?= $t->_("travelfeestype"); ?>
+                                    <input type='radio' name='radTravel' value='1' id="radtravel1"/><?= $t->_("perday"); ?>
+                                    <input type='radio' name='radTravel' value='2' id="radtravel2"/><?= $t->_("permonth"); ?>
                                 </div> 
                                 <div style="" >
                                     <input type="number"class="col-xs-2" id="travelfee" value="" placeholder="<?php echo $t->_("entertravelfees"); ?>" style="width:45%;" name="travelfees" disabled/>
@@ -79,7 +79,7 @@ if (isset($Msg)) {
                                     }
                                     if ($i == 3) {
                                         echo "<div id='No_of_children' style='display:none;'>
-                                <input type='text'  name='no_of_children' id='no_of_children' placeholder='number of children'>
+                                <input type='text'  name='no_of_children' id='no_of_children' placeholder='Number of children'>
                                 </div>";
                                     }
                                 }
@@ -110,7 +110,7 @@ if (isset($Msg)) {
                         <div class="div-bottom col-md-12">
                             <span class="span-style col-xs-0 col-xs-offset-0"><?= $t->_("sa_sdate"); ?></span>
                             <span class="col-xs-8">
-                                <input type="text" id="s_sdate" value="" style="width:45%;" class="datepicker" name="s_sdate" placeholder="Enter Salary Start Date">
+                                <input type="text" id="s_sdate" value="" style="width:45%;" class="datepicker" name="s_sdate" placeholder="<?= $t->_("entersalarydate"); ?>">
                             </span>
                         </div>
                         <div class="div-bottom" style="clear: both;padding-top: 2%;">
@@ -124,10 +124,10 @@ if (isset($Msg)) {
                     </form>
                 </div>
                 <div class="col-md-4 dropdown"  style="text-align: center;padding-bottom: 10px; ">                    
-                    <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file">Add Salary By CSV file </h4>
+                    <h4 class="dropdown-toggle btn btn-primary" data-toggle="dropdown" id="csv_file"><?= $t->_("addsalarycsvfile"); ?></h4>
                     <h4 class="btn  btn-primary csv_download"  id="1"><img id="exicon"></h4>
                     <div id="downloadhover">
-                        <div id="downloadhoverTitle"><?php echo $t->_("Download Sample CSV(We recommend to open in excel)"); ?></div>                                
+                        <div id="downloadhoverTitle"><?php echo $t->_("downloadcsvfile"); ?></div>                                
                     </div>
                     <div class="col-sm-12 dropdown-menu"  id="radsal_type">                   
                         <form action="#" enctype="multipart/form-data" role="form" id="csvimport" method="POST">

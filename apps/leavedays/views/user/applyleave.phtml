@@ -10,8 +10,8 @@ $leavetypelength = count($Leavetype); ?>
         <?= $t->_("applyleave"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Apply Leave</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?></a></li>
+        <li class="active"><?= $t->_("applyleave"); ?></li>
     </ol>
 </section>
 
@@ -22,14 +22,14 @@ $leavetypelength = count($Leavetype); ?>
         <div class="col-md-12"><!--start add user form--->
             <?php $this->flashSession->output() ?>
             <div id="form_div">
-                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff">Apply Leave Form</font></div>
+                <div style="height:30px; background-color:#3c8dbc; padding:5px 0 5px 15px;"><font color="#fffff"><?= $t->_("applyleaveform"); ?></font></div>
 
                 <form id="apply_form" width="650px" height="300px" style="padding:5px 0 5px 15px;" enctype="multipart/form-data"> 
                     <table width="700px" height="300px" style="margin-left: 30px;"> 
                         <tr>
                             <td class="col-md-4"><?= $t->_("start_date"); ?> </td>
                             <td style="height:40px;" class="col-md-4">
-                                <input type="text" class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="Start Date" style="height:39px; width: 260px;">
+                                <input type="text" class="datetimepicker form-control" name="sdate" id="apply_form_sdate" placeholder="<?= $t->_("choosestartdate"); ?>" style="height:39px; width: 260px;">
 
                             </td>
                             <td class="col-md-4"><span id="apply_form_sdate_error"></span></td>
@@ -38,7 +38,7 @@ $leavetypelength = count($Leavetype); ?>
                         <tr>
                             <td class="col-md-2"><?= $t->_("end_date"); ?></td>
                             <td style="height:40px;" class="col-md-4">
-                                <input type="text" class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="End Date" style="height:39px; width: 260px;">                               
+                                <input type="text" class="datetimepicker form-control" name="edate" id="apply_form_edate" placeholder="<?= $t->_("chooseenddate"); ?>" style="height:39px; width: 260px;">                               
                             </td>
                             <td class="col-md-4"><span id="apply_form_edate_error"></span></td>
                         </tr>
@@ -59,14 +59,14 @@ $leavetypelength = count($Leavetype); ?>
                         <tr>
                             <td class="col-md-4"><?= $t->_("leave_desc"); ?></td>
                             <td style="height:40px;" class="col-md-4">
-                                <textarea name="description" id="apply_form_desc"  rows="5"  style="width:260px;"  placeholder="Write Description"></textarea>                    
+                                <textarea name="description" id="apply_form_desc"  rows="5"  style="width:260px; resize: none;"  placeholder="<?= $t->_("description"); ?>"></textarea>                    
                             </td>
                             <td class="col-md-4"><span id="apply_form_desc_error"></span></td>
                         </tr>
 
                         <tr>
                             <td></td>		
-                            <td style="height:40px;" class="col-md-4"><br><input type="submit" value="Apply" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" class="buttonn" id="apply_form_cancel" value="Cancel"></td>
+                            <td style="height:40px;" class="col-md-4"><br><input type="submit" value="<?= $t->_("apply"); ?>" class="buttonn" onclick="return false;" name="submit" id="apply_form_submit"><input type="reset" class="buttonn" id="apply_form_cancel" value="<?= $t->_("applycancel"); ?>"></td>
                             <td></td>
                         </tr>
                     </table>
