@@ -95,13 +95,17 @@ class Leaves extends \Library\Core\Models\Base {
                     . "and att_date>='" . $start_date . "' and att_date<='" . $end_date . "' and deleted_flag=0 and (status = 3)";
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
-          
-            $absent[$value->member_id] = count($data);
-             $absent[$value->member_id]+=(($row2['countAbsent'])/2); 
-            echo $value->member_login_name;
-            echo $start_date;
-            echo $end_date;
-             $absent[$value->member_id];
+             $sql3 = "select *,SUM(early_out_hours) as total from attendances where member_id='" . $value->member_id . "' "
+                    . "and att_date>='" . $start_date . "' and att_date<='" . $end_date . "' and deleted_flag=0 and (status = 4)";
+             $result3 = $this->db->query($sql3);
+            $row3 = $result3->fetcharray();
+            $absent[$value->member_id] = count($data);//4
+             $absent[$value->member_id]+=(($row2['countAbsent'])/2);  //4.5
+             $absent[$value->member_id]= ($absent[$value->member_id]*8)+$row3['total']; 
+//            echo $value->member_login_name;
+//            echo $start_date;
+//            echo $end_date;
+//             $absent[$value->member_id];
             
         }
         return $absent;
