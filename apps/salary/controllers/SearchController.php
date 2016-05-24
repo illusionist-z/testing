@@ -25,12 +25,18 @@ class SearchController extends ControllerBase {
     /**
      * Search travel fees whether per day or per month
      */
-    public function searchTravelfeesAction() {
+    public function searchTravelfeesAction($exportMode = null) {
         $data = $this->request->get();
         $SalaryDetail = new SalaryDetail();
-        $search_result = $SalaryDetail->searchSList($data);
+        if(1 == $exportMode){
+         $search_result = $SalaryDetail->searchSList($data,0);
+         $SalaryDetail->SalaryListExport($search_result,0);
+        }
+        else{
+        $search_result = $SalaryDetail->searchSList($data,1);
         $this->view->disable();
         echo json_encode($search_result);
+        }
     }
 
 }

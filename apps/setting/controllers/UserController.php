@@ -10,6 +10,7 @@ class UserController extends ControllerBase {
         parent::initialize();
         $this->setCommonJsAndCss();
         $this->assets->addJs('apps/setting/js/user-changeprofile.js');
+        
        $this->setAllUse();
     }
 
@@ -30,7 +31,7 @@ class UserController extends ControllerBase {
         }
 
         $this->view->setVar("noti", $Noti);
-
+  $this->view->t = $this->_getTranslation();
         $user = $Admin->userDetail($id);
         $profile = $Admin->getProfile($id);
         $this->view->userDetail = $user;

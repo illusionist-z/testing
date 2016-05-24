@@ -1,22 +1,13 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * @type json array {}
+ * @desc Apply Leave Form validation
+ * @author David JP <david.gnext@gmail.com>
  */
-
-
-/*
- * show today list by return json array
- * @version 10/9/2015 David
- */
-User.LeaveList = {
-    init: function () {
-         $('.listtbl tbody').has("tr").length > 0 ? null : MsgDisplay() ;
-    },
+var LeaveList = {
     search: function () {
         var month = document.getElementById('month').value;
         var ltype = document.getElementById('ltype').value;
-        if (month == "" && ltype == "") {
+        if (month === "" && ltype === "") {
             $('tbody').empty();
             var output = "<tr>"
                     + "<td colspan='9'><center>No data to display</center></td>"
@@ -29,15 +20,8 @@ User.LeaveList = {
     }
 };
 $(document).ready(function () {
-//set slide menu
-
-    // ここに実際の処理を記述します。
-    User.LeaveList.init();
-
     $('#usersearch').on('click', function () {
-        User.LeaveList.search();
+        LeaveList.search();
     });
-
-
 });
 

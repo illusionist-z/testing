@@ -22,9 +22,9 @@ $length = count($Month);
     <div class="buttons">
      
         <form id="frm_search" onsubmit="return false;">
-            <a  href="/salts/leavedays/user/applyleave">  
+<!--            <a  href="/salts/leavedays/user/applyleave">  
                 <input type="button" value=" Apply Leave" id="usersearch" class="buttonn form-control-static">
-            </a> 
+            </a> -->
             <select class="select form-control-static" data-toggle="select" name="ltype" id="ltype">
 
                 <option value=""><?= $t->_("leave_type"); ?></option>
@@ -57,7 +57,7 @@ $length = count($Month);
 
             </select>
 
-            <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="Search" id="usersearch"></b>
+            <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= $t->_("search"); ?>" id="usersearch"></b>
             <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><b>Export</b></a>
             <a href="leavelist/1" class="button export" id="exbg" ><img id="exicon"><b>Export All</b></a>
         </form>
@@ -81,6 +81,14 @@ $length = count($Month);
                 </thead>
                 <tbody>
                     <?php
+                    $count = count($Result->items);
+                    if ($count === 0) {
+                        ?>
+                        <tr>
+                            <td colspan="9" ><center>No data to display</center></td>
+                    </tr>
+                    <?php
+                } else {
                     foreach ($Result->items as $item) {
                         ?>
                         <tr>
@@ -130,6 +138,7 @@ $length = count($Month);
                                 ?></font></td>
                         </tr>
                         <?php
+                        }
                     }
                     ?>
 
@@ -140,7 +149,7 @@ $length = count($Month);
      <div id="content">
         <ul class="pagination" style="margin-left:15px;">
             <?php
-            if ($Result->last !== 1) {                          
+            if ($Result->last !== 1 && $Result->last != 0) {                          
                 ?>
                 <li><a href="leavelist">First</a></li>
                 <li><a href="leavelist?page=<?= $Result->before; ?>">Previous</a></li>

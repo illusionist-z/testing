@@ -168,8 +168,8 @@ var Salary = {
         }
     },
     getmemid: function (p) {
-        var name = document.getElementById('username').value;
-        
+        //var name = document.getElementById('username').value;
+        var name = p;
         var dict = [];
         $('ul.pagination').empty();
          //$('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();      
@@ -565,7 +565,7 @@ $(document).ready(function () {
 
     
     $(".search-trtype").click(function () {       
-         Salary.getmemid();
+         Salary.search_salarylist();
     });
 
 });

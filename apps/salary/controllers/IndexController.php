@@ -57,7 +57,7 @@ class IndexController extends ControllerBase {
             if ($this->permission == 1) {
                 if(1 == $exportMode){
                     $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,0);
-                    $SalaryDetail->SalaryListExport($get_salary_detail);               
+                    $SalaryDetail->SalaryListExport($get_salary_detail,1);
                 }
                 else{
                 $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,1);
@@ -243,7 +243,8 @@ class IndexController extends ControllerBase {
      * @return true|false
      */
     public function btneditAction() {
-          if ($this->permission == 1) {       
+          if ($this->permission == 1) {  
+        $loginuser = $this->session->user['member_id'];
         $data['member_id'] = $this->request->getPost('member_id');        
         $data['no_of_children'] = $this->request->getPost('no_of_children');
         $check_allow = $this->request->getPost('check_allow');
@@ -252,10 +253,10 @@ class IndexController extends ControllerBase {
         $cond = $SalaryDetail->btnedit($this->request->getPost());
 
         $Taxdeduce = new SalaryMemberTaxDeduce();
-        $Taxdeduce->editTaxByMemberid($check_deduce, $data['no_of_children'], $data['member_id']);
+        $Taxdeduce->editTaxByMemberid($check_deduce, $data['no_of_children'], $data['member_id'],$loginuser);
 
         $SalaryMasterAllowance = new \salts\Salary\Models\SalaryMasterAllowance();
-        $SalaryMasterAllowance->editAllowanceByMemberid($check_allow, $data['member_id']);
+        $SalaryMasterAllowance->editAllowanceByMemberid($check_allow, $data['member_id'],$loginuser);
         echo json_encode($cond);
         $this->view->disable();
           }
@@ -510,6 +511,14 @@ class IndexController extends ControllerBase {
         $data['t']['ssc_comp'] = $t->_("ssc_comp");
         $data['t']['save'] = $t->_("edit_btn");
         $data['t']['cancel'] = $t->_("cancel_btn");
+        
+        $data[1]['tax_edit'] = $t->_("tax_edit");
+        $data[1]['tax_edit'] = $t->_("tax_edit");
+        $data[1]['tax_from'] = $t->_("tax_from");
+        $data[1]['tax_to'] = $t->_("tax_to");
+        $data[1]['tax_rate'] = $t->_("tax_rate");
+        $data[1]['save'] = $t->_("edit_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
         $this->view->disable();
         echo json_encode($data);
         }
@@ -555,6 +564,16 @@ class IndexController extends ControllerBase {
         $data['t']['save'] = $t->_("save_btn");
         $data['t']['delete'] = $t->_("delete_btn");
         $data['t']['cancel'] = $t->_("cancel_btn");
+        
+         $data[1]['edit_deduct_title'] = $t->_("taxeditform");
+        $data[1]['edit_deduct_name'] = $t->_("deduction_name");
+        $data[1]['edit_deduct_amount'] = $t->_("deduction_amt");
+        $data[1]['save'] = $t->_("save_btn");
+        $data[1]['delete'] = $t->_("delete_btn");
+        $data[1]['cancel'] = $t->_("cancel_btn");
+        $data[1]['sett_title'] = $t->_("sett_title");
+        $data[1]['write_name'] = $t->_("write_name");
+        $data[1]['write_amount'] = $t->_("write_amount");
         $this->view->disable();
         echo json_encode($data);
         }

@@ -1,16 +1,18 @@
 <?php
 
 namespace salts\Leavedays\Models;
-
+ date_default_timezone_set('UTC');
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
+date_default_timezone_set('UTC');
 
 class Leaves extends \Library\Core\Models\Base {
 
     public $base;
+    
 
     public function initialize() {
         parent::initialize();
@@ -93,13 +95,17 @@ class Leaves extends \Library\Core\Models\Base {
                     . "and att_date>='" . $start_date . "' and att_date<='" . $end_date . "' and deleted_flag=0 and (status = 3)";
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
-          
-            $absent[$value->member_id] = count($data);
-             $absent[$value->member_id]+=(($row2['countAbsent'])/2); 
-            echo $value->member_login_name;
-            echo $start_date;
-            echo $end_date;
-             $absent[$value->member_id];
+             $sql3 = "select *,SUM(early_out_hours) as total from attendances where member_id='" . $value->member_id . "' "
+                    . "and att_date>='" . $start_date . "' and att_date<='" . $end_date . "' and deleted_flag=0 and (status = 4)";
+             $result3 = $this->db->query($sql3);
+            $row3 = $result3->fetcharray();
+            $absent[$value->member_id] = count($data);//4
+             $absent[$value->member_id]+=(($row2['countAbsent'])/2);  //4.5
+             $absent[$value->member_id]= ($absent[$value->member_id]*8)+$row3['total']; 
+//            echo $value->member_login_name;
+//            echo $start_date;
+//            echo $end_date;
+//             $absent[$value->member_id];
             
         }
         return $absent;
@@ -119,43 +125,39 @@ class Leaves extends \Library\Core\Models\Base {
      * @return type
      * @author zinmon
      */
-    public function search($ltype, $month, $namelist, $currentP) {
+    public function search($ltype, $month, $namelist, $currentP,$IsPaging) {
         $filter = new Filter();
         $ltype = $filter->sanitize($ltype, "string");
-        $namelist = $filter->sanitize($namelist, "string");
-        $select = "SELECT date(l.date) as date,c.member_login_name,date(l.start_date)"
-                . "as start_date, date(l.end_date) as end_date,l.leave_days,"
-                . "l.leave_category,l.leave_description,l.leave_status,"
-                . "l.total_leavedays,ls.max_leavedays FROM  salts\Leavedays\Models\LeavesSetting ls INNER JOIN salts\Leavedays\Models\Leaves l JOIN "
-                . "salts\Core\Models\Db\CoreMember c ON "
-                . "l.member_id= c.member_id "
-                . "and c.deleted_flag = 0 ";
+        $namelist = $filter->sanitize($namelist, "string");      
+        $select = "SELECT date(leaves.date) as date,core_member.member_login_name,core_member.member_id,date(leaves.start_date)"
+                . "as start_date, date(leaves.end_date) as end_date,leaves.leave_days,"
+                . "leaves.leave_category,leaves.leave_description,leaves.leave_status,"
+                . "leaves.total_leavedays,ls.max_leavedays FROM  salts\Leavedays\Models\LeavesSetting ls INNER JOIN salts\Leavedays\Models\Leaves leaves JOIN "
+                . "salts\Core\Models\Db\CoreMember core_member ON "
+                . "leaves.member_id= core_member.member_id "
+                . "and core_member.deleted_flag = 0 ";
         $conditions = array();
         if ($ltype != "") {
-            $conditions[] = "l.leave_category='" . $ltype . "'";
+            $conditions[] = "leaves.leave_category='" . $ltype . "'";
         }
         if ($month != "") {
-            $conditions[] = "MONTH(l.start_date) = '" . $month . "'";
+            $conditions[] = "MONTH(leaves.start_date) = '" . $month . "'";
         }
         if ($namelist != "") {
-            $conditions[] = "c.member_login_name='" . $namelist . "'";
+            $conditions[] = "core_member.member_login_name='" . $namelist . "'";
         }
 
         $sql = $select;
         if (count($conditions) > 0) {
-            $sql .= " WHERE " . implode(' AND ', $conditions) . "order by l.date desc";
+            $sql .= " WHERE " . implode(' AND ', $conditions) . "order by leaves.date desc";
         }
 
         $result = $this->modelsManager->executeQuery($sql);
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $result,
-            "limit" => 10,
-            "page" => $currentP
-                )
-        );
-// Get the paginated results
-        $page = $paginator->getPaginate();
+        if (1 == $IsPaging) {
+            $page = $this->base->pagination($result, $currentP);
+        } else {
+            $page = $result;
+        }
         return $page;
     }
 
@@ -473,14 +475,14 @@ class Leaves extends \Library\Core\Models\Base {
         return $res;
     }
 
-    public function exportUserLeaveList($param, $filename, $absentDay, $maxDay) {
+    public function exportUserLeaveList($param, $filename, $absentDay, $maxDay,$pagingObject) {
         header("Content-type: application/csv");
         header("Content-Disposition: attachment; filename=$filename.csv;");
         echo "\xEF\xBB\xBF"; // UTF-8 BOM
         $output = fopen('php://output', 'w');
         fputcsv($output, array("Date", "User Name", "Start Date", "End Date", "Leaves Days", "Leave Type", "Leave Description", "Leave Status", "Leave Day Left"));
-        foreach ($param as $item) {
-
+        if($pagingObject){
+             foreach ($param as $item) {
             switch ($item->leaves->leave_status) {
                 case "0" : $status = "Pending";
                     break;
@@ -503,6 +505,33 @@ class Leaves extends \Library\Core\Models\Base {
             }
             fputcsv($output, array($item->leaves->date, $item->core_member->member_login_name, $item->leaves->start_date, $item->leaves->end_date,
                 $item->leaves->leave_days, $item->leaves->leave_category, $item->leaves->leave_description, $status, $leaveLeft));
+        }
+        }
+        else{
+        foreach($param as $item){        
+            switch ($item->leave_status) {
+                case "0" : $status = "Pending";
+                    break;
+                case "1" : $status = "Confirmed";
+                    break;
+                case "2" : $status = "Rejected";
+                    break;
+            };
+            $absent_day = 0;
+            if (isset($absentDay[$item->member_id])) {
+                $absent_day = $absentDay[$item->member_id];
+            }
+            else{
+                $absent_day = $absentDay;
+            }
+            if ($absent_day > $maxDay) {
+                $leaveLeft = ($absent_day - $maxDay) . " Days are in absent";
+            } else {
+                $leaveLeft = $maxDay - $absent_day;
+            }
+            fputcsv($output, array($item->date, $item->member_login_name, $item->start_date, $item->end_date,
+                $item->leave_days, $item->leave_category, $item->leave_description, $status, $leaveLeft));
+        }
         }
         fclose($output);
         exit;

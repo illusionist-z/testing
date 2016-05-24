@@ -81,18 +81,24 @@ class SalaryDetail extends Model {
      */
     public function salarylist($month, $year) {
         try {
-            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
+            $stmt = $this->db->prepare("select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
                 from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
-select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='" . $year . "' GROUP BY id";
-            //echo $sql.'<br>';
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
-            //exit;
+select member_id from salary_detail) and MONTH(SD.pay_date) = :month and YEAR(SD.pay_date) = :year GROUP BY id");
+
+            $stmt->execute(array('month' => $month,'year' => $year));
+            
+////            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
+//                from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
+//select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='" . $year . "' GROUP BY id";
+//            //echo $sql.'<br>';
+//            $result = $this->db->query($sql);
+//            $row = $result->fetchall();
+          
         } catch (Exception $ex) {
             echo $ex;
         }
 
-        return $row;
+        return $stmt;
     }
 
     /**
@@ -219,9 +225,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     /**
      * Get salary detail for each month
+     * @author zinmon
      */
     public function getSalaryDetail($currentPage,$IsPaging) {
-        try {            
+        try { 
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarymas.*', 'core.*'))
                     ->from(array('salarymas' => 'salts\Salary\Models\SalaryMaster'))
@@ -257,14 +264,23 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      */
     public function editSalary($member_id) {
         try {
-            $sql = "select * from salary_master left join core_member on "
-                    . "salary_master.member_id=core_member.member_id where salary_master.id ='" . $member_id . "'";
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
+            $stmt = $this->db->prepare('select * from salary_master left join core_member on '
+                    . 'salary_master.member_id=core_member.member_id where salary_master.id = :salary_master_id');
+
+            $stmt->execute(array('salary_master_id' => $member_id));
+
+//            foreach ($stmt as $row) {
+//                // do something with $row
+//                echo $row['member_id'];
+//            }exit;
+//            $sql = "select * from salary_master left join core_member on "
+//                    . "salary_master.member_id=core_member.member_id where salary_master.id ='" . $member_id . "'";
+//            $result = $this->db->query($sql);
+//            $row = $result->fetchall();
         } catch (Exception $e) {
             echo $e;
         }
-        return $row;
+        return $stmt;
     }
 
     public function btnedit($data) {
@@ -334,62 +350,59 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function updateSalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,
         $salary_start_month,$absent_amount,$overtime_hr,$overtimerate,$workingstartdt) {
+        
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
+        $Leavecarry = (!empty($Salarymaster->getLeaveCarry($member_id)))? $Salarymaster->getLeaveCarry($member_id) :0;
+        
         //print_r($SM);
         $deduce_amount = array();
-//        $now = new \DateTime('now');
-//        //$budget_startmonth = '04';
-//        $budget_startyear = $now->format('Y') . '-04-01';
-//        //$budget_endmonth = '03';
-//        $endyear = $now->format('Y') . '-03';
-//        $budget_endyear = date("Y-m", strtotime("+1 year", strtotime($endyear)));
-//        $budget_endyear_one = date("Y-m-d", strtotime("+1 year", strtotime($endyear)));
-//        $budget_endyear =  date("Y-m-d", strtotime("-1 month", strtotime($SM['salary_start_date'])));
-//        $budget_start_year = date("Y-m-d", strtotime("-1 year", strtotime($SM['salary_start_date'])));
         $budget_endyear = date("Y-m-d", strtotime("+1 year", strtotime($SM['salary_start_date'])));
         $budget_start_year = $SM['salary_start_date'];
         $salary = "";
         $salary_star_date = $salary_start_year.'-'.$salary_start_month.'-01';
-        
+       
         $salary_update_yr = $salary_start_year;
         $salary_update_mth = $salary_start_month;
         $resign=  $this->getResigndate($member_id);
+        
         $basic_salary='';
         $SD = $this->getoldsalarydetail($member_id, $salary_update_yr,$salary_update_mth,$budget_start_year);
         
         if($resign['resign_date']!=null){
             $resigndate=  explode("-", $resign['resign_date']);
-            $resignyear=$resigndate[1];
-            $resignmonth=$resigndate[0];
-            $bsalaryparday=$SM['basic_salary']/24;
-            $count_attdate=$this->countattdate($resign['resign_date'],$resignmonth,$member_id);
+            $resignyear=$resigndate[0];
+            $resignmonth=$resigndate[1];
+            $bsalaryparday=$SM['basic_salary']/22;
             
-            $salary=$count_attdate['count_attdate']*$bsalaryparday;
+            $count_attdate=$this->countattdate($resign['resign_date'],$resignyear,$resignmonth,$member_id);
+            
+            $bsalary=$count_attdate['count_attdate']*$bsalaryparday;
+            
+//            $count_paymonth=  $this->getPaySalarymonth($resignyear,$resignmonth,$member_id);
+//            $year=$count_paymonth['count_pay_date'];
            
-            $count_paymonth=  $this->getPaySalarymonth($resignyear,$resignmonth,$member_id);
-            $year=$count_paymonth['count_pay_date'];
-            
         }
-        else{
+        else { $bsalary = $SM['basic_salary']; }
             
             $date_diff=$Salarymaster->dateDifference($salary_star_date, $budget_endyear);
             $date_to_calculate = $date_diff;
             $basic_salary=$bsalary*$date_diff;
-           
+            
             if($SD['count_pay']!= 0)
                 {
                     $oldsalary = $SD['total_salary'];
+                   
                     //$old_allowance=$SD['total_all_amount']+$allowancetoadd;
                     $date_to_calculate = $SD['count_pay']+$date_diff;
-                    $basic_salary = ($SD['basic_salary']*$date_diff)+$oldsalary;
+                    $basic_salary = $basic_salary+$oldsalary;
                     
                 }
            
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$SD['total_all_amount'],$SM['status'],$allowancetoadd,$SD['count_pay']);
            
             $basic_salary=$Allowanceresult['basic_salary_annual'];
-            
+           
             $latest_otpay = $Salarymaster->getlatestOTPay($member_id, $budget_start_year, $budget_endyear);
             $OTResult = $Salarymaster->calculateOvertimeAnnual($member_id, $SD['total_overtime'], $budget_start_year, $budget_endyear, $date_diff, $SD['count_pay'], $latest_otpay['overtime']);
            
@@ -401,11 +414,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             //Get the data of leave setting
             $leavesetting=  $Salarymaster->getleavesetting();
             //calculate absent deduce
-            $countabsent=$Salarymaster->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $SM['basic_salary']);
+            $countabsent=$Salarymaster->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], 
+                    $leavesetting['fine_amount'], $SM['basic_salary'],$Leavecarry['leaveday_carry']);
             $absent_dedution=$countabsent+$absent_amount;
             $basic_salary = $basic_salary-$absent_dedution;
-            
+           
             $basic_deduction = $basic_salary * (20 / 100);
+             //echo "Basic sa with deduce ".$basic_deduction;
             //calculate ssc pay amount to deduce
                     if ($SM['basic_salary'] > 300000) {
                         $emp_ssc = (300000 * $date_to_calculate) * (2 / 100);
@@ -413,7 +428,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                         
                         $emp_ssc = ($SM['basic_salary'] * $date_to_calculate) * (2 / 100);
                     }
-
+                   
                     $deduce_amount = $Salarymaster->getreduce($SM['member_id']);
                     //print_r($deduce_amount).'<br>';
                     
@@ -431,12 +446,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     
                     $TaxResult = $taxs['tax_result']-$oldResult['incometax'];
                     }
-        }
+       
         
         $final_result[] = array('income_tax' => $TaxResult,
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
             'special_allowance' => $allowancetoadd,'overtime' => $ot_fees,
-            'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
+            'absent_dedution' => $absent_dedution,'basic_salary' => round($bsalary));
        //print_r($final_result);exit;
        $Result=$this->saveSalaryEditdata($final_result,$salary_start_year,$salary_start_month);
        
@@ -515,26 +530,11 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @return type
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function countattdate($resigndate,$resignmonth,$member_id) {
+    public function countattdate($resigndate,$resignyear,$resignmonth,$member_id) {
         try {
-            $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'";
-            //echo $sql.'<br>';exit;
-            $result = $this->db->query($sql);
-            $row = $result->fetcharray();
-        } catch (Exception $ex) {
-            echo $ex;
-        }
-
-        return $row;
-    }
-
-    public function getoldsalary($budget_startmonth,$member_id, $salary_update_yr, $salary_update_mth) {
-        try {
+            $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'"
+                    . " and YEAR(att_date)='".$resignyear."' and MONTH(att_date)='".$resignmonth."' and status=0";
             
-            $salary_update_mth =$salary_update_mth-1;
-            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<='" . $salary_update_mth . "' and YEAR(pay_date)='" . $salary_update_yr . "' and MONTH(pay_date)>='".$budget_startmonth."'";
-
-            //echo $sql.'<br>';exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
@@ -543,6 +543,22 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
         return $row;
     }
+
+//    public function getoldsalary($budget_startmonth,$member_id, $salary_update_yr, $salary_update_mth) {
+//        try {
+//            
+//            $salary_update_mth =$salary_update_mth-1;
+//            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<='" . $salary_update_mth . "' and YEAR(pay_date)='" . $salary_update_yr . "' and MONTH(pay_date)>='".$budget_startmonth."'";
+//
+//            //echo $sql.'<br>';exit;
+//            $result = $this->db->query($sql);
+//            $row = $result->fetcharray();
+//        } catch (Exception $ex) {
+//            echo $ex;
+//        }
+//
+//        return $row;
+//    }
     
     public function getoldsalarydetail($member_id,$salary_update_yr,$salary_update_mth,$budget_start_year) {
         try {
@@ -605,7 +621,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     }
     
-    public function searchSList($param) {
+    public function searchSList($param,$IsPaging) {
         try{
             if($param['travel_fees'] == 1){
             $field="travel_fee_perday";
@@ -622,7 +638,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $select .= " ORDER BY sm.created_dt desc";
             //echo $select;exit;
             $result = $this->modelsManager->executeQuery($select);
+            if($IsPaging){
             $page = $this->base->pagination($result, $param["page"]);
+            }
+            else{
+            $page = $result;
+            }
         } catch (Exception $ex) {
          echo $ex;
         }
@@ -745,18 +766,25 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @export Data All From Table
      * @param type $data
      */
-    public function SalaryListExport($data){
-         header("Content-type: application/csv");
+    public function SalaryListExport($data,$ObjectPaging){
+        header("Content-type: application/csv");
         header("Content-Disposition: attachment; filename=SalaryListAll.csv;");        
         echo "\xEF\xBB\xBF"; // UTF-8 BOM        
         $output = fopen('php://output', 'w');               
         fputcsv($output, array("No","User Name","Basic Salary","Travel Fees","Overtime","SSC_EMP","SSC_COMP"));      
         $num = 0;
+        if($ObjectPaging){
         foreach($data as $row){
         fputcsv($output,array($num++,$row->core->member_login_name,$row->salarymas->basic_salary,$row->salarymas->travel_fee_perday,$row->salarymas->over_time,
                 $row->salarymas->ssc_emp."%",$row->salarymas->ssc_comp."%"));
-
             }
+        }
+        else{
+        foreach($data as $row){
+        fputcsv($output,array($num++,$row->member_login_name,$row->basic_salary,$row->travel_fee_perday,$row->over_time,
+                $row->ssc_emp."%",$row->ssc_comp."%"));
+            }
+        }
         fclose($output);
         exit;
     }

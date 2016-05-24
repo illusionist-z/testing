@@ -29,10 +29,9 @@ class SalaryMasterAllowance extends Model {
      * @param type $member_id
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function editAllowanceByMemberid($allowance, $member_id) {
+    public function editAllowanceByMemberid($allowance, $member_id,$creartor_id) {
         try {
             $count = $this->getAllowanceByMemberid($member_id);
-            $creartor_id = "admin";
             if (!empty($count)) {
                 $delete = "DELETE FROM salary_master_allowance WHERE member_id='" . $member_id . "'";
                 $query = $this->db->query($delete);

@@ -60,7 +60,7 @@ $length = count($Month);
             <input class="userauto form-control-static" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
             <input type="submit" class="buttonn  form-control-static" value="<?= $t->_("search"); ?>" id="search">
-            <a href="#" class="buttonn  form-control-static export " id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><?= $t->_("export"); ?></a>
+            <a href="#" class="buttonn  form-control-static export leavelist-export" id="exbg" ><img id="exicon"><?= $t->_("export"); ?></a>
              <a href="leavelist/1" class="buttonn  form-control-static export " id="exbg" ><img id="exicon">Export All</a>
         </form>
     </div>
@@ -126,14 +126,21 @@ $length = count($Month);
                                 ?></td>
                             <td><font color="red"><?php
                                 $absent_day = 0;
-                                if (isset($absent[$item->core_member->member_id])) {
+                              if (isset($absent[$item->core_member->member_id])) {
                                     $absent_day = $absent[$item->core_member->member_id];
                                 }
-                                if ($absent_day >= ($max+$item->core_member->leaveday_carry)) {
-                                    echo (( $absent_day) - ($max+$item->core_member->leaveday_carry));
-                                    echo " Days  in absent";
+                                if ($absent_day >= ($max+$item->core_member->leaveday_carry)*8) {
+                                    $left =  (( $absent_day) - ($max+$item->core_member->leaveday_carry)*8);
+                                    $days = $left / 8;
+                                    
+                                    $hr = $left %8;
+                                    echo intval($days) .' days ' . $hr." hours in absent"  ;
                                 } else {
-                                    echo ($item->core_member->leaveday_carry+$max) - ( $absent_day);
+                                   $left= ($item->core_member->leaveday_carry+$max)*9 - ( $absent_day);
+                                   $days = $left / 8;
+                                    
+                                    $hr = $left %8;
+                                    echo intval($days) .' days ' . $hr." hours "  ;
                                 }
                                 ?></font></td>
                         </tr>

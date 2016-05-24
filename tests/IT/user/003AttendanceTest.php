@@ -21,6 +21,7 @@ class AttendanceTest extends PHPUnit_Extensions_Selenium2TestCase {
     function setUp() {
 
         $this->setBrowserUrl('http://localhost/salts');
+        $this->prepareSession()->currentWindow()->maximize();
     }
 
     /**
@@ -37,12 +38,12 @@ class AttendanceTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSearch() {
         $this->url('attendancelist/user/attendancelist');
         $this->byId('frm_search');
-        $start_Date = $this->byId('startdate');
-        $start_Date->value('05/05/2016');
-        $end_Date = $this->byId('enddate');
-        $end_Date->value('05/05/2016');
-        $this->byCssSelector('input#search')->click();       
         $exp = date("Y-m-d");
+        $start_Date = $this->byId('startdate');
+        $start_Date->value($exp);
+        $end_Date = $this->byId('enddate');
+        $end_Date->value($exp);
+        $this->byCssSelector('input#search')->click();
         $this->assertEquals($exp, $this->byCssSelector('td')->text());
     }
 
