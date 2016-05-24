@@ -156,6 +156,23 @@ class SalaryMaster extends Model {
     }
 
     /**
+     * Get today salary master for updating salary
+     * @param type $member_id
+     * @return type
+     */
+    function getLeaveCarry($member_id) {
+        try {
+            $this->db = $this->getDI()->getShared("db");
+            $sql = "select leaveday_carry from core_member where member_id='" . $member_id . "' and deleted_flag=0";
+            
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
+    /**
      * Get basic salary for all staffs
      * @return type
      */
