@@ -52,7 +52,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('.checkin')->click();
         $this->url('attendancelist/user/attendancelist');
         $element = $this->byCssSelector('h1');
-        $this->assertEquals("attendancelist", $element->text());
+        $this->assertEquals("Today Attendance List", $element->text());
     }
 
     /**
@@ -65,7 +65,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('.checkin')->click();
         $this->url('attendancelist/user/attendancelist');
         $element = $this->byCssSelector('h1');
-        $this->assertEquals("attendancelist", $element->text());
+        $this->assertEquals("Today Attendance List", $element->text());
     }
 
     /**
@@ -78,7 +78,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('.checkout')->click();
         $this->url('attendancelist/user/attendancelist');
         $element = $this->byCssSelector('h1');
-        $this->assertEquals("attendancelist", $element->text());
+        $this->assertEquals("Today Attendance List", $element->text());
     }
 
     /**
@@ -287,7 +287,7 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         }, 2000);
         $this->byLinkText('Attendance List')->click();
         $this->url('attendancelist/user/attendancelist');
-        $this->assertEquals("attendancelist", $this->byCssSelector('h1')->text());
+        $this->assertEquals("Today Attendance List", $this->byCssSelector('h1')->text());
     }
 
     /**

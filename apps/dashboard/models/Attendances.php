@@ -20,7 +20,6 @@ class Attendances extends Model {
       public $notes;
       public $noti_id;
       public $status;
-      public $early_out_hours;
     /**
      * set check in time when user click 'checkin'button
      * @param type $id
@@ -105,13 +104,6 @@ class Attendances extends Model {
                       $Attendances = new Attendances();
                       $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
                       $att->status=3;$att->update();
-                }
-                if($hr< 17){
-                    $early_hr = 17 - $hr;
-                     $Attendances = new Attendances();
-                      $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
-                      $att->status=4;
-                      $att->early_out_hours=$early_hr;$att->update();
                 }
                 $att->checkout_time = $mydate;$att->overtime = $ovt;$att->update();
                 $status = "Successfully Checked Out ";
