@@ -426,7 +426,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                         $emp_ssc = (300000 * $date_to_calculate) * (2 / 100);
                     } else {
                         
-                        $emp_ssc = ($SM['basic_salary']  *$date_to_calculate)*  (2 / 100);
+                        $emp_ssc = ($SM['basic_salary'] * $date_to_calculate) * (2 / 100);
                     }
                    
                     $deduce_amount = $Salarymaster->getreduce($SM['member_id']);
