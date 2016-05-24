@@ -423,10 +423,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
              //echo "Basic sa with deduce ".$basic_deduction;
             //calculate ssc pay amount to deduce
                     if ($SM['basic_salary'] > 300000) {
-                        $emp_ssc = (300000  $date_to_calculate)  (2 / 100);
+                        $emp_ssc = (300000 * $date_to_calculate) * (2 / 100);
                     } else {
                         
-                        $emp_ssc = ($SM['basic_salary']  $date_to_calculate)  (2 / 100);
+                        $emp_ssc = ($SM['basic_salary'] * $date_to_calculate) * (2 / 100);
                     }
                    
                     $deduce_amount = $Salarymaster->getreduce($SM['member_id']);
