@@ -30,7 +30,7 @@ class IndexController extends ControllerBase {
         }
         $this->view->setVar("Noti", $noti);
         $this->module_name = $this->router->getModuleName();
-        $this->view->t = $this->_getTranslation();
+     //   $this->view->t = $this->_getTranslation();
         $this->permission = $this->setPermission($this->router->getModuleName());
         $this->view->permission = $this->permission;
         $moduleIdCallCore = new Db\CoreMember();
@@ -78,6 +78,7 @@ class IndexController extends ControllerBase {
                 }
                 $this->view->disable();                
             }
+            $this->view->t = $this->_getTranslation();
             $this->view->coreid = $core_groupid;
             $this->view->coremember = $coremember;
             $this->view->coreuser = $core_groupuser;
@@ -179,8 +180,7 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function UserRuleSettingAction() {
-                          
+    public function UserRuleSettingAction() {                          
         $id = $this->request->getPost('rel_member_id');
         $group_id = $this->request->getPost('group_id');
         $group_name_post = $this->request->getPost('group_text');
