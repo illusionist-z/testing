@@ -353,22 +353,15 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
+        $Leavecarry = (!empty($Salarymaster->getLeaveCarry($member_id)))? $Salarymaster->getLeaveCarry($member_id) :0;
+        
         //print_r($SM);
         $deduce_amount = array();
-//        $now = new \DateTime('now');
-//        //$budget_startmonth = '04';
-//        $budget_startyear = $now->format('Y') . '-04-01';
-//        //$budget_endmonth = '03';
-//        $endyear = $now->format('Y') . '-03';
-//        $budget_endyear = date("Y-m", strtotime("+1 year", strtotime($endyear)));
-//        $budget_endyear_one = date("Y-m-d", strtotime("+1 year", strtotime($endyear)));
-//        $budget_endyear =  date("Y-m-d", strtotime("-1 month", strtotime($SM['salary_start_date'])));
-//        $budget_start_year = date("Y-m-d", strtotime("-1 year", strtotime($SM['salary_start_date'])));
         $budget_endyear = date("Y-m-d", strtotime("+1 year", strtotime($SM['salary_start_date'])));
         $budget_start_year = $SM['salary_start_date'];
         $salary = "";
         $salary_star_date = $salary_start_year.'-'.$salary_start_month.'-01';
-        
+       
         $salary_update_yr = $salary_start_year;
         $salary_update_mth = $salary_start_month;
         $resign=  $this->getResigndate($member_id);
@@ -380,34 +373,36 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $resigndate=  explode("-", $resign['resign_date']);
             $resignyear=$resigndate[0];
             $resignmonth=$resigndate[1];
-            $bsalaryparday=$SM['basic_salary']/24;
+            $bsalaryparday=$SM['basic_salary']/22;
+            
             $count_attdate=$this->countattdate($resign['resign_date'],$resignyear,$resignmonth,$member_id);
             
-            $salary=$count_attdate['count_attdate']*$bsalaryparday;
-           
-            $count_paymonth=  $this->getPaySalarymonth($resignyear,$resignmonth,$member_id);
-            $year=$count_paymonth['count_pay_date'];
+            $bsalary=$count_attdate['count_attdate']*$bsalaryparday;
             
+//            $count_paymonth=  $this->getPaySalarymonth($resignyear,$resignmonth,$member_id);
+//            $year=$count_paymonth['count_pay_date'];
+           
         }
-        else{
+        else { $bsalary = $SM['basic_salary']; }
             
             $date_diff=$Salarymaster->dateDifference($salary_star_date, $budget_endyear);
             $date_to_calculate = $date_diff;
             $basic_salary=$bsalary*$date_diff;
-           
+            
             if($SD['count_pay']!= 0)
                 {
                     $oldsalary = $SD['total_salary'];
+                   
                     //$old_allowance=$SD['total_all_amount']+$allowancetoadd;
                     $date_to_calculate = $SD['count_pay']+$date_diff;
-                    $basic_salary = ($SD['basic_salary']*$date_diff)+$oldsalary;
+                    $basic_salary = $basic_salary+$oldsalary;
                     
                 }
            
             $Allowanceresult = $Salarymaster->getAllowances($SM['member_id'],$basic_salary,$date_diff,$SD['total_all_amount'],$SM['status'],$allowancetoadd,$SD['count_pay']);
            
             $basic_salary=$Allowanceresult['basic_salary_annual'];
-            
+           
             $latest_otpay = $Salarymaster->getlatestOTPay($member_id, $budget_start_year, $budget_endyear);
             $OTResult = $Salarymaster->calculateOvertimeAnnual($member_id, $SD['total_overtime'], $budget_start_year, $budget_endyear, $date_diff, $SD['count_pay'], $latest_otpay['overtime']);
            
@@ -419,19 +414,21 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             //Get the data of leave setting
             $leavesetting=  $Salarymaster->getleavesetting();
             //calculate absent deduce
-            $countabsent=$Salarymaster->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $leavesetting['fine_amount'], $SM['basic_salary']);
+            $countabsent=$Salarymaster->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], 
+                    $leavesetting['fine_amount'], $SM['basic_salary'],$Leavecarry['leaveday_carry']);
             $absent_dedution=$countabsent+$absent_amount;
             $basic_salary = $basic_salary-$absent_dedution;
-            
+           
             $basic_deduction = $basic_salary * (20 / 100);
+             //echo "Basic sa with deduce ".$basic_deduction;
             //calculate ssc pay amount to deduce
                     if ($SM['basic_salary'] > 300000) {
-                        $emp_ssc = (300000 * $date_to_calculate) * (2 / 100);
+                        $emp_ssc = (300000  $date_to_calculate)  (2 / 100);
                     } else {
                         
-                        $emp_ssc = ($SM['basic_salary'] * $date_to_calculate) * (2 / 100);
+                        $emp_ssc = ($SM['basic_salary']  $date_to_calculate)  (2 / 100);
                     }
-
+                   
                     $deduce_amount = $Salarymaster->getreduce($SM['member_id']);
                     //print_r($deduce_amount).'<br>';
                     
@@ -449,12 +446,12 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     
                     $TaxResult = $taxs['tax_result']-$oldResult['incometax'];
                     }
-        }
+       
         
         $final_result[] = array('income_tax' => $TaxResult,
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
             'special_allowance' => $allowancetoadd,'overtime' => $ot_fees,
-            'absent_dedution' => $absent_dedution,'basic_salary' => $SM['basic_salary']);
+            'absent_dedution' => $absent_dedution,'basic_salary' => round($bsalary));
        //print_r($final_result);exit;
        $Result=$this->saveSalaryEditdata($final_result,$salary_start_year,$salary_start_month);
        
