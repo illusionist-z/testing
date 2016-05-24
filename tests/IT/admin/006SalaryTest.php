@@ -25,7 +25,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
      * @author KhinNyeinChanThu
      * 
      */
-    public function testChecksalary() {
+    public function testChecksalary() {       
         $this->url('dashboard/index/admin');
         $salarychk = $this->byId('pointer_style3');
         $salarychk->click();
@@ -185,7 +185,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('h4.add-big')->click();
         $this->waitUntil(function () {
             return $this->byId("cancel_deduct")->displayed();
-        }, 2000);
+        }, 5000);
         $cancel = $this->byId('cancel_deduct');
         $cancel->click();
         $this->url('salary/index/monthlysalary');
@@ -505,7 +505,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 //        $this->waitUntil(function () {
 //            return $this->byXPath("//div[contains(text(),'OK')]")->displayed();
 //        }, 5000);
-//        $this->byXPath("//div[contains(text(),'OK')]")->click();
+//        $this->byXPath("//submit[contains(text(),'OK')]")->click();
 //        sleep(5);
 //        $this->url('salary/index/addsalary');
 //    }
