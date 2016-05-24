@@ -244,7 +244,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('salary/index/salarysetting');
         sleep(5);
-        $this->byLinkText('deduction')->click();
+        $this->byLinkText('Deduction')->click();
         $this->url('salary/index/salarysetting');
     }
 
@@ -305,9 +305,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalarySettingDedAdd() {
         $this->url('salary/index/salarysetting');
         $this->waitUntil(function () {
-            return $this->byLinkText('deduction')->displayed();
+            return $this->byLinkText('Deduction')->displayed();
         }, 2000);
-        $this->byLinkText('deduction')->click();
+        $this->byLinkText('Deduction')->click();
         $this->byId('add_dec')->click();
         $this->waitUntil(function () {
             return $this->byId('Add_new_deduct')->displayed();
@@ -321,9 +321,9 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testSalarySettingDedAddCancel() {
         $this->url('salary/index/salarysetting');
         $this->waitUntil(function () {
-            return $this->byLinkText('deduction')->displayed();
+            return $this->byLinkText('Deduction')->displayed();
         }, 2000);
-        $this->byLinkText('deduction')->click();
+        $this->byLinkText('Deduction')->click();
         $this->byId('add_dec')->click();
         $this->waitUntil(function () {
             return $this->byId('Add_new_deduct')->displayed();

@@ -126,7 +126,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('dashboard/index/admin');
         $this->byCssSelector('span#btn_show_menu')->click();
-        $this->clickOnElement('navicon4');
+        $this->clickOnElement('navicon4');        
         $this->url('leavedays/index/leavelist');
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Leave Lists', $element->text());

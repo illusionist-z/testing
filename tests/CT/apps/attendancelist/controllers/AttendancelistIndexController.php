@@ -10,6 +10,7 @@ use salts\Manageuser\Models\User as User;
 use salts\Core\Models\Db;
 use salts\Attendancelist\Controllers;
 use salts\Auth\Models;
+use salts\Auth\Models\CoreMember;
 use salts\Attendancelist\Models\CorePermissionGroupId;
 
 
@@ -170,7 +171,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
     public function autolistAction() {
         $this->initialize();
         if ($this->moduleIdCall == 1) {
-            $UserList = new \salts\Auth\Models\CoreMember();
+            $UserList = new \salts\Auth\Models\Db\CoreMember();
             $Username = $UserList->autoUsername();
 
             return true;

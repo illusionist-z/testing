@@ -35,11 +35,11 @@ class TaxDeduce extends Models\SalaryMemberTaxDeduce {
      * @return type
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function editTaxByMemberid($deduce, $no_of_children, $member_id) {
+   public function editTaxByMemberid($deduce, $no_of_children, $member_id,$creartor_id) {
         try {
             $this->db = $this->getDI()->getShared("db");
             $count = $this->getDeduceBymemberid($member_id);
-            $creartor_id = "admin";
+            
             if (!empty($count)) {
                 $delete = "DELETE FROM salary_member_tax_deduce WHERE member_id='" . $member_id . "'";
                 $query = $this->db->query($delete);
