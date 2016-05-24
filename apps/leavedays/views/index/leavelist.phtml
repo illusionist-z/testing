@@ -126,14 +126,21 @@ $length = count($Month);
                                 ?></td>
                             <td><font color="red"><?php
                                 $absent_day = 0;
-                                if (isset($absent[$item->core_member->member_id])) {
+                              if (isset($absent[$item->core_member->member_id])) {
                                     $absent_day = $absent[$item->core_member->member_id];
                                 }
-                                if ($absent_day >= ($max+$item->core_member->leaveday_carry)) {
-                                    echo (( $absent_day) - ($max+$item->core_member->leaveday_carry));
-                                    echo " Days  in absent";
+                                if ($absent_day >= ($max+$item->core_member->leaveday_carry)*8) {
+                                    $left =  (( $absent_day) - ($max+$item->core_member->leaveday_carry)*8);
+                                    $days = $left / 8;
+                                    
+                                    $hr = $left %8;
+                                    echo intval($days) .' days ' . $hr." hours in absent"  ;
                                 } else {
-                                    echo ($item->core_member->leaveday_carry+$max) - ( $absent_day);
+                                   $left= ($item->core_member->leaveday_carry+$max)*9 - ( $absent_day);
+                                   $days = $left / 8;
+                                    
+                                    $hr = $left %8;
+                                    echo intval($days) .' days ' . $hr." hours "  ;
                                 }
                                 ?></font></td>
                         </tr>
