@@ -106,7 +106,7 @@ class Attendances extends Model {
                       $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
                       $att->status=3;$att->update();
                 }
-                if($hr< 17){
+                if($hr>12 && $hr< 17){
                     $early_hr = 17 - $hr;
                      $Attendances = new Attendances();
                       $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
