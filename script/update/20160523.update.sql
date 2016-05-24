@@ -1,0 +1,1 @@
+ALTER TABLE `attendances` ADD `early_out_hours` INT NOT NULL AFTER `checkout_time`;

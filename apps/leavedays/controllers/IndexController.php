@@ -299,7 +299,12 @@ class IndexController extends ControllerBase {
             $noti = $Admin->GetAdminNoti($id);
             $this->view->setVar("Noti", $noti);
             $Result = $Admin->checkLeave();
-            $this->view->setVar("Result", $Result);
+          //  $this->view->setVar("Result", $Result);
+             if(sizeof($Result['noleave_name']) != 0){
+                        $this->view->setVar("Result", $Result['noleave_name']); 
+                }else{
+                    $this->view->setVar("Result", $Result['leave_least']);
+                }
         } else {
             echo 'Page Not Found';
         }

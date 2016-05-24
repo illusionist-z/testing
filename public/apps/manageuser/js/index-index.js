@@ -42,7 +42,7 @@ Manage.User = {
                             + '<tr><td>' + res[1]['pno'] + '</td>'
                             + '<td><input style="margin-top:10px;" type="text" value="' + res[0].member_mobile_tel + '" name="pno" id="edit_user_phone"></td></tr>'
                             + '<tr><td>' + res[1]['address'] + ' </td>'
-                            + '<td colspan="4"><textarea style="margin-top:10px;"  rows="5" cols="20" name="address" style="color:black">' + res[0].member_address + '</textarea></td></tr>'
+                            + '<td colspan="4"><textarea style="margin-top:10px; resize: none;"  rows="5" cols="20" name="address" style="color:black">' + res[0].member_address + '</textarea></td></tr>'
                             + '<tr><td></td><td colspan="3"><br><a href="#" class="button" id="edit_edit">' + res[1]['btn_edit'] + '</a><a href="#" class="button" id="edit_delete">' + res[1]['btn_delete'] + '</a><a href="#" class="button" id="edit_close">' + res[1]['btn_cancel'] + '</a></td>'
                             + '</tr></table></form>';
                     title = res[1]['edit'];
@@ -57,7 +57,7 @@ Manage.User = {
                             + '<tr><td></td><td id="existId"></td></tr>'
                             + '<tr><td>' + res[1]['ssn'] + '</td><td><input style="margin-top:10px" type="text" name="ssn_no" class="col-sm-10" placeholder="' + res[1]['placeholder_ssn'] + '"></td></tr>'
                             + '<tr><td>' + res[1]['username'] + '</td><td><input style="margin-top:10px" type="text" name="full_name" class="col-sm-10" id="full_name" placeholder="' + res[1]['placeholder2'] + '"></td></tr>'
-                            + '<tr><td>Myanmar Name</td><td><input style="margin-top:10px" type="text" name="mm_name" class="col-sm-10" placeholder="Write your name in myanmar"></td></tr>'
+                            + '<tr><td>' + res[1]['myanmarname'] + '</td><td><input style="margin-top:10px" type="text" name="mm_name" class="col-sm-10" placeholder="' + res[1]['placeholder21'] + '"></td></tr>'
                             + '<tr><td>' + res[1]['bank'] + '</td><td><input style="margin-top:10px" type="text" name="bank" class="col-sm-10" placeholder="' + res[1]['placeholder_bank'] + '"></td></tr>'
                             + '<tr><td>' + res[1]['pass'] + '</td><td><input style="margin-top:10px" type="password" name="password" class="col-sm-10" id="pass" placeholder="' + res[1]['placeholder3'] + '"></td></tr>'
                             + '<tr><td>' + res[1]['confirm'] + '</td><td><input style="margin-top:10px" type="password" name="confirm" class="col-sm-10" id="confirmpass" placeholder="' + res[1]['placeholder4'] + '"></td></tr>'
@@ -66,7 +66,7 @@ Manage.User = {
                             + '<tr><td>' + res[1]['pos'] + '</td><td><input style="margin-top:10px" type="text" name="position" id="pos" class="col-sm-10" placeholder="' + res[1]['placeholder7'] + '"></td></tr>'
                             + '<tr><td>' + res[1]['mail'] + '</td><td><input style="margin-top:10px"  type="email" name="email" id="mail" class="col-sm-10" placeholder="' + res[1]['placeholder8'] + '"></td></tr>'
                             + '<tr><td>' + res[1]['pno'] + '</td><td><input style="margin-top:10px" type="text" name="phno" id="pno" class="col-sm-10" placeholder="' + res[1]['placeholder9'] + '"></td></tr>'
-                            + '<tr><td>' + res[1]['address'] + '</td><td><textarea rows="4" style="width:255px;"  name="address" placeholder="' + res[1]['placeholder10'] + '"></textarea></td></tr>'
+                            + '<tr><td>' + res[1]['address'] + '</td><td><textarea rows="4" style="width:255px; resize: none;"  name="address" placeholder="' + res[1]['placeholder10'] + '"></textarea></td></tr>'
                             + '<tr><td><br>' + res[1]['role'] + '</td><td><select style="margin-top:10px" class="mySelect" data-toggle="select" name="user_role" id="member[user_role]">'
                             + option + '</select>'
                             + '<tr><td></td><td ><input style="margin-top:10px" type="submit" onclick="return false;" class="buttonn submit_useradd" id="add_user" value="' + res[1]['placeholder11'] + '"> <input style="margin-top:10px" type="reset" class="buttonn" id="addinguser_close" value="' + res[1]['placeholder12'] + '"></td>'

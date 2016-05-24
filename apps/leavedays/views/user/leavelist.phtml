@@ -57,7 +57,7 @@ $length = count($Month);
 
             </select>
 
-            <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="Search" id="usersearch"></b>
+            <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= $t->_("search"); ?>" id="usersearch"></b>
             <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><b>Export</b></a>
             <a href="leavelist/1" class="button export" id="exbg" ><img id="exicon"><b>Export All</b></a>
         </form>

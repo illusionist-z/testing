@@ -28,14 +28,14 @@ class Attendances extends Model {
                             ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                             ->where('core.member_login_name = :name:', array('name' => $name))
                             ->andWhere('attendances.att_date = :today:', array('today' => $today))->andWhere('core.deleted_flag = 0')
-                            ->andWhere('attendances.status = 0 OR attendances.status = 3')
+                            ->andWhere('attendances.status = 0 OR attendances.status = 3 OR attendances.status = 4')
                             ->getQuery()->execute();
         } else {
             $row = $this->modelsManager->createBuilder()->columns(array('core.*', 'attendances.*'))
                             ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                             ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                             ->where('attendances.att_date = :today:', array('today' => $today))->andWhere('core.deleted_flag = 0')
-                            ->andWhere('attendances.status = 0 OR attendances.status = 3')
+                            ->andWhere('attendances.status = 0 OR attendances.status = 3  OR attendances.status = 4')
                             ->orderBy('attendances.checkin_time DESC')
                             ->getQuery()->execute();
         }
