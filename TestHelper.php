@@ -39,10 +39,11 @@ spl_autoload_register(function () {
     include_once 'apps/auth/models/db/CorePermissionRelMember.php';
     include_once 'apps/auth/models/db/CorePermissionGroup.php';
     include_once 'apps/auth/models/db/CorePermission.php';
+     include_once 'apps/auth/models/db/CoreMember.php';
 //    dashboard
     include_once 'apps/dashboard/controllers/ControllerBase.php';
     include_once 'apps/dashboard/controllers/IndexController.php';
-    include_once 'apps/dashboard/controllers/UserController.php';
+//    include_once 'apps/dashboard/controllers/UserController.php';
     include_once 'apps/dashboard/models/Absent.php';
     include_once 'apps/dashboard/models/Attendances.php';
     include_once 'apps/dashboard/models/CoreNotification.php';
@@ -74,6 +75,7 @@ spl_autoload_register(function () {
     include_once 'apps/attendancelist/controllers/SearchController.php';
     include_once 'apps/attendancelist/controllers/UserController.php';
     include_once 'apps/attendancelist/models/Attendances.php';
+    
 
 //    leavedays
     include_once 'apps/leavedays/controllers/IndexController.php';

@@ -97,6 +97,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->select($this->byName('leavetype'))->selectOptionByValue("On Vacation");
         $this->byCssSelector('textarea')->value("illness");
         $this->byCssSelector('input#apply_form_submit')->click();
+        sleep(4);
         $this->assertEquals('Your Leave Applied Successfully!', $this->alertText());
         $this->acceptAlert();
         $this->url('leavedays/user/applyleave');
