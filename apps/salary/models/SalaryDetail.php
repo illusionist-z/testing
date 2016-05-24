@@ -81,18 +81,24 @@ class SalaryDetail extends Model {
      */
     public function salarylist($month, $year) {
         try {
-            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
+            $stmt = $this->db->prepare("select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
                 from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
-select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='" . $year . "' GROUP BY id";
-            //echo $sql.'<br>';
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
-            //exit;
+select member_id from salary_detail) and MONTH(SD.pay_date) = :month and YEAR(SD.pay_date) = :year GROUP BY id");
+
+            $stmt->execute(array('month' => $month,'year' => $year));
+            
+////            $sql = "select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
+//                from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
+//select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and YEAR(SD.pay_date)='" . $year . "' GROUP BY id";
+//            //echo $sql.'<br>';
+//            $result = $this->db->query($sql);
+//            $row = $result->fetchall();
+          
         } catch (Exception $ex) {
             echo $ex;
         }
 
-        return $row;
+        return $stmt;
     }
 
     /**
@@ -219,9 +225,10 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     /**
      * Get salary detail for each month
+     * @author zinmon
      */
     public function getSalaryDetail($currentPage,$IsPaging) {
-        try {            
+        try { 
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarymas.*', 'core.*'))
                     ->from(array('salarymas' => 'salts\Salary\Models\SalaryMaster'))
@@ -257,14 +264,23 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      */
     public function editSalary($member_id) {
         try {
-            $sql = "select * from salary_master left join core_member on "
-                    . "salary_master.member_id=core_member.member_id where salary_master.id ='" . $member_id . "'";
-            $result = $this->db->query($sql);
-            $row = $result->fetchall();
+            $stmt = $this->db->prepare('select * from salary_master left join core_member on '
+                    . 'salary_master.member_id=core_member.member_id where salary_master.id = :salary_master_id');
+
+            $stmt->execute(array('salary_master_id' => $member_id));
+
+//            foreach ($stmt as $row) {
+//                // do something with $row
+//                echo $row['member_id'];
+//            }exit;
+//            $sql = "select * from salary_master left join core_member on "
+//                    . "salary_master.member_id=core_member.member_id where salary_master.id ='" . $member_id . "'";
+//            $result = $this->db->query($sql);
+//            $row = $result->fetchall();
         } catch (Exception $e) {
             echo $e;
         }
-        return $row;
+        return $stmt;
     }
 
     public function btnedit($data) {
@@ -334,6 +350,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
     public function updateSalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,
         $salary_start_month,$absent_amount,$overtime_hr,$overtimerate,$workingstartdt) {
+        
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
         //print_r($SM);
@@ -355,15 +372,16 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $salary_update_yr = $salary_start_year;
         $salary_update_mth = $salary_start_month;
         $resign=  $this->getResigndate($member_id);
+        
         $basic_salary='';
         $SD = $this->getoldsalarydetail($member_id, $salary_update_yr,$salary_update_mth,$budget_start_year);
         
         if($resign['resign_date']!=null){
             $resigndate=  explode("-", $resign['resign_date']);
-            $resignyear=$resigndate[1];
-            $resignmonth=$resigndate[0];
+            $resignyear=$resigndate[0];
+            $resignmonth=$resigndate[1];
             $bsalaryparday=$SM['basic_salary']/24;
-            $count_attdate=$this->countattdate($resign['resign_date'],$resignmonth,$member_id);
+            $count_attdate=$this->countattdate($resign['resign_date'],$resignyear,$resignmonth,$member_id);
             
             $salary=$count_attdate['count_attdate']*$bsalaryparday;
            
@@ -515,26 +533,11 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @return type
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function countattdate($resigndate,$resignmonth,$member_id) {
+    public function countattdate($resigndate,$resignyear,$resignmonth,$member_id) {
         try {
-            $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'";
-            //echo $sql.'<br>';exit;
-            $result = $this->db->query($sql);
-            $row = $result->fetcharray();
-        } catch (Exception $ex) {
-            echo $ex;
-        }
-
-        return $row;
-    }
-
-    public function getoldsalary($budget_startmonth,$member_id, $salary_update_yr, $salary_update_mth) {
-        try {
+            $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'"
+                    . " and YEAR(att_date)='".$resignyear."' and MONTH(att_date)='".$resignmonth."' and status=0";
             
-            $salary_update_mth =$salary_update_mth-1;
-            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<='" . $salary_update_mth . "' and YEAR(pay_date)='" . $salary_update_yr . "' and MONTH(pay_date)>='".$budget_startmonth."'";
-
-            //echo $sql.'<br>';exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
@@ -543,6 +546,22 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
 
         return $row;
     }
+
+//    public function getoldsalary($budget_startmonth,$member_id, $salary_update_yr, $salary_update_mth) {
+//        try {
+//            
+//            $salary_update_mth =$salary_update_mth-1;
+//            $sql = "select SUM(basic_salary) as total_salary,COUNT(pay_date)as count_pay from salary_detail where member_id='" . $member_id . "' and MONTH(pay_date)<='" . $salary_update_mth . "' and YEAR(pay_date)='" . $salary_update_yr . "' and MONTH(pay_date)>='".$budget_startmonth."'";
+//
+//            //echo $sql.'<br>';exit;
+//            $result = $this->db->query($sql);
+//            $row = $result->fetcharray();
+//        } catch (Exception $ex) {
+//            echo $ex;
+//        }
+//
+//        return $row;
+//    }
     
     public function getoldsalarydetail($member_id,$salary_update_yr,$salary_update_mth,$budget_start_year) {
         try {

@@ -243,7 +243,8 @@ class IndexController extends ControllerBase {
      * @return true|false
      */
     public function btneditAction() {
-          if ($this->permission == 1) {       
+          if ($this->permission == 1) {  
+        $loginuser = $this->session->user['member_id'];
         $data['member_id'] = $this->request->getPost('member_id');        
         $data['no_of_children'] = $this->request->getPost('no_of_children');
         $check_allow = $this->request->getPost('check_allow');
@@ -252,10 +253,10 @@ class IndexController extends ControllerBase {
         $cond = $SalaryDetail->btnedit($this->request->getPost());
 
         $Taxdeduce = new SalaryMemberTaxDeduce();
-        $Taxdeduce->editTaxByMemberid($check_deduce, $data['no_of_children'], $data['member_id']);
+        $Taxdeduce->editTaxByMemberid($check_deduce, $data['no_of_children'], $data['member_id'],$loginuser);
 
         $SalaryMasterAllowance = new \salts\Salary\Models\SalaryMasterAllowance();
-        $SalaryMasterAllowance->editAllowanceByMemberid($check_allow, $data['member_id']);
+        $SalaryMasterAllowance->editAllowanceByMemberid($check_allow, $data['member_id'],$loginuser);
         echo json_encode($cond);
         $this->view->disable();
           }

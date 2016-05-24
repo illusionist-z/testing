@@ -483,6 +483,14 @@ class SalaryMaster extends Model {
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
             $row['countAbsent']+=(($row2['countAbsent'])/2); 
+               $sql3 = "select *,SUM(early_out_hours) as total from attendances where member_id='" . $member_id. "' "
+                    . "and att_date>='" . $budget_startyear . "' and att_date<='" . $workingnextyr . "' and deleted_flag=0 and (status = 4)";
+               $result3 = $this->db->query($sql3);
+              $row3 = $result3->fetcharray();
+               $row['countAbsent']= ($row['countAbsent'])+($row3['total']/9); 
+
+            
+            
             
         } catch (Exception $ex) {
             echo $ex;

@@ -13,12 +13,14 @@ date_default_timezone_set('UTC');
 class Attendances extends Model {
     
       public $checkin_time;
+      public $checkout_time;
       public $member_id;
       public $att_date;
       public $location;
       public $notes;
       public $noti_id;
       public $status;
+      public $early_out_hours;
     /**
      * set check in time when user click 'checkin'button
      * @param type $id
@@ -98,10 +100,18 @@ class Attendances extends Model {
          ($workingHour > 28800) ?  $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',') : $ovt = 0;
                 $hour = \salts\Core\Models\Db\Attendances::getInstance()->UTCToLocal($mydate, $offset);
                 $hr = date("H",strtotime($hour));
+                
                 if($hr < 12) {
                       $Attendances = new Attendances();
                       $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
                       $att->status=3;$att->update();
+                }
+                if($hr< 17){
+                    $early_hr = 17 - $hr;
+                     $Attendances = new Attendances();
+                      $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
+                      $att->status=4;
+                      $att->early_out_hours=$early_hr;$att->update();
                 }
                 $att->checkout_time = $mydate;$att->overtime = $ovt;$att->update();
                 $status = "Successfully Checked Out ";

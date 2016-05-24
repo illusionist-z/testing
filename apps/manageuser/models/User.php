@@ -72,7 +72,7 @@ class User extends Model {
 
                         $core_table_update = \salts\Core\Models\Permission::tableObject($core_table);
                         $core_table_update->member_login_name = $cond['name'];
-                        $core_table_update->full_name                 = $cond['full_name'];
+                        $core_table_update->full_name   = $cond['full_name'];
 
                         $core_table_update->member_dept_name = $cond['dept'];
                         $core_table_update->bank_acc                 = $cond['bank'];
