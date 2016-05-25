@@ -282,12 +282,9 @@ var Salary = {
             data: {id: member_id},
             success: function () {
 
-                d.dialog("close");
+                location.reload();
             }
-        }).done(function () {
-            //$('body').load('salarylist');
-            $("#salarylist").reload();
-        });
+        })
     },
     calSalary: function () {
 
