@@ -1,12 +1,7 @@
 <?php
-
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
-    
- 
-use Phalcon\Filter;
- 
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -14,7 +9,7 @@ use Phalcon\Filter;
         <?= "Company List"; ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= "Home" ?></a></li>
         <li class="active"><?= "Company List"; ?></li>
     </ol>
 </section>
@@ -22,10 +17,10 @@ use Phalcon\Filter;
 <!-- Main content -->
 <section class="content">
     <div class="row">	
-        <form class="buttons" action="<?php echo $baseUri ?>managecompany/index/index">
-            <input  type="text" class="userauto form-control-static" name="comlistsearch" id="com_name" placeholder="<?= "Search Company ID"; ?>" autocomplete="off">
-            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="" style="margin-top: -10px;">
-            <a href="<?php echo $baseUri ?>managecompany/index/addcompany"  class="addnewcom right button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
+        <form class="" style="float: right;" action="<?php echo $baseUri ?>managecompany/index/index">
+            <input  type="text" style="margin-top: 10px;" class="userauto form-control-static " name="comlistsearch" id="com_name" placeholder="<?= "Search Company ID"; ?>" autocomplete="off">
+            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="searchbg">            
+            <a href="<?php echo $baseUri ?>managecompany/index/addcompany" style="margin-right: 25px;margin-top: 10px;margin-left: 5px;" class="addnewcom  button  form-control-static" id="addinguser"><?= "Add New Company"; ?></a>              
         </form>
     </div>
 
@@ -38,12 +33,12 @@ use Phalcon\Filter;
                         <th>ID</th>
                         <th><?= "Company  ID"; ?></th>
                         <th><?= "Company Name"; ?></th>
-                        <th ><?= "Starting date"; ?></th>
-                        <th ><?= "Email"; ?></th>
-                        <th ><?= "Phone no"; ?></th>
-                        <th ><?= "dbname"; ?></th> 
-                        <th ><?= "host"; ?></th>
-                        <th ><?= "user limit"; ?></th>
+                        <th><?= "Starting date"; ?></th>
+                        <th><?= "Email"; ?></th>
+                        <th><?= "Phone no"; ?></th>
+                        <th><?= "Database Name"; ?></th> 
+                        <th><?= "Host"; ?></th>
+                        <th><?= "User Limit"; ?></th>
                         <th></th>
                     </tr>
 
@@ -78,7 +73,6 @@ use Phalcon\Filter;
 <div id="confirm" title="Confirm Delete">
 
 </div>
-
 
 
 
