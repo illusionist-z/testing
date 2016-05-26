@@ -56,7 +56,7 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $sdate = date("Y-m-d h:i:sa", $d);
         $e = strtotime("+9 Days");
         $edate = date("Y-m-d h:i:sa", $e);
-        $leave = array("uname" => "7913e45c-c898-11e5-9e13-4c3488333b45",
+        $leave = array("uname" => "1b7ddc0a-c897-11e5-9e13-4c3488333b45",
             "sdate" => $sdate, "edate" => $edate,
             "type" => "donation", "desc" => "family donation");
         $appleave->setinfo($leave);

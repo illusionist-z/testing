@@ -50,11 +50,11 @@ class SalarySearchController extends Controllers\SearchController {
      * undefined $field
      */
 
-    public function searchTravelfeesAction() {
+    public function searchTravelfeesAction($exportMode = null) {
         $this->initialize();
         $data = $this->param;
         $SalaryDetail = new SalaryDetailTest();
-        $search_result = $SalaryDetail->searchSList($data);       
+        $search_result = $SalaryDetail->searchSList($data,0);       
         return true;
     }
 
