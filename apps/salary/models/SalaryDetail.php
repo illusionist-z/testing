@@ -182,22 +182,30 @@ select member_id from salary_detail) and MONTH(SD.pay_date) = :month and YEAR(SD
     public function getPayslip($member_id, $month, $year) {
         try {
 
-            $row = $this->modelsManager->createBuilder()
-                    ->columns(array('salarydet.*', 'core.*', 'salarymast.*', 'attend.*'))
-                    ->from(array('salarydet' => 'salts\Salary\Models\SalaryDetail'))
-                    ->join('salts\Core\Models\Db\CoreMember', 'core.member_id = salarydet.member_id', 'core')
-                    ->join('salts\Salary\Models\SalaryMaster', 'salarymast.member_id = salarydet.member_id', 'salarymast')
-                    ->join('salts\Core\Models\Db\Attendances', 'attend.member_id = salarymast.member_id', 'attend')
-                    ->where('salarydet.member_id = :member_id:', array('member_id' => $member_id))
-                    ->andWhere('MONTH(salarydet.pay_date) = :month:', array('month' => $month))
-                    ->andWhere('YEAR(pay_date) = :year:', array('year' => $year))
-                    //->andWhere('MONTH(attend.att_date) = :month:', array('month' => $month))
-                    //->andWhere('YEAR(attend.att_date) = :year:', array('year' => $year))
-                    ->limit(1)
-                    ->getQuery()
-                    ->execute();
+//            $row = $this->modelsManager->createBuilder()
+//                    ->columns(array('salarydet.*', 'core.*', 'salarymast.*', 'attend.*','SUM(attend.overtime)'))
+//                    ->from(array('salarydet' => 'salts\Salary\Models\SalaryDetail'))
+//                    ->join('salts\Core\Models\Db\CoreMember', 'core.member_id = salarydet.member_id', 'core')
+//                    ->join('salts\Salary\Models\SalaryMaster', 'salarymast.member_id = salarydet.member_id', 'salarymast')
+//                    ->join('salts\Core\Models\Db\Attendances', 'attend.member_id = salarymast.member_id', 'attend')
+//                    ->where('salarydet.member_id = :member_id:', array('member_id' => $member_id))
+//                    ->andWhere('MONTH(attend.att_date) = :month:', array('month' => $month))
+//                    ->andWhere('YEAR(attend.att_date) = :year:', array('year' => $year))
+//                    //->andWhere('MONTH(attend.att_date) = :month:', array('month' => $month))
+//                    //->andWhere('YEAR(attend.att_date) = :year:', array('year' => $year))
+//                    ->limit(1)
+//                    ->getQuery()
+//                    ->execute();
 
-        } catch (Exception $e) {
+            $sql="SELECT *,sum(attendances.overtime)as OThr,salary_detail.ssc_emp as sd_ssc_emp"
+                    . " FROM  salary_detail join attendances on salary_detail.member_id=attendances.member_id "
+                    . "join salary_master on salary_master.member_id=attendances.member_id "
+                    . "join core_member on core_member.member_id=salary_master.member_id "
+                    . "WHERE salary_detail.member_id='".$member_id."' and MONTH(attendances.att_date)='".$month."' and YEAR(attendances.att_date)='".$year."' and salary_detail.pay_date='2016-05-31'";
+            //echo  $sql;exit;
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            } catch (Exception $e) {
             echo $e;
         }
         return $row;
@@ -511,7 +519,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     
     public function getResigndate($member_id) {
         try {
-            $sql = "select resign_date from salary_detail where member_id='" . $member_id . "'";
+            $sql = "select resign_date from salary_detail where member_id='" . $member_id . "' order by pay_date desc limit 1";
             //echo $sql.'<br>';exit;
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
@@ -534,7 +542,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         try {
             $sql = "select count(att_date) as count_attdate from attendances where member_id='" . $member_id . "' and DATE(att_date)<='" . $resigndate . "'"
                     . " and YEAR(att_date)='".$resignyear."' and MONTH(att_date)='".$resignmonth."' and status=0";
-            
+           
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $ex) {
@@ -595,8 +603,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         return $row;
     }
     public function addResign($data){
-          try{
-         $sql = "Update salary_detail SET resign_date ='". $data['resign_date'] ."' Where member_id='".$data['member_id']."'";
+         try{
+         $regdate = explode('-', $data['resign_date']);
+         $regyear = $regdate[0];
+         $regmonth = $regdate[1];
+         $sql = "Update salary_detail SET resign_date ='". $data['resign_date'] ."'"
+                 . " Where member_id='".$data['member_id']."' and YEAR(pay_date)='".$regyear."' and MONTH(pay_date)='".$regmonth."'";
+        
          $this->db->query($sql);
      } catch (Exception $ex) {
          echo $ex;
@@ -606,8 +619,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * Saw Zin Min Tun     
      */
     public function findMonthyear($monthyear) {       
-     //  print_r($monthyear);exit;
-        //exit;
+  
         // Check if the user exist
         $monthyear = $monthyear;
        // print_r($monthyear);exit;
@@ -790,7 +802,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
     
     public function MonthlyListExport($data){
-          header("Content-type: application/csv");
+        header("Content-type: application/csv");
         header("Content-Disposition: attachment; filename=MonthlySalaryListAll.csv;");        
         echo "\xEF\xBB\xBF"; // UTF-8 BOM        
         $output = fopen('php://output', 'w');               
