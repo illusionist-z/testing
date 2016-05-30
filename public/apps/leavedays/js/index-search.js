@@ -71,7 +71,7 @@ function search_list(p)
                             + "<td>" + json_obj.items[i].leave_category + "</td>"
                             + "<td>" + json_obj.items[i].leave_description + "</td>"
                             + "<td>" + leave_status + "</td>"
-                            + "<td style='color:red;'>" + leave_left + status + "</td>"
+                       
                             + "</tr>";
                     $("tbody").append(output);
                 }
