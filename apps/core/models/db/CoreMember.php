@@ -316,7 +316,6 @@ class CoreMember extends \Library\Core\Models\Base {
 
             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='" . $type . "' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc  ";
         } else if ($type == 2) {
-
             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='0' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc   ";
         } else {
             $sql = "SELECT * FROM core_notification JOIN core_member ON core_member.member_id=core_notification.noti_creator_id WHERE core_notification.noti_status='" . $type . "' AND core_notification.noti_creator_id='" . $id . "' order by created_dt asc limit 10";
