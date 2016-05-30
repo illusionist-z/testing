@@ -1,13 +1,18 @@
 <?php
 
-if (!isset($_SESSION)) {
+
+if(session_status()!=PHP_SESSION_ACTIVE) {
     session_start();
-    $_SESSION = array();
 }
 
 require_once 'apps/auth/controllers/LoginControllerTest.php';
 require_once 'apps/auth/controllers/AuthIndexController.php';
 require_once 'apps/auth/controllers/LogoutControllerTest.php';
+
+if (!isset($_SESSION)) {
+
+    $_SESSION = array();
+}
 
 /**
  * Class LoginCTTest
@@ -34,10 +39,11 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testfailerUserAction() {
+
         $timestamp = (date("Y-m-d H:i:s"));
         $_SESSION['startTime'] = $timestamp;
         $wrong_params = array('company_id' => 'gnext',
-            "member_login_name" => "malkhin", "password" => "balh");
+            "member_login_name" => "malkhin", "password" => "1234");
         $test = new AuthIndexController();
         $test->setparam($wrong_params);
         $this->assertTrue($test->failerUserAction());
