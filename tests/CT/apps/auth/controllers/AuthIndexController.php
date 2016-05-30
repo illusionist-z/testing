@@ -99,20 +99,23 @@ class AuthIndexController extends Controllers\IndexController {
                     session_destroy();
                 }
                 return true;
+                
             }
+            
         }
     }
 
     public function saltsForGetAction() {
         //  $Core = new Models\CoreMember();
-        $user = $this->param;       
+        $user = $this->param;
         if ($user) {
-            
+
             $this->response->redirect('setting/index/index');
         }
         return true;
     }
-     public function forGotPasswordAction() {
+
+    public function forGotPasswordAction() {
         
     }
 
@@ -125,8 +128,6 @@ class AuthIndexController extends Controllers\IndexController {
             return true;
         }
     }
-
-
 
     public function checkMailAction() {
         $filter = new Filter();
@@ -146,10 +147,10 @@ class AuthIndexController extends Controllers\IndexController {
         $filter = new Filter();
         $member_mail = $filter->sanitize($this->mailParam, 'string');
         $Admin = new \salts\Auth\Models\CoreMember();
-        $result = $Admin::find(array("member_mail = '$member_mail'", "deleted_flag = 0"));          
+        $result = $Admin::find(array("member_mail = '$member_mail'", "deleted_flag = 0"));
         $data = [];
         foreach ($result as $value) {
-            
+
             $data[] = $value->member_mail;
             $data[] = $value->member_login_name;
         }
