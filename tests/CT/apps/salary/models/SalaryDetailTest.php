@@ -177,7 +177,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date)='" . $month . "' and
      */
     public function getPayslip($member_id, $month, $year) {
         try {
-
+            $this->db = $this->getDI()->getShared("db");
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarydet.*', 'core.*', 'salarymast.*', 'attend.*'))
                     ->from(array('salarydet' => 'salts\Salary\Models\SalaryDetail'))
