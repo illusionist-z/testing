@@ -133,7 +133,7 @@ class SalaryMasterController extends ControllerBase {
         $absent = $this->request->get('absent');
         $workingstartdt = $this->request->get('workingstartdt');
         $SalaryMaster = new SalaryMaster();
-        $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr);
+        $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month);
         $Salarydetail = new SalaryDetail();
         $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, 
                 $month, $absent, $overtime_hr, $overtimerate,$workingstartdt);
