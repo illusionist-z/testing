@@ -103,17 +103,17 @@ if (!ini_get('date.timezone')) {
     <div id="pageRule<?= $datauser2->idpage ?>" title="<?= $t->_("changepagerule"); ?>" style="display: none;">
 
         <br> 
-        Group ID    
-        <input type="text" style="margin-left:50px;" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled>
+        <span class="col-md-5"> Group ID</span>
+        <span class="col-md-7"><input type="text" style="" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled></span>
         <br> 
         <form method="POST" action="index/User2RuleSetting">    
-          <?= $t->_("pagename"); ?>
-            <input type="text"  style="margin-left:38px;" name="permission_code" value="<?= $datauser2->permission_code ?>">
+            <span class="col-md-5"><?= $t->_("pagename"); ?></span>
+            <span class="col-md-7"><input type="text"  style="" name="permission_code" value="<?= $datauser2->permission_code ?>"></span>
             <br><br>         
-           <?= $t->_("grouprule"); ?>
-            <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >            
+            <span class="col-md-5"><?= $t->_("grouprule"); ?></span>
+            <span class="col-md-7"> <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >
 
-            <select type="text" style="margin-left:33px;" name='page_rule_group' value='' id="changeuser">
+            <select type="text" style="" name='page_rule_group' value='' id="changeuser">
                 <?php
                 foreach ($coreid as $data) {
                     ?>
@@ -124,6 +124,7 @@ if (!ini_get('date.timezone')) {
                 }
                 ?>         
             </select>
+                </span>
         </form>
 
     </div>
