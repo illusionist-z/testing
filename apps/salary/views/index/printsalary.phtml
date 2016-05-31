@@ -69,18 +69,18 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td>Overtime Hour</td>
-                                            <td style="text-align: right;padding: 2px"><?php if($A[$i]['overtime']==0){echo "";}else{echo $filter->sanitize($A[$i]['overtime'], "string");} ?></td>
+                                            <td style="text-align: right;padding: 2px"><?php if($A[$i]['OThr']==0){echo "";}else{echo $filter->sanitize($A[$i]['OThr'], "string");} ?></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td>Overtime Payment</td>
                                             <td style="text-align: right;padding: 2px">
                                                 <?php
-                                                if ($filter->sanitize($A[$i]['overtime'], "string") > 0) {
-                                                    $overtime_pay_perhr = $A[$i]['overtime'] * $A[$i]['over_time'];
-                                                    $overtime_payment = $overtime_pay_perhr * $A[$i]['overtime'];
+                                                if ($filter->sanitize($A[$i]['OThr'], "string") > 0) {
+                                                    $overtime_pay_perhr = $A[$i]['OThr'] * $A[$i]['over_time'];
+                                                    $overtime_payment = $overtime_pay_perhr * $A[$i]['OThr'];
                                                     echo $overtime_pay_perhr;
-                                                   $sum = $sum + $overtime_fees +$A[$i]['special_allowance'];
+                                                   $sum = $sum + $overtime_payment +$A[$i]['special_allowance'];
 
                                                 }
                                                 ?>
