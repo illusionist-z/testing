@@ -24,7 +24,8 @@ $messages = array(
     "Allowance"=>"အက်ဳိးခံစားခြင္႔",
     "Document"=>"စာရြက္စာတမ္း",
     "Letter Head"=>"Letter Head",
-    "SSB & Tax Document"=>"SSB အခြန္ & ၀င္ေငြခြန္",
+    "SSB"=>"SSB အခြန္",
+    "Tax Document" => "၀င္ေငြခြန္",
 
     
     
@@ -137,6 +138,17 @@ $messages = array(
     "Delete"=>"ဖ်က္ရန္",
     "Admin can delete"=>"အက္မင္သည္ ခြင္႔အမ်ိဳးအစားမ်ားကို ဖ်က္ႏိုင္သည္။",
    
+      /**
+     * Leave Day Left
+     */
+    "Leave Day Left"=>"က်န္ေသာခြင့္ရက္မ်ားကိုၾကည့္ရူျခင္း",
+    "Leave Day Carry"=>"Carry ခြင့္",
+    "You can known your Leave Day Carry"=>"Carryခြင့္မ်ားကို ၾကည့္ႏုိင္သည္။",
+    "Total Leave Days"=>"ခြင့္ရက္ေပါင္း",
+    "You can known your Total Leave Day"=>"တစ္ႏွစ္စာခြင့္မ်ားကိုသိႏုိင္သည္။",
+    "Leave DayLeft"=>"က်န္ေသာခြင့္ရက္မ်ား",
+    "You can known your Leave Day Left"=>"က်န္ေနေသာခြင့္ရက္မ်ားကိုသိႏုိင္သည္။",
+    
     /**
      * Add Salary
      */
@@ -238,6 +250,9 @@ $messages = array(
     "SSB and Tax Document Printing"=>"SSB အခြန္ & ၀င္ေငြခြန္ မ်ားကို Print ထုတ္ရန္",
     "Print"=>"Print",
     "Print SSB & Tax"=>"SSB အခြန္ & ၀င္ေငြခြန္ မ်ားကို Print ထုတ္ျပီး အေသးစိတ္ၾကည့္ရွဳနိုင္ပါသည္။",   
+    "Print salaryreferdocument" => "Salary Refer Document ႏွင့္ဆိုင္ေသာအခ်က္အလက္မ်ားကို Print ထုတ္ျပီးအေသးစိတ္ၾကည့္ရူႏုိင္ပါသည္",
+    "exportssbapplyform" => "SSB Apply Form ႏွင့္ဆိုင္ေသာအခ်က္အလက္မ်ားကို Export လုပ္ျပီးအေသးစိတ္ၾကည့္ရူႏုိင္ပါသည္။",
+    "exportssbresignform" => "SSB Resign Form ႏွင့္ဆိုင္ေသာအခ်က္အလက္မ်ားကို Export လုပ္ျပီးအေသးစိတ္ၾကည့္ရူႏုိင္ပါသည္။",
     /**
      * Header
      */
