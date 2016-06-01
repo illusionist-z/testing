@@ -21,17 +21,7 @@ if (!ini_get('date.timezone')) {
             <tr>
                 <td> Page Name</td>
                 <td>
-                    <input list="browsers" name="permission_code" value="" id="page_rule">
-                    <datalist id="browsers">
-                        <?php
-                        foreach ($coreuser2->items as $datauser2) {
-                            ?>
-
-                            <option value="<?= $datauser2->permission_code ?>">
-                                <?php
-                            }
-                            ?>
-                    </datalist>
+                    <input list="browsers" name="permission_code" value="" id="page_rule_list">                  
                 </td>
             </tr>
             <tr>

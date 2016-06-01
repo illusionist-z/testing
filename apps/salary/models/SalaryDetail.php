@@ -231,7 +231,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
                     ->execute();
-         if(0 != $IsPaging){
+         if($IsPaging){
                    $paginator = new PaginatorModel(
                             array(
                         "data" => $row,

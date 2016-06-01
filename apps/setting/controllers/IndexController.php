@@ -80,8 +80,8 @@ class IndexController extends ControllerBase {
             }
             $this->view->coreid = $core_groupid;
             $this->view->coremember = $coremember;
-            $this->view->coreuser = $core_groupuser;
-            $this->view->coreuser2 = $core_groupuser2;            
+            $this->view->coreuser = $core_groupuser;            
+            $this->view->coreuser2 = $core_groupuser2;
             $id = $this->session->user['member_id'];
             $Noti = $coreuser->getAdminNoti($id, 0);
             $this->view->setVar("noti", $Noti);
@@ -203,4 +203,10 @@ class IndexController extends ControllerBase {
         $this->view->setVar("member", $username);
     }
 
+    public function CorePermissionListAction() {
+        $CorePermissionList = new CorePermissionGroup();
+        $core_list = $CorePermissionList::find();
+        echo json_encode($core_list->toArray());
+        $this->view->disable();
+    }
 }
