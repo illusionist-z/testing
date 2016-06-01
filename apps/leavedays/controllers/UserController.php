@@ -101,7 +101,7 @@ class UserController extends ControllerBase {
             $max_leavedays = $max['0']['max_leavedays'];
             if(1 == $exportMode){
              $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id,$page,0);
-             $this->_leave->exportUserLeaveList($leave_list,"UserLeaveListAll",$absent_days,$max_leavedays);
+             $this->_leave->exportUserLeaveList($leave_list,"UserLeaveListAll",$absent_days,$max_leavedays,0);
             }
             else{
             $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id,$page,1);
