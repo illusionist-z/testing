@@ -76,7 +76,6 @@ $length = count($Month);
                         <th width="150px"><?= $t->_("leave_type"); ?></th>
                         <th width="150px"><?= $t->_("leave_desc"); ?></th>
                         <th width="150px"><?= $t->_("leave_status"); ?></th>
-                        <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,16 +125,7 @@ $length = count($Month);
                                         break;
                                 };
                                 ?></td>
-                            <td><font color="red"><?php
-                                if ($absentdays > $max) {
-
-                                    echo ( $absentdays) - $max;
-                                    echo " Days are in absent";
-                                } else {
-
-                                    echo $max -  $absentdays;
-                                }
-                                ?></font></td>
+                           
                         </tr>
                         <?php
                         }

@@ -882,13 +882,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $overtimerate
      * @param type $member_id
      */
-    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr) {
+    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month) {
         try {
             $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate .
                     "',updated_dt=NOW() Where member_id='" . $member_id . "'";
             $this->db->query($sql);
-            $sqlupdate = "Update attendances SET overtime ='" . $overtime_hr . "' Where member_id='"
-                    . $member_id . "'";
+            $sqlupdate = "Update salary_detail SET overtime_hr ='" . $overtime_hr . "' Where member_id='"
+                    . $member_id . "'  and YEAR(pay_date)='".$year."' and MONTH(pay_date)='".$month."'";
             $this->db->query($sqlupdate);
         } catch (Exception $ex) {
             echo $ex;

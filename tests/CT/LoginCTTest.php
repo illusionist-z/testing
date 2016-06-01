@@ -1,25 +1,23 @@
 <?php
 
-session_start();
-require_once 'apps/auth/controllers/LoginControllerTest.php';
-require_once 'apps/auth/controllers/AuthIndexController.php';
-require_once 'apps/auth/controllers/LogoutControllerTest.php';
-
-
-
-/**
- * Class LoginCTTest
- */
 if (!isset($_SESSION)) {
 
     $_SESSION = array();
 }
 
+
+require_once 'apps/auth/controllers/LoginControllerTest.php';
+require_once 'apps/auth/controllers/AuthIndexController.php';
+require_once 'apps/auth/controllers/LogoutControllerTest.php';
+
+/**
+ * Class LoginCTTest
+ */
 class LoginCTTest extends PHPUnit_Framework_TestCase {
 
     public function testindexAction() {
 
-        $login_params = array('company_id' => 'gnext', 
+        $login_params = array('company_id' => 'gnext',
             "member_login_name" => "admin", "password" => "admin");
         $controller = new LoginControllerTest();
         $controller->setparam($login_params);
@@ -37,10 +35,11 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testfailerUserAction() {
+
         $timestamp = (date("Y-m-d H:i:s"));
         $_SESSION['startTime'] = $timestamp;
-        $wrong_params = array('company_id' => 'gnext', 
-            "member_login_name" => "malkhin", "password" => "balh");
+        $wrong_params = array('company_id' => 'gnext',
+            "member_login_name" => "malkhin", "password" => "1234");
         $test = new AuthIndexController();
         $test->setparam($wrong_params);
         $this->assertTrue($test->failerUserAction());
@@ -72,7 +71,7 @@ class LoginCTTest extends PHPUnit_Framework_TestCase {
         $email_params = 'ktzp27@gmail.com';
         $test = new AuthIndexController();
         $test->setmailParam($email_params);
-        $result = $test->resetPasswordAction();        
+        $result = $test->resetPasswordAction();
         $this->assertEquals($email_params, $result[0]);
     }
 

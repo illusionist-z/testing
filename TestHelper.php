@@ -5,9 +5,11 @@ use Phalcon\DI,
 use Phalcon\Config\Adapter\Ini;
 use Phalcon\Mvc\Router;
 
+
+session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-//require __DIR__ . '/../../vendor/autoload.php';
+
 define('ROOT_PATH', __DIR__);
 define('PATH_LIBRARY', __DIR__ . '/../app/library/');
 define('PATH_SERVICES', __DIR__ . '/../app/services/');
