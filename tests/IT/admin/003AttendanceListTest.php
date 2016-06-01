@@ -102,8 +102,8 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('attendancelist/index/todaylist');
         $this->byCssSelector('a')->click();
         $this->url('attendancelist/index/attendancechart');
-        $element = $this->byCssSelector('h1');
-        $this->assertEquals('Monthly Attendance Chart (2016/05)', $element->text());
+        $element = $this->byCssSelector('h1');             
+        $this->assertEquals('Monthly Attendance Chart ('.date("Y/m").')', $element->text());
     }
 
     public function testFirst() {
