@@ -2,8 +2,7 @@
 
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
-}
-   
+}  
 
 use Phalcon\Filter;
 ?>
@@ -14,9 +13,9 @@ use Phalcon\Filter;
 
     <div class="col-sm-2 link"> 
         <aside class="sidebar-menu"> 
-            <li style="border-bottom:1px solid #aaa;"><a href="#Group">Group Rule Setting </a></li>    
-            <li style="border-bottom:1px solid #aaa;"><a href="#Page">Page Rule Setting</a></li>
-            <li style="border-bottom:1px solid #aaa;"><a href="#User">User Rule Setting</a></li>
+            <li style="border-bottom:1px solid #aaa;"><a href="#Group"><?= $t->_("grouprulesetting"); ?> </a></li>    
+            <li style="border-bottom:1px solid #aaa;"><a href="#Page"><?= $t->_("pagerulesetting"); ?></a></li>
+            <li style="border-bottom:1px solid #aaa;"><a href="#User"><?= $t->_("userrulesetting"); ?></a></li>
         </aside> 
     </div>
 
@@ -24,19 +23,19 @@ use Phalcon\Filter;
 
     <div class="col-sm-10">
         <div class=col-md-12">
-            <a href="<?php echo $baseUri; ?>setting/user"  style="float:right;" id="viewprofile">View Profile</a>
+            <a href="<?php echo $baseUri; ?>setting/user/index"  style="float:right;" id="viewprofile"><?= $t->_("viewprofile"); ?></a>
 
-            <h3 link="#Group" >Group Rule Setting </h3>
+            <h3 link="#Group" ><?= $t->_("grouprulesetting"); ?></h3>
 
             <a href="#" style="float:right;" onclick="addGroup.apply(this);
-                    return false;" class="btn addgn" type="black" id=""> Add Group Name  </a>  
+                    return false;" class="btn addgn" type="black" id=""> <?= $t->_("addgroupname"); ?></a>  
 
-            <div id="addGroup" title="Add Group Rule" style="display: none;">
+            <div id="addGroup" title="<?= $t->_("addgroupname"); ?>" style="display: none;">
                 <form method="POST" action="index/AddGroupRule">
                     <table>
                         <tr>
-                            <td>Group Name</td>
-                            <td><input type="text" style="margin-top:10px;" name="name_of_group" value="" ></td>
+                            <td><?= $t->_("groupname"); ?></td>
+                            <td><input type="text" style="margin-top:10px;" name="name_of_group" value=""  placeholder="<?= $t->_("writegroupname"); ?>"></td>
                         </tr>
                     </table>
                 </form>
@@ -48,8 +47,8 @@ use Phalcon\Filter;
                 <br>
 
                 <th width="5px" style="text-align:center;">Group ID</th>
-                <th width="300px" style="text-align:left;">Group Name</th>
-                <th width="5px" style="text-align:center;">Action</th>
+                <th width="300px" style="text-align:left;"><?= $t->_("groupname"); ?></th>
+                <th width="5px" style="text-align:center;"><?= $t->_("action"); ?></th>
 
                 </thead>
 
@@ -68,13 +67,13 @@ use Phalcon\Filter;
                                         return false;" class="insettingedit" type="black" id="<?= $data->group_id ?>">  </a>                                                                                                           
                             </td> 
                         </tr>                                                                                                   
-                    <div id="open<?= $data->group_id ?>" title="Change Group Rule" style="display: none;">
+                    <div id="open<?= $data->group_id ?>" title="<?= $t->_("changegrouprule"); ?>" style="display: none;">
                         <form method="POST" action="index/GroupRuleSetting">
 
                             <input type="hidden" name="group_id" value="<?= $data->group_id ?>" >
 
                             Group ID   <input type="text" style="margin-left: 100px;" value="<?= $data->group_id ?>" disabled><br>
-                            Group Name      <input type="text" style="margin-left: 72px;" name="name_of_group" value="<?= $data->name_of_group ?>">
+                            <?= $t->_("groupname"); ?>    <input type="text" style="margin-left: 78px;" name="name_of_group" value="<?= $data->name_of_group ?>">
                         </form>
                     </div>                                                                                                
 

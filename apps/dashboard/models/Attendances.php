@@ -13,6 +13,7 @@ date_default_timezone_set('UTC');
 class Attendances extends Model {
     
       public $checkin_time;
+      public $checkout_time;
       public $member_id;
       public $att_date;
       public $location;
@@ -98,6 +99,7 @@ class Attendances extends Model {
          ($workingHour > 28800) ?  $ovt = number_format((($workingHour - 28800) / 3600), 2, '.', ',') : $ovt = 0;
                 $hour = \salts\Core\Models\Db\Attendances::getInstance()->UTCToLocal($mydate, $offset);
                 $hr = date("H",strtotime($hour));
+                
                 if($hr < 12) {
                       $Attendances = new Attendances();
                       $att = $Attendances::findFirst("att_date = '" . $today . "' AND member_id =  '" . $id . "'");
@@ -135,7 +137,6 @@ class Attendances extends Model {
          $query1 = "select * from core_member where member_id not in
                    (select member_id from attendances where status != 0 and deleted_flag = 0 and  (YEAR(NOW())) = YEAR(att_date)) and deleted_flag=0 order by created_dt desc";
        $data1 = $this->db->query($query1);
-       
         //select where user least leave       
         $query2 ="select * from core_member "
                 . "as c join attendances as a on c.member_id=a.member_id "

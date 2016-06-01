@@ -156,6 +156,23 @@ class SalaryMaster extends Model {
     }
 
     /**
+     * Get today salary master for updating salary
+     * @param type $member_id
+     * @return type
+     */
+    function getLeaveCarry($member_id) {
+        try {
+            $this->db = $this->getDI()->getShared("db");
+            $sql = "select leaveday_carry from core_member where member_id='" . $member_id . "' and deleted_flag=0";
+            
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
+    /**
      * Get basic salary for all staffs
      * @return type
      */
@@ -457,6 +474,7 @@ class SalaryMaster extends Model {
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
             $row['countAbsent']+=(($row2['countAbsent'])/2); 
+
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -483,6 +501,10 @@ class SalaryMaster extends Model {
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
             $row['countAbsent']+=(($row2['countAbsent'])/2); 
+  
+
+            
+            
             
         } catch (Exception $ex) {
             echo $ex;
@@ -860,13 +882,13 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $overtimerate
      * @param type $member_id
      */
-    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr) {
+    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month) {
         try {
             $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate .
                     "',updated_dt=NOW() Where member_id='" . $member_id . "'";
             $this->db->query($sql);
-            $sqlupdate = "Update attendances SET overtime ='" . $overtime_hr . "' Where member_id='"
-                    . $member_id . "'";
+            $sqlupdate = "Update salary_detail SET overtime_hr ='" . $overtime_hr . "' Where member_id='"
+                    . $member_id . "'  and YEAR(pay_date)='".$year."' and MONTH(pay_date)='".$month."'";
             $this->db->query($sqlupdate);
         } catch (Exception $ex) {
             echo $ex;

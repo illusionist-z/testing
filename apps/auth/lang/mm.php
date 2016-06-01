@@ -7,7 +7,6 @@
  */
 
 //app/messages/es.php
-$messages = array(
-    
+$messages = array(    
     "logout"  =>"System မွေအာင္ျမင္စြာထြက္ခြာသြားပါျပီ။"
 );

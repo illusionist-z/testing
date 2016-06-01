@@ -57,7 +57,7 @@ $length = count($Month);
 
             </select>
 
-            <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="Search" id="usersearch"></b>
+            <b><input type="submit" onclick="return false;" class="buttonn form-control-static" value="<?= $t->_("search"); ?>" id="usersearch"></b>
             <a href="#" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);"><img id="exicon"><b>Export</b></a>
             <a href="leavelist/1" class="button export" id="exbg" ><img id="exicon"><b>Export All</b></a>
         </form>
@@ -76,7 +76,6 @@ $length = count($Month);
                         <th width="150px"><?= $t->_("leave_type"); ?></th>
                         <th width="150px"><?= $t->_("leave_desc"); ?></th>
                         <th width="150px"><?= $t->_("leave_status"); ?></th>
-                        <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,16 +125,7 @@ $length = count($Month);
                                         break;
                                 };
                                 ?></td>
-                            <td><font color="red"><?php
-                                if ($absentdays > $max) {
-
-                                    echo ( $absentdays) - $max;
-                                    echo " Days are in absent";
-                                } else {
-
-                                    echo $max -  $absentdays;
-                                }
-                                ?></font></td>
+                           
                         </tr>
                         <?php
                         }

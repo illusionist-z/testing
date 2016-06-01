@@ -135,7 +135,6 @@ class SalaryIndexController extends Controllers\IndexController {
             if ($this->permission == 1) {
                 if (0 == $exportMode) {
                     $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage, 1);
-                    
                 }
                 return true;
             }
@@ -191,7 +190,7 @@ class SalaryIndexController extends Controllers\IndexController {
             $currentPage = $this->request->get("page");
             $SalaryDetail = new SalaryDetail();
             if (0 == $exportMode) {
-                $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage,1);
+                $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage, 1);
             }
             return true;
         }
@@ -430,7 +429,7 @@ class SalaryIndexController extends Controllers\IndexController {
         $member_id = $this->member['member_id'];
 
         $mid = explode(',', $member_id);
-        $SalaryDetail = new SalaryDetail();
+        $SalaryDetail = new SalaryDetailTest();
         for ($i = 0; $i < count($mid); $i++) {
 
             if ($mid[$i] != 'on') {
@@ -450,7 +449,7 @@ class SalaryIndexController extends Controllers\IndexController {
         $member_id = $this->member['member_id'];
         $mid = explode(',', $member_id);
 
-        $SalaryDetail = new SalaryDetail();
+        $SalaryDetail = new SalaryDetailTest();
         for ($i = 0; $i < count($mid); $i++) {
 
             if ($mid[$i] !== 'on') {
@@ -632,13 +631,13 @@ class SalaryIndexController extends Controllers\IndexController {
             $SalaryDetail = new Master();
 
             $cond = $SalaryDetail->btnedit($this->data);
-
+            $loginuser = $this->member_id;
             $check_deduce = $this->data['check_list'];
             $check_allow = $this->data['check_allow'];
             $Taxdeduce = new TaxDeduce();
-            $Taxdeduce->editTaxByMemberid($check_deduce, $this->data['no_of_children'], $this->data['member_id']);
+            $Taxdeduce->editTaxByMemberid($check_deduce, $this->data['no_of_children'], $this->data['member_id'], $loginuser);
             $SalaryMasterAllowance = new \salts\Salary\Models\SalaryMasterAllowance();
-            $var = $SalaryMasterAllowance->editAllowanceByMemberid($check_allow, $this->data['member_id']);
+            $var = $SalaryMasterAllowance->editAllowanceByMemberid($check_allow, $this->data['member_id'], $loginuser);
             return true;
         }
     }

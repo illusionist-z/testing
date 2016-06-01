@@ -1,8 +1,6 @@
-
-<!-- Main content -->
-<!-- Main content -->
-
+<!DOCTYPE html>
 <?php
+
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
@@ -14,41 +12,14 @@ foreach ($salary_info as $value) {
    $dateObj   = DateTime::createFromFormat('!m', $data[1]);
    $monthName = $dateObj->format('F'); 
 }
-?>
-<script src="<?php echo $baseUri ?>/public/common/js/jquery.min.js"></script>
-        <style type="text/css" media="all">
-            
-       table {
-    border-top-width: 0px;
-    border-right-width: 0px;
-    border-bottom-width: 0px;
-    border-left-width: 0px; 
-    }
-    tr{
-        display: block;
-    }
-   
-      tbody tr.head {
-      page-break-before: always;
-      page-break-inside: avoid;
-        
-    }
- 
-    @media screen {
-       
-      tbody .head {
-        display: none;
-       
-      }
-    }
-       </style>
 
-<section class="content">
-    <div class="row"><!-- for search form-->
-        <div class="col-md-12"><!--start add user form--->
-            <span style="float: right;"><a href="#" title="Print" class="printing" id="printimg"></a></span>
-            <div class="printable">
-                <div id="ssb_top">
+?>
+<html>
+    <body><br>
+                  <span style="float: right;"><a href="#" title="print" class="printing" id="printimg"></a></span>
+
+      <table class="print " style="width:100%;"> <!-- Delete "t1" class to remove row numbers. -->
+                      <div id="ssb_top">
                     <div class="top-center">
                         လူမႈဖူလံုုေရးအဖြဲ႔<br>
                         အာမခံထားသူမ်ားအတြက္ လစဥ္ထည္႔၀င္ေၾကးေပးသြင္းစာရင္း
@@ -67,129 +38,48 @@ foreach ($salary_info as $value) {
                         </div>
                     </div>
                 </div>
-                <div class="clone_div">
-                    
-                <table border="" class="table_ssb" width="100%">
-                     
-  <thead>
-    <tr class="head">
-      <td width="35">Sr <br>No.<br> စဥ္ </td>
-      
-     <td width="125">  Insurance Name<br>    အာမခံထားသူအမည္ </td>
-     
-       <td width="137">   SSN.No<br>  အာမခံစီစစ္ေရး<br>        အမွတ္</td>
-       
-     <td width="75">   Payment<br>  လုုပ္ခလစာ </td>
-     <td>
-         
-         <table>
-             <tr>
-                 <td width="150" height="100px">
-                       Health and Social Care<br>
+      <thead>
+                        <tr>
+                            <th rowspan="2" style="width:20px;">Sr No.<br>
+                                စဥ္</th>
+                            <th rowspan="2" style="width:200px;">Insurance Name<br>
+                                အာမခံထားသူအမည္</th>
+                            <th rowspan="2">SSN.No<br>  
+                                အာမခံစီစစ္ေရးအမွတ္</th>
+                            <th rowspan="2">Payment<br>
+                                လုုပ္ခလစာ</th>
+                            <th colspan="2">
+                                Health and Social Care<br>
                                 Insurance System<br>
                                 က်န္းမာေရးႏွင္္႔လူမႈေရး<br>
-                                ေစာင္႔ေရွာက္မႈစနစ္
-                 </td>
-             </tr>
-             <tr>
-                 <td>
-                     <table class="border-top">
-             <tr>
-                 <td style="border-right: 1px solid;" width="76px">
-                  Employer
-                  <br>
-အလုုပ္ရွင္
-                 </td>
-            
-                 <td width="78px">
-                       Employee
-                       <br>
-အလုုပ္သမား
-                 </td>
-             </tr>
-         </table>
-                 </td>
-             </tr>
-         </table>
-         
-     </td>
-     <td width="124px" >  
-         
-         <table>
-             <tr>
-                 <td height="100px">
-                     Employment Injury <br>
-                 Benefit Insurance <br>
-                 System 
-                 </td>
-             </tr>
-             <tr>
-                 <td>
-                     <table class="border-top">
-                         <tr>
-                             <td width="124px">        Employer
-                     <br>
-အလုုပ္ရွင္</td>
-                         </tr>
-                     </table>
-              
-                 </td>
-             </tr>
-         </table>
-             
-     </td>
-       <td width="248px" height="134px">
-       
-       <table width="248px"  height="134px">
-             <tr>
-                 <td  height="80px">
-                  Total
-                  <br>
-စုုစုုေပါင္း
- 
-                 </td>
-             </tr>
-             <tr>
-                 <td>
-                   <table class="border-top" >
-             <tr>
-                 <td style="border-right: 1px solid;">
-                   Employer
-                   <br>
-အလုုပ္ရွင္ ၃%
-                 </td>
-            
-                 <td style="border-right: 1px solid;">
-                     Employee
-                     <br>
-အလုုပ္သမား ၂%
-                 </td>
-                 <td>
-                   Total
-                   <br>
-စုုစုုေပါင္း ၅%
-
-                 </td>
-             </tr>
-         </table>
-                 </td>
-             </tr>
-         </table>
-           
-       </td>
-     <td width="58">  
-         Remark
-         <br>
-        မွတ္ခ်က္ </td>
-    </tr>
-  </thead>
-   </table>
-                </div>
-                   <table border="1px;" class="table_ssb">
-                       <tbody>
+                                ေစာင္႔ေရွာက္မႈစနစ္</th>
+                            <th>Employment <br>Injury <br>Benefit <br>Insurance <br>System</th>
+                            <th colspan="3" style="text-align:center;">Total<br>
+                                စုုစုုေပါင္း</th>
+                            <th rowspan="2">Remark
+                                <br> မွတ္ခ်က္</th>
+                            
+                        </tr>
+                        <tr>
+                            
+                            <th>Employer<br>
+                                အလုုပ္ရွင္</th>
+                            <th>Employee<br>
+                                အလုုပ္သမား</th>
+                            <th>Employer<br>
+                                အလုုပ္ရွင္</th>
+                            <th>Employer<br>
+                                အလုုပ္ရွင္  ၃%</th>
+                           <th>Employee<br>
+                                အလုုပ္သမား ၂%</th>
+                            <th>Total<br>
+                                စုုစုုေပါင္း ၅%</th>
+                            
+                        </tr>
+                    </thead>
+       <tbody>
                         <?php
                         $no = 1;
-                        $page=1;
                         $ssb_total = 0;
                         $sum1 = 0;
                         $sum2 = 0;
@@ -197,105 +87,90 @@ foreach ($salary_info as $value) {
                         $sum4 = 0;
                         $sum5 = 0;
                         $Total = 0;
-                        $pbreak=1; 
-                        $b = 6;
                         if (!empty($salary_info)) {
                             foreach ($salary_info as $salary_infos) {
-                               
-                                ?><tr>
-                                
-                                    <td style="width:35px;"> <?php echo $no; ?> </td>
-                                    <td style="width:125px;"><?php echo $salary_infos->core->mm_name; ?></td>
-                                    <td  style="width:137px;"><?php echo $salary_infos->core->ssn_no; ?></td>
-                                    <td style="text-align: right;width:75px;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo number_format(300000);}else{echo number_format($salary_infos->salary_detail->basic_salary); }?></td>
-                                    <td   style="text-align: right;width:76px;">
+                                ?>
+                                <tr>
+                                    <td><?php echo $no; ?></td>
+                                    <td><?php echo $salary_infos->core->full_name; ?></td>
+                                    <td><?php
+                                    if($salary_infos->core->ssn_no !== ""){
+                                    echo "<div style='width:106px;'>". $salary_infos->core->ssn_no."</div>";}
+                                    else{
+                                    echo "<div style='width:106px; background-color:red;'></div>";}
+                                    ?></td>
+                                    <td style="text-align: right;"><?php if($salary_infos->salary_detail->basic_salary>300000){echo "300000";}else{echo $salary_infos->salary_detail->basic_salary; }?></td>
+                                    <td style="text-align: right;">
                                         <?php
                                         $sum1 = $sum1 + $salary_infos->salary_detail->ssc_emp;
-                                        echo number_format($salary_infos->salary_detail->ssc_emp);
+                                        echo $salary_infos->salary_detail->ssc_emp;
                                         ?>
                                     </td>
-                                    <td width="79" style="text-align: right;">
+                                    <td style="text-align: right;">
                                         <?php
                                         $sum2 = $sum2 + $salary_infos->salary_detail->ssc_emp;
-                                        echo number_format($salary_infos->salary_detail->ssc_emp);
+                                        echo $salary_infos->salary_detail->ssc_emp;
                                         ?>
                                     </td>
-                                    <td width="124" style="text-align: right;">
+                                    <td style="text-align: right;">
                                         <?php
                                         $onepercent = $salary_infos->salary_detail->ssc_emp / 2;
                                         $sum3 = $sum3 + $onepercent;
-                                        echo number_format($onepercent);
+                                        echo $onepercent;
                                         ?>
                                     </td>
-                                    <td width="83" style="text-align: right;">
+                                    <td style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_comp;
                                         $sum4 = $sum4 + $salary_infos->salary_detail->ssc_comp;
-                                        echo number_format($salary_infos->salary_detail->ssc_comp);
+                                        echo $salary_infos->salary_detail->ssc_comp;
                                         ?>
                                     </td>
-                                    <td width="83" style="text-align: right;">
+                                    <td style="text-align: right;">
                                         <?php
                                         $ssb_total = $ssb_total + $salary_infos->salary_detail->ssc_emp;
                                         $sum5 = $sum5 + $salary_infos->salary_detail->ssc_emp;
-                                        echo number_format($salary_infos->salary_detail->ssc_emp);
+                                        echo $salary_infos->salary_detail->ssc_emp;
                                         ?>
                                     </td>
-                                    <td width="84" style="text-align: right;">
+                                    <td style="text-align: right;">
                                         <?php
                                         echo number_format($salary_infos->salary_detail->ssc_emp+ $salary_infos->salary_detail->ssc_comp);
                                         ?>
                                     </td>
-                                    <td width="58" ></td>
+                                    <td></td>
                                 </tr>
+                               
                                 <?php
                                 $no++;
-//                                $pbreak++; 
-//                               
-//                                if($pbreak == $b){
-                                ?>
-<!--                                <tr class="page-break">
-                                </tr>-->
-                                <?php
-//                                $b = $b+10;
-//                                }
                             }
                             ?>
-                                
+
                             <tr>
-                                <td width="35px"></td>
-                                <td width="125px"></td>
-                                <td width="137"></td>
-                                <td width="75" ></td>
-                                <td width="76"  style="text-align: right;"><?php echo number_format($sum1) ?></td>
-                                <td width="79" style="text-align: right;"><?php echo number_format($sum2) ?></td>
-                                <td  width="124"  style="text-align: right;"><?php echo number_format($sum3) ?></td>
-                                <td width="83"  style="text-align: right;"><?php echo number_format($sum4) ?></td>
-                                <td width="83" style="text-align: right;"><?php echo number_format($sum5) ?></td>
-                                <td width="84" style="text-align: right;">
+                                <td colspan="4"><div style='width:275px; background-color:red;'></div></td>
+                              
+                                <td style="text-align: right; width: 70px;"><?php echo number_format($sum1) ?></td>
+                                <td style="text-align: right; width: 70px;"><?php echo number_format($sum2) ?></td>
+                                <td style="text-align: right; width: 70px;"><?php echo number_format($sum3) ?></td>
+                                <td style="text-align: right; width: 70px;"><?php echo number_format($sum4) ?></td>
+                                <td style="text-align: right;"><?php echo number_format($sum5) ?></td>
+                                <td style="text-align: right;">
                                     <?php
                                     $Total = $Total + $sum4 + $sum5;
                                     echo number_format($Total);
                                     ?></td>
-                                <td width="59"></td>
+                                <td></td>
                             </tr>
                             <?php
                         }
                         ?>
                     </tbody>
-                </table>   <div class="break"></div>
-                 <script language="JavaScript" type="text/javascript">
-	$(document).ready(function() { 
-	  var head = $('.clone_div');
-      
-	  $("tbody tr:nth-child(10n+10)").after(head.clone());
-	});
-	</script>
-                <div class="break"></div>
-               
-            </div>
-        </div>
-    </div>
-    <div id="resign" class="navbar"></div>
-</section>
- 
+    </table>
+  </body>
+</html>
+
+<style>
+  /* THE FOLLOWING CSS IS REQUIRED AND SHOULD NOT BE MODIFIED. */
+  
+</style>
+

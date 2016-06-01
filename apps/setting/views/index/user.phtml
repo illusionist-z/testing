@@ -3,13 +3,11 @@
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
-
-use Phalcon\Filter;
 ?>
 
 <a name="User"></a>
 <br>
-<h3>Change User Rule </h3>
+<h3><?= $t->_("userrulesetting"); ?></h3>
 
 <br>
 
@@ -20,9 +18,9 @@ use Phalcon\Filter;
     <br>
     <tr>                                  
         <th width="10px" style="text-align:center;">Group ID</th>                                
-        <th width="200px">User Name</th>
-        <th width="200px">Group Name</th>
-        <th width="10px">Action</th>                               
+        <th width="200px"><?= $t->_("username"); ?></th>
+        <th width="200px"><?= $t->_("groupname"); ?></th>
+        <th width="30px"><?= $t->_("action"); ?></th>                               
     </tr>
 </thead>
 <tbody style="text-align:center;" >
@@ -58,14 +56,13 @@ use Phalcon\Filter;
 
             </tr>
 
-        <div id="openu<?= $datauser->core->member_id ?>" title="Change User Rule" style="display: none;">
+        <div id="openu<?= $datauser->core->member_id ?>" title="<?= $t->_("userrulesetting"); ?>" style="display: none;">
             <form method="POST" action="index/UserRuleSetting">   
-                User Name   
-                <input type="text" style="margin-left:50px;" name="member_login_name" value="<?= $datauser->core->member_login_name ?>" disabled>
+                <span class="col-md-5"><?= $t->_("username"); ?></span>
+                <span class="col-md-7"><input type="text" style="" name="member_login_name" value="<?= $datauser->core->member_login_name ?>" disabled></span>
                 <br><br>
-                Group Rule
-
-                <select type="text" style="margin-left:50px;" name='user_rule' value='' id="changeuser<?= $datauser->core->member_id ?>">
+                <span class="col-md-5"><?= $t->_("grouprule"); ?></span>
+                <span class="col-md-7"><select type="text" style="" name='user_rule' value='' id="changeuser<?= $datauser->core->member_id ?>">
                     <?php
                     foreach ($coreid as $data) {
                         ?>
@@ -78,6 +75,7 @@ use Phalcon\Filter;
                     }
                     ?>
                 </select>
+                </span>
             </form>
 
         </div>

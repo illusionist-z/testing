@@ -35,7 +35,6 @@ use Phalcon\Filter;
                     $total_overtime_hr = '';
                     $overtime_pay = '';
                     $countsalary = count($getsalarydetails);
-
                     foreach ($getsalarydetails as $A) {
                         for ($i = 0; $i < count($A); $i++) {
                             ?>
@@ -44,16 +43,16 @@ use Phalcon\Filter;
 
                                 <div>
                                     <div style="width: 10%; float: left;"><?= $t->_("name"); ?></div>
-                                    <div><?php echo $filter->sanitize($A[$i]->core->full_name, "string"); ?>
-                                        <input type="hidden" value="<?php echo $A[$i]->core->member_id; ?>" id="member_id" class="member_id" name="member_id">
+                                    <div><?php echo $filter->sanitize($A[$i]['full_name'], "string"); ?>
+                                        <input type="hidden" value="<?php echo $A[$i]['member_id']; ?>" id="member_id" class="member_id" name="member_id">
                                         <input type="hidden" value="<?php echo $year; ?>" id="year" name="year">
                                         <input type="hidden" value="<?php echo $month; ?>" id="month" name="month">
-                                        <input type="text" value="<?php echo $A[$i]->core->working_start_dt; ?>" id="wkstartdt" name="wkstartdt">
+                                        <input type="hidden" value="<?php echo $A[$i]['working_start_dt']; ?>" id="wkstartdt" name="wkstartdt">
                                     </div>
                                 </div>
                                 <div>
                                     <div style="width: 10%; float: left;"><?= $t->_("month"); ?></div>
-                                    <div><?php echo date("M - Y", strtotime($A[$i]->salarydet->pay_date)); ?></div>
+                                    <div><?php echo date("M - Y", strtotime($A[$i]['pay_date'])); ?></div>
                                 </div>
                                 <div>
                                     <table border="1px solid gray" style="width:100%" class="detail-tbl">
@@ -70,20 +69,21 @@ use Phalcon\Filter;
                                         <td rowspan="5" style="border-bottom-color: #ecf0f5"></td>
                                         <td><?= $t->_("bsalary"); ?></td>
                                         <td><input type="text" name="txtbsalary" value="<?php
-                                            echo $filter->sanitize($A[$i]->salarydet->basic_salary, "string");
-                                            $sum+=$A[$i]->salarydet->basic_salary;
+                                            echo $filter->sanitize($A[$i]['basic_salary'], "string");
+                                            $sum+=$A[$i]['basic_salary'];
                                             ?>" id="txtbsalary" disabled="disabled" class="txtenable txtbsalary"></td>
                                         <td></td>
                                         </tr>
                                         <tr>
                                             <td><?= $t->_("overtime_rate"); ?></td>
-                                            <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]->salarymast->over_time, "string"); ?>" id="txtovertimerate" style="width:50px;" disabled="disabled" class="txtenable txtovertimerate"></td>
+                                            <td><input type="text" name="txtovertimerate" value="<?php echo $filter->sanitize($A[$i]['over_time'], "string"); ?>" id="txtovertimerate" style="width:50px;" disabled="disabled" class="txtenable txtovertimerate"></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td><?= $t->_("overtime_hour"); ?></td>
                                             <td><input type="text" name="txtovertimehour" value="<?php
-                                                $overtime = $filter->sanitize($A[$i]->attend->overtime, "string");
+                                                $overtime = $filter->sanitize($A[$i]['OThr'], "string");
+                                                $overtime = isset($A[$i]['overtime_hr'])?  $A[$i]['overtime_hr'] : $overtime;
                                                 echo $overtime;
                                                 ?>" id="txtovertimehour" disabled="disabled" class="txtenable txtovertimehour"></td>
                                             <td></td>
@@ -91,15 +91,15 @@ use Phalcon\Filter;
                                         <tr>
                                             <td><?= $t->_("overtime_payment"); ?></td>
                                             <td><input type="text" name="txtovertimepay" value="<?php
-                                                $overtime_fees = $A[$i]->salarymast->over_time * $overtime;
-                                                $sum = $sum + $overtime_fees +$A[$i]->salarydet->special_allowance;
+                                                $overtime_fees = $A[$i]['over_time'] * $overtime;
+                                                $sum = $sum + $overtime_fees +$A[$i]['special_allowance'];
                                                 echo $overtime_fees;
                                                 ?>" id="txtovertimepay" disabled="disabled" class=" txtovertimepay txtenable"></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td><?= $t->_("allowance_for_specific"); ?></td>
-                                            <td><input type="text" name="txtallowance" value="<?php echo $A[$i]->salarydet->special_allowance ?>" id="txtallowance" disabled="disabled" class=" txtallowance txtenable"></td>
+                                            <td><input type="text" name="txtallowance" value="<?php echo $A[$i]['special_allowance'] ?>" id="txtallowance" disabled="disabled" class=" txtallowance txtenable"></td>
                                             <td></td>
                                         </tr>
                                         <tr>
@@ -110,24 +110,24 @@ use Phalcon\Filter;
                                         <tr>
                                             <td colspan="2"><?= $t->_("deduce_for_absent"); ?></td>
                                             <td><input type="text" name="txtabsent" value="<?php
-                                                echo $filter->sanitize($A[$i]->salarydet->absent_dedution, "string");
-                                                $deduce+=$A[$i]->salarydet->absent_dedution;
+                                                echo $filter->sanitize($A[$i]['absent_dedution'], "string");
+                                                $deduce+=$A[$i]['absent_dedution'];
                                                 ?>" id="txtallowance" disabled="disabled" class="txtenable txtabsent"></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?= $t->_("personal_income"); ?></td>
                                             <td><input type="text" name="txtincome" value="<?php
-                                                echo $filter->sanitize($A[$i]->salarydet->income_tax, "string");
-                                                $deduce+=$A[$i]->salarydet->income_tax;
+                                                echo $filter->sanitize($A[$i]['income_tax'], "string");
+                                                $deduce+=$A[$i]['income_tax'];
                                                 ?>" id="income_tax" disabled="disabled"></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?= $t->_("ssb_employee"); ?></td>
                                             <td><input type="text" name="txtssb" value="<?php
-                                                echo $filter->sanitize($A[$i]->salarydet->ssc_emp, "string");
-                                                $deduce+=$A[$i]->salarydet->ssc_emp;
+                                                echo $filter->sanitize($A[$i]['sd_ssc_emp'], "string");
+                                                $deduce+=$A[$i]['sd_ssc_emp'];
                                                 ?>" id="txtssb" disabled="disabled"></td>
                                             <td></td>                   
                                         </tr>
@@ -147,14 +147,14 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?= $t->_("commute_fee"); ?></td>
-                                            <td><?php echo number_format($filter->sanitize($A[$i]->salarydet->travel_fee, "string")); ?></td>
+                                            <td><?php echo number_format($filter->sanitize($A[$i]['travel_fee'], "string")); ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="50px"><?= $t->_("grand_total"); ?></td>
                                             <td>
                                                 <?php
-                                                $grand_total = $sub_total + $A[$i]->salarydet->travel_fee;
+                                                $grand_total = $sub_total + $A[$i]['travel_fee'];
                                                 echo number_format(round($grand_total,-2));
                                                 ?>
                                             </td>

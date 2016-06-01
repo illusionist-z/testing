@@ -18,8 +18,7 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->prepareSession()->currentWindow()->maximize();
     }
 
-    public function testNotiViewAll() {
-
+    public function testNotiViewAll() {     
         $this->url('index.phtml');
         $form = $this->byId('form_login');
         $company = $this->byName('company_id');
@@ -154,7 +153,6 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testDropdownTaxDocu() {
         sleep(5);
-
         $this->byLinkText('Tax document')->click();
         $this->url('document/index/taxdocument');
     }
@@ -173,6 +171,9 @@ class AdminDashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->byCssSelector('span#btn_show_menu')->click();
         $this->clickOnElement('navicon7');
         $this->url('setting/index');
+        $this->waitUntil(function () {
+            return $this->byCssSelector('h3')->displayed();
+        }, 2000);
         $element = $this->byCssSelector('h3');
         $this->assertEquals('Group Rule Setting', $element->text());
     }

@@ -18,11 +18,11 @@ if ($offset < 0) {
 ?> 
 <section class="content-header" style="height:auto;">
     <h1>
-        <?= $t->_("attendancelist"); ?>
+        <?= $t->_("todayattendancelist"); ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"> Attendance List</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= $t->_("home"); ?> </a></li>
+        <li class="active"> <?= $t->_("todayattendancelist"); ?> </li>
     </ol>
 </section>
 
@@ -31,10 +31,10 @@ if ($offset < 0) {
     <div class="buttons">
         <?php if (isset($timezone)) { ?><p  onmouseover="aa" style="font-size: 17px">Current Timezone : <font color='red'><?php echo $timezone; ?></font></p><?php } ?>
         <form id="frm_search" onsubmit="return false;">
-            <input type="text" name="year" id="startdate" class="datepicker form-control-static"  placeholder="Start Date" style="margin-top: 10px;height:28px; width: 100px;">          
-            <input type="text" name="month" id="enddate"  class="datepicker form-control-static"   placeholder="End Date" style="margin-top: 10px;height:28px; width: 100px;">
-            <input type="submit" class="buttonn form-control-static"  value="Search" id="search">
-            <a href="" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'attendance_list.csv']);"><img id="exicon">Export</a>
+            <input type="text" name="year" id="startdate" class="datepicker form-control-static"  placeholder="<?php echo $t->_("startdate"); ?>" style="margin-top: 10px;height:28px; width: 100px;">          
+            <input type="text" name="month" id="enddate"  class="datepicker form-control-static"   placeholder="<?php echo $t->_("enddate"); ?>" style="margin-top: 10px;height:28px; width: 100px;">
+            <input type="submit" class="buttonn form-control-static"  value="<?php echo $t->_("search"); ?>" id="search">
+            <a href="" class="button export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'attendance_list.csv']);"><img id="exicon"><?php echo $t->_("export"); ?></a>
             <a href="attendancelist/1" class="button export" id="exbg" ><img id="exicon">Export All</a>
         </form>
     </div><!--Button-->

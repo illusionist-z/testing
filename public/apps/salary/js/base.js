@@ -168,11 +168,11 @@ var Salary = {
         }
     },
     getmemid: function (p) {
-        var name = document.getElementById('username').value;
-        
+        //var name = document.getElementById('username').value;
+        var name = p;
         var dict = [];
         $('ul.pagination').empty();
-         $('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();      
+         //$('table.listtbl tbody').empty(), $('tfoot').empty(), $('#th_travelfees').empty();      
         $.ajax({
             url:  'getmemberid?uname=' + name,
             method: 'GET',
@@ -282,12 +282,9 @@ var Salary = {
             data: {id: member_id},
             success: function () {
 
-                d.dialog("close");
+                location.reload();
             }
-        }).done(function () {
-            //$('body').load('salarylist');
-            $("#salarylist").reload();
-        });
+        })
     },
     calSalary: function () {
 
@@ -527,19 +524,8 @@ var Salary = {
 
         });
 
-    },
-    ExportAll : function () {
-           var lt = $('#ltype').val(),
-                name = $('#username').val();
-
-        if ("" === lt  && ("" === name || !isValid(name))) {
-            location.href = "salarylist/1";
-        }
-        else {
-            $form = $('#frm_search').serialize();
-            location.href = baseUri + 'salary/search/searchTravelfees/1?' + $form;
-        }
     }
+
 };
 
 $(document).ready(function () {
@@ -560,17 +546,10 @@ $(document).ready(function () {
     $('#cal_salary').click(function () {
         Salary.search();
     });
-    
-    $('.salarylistExport').click(function (e) {
-        if($('.pagination li').length == 0){            
-            Export.Export.apply(this, [$('table.listtbl'), 'salary_list.csv']);
-        }
-        else{
-            e.preventDefault();
-            Salary.ExportAll();
-        }        
-    });
-    
+//    $('.tags,.username').click(function () {
+//
+//        Salary.autolist();
+//    });
     $('#username').on('blur', function () {
         var name = document.getElementById('username').value;
         
@@ -583,7 +562,7 @@ $(document).ready(function () {
 
     
     $(".search-trtype").click(function () {       
-         Salary.getmemid();
+         Salary.search_salarylist();
     });
 
 });

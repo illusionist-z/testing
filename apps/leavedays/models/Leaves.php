@@ -1,16 +1,18 @@
 <?php
 
 namespace salts\Leavedays\Models;
-
+ date_default_timezone_set('UTC');
 use Phalcon\Validation;
 use Phalcon\Validation\Validator\PresenceOf;
 use salts\Core\Models\Db\CoreMember;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
+date_default_timezone_set('UTC');
 
 class Leaves extends \Library\Core\Models\Base {
 
     public $base;
+    
 
     public function initialize() {
         parent::initialize();
@@ -93,13 +95,14 @@ class Leaves extends \Library\Core\Models\Base {
                     . "and att_date>='" . $start_date . "' and att_date<='" . $end_date . "' and deleted_flag=0 and (status = 3)";
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
-          
-            $absent[$value->member_id] = count($data);
-             $absent[$value->member_id]+=(($row2['countAbsent'])/2); 
-            echo $value->member_login_name;
-            echo $start_date;
-            echo $end_date;
-             $absent[$value->member_id];
+        
+            $absent[$value->member_id] = count($data);//4
+             $absent[$value->member_id]+=(($row2['countAbsent'])/2);  //4.5
+             $absent[$value->member_id]= ($absent[$value->member_id]); 
+//            echo $value->member_login_name;
+//            echo $start_date;
+//            echo $end_date;
+//             $absent[$value->member_id];
             
         }
         return $absent;
