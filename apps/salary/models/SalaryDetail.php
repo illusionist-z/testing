@@ -201,7 +201,7 @@ select member_id from salary_detail) and MONTH(SD.pay_date) = :month and YEAR(SD
                     . " FROM  salary_detail join attendances on salary_detail.member_id=attendances.member_id "
                     . "join salary_master on salary_master.member_id=attendances.member_id "
                     . "join core_member on core_member.member_id=salary_master.member_id "
-                    . "WHERE salary_detail.member_id='".$member_id."' and MONTH(attendances.att_date)='".$month."' and YEAR(attendances.att_date)='".$year."' and salary_detail.pay_date='2016-05-31'";
+                    . "WHERE salary_detail.member_id='".$member_id."' and MONTH(attendances.att_date)='".$month."' and YEAR(attendances.att_date)='".$year."'";
             //echo  $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetchall();

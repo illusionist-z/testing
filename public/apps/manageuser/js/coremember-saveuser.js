@@ -10,8 +10,8 @@
         $.ajax({
             type:'POST',
             url :baseUri+'manageuser/coremember/saveuser',
-          //data:$("#saveuser").serialize(),
-           data :new FormData($("#saveuser")[0]),           
+            data:$("#saveuser").serialize(),
+            //data :new FormData($("#saveuser")[0]),           
             processData: false,
             contentType: false,
             success: function(d){
