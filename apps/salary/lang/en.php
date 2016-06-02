@@ -5,6 +5,7 @@ $messages = array(
     "addsalaryform" => "Add Salary Form",
     "month" => "month",
     "home" => "Home",
+    "search"  => "Search",
     "searchusername" => "Search User Name",
     "basic_sal" => "Enter Basic Salary",
     "entertravelfees" => "Enter Travel Fees",

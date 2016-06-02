@@ -78,7 +78,6 @@ $length = count($Month);
                         <th width="150px"><?= $t->_("leave_category"); ?></th>
                         <th width="150px"><?= $t->_("leave_desc"); ?></th>
                         <th width="150px"><?= $t->_("leave_status"); ?></th>
-                        <th width="150px"><?= $t->_("leave_left"); ?></th>
                     </tr>
 
                 </thead>
@@ -124,18 +123,7 @@ $length = count($Month);
                                         break;
                                 };
                                 ?></td>
-                            <td><font color="red"><?php
-                                $absent_day = 0;
-                                if (isset($absent[$item->core_member->member_id])) {
-                                    $absent_day = $absent[$item->core_member->member_id];
-                                }
-                                if ($absent_day >= ($max+$item->core_member->leaveday_carry)) {
-                                    echo (( $absent_day) - ($max+$item->core_member->leaveday_carry));
-                                    echo " Days  in absent";
-                                } else {
-                                    echo ($item->core_member->leaveday_carry+$max) - ( $absent_day);
-                                }
-                                ?></font></td>
+                      
                         </tr>
                         </tr>
                         <?php

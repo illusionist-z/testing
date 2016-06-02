@@ -32,17 +32,16 @@ use Phalcon\Filter;
 
             <div class="search-box">
                 <form name="search_frm" id="search_frm">
-                    <div id="Menu" >
+                    <div id="Menu" class="col-md-12">
                         <input type="hidden" name="cond[mth]" value="<?php echo $month; ?>" id="month">
                         <input type="hidden" name="cond[yr]" value="<?php echo $year; ?>" id="year">
-                        <div id="salary_detail_div1">
+                        <div id="salary_detail_div1" class="col-md-3" >
                             <?= $t->_("username"); ?> :
                             <input  class="tags form-control-static"   style="width:100%;margin-top: 1px;"  id="username" placeholder="<?php echo $t->_("enter_name"); ?>">
                             <input type="hidden" value="" id="formemberid" name="cond[mem]">
                         </div>
-                        <div id="salary_detail_div2">
-                            <?= $t->_("department"); ?> :
-                            <span>
+                        <div id="salary_detail_div2" class="col-md-3" >
+                            <span><?= $t->_("department"); ?> :</span>
                                 <select class="select form-control-static" data-toggle="select" name="cond[dept]"  id="department">
                                     <option value=""><?= $t->_("choose"); ?></option>
                                     <?php
@@ -54,7 +53,7 @@ use Phalcon\Filter;
                                     ?>
                                 </select>
                         </div>
-                        <div id="salary_detail_div3">
+                        <div id="salary_detail_div3" class="col-md-3" >
                             <?= $t->_("position"); ?> :
                             <span>
                                 <select class="select form-control-static" data-toggle="select" name="cond[position]" id="position">
@@ -68,7 +67,7 @@ use Phalcon\Filter;
                                     ?>
                                 </select>
                         </div>
-                        <div id="salary_detail_div4">
+                        <div id="salary_detail_div4" class="col-md-3" >
                             <?= $t->_("salary_rate"); ?> :
                             <select class="select form-control-static" data-toggle="select" name="cond[salary]" id="salary_rate">
                                 <option value="" ><?= $t->_("choose"); ?></option>
@@ -81,10 +80,10 @@ use Phalcon\Filter;
                     </div>
                     <div class="search-btn-box"><!--search btn-->
                        
-                            <a href="#" class="button form-control-static" id="search_salary" ><?= $t->_("search"); ?></a>
+                            <a href="#" class="buttonn form-control-static" id="search_salary" ><?= $t->_("search"); ?></a>
 <!--                            <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="search_salary">-->
-                            <a href="#" class="buttonn form-control-static export" id="exbg"><img id="exicon"><?= $t->_("Export"); ?></a>
-                            <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="printimg"></a>
+                            <a href="#" class="buttonn form-control-static export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);"><img id="exicon"><?= $t->_("Export"); ?></a>
+                            <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="buttonn printimg"></a>
                         
                     </div><!--search btn-->
                 </form>

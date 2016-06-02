@@ -1,0 +1,1 @@
+ALTER TABLE `salary_detail` ADD `overtime_hr` DOUBLE NULL DEFAULT NULL AFTER `overtime`;

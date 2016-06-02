@@ -429,7 +429,7 @@ class SalaryIndexController extends Controllers\IndexController {
         $member_id = $this->member['member_id'];
 
         $mid = explode(',', $member_id);
-        $SalaryDetail = new SalaryDetail();
+        $SalaryDetail = new SalaryDetailTest();
         for ($i = 0; $i < count($mid); $i++) {
 
             if ($mid[$i] != 'on') {
@@ -449,7 +449,7 @@ class SalaryIndexController extends Controllers\IndexController {
         $member_id = $this->member['member_id'];
         $mid = explode(',', $member_id);
 
-        $SalaryDetail = new SalaryDetail();
+        $SalaryDetail = new SalaryDetailTest();
         for ($i = 0; $i < count($mid); $i++) {
 
             if ($mid[$i] !== 'on') {

@@ -3,12 +3,7 @@
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
-    
  
-
-use Phalcon\Filter;
-
-;
 ?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -16,7 +11,7 @@ use Phalcon\Filter;
         <?= "Module List"; ?>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> <?= "home" ?></a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> <?= "Home" ?></a></li>
         <li class="active"><?= "Module List"; ?></li>
     </ol>
 </section>
@@ -24,10 +19,15 @@ use Phalcon\Filter;
 <!-- Main content -->
 <section class="content">
     <div class="row">	
-        <form class="buttons" action="<?php echo $baseUri ?>managecompany/module/index">
+<!--        <form class="buttons" action="<?php echo $baseUri ?>managecompany/module/index">
             <input  type="text" class="userauto form-control-static" name="msearch" id="msearch" placeholder="<?= "Search module ID"; ?>" autocomplete="off">
-            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="" style="margin-top: -10px;">
+            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="" >
             <a href="#"  class="addnewmodule right button  form-control-static" id="addinguser"><?= "Add New Module"; ?></a>
+        </form>-->
+         <form class="" style="float: right;" action="<?php echo $baseUri ?>managecompany/module/index">
+            <input  type="text" style="margin-top: 10px;" class="userauto form-control-static" name="msearch" id="msearch" placeholder="<?= "Search Module ID"; ?>" autocomplete="off">
+            <input type="submit" name="" class="buttonn form-control-static" value="<?= "Search"; ?>" id="searchbg">            
+            <a href="#" style="margin-right: 25px;margin-top: 10px;margin-left: 5px;" class="addnewmodule right  button  form-control-static" id="addinguser"><?= "Add New Module"; ?></a>              
         </form>
     </div>
 

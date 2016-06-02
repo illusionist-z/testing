@@ -58,11 +58,11 @@ if(! ini_get('date.timezone')){
 
         <div id="openu<?= $datauser->core->member_id ?>" title="<?= $t->_("userrulesetting"); ?>" style="display: none;">
             <form method="POST" action="index/UserRuleSetting">   
-                <?= $t->_("username"); ?>
-                <input type="text" style="margin-left:50px;" name="member_login_name" value="<?= $datauser->core->member_login_name ?>" disabled>
+                <span class="col-md-5"><?= $t->_("username"); ?></span>
+                <span class="col-md-7"><input type="text" style="" name="member_login_name" value="<?= $datauser->core->member_login_name ?>" disabled></span>
                 <br><br>
-                <?= $t->_("grouprule"); ?>
-                <select type="text" style="margin-left:50px;" name='user_rule' value='' id="changeuser<?= $datauser->core->member_id ?>">
+                <span class="col-md-5"><?= $t->_("grouprule"); ?></span>
+                <span class="col-md-7"><select type="text" style="" name='user_rule' value='' id="changeuser<?= $datauser->core->member_id ?>">
                     <?php
                     foreach ($coreid as $data) {
                         ?>
@@ -75,6 +75,7 @@ if(! ini_get('date.timezone')){
                     }
                     ?>
                 </select>
+                </span>
             </form>
 
         </div>

@@ -10,28 +10,18 @@ if (!ini_get('date.timezone')) {
 
 <a name="Page"></a>
 <br>
-<h3><?= $t->_("pagerulesetting"); ?></h3>
+<h3>Change Page Rule </h3>
 
 <a href="#" style="float:right;" onclick="addPage.apply(this);
-        return false;" class="btn addpp" type="black" id=""> <?= $t->_("addpagepermission"); ?></a>                                                                                                                                           
+        return false;" class="btn addpp" type="black" id=""> Add Page Permission  </a>                                                                                                                                           
 <br>
-<div id="addPage" title="<?= $t->_("addpagepermission"); ?>" style="display: none;">
+<div id="addPage" title="Add Page Rule" style="display: none;">
     <form method="POST" action="index/AddPageRule">
         <table>
             <tr>
-                <td> <?= $t->_("pagename"); ?></td>
+                <td> Page Name</td>
                 <td>
-                    <input list="browsers" name="permission_code" value="" id="page_rule">
-                    <datalist id="browsers">
-                        <?php
-                        foreach ($coreuser2->items as $datauser2) {
-                            ?>
-
-                            <option value="<?= $datauser2->permission_code ?>">
-                                <?php
-                            }
-                            ?>
-                    </datalist>
+                    <input list="browsers" name="permission_code" value="" id="page_rule_list">                  
                 </td>
             </tr>
             <tr>
@@ -40,7 +30,7 @@ if (!ini_get('date.timezone')) {
             </tr>
             <tr>
                 <td>
-                    <?= $t->_("groupname"); ?>
+                    Group Name  
                 </td>
                 <td>
                     <select type="text" name='page_rule_group' id="page_rule">
@@ -70,9 +60,10 @@ if (!ini_get('date.timezone')) {
     <br>
     <tr>
         <th width="5px" style="text-align:center;">User ID</th>
-        <th width="200px"><?= $t->_("pagename"); ?></th>
-        <th width="250px"><?= $t->_("groupname"); ?></th>
-        <th width="50px" style="text-align:center;"><?= $t->_("action"); ?></th>
+        <th width="200px">Page Name</th>
+        <th width="250px">G Name</th>
+        <th width="5px" style="text-align:center;">Action</th>
+
     </tr>
 </thead>
 <tbody style="text-align:center;">
@@ -100,17 +91,17 @@ if (!ini_get('date.timezone')) {
             </td> 
         </tr>        
 
-    <div id="pageRule<?= $datauser2->idpage ?>" title="<?= $t->_("changepagerule"); ?>" style="display: none;">
+    <div id="pageRule<?= $datauser2->idpage ?>" title="Change Page Rule" style="display: none;">
 
         <br> 
         Group ID    
         <input type="text" style="margin-left:50px;" name="permission_group_code" value="<?= $datauser2->permission_group_code ?>" disabled>
         <br> 
         <form method="POST" action="index/User2RuleSetting">    
-          <?= $t->_("pagename"); ?>
-            <input type="text"  style="margin-left:38px;" name="permission_code" value="<?= $datauser2->permission_code ?>">
+            Page Name   
+            <input type="text"  style="margin-left:33px;" name="permission_code" value="<?= $datauser2->permission_code ?>">
             <br><br>         
-           <?= $t->_("grouprule"); ?>
+            Group Rule
             <input type="hidden" name="idpage" value="<?= $datauser2->idpage ?>" >            
 
             <select type="text" style="margin-left:33px;" name='page_rule_group' value='' id="changeuser">
@@ -122,7 +113,7 @@ if (!ini_get('date.timezone')) {
                     </option>
                     <?php
                 }
-                ?>         
+                ?>        
             </select>
         </form>
 

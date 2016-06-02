@@ -4,14 +4,11 @@
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
-    
- 
-
-use Phalcon\Tag as Tag; ?>
+?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Attendance System</title>
+        <title>Company List</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <?php $this->assets->outputCss() ?>
@@ -79,14 +76,14 @@ use Phalcon\Tag as Tag; ?>
                 <aside>
                     <ul class="sidebar-menu">
                         <li class="header"><b>MAIN NAVIGATION</b></li>
-                        <li><a href="<?php echo $baseUri ?>managecompany"><img id='navicon2'><span><b>Manage Company</b></span></a></li>
-                        <li><a href="<?php echo $baseUri ?>managecompany/module"><img id='navicon2'><span><b>Manage Module</b></span></a></li>
+                        <li><a href="<?php echo $baseUri ?>managecompany"><img id=''><span><b>Manage Company</b></span></a></li>
+                        <li><a href="<?php echo $baseUri ?>managecompany/module"><img id=''><span><b>Manage Module</b></span></a></li>
                 </aside></section>
             <!-- /.sidebar -->
         </aside>  
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper collapse-wrapper" style="height:auto;margin-left:0;">                     
+        <div class="content-wrapper collapse-wrapper" style="min-height:  610px;margin-left:0;">                     
             <?php
             //start for the left menu for each module
             //End of the left menu for each module
@@ -100,7 +97,6 @@ use Phalcon\Tag as Tag; ?>
 
         <footer class="main-footer" style="margin-left:0;">
             <strong>Copyright &copy; 2014-2015 <a href="">Gnext Myanmar</a>.</strong> All rights reserved.
-
         </footer>
 
         <div id="notidetail" style=" display:none;" class="navbar">
