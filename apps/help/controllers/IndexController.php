@@ -68,7 +68,9 @@ class IndexController extends ControllerBase {
     public function leavesettingAction() {
         
     }
-
+     public function leavedayleftAction() {
+        
+    }
     public function addsalaryAction() {
         
     }
@@ -104,5 +106,15 @@ class IndexController extends ControllerBase {
     public function taxdocumentAction() {
         
     }
+     public function salaryreferdocumentAction() {
+        
+    }
+     public function ssbapplyformAction() {
+        
+    }
+     public function ssbresignformAction() {
+        
+    }
+
 
 }

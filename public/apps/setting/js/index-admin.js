@@ -3,11 +3,21 @@
  * @type Edit ,delete for Setting Module
  * 
  */
-var pager, pager2;
+var pager, pager2,list=[];
 var Setting = {
     init: function () {
         Setting.PageRule.paging();
         Setting.UserRule.paging();
+      $.ajax({
+         url : "index/CorePermissionList",
+         dataType : "json",
+         type : "GET",
+         success : function(d){
+             for(var i in d){
+	list.push(d[i].permission_code);            
+             }
+         }
+        });
     }
 };
 
@@ -173,6 +183,19 @@ Setting.UserRule = {
 };
 $(document).ready(function () {
     Setting.init();
+    
+     $('#page_rule_list').on('click', function () {      
+        $(this).autocomplete({
+            source: function (request, response) {
+                var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+                var result = $.grep(list, function (item) {
+                    return matcher.test(item);
+                });
+                response(result.slice(0, 10));
+            },
+            minLength: 1
+        });
+    });
 });
 
  

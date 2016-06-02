@@ -76,7 +76,12 @@ var AddSalary = {
                     $('#file_err').text(d[1]).css({"color": "red", "font-size": "14px"}).show();
                 }
                 else {
-                    $('#file_err').text(d[2]).css({"background": "#e6e6e6", "color": "green", "font-size": "14px", "text-align": "center"}).show();
+                    err_array = d[2].split(",");
+                    errtext = "";
+                    for(var i in err_array){
+                    errtext += err_array[i].toUpperCase()+"<br/>";
+                    }
+                    $('#file_err').html(errtext).css({"background": "#e6e6e6", "color": "green", "font-size": "8px", "text-align": "center"}).show();
                 }
                 $('#file_select').click(function () {
                     $('#file_err').hide();
@@ -193,7 +198,7 @@ $(document).ready(function () {
     //for clear csv box
     $('#csv_file').click(function () {
         if ($('#radsal_type').css('display') === 'none') {
-            $('#file_err').hide();
+            //$('#file_err').hide();
             $('#file_select').val('');
         }
     });
