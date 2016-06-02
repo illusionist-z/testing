@@ -1,18 +1,14 @@
 <?php
 
-
-if(session_status()!=PHP_SESSION_ACTIVE) {
-    session_start();
-}
-
-require_once 'apps/auth/controllers/LoginControllerTest.php';
-require_once 'apps/auth/controllers/AuthIndexController.php';
-require_once 'apps/auth/controllers/LogoutControllerTest.php';
-
 if (!isset($_SESSION)) {
 
     $_SESSION = array();
 }
+
+
+require_once 'apps/auth/controllers/LoginControllerTest.php';
+require_once 'apps/auth/controllers/AuthIndexController.php';
+require_once 'apps/auth/controllers/LogoutControllerTest.php';
 
 /**
  * Class LoginCTTest

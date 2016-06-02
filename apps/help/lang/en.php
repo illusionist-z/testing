@@ -217,7 +217,10 @@ After downloaded,we would like to
     "Deduce Setting" => "Deduce Setting",
     "Admin can edit deduce" => "Admin can edit deduce amount of salary.",
     "New Deduction" => "New Deduction",
-    "Admin can add new Deduction Type." => "Admin can add new Deduction Type.",
+    "Admin can add new Deduction Type." => "Admin can add new Deduction Type.",    
+    "Print salaryreferdocument" => "You can show for Salary Refer Document ",
+    "exportssbapplyform" => "You can show for SSB Apply Form",
+    "exportssbresignform" => "You can show for SSB Resign Form",
     /**
      * Allowance
      */
