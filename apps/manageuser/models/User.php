@@ -102,7 +102,7 @@ class User extends Model {
         $core_rel_member = \salts\Core\Models\CorePermissionRelMember::findByRelMemberId($id);
         if(count($core_rel_member) > 0) {
         $core_rel_member_delete = \salts\Core\Models\Permission::tableObject($core_rel_member);
-        $core_rel_member_delete->permission_member_group_is_deleted = 1;
+        $core_rel_member_delete->deleted_flag = 1;
         $core_rel_member_delete->update();
         }
         $salary_master = Db\SalaryMaster::findByMemberId($id);
