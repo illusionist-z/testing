@@ -89,7 +89,7 @@
     }
     table.fauxRow, table.print {
       font-family: Tahoma, Verdana, Georgia; /* Try to use fonts that don't get bigger when printed. */
-      //margin: 0 auto 0 auto; /* Delete if you don't want table to be centered. */
+      /*margin: 0 auto 0 auto; /* Delete if you don't want table to be centered. */
     }
     table.print {border-spacing: 0;}
     table.print > * > tr > * {
