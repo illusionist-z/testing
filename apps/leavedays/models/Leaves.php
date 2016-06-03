@@ -8,7 +8,7 @@ use salts\Core\Models\Db\CoreMember;
 use Phalcon\Paginator\Adapter\Model as PaginatorModel;
 use Phalcon\Filter;
 date_default_timezone_set('UTC');
-
+use Phalcon\Mvc\Model\Query;
 class Leaves extends \Library\Core\Models\Base {
 
     public $base;
@@ -399,8 +399,8 @@ class Leaves extends \Library\Core\Models\Base {
         $this->db->query("UPDATE core_notification_rel_member set "
                 . "core_notification_rel_member.status=1,module_name='leaves'"
                 . "  WHERE core_notification_rel_member.noti_id='" . $noti_id . "'");
-
         $this->db->query($sql);
+      
     }
 
     public function getLeaveSetting() {
