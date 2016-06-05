@@ -341,3 +341,14 @@ $(document).ready(function () {
 });
 
 
+$(function() {
+    $('.date-picker').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'mm-yy',
+        onClose: function(dateText, inst) { 
+            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+        }
+    });
+});

@@ -178,7 +178,7 @@ class IndexController extends ControllerBase {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
         $data = $Attendances->currentAttList($currentPage);
-        $this->view->data = $data;
+        //$this->view->data = $data;
          }
          else {
              echo 'Page Not Found';
