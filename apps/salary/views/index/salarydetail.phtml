@@ -19,7 +19,8 @@ use Phalcon\Filter;
 
                         <button id="btn_savedetail" disabled class="txtenable btn  btn-flat" style="border: 1px solid #3c8dbc">Save</button>
 
-                        <button id="btn_resign" class="btn_resign btn  btn-flat" style="border: 1px solid #3c8dbc">Resign</button>                    </div>
+<!--                        <button id="btn_resign" class="btn_resign btn  btn-flat" style="border: 1px solid #3c8dbc">Resign</button>                    -->
+                    </div>
                     <div style="float:right;">
                         <a href="#" id="display1" class="display preimg"><span class="prehide">PREV</span></a> |
                         <a href="#" id="display" class="display nextimg"><span class="prehide">NEXT</span></a>
@@ -36,7 +37,7 @@ use Phalcon\Filter;
                     $overtime_pay = '';
                     $countsalary = count($getsalarydetails);
                     foreach ($getsalarydetails as $A) {
-                        for ($i = 0; $i < count($A); $i++) {
+                        for ($i = 0; $i < count($A); $i++) { 
                             ?>
                             <div style="padding: 0 10px 10px 10px" class="sample">
                                 <h3><center>G-Next Official Salary Report</center></h3>

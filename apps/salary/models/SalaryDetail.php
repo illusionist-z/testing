@@ -81,6 +81,7 @@ class SalaryDetail extends Model {
      */
     public function salarylist($month, $year) {
         try {
+            
             $stmt = $this->db->prepare("select *,(SUM(`basic_salary`)+SUM(`travel_fee`)+SUM(`overtime`)+SUM(`allowance_amount`))-(SUM(`ssc_emp`)+SUM(`absent_dedution`)+SUM(`income_tax`)) AS total 
                 from core_member as CM join salary_detail as SD on CM.member_id=SD.member_id where CM.member_id in (
 select member_id from salary_detail) and MONTH(SD.pay_date) = :month and YEAR(SD.pay_date) = :year GROUP BY id");
@@ -197,11 +198,12 @@ select member_id from salary_detail) and MONTH(SD.pay_date) = :month and YEAR(SD
 //                    ->getQuery()
 //                    ->execute();
 
-            $sql="SELECT *,sum(attendances.overtime)as OThr,salary_detail.ssc_emp as sd_ssc_emp"
+            $sql="SELECT *,sum(attendances.overtime)as OThr,salary_detail.ssc_emp as sd_ssc_emp,salary_detail.basic_salary"
                     . " FROM  salary_detail join attendances on salary_detail.member_id=attendances.member_id "
                     . "join salary_master on salary_master.member_id=attendances.member_id "
                     . "join core_member on core_member.member_id=salary_master.member_id "
-                    . "WHERE salary_detail.member_id='".$member_id."' and MONTH(attendances.att_date)='".$month."' and YEAR(attendances.att_date)='".$year."'";
+                    . "WHERE salary_detail.member_id='".$member_id."' and MONTH(salary_detail.pay_date)='".$month."' and YEAR(salary_detail.pay_date)='".$year."'"
+                    . " and YEAR(attendances.att_date)='".$year."' and MONTH(attendances.att_date)='".$month."'";
             //echo  $sql;exit;
             $result = $this->db->query($sql);
             $row = $result->fetchall();
