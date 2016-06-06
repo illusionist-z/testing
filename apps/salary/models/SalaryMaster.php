@@ -768,20 +768,21 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $dating = explode('-', $salary_starting_date);
             $year = $dating[0];
             $month = $dating[1];
-            $sql = "select *,SUM((case when (ATT.overtime!=0) then ATT.overtime*SM.over_time else 0 end)) as overtime_rate from salary_master as SM join attendances as Att on Att.member_id=SM.member_id"
+            $sql = "select *,SUM((case when (ATT.overtime!=0) then ATT.overtime*SM.over_time else 0 end)) as overtime_rate from salary_master as SM join attendances as ATT on ATT.member_id=SM.member_id"
                     . " where YEAR(ATT.att_date)='" . $year . "' and MONTH(ATT.att_date)='" . $month . "' and ATT.member_id='" . $member_id . "' group by ATT .member_id";
+            
             $result = $this->db->query($sql);
             $rows = $result->fetcharray();
             $ot_fees = $rows['overtime_rate'];
-            echo $date_diff;
+            
             if ($ot_fees != 0) {
                 $overtime = $ot_fees * $date_diff;
                 $overtime_fees = $overtime + $old_overtime;
-                echo ">>>>>" . $old_overtime;
+                
             } else {
                 $ot_fees = 0;
                 $overtime_fees = $old_overtime;
-                echo "testing" . $old_overtime . '//////////ß' . $date_diff;
+               
             }
             $otresult['overtime'] = $ot_fees;
             $otresult['overtime_annual'] = $overtime_fees;
