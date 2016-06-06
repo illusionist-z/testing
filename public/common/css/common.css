@@ -53,7 +53,7 @@ a.ledit{
     margin-top: 10px;
 }
 a.exbg{
-     background:#3c8dbc;color:white;
+    background:#3c8dbc;color:white;
 }
 #apply_cancel,#add_salary_cancel,#add_dec,#addinguser_close,#edit_close,
 #cancel_deduct,#cancel_ltype,#close_create_event,#reset_create_event,#edit_attendance_close,
@@ -294,7 +294,7 @@ form.buttons ,form.buttons > input {
     padding: 7px 19px;
     position: relative;
     display: inline-block;
-/*    text-shadow: 0 1px 0 #fff;*/
+    /*    text-shadow: 0 1px 0 #fff;*/
     -webkit-transition: border-color .218s;
     -moz-transition: border .218s;
     -o-transition: border-color .218s;
@@ -324,7 +324,7 @@ a.button:active {
     padding: 8px 10px 8px 26px;
 }*/
 a.export {
-/*    background: url("../img/5Fm069k.png")  5px -168px no-repeat #F8F8F8 ;*/
+    /*    background: url("../img/5Fm069k.png")  5px -168px no-repeat #F8F8F8 ;*/
     font-size: 12px;
     padding:3px 7px 0px 4px;
 }
@@ -803,7 +803,7 @@ hr{
 }
 #navicon7{/*setting*/
     background: url("../img/main.png") -430px 4px no-repeat;
-     padding: 2px 0px 7px 25px;
+    padding: 2px 0px 7px 25px;
     margin: 5px 190px 0px 13px;
 }
 #navicon3{/*manage user*/
@@ -962,19 +962,19 @@ hr{
 }
 /*export icon*/
 #exicon{
-/*    background: url("../img/cmn-icons.png") -60px 2px no-repeat ;
-    padding: 5px 12px 20px 10px;
-    margin: 5px 190px 0px 13px;*/
-/*    background: url("../img/cmn-icons.png") -60px 2px no-repeat;
-   // background-size: 120px 31px;
-    padding: 6px 10px 17px 12px;
-    margin: 4px 0px 0px 0px;
-    background-position: -60px 2px;
-    -moz-background-size: 10px 100px;*/
-background: url("../img/main.png")  -93px -17px no-repeat;
-/*padding: 1px 0px 17px 16px;
-margin: 6px 3px 7px -1px;*/
-padding: 0px 0px 18px 16px;
+    /*    background: url("../img/cmn-icons.png") -60px 2px no-repeat ;
+        padding: 5px 12px 20px 10px;
+        margin: 5px 190px 0px 13px;*/
+    /*    background: url("../img/cmn-icons.png") -60px 2px no-repeat;
+       // background-size: 120px 31px;
+        padding: 6px 10px 17px 12px;
+        margin: 4px 0px 0px 0px;
+        background-position: -60px 2px;
+        -moz-background-size: 10px 100px;*/
+    background: url("../img/main.png")  -93px -17px no-repeat;
+    /*padding: 1px 0px 17px 16px;
+    margin: 6px 3px 7px -1px;*/
+    padding: 0px 0px 18px 16px;
     margin: 0px 3px 10px 0px;
 
 }
@@ -1113,11 +1113,11 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 /* navbar-nav margin */
 @media (min-width: 768px){
-.navbar-nav {
-    position: relative;
-    float: left;
-    margin:0 10px 0 0;
-}
+    .navbar-nav {
+        position: relative;
+        float: left;
+        margin:0 10px 0 0;
+    }
 }
 /* loading image */
 .message{
@@ -1127,10 +1127,12 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 .change-bg{
     background-color: #ecf0f5 !important;
 }
- #visited-bg{
-    background-color: red;
-}
-.sidebar-menu>.act>a:active{
-    background-color: blue;
-    color: white;
+/*for visited link color*/
+.sidebar-menu>.active>a,.sidebar-menu>.active>a:visited{
+    background-color: #3c8dbc !important;
+    color: white !important;
+/*            border-right: 10px solid white;
+            border-top: 20px solid transparent;
+            border-left: 0px solid transparent;
+            border-bottom:  20px solid transparent; */
 }

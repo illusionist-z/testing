@@ -244,33 +244,15 @@ $(document).ready(function () {
         if (0 === $(e.target).closest('#noti').length) {
             $('#notificationContainer').fadeOut(300);
         }
-//        path = window.location.pathname.split('/');
-//       alert(path[4]);
-//        if(path[4]){
-//              $("#leavelist").css("background","blue");
-//        }
     });
     //geo();
     $('.datepicker').datepicker();
     
-//        $("#click-bg").click(function(){ 
-//                $("#visited-bg").css("background","blue");
-//                $("#visited-bg").css("color","yellow");                    
-//        });
-//        $("#click1-bg").click(function(){ 
-//            alert("click1");
-//                $("#visited1-bg").css("background","blue");
-//                $("#visited1-bg").css("color","yellow");                    
-//        });
-//        $("#click2-bg").click(function(){ 
-//            alert("click2");
-//                $("#visited2-bg").css("background","blue");
-//                $("#visited2-bg").css("color","red");                   
-//        });
+        /*for visited link color*/
+        var path = window.location.pathname,
+        link = window.location.href;  
+        $('a[href="'+path+'"], a[href="'+link+'"]').parent('li').addClass('active');
         
-        
-        //alert(path);
-        //alert(baseUri);
 
 });
 $(window).load(function () {
