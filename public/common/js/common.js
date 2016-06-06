@@ -175,6 +175,7 @@ function repair(val) {
 }
 
 $(document).ready(function () {
+    
     //absent member
     //$('body').attr('onload', getAbsentMember());
     // ここに実際の処理を記述します。
@@ -243,9 +244,33 @@ $(document).ready(function () {
         if (0 === $(e.target).closest('#noti').length) {
             $('#notificationContainer').fadeOut(300);
         }
+//        path = window.location.pathname.split('/');
+//       alert(path[4]);
+//        if(path[4]){
+//              $("#leavelist").css("background","blue");
+//        }
     });
     //geo();
     $('.datepicker').datepicker();
+    
+//        $("#click-bg").click(function(){ 
+//                $("#visited-bg").css("background","blue");
+//                $("#visited-bg").css("color","yellow");                    
+//        });
+//        $("#click1-bg").click(function(){ 
+//            alert("click1");
+//                $("#visited1-bg").css("background","blue");
+//                $("#visited1-bg").css("color","yellow");                    
+//        });
+//        $("#click2-bg").click(function(){ 
+//            alert("click2");
+//                $("#visited2-bg").css("background","blue");
+//                $("#visited2-bg").css("color","red");                   
+//        });
+        
+        
+        //alert(path);
+        //alert(baseUri);
 
 });
 $(window).load(function () {
@@ -254,3 +279,17 @@ $(window).load(function () {
 $(window).resize(function () {
     link_height();
 });
+//$(document).ready(function(){
+//            //show and hide for dashboard 
+//            $(".click-bg").click(function(){ 
+////                // $("#attlistsmenu,#managemenu,#leavemenu,#salarymenu,#documentmenu,#calendermenu").hide();
+////                var parent=$(this).closest('li').find('.togshow');            
+////                $('.helpcenter li .togshow').not(parent).slideUp();
+////                 parent.slideToggle("fast");
+//                
+//                $(".visited-bg").css("background","gray");
+//                $(".visited-bg").css("color","white");      
+//                alert("alksdfhldask");
+//            });
+//        
+//   });
