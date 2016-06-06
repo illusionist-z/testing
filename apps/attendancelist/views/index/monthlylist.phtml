@@ -51,9 +51,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
 
         <input type="submit" value="<?php echo $t->_("search"); ?>" class="buttonn form-control-static" required id="sub">
         <input type="hidden" value='' id='hidden-type' name='ExportType'/>
-        <a href="" class="buttonn form-control-static  export monthlylist" id="exbg"><img id="exicon"><b><?php echo $t->_("export"); ?></b></a>
-        <a href="monthlylist/1" class="buttonn form-control-static  export" id="exbg"><img id="exicon"><b>Export All</b></a>
-
+        <a href="" class="buttonn form-control-static  export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthlylist.csv']);"><img id="exicon"><b><?php echo $t->_("export"); ?></b></a>      
     </div>
 
     <div class="row">

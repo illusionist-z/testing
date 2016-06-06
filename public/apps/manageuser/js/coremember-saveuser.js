@@ -15,6 +15,7 @@
             processData: false,
             contentType: false,
             success: function(d){
+                
                 this.cond = JSON.parse(d);
                 if(this.cond.result === 'error')
                 {

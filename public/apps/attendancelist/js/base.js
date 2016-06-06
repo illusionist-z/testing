@@ -269,18 +269,6 @@ var Attendance = {
                 }
             });
         }
-    },
-    monthlyExportAll: function () {
-        var yy = $('#year').val(),
-                mm = $('#month').val(),
-                name = $('#username').val();
-
-        if ("" === yy && "" === mm && ("" === name || !isValid(name))) {
-            location.href = "monthlylist/1";
-        }
-        else {
-            location.href = "attsearch/1?month=" + mm + "&username=" + name + "&year=" + yy;
-        }
     }
 };
 
@@ -328,16 +316,17 @@ $(document).ready(function () {
         Attendance.monthlylist.apply(this);
     });
 
-    $('.monthlylist').click(function (e) {        
-        if($('.pagination li').length == 0){            
-            Export.Export.apply(this,[$('table.listtbl'), 'monthly_list.csv']);            
-        }
-        else{
-            e.preventDefault();
-            Attendance.monthlyExportAll();
-        }
-        
-    });
 });
 
 
+$(function() {
+    $('.date-picker').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'yy-mm-dd',
+        onClose: function(dateText, inst) { 
+            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+        }
+    });
+});

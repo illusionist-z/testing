@@ -11,7 +11,7 @@
                 $top[1]="";}
                 if (strtolower($top[0] . $top[1]) == $module_name) {
                     if (count($key_value) > 2) {
-                        echo '<div class="row"><div class="col-sm-2 link">';
+                        echo '<div class="row"><div class="col-sm-2 link change-bg">';
                         echo '<aside class="sidebar-menu">';
                         foreach ($key_value as $name => $value) {
                             if ($j > 1) {
@@ -29,14 +29,14 @@
                                     }
                                     if (strpos($key_name, 'user') !== false) {
                                         if ($key_name == 'show_admin_user') {
-                                            echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
+                                            echo ' <li class="act"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '" >' . $link_name . '</a></li>';
                                         } else {
-                                            echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '">' . $link_name . '</a></li>';
+                                            echo ' <li class="act"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '" >' . $link_name . '</a></li>';
                                         }
                                     } else {
                                         if(!isset($mod[1])){
                                         $mod[1]="";}
-                                        echo ' <li style="border-bottom:1px solid #aaa;"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '">' . $link_name . '</a></li>';
+                                        echo ' <li class="act"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '" >' . $link_name . '</a></li>';
                                     }
                                 }
                             }

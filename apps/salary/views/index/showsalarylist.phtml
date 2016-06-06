@@ -80,7 +80,8 @@ use Phalcon\Filter;
                     </div>
                     <div class="search-btn-box"><!--search btn-->
                        
-                            <a href="#" class="buttonn form-control-static" id="search_salary" ><?= $t->_("search"); ?></a>
+<!--                            <a href="#" class="buttonn form-control-static" id="search_salary" ><?= $t->_("search"); ?></a>-->
+                            <a href="#" class="buttonn form-control-static" id="search_salary"><?= $t->_("search"); ?></a>
 <!--                            <input type="submit" class="buttonn form-control-static" value="<?php echo $t->_("search"); ?>" id="search_salary">-->
                             <a href="#" class="buttonn form-control-static export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'monthly_salary.csv']);"><img id="exicon"><?= $t->_("Export"); ?></a>
                             <a href="#" title="<?= $t->_("Print"); ?>" style="margin-left: 20px;" id="btn_print_salary" class="buttonn printimg"></a>
@@ -98,7 +99,8 @@ use Phalcon\Filter;
             <table class="listtbl" >
                 <thead>
                     <tr>
-                        <th><INPUT type="checkbox" id="sal_check" onchange="checkAll(this)" name="chk[]" /></th>
+                        <!--<th><INPUT type="checkbox" id="sal_check" onchange="checkAll(this)" name="chk[]" /></th>-->
+                        <th></th>
                         <th><?= $t->_("name"); ?></th>
                         <th><?= $t->_("department"); ?></th>
                         <th><?= $t->_("position"); ?></th>
@@ -129,7 +131,7 @@ use Phalcon\Filter;
                         
                         ?>
                         <tr>
-                            <td><input type="checkbox" id="getcheck" class='case' name='chk[]'  value="<?= $getsalarylist['member_id']; ?>" ></td>
+                            <td><input type="hidden" id="getcheck" class='case' name='chk[]'  value="<?= $getsalarylist['member_id']; ?>" ></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_login_name'], "string"); ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['member_dept_name'], "string") ?></td>
                             <td><?php echo $filter->sanitize($getsalarylist['position'], "string") ?></td>
