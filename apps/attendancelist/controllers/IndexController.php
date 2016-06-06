@@ -1,6 +1,7 @@
 <?php 
 
 namespace salts\Attendancelist\Controllers;
+use Phalcon\Filter;
 
 class IndexController extends ControllerBase {
     
@@ -155,6 +156,9 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
+        
+         $this->setattChartCss();
+           
          if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
@@ -167,13 +171,25 @@ class IndexController extends ControllerBase {
     }
     
      public function attchartsearchAction() {
+           $this->setattChartCss();
+           $filter = new Filter();
+           if ($this->request->isPost('date-picker-btn')){
        //  if ($this->moduleIdCall == 1) {
-        $Attendances = new \salts\Attendancelist\Models\Attendances();
-        $search_date =  $this->request->getPost('date-picker-input');
-        $search_dept =  $this->request->getPost('date-picker-select ');
-        $data = $Attendances->currentAttList($currentPage);
-        $this->view->data = $data;
-        
+        //$Attendances = new \salts\Attendancelist\Models\Attendances();
+        $search_date =  $filter->sanitize($this->request->getPost('date-picker-input'),'string');
+        $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select '),'string');
+        $find_date_chart = \salts\Attendancelist\Models\Attendances::findFirst('att_date >=' .$search_date);
+        $find_date_chart->att_date = $search_date;
+        var_dump($search_date);
+        //exit();
+        $this->view->data = $search_date;
+//         /$this->response->redirect('attchartsearch');
+        // $result = $Attendances->searchByTwoOption($search_date, $search_dept);
+         
+           }
+           else { 
+              echo 'Error';
+           }
 //         }
 //         else {
 //             echo 'Page Not Found';

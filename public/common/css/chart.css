@@ -8,7 +8,17 @@
 .ui-helper-hidden {
     display: none;
 }
- 
+.ui-datepicker-calendar {
+    
+    display: none;
+    color: red;
+    }
+    .ui-datepicker-month {
+       color: red;
+    }
+    .ui-datepicker-year{
+            color: red;
+    }
 .ui-helper-hidden-accessible {
     border: 0;
     clip: rect(0 0 0 0);

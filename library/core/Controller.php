@@ -155,7 +155,19 @@ $cache_expire = session_cache_expire();
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
         }
-    
+        public function setattChartCss(){
+                  $this->assets->addCss('common/css/chart.css');
+        $this->assets->addCss("common/css/bootstrap.min.css?")
+                ->addCss('common/css/common.css')
+                 ->addCss('common/css/skins.min.css');
+        $this->assets->addJs('common/js/jquery.min.js')
+                ->addJs('common/js/common.js');
+         $this->assets->addCss('common/css/css/style.css');
+        $this->assets->addJs('common/js/bootstrap.min.js');
+        $this->assets->addJs('common/js/jquery-ui.js');
+        $this->assets->addJs('common/js/notification.js');
+        }
+
         public function setAllUse(){
          $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
         $Admin = new Db\CoreMember();
