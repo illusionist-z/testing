@@ -1,7 +1,6 @@
 <?php 
 
 namespace salts\Attendancelist\Controllers;
-use salts\Auth\Models\CoreMember;
 
 class IndexController extends ControllerBase {
     
@@ -175,6 +174,8 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
+         $this->setattChartCss();
+           
          if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
@@ -184,6 +185,23 @@ class IndexController extends ControllerBase {
          else {
              echo 'Page Not Found';
          }
+    }
+    
+     public function attchartsearchAction() {
+           $this->setattChartCss();
+         
+       //  if ($this->moduleIdCall == 1) {
+        $Attendances = new \salts\Attendancelist\Models\Attendances();
+        $search_date =  $this->request->getPost('date-picker-input');
+        $search_dept =  $this->request->getPost('date-picker-select ');
+         $result = $Attendances->searchByTwoOption($search_date, $search_dept);
+        
+        $this->view->data = $result;
+        
+//         }
+//         else {
+//             echo 'Page Not Found';
+//         }
     }
 
     public function autolistAction() {
