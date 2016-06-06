@@ -179,11 +179,25 @@ class IndexController extends ControllerBase {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
         $data = $Attendances->currentAttList($currentPage);
-        //$this->view->data = $data;
+        $this->view->data = $data;
          }
          else {
              echo 'Page Not Found';
          }
+    }
+    
+     public function attchartsearchAction() {
+       //  if ($this->moduleIdCall == 1) {
+        $Attendances = new \salts\Attendancelist\Models\Attendances();
+        $search_date =  $this->request->getPost('date-picker-input');
+        $search_dept =  $this->request->getPost('date-picker-select ');
+        $data = $Attendances->currentAttList($currentPage);
+        $this->view->data = $data;
+        
+//         }
+//         else {
+//             echo 'Page Not Found';
+//         }
     }
 
     public function autolistAction() {
