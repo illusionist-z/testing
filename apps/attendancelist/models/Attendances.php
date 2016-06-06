@@ -317,24 +317,20 @@ class Attendances extends Model {
      * @author zinmon
      */
     
-//      public function searchByTwoOption($search_date, $search_dept) {
-//
-//        try {
-//           // $conditions = $this->setCondition($search_date, $search_dept);
-//             
-//                $row_bysearch = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
-//                                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-//                                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
-//                                ->where(implode(' AND ', $search_date))
-//                                ->andWhere('core.deleted_flag = 0')
-//                               ->orderBy('attendances.checkin_time DESC')
-//                                ->getQuery()->execute();
-//          
-//        } catch (Exception $ex) {
-//            echo $ex;
-//        }
-//        return $row_bysearch;
-//    }
+      public function searchByTwoOption($search_date, $search_dept) {
+
+        try {
+          
+              $phql = "SELECT * FROM attendances WHERE attendances.att_date LIKE '%' . $search_date . '%'";
+$search_date = $manager->executeQuery($phql);
+       
+                
+          
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        return $row_bysearch;
+    }
     
     /**
      * Set Condition

@@ -175,9 +175,7 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
-        
-         $this->setattChartCss();
-           
+         
          if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
@@ -191,19 +189,27 @@ class IndexController extends ControllerBase {
     
      public function attchartsearchAction() {
            $this->setattChartCss();
+           
            $filter = new Filter();
            if ($this->request->isPost('date-picker-btn')){
        //  if ($this->moduleIdCall == 1) {
-        //$Attendances = new \salts\Attendancelist\Models\Attendances();
+        $Attsearch = new \salts\Attendancelist\Models\Attendances();
         $search_date =  $filter->sanitize($this->request->getPost('date-picker-input'),'string');
         $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select '),'string');
-        $find_date_chart = \salts\Attendancelist\Models\Attendances::findFirst('att_date >=' .$search_date);
-        $find_date_chart->att_date = $search_date;
-        var_dump($search_date);
-        //exit();
-        $this->view->data = $search_date;
-//         /$this->response->redirect('attchartsearch');
-        // $result = $Attendances->searchByTwoOption($search_date, $search_dept);
+       //    $find_date_chart = \salts\Attendancelist\Models\Attendances::findFirst('att_date =' .$search_date);
+       
+$products = $Attsearch::findFirst(array(
+    "conditions" => "att_date LIKE '%" . $search_date . "%'",
+    "limit" => 10
+));
+        $Attsearch->member_id = $search_date;
+        
+       
+//       var_dump($products);
+//        exit();
+//        $this->view->data = $search_date;
+//         $this->response->redirect('attchartsearch');
+//         $result = $Attendances->searchByTwoOption($search_date, $search_dept);
          
            }
            else { 

@@ -25,6 +25,9 @@ if (!ini_get('date.timezone')) {
     <br>
     <?php
      foreach ($search_date->items as $search_date_view) {
+         
+        var_dump($search_date_view->member_id);
+         exit();
          ?>
      <?= $search_date_view->member_id ?>                   
     
@@ -90,19 +93,7 @@ if (!ini_get('date.timezone')) {
     </div>
     <div id="content">
     <ul class="pagination" style="margin-left:15px;">
-        <?php
-        if ($data->last === 1 || $data->last === 0) {
-            
-        } else {
-            ?>
-            <li><a href="attendancechart">First</a></li>
-            <li><a href="attendancechart?page=<?= $data->before; ?>">Previous</a></li>
-            <li><a href="attendancechart?page=<?= $data->next; ?>">Next</a></li>
-            <li><a href="attendancechart?page=<?= $data->last; ?>">Last</a></li>
-            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $data->current, " of ", $data->total_pages; ?></span></li>
-            <?php
-        }
-        ?>
+         
     </ul>
 </div>
     <div class="attchart">

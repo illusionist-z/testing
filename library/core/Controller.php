@@ -157,15 +157,15 @@ $cache_expire = session_cache_expire();
         }
         public function setattChartCss(){
                   $this->assets->addCss('common/css/chart.css');
-        $this->assets->addCss("common/css/bootstrap.min.css?")
-                ->addCss('common/css/common.css')
-                 ->addCss('common/css/skins.min.css');
-        $this->assets->addJs('common/js/jquery.min.js')
-                ->addJs('common/js/common.js');
-         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/bootstrap.min.js');
+        $this->assets->addCss("common/css/bootstrap.min.css?") ;
+         
+         $this->assets->addCss('common/css/css/style.css'); 
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
+                $this->assets->addJs('common/js/paging.js');
+        $this->assets->addJs('apps/setting/js/base.js');  
+        $this->assets->addCss('common/css/dialog.css');
+        $this->assets->addCss('common/css/css/style.css');
         }
 
         public function setAllUse(){
@@ -280,9 +280,9 @@ $cache_expire = session_cache_expire();
         $this->assets->addJs('common/js/jquery-ui.js');
         $this->assets->addJs('common/js/notification.js');
         $this->assets->addCss('common/css/css/style.css');
-         $this->assets->addJs('common/js/time.js');
+        $this->assets->addJs('common/js/time.js');
         $this->assets->addJs('common/js/btn.js');
-          $this->assets->addJs('apps/dashboard/js/index.js');
+        $this->assets->addJs('apps/dashboard/js/index.js');
         $this->assets->addJs('http://www.geoplugin.net/javascript.gp');
                
     }
