@@ -20,6 +20,7 @@
   body *{ visibility: hidden; }
   #printable *{ visibility: visible;}
   .p_break{page-break-after: always;}
+  .link{display: none;}
 }
 .td-style{
      float: right; 

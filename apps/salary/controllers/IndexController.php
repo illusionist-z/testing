@@ -668,12 +668,18 @@ class IndexController extends ControllerBase {
         $member_id = $this->request->get('chk_val');
         $mid = explode(',', $member_id);
         $SalaryDetail = new SalaryDetail();
-        for ($i = 0; $i < count($mid); $i++) {
-            echo $mid[$i] . "<br>";
-            if ($mid[$i] != 'on') {
-                $getsalarydetail[] = $SalaryDetail->getPayslip($mid[$i], $month, $year);
-            }
+        $Memid = $SalaryDetail->getMemberid();
+        
+        foreach ($Memid as $value) {
+            $getsalarydetail[] = $SalaryDetail->getPayslip($value['member_id'], $month, $year);
         }
+//        for ($i = 0; $i < count($mid); $i++) {
+//            echo $mid[$i] . "<br>";
+//            if ($mid[$i] != 'on') {
+//                $getsalarydetail[] = $SalaryDetail->getPayslip($mid[$i], $month, $year);
+//            }
+//        }
+        //$getsalarydetail= $SalaryDetail->getPayslip($month, $year);
         $this->view->setVar("getsalarydetails", $getsalarydetail);
         $this->view->module_name = $this->router->getModuleName();
     }
