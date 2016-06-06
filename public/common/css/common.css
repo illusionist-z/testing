@@ -621,7 +621,7 @@ a.export {
 /* footer setting is below */
 #cmn_footer{
     position: relative;
-    background: #fff;/*#222D32*/
+    background: white;/*#222D32*/
     padding: 15px;
     color: #444;
 }
@@ -963,8 +963,21 @@ hr{
 }
 /*export icon*/
 #exicon{
-    background: url("../img/cmn-icons.png") -60px 2px no-repeat ;
+/*    background: url("../img/cmn-icons.png") -60px 2px no-repeat ;
     padding: 5px 12px 20px 10px;
+    margin: 5px 190px 0px 13px;*/
+/*    background: url("../img/cmn-icons.png") -60px 2px no-repeat;
+   // background-size: 120px 31px;
+    padding: 6px 10px 17px 12px;
+    margin: 4px 0px 0px 0px;
+    background-position: -60px 2px;
+    -moz-background-size: 10px 100px;*/
+background: url("../img/main.png")  -93px -17px no-repeat;
+/*padding: 1px 0px 17px 16px;
+margin: 6px 3px 7px -1px;*/
+padding: 0px 0px 18px 16px;
+    margin: 0px 3px 10px 0px;
+
 }
 
 /* for hover notification */
