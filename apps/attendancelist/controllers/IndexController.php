@@ -45,7 +45,7 @@ class IndexController extends ControllerBase {
     /**
      * show today attendance list
      */
-    public function todaylistAction($exportMode = null) {
+    public function todaylistAction() {
       
         if ($this->moduleIdCall == 1) {
             $this->act_name = $this->router->getModuleName();
@@ -59,16 +59,10 @@ class IndexController extends ControllerBase {
             $AttList = new \salts\Attendancelist\Models\Attendances();
             
             if ($this->permission == 1) {
-                if(1 == $exportMode){
-                $Result_Attlist = $AttList->getTodayList($name, $currentPage,0);
-                $AttList->AttendanceExport($Result_Attlist,"TodayAttendanceList",$offset);
-                }
-                else{
                 $Result_Attlist = $AttList->getTodayList($name, $currentPage,1);
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;                
-                $this->view->modulename = $this->module_name;
-                }
+                $this->view->modulename = $this->module_name;                
             }
         }
     }
@@ -121,24 +115,18 @@ class IndexController extends ControllerBase {
      * show monthly attendancelist
      * 
      */
-    public function monthlylistAction($exportMode = null) {
+    public function monthlylistAction() {
         if ($this->moduleIdCall == 1) {
             $offset = $this->session->location['offset'];
             $currentPage = $this->request->get("page");
             //$month = $this->config->month['month'];
             $Attendances = new \salts\Attendancelist\Models\Attendances();
 
-            if ($this->permission == 1) {
-                if(1 == $exportMode){
-                $monthly_list = $Attendances->showAttList($currentPage,0);
-                $Attendances->AttendanceExport($monthly_list,"MonthlyAttendanceList",$offset);
-                }
-                else{
+            if ($this->permission == 1) {              
                 $monthly_list = $Attendances->showAttList($currentPage,1);
                 $this->view->monthlylist = $monthly_list;
                 $this->view->setVar("Month", $month);                
-                $this->view->setVar("offset", $offset);
-                }
+                $this->view->setVar("offset", $offset);                
             } else {
                 $this->response->redirect('core/index');
             }
@@ -147,23 +135,16 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function attsearchAction($exportMode = null) {
+    public function attsearchAction() {
          if ($this->moduleIdCall == 1) {
             $month = $this->request->get('month');
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
             $page = $this->request->get('page');
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            if(1 == $exportMode){
-            $offset = $this->session->location['offset'];
-            $result = $Attendances->searchAttList($year, $month, $username,$page,0);
-            $Attendances->AttendanceExport($result,"MonthlyAttendanceList",$offset);
-            }
-            else{
             $result = $Attendances->searchAttList($year, $month, $username,$page,1);
             $this->view->disable();
             echo json_encode($result);
-            }        
          }
          else {
              echo 'Page Not Found';
