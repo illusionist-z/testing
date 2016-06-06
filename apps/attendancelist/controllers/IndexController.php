@@ -156,12 +156,12 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
-         
+          $this->setattChartCss1();
          if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
         $data = $Attendances->currentAttList($currentPage);
-        $this->view->data = $data;
+       // $this->view->data = $data;
          }
          else {
              echo 'Page Not Found';
@@ -177,21 +177,11 @@ class IndexController extends ControllerBase {
         $Attsearch = new \salts\Attendancelist\Models\Attendances();
         $search_date =  $filter->sanitize($this->request->getPost('date-picker-input'),'string');
         $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select '),'string');
-       //    $find_date_chart = \salts\Attendancelist\Models\Attendances::findFirst('att_date =' .$search_date);
-       
-$products = $Attsearch::findFirst(array(
-    "conditions" => "att_date LIKE '%" . $search_date . "%'",
-    "limit" => 10
-));
-        $Attsearch->member_id = $search_date;
-        
-       
-//       var_dump($products);
-//        exit();
-//        $this->view->data = $search_date;
-//         $this->response->redirect('attchartsearch');
-//         $result = $Attendances->searchByTwoOption($search_date, $search_dept);
-         
+    
+         $page_search = $Attsearch->searchByTwoOption($search_date, $search_dept);
+          $this->view->data = $search_date;
+          var_dump($page_search);
+        exit();
            }
            else { 
               echo 'Error';
