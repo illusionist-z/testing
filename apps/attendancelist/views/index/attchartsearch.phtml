@@ -24,13 +24,12 @@ if (!ini_get('date.timezone')) {
 </section>
     <br>
     <?php
-     foreach ($search_date->items as $search_date_view) {
+     foreach ($coreid as $search_date_view) {
          
-        var_dump($search_date_view->member_id);
-         exit();
+        echo $search_date_view->member_id;
+          
          ?>
-     <?= $search_date_view->member_id ?>                   
-    
+      
     <?php
          
      }

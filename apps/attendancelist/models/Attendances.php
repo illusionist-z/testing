@@ -318,9 +318,7 @@ class Attendances extends Model {
      */
     
       public function searchByTwoOption($search_date, $search_dept) {
-
-          try {
-          
+        try {
             $currentmth = date('m');
             $currentYr = date("Y");
             $row = $this->modelsManager->createBuilder()
@@ -329,23 +327,18 @@ class Attendances extends Model {
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
-                  //  ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
+                    ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
                     ->andWhere('core.deleted_flag = 0')
                     ->groupBy('core.member_id')
-                    ->like()
-                    ->getQuery($search_date)
+                    ->getQuery()
                     ->execute();
-            $page_search = $this->base->pagination($row, $search_date);
-            
-           // $query = "SELECT * FROM attendances WHERE attendances.att_date  LIKE '%$search_date%'";
-            
-//            $data = $this->db->query($query);
-//            $result = $data->fetchall();
-        } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+//            var_dump($row);
+//            exit();
+            $page = $this->base->pagination($row, $search_date);
+        } catch (Exception $ex) {
+            echo $ex;
         }
-        return $page_search;
-      
+        return $page;
     }
     
     /**
