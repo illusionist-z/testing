@@ -15,13 +15,13 @@ $(function () {
                 chk.push(chkbox[i].value);
             }
         }
-        if (chk != "") {
-            window.location.href = baseUri + 'salary/index/printsalary?chk_val=' + chk + '&month=' + month + '&year=' + year;
-        }
-        if (chk == "" || chk == "on") {
-            alert("please check aleast one!");
-            location.reload();
-        }
+//        if (chk != "") {
+            window.location.href = baseUri + 'salary/index/printsalary?month=' + month + '&year=' + year;
+//        }
+//        if (chk == "" || chk == "on") {
+//            alert("please check aleast one!");
+//            location.reload();
+//        }
 
 //         $.ajax({
 //             url: baseUri + 'salary/index/printsalary',
@@ -83,20 +83,9 @@ $(function () {
     $('.btn_detail').click(function () {
         var month = document.getElementById('month').value;
         var year = document.getElementById('year').value;
-        var chk= document.getElementById('getcheck').value;
+        var chk= $(this).attr('id');
 
-//        var chk = [];
-
-//        for (var i = 0, n = chkbox.length; i < n; i++) {
-//            if (chkbox [i].checked)
-//            {
-//                chk.push(chkbox[i].value);
-//            }
-//
-//        }
-//
-//        if (chk != "") {
-            window.location.href = baseUri + 'salary/index/salarydetail?chk_val=' + chk + '&month=' + month + '&year=' + year;
+        window.location.href = baseUri + 'salary/index/salarydetail?chk_val=' + chk + '&month=' + month + '&year=' + year;
 //        }
 //        if (chk == "" || chk == "on") {
 //            alert("please check aleast one!");

@@ -212,6 +212,16 @@ select member_id from salary_detail) and MONTH(SD.pay_date) = :month and YEAR(SD
         }
         return $row;
     }
+    public function getMemberid() {
+        try {
+            $sql="SELECT member_id from core_member where member_id in (select member_id from salary_detail)";
+            $result = $this->db->query($sql);
+            $row = $result->fetchall();
+            } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
 
     /**
      * get allowance by member id
