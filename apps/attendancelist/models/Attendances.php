@@ -9,7 +9,9 @@ class Attendances extends Model {
 
     public $base;
     public $filter;
-
+    public $member_id;
+    public $att_date;
+    
     public function initialize() {
         $this->filter = new Filter();
         $this->db = $this->getDI()->getShared("db");
@@ -315,30 +317,24 @@ class Attendances extends Model {
      * @author zinmon
      */
     
-      public function searchByTwoOption($search_date, $search_dept) {
-
-        try {
-           // $conditions = $this->setCondition($search_date, $search_dept);
-            if (count($conditions) > 0) {
-                $row = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
-                                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
-                                ->where(implode(' AND ', $conditions))
-                                ->andWhere('core.deleted_flag = 0')
-                                ->andWhere('attendances.status = 0')
-                                ->orderBy('attendances.checkin_time DESC')
-                                ->getQuery()->execute();
-            }
-            if (1 == $IsPaging) {
-                $page = $this->base->pagination($row, $currentPage);
-            } else {
-                $page = $row;
-            }
-        } catch (Exception $ex) {
-            echo $ex;
-        }
-        return $page;
-    }
+//      public function searchByTwoOption($search_date, $search_dept) {
+//
+//        try {
+//           // $conditions = $this->setCondition($search_date, $search_dept);
+//             
+//                $row_bysearch = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
+//                                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+//                                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+//                                ->where(implode(' AND ', $search_date))
+//                                ->andWhere('core.deleted_flag = 0')
+//                               ->orderBy('attendances.checkin_time DESC')
+//                                ->getQuery()->execute();
+//          
+//        } catch (Exception $ex) {
+//            echo $ex;
+//        }
+//        return $row_bysearch;
+//    }
     
     /**
      * Set Condition

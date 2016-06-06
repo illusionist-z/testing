@@ -23,6 +23,15 @@ if (!ini_get('date.timezone')) {
     </ol>
 </section>
     <br>
+    <?php
+     foreach ($search_date->items as $search_date_view) {
+         ?>
+     <?= $search_date_view->member_id ?>                   
+    
+    <?php
+         
+     }
+    ?>
 <section class="content"> 
     <div class="row">
         <div class="col-sm-12 table-responsive"><!--start table content--->

@@ -346,7 +346,7 @@ $(function() {
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
-        dateFormat: 'mm-yy',
+        dateFormat: 'yy-mm-dd',
         onClose: function(dateText, inst) { 
             $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
         }
