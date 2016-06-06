@@ -83,24 +83,25 @@ $(function () {
     $('.btn_detail').click(function () {
         var month = document.getElementById('month').value;
         var year = document.getElementById('year').value;
-        var chkbox = document.getElementsByName('chk[]');
-        var chk = [];
+        var chk= document.getElementById('getcheck').value;
 
-        for (var i = 0, n = chkbox.length; i < n; i++) {
-            if (chkbox [i].checked)
-            {
-                chk.push(chkbox[i].value);
-            }
+//        var chk = [];
 
-        }
-
-        if (chk != "") {
+//        for (var i = 0, n = chkbox.length; i < n; i++) {
+//            if (chkbox [i].checked)
+//            {
+//                chk.push(chkbox[i].value);
+//            }
+//
+//        }
+//
+//        if (chk != "") {
             window.location.href = baseUri + 'salary/index/salarydetail?chk_val=' + chk + '&month=' + month + '&year=' + year;
-        }
-        if (chk == "" || chk == "on") {
-            alert("please check aleast one!");
-            location.reload();
-        }
+//        }
+//        if (chk == "" || chk == "on") {
+//            alert("please check aleast one!");
+//            location.reload();
+//        }
         //window.location.href = baseUri + 'salary/index/salarydetail?chk_val='+chk+'&month='+month+'&year='+year;
 //         $.ajax({
 //             url: baseUri + 'salary/index/salarydetail',

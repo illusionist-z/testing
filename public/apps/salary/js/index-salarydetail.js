@@ -2,36 +2,36 @@
 $('div.sample').hide().first().show();
 var i=0;
 // binds a click event-handler to a elements whose class='display'
-$('a.display').on('click', function(e) {
-    // prevents the default action of the link
-    e.preventDefault();
-    
-
-    // assigns the currently visible div.sample element to a variable
-    var that = $('div.sample:visible'),
-        // assigns the text of the clicked-link to a variable for comparison purposes
-        t = $(this).text();
-        //alert(that.next('div.sample').length);
-    // checks if it was the 'next' link, and ensures there's a div to show after the currently-shown one
-    if (t == 'NEXT' && that.next('div.sample').length > 0) {
-        // hides all the div.sample elements
-        i++;
-        $('div.sample').hide();
-        
-        // shows the 'next'
-        
-        that.next('div.sample').show();
-    }
-    
-    // exactly the same as above, but checking that it's the 'prev' link
-    // and that there's a div 'before' the currently-shown element.
-    else if (t == 'PREV' && that.prev('div.sample').length > 0) {
-    i--;
-       
-        $('div.sample').hide();
-        that.hide().prev('div.sample').show();
-    }
-});
+//$('a.display').on('click', function(e) {
+//    // prevents the default action of the link
+//    e.preventDefault();
+//    
+//
+//    // assigns the currently visible div.sample element to a variable
+//    var that = $('div.sample:visible'),
+//        // assigns the text of the clicked-link to a variable for comparison purposes
+//        t = $(this).text();
+//        //alert(that.next('div.sample').length);
+//    // checks if it was the 'next' link, and ensures there's a div to show after the currently-shown one
+//    if (t == 'NEXT' && that.next('div.sample').length > 0) {
+//        // hides all the div.sample elements
+//        i++;
+//        $('div.sample').hide();
+//        
+//        // shows the 'next'
+//        
+//        that.next('div.sample').show();
+//    }
+//    
+//    // exactly the same as above, but checking that it's the 'prev' link
+//    // and that there's a div 'before' the currently-shown element.
+//    else if (t == 'PREV' && that.prev('div.sample').length > 0) {
+//    i--;
+//       
+//        $('div.sample').hide();
+//        that.hide().prev('div.sample').show();
+//    }
+//});
 var Resign = {
     
       Add : function (id){
@@ -114,14 +114,15 @@ $(document).ready(function () {
 
    
     
-     $('.btn_resign').click(function () {
-        // alert("aa");
-       var id= document.getElementById("member_id").value;
-        Resign.Add(id);
-    });
+//     $('.btn_resign').click(function () {
+//        // alert("aa");
+//       var id= document.getElementById("member_id").value;
+//        Resign.Add(id);
+//    });
     //Enable the textbox for salary detail
     $('.btnEditInfo').click(function () {
-        //document.getElementById('txtname').disabled=false;
+        
+       document.getElementById('btnEditInfo').disabled=true;
 //        document.getElementById('btn_savedetail').disabled=false;
 //        document.getElementById('txtbsalary').disabled=false;
 //        document.getElementById('txtbsalary').disabled=false;
