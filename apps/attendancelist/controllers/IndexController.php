@@ -161,7 +161,7 @@ class IndexController extends ControllerBase {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
         $data = $Attendances->currentAttList($currentPage);
-       // $this->view->data = $data;
+        $this->view->data = $data;
          }
          else {
              echo 'Page Not Found';
@@ -181,7 +181,7 @@ class IndexController extends ControllerBase {
         $currentPage = $this->request->get("page");
       
         $result = $Attsearch->searchByTwoOption($search_date, $search_dept);
-       //   $this->view->data = $search_date;
+          $this->view->data = $search_date;
         $this->view->coreid = $result;
            
          

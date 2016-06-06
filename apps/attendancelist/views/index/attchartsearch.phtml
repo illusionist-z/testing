@@ -23,16 +23,16 @@ if (!ini_get('date.timezone')) {
     </ol>
 </section>
     <br>
-    <?php
-     foreach ($coreid as $search_date_view) {
-         
-        echo $search_date_view->member_id;
-          
-         ?>
+    //<?php
+//     foreach ($coreid as $search_date_view) {
+//         
+//        echo $search_date_view->member_id;
+//          
+//         ?>
       
-    <?php
-         
-     }
+    //<?php
+//         
+//     }
     ?>
 <section class="content"> 
     <div class="row">
@@ -50,12 +50,12 @@ if (!ini_get('date.timezone')) {
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($data->items as $result) {
+                    foreach ($search_date->items as $result) {
                         $day = explode(",", $result['day']);
                         $status = explode(",", $result['status']);
-                        $tt = ($data->current - 1);
+                        $tt = ($search_date->current - 1);
                         echo "<tr>";
-                        echo "<td>" . ($no + ($data->limit * $tt)) . "</td>";
+                        echo "<td>" . ($no + ($search_date->limit * $tt)) . "</td>";
                         echo "<td>" . $result['member_login_name'] . "</td>";
                         for ($i = 1; $i <= date('t'); $i++) {
                             $j = array();
