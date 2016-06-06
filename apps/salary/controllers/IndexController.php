@@ -675,6 +675,7 @@ class IndexController extends ControllerBase {
             }
         }
         $this->view->setVar("getsalarydetails", $getsalarydetail);
+        $this->view->module_name = $this->router->getModuleName();
     }
 
     /**
@@ -698,6 +699,7 @@ class IndexController extends ControllerBase {
         $this->view->getsalarydetails = $getsalarydetail;
         $this->view->year = $year;
         $this->view->month = $month;
+        $this->view->module_name = $this->router->getModuleName();
     }
 
     /**
