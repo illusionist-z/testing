@@ -9,7 +9,9 @@ class Attendances extends Model {
 
     public $base;
     public $filter;
-
+    public $member_id;
+    public $att_date;
+    
     public function initialize() {
         $this->filter = new Filter();
         $this->db = $this->getDI()->getShared("db");
@@ -318,26 +320,16 @@ class Attendances extends Model {
       public function searchByTwoOption($search_date, $search_dept) {
 
         try {
-           // $conditions = $this->setCondition($search_date, $search_dept);
-            if (count($conditions) > 0) {
-                $row = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
-                                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
-                                ->where(implode(' AND ', $conditions))
-                                ->andWhere('core.deleted_flag = 0')
-                                ->andWhere('attendances.status = 0')
-                                ->orderBy('attendances.checkin_time DESC')
-                                ->getQuery()->execute();
-            }
-            if (1 == $IsPaging) {
-                $page = $this->base->pagination($row, $currentPage);
-            } else {
-                $page = $row;
-            }
+          
+              $phql = "SELECT * FROM attendances WHERE attendances.att_date LIKE '%' . $search_date . '%'";
+$search_date = $manager->executeQuery($phql);
+       
+                
+          
         } catch (Exception $ex) {
             echo $ex;
         }
-        return $page;
+        return $row_bysearch;
     }
     
     /**
@@ -401,84 +393,6 @@ class Attendances extends Model {
             $date['endDate'] = date('Y-m-d', strtotime("+1 year", strtotime($created_date['working_year_by_year'])));
         }
         return $date;
-    }
-
-    /**
-     * Exporting attendance list all data
-     * @author David JP <david.gnext@gmail.com>
-     */
-    public function AttendanceExport($data, $filename, $offset) {
-        header("Content-type: application/csv");
-        header("Content-Disposition: attachment; filename=$filename.csv;");
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM        
-        $output = fopen('php://output', 'w');
-        fputcsv($output, array("Date", "User Name", "Check In", "Late", "Reason of Late", "Check Out", "Working Time", "Overtime", "Location"));
-        if ($offset < 0) {
-            $sign = '-';
-            $value = $offset * (-1);
-        } else {
-            $sign = '+';
-            $value = $offset * (-1);
-        }
-        foreach ($data as $row) {
-            //Checkin Time
-            $checkintime = $row->attendances->checkin_time;
-            if ($sign == '-') {
-                $time = new \DateTime($checkintime);
-                $time->add(new \DateInterval('PT' . $value . 'M'));
-                $datetime_from = $time->format('H:i:s A ');
-            } else {
-                $datetime_from = date(" H:i", strtotime($value . " minutes", strtotime($checkintime)));
-            }
-            //Late Time
-            $checkintime = $row->attendances->checkin_time;
-            $dt = new \DateTime($checkintime);
-            $time = $dt->format('H:i:s');
-            $office_start_time = '01:30:00 ';
-            if ($time > $office_start_time) {
-                $start = strtotime($office_start_time);
-                $end = strtotime($time);
-                $late = $end - $start;
-                $late = gmdate("H:i:s", $late);
-            } else {
-                $late = "-";
-            }
-            //CALCULATE WORKING HR  
-            $start_time = strtotime($row->attendances->checkin_time);
-            $end_time = strtotime($row->attendances->checkout_time);
-            if ($end_time == 0) {
-                $workingHour = "-";
-            } else {
-                $workingHour = $end_time - $start_time;
-                $hours = floor($workingHour / 3600);
-                $minutes = floor(($workingHour / 60) % 60);
-                $seconds = $workingHour % 60;
-                if ($hours < 10) {
-                    $hours = "0" . $hours;
-                }
-                if ($minutes < 10) {
-                    $minutes = "0" . $minutes;
-                }
-                $workingHour = "$hours:$minutes:$seconds";
-            }
-            //check out time
-            $checkouttime = $row->attendances->checkout_time;
-            if ($checkouttime == 0) {
-                $chk_out = "-";
-            } else {
-                if ($sign = '-') {
-                    $time = new \DateTime($checkouttime);
-                    $time->add(new \DateInterval('PT' . $value . 'M'));
-                    $chk_out = $time->format('H:i:s A');
-                } else {
-                    $chk_out = date(" H:i", strtotime($value . " minutes", strtotime($checkouttime)));
-                }
-            }
-            fputcsv($output, array(date('Y-m-d'), $row->core->member_login_name, $datetime_from, $late, $row->attendances->notes,
-                $chk_out, $workingHour, $row->attendances->overtime, $row->attendances->location));
-        }
-        fclose($output);
-        exit;
     }
 
 }
