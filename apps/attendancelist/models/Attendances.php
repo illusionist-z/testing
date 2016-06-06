@@ -314,6 +314,42 @@ class Attendances extends Model {
      * @return string
      * @author zinmon
      */
+    
+      public function searchByTwoOption($search_date, $search_dept) {
+
+        try {
+           // $conditions = $this->setCondition($search_date, $search_dept);
+            if (count($conditions) > 0) {
+                $row = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
+                                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                                ->where(implode(' AND ', $conditions))
+                                ->andWhere('core.deleted_flag = 0')
+                                ->andWhere('attendances.status = 0')
+                                ->orderBy('attendances.checkin_time DESC')
+                                ->getQuery()->execute();
+            }
+            if (1 == $IsPaging) {
+                $page = $this->base->pagination($row, $currentPage);
+            } else {
+                $page = $row;
+            }
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+        return $page;
+    }
+    
+    /**
+     * Set Condition
+     * @param type $year
+     * @param type $month
+     * @param type $dept
+     * @return string
+     * @author yan lin pai
+     */
+    
+    
     public function setCondition($year, $month, $username) {
         $conditions = array();
 

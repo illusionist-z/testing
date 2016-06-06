@@ -174,6 +174,8 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
+         $this->setattChartCss();
+           
          if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $currentPage = $this->request->get("page");
@@ -186,12 +188,15 @@ class IndexController extends ControllerBase {
     }
     
      public function attchartsearchAction() {
+           $this->setattChartCss();
+         
        //  if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
         $search_date =  $this->request->getPost('date-picker-input');
         $search_dept =  $this->request->getPost('date-picker-select ');
-        $data = $Attendances->currentAttList($currentPage);
-        $this->view->data = $data;
+         $result = $Attendances->searchByTwoOption($search_date, $search_dept);
+        
+        $this->view->data = $result;
         
 //         }
 //         else {
