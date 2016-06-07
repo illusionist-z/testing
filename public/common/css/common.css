@@ -47,6 +47,14 @@ html,body{min-height:100%;}.layout-boxed html,.layout-boxed body{height:100%}bod
 #create_dialog,#submit_edit_event,#addsalary,#edit_salary_edit,#edit_tax,#edit_deduct,
 #edit_allowance_edit,#edit_attendance_edit,#alladd,#Add_Resign_Date,#edit,#usersearch,#noti_accept,
 #btngo,#cal_salary_month,#btnemail,#btncontinue,#btnnewpass,#csvtosql,#exbg,#searchbg{
+    background:#5AA2CC;color:white;
+}
+
+#userlistsearch:hover,#namesearch:hover,#sub:hover,#search:hover,#apply_form_submit:hover,#add_salary_apply:hover,
+#search_salary:hover,#add_user:hover,#edit_edit:hover,#Add_deduct:hover,#Add_ltype:hover,#delete_ltype:hover#cal_salary:hover,
+#create_dialog:hover,#submit_edit_event:hover,#addsalary:hover,#edit_salary_edit:hover,#edit_tax:hover,#edit_deduct:hover,
+#edit_allowance_edit:hover,#edit_attendance_edit:hover,#alladd,#Add_Resign_Date:hover,#edit:hover,#usersearch:hover,#noti_accept:hover,
+#btngo:hover,#cal_salary_month:hover,#btnemail:hover,#btncontinue:hover,#btnnewpass:hover,#csvtosql:hover,#exbg:hover,#searchbg:hover{
     background:#3c8dbc;color:white;
 }
 a.ledit{
@@ -411,12 +419,12 @@ a.export {
     padding: 10px 10px 7px 20px;
 }
 .printimg{
-    background: url("../img/print7.png")  1px 1px no-repeat ;
-    padding: 12px 0px 5px 18px;
+   background: url("../img/print7.png") 0px 0px no-repeat;
+    padding: 10px 0px 6px 16px;
 }
-.detail_img{
-    background: url("../img/detail2.png")  1px 1px no-repeat ;
-    padding: 13px 10px 2px 6px;
+#detail_img{
+    background: url("../img/detail2.png") 0px 0px no-repeat;
+    padding: 14px 8px 0px 6px;
 }
 .preimg{
     background: url("../img/pre1.png")  10px 0px no-repeat  ;
@@ -631,7 +639,7 @@ a.export {
 #cmn_lang_box{
     position:absolute;
     right:5px;
-    top:15px;
+    top:7px;
 }
 
 #form_div{
@@ -870,20 +878,20 @@ hr{
 
 /* contry icons setting is below. */
 .cmn-icons-contry{
-    background-position-y: -20px;
+    background-position: 68px;
     width:24px;
-    height:16px;
+    height:31px;
     cursor: pointer;
 }
 
 .cmn-icons-contry.jp{
-    background-position-x:4px;
+    background-position:4px;
 }
 .cmn-icons-contry.mm{
-    background-position-x:-16px;
+    background-position:-16px;    
 }
 .cmn-icons-contry.en{
-    background-position-x:-40px;
+    background-position:-40px;
 }
 
 #cmn_sub_menu{
@@ -1110,7 +1118,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     font-size: 14px;
     margin-bottom: 10px;
     line-height: 20px;
-    border-radius: 4px;
+/*    border-radius: 4px;*/
     border : 1px solid #ccc;
     vertical-align: middle;        
 }
@@ -1131,7 +1139,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     background-color: #ecf0f5 !important;
 }
 /*for visited link color*/
-.sidebar-menu>.active>a,.sidebar-menu>.active>a:visited{
+.visited_color>.active>a,.visited_color>.active>a:visited{
     background-color: #3c8dbc !important;
     color: white !important;
 /*            border-right: 10px solid white;
