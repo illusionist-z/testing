@@ -308,10 +308,8 @@ class Attendances extends Model {
      * @return string
      * @author zinmon
      */
-    public function searchByTwoOption($search_date, $search_dept,$currentPage) {
-
+    public function searchByTwoOption($search_date_month,$search_date_year,$search_dept,$currentPage)  {
         try {
-
             $currentmth = date('m');
             $currentYr = date("Y");
             $row = $this->modelsManager->createBuilder()
@@ -319,28 +317,33 @@ class Attendances extends Model {
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
-                    ->where('(attendances.att_date) = :search_date:', array('search_date' => $search_date))
-                    ->andWhere('YEAR(core.member_dept_name) = :search_dept:', array('search_dept' => $search_dept))
+                    ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $search_date_month))
+                    ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $search_date_year))
+                    ->andWhere('core.member_dept_name = :search_dept:', array('search_dept' => $search_dept))
                     ->andWhere('core.deleted_flag = 0')
                     ->groupBy('core.member_id')
                     ->getQuery()
                     ->execute();
-//            var_dump($row);
-//            exit();
+            var_dump($row);
+          // exit(); 
             $page = $this->base->pagination($row, $currentPage);
+           
         } catch (Exception $ex) {
             echo $ex;
         }
+        return $page;
     }
 
     /**
      * Set Condition
-     * @param type $year
-     * @param type $month
-     * @param type $dept
+     * @param type $search_date_month
+     * @param type $search_date_year
+     * @param type $search_dept
+     * @param type $currentPage
      * @return string
      * @author yan lin pai
      */
+    
     public function setCondition($year, $month, $username) {
         $conditions = array();
 
