@@ -81,7 +81,7 @@ class UserController extends ControllerBase {
      * display user leave list
      * @author Su Zin Kyaw <gnext.suzin@gmail.com>
      */
-    public function leavelistAction($exportMode = null) {
+    public function leavelistAction() {
         if ($this->permission == 1) {
             $this->assets->addJs('common/js/paging.js');
             $this->assets->addJs('apps/leavedays/js/user-leavelist.js');
@@ -98,20 +98,14 @@ class UserController extends ControllerBase {
             $absent_days = $this->_leave->getAbsentById($id);
             //get maximum leaves days
             $max = $this->_leave->getLeaveSetting();
-            $max_leavedays = $max['0']['max_leavedays'];
-            if(1 == $exportMode){
-             $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id,$page,0);
-             $this->_leave->exportUserLeaveList($leave_list,"UserLeaveListAll",$absent_days,$max_leavedays,0);
-            }
-            else{
+            $max_leavedays = $max['0']['max_leavedays'];            
             $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id,$page,1);
             $this->view->setVar("Result", $leave_list);
             $this->view->setVar("absentdays", $absent_days);            
             $this->view->setVar("Month", $month);
             $this->view->setVar("Ltype", $leave_type);
             $this->view->setVar("Mth", $mth);
-            $this->view->setVar("max", $max_leavedays);
-            }
+            $this->view->setVar("max", $max_leavedays);            
         } else {
             echo 'Page Not Found';
         }

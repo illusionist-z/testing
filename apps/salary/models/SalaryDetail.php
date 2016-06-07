@@ -774,34 +774,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         $users = $user->fetchAll(); 
         //var_dump($users);exit;
         return $users;
-    }
-    /**
-     * @author David JP <david.gnext@gmail.com>
-     * @export Data All From Table
-     * @param type $data
-     */
-    public function SalaryListExport($data,$ObjectPaging){
-        header("Content-type: application/csv");
-        header("Content-Disposition: attachment; filename=SalaryListAll.csv;");        
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM        
-        $output = fopen('php://output', 'w');               
-        fputcsv($output, array("No","User Name","Basic Salary","Travel Fees","Overtime","SSC_EMP","SSC_COMP"));      
-        $num = 0;
-        if($ObjectPaging){
-        foreach($data as $row){
-        fputcsv($output,array($num++,$row->core->member_login_name,$row->salarymas->basic_salary,$row->salarymas->travel_fee_perday,$row->salarymas->over_time,
-                $row->salarymas->ssc_emp."%",$row->salarymas->ssc_comp."%"));
-            }
-        }
-        else{
-        foreach($data as $row){
-        fputcsv($output,array($num++,$row->member_login_name,$row->basic_salary,$row->travel_fee_perday,$row->over_time,
-                $row->ssc_emp."%",$row->ssc_comp."%"));
-            }
-        }
-        fclose($output);
-        exit;
-    }
+    }  
     
     public function MonthlyListExport($data){
         header("Content-type: application/csv");
