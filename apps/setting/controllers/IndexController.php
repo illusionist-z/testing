@@ -180,13 +180,14 @@ class IndexController extends ControllerBase {
         }
     }
 
-    public function UserRuleSettingAction() {                          
+    public function UserRuleSettingAction() {                   
+     
         $id = $this->request->getPost('rel_member_id');
         $group_id = $this->request->getPost('group_id');
         $group_name_post = $this->request->getPost('group_text');
         $group_name = trim($group_name_post);
         $core = CorePermissionRelMember::findFirstByRelMemberId($id);
-        $coreuser_update = CoreMember::findFirstByMemberId($id);
+        $coreuser_update = \salts\Core\Models\CoreMember::findFirstByMemberId($id);
         $coreuser_update->user_rule = $group_id;
         $core->permission_group_id_user = $group_id;
         $core->permission_member_group_member_name = strtolower($group_name);
