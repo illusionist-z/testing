@@ -45,14 +45,14 @@ use Phalcon\Filter;
                 <thead>
                     <tr>
                         <th style="width:50px;"><center><?= $t->_("mth/yr"); ?></center></th>
-                        <th><center><?= $t->_("salary"); ?></center></th>
-                        <th><center><?= $t->_("allowance"); ?></center></th>
-                        <th><center><?= $t->_("travel_fee"); ?></center></th>
-                        <th><center><?= $t->_("income"); ?></center></th>
-                        <th><center>SSC Employer</center></th>
-                        <th><center>SSC Employee</center></th>
-                        <th><center><?= $t->_("tax_total"); ?></center></th>
-                        <th><center><?= $t->_("total"); ?></center></th>
+                        <th class="salary-th"><?= $t->_("salary"); ?></th>
+                        <th class="salary-th"><?= $t->_("allowance"); ?></th>
+                        <th class="salary-th"><?= $t->_("travel_fee"); ?></th>
+                        <th class="salary-th"><?= $t->_("income");?></th>
+                        <th class="salary-th">SSC Employer</th>
+                        <th class="salary-th">SSC Employee</th>
+                        <th class="salary-th"><?= $t->_("tax_total"); ?></th>
+                        <th class="salary-th"><?= $t->_("total");?></th>
                 </tr>
 
                 </thead>
@@ -63,14 +63,14 @@ use Phalcon\Filter;
                         ?>
                         <tr>
                             <td width="50px"><a  href="showsalarylist?month=<?php echo $geteachmonthsalary['Mt'] ?> && year=<?php echo $geteachmonthsalary['Yr'] ?>"><?php echo $geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr']; ?></a></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['salary_total'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['allowance'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['travel_expense'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['income_tax_amount'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_emp_amount'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_comp_amount'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['Tax_total'], "int")); ?></div></td>
-                            <td><div class="td-style"><?php echo number_format($filter->sanitize($geteachmonthsalary['Total'], "int")); ?></div></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['salary_total'], "int")); ?></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['allowance'], "int")); ?></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['travel_expense'], "int")); ?></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['income_tax_amount'], "int")); ?></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_emp_amount'], "int")); ?></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['ssc_comp_amount'], "int")); ?></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['Tax_total'], "int")); ?></td>
+                            <td class="tbl-td"><?php echo number_format($filter->sanitize($geteachmonthsalary['Total'], "int")); ?></td>
                         </tr>
                         <?php
                     }

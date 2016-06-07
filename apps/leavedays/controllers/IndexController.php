@@ -107,7 +107,7 @@ class IndexController extends ControllerBase {
     /**
      * Show Leave data list
      */
-   public function leavelistAction($exportMode = null) {
+   public function leavelistAction() {
         if ($this->moduleIdCall == 1) {
             $this->permission = $this->setPermission($this->router->getModuleName());
             $Admin = new Db\CoreMember;
@@ -117,19 +117,12 @@ class IndexController extends ControllerBase {
             $UserList = new Db\CoreMember();
             $page = $this->request->get("page");
             $max = $this->_leave->getLeaveSetting();
-            if ($this->permission == 1) {
-                if(1 == $exportMode){
-                $result = $this->_leave->getLeaveList($page,0);
-                $this->_leave->exportUserLeaveList($result,"UserLeaveListAll",  $this->_leave->getAbsent(),$max['0']['max_leavedays'],1);
-                }
-                else{
+            if ($this->permission == 1) {              
                 $this->view->max = $max['0']['max_leavedays'];
                 //$this->view->Getname = $UserList::getinstance()->getusername();
                 $this->view->setVar("Result", $this->_leave->getLeaveList($page,1));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
-                $this->view->setVar("Month", $this->config['config']['month']);
-                }
-                //$this->view->modulename = $this->module_name;
+                $this->view->setVar("Month", $this->config['config']['month']);              
             } else {
                 $this->response->redirect('core/index');
             }
