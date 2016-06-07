@@ -320,11 +320,24 @@ $(document).ready(function () {
 
 
 $(function() {
-    $('.date-picker').datepicker( {
+    $('.date-picker-month').datepicker( {
         changeMonth: true,
+        changeYear: false,
+        showButtonPanel: true,
+        dateFormat: 'mm',
+        onClose: function(dateText, inst) { 
+            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+        }
+    });
+});
+
+
+$(function() {
+    $('.date-picker-year').datepicker( {
+        changeMonth: false,
         changeYear: true,
         showButtonPanel: true,
-        dateFormat: 'yy-mm',
+        dateFormat: 'yy',
         onClose: function(dateText, inst) { 
             $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
         }

@@ -156,6 +156,9 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
+        $att_dept = new \salts\Core\Models\CoreMember();
+        $core_group_att = $att_dept::find();
+         $this->view->core_att = $core_group_att;
            $this->setattChartCss1();
          if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
@@ -170,24 +173,19 @@ class IndexController extends ControllerBase {
     
      public function attchartsearchAction() {
            $this->setattChartCss();
-           
-        $filter = new Filter();
+          $filter = new Filter();
         if ($this->request->isPost('date-picker-btn')){
        //  if ($this->moduleIdCall == 1) {
         $Attsearch = new \salts\Attendancelist\Models\Attendances();
-        $search_date =  $filter->sanitize($this->request->getPost('date-picker-input'),'string');
-        $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select '),'string');
+        $search_date_month =  $filter->sanitize($this->request->getPost('date-picker-input-month'),'string');
+        $search_date_year =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
+        $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select'),'string');
    
         $currentPage = $this->request->get("page");
       
-        $result = $Attsearch->searchByTwoOption($search_date, $search_dept,$currentPage);
-        //  $this->view->data = $search_date;
-        //$this->view->coreid = $result;
-           
-        var_dump($result);
-        exit();
-        
-         
+        $result = $Attsearch->searchByTwoOption($search_date_month,$search_date_year, $search_dept,$currentPage);
+        $this->view->data = $result;
+       
            }
            else { 
               echo 'Error';
