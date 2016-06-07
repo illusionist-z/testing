@@ -11,7 +11,7 @@ class Attendances extends Model {
     public $filter;
     public $member_id;
     public $att_date;
-    
+
     public function initialize() {
         $this->filter = new Filter();
         $this->db = $this->getDI()->getShared("db");
@@ -196,20 +196,11 @@ class Attendances extends Model {
         $this->db->query($insertquery);
     }
 
-    /**
-     * @vesion query
-
-     */
     public function GetAbsentList($current_page) {
         try {
-            $current = date("Y-m-d");
-            $finalresult = $this->modelsManager->createBuilder()
-                    ->columns(array('attendances.member_id'))
-                    ->from(array('attendances' => 'salts\Attendancelist\Models\Attendances'))
-                    ->where('attendances.att_date = :current:', array('current' => $current))
-                    ->andWhere('attendances.status = 0')
-                    ->getQuery()
-                    ->execute();
+            $attid = 'Select member_id from attendances where att_date = CURRENT_DATE and status = 0';
+            $attendancelist = $this->db->query($attid);
+            $finalresult = $attendancelist->fetchall();
             $final = array();
             if (empty($finalresult)) {
                 array_push($final, '0');
@@ -235,7 +226,7 @@ class Attendances extends Model {
         $id = $this->filter->sanitize($id, "int");
         $query = "select * from core_member JOIN attendances On core_member.member_id = "
                 . "attendances.member_id Where attendances.id ='" . $id . "' ";
-        
+
         $data = $this->db->query($query);
         $result = $data->fetchall();
         return $result;
@@ -316,26 +307,31 @@ class Attendances extends Model {
      * @return string
      * @author zinmon
      */
-    
-//      public function searchByTwoOption($search_date, $search_dept) {
-//
-//        try {
-//           // $conditions = $this->setCondition($search_date, $search_dept);
-//             
-//                $row_bysearch = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
-//                                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-//                                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
-//                                ->where(implode(' AND ', $search_date))
-//                                ->andWhere('core.deleted_flag = 0')
-//                               ->orderBy('attendances.checkin_time DESC')
-//                                ->getQuery()->execute();
-//          
-//        } catch (Exception $ex) {
-//            echo $ex;
-//        }
-//        return $row_bysearch;
-//    }
-    
+    public function searchByTwoOption($search_date, $search_dept) {
+
+        try {
+
+            $currentmth = date('m');
+            $currentYr = date("Y");
+            $row = $this->modelsManager->createBuilder()
+                    ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
+                        . ",attendances.member_id,group_concat(attendances.status) as status"))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                    ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
+                    ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
+                    ->andWhere('core.deleted_flag = 0')
+                    ->groupBy('core.member_id')
+                    ->getQuery()
+                    ->execute();
+//            var_dump($row);
+//            exit();
+            $page = $this->base->pagination($row, $search_date);
+        } catch (Exception $ex) {
+            echo $ex;
+        }
+    }
+
     /**
      * Set Condition
      * @param type $year
@@ -344,8 +340,6 @@ class Attendances extends Model {
      * @return string
      * @author yan lin pai
      */
-    
-    
     public function setCondition($year, $month, $username) {
         $conditions = array();
 

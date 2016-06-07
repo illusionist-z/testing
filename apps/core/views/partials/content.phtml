@@ -29,14 +29,14 @@
                                     }
                                     if (strpos($key_name, 'user') !== false) {
                                         if ($key_name == 'show_admin_user') {
-                                            echo ' <li class="act"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '" >' . $link_name . '</a></li>';
+                                            echo ' <li class=""><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '" >' . $link_name . '</a></li>';
                                         } else {
-                                            echo ' <li class="act"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '" >' . $link_name . '</a></li>';
+                                            echo ' <li class=""><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/user/' . $link_val . '"  >' . $link_name . '</a></li>';
                                         }
                                     } else {
                                         if(!isset($mod[1])){
                                         $mod[1]="";}
-                                        echo ' <li class="act"><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '" >' . $link_name . '</a></li>';
+                                        echo ' <li class=""><a href="' . $baseUri . strtolower($mod[0] . $mod[1]) . '/index/' . $link_val . '" >' . $link_name . '</a></li>';
                                     }
                                 }
                             }

@@ -206,6 +206,7 @@ $(document).ready(function () {
 var cells = document.getElementsByClassName("txtenable"); 
 for (var i = 0; i < cells.length; i++) { 
     cells[i].disabled = false;
+    cells[i].style.backgroundColor="white";
 }
     });
 

@@ -20,6 +20,7 @@
   body *{ visibility: hidden; }
   #printable *{ visibility: visible;}
   .p_break{page-break-after: always;}
+  .link{display: none;}
 }
 .td-style{
      float: right; 
@@ -62,4 +63,8 @@ a.btn_detail {
 
 #csv_file{
     padding: 8px 13px;
+}
+.txtenable{
+    background-color: ghostwhite;
+    
 }
