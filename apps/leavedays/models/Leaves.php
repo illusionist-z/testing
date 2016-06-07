@@ -470,68 +470,6 @@ class Leaves extends \Library\Core\Models\Base {
             }
         }
         return $res;
-    }
-
-    public function exportUserLeaveList($param, $filename, $absentDay, $maxDay,$pagingObject) {
-        header("Content-type: application/csv");
-        header("Content-Disposition: attachment; filename=$filename.csv;");
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM
-        $output = fopen('php://output', 'w');
-        fputcsv($output, array("Date", "User Name", "Start Date", "End Date", "Leaves Days", "Leave Type", "Leave Description", "Leave Status", "Leave Day Left"));
-        if($pagingObject){
-             foreach ($param as $item) {
-            switch ($item->leaves->leave_status) {
-                case "0" : $status = "Pending";
-                    break;
-                case "1" : $status = "Confirmed";
-                    break;
-                case "2" : $status = "Rejected";
-                    break;
-            };
-            $absent_day = 0;
-            if (isset($absentDay[$item->core_member->member_id])) {
-                $absent_day = $absentDay[$item->core_member->member_id];
-            }
-            else{
-                $absent_day = $absentDay;
-            }
-            if ($absent_day > $maxDay) {
-                $leaveLeft = ($absent_day - $maxDay) . " Days are in absent";
-            } else {
-                $leaveLeft = $maxDay - $absent_day;
-            }
-            fputcsv($output, array($item->leaves->date, $item->core_member->member_login_name, $item->leaves->start_date, $item->leaves->end_date,
-                $item->leaves->leave_days, $item->leaves->leave_category, $item->leaves->leave_description, $status, $leaveLeft));
-        }
-        }
-        else{
-        foreach($param as $item){        
-            switch ($item->leave_status) {
-                case "0" : $status = "Pending";
-                    break;
-                case "1" : $status = "Confirmed";
-                    break;
-                case "2" : $status = "Rejected";
-                    break;
-            };
-            $absent_day = 0;
-            if (isset($absentDay[$item->member_id])) {
-                $absent_day = $absentDay[$item->member_id];
-            }
-            else{
-                $absent_day = $absentDay;
-            }
-            if ($absent_day > $maxDay) {
-                $leaveLeft = ($absent_day - $maxDay) . " Days are in absent";
-            } else {
-                $leaveLeft = $maxDay - $absent_day;
-            }
-            fputcsv($output, array($item->date, $item->member_login_name, $item->start_date, $item->end_date,
-                $item->leave_days, $item->leave_category, $item->leave_description, $status, $leaveLeft));
-        }
-        }
-        fclose($output);
-        exit;
-    }
+    }  
 
 }

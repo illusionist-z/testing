@@ -12,8 +12,7 @@
             url :baseUri+'manageuser/coremember/saveuser',
             data:$("#saveuser").serialize(),
             //data :new FormData($("#saveuser")[0]),           
-            processData: false,
-            contentType: false,
+            processData: false,            
             success: function(d){
                 
                 this.cond = JSON.parse(d);

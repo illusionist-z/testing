@@ -14,14 +14,15 @@ use Phalcon\Filter;
         <div class="col-md-12"><!--start add user form--->
             <div style="width:100%;">
                 <div style="padding: 10px 10px 10px 10px">
-                    <div style="float:left;">
-                        <button class="btnEditInfo btn  btn-flat" id="btnEditInfo" style="border: 1px solid #3c8dbc;color:#3c8dbc;">EDIT</button>
+                        <button class="btnEditInfo btn  btn-flat" id="btnEditInfo" style="border: 1px solid #3c8dbc">EDIT</button>
 
-                        <button id="btn_savedetail" disabled class="txtenable btn  btn-flat" style="border: 1px solid #3c8dbc;color:#3c8dbc;">Save</button>
-           </div>
+                        <button id="btn_savedetail" disabled class="txtenable btn  btn-flat" style="border: 1px solid #3c8dbc">Save</button>
+                   
+
+<!--                        <button id="btn_resign" class="btn_resign btn  btn-flat" style="border: 1px solid #3c8dbc">Resign</button>                    -->
+                </div>
                     
                 </div>
-                <div style="clear:both;" >
 
                     <?php
                     $filter = new Filter();
@@ -113,18 +114,18 @@ use Phalcon\Filter;
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?= $t->_("personal_income"); ?></td>
-                                            <td><input type="text" name="txtincome" value="<?php
+                                            <td><?php
                                                 echo $filter->sanitize($A[$i]['income_tax'], "string");
                                                 $deduce+=$A[$i]['income_tax'];
-                                                ?>" id="income_tax" disabled="disabled"></td>
+                                                ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>
                                             <td colspan="2"><?= $t->_("ssb_employee"); ?></td>
-                                            <td><input type="text" name="txtssb" value="<?php
+                                            <td><?php
                                                 echo $filter->sanitize($A[$i]['sd_ssc_emp'], "string");
                                                 $deduce+=$A[$i]['sd_ssc_emp'];
-                                                ?>" id="txtssb" disabled="disabled"></td>
+                                                ?></td>
                                             <td></td>                   
                                         </tr>
                                         <tr>

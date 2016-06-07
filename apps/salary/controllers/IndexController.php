@@ -48,22 +48,16 @@ class IndexController extends ControllerBase {
     /**
      * Show salary list after adding salary of each staff
      */
-    public function salarylistAction($exportMode = null) {        
+    public function salarylistAction() {        
         if ($this->moduleIdCall == 1) {
             $this->assets->addJs('apps/salary/js/base.js');
             $SalaryDetail = new SalaryDetail();
             $curretPage = $this->request->get("page");
             
-            if ($this->permission == 1) {
-                if(1 == $exportMode){
-                    $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,0);
-                    $SalaryDetail->SalaryListExport($get_salary_detail,1);
-                }
-                else{
+            if ($this->permission == 1) {               
                 $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,1);
                 $this->view->module_name = $this->router->getModuleName();
-                $this->view->salarydetail = $get_salary_detail;
-                }
+                $this->view->salarydetail = $get_salary_detail;                
             } else {
 
                 $this->response->redirect('core/index');
@@ -668,12 +662,18 @@ class IndexController extends ControllerBase {
         $member_id = $this->request->get('chk_val');
         $mid = explode(',', $member_id);
         $SalaryDetail = new SalaryDetail();
-        for ($i = 0; $i < count($mid); $i++) {
-            echo $mid[$i] . "<br>";
-            if ($mid[$i] != 'on') {
-                $getsalarydetail[] = $SalaryDetail->getPayslip($mid[$i], $month, $year);
-            }
+        $Memid = $SalaryDetail->getMemberid();
+        
+        foreach ($Memid as $value) {
+            $getsalarydetail[] = $SalaryDetail->getPayslip($value['member_id'], $month, $year);
         }
+//        for ($i = 0; $i < count($mid); $i++) {
+//            echo $mid[$i] . "<br>";
+//            if ($mid[$i] != 'on') {
+//                $getsalarydetail[] = $SalaryDetail->getPayslip($mid[$i], $month, $year);
+//            }
+//        }
+        //$getsalarydetail= $SalaryDetail->getPayslip($month, $year);
         $this->view->setVar("getsalarydetails", $getsalarydetail);
         $this->view->module_name = $this->router->getModuleName();
     }

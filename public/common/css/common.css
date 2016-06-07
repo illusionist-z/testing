@@ -228,9 +228,10 @@ a.exbg{
 
 .listtbl th {font-weight: bold;background-color: #3c8dbc}
 
-.listtbl th:first-child, td:first-child {padding: 0 12px 0 20px;}
+.listtbl th:first-child, td:first-child, th:last-child {padding: 0 12px 0 10px;}
 
 .listtbl thead tr:last-child th {border-bottom: 2px solid #ddd;}
+.salary-th,.tbl-td{text-align:right;}
 /*manage user*/
 .mguser th{background: #00c0ef !important}
 .mguser {border: 1px solid #00c0ef;}
@@ -242,7 +243,9 @@ a.exbg{
 .leavelist th {background: #f39c12 !important}
 .leavelist  {border: 1px solid #f39c12;}
 /*salary list */
-.salarylist th { background: #dd4b39 !important}
+.salarylist th { background: #dd4b39 !important;
+//padding-left: 50px;
+}
 .salarylist  {border : 1px solid #dd4b39;}
 .listtbl tbody tr:hover {background-color: #f0fbff;}
 .listtbl tbody tr:last-child td {border: none;}

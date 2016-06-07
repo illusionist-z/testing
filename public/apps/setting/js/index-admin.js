@@ -9,7 +9,7 @@ var Setting = {
         Setting.PageRule.paging();
         Setting.UserRule.paging();
       $.ajax({
-         url : "CorePermissionList",
+         url : "index/CorePermissionList",
          dataType : "json",
          type : "GET",
          success : function(d){

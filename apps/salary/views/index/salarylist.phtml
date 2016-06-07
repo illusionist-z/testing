@@ -24,8 +24,7 @@ use Phalcon\Filter;
                 <option value="2">Travel fees per month</option>
             </select>
             <input type="submit" class="buttonn  form-control-static search-trtype" value="<?= $t->_("search"); ?>" id="search">
-            <a href="" class="buttonn  form-control-static  export salarylistExport" id="exbg" ><img id="exicon">Export</a>
-            <a href="salarylist/1" class="buttonn form-control-static export" id="exbg"><img id="exicon">Export All</a>
+            <a href="" class="buttonn  form-control-static  export salarylistExport" id="exbg" ><img id="exicon">Export</a>            
         </form>
     </div>
 
@@ -33,13 +32,13 @@ use Phalcon\Filter;
         <div class="row">
             <div class="col-md-12"><!--start table content--->
 
-                <table class="listtbl">
+                <table class="listtbl salarylist">
                     <thead>
                         <tr>
                             <th><?= $t->_("no"); ?></th>
                             <th><?= $t->_("name"); ?></th>
                             <th><?= $t->_("basic_salary"); ?></th>
-                            <th id="th_travelfees"><?= $t->_("travel_fee_perday"); ?></th>
+                            <th><?= $t->_("travel_fee_perday"); ?></th>
                             <th><?= $t->_("overtime"); ?></th>
                             <th><?= $t->_("SSC_Emp"); ?></th>
                             <th><?= $t->_("SSC_Comp"); ?></th>
