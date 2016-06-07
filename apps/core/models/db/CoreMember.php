@@ -287,11 +287,11 @@ class CoreMember extends \Library\Core\Models\Base {
     }
 
     public function userDetail($id) {
-//
-//        $this->db = $this->getDI()->getShared("db");
-//        $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
-//        $user = $user->fetchall();
-//        return $user;
+
+        $this->db = $this->getDI()->getShared("db");
+        $user = $this->db->query("SELECT * FROM core_member WHERE member_id='" . $id . "'");
+        $user = $user->fetchall();
+        return $user;
     }
     
     public function getProfile($id){

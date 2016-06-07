@@ -33,6 +33,7 @@ class UserController extends ControllerBase {
         $this->view->setVar("noti", $Noti);
   $this->view->t = $this->_getTranslation();
         $user = $Admin->userDetail($id);
+        
         $profile = $Admin->getProfile($id);
         $this->view->userDetail = $user;
         $this->view->profile = $profile;

@@ -6,14 +6,30 @@ if (!ini_get('date.timezone')) {
 
 <section class="content-header">
     <h1>
-        <?php echo $t->_("month_att_chart") . " (" . date('Y') . "/" . date('m') . ")" ?>
+        <?php echo $t->_("month_att_chart") . " Search " ?>
     </h1>
     <br>
     <div> 
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
-        <input type='input' class="buttonn form-control-static col-sm-2 date-picker" placeholder="Select Month" value="Select Month" name="date-picker-input">
+        <input type='input' class="buttonn form-control-static col-sm-1 date-picker-month" placeholder="Month" value="Month" name="date-picker-input-month">
+        <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year" placeholder="Year" value="Year" name="date-picker-input-year">
+        
         &nbsp;&nbsp;
-        <select  class="buttonn form-control-static col-sm-2" name="date-picker-select"><option>Select Dept</option><option>2</option></select>
+           <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
+ <?php
+         //   foreach ($core_att as $data_att_dept) {
+ ?>               
+<!--                <option><?php //= $data_att_dept->member_dept_name ?></option> -->
+                   <option>Asterrisk</option> 
+                     <option>Andriod</option> 
+                <option>Manage</option> 
+                  <option>PHP</option> 
+                    
+                   
+    <?php
+        //    }
+     ?>
+        </select>
         <input type='submit' id="userlistsearch" value="Search" class="buttonn form-control-static col-sm-1" name="date-picker-btn">
         </form>
     </div> 
@@ -23,39 +39,30 @@ if (!ini_get('date.timezone')) {
     </ol>
 </section>
     <br>
-    <?php
-     foreach ($coreid as $search_date_view) {
-       
-        // echo $search_date_view->member_id;
-        
-       ?>
-      
-    <?php
-    
-      }
-    ?>
 <section class="content"> 
     <div class="row">
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
                 <thead>
-                <th><?php echo "NO."; ?></th>
+                <th style="width:2%;"><?php echo "NO."; ?></th>
                 <th style="width:15%;"><?= $t->_("username"); ?></th>
-                <?php
-                for ($i = 1; $i <= date('t'); $i++) {
-                    echo "<th>Day " . $i . "</th>";
-                }
-                ?>                    
+                   <?php
+                //for ($i = 1; $i <= date('t'); $i++) {
+                    echo " ";
+                //}
+                ?>      
+                
+                <th colspan='30' style=" text-align: center;"> Monthly Attendance  By Day  </th>               
                 </thead>
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($search_date->items as $result) {
+                    foreach ($data->items as $result) {
                         $day = explode(",", $result['day']);
                         $status = explode(",", $result['status']);
-                        $tt = ($search_date->current - 1);
+                        $tt = ($data->current - 1);
                         echo "<tr>";
-                        echo "<td>" . ($no + ($search_date->limit * $tt)) . "</td>";
+                        echo "<td>" . ($no + ($data->limit * $tt)) . "</td>";
                         echo "<td>" . $result['member_login_name'] . "</td>";
                         for ($i = 1; $i <= date('t'); $i++) {
                             $j = array();
@@ -92,7 +99,19 @@ if (!ini_get('date.timezone')) {
     </div>
     <div id="content">
     <ul class="pagination" style="margin-left:15px;">
-         
+        <?php
+        if ($data->last === 1 || $data->last === 0) {
+            
+        } else {
+            ?>
+            <li><a href="attendancechart">First</a></li>
+            <li><a href="attendancechart?page=<?= $data->before; ?>">Previous</a></li>
+            <li><a href="attendancechart?page=<?= $data->next; ?>">Next</a></li>
+            <li><a href="attendancechart?page=<?= $data->last; ?>">Last</a></li>
+            <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $data->current, " of ", $data->total_pages; ?></span></li>
+            <?php
+        }
+        ?>
     </ul>
 </div>
     <div class="attchart">
