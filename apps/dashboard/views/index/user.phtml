@@ -43,7 +43,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                         <form id="theForm" name="theForm" method="post" action="">
                             <input type="checkbox" name="linkemail" value="y" onClick="return checkValue(this)" /><?= $t->_("late_reason"); ?>
                             <div id="xtraInfo" style="display:none;">
-                                <textarea class="textarea" id="note" placeholder="<?= $t->_("Write"); ?>" style="width: 56%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <textarea class="textarea" id="note" placeholder="<?= $t->_("Write"); ?>" style="width: 80%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;resize: none;"></textarea>
                             </div>
                         </form>
 
