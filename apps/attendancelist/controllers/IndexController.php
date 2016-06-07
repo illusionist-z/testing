@@ -180,10 +180,13 @@ class IndexController extends ControllerBase {
    
         $currentPage = $this->request->get("page");
       
-        $result = $Attsearch->searchByTwoOption($search_date, $search_dept);
-          $this->view->data = $search_date;
-        $this->view->coreid = $result;
+        $result = $Attsearch->searchByTwoOption($search_date, $search_dept,$currentPage);
+        //  $this->view->data = $search_date;
+        //$this->view->coreid = $result;
            
+        var_dump($result);
+        exit();
+        
          
            }
            else { 
