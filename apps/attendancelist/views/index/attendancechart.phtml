@@ -52,8 +52,8 @@ if (!ini_get('date.timezone')) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td><?php echo "NO."; ?> </td>
-                        <td><?= $t->_("username"); ?></td>
+                        <td width="2%"><?php echo "NO."; ?> </td>
+                        <td width="13%"><?= $t->_("username"); ?></td>
                         
                         
                 
@@ -89,15 +89,15 @@ if (!ini_get('date.timezone')) {
                                 if (array_key_exists($i, $j)) {
                                     if ($i == $j[$i + 1]) {
                                         $j[$i][$i] == 0 ? $class = 'leave0' : ($j[$i][$i] == 1 ? $class = "leave1" : ($j[$i][$i] == 2 ? $class = "leave2" : $class = "leave3"));
-                                        echo "<td class='$class'></td>";
+                                        echo "<td class='$class' width='2%'></td>";
                                     }
                                 } else {
-                                    echo "<td class='unleave'></td>";
+                                    echo "<td class='unleave' width='2%'></td>";
                                 }
                             }
                             //get above today date
                             else {
-                                echo "<td class='unleave'></td>";
+                                echo "<td class='unleave' width='2%'></td>";
                             }
                         }
                         echo "</tr>";
