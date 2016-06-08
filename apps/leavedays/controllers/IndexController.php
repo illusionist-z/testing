@@ -120,7 +120,7 @@ class IndexController extends ControllerBase {
             if ($this->permission == 1) {              
                 $this->view->max = $max['0']['max_leavedays'];
                 //$this->view->Getname = $UserList::getinstance()->getusername();
-                $this->view->setVar("Result", $this->_leave->getLeaveList($page,1));
+                $this->view->setVar("Result", $this->_leave->getLeaveList($page));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
                 $this->view->setVar("Month", $this->config['config']['month']);              
             } else {
@@ -146,7 +146,7 @@ class IndexController extends ControllerBase {
              
                 $this->view->max = $max['0']['max_leavedays'];
                 $this->view->Getname = $UserList::getinstance()->getusername();
-                $this->view->setVar("Result", $this->_leave->getLeavedayleftList($page,1));
+                $this->view->setVar("Result", $this->_leave->getLeavedayleftList($page));
                 $this->view->setVar("absent", $this->_leave->getAbsent());
                 $this->view->setVar("Month", $this->config['config']['month']);
                 

@@ -27,7 +27,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @param type $username
      * @return type
      */
-    public function getLeaveList($currentPage, $IsPaging) {
+    public function getLeaveList($currentPage) {
         $mth = date('m');
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core_member.*', 'leaves.*'))
@@ -36,28 +36,20 @@ class Leaves extends \Library\Core\Models\Base {
                 ->Where('core_member.deleted_flag = 0')
                 ->orderBy('leaves.date DESC')
                 ->getQuery()
-                ->execute();
-        if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $currentPage);
-        } else {
-            $page = $row;
-        }
+                ->execute();        
+        $page = $this->base->pagination($row, $currentPage);        
         return $page;
     }
     
-      public function getLeavedayleftList($currentPage, $IsPaging) {
+      public function getLeavedayleftList($currentPage) {
         $mth = date('m');
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core_member.*'))
                 ->from(array('core_member' => 'salts\Core\Models\Db\CoreMember'))
                 ->Where('core_member.deleted_flag = 0')
                 ->getQuery()
-                ->execute();
-        if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $currentPage);
-        } else {
-            $page = $row;
-        }
+                ->execute();        
+        $page = $this->base->pagination($row, $currentPage);        
         return $page;
     }
 
@@ -122,7 +114,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @return type
      * @author zinmon
      */
-    public function search($ltype, $month, $namelist, $currentP,$IsPaging) {
+    public function search($ltype, $month, $namelist, $currentP) {
         $filter = new Filter();
         $ltype = $filter->sanitize($ltype, "string");
         $namelist = $filter->sanitize($namelist, "string");      
@@ -150,11 +142,7 @@ class Leaves extends \Library\Core\Models\Base {
         }
 
         $result = $this->modelsManager->executeQuery($sql);
-        if (1 == $IsPaging) {
-            $page = $this->base->pagination($result, $currentP);
-        } else {
-            $page = $result;
-        }
+        $page = $this->base->pagination($result, $currentP);       
         return $page;
     }
 
@@ -292,7 +280,7 @@ class Leaves extends \Library\Core\Models\Base {
      * @return type
      * @author Su Zin Kyaw
      */
-    public function getUserLeaveList($leave_type, $mth, $id, $currentPage, $IsPaging) {
+    public function getUserLeaveList($leave_type, $mth, $id, $currentPage) {
         //select leave list
         $filter = new Filter();
         $leave_type = $filter->sanitize($leave_type, "string");
@@ -316,12 +304,8 @@ class Leaves extends \Library\Core\Models\Base {
                     . "where " . $this->setCondition2($mth, $leave_type)
                     . "AND leaves.member_id ='" . $id . "' order by date desc";
         }
-        $result = $this->modelsManager->executeQuery($row);
-        if (1 == $IsPaging) {
-            $page = $this->base->pagination($result, $currentPage);
-        } else {
-            $page = $result;
-        }
+        $result = $this->modelsManager->executeQuery($row);        
+        $page = $this->base->pagination($result, $currentPage);        
         return $page;
     }
 
