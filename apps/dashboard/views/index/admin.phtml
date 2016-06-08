@@ -95,7 +95,7 @@ foreach ($this->session->auth as $key_name => $key_value) {
                             <div class="col-md-12 col-sm-5">
                                 <div id="form_div">
 
-                                    <div class="left_div_style_box" style="background-color: white; height:450px ; border: 1px solid #ccc; font-size: 20px;">
+                                    <div class="left_div_style_box" style="background-color: #F4F4F4; height:450px ; border: 1px solid #ccc; font-size: 20px;">
 
                                         <div class="col-md-7 col-md-offset-3">
                                             <h1 style="font-size:150%"><?= $t->_("current_time"); ?> : <span id="ct" style="color:red;" ></span> </h1>
@@ -110,10 +110,10 @@ foreach ($this->session->auth as $key_name => $key_value) {
 
                                         </div><br><br>
                                         <div class="col-md-6 col-md-offset-4">
-                                            <a href="#" class="btn btn-primary btn-sm btn-flat checkin" onclick="//Content.View.apply(this, ['checkin']);" style="width: 150px;border-radius: 5px;"><?= $t->_("checkin"); ?></a>
+                                            <a href="#" class="btn btn-primary btn-sm btn-flat checkin" onclick="//Content.View.apply(this, ['checkin']);" style="width: 150px;"><?= $t->_("checkin"); ?></a>
                                         </div><br><br>
                                         <div class="col-md-6 col-md-offset-4">
-                                            <a href="#"  class="btn btn-primary btn-sm btn-flat checkout" id="checkout" style="width: 150px;border-radius: 5px;"><?= $t->_("checkout"); ?></a>
+                                            <a href="#"  class="btn btn-primary btn-sm btn-flat checkout" id="checkout" style="width: 150px;"><?= $t->_("checkout"); ?></a>
                                         </div><br><br>
                                     </div>
 
@@ -141,9 +141,9 @@ foreach ($this->session->auth as $key_name => $key_value) {
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8" style="margin-left: 70px;">
                                 <div class="chart-responsive">
-                                    <ul class="nav nav-pills nav-stacked" style="border-bottom:1px solid gray; width:100%;">
+                                    <ul class="nav nav-pills nav-stacked" style="border-bottom:3px solid white; width:100%;">
                                         <li>
                                             <?= $t->_("no_leave"); ?>
                                             <ul>

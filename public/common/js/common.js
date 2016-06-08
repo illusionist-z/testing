@@ -250,9 +250,8 @@ $(document).ready(function () {
     
         /*for visited link color*/
         var path = window.location.pathname,
-        link = window.location.href;  
+        link = window.location.href;
         $('a[href="'+path+'"], a[href="'+link+'"]').parent('li').addClass('active');
-        
 
 });
 $(window).load(function () {
