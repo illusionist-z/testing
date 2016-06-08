@@ -37,7 +37,7 @@ $messages = array(
     "Change" => "Change Language",
     "Change Language" => "Change Language with Japan, English and Myanmar.",
     "Setting" => "Setting",
-    "Right side" => "Right side of the page ,click user profile then click left setting button.",
+    "Right side" => "Right side of the page ,click user name then click left profile button.",
     "To know" => "To know how it work of modules,you can learn from left side link documentation.",
     /**
      * start for dashboard help center
