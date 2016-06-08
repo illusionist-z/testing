@@ -3,12 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <title>      
-            Salts       
-                <?php 
+          
+              <?php 
                 if (count($Noti) != 0) {                                   
-                             echo count($Noti);
-                }
-                ?>
+                             echo ' ('.count($Noti).')   ';
+                }   
+                
+                ?>  
+                 
+            Salts       
+                           
         </title>  
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>        
         <?php $this->assets->outputCss() ?>

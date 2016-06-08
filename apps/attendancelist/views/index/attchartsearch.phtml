@@ -11,7 +11,7 @@ if (!ini_get('date.timezone')) {
     <br>
     <div> 
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
-                    <select  class="buttonn form-control-static col-sm-1" placeholder="Month" value="Month" name="date-picker-input-month">
+              <select  class="buttonn form-control-static col-sm-1 chart-search-input" placeholder="Month" value="Month" name="date-picker-input-month">
  <?php
          //   foreach ($core_att as $data_att_dept) {
  ?>               
@@ -34,19 +34,23 @@ if (!ini_get('date.timezone')) {
         //    }
      ?>
         </select>
-        <input type='input' class="buttonn form-control-static col-sm-1 date-picker-month" placeholder="Month" value="Month" name="date-picker-input-month">
-        <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year" placeholder="Year" value="Year" name="date-picker-input-year">
-        <?php
-        $search_date_year =  $this->request->getPost('date-picker-input-year');
+          <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year " placeholder="Year" value="Year" name="date-picker-input-year">
+<!--                  &nbsp;&nbsp;<span class="buttonn form-control-static ">-->
+              <?php
         
-          if ( $search_date_year  == 'Year'){
-              Echo 'Search Default Date '.date("Y");
-          }
-          if ( $search_date_year  !== 'Year'){
-              Echo 'Search Date '.$search_date_year;
-          }
-        
+//        $search_date_month =  $filter->sanitize($this->request->getPost('date-picker-input-month'),'string');
+//        $search_date_year =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
+//        $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select'),'string');
+//             if(isset($search_date_month) || isset($search_date_year) || isset($search_dept)){
+//          if ( $search_date_year  == 'Year' || $search_dept == 'Select Dept' || $search_date_month == 'Month'){
+//              Echo 'Search By Default Option';
+//          }
+//          if ( $search_date_year  !== 'Year'){
+//             // Echo 'Search Year By '.$search_date_year;
+//          }
+//             }
         ?>
+<!--          </span>-->
         &nbsp;&nbsp;
            <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
  <?php
@@ -80,7 +84,7 @@ if (!ini_get('date.timezone')) {
                  <thead>
                  
               
-                  <td colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
+                  <th colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
                  
                 </thead>
                 <tbody>
@@ -111,7 +115,7 @@ if (!ini_get('date.timezone')) {
                         for ($i = 1; $i <= date('t'); $i++) {
                             $j = array();
                             //get under today date
-                            if ($i <= date('d')) {
+                            if ($i) {
                                 foreach ($day as $k => $v) {
                                     if ($i == $v) {
                                         $j[$v + 1] = $v;

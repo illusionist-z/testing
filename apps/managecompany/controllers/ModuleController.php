@@ -37,7 +37,9 @@ class ModuleController extends ControllerBase {
      *  Add new module 
      */
     public function addmoduleAction() {
+        
         $Obj = new \salts\Managecompany\Models\CoreModule();
+        
         $Obj->module_id = $this->request->getPost('mid');
         $Obj->module_name = $this->request->getPost('mname');
         $Obj->save();

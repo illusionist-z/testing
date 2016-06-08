@@ -465,6 +465,8 @@ class IndexController extends ControllerBase {
             $Noti = $Admin->getAdminNoti($id,0);
 
             $Tax = new SalaryTaxs();
+            $salarydate = new \salts\Salary\Models\SalaryDateSetting();
+            $salarydatedata = $salarydate->getdata();
             $list = $Tax->getTaxlist();
             $this->view->setVar("result", $list); //paginated data
             $Deduction = new SalaryTaxsDeduction();
@@ -473,6 +475,7 @@ class IndexController extends ControllerBase {
                 $this->view->module_name = $this->router->getModuleName();
                 $this->view->setVar("Noti", $Noti);
                 $this->view->setVar("deduction", $dlist);
+                $this->view->setVar("salarydatedata", $salarydatedata);
             } else {
                 $this->response->redirect('core/index');
             }
@@ -863,6 +866,12 @@ class IndexController extends ControllerBase {
         }
         $this->view->disable();
         echo json_encode($msg);
+    }
+    
+    public function editpaydateAction($startdate,$enddate){
+          $salarydate = new \salts\Salary\Models\SalaryDateSetting();
+           $salarydate->editdata($startdate,$enddate);
+             $this->response->redirect('salary/index/salarysetting');
     }
     
    
