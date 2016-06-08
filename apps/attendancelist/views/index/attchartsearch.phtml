@@ -35,19 +35,22 @@ if (!ini_get('date.timezone')) {
      ?>
         </select>
           <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year " placeholder="Year" value="Year" name="date-picker-input-year">
-                  &nbsp;&nbsp;<span class="buttonn form-control-static ">
+<!--                  &nbsp;&nbsp;<span class="buttonn form-control-static ">-->
               <?php
-        $search_date_year =  $this->request->getPost('date-picker-input-year');
         
-          if ( $search_date_year  == 'Year' || $search_dept == 'Select Dept' || $search_date_month == 'Month'){
-              Echo 'Search By Default Option';
-          }
-          if ( $search_date_year  !== 'Year'){
-             // Echo 'Search Year By '.$search_date_year;
-          }
-        
+//        $search_date_month =  $filter->sanitize($this->request->getPost('date-picker-input-month'),'string');
+//        $search_date_year =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
+//        $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select'),'string');
+//             if(isset($search_date_month) || isset($search_date_year) || isset($search_dept)){
+//          if ( $search_date_year  == 'Year' || $search_dept == 'Select Dept' || $search_date_month == 'Month'){
+//              Echo 'Search By Default Option';
+//          }
+//          if ( $search_date_year  !== 'Year'){
+//             // Echo 'Search Year By '.$search_date_year;
+//          }
+//             }
         ?>
-          </span>
+<!--          </span>-->
         &nbsp;&nbsp;
            <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
  <?php
@@ -81,7 +84,7 @@ if (!ini_get('date.timezone')) {
                  <thead>
                  
               
-                  <td colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
+                  <th colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
                  
                 </thead>
                 <tbody>
