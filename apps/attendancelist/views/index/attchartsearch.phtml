@@ -11,7 +11,7 @@ if (!ini_get('date.timezone')) {
     <br>
     <div> 
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
-                    <select  class="buttonn form-control-static col-sm-1" placeholder="Month" value="Month" name="date-picker-input-month">
+              <select  class="buttonn form-control-static col-sm-1 chart-search-input" placeholder="Month" value="Month" name="date-picker-input-month">
  <?php
          //   foreach ($core_att as $data_att_dept) {
  ?>               
@@ -34,18 +34,20 @@ if (!ini_get('date.timezone')) {
         //    }
      ?>
         </select>
-          <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year" placeholder="Year" value="Year" name="date-picker-input-year">
-        <?php
+          <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year " placeholder="Year" value="Year" name="date-picker-input-year">
+                  &nbsp;&nbsp;<span class="buttonn form-control-static ">
+              <?php
         $search_date_year =  $this->request->getPost('date-picker-input-year');
         
-          if ( $search_date_year  == 'Year'){
-              Echo 'Search Default Date '.date("Y");
+          if ( $search_date_year  == 'Year' || $search_dept == 'Select Dept' || $search_date_month == 'Month'){
+              Echo 'Search By Default Option';
           }
           if ( $search_date_year  !== 'Year'){
-              Echo 'Search Date '.$search_date_year;
+             // Echo 'Search Year By '.$search_date_year;
           }
         
         ?>
+          </span>
         &nbsp;&nbsp;
            <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
  <?php

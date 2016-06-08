@@ -5,6 +5,9 @@
 
 /* Layout helpers
 ----------------------------------*/
+.chart-search-input{
+    padding-left: 6px !important;
+}
 .ui-helper-hidden {
     display: none;
 }
