@@ -3,6 +3,7 @@
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }
+
     
  
 
@@ -32,7 +33,7 @@ use Phalcon\Filter;
     <ul id="tabs">
         <li><a class="selected" href="#about"><?= $t->_("tax"); ?> </a></li>
         <li><a class="" href="#advantages"><?= $t->_("deduction"); ?> </a></li>
-
+        <li><a class="" href="#salarydate"><?= $t->_("salarypaydate"); ?> </a></li>
     </ul>
     <form action="" method="post">
         <div class="tabContent" id="about"><!-- start Basic salary setting--->
@@ -105,6 +106,24 @@ use Phalcon\Filter;
             </table>
 
         </div><!-- end allowance setting-->
+        <div class="tabContent hide" id="salarydate">
+            <!-- start allowance setting-->
+            <form id="paydatesetting" action="editpaydate">
+                <table>
+                    <tr>
+                        <td>Salary Pay Start Date</td>
+                          <td><input type="text" name="startday" id="startday" value="<?php  echo $salarydatedata['salary_date_from']?> " style=" width: 30px; margin-top: 9px;"> </td>
+                    </tr>
+                    <tr>
+                        <td>Salary Pay End Date</td>
+                          <td><input type="text" name="endday" id="endday"  value="<?php  echo $salarydatedata['salary_date_to']?>"  style=" width: 30px;margin-top: 9px;"> </td>
+                    </tr>
+                    <tr><td colspan="2" ><a href="#" class="button" id="save_paydate" style="margin-left: 105px;">Save</a></td></tr>
+                    
+                </table>
+            </form>
+            
+        </div><!-- end salary starting date setting-->
         <div id="edit_dect_dia" class="navbar"></div>
         <div id="add_new_dt" class="navbar" style="display:none;" title="<?= $t->_("deduction_add"); ?>">
 <!--            <form id="Add_new_deduct">

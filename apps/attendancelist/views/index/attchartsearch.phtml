@@ -11,15 +11,53 @@ if (!ini_get('date.timezone')) {
     <br>
     <div> 
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
-        <input type='input' class="buttonn form-control-static col-sm-1 date-picker-month" placeholder="Month" value="Month" name="date-picker-input-month">
-        <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year" placeholder="Year" value="Year" name="date-picker-input-year">
+              <select  class="buttonn form-control-static col-sm-1 chart-search-input" placeholder="Month" value="Month" name="date-picker-input-month">
+ <?php
+         //   foreach ($core_att as $data_att_dept) {
+ ?>               
+<!--                <option><?php //= $data_att_dept->member_dept_name ?></option> -->
+                     <option>Month</option>
+                 <option>1</option> 
+                      <option>2</option> 
+                          <option>3</option> 
+                              <option>4</option> 
+                                  <option>5</option> 
+                                      <option>6</option> 
+                                          <option>7</option> 
+                                              <option>8</option> 
+                                                  <option>9</option> 
+                                                      <option>10</option> 
+                                                          <option>11</option> 
+                                                              <option>12</option> 
+                   
+    <?php
+        //    }
+     ?>
+        </select>
+          <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year " placeholder="Year" value="Year" name="date-picker-input-year">
+<!--                  &nbsp;&nbsp;<span class="buttonn form-control-static ">-->
+              <?php
         
+//        $search_date_month =  $filter->sanitize($this->request->getPost('date-picker-input-month'),'string');
+//        $search_date_year =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
+//        $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select'),'string');
+//             if(isset($search_date_month) || isset($search_date_year) || isset($search_dept)){
+//          if ( $search_date_year  == 'Year' || $search_dept == 'Select Dept' || $search_date_month == 'Month'){
+//              Echo 'Search By Default Option';
+//          }
+//          if ( $search_date_year  !== 'Year'){
+//             // Echo 'Search Year By '.$search_date_year;
+//          }
+//             }
+        ?>
+<!--          </span>-->
         &nbsp;&nbsp;
            <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
  <?php
          //   foreach ($core_att as $data_att_dept) {
  ?>               
 <!--                <option><?php //= $data_att_dept->member_dept_name ?></option> -->
+                 <option>Select Dept</option> 
                    <option>Asterrisk</option> 
                      <option>Andriod</option> 
                 <option>Manage</option> 
@@ -43,18 +81,28 @@ if (!ini_get('date.timezone')) {
     <div class="row">
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
-                <thead>
-                <th style="width:2%;"><?php echo "NO."; ?></th>
-                <th style="width:15%;"><?= $t->_("username"); ?></th>
-                   <?php
-                //for ($i = 1; $i <= date('t'); $i++) {
-                    echo " ";
-                //}
-                ?>      
-                
-                <th colspan='30' style=" text-align: center;"> Monthly Attendance  By Day  </th>               
+                 <thead>
+                 
+              
+                  <th colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
+                 
                 </thead>
                 <tbody>
+                    <tr>
+                        <td width='2%'><?php echo "NO."; ?> </td>
+                        <td width='13%'><?= $t->_("username"); ?></td>
+                        
+                        
+                
+                 
+                 <?php
+                for ($i = 1; $i <= date('t'); $i++) {
+                    echo "  <td> ". $i ."  </td>";
+                }
+                ?>      
+                       
+                        
+                    </tr>
                     <?php
                     $no = 1;
                     foreach ($data->items as $result) {
@@ -67,7 +115,7 @@ if (!ini_get('date.timezone')) {
                         for ($i = 1; $i <= date('t'); $i++) {
                             $j = array();
                             //get under today date
-                            if ($i <= date('d')) {
+                            if ($i) {
                                 foreach ($day as $k => $v) {
                                     if ($i == $v) {
                                         $j[$v + 1] = $v;
@@ -78,15 +126,15 @@ if (!ini_get('date.timezone')) {
                                 if (array_key_exists($i, $j)) {
                                     if ($i == $j[$i + 1]) {
                                         $j[$i][$i] == 0 ? $class = 'leave0' : ($j[$i][$i] == 1 ? $class = "leave1" : ($j[$i][$i] == 2 ? $class = "leave2" : $class = "leave3"));
-                                        echo "<td class='$class'></td>";
+                                        echo "<td class='$class' width='2%'></td>";
                                     }
                                 } else {
-                                    echo "<td class='unleave'></td>";
+                                    echo "<td class='unleave' width='2%'></td>";
                                 }
                             }
                             //get above today date
                             else {
-                                echo "<td class='unleave'></td>";
+                                echo "<td class='unleave' width='2%'></td>";
                             }
                         }
                         echo "</tr>";
