@@ -13,13 +13,24 @@ if (!ini_get('date.timezone')) {
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
         <input type='input' class="buttonn form-control-static col-sm-1 date-picker-month" placeholder="Month" value="Month" name="date-picker-input-month">
         <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year" placeholder="Year" value="Year" name="date-picker-input-year">
+        <?php
+        $search_date_year =  $this->request->getPost('date-picker-input-year');
         
+          if ( $search_date_year  == 'Year'){
+              Echo 'Search Default Date '.date("Y");
+          }
+          if ( $search_date_year  !== 'Year'){
+              Echo 'Search Date '.$search_date_year;
+          }
+        
+        ?>
         &nbsp;&nbsp;
            <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
  <?php
          //   foreach ($core_att as $data_att_dept) {
  ?>               
 <!--                <option><?php //= $data_att_dept->member_dept_name ?></option> -->
+                 <option>Select Dept</option> 
                    <option>Asterrisk</option> 
                      <option>Andriod</option> 
                 <option>Manage</option> 
@@ -43,18 +54,28 @@ if (!ini_get('date.timezone')) {
     <div class="row">
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
-                <thead>
-                <th style="width:2%;"><?php echo "NO."; ?></th>
-                <th style="width:15%;"><?= $t->_("username"); ?></th>
-                   <?php
-                //for ($i = 1; $i <= date('t'); $i++) {
-                    echo " ";
-                //}
-                ?>      
-                
-                <th colspan='30' style=" text-align: center;"> Monthly Attendance  By Day  </th>               
+                 <thead>
+                 
+              
+                  <td colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
+                 
                 </thead>
                 <tbody>
+                    <tr>
+                        <td><?php echo "NO."; ?> </td>
+                        <td><?= $t->_("username"); ?></td>
+                        
+                        
+                
+                 
+                 <?php
+                for ($i = 1; $i <= date('t'); $i++) {
+                    echo "  <td> ". $i ."  </td>";
+                }
+                ?>      
+                       
+                        
+                    </tr>
                     <?php
                     $no = 1;
                     foreach ($data->items as $result) {

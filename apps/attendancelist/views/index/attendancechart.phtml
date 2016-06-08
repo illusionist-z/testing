@@ -45,18 +45,27 @@ if (!ini_get('date.timezone')) {
         <div class="col-sm-12 table-responsive"><!--start table content--->
             <table class="listtbl attlist attchart">
                 <thead>
-                <th style="width:2%;"><?php echo "NO."; ?></th>
-                <th style="width:15%;"><?= $t->_("username"); ?></th>
-                
-                <?php
-                //for ($i = 1; $i <= date('t'); $i++) {
-                    echo " ";
-                //}
-                ?>      
-                
-                <th colspan='30' style=" text-align: center;"> Monthly Attendance  By Day  </th>
+                 
+              
+                  <td colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
+                 
                 </thead>
                 <tbody>
+                    <tr>
+                        <td><?php echo "NO."; ?> </td>
+                        <td><?= $t->_("username"); ?></td>
+                        
+                        
+                
+                 
+                 <?php
+                for ($i = 1; $i <= date('t'); $i++) {
+                    echo "  <td> ". $i ."  </td>";
+                }
+                ?>      
+                       
+                        
+                    </tr>
                     <?php
                     $no = 1;
                     foreach ($data->items as $result) {
