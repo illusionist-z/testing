@@ -367,8 +367,14 @@ var Deduction = {
     
 };
 $(document).ready(function () {
-
-   
+    
+       $("#save_paydate").click(function () {
+           var startday = document.getElementById("startday").value;
+           var endday  = document.getElementById("endday").value;
+             window.location.href = 'editpaydate/' + startday + '/' + endday;
+          
+    });
+    
      $(".taxpopup").click(function () {
        var id = $(this).attr('id');
        Tax.Edit(id);

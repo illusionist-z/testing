@@ -101,5 +101,6 @@ $messages = array(
      * footer 
      */
     "Change_Language" => "Change Language",
+    "salarypaydate"=>"Salary Paydate Setting",
 );
 
