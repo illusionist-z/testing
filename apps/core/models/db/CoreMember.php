@@ -16,9 +16,9 @@ class CoreMember extends \Library\Core\Models\Base {
     // Use trait for singleton
     
     use \Library\Core\Models\SingletonTrait;
-
-    public function initialize() {
-        parent::onConstruct();
+    
+    public function initialize() {        
+        parent::onConstruct();        
     }
 
     public function ModuleIdSetPermission($v, $m) {
@@ -41,15 +41,7 @@ class CoreMember extends \Library\Core\Models\Base {
 
     public function getUserName($currentPage) {
         $row = CoreMember::find("deleted_flag = 0 order by created_dt desc");
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 10,
-            "page" => $currentPage
-                )
-        );
-// Get the paginated results
-        $page = $paginator->getPaginate();
+        $page = parent::pagination($row, $currentPage);
         return $page;
     }
     
@@ -94,15 +86,7 @@ class CoreMember extends \Library\Core\Models\Base {
                     ->where('core.deleted_flag = 0')
                     ->getQuery()
                     ->execute();
-            $paginator = new PaginatorModel(
-                    array(
-                "data" => $row,
-                "limit" => 3,
-                "page" => $currentPage
-                    )
-            );
-// Get the paginated results
-            $page = $paginator->getPaginate();
+            $page = parent::pagination($row, $currentPage);            
         } catch (Phalcon\Exception $e) {
             $di->getShared("logger")->error($e->getMessage());
         }
@@ -134,15 +118,7 @@ class CoreMember extends \Library\Core\Models\Base {
                 ->andWhere('core.deleted_flag = 0')
                 ->getQuery()
                 ->execute();
-           $paginator = new PaginatorModel(
-                    array(
-                "data" => $row,
-                "limit" => 3,
-                "page" => $currentPage
-                    )
-            );
-// Get the paginated results
-            $page = $paginator->getPaginate();
+         $page = parent::pagination($row, $currentPage);
         } catch (Phalcon\Exception $e) {
             $di->getShared("logger")->error($e->getMessage());
         }

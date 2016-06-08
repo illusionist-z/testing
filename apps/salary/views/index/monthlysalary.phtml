@@ -84,7 +84,7 @@ use Phalcon\Filter;
     <div id="content">
         <ul class="pagination" style="margin-left:15px;">
             <?php
-            if ($geteachmonthsalarys->last !== 1 || $geteachmonthsalarys->last !== 0) {                         
+            if ($geteachmonthsalarys->last !== 1 && $geteachmonthsalarys->last !== 0) {
                 ?>
                 <li><a href="monthlysalary">First</a></li>
                 <li><a href="monthlysalary?page=<?= $geteachmonthsalarys->before; ?>">Previous</a></li>
