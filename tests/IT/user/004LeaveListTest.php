@@ -94,7 +94,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $edate = date("Y-m-d h:i:sa", $e);
         $end_Date = $this->byName('edate');
         $end_Date->value($edate);
-        $this->select($this->byName('leavetype'))->selectOptionByValue("On Vacation");
+        $this->select($this->byName('leavetype'))->selectOptionByValue("Medical Leave");
         $this->byCssSelector('textarea')->value("illness");
         $this->byCssSelector('input#apply_form_submit')->click();
         sleep(4);
@@ -127,7 +127,7 @@ class LeaveListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $start_Date->value('2016-02-15 00:00:00');
         $end_Date = $this->byName('edate');
         $end_Date->value('2016-02-17 13:32:41');
-        $this->select($this->byName('leavetype'))->selectOptionByValue("On Vacation");
+        $this->select($this->byName('leavetype'))->selectOptionByValue("Medical Leave");
         $this->byCssSelector('textarea')->value("illness");
         $this->byCssSelector('input#apply_form_cancel')->click();
         $this->url('leavedays/user/applyleave');
