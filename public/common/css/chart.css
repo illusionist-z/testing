@@ -5,6 +5,9 @@
 
 /* Layout helpers
 ----------------------------------*/
+.chart-search-input{
+    padding-left: 6px !important;
+}
 .ui-helper-hidden {
     display: none;
 }
@@ -15,9 +18,16 @@
     }
     .ui-datepicker-month {
        color: red;
+       display: none;
     }
     .ui-datepicker-year{
             color: red;
+    }
+    .ui-datepicker-prev{
+         display: none;
+    }
+    .ui-datepicker-next{
+          display: none;
     }
 .ui-helper-hidden-accessible {
     border: 0;
