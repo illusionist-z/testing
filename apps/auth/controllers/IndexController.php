@@ -184,6 +184,7 @@ class IndexController extends ControllerBase {
     /**  When user failed  email  go  @param type $mode  */
     public function failersuperuserAction() {
         $this->view->errorMsg = 'user name or password wrong';
+        $this->view->errorMsgForgot = '';
         $this->view->mode = 1;
         $this->view->pick('index/index');
     }
