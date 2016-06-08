@@ -145,9 +145,13 @@ $(document).ready(function () {
       Categories.Diaadd();
     });
     
-       $('.editsetting').on('click',function(){
-        
-        document.getElementById('max_leavedays').disabled=false;
-        document.getElementById('savesetting').disabled=false;
-    });
+            document.getElementById('editsetting').style.backgroundColor = "#3c8dbc";
+            document.getElementById('editsetting').style.color = "white";
+       $('.editsetting').on('click', function () {
+            document.getElementById('max_leavedays').disabled = false;
+            document.getElementById('savesetting').disabled = false;
+            document.getElementById('savesetting').style.backgroundColor = "#3c8dbc";
+            document.getElementById('savesetting').style.color = "white";
+             document.getElementById('editsetting').style.backgroundColor = "#5AA2CC";
+        });
 });

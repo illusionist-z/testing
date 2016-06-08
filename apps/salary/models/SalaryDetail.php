@@ -20,7 +20,7 @@ class SalaryDetail extends Model {
      * @return type
      * @author zinmon
      */
-    public function getEachmonthsalary($currentPage,$IsPaging) {
+    public function getEachmonthsalary($currentPage) {
         try{
         $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
                 . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
@@ -31,21 +31,7 @@ class SalaryDetail extends Model {
                 . " group by YEAR(pay_date),MONTH(pay_date)"
                 . " order by pay_date desc";
         $row = $this->modelsManager->executeQuery($query);
-        if(0 != $IsPaging){
-          $paginator = new PaginatorModel(
-                            array(
-                        "data" => $row,
-                        "limit" => 10,
-                        "page" => $currentPage
-                            )
-                         );
-
-// Get the paginated results
-        $page = $paginator->getPaginate();        
-        }
-        else{
-            $page = $row;
-        }
+        $page = $this->base->pagination($row, $currentPage);
         }  catch (Phalcon\Exception $e) {           
               $di->getShared('logger')->error($e->getMessage());
         }
@@ -247,7 +233,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * Get salary detail for each month
      * @author zinmon
      */
-    public function getSalaryDetail($currentPage,$IsPaging) {
+    public function getSalaryDetail($currentPage) {
         try { 
             $row = $this->modelsManager->createBuilder()
                     ->columns(array('salarymas.*', 'core.*'))
@@ -257,21 +243,9 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     ->andwhere('salarymas.deleted_flag=0')
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
-                    ->execute();
-         if(0 != $IsPaging){
-                   $paginator = new PaginatorModel(
-                            array(
-                        "data" => $row,
-                        "limit" => 10,
-                        "page" => $currentPage
-                            )
-                         );
-// Get the paginated results
-        $page = $paginator->getPaginate();
-         }
-         else{
-             $page = $row;
-         }
+                    ->execute();         
+            $page = $this->base->pagination($row, $currentPage);
+         
         } catch (Exception $e) {
             echo $e;
         }
@@ -785,20 +759,5 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
         //var_dump($users);exit;
         return $users;
     }  
-    
-    public function MonthlyListExport($data){
-        header("Content-type: application/csv");
-        header("Content-Disposition: attachment; filename=MonthlySalaryListAll.csv;");        
-        echo "\xEF\xBB\xBF"; // UTF-8 BOM        
-        $output = fopen('php://output', 'w');               
-        fputcsv($output, array("Month/Year","Salary Total","Allowance","Travel Fees","Personal Income","SSC EMPLOYER","SSC EMPLOYEE","Tax Total","Total"));      
-        $num = 0;
-        foreach($data as $geteachmonthsalary){
-        fputcsv($output,array($geteachmonthsalary['Mt'] . '/' . $geteachmonthsalary['Yr'],$geteachmonthsalary['salary_total'],$geteachmonthsalary['allowance'],$geteachmonthsalary['travel_expense']
-                ,$geteachmonthsalary['income_tax_amount'],$geteachmonthsalary['ssc_emp_amount'],$geteachmonthsalary['ssc_comp_amount'],$geteachmonthsalary['Tax_total'],
-                $geteachmonthsalary['Total']));
-            }
-        fclose($output);
-        exit;
-    }
+
 }

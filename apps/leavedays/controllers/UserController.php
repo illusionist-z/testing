@@ -99,7 +99,7 @@ class UserController extends ControllerBase {
             //get maximum leaves days
             $max = $this->_leave->getLeaveSetting();
             $max_leavedays = $max['0']['max_leavedays'];            
-            $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id,$page,1);
+            $leave_list = $this->_leave->getUserLeaveList($leave_type, $mth, $id,$page);
             $this->view->setVar("Result", $leave_list);
             $this->view->setVar("absentdays", $absent_days);            
             $this->view->setVar("Month", $month);
