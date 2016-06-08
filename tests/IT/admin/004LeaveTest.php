@@ -50,7 +50,7 @@ class LeaveTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('leavedays/index/leavelist');
         $elements = $this->elements($this->using('css selector')->value('img#exicon'));
-        $this->assertEquals(2, count($elements));
+        $this->assertEquals(1, count($elements));
         $link = $this->byLinkText($elements[0]->text());
         $link->click();
         $this->url('leavedays/index/leavelist');

@@ -69,18 +69,18 @@ class LeaveCTTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($leaveaction->leavelistAction(0));
     }
 
-    public function testleavesettingAction() {
-
-        $leavesetting = new LeaveIndexController();
-        $result = $leavesetting->leavesettingAction();
-        $this->assertContains("Family Case", $result[0]['leavetype_name']);
-    }
-
     public function testaddListTypeAction() {
         $ltype_name = 'Family Case';
         $addlist = new LeaveIndexController();
         $addlist->setltype_name($ltype_name);
         $this->assertEquals("Family Case", $addlist->addListTypeAction());
+    }
+
+    public function testleavesettingAction() {
+
+        $leavesetting = new LeaveIndexController();
+        $result = $leavesetting->leavesettingAction();
+        $this->assertContains("Family Case", $result[0]['leavetype_name']);
     }
 
     public function testeditleavesettingAction() {
