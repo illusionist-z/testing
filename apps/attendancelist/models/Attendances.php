@@ -66,7 +66,7 @@ class Attendances extends Model {
      * @author Su Zin Kyaw
      * for user
      */
-    public function getAttList($id, $year, $month, $currentPage, $IsPaging) {
+    public function getAttList($id, $year, $month, $currentPage,$IsPaging) {
         try {
             $currentmth = date('m');
             $currentYear = date('Y');

@@ -115,7 +115,7 @@ if (!ini_get('date.timezone')) {
                         for ($i = 1; $i <= date('t'); $i++) {
                             $j = array();
                             //get under today date
-                            if ($i <= date('d')) {
+                            if ($i) {
                                 foreach ($day as $k => $v) {
                                     if ($i == $v) {
                                         $j[$v + 1] = $v;
