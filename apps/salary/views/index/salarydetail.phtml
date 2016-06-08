@@ -2,11 +2,8 @@
 
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
-}
-    
- 
-
-use Phalcon\Filter;
+} 
+ use Phalcon\Filter;
 ?>
 <!-- Main content -->
 <section class="content">
@@ -16,8 +13,7 @@ use Phalcon\Filter;
                 <div style="padding: 10px 10px 10px 10px">
                         <button class="btnEditInfo btn  btn-flat" id="btnEditInfo" style="border: 1px solid #3c8dbc">EDIT</button>
 
-                        <button id="btn_savedetail" disabled class="txtenable btn  btn-flat" style="border: 1px solid #3c8dbc">Save</button>
-                   
+                        <button id="btn_savedetail" disabled class="btn  btn-flat btn_savedetail" style="border: 1px solid #3c8dbc;">Save</button>                   
 
 <!--                        <button id="btn_resign" class="btn_resign btn  btn-flat" style="border: 1px solid #3c8dbc">Resign</button>                    -->
                 </div>
