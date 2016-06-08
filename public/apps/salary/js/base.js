@@ -454,7 +454,7 @@ var Salary = {
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
                                 
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].total) + "</div></td>"
-                                + '<td><a href="#"  onclick="return false;" class="btn_detail detail_img" title="" id='+ json_obj[i].member_id +' style="margin-top: 13px;">Detail</a></td>'
+                                + '<td><a href="#"  onclick="return false;" class="btn_detail detail_img" title="" id='+ json_obj[i].member_id +'>Detail</a></td>'
 
 
                         $("tbody").append(output);
