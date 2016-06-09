@@ -296,7 +296,7 @@ var Salary = {
                 var data = '<form id="Add_new_deduct"><table>';
                 data += '<tr><td>' + d.cal_text + '<br></td></tr>'
                         + '<tr><td><div style="display:none;" id="error_salary">Please Choose Pay Month!</div><div style="display:none;" id="nexterror_salary">Please choose another pay Month!</div></td></tr>'
-                        + '<tr><td><input type="text" class="datepicker"  placeholder="' + d.cal_placehd + '" style="height:39px; width: 100%;" id="salary_start"></td></tr>'
+                        + '<tr><td><input type="text" class="monthPicker"  placeholder="' + d.cal_placehd + '" style="height:39px; width: 100%;" id="salary_start"></td></tr>'
                 data += '<tr><td><a href="#" class="button" id="cal_salary_month">' + d.cal_yes + '</a><a href="#" class="button" id="cancel_deduct">' + d.cal_no + '</a></td></tr>';
                 data += '</table></form>';
                 Salary.Diaaadd(data, d.cal_title);
@@ -336,11 +336,32 @@ var Salary = {
             location.reload();
 
         });
-        $('.datepicker').on('click', function (e) {
-            e.preventDefault();
-            $(this).removeClass('datepicker').datepicker({dateFormat: "yy-mm-dd",
-            }).focus();
+//        $('.monthPicker').on('click', function (e) {
+//            e.preventDefault();
+//            $(this).removeClass('datepicker').datepicker({dateFormat: "yy-mm-dd",
+//            }).focus();
+//        });
+ $(".monthPicker").datepicker({
+        dateFormat: 'yy mm',
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+
+        onClose: function(dateText, inst) {
+            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+            $(this).val($.datepicker.formatDate('yy-mm', new Date(year, month, 1)));
+        }
+    });
+
+    $(".monthPicker").focus(function () {
+        $(".ui-datepicker-calendar").hide();
+        $("#ui-datepicker-div").position({
+            my: "center top",
+            at: "center bottom",
+            of: $(this)
         });
+    }).focus();
     },
     autolist: function () {        
         

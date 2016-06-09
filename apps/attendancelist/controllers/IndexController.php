@@ -12,7 +12,7 @@ class IndexController extends ControllerBase {
          
         $this->setCommonJsAndCss();
         $this->setAttJsAndCss();
-        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('attendancelist');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
 
@@ -156,9 +156,11 @@ class IndexController extends ControllerBase {
      * monthly attendance table show
      */
     public function attendancechartAction() {
+         $this->view->setVar("Month", $this->config['config']['month']);     
         $att_dept = new \salts\Core\Models\CoreMember();
         $core_group_att = $att_dept::find();
          $this->view->core_att = $core_group_att;
+         
            $this->setattChartCss1();
          if ($this->moduleIdCall == 1) {
         $Attendances = new \salts\Attendancelist\Models\Attendances();
@@ -172,6 +174,12 @@ class IndexController extends ControllerBase {
     }
     
      public function attchartsearchAction() {
+           $this->view->setVar("Month", $this->config['config']['month']);     
+        $att_dept = new \salts\Core\Models\CoreMember();
+        $core_group_att = $att_dept::find(array('member_dept_name' => 'member_dept_name'));
+         $this->view->core_att = $core_group_att;
+//         $result_dept = $att_dept->searchDept();
+//          $this->view->data2 = $result_dept;
            $this->setattChartCss();
           $filter = new Filter();
         if ($this->request->isPost('date-picker-btn')){
@@ -180,7 +188,7 @@ class IndexController extends ControllerBase {
         $search_date_month =  $filter->sanitize($this->request->getPost('date-picker-input-month'),'string');
         $search_date_year =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
         $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select'),'string');
-   
+       
         $currentPage = $this->request->get("page");
       
         $result = $Attsearch->searchByTwoOption($search_date_month,$search_date_year, $search_dept,$currentPage);

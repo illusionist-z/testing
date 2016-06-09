@@ -87,7 +87,7 @@ if (!ini_get('date.timezone')) {
             <td>
 
                 <a href="#" onclick="PageRuleSetting.apply(this);
-                            return false;" class="insettingedit" type="black" id="<?= $datauser2->idpage ?>">  </a>  
+                        return false;" class="insettingedit" type="black" id="<?= $datauser2->idpage ?>">  </a>  
             </td> 
         </tr>        
 
@@ -122,33 +122,33 @@ if (!ini_get('date.timezone')) {
 }
 ?>        
 </tbody>
-<tfoot>
-    <tr>
-        <td colspan="4">
-            <ul class="pagination" style="margin-left:15px;">
-                  <ul class="pagination" style="margin-left:15px;">
-                 <li><a href="index">First</a></li>
-                <li><a href="index?page1=<?= $coreuser2->last; ?>">Last</a></li>
-                <li>
-                <?php
-                if ($coreuser2->last !== 1) {
-                    for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
-                           if (($coreuser->current  + 3 ) >= $x && ($coreuser->current -  3 ) <= $x){
-                        ?>
-                <a href="index?page=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
-                        <?php
-                    }
-                    }
-                      ?>
-                <li><span><?php echo "You are in page <font color='red'> ", $coreuser2->current, "</font> of ", $coreuser2->total_pages; ?></span></li>
-                <?php
-                }
-                ?>
-                </li>
-            </ul>
-
-        </td>
-    </tr>
-</tfoot>
-
+<?php
+if ($coreuser2->last !== 1 && $coreuser2->last !== 0) {
+    ?>                
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <ul class="pagination" style="margin-left:15px;">
+                    <ul class="pagination" style="margin-left:15px;">
+                        <li><a href="index">First</a></li>
+                        <li><a href="index?page1=<?= $coreuser2->last; ?>">Last</a></li>
+                        <li>
+                            <?php
+                            for ($x = 1; $x <= $coreuser2->total_pages; $x++) {
+                                if (($coreuser->current + 3 ) >= $x && ($coreuser->current - 3 ) <= $x) {
+                                    ?>
+                                    <a href="index?page=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        <li><span><?php echo "You are in page <font color='red'> ", $coreuser2->current, "</font> of ", $coreuser2->total_pages; ?></span></li>               
+                        </li>
+                    </ul>
+            </td>
+        </tr>
+    </tfoot>
+    <?php
+}
+?>
 </table>  

@@ -1,7 +1,6 @@
 <?php
-
-if(! ini_get('date.timezone')){
-    date_default_timezone_set('UTC');    
+if (!ini_get('date.timezone')) {
+    date_default_timezone_set('UTC');
 }
 ?>
 
@@ -25,44 +24,44 @@ if(! ini_get('date.timezone')){
 </thead>
 <tbody style="text-align:center;" >
     <?php
-    foreach ($coreuser->items as $datauser) {        
-            ?>
-            <tr>                                        
-                <td><?= $datauser->group_id ?></td>
-                <td style="text-align:left;"><?= $datauser->core->member_login_name ?></td>
+    foreach ($coreuser->items as $datauser) {
+        ?>
+        <tr>                                        
+            <td><?= $datauser->group_id ?></td>
+            <td style="text-align:left;"><?= $datauser->core->member_login_name ?></td>
 
 
-                <?php
-                foreach ($coreid as $data) {
+            <?php
+            foreach ($coreid as $data) {
 
-                    if ($datauser->group_id == $data->group_id) {
-                        ?>
-                        <td style="text-align:left;"> 
+                if ($datauser->group_id == $data->group_id) {
+                    ?>
+                    <td style="text-align:left;"> 
 
 
-                            <?= $data->name_of_group ?>  
-                            (<?= $datauser->group_id ?>)
-                        </td>
-                        <?php
-                    }
+                        <?= $data->name_of_group ?>  
+                        (<?= $datauser->group_id ?>)
+                    </td>
+                    <?php
                 }
-                ?>
+            }
+            ?>
 
 
-                <td>        
-                    <a href="#" onclick="showDialoguser.apply(this);
-                                    return false;" class="insettingedit" type="black" id="<?= $datauser->core->member_id ?>"> </a>  
-                </td> 
+            <td>        
+                <a href="#" onclick="showDialoguser.apply(this);
+                        return false;" class="insettingedit" type="black" id="<?= $datauser->core->member_id ?>"> </a>  
+            </td> 
 
-            </tr>
+        </tr>
 
-        <div id="openu<?= $datauser->core->member_id ?>" title="<?= $t->_("userrulesetting"); ?>" style="display: none;">
-            <form method="POST" action="index/UserRuleSetting">   
-                <span class="col-md-5"><?= $t->_("username"); ?></span>
-                <span class="col-md-7"><input type="text" style="" name="member_login_name" value="<?= $datauser->core->member_login_name ?>" disabled></span>
-                <br><br>
-                <span class="col-md-5"><?= $t->_("grouprule"); ?></span>
-                <span class="col-md-7"><select type="text" style="" name='user_rule' value='' id="changeuser<?= $datauser->core->member_id ?>">
+    <div id="openu<?= $datauser->core->member_id ?>" title="<?= $t->_("userrulesetting"); ?>" style="display: none;">
+        <form method="POST" action="index/UserRuleSetting">   
+            <span class="col-md-5"><?= $t->_("username"); ?></span>
+            <span class="col-md-7"><input type="text" style="" name="member_login_name" value="<?= $datauser->core->member_login_name ?>" disabled></span>
+            <br><br>
+            <span class="col-md-5"><?= $t->_("grouprule"); ?></span>
+            <span class="col-md-7"><select type="text" style="" name='user_rule' value='' id="changeuser<?= $datauser->core->member_id ?>">
                     <?php
                     foreach ($coreid as $data) {
                         ?>
@@ -75,40 +74,41 @@ if(! ini_get('date.timezone')){
                     }
                     ?>
                 </select>
-                </span>
-            </form>
+            </span>
+        </form>
 
-        </div>
+    </div>
 
 
-        <?php    
+    <?php
 }
 ?></tbody>
-<tfoot>
-    <tr>
-        <td colspan="4">
-            <ul class="pagination" style="margin-left:15px;">
-                 <li><a href="index">First</a></li>
-                <li><a href="index?page1=<?= $coreuser->last; ?>">Last</a></li>
-                <li>
-                <?php
-                if ($coreuser->last !== 1) {
-                    for ($x = 1; $x <= $coreuser->total_pages; $x++) {
-                         if (($coreuser->current  + 3 ) >= $x && ($coreuser->current -  3 ) <= $x){
-                        ?>  
-                <a href="index?page1=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
+<?php
+if ($coreuser->last !== 1 && $coreuser->last !== 0) {
+    ?>    
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <ul class="pagination" style="margin-left:15px;">
+                    <li><a href="index">First</a></li>
+                    <li><a href="index?page1=<?= $coreuser->last; ?>">Last</a></li>
+                    <li>
                         <?php
-                    }
-                    }
-                    ?>
-                <li><span><?php echo "You are in page  <font color='red'>  ", $coreuser->current, "</font> of ", $coreuser->total_pages; ?></span></li>
-                <?php
-                    
-                }
-                ?>
-                </li>
-            </ul>
-        </td>
-    </tr>
-</tfoot>
+                        for ($x = 1; $x <= $coreuser->total_pages; $x++) {
+                            if (($coreuser->current + 3 ) >= $x && ($coreuser->current - 3 ) <= $x) {
+                                ?>  
+                                <a href="index?page1=<?= $x; ?>"><?php echo "<b>$x</b>"; ?></a>
+                                <?php
+                            }
+                        }
+                        ?>
+                    <li><span><?php echo "You are in page  <font color='red'>  ", $coreuser->current, "</font> of ", $coreuser->total_pages; ?></span></li>             
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </tfoot>
+    <?php
+}
+?>
 </table>     

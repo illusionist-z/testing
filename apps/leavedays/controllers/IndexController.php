@@ -165,6 +165,7 @@ class IndexController extends ControllerBase {
      * to edit leave categories and max leave day
      */
     public function leavesettingAction() {
+        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
         if ($this->moduleIdCall == 1) {
             $this->permission = $this->setPermission($this->router->getModuleName());
             $Admin = new Db\CoreMember;

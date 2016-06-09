@@ -49,11 +49,30 @@ class Attendances extends \Library\Core\Models\Base {
      * @return type
      * @author Zin Mon <zinmonthet@myanmar.gnext.asia>
      */
-    public function getCountattday($salary_start_date) {
+    public function getCountattday($salary_start_date,$SalaryDateToCalculate) {
         try {
             $dt = explode('-', $salary_start_date);
-            $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
+            if($SalaryDateToCalculate['salary_date_from']!=1){
+                if($dt[1]==1){
+                    $yr = $dt[0]-1;
+                }
+                else {$yr = $dt[0];}
+                $mt = $dt[1]-1;
+                
+                $date_from = $yr.'-'.$mt.'-'.$SalaryDateToCalculate['salary_date_from'];
+                $date_to = $yr.'-'.$dt[1].'-'.$SalaryDateToCalculate['salary_date_from'];
+                
+                
+                $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
+                    . " where (DATE(att_date) between '".$date_from."' AND '".$date_to."') and (status = 0 or status=3) group by core_member.member_id";
+            }
+            else{
+                $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
                     . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' and (status = 0 or status=3) group by core_member.member_id";
+            }
+           
+//            $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
+//                    . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' and (status = 0 or status=3) group by core_member.member_id";
             $data = $this->db->query($query);
             $result = $data->fetchall();
         } catch (Exception $exc) {
