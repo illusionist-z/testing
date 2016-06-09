@@ -312,8 +312,11 @@ class Attendances extends Model {
         try {
             $currentmth = date('m');
             $currentYr = date("Y");
-            if ($search_dept == 'Select Dept'){
-                if ($search_date_year !== 'Year'){
+            if ($search_date_month == '-Select Month-'){
+                $this->session->search;
+            }
+                
+          if ($search_dept == 'Select Dept'){
                 $row = $this->modelsManager->createBuilder()
                     ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
@@ -321,12 +324,13 @@ class Attendances extends Model {
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $search_date_month))
                     ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $search_date_year))
-                     ->andWhere('core.deleted_flag = 0')
+                    //->andWhere('core.member_dept_name = :search_dept:', array('search_dept' => $search_dept))
+                    ->andWhere('core.deleted_flag = 0')
                     ->groupBy('core.member_id')
                     ->getQuery()
                     ->execute();
             }
-            else if  ($search_date_month == 'Month' && $search_date_year !== 'Year'){
+            else if($search_date_month == '-Select Month-'){
                 $row = $this->modelsManager->createBuilder()
                     ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
@@ -334,39 +338,28 @@ class Attendances extends Model {
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
                     ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $search_date_year))
+                     ->andWhere('core.member_dept_name = :search_dept:', array('search_dept' => $search_dept))
                      ->andWhere('core.deleted_flag = 0')
                     ->groupBy('core.member_id')
                     ->getQuery()
                     ->execute();
             }
-            else if  ($search_date_month !== 'Month' && $search_date_year == 'Year'){
-                $row = $this->modelsManager->createBuilder()
+            else if($search_date_year == 'Year'){
+                 $row = $this->modelsManager->createBuilder()
                     ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $search_date_month))
                     ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
+                    ->andWhere('core.member_dept_name = :search_dept:', array('search_dept' => $search_dept))
                      ->andWhere('core.deleted_flag = 0')
                     ->groupBy('core.member_id')
                     ->getQuery()
                     ->execute();
             }
-             else if  ($search_date_month == 'Month' && $search_date_year == 'Year'){
-                $row = $this->modelsManager->createBuilder()
-                    ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
-                        . ",attendances.member_id,group_concat(attendances.status) as status"))
-                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
-                    ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
-                    ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
-                    ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
-                     ->andWhere('core.deleted_flag = 0')
-                    ->groupBy('core.member_id')
-                    ->getQuery()
-                    ->execute();
-            }
-             else if  ($search_date_month == 'Month' && $search_date_year == 'Year' && $search_dept == 'Select Dept'){
-                $row = $this->modelsManager->createBuilder()
+            else if($search_date_year == 'Year' && $search_date_month == '-Select Month-'){
+                 $row = $this->modelsManager->createBuilder()
                     ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
                     ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
@@ -379,9 +372,36 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
             }
+             else if($search_date_year == 'Year' && $search_date_month == '-Select Month-' && $search_dept == 'Select Dept'){
+                 $row = $this->modelsManager->createBuilder()
+                    ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
+                        . ",attendances.member_id,group_concat(attendances.status) as status"))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                    ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
+                    ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
+                    //->andWhere('core.member_dept_name = :search_dept:', array('search_dept' => $search_dept))
+                     ->andWhere('core.deleted_flag = 0')
+                    ->groupBy('core.member_id')
+                    ->getQuery()
+                    ->execute();
             }
-             
-            else{
+             else if($search_date_year == 'Year'  && $search_dept == 'Select Dept'){
+                 $row = $this->modelsManager->createBuilder()
+                    ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
+                        . ",attendances.member_id,group_concat(attendances.status) as status"))
+                    ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                    ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                    ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $search_date_month))
+                    ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $currentYr))
+                    //->andWhere('core.member_dept_name = :search_dept:', array('search_dept' => $search_dept))
+                     ->andWhere('core.deleted_flag = 0')
+                    ->groupBy('core.member_id')
+                    ->getQuery()
+                    ->execute();
+            }
+            
+            else {
                  $row = $this->modelsManager->createBuilder()
                     ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
@@ -389,12 +409,15 @@ class Attendances extends Model {
                     ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                     ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $search_date_month))
                     ->andWhere('YEAR(attendances.att_date) = :currentYear:', array('currentYear' => $search_date_year))
-                    
+                    ->andWhere('core.member_dept_name = :search_dept:', array('search_dept' => $search_dept))
                     ->andWhere('core.deleted_flag = 0')
                     ->groupBy('core.member_id')
                     ->getQuery()
                     ->execute();
             }
+           
+             
+            
            
             var_dump($row);
           // exit(); 
