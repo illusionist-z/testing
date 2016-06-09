@@ -367,7 +367,7 @@ class Attendances extends Model {
                     ->getQuery()
                     ->execute();
             }
-               if ($search_date_month !== '-Select+Month-' || $search_date_year == 'Year' || $search_dept == 'Select-Dept'){
+               if ($search_date_month !== '-Select+Month-' || $search_date_year == 'Year'){
                 $row = $this->modelsManager->createBuilder()
                     ->columns(array("core.member_login_name", "group_concat(DAY(attendances.att_date)) as day"
                         . ",attendances.member_id,group_concat(attendances.status) as status"))
