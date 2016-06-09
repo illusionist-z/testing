@@ -184,8 +184,8 @@ Setting.UserRule = {
 $(document).ready(function () {
     Setting.init();
     
-     $('#page_rule_list').on('click', function () {      
-        $(this).autocomplete({
+     $('.addpp').on('click', function () {
+        $('#page_rule_list').autocomplete({
             source: function (request, response) {
                 var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
                 var result = $.grep(list, function (item) {
@@ -196,6 +196,16 @@ $(document).ready(function () {
             minLength: 1
         });
     });
+    
+    $('#group').on('click', function () {         
+                 location.reload();   
+        });
+        $('#page').on('click', function () {
+               location.reload();
+        });
+        $('#user').on('click', function () {
+               location.reload();
+        });
 });
 
  

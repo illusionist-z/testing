@@ -18,7 +18,7 @@ if(! ini_get('date.timezone')){
 <br>
 <div class="search-box">
     <form name="setting" id="search_frm" method="post" action="editleavesetting">
-        <div id="Menu">
+        <div id="Menu" class="leaveallow">
             <?php foreach ($leave_setting as $data) { ?>
                 <div id="leave_setting_div1"><?= $t->_("max_leavedays"); ?>: 
                     <span>
@@ -28,8 +28,8 @@ if(! ini_get('date.timezone')){
 
                 <div id="leave_setting_div3">
                     <span>
-                        <input type="button" class="btn btn-default editsetting" onclick="return false;" id="editsetting" value="<?= $t->_("edit"); ?>">
-                        <input type="submit" class="btn btn-default savesetting" id="savesetting" value="<?= $t->_("save"); ?>" disabled>
+                        <input type="button" class="btn editsetting" onclick="return false;" id="editsetting" value="<?= $t->_("edit"); ?>">
+                        <input type="submit" class="btn  savesetting" id="savesetting" value="<?= $t->_("save"); ?>" disabled>
                     </span>
                 </div>
 
@@ -39,7 +39,7 @@ if(! ini_get('date.timezone')){
     </form>
 </div><br>
 <div class="buttons">
-    <a href="#" class="button add" id="addinguser"><?= $t->_("addleavetype"); ?></a>		
+    <a href="#" class="buttonn add" id="addinguser"><?= $t->_("addleavetype"); ?></a>		
 </div>
 <form action="" method="post">
 

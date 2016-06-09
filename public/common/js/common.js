@@ -250,10 +250,31 @@ $(document).ready(function () {
     
         /*for visited link color*/
         var path = window.location.pathname,
-        link = window.location.href;  
+        link = window.location.href;
         $('a[href="'+path+'"], a[href="'+link+'"]').parent('li').addClass('active');
+//        console.log(path);
+//        console.log(link);
+        var onepath = window.location.pathname.split("/");
+        var onelink = window.location.href.split("/");
+        if(onepath[4] === 'showsalarylist' || onepath[4] === 'salarydetail'){
+            path = "/salts/salary/index/monthlysalary";
+            //link = "monthlysalary";
+             $('a[href="'+path+'"], a[href="'+link+'"]').parent('li').addClass('active');
+        }
+        else if(onelink[5] === 'index#Group'){
+            path = "#Group";
+             $('a[href="'+path+'"], a[href="'+link+'"]').parent('li').addClass('active');
+        }
+        else if(onelink[5] === 'index#Page'){
+             path = "#Page";
+             $('a[href="'+path+'"], a[href="'+link+'"]').parent('li').addClass('active');
+        }
+        else if(onelink[5] === 'index#User'){
+             path = "#User";
+             $('a[href="'+path+'"], a[href="'+link+'"]').parent('li').addClass('active');
+        }
         
-
+        
 });
 $(window).load(function () {
     link_height();

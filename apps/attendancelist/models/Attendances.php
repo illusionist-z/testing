@@ -23,7 +23,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function getTodayList($name, $currentPage, $IsPaging) {
+    public function getTodayList($name, $currentPage) {
         $today = date("Y:m:d");
         if (isset($name)) {
             $row = $this->modelsManager->createBuilder()->columns(array('core.*', 'attendances.*'))
@@ -42,11 +42,8 @@ class Attendances extends Model {
                             ->orderBy('attendances.checkin_time DESC')
                             ->getQuery()->execute();
         }
-        if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $currentPage);
-        } else {
-            $page = $row;
-        }
+        $page = $this->base->pagination($row, $currentPage);
+        
         return $page;
     }
 
@@ -66,7 +63,7 @@ class Attendances extends Model {
      * @author Su Zin Kyaw
      * for user
      */
-    public function getAttList($id, $year, $month, $currentPage,$IsPaging) {
+    public function getAttList($id, $year, $month, $currentPage) {
         try {
             $currentmth = date('m');
             $currentYear = date('Y');
@@ -92,11 +89,7 @@ class Attendances extends Model {
                                 ->orderBy('attendances.att_date DESC')
                                 ->getQuery()->execute();
             }
-            if (0 != $IsPaging) {
-                $page = $this->base->pagination($row, $currentPage);
-            } else {
-                $page = $row;
-            }
+         $page = $this->base->pagination($row, $currentPage);         
         } catch (Exception $err) {
             echo $err;
         }
@@ -111,7 +104,7 @@ class Attendances extends Model {
      * @return type
      * @author zinmon
      */
-    public function showAttList($currentPage, $IsPaging) {
+    public function showAttList($currentPage) {
         //search monthly list data     
         $month = date('m');
         $year = date('Y');
@@ -125,12 +118,8 @@ class Attendances extends Model {
                 ->andWhere('attendances.status = 0')
                 ->orderBy('attendances.checkin_time DESC')
                 ->getQuery()
-                ->execute();
-        if (1 == $IsPaging) {
-            $page = $this->base->pagination($row, $currentPage);
-        } else {
-            $page = $row;
-        }
+                ->execute();        
+         $page = $this->base->pagination($row, $currentPage);        
         return $page;
     }
 
@@ -252,7 +241,7 @@ class Attendances extends Model {
      * @vesion query
 
      */
-    public function searchAttList($year, $month, $username, $currentPage, $IsPaging) {
+    public function searchAttList($year, $month, $username, $currentPage) {
 
         try {
             $conditions = $this->setCondition($year, $month, $username);
@@ -265,12 +254,8 @@ class Attendances extends Model {
                                 ->andWhere('attendances.status = 0')
                                 ->orderBy('attendances.checkin_time DESC')
                                 ->getQuery()->execute();
-            }
-            if (1 == $IsPaging) {
-                $page = $this->base->pagination($row, $currentPage);
-            } else {
-                $page = $row;
-            }
+            }            
+         $page = $this->base->pagination($row, $currentPage);            
         } catch (Exception $ex) {
             echo $ex;
         }

@@ -3,19 +3,16 @@
 if(! ini_get('date.timezone')){
     date_default_timezone_set('UTC');    
 }  
-
 use Phalcon\Filter;
 ?>
 
 <a name="Group"> </a>
 <div class="row">
-
-
-    <div class="col-sm-2 link"> 
-        <aside class="sidebar-menu"> 
-            <li style="border-bottom:1px solid #aaa;"><a href="#Group"><?= $t->_("grouprulesetting"); ?> </a></li>    
-            <li style="border-bottom:1px solid #aaa;"><a href="#Page"><?= $t->_("pagerulesetting"); ?></a></li>
-            <li style="border-bottom:1px solid #aaa;"><a href="#User"><?= $t->_("userrulesetting"); ?></a></li>
+    <div class="col-sm-2 link change-bg"> 
+        <aside class="sidebar-menu visited_color"> 
+            <li class=""><a href="#Group" id="group"><?= $t->_("grouprulesetting"); ?> </a></li>    
+            <li class=""><a href="#Page" id="page"><?= $t->_("pagerulesetting"); ?></a></li>
+            <li class=""><a href="#User" id="user"><?= $t->_("userrulesetting"); ?></a></li>
         </aside> 
     </div>
 
@@ -23,8 +20,6 @@ use Phalcon\Filter;
 
     <div class="col-sm-10">
         <div class=col-md-12">
-            <a href="<?php echo $baseUri; ?>setting/user/index"  style="float:right;" id="viewprofile"><?= $t->_("viewprofile"); ?></a>
-
             <h3 link="#Group" ><?= $t->_("grouprulesetting"); ?></h3>
 
             <a href="#" style="float:right;" onclick="addGroup.apply(this);

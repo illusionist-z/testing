@@ -70,7 +70,7 @@ Class Base extends \Phalcon\Mvc\Model {
 
     
     public function onConstruct(){
-        $this->db= $this->getDI()->getShared("db");
+        $this->db= $this->getDI()->getShared("db");        
     }
 
     /**
@@ -212,7 +212,7 @@ Class Base extends \Phalcon\Mvc\Model {
           $paginator = new PaginatorModel(
                     array(
                 "data" => $row,
-                "limit" => 10,
+                "limit" => 40,
                 "page" => $current_page
                     )
             );

@@ -55,7 +55,7 @@ class IndexController extends ControllerBase {
             $curretPage = $this->request->get("page");
             
             if ($this->permission == 1) {               
-                $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage,1);
+                $get_salary_detail = $SalaryDetail->getSalaryDetail($curretPage);
                 $this->view->module_name = $this->router->getModuleName();
                 $this->view->salarydetail = $get_salary_detail;                
             } else {
@@ -132,21 +132,15 @@ class IndexController extends ControllerBase {
     /**
      * show total salary  of each month
      */
-    public function monthlysalaryAction($exportMode = null) {
+    public function monthlysalaryAction() {
          if ($this->permission === 1) {  
         $this->assets->addJs('apps/salary/js/base.js');
         $this->assets->addJs('apps/salary/js/index-addsalary.js');
         $currentPage = $this->request->get("page");
-        $SalaryDetail = new SalaryDetail();
-        if(1 == $exportMode){
-            $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage,0);
-            $SalaryDetail->MonthlyListExport($get_eachmonth_salary);
-        }
-        else{
-        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage,1);
+        $SalaryDetail = new SalaryDetail();       
+        $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
         $this->view->module_name = $this->router->getModuleName();    
-        $this->view->setVar("geteachmonthsalarys", $get_eachmonth_salary);
-        }
+        $this->view->setVar("geteachmonthsalarys", $get_eachmonth_salary);        
         } else {
             
         }
