@@ -61,7 +61,7 @@ class Attendances extends \Library\Core\Models\Base {
                 
                 $date_from = $yr.'-'.$mt.'-'.$SalaryDateToCalculate['salary_date_from'];
                 $date_to = $yr.'-'.$dt[1].'-'.$SalaryDateToCalculate['salary_date_from'];
-                //select * from attendances where (DATE(att_date) between '2016-05-05' AND '2016-06-25')
+                
                 
                 $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
                     . " where (DATE(att_date) between '".$date_from."' AND '".$date_to."') and (status = 0 or status=3) group by core_member.member_id";
