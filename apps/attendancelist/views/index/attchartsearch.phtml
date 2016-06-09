@@ -11,24 +11,21 @@ if (!ini_get('date.timezone')) {
     <br>
     <div> 
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
-              <select  class="buttonn form-control-static col-sm-1 chart-search-input" placeholder="Month" value="Month" name="date-picker-input-month">
+            
+              <select  class="buttonn form-control-static col-sm-2 chart-search-input" placeholder="Month" value="Month" name="date-picker-input-month">
  <?php
          //   foreach ($core_att as $data_att_dept) {
  ?>               
 <!--                <option><?php //= $data_att_dept->member_dept_name ?></option> -->
-                     <option>Month</option>
-                 <option>1</option> 
-                      <option>2</option> 
-                          <option>3</option> 
-                              <option>4</option> 
-                                  <option>5</option> 
-                                      <option>6</option> 
-                                          <option>7</option> 
-                                              <option>8</option> 
-                                                  <option>9</option> 
-                                                      <option>10</option> 
-                                                          <option>11</option> 
-                                                              <option>12</option> 
+                  <option>-Select Month-</option>
+                    <?php
+                    foreach ($Month as $date_count) {
+                        ?>
+                     
+                    <option><?= $date_count ?></option>
+                    <?php
+                         }
+                        ?>
                    
     <?php
         //    }
@@ -52,20 +49,16 @@ if (!ini_get('date.timezone')) {
         ?>
 <!--          </span>-->
         &nbsp;&nbsp;
-           <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
+        
+         <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
  <?php
-         //   foreach ($core_att as $data_att_dept) {
+            foreach ($core_att as $data_att_dept) {
+                
  ?>               
-<!--                <option><?php //= $data_att_dept->member_dept_name ?></option> -->
-                 <option>Select Dept</option> 
-                   <option>Asterrisk</option> 
-                     <option>Andriod</option> 
-                <option>Manage</option> 
-                  <option>PHP</option> 
-                    
-                   
+                <option><?=  $data_att_dept->member_dept_name ?></option> 
+        
     <?php
-        //    }
+            }
      ?>
         </select>
         <input type='submit' id="userlistsearch" value="Search" class="buttonn form-control-static col-sm-1" name="date-picker-btn">
@@ -152,10 +145,10 @@ if (!ini_get('date.timezone')) {
             
         } else {
             ?>
-            <li><a href="attendancechart">First</a></li>
-            <li><a href="attendancechart?page=<?= $data->before; ?>">Previous</a></li>
-            <li><a href="attendancechart?page=<?= $data->next; ?>">Next</a></li>
-            <li><a href="attendancechart?page=<?= $data->last; ?>">Last</a></li>
+            <li><a href="attchartsearch">First</a></li>
+            <li><a href="attchartsearch?page=<?= $data->before; ?>">Previous</a></li>
+            <li><a href="attchartsearch?page=<?= $data->next; ?>">Next</a></li>
+            <li><a href="attchartsearch?page=<?= $data->last; ?>">Last</a></li>
             <li><span class="btn" style="margin-left:20px;"><?php echo "You are in page ", $data->current, " of ", $data->total_pages; ?></span></li>
             <?php
         }
