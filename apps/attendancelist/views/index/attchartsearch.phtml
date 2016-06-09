@@ -13,44 +13,28 @@ if (!ini_get('date.timezone')) {
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
             
               <select  class="buttonn form-control-static col-sm-2 chart-search-input" placeholder="Month" value="Month" name="date-picker-input-month">
- <?php
-         //   foreach ($core_att as $data_att_dept) {
- ?>               
-<!--                <option><?php //= $data_att_dept->member_dept_name ?></option> -->
+ 
                   <option>-Select Month-</option>
                     <?php
                     foreach ($Month as $date_count) {
                         ?>
                      
-                    <option><?= $date_count ?></option>
+                  <option value="<?php echo $date_count['']; ?>"><?= $date_count ?></option>
                     <?php
                          }
                         ?>
-                   
-    <?php
-        //    }
-     ?>
+      
         </select>
           <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year " placeholder="Year" value="Year" name="date-picker-input-year">
 <!--                  &nbsp;&nbsp;<span class="buttonn form-control-static ">-->
               <?php
-        
-//        $search_date_month =  $filter->sanitize($this->request->getPost('date-picker-input-month'),'string');
-//        $search_date_year =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
-//        $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select'),'string');
-//             if(isset($search_date_month) || isset($search_date_year) || isset($search_dept)){
-//          if ( $search_date_year  == 'Year' || $search_dept == 'Select Dept' || $search_date_month == 'Month'){
-//              Echo 'Search By Default Option';
-//          }
-//          if ( $search_date_year  !== 'Year'){
-//             // Echo 'Search Year By '.$search_date_year;
-//          }
-//             }
+         
         ?>
 <!--          </span>-->
         &nbsp;&nbsp;
         
          <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
+                <option>Select-Dept</option> 
  <?php
             foreach ($core_att as $data_att_dept) {
                 
