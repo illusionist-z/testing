@@ -68,7 +68,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
      * show today attendance list
      * 
      */
-    public function todaylistAction($exportMode = null) {
+    public function todaylistAction() {
         $this->initialize();
         if ($this->moduleIdCall == 1) {
 
@@ -82,10 +82,11 @@ class AttendancelistIndexController extends Controllers\IndexController {
             $UserList = new \salts\Core\Models\Db\CoreMember();
             $Username = $UserList->getUserName("Khine Thazin Phyo");
             $AttList = new \salts\Attendancelist\Models\Attendances();
-            $Result_Attlist = $AttList->getTodayList($name, $currentPage,0);
+            $Result_Attlist = $AttList->getTodayList($name, $currentPage);
 
             if ($this->permission == 1) {
                 return true;
+                
             }
         }
     }
