@@ -2,7 +2,7 @@
 
 namespace salts\Attendancelist\Controllers;
 use Phalcon\Filter;
-use salts\Core\Models\CoreMember;
+
 class IndexController extends ControllerBase {
     
     public $config;
