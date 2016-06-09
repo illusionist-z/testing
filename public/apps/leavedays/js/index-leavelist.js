@@ -61,17 +61,7 @@ $(document).ready(function(){
                          },
                           minLength :1
                 });
-    }); 
-    
-    $('.leavelist-export').click(function(e){
-           if($('.pagination li').length == 0){            
-            Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);
-        }
-        else{
-            e.preventDefault();
-            Leave.ExportAll();
-        }
-    });
+    });         
     
 });
 

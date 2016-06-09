@@ -311,8 +311,7 @@ $cache_expire = session_cache_expire();
     public function setLeaveJsAndCss() {
         $this->assets->addCss('common/css/jquery-ui.css');
         $this->assets->addCss('common/css/css/style.css');
-        $this->assets->addJs('common/js/export.js');
-        $this->assets->addJs('apps/leavedays/js/index-leavesetting.js');
+        $this->assets->addJs('common/js/export.js');        
         $this->assets->addJs('apps/leavedays/js/index-leavelist.js');
         $this->assets->addJs('apps/leavedays/js/index-search.js');
         $this->assets->addJs('apps/leavedays/js/index-applyleave.js');

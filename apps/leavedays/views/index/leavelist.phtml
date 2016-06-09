@@ -60,12 +60,12 @@ $length = count($Month);
             <input class="userauto form-control-static" name="namelist" id="namelist" placeholder="<?= $t->_("searchusername"); ?>" autocomplete="off">
 
             <input type="submit" class="buttonn  form-control-static" value="<?= $t->_("search"); ?>" id="search">
-            <a href="#" class="buttonn  form-control-static export leavelist-export" id="exbg" ><img id="exicon"><?= $t->_("export"); ?></a>            
+            <a href="#" class="buttonn  form-control-static export" id="exbg" onclick="Export.Export.apply(this, [$('table.listtbl'), 'Leave_List.csv']);" ><img id="exicon"><?= $t->_("export"); ?></a>            
         </form>
     </div>
 
     <div class="row">
-        <div class="col-md-12"><!--start table content--->
+        <div class="col-md-12"><!--start table content-->
             <table class="listtbl">
                 <thead>
                     <tr>
@@ -132,7 +132,7 @@ $length = count($Month);
                 </tbody>                
             </table> 
 
-        </div><!--end table content--->
+        </div><!--end table content-->
     </div><!-- /.row -->
     <div id="content">
         <ul class="pagination" style="margin-left:15px;">
