@@ -440,7 +440,7 @@ var Salary = {
                         var formatter = new Intl.NumberFormat(); //Create our number formatter.
 
                         var output = "<tr>"
-                                + "<td><input type='checkbox' class='case' name='chk[]' value=" + json_obj[i].member_id + " ></td>"
+                                //+ "<td><input type='checkbox' class='case' name='chk[]' value=" + json_obj[i].member_id + " ></td>"
                                 + "<td>" + json_obj[i].full_name + "</td>"
                                 + "<td>" + json_obj[i].member_dept_name + "</td>"
                                 + "<td>" + json_obj[i].position + "</td>"
@@ -454,7 +454,7 @@ var Salary = {
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].ssc_emp) + "</div></td>"
                                 
                                 + "<td><div class='td-style'>" + formatter.format(json_obj[i].total) + "</div></td>"
-                                + '<td><a href="#" class="btn_detail" title="Detail" id="detail_img" style="margin-top: 13px;"></a></a></td>'
+                                + '<td><a href="#"  onclick="return false;" class="btn_detail detail_img" title="" id='+ json_obj[i].member_id +'>Detail</a></td>'
 
 
                         $("tbody").append(output);
@@ -464,7 +464,7 @@ var Salary = {
 
 
                     var html = '<tr>'
-                            + '<td colspan="12" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
+                            + '<td colspan="11" style="text-align:center;background-color:#3c8dbc; color:#ffffff;"><b>Total salary for all user</b></td>'
                             + '<td style ="background-color:#3c8dbc; color:#ffffff;"><div class="td-style"> ' + formatter.format(totalsal) + '</div></td>'
                             + '<td style ="background-color:#3c8dbc; color:#ffffff;"></td>'
                             + '</tr>'
@@ -475,22 +475,10 @@ var Salary = {
                 $('.btn_detail').click(function () {
                     var month = document.getElementById('month').value;
                     var year = document.getElementById('year').value;
-                    var chkbox = document.getElementsByName('chk[]');
-                    var chk = [];
-                    for (var i = 0, n = chkbox.length; i < n; i++) {
-                        if (chkbox [i].checked)
-                        {
-                            chk.push(chkbox[i].value);
-                        }
-
-                    }
-                    if (chk != "") {
+                    var chk= $(this).attr('id');
+                    
                         window.location.href = baseUri + 'salary/index/salarydetail?chk_val=' + chk + '&month=' + month + '&year=' + year;
-                    }
-                    else {
-                        alert("please check aleast one!");
-                        location.reload();
-                    }
+                    
 
                 });
             },

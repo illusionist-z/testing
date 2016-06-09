@@ -109,20 +109,7 @@ class Permission {
         }
         return $per_result;
     }
-
-    public function pagination($row,$currentPage) {
-        $paginator = new PaginatorModel(
-                array(
-            "data" => $row,
-            "limit" => 10,
-            "page" => $currentPage
-                )
-        );
-
-// Get the paginated results
-        $page = $paginator->getPaginate();
-        return $page;
-    }
+  
     /**
      * @author David JP <david.gnext@gmail.com>
      * change simpler result object to pdo table object

@@ -59,7 +59,7 @@ class IndexController extends ControllerBase {
             $AttList = new \salts\Attendancelist\Models\Attendances();
             
             if ($this->permission == 1) {
-                $Result_Attlist = $AttList->getTodayList($name, $currentPage,1);
+                $Result_Attlist = $AttList->getTodayList($name, $currentPage);
                 $this->view->attlist = $Result_Attlist;
                 $this->view->offset = $offset;                
                 $this->view->modulename = $this->module_name;                
@@ -142,7 +142,7 @@ class IndexController extends ControllerBase {
             $year = $this->request->get('year');
             $page = $this->request->get('page');
             $Attendances = new \salts\Attendancelist\Models\Attendances();
-            $result = $Attendances->searchAttList($year, $month, $username,$page,1);
+            $result = $Attendances->searchAttList($year, $month, $username,$page);
             $this->view->disable();
             echo json_encode($result);
          }

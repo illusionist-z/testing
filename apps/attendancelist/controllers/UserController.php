@@ -52,7 +52,7 @@ class UserController extends ControllerBase {
         $currentPage = $this->request->get('page');
         $id = $this->session->user['member_id'];
         $AttList = new \salts\Attendancelist\Models\Attendances();        
-        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate,$currentPage,1);
+        $Result_Attlist = $AttList->getAttList($id, $startdate, $enddate,$currentPage);
         $this->view->attlist = $Result_Attlist;
         $this->view->offset = $offset;        
     }

@@ -52,7 +52,7 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
 
     public function testTodayExport() {
         $elements = $this->elements($this->using('css selector')->value('a#exbg'));
-        $this->assertEquals(2, count($elements));
+        $this->assertEquals(1, count($elements));
         $link = $this->byLinkText($elements[0]->text());
         sleep(3);
         $link->click();
@@ -91,8 +91,8 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('attendancelist/index/monthlylist');
         $elements = $this->elements($this->using('css selector')->value('img#exicon'));
-        $this->assertEquals(2, count($elements));
-        $link = $this->byLinkText($elements[1]->text());
+        $this->assertEquals(1, count($elements));
+        $link = $this->byLinkText($elements[0]->text());
         $link->click();
         $this->url('attendancelist/index/monthlylist');
     }

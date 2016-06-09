@@ -226,9 +226,9 @@ class DashboardTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals("Letter Head help center", $this->byId('searchhelpcenter')->text());
         $this->byLinkText('Document')->click();
         $this->waitUntil(function () {
-            return $this->byLinkText('SSB & Tax Document')->displayed();
+            return $this->byLinkText('SSB')->displayed();
         }, 2000);
-        $this->byLinkText('SSB & Tax Document')->click();
+        $this->byLinkText('SSB')->click();
         $this->assertEquals("SSB & Tax Document help center", $this->byId('searchhelpcenter')->text());
     }
 
