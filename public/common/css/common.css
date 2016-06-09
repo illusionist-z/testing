@@ -231,6 +231,7 @@ a.exbg{
     border-spacing: 0;
     border: 1px solid #428bca;
     width: 100%;
+    background: #ECF0F5;
 }
 
 .listtbl thead tr:first-child {
@@ -1144,7 +1145,8 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
     line-height: 20px;
 /*    border-radius: 4px;*/
     border : 1px solid #ccc;
-    vertical-align: middle;        
+    vertical-align: middle;   
+    color:black;
 }
 /* navbar-nav margin */
 @media (min-width: 768px){
