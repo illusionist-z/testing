@@ -350,7 +350,7 @@ var Salary = {
         onClose: function(dateText, inst) {
             var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
             var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-            $(this).val($.datepicker.formatDate('MM yy', new Date(year, month, 1)));
+            $(this).val($.datepicker.formatDate('yy-mm', new Date(year, month, 1)));
         }
     });
 
