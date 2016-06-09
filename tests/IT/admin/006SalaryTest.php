@@ -168,7 +168,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         sleep(3);
         $element = $this->byCssSelector('h1');
         $this->assertEquals('Monthly Salary List', $element->text());
-        $this->byCssSelector('h4.add-big')->click();
+        $this->byCssSelector('h3.add-big')->click();
         $this->waitUntil(function () {
             return $this->byId("salary_start")->displayed();
         }, 5000);
@@ -182,7 +182,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
     public function testMonthlySalaryCalculateCancel() {
         $this->url('salary/index/monthlysalary');
         sleep(4);
-        $this->byCssSelector('h4.add-big')->click();
+        $this->byCssSelector('h3.add-big')->click();
         $this->waitUntil(function () {
             return $this->byId("cancel_deduct")->displayed();
         }, 5000);
@@ -201,7 +201,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
 
         $this->url('salary/index/monthlysalary');
         $elements = $this->elements($this->using('css selector')->value('img#exicon'));
-        $this->assertEquals(3, count($elements));
+        $this->assertEquals(2, count($elements));
         $link = $this->byLinkText($elements[1]->text());
         $link->click();
         $this->url('salary/index/monthlysalary');
@@ -312,7 +312,7 @@ class SalaryTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->waitUntil(function () {
             return $this->byId('Add_new_deduct')->displayed();
         }, 2000);
-        $this->byCssSelector('input')->value('test');
+        $this->byName('deduce_name')->value('test');
         $this->byName('amount')->value('400');
         $this->byId("Add_deduct")->click();
         $this->url('salary/index/salarysetting');
