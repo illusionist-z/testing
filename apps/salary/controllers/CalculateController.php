@@ -22,8 +22,11 @@ class CalculateController extends ControllerBase {
         $SalaryDetail = new SalaryDetail();
         $Salarymaster = new SalaryMaster();
         $Attendance = new Attendances();
-        $countattday = $Attendance->getCountattday($salary_start_date);
-
+        $SalaryDateSetting = new \salts\Salary\Models\SalaryDateSetting();
+        $SalaryDateToCalculate = $SalaryDateSetting->getdata();
+        
+        $countattday = $Attendance->getCountattday($salary_start_date,$SalaryDateToCalculate);
+        
         $getbasic_salary = $Salarymaster->getBasicsalary($countattday);
        
         //calculate overtime by attendances and salary master
