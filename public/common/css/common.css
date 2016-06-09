@@ -231,6 +231,7 @@ a.exbg{
     border-spacing: 0;
     border: 1px solid #428bca;
     width: 100%;
+    background: #ECF0F5;
 }
 
 .listtbl thead tr:first-child {

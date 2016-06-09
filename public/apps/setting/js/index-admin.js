@@ -196,6 +196,16 @@ $(document).ready(function () {
             minLength: 1
         });
     });
+    
+    $('#group').on('click', function () {         
+                 location.reload();   
+        });
+        $('#page').on('click', function () {
+               location.reload();
+        });
+        $('#user').on('click', function () {
+               location.reload();
+        });
 });
 
  
