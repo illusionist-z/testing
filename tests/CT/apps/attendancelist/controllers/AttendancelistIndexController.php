@@ -140,7 +140,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
         }
     }
 
-    public function attsearchAction($exportMode = null) {
+    public function attsearchAction() {
         $this->initialize();
         if ($this->moduleIdCall == 1) {
              $currentPage = "monthlylist";
@@ -148,7 +148,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
             $username = $this->request->get('username', "string");
             $year = $this->request->get('year');
             $Attendances = new AttendancesTest();
-            $result = $Attendances->searchAttList($year, $month, $username, $currentPage, 1);
+            $result = $Attendances->searchAttList($year, $month, $username, $currentPage);
             echo json_encode($result);
         }
     }
