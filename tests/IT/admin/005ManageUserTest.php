@@ -111,33 +111,7 @@ class ManageUserTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('manageuser/index/index');
     }
 
-    public function testFirst() {
-
-        $this->url('manageuser/index/index');
-
-
-        $this->byLinkText('First')->click();
-        $this->url('manageuser/index/index');
-    }
-
-    public function testNext() {
-
-        $this->url('manageuser/index/index');
-
-
-        $this->byLinkText('Next')->click();
-        $this->url('manageuser/index/index');
-    }
-
-    public function testLast() {
-
-        $this->url('manageuser/index/index');
-
-
-        $this->byLinkText('Last')->click();
-        $this->url('manageuser/index/index');
-    }
-
+    
     public function testEdit() {
         $this->url('manageuser/index/index');
         $this->byCssSelector('a.inedit')->click();

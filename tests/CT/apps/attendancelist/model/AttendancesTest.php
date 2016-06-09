@@ -12,8 +12,7 @@ class AttendancesTest extends Models\Attendances {
         $this->base = new\Library\Core\Models\Base();
     }
 
- 
-    public function getTodayList($name, $currentPage, $IsPaging) {
+    public function getTodayList($name, $currentPage) {
         $today = date("Y:m:d");
         if (isset($name)) {
             $row = $this->modelsManager->createBuilder()->columns(array('core.*', 'attendances.*'))
@@ -21,14 +20,14 @@ class AttendancesTest extends Models\Attendances {
                             ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                             ->where('core.member_login_name = :name:', array('name' => $name))
                             ->andWhere('attendances.att_date = :today:', array('today' => $today))->andWhere('core.deleted_flag = 0')
-                            ->andWhere('attendances.status = 0 OR attendances.status = 3')
+                            ->andWhere('attendances.status = 0 OR attendances.status = 3 OR attendances.status = 4')
                             ->getQuery()->execute();
         } else {
             $row = $this->modelsManager->createBuilder()->columns(array('core.*', 'attendances.*'))
                             ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                             ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                             ->where('attendances.att_date = :today:', array('today' => $today))->andWhere('core.deleted_flag = 0')
-                            ->andWhere('attendances.status = 0 OR attendances.status = 3')
+                            ->andWhere('attendances.status = 0 OR attendances.status = 3  OR attendances.status = 4')
                             ->orderBy('attendances.checkin_time DESC')
                             ->getQuery()->execute();
         }
@@ -36,18 +35,17 @@ class AttendancesTest extends Models\Attendances {
         return $page;
     }
 
-
     public function getUsername() {
         $user_name = $this->db->query("SELECT * FROM core_member");
         $getname = $user_name->fetchall();
         return $getname;
     }
 
-
-    public function getAttList($id, $year, $month, $currentPage,$IsPaging) {
+    public function getAttList($id, $year, $month, $currentPage) {
         try {
-              $this->base = new\Library\Core\Models\Base();
+            $this->base = new\Library\Core\Models\Base();
             $currentmth = date('m');
+            $currentYear = date('Y');
             if (isset($year) || isset($month)) {
                 $start = date("Y-m-d", strtotime($year));
                 $end = date("Y-m-d", strtotime($month));
@@ -56,7 +54,7 @@ class AttendancesTest extends Models\Attendances {
                                 ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                                 ->where('attendances.att_date >= :start:', array('start' => $start))
                                 ->andWhere('attendances.att_date <= :end:', array('end' => $end))
-                                ->andWhere('attendances.member_id = :id:', array('id' => $id))->andWhere('core.deleted_flag = 0')
+                                ->andWhere('attendances.member_id = :id:', array('id' => $id))->andWhere('core.deleted_flag = 0 and (attendances.status = 0 OR attendances.status = 3)')
                                 ->orderBy('attendances.att_date DESC')
                                 ->getQuery()->execute();
             } else {
@@ -64,6 +62,7 @@ class AttendancesTest extends Models\Attendances {
                                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                                 ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                                 ->where('MONTH(attendances.att_date) = :currentmth:', array('currentmth' => $currentmth))
+                                ->andWhere('YEAR(attendances.att_date) = :currentYr:', array('currentYr' => $currentYear))
                                 ->andWhere('attendances.member_id = :id:', array('id' => $id))
                                 ->andWhere('core.deleted_flag = 0 and (attendances.status = 0 OR attendances.status = 3)')
                                 ->orderBy('attendances.att_date DESC')
@@ -77,17 +76,17 @@ class AttendancesTest extends Models\Attendances {
         return $page;
     }
 
-    
-    public function showAttList($currentPage, $IsPaging) {
+    public function showAttList($currentPage) {
         //search monthly list data     
         $this->base = new\Library\Core\Models\Base();
         $month = date('m');
-
+        $year = date('Y');
         $row = $this->modelsManager->createBuilder()
                 ->columns(array('core.*', 'attendances.*'))
                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
                 ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
                 ->where('MONTH(attendances.att_date) = :month: ', array('month' => $month))
+                ->andWhere('YEAR(attendances.att_date) = :year: ', array('year' => $year))
                 ->andWhere('core.deleted_flag = 0')
                 ->andWhere('attendances.status = 0')
                 ->orderBy('attendances.checkin_time DESC')
@@ -97,14 +96,12 @@ class AttendancesTest extends Models\Attendances {
         return $page;
     }
 
-   
     public function checkAttendance($id) {
         $current = date("Y-m-d");
         $hasId = Attendances::find("member_id ='" . $id . "' and att_date ='" . $current . "'");
         return count($hasId);
     }
 
-   
     public function absent($id) {
         //get today absent list
         $sql = "Select member_id from core_member where member_id NOT IN (select member_id from "
@@ -123,7 +120,7 @@ class AttendancesTest extends Models\Attendances {
                     . "CURRENT_DATE in (start_date,end_date)";
             $checkleave = $this->db->query($checkleavequery);
             $checkresult = $checkleave->fetchall();
-            $this->InsertAbsentStatus($checkresult,$finalresult['member_id'],$id);
+            $this->InsertAbsentStatus($checkresult, $finalresult['member_id'], $id);
             $message = "Adding is successfully";
         } else {
             $message = "Already Exist";
@@ -131,7 +128,7 @@ class AttendancesTest extends Models\Attendances {
         return $message;
     }
 
-    public function InsertAbsentStatus($checkresult,$finalresult,$id) {
+    public function InsertAbsentStatus($checkresult, $finalresult, $id) {
         $insert = "Insert into attendances (member_id,att_date,status) VALUES ";
         //insert absent with apply leave
         if (count($checkresult) > 0) {
@@ -187,7 +184,6 @@ class AttendancesTest extends Models\Attendances {
         return $result;
     }
 
-  
     public function editAtt($data, $id, $offset) {
 
         $utctime = \salts\Core\Models\Db\Attendances::getInstance()->LocalToUTC($data, $offset);
@@ -200,19 +196,21 @@ class AttendancesTest extends Models\Attendances {
         $row->update();
     }
 
-    public function searchAttList($year, $month, $username, $currentPage, $IsPaging) {
+    public function searchAttList($year, $month, $username, $currentPage) {
 
         try {
-            $select = "SELECT c.member_login_name,att.* FROM salts\Core\Models\Db\CoreMember as c JOIN salts\Attendancelist\Models\Attendances as att"
-                    . " ON c.member_id = att.member_id ";
-            $conditions = $this->setCondition($year, $month, $username);
-            $sql = $select;
+             $conditions = $this->setCondition($year, $month, $username);
             if (count($conditions) > 0) {
-                $sql .= " WHERE " . implode(' AND ', $conditions) . " AND c.deleted_flag = 0 and "
-                        . "att.status=0 ORDER BY att.checkin_time DESC";
-            }
-            $row = $this->modelsManager->executeQuery($sql);
-            $page = $this->base->pagination($row, $currentPage);
+                $row = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
+                                ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
+                                ->join('salts\Attendancelist\Models\Attendances', 'core.member_id = attendances.member_id', 'attendances')
+                                ->where(implode(' AND ', $conditions))
+                                ->andWhere('core.deleted_flag = 0')
+                                ->andWhere('attendances.status = 0')
+                                ->orderBy('attendances.checkin_time DESC')
+                                ->getQuery()->execute();
+            }            
+         $page = $this->base->pagination($row, $currentPage);   
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -241,7 +239,6 @@ class AttendancesTest extends Models\Attendances {
         return $page;
     }
 
-    
     public function setCondition($year, $month, $username) {
         $conditions = array();
 
@@ -259,16 +256,14 @@ class AttendancesTest extends Models\Attendances {
         return $conditions;
     }
 
-    
     public function getCountattday($salary_start_date) {
         try {
             $this->db = $this->getDI()->getShared("db");
-            $dt = explode('-', $salary_start_date);           
+            $dt = explode('-', $salary_start_date);
             $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
                     . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' and (status = 0 or status=3) group by core_member.member_id";
             $data = $this->db->query($query);
             $result = $data->fetchall();
-            
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }

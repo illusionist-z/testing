@@ -342,7 +342,7 @@ var Salary = {
 //            }).focus();
 //        });
  $(".monthPicker").datepicker({
-        dateFormat: 'MM yy',
+        dateFormat: 'yy mm',
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,

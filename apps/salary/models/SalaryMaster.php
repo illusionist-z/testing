@@ -201,7 +201,7 @@ class SalaryMaster extends Model {
      * calculate basic salary for the whole year
      * @param type $param
      */
-    public function calculateTaxSalary($param, $salary_start_date, $creator_id) {
+    public function calculateTaxSalary($param, $salary_start_date, $creator_id,$salarydateto) {
         try {
             $deduce_amount = array();
             $now = new \DateTime('now');
@@ -331,7 +331,8 @@ class SalaryMaster extends Model {
                         'allowance_amount' => $Allowanceresult['allowance'],
                         'absent_dedution' => round($absent_dedution),
                         'creator_id' => $creator_id,
-                        'pay_date' => $salary_start_date);
+                        'pay_date' => $salary_start_date.'-'.$salarydateto);
+                    
                     if ('03' == $working_start_date[1] || '03' == $salary_starting_month) {
                    
                     $latestDate = $this->getLatestDate($value[0]['member_id']);
@@ -633,18 +634,18 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                 $new_allowance = $allowance_master * $date_diff;
                 
                 $total_allowance = $new_allowance + $old_allowance;
-                echo "NEW all  " . $new_allowance;
+                
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
-                echo 'Basic salary annual with allowance ' . $basic_salary_annual;
+                
                 
             } else {
                 
                 $allowance_master = 0;
                 $new_allowance = $all_amount * $date_diff;
                 $total_allowance = $new_allowance + $old_allowance;
-                echo "ALLOWANCE AMOUNT adadfadf".$old_allowance;
+                
                 $basic_salary_annual = $basic_salary_annual + $total_allowance;
-                echo 'Basic salary annual with allowance two ' . $basic_salary_annual . 'Old ' . $old_allowance * $count_pay;
+                
             }
             $data['basic_salary_annual'] = $basic_salary_annual;
             $data['allowance'] = $allowance_master;
@@ -661,7 +662,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $sql = "select *,SUM(basic_salary) as total_basic_salary,SUM((case when (allowance_amount) then allowance_amount else 0 end)) as total_all_amount"
                     . ", SUM((case when (overtime) then overtime else 0 end)) as total_overtime, COUNT(pay_date) as count_pay from " . $tbl . " where (DATE(pay_date) BETWEEN '" . $budget_startyear . "' AND '" . $budget_endyear . "') and member_id='" . $member_id .
                     "' order by created_dt desc limit 1";
-            echo $sql;
+            
             $result = $this->db->query($sql);
             $row = $result->fetcharray();
         } catch (Exception $e) {
@@ -883,13 +884,14 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $overtimerate
      * @param type $member_id
      */
-    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month) {
+    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month,$updater_id) {
         try {
             $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate .
-                    "',updated_dt=NOW() Where member_id='" . $member_id . "'";
+                    "',updated_dt=NOW(),updater_id='".$updater_id."' Where member_id='" . $member_id . "'";
             $this->db->query($sql);
             $sqlupdate = "Update salary_detail SET overtime_hr ='" . $overtime_hr . "' Where member_id='"
                     . $member_id . "'  and YEAR(pay_date)='".$year."' and MONTH(pay_date)='".$month."'";
+            
             $this->db->query($sqlupdate);
         } catch (Exception $ex) {
             echo $ex;

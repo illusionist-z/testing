@@ -62,7 +62,7 @@ class AdminLoginTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->assertEquals(2, count($elements));
         $this->assertEquals('company id or user name or password wrong', $elements[1]->text());
         $this->byCssSelector('a')->click();
-        $element = $this->byCssSelector('#forgottext');
+        $element = $this->byCssSelector('p#forgottext');
         $this->assertEquals('FORGOT YOUR PASSWORD?', $element->text());
     }
 

@@ -2,7 +2,7 @@
 
 namespace salts\Attendancelist\Controllers;
 use Phalcon\Filter;
-use salts\Core\Models\CoreMember;
+
 class IndexController extends ControllerBase {
     
     public $config;
@@ -12,7 +12,7 @@ class IndexController extends ControllerBase {
          
         $this->setCommonJsAndCss();
         $this->setAttJsAndCss();
-        $this->config = \Library\Core\Models\Config::getModuleConfig('leavedays');
+        $this->config = \Library\Core\Models\Config::getModuleConfig('attendancelist');
         $CoreMember = new \salts\Core\Models\Db\CoreMember();
         $id = $this->session->user['member_id'];
 

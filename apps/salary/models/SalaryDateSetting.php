@@ -3,7 +3,6 @@
 namespace salts\Salary\Models;
 
 use Phalcon\Mvc\Model;
-use Phalcon\Filter;
 
 class SalaryDateSetting extends Model {
 

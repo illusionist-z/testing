@@ -23,8 +23,9 @@ class SalaryDetailTest extends Models\SalaryDetail {
      * @return type
      * @author zinmon
      */
-    public function getEachmonthsalary($currentPage, $IsPaging) {
+    public function getEachmonthsalary($currentPage) {
         try {
+            $this->base = new \Library\Core\Models\Base();
             $query = "SELECT  MONTH(pay_date) AS Mt,YEAR(pay_date) As Yr, (SUM(basic_salary)+SUM(travel_fee)+SUM(allowance_amount)+SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Total,"
                     . "SUM(basic_salary) AS salary_total,(SUM(income_tax)+SUM(ssc_comp)+SUM(ssc_emp)) AS Tax_total,"
                     . "SUM(ssc_emp) as ssc_emp_amount,SUM(ssc_comp) as ssc_comp_amount,"
@@ -34,16 +35,7 @@ class SalaryDetailTest extends Models\SalaryDetail {
                     . " group by YEAR(pay_date),MONTH(pay_date)"
                     . " order by pay_date desc";
             $row = $this->modelsManager->executeQuery($query);
-            $paginator = new PaginatorModel(
-                    array(
-                "data" => $row,
-                "limit" => 10,
-                "page" => $currentPage
-                    )
-            );
-
-// Get the paginated results
-            $page = $paginator->getPaginate();
+            $page = $this->base->pagination($row, $currentPage);
         } catch (Phalcon\Exception $e) {
             $di->getShared('logger')->error($e->getMessage());
         }
@@ -220,7 +212,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     /**
      * Get salary detail for each month
      */
-    public function getSalaryDetail($currentPage, $IsPaging) {
+    public function getSalaryDetail($currentPage) {
         try {
 
             $row = $this->modelsManager->createBuilder()
@@ -232,16 +224,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
                     ->orderby('salarymas.created_dt desc')
                     ->getQuery()
                     ->execute();
-            $paginator = new PaginatorModel(
-                    array(
-                "data" => $row,
-                "limit" => 10,
-                "page" => $currentPage
-                    )
-            );
-
-// Get the paginated results
-            $page = $paginator->getPaginate();
+            $page = $this->base->pagination($row, $currentPage);
         } catch (Exception $e) {
             echo $e;
         }
