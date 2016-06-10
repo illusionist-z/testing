@@ -2,12 +2,17 @@
 
 use salts\Attendancelist\Models;
 use Phalcon\Mvc\Model;
+use Phalcon\Filter;
 
 class AttendancesTest extends Models\Attendances {
 
     public $base;
+    public $filter;
+    public $member_id;
+    public $att_date;
 
     public function initialize() {
+        $this->filter = new Filter();
         $this->db = $this->getDI()->getShared("db");
         $this->base = new\Library\Core\Models\Base();
     }
@@ -199,7 +204,7 @@ class AttendancesTest extends Models\Attendances {
     public function searchAttList($year, $month, $username, $currentPage) {
 
         try {
-             $conditions = $this->setCondition($year, $month, $username);
+            $conditions = $this->setCondition($year, $month, $username);
             if (count($conditions) > 0) {
                 $row = $this->modelsManager->createBuilder()->columns(array("core.*,attendances.*"))
                                 ->from(array('core' => 'salts\Core\Models\Db\CoreMember'))
@@ -209,8 +214,8 @@ class AttendancesTest extends Models\Attendances {
                                 ->andWhere('attendances.status = 0')
                                 ->orderBy('attendances.checkin_time DESC')
                                 ->getQuery()->execute();
-            }            
-         $page = $this->base->pagination($row, $currentPage);   
+            }
+            $page = $this->base->pagination($row, $currentPage);
         } catch (Exception $ex) {
             echo $ex;
         }
@@ -258,10 +263,13 @@ class AttendancesTest extends Models\Attendances {
 
     public function getCountattday($salary_start_date) {
         try {
-            $this->db = $this->getDI()->getShared("db");
-            $dt = explode('-', $salary_start_date);
-            $query = "select *,count(att_date) as attdate from attendances join core_member on attendances.member_id=core_member.member_id"
-                    . " where YEAR(att_date)='" . $dt[0] . "' and MONTH(att_date)='" . $dt[1] . "' and (status = 0 or status=3) group by core_member.member_id";
+             $this->filter = new Filter();
+              $this->db = $this->getDI()->getShared("db");
+            $start_date = $this->filter->sanitize($salary_start_date, "string");
+            $dt = explode('-', $start_date);
+            $query = "select *,count(att_date) as attdate from attendances join core_member on "
+                    . "attendances.member_id=core_member.member_id where YEAR(att_date)='" . $dt[0] . "' and "
+                    . "MONTH(att_date)='" . $dt[1] . "' group by core_member.member_id";
             $data = $this->db->query($query);
             $result = $data->fetchall();
         } catch (Exception $exc) {

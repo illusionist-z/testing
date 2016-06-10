@@ -46,17 +46,19 @@ class SalaryCalculateController extends Controllers\CalculateController {
         $Salarymaster = new Master();
                 
         $Attendance = new AttendancesTest();
-        $countattday = $Attendance->getCountattday($salary_start_date);
-            
+       $SalaryDateSetting = new Models\SalaryDateSetting();
+        $SalaryDateToCalculate = $SalaryDateSetting->getdata();
+      
+        $countattday = $Attendance->getCountattday($salary_start_date,$SalaryDateToCalculate);       
         $getbasic_salary = $Salarymaster->getBasicsalary($countattday);
-       
+        
         //calculate overtime by attendances and salary master
         // $getcomp_startdate=$SalaryDetail->getCompStartdate();
         $creator_id = $this->session->user['member_id'];
-
+       
         //calculate the basic salary
-        $tax = $Salarymaster->calculateTaxSalary($getbasic_salary, $salary_start_date, $creator_id);
-      
+        $tax = $Salarymaster->calculateTaxSalary($getbasic_salary, $salary_start_date, $creator_id,$SalaryDateToCalculate['salary_date_to']);
+        
         //insert taxs of all staff to salary detail
         $SalaryDetail->insertTaxs($tax);
 

@@ -103,7 +103,9 @@ spl_autoload_register(function () {
     include_once 'apps/salary/models/SalaryTaxs.php';
     include_once 'apps/salary/models/SalaryTaxsDeduction.php';
     include_once 'apps/salary/models/SalaryDetail.php';
-    include_once 'apps/salary/models/SalaryMaster.php';
+    include_once 'apps/salary/models/SalaryMaster.php';    
+    include_once 'apps/salary/models/SalaryDateSetting.php';
+ 
 //    document
     include_once 'apps/document/controllers/IndexController.php';
     include_once 'apps/document/controllers/ControllerBase.php';
@@ -136,6 +138,7 @@ spl_autoload_register(function () {
     include_once 'tests/CT/apps/salary/controllers/MasterController.php';
     include_once 'tests/CT/apps/salary/models/TaxDeduce.php';
     include_once 'tests/CT/apps/salary/models/TaxsTest.php';
+     include_once 'tests/CT/apps/salary/models/DateSetting.php';
     //tests controller
    
 });

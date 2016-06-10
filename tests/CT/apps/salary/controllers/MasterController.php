@@ -76,12 +76,13 @@ class MasterController extends Controllers\SalaryMasterController {
             $year = $this->editsalary['year'];
             $month = $this->editsalary['month'];
             $absent = $this->editsalary['absent'];
+            $updater_id = $this->session->user['member_id']; 
             $SalaryMaster = new Master();
 
-            $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month);
+            $SalaryMaster->updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month,$updater_id);
             $Salarydetail = new SalaryDetailTest();
             $resultsalary = $Salarydetail->updateSalarydetail($bsalary, $allowance, $member_id, $year, 
-                $month, $absent, $overtime_hr, $overtimerate,$workingstartdt);
+                $month, $absent, $overtime_hr, $overtimerate,$workingstartdt,$updater_id);
             //$this->view->disable();
 //            echo json_encode($resultsalary);
             return true;

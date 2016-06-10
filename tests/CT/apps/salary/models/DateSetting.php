@@ -3,8 +3,8 @@
 namespace salts\Salary\Models;
 
 use Phalcon\Mvc\Model;
-
-class SalaryDateSetting extends Model {
+use salts\Salary\Models;
+class DateSetting extends Models\SalaryDateSetting {
 
 
     public function initialize() {
@@ -13,7 +13,7 @@ class SalaryDateSetting extends Model {
 
    public function getdata(){
            try {
-              
+               $this->db = $this->getDI()->getShared("db");
             $sql = "select * from salary_date_setting";
             $result = $this->db->query($sql);
             $row = $result->fetchArray();
