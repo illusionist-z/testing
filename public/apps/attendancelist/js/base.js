@@ -334,10 +334,10 @@ $(function() {
 
 $(function() {
     $('.date-picker-year').datepicker( {
-        changeMonth: false,
+        changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
-        dateFormat: 'yy',
+        dateFormat: 'm,yy',
         onClose: function(dateText, inst) { 
             $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
         }
