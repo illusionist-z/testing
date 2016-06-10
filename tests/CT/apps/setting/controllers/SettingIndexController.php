@@ -61,7 +61,7 @@ class SettingIndexController extends Controllers\IndexController {
             $core_groupid = $coreid::find();
             $coremember = $corememberid::find();
             $core_groupuser22 = $coreuser2::find();
-            $core_groupuser2 = $permission->pagination($core_groupuser22, $currentPage);
+            $core_groupuser2 = \Library\Core\Models\Base::pagination($core_groupuser22,$currentPage);
             $core_groupuser = $coreuser->getGroupId($currentPage1);
             //for paging without reload
             $type = $this->type;
