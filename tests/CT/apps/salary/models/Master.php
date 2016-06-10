@@ -177,13 +177,12 @@ class Master extends Models\SalaryMaster {
             foreach ($countattday as $countattdays) {
                 $countatt = $countattdays['attdate'];
                 $m_id = $countattdays['member_id'];
-               
-
-                $sql = "select *,(case when (travel_fee_perday) then travel_fee_perday*$countatt else travel_fee_permonth end) as travel_fee,salary_start_date as comp_start_date "
-                        . "from salary_master where deleted_flag=0 and member_id='" . $m_id . "'";
-
+                $sql = "select *,(case when (travel_fee_perday) then travel_fee_perday*$countatt else travel_fee_permonth end) as travel_fee,"
+                        . "salary_start_date as comp_start_date,leaveday_carry "
+                        . "from salary_master join core_member on salary_master.member_id=core_member.member_id "
+                        . "where salary_master.deleted_flag=0 and salary_master.member_id='" . $m_id . "'";
                 $result = $this->db->query($sql);
-                $row = $result->fetchall();
+                $row = $result->fetchall();               
                 array_push($final, $row);
             }
         } catch (Exception $exc) {

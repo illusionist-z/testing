@@ -474,10 +474,12 @@ class SalaryIndexController extends Controllers\IndexController {
     public function checkmonthyearAction() {
         $this->initialize();
         $this->assets->addJs('apps/salary/js/base.js');
-        $monthyear = $this->monthyear;
+        $month = $this->monthyear;
+        $year =  $this->year;
+                
 
         $SalaryDetail = new SalaryDetailTest();
-        $result = $SalaryDetail->findMonthyear($monthyear);
+        $result = $SalaryDetail->findMonthyear($month,$year);
         if ($result) {
             $msg = "found";
             return $msg;

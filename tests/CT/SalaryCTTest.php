@@ -171,9 +171,11 @@ class SalaryCTTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testcheckmonthyearAction() {
-        $monthyear = '2016-02-29';
+        $year = '2016';
+        $month = '02';                
         $salary = new SalaryIndexController();
-        $salary->setmonthyear($monthyear);
+        $salary->setmonthyear($month);
+        $salary->setyear($year);
         $this->assertEquals("found", $salary->checkmonthyearAction());
     }
 
