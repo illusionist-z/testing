@@ -604,18 +604,17 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      /**
      * Saw Zin Min Tun     
      */
-    public function findMonthyear($monthyear) {       
-  
+    public function findMonthyear($month,$year) {
         // Check if the user exist
-        $monthyear = $monthyear;
-       // print_r($monthyear);exit;
+        //$checkmonthyear = $monthyear;
+       // print_r($monthyear);
         $this->db = $this->getDI()->getShared("db");
-        $query = "SELECT * FROM salary_detail where month(pay_date) =month(' ".$monthyear ." ')  and year(pay_date) =year(' ".$monthyear ." ')  and deleted_flag=0";
-       // print_r($query);exit;
+        $query = "SELECT * FROM salary_detail where month(pay_date) ='".$month ."' and year(pay_date) ='".$year ."'  and deleted_flag=0";
+        //var_dump($query);exit;
         $user = $this->db->query($query);
-        $user = $user->fetchAll(); 
+        $users = $user->fetchAll(); 
       
-        return $user;
+        return $users;
 
     }
     

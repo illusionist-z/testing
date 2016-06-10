@@ -373,6 +373,7 @@ $cache_expire = session_cache_expire();
         $this->assets->addCss('apps/salary/css/base.css');
         $this->assets->addJs('common/js/paging.js');
         $this->assets->addJs('common/js/export.js');
+        $this->assets->addJs('common/js/common.js');
     }
 
     /**
