@@ -42,7 +42,7 @@ class SalarySearchController extends Controllers\SearchController {
         $cond = $this->request->get('cond', array());
         $search_result = $SalaryDetail->searchSalary($cond);
         $this->view->disable();
-        echo json_encode($search_result);
+//        echo json_encode($search_result);
         return true;
     }
 

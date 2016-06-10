@@ -149,7 +149,7 @@ class AttendancelistIndexController extends Controllers\IndexController {
             $year = $this->request->get('year');
             $Attendances = new AttendancesTest();
             $result = $Attendances->searchAttList($year, $month, $username, $currentPage);
-            echo json_encode($result);
+//            echo json_encode($result);
         }
     }
 

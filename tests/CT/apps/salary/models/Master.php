@@ -463,9 +463,8 @@ class Master extends Models\SalaryMaster {
                     . "and att_date>='" . $budget_startyear . "' and att_date<='" . $workingnextyr . "' and deleted_flag=0 and (status = 3)";
             $result2 = $this->db->query($sql2);
             $row2 = $result2->fetcharray();
-            $row['countAbsent']+=(($row2['countAbsent']) / 2);
-            echo "absentArray";
-            print_r($row['countAbsent']);
+            $row['countAbsent']+=(($row2['countAbsent']) / 2);          
+           
         } catch (Exception $ex) {
             echo $ex;
         }

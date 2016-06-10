@@ -38,7 +38,7 @@ class AttAbsentController extends Controllers\AbsentController {
             $Attendance = new Attendance();
             $id = $this->request->get('id');
             $message = $Attendance->absent($id);
-            echo json_encode($message);
+//            echo json_encode($message);
         }
     }
 
