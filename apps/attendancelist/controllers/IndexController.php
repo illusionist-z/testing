@@ -167,6 +167,7 @@ class IndexController extends ControllerBase {
         $currentPage = $this->request->get("page");
         $data = $Attendances->currentAttList($currentPage);
         $this->view->data = $data;
+        
          }
          else {
              echo 'Page Not Found';
@@ -184,16 +185,23 @@ class IndexController extends ControllerBase {
           $filter = new Filter();
         if ($this->request->isPost('date-picker-btn')){
        //  if ($this->moduleIdCall == 1) {
-        $Attsearch = new \salts\Attendancelist\Models\Attendances();
-        $search_date_month =  $filter->sanitize($this->request->getPost('date-picker-input-month'),'string');
-        $search_date_year =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
+        $Attsearch = new \salts\Attendancelist\Models\Attendances(); 
+        
+                  
+        $search_date_year_post =  $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
+                  $day_count = explode(",", $search_date_year_post);
+                  $search_date_month =  $day_count[0];
+                  $search_date_year =  $day_count[1];
+                  
+                    
         $search_dept =  $filter->sanitize($this->request->getPost('date-picker-select'),'string');
        
         $currentPage = $this->request->get("page");
-      
+       
         $result = $Attsearch->searchByTwoOption($search_date_month,$search_date_year, $search_dept,$currentPage);
         $this->view->data = $result;
        
+        
            }
            else { 
               echo 'Error';

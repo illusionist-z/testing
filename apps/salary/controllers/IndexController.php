@@ -739,9 +739,10 @@ class IndexController extends ControllerBase {
     //for show calculate salary
     public function checkmonthyearAction() {
         $this->assets->addJs('apps/salary/js/base.js');
-        $monthyear = $this->request->get('monthyear');
+        $year = $this->request->get('year');
+         $month = $this->request->get('month');
         $SalaryDetail = new SalaryDetail();
-        $result = $SalaryDetail->findMonthyear($monthyear);
+        $result = $SalaryDetail->findMonthyear($month,$year);
         if ($result) {
             $msg = "found";
         } else {

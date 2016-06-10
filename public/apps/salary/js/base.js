@@ -324,6 +324,8 @@ var Salary = {
         $ovl.css('background', '#F5F5F5');
         $('#cal_salary_month').click(function () {
             var salary_start = document.getElementById('salary_start').value;
+           // var dt = salary_start.split("-");
+            
             if (salary_start == '') {
                 $('#error_salary').show();
             } else {
@@ -341,27 +343,44 @@ var Salary = {
 //            $(this).removeClass('datepicker').datepicker({dateFormat: "yy-mm-dd",
 //            }).focus();
 //        });
- $(".monthPicker").datepicker({
-        dateFormat: 'yy mm',
-        changeMonth: true,
-        changeYear: true,
-        showButtonPanel: true,
-
-        onClose: function(dateText, inst) {
-            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-            $(this).val($.datepicker.formatDate('yy-mm', new Date(year, month, 1)));
-        }
+// $(".monthPicker").datepicker({
+//        dateFormat: 'yy mm',
+//        changeMonth: true,
+//        changeYear: true,
+//        showButtonPanel: true,
+//
+//        onClose: function(dateText, inst) {
+//            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+//            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+//            $(this).val($.datepicker.formatDate('yy-mm', new Date(year, month, 1)));
+//        }
+//    });
+//
+//    $(".monthPicker").click(function () {
+//        $(".ui-datepicker-calendar").hide();
+////        $("#ui-datepicker-div").position({
+////            my: "center top",
+////            at: "center bottom",
+////            of: $(this)
+////        });
+//    }).click();
+$(".monthPicker").click(function () {       
+         common.monthyearPicker();
     });
-
-    $(".monthPicker").focus(function () {
-        $(".ui-datepicker-calendar").hide();
-        $("#ui-datepicker-div").position({
-            my: "center top",
-            at: "center bottom",
-            of: $(this)
-        });
-    }).focus();
+//	$('.monthPicker').datepicker({
+//                        changeMonth: true,
+//                        changeYear: true,
+//                        showButtonPanel: true,
+//                        dateFormat: 'mm-yy'
+//                    }).focus(function () {
+//                        var thisCalendar = $(this);
+//                        $('.ui-datepicker-calendar').detach();
+//                        $('.ui-datepicker-close').click(function () {
+//                            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+//                            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+//                            thisCalendar.datepicker('setDate', new Date(year, month, 1));
+//                        });
+//                    });
     },
     autolist: function () {        
         
@@ -511,14 +530,17 @@ var Salary = {
 
     },
     SaveSalary: function (d) {
+        
         var date = d;
+        var d = d.split("-");
+            
         $.ajax({
             url: 'checkmonthyear',
             method: 'GET',
-            data: {monthyear: d},
-            // dataType: 'json',
+            data: {year: d[0],month:d[1]},
+             //dataType: 'json',
             success: function (d) {
-                // alert(d);
+              //alert(d);
                 data = JSON.parse(d);
                 if (data === 'found') {
                     // alert("Found!");

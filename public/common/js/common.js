@@ -175,7 +175,20 @@ function repair(val) {
 }
 
 $(document).ready(function () {
-    
+    $('.monthPicker').datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        showButtonPanel: true,
+                        dateFormat: 'mm-yy'
+                    }).focus(function () {
+                        var thisCalendar = $(this);
+                        $('.ui-datepicker-calendar').detach();
+                        $('.ui-datepicker-close').click(function () {
+                            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                            thisCalendar.datepicker('setDate', new Date(year, month, 1));
+                        });
+                    });
     //absent member
     //$('body').attr('onload', getAbsentMember());
     // ここに実際の処理を記述します。
@@ -296,3 +309,21 @@ $(window).resize(function () {
 //            });
 //        
 //   });
+var common = {
+    monthyearPicker: function () {        
+        $('.monthPicker').datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        showButtonPanel: true,
+                        dateFormat: 'yy-mm'
+                    }).focus(function () {
+                        var thisCalendar = $(this);
+                        $('.ui-datepicker-calendar').detach();
+                        $('.ui-datepicker-close').click(function () {
+                            var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                            var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                            thisCalendar.datepicker('setDate', new Date(year, month, 1));
+                        });
+                    }).focus();              
+    }
+};
