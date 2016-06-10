@@ -151,6 +151,19 @@ class Master extends Models\SalaryMaster {
         }
     }
 
+    function getLeaveCarry($member_id) {
+        try {
+            $this->db = $this->getDI()->getShared("db");
+            $sql = "select leaveday_carry from core_member where member_id='" . $member_id . "' and deleted_flag=0";
+
+            $result = $this->db->query($sql);
+            $row = $result->fetcharray();
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return $row;
+    }
+
     /**
      * Get basic salary for all staffs
      * @return type
@@ -160,11 +173,15 @@ class Master extends Models\SalaryMaster {
             $this->db = $this->getDI()->getShared("db");
             $month = date('m');
             $final = array();
+
             foreach ($countattday as $countattdays) {
                 $countatt = $countattdays['attdate'];
                 $m_id = $countattdays['member_id'];
+               
+
                 $sql = "select *,(case when (travel_fee_perday) then travel_fee_perday*$countatt else travel_fee_permonth end) as travel_fee,salary_start_date as comp_start_date "
                         . "from salary_master where deleted_flag=0 and member_id='" . $m_id . "'";
+
                 $result = $this->db->query($sql);
                 $row = $result->fetchall();
                 array_push($final, $row);
@@ -179,20 +196,19 @@ class Master extends Models\SalaryMaster {
      * calculate basic salary for the whole year
      * @param type $param
      */
-    public function calculateTaxSalary($param, $salary_start_date, $creator_id,$salarydateto) {
-       try {
+    public function calculateTaxSalary($param, $salary_start_date, $creator_id, $salarydateto) {
+        try {
             $deduce_amount = array();
             $now = new \DateTime('now');
             $final_result = "";
             $absent_dedution = "";
             $date_diff = "";
-            $flg = 0;
-            
+            $flg = 0;          
             foreach ($param as $value) {
                 if (!empty($value)) {
                     //set the working start date whether 1 year or not
                     $wrk_start_dt = $this->getWorkingstartDate($value[0]['member_id']);
-                    
+
                     $budget_startyear = $value[0]['salary_start_date'];
 
                     $budget_endyear = $value[0]['salary_end_date'];
@@ -203,48 +219,45 @@ class Master extends Models\SalaryMaster {
                     $start_date = explode("-", $comp_start_date);
                     $salary_starting_date = $start_date[0] . '-' . $start_date[1];
                     $salary_starting_month = $start_date[1];
-                    
-                    
+
+
                     //calculate date difference between starting date and budget end year
                     $date_diff = $this->dateDifference($salary_start_date, $budget_endyear);
                     $basic_salary_annual = $value[0]['basic_salary'] * $date_diff;
                     $date_to_calculate = $date_diff;
 
-                    
+
                     //Get the basic salary which the latest pay in salary 
                     $SD = $this->checkBasicsalaryBymember_id('salary_detail', $value[0]['member_id'], $budget_startyear, $budget_endyear);
                     //Get the basic salary from salary master
                     $SM = $this->getLatestsalary($value[0]['member_id']);
                     //get the latest
                     $latest_otpay = $this->getlatestOTPay($value[0]['member_id'], $budget_startyear, $budget_endyear);
-                  
+
                     if (!empty($SD)) {
                         $basic_salary_annual = $basic_salary_annual + $SD['total_basic_salary'];
                         $old_allowance = $SD['total_all_amount'];
                         $date_to_calculate = $date_diff + $SD['count_pay'];
-                        
-                        
-                        if($working_start_date[1] == '03')
-                            {
+
+
+                        if ($working_start_date[1] == '03') {
                             $detail_data = $this->getsalarydetail_oneyear($budget_startyear, $budget_endyear, $value[0]['member_id']);
                             //print_r($detail_data);
-                             if ($value[0]['basic_salary'] > 300000) {
-                                    $emp_ssc = $detail_data['total_ssc_emp']+6000;
-                                } else {
-                                    $emp_ssc = $detail_data['total_ssc_emp']+($value[0]['basic_salary']*2/100);
-
-                                }
-                            $old_allowance = $detail_data['total_allowance'];
-                            $total_income_tax=$detail_data['total_income_tax'];
-                            $flg=1;
-                            
+                            if ($value[0]['basic_salary'] > 300000) {
+                                $emp_ssc = $detail_data['total_ssc_emp'] + 6000;
+                            } else {
+                                $emp_ssc = $detail_data['total_ssc_emp'] + ($value[0]['basic_salary'] * 2 / 100);
                             }
+                            $old_allowance = $detail_data['total_allowance'];
+                            $total_income_tax = $detail_data['total_income_tax'];
+                            $flg = 1;
+                        }
                     }
-                    
+
                     $Allowanceresult = $this->getAllowances($value[0]['member_id'], $basic_salary_annual, $date_diff, $old_allowance, $SM['status'], $SD['allowance_amount'], $SD['count_pay']);
-                    
+
                     $basic_salary_allowance_annual = $Allowanceresult['basic_salary_annual'];
-                    
+
                     //calculating of overtime 
                     $OTResult = $this->calculateOvertimeAnnual($value[0]['member_id'], $SD['total_overtime'], $salary_starting_date, $budget_endyear, $date_diff, $SD['count_pay'], $latest_otpay['overtime']);
 
@@ -252,23 +265,22 @@ class Master extends Models\SalaryMaster {
                     $overtime_fees = $OTResult['overtime'];
 
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual + $overtime_fees_annual;
-                   
+
                     //check the user who is absent.
                     $absent = $this->checkAbsent($value[0]['member_id'], $wrk_start_dt);
                     //Get the data of leave setting
                     $leavesetting = $this->getleavesetting();
-                    $thismonth_leave= $this->getLeave($salary_starting_date,$value[0]['member_id']);
-                    
+                    $thismonth_leave = $this->getLeave($salary_starting_date, $value[0]['member_id']);
+
                     //calculate absent deduce
-                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], 
-                            $thismonth_leave['countAbsent'], $value[0]['basic_salary'],$value[0]['leaveday_carry']);
-                    var_dump($countabsent);exit();
+                    $countabsent = $this->calculateLeave($absent['countAbsent'], $leavesetting['max_leavedays'], $thismonth_leave['countAbsent'], $value[0]['basic_salary'], $value[0]['leaveday_carry']);
+
                     $absent_dedution = $countabsent;
-                  
+
                     $basic_salary_allowance_annual = $basic_salary_allowance_annual - $absent_dedution;
 
                     $basic_deduction = $basic_salary_allowance_annual * (20 / 100);
-                    
+
                     if ($flg != 1) {
                         //calculate ssc pay amount to deduce
                         if ($value[0]['basic_salary'] > 300000) {
@@ -283,20 +295,19 @@ class Master extends Models\SalaryMaster {
                     $deduce_amount = $this->getreduce($value[0]['member_id']);
                     //print_r($deduce_amount).'<br>';
                     $total_deduce = $deduce_amount[0]['Totalamount'] + $basic_deduction + $emp_ssc;
-                    
+
 
                     //taxable income (total_basic-total deduce)
                     $income_tax = $basic_salary_allowance_annual - $total_deduce;
 
                     //echo "The Income tax  is " . $income_tax . '<br>';
-                   
+
                     $taxs = $this->deducerate($income_tax, $date_to_calculate);
-                   
+
                     $tax_foreach_month = $taxs['tax_result'];
                     if ($flg == 1) {
-                        
+
                         $tax_foreach_month = $taxs['total_tax_annual'] - $total_income_tax;
-                        
                     }
 
                     $final_result[] = array('basic_salary' => $value[0]['basic_salary'],
@@ -310,20 +321,19 @@ class Master extends Models\SalaryMaster {
                         'allowance_amount' => $Allowanceresult['allowance'],
                         'absent_dedution' => round($absent_dedution),
                         'creator_id' => $creator_id,
-                        'pay_date' => $salary_start_date.'-'.$salarydateto);
-                    
-                    if ('03' == $working_start_date[1] || '03' == $salary_starting_month) {
-                   
-                    $latestDate = $this->getLatestDate($value[0]['member_id']);
+                        'pay_date' => $salary_start_date . '-' . $salarydateto);
 
-                    $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
-                    $bdg_startyear = $ayear . '-04-01';
-                    $byear = date("Y", strtotime($latestDate['salary_end_date'])) + 1;
-                    $bdg_endyear = $byear . '-03-31';
-                    $this->EditSalarymaster($value[0]['member_id'], $bdg_startyear, $bdg_endyear);
+                    if ('03' == $working_start_date[1] || '03' == $salary_starting_month) {
+
+                        $latestDate = $this->getLatestDate($value[0]['member_id']);
+
+                        $ayear = date("Y", strtotime($latestDate['salary_start_date'])) + 1;
+                        $bdg_startyear = $ayear . '-04-01';
+                        $byear = date("Y", strtotime($latestDate['salary_end_date'])) + 1;
+                        $bdg_endyear = $byear . '-03-31';
+                        $this->EditSalarymaster($value[0]['member_id'], $bdg_startyear, $bdg_endyear);
+                    }
                 }
-                }
-                
             }
         } catch (Exception $exc) {
             echo $exc;
@@ -383,25 +393,22 @@ class Master extends Models\SalaryMaster {
      * @param type $basic_salary
      * @return int
      */
-       public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary,$leaveday_carry) {
-        $Leavecount = $max_leavedays+$leaveday_carry;
+    public function calculateLeave($countabsent, $max_leavedays, $thismonth_leave, $basic_salary, $leaveday_carry) {
+        $Leavecount = $max_leavedays + $leaveday_carry;
         if ($countabsent > $Leavecount) {
             $overleave = $countabsent - $Leavecount;
-            if($overleave < $thismonth_leave){
+            if ($overleave < $thismonth_leave) {
                 $thismonth_over = $overleave;
-               
+            } else {
+                $thismonth_over = $thismonth_leave;
             }
-            else{
-                 $thismonth_over = $thismonth_leave;
-               
-            }
-           $absent_deduce = ($basic_salary  / 22)* ($thismonth_over );
-            
+            $absent_deduce = ($basic_salary / 22) * ($thismonth_over );
         } else {
             $absent_deduce = 0;
         }
         return $absent_deduce;
     }
+
     /**
      * get leave setting data
      */
@@ -838,15 +845,15 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $overtimerate
      * @param type $member_id
      */
-    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr,$year,$month,$updater_id) {
+    public function updateSalarydetail($bsalary, $overtimerate, $member_id, $overtime_hr, $year, $month, $updater_id) {
         try {
-             $this->db = $this->getDI()->getShared("db");
+            $this->db = $this->getDI()->getShared("db");
             $sql = "Update salary_master SET basic_salary ='" . $bsalary . "',over_time ='" . $overtimerate .
-                    "',updated_dt=NOW(),updater_id='".$updater_id."' Where member_id='" . $member_id . "'";
+                    "',updated_dt=NOW(),updater_id='" . $updater_id . "' Where member_id='" . $member_id . "'";
             $this->db->query($sql);
             $sqlupdate = "Update salary_detail SET overtime_hr ='" . $overtime_hr . "' Where member_id='"
-                    . $member_id . "'  and YEAR(pay_date)='".$year."' and MONTH(pay_date)='".$month."'";
-            
+                    . $member_id . "'  and YEAR(pay_date)='" . $year . "' and MONTH(pay_date)='" . $month . "'";
+
             $this->db->query($sqlupdate);
         } catch (Exception $ex) {
             echo $ex;
