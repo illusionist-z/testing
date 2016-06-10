@@ -102,37 +102,10 @@ class AttendanceListTest extends PHPUnit_Extensions_Selenium2TestCase {
         $this->url('attendancelist/index/todaylist');
         $this->byCssSelector('a')->click();
         $this->url('attendancelist/index/attendancechart');
-        $element = $this->byCssSelector('h1');             
-        $this->assertEquals('Monthly Attendance Chart ('.date("Y/m").')', $element->text());
+        $element = $this->byCssSelector('h1');
+        $this->assertEquals('Monthly Attendance Chart (' . date("Y/m") . ')', $element->text());
     }
 
-    public function testFirst() {
-        $this->url('attendancelist/index/todaylist');
-        $this->byCssSelector('a')->click();
-        $this->url('attendancelist/index/attendancechart');
-
-        $this->byLinkText('First')->click();
-        $this->url('attendancelist/index/attendancechart');
-    }
-
-    public function testNext() {
-        $this->url('attendancelist/index/todaylist');
-        $this->byCssSelector('a')->click();
-        $this->url('attendancelist/index/attendancechart');
-
-        $this->byLinkText('Next')->click();
-        $this->url('attendancelist/index/attendancechart');
-    }
-
-    public function testLast() {
-
-        $this->url('attendancelist/index/todaylist');
-        $this->byCssSelector('a')->click();
-        $this->url('attendancelist/index/attendancechart');
-
-        $this->byLinkText('Last')->click();
-        $this->url('attendancelist/index/attendancechart');
-    }
 
     public function testCancel() {
         $this->url('attendancelist/index/todaylist');

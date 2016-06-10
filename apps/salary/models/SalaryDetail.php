@@ -343,7 +343,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
     }
 
     public function updateSalarydetail($bsalary,$allowancetoadd, $member_id,$salary_start_year,
-        $salary_start_month,$absent_amount,$overtime_hr,$overtimerate,$workingstartdt) {
+        $salary_start_month,$absent_amount,$overtime_hr,$overtimerate,$workingstartdt,$updater_id) {
         
         $Salarymaster = new SalaryMaster();
         $SM = $Salarymaster->getTodaysalaryMaster($member_id);
@@ -446,8 +446,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             'member_id' => $member_id, 'allowance_amount' => $Allowanceresult['allowance'],
             'special_allowance' => $allowancetoadd,'overtime' => $ot_fees,
             'absent_dedution' => $absent_dedution,'basic_salary' => round($bsalary));
-       //print_r($final_result);exit;
-       $Result=$this->saveSalaryEditdata($final_result,$salary_start_year,$salary_start_month);
+        
+       $Result=$this->saveSalaryEditdata($final_result,$salary_start_year,$salary_start_month,$updater_id);
        
       
         return $Result;
@@ -459,7 +459,7 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
      * @param type $salary_start_month
      * @return string
      */
-    public function saveSalaryEditdata($param,$salary_start_year,$salary_start_month) {
+    public function saveSalaryEditdata($param,$salary_start_year,$salary_start_month,$updater_id) {
         try {
             
             $filter = new Filter();
@@ -472,8 +472,8 @@ select allowance_id from salary_master_allowance where member_id='" . $member_id
             $income_tax = $filter->sanitize($param[0]['income_tax'], "int");
             $absent_deduction = $filter->sanitize($param[0]['absent_dedution'], "int");
             $sql = "UPDATE salary_detail SET basic_salary ='" . $basic_salary . "', allowance_amount='" . $allowance_amount . "', income_tax='" . $income_tax . "', absent_dedution='".$absent_deduction."',"
-                    . "special_allowance='".$special_allowance_amount."', overtime ='".$otFees."' WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $salary_start_year . "' and MONTH(pay_date)='".$salary_start_month."'";
-            //echo $sql;exit;
+                    . "special_allowance='".$special_allowance_amount."', overtime ='".$otFees."',updater_id='".$updater_id."',updated_dt=now() WHERE member_id ='" . $member_id . "' and YEAR(pay_date)='" . $salary_start_year . "' and MONTH(pay_date)='".$salary_start_month."'";
+            
             //$this->db->query($sql);
             if($this->db->query($sql)){
             $result="pass";  

@@ -70,12 +70,20 @@ and open the template in the editor.
  }
  #help_footer{
     background: #fff;/*#222D32*/
-    padding: 15px;
+    padding:19px 20px 15px 18px;
     color: #444;
+    border: 1px solid #3C8DBC;
 }
 
 #help_lang_box{
     right:5px;
     top:15px;
     float: right;
+    margin-top: -13px;
+}
+#text_footer{
+    padding: 20px;
+}
+#clearboth{
+    clear: both;
 }

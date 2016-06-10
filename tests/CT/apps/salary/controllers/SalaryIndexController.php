@@ -188,9 +188,9 @@ class SalaryIndexController extends Controllers\IndexController {
             $this->assets->addJs('apps/salary/js/base.js');
             $this->assets->addJs('apps/salary/js/index-addsalary.js');
             $currentPage = $this->request->get("page");
-            $SalaryDetail = new SalaryDetail();
+            $SalaryDetail = new SalaryDetailTest();
             if (0 == $exportMode) {
-                $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage, 1);
+                $get_eachmonth_salary = $SalaryDetail->getEachmonthsalary($currentPage);
             }
             return true;
         }
