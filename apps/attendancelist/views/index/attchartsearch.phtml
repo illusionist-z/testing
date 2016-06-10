@@ -2,6 +2,9 @@
 if (!ini_get('date.timezone')) {
     date_default_timezone_set('UTC');
 }
+use Phalcon\Filter;
+   $this->filter = new Filter();
+   $filter = $this->filter; 
 ?>
 
 <section class="content-header">
@@ -12,20 +15,9 @@ if (!ini_get('date.timezone')) {
     <div> 
         <form action='attchartsearch' method="post" enctype="multipart/form-data">
             
-              <select  class="buttonn form-control-static col-sm-2 chart-search-input" placeholder="Month" value="Month" name="date-picker-input-month">
- 
-                  <option>-Select Month-</option>
-                    <?php
-                    foreach ($Month as $date_count) {
-                        ?>
-                     
-                  <option value="<?php echo $date_count['']; ?>"><?= $date_count ?></option>
-                    <?php
-                         }
-                        ?>
-      
-        </select>
-          <input type='input' class="buttonn form-control-static col-sm-1 date-picker-year " placeholder="Year" value="Year" name="date-picker-input-year">
+          
+            
+            <input type='input' class="buttonn form-control-static col-sm-2 date-picker-year " placeholder="Select Date   " name="date-picker-input-year" required="Month and Year">
 <!--                  &nbsp;&nbsp;<span class="buttonn form-control-static ">-->
               <?php
          
@@ -33,8 +25,8 @@ if (!ini_get('date.timezone')) {
 <!--          </span>-->
         &nbsp;&nbsp;
         
-         <select  class="buttonn form-control-static col-sm-2" name="date-picker-select">
-                <option>Select-Dept</option> 
+         <select  class="buttonn form-control-static col-sm-2" name="date-picker-select" >          
+              <option>Select-Dept</option> 
  <?php
             foreach ($core_att as $data_att_dept) {
                 
@@ -61,7 +53,7 @@ if (!ini_get('date.timezone')) {
                  <thead>
                  
               
-                  <th colspan='32' style=" text-align: center;"> Monthly Attendance  By Day  </td>
+                  <th colspan='33' style=" text-align: center;"> Monthly Attendance  By Day  </td>
                  
                 </thead>
                 <tbody>
@@ -73,7 +65,16 @@ if (!ini_get('date.timezone')) {
                 
                  
                  <?php
-                for ($i = 1; $i <= date('t'); $i++) {
+                
+                      $search_date_year = $filter->sanitize($this->request->getPost('date-picker-input-year'),'string');
+                      $day_count = explode(",", $search_date_year);
+                      $month_count =  $day_count[0];
+                      $year_count =  $day_count[1];
+                       // $month_for_day_count = $search_date_month.'/'.$search_date_year;
+                        $number = cal_days_in_month(CAL_GREGORIAN, $month_count, $year_count); // 31
+                        
+                      
+                for ($i = 1; $i <= $number; $i++) {
                     echo "  <td> ". $i ."  </td>";
                 }
                 ?>      
@@ -82,6 +83,8 @@ if (!ini_get('date.timezone')) {
                     </tr>
                     <?php
                     $no = 1;
+      
+                   
                     foreach ($data->items as $result) {
                         $day = explode(",", $result['day']);
                         $status = explode(",", $result['status']);
@@ -89,7 +92,7 @@ if (!ini_get('date.timezone')) {
                         echo "<tr>";
                         echo "<td>" . ($no + ($data->limit * $tt)) . "</td>";
                         echo "<td>" . $result['member_login_name'] . "</td>";
-                        for ($i = 1; $i <= date('t'); $i++) {
+                        for ($i = 1; $i <= $number; $i++) {
                             $j = array();
                             //get under today date
                             if ($i) {
